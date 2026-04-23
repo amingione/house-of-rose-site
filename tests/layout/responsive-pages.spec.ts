@@ -73,13 +73,30 @@ for (const viewport of VIEWPORTS) {
     }) => {
       await page.goto("/services");
       await expect(page.locator("section[data-section='services-hero']")).toBeVisible();
+      await expect(page.locator("section[data-section='services-index']")).toBeVisible();
+      await expect(
+        page.locator("section[data-section='services-how-to-choose']"),
+      ).toBeVisible();
+      await expect(page.locator("section[data-section='services-cta']")).toBeVisible();
 
       await page.goto("/services/injectables");
+      await expect(
+        page.locator("section[data-section='service-detail-hero']"),
+      ).toBeVisible();
+      await expect(
+        page.locator("section[data-section='service-detail-intro']"),
+      ).toBeVisible();
       await expect(
         page.locator("section[data-section='service-detail-process']"),
       ).toBeVisible();
       await expect(
         page.locator("section[data-section='service-detail-faq']"),
+      ).toBeVisible();
+      await expect(
+        page.locator("section[data-section='service-detail-related']"),
+      ).toBeVisible();
+      await expect(
+        page.locator("section[data-section='service-detail-cta']"),
       ).toBeVisible();
     });
 
