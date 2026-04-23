@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("header transitions from transparent to solid and shrinks after hero scroll", async ({
+test("header data-header-state transitions from over-hero to scrolled", async ({
   page,
 }) => {
   await page.goto("/");
@@ -8,11 +8,9 @@ test("header transitions from transparent to solid and shrinks after hero scroll
   const header = page.locator("header.lux-header");
   await expect(header).toBeVisible();
 
-  const before = await header.getAttribute("data-header-state");
-  expect(before).toBe("over-hero");
+  await expect(header).toHaveAttribute("data-header-state", "over-hero");
 
   await page.mouse.wheel(0, 1400);
 
-  const after = await header.getAttribute("data-header-state");
-  expect(after).toBe("scrolled");
+  await expect(header).toHaveAttribute("data-header-state", "scrolled");
 });
