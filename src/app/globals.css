@@ -1376,6 +1376,12 @@ span {
   padding-top: clamp(4rem, 8vw, 6rem);
 }
 
+.service-hub-index,
+.service-detail-intro {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
 .service-hub-grid-editorial {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1386,8 +1392,30 @@ span {
   padding: 0.9rem;
 }
 
+.service-hub-card-editorial > div:last-child {
+  gap: 0.7rem;
+  padding: 0.6rem 0.45rem 0.35rem;
+}
+
 .service-hub-image-wrap-tall {
   min-height: 360px;
+}
+
+.service-hub-index .lux-kicker,
+.service-detail-page .lux-section-head .lux-kicker,
+.service-guidance-copy .lux-kicker,
+.service-process-copy .lux-kicker,
+.service-detail-card .lux-kicker {
+  color: var(--rose-champagne);
+}
+
+.service-hub-card-editorial h3,
+.service-detail-card h3,
+.service-faq-card h3,
+.service-related-card h3 {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  line-height: 1.05;
 }
 
 .service-meta-line {
@@ -1454,6 +1482,70 @@ span {
   line-height: 1;
 }
 
+.service-hub-subhead {
+  margin-top: clamp(2rem, 6vw, 4rem);
+}
+
+.service-hub-service-grid,
+.service-process-grid,
+.service-related-layout {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.service-guidance-layout,
+.service-process-layout,
+.service-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.service-guidance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.service-guidance-copy h2,
+.service-process-copy h2 {
+  margin: 0.45rem 0 0.9rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 0.98;
+}
+
+.service-guidance-copy p,
+.service-process-copy p,
+.service-related-card p:last-of-type {
+  color: var(--rose-smoke);
+}
+
+.service-process-grid {
+  margin-top: 1.5rem;
+}
+
+.service-faq-card,
+.service-faq-list {
+  min-height: 100%;
+}
+
+.service-faq-list {
+  padding: clamp(1.2rem, 2.4vw, 1.6rem);
+  border: 1px solid var(--rose-line);
+  border-radius: var(--radius-lg);
+  background: var(--rose-panel);
+  box-shadow: var(--shadow-soft);
+}
+
+.service-faq-card p:last-of-type {
+  color: var(--rose-smoke);
+}
+
+.service-related-layout {
+  display: grid;
+  gap: 1rem;
+}
+
 .service-detail-grid-editorial {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -1492,6 +1584,7 @@ span {
 @media (max-width: 1080px) {
   .signature-grid,
   .service-hub-grid-editorial,
+  .service-guidance-grid,
   .package-row,
   .testimonial-strip-editorial,
   .distinction-grid,
@@ -1504,6 +1597,9 @@ span {
   .contact-panel-editorial,
   .service-story-grid,
   .service-editorial-layout,
+  .service-guidance-layout,
+  .service-process-layout,
+  .service-faq-layout,
   .editorial-band-grid,
   .home-hero-grid,
   .home-split-shell,

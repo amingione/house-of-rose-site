@@ -68,6 +68,21 @@ for (const viewport of VIEWPORTS) {
       await expectFullBleed(page, hero);
     });
 
+    test("services hub and detail pages expose required section markers", async ({
+      page,
+    }) => {
+      await page.goto("/services");
+      await expect(page.locator("section[data-section='services-hero']")).toBeVisible();
+
+      await page.goto("/services/injectables");
+      await expect(
+        page.locator("section[data-section='service-detail-process']"),
+      ).toBeVisible();
+      await expect(
+        page.locator("section[data-section='service-detail-faq']"),
+      ).toBeVisible();
+    });
+
     test("experience hero reaches the viewport bounds", async ({ page }) => {
       await page.goto("/experience");
 
