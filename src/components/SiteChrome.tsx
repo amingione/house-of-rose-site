@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { StickySiteHeader } from "@/components/StickySiteHeader";
 import { TrackedLink } from "@/components/TrackedLink";
 
 type SiteChromeProps = {
@@ -15,38 +16,20 @@ export function SiteHeader({
   primaryCtaHref,
   primaryCtaLabel,
 }: Pick<SiteChromeProps, "brandName" | "primaryCtaHref" | "primaryCtaLabel">) {
+  const navItems = [
+    { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
+    { href: "/services/collections", label: "Service Houses" },
+    { href: "/experience", label: "Experience" },
+  ];
+
   return (
-    <header className="lux-header">
-      <div className="shell lux-header-inner">
-        <Link href="/" className="lux-brand-mark">
-          {brandName}
-        </Link>
-        <nav aria-label="Primary">
-          <ul className="lux-nav">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/services">Services</Link>
-            </li>
-            <li>
-              <Link href="/services/collections">Service Houses</Link>
-            </li>
-            <li>
-              <Link href="/experience">Experience</Link>
-            </li>
-          </ul>
-        </nav>
-        <TrackedLink
-          href={primaryCtaHref}
-          className="lux-btn lux-btn-primary"
-          eventName="book_cta_click"
-          eventDetails={{ placement: "header" }}
-        >
-          {primaryCtaLabel}
-        </TrackedLink>
-      </div>
-    </header>
+    <StickySiteHeader
+      brandName={brandName}
+      primaryCtaHref={primaryCtaHref}
+      primaryCtaLabel={primaryCtaLabel}
+      navItems={navItems}
+    />
   );
 }
 
