@@ -1,7 +1,7 @@
 # House of Rose Luxury Website Redesign Spec
 
 Date: 2026-04-23
-Status: Draft for user review
+Status: Implemented and verified
 Owner: Frontend (fas-cms-fresh)
 
 ## 1. Objective
@@ -169,3 +169,14 @@ Header appears on all pages and uses two states:
 ## 10. Delivery Notes
 
 Implementation should be done by patching existing page structure and styles, not architectural redesign. Existing route framework and content sourcing should be reused and tightened to this spec.
+
+## 11. Implementation Status
+
+- [x] Home page (`/`) implemented
+- [x] Services hub (`/services`) implemented
+- [x] Service detail pages (`/services/[slug]`) implemented
+- [x] Experience page (`/experience`) implemented
+- [x] Contact conversion blocks shipped on home and footer surfaces
+- [x] Sticky shrinking header behavior shipped across core pages
+- [x] Responsive spot checks covered for mobile and desktop layouts
+- [x] Final verification completed with `npm run lint`, `npm run build`, and `npm run test:e2e`
