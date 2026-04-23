@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { EngagementTracker } from "@/components/EngagementTracker";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedLink } from "@/components/TrackedLink";
 import { getPackageHighlights } from "@/lib/medusa";
 import { getSiteContent } from "@/lib/sanity";
+import { getServiceCollections } from "@/lib/service-collections";
 
 export default async function HomePage() {
   const [content, packageResult] = await Promise.all([
@@ -12,13 +14,14 @@ export default async function HomePage() {
     getPackageHighlights(),
   ]);
 
-  const featuredServices = content.services.slice(0, 4);
+  const featuredServices = content.services.slice(0, 6);
+  const collections = getServiceCollections(content);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     name: content.brandName,
-    image: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"}/inspo/reception-white.png`,
+    image: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com"}/generated/house-of-rose-hero.png`,
     telephone: content.contact.phone,
     email: content.contact.email,
     address: {
@@ -28,16 +31,6 @@ export default async function HomePage() {
       addressCountry: "US",
       streetAddress: content.contact.addressLine1,
     },
-    areaServed: [
-      {
-        "@type": "City",
-        name: content.city,
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Charlotte County",
-      },
-    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Aesthetic and Wellness Services",
@@ -60,104 +53,93 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <SiteHeader
+        brandName={content.brandName}
+        primaryCtaHref={content.hero.primaryCtaHref}
+        primaryCtaLabel={content.hero.primaryCtaLabel}
+      />
 
-      <header className="site-header">
-        <Link href="/" className="brand-mark">
-          {content.brandName}
-        </Link>
-        <nav aria-label="Primary">
-          <ul className="header-nav">
-            <li>
-              <a href="#services">Services</a>
-            </li>
-            <li>
-              <a href="#experience">Experience</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-        <TrackedLink
-          href={content.hero.primaryCtaHref}
-          className="header-cta"
-          eventName="book_cta_click"
-          eventDetails={{ placement: "header" }}
-        >
-          {content.hero.primaryCtaLabel}
-        </TrackedLink>
-      </header>
-
-      <main>
-        <section className="hero-section editorial-hero" id="top">
+      <main className="lux-page">
+        <section className="lux-hero">
           <Image
-            src="/inspo/reception-white.png"
-            alt="Softly lit treatment suite at House of Rose"
+            src="/generated/house-of-rose-hero.png"
+            alt="House of Rose luxury treatment suite"
             fill
             priority
-            className="hero-bg hero-bg-crop"
+            className="lux-hero-image"
+            style={{ objectPosition: "center 30%" }}
           />
-          <div className="hero-overlay hero-overlay-editorial" />
-          <div className="hero-content hero-content-editorial reveal-up">
-            <p className="eyebrow">{content.hero.eyebrow}</p>
-            <span className="hero-brand">{content.brandName}</span>
+          <div className="lux-hero-overlay" />
+          <div className="shell lux-hero-content reveal-up">
+            <p className="lux-kicker">{content.hero.eyebrow}</p>
+            <span className="lux-hero-brand">{content.brandName}</span>
             <h1>{content.hero.title}</h1>
-            <p className="hero-copy">{content.hero.description}</p>
-            <p className="hero-copy hero-copy-muted">{content.hero.secondaryDescription}</p>
-            <div className="hero-actions">
+            <p>{content.hero.description}</p>
+            <p className="lux-muted-copy">{content.hero.secondaryDescription}</p>
+            <div className="lux-hero-actions">
               <TrackedLink
                 href={content.hero.primaryCtaHref}
-                className="btn-primary"
+                className="lux-btn lux-btn-primary"
                 eventName="book_cta_click"
-                eventDetails={{ placement: "hero" }}
+                eventDetails={{ placement: "home_hero" }}
               >
                 {content.hero.primaryCtaLabel}
               </TrackedLink>
               <TrackedLink
                 href={content.hero.secondaryCtaHref}
-                className="btn-secondary"
+                className="lux-btn lux-btn-tertiary"
                 eventName="contact_intent"
-                eventDetails={{ placement: "hero" }}
+                eventDetails={{ placement: "home_hero_services" }}
               >
                 {content.hero.secondaryCtaLabel}
               </TrackedLink>
             </div>
           </div>
-          <div className="hero-notes reveal-up">
-            <p>Consultation led</p>
-            <p>Natural-looking outcomes</p>
-            <p>Private Punta Gorda studio</p>
-          </div>
         </section>
 
-        <section className="section shell distinction-section">
-          <div className="section-head reveal-up">
-            <p className="kicker">Why House of Rose</p>
-            <h2>{content.about.heading}</h2>
-            <p>{content.about.description}</p>
+        <section className="lux-section shell">
+          <div className="lux-section-head reveal-up">
+            <p className="lux-kicker">Service Houses</p>
+            <h2>Luxury pathways that make service selection effortless.</h2>
+            <p>
+              Use these curated pathways to understand which treatments pair together and
+              what outcome each category is designed to deliver.
+            </p>
           </div>
-          <div className="distinction-grid">
-            {content.about.credentials.map((item) => (
-              <article className="distinction-item reveal-up" key={item}>
-                <p>{item}</p>
+          <div className="collection-grid">
+            {collections.map((collection) => (
+              <article key={collection.slug} className="collection-card reveal-up">
+                <div className="collection-image-wrap">
+                  <Image
+                    src={collection.heroImage}
+                    alt={collection.heroAlt}
+                    fill
+                    className="fit-image"
+                    style={{ objectPosition: collection.heroImagePosition }}
+                  />
+                </div>
+                <div className="collection-copy">
+                  <p className="lux-kicker">{collection.name}</p>
+                  <h3>{collection.headline}</h3>
+                  <p>{collection.description}</p>
+                  <Link href={`/services/collections/${collection.slug}`} className="text-link">
+                    Explore {collection.name.toLowerCase()}
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section shell signature-section" id="services">
-          <div className="section-head reveal-up">
-            <p className="kicker">Signature Services</p>
-            <h2>Treatments shaped around outcomes that read refined, never obvious.</h2>
-            <p>
-              Each recommendation is personalized to your features, your comfort level,
-              and how you want to move through the world after treatment.
-            </p>
+        <section className="lux-section shell">
+          <div className="lux-section-head reveal-up">
+            <p className="lux-kicker">Signature Services</p>
+            <h2>Detailed service pages designed for confident decision-making.</h2>
           </div>
-          <div className="signature-grid">
+          <div className="service-preview-grid">
             {featuredServices.map((service) => (
-              <article className="signature-item reveal-up" key={service.id}>
-                <div className="signature-image-wrap">
+              <article key={service.slug} className="service-preview-card reveal-up">
+                <div className="service-preview-image">
                   <Image
                     src={service.heroImage}
                     alt={service.heroAlt}
@@ -166,65 +148,50 @@ export default async function HomePage() {
                     style={{ objectPosition: service.heroImagePosition }}
                   />
                 </div>
-                <div className="signature-copy">
-                  <p className="service-name">{service.name}</p>
-                  <h3>{service.highlight}</h3>
-                  <p>{service.promise}</p>
-                  <Link href={`/services/${service.slug}`} className="service-link">
-                    Discover {service.name.toLowerCase()}
-                  </Link>
-                </div>
+                <p className="service-name">{service.name}</p>
+                <h3>{service.highlight}</h3>
+                <p>{service.promise}</p>
+                <p className="service-meta">{service.duration} · {service.downtime}</p>
+                <Link href={`/services/${service.slug}`} className="text-link">
+                  View service page
+                </Link>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section editorial-band" id="experience">
-          <div className="shell editorial-band-grid">
-            <div className="editorial-image-stack reveal-up">
-              <div className="editorial-primary-image">
-                <Image
-                  src="/inspo/refreshment-corner.png"
-                  alt="House of Rose hospitality details"
-                  fill
-                  className="fit-image"
-                />
-              </div>
-              <div className="editorial-secondary-image">
-                <Image
-                  src="/inspo/reception-marble.png"
-                  alt="House of Rose studio arrival atmosphere"
-                  fill
-                  className="fit-image"
-                  style={{ objectPosition: "left center" }}
-                />
-              </div>
+        <section className="lux-section shell lux-editorial-grid">
+          <div className="lux-editorial-image reveal-up">
+            <Image
+              src="/generated/reception-arrival-editorial.png"
+              alt="House of Rose guest arrival"
+              fill
+              className="fit-image"
+              style={{ objectPosition: "left center" }}
+            />
+          </div>
+          <div className="lux-editorial-copy reveal-up">
+            <p className="lux-kicker">Why House of Rose</p>
+            <h2>{content.about.heading}</h2>
+            <p>{content.about.description}</p>
+            <div className="lux-list">
+              {content.about.credentials.map((credential) => (
+                <p key={credential}>{credential}</p>
+              ))}
             </div>
-            <div className="editorial-copy reveal-up">
-              <p className="kicker">The Experience</p>
-              <h2>Private, polished, and intentionally unhurried.</h2>
-              <p>
-                House of Rose is built for clients who want clinical credibility without
-                the transactional feel. Consultations are thoughtful, treatment plans are
-                tailored, and the environment is designed to feel calm from the moment you
-                arrive.
-              </p>
-              <div className="editorial-list">
-                <p>Discreet, high-touch appointment flow</p>
-                <p>Tailored treatment planning rather than one-size-fits-all protocols</p>
-                <p>Results that feel elegant in person, on camera, and over time</p>
-              </div>
-            </div>
+            <Link href="/experience" className="text-link">
+              Explore the guest experience
+            </Link>
           </div>
         </section>
 
-        <section className="section shell" id="packages">
-          <div className="section-head reveal-up section-head-narrow">
-            <p className="kicker">Consultation + Pricing</p>
-            <h2>Packages and pricing signals remain grounded in Medusa.</h2>
+        <section className="lux-section shell">
+          <div className="lux-section-head reveal-up">
+            <p className="lux-kicker">Consultation + Pricing</p>
+            <h2>Commerce signals sourced from Medusa.</h2>
             <p>
-              Final recommendations are confirmed after consultation. When available, live
-              package signals are surfaced directly from the commerce layer.
+              Package visibility is surfaced from the commerce layer. Final treatment design
+              and pricing are confirmed during consultation.
             </p>
             {!packageResult.fromMedusa ? (
               <p className="subtle-note">
@@ -233,52 +200,37 @@ export default async function HomePage() {
               </p>
             ) : null}
           </div>
-          <div className="package-row package-row-editorial">
+          <div className="pricing-grid">
             {packageResult.packages.map((pkg) => (
-              <article className="package-item reveal-up" key={pkg.id}>
-                <p className="package-title">{pkg.title}</p>
+              <article key={pkg.id} className="pricing-card reveal-up">
+                <p className="service-name">{pkg.title}</p>
                 <p>{pkg.subtitle}</p>
-                <p className="package-price">{pkg.priceLabel}</p>
-                <p className="package-availability">{pkg.availabilityLabel}</p>
+                <p className="pricing-value">{pkg.priceLabel}</p>
+                <p>{pkg.availabilityLabel}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section shell testimonials testimonials-editorial">
-          <div className="section-head reveal-up section-head-narrow">
-            <p className="kicker">Guest Perspective</p>
-            <h2>The appeal is not only how you look. It is how carefully the experience is handled.</h2>
+        <section className="lux-section shell">
+          <div className="lux-section-head reveal-up">
+            <p className="lux-kicker">Guest Perspective</p>
+            <h2>Care that feels as elevated as the result.</h2>
           </div>
-          <div className="testimonial-strip testimonial-strip-editorial">
+          <div className="testimonial-grid">
             {content.testimonials.map((testimonial) => (
-              <article className="testimonial reveal-up" key={testimonial.id}>
+              <article key={testimonial.id} className="testimonial-card reveal-up">
                 <p className="testimonial-quote">“{testimonial.quote}”</p>
                 <p className="testimonial-author">{testimonial.author}</p>
-                <p className="testimonial-treatment">{testimonial.treatment}</p>
+                <p>{testimonial.treatment}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section shell faq-grid faq-grid-editorial">
-          <div className="section-head reveal-up">
-            <p className="kicker">Before You Book</p>
-            <h2>Clear expectations, tailored recommendations, and no rushed decision-making.</h2>
-          </div>
-          <div>
-            {content.faqs.map((faq) => (
-              <details className="faq-item reveal-up" key={faq.id}>
-                <summary>{faq.question}</summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section className="section shell contact-panel contact-panel-editorial" id="contact">
-          <div className="contact-copy reveal-up">
-            <p className="kicker">Book Your Consultation</p>
+        <section className="lux-section shell" id="contact">
+          <div className="lux-final-cta reveal-up">
+            <p className="lux-kicker">Book Your Consultation</p>
             <h2>Begin with a private conversation in {content.city}, {content.state}.</h2>
             <p>
               {content.contact.hours}
@@ -287,35 +239,35 @@ export default async function HomePage() {
               <br />
               {content.contact.addressLine2}
             </p>
-          </div>
-          <div className="contact-actions reveal-up">
-            <TrackedLink
-              href={content.hero.primaryCtaHref}
-              className="btn-primary"
-              eventName="book_cta_click"
-              eventDetails={{ placement: "contact" }}
-            >
-              {content.hero.primaryCtaLabel}
-            </TrackedLink>
-            <TrackedLink
-              href={`tel:${content.contact.phone.replace(/[^\d+]/g, "")}`}
-              className="btn-secondary"
-              eventName="contact_intent"
-              eventDetails={{ placement: "contact_phone" }}
-            >
-              {content.contact.phone}
-            </TrackedLink>
-            <TrackedLink
-              href={`mailto:${content.contact.email}`}
-              className="text-link"
-              eventName="contact_intent"
-              eventDetails={{ placement: "contact_email" }}
-            >
-              {content.contact.email}
-            </TrackedLink>
+            <div className="lux-hero-actions">
+              <TrackedLink
+                href={content.hero.primaryCtaHref}
+                className="lux-btn lux-btn-primary"
+                eventName="book_cta_click"
+                eventDetails={{ placement: "home_contact" }}
+              >
+                {content.hero.primaryCtaLabel}
+              </TrackedLink>
+              <TrackedLink
+                href={`tel:${content.contact.phone.replace(/[^\d+]/g, "")}`}
+                className="lux-btn lux-btn-tertiary"
+                eventName="contact_intent"
+                eventDetails={{ placement: "home_phone" }}
+              >
+                {content.contact.phone}
+              </TrackedLink>
+            </div>
           </div>
         </section>
       </main>
+
+      <SiteFooter
+        brandName={content.brandName}
+        phone={content.contact.phone}
+        email={content.contact.email}
+        primaryCtaHref={content.hero.primaryCtaHref}
+        primaryCtaLabel={content.hero.primaryCtaLabel}
+      />
     </>
   );
 }

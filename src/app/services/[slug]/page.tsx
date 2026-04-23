@@ -4,8 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { EngagementTracker } from "@/components/EngagementTracker";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { TrackedLink } from "@/components/TrackedLink";
 import { getServiceBySlug, getSiteContent } from "@/lib/sanity";
+import { getCollectionsForService } from "@/lib/service-collections";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -55,25 +57,37 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     notFound();
   }
 
+  const relatedCollections = getCollectionsForService(content, service.slug);
+  const relatedServices = content.services
+    .filter((item) => item.slug !== service.slug)
+    .slice(0, 3);
+
   return (
     <>
       <EngagementTracker page={`service_${service.slug}`} />
-      <main className="service-detail-page">
-        <section className="service-hero service-hero-editorial">
+      <SiteHeader
+        brandName={content.brandName}
+        primaryCtaHref={content.hero.primaryCtaHref}
+        primaryCtaLabel={content.hero.primaryCtaLabel}
+      />
+
+      <main className="lux-page">
+        <section className="lux-hero">
           <Image
             src={service.heroImage}
             alt={service.heroAlt}
             fill
             priority
-            className="hero-bg"
+            className="lux-hero-image"
             style={{ objectPosition: service.heroImagePosition }}
           />
-          <div className="hero-overlay hero-overlay-editorial" />
-          <div className="hero-content service-hero-content reveal-up shell">
-            <p className="eyebrow">{content.brandName}</p>
-            <h1>{service.name}</h1>
-            <p className="hero-copy">{service.promise}</p>
-            <div className="service-hero-facts">
+          <div className="lux-hero-overlay" />
+          <div className="shell lux-hero-content reveal-up">
+            <p className="lux-kicker">Signature Service</p>
+            <span className="lux-hero-brand">{service.name}</span>
+            <h1>{service.highlight}</h1>
+            <p>{service.promise}</p>
+            <div className="service-fact-grid">
               <p>
                 <span>Typical session</span>
                 {service.duration}
@@ -83,40 +97,48 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 {service.downtime}
               </p>
             </div>
-            <div className="hero-actions">
+            <div className="lux-hero-actions">
               <TrackedLink
                 href={content.hero.primaryCtaHref}
-                className="btn-primary"
+                className="lux-btn lux-btn-primary"
                 eventName="book_cta_click"
-                eventDetails={{ placement: `service_${service.slug}` }}
+                eventDetails={{ placement: `service_${service.slug}_hero` }}
               >
                 {content.hero.primaryCtaLabel}
               </TrackedLink>
-              <Link href="/services" className="btn-secondary">
-                View all services
+              <Link href="/services" className="lux-btn lux-btn-tertiary">
+                Back to services
               </Link>
             </div>
           </div>
         </section>
 
-        <section className="section shell service-story-grid">
-          <article className="service-story-card reveal-up">
-            <p className="kicker">Why Clients Choose It</p>
-            <h2>{service.highlight}</h2>
+        <section className="lux-section shell detail-grid">
+          <article className="detail-card reveal-up">
+            <p className="lux-kicker">Why Clients Choose It</p>
+            <h2>{service.name}</h2>
             <p>{service.details}</p>
           </article>
-          <article className="service-story-card reveal-up">
-            <p className="kicker">What It Addresses</p>
+          <article className="detail-card reveal-up">
+            <p className="lux-kicker">What It Addresses</p>
             <ul>
               {service.results.map((result) => (
                 <li key={result}>{result}</li>
               ))}
             </ul>
           </article>
+          <article className="detail-card reveal-up">
+            <p className="lux-kicker">Ideal For</p>
+            <ul>
+              {service.idealFor.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
         </section>
 
-        <section className="section shell service-editorial-layout">
-          <div className="service-editorial-image reveal-up">
+        <section className="lux-section shell lux-editorial-grid">
+          <div className="lux-editorial-image reveal-up">
             <Image
               src={service.heroImage}
               alt={service.heroAlt}
@@ -125,71 +147,103 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               style={{ objectPosition: service.heroImagePosition }}
             />
           </div>
-          <div className="service-editorial-copy reveal-up">
-            <p className="kicker">The House of Rose Approach</p>
-            <h2>A treatment plan designed around your features, not a template.</h2>
-            <div className="service-editorial-list">
+          <div className="lux-editorial-copy reveal-up">
+            <p className="lux-kicker">The House of Rose Approach</p>
+            <h2>Designed around your features, not a template.</h2>
+            <div className="lux-list">
               {service.approach.map((item) => (
                 <p key={item}>{item}</p>
               ))}
             </div>
-            <p className="consult-note">{service.consultationNote}</p>
+            <p className="subtle-note">{service.consultationNote}</p>
           </div>
         </section>
 
-        <section className="section shell service-detail-grid service-detail-grid-editorial">
-          <article className="service-detail-card reveal-up">
-            <p className="kicker">Ideal For</p>
-            <ul>
-              {service.idealFor.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="service-detail-card reveal-up">
-            <p className="kicker">Benefits</p>
+        <section className="lux-section shell detail-grid">
+          <article className="detail-card reveal-up">
+            <p className="lux-kicker">Benefits</p>
             <ul>
               {service.benefits.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
               ))}
             </ul>
           </article>
-
-          <article className="service-detail-card reveal-up">
-            <p className="kicker">What To Expect</p>
-            <p className="detail-stat">
-              <strong>Appointment time</strong>
-              {service.duration}
-            </p>
-            <p className="detail-stat">
-              <strong>Downtime</strong>
-              {service.downtime}
-            </p>
+          <article className="detail-card reveal-up">
+            <p className="lux-kicker">Service Houses</p>
+            {relatedCollections.length > 0 ? (
+              <ul>
+                {relatedCollections.map((collection) => (
+                  <li key={collection.slug}>
+                    <Link href={`/services/collections/${collection.slug}`} className="text-link">
+                      {collection.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>This service is available as a standalone treatment plan.</p>
+            )}
+          </article>
+          <article className="detail-card reveal-up">
+            <p className="lux-kicker">What To Expect</p>
+            <p className="service-meta">Appointment: {service.duration}</p>
+            <p className="service-meta">Downtime: {service.downtime}</p>
             <p>
-              Your consultation covers candidacy, expected recovery, treatment pacing, and
-              whether any complementary services should be considered.
+              Your consultation covers candidacy, anticipated recovery, and whether this
+              service should be layered with complementary options.
             </p>
           </article>
         </section>
 
-        <section className="section shell service-detail-footer reveal-up">
-          <p className="kicker">Begin With Consultation</p>
-          <h2>Discuss {service.name.toLowerCase()} in a setting that feels as tailored as the result.</h2>
-          <p>
-            Schedule a private appointment at {content.brandName} in {content.city},{" "}
-            {content.state}.
-          </p>
-          <TrackedLink
-            href={content.hero.primaryCtaHref}
-            className="btn-primary"
-            eventName="book_cta_click"
-            eventDetails={{ placement: `service_${service.slug}_footer` }}
-          >
-            {content.hero.primaryCtaLabel}
-          </TrackedLink>
+        <section className="lux-section shell">
+          <div className="lux-section-head reveal-up">
+            <p className="lux-kicker">Related Services</p>
+            <h2>Additional pages to explore.</h2>
+          </div>
+          <div className="related-grid">
+            {relatedServices.map((related) => (
+              <article key={related.slug} className="related-card reveal-up">
+                <p className="service-name">{related.name}</p>
+                <p>{related.promise}</p>
+                <TrackedLink
+                  href={`/services/${related.slug}`}
+                  className="text-link"
+                  eventName="service_view"
+                  eventDetails={{ placement: `service_${service.slug}_related` }}
+                >
+                  View details
+                </TrackedLink>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="lux-section shell">
+          <div className="lux-final-cta reveal-up">
+            <p className="lux-kicker">Begin With Consultation</p>
+            <h2>Discuss {service.name.toLowerCase()} in a private luxury setting.</h2>
+            <p>
+              Schedule a consultation at {content.brandName} in {content.city}, {content.state}.
+            </p>
+            <TrackedLink
+              href={content.hero.primaryCtaHref}
+              className="lux-btn lux-btn-primary"
+              eventName="book_cta_click"
+              eventDetails={{ placement: `service_${service.slug}_footer` }}
+            >
+              {content.hero.primaryCtaLabel}
+            </TrackedLink>
+          </div>
         </section>
       </main>
+
+      <SiteFooter
+        brandName={content.brandName}
+        phone={content.contact.phone}
+        email={content.contact.email}
+        primaryCtaHref={content.hero.primaryCtaHref}
+        primaryCtaLabel={content.hero.primaryCtaLabel}
+      />
     </>
   );
 }

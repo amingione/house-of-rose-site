@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "House of Rose",
     images: [
       {
-        url: "/inspo/reception-marble.png",
+        url: "/generated/house-of-rose-hero.png",
         width: 1200,
         height: 630,
         alt: "House of Rose studio atmosphere",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "House of Rose | Luxury Med Spa in Punta Gorda",
     description:
       "Boutique aesthetics and wellness treatments in Punta Gorda, Florida.",
-    images: ["/inspo/reception-marble.png"],
+    images: ["/generated/house-of-rose-hero.png"],
   },
 };
 
