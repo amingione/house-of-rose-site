@@ -275,6 +275,7 @@ span {
   inset: 0;
   border: 0;
   background: rgba(24, 17, 12, 0.42);
+  cursor: pointer;
   opacity: 0;
   transition: opacity 220ms ease;
 }
@@ -305,12 +306,18 @@ span {
   transform: translateY(0);
 }
 
+.lux-mobile-nav-panel:focus-visible {
+  outline: 2px solid rgba(141, 111, 73, 0.85);
+  outline-offset: 4px;
+}
+
 .lux-mobile-nav-topline {
   display: grid;
   gap: 0.35rem;
 }
 
 .lux-mobile-nav-topline .lux-kicker {
+  margin: 0;
   color: var(--rose-champagne);
 }
 

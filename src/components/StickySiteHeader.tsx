@@ -19,11 +19,60 @@ const headerBehaviorScript = `
 (() => {
   const w = window;
   const d = document;
+  const desktopMinWidth = 841;
+  const openMenuLabel = "Open menu";
+  const closeMenuLabel = "Close menu";
 
   const getHeader = () => d.querySelector("[data-sticky-site-header]");
   const getDrawer = () => d.querySelector("[data-mobile-nav-drawer]");
+  const getPanel = () => d.querySelector("[data-mobile-nav-panel]");
   const getTrigger = () => d.querySelector("[data-mobile-nav-trigger]");
   const getScrollTop = () => Math.max(w.scrollY, d.documentElement.scrollTop, 0);
+  const isDesktopViewport = () => w.innerWidth >= desktopMinWidth;
+  const isOpen = () => getDrawer()?.getAttribute("data-open") === "true";
+
+  const isFocusable = (element) => {
+    if (!(element instanceof HTMLElement)) {
+      return false;
+    }
+
+    if (element.hasAttribute("disabled") || element.getAttribute("aria-hidden") === "true") {
+      return false;
+    }
+
+    const styles = w.getComputedStyle(element);
+    return styles.display !== "none" && styles.visibility !== "hidden";
+  };
+
+  const getTabbableElements = () => {
+    const panel = getPanel();
+    if (!(panel instanceof HTMLElement)) {
+      return [];
+    }
+
+    return Array.from(
+      panel.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter(isFocusable);
+  };
+
+  const focusPanel = () => {
+    const panel = getPanel();
+    if (panel instanceof HTMLElement) {
+      w.requestAnimationFrame(() => panel.focus());
+    }
+  };
+
+  const triggerCanReceiveFocus = () => {
+    const trigger = getTrigger();
+    if (!(trigger instanceof HTMLElement)) {
+      return false;
+    }
+
+    const styles = w.getComputedStyle(trigger);
+    return styles.display !== "none" && styles.visibility !== "hidden";
+  };
 
   const applyHeaderState = (scrollY) => {
     const header = getHeader();
@@ -35,21 +84,40 @@ const headerBehaviorScript = `
     header.dataset.headerSize = scrollY > 96 ? "compact" : "full";
   };
 
-  const setDrawerOpen = (open) => {
+  const syncHeader = () => applyHeaderState(getScrollTop());
+
+  const setDrawerOpen = (open, options = {}) => {
     const drawer = getDrawer();
+    const panel = getPanel();
     const trigger = getTrigger();
-    if (!(drawer instanceof HTMLElement) || !(trigger instanceof HTMLElement)) {
+    const restoreFocus = options.restoreFocus ?? true;
+    const moveFocus = options.moveFocus ?? true;
+
+    if (!(drawer instanceof HTMLElement) || !(panel instanceof HTMLElement) || !(trigger instanceof HTMLElement)) {
       return;
     }
 
-    drawer.dataset.open = String(open);
-    drawer.setAttribute("aria-hidden", String(!open));
-    trigger.dataset.open = String(open);
-    trigger.setAttribute("aria-expanded", String(open));
-    d.body.style.overflow = open ? "hidden" : "";
-  };
+    const nextOpen = open && !isDesktopViewport();
 
-  const syncHeader = () => applyHeaderState(getScrollTop());
+    drawer.dataset.open = String(nextOpen);
+    drawer.hidden = !nextOpen;
+    drawer.setAttribute("aria-hidden", String(!nextOpen));
+    trigger.dataset.open = String(nextOpen);
+    trigger.setAttribute("aria-expanded", String(nextOpen));
+    trigger.setAttribute("aria-label", nextOpen ? closeMenuLabel : openMenuLabel);
+    d.body.style.overflow = nextOpen ? "hidden" : "";
+
+    if (nextOpen) {
+      if (moveFocus) {
+        focusPanel();
+      }
+      return;
+    }
+
+    if (restoreFocus && triggerCanReceiveFocus()) {
+      w.requestAnimationFrame(() => trigger.focus());
+    }
+  };
 
   if (!w.__luxStickyHeaderInit) {
     let animationFrame = 0;
@@ -57,6 +125,13 @@ const headerBehaviorScript = `
     const handleScroll = () => {
       w.cancelAnimationFrame(animationFrame);
       animationFrame = w.requestAnimationFrame(syncHeader);
+    };
+
+    const handleResize = () => {
+      handleScroll();
+      if (isDesktopViewport() && isOpen()) {
+        setDrawerOpen(false, { restoreFocus: false, moveFocus: false });
+      }
     };
 
     d.addEventListener("click", (event) => {
@@ -67,8 +142,7 @@ const headerBehaviorScript = `
 
       if (target.closest("[data-mobile-nav-trigger]")) {
         event.preventDefault();
-        const isOpen = getDrawer()?.getAttribute("data-open") === "true";
-        setDrawerOpen(!isOpen);
+        setDrawerOpen(!isOpen(), { restoreFocus: false });
         return;
       }
 
@@ -81,17 +155,66 @@ const headerBehaviorScript = `
     });
 
     w.addEventListener("keydown", (event) => {
+      if (!isOpen()) {
+        return;
+      }
+
       if (event.key === "Escape") {
+        event.preventDefault();
         setDrawerOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const panel = getPanel();
+      if (!(panel instanceof HTMLElement)) {
+        return;
+      }
+
+      const tabbableElements = getTabbableElements();
+      if (tabbableElements.length === 0) {
+        event.preventDefault();
+        panel.focus();
+        return;
+      }
+
+      const first = tabbableElements[0];
+      const last = tabbableElements[tabbableElements.length - 1];
+      const active = d.activeElement;
+
+      if (active === panel) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+        return;
+      }
+
+      if (!panel.contains(active)) {
+        event.preventDefault();
+        first.focus();
+        return;
+      }
+
+      if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
       }
     });
+
     w.addEventListener("scroll", handleScroll, { passive: true });
-    w.addEventListener("resize", handleScroll);
+    w.addEventListener("resize", handleResize);
 
     w.__luxStickyHeaderInit = true;
   }
 
-  setDrawerOpen(false);
+  setDrawerOpen(false, { restoreFocus: false, moveFocus: false });
   syncHeader();
 })();
 `;
@@ -138,9 +261,10 @@ export function StickySiteHeader({
               <button
                 type="button"
                 className="lux-mobile-nav-trigger"
-                aria-expanded="false"
                 aria-controls="lux-mobile-nav-drawer"
-                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                aria-label="Open menu"
                 data-mobile-nav-trigger
                 data-open="false"
               >
