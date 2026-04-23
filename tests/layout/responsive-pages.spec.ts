@@ -121,3 +121,24 @@ for (const viewport of VIEWPORTS) {
     });
   });
 }
+
+const EXPERIENCE_OVERFLOW_VIEWPORTS = [
+  { width: 320, height: 640 },
+  { width: 768, height: 1024 },
+  { width: 1440, height: 900 },
+] as const;
+
+for (const viewport of EXPERIENCE_OVERFLOW_VIEWPORTS) {
+  test(`experience page has no horizontal overflow at ${viewport.width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport);
+    await page.goto("/experience");
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    );
+
+    expect(overflow).toBe(false);
+  });
+}
