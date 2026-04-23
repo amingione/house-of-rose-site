@@ -1040,6 +1040,13 @@ span {
     clamp(3rem, 9vh, 5rem);
 }
 
+.service-hero-content,
+.service-hub-hero-copy {
+  position: relative;
+  z-index: 2;
+  color: #f8efe4;
+}
+
 .hero-brand {
   display: block;
   margin-top: 0.85rem;
@@ -1367,6 +1374,14 @@ span {
   max-width: 11.5ch;
 }
 
+.service-hero-content h1,
+.service-hub-hero-copy h1,
+.service-hero-content .lux-hero-brand,
+.service-hub-hero-copy .lux-hero-brand {
+  color: #f8efe4;
+}
+
+.service-hero-content > p,
 .service-hub-hero-copy p {
   max-width: 56ch;
   color: rgba(248, 240, 231, 0.86);

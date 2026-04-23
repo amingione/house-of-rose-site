@@ -108,7 +108,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             style={{ objectPosition: service.heroImagePosition }}
           />
           <div className="lux-hero-overlay" />
-          <div className="service-hero-content reveal-up">
+          <div className="lux-hero-content service-hero-content reveal-up">
             <p className="lux-kicker">Signature Service</p>
             <span className="lux-hero-brand">{service.name}</span>
             <h1>{service.highlight}</h1>
@@ -154,26 +154,26 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
           <div className="service-story-grid">
             <article className="service-story-card reveal-up">
-            <p className="lux-kicker">Why Clients Choose It</p>
-            <h2>{service.name}</h2>
-            <p>{service.details}</p>
-          </article>
+              <p className="lux-kicker">Why Clients Choose It</p>
+              <h2>{service.name}</h2>
+              <p>{service.details}</p>
+            </article>
             <article className="service-story-card reveal-up">
-            <p className="lux-kicker">What It Addresses</p>
-            <ul>
-              {service.results.map((result) => (
-                <li key={result}>{result}</li>
-              ))}
-            </ul>
-          </article>
+              <p className="lux-kicker">What It Addresses</p>
+              <ul>
+                {service.results.map((result) => (
+                  <li key={result}>{result}</li>
+                ))}
+              </ul>
+            </article>
             <article className="service-story-card reveal-up">
-            <p className="lux-kicker">Ideal For</p>
-            <ul>
-              {service.idealFor.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
+              <p className="lux-kicker">Ideal For</p>
+              <ul>
+                {service.idealFor.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
           </div>
         </section>
 

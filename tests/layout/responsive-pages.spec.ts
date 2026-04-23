@@ -4,6 +4,7 @@ const VIEWPORTS = [
   { name: "desktop", size: { width: 1440, height: 1200 } },
   { name: "mobile", size: { width: 390, height: 844 } },
 ] as const;
+const LIGHT_HERO_FOREGROUND = "rgb(248, 239, 228)";
 
 async function expectFullBleed(page: Page, locator: Locator) {
   const viewport = page.viewportSize();
@@ -61,10 +62,14 @@ for (const viewport of VIEWPORTS) {
       await page.goto("/services");
 
       const hero = page.locator("main > section").first();
+      const heading = page.locator("section[data-section='services-hero'] h1");
 
       await expect(hero).toBeVisible();
+      await expect(heading).toBeVisible();
       await expect(hero).toHaveClass(/lux-hero/);
       await expect(hero).toHaveCSS("border-radius", "0px");
+      await expect(heading).toHaveCSS("color", LIGHT_HERO_FOREGROUND);
+      await expect(heading).not.toHaveCSS("color", "rgb(39, 29, 22)");
       await expectFullBleed(page, hero);
     });
 
@@ -80,9 +85,13 @@ for (const viewport of VIEWPORTS) {
       await expect(page.locator("section[data-section='services-cta']")).toBeVisible();
 
       await page.goto("/services/injectables");
+      const serviceHeading = page.locator("section[data-section='service-detail-hero'] h1");
       await expect(
         page.locator("section[data-section='service-detail-hero']"),
       ).toBeVisible();
+      await expect(serviceHeading).toBeVisible();
+      await expect(serviceHeading).toHaveCSS("color", LIGHT_HERO_FOREGROUND);
+      await expect(serviceHeading).not.toHaveCSS("color", "rgb(39, 29, 22)");
       await expect(
         page.locator("section[data-section='service-detail-intro']"),
       ).toBeVisible();

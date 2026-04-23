@@ -37,7 +37,7 @@ export default async function ServicesPage() {
             style={{ objectPosition: "left center" }}
           />
           <div className="lux-hero-overlay" />
-          <div className="service-hub-hero-copy reveal-up">
+          <div className="lux-hero-content service-hub-hero-copy reveal-up">
             <p className="lux-kicker">Services</p>
             <span className="lux-hero-brand">{content.brandName}</span>
             <h1>Treatment pages built to help you choose with confidence.</h1>
