@@ -105,8 +105,8 @@ export default async function HomePage() {
               </div>
 
               <div className="home-hero-aside">
-                {content.about.credentials.map((credential) => (
-                  <p key={credential}>{credential}</p>
+                {content.about.credentials.map((credential, index) => (
+                  <p key={`hero-credential-${index}-${credential}`}>{credential}</p>
                 ))}
               </div>
             </div>
@@ -186,8 +186,8 @@ export default async function HomePage() {
               <p>{content.about.description}</p>
             </div>
             <div className="home-credential-grid">
-              {content.about.credentials.map((credential) => (
-                <p key={credential}>{credential}</p>
+              {content.about.credentials.map((credential, index) => (
+                <p key={`full-image-credential-${index}-${credential}`}>{credential}</p>
               ))}
             </div>
           </div>

@@ -75,8 +75,6 @@ span {
 }
 
 .lux-page {
-  width: var(--shell-width);
-  margin-inline: auto;
   padding-bottom: clamp(4.5rem, 8vw, 7rem);
 }
 
