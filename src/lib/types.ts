@@ -77,4 +77,6 @@ export type PackageHighlight = {
 export type PackageResult = {
   packages: PackageHighlight[];
   fromMedusa: boolean;
+  source: "medusa" | "mock";
+  notice?: string;
 };

@@ -1,4 +1,9 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is the House of Rose frontend built with [Next.js](https://nextjs.org).
+
+## Medusa setup (recommended first read)
+
+- See [`MEDUSA.md`](./MEDUSA.md) for mock mode, live mode, and troubleshooting.
+- Use mock mode for UI work when you do not need live commerce data.
 
 ## Getting Started
 
