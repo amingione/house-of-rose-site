@@ -1,0 +1,53 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="The Experience"
+  description="Every visit to House of Rose is a complete sensory ritual — from arrival to departure."
+>
+  <section class="py-24 max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">What to Expect</p>
+      <h1 class="font-serif text-5xl text-charcoal">The Experience</h1>
+    </div>
+
+    <div class="prose prose-lg max-w-none text-charcoal/80">
+      <p class="lead text-xl text-charcoal/70 leading-relaxed">
+        From the moment you arrive, every detail at House of Rose is designed to slow you down
+        and bring you home to yourself.
+      </p>
+
+      <h2>Arrival</h2>
+      <p>
+        You are greeted with warm tea and a brief consultation to ensure your treatment
+        is tailored to exactly where you are today — physically, emotionally, energetically.
+      </p>
+
+      <h2>The Treatment</h2>
+      <p>
+        Our therapists hold advanced certifications and bring years of intuitive practice.
+        Every treatment is a living ritual — never rushed, always intentional.
+      </p>
+
+      <h2>After Care</h2>
+      <p>
+        You'll receive personalized aftercare guidance and product recommendations
+        to extend the benefits of your treatment long after you leave.
+      </p>
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="#book" class="btn-primary">Book Your Experience</a>
+    </div>
+  </section>
+
+  <section id="book" class="py-20 bg-rose-950 text-cream-100 text-center">
+    <div class="max-w-xl mx-auto px-6">
+      <h2 class="font-serif text-3xl mb-6">Begin Your Ritual</h2>
+      <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrose.com'}`} class="btn-primary">
+        Book Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>

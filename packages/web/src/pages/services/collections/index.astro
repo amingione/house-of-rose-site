@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { ALL_COLLECTIONS_QUERY, type ServiceCollection } from '@/lib/queries';
+
+const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+---
+
+<BaseLayout title="Collections" description="Curated service collections for every intention.">
+  <section class="py-24 max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">Curated Experiences</p>
+      <h1 class="font-serif text-5xl text-charcoal">Service Collections</h1>
+    </div>
+
+    {collections.length === 0 ? (
+      <p class="text-center text-charcoal/50">Collections coming soon.</p>
+    ) : (
+      <div class="space-y-24">
+        {collections.map((col) => (
+          <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
+              {col.image && (
+                <div class="aspect-[4/3] overflow-hidden bg-cream-200">
+                  <img
+                    src={urlFor(col.image).width(800).height(600).fit('crop').url()}
+                    alt={col.image.alt ?? col.title}
+                    width={800}
+                    height={600}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+              <div>
+                <h2 class="font-serif text-4xl text-charcoal mb-4">{col.title}</h2>
+                {col.description && (
+                  <p class="text-charcoal/70 leading-relaxed mb-6">{col.description}</p>
+                )}
+                <a href={`/services/collections/${col.slug}`} class="btn-outline">
+                  View Collection
+                </a>
+              </div>
+            </div>
+            {col.services.length > 0 && (
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {col.services.map((svc) => (
+                  <a href={`/services/${svc.slug}`} class="group bg-cream-100 p-5 hover:shadow-md transition-shadow duration-300">
+                    <p class="font-serif text-lg text-charcoal mb-1 group-hover:text-rose-700 transition-colors">{svc.title}</p>
+                    {svc.tagline && <p class="text-sm text-charcoal/60 mb-3">{svc.tagline}</p>}
+                    <div class="flex items-center justify-between">
+                      {svc.duration && <span class="text-xs text-charcoal/40">{svc.duration}</span>}
+                      {svc.price && <span class="text-sm text-rose-700">{svc.price}</span>}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

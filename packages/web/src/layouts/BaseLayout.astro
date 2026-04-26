@@ -1,0 +1,101 @@
+---
+import '@/styles/global.css';
+import { sanityFetch } from '@/lib/sanity';
+import { SITE_SETTINGS_QUERY, type SiteSettings } from '@/lib/queries';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
+const siteName = settings?.siteName ?? 'House of Rose';
+
+const {
+  title = siteName,
+  description = settings?.description ?? 'Luxury spa services and wellness.',
+  image,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <!-- Open Graph -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    {image && <meta property="og:image" content={image} />}
+    <meta property="og:type" content="website" />
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <!-- Site Header -->
+    <header class="sticky top-0 z-50 bg-cream-100/95 backdrop-blur-sm border-b border-rose-200/60">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" class="font-serif text-xl tracking-widest uppercase text-charcoal hover:text-rose-700 transition-colors">
+          {siteName}
+        </a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="/services" class="text-sm tracking-widest uppercase text-charcoal/70 hover:text-rose-700 transition-colors">Services</a>
+          <a href="/services/collections" class="text-sm tracking-widest uppercase text-charcoal/70 hover:text-rose-700 transition-colors">Collections</a>
+          <a href="/experience" class="text-sm tracking-widest uppercase text-charcoal/70 hover:text-rose-700 transition-colors">Experience</a>
+          <a href="#book" class="btn-primary text-xs">Book Now</a>
+        </nav>
+        <!-- Mobile nav trigger — wire up as needed -->
+        <button class="md:hidden text-charcoal" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="bg-charcoal text-cream-100 py-16 mt-24">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div>
+          <p class="font-serif text-lg tracking-widest uppercase mb-4">{siteName}</p>
+          {settings?.tagline && <p class="text-cream-200/70 text-sm leading-relaxed">{settings.tagline}</p>}
+        </div>
+        <div>
+          <p class="text-xs tracking-widest uppercase text-rose-300 mb-4">Visit</p>
+          {settings?.address && <p class="text-sm text-cream-200/70 leading-relaxed">{settings.address}</p>}
+          {settings?.phone && <p class="text-sm text-cream-200/70 mt-2">{settings.phone}</p>}
+          {settings?.email && <p class="text-sm text-cream-200/70">{settings.email}</p>}
+        </div>
+        <div>
+          <p class="text-xs tracking-widest uppercase text-rose-300 mb-4">Connect</p>
+          {settings?.instagramHandle && (
+            <a
+              href={`https://instagram.com/${settings.instagramHandle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-cream-200/70 hover:text-rose-300 transition-colors"
+            >
+              @{settings.instagramHandle}
+            </a>
+          )}
+        </div>
+      </div>
+      <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-cream-100/10">
+        <p class="text-xs text-cream-200/40">&copy; {new Date().getFullYear()} {siteName}. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

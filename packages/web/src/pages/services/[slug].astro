@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import {
+  ALL_SERVICE_SLUGS_QUERY,
+  SERVICE_BY_SLUG_QUERY,
+  type Service,
+} from '@/lib/queries';
+
+export async function getStaticPaths() {
+  const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const service = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, { slug });
+
+if (!service) {
+  return Astro.redirect('/services', 307);
+}
+---
+
+<BaseLayout
+  title={service.title}
+  description={service.tagline ?? service.description ?? ''}
+  image={service.image ? urlFor(service.image).width(1200).height(630).fit('crop').url() : undefined}
+>
+  <article class="max-w-4xl mx-auto px-6 py-24">
+    {service.collection && (
+      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">
+        <a href={`/services/collections/${service.collection.slug}`} class="hover:underline">
+          {service.collection.title}
+        </a>
+      </p>
+    )}
+
+    <h1 class="font-serif text-5xl text-charcoal mb-4">{service.title}</h1>
+
+    {service.tagline && (
+      <p class="text-xl text-charcoal/70 leading-relaxed mb-8">{service.tagline}</p>
+    )}
+
+    <div class="flex items-center gap-8 mb-12 pb-8 border-b border-rose-200/60">
+      {service.duration && (
+        <div>
+          <p class="text-xs tracking-widest uppercase text-charcoal/40 mb-1">Duration</p>
+          <p class="text-charcoal font-medium">{service.duration}</p>
+        </div>
+      )}
+      {service.price && (
+        <div>
+          <p class="text-xs tracking-widest uppercase text-charcoal/40 mb-1">Starting At</p>
+          <p class="text-rose-700 font-medium text-lg">{service.price}</p>
+        </div>
+      )}
+    </div>
+
+    {service.image && (
+      <div class="aspect-video overflow-hidden bg-cream-200 mb-12">
+        <img
+          src={urlFor(service.image).width(1200).height(675).fit('crop').url()}
+          alt={service.image.alt ?? service.title}
+          width={1200}
+          height={675}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+
+    {service.description && (
+      <div class="prose prose-lg max-w-none text-charcoal/80 mb-12">
+        <p>{service.description}</p>
+      </div>
+    )}
+
+    <div class="mt-12">
+      <a href="#book" class="btn-primary">Book This Service</a>
+    </div>
+  </article>
+
+  <!-- Book CTA -->
+  <section id="book" class="py-20 bg-rose-950 text-cream-100 text-center">
+    <div class="max-w-xl mx-auto px-6">
+      <h2 class="font-serif text-3xl mb-6">Reserve Your {service.title}</h2>
+      <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrose.com'}?subject=Booking: ${service.title}`} class="btn-primary">
+        Book Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>

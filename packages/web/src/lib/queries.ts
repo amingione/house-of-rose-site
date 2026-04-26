@@ -1,0 +1,174 @@
+// ─── GROQ Fragments ──────────────────────────────────────────────────────────
+
+const IMAGE_FIELDS = /* groq */ `
+  "image": image {
+    asset->{ url, metadata { dimensions } },
+    alt
+  }
+`;
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+export interface SanityImage {
+  asset: { url: string; metadata: { dimensions: { width: number; height: number } } };
+  alt?: string;
+}
+
+export interface Service {
+  _id: string;
+  title: string;
+  slug: string;
+  tagline?: string;
+  description?: string;
+  duration?: string;
+  price?: string;
+  image?: SanityImage;
+  collection?: { title: string; slug: string };
+}
+
+export interface ServiceCollection {
+  _id: string;
+  title: string;
+  slug: string;
+  description?: string;
+  image?: SanityImage;
+  services: Service[];
+}
+
+export interface Product {
+  _id: string;
+  title: string;
+  slug: string;
+  tagline?: string;
+  description?: string;
+  price?: number;
+  image?: SanityImage;
+}
+
+export interface SiteSettings {
+  siteName: string;
+  tagline?: string;
+  description?: string;
+  logo?: SanityImage;
+  socialImage?: SanityImage;
+  email?: string;
+  phone?: string;
+  address?: string;
+  instagramHandle?: string;
+}
+
+// ─── Queries ─────────────────────────────────────────────────────────────────
+
+export const SITE_SETTINGS_QUERY = /* groq */ `
+  *[_type == "siteSettings"][0] {
+    siteName,
+    tagline,
+    description,
+    ${IMAGE_FIELDS},
+    email,
+    phone,
+    address,
+    instagramHandle
+  }
+`;
+
+export const ALL_SERVICES_QUERY = /* groq */ `
+  *[_type == "service"] | order(orderRank asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    tagline,
+    duration,
+    price,
+    ${IMAGE_FIELDS},
+    collection->{ title, "slug": slug.current }
+  }
+`;
+
+export const SERVICE_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "service" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    tagline,
+    description,
+    duration,
+    price,
+    ${IMAGE_FIELDS},
+    collection->{ title, "slug": slug.current }
+  }
+`;
+
+export const ALL_COLLECTIONS_QUERY = /* groq */ `
+  *[_type == "serviceCollection"] | order(orderRank asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    ${IMAGE_FIELDS},
+    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      duration,
+      price,
+      ${IMAGE_FIELDS}
+    }
+  }
+`;
+
+export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "serviceCollection" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    ${IMAGE_FIELDS},
+    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      duration,
+      price,
+      ${IMAGE_FIELDS}
+    }
+  }
+`;
+
+export const ALL_PRODUCTS_QUERY = /* groq */ `
+  *[_type == "product"] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    tagline,
+    price,
+    ${IMAGE_FIELDS}
+  }
+`;
+
+export const PRODUCT_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "product" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    tagline,
+    description,
+    price,
+    ${IMAGE_FIELDS}
+  }
+`;
+
+// Slug arrays for Astro getStaticPaths()
+export const ALL_SERVICE_SLUGS_QUERY = /* groq */ `
+  *[_type == "service" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
+  *[_type == "serviceCollection" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `
+  *[_type == "product" && defined(slug.current)]{ "slug": slug.current }
+`;

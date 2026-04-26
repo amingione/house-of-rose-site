@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
+
+const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
+---
+
+<BaseLayout title="Services" description="Explore our full menu of luxury spa treatments and wellness services.">
+  <section class="py-24 max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">The Menu</p>
+      <h1 class="font-serif text-5xl text-charcoal">Our Services</h1>
+    </div>
+
+    {services.length === 0 ? (
+      <p class="text-center text-charcoal/50">Services coming soon.</p>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((svc) => (
+          <a href={`/services/${svc.slug}`} class="group bg-cream-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
+            {svc.image && (
+              <div class="aspect-[3/2] overflow-hidden bg-cream-200">
+                <img
+                  src={urlFor(svc.image).width(600).height(400).fit('crop').url()}
+                  alt={svc.image.alt ?? svc.title}
+                  width={600}
+                  height={400}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <div class="p-6">
+              {svc.collection && (
+                <p class="text-xs tracking-widest uppercase text-rose-600 mb-2">{svc.collection.title}</p>
+              )}
+              <p class="font-serif text-xl text-charcoal mb-2">{svc.title}</p>
+              {svc.tagline && <p class="text-sm text-charcoal/60 leading-relaxed mb-4">{svc.tagline}</p>}
+              <div class="flex items-center justify-between">
+                {svc.duration && <span class="text-xs text-charcoal/50">{svc.duration}</span>}
+                {svc.price && <span class="text-sm font-medium text-rose-700">{svc.price}</span>}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

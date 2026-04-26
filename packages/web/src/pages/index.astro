@@ -1,0 +1,109 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { ALL_SERVICES_QUERY, ALL_COLLECTIONS_QUERY, type Service, type ServiceCollection } from '@/lib/queries';
+
+const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
+const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="relative h-screen flex items-center justify-center text-center bg-charcoal text-cream-100 overflow-hidden">
+    <div class="absolute inset-0 bg-rose-950/40 z-10"></div>
+    <div class="relative z-20 max-w-2xl px-6">
+      <p class="text-xs tracking-[0.3em] uppercase text-rose-300 mb-6">Luxury Spa & Wellness</p>
+      <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-8">House of Rose</h1>
+      <p class="text-cream-200/80 text-lg leading-relaxed mb-10">
+        A sanctuary for the senses. Elevate your well-being through ritual, touch, and intention.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#book" class="btn-primary">Book a Service</a>
+        <a href="/services" class="btn-outline border-cream-100 text-cream-100 hover:bg-cream-100 hover:text-charcoal">
+          Explore Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections -->
+  {collections.length > 0 && (
+    <section class="py-24 max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">Curated Experiences</p>
+        <h2 class="font-serif text-4xl text-charcoal">Service Collections</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {collections.map((col) => (
+          <a href={`/services/collections/${col.slug}`} class="group block overflow-hidden">
+            {col.image && (
+              <div class="aspect-[4/3] overflow-hidden bg-cream-200 mb-4">
+                <img
+                  src={urlFor(col.image).width(600).height(450).fit('crop').url()}
+                  alt={col.image.alt ?? col.title}
+                  width={600}
+                  height={450}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <p class="font-serif text-xl text-charcoal mb-2">{col.title}</p>
+            {col.description && <p class="text-sm text-charcoal/60 leading-relaxed">{col.description}</p>}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Featured Services -->
+  {services.length > 0 && (
+    <section class="py-24 bg-cream-200/50">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">The Menu</p>
+          <h2 class="font-serif text-4xl text-charcoal">Signature Services</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.slice(0, 6).map((svc) => (
+            <a href={`/services/${svc.slug}`} class="group bg-cream-100 p-6 hover:shadow-md transition-shadow duration-300">
+              {svc.image && (
+                <div class="aspect-square overflow-hidden bg-cream-200 mb-4">
+                  <img
+                    src={urlFor(svc.image).width(400).height(400).fit('crop').url()}
+                    alt={svc.image.alt ?? svc.title}
+                    width={400}
+                    height={400}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              )}
+              <p class="font-serif text-lg text-charcoal mb-1">{svc.title}</p>
+              {svc.tagline && <p class="text-sm text-charcoal/60 mb-3">{svc.tagline}</p>}
+              <div class="flex items-center justify-between">
+                {svc.duration && <span class="text-xs text-charcoal/50">{svc.duration}</span>}
+                {svc.price && <span class="text-sm font-medium text-rose-700">{svc.price}</span>}
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-12">
+          <a href="/services" class="btn-outline">View All Services</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Book CTA -->
+  <section id="book" class="py-24 bg-rose-950 text-cream-100 text-center">
+    <div class="max-w-xl mx-auto px-6">
+      <p class="text-xs tracking-[0.3em] uppercase text-rose-300 mb-6">Reserve Your Visit</p>
+      <h2 class="font-serif text-4xl mb-6">Begin Your Ritual</h2>
+      <p class="text-cream-200/70 leading-relaxed mb-10">
+        Every treatment is an invitation to slow down, restore, and reconnect.
+      </p>
+      <a href="mailto:{import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrose.com'}" class="btn-primary">
+        Book Now
+      </a>
+    </div>
+  </section>
+</BaseLayout>
