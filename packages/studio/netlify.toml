@@ -5,7 +5,8 @@
 # In Netlify UI: Site configuration → Build & deploy → Base directory = packages/studio
 
 [build]
-  command   = "npm install && npm run build"
+  # --workspace flag ensures only the studio package is built, not the whole monorepo
+  command   = "npm install && npm run build -w @house-of-rose/studio"
   publish   = "dist"
 
 [build.environment]
