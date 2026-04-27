@@ -24,6 +24,8 @@ export interface Service {
   title: string;
   slug: string;
   tagline?: string;
+  duration?: string;
+  price?: number | string;
   description?: string;
   whoItsFor?: string;
   process?: string[];

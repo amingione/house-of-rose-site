@@ -8,9 +8,51 @@ import { ALL_SERVICES_QUERY, FEATURED_TESTIMONIALS_QUERY, type Service, type Tes
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 const testimonials = await sanityFetch<Testimonial[]>(FEATURED_TESTIMONIALS_QUERY);
 const featuredTestimonial = testimonials?.[0];
+
+// Organization structured data for SEO
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "House of Rose",
+  "description": "Luxury spa & wellness services in Punta Gorda, FL. Physician-informed care including PRF, microneedling, facials, and medical aesthetics.",
+  "url": Astro.site?.toString(),
+  "telephone": "+18449417673",
+  "email": "book@houseofrosefl.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "525 E Olympia Ave, Unit 9",
+    "addressLocality": "Punta Gorda",
+    "addressRegion": "FL",
+    "postalCode": "33982",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "26.9298",
+    "longitude": "-82.0454"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "26.9298",
+      "longitude": "-82.0454"
+    },
+    "geoRadius": "50000"
+  }
+};
 ---
 
 <BaseLayout>
+  <!-- Organization Structured Data for SEO -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationData)} slot="head" />
   <!-- Hero -->
   <Hero
     title="House of Rose"

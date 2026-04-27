@@ -39,9 +39,11 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <meta property="og:url" content={canonicalURL} />
     {image && <meta property="og:image" content={image} />}
     <meta property="og:type" content="website" />
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
+    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
     <!-- Favicon placeholder -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Additional head content from pages -->
+    <slot name="head" />
   </head>
   <body>
     <Header currentPath={Astro.url.pathname} />

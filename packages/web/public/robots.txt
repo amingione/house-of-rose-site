@@ -1,0 +1,11 @@
+# House of Rose - Robots.txt
+# Allow all search engines
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://houseofrosefl.com/sitemap.xml
+
+# Crawl-delay for considerate crawling
+Crawl-delay: 1

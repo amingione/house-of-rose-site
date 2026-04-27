@@ -5,7 +5,7 @@
  */
 
 interface Props {
-  services?: Array<{ title: string; slug: string }>;
+	services?: Array<{ title: string; slug: string }>;
 }
 
 const { services = [] } = Astro.props;
@@ -14,67 +14,75 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-charcoal-light border-t border-white/5 py-11 px-6">
-  <div class="max-w-[1280px] mx-auto">
-    <!-- Top section -->
-    <div class="flex justify-between flex-wrap gap-8 mb-8">
-      <!-- Brand -->
-      <div>
-        <p class="font-serif text-gold tracking-[0.3em] text-[13px] uppercase">
-          House of Rose
-        </p>
-        <p class="text-[#444] text-[10px] tracking-[0.38em] uppercase mt-1">
-          Medical Aesthetics
-        </p>
-      </div>
+	<div class="max-w-[1280px] mx-auto">
+		<!-- Top section -->
+		<div class="flex justify-between flex-wrap gap-8 mb-8">
+			<!-- Brand -->
+			<div>
+				<p
+					class="font-serif text-gold tracking-[0.3em] text-[13px] uppercase"
+				>
+					House of Rose
+				</p>
+				<p
+					class="text-[#444] text-[10px] tracking-[0.38em] uppercase mt-1"
+				>
+					Medical Aesthetics
+				</p>
+			</div>
 
-      <!-- Links -->
-      <div class="flex gap-10 text-[11px]">
-        <!-- Main Navigation -->
-        <div class="flex flex-col gap-0.5">
-          <a
-            href="/"
-            class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-          >
-            Home
-          </a>
-          <a
-            href="/services"
-            class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-          >
-            Services
-          </a>
-          <a
-            href="/experience"
-            class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-          >
-            Experience
-          </a>
-        </div>
+			<!-- Links -->
+			<div class="flex gap-10 text-[11px]">
+				<!-- Main Navigation -->
+				<div class="flex flex-col gap-0.5">
+					<a
+						href="/"
+						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Home
+					</a>
+					<a
+						href="/services"
+						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Services
+					</a>
+					<a
+						href="/experience"
+						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Experience
+					</a>
+				</div>
 
-        <!-- Service Links -->
-        {services.length > 0 && (
-          <div class="flex flex-col gap-0.5">
-            {services.slice(0, 5).map((service) => (
-              <a
-                href={`/services/${service.slug}`}
-                class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-              >
-                {service.title}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+				<!-- Service Links -->
+				{
+					services.length > 0 && (
+						<div class="flex flex-col gap-0.5">
+							{services.slice(0, 5).map((service) => (
+								<a
+									href={`/services/${service.slug}`}
+									class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+								>
+									{service.title}
+								</a>
+							))}
+						</div>
+					)
+				}
+			</div>
+		</div>
 
-    <!-- Bottom section -->
-    <div class="border-t border-white/5 pt-5 flex justify-between flex-wrap gap-1.5">
-      <p class="text-[#333] text-[10px] tracking-[0.16em]">
-        {currentYear} House of Rose LLC. All rights reserved.
-      </p>
-      <p class="text-[#333] text-[10px] tracking-[0.16em]">
-        525 E Olympia Ave, Unit 9 - Punta Gorda, FL 33982
-      </p>
-    </div>
-  </div>
+		<!-- Bottom section -->
+		<div
+			class="border-t border-white/5 pt-5 flex justify-between flex-wrap gap-1.5"
+		>
+			<p class="text-[#333] text-[10px] tracking-[0.16em]">
+				© {currentYear} House of Rose LLC. All rights reserved.
+			</p>
+			<p class="text-[#333] text-[10px] tracking-[0.16em]">
+				525 E Olympia Ave, Unit 9 - Punta Gorda, FL 33982
+			</p>
+		</div>
+	</div>
 </footer>
