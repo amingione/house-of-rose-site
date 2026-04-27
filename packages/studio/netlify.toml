@@ -1,0 +1,27 @@
+# House of Rose — Sanity Studio
+# Netlify site: house-of-rose-studio (44c4d348-8afd-4c0d-adb2-f8f9b7ffde15)
+# Custom domain: studio.houseofrosefl.com
+#
+# In Netlify UI: Site configuration → Build & deploy → Base directory = packages/studio
+
+[build]
+  command   = "npm install && npm run build"
+  publish   = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Security headers for the Studio
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    # Studio must be embeddable in its own origin only
+    X-Frame-Options        = "SAMEORIGIN"
+
+# SPA fallback — Studio is a React SPA; all paths serve index.html
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200

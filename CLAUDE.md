@@ -51,6 +51,28 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 
 ---
 
+## Netlify Sites
+
+| Site | Netlify Name | Site ID | Custom Domain | Base Dir |
+|------|-------------|---------|---------------|----------|
+| Storefront | `house-of-rose-web` | `0de4617d-5ba1-4e80-b59e-4900b540f5c0` | `houseofrosefl.com` | `packages/web` |
+| Studio | `house-of-rose-studio` | `44c4d348-8afd-4c0d-adb2-f8f9b7ffde15` | `studio.houseofrosefl.com` | `packages/studio` |
+
+**Netlify env vars set on `house-of-rose-web` (builds scope):**
+- `PUBLIC_SANITY_PROJECT_ID` = `4e7axyi7`
+- `PUBLIC_SANITY_DATASET` = `production`
+- `PUBLIC_SANITY_API_VERSION` = `2025-04-26`
+- `SANITY_API_READ_TOKEN` = (secret — stored in Netlify, do not commit)
+- `PUBLIC_SITE_URL` = `https://houseofrosefl.com`
+- `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com`
+
+**One-time Netlify UI steps required (cannot be done via API):**
+1. Each site → Site configuration → Build & deploy → set **Base directory** to `packages/web` or `packages/studio`
+2. Connect GitHub repo (`house-of-rose-site`) on each site
+3. Add custom domains and enable HTTPS
+
+---
+
 ## Schemas (packages/studio/schemas/)
 | Schema | Description |
 |--------|-------------|

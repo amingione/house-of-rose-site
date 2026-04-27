@@ -1,0 +1,33 @@
+# House of Rose — Astro Storefront
+# Netlify site: house-of-rose-web (0de4617d-5ba1-4e80-b59e-4900b540f5c0)
+# Custom domain: houseofrosefl.com
+#
+# In Netlify UI: Site configuration → Build & deploy → Base directory = packages/web
+
+[build]
+  command = "npm install && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options  = "nosniff"
+    X-Frame-Options         = "SAMEORIGIN"
+    Referrer-Policy         = "strict-origin-when-cross-origin"
+    Permissions-Policy      = "camera=(), microphone=(), geolocation=()"
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 404 fallback for unknown routes (Astro static output)
+[[redirects]]
+  from   = "/*"
+  to     = "/404.html"
+  status = 404
