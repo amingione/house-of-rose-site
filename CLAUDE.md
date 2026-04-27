@@ -31,8 +31,14 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 | Project ID | `4e7axyi7` |
 | Dataset | `production` |
 | API Version | `2025-04-26` |
-| Studio URL | `http://localhost:3333` (local) |
+| Studio URL (local) | `http://localhost:3333` |
+| Studio URL (production) | `https://studio.houseofrosefl.com` |
 | Organization | Amber (`ouLdbVxnh`) |
+
+**CORS origins registered on project 4e7axyi7:**
+- `http://localhost:3000` (auto-added at project creation)
+- `http://localhost:3333` (local Studio dev server)
+- `https://studio.houseofrosefl.com` (production Studio)
 
 ---
 
@@ -41,7 +47,7 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **Styling**: Tailwind CSS v3 + `@tailwindcss/typography`
 - **CMS**: Sanity v3 + GROQ
 - **Language**: TypeScript (strict, no `any`)
-- **Hosting**: TBD (Netlify recommended for static)
+- **Hosting**: Netlify — storefront at `houseofrosefl.com`, Studio at `studio.houseofrosefl.com`
 
 ---
 
