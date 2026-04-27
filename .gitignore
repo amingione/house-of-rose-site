@@ -31,6 +31,9 @@ Thumbs.db
 .superpowers/
 .vercel
 
+# Claude Code — personal config only
+.claude/settings.local.json
+
 # Debug
 npm-debug.log*
 yarn-debug.log*
