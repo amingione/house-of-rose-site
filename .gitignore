@@ -48,4 +48,4 @@ next-env.d.ts
 .netlify
 
 # misc
-/web/docs
+/packages/web/docs
