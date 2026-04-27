@@ -2,12 +2,12 @@
 # Netlify site: house-of-rose-web (0de4617d-5ba1-4e80-b59e-4900b540f5c0)
 # Custom domain: houseofrosefl.com
 #
-# In Netlify UI: Site configuration → Build & deploy → Base directory = packages/web
+# NOTE: Base directory NOT required in Netlify UI — publish path is absolute from repo root
 
 [build]
   # --workspace flag ensures only the web package is built, not the whole monorepo
   command = "npm install && npm run build -w @house-of-rose/web"
-  publish = "dist"
+  publish = "packages/web/dist"
 
 [build.environment]
   NODE_VERSION = "20"
