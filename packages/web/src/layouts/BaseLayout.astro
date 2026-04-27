@@ -94,7 +94,12 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
         </div>
       </div>
       <div class="max-w-6xl mx-auto px-6 mt-12 pt-8 border-t border-cream-100/10">
-        <p class="text-xs text-cream-200/40">&copy; {new Date().getFullYear()} {siteName}. All rights reserved.</p>
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-xs text-cream-200/40">&copy; {new Date().getFullYear()} {siteName}. All rights reserved.</p>
+          <a href="/privacy-policy" class="text-xs tracking-widest uppercase text-cream-200/50 hover:text-rose-300 transition-colors">
+            Privacy Policy
+          </a>
+        </div>
       </div>
     </footer>
   </body>
