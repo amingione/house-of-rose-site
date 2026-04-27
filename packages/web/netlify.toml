@@ -9,6 +9,9 @@
   command = "npm install && npm run build -w @house-of-rose/web"
   publish = "packages/web/dist"
 
+[functions]
+  directory = "packages/web/netlify/functions"
+
 [build.environment]
   NODE_VERSION = "20"
 

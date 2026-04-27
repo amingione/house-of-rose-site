@@ -1,0 +1,195 @@
+---
+/**
+ * Header component with sticky navigation
+ * Matches the mockup's design with transparent-to-solid transition on scroll
+ */
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');
+---
+
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-center md:justify-between">
+    <!-- Brand -->
+    <a href="/" class="brand-link text-center md:text-left">
+      <span class="brand-name block font-serif text-sm tracking-[0.3em] text-gold uppercase transition-all duration-400">
+        House of Rose
+      </span>
+      <span class="brand-sub block text-[9px] tracking-[0.4em] text-white/75 uppercase mt-0.5">
+        Medical Aesthetics
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav hidden md:flex items-center gap-6">
+      <a
+        href="/"
+        class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+          isActive('/') ? 'text-gold' : 'text-white/90 hover:text-gold'
+        }`}
+      >
+        Home
+      </a>
+      <a
+        href="/services"
+        class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+          isActive('/services') ? 'text-gold' : 'text-white/90 hover:text-gold'
+        }`}
+      >
+        Services
+      </a>
+      <a
+        href="/experience"
+        class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+          isActive('/experience') ? 'text-gold' : 'text-white/90 hover:text-gold'
+        }`}
+      >
+        Experience
+      </a>
+      <a
+        href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`}
+        class="nav-cta text-[11px] tracking-[0.2em] uppercase px-5 py-2 border border-white/80 text-white transition-all duration-300 hover:bg-gold hover:border-gold hover:text-black"
+      >
+        Book Now
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2 min-w-[44px] min-h-[44px] items-center justify-center"
+      aria-label="Toggle menu"
+    >
+      <span class="block w-5 h-px bg-white"></span>
+      <span class="block w-5 h-px bg-white"></span>
+      <span class="block w-5 h-px bg-white"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="hidden md:hidden bg-charcoal-light/98 border-t border-gold/10 py-6">
+    <nav class="flex flex-col items-center">
+      <a
+        href="/"
+        class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+      >
+        Home
+      </a>
+      <a
+        href="/services"
+        class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+      >
+        Services
+      </a>
+      <a
+        href="/experience"
+        class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+      >
+        Experience
+      </a>
+      <a
+        href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`}
+        class="mobile-cta text-[11px] tracking-[0.2em] uppercase px-6 py-3 border border-gold text-gold mt-1.5 min-h-[48px] inline-flex items-center"
+      >
+        Book Now
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Sticky header behavior
+  const header = document.getElementById('header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 60) {
+      header?.classList.add('stuck');
+    } else {
+      header?.classList.remove('stuck');
+    }
+
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu toggle
+  mobileMenuBtn?.addEventListener('click', () => {
+    const isOpen = mobileDrawer?.classList.contains('open');
+    if (isOpen) {
+      mobileDrawer?.classList.remove('open');
+      mobileDrawer?.classList.add('hidden');
+    } else {
+      mobileDrawer?.classList.remove('hidden');
+      mobileDrawer?.classList.add('open');
+    }
+  });
+</script>
+
+<style>
+  #header {
+    background: transparent;
+  }
+
+  #header.stuck {
+    @apply bg-charcoal/95 backdrop-blur-sm shadow-lg;
+  }
+
+  #header.stuck .brand-name {
+    @apply text-xs;
+    text-shadow: none;
+  }
+
+  #header.stuck .brand-sub {
+    @apply text-gray-600;
+    text-shadow: none;
+  }
+
+  #header.stuck .nav-link {
+    @apply text-white/65;
+    text-shadow: none;
+  }
+
+  #header.stuck .nav-link:hover,
+  #header.stuck .nav-link.text-gold {
+    @apply text-gold;
+  }
+
+  #header.stuck .nav-cta {
+    @apply border-gold text-gold;
+    text-shadow: none;
+  }
+
+  #header.stuck .nav-cta:hover {
+    @apply bg-gold text-black;
+  }
+
+  .brand-name {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .brand-sub {
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-link {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+  }
+
+  .nav-cta {
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  #mobile-drawer.open {
+    display: block;
+  }
+</style>

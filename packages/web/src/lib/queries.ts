@@ -14,16 +14,23 @@ export interface SanityImage {
   alt?: string;
 }
 
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
 export interface Service {
   _id: string;
   title: string;
   slug: string;
   tagline?: string;
   description?: string;
-  duration?: string;
-  price?: string;
+  whoItsFor?: string;
+  process?: string[];
+  faqs?: FAQ[];
   image?: SanityImage;
   collection?: { title: string; slug: string };
+  relatedServices?: Service[];
 }
 
 export interface ServiceCollection {
@@ -55,6 +62,38 @@ export interface SiteSettings {
   phone?: string;
   address?: string;
   instagramHandle?: string;
+  bookingEmail?: string;
+}
+
+export interface Testimonial {
+  _id: string;
+  quote: string;
+  author?: string;
+  role?: string;
+  backgroundImage?: SanityImage;
+  featured?: boolean;
+}
+
+export interface Standard {
+  title: string;
+  description: string;
+}
+
+export interface JourneyStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
+export interface ExperienceContent {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  storyHeading?: string;
+  storyParagraph1?: string;
+  storyParagraph2?: string;
+  storyImage?: SanityImage;
+  standards?: Standard[];
+  journeySteps?: JourneyStep[];
 }
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
@@ -68,7 +107,8 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
     email,
     phone,
     address,
-    instagramHandle
+    instagramHandle,
+    bookingEmail
   }
 `;
 
@@ -92,10 +132,21 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     "slug": slug.current,
     tagline,
     description,
-    duration,
-    price,
+    whoItsFor,
+    process,
+    faqs[] {
+      question,
+      answer
+    },
     ${IMAGE_FIELDS},
-    collection->{ title, "slug": slug.current }
+    collection->{ title, "slug": slug.current },
+    "relatedServices": relatedServices[]-> {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      ${IMAGE_FIELDS}
+    }
   }
 `;
 
@@ -171,4 +222,40 @@ export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
 
 export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `
   *[_type == "product" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+export const FEATURED_TESTIMONIALS_QUERY = /* groq */ `
+  *[_type == "testimonial" && featured == true] | order(_createdAt desc) {
+    _id,
+    quote,
+    author,
+    role,
+    "backgroundImage": backgroundImage {
+      asset->{ url, metadata { dimensions } },
+      alt
+    }
+  }
+`;
+
+export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
+  *[_type == "experienceContent"][0] {
+    heroTitle,
+    heroSubtitle,
+    storyHeading,
+    storyParagraph1,
+    storyParagraph2,
+    "storyImage": storyImage {
+      asset->{ url, metadata { dimensions } },
+      alt
+    },
+    standards[] {
+      title,
+      description
+    },
+    journeySteps[] {
+      step,
+      title,
+      description
+    }
+  }
 `;

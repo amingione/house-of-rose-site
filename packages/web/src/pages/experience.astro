@@ -1,53 +1,144 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { EXPERIENCE_CONTENT_QUERY, type ExperienceContent } from '@/lib/queries';
+
+const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTENT_QUERY);
 ---
 
 <BaseLayout
   title="The Experience"
-  description="Every visit to House of Rose is a complete sensory ritual — from arrival to departure."
+  description={experienceContent?.heroSubtitle ?? "Every visit to House of Rose is a complete sensory ritual — from arrival to departure."}
 >
-  <section class="py-24 max-w-4xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">What to Expect</p>
-      <h1 class="font-serif text-5xl text-charcoal">The Experience</h1>
-    </div>
+  <!-- Hero -->
+  <Hero
+    title={experienceContent?.heroTitle ?? "The Experience"}
+    kicker="What to Expect"
+    description={experienceContent?.heroSubtitle}
+    size="small"
+    backgroundClass="bg-charcoal"
+  />
 
-    <div class="prose prose-lg max-w-none text-charcoal/80">
-      <p class="lead text-xl text-charcoal/70 leading-relaxed">
-        From the moment you arrive, every detail at House of Rose is designed to slow you down
-        and bring you home to yourself.
+  <!-- Story Section -->
+  {experienceContent && (
+    <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
+      <div class="p-[clamp(38px,6vw,76px)]">
+        <span class="kicker">Our Story</span>
+        <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
+          {experienceContent.storyHeading ?? "Physician-Informed. Client-Centered."}
+        </h2>
+        {experienceContent.storyParagraph1 && (
+          <p class="text-[#777] text-[15px] leading-relaxed mb-3">
+            {experienceContent.storyParagraph1}
+          </p>
+        )}
+        {experienceContent.storyParagraph2 && (
+          <p class="text-[#777] text-[15px] leading-relaxed">
+            {experienceContent.storyParagraph2}
+          </p>
+        )}
+      </div>
+      <div class="relative min-h-[330px] bg-charcoal-lighter">
+        {experienceContent.storyImage && (
+          <img
+            src={urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url()}
+            alt={experienceContent.storyImage.alt ?? 'House of Rose Experience'}
+            class="w-full h-full object-cover"
+          />
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- The House of Rose Standard -->
+  {experienceContent?.standards && experienceContent.standards.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
+      <div class="max-w-[960px] mx-auto text-center mb-16">
+        <span class="kicker">Our Commitment</span>
+        <h2 class="font-serif text-[32px] text-white mt-2">
+          The House of Rose Standard
+        </h2>
+      </div>
+
+      <div class="max-w-[1120px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+        {experienceContent.standards.map((standard) => (
+          <div class="text-center">
+            <p class="text-white text-[17px] font-medium mb-3 tracking-wide">
+              {standard.title}
+            </p>
+            <p class="text-[#666] text-[14px] leading-relaxed">
+              {standard.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Your Guest Journey Timeline -->
+  {experienceContent?.journeySteps && experienceContent.journeySteps.length > 0 && (
+    <section class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6">
+      <div class="max-w-[960px] mx-auto text-center mb-16">
+        <span class="kicker">Step by Step</span>
+        <h2 class="font-serif text-[32px] text-white mt-2">
+          Your Guest Journey
+        </h2>
+      </div>
+
+      <div class="max-w-[1120px] mx-auto">
+        <div class="relative">
+          <!-- Timeline Line -->
+          <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gold/20 transform -translate-x-1/2 hidden md:block"></div>
+
+          <!-- Steps -->
+          <div class="space-y-16">
+            {experienceContent.journeySteps.map((step, index) => (
+              <div class={`relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${index % 2 === 0 ? '' : 'md:grid-flow-dense'}`}>
+                {/* Content */}
+                <div class={`${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:col-start-2 md:pl-12'}`}>
+                  <p class="text-gold/30 text-[48px] font-serif mb-2">
+                    {String(step.step).padStart(2, '0')}
+                  </p>
+                  <h3 class="text-white text-[22px] font-medium mb-3 tracking-wide">
+                    {step.title}
+                  </h3>
+                  <p class="text-[#666] text-[14px] leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Timeline Dot */}
+                <div class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2 w-3 h-3 bg-gold rounded-full border-4 border-charcoal z-10"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Contact CTA -->
+  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <span class="kicker">Reserve Your Experience</span>
+      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
+        Begin Your Transformation
+      </h2>
+      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+        Every treatment begins with a private consultation. Reach out to schedule yours.
       </p>
-
-      <h2>Arrival</h2>
-      <p>
-        You are greeted with warm tea and a brief consultation to ensure your treatment
-        is tailored to exactly where you are today — physically, emotionally, energetically.
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
+        </a>
+        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
+          Email Us
+        </a>
+      </div>
+      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+        525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33982
       </p>
-
-      <h2>The Treatment</h2>
-      <p>
-        Our therapists hold advanced certifications and bring years of intuitive practice.
-        Every treatment is a living ritual — never rushed, always intentional.
-      </p>
-
-      <h2>After Care</h2>
-      <p>
-        You'll receive personalized aftercare guidance and product recommendations
-        to extend the benefits of your treatment long after you leave.
-      </p>
-    </div>
-
-    <div class="mt-16 text-center">
-      <a href="#book" class="btn-primary">Book Your Experience</a>
-    </div>
-  </section>
-
-  <section id="book" class="py-20 bg-rose-950 text-cream-100 text-center">
-    <div class="max-w-xl mx-auto px-6">
-      <h2 class="font-serif text-3xl mb-6">Begin Your Ritual</h2>
-      <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrose.com'}`} class="btn-primary">
-        Book Now
-      </a>
     </div>
   </section>
 </BaseLayout>

@@ -43,3 +43,6 @@ next-env.d.ts
 
 # Netlify
 .netlify
+
+# misc
+/web/docs

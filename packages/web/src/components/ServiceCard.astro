@@ -1,0 +1,59 @@
+---
+/**
+ * Service card component
+ * Used on the homepage and services listing page
+ */
+
+import { urlFor } from '@/lib/sanity';
+import type { SanityImage } from '@/lib/queries';
+
+interface Props {
+  title: string;
+  slug: string;
+  tagline?: string;
+  image?: SanityImage;
+  variant?: 'grid' | 'row';
+  number?: string;
+}
+
+const { title, slug, tagline, image, variant = 'grid', number } = Astro.props;
+---
+
+{variant === 'grid' ? (
+  <a href={`/services/${slug}`} class="service-card group block">
+    {image && (
+      <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
+        <img
+          src={urlFor(image).width(400).height(400).fit('crop').url()}
+          alt={image.alt ?? title}
+          width={400}
+          height={400}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+    )}
+    <span class="service-name">{title}</span>
+    {tagline && <p class="service-desc mt-1">{tagline}</p>}
+    <span class="learn-more group-hover:text-gold">Learn More</span>
+  </a>
+) : (
+  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-white/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6">
+    {image && (
+      <div class="w-28 h-28 flex-shrink-0 overflow-hidden bg-charcoal-lighter">
+        <img
+          src={urlFor(image).width(224).height(224).fit('crop').url()}
+          alt={image.alt ?? title}
+          width={224}
+          height={224}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+    <div class="flex-1">
+      {number && <p class="text-[#444] text-xs mb-1">{number}</p>}
+      <h3 class="font-serif text-2xl text-white mb-2">{title}</h3>
+      {tagline && <p class="text-[#666] text-sm leading-relaxed">{tagline}</p>}
+    </div>
+    <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
+  </a>
+)}

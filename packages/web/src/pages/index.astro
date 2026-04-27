@@ -1,109 +1,146 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
-import { ALL_SERVICES_QUERY, ALL_COLLECTIONS_QUERY, type Service, type ServiceCollection } from '@/lib/queries';
+import { ALL_SERVICES_QUERY, FEATURED_TESTIMONIALS_QUERY, type Service, type Testimonial } from '@/lib/queries';
 
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
-const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+const testimonials = await sanityFetch<Testimonial[]>(FEATURED_TESTIMONIALS_QUERY);
+const featuredTestimonial = testimonials?.[0];
 ---
 
 <BaseLayout>
   <!-- Hero -->
-  <section class="relative h-screen flex items-center justify-center text-center bg-charcoal text-cream-100 overflow-hidden">
-    <div class="absolute inset-0 bg-rose-950/40 z-10"></div>
-    <div class="relative z-20 max-w-2xl px-6">
-      <p class="text-xs tracking-[0.3em] uppercase text-rose-300 mb-6">Luxury Spa & Wellness</p>
-      <h1 class="font-serif text-5xl md:text-7xl leading-tight mb-8">House of Rose</h1>
-      <p class="text-cream-200/80 text-lg leading-relaxed mb-10">
-        A sanctuary for the senses. Elevate your well-being through ritual, touch, and intention.
+  <Hero
+    title="House of Rose"
+    kicker="Luxury Spa & Wellness"
+    description="A sanctuary for the senses. Elevate your well-being through ritual, touch, and intention."
+    size="full"
+    showCTA={true}
+    ctaPrimary={{ text: 'Book a Service', href: '#book' }}
+    ctaSecondary={{ text: 'Explore Services', href: '/services' }}
+    backgroundClass="bg-charcoal"
+  />
+
+  <!-- Split Section: Feature Highlight -->
+  <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
+    <div class="p-[clamp(38px,6vw,76px)]">
+      <span class="kicker">Physician-Informed Care</span>
+      <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
+        Beyond the treatment room.
+      </h2>
+      <p class="text-[#777] text-[15px] leading-relaxed mb-3">
+        From the moment you book to the moment you leave, every detail has been considered.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#book" class="btn-primary">Book a Service</a>
-        <a href="/services" class="btn-outline border-cream-100 text-cream-100 hover:bg-cream-100 hover:text-charcoal">
-          Explore Services
-        </a>
+      <p class="text-[#777] text-[15px] leading-relaxed">
+        House of Rose delivers clinical precision wrapped in genuine hospitality.
+      </p>
+      <a href="/experience" class="btn-outline-gold mt-6 inline-flex">
+        Our Experience
+      </a>
+    </div>
+    <div class="relative min-h-[330px] bg-charcoal-lighter"></div>
+  </section>
+
+  <!-- Quote/Testimonial Section -->
+  {featuredTestimonial && (
+    <section
+      class="relative py-[clamp(72px,10vw,148px)] px-6"
+      style={featuredTestimonial.backgroundImage ? `background-image: url(${urlFor(featuredTestimonial.backgroundImage).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
+    >
+      <div class="absolute inset-0 bg-black/75"></div>
+      <div class="relative z-10 max-w-[640px] mx-auto text-center">
+        <blockquote class="font-serif text-[clamp(18px,3vw,28px)] text-white leading-relaxed italic font-normal">
+          "{featuredTestimonial.quote}"
+        </blockquote>
+        {(featuredTestimonial.author || featuredTestimonial.role) && (
+          <div class="mt-6 text-white/70 text-sm">
+            {featuredTestimonial.author && <p>{featuredTestimonial.author}</p>}
+            {featuredTestimonial.role && <p class="text-xs uppercase tracking-widest">{featuredTestimonial.role}</p>}
+          </div>
+        )}
+        <div class="w-11 h-px bg-gold mx-auto mt-7"></div>
       </div>
+    </section>
+  )}
+
+  <!-- Services Grid -->
+  {services.length > 0 && (
+    <section class="bg-charcoal py-[clamp(44px,6vw,88px)] px-6">
+      <div class="max-w-[1280px] mx-auto">
+        <!-- Section Header -->
+        <div class="flex justify-between items-end flex-wrap gap-3 mb-12">
+          <div>
+            <span class="kicker">What We Offer</span>
+            <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-1.5">
+              Our Services
+            </h2>
+          </div>
+          <a href="/services" class="text-[11px] tracking-[0.2em] uppercase border-b border-gold text-gold pb-0.5 min-h-[44px] inline-flex items-end hover:opacity-75 transition-opacity">
+            View All
+          </a>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10">
+          {services.slice(0, 6).map((service) => (
+            <div class="bg-charcoal">
+              <ServiceCard
+                title={service.title}
+                slug={service.slug}
+                tagline={service.tagline}
+                image={service.image}
+                variant="grid"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Split Section: Experience -->
+  <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
+    <div class="relative min-h-[330px] bg-charcoal order-2 md:order-1"></div>
+    <div class="p-[clamp(38px,6vw,76px)] order-1 md:order-2">
+      <span class="kicker">What to Expect</span>
+      <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
+        Built for those who expect more.
+      </h2>
+      <p class="text-[#777] text-[15px] leading-relaxed mb-3">
+        Every treatment is an invitation to slow down, restore, and reconnect with yourself.
+      </p>
+      <p class="text-[#777] text-[15px] leading-relaxed">
+        Discover what sets House of Rose apart.
+      </p>
+      <a href="/experience" class="btn-outline-gold mt-6 inline-flex">
+        Our Experience
+      </a>
     </div>
   </section>
 
-  <!-- Collections -->
-  {collections.length > 0 && (
-    <section class="py-24 max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">Curated Experiences</p>
-        <h2 class="font-serif text-4xl text-charcoal">Service Collections</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {collections.map((col) => (
-          <a href={`/services/collections/${col.slug}`} class="group block overflow-hidden">
-            {col.image && (
-              <div class="aspect-[4/3] overflow-hidden bg-cream-200 mb-4">
-                <img
-                  src={urlFor(col.image).width(600).height(450).fit('crop').url()}
-                  alt={col.image.alt ?? col.title}
-                  width={600}
-                  height={450}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            )}
-            <p class="font-serif text-xl text-charcoal mb-2">{col.title}</p>
-            {col.description && <p class="text-sm text-charcoal/60 leading-relaxed">{col.description}</p>}
-          </a>
-        ))}
-      </div>
-    </section>
-  )}
-
-  <!-- Featured Services -->
-  {services.length > 0 && (
-    <section class="py-24 bg-cream-200/50">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16">
-          <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">The Menu</p>
-          <h2 class="font-serif text-4xl text-charcoal">Signature Services</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.slice(0, 6).map((svc) => (
-            <a href={`/services/${svc.slug}`} class="group bg-cream-100 p-6 hover:shadow-md transition-shadow duration-300">
-              {svc.image && (
-                <div class="aspect-square overflow-hidden bg-cream-200 mb-4">
-                  <img
-                    src={urlFor(svc.image).width(400).height(400).fit('crop').url()}
-                    alt={svc.image.alt ?? svc.title}
-                    width={400}
-                    height={400}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              )}
-              <p class="font-serif text-lg text-charcoal mb-1">{svc.title}</p>
-              {svc.tagline && <p class="text-sm text-charcoal/60 mb-3">{svc.tagline}</p>}
-              <div class="flex items-center justify-between">
-                {svc.duration && <span class="text-xs text-charcoal/50">{svc.duration}</span>}
-                {svc.price && <span class="text-sm font-medium text-rose-700">{svc.price}</span>}
-              </div>
-            </a>
-          ))}
-        </div>
-        <div class="text-center mt-12">
-          <a href="/services" class="btn-outline">View All Services</a>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Book CTA -->
-  <section id="book" class="py-24 bg-rose-950 text-cream-100 text-center">
-    <div class="max-w-xl mx-auto px-6">
-      <p class="text-xs tracking-[0.3em] uppercase text-rose-300 mb-6">Reserve Your Visit</p>
-      <h2 class="font-serif text-4xl mb-6">Begin Your Ritual</h2>
-      <p class="text-cream-200/70 leading-relaxed mb-10">
-        Every treatment is an invitation to slow down, restore, and reconnect.
+  <!-- Contact CTA -->
+  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <span class="kicker">Reserve Your Experience</span>
+      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
+        Begin Your Transformation
+      </h2>
+      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+        Every treatment begins with a private consultation. Reach out to schedule yours.
       </p>
-      <a href="mailto:{import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrose.com'}" class="btn-primary">
-        Book Now
-      </a>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
+        </a>
+        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
+          Email Us
+        </a>
+      </div>
+      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+        525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33982
+      </p>
     </div>
   </section>
 </BaseLayout>

@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    --color-bg: theme('colors.cream.100');
-    --color-text: theme('colors.charcoal');
-    --color-accent: theme('colors.rose.700');
+    --color-bg: theme('colors.charcoal.DEFAULT');
+    --color-text: theme('colors.cream.DEFAULT');
+    --color-accent: theme('colors.gold.DEFAULT');
   }
 
   html {
@@ -14,20 +14,57 @@
   }
 
   body {
-    @apply bg-cream-100 text-charcoal font-sans antialiased;
+    @apply bg-charcoal text-white font-sans antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif font-normal;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-block px-6 py-3 bg-rose-700 text-white font-sans text-sm tracking-widest uppercase hover:bg-rose-800 transition-colors duration-200;
+  /* Button: Gold background */
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-gold text-black font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
   }
 
-  .btn-outline {
-    @apply inline-block px-6 py-3 border border-charcoal text-charcoal font-sans text-sm tracking-widest uppercase hover:bg-charcoal hover:text-white transition-colors duration-200;
+  /* Button: Outline white */
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-cream-300 text-white font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:border-gold hover:text-gold;
+  }
+
+  /* Button: Outline gold */
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-gold text-gold font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:bg-gold hover:text-black;
+  }
+
+  /* Label/Kicker text */
+  .kicker {
+    @apply block text-[10px] tracking-[0.4em] uppercase text-gold mb-3;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply font-serif text-4xl text-white font-normal;
+  }
+
+  /* Service card */
+  .service-card {
+    @apply bg-charcoal p-6 text-left border-none w-full min-h-[44px] transition-all duration-300 hover:bg-charcoal-lighter;
+  }
+
+  /* Service name in card */
+  .service-name {
+    @apply block text-[10px] tracking-[0.3em] uppercase text-gold mb-1.5;
+  }
+
+  /* Service description */
+  .service-desc {
+    @apply text-[#666] text-[13px] leading-relaxed;
+  }
+
+  /* Learn more link */
+  .learn-more {
+    @apply text-gold/50 text-[10px] tracking-[0.22em] uppercase mt-3 block transition-colors duration-200;
   }
 }

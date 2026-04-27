@@ -1,49 +1,104 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
+import Hero from '@/components/Hero.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import { sanityFetch } from '@/lib/sanity';
 import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
 
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 ---
 
-<BaseLayout title="Services" description="Explore our full menu of luxury spa treatments and wellness services.">
-  <section class="py-24 max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">The Menu</p>
-      <h1 class="font-serif text-5xl text-charcoal">Our Services</h1>
+<BaseLayout title="Services">
+  <!-- Hero -->
+  <Hero
+    title="Our Services"
+    kicker="What We Offer"
+    size="small"
+    backgroundClass="bg-charcoal"
+  />
+
+  <!-- Services List -->
+  <section class="bg-charcoal py-[clamp(36px,5vw,72px)]">
+    <div class="max-w-[1280px] mx-auto px-6">
+      {services.map((service, index) => (
+        <ServiceCard
+          title={service.title}
+          slug={service.slug}
+          tagline={service.tagline}
+          image={service.image}
+          variant="row"
+          number={`${String(index + 1).padStart(2, '0')}`}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- How to Choose Section -->
+  <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
+    <div class="max-w-[960px] mx-auto text-center mb-16">
+      <span class="kicker">Not Sure Where to Start?</span>
+      <h2 class="font-serif text-[32px] text-white mt-2">
+        How to Choose
+      </h2>
     </div>
 
-    {services.length === 0 ? (
-      <p class="text-center text-charcoal/50">Services coming soon.</p>
-    ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="group bg-cream-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
-            {svc.image && (
-              <div class="aspect-[3/2] overflow-hidden bg-cream-200">
-                <img
-                  src={urlFor(svc.image).width(600).height(400).fit('crop').url()}
-                  alt={svc.image.alt ?? svc.title}
-                  width={600}
-                  height={400}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            )}
-            <div class="p-6">
-              {svc.collection && (
-                <p class="text-xs tracking-widest uppercase text-rose-600 mb-2">{svc.collection.title}</p>
-              )}
-              <p class="font-serif text-xl text-charcoal mb-2">{svc.title}</p>
-              {svc.tagline && <p class="text-sm text-charcoal/60 leading-relaxed mb-4">{svc.tagline}</p>}
-              <div class="flex items-center justify-between">
-                {svc.duration && <span class="text-xs text-charcoal/50">{svc.duration}</span>}
-                {svc.price && <span class="text-sm font-medium text-rose-700">{svc.price}</span>}
-              </div>
-            </div>
-          </a>
-        ))}
+    <div class="max-w-[1120px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+      <!-- Step 1 -->
+      <div class="text-center">
+        <p class="text-gold/30 text-[48px] font-serif mb-4">01</p>
+        <p class="text-white text-[17px] font-medium mb-3 tracking-wide">
+          Define Your Goal
+        </p>
+        <p class="text-[#666] text-[14px] leading-relaxed">
+          Skin quality, body composition, energy, or wellness. Your goal determines your path.
+        </p>
       </div>
-    )}
+
+      <!-- Step 2 -->
+      <div class="text-center">
+        <p class="text-gold/30 text-[48px] font-serif mb-4">02</p>
+        <p class="text-white text-[17px] font-medium mb-3 tracking-wide">
+          Book a Consultation
+        </p>
+        <p class="text-[#666] text-[14px] leading-relaxed">
+          Every client begins with a private consultation. We assess, listen, and design a protocol.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="text-center">
+        <p class="text-gold/30 text-[48px] font-serif mb-4">03</p>
+        <p class="text-white text-[17px] font-medium mb-3 tracking-wide">
+          Begin Your Protocol
+        </p>
+        <p class="text-[#666] text-[14px] leading-relaxed">
+          Your plan is staged over time for compounding, measurable results.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <span class="kicker">Reserve Your Experience</span>
+      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
+        Begin Your Transformation
+      </h2>
+      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+        Schedule a private consultation and let our team build a protocol around your goals.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
+        </a>
+        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
+          Email Us
+        </a>
+      </div>
+      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+        525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33982
+      </p>
+    </div>
   </section>
 </BaseLayout>

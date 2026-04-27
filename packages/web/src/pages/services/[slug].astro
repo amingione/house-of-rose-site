@@ -25,66 +25,150 @@ if (!service) {
   description={service.tagline ?? service.description ?? ''}
   image={service.image ? urlFor(service.image).width(1200).height(630).fit('crop').url() : undefined}
 >
-  <article class="max-w-4xl mx-auto px-6 py-24">
-    {service.collection && (
-      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">
-        <a href={`/services/collections/${service.collection.slug}`} class="hover:underline">
-          {service.collection.title}
-        </a>
-      </p>
-    )}
-
-    <h1 class="font-serif text-5xl text-charcoal mb-4">{service.title}</h1>
-
-    {service.tagline && (
-      <p class="text-xl text-charcoal/70 leading-relaxed mb-8">{service.tagline}</p>
-    )}
-
-    <div class="flex items-center gap-8 mb-12 pb-8 border-b border-rose-200/60">
-      {service.duration && (
-        <div>
-          <p class="text-xs tracking-widest uppercase text-charcoal/40 mb-1">Duration</p>
-          <p class="text-charcoal font-medium">{service.duration}</p>
-        </div>
-      )}
-      {service.price && (
-        <div>
-          <p class="text-xs tracking-widest uppercase text-charcoal/40 mb-1">Starting At</p>
-          <p class="text-rose-700 font-medium text-lg">{service.price}</p>
-        </div>
-      )}
-    </div>
-
-    {service.image && (
-      <div class="aspect-video overflow-hidden bg-cream-200 mb-12">
-        <img
-          src={urlFor(service.image).width(1200).height(675).fit('crop').url()}
-          alt={service.image.alt ?? service.title}
-          width={1200}
-          height={675}
-          class="w-full h-full object-cover"
-        />
-      </div>
-    )}
-
-    {service.description && (
-      <div class="prose prose-lg max-w-none text-charcoal/80 mb-12">
-        <p>{service.description}</p>
-      </div>
-    )}
-
-    <div class="mt-12">
-      <a href="#book" class="btn-primary">Book This Service</a>
-    </div>
-  </article>
-
-  <!-- Book CTA -->
-  <section id="book" class="py-20 bg-rose-950 text-cream-100 text-center">
-    <div class="max-w-xl mx-auto px-6">
-      <h2 class="font-serif text-3xl mb-6">Reserve Your {service.title}</h2>
-      <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrose.com'}?subject=Booking: ${service.title}`} class="btn-primary">
-        Book Now
+  <!-- Hero -->
+  <section
+    class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"
+    style={service.image ? `background-image: url(${urlFor(service.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
+  >
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
+    <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
+      <a href="/services" class="inline-flex items-center gap-2 text-white/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+        <span class="text-lg">←</span> All Services
       </a>
+      {service.tagline && (
+        <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">
+          {service.tagline}
+        </span>
+      )}
+      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-white">
+        {service.title}
+      </h1>
+    </div>
+  </section>
+
+  <!-- Details Section -->
+  <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2 gap-12 py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
+    <!-- What It Is -->
+    <div>
+      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What It Is</span>
+      <p class="text-white/80 text-[15px] leading-relaxed">
+        {service.description ?? 'Details coming soon.'}
+      </p>
+    </div>
+
+    <!-- Who It's For + Process -->
+    <div class="space-y-8">
+      {service.whoItsFor && (
+        <div>
+          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Who It's For</span>
+          <p class="text-[#888] text-[14px] leading-relaxed">{service.whoItsFor}</p>
+        </div>
+      )}
+
+      {service.process && service.process.length > 0 && (
+        <div>
+          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Process</span>
+          <ol class="list-decimal list-inside space-y-2 text-[#888] text-[14px] leading-relaxed">
+            {service.process.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  {service.faqs && service.faqs.length > 0 && (
+    <section class="bg-charcoal-light py-16 px-6">
+      <div class="max-w-[960px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">
+          Common Questions
+        </span>
+        <div class="space-y-6">
+          {service.faqs.map((faq) => (
+            <div class="border-b border-white/5 pb-6">
+              <h3 class="text-white text-[17px] font-medium mb-3">{faq.question}</h3>
+              <p class="text-[#777] text-[14px] leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Related Services -->
+  {service.relatedServices && service.relatedServices.length > 0 && (
+    <section class="bg-charcoal py-16 px-6">
+      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 max-w-[1280px] mx-auto">
+        Related Services
+      </span>
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+        {service.relatedServices.map((related) => (
+          <div class="bg-charcoal">
+            <a href={`/services/${related.slug}`} class="service-card group block">
+              {related.image && (
+                <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
+                  <img
+                    src={urlFor(related.image).width(400).height(400).fit('crop').url()}
+                    alt={related.image.alt ?? related.title}
+                    width={400}
+                    height={400}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              )}
+              <span class="service-name">{related.title}</span>
+              {related.tagline && <p class="service-desc mt-1">{related.tagline}</p>}
+              <span class="learn-more group-hover:text-gold">Learn More</span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Section -->
+  <section class="bg-charcoal-light py-16 px-6">
+    <div class="max-w-[840px] mx-auto text-center">
+      <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-white mb-4">
+        Ready to experience {service.title}?
+      </h2>
+      <p class="text-[#777] text-[15px] mb-8">
+        Begin with a private consultation. We will design your personal protocol.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
+        </a>
+        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
+          Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <span class="kicker">Reserve Your Experience</span>
+      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
+        Begin Your Transformation
+      </h2>
+      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+        Every treatment begins with a private consultation.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
+        </a>
+        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
+          Email Us
+        </a>
+      </div>
+      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+        525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33982
+      </p>
     </div>
   </section>
 </BaseLayout>

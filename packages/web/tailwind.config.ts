@@ -6,26 +6,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        // House of Rose brand palette — update as needed
-        rose: {
-          50: '#fff1f2',
-          100: '#ffe4e6',
-          200: '#fecdd3',
-          300: '#fda4af',
-          400: '#fb7185',
-          500: '#f43f5e',
-          600: '#e11d48',
-          700: '#be123c',
-          800: '#9f1239',
-          900: '#881337',
-          950: '#4c0519',
+        // House of Rose brand palette — matches mockup design
+        gold: {
+          DEFAULT: '#C9A96E',
+          50: '#FAF8F4',
+          100: '#F0EAE0',
+          200: '#E1D5BE',
+          300: '#D2C09C',
+          400: '#C9A96E',
+          500: '#B8954F',
+          600: '#997A3F',
+          700: '#735C30',
+          800: '#4D3E20',
+          900: '#261F10',
+        },
+        charcoal: {
+          DEFAULT: '#0a0806',
+          light: '#070605',
+          lighter: '#1a1816',
         },
         cream: {
-          50: '#fefdf8',
-          100: '#fdf8ed',
-          200: '#f9edcc',
+          DEFAULT: '#FFFFFF',
+          100: '#FFFFFF',
+          200: 'rgba(255,255,255,0.72)',
+          300: 'rgba(255,255,255,0.35)',
         },
-        charcoal: '#1a1a1a',
       },
       fontFamily: {
         serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
