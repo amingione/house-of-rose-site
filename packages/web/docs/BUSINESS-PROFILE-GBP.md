@@ -59,7 +59,6 @@ precision wrapped in genuine hospitality — because you deserve results, not ju
 service menu.
 
 Serving Punta Gorda, Port Charlotte, and the greater Southwest Florida area.
-Book online or call (844) 941-7673.
 ```
 
 *Character count: ~587 — within 750 limit.*
