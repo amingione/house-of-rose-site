@@ -17,7 +17,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     kicker="What to Expect"
     description={experienceContent?.heroSubtitle}
     size="small"
-    backgroundClass="bg-charcoal"
+    backgroundImage="/images/house-of-rose-med-spa-relaxation-lounge-interior 2.webp"
   />
 
   <!-- Story Section -->
@@ -40,13 +40,13 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
         )}
       </div>
       <div class="relative min-h-[330px] bg-charcoal-lighter">
-        {experienceContent.storyImage && (
-          <img
-            src={urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url()}
-            alt={experienceContent.storyImage.alt ?? 'House of Rose Experience'}
-            class="w-full h-full object-cover"
-          />
-        )}
+        <img
+          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/house-of-rose-med-spa-reception-desk-punta-gorda 2.webp'}
+          alt={experienceContent?.storyImage?.alt ?? 'House of Rose reception desk'}
+          class="w-full h-full object-cover"
+          width="800"
+          height="600"
+        />
       </div>
     </section>
   )}
@@ -138,8 +138,8 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
-          Email Us
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
+          Book Online
         </a>
       </div>
       <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

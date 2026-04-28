@@ -61,9 +61,9 @@ const organizationData = {
     description="A private med spa offering microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 treatments."
     size="full"
     showCTA={true}
-    ctaPrimary={{ text: 'Book a Service', href: '#book' }}
+    ctaPrimary={{ text: 'Book a Service', href: 'https://houseofrose.glossgenius.com/services' }}
     ctaSecondary={{ text: 'Explore Services', href: '/services' }}
-    backgroundClass="bg-charcoal"
+    backgroundImage="/images/house-of-rose-med-spa-exterior-branding-florida 2.webp"
   />
 
   <!-- Split Section: Feature Highlight -->
@@ -83,7 +83,15 @@ const organizationData = {
         Our Experience
       </a>
     </div>
-    <div class="relative min-h-[330px] bg-charcoal-lighter"></div>
+    <div class="relative min-h-[330px] bg-charcoal-lighter">
+      <img
+        src="/images/house-of-rose-med-spa-skincare-consultation-room 2.webp"
+        alt="House of Rose consultation room"
+        class="w-full h-full object-cover"
+        width="800"
+        height="600"
+      />
+    </div>
   </section>
 
   <!-- Quote/Testimonial Section -->
@@ -145,7 +153,15 @@ const organizationData = {
 
   <!-- Split Section: Experience -->
   <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
-    <div class="relative min-h-[330px] bg-charcoal order-2 md:order-1"></div>
+    <div class="relative min-h-[330px] bg-charcoal order-2 md:order-1">
+      <img
+        src="/images/house-of-rose-spa-luxe-treatment-room-punta-gorda 2.webp"
+        alt="House of Rose luxury treatment room"
+        class="w-full h-full object-cover"
+        width="800"
+        height="600"
+      />
+    </div>
     <div class="p-[clamp(38px,6vw,76px)] order-1 md:order-2">
       <span class="kicker">What to Expect</span>
       <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
@@ -177,8 +193,8 @@ const organizationData = {
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`} class="btn-gold">
-          Email Us
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
+          Book Online
         </a>
       </div>
       <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

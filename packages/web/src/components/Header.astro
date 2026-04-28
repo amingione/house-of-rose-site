@@ -15,14 +15,15 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
 
 <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-center md:justify-between">
-    <!-- Brand -->
-    <a href="/" class="brand-link text-center md:text-left">
-      <span class="brand-name block font-serif text-sm tracking-[0.3em] text-gold uppercase transition-all duration-400">
-        House of Rose
-      </span>
-      <span class="brand-sub block text-[9px] tracking-[0.4em] text-white/75 uppercase mt-0.5">
-        Medical Aesthetics
-      </span>
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link flex items-center">
+      <img
+        src="/logos/house-of-rose-straight-logo-package/svg/logo-white.svg"
+        alt="House of Rose Medical Aesthetics"
+        class="h-12 w-auto transition-all duration-300"
+        width="180"
+        height="48"
+      />
     </a>
 
     <!-- Desktop Navigation -->
@@ -52,7 +53,9 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
         Experience
       </a>
       <a
-        href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`}
+        href="https://houseofrose.glossgenius.com/services"
+        target="_blank"
+        rel="noopener noreferrer"
         class="nav-cta text-[11px] tracking-[0.2em] uppercase px-5 py-2 border border-white/80 text-white transition-all duration-300 hover:bg-gold hover:border-gold hover:text-black"
       >
         Book Now
@@ -93,7 +96,9 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
         Experience
       </a>
       <a
-        href={`mailto:${import.meta.env.PUBLIC_BOOKING_EMAIL ?? 'book@houseofrosefl.com'}`}
+        href="https://houseofrose.glossgenius.com/services"
+        target="_blank"
+        rel="noopener noreferrer"
         class="mobile-cta text-[11px] tracking-[0.2em] uppercase px-6 py-3 border border-gold text-gold mt-1.5 min-h-[48px] inline-flex items-center"
       >
         Book Now
@@ -143,14 +148,8 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
     @apply bg-charcoal/95 backdrop-blur-sm shadow-lg;
   }
 
-  #header.stuck .brand-name {
-    @apply text-xs;
-    text-shadow: none;
-  }
-
-  #header.stuck .brand-sub {
-    @apply text-gray-600;
-    text-shadow: none;
+  #header.stuck .brand-link img {
+    @apply h-10;
   }
 
   #header.stuck .nav-link {
@@ -169,14 +168,6 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
 
   #header.stuck .nav-cta:hover {
     @apply bg-gold text-black;
-  }
-
-  .brand-name {
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-  }
-
-  .brand-sub {
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
   }
 
   .nav-link {

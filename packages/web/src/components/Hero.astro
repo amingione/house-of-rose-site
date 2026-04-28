@@ -60,12 +60,26 @@ const contentClasses = size === 'full' ? 'clamp(44px,8vh,74px)' : '12';
     {showCTA && (ctaPrimary || ctaSecondary) && (
       <div class="flex gap-3 flex-wrap">
         {ctaPrimary && (
-          <a href={ctaPrimary.href} class="btn-gold">
+          <a
+            href={ctaPrimary.href}
+            class="btn-gold"
+            {...(ctaPrimary.href.startsWith('http') && {
+              target: '_blank',
+              rel: 'noopener noreferrer'
+            })}
+          >
             {ctaPrimary.text}
           </a>
         )}
         {ctaSecondary && (
-          <a href={ctaSecondary.href} class="btn-outline-white">
+          <a
+            href={ctaSecondary.href}
+            class="btn-outline-white"
+            {...(ctaSecondary.href.startsWith('http') && {
+              target: '_blank',
+              rel: 'noopener noreferrer'
+            })}
+          >
             {ctaSecondary.text}
           </a>
         )}

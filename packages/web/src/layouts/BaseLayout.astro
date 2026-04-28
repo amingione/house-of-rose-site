@@ -37,11 +37,15 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    {image && <meta property="og:image" content={image} />}
+    <meta property="og:image" content={image ?? `${Astro.site}/logos/house-of-rose-straight-logo-package/social/og.png`} />
     <meta property="og:type" content="website" />
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
-    <!-- Favicon placeholder -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/logos/house-of-rose-monogram-logo-package/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logos/house-of-rose-monogram-logo-package/favicon/16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logos/house-of-rose-monogram-logo-package/favicon/32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/logos/house-of-rose-monogram-logo-package/favicon/48.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/logos/house-of-rose-monogram-logo-package/png/logo-512.png" />
     <!-- Additional head content from pages -->
     <slot name="head" />
   </head>
