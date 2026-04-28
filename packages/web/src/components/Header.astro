@@ -53,6 +53,14 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
         Experience
       </a>
       <a
+        href="/contact"
+        class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+          isActive('/contact') ? 'text-gold' : 'text-white/90 hover:text-gold'
+        }`}
+      >
+        Contact
+      </a>
+      <a
         href="https://houseofrose.glossgenius.com/services"
         target="_blank"
         rel="noopener noreferrer"
@@ -94,6 +102,12 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
         class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
       >
         Experience
+      </a>
+      <a
+        href="/contact"
+        class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+      >
+        Contact
       </a>
       <a
         href="https://houseofrose.glossgenius.com/services"
