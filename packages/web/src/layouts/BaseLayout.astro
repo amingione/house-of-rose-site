@@ -24,7 +24,9 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
+const pageTitle = (title === siteName || title.includes(siteName))
+  ? title
+  : `${title} | ${siteName}`;
 ---
 
 <!doctype html>
@@ -40,8 +42,17 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={image ?? `${Astro.site}/logos/house-of-rose-straight-logo-package/social/og.png`} />
+    <meta property="og:image" content={image ?? `${Astro.site}logos/house-of-rose-straight-logo-package/social/og.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="House of Rose" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image ?? `${Astro.site}logos/house-of-rose-straight-logo-package/social/og.png`} />
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/logos/house-of-rose-monogram-logo-package/favicon/favicon.ico" />
@@ -53,10 +64,13 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <slot name="head" />
   </head>
   <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
+      Skip to main content
+    </a>
     <Header currentPath={Astro.url.pathname} />
 
     <!-- Page content -->
-    <main>
+    <main id="main-content">
       <slot />
     </main>
 
