@@ -1,5 +1,5 @@
 # House of Rose — Growth System SEO Report
-**Client**: House of Rose Medical Aesthetics  
+**Client**: House of Rose  
 **URL**: houseofrosefl.com  
 **Location**: 525 E Olympia Ave, Unit 9 — Punta Gorda, FL 33982  
 **Package**: Growth System (Tier 3 — all 14 PREINDEX phases)  

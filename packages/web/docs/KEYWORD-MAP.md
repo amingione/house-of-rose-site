@@ -1,6 +1,6 @@
 # House of Rose — Keyword Map
 **Generated**: 2026-04-28  
-**Business**: House of Rose Medical Aesthetics — Punta Gorda, FL  
+**Business**: House of Rose — Punta Gorda, FL  
 **Target market**: SW Florida (Charlotte County + Lee County DMA)  
 **Methodology**: Competitor SERP analysis (Carlisa, Sweet Spot, Spago, Skin Sanctuary, Nuview), local search pattern mapping, intent classification
 

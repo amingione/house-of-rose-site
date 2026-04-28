@@ -1,6 +1,6 @@
 # House of Rose — Google Business Profile Setup Guide
 **Created**: 2026-04-28  
-**Business**: House of Rose Medical Aesthetics — Punta Gorda, FL  
+**Business**: House of Rose — Punta Gorda, FL  
 **Status**: ⚠️ Pending — requires manual claim at business.google.com
 
 ---
@@ -70,13 +70,13 @@ Book online or call (844) 941-7673.
 
 Add each service individually with a description:
 
-| Service Name | Description (160 chars max) |
-|-------------|----------------------------|
-| Microchanneling | Precision collagen stimulation treatment to restore skin texture, reduce scarring, and achieve compounding skin renewal results. |
-| IV Hydration Therapy | Custom IV infusions for rapid rehydration, energy restoration, immune support, and cellular nutrition — administered by trained providers. |
-| Botox & Dermal Fillers | Physician-informed Botox, Dysport, and hyaluronic acid filler treatments. Precision placement, natural results. |
+| Service Name           | Description (160 chars max)                                                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Microchanneling        | Precision collagen stimulation treatment to restore skin texture, reduce scarring, and achieve compounding skin renewal results.            |
+| IV Hydration Therapy   | Custom IV infusions for rapid rehydration, energy restoration, immune support, and cellular nutrition — administered by trained providers.  |
+| Botox & Dermal Fillers | Physician-informed Botox, Dysport, and hyaluronic acid filler treatments. Precision placement, natural results.                             |
 | Hormone Therapy (BHRT) | Personalized bioidentical hormone replacement to address fatigue, mood, sleep, and metabolic decline. Lab-driven and clinically supervised. |
-| GLP-1 Weight Loss | Medically supervised semaglutide and tirzepatide programs for sustainable weight loss. Physician-informed protocols with ongoing oversight. |
+| GLP-1 Weight Loss      | Medically supervised semaglutide and tirzepatide programs for sustainable weight loss. Physician-informed protocols with ongoing oversight. |
 
 ---
 
@@ -99,16 +99,16 @@ Check all that apply:
 
 Minimum 8 photos required before launch. Recommended shots:
 
-| Photo Type | Recommended Image | Specs |
-|-----------|-----------------|-------|
-| Logo | `/logos/HofR-1024/HofR-logo.png` | Square, 250×250px min |
-| Cover photo | `house-of-rose-reception.webp` | 1080×608px, 16:9 |
-| Interior 1 | `house-of-rose-lounge.webp` | Any ≥720×540px |
-| Interior 2 | `house-of-rose-treatment-room.webp` | Any ≥720×540px |
-| Interior 3 | `house-of-rose-shower-room.webp` | Any ≥720×540px |
-| Products | `house-of-rose-products.webp` | Any ≥720×540px |
-| Treatment | `new-microchanneling.webp` or `new-iv-therapy.webp` | Any ≥720×540px |
-| Exterior | (use actual exterior photo if available) | Any ≥720×540px |
+| Photo Type  | Recommended Image                                   | Specs                 |
+| ----------- | --------------------------------------------------- | --------------------- |
+| Logo        | `/logos/HofR-1024/HofR-logo.png`                    | Square, 250×250px min |
+| Cover photo | `house-of-rose-reception.webp`                      | 1080×608px, 16:9      |
+| Interior 1  | `house-of-rose-lounge.webp`                         | Any ≥720×540px        |
+| Interior 2  | `house-of-rose-treatment-room.webp`                 | Any ≥720×540px        |
+| Interior 3  | `house-of-rose-shower-room.webp`                    | Any ≥720×540px        |
+| Products    | `house-of-rose-products.webp`                       | Any ≥720×540px        |
+| Treatment   | `new-microchanneling.webp` or `new-iv-therapy.webp` | Any ≥720×540px        |
+| Exterior    | (use actual exterior photo if available)            | Any ≥720×540px        |
 
 **GBP accepts JPG/PNG only** — if using WebP, convert first with: `cwebp` → `dwebp` to convert back, or use the original PNG files.
 

@@ -23,6 +23,9 @@ const {
   preloadImage,
 } = Astro.props;
 
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = (title === siteName || title.includes(siteName))
   ? title
@@ -34,6 +37,7 @@ const pageTitle = (title === siteName || title.includes(siteName))
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {gscVerify && <meta name="google-site-verification" content={gscVerify} />}
     <link rel="canonical" href={canonicalURL} />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <title>{pageTitle}</title>
@@ -60,6 +64,13 @@ const pageTitle = (title === siteName || title.includes(siteName))
     <link rel="icon" type="image/png" sizes="32x32" href="/logos/house-of-rose-monogram-logo-package/favicon/32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/logos/house-of-rose-monogram-logo-package/favicon/48.png" />
     <link rel="apple-touch-icon" sizes="512x512" href="/logos/HofR-512/mono-circle.png" />
+    <!-- GA4 — set PUBLIC_GA4_ID in Netlify env vars to activate -->
+    {ga4Id && (
+      <Fragment>
+        <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} async></script>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}',{anonymize_ip:true});`}></script>
+      </Fragment>
+    )}
     <!-- Additional head content from pages -->
     <slot name="head" />
   </head>

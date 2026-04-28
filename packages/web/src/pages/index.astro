@@ -2,12 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
-import { ALL_SERVICES_QUERY, FEATURED_TESTIMONIALS_QUERY, type Service, type Testimonial } from '@/lib/queries';
+import { sanityFetch } from '@/lib/sanity';
+import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
 
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
-const testimonials = await sanityFetch<Testimonial[]>(FEATURED_TESTIMONIALS_QUERY);
-const featuredTestimonial = testimonials?.[0];
 
 // WebSite structured data with SearchAction
 const websiteData = {
@@ -30,7 +28,7 @@ const organizationData = {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   "name": "House of Rose",
-  "description": "Luxury spa & wellness services in Punta Gorda, FL. Physician-informed care including PRF, microneedling, facials, and medical aesthetics.",
+  "description": "Luxury spa & wellness services in Punta Gorda, FL. Physician-informed care including microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 programs.",
   "url": Astro.site?.toString(),
   "telephone": "+18449417673",
   "email": "book@houseofrosefl.com",
@@ -78,7 +76,7 @@ const organizationData = {
 <BaseLayout
   title="Medical Spa in Punta Gorda, FL"
   description="Punta Gorda's private med spa for microchanneling, IV hydration, injectables, hormone therapy & GLP-1 treatments. Physician-informed. Book online."
-  preloadImage="/images/house-of-rose-reception.webp"
+  preloadImage="/images/new-reception.png"
 >
   <!-- Structured Data for SEO -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteData)} slot="head" />
@@ -86,66 +84,57 @@ const organizationData = {
   <!-- Hero -->
   <Hero
     title="House of Rose"
-    subtitle="Medical Aesthetics"
+    subtitle="Private Med Spa"
     kicker="Punta Gorda, Florida"
     description="A private med spa offering microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 treatments."
     size="full"
     showCTA={true}
     ctaPrimary={{ text: 'Book a Service', href: 'https://houseofrose.glossgenius.com/services' }}
     ctaSecondary={{ text: 'Explore Services', href: '/services' }}
-    backgroundImage="/images/house-of-rose-reception.webp"
+    backgroundImage="/images/new-reception.png"
   />
 
-  <!-- Split Section: Feature Highlight -->
+  <!-- The Standard -->
   <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
     <div class="p-[clamp(38px,6vw,76px)]">
-      <span class="kicker">Physician-Informed Care</span>
+      <span class="kicker">The Standard</span>
       <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
-        Beyond the treatment room.
+        Clinical precision.<br />Absolute discretion.
       </h2>
-      <p class="text-[#777] text-[15px] leading-relaxed mb-3">
-        From the moment you book to the moment you leave, every detail has been considered.
+      <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px] mb-3">
+        House of Rose was built on a single conviction: that medical aesthetics should feel like a private luxury experience, not a clinical transaction. Every treatment is physician-informed, every protocol personalized, every visit unhurried.
       </p>
-      <p class="text-[#777] text-[15px] leading-relaxed">
-        House of Rose delivers clinical precision wrapped in genuine hospitality.
+      <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px]">
+        We serve clients who expect more.
       </p>
-      <a href="/experience" class="btn-outline-gold mt-6 inline-flex">
-        Our Experience
-      </a>
     </div>
     <div class="relative min-h-[330px] bg-charcoal-lighter">
       <img
-        src="/images/house-of-rose-products.webp"
-        alt="House of Rose product selection"
+        src="/images/bg-injectables.jpg"
+        alt="House of Rose treatment suite prepared for injectables"
         loading="lazy"
         class="w-full h-full object-cover"
-        width="800"
-        height="600"
+        width="1400"
+        height="933"
       />
+      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/30 to-transparent"></div>
     </div>
   </section>
 
-  <!-- Quote/Testimonial Section -->
-  {featuredTestimonial && (
-    <section
-      class="relative py-[clamp(72px,10vw,148px)] px-6"
-      style={featuredTestimonial.backgroundImage ? `background-image: url(${urlFor(featuredTestimonial.backgroundImage).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
-    >
-      <div class="absolute inset-0 bg-black/75"></div>
-      <div class="relative z-10 max-w-[640px] mx-auto text-center">
-        <blockquote class="font-serif text-[clamp(18px,3vw,28px)] text-white leading-relaxed italic font-normal">
-          "{featuredTestimonial.quote}"
-        </blockquote>
-        {(featuredTestimonial.author || featuredTestimonial.role) && (
-          <div class="mt-6 text-white/70 text-sm">
-            {featuredTestimonial.author && <p>{featuredTestimonial.author}</p>}
-            {featuredTestimonial.role && <p class="text-xs uppercase tracking-widest">{featuredTestimonial.role}</p>}
-          </div>
-        )}
-        <div class="w-11 h-px bg-gold mx-auto mt-7"></div>
-      </div>
-    </section>
-  )}
+  <!-- The Philosophy -->
+  <section
+    class="relative py-[clamp(72px,10vw,148px)] px-6 bg-cover bg-center"
+    style="background-image: url('/images/bg-hydration.jpg');"
+  >
+    <div class="absolute inset-0 bg-black/70"></div>
+    <div class="relative z-10 max-w-[640px] mx-auto text-center">
+      <span class="kicker">The Philosophy</span>
+      <blockquote class="font-serif text-[clamp(18px,3vw,28px)] text-white leading-[1.6] italic font-normal mt-7">
+        Beauty is not an outcome. It is the expression of a body in optimal health.
+      </blockquote>
+      <div class="w-11 h-px bg-gold mx-auto mt-7"></div>
+    </div>
+  </section>
 
   <!-- Services Grid -->
   {services.length > 0 && (
@@ -186,7 +175,7 @@ const organizationData = {
   <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
     <div class="relative min-h-[330px] bg-charcoal order-2 md:order-1">
       <img
-        src="/images/house-of-rose-treatment-room.webp"
+        src="/images/bg-hero.jpg"
         alt="House of Rose luxury treatment room"
         loading="lazy"
         class="w-full h-full object-cover"

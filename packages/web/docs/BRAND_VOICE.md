@@ -1,6 +1,6 @@
 # House of Rose — Brand Voice Guide
 
-**Business:** House of Rose Medical Aesthetics
+**Business:** House of Rose
 **Location:** Punta Gorda, FL
 **Brand Promise:** Clinical precision wrapped in genuine hospitality.
 
@@ -167,7 +167,7 @@ Plain. Honest. Conversational — but not casual. Like a knowledgeable friend ex
 
 **Examples:**
 - Title: `Microchanneling in Punta Gorda, FL | House of Rose`
-- Desc: `Physician-informed microchanneling at House of Rose Medical Aesthetics in Punta Gorda. Restore skin texture and tone with a personalized treatment protocol.`
+- Desc: `Physician-informed microchanneling at House of Rose in Punta Gorda, FL. Restore skin texture and tone with a personalized treatment protocol.`
 
 - Title: `IV Hydration Therapy in Punta Gorda, FL | House of Rose`
 - Desc: `Custom IV hydration at House of Rose — rapid restoration for energy, immunity, and recovery. Private med spa in Punta Gorda, FL. Book a consultation today.`
@@ -176,7 +176,7 @@ Plain. Honest. Conversational — but not casual. Like a knowledgeable friend ex
 
 ## What We Are Not
 
-- Not a day spa (we are a medical aesthetics practice)
+- Not a day spa (we are a private med spa with physician-informed protocols)
 - Not a chain or franchise (we are independent and private)
 - Not budget-friendly / value-positioned (we are premium)
 - Not a beauty influencer brand (we are clinical and understated)
