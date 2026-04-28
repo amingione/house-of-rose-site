@@ -1,0 +1,11 @@
+{
+	"workbench.editor.alwaysShowEditorActions": true,
+	"workbench.editor.autoLockGroups": {
+		"chatgpt.conversationEditor": true,
+		"pdf.preview": true,
+		"workbench.input.interactive": true,
+		"imagePreview.previewEditor": true,
+		"workbench.editorinputs.searchEditorInput": true,
+		"workbench.editor.chatDebug": true
+	}
+}
