@@ -9,6 +9,22 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 const testimonials = await sanityFetch<Testimonial[]>(FEATURED_TESTIMONIALS_QUERY);
 const featuredTestimonial = testimonials?.[0];
 
+// WebSite structured data with SearchAction
+const websiteData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "House of Rose",
+  "url": Astro.site?.toString(),
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${Astro.site}services?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+};
+
 // Organization structured data for SEO
 const organizationData = {
   "@context": "https://schema.org",
@@ -50,8 +66,13 @@ const organizationData = {
 };
 ---
 
-<BaseLayout>
-  <!-- Organization Structured Data for SEO -->
+<BaseLayout
+  title="Medical Spa in Punta Gorda, FL"
+  description="Punta Gorda's private med spa for microchanneling, IV hydration, injectables, hormone therapy & GLP-1 treatments. Physician-informed. Book online."
+  preloadImage="/images/house-of-rose-reception.webp"
+>
+  <!-- Structured Data for SEO -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteData)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationData)} slot="head" />
   <!-- Hero -->
   <Hero
@@ -63,7 +84,7 @@ const organizationData = {
     showCTA={true}
     ctaPrimary={{ text: 'Book a Service', href: 'https://houseofrose.glossgenius.com/services' }}
     ctaSecondary={{ text: 'Explore Services', href: '/services' }}
-    backgroundImage="/images/house-of-rose-med-spa-exterior-branding-florida 2.webp"
+    backgroundImage="/images/house-of-rose-reception.webp"
   />
 
   <!-- Split Section: Feature Highlight -->
@@ -85,8 +106,9 @@ const organizationData = {
     </div>
     <div class="relative min-h-[330px] bg-charcoal-lighter">
       <img
-        src="/images/house-of-rose-med-spa-skincare-consultation-room 2.webp"
-        alt="House of Rose consultation room"
+        src="/images/house-of-rose-products.webp"
+        alt="House of Rose product selection"
+        loading="lazy"
         class="w-full h-full object-cover"
         width="800"
         height="600"
@@ -155,8 +177,9 @@ const organizationData = {
   <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
     <div class="relative min-h-[330px] bg-charcoal order-2 md:order-1">
       <img
-        src="/images/house-of-rose-spa-luxe-treatment-room-punta-gorda 2.webp"
+        src="/images/house-of-rose-treatment-room.webp"
         alt="House of Rose luxury treatment room"
+        loading="lazy"
         class="w-full h-full object-cover"
         width="800"
         height="600"

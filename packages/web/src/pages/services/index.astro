@@ -8,13 +8,17 @@ import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 ---
 
-<BaseLayout title="Services">
+<BaseLayout
+  title="Medical Spa Services in Punta Gorda, FL"
+  description="Browse all services at House of Rose — microchanneling, IV hydration, injectables, PRF facials, hormone therapy & GLP-1 treatments in Punta Gorda, FL."
+  preloadImage="/images/hofr-booth.webp"
+>
   <!-- Hero -->
   <Hero
     title="Our Services"
     kicker="What We Offer"
     size="small"
-    backgroundImage="/images/house-of-rose-spa-aesthetic-treatment-tools-setup 2.webp"
+    backgroundImage="/images/hofr-booth.webp"
   />
 
   <!-- Services List -->

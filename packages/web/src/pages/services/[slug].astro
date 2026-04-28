@@ -21,7 +21,8 @@ if (!service) {
 
 // Build structured data for SEO
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const structuredData = {
+
+const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
   "name": service.title,
@@ -55,15 +56,41 @@ const structuredData = {
     "geoRadius": "50000"
   }
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": Astro.site?.toString() },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": `${Astro.site}services` },
+    { "@type": "ListItem", "position": 3, "name": service.title, "item": canonicalURL.toString() }
+  ]
+};
+
+const faqSchema = service.faqs && service.faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": service.faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+} : null;
+
+const pageTitle = service.seo?.metaTitle ?? `${service.title} in Punta Gorda, FL | House of Rose`;
+const pageDescription = service.seo?.metaDescription ?? service.tagline ?? service.description ?? '';
 ---
 
 <BaseLayout
-  title={service.title}
-  description={service.tagline ?? service.description ?? ''}
+  title={pageTitle}
+  description={pageDescription}
   image={service.image ? urlFor(service.image).width(1200).height(630).fit('crop').url() : undefined}
+  preloadImage={service.image ? urlFor(service.image).width(1920).height(1080).url() : undefined}
 >
   <!-- Structured Data for SEO -->
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  {faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
   <!-- Hero -->
   <section
     class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"

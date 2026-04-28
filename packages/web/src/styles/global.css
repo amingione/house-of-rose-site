@@ -17,6 +17,13 @@
     @apply bg-charcoal text-white font-sans antialiased;
   }
 
+  /* Force high-quality smooth image rendering for photos */
+  img {
+    image-rendering: auto;
+    image-rendering: smooth;
+    -ms-interpolation-mode: bicubic;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal;
   }

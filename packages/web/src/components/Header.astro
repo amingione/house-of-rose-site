@@ -14,15 +14,15 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
 ---
 
 <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-center md:justify-between">
+  <div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
     <!-- Brand Logo -->
     <a href="/" class="brand-link flex items-center">
       <img
-        src="/logos/house-of-rose-straight-logo-package/png/logo-512.png"
+        src="/logos/HofR-1024/HofR-logo.png"
         alt="House of Rose Medical Aesthetics"
-        class="h-16 w-auto transition-all duration-300"
-        width="240"
-        height="64"
+        class="h-20 md:h-32 w-auto transition-all duration-300"
+        width="300"
+        height="80"
       />
     </a>
 
@@ -73,12 +73,12 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden flex flex-col gap-1.5 p-2 min-w-[44px] min-h-[44px] items-center justify-center relative"
+      class="md:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative ml-auto"
       aria-label="Toggle menu"
     >
-      <span class="menu-line block w-5 h-px bg-white transition-all duration-300"></span>
-      <span class="menu-line block w-5 h-px bg-white transition-all duration-300"></span>
-      <span class="menu-line block w-5 h-px bg-white transition-all duration-300"></span>
+      <span class="menu-line block w-4 h-px bg-white transition-all duration-300"></span>
+      <span class="menu-line block w-4 h-px bg-white transition-all duration-300"></span>
+      <span class="menu-line block w-4 h-px bg-white transition-all duration-300"></span>
     </button>
   </div>
 
@@ -163,7 +163,7 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
   }
 
   #header.stuck .brand-link img {
-    @apply h-14;
+    @apply h-16 md:h-24;
   }
 
   #header.stuck .nav-link {

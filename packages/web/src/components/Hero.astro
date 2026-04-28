@@ -35,11 +35,20 @@ const contentClasses = size === 'full' ? 'clamp(44px,8vh,74px)' : '12';
 ---
 
 <section
-  class={`hero relative w-full ${sizeClasses} flex items-end ${backgroundClass}`}
-  style={backgroundImage ? `background-image: url(${backgroundImage}); background-size: cover; background-position: center;` : ''}
+  class={`hero relative w-full ${sizeClasses} flex items-end overflow-hidden ${backgroundClass}`}
 >
-  <!-- Gradient overlay -->
-  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
+  {backgroundImage && (
+    <div class="absolute inset-0">
+      <img
+        src={backgroundImage}
+        alt=""
+        class="w-full h-full object-cover"
+        loading="eager"
+      />
+    </div>
+  )}
+  <!-- Premium gradient overlay -->
+  <div class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.85)] via-[rgba(10,8,6,0.40)] to-[rgba(10,8,6,0.65)]"></div>
 
   <!-- Content -->
   <div class={`relative z-10 max-w-[1280px] mx-auto px-6 pb-${contentClasses} w-full`}>

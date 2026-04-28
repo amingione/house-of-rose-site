@@ -8,8 +8,9 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
 ---
 
 <BaseLayout
-  title="The Experience"
-  description={experienceContent?.heroSubtitle ?? "Every visit to House of Rose is a complete sensory ritual — from arrival to departure."}
+  title="The House of Rose Experience | Private Med Spa Punta Gorda FL"
+  description={experienceContent?.heroSubtitle ?? "Physician-informed care in a private setting. See what to expect at House of Rose — Punta Gorda's luxury medical spa."}
+  preloadImage="/images/house-of-rose-lounge.webp"
 >
   <!-- Hero -->
   <Hero
@@ -17,7 +18,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     kicker="What to Expect"
     description={experienceContent?.heroSubtitle}
     size="small"
-    backgroundImage="/images/house-of-rose-med-spa-relaxation-lounge-interior 2.webp"
+    backgroundImage="/images/house-of-rose-lounge.webp"
   />
 
   <!-- Story Section -->
@@ -41,11 +42,12 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
       </div>
       <div class="relative min-h-[330px] bg-charcoal-lighter">
         <img
-          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/house-of-rose-med-spa-reception-desk-punta-gorda 2.webp'}
+          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/house-of-rose-reception.webp'}
           alt={experienceContent?.storyImage?.alt ?? 'House of Rose reception desk'}
           class="w-full h-full object-cover"
           width="800"
           height="600"
+          loading="lazy"
         />
       </div>
     </section>

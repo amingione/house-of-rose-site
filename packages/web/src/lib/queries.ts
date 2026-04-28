@@ -33,6 +33,8 @@ export interface Service {
   image?: SanityImage;
   collection?: { title: string; slug: string };
   relatedServices?: Service[];
+  _updatedAt?: string;
+  seo?: { metaTitle?: string; metaDescription?: string };
 }
 
 export interface ServiceCollection {
@@ -122,8 +124,10 @@ export const ALL_SERVICES_QUERY = /* groq */ `
     tagline,
     duration,
     price,
+    _updatedAt,
     ${IMAGE_FIELDS},
-    collection->{ title, "slug": slug.current }
+    collection->{ title, "slug": slug.current },
+    "seo": seo { metaTitle, metaDescription }
   }
 `;
 
@@ -136,10 +140,12 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     description,
     whoItsFor,
     process,
+    _updatedAt,
     faqs[] {
       question,
       answer
     },
+    "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
     collection->{ title, "slug": slug.current },
     "relatedServices": relatedServices[]-> {

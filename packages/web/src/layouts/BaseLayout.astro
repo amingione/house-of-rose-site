@@ -9,6 +9,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  preloadImage?: string;
 }
 
 const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
@@ -19,6 +20,7 @@ const {
   title = siteName,
   description = settings?.description ?? 'Luxury spa services and wellness.',
   image,
+  preloadImage,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -31,6 +33,7 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonicalURL} />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <!-- Open Graph -->
@@ -45,7 +48,7 @@ const pageTitle = title === siteName ? siteName : `${title} | ${siteName}`;
     <link rel="icon" type="image/png" sizes="16x16" href="/logos/house-of-rose-monogram-logo-package/favicon/16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/logos/house-of-rose-monogram-logo-package/favicon/32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/logos/house-of-rose-monogram-logo-package/favicon/48.png" />
-    <link rel="apple-touch-icon" sizes="512x512" href="/logos/house-of-rose-monogram-logo-package/png/logo-512.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/logos/HofR-512/mono-circle.png" />
     <!-- Additional head content from pages -->
     <slot name="head" />
   </head>

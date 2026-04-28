@@ -8,12 +8,15 @@ export const GET: APIRoute = async ({ site }) => {
   // Fetch all services from Sanity
   const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 
+  const now = new Date().toISOString().split('T')[0];
+
   // Static pages
   const staticPages = [
-    { loc: baseUrl, priority: '1.0', changefreq: 'weekly' },
-    { loc: `${baseUrl}/services`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${baseUrl}/experience`, priority: '0.8', changefreq: 'monthly' },
-    { loc: `${baseUrl}/privacy-policy`, priority: '0.3', changefreq: 'yearly' },
+    { loc: baseUrl, priority: '1.0', changefreq: 'weekly', lastmod: now },
+    { loc: `${baseUrl}/services`, priority: '0.9', changefreq: 'weekly', lastmod: now },
+    { loc: `${baseUrl}/experience`, priority: '0.8', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/contact`, priority: '0.7', changefreq: 'yearly', lastmod: now },
+    { loc: `${baseUrl}/privacy-policy`, priority: '0.3', changefreq: 'yearly', lastmod: now },
   ];
 
   // Service pages
@@ -21,6 +24,7 @@ export const GET: APIRoute = async ({ site }) => {
     loc: `${baseUrl}/services/${service.slug}`,
     priority: '0.8',
     changefreq: 'monthly',
+    lastmod: service._updatedAt ? service._updatedAt.split('T')[0] : now,
   }));
 
   // Combine all pages
@@ -33,6 +37,7 @@ ${allPages
   .map(
     (page) => `  <url>
     <loc>${page.loc}</loc>
+    <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`
