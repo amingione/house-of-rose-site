@@ -130,6 +130,8 @@ export default async (request: Request): Promise<Response> => {
 	});
 
 	if (!resendResponse.ok) {
+		const errorBody = await resendResponse.text().catch(() => "(unreadable)");
+		console.error(`[privacy-contact] Resend error ${resendResponse.status}: ${errorBody}`);
 		return renderResponse(
 			"Message Not Sent",
 			"Privacy support could not send your request. Please try again later.",
