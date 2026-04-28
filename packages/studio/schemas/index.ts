@@ -4,6 +4,7 @@ import { serviceCollection } from './serviceCollection';
 import { service } from './service';
 import { product } from './product';
 import { testimonial } from './testimonial';
+import { blogPost } from './blogPost';
 
 export const schemaTypes = [
   // Singletons
@@ -14,4 +15,5 @@ export const schemaTypes = [
   service,
   product,
   testimonial,
+  blogPost,
 ];

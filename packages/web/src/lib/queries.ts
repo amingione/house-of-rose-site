@@ -69,6 +69,25 @@ export interface SiteSettings {
   bookingEmail?: string;
 }
 
+export interface PortableTextBlock {
+  _type: 'block' | 'image';
+  [key: string]: unknown;
+}
+
+export interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  publishedAt: string;
+  category?: string;
+  excerpt?: string;
+  featuredImage?: SanityImage;
+  body?: PortableTextBlock[];
+  relatedService?: { title: string; slug: string; tagline?: string };
+  seo?: { metaTitle?: string; metaDescription?: string };
+  estimatedReadingTime?: number;
+}
+
 export interface Testimonial {
   _id: string;
   quote: string;
@@ -230,6 +249,45 @@ export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
 
 export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `
   *[_type == "product" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+export const ALL_BLOG_POSTS_QUERY = /* groq */ `
+  *[_type == "blogPost" && defined(publishedAt)] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    category,
+    excerpt,
+    "featuredImage": featuredImage {
+      asset->{ url, metadata { dimensions } },
+      alt
+    },
+    "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
+  }
+`;
+
+export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "blogPost" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    publishedAt,
+    category,
+    excerpt,
+    "featuredImage": featuredImage {
+      asset->{ url, metadata { dimensions } },
+      alt
+    },
+    body,
+    "relatedService": relatedService->{ title, "slug": slug.current, tagline },
+    "seo": seo { metaTitle, metaDescription },
+    "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
+  }
+`;
+
+export const ALL_BLOG_POST_SLUGS_QUERY = /* groq */ `
+  *[_type == "blogPost" && defined(slug.current) && defined(publishedAt)]{ "slug": slug.current }
 `;
 
 export const FEATURED_TESTIMONIALS_QUERY = /* groq */ `
