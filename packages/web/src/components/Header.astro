@@ -62,12 +62,12 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-btn"
-      class="md:hidden flex flex-col gap-1.5 p-2 min-w-[44px] min-h-[44px] items-center justify-center"
+      class="md:hidden flex flex-col gap-1.5 p-2 min-w-[44px] min-h-[44px] items-center justify-center relative"
       aria-label="Toggle menu"
     >
-      <span class="block w-5 h-px bg-white"></span>
-      <span class="block w-5 h-px bg-white"></span>
-      <span class="block w-5 h-px bg-white"></span>
+      <span class="menu-line block w-5 h-px bg-white transition-all duration-300"></span>
+      <span class="menu-line block w-5 h-px bg-white transition-all duration-300"></span>
+      <span class="menu-line block w-5 h-px bg-white transition-all duration-300"></span>
     </button>
   </div>
 
@@ -125,9 +125,11 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
     if (isOpen) {
       mobileDrawer?.classList.remove('open');
       mobileDrawer?.classList.add('hidden');
+      mobileMenuBtn?.classList.remove('open');
     } else {
       mobileDrawer?.classList.remove('hidden');
       mobileDrawer?.classList.add('open');
+      mobileMenuBtn?.classList.add('open');
     }
   });
 </script>
@@ -187,5 +189,26 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
 
   #mobile-drawer.open {
     display: block;
+  }
+
+  /* Hamburger → X animation */
+  #mobile-menu-btn {
+    position: relative;
+  }
+
+  #mobile-menu-btn .menu-line {
+    transform-origin: center;
+  }
+
+  #mobile-menu-btn.open .menu-line:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  #mobile-menu-btn.open .menu-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu-btn.open .menu-line:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
   }
 </style>

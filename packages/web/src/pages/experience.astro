@@ -88,15 +88,18 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
 
       <div class="max-w-[1120px] mx-auto">
         <div class="relative">
-          <!-- Timeline Line -->
+          <!-- Timeline Line - Desktop (centered) -->
           <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gold/20 transform -translate-x-1/2 hidden md:block"></div>
+
+          <!-- Timeline Line - Mobile (left-aligned) -->
+          <div class="absolute left-6 top-0 bottom-0 w-px bg-gold/20 md:hidden"></div>
 
           <!-- Steps -->
           <div class="space-y-16">
             {experienceContent.journeySteps.map((step, index) => (
               <div class={`relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${index % 2 === 0 ? '' : 'md:grid-flow-dense'}`}>
                 {/* Content */}
-                <div class={`${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:col-start-2 md:pl-12'}`}>
+                <div class={`pl-16 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:col-start-2 md:pl-12'}`}>
                   <p class="text-gold/30 text-[48px] font-serif mb-2">
                     {String(step.step).padStart(2, '0')}
                   </p>
@@ -108,8 +111,11 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
                   </p>
                 </div>
 
-                {/* Timeline Dot */}
+                {/* Timeline Dot - Desktop (centered) */}
                 <div class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2 w-3 h-3 bg-gold rounded-full border-4 border-charcoal z-10"></div>
+
+                {/* Timeline Dot - Mobile (left-aligned) */}
+                <div class="flex md:hidden absolute left-6 top-0 transform -translate-x-1/2 w-3 h-3 bg-gold rounded-full border-4 border-charcoal z-10"></div>
               </div>
             ))}
           </div>
