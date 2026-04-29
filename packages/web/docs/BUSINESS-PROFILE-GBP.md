@@ -12,10 +12,10 @@ Use these exact values when setting up the GBP. Copy-paste — do not retype.
 ### Core Fields
 
 ```
-Business Name:      House of Rose
-Primary Category:   Spa
-Address:            525 E Olympia Ave, Unit 9
-                    Punta Gorda, FL 33982
+Business Name:      House of Rose Luxury Spa & Wellness
+Primary Category:   Health and beauty shop
+Address:            525 E Olympia Ave, Ste 9
+                    Punta Gorda, FL 33950
 Phone:              (844) 941-7673
 Website:            https://houseofrosefl.com
 Booking link:       https://houseofrose.glossgenius.com/services
@@ -24,17 +24,17 @@ Email:              book@houseofrosefl.com
 
 ### Business Hours
 ```
-Monday:    9:00 AM – 5:00 PM
-Tuesday:   9:00 AM – 5:00 PM
-Wednesday: 9:00 AM – 5:00 PM
-Thursday:  9:00 AM – 5:00 PM
-Friday:    9:00 AM – 5:00 PM
+Monday:    10:00 AM – 6:00 PM
+Tuesday:   10:00 AM – 6:00 PM
+Wednesday: 10:00 AM – 6:00 PM
+Thursday:  10:00 AM – 6:00 PM
+Friday:    10:00 AM – 6:00 PM
 Saturday:  Closed
 Sunday:    Closed
 ```
 
 ### Primary Category
-**Spa** — House of Rose is marketed as a luxury spa and wellness brand. Do not use clinic-style categories as the canonical category.
+**Health and beauty shop** — House of Rose is marketed as a luxury spa and wellness brand. Do not use "Medical Spa" or "Med Spa" as the canonical category.
 
 ### Secondary Categories (add up to 9)
 - Wellness Center
@@ -123,7 +123,7 @@ A: Yes — every service at House of Rose begins with a private consultation to 
 A: We're located in Punta Gorda, FL and serve clients from Port Charlotte, Cape Coral, Fort Myers, Babcock Ranch, and the greater Southwest Florida area.
 
 **Q: How do I book an appointment?**  
-A: You can book online anytime at houseofrose.glossgenius.com/services, or call us at (844) 941-7673 during business hours (Mon–Fri, 9AM–5PM).
+A: You can book online anytime at houseofrose.glossgenius.com/services, or call us at (844) 941-7673 during business hours (Mon–Fri, 10AM–6PM).
 
 **Q: What is microchanneling and how is it different from microneedling?**  
 A: Microchanneling uses a precision stamping motion rather than a rolling needle — this delivers more consistent channel depth, less epidermal trauma, and faster recovery while still effectively stimulating collagen. We're one of the few local providers offering true microchanneling.
@@ -146,7 +146,7 @@ whole-body wellness in a private luxury setting.
 Services include microchanneling, IV hydration, injectables, hormone therapy, GLP-1 
 wellness support, facials, lashes, permanent makeup, and beauty enhancements.
 
-📍 525 E Olympia Ave, Unit 9 — Punta Gorda, FL
+📍 525 E Olympia Ave, Ste 9 — Punta Gorda, FL
 📞 (844) 941-7673
 🔗 Book at houseofrosefl.com
 ```

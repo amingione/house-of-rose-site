@@ -1,7 +1,7 @@
 # House of Rose — Growth System SEO Report
-**Client**: House of Rose  
+**Client**: House of Rose Luxury Spa & Wellness  
 **URL**: houseofrosefl.com  
-**Location**: 525 E Olympia Ave, Unit 9 — Punta Gorda, FL 33982  
+**Location**: 525 E Olympia Ave, Ste 9 — Punta Gorda, FL 33950  
 **Package**: Growth System (Tier 3 — all 14 PREINDEX phases)  
 **Report Date**: 2026-04-28  
 **Prepared by**: SEO Engine / Amber Mingione

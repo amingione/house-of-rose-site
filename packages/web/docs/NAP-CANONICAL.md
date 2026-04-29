@@ -7,16 +7,16 @@
 ## Canonical NAP String
 
 ```
-Business Name:   House of Rose
-Street Address:  525 E Olympia Ave, Unit 9
-City, State ZIP: Punta Gorda, FL 33982
+Business Name:   House of Rose Luxury Spa & Wellness
+Street Address:  525 E Olympia Ave, Ste 9
+City, State ZIP: Punta Gorda, FL 33950
 Phone:           (844) 941-7673
 Website:         https://houseofrosefl.com
 Email:           book@houseofrosefl.com
 ```
 
 **E.164 phone format** (for `tel:` links and schema): `+18449417673`  
-**Google Maps URL**: `https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33982`
+**Google Maps URL**: `https://maps.google.com/?q=525+E+Olympia+Ave+Ste+9+Punta+Gorda+FL+33950`
 
 ---
 
@@ -24,10 +24,10 @@ Email:           book@houseofrosefl.com
 
 | Field | Canonical Format | Do NOT Use |
 |-------|-----------------|------------|
-| Business name | `House of Rose` | "House of Rose LLC", "House of Rose Luxury Spa", "HofR" |
-| Street | `525 E Olympia Ave, Unit 9` | "525 East Olympia Ave", "525 E. Olympia", "Ste 9", "#9" |
+| Business name | `House of Rose Luxury Spa & Wellness` | "House of Rose Medical Spa", "House of Rose LLC", "House of Rose Luxury Spa", "HofR" |
+| Street | `525 E Olympia Ave, Ste 9` | "525 East Olympia Ave", "525 E. Olympia", "Suite 9", "#9" |
 | City, State | `Punta Gorda, FL` | "Punta Gorda, Florida", "PG, FL" |
-| ZIP | `33982` | "33982-XXXX" (no +4 suffix needed) |
+| ZIP | `33950` | "33950-XXXX" (no +4 suffix needed) |
 | Phone display | `(844) 941-7673` | "844-941-7673", "844.941.7673", "8449417673" |
 | Phone schema | `+18449417673` | Any other format in JSON-LD |
 
@@ -51,15 +51,16 @@ Email:           book@houseofrosefl.com
 ```json
 {
   "@type": "HealthAndBeautyBusiness",
-  "name": "House of Rose",
+  "name": "House of Rose Luxury Spa & Wellness",
+  "alternateName": "House of Rose",
   "telephone": "+18449417673",
   "email": "book@houseofrosefl.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "525 E Olympia Ave, Unit 9",
+    "streetAddress": "525 E Olympia Ave, Ste 9",
     "addressLocality": "Punta Gorda",
     "addressRegion": "FL",
-    "postalCode": "33982",
+    "postalCode": "33950",
     "addressCountry": "US"
   }
 }
@@ -71,9 +72,9 @@ Email:           book@houseofrosefl.com
 
 ```html
 <address class="not-italic">
-  <span>House of Rose</span><br />
-  <span>525 E Olympia Ave, Unit 9</span><br />
-  <span>Punta Gorda, FL 33982</span><br />
+  <span>House of Rose Luxury Spa & Wellness</span><br />
+  <span>525 E Olympia Ave, Ste 9</span><br />
+  <span>Punta Gorda, FL 33950</span><br />
   <a href="tel:+18449417673">(844) 941-7673</a>
 </address>
 ```
@@ -102,7 +103,7 @@ Email:           book@houseofrosefl.com
 - Copy the canonical NAP string above exactly — do not retype from memory
 - Use `(844) 941-7673` as the display format for all directories
 - Website URL: `https://houseofrosefl.com` (no trailing slash)
-- Business name: `House of Rose` — never append keywords or qualifiers
+- Business name: `House of Rose Luxury Spa & Wellness` — never use `House of Rose Medical Spa`
 
 ---
 

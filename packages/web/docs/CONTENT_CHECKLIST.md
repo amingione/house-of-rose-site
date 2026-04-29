@@ -20,7 +20,7 @@ Navigate to: **Site Settings** (single document)
 - **Description**: Site-wide meta description (150-160 chars)
 - **Contact Email**: `book@houseofrosefl.com`
 - **Phone**: `(844) 941-7673`
-- **Address**: `525 E Olympia Ave, Unit 9, Punta Gorda, FL 33982`
+- **Address**: `525 E Olympia Ave, Ste 9, Punta Gorda, FL 33950`
 - **Social Links**: Instagram, Facebook URLs
 
 ---

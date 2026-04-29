@@ -8,9 +8,9 @@
 
 | Field | Value |
 |-------|-------|
-| Business name | House of Rose |
+| Business name | House of Rose Luxury Spa & Wellness |
 | Website | https://houseofrosefl.com |
-| Physical address | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33982 |
+| Physical address | 525 E Olympia Ave, Ste 9, Punta Gorda, FL 33950 |
 | Phone | (844) 941-7673 |
 | Email | book@houseofrosefl.com |
 | Booking URL | https://houseofrose.glossgenius.com/services |
