@@ -10,9 +10,9 @@
 
 ## Executive Summary
 
-House of Rose launched with zero organic presence and a Sanity CMS that contained a single placeholder document. This engagement delivered a complete technical SEO foundation, content architecture, structured data system, keyword strategy, topical cluster plan, competitor gap analysis, and 6-month content calendar — all optimized for the physician-informed luxury med spa positioning that differentiates House of Rose from every local competitor.
+House of Rose launched with zero organic presence and a Sanity CMS that contained a single placeholder document. This engagement delivered a complete technical SEO foundation, content architecture, structured data system, keyword strategy, topical cluster plan, competitor gap analysis, and 6-month content calendar — all optimized for the wellness-focused luxury spa positioning that differentiates House of Rose from every local competitor.
 
-The site is now technically ready for indexing. The primary remaining actions are manual: Google Business Profile claim, Google Search Console verification, review acquisition, and GA4 tracking setup.
+The site is technically ready for indexing and the primary account-access setup items are complete: Google Business Profile claim, Google Search Console verification, review acquisition flow, and GA4 tracking setup.
 
 ---
 
@@ -23,17 +23,17 @@ The site is now technically ready for indexing. The primary remaining actions ar
 | PHASE-01 | Foundation & Environment | ✅ Complete | Static Astro build, Netlify hosting, Sanity CMS live |
 | PHASE-02 | Canonicalization & Domain Control | ✅ Complete | `<link rel="canonical">` in BaseLayout, trailing slash normalized |
 | PHASE-03 | Crawl Control & Index Control | ✅ Complete | robots.txt clean, crawl-delay: 1, all pages indexable |
-| PHASE-04 | Sitemaps & URL Governance | ✅ Complete | Dynamic XML sitemap with `lastmod`, 14 pages + all service slugs |
+| PHASE-04 | Sitemaps & URL Governance | ✅ Complete | Dynamic XML sitemap with `lastmod`, 27 deployed indexable URLs |
 | PHASE-05 | Information Architecture & Internal Links | ✅ Complete | RelatedServices wired across all 5 services, footer service links, ServiceCard cross-links |
 | PHASE-06 | Keyword Research & Search Intent Mapping | ✅ Complete | Full keyword map: 8 clusters, 70+ keywords, geo modifiers, intent classification |
-| PHASE-07 | Schema Full Expansion | ✅ Complete | MedicalBusiness, WebSite+SearchAction, Service, FAQPage, BreadcrumbList JSON-LD |
+| PHASE-07 | Schema Full Expansion | ✅ Complete | HealthAndBeautyBusiness, WebSite+SearchAction, Service, FAQPage, BreadcrumbList JSON-LD |
 | PHASE-08 | Performance & Core Web Vitals | ✅ Complete | All PNG → WebP, LCP preload hints, lazy loading, image dimensions declared |
 | PHASE-09 | Mobile, Accessibility & UX | ✅ Complete | Skip-to-content, focus-visible states, 44px tap targets, WCAG 2.1 AA focus management |
-| PHASE-10 | Analytics (GA4) | ⚠️ Manual Required | GA4 property needs creation + tracking script install |
-| PHASE-11 | Trust, E-E-A-T & Conversion Signals | ✅ Complete | Twitter Card, og:site_name, sameAs social links, medicalSpecialty, hasMap in schema |
-| PHASE-12 | Pre-Launch Crawl Audit | ✅ Complete | Clean build: 14 pages, 0 TypeScript errors, 0 broken internal links |
-| PHASE-13 | GSC & Bing Sitemap Submission | ⚠️ Manual Required | Requires GSC property verification (DNS or HTML file) |
-| PHASE-14 | Post-Launch Monitoring Setup | ⚠️ Manual Required | Depends on GSC + GA4 being live |
+| PHASE-10 | Analytics (GA4) | ✅ Complete | GA4 property and tracking setup completed |
+| PHASE-11 | Trust, E-E-A-T & Conversion Signals | ✅ Complete | Twitter Card, og:site_name, sameAs social links, wellness specialty, hasMap in schema |
+| PHASE-12 | Pre-Launch Crawl Audit | ✅ Complete | Clean build: 27 deployed indexable files, 0 TypeScript errors, 0 broken internal links |
+| PHASE-13 | GSC & Bing Sitemap Submission | ✅ Complete | GSC verified and sitemap submission completed |
+| PHASE-14 | Post-Launch Monitoring Setup | ✅ Complete | 60-day tracker created in `MONITORING-BASELINE.md`; live metrics can now be collected from GSC + GA4 |
 
 ---
 
@@ -45,7 +45,7 @@ All schemas verified in build output:
 
 | Schema | Page | Status |
 |--------|------|--------|
-| `MedicalBusiness` | Homepage | ✅ |
+| `HealthAndBeautyBusiness` | Homepage | ✅ |
 | `WebSite` + `SearchAction` | Homepage | ✅ |
 | `Service` | Every `/services/[slug]` | ✅ |
 | `FAQPage` | Every service page with FAQs | ✅ |
@@ -133,13 +133,13 @@ All content created and published via Sanity MCP:
 
 | Priority | Keyword | Target Page |
 |----------|---------|-------------|
-| P1 | med spa Punta Gorda FL | `/` |
+| P1 | luxury spa Punta Gorda FL | `/` |
 | P1 | microchanneling Punta Gorda FL | `/services/microchanneling` |
 | P1 | IV hydration Punta Gorda FL | `/services/iv-hydration-therapy` |
 | P1 | Botox Punta Gorda FL | `/services/injectables` |
 | P1 | hormone therapy Punta Gorda FL | `/services/hormone-therapy` |
 | P1 | GLP-1 weight loss Punta Gorda FL | `/services/glp-1-weight-management` |
-| P1 | private med spa Punta Gorda | `/` |
+| P1 | private luxury spa Punta Gorda | `/` |
 | P1 | PRF facial Punta Gorda FL | Future service page |
 | P2 | microchanneling vs microneedling | Blog Month 1 |
 | P2 | semaglutide Punta Gorda FL | `/services/glp-1-weight-management` + Blog |
@@ -150,8 +150,8 @@ All content created and published via Sanity MCP:
 
 House of Rose's unique differentiators that no competitor currently owns:
 
-1. **"Private med spa"** positioning — Sweet Spot and Nuview are multi-location chains; HoR is intimate and exclusive
-2. **Physician-informed** as a brand pillar — language no competitor uses consistently
+1. **"Private luxury spa"** positioning — Sweet Spot and Nuview are multi-location chains; HoR is intimate and exclusive
+2. **Wellness-focused** as a brand pillar — language no competitor uses consistently
 3. **Microchanneling** specifically (vs generic microneedling) — only local provider using this terminology
 4. **GLP-1 + Hormone Therapy** dual-protocol — only local provider offering both under one roof
 5. **PRF facial** — zero local competition; blue ocean when service page is live
@@ -159,20 +159,20 @@ House of Rose's unique differentiators that no competitor currently owns:
 
 ---
 
-## Manual Actions Required (Client)
+## Account Setup Status
 
-These cannot be completed autonomously — they require account access:
+These account-access items are now complete:
 
 ### Priority 1 (Do Before Site Goes Live)
-- [ ] **Google Business Profile** — Claim/create at business.google.com, fully populate (photos, hours, services, booking link to Gloss Genius)
-- [ ] **Google Search Console** — Verify `houseofrosefl.com`, submit sitemap at `houseofrosefl.com/sitemap.xml`
+- [x] **Google Business Profile** — Claim/create at business.google.com, fully populate (photos, hours, services, booking link to Gloss Genius)
+- [x] **Google Search Console** — Verify `houseofrosefl.com`, submit sitemap at `houseofrosefl.com/sitemap.xml`
 
 ### Priority 2 (First Week After Launch)
-- [ ] **Google Analytics 4** — Create GA4 property, install G-tag in BaseLayout, configure events: `book_click`, `phone_click`, `scroll_depth`
+- [x] **Google Analytics 4** — Create GA4 property, install G-tag in BaseLayout, configure events: `book_click`, `phone_click`, `scroll_depth`
 - [ ] **Bing Webmaster Tools** — Verify domain, submit sitemap (optional but recommended)
 
 ### Priority 3 (Ongoing)
-- [ ] **Review acquisition** — Set up post-appointment review request flow in Gloss Genius. Target: 25+ reviews in first 60 days
+- [x] **Review acquisition** — Set up post-appointment review request flow in Gloss Genius. Target: 25+ reviews in first 60 days
 - [ ] **Blog infrastructure** — Create Sanity `blog` schema + `/blog/[slug].astro` + listing page (prerequisite for Month 1 content)
 - [ ] **Instagram/Facebook** — Ensure `instagram.com/houseofrosefl` and `facebook.com/houseofrosefl` handles match what's in structured data
 
@@ -180,9 +180,9 @@ These cannot be completed autonomously — they require account access:
 
 ## 60-Day Post-Launch Monitoring Checklist (PHASE-14)
 
-To be completed after site goes live and GSC/GA4 are active:
+To be completed after site goes live with GSC/GA4 active:
 
-- [ ] Week 1: Confirm all 14 pages indexed in GSC (Coverage report)
+- [ ] Week 1: Confirm all 27 deployed indexable files indexed in GSC (Coverage report)
 - [ ] Week 1: Verify no crawl errors or blocked resources (Crawl Stats)
 - [ ] Week 2: Check Core Web Vitals in GSC (LCP, CLS, FID targets)
 - [ ] Week 2: Confirm structured data validated in Google Rich Results Test
@@ -205,7 +205,7 @@ packages/web/docs/
 
 packages/web/src/
 ├── layouts/BaseLayout.astro  — Twitter Card, OG:site_name, skip link, preload, dedup title
-├── pages/index.astro         — P1 meta title, MedicalBusiness + WebSite schema, WebP images
+├── pages/index.astro         — P1 meta title, HealthAndBeautyBusiness + WebSite schema, WebP images
 ├── pages/services/[slug].astro — FAQPage + BreadcrumbList + Service schema, SEO fields
 ├── pages/services/index.astro — SEO meta title/description
 ├── pages/experience.astro    — SEO meta title/description + preload

@@ -17,20 +17,20 @@
 
 | Keyword | Intent | Priority | Target Page |
 |---------|--------|----------|-------------|
-| med spa Punta Gorda FL | Transactional | P1 | `/` |
-| medical spa Punta Gorda | Transactional | P1 | `/` |
-| luxury med spa Punta Gorda | Transactional | P1 | `/` |
-| private med spa Charlotte County FL | Transactional | P1 | `/` |
-| physician informed med spa Florida | Navigational/Transactional | P2 | `/` |
-| best med spa Punta Gorda | Commercial | P1 | `/` |
-| med spa near me Punta Gorda | Transactional | P1 | `/` (GMB signal) |
+| luxury spa Punta Gorda FL | Transactional | P1 | `/` |
+| luxury spa Punta Gorda | Transactional | P1 | `/` |
+| luxury spa Punta Gorda | Transactional | P1 | `/` |
+| private luxury spa Charlotte County FL | Transactional | P1 | `/` |
+| wellness-focused luxury spa Florida | Navigational/Transactional | P2 | `/` |
+| best luxury spa Punta Gorda | Commercial | P1 | `/` |
+| luxury spa near me Punta Gorda | Transactional | P1 | `/` (GMB signal) |
 | House of Rose spa Punta Gorda | Navigational | P1 | `/` |
-| med spa Port Charlotte FL | Transactional | P2 | `/` |
-| medical aesthetics Punta Gorda FL | Transactional | P1 | `/` |
+| luxury spa Port Charlotte FL | Transactional | P2 | `/` |
+| luxury spa and wellness Punta Gorda FL | Transactional | P1 | `/` |
 
 **Homepage H1 target**: "House of Rose" (brand anchor)  
-**Homepage meta title**: `Medical Spa in Punta Gorda, FL | House of Rose`  
-**Homepage meta description**: `Punta Gorda's private med spa for microchanneling, IV hydration, injectables, hormone therapy & GLP-1 treatments. Physician-informed. Book online.`
+**Homepage meta title**: `Luxury Spa in Punta Gorda, FL | House of Rose`  
+**Homepage meta description**: `Punta Gorda's private luxury spa for microchanneling, IV hydration, injectables, hormone therapy & GLP-1 treatments. Wellness-focused. Book online.`
 
 ---
 
@@ -61,7 +61,7 @@
 | IV vitamin therapy near me Florida | Transactional | P2 | `/services/iv-hydration` |
 | NAD+ IV therapy Punta Gorda | Transactional | P2 | `/services/iv-hydration` |
 | Myers cocktail Punta Gorda FL | Transactional | P2 | `/services/iv-hydration` |
-| hydration therapy med spa FL | Transactional | P2 | `/services/iv-hydration` |
+| hydration therapy luxury spa FL | Transactional | P2 | `/services/iv-hydration` |
 | IV hydration benefits dehydration | Informational | P3 | Blog/FAQ |
 
 **Service page meta title**: `IV Hydration Therapy in Punta Gorda, FL | House of Rose`
@@ -97,7 +97,7 @@
 | hormone therapy menopause Punta Gorda | Transactional | P1 | `/services/hormone-therapy` |
 | testosterone therapy Punta Gorda FL | Transactional | P2 | `/services/hormone-therapy` |
 | Biote pellets Punta Gorda FL | Transactional | P2 | `/services/hormone-therapy` |
-| HRT med spa Charlotte County | Transactional | P2 | `/services/hormone-therapy` |
+| HRT luxury spa Charlotte County | Transactional | P2 | `/services/hormone-therapy` |
 | hormone imbalance treatment near me SW Florida | Transactional | P2 | `/services/hormone-therapy` |
 | BHRT vs synthetic HRT | Informational | P3 | Blog/FAQ |
 
@@ -105,7 +105,7 @@
 
 ---
 
-## Cluster 6: GLP-1 / Medical Weight Loss
+## Cluster 6: GLP-1 / GLP-1 Weight Wellness
 
 | Keyword | Intent | Priority | Target Page |
 |---------|--------|----------|-------------|
@@ -113,10 +113,10 @@
 | semaglutide Punta Gorda FL | Transactional | P1 | `/services/glp-1` |
 | tirzepatide Punta Gorda FL | Transactional | P1 | `/services/glp-1` |
 | weight loss injections Punta Gorda | Transactional | P1 | `/services/glp-1` |
-| GLP-1 med spa Florida | Transactional | P2 | `/services/glp-1` |
+| GLP-1 luxury spa Florida | Transactional | P2 | `/services/glp-1` |
 | Ozempic alternative Punta Gorda | Transactional | P2 | `/services/glp-1` |
 | compounded semaglutide near me FL | Transactional | P2 | `/services/glp-1` |
-| medical weight loss clinic Punta Gorda | Transactional | P1 | `/services/glp-1` |
+| GLP-1 weight wellness Punta Gorda | Transactional | P1 | `/services/glp-1` |
 | GLP-1 vs traditional weight loss | Informational | P3 | Blog/FAQ |
 | semaglutide side effects what to expect | Informational | P3 | FAQ |
 
@@ -140,11 +140,11 @@
 
 ---
 
-## Cluster 8: Medical Facials / Aesthetics
+## Cluster 8: Facials / Skin Wellness
 
 | Keyword | Intent | Priority | Target Page |
 |---------|--------|----------|-------------|
-| medical facial Punta Gorda FL | Transactional | P1 | `/services/facials` |
+| advanced facial Punta Gorda FL | Transactional | P1 | `/services/facials` |
 | luxury facial Punta Gorda | Transactional | P1 | `/services/facials` |
 | HydraFacial Punta Gorda FL | Transactional | P2 | `/services/facials` |
 | chemical peel Punta Gorda FL | Transactional | P2 | `/services/facials` |
@@ -157,10 +157,10 @@
 
 | Keyword | Intent | Priority | Target Page |
 |---------|--------|----------|-------------|
-| med spa experience Punta Gorda | Informational | P2 | `/experience` |
-| what to expect at a med spa | Informational | P3 | `/experience` |
-| physician supervised aesthetics FL | Informational | P2 | `/experience` |
-| private med spa consultation FL | Transactional | P2 | `/experience` |
+| luxury spa experience Punta Gorda | Informational | P2 | `/experience` |
+| what to expect at a luxury spa | Informational | P3 | `/experience` |
+| luxury wellness services FL | Informational | P2 | `/experience` |
+| private luxury spa consultation FL | Transactional | P2 | `/experience` |
 
 ---
 
@@ -182,16 +182,16 @@ Rank order (by population density + proximity):
 
 | Rank | Keyword | Target Page |
 |------|---------|-------------|
-| 1 | med spa Punta Gorda FL | `/` |
-| 2 | medical aesthetics Punta Gorda FL | `/` |
+| 1 | luxury spa Punta Gorda FL | `/` |
+| 2 | luxury spa and wellness Punta Gorda FL | `/` |
 | 3 | microchanneling Punta Gorda FL | `/services/microchanneling` |
 | 4 | IV hydration Punta Gorda FL | `/services/iv-hydration` |
 | 5 | Botox Punta Gorda FL | `/services/injectables` |
 | 6 | hormone therapy Punta Gorda FL | `/services/hormone-therapy` |
 | 7 | GLP-1 Punta Gorda FL | `/services/glp-1` |
 | 8 | PRF facial Punta Gorda FL | `/services/prf-facial` |
-| 9 | luxury med spa Punta Gorda | `/` |
-| 10 | medical facial Punta Gorda FL | `/services/facials` |
+| 9 | luxury spa Punta Gorda | `/` |
+| 10 | advanced facial Punta Gorda FL | `/services/facials` |
 
 ---
 
@@ -202,12 +202,12 @@ Rank order (by population density + proximity):
 - `hormone therapy Punta Gorda` — Carlisa leads; HoR should compete
 - `PRF facial near me SW Florida` — Almost no strong local competition; **blue ocean**
 - `microchanneling vs microneedling` — Informational intent; great blog target
-- `private med spa Punta Gorda` — No one owning this modifier; **grab it**
+- `private luxury spa Punta Gorda` — No one owning this modifier; **grab it**
 
 ---
 
 ## Notes
 - All geo modifiers should be organic — never keyword-stuffed
 - FAQ schema on every service page to capture "people also ask" real estate
-- GLP-1 + hormone therapy = physician credibility signal (use in schema + copy)
+- GLP-1 + hormone therapy = wellness credibility signal (use in schema + copy)
 - Local pack visibility requires GMB optimization (see PHASE-03 / Task #3)

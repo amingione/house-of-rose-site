@@ -63,7 +63,7 @@
 **Word Count**: 1,100  
 **FAQ Schema Candidates**:
 - What are the signs of hormone imbalance in women?
-- Can a med spa treat hormone imbalance?
+- Can a luxury spa treat hormone imbalance?
 - How do I get my hormones tested in Punta Gorda?
 
 **Internal Links**: → `/services/hormone-therapy` → `/services/glp-1-weight-management`  
@@ -81,10 +81,10 @@
 **FAQ Schema Candidates**:
 - Is tirzepatide better than semaglutide for weight loss?
 - How much weight can I lose on semaglutide?
-- Can I get GLP-1 medication at a med spa in Punta Gorda?
+- Can I get GLP-1 medication at a luxury spa in Punta Gorda?
 
 **Internal Links**: → `/services/glp-1-weight-management` → `/services/hormone-therapy`  
-**Priority**: P1 — telehealth operators dominate this query nationally; local med spa can win the geo-modified version
+**Priority**: P1 — telehealth operators dominate this query nationally; local luxury spa can win the geo-modified version
 
 ---
 

@@ -2,15 +2,15 @@
 
 **Business:** House of Rose
 **Location:** Punta Gorda, FL
-**Brand Promise:** Clinical precision wrapped in genuine hospitality.
+**Brand Promise:** Where Beauty Blooms Within.
 
 ---
 
 ## Who We're Talking To
 
-**Primary audience:** Women 35–65 in Southwest Florida (Punta Gorda, Port Charlotte, Cape Coral, Fort Myers) who are health-conscious, discerning, and done with generic spa experiences. They want measurable results from treatments backed by real clinical expertise — not just pampering.
+**Primary audience:** Women 35–65 in Southwest Florida (Punta Gorda, Port Charlotte, Cape Coral, Fort Myers) who are health-conscious, discerning, and done with generic spa experiences. They want thoughtful, personalized care in a luxury spa and wellness setting — not just pampering.
 
-**Secondary audience:** Professionals and health-focused individuals curious about hormone optimization, GLP-1, and longevity medicine who want a private, personalized environment.
+**Secondary audience:** Professionals and wellness-focused individuals curious about hormone support, GLP-1 wellness, and longevity-minded care who want a private, personalized environment.
 
 **What they believe:** If you're going to invest in your body, you want it done right. By people who actually know what they're doing. In a space that doesn't feel like a factory.
 
@@ -24,10 +24,10 @@ We know what we're doing. We don't need to oversell it. Our copy states facts an
 - No exclamation points in headlines or service copy
 - Declarative sentences. Not questions. Not hedging.
 
-### 2. Clinical + Human
-We are a med spa — physician-informed, protocol-driven. But we're also warm. The experience is personal.
-- Pair clinical precision with emotional resonance
-- Lead with the transformation, follow with the science
+### 2. Wellness + Human
+We are a luxury spa and wellness brand. The experience is personal, private, and considered.
+- Pair thoughtful expertise with emotional resonance
+- Lead with the transformation, then explain the care behind it
 - Never sterile. Never cold. Never a sales pitch.
 
 ### 3. Intentional Luxury
@@ -49,7 +49,7 @@ We deliver compounding, measurable results. We don't promise miracles or use vag
 | Context | Tone |
 |---------|------|
 | Headlines | Short, declarative, elevated. 3–7 words. |
-| Service descriptions | Warm clinical. Explain the benefit before the mechanism. |
+| Service descriptions | Warm, polished, and specific. Explain the benefit before the mechanism. |
 | CTAs | Action-forward but unhurried. "Begin your protocol." "Reserve your consultation." |
 | FAQs | Direct, plain, honest. Patients are asking real questions. |
 | Error / process states | Human and helpful. Never corporate. |
@@ -74,8 +74,8 @@ We deliver compounding, measurable results. We don't promise miracles or use vag
 
 ### Voice Phrases (Anchors)
 These phrases appear in current copy and should be maintained or extended:
-- "Physician-informed care"
-- "Clinical precision wrapped in genuine hospitality"
+- "Where Beauty Blooms Within"
+- "Luxury Spa & Wellness"
 - "Compounding, measurable results"
 - "Built for those who expect more"
 - "Private consultation"
@@ -108,7 +108,7 @@ Pattern: Statement + implication
 - "Beyond the treatment room." (experience = holistic)
 - "Built for those who expect more." (positioning)
 - "Where results meet ritual." (outcomes + experience)
-- "Not a guess. A protocol." (clinical rigor)
+- "Not a guess. A protocol." (wellness rigor)
 
 ### CTAs
 - Primary: "Book a Consultation" / "Reserve Your Experience" / "Begin Your Protocol"
@@ -167,17 +167,17 @@ Plain. Honest. Conversational — but not casual. Like a knowledgeable friend ex
 
 **Examples:**
 - Title: `Microchanneling in Punta Gorda, FL | House of Rose`
-- Desc: `Physician-informed microchanneling at House of Rose in Punta Gorda, FL. Restore skin texture and tone with a personalized treatment protocol.`
+- Desc: `Microchanneling at House of Rose in Punta Gorda, FL. Restore skin texture and tone with a personalized treatment protocol.`
 
 - Title: `IV Hydration Therapy in Punta Gorda, FL | House of Rose`
-- Desc: `Custom IV hydration at House of Rose — rapid restoration for energy, immunity, and recovery. Private med spa in Punta Gorda, FL. Book a consultation today.`
+- Desc: `Custom IV hydration at House of Rose — rapid restoration for energy, immunity, and recovery. Luxury spa and wellness in Punta Gorda, FL.`
 
 ---
 
 ## What We Are Not
 
-- Not a day spa (we are a private med spa with physician-informed protocols)
+- Not a generic category label (we are House of Rose Luxury Spa & Wellness)
 - Not a chain or franchise (we are independent and private)
 - Not budget-friendly / value-positioned (we are premium)
-- Not a beauty influencer brand (we are clinical and understated)
+- Not a beauty influencer brand (we are polished and understated)
 - Not transactional (every client is on a protocol, not a one-time visit)

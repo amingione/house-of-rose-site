@@ -1,0 +1,56 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You | House of Rose Luxury Spa & Wellness"
+  description="Thank you for reaching out to House of Rose. We'll be in touch shortly."
+>
+  <!-- noindex — utility page, not for search -->
+  <meta name="robots" content="noindex, nofollow" slot="head" />
+
+  <section class="bg-charcoal min-h-[70vh] flex items-center justify-center px-6 py-24">
+    <div class="max-w-[560px] mx-auto text-center">
+
+      <!-- Rose motif -->
+      <div class="mb-8 flex justify-center">
+        <div class="w-16 h-px bg-gold/40 self-center"></div>
+        <span class="mx-4 text-gold text-2xl leading-none">✦</span>
+        <div class="w-16 h-px bg-gold/40 self-center"></div>
+      </div>
+
+      <span class="block text-gold text-[11px] tracking-[0.4em] uppercase mb-6">
+        Message Received
+      </span>
+
+      <h1 class="font-serif text-[clamp(32px,5vw,48px)] text-white font-normal leading-tight mb-6">
+        Thank you for reaching out.
+      </h1>
+
+      <p class="text-[#888] text-[16px] leading-relaxed mb-4">
+        We've received your message and will be in touch within 24–48 hours.
+      </p>
+
+      <p class="text-[#666] text-[14px] leading-relaxed mb-12">
+        In the meantime, you're welcome to browse our services or book directly online.
+      </p>
+
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/" class="btn-outline-gold">
+          Back to Home
+        </a>
+        <a
+          href="https://houseofrose.glossgenius.com/services"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-gold"
+        >
+          Book Online
+        </a>
+      </div>
+
+      <div class="mt-16 w-16 h-px bg-gold/20 mx-auto"></div>
+
+    </div>
+  </section>
+</BaseLayout>

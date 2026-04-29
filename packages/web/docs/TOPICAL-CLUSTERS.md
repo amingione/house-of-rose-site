@@ -1,7 +1,7 @@
 # House of Rose — Topical Authority Cluster Plan
 **Created**: 2026-04-28  
 **Model**: Hub-and-Spoke (Pillar + Cluster Posts)  
-**Goal**: Establish House of Rose as the topical authority for medical aesthetics and physician-informed wellness in SW Florida
+**Goal**: Establish House of Rose as the topical authority for luxury spa and wellness and wellness-focused wellness in SW Florida
 
 ---
 
@@ -117,7 +117,7 @@ houseofrosefl.com/
 
 ## Cross-Cluster Linking Map
 
-These posts should be linked FROM their respective pillar page AND cross-linked between clusters where there is clinical synergy:
+These posts should be linked FROM their respective pillar page AND cross-linked between clusters where there is wellness synergy:
 
 | From Cluster | Cross-Link To | Rationale |
 |-------------|---------------|-----------|
@@ -145,8 +145,8 @@ These posts should be linked FROM their respective pillar page AND cross-linked 
 ## E-E-A-T Requirements for All Posts
 
 - Named author with credentials (provider name + title)
-- "Medically reviewed" byline where appropriate
+- Expert-reviewed byline where appropriate
 - Date published + date last reviewed
 - Link to `/experience` as the brand authority anchor
 - At minimum 1 internal link to the relevant pillar page
-- Schema: `Article` type with `author`, `datePublished`, `medicalAudience` where applicable
+- Schema: `Article` type with `author` and `datePublished` where applicable

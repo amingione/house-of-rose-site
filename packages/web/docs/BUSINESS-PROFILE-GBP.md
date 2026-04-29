@@ -1,7 +1,7 @@
 # House of Rose — Google Business Profile Setup Guide
 **Created**: 2026-04-28  
-**Business**: House of Rose — Punta Gorda, FL  
-**Status**: ⚠️ Pending — requires manual claim at business.google.com
+**Business**: House of Rose Luxury Spa & Wellness — Punta Gorda, FL  
+**Status**: ✅ Complete — listing claimed and live
 
 ---
 
@@ -13,7 +13,7 @@ Use these exact values when setting up the GBP. Copy-paste — do not retype.
 
 ```
 Business Name:      House of Rose
-Primary Category:   Medical Spa
+Primary Category:   Spa
 Address:            525 E Olympia Ave, Unit 9
                     Punta Gorda, FL 33982
 Phone:              (844) 941-7673
@@ -34,29 +34,28 @@ Sunday:    Closed
 ```
 
 ### Primary Category
-**Medical Spa** — this is the most important ranking signal. Do not use "Day Spa" or "Beauty Salon."
+**Spa** — House of Rose is marketed as a luxury spa and wellness brand. Do not use clinic-style categories as the canonical category.
 
 ### Secondary Categories (add up to 9)
+- Wellness Center
+- Facial Spa
 - Skin Care Clinic
 - Weight Loss Service  
 - Hormone Therapy Center (if available)
 - IV Therapy Clinic (if available)
-- Aesthetic Medical Center
-- Wellness Center
 
 ---
 
 ## Business Description (750 chars max — first 250 are most important)
 
 ```
-House of Rose is a private medical spa in Punta Gorda, FL offering physician-informed 
-aesthetic and wellness treatments. Our services include microchanneling, IV hydration 
-therapy, Botox and dermal fillers, bioidentical hormone therapy, and GLP-1 weight loss 
-programs.
+House of Rose Luxury Spa & Wellness is a private luxury spa and wellness sanctuary in 
+Punta Gorda, FL. Where Beauty Blooms Within, every visit is designed around beauty, 
+skin health, restoration, and whole-body wellness.
 
-Every treatment at House of Rose begins with a private consultation. We deliver clinical 
-precision wrapped in genuine hospitality — because you deserve results, not just a 
-service menu.
+Services include microchanneling, IV hydration therapy, injectables, hormone therapy, 
+GLP-1 wellness support, facials, lashes, permanent makeup, and beauty enhancements in 
+a refined, private setting.
 
 Serving Punta Gorda, Port Charlotte, and the greater Southwest Florida area.
 ```
@@ -73,9 +72,9 @@ Add each service individually with a description:
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | Microchanneling        | Precision collagen stimulation treatment to restore skin texture, reduce scarring, and achieve compounding skin renewal results.            |
 | IV Hydration Therapy   | Custom IV infusions for rapid rehydration, energy restoration, immune support, and cellular nutrition — administered by trained providers.  |
-| Botox & Dermal Fillers | Physician-informed Botox, Dysport, and hyaluronic acid filler treatments. Precision placement, natural results.                             |
-| Hormone Therapy (BHRT) | Personalized bioidentical hormone replacement to address fatigue, mood, sleep, and metabolic decline. Lab-driven and clinically supervised. |
-| GLP-1 Weight Loss      | Medically supervised semaglutide and tirzepatide programs for sustainable weight loss. Physician-informed protocols with ongoing oversight. |
+| Botox & Dermal Fillers | Refined Botox, Dysport, and hyaluronic acid filler treatments. Thoughtful placement, natural-looking results.                            |
+| Hormone Therapy (BHRT) | Personalized hormone support to address fatigue, mood, sleep, and metabolic changes through a guided wellness plan. |
+| GLP-1 Weight Loss      | Guided GLP-1 wellness support for sustainable weight goals, personalized check-ins, and ongoing lifestyle support. |
 
 ---
 
@@ -130,7 +129,7 @@ A: You can book online anytime at houseofrose.glossgenius.com/services, or call 
 A: Microchanneling uses a precision stamping motion rather than a rolling needle — this delivers more consistent channel depth, less epidermal trauma, and faster recovery while still effectively stimulating collagen. We're one of the few local providers offering true microchanneling.
 
 **Q: Do you offer GLP-1 weight loss programs?**  
-A: Yes. We offer physician-supervised semaglutide and tirzepatide programs, including intake labs, protocol design, and monthly check-ins. Call (844) 941-7673 to schedule an eligibility screening.
+A: Yes. We offer guided semaglutide and tirzepatide wellness support, including intake, protocol design, and monthly check-ins. Call (844) 941-7673 to schedule an eligibility screening.
 
 ---
 
@@ -139,13 +138,13 @@ A: Yes. We offer physician-supervised semaglutide and tirzepatide programs, incl
 Post this immediately after the listing goes live:
 
 ```
-Welcome to House of Rose — Punta Gorda's private medical spa.
+Welcome to House of Rose Luxury Spa & Wellness.
 
-We offer physician-informed treatments including microchanneling, IV hydration, 
-Botox & fillers, hormone therapy, and GLP-1 weight loss programs.
+Where Beauty Blooms Within, every visit is designed around beauty, restoration, and 
+whole-body wellness in a private luxury setting.
 
-Every treatment begins with a private consultation — because your results deserve 
-more than a one-size protocol.
+Services include microchanneling, IV hydration, injectables, hormone therapy, GLP-1 
+wellness support, facials, lashes, permanent makeup, and beauty enhancements.
 
 📍 525 E Olympia Ave, Unit 9 — Punta Gorda, FL
 📞 (844) 941-7673
@@ -156,9 +155,9 @@ more than a one-size protocol.
 
 ## Review Acquisition Strategy
 
-After GBP is live and first clients are served:
+GBP is live and the review acquisition flow is active:
 
-1. **Gloss Genius post-appointment automation**: Set up a review request text/email that fires 24 hours after appointment completion. Link directly to the GBP review page.
+1. **Gloss Genius post-appointment automation**: Review request text/email fires 24 hours after appointment completion. Link directly to the GBP review page.
 2. **Target**: 25 reviews within 60 days of launch — minimum threshold to be competitive in local pack
 3. **Response protocol**: Respond to every review within 48 hours (both positive and negative)
 4. **Review response template (positive)**:
@@ -171,15 +170,15 @@ After GBP is live and first clients are served:
 
 ## Verification Checklist
 
-- [ ] business.google.com — sign in with owner Google account
-- [ ] Search "House of Rose Punta Gorda" to check for existing listing
-- [ ] Claim existing OR create new
-- [ ] Fill all fields using pre-filled data above
-- [ ] Upload minimum 8 photos
-- [ ] Add all 5 services
-- [ ] Enable booking link (Gloss Genius URL)
-- [ ] Load 5 pre-written Q&As
-- [ ] Publish Welcome post
-- [ ] Complete verification (video, phone, or postcard — video is fastest)
-- [ ] Confirm listing live in Google Maps
+- [x] business.google.com — sign in with owner Google account
+- [x] Search "House of Rose Punta Gorda" to check for existing listing
+- [x] Claim existing OR create new
+- [x] Fill all fields using pre-filled data above
+- [x] Upload minimum 8 photos
+- [x] Add all 5 services
+- [x] Enable booking link (Gloss Genius URL)
+- [x] Load 5 pre-written Q&As
+- [x] Publish Welcome post
+- [x] Complete verification (video, phone, or postcard — video is fastest)
+- [x] Confirm listing live in Google Maps
 - [ ] Submit to Bing Places (import from GBP)

@@ -262,12 +262,12 @@ Navigate to: **Analytics** tab in Netlify dashboard
 
 Post-deployment SEO tasks:
 
-- [ ] Submit sitemap to Google Search Console: `https://houseofrosefl.com/sitemap.xml`
+- [x] Submit sitemap to Google Search Console: `https://houseofrosefl.com/sitemap.xml`
 - [ ] Submit sitemap to Bing Webmaster Tools
 - [ ] Verify `robots.txt`: `https://houseofrosefl.com/robots.txt`
 - [ ] Test structured data: https://search.google.com/test/rich-results
 - [ ] Verify OpenGraph tags (share on social media to test)
-- [ ] Set up Google Business Profile (for local SEO)
+- [x] Set up Google Business Profile (for local SEO)
 - [ ] Claim business on Yelp, HealthGrades, etc.
 
 ---

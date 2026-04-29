@@ -47,7 +47,7 @@ HTML mockup successfully converted to Astro + TypeScript + Sanity CMS stack. All
 
 ### 6. SEO Optimization (100%)
 - [x] JSON-LD structured data for services (`@type: Service`)
-- [x] JSON-LD organization data for homepage (`@type: MedicalBusiness`)
+- [x] JSON-LD organization data for homepage (`@type: HealthAndBeautyBusiness`)
 - [x] Dynamic sitemap generation (`/sitemap.xml`)
 - [x] `robots.txt` configuration
 - [x] OpenGraph meta tags in BaseLayout
@@ -237,5 +237,5 @@ npm run build:studio
 
 **Project Lead**: Amber Mingione (ambermingione@gmail.com)
 **Repository**: `house-of-rose-site` (monorepo)
-**Business**: House of Rose Medical Aesthetics
+**Business**: House of Rose Luxury Spa & Wellness
 **Location**: Punta Gorda, FL

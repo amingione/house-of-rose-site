@@ -14,9 +14,9 @@
 | Phone | (844) 941-7673 |
 | Email | book@houseofrosefl.com |
 | Booking URL | https://houseofrose.glossgenius.com/services |
-| GBP category | Medical Spa (Primary) |
+| GBP category | Spa (Primary) |
 | Market | SW Florida — Charlotte County + Lee County DMA |
-| Competitors | Carlisa Health & Wellness, Sweet Spot MediSpa, Nuview Medspa |
+| Competitors | Carlisa Health & Wellness, Sweet Spot, Nuview |
 | CMS | Sanity v3 (project: 4e7axyi7, dataset: production) |
 | Hosting | Netlify (site: house-of-rose-web) |
 | Package | Growth System — Tier 3 (all 14 PREINDEX phases) |
@@ -27,7 +27,7 @@
 
 ## Brand Voice Summary
 
-**Position:** Private med spa — physician-informed, not clinical. Luxury without pretension.
+**Position:** House of Rose Luxury Spa & Wellness — private, polished, wellness-focused. Luxury without pretension.
 
 **Tone:** Direct, warm, confident. Never salesy. Never cutesy.
 
@@ -35,7 +35,7 @@
 
 **Differentiators:**
 - True microchanneling (stamping motion, not rolling needle)
-- Physician-informed protocols for all treatments
+- Wellness-focused protocols for all treatments
 - Private consultations before every service
 - Bioidentical HRT + GLP-1 — not just spa facials
 - Unhurried. No upsell culture.
@@ -49,16 +49,16 @@
 
 | # | Keyword | Monthly Vol | Intent | Target Page | Current Rank |
 |---|---------|------------|--------|-------------|--------------|
-| 1 | med spa Punta Gorda FL | ~170 | Transactional | `/` | — |
-| 2 | med spa Punta Gorda | ~170 | Transactional | `/` | — |
+| 1 | luxury spa Punta Gorda FL | ~170 | Transactional | `/` | — |
+| 2 | luxury spa Punta Gorda | ~170 | Transactional | `/` | — |
 | 3 | microchanneling Punta Gorda | ~50 | Transactional | `/services/microchanneling` | — |
 | 4 | IV hydration Punta Gorda | ~30 | Transactional | `/services/iv-hydration-therapy` | — |
 | 5 | Botox Punta Gorda FL | ~40 | Transactional | `/services/botox-fillers` | — |
 | 6 | hormone therapy Punta Gorda | ~20 | Transactional | `/services/hormone-therapy` | — |
 | 7 | GLP-1 weight loss Punta Gorda | ~20 | Transactional | `/services/glp1-weight-loss` | — |
 | 8 | semaglutide Punta Gorda | ~10 | Transactional | `/services/glp1-weight-loss` | — |
-| 9 | private med spa Florida | ~90 | Transactional | `/` | — |
-| 10 | med spa near me (Punta Gorda) | ~500 | Local intent | `/` | — |
+| 9 | private luxury spa Florida | ~90 | Transactional | `/` | — |
+| 10 | luxury spa near me (Punta Gorda) | ~500 | Local intent | `/` | — |
 
 *Update ranks monthly from Ahrefs or GSC Performance report.*
 
@@ -68,15 +68,15 @@
 
 | URL | Title Tag | H1 | Target Keyword | Status |
 |-----|-----------|-----|----------------|--------|
-| `/` | Medical Spa in Punta Gorda, FL \| House of Rose | House of Rose | med spa Punta Gorda FL | Live |
-| `/services` | Medical Spa Services in Punta Gorda, FL \| House of Rose | Our Services | med spa services Punta Gorda | Live |
+| `/` | Luxury Spa in Punta Gorda, FL \| House of Rose | House of Rose | luxury spa Punta Gorda FL | Live |
+| `/services` | Luxury Spa Services in Punta Gorda, FL \| House of Rose | Our Services | luxury spa services Punta Gorda | Live |
 | `/services/microchanneling` | [from Sanity] | [from Sanity] | microchanneling Punta Gorda | Live |
 | `/services/iv-hydration-therapy` | [from Sanity] | [from Sanity] | IV hydration Punta Gorda | Live |
 | `/services/botox-fillers` | [from Sanity] | [from Sanity] | Botox Punta Gorda FL | Live |
 | `/services/hormone-therapy` | [from Sanity] | [from Sanity] | hormone therapy Punta Gorda | Live |
 | `/services/glp1-weight-loss` | [from Sanity] | [from Sanity] | GLP-1 weight loss Punta Gorda | Live |
-| `/experience` | The House of Rose Experience \| Private Med Spa Punta Gorda FL | [from Sanity] | House of Rose experience | Live |
-| `/contact` | Contact House of Rose \| Med Spa Punta Gorda FL | Contact Us | contact med spa Punta Gorda | Live |
+| `/experience` | The House of Rose Experience \| Private Luxury Spa Punta Gorda FL | [from Sanity] | House of Rose experience | Live |
+| `/contact` | Contact House of Rose \| Luxury Spa Punta Gorda FL | Contact Us | contact luxury spa Punta Gorda | Live |
 | `/privacy-policy` | Privacy Policy \| House of Rose | Privacy Policy | — | Live |
 
 ---
@@ -89,7 +89,7 @@
 | Canonical tags | ✅ | All pages |
 | robots.txt | ✅ | `/robots.txt` live |
 | XML Sitemap | ✅ | `/sitemap.xml` — all pages + lastmod |
-| MedicalBusiness JSON-LD | ✅ | Homepage |
+| HealthAndBeautyBusiness JSON-LD | ✅ | Homepage |
 | Service JSON-LD | ✅ | All 5 service pages |
 | FAQPage JSON-LD | ✅ | Service pages (via Sanity) |
 | BreadcrumbList JSON-LD | ✅ | Service pages |
@@ -99,9 +99,9 @@
 | Lazy loading | ✅ | All below-fold images |
 | Skip-to-content | ✅ | WCAG 2.1 |
 | NAP semantic HTML | ✅ | Footer + Contact page |
-| GA4 | ⚠️ | Needs `PUBLIC_GA4_ID` env var |
-| GSC verified | ⚠️ | Needs `PUBLIC_GSC_VERIFY` env var |
-| GBP claimed | ⚠️ | Manual — see BUSINESS-PROFILE-GBP.md |
+| GA4 | ✅ | Property and tracking setup complete |
+| GSC verified | ✅ | Property verification complete |
+| GBP claimed | ✅ | Claimed and ready for ongoing optimization |
 
 ---
 
@@ -109,7 +109,7 @@
 
 | Directory | Priority | Status |
 |-----------|----------|--------|
-| Google Business Profile | P0 | ⚠️ Pending claim |
+| Google Business Profile | P0 | ✅ Claimed |
 | Bing Places | P1 | ⚠️ Pending (import from GBP) |
 | Apple Maps | P1 | ⚠️ Pending |
 | Yelp | P1 | ⚠️ Pending claim |
@@ -128,12 +128,12 @@
 
 | Month | Post Title | Cluster | Target Keyword |
 |-------|-----------|---------|----------------|
-| May 2026 | What to Expect at Your First Med Spa Consultation | Local Authority | first med spa consultation |
+| May 2026 | What to Expect at Your First Luxury Spa Consultation | Local Authority | first luxury spa consultation |
 | May 2026 | Microchanneling vs. Microneedling | Skin Rejuvenation | microchanneling vs microneedling |
 | June 2026 | Is IV Hydration Worth It? | IV Hydration | IV hydration worth it |
 | June 2026 | Signs You May Have a Hormone Imbalance | Hormone Optimization | hormone imbalance signs women |
 | July 2026 | How Semaglutide Works (And What to Expect) | GLP-1 Weight Loss | how semaglutide works |
-| July 2026 | Why Punta Gorda Residents Are Choosing Private Med Spas | Local Authority | med spa Punta Gorda |
+| July 2026 | Why Punta Gorda Residents Are Choosing Private Luxury Spas | Local Authority | luxury spa Punta Gorda |
 | August 2026 | Botox vs. Dysport: What's the Difference? | Injectables | Botox vs Dysport |
 | August 2026 | BHRT for Women: What Labs Do You Actually Need? | Hormone Optimization | BHRT labs women |
 | September 2026 | The Science Behind Collagen Stimulation | Skin Rejuvenation | collagen stimulation treatment |
@@ -165,9 +165,9 @@
 
 | Tool | Account | Access |
 |------|---------|--------|
-| Google Search Console | book@houseofrosefl.com | ⚠️ Pending setup |
-| Google Analytics 4 | book@houseofrosefl.com | ⚠️ Pending setup |
-| Google Business Profile | [Google account] | ⚠️ Pending claim |
+| Google Search Console | book@houseofrosefl.com | ✅ Setup complete |
+| Google Analytics 4 | book@houseofrosefl.com | ✅ Setup complete |
+| Google Business Profile | [Google account] | ✅ Claimed |
 | Ahrefs | [Amber's account] | ✅ Analytics snippet live |
 | Sanity Studio | studio.houseofrosefl.com | ✅ Live |
 | Netlify | house-of-rose-web | ✅ Live |

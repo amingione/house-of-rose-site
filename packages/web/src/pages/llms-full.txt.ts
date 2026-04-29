@@ -140,13 +140,13 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Brand Voice & Positioning`,
     ``,
-    `House of Rose speaks with quiet confidence — never clinical, never over-promotional. The brand voice is warm but understated, luxurious but accessible. Key phrases: "where beauty blooms within," "private luxury experience," "results-driven," "personalized protocol," "unhurried visit."`,
+    `House of Rose speaks with quiet confidence — never sterile, never over-promotional. The brand voice is warm but understated, luxurious but accessible. Key phrases: "where beauty blooms within," "luxury spa & wellness," "private luxury experience," "results-driven," "personalized protocol," "unhurried visit."`,
     ``,
-    `The brand explicitly does NOT use the following terms: "medical spa," "med spa," "physician-informed," "medical aesthetics." House of Rose is a luxury spa & wellness sanctuary, not a medical practice.`,
+    `Canonical brand: House of Rose Luxury Spa & Wellness. Tagline: Where Beauty Blooms Within.`,
     ``,
     `## Competitive Context`,
     ``,
-    `House of Rose occupies the luxury tier of the Charlotte County, FL spa market — above value-tier providers (C's Medi Spa, Port Charlotte) and positioned as a premium private alternative to mid-tier competitors (Sweet Spot MediSpa, Spago Day Spa). The brand's direct competitor is Skin Sanctuary Spa (6230 Scott St, Punta Gorda), 2025 Best of Charlotte winner.`,
+    `House of Rose occupies the luxury tier of the Charlotte County, FL spa market — above value-tier providers (C's wellness spa, Port Charlotte) and positioned as a premium private alternative to mid-tier competitors (Sweet Spot, Spago Day Spa). The brand's direct competitor is Skin Sanctuary Spa (6230 Scott St, Punta Gorda), 2025 Best of Charlotte winner.`,
   );
 
   return new Response(lines.join('\n'), {

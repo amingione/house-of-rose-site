@@ -1,6 +1,6 @@
 # House of Rose — GSC & Bing Submission Guide (PHASE-13)
 **Created**: 2026-04-28  
-**Status**: ⚠️ Pending — requires manual verification
+**Status**: ✅ Complete — GSC verification and sitemap submission completed
 
 ---
 
@@ -52,13 +52,10 @@ After verification:
 https://houseofrosefl.com/sitemap.xml
 ```
 
-The sitemap includes:
-- `/` (homepage)
-- `/services`
-- `/services/[slug]` × 5 service pages
-- `/experience`
-- `/contact`
-- `/privacy-policy`
+The sitemap includes 27 deployed indexable URLs:
+- 7 static pages: `/`, `/services/`, `/blog/`, `/experience/`, `/contact/`, `/rent-a-room/`, `/privacy-policy/`
+- 15 service pages: `/services/[slug]/`
+- 5 collection pages: `/services/collections/` plus 4 collection detail pages
 
 ---
 
@@ -99,8 +96,8 @@ Priority order:
 
 ## Post-Verification Checklist
 
-- [ ] GSC property verified (`https://houseofrosefl.com`)
-- [ ] Sitemap submitted to GSC → shows "Success"
+- [x] GSC property verified (`https://houseofrosefl.com`)
+- [x] Sitemap submitted to GSC → shows "Success"
 - [ ] URL Inspection run on homepage — no errors
 - [ ] Index coverage report reviewed — 0 errors
 - [ ] Core Web Vitals report reviewed
@@ -114,7 +111,7 @@ Priority order:
 
 | Week | Action |
 |------|--------|
-| Week 1 | Verify all 8+ pages discovered in Coverage report |
+| Week 1 | Verify all 27 deployed indexable URLs discovered in Coverage report |
 | Week 2 | Check for crawl errors → fix any 404s |
 | Week 4 | Pull Performance report — which queries are driving impressions? |
 | Week 8 | Compare click-through rates by page — optimize titles/descriptions for low CTR pages |

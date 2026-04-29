@@ -11,7 +11,8 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 const websiteData = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "House of Rose",
+  "name": "House of Rose Luxury Spa & Wellness",
+  "alternateName": "House of Rose",
   "url": Astro.site?.toString(),
   "potentialAction": {
     "@type": "SearchAction",
@@ -28,6 +29,7 @@ const organizationData = {
   "@context": "https://schema.org",
   "@type": "HealthAndBeautyBusiness",
   "name": "House of Rose Luxury Spa & Wellness",
+  "alternateName": "House of Rose",
   "description": "House of Rose Luxury Spa & Wellness in Punta Gorda, FL. Microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 programs in a private luxury setting.",
   "url": Astro.site?.toString(),
   "telephone": "+18449417673",
@@ -84,9 +86,9 @@ const organizationData = {
   <!-- Hero -->
   <Hero
     title="House of Rose"
-    subtitle="Where Beauty Blooms Within"
-    kicker="Punta Gorda, Florida"
-    description="A luxury spa & wellness sanctuary offering microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 treatments."
+    subtitle="WHERE BEAUTY BLOOMS WITHIN"
+    kicker="Luxury Spa & Wellness"
+    description="A private luxury spa and wellness sanctuary offering beauty, skin, restoration, and whole-body wellness services."
     size="full"
     showCTA={true}
     ctaPrimary={{ text: 'Book a Service', href: 'https://houseofrose.glossgenius.com/services' }}
@@ -99,10 +101,10 @@ const organizationData = {
     <div class="p-[clamp(38px,6vw,76px)]">
       <span class="kicker">The Standard</span>
       <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
-        Clinical precision.<br />Absolute discretion.
+        Wellness precision.<br />Absolute discretion.
       </h2>
       <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px] mb-3">
-        House of Rose was built on a single conviction: that spa and wellness should feel like a private luxury experience, not a clinical transaction. Every treatment is results-driven, every protocol personalized, every visit unhurried.
+        House of Rose was built on a single conviction: that spa and wellness should feel like a private luxury experience, not a transactional appointment. Every treatment is results-driven, every protocol personalized, every visit unhurried.
       </p>
       <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px]">
         We serve clients who expect more.

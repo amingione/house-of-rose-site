@@ -24,7 +24,7 @@ Email:           book@houseofrosefl.com
 
 | Field | Canonical Format | Do NOT Use |
 |-------|-----------------|------------|
-| Business name | `House of Rose` | "House of Rose LLC", "House of Rose Med Spa", "HofR" |
+| Business name | `House of Rose` | "House of Rose LLC", "House of Rose Luxury Spa", "HofR" |
 | Street | `525 E Olympia Ave, Unit 9` | "525 East Olympia Ave", "525 E. Olympia", "Ste 9", "#9" |
 | City, State | `Punta Gorda, FL` | "Punta Gorda, Florida", "PG, FL" |
 | ZIP | `33982` | "33982-XXXX" (no +4 suffix needed) |
@@ -39,7 +39,7 @@ Email:           book@houseofrosefl.com
 |----------|--------|--------|
 | Footer — all pages | ✅ | `<address>` with `tel:` link |
 | Contact page | ✅ | `<address>` wrapper on location block |
-| MedicalBusiness JSON-LD (homepage) | ✅ | Full PostalAddress schema |
+| HealthAndBeautyBusiness JSON-LD (homepage) | ✅ | Full PostalAddress schema |
 | Service page JSON-LD | ✅ | PostalAddress on provider object |
 | Contact page hero description | ✅ | Plain text mention |
 | Homepage CTA section | ✅ | Plain text address |
@@ -50,7 +50,7 @@ Email:           book@houseofrosefl.com
 
 ```json
 {
-  "@type": "MedicalBusiness",
+  "@type": "HealthAndBeautyBusiness",
   "name": "House of Rose",
   "telephone": "+18449417673",
   "email": "book@houseofrosefl.com",
@@ -84,14 +84,14 @@ Email:           book@houseofrosefl.com
 
 | Directory | Status | NAP Match | Verified | Notes |
 |-----------|--------|-----------|----------|-------|
-| Google Business Profile | ⚠️ Pending | — | — | Requires manual claim — top priority |
+| Google Business Profile | ✅ Complete | ✅ | ✅ | Claimed and ready for ongoing optimization |
 | Bing Places | ⚠️ Pending | — | — | Can import from GBP once live |
 | Apple Maps | ⚠️ Pending | — | — | Requires Apple ID |
 | Yelp | ⚠️ Pending | — | — | Check if auto-listed; claim if so |
 | Facebook Business | ⚠️ Pending | — | — | Create at facebook.com/houseofrosefl |
-| Healthgrades | ⚠️ Pending | — | — | High priority for med spa / healthcare |
-| Zocdoc | ⚠️ Pending | — | — | Medical aesthetics category |
-| Vagaro | ⚠️ Pending | — | — | Beauty/med spa specific directory |
+| Healthgrades | ⚠️ Pending | — | — | High priority for luxury spa / healthcare |
+| Zocdoc | ⚠️ Pending | — | — | Aesthetics category |
+| Vagaro | ⚠️ Pending | — | — | Beauty/luxury spa specific directory |
 | StyleSeat | ⚠️ Pending | — | — | Wellness/spa specific |
 | Yellow Pages | ⚠️ Pending | — | — | Tier 2 — do after Tier 1 |
 | BBB | ⚠️ Pending | — | — | Free basic listing |
@@ -106,23 +106,23 @@ Email:           book@houseofrosefl.com
 
 ---
 
-## Industry-Specific Directories (Med Spa / Healthcare)
+## Industry-Specific Directories (Luxury Spa / Wellness)
 
 | Directory | URL | Priority |
 |-----------|-----|----------|
 | Healthgrades | healthgrades.com/office/claim | P1 |
-| Vagaro | vagaro.com | P1 — beauty/med spa aggregator |
+| Vagaro | vagaro.com | P1 — beauty/luxury spa aggregator |
 | StyleSeat | styleseat.com | P2 |
 | RealSelf | realself.com | P2 — aesthetic treatments |
 | Booksy | booksy.com | P2 |
 | Zwivel | zwivel.com | P3 — plastic surgery / aesthetics directory |
-| American Med Spa Association | americanmedspa.org | P3 — professional listing |
+| American Spa Association | americanspa.com | P3 — professional listing |
 
 ---
 
 ## NAP Audit Schedule
 
-- **Pre-launch**: Confirm GBP + Bing + Apple Maps submitted before site goes live
+- **Pre-launch**: GBP complete; confirm Bing + Apple Maps submitted before site goes live
 - **Month 1**: Submit all Tier 1 directories (GBP, Bing, Apple, Yelp, Facebook, BBB, Healthgrades)
 - **Month 2**: Submit Tier 2 + industry-specific directories
 - **Quarterly**: Re-audit top 10 directories for NAP consistency using Moz Local or Whitespark

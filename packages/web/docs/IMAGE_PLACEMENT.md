@@ -39,7 +39,7 @@ This document tracks where all images and logos from `/public` have been placed 
 **File**: `src/pages/services/index.astro`
 - **Image**: `/images/house-of-rose-spa-aesthetic-treatment-tools-setup 2.webp`
 - **Context**: Small hero with treatment tools
-- **Purpose**: Sets clinical/professional tone for services
+- **Purpose**: Sets polished, professional tone for services
 
 ### Experience Page
 **File**: `src/pages/experience.astro`
@@ -52,7 +52,7 @@ This document tracks where all images and logos from `/public` have been placed 
 ## Split Section Images
 
 ### Homepage - First Split Section
-**File**: `src/pages/index.astro` (Physician-Informed Care section)
+**File**: `src/pages/index.astro` (Wellness-Focused Care section)
 - **Image**: `/images/house-of-rose-med-spa-skincare-consultation-room 2.webp`
 - **Position**: Right side of split layout
 - **Size**: 800x600

@@ -1,6 +1,6 @@
 # House of Rose — Analytics Setup Guide (PHASE-10)
 **Created**: 2026-04-28  
-**Status**: ⚠️ Pending — requires GA4 property creation and env var activation
+**Status**: ✅ Complete — GA4 property and tracking setup completed
 
 ---
 
@@ -9,9 +9,9 @@
 The GA4 snippet is **already wired** into `BaseLayout.astro`. It fires only when `PUBLIC_GA4_ID` is set.
 
 **Activation checklist:**
-1. Create GA4 property → copy Measurement ID (format: `G-XXXXXXXXXX`)
-2. Add `PUBLIC_GA4_ID=G-XXXXXXXXXX` to Netlify env vars (house-of-rose-web site)
-3. Trigger redeploy → verify in GA4 Real-Time view
+1. [x] Create GA4 property → copy Measurement ID (format: `G-XXXXXXXXXX`)
+2. [x] Add `PUBLIC_GA4_ID=G-XXXXXXXXXX` to Netlify env vars (house-of-rose-web site)
+3. [x] Trigger redeploy → verify in GA4 Real-Time view
 
 ---
 

@@ -34,7 +34,7 @@ Navigate to: **Service Collections**
 Example collections:
 - **Facials** - Skin rejuvenation and facial treatments
 - **Body Treatments** - Body contouring and wellness
-- **Injectables** - Medical aesthetics and injectables
+- **Injectables** - Refined aesthetics and injectables
 
 For each collection:
 - **Title**: Collection name
@@ -105,7 +105,7 @@ Navigate to: **Experience Content** (single document)
 - **Hero Subtitle**: 1-2 sentence description
 
 ### Story Section
-- **Story Heading**: `Physician-Informed. Client-Centered.`
+- **Story Heading**: `Wellness-Focused. Client-Centered.`
 - **Story Paragraph 1**: First paragraph about your approach
 - **Story Paragraph 2**: Second paragraph
 - **Story Image**: Image for the split section (800x600px)
@@ -113,8 +113,8 @@ Navigate to: **Experience Content** (single document)
 
 ### The House of Rose Standard (3 items)
 Example standards:
-1. **Title**: `Clinical Precision`
-   **Description**: `Every protocol is physician-informed and evidence-based.`
+1. **Title**: `Wellness Precision`
+   **Description**: `Every protocol is wellness-focused and evidence-based.`
 
 2. **Title**: `Personalized Care`
    **Description**: `No two clients are treated the same. Your plan is yours alone.`

@@ -1,6 +1,6 @@
 # House of Rose — Post-Launch Monitoring Baseline (PHASE-14)
 **Created**: 2026-04-28  
-**Launch target**: TBD (pending GSC verification + GBP claim)  
+**Launch target**: Ready for baseline collection; GSC verification, GBP claim, GA4 tracking, and review acquisition flow are complete  
 **Review cadence**: Weekly for 60 days → monthly thereafter
 
 ---
@@ -23,16 +23,23 @@ Pull these immediately after the first successful deploy to production. Enter ac
 
 | Keyword | Target URL | Day 0 | Day 30 | Day 60 |
 |---------|-----------|-------|--------|--------|
-| med spa Punta Gorda FL | `/` | — | | |
-| med spa Punta Gorda | `/` | — | | |
-| microchanneling Punta Gorda | `/services/microchanneling` | — | | |
-| IV hydration Punta Gorda | `/services/iv-hydration-therapy` | — | | |
-| Botox Punta Gorda FL | `/services/botox-fillers` | — | | |
-| hormone therapy Punta Gorda | `/services/hormone-therapy` | — | | |
-| GLP-1 weight loss Punta Gorda | `/services/glp1-weight-loss` | — | | |
-| semaglutide Punta Gorda | `/services/glp1-weight-loss` | — | | |
-| med spa near me (Punta Gorda) | `/` | — | | |
-| private med spa Florida | `/` | — | | |
+| luxury spa Punta Gorda FL | `/` | — | | |
+| spa Punta Gorda FL | `/` | — | | |
+| microchanneling Punta Gorda | `/services/microchanneling/` | — | | |
+| IV hydration Punta Gorda | `/services/iv-hydration-therapy/` | — | | |
+| Botox Punta Gorda FL | `/services/injectables/` | — | | |
+| hormone therapy Punta Gorda | `/services/hormone-therapy/` | — | | |
+| GLP-1 weight loss Punta Gorda | `/services/glp-1-weight-management/` | — | | |
+| semaglutide Punta Gorda | `/services/glp-1-weight-management/` | — | | |
+| HydraFacial Punta Gorda | `/services/hydrafacial/` | — | | |
+| facials Punta Gorda FL | `/services/facials/` | — | | |
+| dermaplaning Punta Gorda | `/services/dermaplaning/` | — | | |
+| chemical peel Punta Gorda | `/services/chemical-peels/` | — | | |
+| lash extensions Punta Gorda | `/services/lash-extensions/` | — | | |
+| permanent makeup Punta Gorda | `/services/permanent-makeup/` | — | | |
+| wedding makeup Punta Gorda FL | `/services/event-makeup/` | — | | |
+| facial waxing Punta Gorda | `/services/facial-waxing/` | — | | |
+| suite rental for estheticians Punta Gorda | `/rent-a-room/` | — | | |
 
 ### GA4 Baseline (pull after 30 days data accumulates)
 
@@ -64,7 +71,7 @@ Run at: `https://pagespeed.web.dev/` on `https://houseofrosefl.com`
 
 ### Week 1–2 (Technical Verification)
 
-- [ ] All 8+ pages confirmed indexed in GSC Coverage report
+- [ ] All 27 deployed indexable files confirmed indexed in GSC Coverage report
 - [ ] 0 crawl errors in GSC
 - [ ] Sitemap status: "Success"
 - [ ] GBP listing live in Google Maps
@@ -157,7 +164,7 @@ Track organic visibility for:
 | Competitor | Domain | Track |
 |-----------|--------|-------|
 | Carlisa Health & Wellness | carlisahealthandwellness.com | Keyword overlap |
-| Sweet Spot MediSpa | sweetspotmedispa.com | Keyword overlap |
-| Nuview Medspa | nuviewmedspa.com | Keyword overlap |
+| Sweet Spot | sweetspotmedispa.com | Keyword overlap |
+| Nuview | nuviewmedspa.com | Keyword overlap |
 
 Ahrefs → Competitive Analysis → Keyword Gap — run quarterly and flag any new keywords competitors are ranking for that House of Rose is not.

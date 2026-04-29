@@ -19,7 +19,7 @@
 | **TypeScript** | Strict mode | ✅ Type safety enforced |
 | **Build Time** | 4.07s | ✅ Very fast |
 
-**Verdict**: Architecture is sound and appropriate for a medical spa website.
+**Verdict**: Architecture is sound and appropriate for a luxury spa website.
 
 ---
 
@@ -65,7 +65,7 @@
 
 #### 1. **Brand Identity - Missing Subtitle**
 
-**Issue**: Mockup shows "Medical Aesthetics" subtitle under "House of Rose" in header.
+**Issue**: Mockup shows "Luxury Spa & Wellness" subtitle under "House of Rose" in header.
 
 **Current Implementation**:
 ```astro
@@ -76,7 +76,7 @@
 **Mockup Pattern**:
 ```html
 <span class="b-name">House of Rose</span>
-<span class="b-sub">Medical Aesthetics</span>
+<span class="b-sub">Luxury Spa & Wellness</span>
 ```
 
 **Fix**:
@@ -87,7 +87,7 @@
     House of Rose
   </span>
   <span class="brand-sub text-[10px] tracking-[0.3em] uppercase text-gold/70 mt-0.5">
-    Medical Aesthetics
+    Luxury Spa & Wellness
   </span>
 </a>
 ```
@@ -96,9 +96,9 @@
 
 ---
 
-#### 2. **Homepage Hero - Missing Location Kicker**
+#### 2. **Homepage Hero - Brand Category Alignment**
 
-**Issue**: Mockup shows "Punta Gorda, Florida" as kicker above H1.
+**Issue**: Brand direction uses "Luxury Spa & Wellness" as the category and "Where Beauty Blooms Within" as the tagline.
 
 **Current Implementation**:
 ```astro
@@ -110,19 +110,20 @@
 />
 ```
 
-**Mockup Shows**:
+**Brand Pattern**:
 ```html
-<span class="kk">Punta Gorda, Florida</span>
 <h1>House of Rose</h1>
+<span>Where Beauty Blooms Within</span>
+<span>Luxury Spa & Wellness</span>
 ```
 
-**Fix**: Update homepage hero kicker to location:
+**Fix**: Keep homepage hero aligned to the brand category:
 ```astro
 <Hero
   title="House of Rose"
-  kicker="Punta Gorda, Florida"
-  subtitle="Medical Aesthetics"
-  description="A private med spa offering microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 treatments."
+  subtitle="WHERE BEAUTY BLOOMS WITHIN"
+  kicker="Luxury Spa & Wellness"
+  description="A private luxury spa and wellness sanctuary."
   ...
 />
 ```
@@ -552,7 +553,7 @@ Display on service detail:
 
 ### 🔴 High Priority (Do Before Launch)
 
-1. [ ] Add "Medical Aesthetics" subtitle to header brand
+1. [ ] Add "Luxury Spa & Wellness" subtitle to header brand
 2. [ ] Update homepage hero kicker to "Punta Gorda, Florida"
 3. [ ] Add mobile menu X animation
 4. [ ] Add focus-visible states for keyboard nav
