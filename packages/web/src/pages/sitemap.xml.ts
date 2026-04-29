@@ -1,13 +1,14 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
-import { ALL_SERVICES_QUERY, ALL_BLOG_POSTS_QUERY, type Service, type BlogPost } from '@/lib/queries';
+import { ALL_SERVICES_QUERY, ALL_BLOG_POSTS_QUERY, ALL_COLLECTIONS_QUERY, type Service, type BlogPost, type ServiceCollection } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = (site?.toString() ?? 'https://houseofrosefl.com').replace(/\/$/, '');
 
-  const [services, blogPosts] = await Promise.all([
+  const [services, blogPosts, collections] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
+    sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
   ]);
 
   const now = new Date().toISOString().split('T')[0];
@@ -39,8 +40,17 @@ export const GET: APIRoute = async ({ site }) => {
     lastmod: post.publishedAt ? post.publishedAt.split('T')[0] : now,
   }));
 
+  // Collection pages
+  const collectionIndexPage = { loc: `${baseUrl}/services/collections/`, priority: '0.7', changefreq: 'monthly', lastmod: now };
+  const collectionPages = collections.map((col) => ({
+    loc: `${baseUrl}/services/collections/${col.slug}/`,
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: now,
+  }));
+
   // Combine all pages
-  const allPages = [...staticPages, ...servicePages, ...blogPages];
+  const allPages = [...staticPages, ...servicePages, collectionIndexPage, ...collectionPages, ...blogPages];
 
   // Generate XML
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
