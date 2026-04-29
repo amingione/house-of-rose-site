@@ -26,9 +26,9 @@ const websiteData = {
 // Organization structured data for SEO
 const organizationData = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "name": "House of Rose",
-  "description": "Luxury spa & wellness services in Punta Gorda, FL. Physician-informed care including microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 programs.",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "House of Rose Luxury Spa & Wellness",
+  "description": "House of Rose Luxury Spa & Wellness in Punta Gorda, FL. Microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 programs in a private luxury setting.",
   "url": Astro.site?.toString(),
   "telephone": "+18449417673",
   "email": "book@houseofrosefl.com",
@@ -69,13 +69,13 @@ const organizationData = {
   "hasMap": "https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33982",
   "currenciesAccepted": "USD",
   "paymentAccepted": "Cash, Credit Card",
-  "medicalSpecialty": "Aesthetic Medicine"
+  "slogan": "Where beauty blooms within"
 };
 ---
 
 <BaseLayout
-  title="Medical Spa in Punta Gorda, FL"
-  description="Punta Gorda's private med spa for microchanneling, IV hydration, injectables, hormone therapy & GLP-1 treatments. Physician-informed. Book online."
+  title="House of Rose Luxury Spa & Wellness | Punta Gorda, FL"
+  description="House of Rose Luxury Spa & Wellness in Punta Gorda, FL. Microchanneling, IV hydration, injectables, hormone therapy & GLP-1 treatments. Where beauty blooms within."
   preloadImage="/images/new-reception.png"
 >
   <!-- Structured Data for SEO -->
@@ -84,9 +84,9 @@ const organizationData = {
   <!-- Hero -->
   <Hero
     title="House of Rose"
-    subtitle="Private Med Spa"
+    subtitle="Where Beauty Blooms Within"
     kicker="Punta Gorda, Florida"
-    description="A private med spa offering microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 treatments."
+    description="A luxury spa & wellness sanctuary offering microchanneling, IV hydration, injectables, hormone therapy, and GLP-1 treatments."
     size="full"
     showCTA={true}
     ctaPrimary={{ text: 'Book a Service', href: 'https://houseofrose.glossgenius.com/services' }}
@@ -102,7 +102,7 @@ const organizationData = {
         Clinical precision.<br />Absolute discretion.
       </h2>
       <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px] mb-3">
-        House of Rose was built on a single conviction: that spa and wellness should feel like a private luxury experience, not a clinical transaction. Every treatment is physician-informed, every protocol personalized, every visit unhurried.
+        House of Rose was built on a single conviction: that spa and wellness should feel like a private luxury experience, not a clinical transaction. Every treatment is results-driven, every protocol personalized, every visit unhurried.
       </p>
       <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px]">
         We serve clients who expect more.

@@ -8,8 +8,8 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
 ---
 
 <BaseLayout
-  title="The House of Rose Experience | Private Med Spa Punta Gorda FL"
-  description={experienceContent?.heroSubtitle ?? "Physician-informed care in a private setting. See what to expect at House of Rose — Punta Gorda's luxury medical spa."}
+  title="The House of Rose Experience | Luxury Spa & Wellness Punta Gorda FL"
+  description={experienceContent?.heroSubtitle ?? "A private luxury experience for every visit. See what to expect at House of Rose — Punta Gorda's premier spa & wellness sanctuary."}
   preloadImage="/images/bg-hydration.jpg"
 >
   <!-- Hero -->
@@ -27,7 +27,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
       <div class="p-[clamp(38px,6vw,76px)]">
         <span class="kicker">Our Story</span>
         <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
-          {experienceContent.storyHeading ?? "Physician-Informed. Client-Centered."}
+          {experienceContent.storyHeading ?? "Where Beauty Blooms Within."}
         </h2>
         {experienceContent.storyParagraph1 && (
           <p class="text-[#777] text-[15px] leading-relaxed mb-3">
