@@ -31,7 +31,6 @@ const {
 } = Astro.props;
 
 const sizeClasses = size === 'full' ? 'h-screen min-h-[560px]' : 'h-[55vh] min-h-[360px]';
-const contentClasses = size === 'full' ? 'clamp(44px,8vh,74px)' : '12';
 ---
 
 <section
@@ -52,7 +51,10 @@ const contentClasses = size === 'full' ? 'clamp(44px,8vh,74px)' : '12';
   <div class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.85)] via-[rgba(10,8,6,0.40)] to-[rgba(10,8,6,0.65)]"></div>
 
   <!-- Content -->
-  <div class={`relative z-10 max-w-[1280px] mx-auto px-6 pb-${contentClasses} w-full`}>
+  <div
+    class={`relative z-10 max-w-[1280px] mx-auto px-6 w-full ${size !== 'full' ? 'pb-12' : ''}`}
+    style={size === 'full' ? 'padding-bottom: clamp(44px,8vh,74px)' : undefined}
+  >
     {kicker && <span class="kicker">{kicker}</span>}
     {subtitle && (
       <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">
