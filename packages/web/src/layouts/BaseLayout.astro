@@ -14,11 +14,11 @@ interface Props {
 
 const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
-const siteName = settings?.siteName ?? 'House of Rose';
+const siteName = settings?.siteName ?? 'House of Rose Aesthetics';
 
 const {
   title = siteName,
-  description = settings?.description ?? 'Luxury spa services and wellness.',
+  description = settings?.description ?? 'Private, appointment-only regenerative aesthetics in Punta Gorda, FL — specializing in PRF and natural skin renewal.',
   image,
   preloadImage,
 } = Astro.props;
@@ -50,7 +50,7 @@ const pageTitle = (title === siteName || title.includes(siteName))
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="House of Rose" />
+    <meta property="og:site_name" content="House of Rose Aesthetics" />
     <meta property="og:locale" content="en_US" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
