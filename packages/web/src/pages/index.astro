@@ -1,227 +1,369 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import ServiceCard from '@/components/ServiceCard.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
 
-const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
+// Booking + internal links (single source of truth so they're easy to swap)
+const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
+const SKIN_ANALYSIS_URL = '/skin-analysis';
+const MEMBERSHIPS_URL = '/memberships';
+// TODO: Shop page not built yet (no product data) — temporarily pointed at /services so nothing 404s.
+const SHOP_URL = '/services'; // → '/shop' once built
 
-// WebSite structured data with SearchAction
+// Homepage service groups (curated 4-pillar model — not a treatment dump)
+const serviceGroups = [
+  {
+    name: 'Regenerative Aesthetics',
+    description:
+      'PRF, Procell, microchanneling, microneedling, and advanced skin renewal treatments designed to support texture, tone, collagen, and overall skin vitality.',
+    image: '/images/new-microchanneling.webp',
+  },
+  {
+    name: 'Injectables & Advanced Treatments',
+    description:
+      'Botox, dermal fillers, RF microneedling, peels, BioRePeel, and other treatment options chosen with a careful, balanced approach.',
+    image: '/images/new-injectables.webp',
+  },
+  {
+    name: 'Skin Health & Treatment Planning',
+    description:
+      'Facials, acne-focused care, hydrodermabrasion, dermaplaning, and personalized skin guidance rooted in what your skin is showing today—not assumptions.',
+    image: '/images/new-facials.png',
+  },
+  {
+    name: 'Wellness & Lifestyle Services',
+    description:
+      'IV hydration support, treatment plans, memberships, and select offerings that complement your aesthetic goals and overall care experience.',
+    image: '/images/new-wellness.webp',
+  },
+];
+
+// ─── Structured data ──────────────────────────────────────────────────────────
 const websiteData = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "House of Rose Aesthetics",
-  "alternateName": "House of Rose",
-  "url": Astro.site?.toString(),
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${Astro.site}services?q={search_term_string}`
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'House of Rose Aesthetics',
+  alternateName: 'House of Rose',
+  url: Astro.site?.toString(),
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${Astro.site}services?q={search_term_string}`,
     },
-    "query-input": "required name=search_term_string"
-  }
+    'query-input': 'required name=search_term_string',
+  },
 };
 
-// Organization structured data for SEO
 const organizationData = {
-  "@context": "https://schema.org",
-  "@type": "HealthAndBeautyBusiness",
-  "name": "House of Rose Aesthetics",
-  "alternateName": "House of Rose",
-  "description": "House of Rose Aesthetics in Punta Gorda, FL. Microchanneling, IV hydration, injectables, and GLP-1 programs in a private luxury setting.",
-  "url": Astro.site?.toString(),
-  "telephone": "+18449417673",
-  "email": "info@houseofrosefl.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "525 E Olympia Ave, Unit 9",
-    "addressLocality": "Punta Gorda",
-    "addressRegion": "FL",
-    "postalCode": "33950",
-    "addressCountry": "US"
+  '@context': 'https://schema.org',
+  '@type': 'HealthAndBeautyBusiness',
+  name: 'House of Rose Aesthetics',
+  alternateName: 'House of Rose',
+  description:
+    'House of Rose Aesthetics in Punta Gorda, FL — advanced aesthetics and wellness. Regenerative treatments, injectables, facials, skin analysis, IV hydration, and curated skincare.',
+  url: Astro.site?.toString(),
+  telephone: '+18449417673',
+  email: 'info@houseofrosefl.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '525 E Olympia Ave, Unit 9',
+    addressLocality: 'Punta Gorda',
+    addressRegion: 'FL',
+    postalCode: '33950',
+    addressCountry: 'US',
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "26.9298",
-    "longitude": "-82.0454"
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '26.9298',
+    longitude: '-82.0454',
   },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "10:00",
-    "closes": "18:00"
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '10:00',
+    closes: '18:00',
   },
-  "priceRange": "$$",
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": "26.9298",
-      "longitude": "-82.0454"
+  priceRange: '$$',
+  areaServed: {
+    '@type': 'GeoCircle',
+    geoMidpoint: {
+      '@type': 'GeoCoordinates',
+      latitude: '26.9298',
+      longitude: '-82.0454',
     },
-    "geoRadius": "50000"
+    geoRadius: '50000',
   },
-  "sameAs": [
-    "https://www.instagram.com/houseofrosefl",
-    "https://www.facebook.com/houseofrosefl",
-    "https://houseofrose.glossgenius.com/services"
+  sameAs: [
+    'https://www.instagram.com/houseofrosefl',
+    'https://www.facebook.com/houseofrosefl',
+    'https://houseofrose.glossgenius.com/services',
   ],
-  "hasMap": "https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950",
-  "currenciesAccepted": "USD",
-  "paymentAccepted": "Cash, Credit Card",
-  "slogan": "Where beauty blooms within"
+  hasMap:
+    'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950',
+  currenciesAccepted: 'USD',
+  paymentAccepted: 'Cash, Credit Card',
+  slogan: 'Where Beauty Blooms Within',
 };
 ---
 
 <BaseLayout
-  title="House of Rose Aesthetics | Punta Gorda, FL"
-  description="Luxury spa & wellness in Punta Gorda, FL. Microchanneling, IV hydration, injectables & GLP-1 treatments. Where beauty blooms within."
+  title="House of Rose Aesthetics | Advanced Aesthetics & Wellness in Punta Gorda, FL"
+  description="Personalized aesthetics, skin health, regenerative treatments, injectables, facials, wellness support, and curated skincare in Punta Gorda, Florida."
   preloadImage="/images/new-reception.webp"
 >
-  <!-- Structured Data for SEO -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteData)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationData)} slot="head" />
-  <!-- Hero -->
+
+  <!-- ── SECTION 1 · HERO ─────────────────────────────────────────── -->
   <Hero
-    title="House of Rose"
-    subtitle="WHERE BEAUTY BLOOMS WITHIN"
-    kicker="Luxury Spa & Wellness"
-    description="A private luxury spa and wellness sanctuary offering beauty, skin, restoration, and whole-body wellness services."
+    title="House of Rose Aesthetics"
+    subtitle="Where Beauty Blooms Within"
+    kicker="Advanced Aesthetics & Wellness · Punta Gorda, Florida"
+    description="Thoughtful aesthetics, skin health, and wellness—guided with care, precision, and a personalized approach. From regenerative treatments and injectables to advanced facials, skin analysis, and curated home care, every detail is designed to support lasting results."
     size="full"
     showCTA={true}
-    ctaPrimary={{ text: 'Book a Service', href: 'https://houseofrose.glossgenius.com/services' }}
+    ctaPrimary={{ text: 'Book Online', href: BOOKING_URL }}
     ctaSecondary={{ text: 'Explore Services', href: '/services' }}
     backgroundImage="/images/new-reception.webp"
   />
 
-  <!-- The Standard -->
+  <!-- ── SECTION 2 · INTRO / BRAND POSITIONING ───────────────────── -->
   <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
-    <div class="p-[clamp(38px,6vw,76px)]">
-      <span class="kicker">The Standard</span>
-      <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
-        Wellness precision.<br />Absolute discretion.
+    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
+      <span class="kicker">About House of Rose</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+        A more considered approach to aesthetics.
       </h2>
-      <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px] mb-3">
-        House of Rose was built on a single conviction: that spa and wellness should feel like a private luxury experience, not a transactional appointment. Every treatment is results-driven, every protocol personalized, every visit unhurried.
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+        House of Rose Aesthetics was created for clients who want more than a quick appointment and a standard treatment menu. Our approach is tailored, intentional, and built around long-term skin health, natural-looking results, and care that feels personal from the start.
       </p>
-      <p class="text-[#777] text-[15px] leading-[1.7] max-w-[560px]">
-        We serve clients who expect more.
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
+        We bring together advanced aesthetics, wellness support, and thoughtfully selected skincare in one refined setting—so your treatment plan feels cohesive, not pieced together.
       </p>
     </div>
-    <div class="relative min-h-[330px] bg-charcoal-lighter">
+    <div class="relative min-h-[340px] bg-charcoal-lighter">
       <img
-        src="/images/bg-injectables.jpg"
-        alt="House of Rose treatment suite prepared for injectables"
+        src="/images/house-of-rose-lounge.webp"
+        alt="The House of Rose Aesthetics lounge in Punta Gorda, Florida"
         loading="lazy"
         class="w-full h-full object-cover"
         width="1400"
         height="933"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-charcoal/30 to-transparent"></div>
     </div>
   </section>
 
-  <!-- The Philosophy -->
+  <!-- ── SECTION 3 · SIGNATURE APPROACH (full-bleed) ─────────────── -->
   <section
-    class="relative py-[clamp(72px,10vw,148px)] px-6 bg-cover bg-center"
-    style="background-image: url('/images/bg-hydration.jpg');"
+    class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
+    style="background-image: url('/images/bg-skin.webp');"
   >
-    <div class="absolute inset-0 bg-black/70"></div>
-    <div class="relative z-10 max-w-[640px] mx-auto text-center">
-      <span class="kicker">The Philosophy</span>
-      <blockquote class="font-serif text-[clamp(18px,3vw,28px)] text-white leading-[1.6] italic font-normal mt-7">
-        Beauty is not an outcome. It is the expression of a body in optimal health.
-      </blockquote>
-      <div class="w-11 h-px bg-gold mx-auto mt-7"></div>
+    <div class="absolute inset-0 bg-black/72"></div>
+    <div class="relative z-10 max-w-[760px] mx-auto text-center">
+      <span class="kicker">Our Approach</span>
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-white leading-tight mt-2 mb-7">
+        Regenerative, restorative, and highly personalized.
+      </h2>
+      <p class="text-white/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-4">
+        Our service menu is designed to support the skin from multiple angles: renewal, correction, maintenance, and home care. Regenerative treatments such as PRF remain one of our signature specialties, but they are part of a broader philosophy centered on healthy skin, informed treatment planning, and results that feel like you—only more refreshed.
+      </p>
+      <p class="text-white/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto">
+        Rather than taking a one-size-fits-all approach, we focus on what your skin actually needs, when it needs it, and how to support those results over time.
+      </p>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  {services.length > 0 && (
-    <section class="bg-charcoal py-[clamp(44px,6vw,88px)] px-6">
-      <div class="max-w-[1280px] mx-auto">
-        <!-- Section Header -->
-        <div class="flex justify-between items-end flex-wrap gap-3 mb-12">
-          <div>
-            <span class="kicker">What We Offer</span>
-            <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-1.5">
-              Our Services
-            </h2>
-          </div>
-          <a href="/services" class="text-[11px] tracking-[0.2em] uppercase border-b border-gold text-gold pb-0.5 min-h-[44px] inline-flex items-end hover:opacity-75 transition-opacity">
-            View All
-          </a>
-        </div>
+  <!-- ── SECTION 4 · SERVICES OVERVIEW ───────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="max-w-[640px] mb-12">
+        <span class="kicker">Services</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2 mb-5">
+          A curated menu of advanced treatments.
+        </h2>
+        <p class="text-[#888] text-[15px] leading-[1.75]">
+          From skin renewal and corrective treatments to injectables and wellness support, every service at House of Rose is selected to work as part of a larger plan—not just a single visit.
+        </p>
+      </div>
 
-        <!-- Service Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10">
-          {services.slice(0, 6).map((service) => (
-            <div class="bg-charcoal">
-              <ServiceCard
-                title={service.title}
-                slug={service.slug}
-                tagline={service.tagline}
-                image={service.image}
-                variant="grid"
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
+        {serviceGroups.map((group) => (
+          <a href="/services" class="group block bg-charcoal">
+            <div class="aspect-[16/10] overflow-hidden bg-charcoal-lighter">
+              <img
+                src={group.image}
+                alt={group.name}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                width="700"
+                height="438"
               />
             </div>
-          ))}
-        </div>
+            <div class="p-7">
+              <h3 class="font-serif text-[21px] text-white mb-2.5">{group.name}</h3>
+              <p class="text-[#777] text-[14px] leading-[1.7]">{group.description}</p>
+            </div>
+          </a>
+        ))}
       </div>
-    </section>
-  )}
 
-  <!-- Split Section: Experience -->
-  <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
-    <div class="relative min-h-[330px] bg-charcoal order-2 md:order-1">
-      <img
-        src="/images/bg-hero.jpg"
-        alt="House of Rose luxury treatment room"
-        loading="lazy"
-        class="w-full h-full object-cover"
-        width="800"
-        height="600"
-      />
-    </div>
-    <div class="p-[clamp(38px,6vw,76px)] order-1 md:order-2">
-      <span class="kicker">What to Expect</span>
-      <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-white leading-tight mb-5">
-        Built for those who expect more.
-      </h2>
-      <p class="text-[#777] text-[15px] leading-relaxed mb-3">
-        Every treatment is an invitation to slow down, restore, and reconnect with yourself.
-      </p>
-      <p class="text-[#777] text-[15px] leading-relaxed">
-        Discover what sets House of Rose apart.
-      </p>
-      <a href="/experience" class="btn-outline-gold mt-6 inline-flex">
-        Our Experience
-      </a>
+      <div class="mt-12">
+        <a
+          href="/services"
+          class="text-[11px] tracking-[0.2em] uppercase border-b border-gold text-gold pb-0.5 min-h-[44px] inline-flex items-end hover:opacity-75 transition-opacity"
+        >
+          View All Services
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Contact CTA -->
-  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
-    <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Reserve Your Experience</span>
-      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
-        Begin Your Transformation
+  <!-- ── SECTION 5 · AI SKIN SCANNER FEATURE ─────────────────────── -->
+  <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
+    <div class="relative min-h-[340px] bg-charcoal order-2 md:order-1">
+      <img
+        src="/images/new-consultation.png"
+        alt="In-office skin analysis at House of Rose Aesthetics"
+        loading="lazy"
+        class="w-full h-full object-cover"
+        width="1200"
+        height="900"
+      />
+    </div>
+    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2">
+      <span class="kicker">Skin Analysis</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+        See your skin with more clarity.
       </h2>
-      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Every treatment begins with a private consultation. Reach out to schedule yours.
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+        Our in-office skin analysis technology helps take the guesswork out of treatment planning. By visually assessing key areas of skin health, it allows us to make more informed recommendations for both services and home care—so your plan is guided by what your skin is actually communicating.
+      </p>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-7">
+        This creates a more precise starting point, a more personalized path forward, and a better understanding of where to focus first.
+      </p>
+      <div>
+        <a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex">Learn About Skin Analysis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6 · MEMBERSHIPS / TREATMENT PLANS ───────────────── -->
+  <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
+    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
+      <span class="kicker">Memberships & Ongoing Care</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+        Care that continues beyond a single appointment.
+      </h2>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+        Healthy, beautiful skin is rarely built in one visit. Our memberships and treatment plans are designed for clients who want consistency, thoughtful guidance, and a more connected approach to maintenance over time.
+      </p>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-7">
+        Members receive continued access to curated benefits, preferred pricing on select treatments, and product support that makes staying on plan feel simple and well organized.
+      </p>
+      <div>
+        <a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex">Explore Memberships</a>
+      </div>
+    </div>
+    <div class="relative min-h-[340px] bg-charcoal-lighter">
+      <img
+        src="/images/house-of-rose-collection.webp"
+        alt="House of Rose Aesthetics membership and ongoing care"
+        loading="lazy"
+        class="w-full h-full object-cover"
+        width="1400"
+        height="933"
+      />
+    </div>
+  </section>
+
+  <!-- ── SECTION 7 · PRODUCT / HOME CARE PREVIEW ─────────────────── -->
+  <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
+    <div class="relative min-h-[340px] bg-charcoal order-2 md:order-1">
+      <img
+        src="/images/house-of-rose-products.webp"
+        alt="Curated professional skincare at House of Rose Aesthetics"
+        loading="lazy"
+        class="w-full h-full object-cover"
+        width="1400"
+        height="933"
+      />
+    </div>
+    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2">
+      <span class="kicker">Curated Home Care</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+        Professional skincare, selected with purpose.
+      </h2>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+        The products we carry are not added for shelf space—they are chosen to support treatment outcomes, simplify home care, and give clients reliable options between appointments. From post-treatment aftercare to acne support, mineral makeup, SPF, and corrective skincare, our product selection is built to work with your plan, not compete with it.
+      </p>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-7">
+        Whether you prefer in-studio guidance or online ordering, recommendations are always made with intention.
+      </p>
+      <div>
+        <a href={SHOP_URL} class="btn-outline-gold inline-flex">Shop Skincare</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 8 · THE EXPERIENCE (full-bleed) ─────────────────── -->
+  <section
+    class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
+    style="background-image: url('/images/house-of-rose-treatment-room.webp');"
+  >
+    <div class="absolute inset-0 bg-black/74"></div>
+    <div class="relative z-10 max-w-[720px] mx-auto text-center">
+      <span class="kicker">The Experience</span>
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-white leading-tight mt-2 mb-7">
+        Calm, personal, and thoughtfully paced.
+      </h2>
+      <p class="text-white/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-4">
+        Appointments at House of Rose are designed to feel focused and unhurried. We take the time to understand your goals, evaluate your skin, and make recommendations that feel aligned—not rushed, not excessive, and never based on what happens to be trending.
+      </p>
+      <p class="text-white/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto">
+        You should leave with clarity about what was done, why it was chosen, and how to support your results moving forward.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── SECTION 9 · LOCAL / TRUST / CONTACT ─────────────────────── -->
+  <section class="bg-charcoal py-[clamp(56px,8vw,104px)] px-6">
+    <div class="max-w-[760px] mx-auto text-center">
+      <span class="kicker">Punta Gorda</span>
+      <h2 class="font-serif text-[clamp(26px,4vw,42px)] text-white leading-tight mt-2 mb-7">
+        A refined destination for aesthetics and wellness.
+      </h2>
+      <p class="text-[#888] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4">
+        House of Rose Aesthetics serves clients in Punta Gorda and across Southwest Florida who are looking for a more thoughtful way to approach skin, beauty, and self-care.
+      </p>
+      <p class="text-[#888] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9">
+        If you already know what you're looking for, you can book online. If you'd rather begin with a conversation, we're here to help you find the right starting point.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417673" class="btn-outline-gold">
-          (844) 941-7673
-        </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          Book Online
-        </a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+        <a href="/contact" class="btn-outline-gold">Contact Us</a>
       </div>
-      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
-        525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
+    </div>
+  </section>
+
+  <!-- ── SECTION 10 · FINAL CTA / FOOTER PREVIEW ─────────────────── -->
+  <section
+    class="relative py-[clamp(64px,9vw,120px)] px-6 bg-cover bg-center border-t border-gold/10"
+    style="background-image: url('/images/background-rose.webp');"
+  >
+    <div class="absolute inset-0 bg-charcoal/88"></div>
+    <div class="relative z-10 max-w-[640px] mx-auto text-center">
+      <h2 class="font-serif text-[clamp(28px,5vw,46px)] text-white leading-tight mb-5">
+        Begin with care that feels personal.
+      </h2>
+      <p class="text-[#999] text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]">
+        Advanced treatments. Informed recommendations. A setting designed to feel calm, polished, and considered from start to finish.
+      </p>
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-gold">
+        Reserve Your Appointment
+      </a>
+      <p class="text-[#555] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed">
+        525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950<br />
+        Mon–Fri 10AM–6PM · (844) 941-7673
       </p>
     </div>
   </section>

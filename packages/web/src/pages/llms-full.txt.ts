@@ -2,10 +2,8 @@ import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import {
   ALL_COLLECTIONS_QUERY,
-  SITE_SETTINGS_QUERY,
   ALL_BLOG_POSTS_QUERY,
   type ServiceCollection,
-  type SiteSettings,
   type BlogPost,
 } from '@/lib/queries';
 
@@ -39,42 +37,41 @@ interface ServiceFull {
 }
 
 export const GET: APIRoute = async ({ site }) => {
-  const base = (site?.toString() ?? 'https://houseofrosefl.com').replace(/\/$/, '');
+  const base = (site?.toString() ?? 'https://houseofrosefl.com/').replace(/\/$/, '');
 
-  const [settings, services, collections, posts] = await Promise.all([
-    sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY),
+  const [services, collections, posts] = await Promise.all([
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
   ]);
 
   const lines: string[] = [
-    `# House of Rose Luxury Spa & Wellness — Full Content Index`,
+    `# House of Rose Aesthetics — Advanced Aesthetics & Wellness — Full Content Index`,
     ``,
-    `> Where beauty blooms within.`,
+    `> Where Beauty Blooms Within.`,
     ``,
     `## About`,
     ``,
-    `House of Rose Luxury Spa & Wellness is a private luxury spa & wellness sanctuary located at 525 E Olympia Ave, Ste 9, Punta Gorda, Florida 33950. The business was founded on the conviction that spa and wellness should feel like a private luxury experience — every treatment is results-driven, every protocol personalized, every visit unhurried.`,
+    `House of Rose Aesthetics is a privately owned advanced aesthetics and wellness studio located at 525 E Olympia Ave, Ste 9, Punta Gorda, Florida 33950. It was created for clients who want more than a quick appointment and a standard treatment menu — bringing together advanced aesthetics, wellness support, and thoughtfully selected skincare in one refined setting. The approach is tailored and intentional, built around long-term skin health, natural-looking results, and care that feels personal from the start.`,
     ``,
-    `House of Rose serves clients throughout Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, North Port, Sarasota, and Cape Coral. The business offers a private, appointment-based experience with no walk-ins.`,
+    `House of Rose serves clients throughout Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, North Port, Sarasota, and Cape Coral. Appointments are private and unhurried, with no walk-ins.`,
     ``,
     `**Contact:**`,
     `- Phone: (844) 941-7673`,
-    `- Email: book@houseofrosefl.com`,
+    `- Email: info@houseofrosefl.com`,
     `- Booking: https://houseofrose.glossgenius.com/services`,
     `- Address: 525 E Olympia Ave, Ste 9, Punta Gorda, FL 33950`,
     `- Hours: Monday–Friday 10:00 AM–6:00 PM`,
-    `- Instagram: @houseofrosefl`,
-    `- Facebook: @houseofrosefl`,
+    `- Instagram: https://www.instagram.com/houseofrosefl`,
+    `- Facebook: https://www.facebook.com/houseofrosefl`,
     ``,
     `---`,
     ``,
     `## Site Pages`,
     ``,
     `- **Home** (${base}/): Overview of services, brand philosophy, and booking`,
-    `- **Services** (${base}/services/): Full menu of all luxury spa & wellness treatments`,
-    `- **Experience** (${base}/experience/): What clients can expect — private consultations, personalized protocols, unhurried appointments`,
+    `- **Services** (${base}/services/): Full menu of treatments across regenerative aesthetics, injectables, skin health, and wellness`,
+    `- **Experience** (${base}/experience/): What clients can expect — focused, unhurried appointments, personalized recommendations, and clear guidance on results`,
     `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
     `- **Rent a Suite** (${base}/rent-a-room/): Private treatment room rentals starting at $850/month for licensed aestheticians, massage therapists, and permanent makeup artists`,
     `- **Journal** (${base}/blog/): Articles on wellness, beauty, and living well in Southwest Florida`,
@@ -140,13 +137,13 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Brand Voice & Positioning`,
     ``,
-    `House of Rose speaks with quiet confidence — never sterile, never over-promotional. The brand voice is warm but understated, luxurious but accessible. Key phrases: "where beauty blooms within," "luxury spa & wellness," "private luxury experience," "results-driven," "personalized protocol," "unhurried visit."`,
+    `House of Rose speaks with calm confidence — warm but not casual, refined but never flashy, and never salesy. Copy is specific and honest, centered on long-term skin health and natural-looking results rather than hype. Do not describe the business as a "med spa," "medical spa," or "clinic," and do not use "luxury" as a category or business label. Key phrases: "Where Beauty Blooms Within," "advanced aesthetics & wellness," "regenerative," "personalized," "unhurried," "curated home care."`,
     ``,
-    `Canonical brand: House of Rose Luxury Spa & Wellness. Tagline: Where Beauty Blooms Within.`,
+    `Canonical brand: House of Rose Aesthetics. Category: Advanced Aesthetics & Wellness — Punta Gorda, FL. Tagline: Where Beauty Blooms Within.`,
     ``,
-    `## Competitive Context`,
+    `## Positioning`,
     ``,
-    `House of Rose occupies the luxury tier of the Charlotte County, FL spa market — above value-tier providers (C's wellness spa, Port Charlotte) and positioned as a premium private alternative to mid-tier competitors (Sweet Spot, Spago Day Spa). The brand's direct competitor is Skin Sanctuary Spa (6230 Scott St, Punta Gorda), 2025 Best of Charlotte winner.`,
+    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida (Charlotte and Lee Counties) as a private, appointment-only destination for advanced aesthetics and wellness. The focus is regenerative, restorative, and highly personalized care — with PRF among its signature specialties — delivered as part of a complete treatment plan rather than one-off services.`,
   );
 
   return new Response(lines.join('\n'), {

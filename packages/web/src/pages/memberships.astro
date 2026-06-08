@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+
+const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
+
+// Tiers source: Notion "Memberships" (Diana's RN-injector tiers). Benefits kept faithful to source.
+const tiers = [
+  {
+    name: 'Glow',
+    price: '99',
+    summary: 'A simple way to begin banking toward your care.',
+    benefits: [
+      '$99 banked toward treatments each month',
+      '10% off IV Therapy',
+      '10% off Fillers',
+      'Member pricing on neurotoxins',
+    ],
+    featured: false,
+  },
+  {
+    name: 'Elite',
+    price: '199',
+    summary: 'For clients on a consistent, ongoing plan.',
+    benefits: [
+      '$199 banked toward treatments each month',
+      '15% off Fillers',
+      '15% off IV Therapy',
+      'Complimentary monthly B12 injection',
+      'Member pricing on neurotoxins',
+    ],
+    featured: true,
+  },
+  {
+    name: 'VIP',
+    price: '299',
+    summary: 'Our most complete membership, with added access.',
+    benefits: [
+      '$299 banked toward treatments each month',
+      '20% off Fillers',
+      '20% off IV Therapy',
+      'One complimentary IV each month',
+      'Priority scheduling',
+      'Exclusive VIP events',
+      'Preferred neurotoxin pricing',
+    ],
+    featured: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Memberships in Punta Gorda, FL | House of Rose Aesthetics"
+  description="Membership plans at House of Rose Aesthetics in Punta Gorda, FL. Bank toward your treatments each month and keep your results compounding with consistent, personalized care."
+  preloadImage="/images/house-of-rose-collection.webp"
+>
+  <!-- ── HERO ─────────────────────────────────────────────────────── -->
+  <Hero
+    title="Care that continues beyond a single appointment."
+    kicker="Memberships & Ongoing Care"
+    description="Healthy skin is built over time, not in one visit. Our memberships are designed for clients who want consistency, preferred pricing, and a more connected approach to their care."
+    size="small"
+    showCTA={true}
+    ctaPrimary={{ text: 'Become a Member', href: '/contact' }}
+    ctaSecondary={{ text: 'Book a Treatment', href: BOOKING_URL }}
+    backgroundImage="/images/house-of-rose-collection.webp"
+  />
+
+  <!-- ── THE IDEA: COLLAGEN BANKING ───────────────────────────────── -->
+  <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
+    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
+      <span class="kicker">The Idea</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+        Collagen banking, on the right rhythm.
+      </h2>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+        Because PRF and Procell microchanneling are designed to be spaced four to six weeks apart, a monthly rhythm isn't just convenient—it's how results actually compound. Membership keeps you on that cadence.
+      </p>
+      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
+        Each month, your membership banks toward your treatments and unlocks preferred pricing—so staying consistent feels simple, organized, and genuinely worth it.
+      </p>
+    </div>
+    <div class="relative min-h-[340px] bg-charcoal-lighter">
+      <img
+        src="/images/house-of-rose-collection.webp"
+        alt="House of Rose Aesthetics membership and ongoing care in Punta Gorda, Florida"
+        loading="lazy"
+        class="w-full h-full object-cover"
+        width="1400"
+        height="933"
+      />
+    </div>
+  </section>
+
+  <!-- ── TIERS ────────────────────────────────────────────────────── -->
+  <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="max-w-[640px] mb-12">
+        <span class="kicker">Membership Tiers</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2">
+          Choose the rhythm that fits you.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
+        {tiers.map((tier) => (
+          <div class={`flex flex-col bg-charcoal p-8 ${tier.featured ? 'ring-1 ring-gold/40' : ''}`}>
+            <h3 class="font-serif text-[24px] text-white mb-1">{tier.name}</h3>
+            <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{tier.summary}</p>
+            <div class="flex items-baseline gap-1 mb-7">
+              <span class="font-serif text-[40px] text-white leading-none">${tier.price}</span>
+              <span class="text-[#777] text-[13px]">/ month</span>
+            </div>
+            <ul class="space-y-3 mb-8 flex-1">
+              {tier.benefits.map((b) => (
+                <li class="flex gap-2.5 text-[#bbb] text-[14px] leading-[1.55]">
+                  <span class="text-gold mt-0.5">—</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="/contact" class={tier.featured ? 'btn-gold w-full text-center' : 'btn-outline-gold w-full text-center'}>
+              Join {tier.name}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-[#555] text-[12px] leading-[1.7] mt-7 max-w-[760px]">
+        Memberships are month-to-month. Banked amounts apply toward treatments and products; member pricing applies on top. We'll walk you through the details when you join.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
+    <div class="max-w-[640px] mx-auto text-center">
+      <span class="kicker">Join</span>
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-white leading-tight mt-2 mb-5">
+        Stay consistent. See it compound.
+      </h2>
+      <p class="text-[#888] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+        Reach out to choose your membership and we'll get you set up. Not sure which fits? We'll help you decide based on your goals.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/contact" class="btn-gold">Become a Member</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-outline-gold">Book a Treatment</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
