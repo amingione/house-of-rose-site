@@ -19,10 +19,15 @@ export interface FAQ {
   answer: string;
 }
 
+export type ServiceKind = 'hub' | 'treatment' | 'standalone';
+
 export interface Service {
   _id: string;
   title: string;
   slug: string;
+  kind?: ServiceKind;
+  parentService?: { title: string; slug: string };
+  treatments?: Service[];
   tagline?: string;
   duration?: string;
   price?: number | string;
@@ -34,6 +39,16 @@ export interface Service {
   collection?: { title: string; slug: string };
   relatedServices?: Service[];
   _updatedAt?: string;
+  seo?: { metaTitle?: string; metaDescription?: string };
+}
+
+export interface Concern {
+  _id: string;
+  title: string;
+  slug: string;
+  intro?: string;
+  image?: SanityImage;
+  treatments?: Service[];
   seo?: { metaTitle?: string; metaDescription?: string };
 }
 
@@ -136,10 +151,11 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
 `;
 
 export const ALL_SERVICES_QUERY = /* groq */ `
-  *[_type == "service"] | order(orderRank asc, title asc) {
+  *[_type == "service" && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
+    kind,
     tagline,
     duration,
     price,
@@ -155,6 +171,17 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     _id,
     title,
     "slug": slug.current,
+    kind,
+    "parentService": parentService->{ title, "slug": slug.current },
+    "treatments": *[_type == "service" && parentService._ref == ^._id] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      price,
+      duration,
+      ${IMAGE_FIELDS}
+    },
     tagline,
     price,
     duration,
@@ -238,6 +265,40 @@ export const PRODUCT_BY_SLUG_QUERY = /* groq */ `
     price,
     ${IMAGE_FIELDS}
   }
+`;
+
+export const ALL_CONCERNS_QUERY = /* groq */ `
+  *[_type == "concern"] | order(orderRank asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    intro,
+    ${IMAGE_FIELDS}
+  }
+`;
+
+export const CONCERN_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "concern" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    intro,
+    ${IMAGE_FIELDS},
+    "seo": seo { metaTitle, metaDescription },
+    "treatments": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      price,
+      duration,
+      ${IMAGE_FIELDS}
+    }
+  }
+`;
+
+export const ALL_CONCERN_SLUGS_QUERY = /* groq */ `
+  *[_type == "concern" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 // Slug arrays for Astro getStaticPaths()

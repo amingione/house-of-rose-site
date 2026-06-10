@@ -41,3 +41,16 @@ New HR monogram logo set deployed from vault `House of Rose/HOUSE OF ROSE LOGO/`
 - NOTE: web build cannot run in this sandbox (platform-specific rollup binary); page verified structurally + frontmatter typechecked. Run `npm run build` locally before deploy.
 - Added PRF Body Treatments service (slug `prf-body-treatments`, From $525/zone, Skin Renewal) — body work was only a buried mention; now a dedicated page, cross-linked with PRF Microneedling. Homepage pillar 1 copy mentions face & body / scars & stretch marks.
 - Header scroll fix: `.stuck` class was toggled by Header.astro's scroll handler but had NO css — header stayed transparent on scroll and the monogram floated/clipped over content. Added `#header.stuck` styles to `global.css` (solid charcoal @ 92% + blur + gold hairline border, monogram shrinks to 40px). Combined with the earlier h-14/md:h-16 logo sizing in Header.astro.
+
+## IA v1 — Services/Treatments split + Concern pages (2026-06-10, per brainstorm)
+Spec: vault `03-Services/services-ia-v1.md`. Service = the question a client googles (hub/education); Treatment = priced bookable protocol under ONE canonical hub; Concern = cross-cut router page. Existing slugs unchanged (zero redirects); hubs are new pages above them.
+
+**Schema** (`service.ts` + new `concern.ts`, registered in index.ts, deployed to Content Lake): service.kind (hub/treatment/standalone), service.parentService (ref), service.concerns (refs).
+
+**Content (live):** 6 hubs — PRF (5 treatments incl. renamed "PRF Skin Texture & Tightening"), Microchanneling & Microneedling (comparison content, 1 child), BioRePeel (3 new advanced protocols: Advanced Acne Scarring MN-combo $395 PROPOSED, Gold Spot Treatment $345 PROPOSED, Body $375/zone PROPOSED), Face Reality (3 new: Clarity Bootcamp $899, Acne Peel $139, Back Treatment $159 PROPOSED), Injectables & Bio-Fillers, Wellness. 4 standalone (Dermaplaning, Glo2, LightStim, Permanent Jewelry). 6 concerns published; coverage: acne-scarring 9, fine-lines 6, sun-damage 3, stretch-marks 2, dark-circles 1, hair-thinning 1. Zero orphan treatments (verified by GROQ).
+
+**Frontend:** queries.ts (kind/parentService/treatments on Service, Concern type + queries, top-level list excludes treatments) · [slug].astro (breadcrumb to parent hub, "Choose your protocol" grid on hubs, BreadcrumbList JSON-LD includes hub level) · NEW pages/concerns/[slug].astro.
+
+⚠️ New prices marked PROPOSED above were set by Claude from protocol positioning — Amber to confirm. Run `npm run build` locally + `npx sanity schema deploy` from packages/studio before deploy. New hub/treatment docs need images.
+- Gold spot treatment repriced + reframed per Amber: "BioRePeel Duo — Gold Spot Upgrade", From $395 (was $345). Rationale: two advanced formula bottles opened per client (blue full-face + gold targeted) — must always price above the base blue face peel ($295). Process step 2 now "Full blue BioRePeel across the face" (no longer optional).
+- Advanced Acne Scarring protocol repriced $395 → $450 per Amber, validated by market check (FL microneedling $200–$700, peels $150–$800, combination sessions $600–$1,500 at MD practices; buying the pieces separately locally ≈ $625). BioRePeel ladder now: blue $295 → Duo gold-spot $395 → Body $375/zone → Advanced MN-combo $450.

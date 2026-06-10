@@ -26,6 +26,36 @@ export const service = defineType({
       description: 'Which collection does this service belong to?',
     }),
     defineField({
+      name: 'kind',
+      title: 'Kind',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Hub (service family — education page with child treatments)', value: 'hub' },
+          { title: 'Treatment (bookable protocol under a hub)', value: 'treatment' },
+          { title: 'Standalone (single service, no children)', value: 'standalone' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'standalone',
+      description: 'Hub = the question a client googles. Treatment = a priced, bookable protocol.',
+    }),
+    defineField({
+      name: 'parentService',
+      title: 'Parent Service (hub)',
+      type: 'reference',
+      to: [{ type: 'service' }],
+      description: 'For treatments: the canonical hub this protocol belongs to (the certification that defines it).',
+      hidden: ({ document }) => document?.kind !== 'treatment',
+    }),
+    defineField({
+      name: 'concerns',
+      title: 'Concerns',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'concern' }] }],
+      description: 'Client concerns this treatment addresses (powers /concerns/* router pages).',
+    }),
+    defineField({
       name: 'tagline',
       title: 'Tagline',
       type: 'string',
