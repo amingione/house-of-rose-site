@@ -97,3 +97,20 @@
     @apply outline-2 outline-offset-4 outline-gold/70;
   }
 }
+
+/* ── Sticky header (scrolled state) ──────────────────────────────
+   The Header script toggles `.stuck` past 60px scroll; these styles
+   give the bar a solid surface and shrink the monogram so it never
+   floats over or clips against page content. */
+#header {
+  background: transparent;
+}
+#header.stuck {
+  background: rgba(10, 10, 10, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(201, 168, 106, 0.12);
+}
+#header.stuck .brand-link img {
+  height: 2.5rem; /* 40px — comfortably inside the 80px bar */
+}
