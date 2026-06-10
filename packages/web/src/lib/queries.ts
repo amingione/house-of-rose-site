@@ -156,6 +156,8 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     tagline,
+    price,
+    duration,
     description,
     whoItsFor,
     process,

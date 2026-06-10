@@ -32,6 +32,18 @@ export const service = defineType({
       description: 'Short one-liner shown on cards and listings',
     }),
     defineField({
+      name: 'price',
+      title: 'Price',
+      type: 'string',
+      description: 'Starting-at price shown on the site (e.g., "From $399"). Leave empty for consult-only services.',
+    }),
+    defineField({
+      name: 'duration',
+      title: 'Duration',
+      type: 'string',
+      description: 'Typical appointment length (e.g., "60–90 minutes")',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
