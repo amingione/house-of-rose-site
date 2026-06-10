@@ -22,3 +22,21 @@ Live Sanity production carried 15 service docs, ~half not actually offered (Even
 3. Run `npx sanity@latest schema deploy` from `packages/studio` to re-sync the Content Lake schema with Studio source (MCP deployed a matching copy as interim)
 4. New service docs need images in Studio (8 created without)
 5. Old slug `chemical-peels` now 404s (renamed to `biorepeel`) — add a redirect in netlify.toml if it had traffic
+
+## Addendum (same day)
+- Fixed duplicate booking CTA on service detail pages: merged "CTA Section" + "Contact CTA" in `[slug].astro` into a single `#book` section (service-specific headline, kicker, phone/booking buttons, address).
+
+## Logo refresh (2026-06-10)
+New HR monogram logo set deployed from vault `House of Rose/HOUSE OF ROSE LOGO/`:
+- New asset package: `public/logos/hr-monogram-2026/` — gold/white/black monogram (512px webp+png), wordmark-1200.png, favicons (16/32/48/192 + .ico), apple-touch-icon (charcoal bg), og.png (1200×630, monogram on charcoal), source SVG
+- `Header.astro` → gold monogram webp; sized h-14/md:h-16 (square mark vs old wide logo's h-20/md:h-32)
+- `BaseLayout.astro` → new favicons, apple-touch-icon, og:image/twitter:image
+- `blog/[slug].astro` → publisher JSON-LD logo
+- Old packages (`HofR-1024`, `HofR-512`, `*-logo-package`) left in place; safe to delete after the new set is verified live
+
+## Prompt-vault pass continuation (2026-06-10)
+- `index.astro` — four homepage pillar descriptions corrected to actual services (removed RF microneedling + hydrodermabrasion/facials; added EZ Gel, PRF hair restoration, Face Reality, Glo2Facial, GLP-1, permanent jewelry)
+- `blog/index.astro` + `services/index.astro` — meta descriptions no longer advertise hormone therapy
+- `memberships.astro` — REBUILT to the lane-tiered architecture (Amber's decision 6/10): The Lily Membership (inclusion model, Idea D: Essentials $149 / Signature $299 ⭐ / Regenerative $499, with "valued at" lines), The Iris Membership (banked: $99/$199/$299, injectables-scoped), Hydrangea Wellness Add-On ($89 rider / $109 standalone), House Collective copy, snowbird pause + roll-forward policies. Typed interfaces (MembershipTier, MembershipLane), no `any`.
+- NOTE: web build cannot run in this sandbox (platform-specific rollup binary); page verified structurally + frontmatter typechecked. Run `npm run build` locally before deploy.
+- Added PRF Body Treatments service (slug `prf-body-treatments`, From $525/zone, Skin Renewal) — body work was only a buried mention; now a dedicated page, cross-linked with PRF Microneedling. Homepage pillar 1 copy mentions face & body / scars & stretch marks.

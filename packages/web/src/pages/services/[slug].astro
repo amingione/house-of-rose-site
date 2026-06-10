@@ -213,35 +213,15 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
-  <!-- CTA Section -->
-  <section class="bg-charcoal-light py-16 px-6">
+  <!-- Booking CTA -->
+  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-white mb-4">
-        Ready to experience {service.title}?
-      </h2>
-      <p class="text-[#777] text-[15px] mb-8">
-        Begin with a private consultation. We will design your personal protocol.
-      </p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417673" class="btn-outline-gold">
-          (844) 941-7673
-        </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          Book Online
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact CTA -->
-  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
-    <div class="max-w-[680px] mx-auto text-center">
       <span class="kicker">Reserve Your Experience</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
-        Begin Your Transformation
+        Ready to experience {service.title}?
       </h2>
       <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Every treatment begins with a private consultation.
+        Begin with a private consultation. We will design your personal protocol.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">

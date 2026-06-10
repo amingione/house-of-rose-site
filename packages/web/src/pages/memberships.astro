@@ -4,49 +4,140 @@ import Hero from '@/components/Hero.astro';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
 
-// Tiers source: Notion "Memberships" (Diana's RN-injector tiers). Benefits kept faithful to source.
-const tiers = [
+// Lane-tiered membership architecture — providers run distinct lanes; memberships coexist.
+// Source: vault 04-Membership/membership-brainstorm-comparison.md (Lily = Idea D inclusion model, Iris = Diana's program scoped to injectables, Hydrangea = wellness rider)
+
+interface MembershipTier {
+  name: string;
+  price: string;
+  summary: string;
+  benefits: string[];
+  value?: string;
+  featured: boolean;
+}
+
+interface MembershipLane {
+  id: string;
+  kicker: string;
+  name: string;
+  intro: string;
+  tiers: MembershipTier[];
+  footnote: string;
+}
+
+const lanes: MembershipLane[] = [
   {
-    name: 'Glow',
-    price: '99',
-    summary: 'A simple way to begin banking toward your care.',
-    benefits: [
-      '$99 banked toward treatments each month',
-      '10% off IV Therapy',
-      '10% off Fillers',
-      'Member pricing on neurotoxins',
+    id: 'lily',
+    kicker: 'Advanced Aesthetics',
+    name: 'The Lily Membership',
+    intro:
+      'Your monthly treatment, included. Lily is built around the 4–6 week cadence our regenerative protocols are designed for — choose your tier, and your treatment each month is simply part of it.',
+    tiers: [
+      {
+        name: 'Lily Essentials',
+        price: '149',
+        summary: 'A standing monthly ritual for glow and maintenance.',
+        benefits: [
+          'One treatment monthly: Dermaplaning Facial, Clarity acne session, or Glo2Facial',
+          '10% off additional services',
+          'LED add-on at member rate',
+          '15% off home-care products',
+          'Priority booking & birthday treatment',
+        ],
+        value: 'Valued at up to $234/month',
+        featured: false,
+      },
+      {
+        name: 'Lily Signature',
+        price: '299',
+        summary: 'Monthly ProCell microchanneling — collagen, on schedule.',
+        benefits: [
+          'One treatment monthly: ProCell Face, ProCell MD, or BioRePeel + Dermaplane',
+          '10% off additional services',
+          'LED add-on at member rate',
+          '15% off home-care products',
+          'Priority booking & birthday treatment',
+        ],
+        value: 'Valued at up to $484/month',
+        featured: true,
+      },
+      {
+        name: 'Lily Regenerative',
+        price: '499',
+        summary: 'The Gilded Lily — our signature PRF protocol, monthly.',
+        benefits: [
+          'One PRF microchanneling treatment monthly ($650 value)',
+          '10% off additional services',
+          'LED add-on at member rate',
+          '15% off home-care products',
+          'Priority booking & birthday treatment',
+        ],
+        value: 'Valued at $685/month',
+        featured: false,
+      },
     ],
-    featured: false,
+    footnote:
+      'Missed months roll forward once. Seasonal residents may pause their membership at no charge — we are snowbird-friendly by design.',
   },
   {
-    name: 'Elite',
-    price: '199',
-    summary: 'For clients on a consistent, ongoing plan.',
-    benefits: [
-      '$199 banked toward treatments each month',
-      '15% off Fillers',
-      '15% off IV Therapy',
-      'Complimentary monthly B12 injection',
-      'Member pricing on neurotoxins',
+    id: 'iris',
+    kicker: 'Injectables',
+    name: 'The Iris Membership',
+    intro:
+      'Banked credit toward injectable care with our registered nurse — neurotoxins, dermal fillers, and PRF treatments — plus member pricing that rewards consistency.',
+    tiers: [
+      {
+        name: 'Iris I',
+        price: '99',
+        summary: 'A simple way to begin banking toward your care.',
+        benefits: [
+          '$99 banked toward treatments each month',
+          '10% off dermal fillers',
+          'Member pricing on neurotoxins',
+        ],
+        featured: false,
+      },
+      {
+        name: 'Iris II',
+        price: '199',
+        summary: 'For clients on a consistent, ongoing plan.',
+        benefits: [
+          '$199 banked toward treatments each month',
+          '15% off dermal fillers',
+          'Complimentary monthly B12 injection',
+          'Member pricing on neurotoxins',
+        ],
+        featured: true,
+      },
+      {
+        name: 'Iris III',
+        price: '299',
+        summary: 'Our most complete injectables membership.',
+        benefits: [
+          '$299 banked toward treatments each month',
+          '20% off dermal fillers',
+          'Priority scheduling',
+          'Exclusive member events',
+          'Preferred neurotoxin pricing',
+        ],
+        featured: false,
+      },
     ],
-    featured: true,
-  },
-  {
-    name: 'VIP',
-    price: '299',
-    summary: 'Our most complete membership, with added access.',
-    benefits: [
-      '$299 banked toward treatments each month',
-      '20% off Fillers',
-      '20% off IV Therapy',
-      'One complimentary IV each month',
-      'Priority scheduling',
-      'Exclusive VIP events',
-      'Preferred neurotoxin pricing',
-    ],
-    featured: false,
+    footnote:
+      'Banked amounts apply toward injectable treatments; member pricing applies on top.',
   },
 ];
+
+const rider = {
+  name: 'The Hydrangea Wellness Add-On',
+  price: '89',
+  standalone: '109',
+  benefits: [
+    'One Hydration IV each month ($129 value)',
+    '10% off all additional drips, NAD+ therapy, and vitamin shots',
+    'Attachable to any Lily or Iris membership',
+  ],
+};
 ---
 
 <BaseLayout
@@ -74,10 +165,10 @@ const tiers = [
         Collagen banking, on the right rhythm.
       </h2>
       <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        Because PRF and Procell microchanneling are designed to be spaced four to six weeks apart, a monthly rhythm isn't just convenient—it's how results actually compound. Membership keeps you on that cadence.
+        Because PRF and ProCell microchanneling are designed to be spaced four to six weeks apart, a monthly rhythm isn't just convenient—it's how results actually compound. Membership keeps you on that cadence.
       </p>
       <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
-        Each month, your membership banks toward your treatments and unlocks preferred pricing—so staying consistent feels simple, organized, and genuinely worth it.
+        Our memberships are organized by lane: The Lily Membership for advanced aesthetics, The Iris Membership for injectable care, and the Hydrangea add-on for our IV Hydration Lounge. Hold more than one and you join the House Collective—priority booking across every provider, and first invitations to member events.
       </p>
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -92,43 +183,76 @@ const tiers = [
     </div>
   </section>
 
-  <!-- ── TIERS ────────────────────────────────────────────────────── -->
-  <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6">
-    <div class="max-w-[1280px] mx-auto">
-      <div class="max-w-[640px] mb-12">
-        <span class="kicker">Membership Tiers</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2">
-          Choose the rhythm that fits you.
-        </h2>
-      </div>
+  <!-- ── MEMBERSHIP LANES ─────────────────────────────────────────── -->
+  {lanes.map((lane, laneIndex) => (
+    <section class={laneIndex % 2 === 0 ? 'bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6' : 'bg-charcoal py-[clamp(48px,7vw,96px)] px-6'} id={lane.id}>
+      <div class="max-w-[1280px] mx-auto">
+        <div class="max-w-[700px] mb-12">
+          <span class="kicker">{lane.kicker}</span>
+          <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2 mb-4">
+            {lane.name}
+          </h2>
+          <p class="text-[#888] text-[15px] leading-[1.75]">{lane.intro}</p>
+        </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
-        {tiers.map((tier) => (
-          <div class={`flex flex-col bg-charcoal p-8 ${tier.featured ? 'ring-1 ring-gold/40' : ''}`}>
-            <h3 class="font-serif text-[24px] text-white mb-1">{tier.name}</h3>
-            <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{tier.summary}</p>
-            <div class="flex items-baseline gap-1 mb-7">
-              <span class="font-serif text-[40px] text-white leading-none">${tier.price}</span>
-              <span class="text-[#777] text-[13px]">/ month</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
+          {lane.tiers.map((tier) => (
+            <div class={`flex flex-col bg-charcoal p-8 ${tier.featured ? 'ring-1 ring-gold/40' : ''}`}>
+              <h3 class="font-serif text-[22px] text-white mb-1">{tier.name}</h3>
+              <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{tier.summary}</p>
+              <div class="flex items-baseline gap-1 mb-2">
+                <span class="font-serif text-[40px] text-white leading-none">${tier.price}</span>
+                <span class="text-[#777] text-[13px]">/ month</span>
+              </div>
+              {tier.value && (
+                <p class="text-gold text-[11px] tracking-[0.18em] uppercase mb-6">{tier.value}</p>
+              )}
+              <ul class="space-y-3 mb-8 flex-1">
+                {tier.benefits.map((b) => (
+                  <li class="flex gap-2.5 text-[#bbb] text-[14px] leading-[1.55]">
+                    <span class="text-gold mt-0.5">—</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class={tier.featured ? 'btn-gold w-full text-center' : 'btn-outline-gold w-full text-center'}>
+                Join {tier.name}
+              </a>
             </div>
-            <ul class="space-y-3 mb-8 flex-1">
-              {tier.benefits.map((b) => (
-                <li class="flex gap-2.5 text-[#bbb] text-[14px] leading-[1.55]">
-                  <span class="text-gold mt-0.5">—</span>
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-            <a href="/contact" class={tier.featured ? 'btn-gold w-full text-center' : 'btn-outline-gold w-full text-center'}>
-              Join {tier.name}
-            </a>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <p class="text-[#555] text-[12px] leading-[1.7] mt-7 max-w-[760px]">
-        Memberships are month-to-month. Banked amounts apply toward treatments and products; member pricing applies on top. We'll walk you through the details when you join.
+        <p class="text-[#555] text-[12px] leading-[1.7] mt-7 max-w-[760px]">
+          {lane.footnote}
+        </p>
+      </div>
+    </section>
+  ))}
+
+  <!-- ── HYDRANGEA WELLNESS RIDER ─────────────────────────────────── -->
+  <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10" id="hydrangea">
+    <div class="max-w-[960px] mx-auto text-center">
+      <span class="kicker">IV Hydration Lounge</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2 mb-3">
+        {rider.name}
+      </h2>
+      <p class="text-white/85 text-[15px] mb-2">
+        <span class="font-serif text-[32px] text-white">${rider.price}</span>
+        <span class="text-[#777] text-[13px]"> / month with any membership</span>
+        <span class="text-gold mx-2">·</span>
+        <span class="text-[#777] text-[13px]">${rider.standalone} / month standalone</span>
       </p>
+      <ul class="inline-flex flex-col items-start gap-2.5 my-6 text-left">
+        {rider.benefits.map((b) => (
+          <li class="flex gap-2.5 text-[#bbb] text-[14px] leading-[1.55]">
+            <span class="text-gold mt-0.5">—</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+      <div>
+        <a href="/contact" class="btn-outline-gold">Add Hydrangea</a>
+      </div>
     </div>
   </section>
 
