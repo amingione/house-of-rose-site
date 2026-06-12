@@ -1,0 +1,143 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { ALL_PRODUCTS_QUERY, type Product, type ProductBrand } from '@/lib/queries';
+
+const products = await sanityFetch<Product[]>(ALL_PRODUCTS_QUERY);
+
+interface BrandSection {
+  id: ProductBrand;
+  name: string;
+  intro: string;
+}
+
+const brands: BrandSection[] = [
+  {
+    id: 'procell',
+    name: 'ProCell Therapies',
+    intro:
+      'The aftercare system behind our microchanneling results. Growth-factor serums in two strengths — MD for clients in active treatment series, PRO for maintenance — because what you apply at home determines how far your in-studio results go.',
+  },
+  {
+    id: 'glymed',
+    name: 'GlyMed+',
+    intro:
+      'Professional pharmaceutical-grade skincare we prescribe around treatment cycles: barrier repair after peels, glycolic renewal between visits, recovery care, and the daily SPF that protects everything else.',
+  },
+  {
+    id: 'skin-script',
+    name: 'Skin Script',
+    intro:
+      'Approachable, results-driven daily care — clean formulations at honest prices. Where most clients start, and what most routines are built on.',
+  },
+];
+
+const byBrand = (id: ProductBrand): Product[] => products.filter((p) => p.brand === id);
+const formatPrice = (cents?: number): string => (typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '');
+
+const orderingOptions = [
+  {
+    title: 'In Studio',
+    body: 'Browse the shelf at your next visit — your provider will match products to your active treatment plan.',
+  },
+  {
+    title: 'Reserve & Pick Up',
+    body: 'Call or text and we\'ll have your products wrapped and waiting at the front desk, same day.',
+  },
+  {
+    title: 'We\'ll Ship It',
+    body: 'Out of town or out of product? We ship anywhere in the U.S. — call us and it\'s on its way.',
+  },
+];
+---
+
+<BaseLayout
+  title="Curated Skincare Shop | House of Rose Punta Gorda, FL"
+  description="Professional skincare curated by House of Rose — ProCell aftercare serums, GlyMed+ pharmaceutical-grade care, and Skin Script daily essentials. In-studio, pickup, or shipped."
+>
+  <Hero
+    title="Curated, not collected."
+    kicker="The Shop"
+    description="Every product here earns its place — chosen because it extends a treatment we perform, protects a result you paid for, or belongs in the daily routine we'd build for you."
+    size="small"
+    showCTA={false}
+  />
+
+  {brands.map((brand) => {
+    const items = byBrand(brand.id);
+    return items.length > 0 && (
+      <section class="bg-charcoal py-[clamp(40px,6vw,72px)] px-6 border-t border-gold/5" id={brand.id}>
+        <div class="max-w-[1280px] mx-auto">
+          <div class="max-w-[700px] mb-10">
+            <span class="kicker">{brand.name}</span>
+            <p class="text-[#888] text-[15px] leading-[1.75] mt-3">{brand.intro}</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gold/10">
+            {items.map((product) => (
+              <div class="bg-charcoal p-6 flex flex-col">
+                {product.image && (
+                  <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
+                    <img
+                      src={urlFor(product.image).width(400).height(400).fit('crop').url()}
+                      alt={product.image.alt ?? product.title}
+                      width={400}
+                      height={400}
+                      loading="lazy"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <h3 class="text-white text-[15px] font-medium leading-snug mb-1">{product.title}</h3>
+                {product.tagline && <p class="text-[#666] text-[12.5px] leading-[1.6] mb-3">{product.tagline}</p>}
+                <p class="mt-auto text-white/80 text-[13px] tracking-[0.12em] uppercase">
+                  {formatPrice(product.price)}
+                  {product.size && <span class="text-[#555] normal-case tracking-normal"> · {product.size}</span>}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <!-- Face Reality note -->
+  <section class="bg-charcoal-light py-[clamp(36px,5vw,56px)] px-6">
+    <div class="max-w-[840px] mx-auto text-center">
+      <span class="kicker">Face Reality</span>
+      <h2 class="font-serif text-[clamp(22px,3.5vw,30px)] text-white mt-2 mb-4">
+        Acne home care, prescribed — not browsed.
+      </h2>
+      <p class="text-[#888] text-[14.5px] leading-[1.8] max-w-[620px] mx-auto">
+        Face Reality home-care products are matched to your acne type and adjusted as your skin responds, so they're available exclusively to Clarity Program clients in studio. Curious?
+        <a href="/services/face-reality-acne-program" class="text-gold hover:underline">Start with the program.</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Ordering -->
+  <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10">
+    <div class="max-w-[1120px] mx-auto">
+      <div class="text-center mb-12">
+        <span class="kicker">How to Order</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2">
+          Three ways, all of them easy.
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        {orderingOptions.map((opt, i) => (
+          <div class="text-center">
+            <p class="text-gold/30 text-[40px] font-serif mb-3">{`0${i + 1}`}</p>
+            <p class="text-white text-[16px] font-medium mb-2 tracking-wide">{opt.title}</p>
+            <p class="text-[#666] text-[14px] leading-relaxed max-w-[300px] mx-auto">{opt.body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center">
+        <a href="tel:+18449417673" class="btn-gold">Call to Order — (844) 941-7673</a>
+        <p class="text-[#555] text-[12px] mt-5">Bundle and membership clients receive preferred pricing on full-size products — mention it when you order.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

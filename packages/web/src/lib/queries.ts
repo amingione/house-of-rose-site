@@ -61,11 +61,17 @@ export interface ServiceCollection {
   services: Service[];
 }
 
+export type ProductBrand = 'procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
+
 export interface Product {
   _id: string;
   title: string;
   slug: string;
   tagline?: string;
+  brand?: ProductBrand;
+  size?: string;
+  category?: string;
+  inStock?: boolean;
   description?: string;
   price?: number;
   image?: SanityImage;
@@ -245,11 +251,16 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_PRODUCTS_QUERY = /* groq */ `
-  *[_type == "product"] | order(title asc) {
+  *[_type == "product"] | order(brand asc, title asc) {
     _id,
     title,
     "slug": slug.current,
     tagline,
+    brand,
+    size,
+    category,
+    inStock,
+    description,
     price,
     ${IMAGE_FIELDS}
   }

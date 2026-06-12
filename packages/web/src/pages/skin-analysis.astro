@@ -31,6 +31,15 @@ const looksAt = [
   'Visible signs of aging',
 ];
 
+const concernLinks = [
+  { title: 'Fine Lines & Laxity', slug: 'fine-lines-laxity' },
+  { title: 'Acne Scarring', slug: 'acne-scarring' },
+  { title: 'Sun Damage', slug: 'sun-damage' },
+  { title: 'Dark Circles & Under-Eyes', slug: 'dark-circles' },
+  { title: 'Stretch Marks', slug: 'stretch-marks' },
+  { title: 'Hair Thinning', slug: 'hair-thinning' },
+];
+
 const faqs = [
   {
     q: 'Do I need a skin analysis before treatment?',
@@ -151,6 +160,26 @@ const faqs = [
       <p class="text-white/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto">
         When your plan is built around your skin's real condition, every appointment works toward the same outcome. You focus on what matters first, skip what you don't need, and have a clear way to measure progress over time.
       </p>
+    </div>
+  </section>
+
+  <!-- ── FROM ANALYSIS TO PLAN ────────────────────────────────────── -->
+  <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6">
+    <div class="max-w-[960px] mx-auto text-center">
+      <span class="kicker">From Analysis to Plan</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white mt-2 mb-5">
+        Your results map to a protocol.
+      </h2>
+      <p class="text-[#888] text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
+        Whatever the analysis surfaces, there's a defined path for it — explore what we treat, or let the consultation sequence it for you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {concernLinks.map((c) => (
+          <a href={`/concerns/${c.slug}`} class="border border-gold/30 text-white/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors">
+            {c.title}
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

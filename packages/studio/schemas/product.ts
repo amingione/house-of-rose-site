@@ -29,6 +29,26 @@ export const product = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'brand',
+      title: 'Brand',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'ProCell Therapies', value: 'procell' },
+          { title: 'GlyMed+', value: 'glymed' },
+          { title: 'Skin Script', value: 'skin-script' },
+          { title: 'Face Reality', value: 'face-reality' },
+          { title: 'House of Rose', value: 'house-of-rose' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'size',
+      title: 'Size',
+      type: 'string',
+      description: 'e.g. "30ml", "6.75 oz", "Set of 5 pairs"',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
