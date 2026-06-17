@@ -1,6 +1,6 @@
 # House of Rose
 
-A luxury spa & wellness brand featuring a modern Astro storefront and Sanity CMS.
+Wn advanced aesthetic & wellness brand featuring a modern Astro storefront and Sanity CMS.
 
 ## Monorepo Structure
 
