@@ -1,6 +1,6 @@
 # House of Rose
 
-Wn advanced aesthetic & wellness brand featuring a modern Astro storefront and Sanity CMS.
+An advanced aesthetic & wellness brand featuring a modern Astro storefront and Sanity CMS.
 
 ## Monorepo Structure
 
