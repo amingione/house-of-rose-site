@@ -3,7 +3,11 @@ import { sanityFetch } from '@/lib/sanity';
 import { ALL_SERVICES_QUERY, ALL_BLOG_POSTS_QUERY, ALL_COLLECTIONS_QUERY, type Service, type BlogPost, type ServiceCollection } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
-  const baseUrl = (site?.toString() ?? 'https://houseofrosefl.com').replace(/\/$/, '');
+  if (!site) {
+    throw new Error('Missing PUBLIC_SITE_URL');
+  }
+
+  const baseUrl = site.toString().replace(/\/$/, '');
 
   const [services, blogPosts, collections] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),

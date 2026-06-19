@@ -34,4 +34,15 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
         .title('Products')
         .schemaType('product')
         .child(S.documentTypeList('product').title('Products')),
+
+      S.divider(),
+
+      S.listItem()
+        .title('Lead Submissions')
+        .schemaType('leadSubmission')
+        .child(
+          S.documentTypeList('leadSubmission')
+            .title('Lead Submissions')
+            .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
+        ),
     ]);

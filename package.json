@@ -5,11 +5,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:web": "npm run dev -w packages/web",
-    "dev:studio": "npm run dev -w packages/studio",
-    "build:web": "npm run build -w packages/web",
-    "build:studio": "npm run build -w packages/studio",
-    "build": "npm run build -w packages/web && npm run build -w packages/studio",
+    "dev:web": "node scripts/run-with-env.mjs npm run dev -w packages/web",
+    "dev:studio": "node scripts/run-with-env.mjs npm run dev -w packages/studio",
+    "build:web": "node scripts/run-with-env.mjs npm run build -w packages/web",
+    "build:studio": "node scripts/run-with-env.mjs npm run build -w packages/studio",
+    "build": "npm run build:web && npm run build:studio",
     "lint": "npm run lint -w packages/web"
   },
   "engines": {

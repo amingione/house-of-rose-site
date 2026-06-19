@@ -534,7 +534,7 @@ Display on service detail:
 **Current State**: ✅ All secure
 
 - [x] No API keys in client code
-- [x] SANITY_API_READ_TOKEN server-only
+- [x] SANITY_API_WRITE_TOKEN server-only for lead submission writes
 - [x] HTTPS enforced via Netlify
 - [x] No user input fields (contact form would need CSP)
 

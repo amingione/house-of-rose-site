@@ -76,13 +76,12 @@ import Hero from '@/components/Hero.astro';
       <form
         name="contact"
         method="POST"
-        action="/thank-you/"
-        data-netlify="true"
+        action="/.netlify/functions/lead-submit"
         netlify-honeypot="bot-field"
         class="space-y-6"
       >
-        <!-- Netlify form detection -->
         <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="source-page" value="/contact/" />
 
         <!-- Honeypot for spam prevention -->
         <p class="hidden">

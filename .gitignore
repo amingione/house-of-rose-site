@@ -1,6 +1,12 @@
 # Dependencies
 node_modules/
 
+# Package manager caches / generated install state
+.npm-cache/
+.npm-logs/
+.npm/
+.pnpm-store/
+
 # Environment — never commit secrets
 .env
 .env.local

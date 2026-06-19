@@ -70,14 +70,14 @@ Required for production builds (set in Netlify dashboard):
 PUBLIC_SANITY_PROJECT_ID=4e7axyi7
 PUBLIC_SANITY_DATASET=production
 PUBLIC_SANITY_API_VERSION=2025-04-26
-SANITY_API_READ_TOKEN=<secret>
+SANITY_API_WRITE_TOKEN=<secret>
 
 # Site configuration
 PUBLIC_SITE_URL=https://houseofrosefl.com
 PUBLIC_BOOKING_EMAIL=book@houseofrosefl.com
 ```
 
-For local development, copy these to `packages/web/.env.local` (gitignored).
+For local development, copy these to root `.env.local` (gitignored). The write token is used only by server-side Netlify Functions that save lead submissions to Sanity.
 
 ## Tech Stack
 

@@ -62,7 +62,7 @@ const organizationData = {
     'House of Rose Aesthetics in Punta Gorda, FL — advanced aesthetics and wellness. Regenerative treatments, injectables, facials, skin analysis, IV hydration, and curated skincare.',
   url: Astro.site?.toString(),
   telephone: '+18449417673',
-  email: 'info@houseofrosefl.com',
+  email: import.meta.env.PUBLIC_BOOKING_EMAIL,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '525 E Olympia Ave, Unit 9',

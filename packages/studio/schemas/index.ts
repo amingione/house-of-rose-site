@@ -6,6 +6,7 @@ import { concern } from './concern';
 import { product } from './product';
 import { testimonial } from './testimonial';
 import { blogPost } from './blogPost';
+import { leadSubmission } from './leadSubmission';
 
 export const schemaTypes = [
   // Singletons
@@ -18,4 +19,5 @@ export const schemaTypes = [
   product,
   testimonial,
   blogPost,
+  leadSubmission,
 ];

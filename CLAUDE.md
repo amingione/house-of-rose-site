@@ -62,7 +62,7 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - `PUBLIC_SANITY_PROJECT_ID` = `4e7axyi7`
 - `PUBLIC_SANITY_DATASET` = `production`
 - `PUBLIC_SANITY_API_VERSION` = `2025-04-26`
-- `SANITY_API_READ_TOKEN` = (secret — stored in Netlify, do not commit)
+- `SANITY_API_WRITE_TOKEN` = (secret — server-side lead submission writes, do not commit)
 - `PUBLIC_SITE_URL` = `https://houseofrosefl.com`
 - `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com`
 
@@ -121,7 +121,7 @@ Production: set in Netlify dashboard
 | `PUBLIC_SANITY_PROJECT_ID` | web | `4e7axyi7` |
 | `PUBLIC_SANITY_DATASET` | web | `production` |
 | `PUBLIC_SANITY_API_VERSION` | web | `2025-04-26` |
-| `SANITY_API_READ_TOKEN` | web | Server-only — never expose to browser |
+| `SANITY_API_WRITE_TOKEN` | web functions | Server-only — creates lead submissions, never expose to browser |
 | `PUBLIC_SITE_URL` | web | Canonical URL for meta/og |
 | `PUBLIC_BOOKING_EMAIL` | web | Used on Book Now `mailto:` links |
 

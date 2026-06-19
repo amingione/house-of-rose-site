@@ -11,10 +11,18 @@ const cfg = JSON.parse(readFileSync(join(homedir(), '.config/sanity/config.json'
 const token = cfg.authToken;
 if (!token) { console.error('No authToken in Sanity CLI config'); process.exit(1); }
 
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET;
+const apiVersion = process.env.SANITY_API_VERSION ?? process.env.PUBLIC_SANITY_API_VERSION;
+
+if (!projectId) { console.error('Missing SANITY_STUDIO_PROJECT_ID or PUBLIC_SANITY_PROJECT_ID'); process.exit(1); }
+if (!dataset) { console.error('Missing SANITY_STUDIO_DATASET or PUBLIC_SANITY_DATASET'); process.exit(1); }
+if (!apiVersion) { console.error('Missing SANITY_API_VERSION or PUBLIC_SANITY_API_VERSION'); process.exit(1); }
+
 const client = createClient({
-  projectId: '4e7axyi7',
-  dataset: 'production',
-  apiVersion: '2025-04-26',
+  projectId,
+  dataset,
+  apiVersion,
   token,
   useCdn: false,
 });

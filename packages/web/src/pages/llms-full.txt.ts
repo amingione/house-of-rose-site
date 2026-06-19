@@ -37,7 +37,11 @@ interface ServiceFull {
 }
 
 export const GET: APIRoute = async ({ site }) => {
-  const base = (site?.toString() ?? 'https://houseofrosefl.com/').replace(/\/$/, '');
+  if (!site) {
+    throw new Error('Missing PUBLIC_SITE_URL');
+  }
+
+  const base = site.toString().replace(/\/$/, '');
 
   const [services, collections, posts] = await Promise.all([
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),

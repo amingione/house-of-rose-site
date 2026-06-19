@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+
+const bookingEmail = import.meta.env.PUBLIC_BOOKING_EMAIL;
+
+if (!bookingEmail) {
+  throw new Error('Missing PUBLIC_BOOKING_EMAIL');
+}
 ---
 
 <BaseLayout
@@ -216,12 +222,12 @@ import Hero from '@/components/Hero.astro';
       <form
         name="suite-rental-application"
         method="POST"
-        action="/thank-you/"
-        data-netlify="true"
+        action="/.netlify/functions/lead-submit"
         netlify-honeypot="bot-field"
         class="space-y-6"
       >
         <input type="hidden" name="form-name" value="suite-rental-application" />
+        <input type="hidden" name="source-page" value="/rent-a-room/" />
         <p class="hidden">
           <label>Don't fill this out if you're human: <input name="bot-field" /></label>
         </p>
@@ -393,7 +399,7 @@ import Hero from '@/components/Hero.astro';
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="mailto:book@houseofrosefl.com" class="btn-outline-white">
+        <a href={`mailto:${bookingEmail}`} class="btn-outline-white">
           Email Us
         </a>
       </div>
