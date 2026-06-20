@@ -2,6 +2,13 @@ import { createClient } from '@sanity/client';
 
 const THANK_YOU_PATH = '/thank-you/';
 
+// ─── Lead notification (Zapier Catch Hook → Gmail) ────────────────────────────
+// The function POSTs each new lead to a Zapier Catch Hook; a 2-step Zap
+// (Webhooks "Catch Hook" → Gmail "Send Email") delivers the alert. This reuses
+// the Gmail account already connected in Zapier — no Gmail credentials live here.
+// Best-effort: a failure must never block a lead from being saved.
+const NOTIFY_TO_DEFAULT = 'info@houseofrosefl.com';
+
 type SubmissionType = 'contact' | 'suiteRental';
 
 interface LeadSubmissionDocument {
@@ -103,6 +110,115 @@ const buildDocument = (
   return document;
 };
 
+const escapeHtml = (value: string): string =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+interface NotificationEmail {
+  subject: string;
+  text: string;
+  html: string;
+}
+
+const buildNotificationEmail = (doc: LeadSubmissionDocument): NotificationEmail => {
+  const typeLabel = doc.submissionType === 'suiteRental' ? 'Suite rental application' : 'Contact / booking enquiry';
+
+  const rows: Array<[string, string | undefined]> = [
+    ['Type', typeLabel],
+    ['Name', doc.name],
+    ['Email', doc.email],
+    ['Phone', doc.phone],
+    ['Message', doc.message],
+    ['Submitted', doc.submittedAt],
+    ['Page', doc.source.page],
+  ];
+
+  if (doc.smsConsent) {
+    const consent = doc.smsConsent.declined
+      ? 'Declined'
+      : [doc.smsConsent.informational ? 'Informational' : null, doc.smsConsent.marketing ? 'Marketing' : null]
+          .filter(Boolean)
+          .join(', ') || 'None selected';
+    rows.push(['SMS consent', consent]);
+  }
+
+  if (doc.suiteRental) {
+    rows.push(
+      ['Specialty', doc.suiteRental.specialty],
+      ['License #', doc.suiteRental.licenseNumber],
+      ['Business', doc.suiteRental.businessName],
+      ['Experience', doc.suiteRental.yearsExperience],
+      ['Insurance ack.', doc.suiteRental.insuranceAcknowledgement ? 'Yes' : 'No'],
+    );
+  }
+
+  const present = rows.filter((r): r is [string, string] => Boolean(r[1]));
+
+  const text = [`New ${typeLabel.toLowerCase()}`, '', ...present.map(([k, v]) => `${k}: ${v}`)].join('\n');
+
+  const html = `<h2>New ${escapeHtml(typeLabel.toLowerCase())}</h2>
+${present
+    .map(([k, v]) => `<p><strong>${escapeHtml(k)}:</strong> ${escapeHtml(v).replaceAll('\n', '<br />')}</p>`)
+    .join('\n')}`;
+
+  return { subject: `New lead: ${doc.name} — ${typeLabel}`, text, html };
+};
+
+/**
+ * Notify about a new lead by POSTing to a Zapier Catch Hook (which sends the
+ * Gmail). Best-effort — logs and swallows any error so the lead-capture flow is
+ * never interrupted by notification problems. The payload is flat and includes a
+ * ready-made subject/body so the Gmail step in the Zap can map fields directly.
+ */
+const sendLeadNotification = async (doc: LeadSubmissionDocument): Promise<void> => {
+  const hookUrl = process.env.LEAD_NOTIFY_ZAP_HOOK_URL;
+  if (!hookUrl) {
+    console.warn('[lead-submit] LEAD_NOTIFY_ZAP_HOOK_URL not set — skipping lead notification.');
+    return;
+  }
+
+  const notifyTo = process.env.LEAD_NOTIFY_TO ?? process.env.PUBLIC_BOOKING_EMAIL ?? NOTIFY_TO_DEFAULT;
+  const { subject, text, html } = buildNotificationEmail(doc);
+
+  const payload = {
+    // Routing / message (map these in the Zap's Gmail step)
+    notifyTo,
+    replyTo: doc.email,
+    subject,
+    bodyText: text,
+    bodyHtml: html,
+    // Raw lead fields (available individually if you prefer custom mapping)
+    submissionType: doc.submissionType,
+    name: doc.name,
+    email: doc.email,
+    phone: doc.phone ?? '',
+    message: doc.message ?? '',
+    page: doc.source.page ?? '',
+    submittedAt: doc.submittedAt,
+    smsConsent: doc.smsConsent ?? null,
+    suiteRental: doc.suiteRental ?? null,
+  };
+
+  try {
+    const response = await fetch(hookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text().catch(() => '(unreadable)');
+      console.error(`[lead-submit] Zapier hook failed ${response.status}: ${errorBody}`);
+    }
+  } catch (error) {
+    console.error('[lead-submit] Zapier hook threw:', error);
+  }
+};
+
 export default async (request: Request): Promise<Response> => {
   if (request.method !== 'POST') {
     return renderResponse('Method Not Allowed', 405);
@@ -159,6 +275,10 @@ export default async (request: Request): Promise<Response> => {
     console.error('[lead-submit] Sanity create failed:', error);
     return renderResponse('Your submission could not be saved. Please try again.', 502);
   }
+
+  // Best-effort notification — the lead is already saved, so we never fail the
+  // request if the email send has trouble.
+  await sendLeadNotification(document);
 
   return redirect(request, THANK_YOU_PATH);
 };
