@@ -551,3 +551,243 @@ export const ALL_MEMBERSHIPS_QUERY = /* groq */ `
 export const ALL_MEMBERSHIP_SLUGS_QUERY = /* groq */ `
   *[_type == "membership" && defined(slug.current)]{ "slug": slug.current }
 `;
+
+// Regenerative Plans — the cross-lane, multi-month programs (Renewal → Regeneration →
+// Restoration). Surfaced on their own /plans page, separate from the monthly lane memberships.
+export const REGENERATIVE_PLANS_QUERY = /* groq */ `
+  *[_type == "membership" && type == "regenerative-plan"] | order(orderRank asc, _createdAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    monthlyPrice,
+    whatsIncluded,
+    perks,
+    "provider": provider->{ title },
+    "linkedServices": linkedServices[]->{ _id, title, "slug": slug.current },
+    "linkedPackages": linkedPackages[]->{ _id, title, "slug": slug.current }
+  }
+`;
+
+// ─── Marketing / SEO / AEO page types — see docs/CONTENT-MODEL-MAP.md ─────────
+
+export interface SeoMeta {
+  metaTitle?: string;
+  metaDescription?: string;
+}
+
+export interface ServiceRef {
+  _id: string;
+  title: string;
+  slug: string;
+  tagline?: string;
+  price?: number | string;
+  duration?: string;
+}
+
+// 2. Cost guide — /cost/[slug]
+export interface CostFactor {
+  factor: string;
+  effect: string;
+}
+
+export interface CostGuide {
+  _id: string;
+  title: string;
+  slug: string;
+  treatment?: ServiceRef;
+  answer: string;
+  priceLow?: number;
+  priceHigh?: number;
+  priceUnit?: string;
+  costFactors?: CostFactor[];
+  whatsIncluded?: string;
+  faqs?: FAQ[];
+  relatedServices?: ServiceRef[];
+  _updatedAt?: string;
+  seo?: SeoMeta;
+}
+
+// 4. Comparison — /compare/[slug]
+export interface ComparisonOption {
+  label: string;
+  summary?: string;
+  bestFor?: string;
+  service?: ServiceRef;
+}
+
+export interface ComparisonRow {
+  attribute: string;
+  valueA?: string;
+  valueB?: string;
+}
+
+export interface Comparison {
+  _id: string;
+  title: string;
+  slug: string;
+  intro: string;
+  optionA?: ComparisonOption;
+  optionB?: ComparisonOption;
+  rows?: ComparisonRow[];
+  verdict?: string;
+  faqs?: FAQ[];
+  _updatedAt?: string;
+  seo?: SeoMeta;
+}
+
+// 5. Local area — /areas/[slug]
+export interface LocalArea {
+  _id: string;
+  title: string;
+  slug: string;
+  city: string;
+  region?: string;
+  intro: string;
+  whyLocal?: string;
+  servedServices?: ServiceRef[];
+  neighborhoods?: string[];
+  faqs?: FAQ[];
+  image?: SanityImage;
+  _updatedAt?: string;
+  seo?: SeoMeta;
+}
+
+// 6. Case study (before/after) — /results/[slug]
+export interface CaseStudy {
+  _id: string;
+  title: string;
+  slug: string;
+  consentGiven?: boolean;
+  treatment?: ServiceRef;
+  concern?: { title: string; slug: string };
+  beforeImage?: SanityImage;
+  afterImage?: SanityImage;
+  clientProfile?: string;
+  protocol?: string;
+  timeframe?: string;
+  outcome?: string;
+  _updatedAt?: string;
+  seo?: SeoMeta;
+}
+
+const SERVICE_REF_FIELDS = /* groq */ `
+  _id, title, "slug": slug.current, tagline, price, duration
+`;
+
+// ── Cost guides ──────────────────────────────────────────────────────────────
+export const ALL_COST_GUIDES_QUERY = /* groq */ `
+  *[_type == "costGuide"] | order(orderRank asc, title asc) {
+    _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit, _updatedAt,
+    "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "costGuide" && slug.current == $slug][0] {
+    _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit,
+    whatsIncluded, costFactors[]{ factor, effect }, faqs[]{ question, answer }, _updatedAt,
+    "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
+    "relatedServices": relatedServices[]->{ ${SERVICE_REF_FIELDS} },
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
+  *[_type == "costGuide" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+// ── Comparisons ──────────────────────────────────────────────────────────────
+const COMPARISON_OPTION_FIELDS = /* groq */ `
+  label, summary, bestFor, "service": service->{ ${SERVICE_REF_FIELDS} }
+`;
+
+export const ALL_COMPARISONS_QUERY = /* groq */ `
+  *[_type == "comparison"] | order(orderRank asc, title asc) {
+    _id, title, "slug": slug.current, intro, _updatedAt,
+    "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
+    "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "comparison" && slug.current == $slug][0] {
+    _id, title, "slug": slug.current, intro, verdict, _updatedAt,
+    "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
+    "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
+    rows[]{ attribute, valueA, valueB },
+    faqs[]{ question, answer },
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
+  *[_type == "comparison" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+// ── Local areas ──────────────────────────────────────────────────────────────
+export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
+  *[_type == "localArea"] | order(orderRank asc, title asc) {
+    _id, title, "slug": slug.current, city, region, intro, _updatedAt,
+    ${IMAGE_FIELDS},
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "localArea" && slug.current == $slug][0] {
+    _id, title, "slug": slug.current, city, region, intro, whyLocal, neighborhoods, _updatedAt,
+    "servedServices": servedServices[]->{ ${SERVICE_REF_FIELDS} },
+    faqs[]{ question, answer },
+    ${IMAGE_FIELDS},
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const ALL_LOCAL_AREA_SLUGS_QUERY = /* groq */ `
+  *[_type == "localArea" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+// ── Case studies (consent-gated) ─────────────────────────────────────────────
+export const ALL_CASE_STUDIES_QUERY = /* groq */ `
+  *[_type == "caseStudy" && consentGiven == true] | order(orderRank asc, _createdAt desc) {
+    _id, title, "slug": slug.current, clientProfile, timeframe, _updatedAt,
+    "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
+    "afterImage": afterImage { asset->{ url, metadata { dimensions } }, alt },
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "caseStudy" && slug.current == $slug && consentGiven == true][0] {
+    _id, title, "slug": slug.current, consentGiven, clientProfile, protocol, timeframe, outcome, _updatedAt,
+    "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
+    "concern": concern->{ title, "slug": slug.current },
+    "beforeImage": beforeImage { asset->{ url, metadata { dimensions } }, alt },
+    "afterImage": afterImage { asset->{ url, metadata { dimensions } }, alt },
+    "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
+  *[_type == "caseStudy" && consentGiven == true && defined(slug.current)]{ "slug": slug.current }
+`;
+
+// ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
+export interface FaqGroup {
+  source: string;
+  slug: string;
+  type: 'service' | 'costGuide' | 'comparison' | 'localArea';
+  faqs: FAQ[];
+}
+
+export const FAQ_AGGREGATE_QUERY = /* groq */ `
+  *[_type in ["service", "costGuide", "comparison", "localArea"] && count(faqs) > 0]
+    | order(_type asc, title asc) {
+      "source": title,
+      "slug": slug.current,
+      "type": _type,
+      faqs[]{ question, answer }
+    }
+`;

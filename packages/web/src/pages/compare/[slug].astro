@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch } from '@/lib/sanity';
+import {
+  ALL_COMPARISON_SLUGS_QUERY,
+  COMPARISON_BY_SLUG_QUERY,
+  type Comparison,
+} from '@/lib/queries';
+import { jsonLd, breadcrumbList, faqPage, article } from '@/lib/structuredData';
+
+export async function getStaticPaths() {
+  const slugs = await sanityFetch<{ slug: string }[]>(ALL_COMPARISON_SLUGS_QUERY);
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const cmp = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug });
+if (!cmp) return Astro.redirect('/services', 307);
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Compare', item: `${site}compare/` },
+  { name: cmp.title, item: canonical },
+]);
+const faq = faqPage(cmp.faqs ?? []);
+const articleSchema = article(
+  { headline: cmp.title, description: cmp.intro, url: canonical, dateModified: cmp._updatedAt },
+  site,
+);
+
+const a = cmp.optionA;
+const b = cmp.optionB;
+const pageTitle = cmp.seo?.metaTitle ?? `${cmp.title} | House of Rose`;
+const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
+  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+
+  <section class="bg-charcoal pt-32 pb-12 px-6">
+    <div class="max-w-[960px] mx-auto">
+      <span class="kicker">Comparison</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-6">{cmp.title}</h1>
+      <p class="text-white/85 text-[17px] leading-relaxed">{cmp.intro}</p>
+    </div>
+  </section>
+
+  {(a || b) && (
+    <section class="bg-charcoal-light py-14 px-6">
+      <div class="max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/10">
+        {[a, b].filter(Boolean).map((opt) => (
+          <div class="bg-charcoal p-8">
+            <h2 class="font-serif text-[24px] text-gold mb-3">{opt!.label}</h2>
+            {opt!.summary && <p class="text-white/80 text-[15px] leading-relaxed mb-4">{opt!.summary}</p>}
+            {opt!.bestFor && (
+              <p class="text-[#888] text-[14px] leading-relaxed"><span class="text-white/70">Best for:</span> {opt!.bestFor}</p>
+            )}
+            {opt!.service && (
+              <a href={`/services/${opt!.service.slug}`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {cmp.rows && cmp.rows.length > 0 && (
+    <section class="bg-charcoal py-14 px-6">
+      <div class="max-w-[960px] mx-auto overflow-x-auto">
+        <table class="w-full border-collapse text-left">
+          <thead>
+            <tr class="border-b border-gold/20">
+              <th class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-white/50 font-normal"></th>
+              <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{a?.label ?? 'Option A'}</th>
+              <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{b?.label ?? 'Option B'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cmp.rows.map((row) => (
+              <tr class="border-b border-white/5">
+                <td class="py-4 pr-4 text-white/70 text-[14px] font-medium">{row.attribute}</td>
+                <td class="py-4 px-4 text-[#999] text-[14px]">{row.valueA}</td>
+                <td class="py-4 px-4 text-[#999] text-[14px]">{row.valueB}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  {cmp.verdict && (
+    <section class="bg-charcoal-light py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Verdict</span>
+        <p class="text-white/85 text-[16px] leading-relaxed whitespace-pre-line">{cmp.verdict}</p>
+      </div>
+    </section>
+  )}
+
+  {cmp.faqs && cmp.faqs.length > 0 && (
+    <section class="bg-charcoal py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
+        <div class="space-y-6">
+          {cmp.faqs.map((f) => (
+            <div class="border-b border-white/5 pb-6">
+              <h2 class="text-white text-[17px] font-medium mb-3">{f.question}</h2>
+              <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="bg-charcoal-light py-12 px-6 border-t border-gold/10">
+    <div class="max-w-[860px] mx-auto text-center">
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white leading-tight mb-6">Not sure which is right for you?</h2>
+      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">A consultation is the fastest way to a confident decision. We'll recommend the right protocol for your skin.</p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book a Consult</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

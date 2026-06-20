@@ -1,89 +1,90 @@
-# "Publish to Site" Button (Zapier ← Notion checkbox)
+# "Publish to Site" Button (Zapier ← Notion checkbox → Netlify)
 
 Draft freely in Notion. Nothing reaches the website until you tick a checkbox — that
-fires a Zap, which runs the GitHub Action, which syncs Notion → Sanity and rebuilds the site.
+fires a Zap, which POSTs to a Netlify **content build hook**, which makes Netlify run
+the Notion → Sanity sync and rebuild the site.
 
 ```
-Notion checkbox ✅  →  Zapier  →  GitHub Action (sync-notion.yml)  →  Sanity write  →  Netlify rebuild
+Notion checkbox ✅  →  Zapier (Webhooks POST)  →  Netlify content build hook
+                       →  Netlify build runs sync + rebuild  →  live site
 ```
 
-The Action only runs on demand (`workflow_dispatch` + `repository_dispatch`). A normal
-code push never triggers a content sync, so drafts stay private until you say so.
+No GitHub token, no Sanity client install. The build hook URL is the only secret, and
+it's unauthenticated by design (knowing the URL is the permission).
+
+## Why drafts stay safe
+
+The sync runs **inside the Netlify build**, but only when the build was started by the
+content hook. `scripts/netlify-content-sync.mjs` checks `INCOMING_HOOK_TITLE`:
+
+- Triggered by the content hook (title contains "Notion" / "Publish content") → run the sync, then build.
+- Any normal git push / deploy → skip the sync, just build.
+
+So pushing code never pulls your in-progress Notion edits onto the site.
 
 ---
 
-## Step 1 — Add GitHub repository secrets
+## Step 1 — Create the Netlify content build hook
 
-In `amingione/house-of-rose-site` → Settings → Secrets and variables → Actions → **New repository secret**:
+Netlify → site **house-of-rose-web** → Site configuration → Build & deploy → **Build hooks** → Add build hook:
 
-| Secret | Value |
-|--------|-------|
-| `NOTION_TOKEN` | Your Notion internal integration token (the four DBs must be connected to it). |
-| `SANITY_API_WRITE_TOKEN` | A Sanity write token (Studio → API → Tokens → "Editor"). |
-| `NETLIFY_BUILD_HOOK_URL` | *(optional)* A Netlify build hook URL — Site → Build & deploy → Build hooks → Add. Without it the sync still runs; the site just won't auto-rebuild. |
+- Name: **`Publish content from Notion`**  ← the name matters; it must contain "Notion" or "Publish content"
+- Branch: `main`
+- Save, then copy the URL (looks like `https://api.netlify.com/build_hooks/abc123…`).
 
-Project id / dataset / API version are already hard-coded in the workflow (`4e7axyi7` / `production` / `2025-04-26`).
+## Step 2 — Add Netlify environment variables
 
-## Step 2 — Make a GitHub token for Zapier
+Same site → Site configuration → Environment variables. Confirm/add:
 
-Zapier needs to call the GitHub API. Create a **fine-grained personal access token**
-(GitHub → Settings → Developer settings → Fine-grained tokens):
+| Variable | Value |
+|----------|-------|
+| `NOTION_TOKEN` | Your Notion internal integration token (the four DBs connected to it). |
+| `SANITY_API_WRITE_TOKEN` | Already set (server-side lead writes). Reused by the sync. |
+| `PUBLIC_SANITY_PROJECT_ID` / `PUBLIC_SANITY_DATASET` / `PUBLIC_SANITY_API_VERSION` | Already set. |
 
-- Repository access: only `amingione/house-of-rose-site`
-- Permissions: **Contents → Read and write** (this is what `repository_dispatch` requires)
-- Copy the token — you'll paste it into the Zap.
+(Only `NOTION_TOKEN` is likely new.)
 
-## Step 3 — A Notion control surface
+## Step 3 — A Notion control checkbox
 
-Add a single control row you can toggle. Two options:
-
-- **Simple:** add a checkbox property named **`Publish to site`** to any small control row (even a one-row database called "Site Controls").
-- Tick it to publish; the last Zap step unchecks it so it's ready next time.
+Add a checkbox property named **`Publish to site`** to a small one-row "Site Controls"
+database (or any control row). Tick it to publish.
 
 ## Step 4 — Build the Zap
 
 **Trigger** — Notion → *Updated Database Item*
-- Database: your control row's database
-- (Zapier polls every 1–15 min depending on plan.)
+- Database: your control row's database.
 
 **Filter** — only continue if `Publish to site` **is true**.
 
-**Action** — Webhooks by Zapier → *Custom Request*  (requires a paid Zapier plan)
-- Method: `POST`
-- URL: `https://api.github.com/repos/amingione/house-of-rose-site/dispatches`
-- Data Pass-Through: off
-- Data (JSON):
-  ```json
-  { "event_type": "sync-notion" }
-  ```
-- Headers:
-  | Key | Value |
-  |-----|-------|
-  | `Authorization` | `Bearer YOUR_FINE_GRAINED_TOKEN` |
-  | `Accept` | `application/vnd.github+json` |
-  | `X-GitHub-Api-Version` | `2022-11-28` |
-  | `User-Agent` | `house-of-rose-zap` |
+**Action** — Webhooks by Zapier → *POST*
+- URL: your Netlify build hook URL from Step 1
+- Payload type: `json`
+- Data: *(leave empty — an empty POST is all the hook needs)*
+- Unflatten: yes (default)
 
 **Action (optional, recommended)** — Notion → *Update Database Item*
-- Set `Publish to site` back to unchecked, so the toggle is reusable.
+- Set `Publish to site` back to unchecked so the toggle is reusable.
 
 ## Step 5 — Test
 
 1. Tick **Publish to site** in Notion.
-2. Watch the run appear under the repo's **Actions** tab (`Sync Notion → Sanity`).
-3. It syncs Sanity, then (if the build hook is set) Netlify rebuilds. New catalog data is live.
+2. In Netlify → Deploys, a new deploy starts; its log shows
+   `[content-sync] Triggered by "Publish content from Notion" — running Notion → Sanity sync...`.
+3. When it finishes, the synced catalog is live.
 
-A successful `dispatches` call returns HTTP **204** with an empty body — that's expected.
+A direct test without Zapier: `curl -X POST "<your build hook URL>"`.
 
 ---
 
-## No-Zapier fallbacks
+## Free fallback button (no Zapier)
 
-- **GitHub button:** Actions tab → *Sync Notion → Sanity* → **Run workflow**. Same result, pressed in GitHub (works in the mobile app too).
-- **Notion native webhook:** if you'd rather skip Zapier entirely, a Notion button block can POST to a **Netlify build hook** URL directly — but that path runs the sync inside the Netlify build instead of the Action. Ask and I'll wire that variant.
+`.github/workflows/sync-notion.yml` does the same thing from GitHub: Actions tab →
+*Publish content (Notion → site)* → **Run workflow**. Add the build hook URL as a repo
+secret named `NETLIFY_CONTENT_HOOK_URL` for it to work. Handy from the GitHub mobile app.
 
 ## What it does / doesn't do
 
 - Upserts by deterministic id — re-runs update, never duplicate.
-- Preserves website-only fields you author in the Studio (see `docs/notion-sync.md`).
+- Preserves website-only fields authored in the Studio (see `docs/notion-sync.md`).
 - Does **not** delete: removing a Notion row won't remove the Sanity doc (delete it in the Studio).
+- A failed sync fails the deploy (so problems are visible) rather than publishing partial data.

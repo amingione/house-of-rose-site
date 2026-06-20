@@ -55,6 +55,26 @@ const isActive = (path: string) =>
 				Services
 			</a>
 			<a
+				href="/memberships/"
+				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+					isActive("/memberships")
+						? "text-gold"
+						: "text-white/90 hover:text-gold"
+				}`}
+			>
+				Memberships
+			</a>
+			<a
+				href="/plans/"
+				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+					isActive("/plans")
+						? "text-gold"
+						: "text-white/90 hover:text-gold"
+				}`}
+			>
+				Plans
+			</a>
+			<a
 				href="/shop/"
 				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
 					isActive("/shop")
@@ -149,6 +169,18 @@ const isActive = (path: string) =>
 				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
 			>
 				Services
+			</a>
+			<a
+				href="/memberships/"
+				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+			>
+				Memberships
+			</a>
+			<a
+				href="/plans/"
+				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-white/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+			>
+				Plans
 			</a>
 			<a
 				href="/shop/"

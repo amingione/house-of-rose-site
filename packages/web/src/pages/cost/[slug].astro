@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch } from '@/lib/sanity';
+import {
+  ALL_COST_GUIDE_SLUGS_QUERY,
+  COST_GUIDE_BY_SLUG_QUERY,
+  type CostGuide,
+} from '@/lib/queries';
+import { jsonLd, breadcrumbList, faqPage, article } from '@/lib/structuredData';
+
+export async function getStaticPaths() {
+  const slugs = await sanityFetch<{ slug: string }[]>(ALL_COST_GUIDE_SLUGS_QUERY);
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug });
+if (!guide) return Astro.redirect('/services', 307);
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const priceRange =
+  guide.priceLow != null && guide.priceHigh != null
+    ? `$${guide.priceLow.toLocaleString()}–$${guide.priceHigh.toLocaleString()}${guide.priceUnit ? ` ${guide.priceUnit}` : ''}`
+    : guide.priceLow != null
+      ? `From $${guide.priceLow.toLocaleString()}${guide.priceUnit ? ` ${guide.priceUnit}` : ''}`
+      : null;
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Pricing', item: `${site}cost/` },
+  { name: guide.title, item: canonical },
+]);
+const faq = faqPage(guide.faqs ?? []);
+const articleSchema = article(
+  { headline: guide.title, description: guide.answer, url: canonical, dateModified: guide._updatedAt },
+  site,
+);
+
+const pageTitle = guide.seo?.metaTitle ?? `${guide.title} | House of Rose`;
+const pageDescription = guide.seo?.metaDescription ?? guide.answer;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
+  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+
+  <section class="bg-charcoal pt-32 pb-12 px-6">
+    <div class="max-w-[860px] mx-auto">
+      <span class="kicker">Pricing Guide</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-6">{guide.title}</h1>
+      <p class="text-white/85 text-[17px] leading-relaxed">{guide.answer}</p>
+      {priceRange && (
+        <p class="mt-6 inline-block border border-gold/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
+          Typical range: <span class="font-medium">{priceRange}</span>
+        </p>
+      )}
+    </div>
+  </section>
+
+  {guide.costFactors && guide.costFactors.length > 0 && (
+    <section class="bg-charcoal-light py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What Affects the Cost</span>
+        <div class="space-y-6">
+          {guide.costFactors.map((f) => (
+            <div class="border-b border-white/5 pb-6">
+              <h2 class="text-white text-[18px] font-medium mb-2">{f.factor}</h2>
+              <p class="text-[#888] text-[14px] leading-relaxed">{f.effect}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {guide.whatsIncluded && (
+    <section class="bg-charcoal py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What's Included</span>
+        <p class="text-white/80 text-[15px] leading-relaxed whitespace-pre-line">{guide.whatsIncluded}</p>
+      </div>
+    </section>
+  )}
+
+  {guide.faqs && guide.faqs.length > 0 && (
+    <section class="bg-charcoal-light py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
+        <div class="space-y-6">
+          {guide.faqs.map((f) => (
+            <div class="border-b border-white/5 pb-6">
+              <h2 class="text-white text-[17px] font-medium mb-3">{f.question}</h2>
+              <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="bg-charcoal py-12 px-6 border-t border-gold/10">
+    <div class="max-w-[860px] mx-auto text-center">
+      {guide.treatment && (
+        <a href={`/services/${guide.treatment.slug}`} class="learn-more inline-block mb-8">
+          ← Explore {guide.treatment.title}
+        </a>
+      )}
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white leading-tight mb-6">Get an exact quote</h2>
+      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">Pricing depends on your skin and goals. Book a private consultation for a personalized plan.</p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

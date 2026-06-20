@@ -6,6 +6,25 @@ NOT Next.js. NOT React. NOT Medusa. NOT Vendure.
 
 Read `CLAUDE.md` before any work.
 
+## Marketing / SEO / AEO — MANDATORY when touching customer-facing content
+
+This site is built for **Answer Engine Optimization** (AI Overviews, ChatGPT/Perplexity) +
+local authority, not just keyword SEO. Before creating or editing any public page or content
+document, read:
+
+- `docs/SEO-AEO-PLAYBOOK.md` — the strategy, the 7 page types, writing rules, the publish checklist.
+- `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc type → route → JSON-LD → GROQ query.
+
+Hard rules (inherited by every task):
+1. Every content page is one of the **7 canonical page types** — never invent ad-hoc page shapes.
+2. Every new content page **MUST ship valid JSON-LD** via `src/lib/structuredData.ts`
+   (never hand-roll schema objects in pages).
+3. **Answer-first, entity-clear, locally grounded** copy (Punta Gorda / Charlotte County / SW FL).
+4. Use real NAP only (canonical in `siteSettings` + `structuredData.ts`) — invent nothing.
+5. No orphan pages: wire internal links + `sitemap.xml.ts` + `llms.txt.ts`.
+6. New page-type doc types: shared `seo` + `faq` objects, registered in `schemas/index.ts`,
+   listed under the Marketing / SEO group in `structure.ts`.
+
 ## Framework Rules
 - Pages are `.astro` files — use Astro component syntax
 - Layouts extend `src/layouts/BaseLayout.astro`

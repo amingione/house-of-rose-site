@@ -1,0 +1,146 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { REGENERATIVE_PLANS_QUERY, type Membership } from '@/lib/queries';
+
+const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
+
+const plans = await sanityFetch<Membership[]>(REGENERATIVE_PLANS_QUERY);
+
+interface Phase {
+  step: string;
+  name: string;
+  description: string;
+}
+
+const phases: Phase[] = [
+  { step: '01', name: 'Reveal', description: 'Clear, resurface, and prepare the canvas.' },
+  { step: '02', name: 'Regenerate', description: 'Stimulate collagen and tissue from within.' },
+  { step: '03', name: 'Restore', description: 'Replace what time has taken, naturally where possible.' },
+  { step: '04', name: 'Sustain', description: 'Protect the investment over time.' },
+];
+---
+
+<BaseLayout
+  title="Regeneration Plans in Punta Gorda, FL | House of Rose Aesthetics"
+  description="The Rose Method regeneration plans — structured, multi-month treatment journeys that rebuild skin quality through timing, consistency, and personalized, provider-guided care in Punta Gorda, FL."
+  preloadImage="/images/house-of-rose-collection.webp"
+>
+  <!-- ── HERO ─────────────────────────────────────────────────────── -->
+  <Hero
+    title="Skin doesn't transform in moments. It transforms through structure."
+    kicker="The Rose Method · Regeneration Plans"
+    description="Most aesthetic care happens in isolation — a facial here, an injection there. A plan is different: a curated, provider-guided program designed for lasting results and skin longevity."
+    size="small"
+    showCTA={true}
+    ctaPrimary={{ text: 'Design Your Plan', href: '/contact' }}
+    ctaSecondary={{ text: 'Book a Consultation', href: BOOKING_URL }}
+    backgroundImage="/images/house-of-rose-collection.webp"
+  />
+
+  <!-- ── THE METHOD ───────────────────────────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="max-w-[700px] mb-12">
+        <span class="kicker">The Method</span>
+        <h2 class="font-serif text-[clamp(24px,3.6vw,38px)] text-white mt-2 mb-4">
+          Not everything at once. Everything at the right time.
+        </h2>
+        <p class="text-[#888] text-[15px] leading-[1.75]">
+          Every plan is a different path through the same four phases — weighted to your skin and your goals, sequenced so results compound rather than scatter.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gold/10">
+        {phases.map((phase) => (
+          <div class="bg-charcoal p-8">
+            <span class="text-gold text-[12px] tracking-[0.22em] uppercase">{phase.step}</span>
+            <h3 class="font-serif text-[22px] text-white mt-3 mb-2">{phase.name}</h3>
+            <p class="text-[#888] text-[14px] leading-[1.6]">{phase.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE PLANS ────────────────────────────────────────────────── -->
+  <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6 border-t border-gold/10">
+    <div class="max-w-[1080px] mx-auto">
+      <div class="max-w-[700px] mb-12">
+        <span class="kicker">The Plans</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2 mb-4">
+          Choose your level of transformation.
+        </h2>
+        <p class="text-[#888] text-[15px] leading-[1.75]">
+          Each plan is structured over several months and built around your consultation. Your provider confirms the right combination for your candidacy and goals.
+        </p>
+      </div>
+
+      {plans.length > 0 ? (
+        <div class="flex flex-col gap-px bg-gold/10">
+          {plans.map((plan, i) => (
+            <article class="bg-charcoal p-[clamp(28px,4vw,48px)] grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
+              <div>
+                <span class="text-gold text-[12px] tracking-[0.22em] uppercase">
+                  {`Plan 0${i + 1}`}
+                </span>
+                <h3 class="font-serif text-[clamp(24px,3vw,32px)] text-white mt-2 mb-4">{plan.title}</h3>
+                {plan.whatsIncluded && (
+                  <p class="text-[#bbb] text-[15px] leading-[1.7] mb-5 max-w-[640px]">{plan.whatsIncluded}</p>
+                )}
+                {plan.perks && (
+                  <p class="text-[#888] text-[13px] leading-[1.6] mb-6 italic">{plan.perks}</p>
+                )}
+                {plan.linkedServices && plan.linkedServices.length > 0 && (
+                  <ul class="flex flex-wrap gap-2">
+                    {plan.linkedServices.map((s) => (
+                      <li class="text-[#bbb] text-[12px] border border-gold/20 rounded-full px-3 py-1">
+                        {s.title}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div class="lg:border-l border-gold/10 lg:pl-8">
+                {plan.monthlyPrice && (
+                  <p class="text-white text-[15px] leading-[1.5] mb-1">
+                    <span class="font-serif text-[26px] text-white block mb-1">Investment</span>
+                    {plan.monthlyPrice}
+                  </p>
+                )}
+                <p class="text-[#666] text-[12px] leading-[1.6] mt-3 mb-6">
+                  Monthly payment options available to support consistency.
+                </p>
+                <a href="/contact" class="btn-gold w-full text-center">Design Your Plan</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="text-[#666] text-[14px]">Our regeneration plans are being curated. Please check back soon.</p>
+      )}
+
+      <p class="text-[#555] text-[12px] leading-[1.7] mt-8 max-w-[760px]">
+        Outcomes are individual and depend on your skin, candidacy, and consistency. Final treatment combinations, intervals, and suitability are determined by your licensed provider. Not every client is a candidate for every service.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
+    <div class="max-w-[640px] mx-auto text-center">
+      <span class="kicker">Begin</span>
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-white leading-tight mt-2 mb-5">
+        Start with a consultation.
+      </h2>
+      <p class="text-[#888] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+        Every plan begins with a private consultation where we design your structured path. We'll guide you from there.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/contact" class="btn-gold">Design Your Plan</a>
+        <a href="/memberships" class="btn-outline-gold">View Memberships</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

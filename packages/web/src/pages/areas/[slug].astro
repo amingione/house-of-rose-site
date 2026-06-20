@@ -1,0 +1,115 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch } from '@/lib/sanity';
+import {
+  ALL_LOCAL_AREA_SLUGS_QUERY,
+  LOCAL_AREA_BY_SLUG_QUERY,
+  type LocalArea,
+} from '@/lib/queries';
+import { jsonLd, breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
+
+export async function getStaticPaths() {
+  const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const area = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
+if (!area) return Astro.redirect('/areas', 307);
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const heroImage = area.image?.asset?.url;
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Areas We Serve', item: `${site}areas/` },
+  { name: area.title, item: canonical },
+]);
+const business = localBusiness({ url: canonical, areaName: `${area.city}, ${area.region ?? 'FL'}`, image: heroImage });
+const faq = faqPage(area.faqs ?? []);
+
+const pageTitle = area.seo?.metaTitle ?? `${area.title} | House of Rose`;
+const pageDescription = area.seo?.metaDescription ?? area.intro;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} image={heroImage}>
+  <script is:inline type="application/ld+json" set:html={jsonLd(business)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+
+  <section
+    class="relative w-full min-h-[44vh] flex items-end bg-charcoal pt-32 pb-12 px-6"
+    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
+  >
+    {heroImage && <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>}
+    <div class="relative z-10 max-w-[960px] mx-auto w-full">
+      <span class="kicker">{area.city}{area.region ? ` · ${area.region}` : ''}</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-5">{area.title}</h1>
+      <p class="text-white/85 text-[17px] max-w-[640px] leading-relaxed">{area.intro}</p>
+    </div>
+  </section>
+
+  {area.whyLocal && (
+    <section class="bg-charcoal-light py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Why House of Rose</span>
+        <p class="text-white/80 text-[15px] leading-relaxed whitespace-pre-line">{area.whyLocal}</p>
+      </div>
+    </section>
+  )}
+
+  {area.servedServices && area.servedServices.length > 0 && (
+    <section class="bg-charcoal py-14 px-6">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Popular in {area.city}</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+          {area.servedServices.map((s) => (
+            <a href={`/services/${s.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter">
+              <h2 class="font-serif text-[20px] text-white mb-2 group-hover:text-gold transition-colors">{s.title}</h2>
+              {s.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-3">{s.tagline}</p>}
+              {s.price && <p class="text-white/70 text-[12px] tracking-[0.16em] uppercase">{s.price}</p>}
+              <span class="learn-more group-hover:text-gold mt-3 inline-block">Learn More</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {area.neighborhoods && area.neighborhoods.length > 0 && (
+    <section class="bg-charcoal-light py-12 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Also Serving Nearby</span>
+        <p class="text-[#888] text-[14px] leading-relaxed">{area.neighborhoods.join(' · ')}</p>
+      </div>
+    </section>
+  )}
+
+  {area.faqs && area.faqs.length > 0 && (
+    <section class="bg-charcoal py-14 px-6">
+      <div class="max-w-[860px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
+        <div class="space-y-6">
+          {area.faqs.map((f) => (
+            <div class="border-b border-white/5 pb-6">
+              <h2 class="text-white text-[17px] font-medium mb-3">{f.question}</h2>
+              <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="bg-charcoal-light py-12 px-6 border-t border-gold/10">
+    <div class="max-w-[860px] mx-auto text-center">
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white leading-tight mb-6">Book your visit from {area.city}</h2>
+      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Ste 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

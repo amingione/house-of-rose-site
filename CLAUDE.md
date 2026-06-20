@@ -92,6 +92,26 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 | `/services/collections` | `services/collections/index.astro` | All collections |
 | `/services/collections/[collection]` | `services/collections/[collection].astro` | Single collection |
 | `/experience` | `experience.astro` | Static |
+| `/cost/[slug]` | `cost/[slug].astro` | Cost guide by slug (`costGuide`) |
+| `/compare/[slug]` | `compare/[slug].astro` | Comparison by slug (`comparison`) |
+| `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |
+| `/results` · `/results/[slug]` | `results/...` | Before/after proof (`caseStudy`) |
+| `/faq` | `faq.astro` | Aggregated FAQ hub (FAQPage JSON-LD) |
+
+---
+
+## Marketing / SEO / AEO Infrastructure
+
+This site is engineered for **Answer Engine Optimization** (AI Overviews, ChatGPT/Perplexity) +
+local authority — see `docs/SEO-AEO-PLAYBOOK.md` and `docs/CONTENT-MODEL-MAP.md`. These are
+**binding** and inherited by every content task (also referenced from `AGENTS.md`).
+
+- **7 canonical page types**: Service, Cost guide, FAQ, Comparison, Local area, Before/after, Process.
+- **Every content page ships JSON-LD** via `src/lib/structuredData.ts` (typed builders — never inline).
+- **AEO content rules**: answer-first, entity-clear, locally grounded (Punta Gorda / Charlotte
+  County / SW FL), honest pricing, no medical overclaiming, no orphan pages.
+- **AEO doc types**: `costGuide`, `comparison`, `localArea`, `caseStudy` (+ shared `seo`, `faq`
+  objects). Canonical NAP lives in `siteSettings`, mirrored in `structuredData.ts` (`LOCAL_BUSINESS`).
 
 ---
 

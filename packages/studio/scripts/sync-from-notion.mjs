@@ -20,7 +20,6 @@
 import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-import { createClient } from '@sanity/client';
 
 // ── Config ───────────────────────────────────────────────────────────────────
 const DRY = process.argv.includes('--dry');
@@ -69,7 +68,21 @@ if (!projectId || !dataset) {
   console.error('Missing Sanity projectId/dataset env (PUBLIC_SANITY_PROJECT_ID / PUBLIC_SANITY_DATASET).');
   process.exit(1);
 }
-const client = createClient({ projectId, dataset, apiVersion, token, useCdn: false });
+
+// Dependency-free Sanity write via the HTTP mutate API (works in any Node context,
+// including the Netlify build — no @sanity/client install needed).
+const MUTATE_URL = `https://${projectId}.api.sanity.io/v${apiVersion}/data/mutate/${dataset}`;
+async function sanityMutate(mutations) {
+  const res = await fetch(MUTATE_URL, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mutations }),
+  });
+  if (!res.ok) {
+    throw new Error(`Sanity mutate -> ${res.status} ${await res.text()}`);
+  }
+  return res.json();
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const clean = (id) => String(id).replace(/-/g, '');
@@ -276,24 +289,31 @@ function mapMembership(page) {
 }
 
 // ── Upsert ────────────────────────────────────────────────────────────────────
+function mutationsFor(doc) {
+  const patch =
+    doc.slug != null
+      ? { id: doc._id, setIfMissing: { slug: { _type: 'slug', current: doc.slug } }, set: doc.sync }
+      : { id: doc._id, set: doc.sync };
+  return [{ createIfNotExists: doc.create }, { patch }];
+}
+
 async function upsert(label, pages, mapper) {
-  let ok = 0;
-  for (const page of pages) {
-    const doc = mapper(page);
-    if (DRY) {
-      console.log(`  [dry] ${doc._type} ${doc._id}  ${doc.sync.title ?? ''}`);
-      ok += 1;
-      continue;
-    }
-    const tx = client.transaction().createIfNotExists(doc.create);
-    const patch = doc.slug
-      ? { setIfMissing: { slug: { _type: 'slug', current: doc.slug } }, set: doc.sync }
-      : { set: doc.sync };
-    tx.patch(doc._id, patch);
-    await tx.commit({ visibility: 'async' });
-    ok += 1;
+  const docs = pages.map(mapper);
+  if (DRY) {
+    for (const doc of docs) console.log(`  [dry] ${doc._type} ${doc._id}  ${doc.sync.title ?? ''}`);
+    console.log(`✓ ${label}: ${docs.length} (dry)`);
+    return;
   }
-  console.log(`✓ ${label}: ${ok}/${pages.length}`);
+  // Batch to keep each request small (each doc = 2 mutations).
+  const BATCH = 40;
+  let ok = 0;
+  for (let i = 0; i < docs.length; i += BATCH) {
+    const slice = docs.slice(i, i + BATCH);
+    const mutations = slice.flatMap(mutationsFor);
+    await sanityMutate(mutations);
+    ok += slice.length;
+  }
+  console.log(`✓ ${label}: ${ok}/${docs.length}`);
 }
 
 // ── Run (dependency order so references resolve to existing docs) ──────────────

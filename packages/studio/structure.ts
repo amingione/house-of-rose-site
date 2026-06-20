@@ -37,6 +37,34 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
 
       S.divider(),
 
+      // Marketing / SEO / AEO page types — see docs/SEO-AEO-PLAYBOOK.md
+      S.listItem()
+        .title('Marketing / SEO')
+        .child(
+          S.list()
+            .title('Marketing / SEO')
+            .items([
+              S.listItem()
+                .title('Cost Guides')
+                .schemaType('costGuide')
+                .child(S.documentTypeList('costGuide').title('Cost Guides')),
+              S.listItem()
+                .title('Comparisons')
+                .schemaType('comparison')
+                .child(S.documentTypeList('comparison').title('Comparisons')),
+              S.listItem()
+                .title('Local Areas')
+                .schemaType('localArea')
+                .child(S.documentTypeList('localArea').title('Local Areas')),
+              S.listItem()
+                .title('Case Studies (Before/After)')
+                .schemaType('caseStudy')
+                .child(S.documentTypeList('caseStudy').title('Case Studies')),
+            ])
+        ),
+
+      S.divider(),
+
       S.listItem()
         .title('Lead Submissions')
         .schemaType('leadSubmission')

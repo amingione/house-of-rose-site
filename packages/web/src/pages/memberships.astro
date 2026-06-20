@@ -126,6 +126,56 @@ const lanes: MembershipLane[] = [
     footnote:
       'Banked amounts apply toward injectable treatments; member pricing applies on top.',
   },
+  {
+    id: 'magnolia',
+    kicker: 'Waxing & Beauty',
+    name: 'The Smooth Ritual Membership',
+    intro:
+      'Your standing wax, included — always smooth, never a last-minute scramble. The boutique answer to the wax-chain pass, with hard wax on every sensitive zone.',
+    tiers: [
+      {
+        name: 'Smooth Ritual — Brow & Lip',
+        price: '25',
+        summary: 'A monthly brow + lip, kept crisp.',
+        benefits: [
+          'Monthly brow + lip wax ($40 value)',
+          '10% off all other waxing',
+          '15% off retail aftercare',
+          'Priority booking',
+        ],
+        value: 'Valued at $40/month',
+        featured: false,
+      },
+      {
+        name: 'Smooth Ritual — Brazilian',
+        price: '59',
+        summary: 'One Brazilian a month, effortlessly smooth.',
+        benefits: [
+          'One Brazilian monthly ($65 value)',
+          '10% off all other waxing',
+          '15% off retail aftercare',
+          'Priority booking & birthday wax',
+        ],
+        value: 'Valued at $65/month',
+        featured: true,
+      },
+      {
+        name: 'Smooth Ritual — Total Body',
+        price: '99',
+        summary: 'Choose your smooth, head to toe.',
+        benefits: [
+          'One each month: Brazilian + Underarms, Full Legs, or Bikini + Underarms',
+          '15% off retail aftercare',
+          'Priority booking & birthday wax',
+          'Complimentary brow cleanup each visit',
+        ],
+        value: 'Valued at up to $93/month',
+        featured: false,
+      },
+    ],
+    footnote:
+      'Hard wax exclusively on every sensitive zone. Missed months roll forward once.',
+  },
 ];
 
 const rider = {
@@ -168,7 +218,7 @@ const rider = {
         Because PRF and ProCell microchanneling are designed to be spaced four to six weeks apart, a monthly rhythm isn't just convenient—it's how results actually compound. Membership keeps you on that cadence.
       </p>
       <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
-        Our memberships are organized by lane: The Lily Membership for advanced aesthetics, The Iris Membership for injectable care, and the Hydrangea add-on for our IV Hydration Lounge. Hold more than one and you join the House Collective—priority booking across every provider, and first invitations to member events.
+        Our memberships are organized by lane: The Lily Membership for advanced aesthetics, The Iris Membership for injectable care, The Smooth Ritual Membership for waxing, and the Hydrangea add-on for our IV Hydration Lounge. Hold more than one and you join the House Collective—priority booking across every provider, and first invitations to member events.
       </p>
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -256,8 +306,22 @@ const rider = {
     </div>
   </section>
 
+  <!-- ── REGENERATIVE PLANS TEASER ────────────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10">
+    <div class="max-w-[960px] mx-auto text-center">
+      <span class="kicker">Beyond Membership</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2 mb-3">
+        The Rose Method Regeneration Plans
+      </h2>
+      <p class="text-[#888] text-[15px] max-w-[560px] mx-auto mb-7 leading-[1.8]">
+        For lasting, structural change, our regeneration plans pair treatments into a guided, multi-month journey—Renewal, Regeneration, and Restoration. A deeper commitment than a monthly membership, designed for transformation.
+      </p>
+      <a href="/plans" class="btn-outline-gold">Explore the Plans</a>
+    </div>
+  </section>
+
   <!-- ── CTA ──────────────────────────────────────────────────────── -->
-  <section class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
+  <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker">Join</span>
       <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-white leading-tight mt-2 mb-5">

@@ -1,6 +1,19 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
-import { ALL_SERVICES_QUERY, ALL_BLOG_POSTS_QUERY, ALL_COLLECTIONS_QUERY, type Service, type BlogPost, type ServiceCollection } from '@/lib/queries';
+import {
+  ALL_SERVICES_QUERY,
+  ALL_BLOG_POSTS_QUERY,
+  ALL_COLLECTIONS_QUERY,
+  ALL_COST_GUIDES_QUERY,
+  ALL_COMPARISONS_QUERY,
+  ALL_LOCAL_AREAS_QUERY,
+  type Service,
+  type BlogPost,
+  type ServiceCollection,
+  type CostGuide,
+  type Comparison,
+  type LocalArea,
+} from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
   if (!site) {
@@ -9,10 +22,13 @@ export const GET: APIRoute = async ({ site }) => {
 
   const base = site.toString().replace(/\/$/, '');
 
-  const [services, posts, collections] = await Promise.all([
+  const [services, posts, collections, costGuides, comparisons, localAreas] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
+    sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
+    sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
+    sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
   ]);
 
   const lines: string[] = [
@@ -30,6 +46,9 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Contact](${base}/contact/): Book a consultation or reach out`,
     `- [Rent a Suite](${base}/rent-a-room/): Private treatment room rentals for licensed aestheticians and wellness professionals`,
     `- [Journal](${base}/blog/): Expert insights on wellness, beauty, and living well in Southwest Florida`,
+    `- [FAQ](${base}/faq/): Answers about treatments, pricing, and what to expect`,
+    `- [Areas We Serve](${base}/areas/): Punta Gorda, Port Charlotte & Southwest Florida`,
+    `- [Results](${base}/results/): Before & after outcomes, shared with client consent`,
     ``,
   ];
 
@@ -47,6 +66,31 @@ export const GET: APIRoute = async ({ site }) => {
       const desc = s.tagline ? ` — ${s.tagline}` : '';
       const price = s.price ? ` Starting at $${s.price}.` : '';
       lines.push(`- [${s.title}](${base}/services/${s.slug}/)${desc}.${price}`);
+    }
+    lines.push(``);
+  }
+
+  if (costGuides.length > 0) {
+    lines.push(`## Pricing Guides`, ``);
+    for (const c of costGuides) {
+      const range = c.priceLow != null && c.priceHigh != null ? ` Typical range $${c.priceLow}–$${c.priceHigh}${c.priceUnit ? ` ${c.priceUnit}` : ''}.` : '';
+      lines.push(`- [${c.title}](${base}/cost/${c.slug}/).${range}`);
+    }
+    lines.push(``);
+  }
+
+  if (comparisons.length > 0) {
+    lines.push(`## Treatment Comparisons`, ``);
+    for (const c of comparisons) {
+      lines.push(`- [${c.title}](${base}/compare/${c.slug}/)${c.intro ? ` — ${c.intro}` : ''}`);
+    }
+    lines.push(``);
+  }
+
+  if (localAreas.length > 0) {
+    lines.push(`## Areas Served`, ``);
+    for (const a of localAreas) {
+      lines.push(`- [${a.title}](${base}/areas/${a.slug}/)${a.intro ? ` — ${a.intro}` : ''}`);
     }
     lines.push(``);
   }
