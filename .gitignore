@@ -54,3 +54,6 @@ next-env.d.ts
 .netlify
 
 # misc
+
+# Git worktrees created by Claude Code
+.claude/worktrees/
