@@ -18,7 +18,10 @@ export const sanityClient = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
   dataset: import.meta.env.PUBLIC_SANITY_DATASET,
   apiVersion: import.meta.env.PUBLIC_SANITY_API_VERSION,
-  useCdn: true,
+  // Static site — all GROQ runs at build time, so fetch fresh (non-CDN) data on every
+  // build. useCdn:true served a stale snapshot and newly published docs (packages,
+  // memberships, plans) failed to appear until the CDN cache expired.
+  useCdn: false,
 });
 
 const builder = imageUrlBuilder(sanityClient);
