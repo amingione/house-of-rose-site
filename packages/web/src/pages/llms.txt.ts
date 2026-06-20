@@ -49,6 +49,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [FAQ](${base}/faq/): Answers about treatments, pricing, and what to expect`,
     `- [Areas We Serve](${base}/areas/): Punta Gorda, Port Charlotte & Southwest Florida`,
     `- [Results](${base}/results/): Before & after outcomes, shared with client consent`,
+    `- [Sitemap](${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
     ``,
   ];
 

@@ -1,20 +1,24 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import {
-  ALL_SERVICES_QUERY,
+  ALL_SITEMAP_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
   ALL_COLLECTIONS_QUERY,
+  ALL_CONCERNS_QUERY,
   ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
-  type Service,
+  ALL_TREATMENT_PACKAGES_QUERY,
+  type SitemapService,
   type BlogPost,
   type ServiceCollection,
+  type Concern,
   type CostGuide,
   type Comparison,
   type LocalArea,
   type CaseStudy,
+  type TreatmentPackage,
 } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
@@ -24,14 +28,16 @@ export const GET: APIRoute = async ({ site }) => {
 
   const baseUrl = site.toString().replace(/\/$/, '');
 
-  const [services, blogPosts, collections, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
-    sanityFetch<Service[]>(ALL_SERVICES_QUERY),
+  const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages] = await Promise.all([
+    sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
+    sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
+    sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   ]);
 
   const now = new Date().toISOString().split('T')[0];
@@ -45,13 +51,19 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/faq/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/areas/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/packages/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/memberships/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/plans/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/skin-analysis/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/shop/`, priority: '0.6', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/sitemap/`, priority: '0.5', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/contact/`, priority: '0.7', changefreq: 'yearly', lastmod: now },
     { loc: `${baseUrl}/rent-a-room/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/privacy-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
   ];
 
-  // Service pages
-  const servicePages = services.map((service) => ({
+  // Service pages — include hub, standalone, and treatment pages.
+  const servicePages = serviceSlugs.map((service) => ({
     loc: `${baseUrl}/services/${service.slug}/`,
     priority: '0.8',
     changefreq: 'monthly',
@@ -75,6 +87,22 @@ export const GET: APIRoute = async ({ site }) => {
     lastmod: now,
   }));
 
+  // Concern pages
+  const concernPages = concerns.map((concern) => ({
+    loc: `${baseUrl}/concerns/${concern.slug}/`,
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: now,
+  }));
+
+  // Package pages
+  const packagePages = packages.map((pkg) => ({
+    loc: `${baseUrl}/packages/${pkg.slug}/`,
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: now,
+  }));
+
   // AEO page types
   const costPages = costGuides.map((c) => ({ loc: `${baseUrl}/cost/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
   const comparePages = comparisons.map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
@@ -82,7 +110,19 @@ export const GET: APIRoute = async ({ site }) => {
   const resultPages = caseStudies.map((cs) => ({ loc: `${baseUrl}/results/${cs.slug}/`, priority: '0.6', changefreq: 'monthly', lastmod: cs._updatedAt ? cs._updatedAt.split('T')[0] : now }));
 
   // Combine all pages
-  const allPages = [...staticPages, ...servicePages, collectionIndexPage, ...collectionPages, ...blogPages, ...costPages, ...comparePages, ...areaPages, ...resultPages];
+  const allPages = [
+    ...staticPages,
+    ...servicePages,
+    collectionIndexPage,
+    ...collectionPages,
+    ...concernPages,
+    ...packagePages,
+    ...blogPages,
+    ...costPages,
+    ...comparePages,
+    ...areaPages,
+    ...resultPages,
+  ];
 
   // Generate XML
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

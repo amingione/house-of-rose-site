@@ -42,6 +42,15 @@ export interface Service {
   seo?: { metaTitle?: string; metaDescription?: string };
 }
 
+export interface SitemapService {
+  _id: string;
+  title: string;
+  slug: string;
+  kind?: ServiceKind;
+  parentService?: { title: string; slug: string };
+  _updatedAt?: string;
+}
+
 export interface Concern {
   _id: string;
   title: string;
@@ -169,6 +178,17 @@ export const ALL_SERVICES_QUERY = /* groq */ `
     ${IMAGE_FIELDS},
     collection->{ title, "slug": slug.current },
     "seo": seo { metaTitle, metaDescription }
+  }
+`;
+
+export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
+  *[_type == "service" && defined(slug.current)] | order(coalesce(parentService->title, title) asc, kind asc, orderRank asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    kind,
+    _updatedAt,
+    "parentService": parentService->{ title, "slug": slug.current }
   }
 `;
 

@@ -79,6 +79,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
     `- **Rent a Suite** (${base}/rent-a-room/): Private treatment room rentals starting at $850/month for licensed aestheticians, massage therapists, and permanent makeup artists`,
     `- **Journal** (${base}/blog/): Articles on wellness, beauty, and living well in Southwest Florida`,
+    `- **Sitemap** (${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
     ``,
     `---`,
     ``,
