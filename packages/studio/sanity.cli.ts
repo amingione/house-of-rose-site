@@ -1,15 +1,11 @@
 import { defineCliConfig } from 'sanity/cli';
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID;
-const dataset = process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET;
-
-if (!projectId) {
-  throw new Error('Missing SANITY_STUDIO_PROJECT_ID or PUBLIC_SANITY_PROJECT_ID');
-}
-
-if (!dataset) {
-  throw new Error('Missing SANITY_STUDIO_DATASET or PUBLIC_SANITY_DATASET');
-}
+// Public, stable constants for this Studio (see sanity.config.ts). Hardcoded
+// fallback keeps CLI commands working without requiring env vars to be set.
+const projectId =
+  process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID ?? '4e7axyi7';
+const dataset =
+  process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET ?? 'production';
 
 export default defineCliConfig({
   api: {

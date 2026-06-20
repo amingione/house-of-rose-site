@@ -4,16 +4,14 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemas';
 import { structure } from './structure';
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID;
-const dataset = process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET;
-
-if (!projectId) {
-  throw new Error('Missing SANITY_STUDIO_PROJECT_ID or PUBLIC_SANITY_PROJECT_ID');
-}
-
-if (!dataset) {
-  throw new Error('Missing SANITY_STUDIO_DATASET or PUBLIC_SANITY_DATASET');
-}
+// projectId/dataset are public, stable constants for this Studio. Only env vars
+// prefixed SANITY_STUDIO_ are inlined into the browser bundle by `sanity build`
+// (PUBLIC_* is Astro's convention and is NOT exposed here), so a hardcoded
+// fallback guarantees the values resolve at runtime in the browser.
+const projectId =
+  process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID ?? '4e7axyi7';
+const dataset =
+  process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET ?? 'production';
 
 export default defineConfig({
   name: 'house-of-rose',
