@@ -79,7 +79,13 @@ async function sanityMutate(mutations) {
     body: JSON.stringify({ mutations }),
   });
   if (!res.ok) {
-    throw new Error(`Sanity mutate -> ${res.status} ${await res.text()}`);
+    const body = await res.text();
+    const authHint =
+      res.status === 401 || res.status === 403
+        ? ' Check SANITY_API_WRITE_TOKEN in Netlify: it must be a Sanity project API token for project ' +
+          `${projectId}/${dataset} with write access to provider, service, treatmentPackage, and membership documents.`
+        : '';
+    throw new Error(`Sanity mutate -> ${res.status} ${body}${authHint}`);
   }
   return res.json();
 }

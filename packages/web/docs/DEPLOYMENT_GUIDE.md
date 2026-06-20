@@ -38,14 +38,14 @@ Navigate to: **Site settings → Environment variables → Add a variable**
 | `PUBLIC_SANITY_PROJECT_ID` | `4e7axyi7` | Builds, Functions, Post processing |
 | `PUBLIC_SANITY_DATASET` | `production` | Builds, Functions, Post processing |
 | `PUBLIC_SANITY_API_VERSION` | `2025-04-26` | Builds, Functions, Post processing |
-| `SANITY_API_WRITE_TOKEN` | `[SECRET]` | Functions |
+| `SANITY_API_WRITE_TOKEN` | `[SECRET]` | Builds, Functions |
 | `PUBLIC_SITE_URL` | `https://houseofrosefl.com` | Builds, Functions, Post processing |
 | `PUBLIC_BOOKING_EMAIL` | `book@houseofrosefl.com` | Builds, Functions, Post processing |
 
 **Where to get `SANITY_API_WRITE_TOKEN`**:
 1. Go to Sanity project: https://sanity.io/manage/personal/project/4e7axyi7
 2. Navigate to **API** → **Tokens**
-3. Create a token with permissions that can create `leadSubmission` documents
+3. Create a project API token with write permissions for lead submissions and the Notion sync document types (`provider`, `service`, `treatmentPackage`, `membership`)
 4. Copy the token (you'll only see it once)
 
 ### Build Settings

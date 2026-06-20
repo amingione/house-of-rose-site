@@ -39,7 +39,7 @@ Same site → Site configuration → Environment variables. Confirm/add:
 | Variable | Value |
 |----------|-------|
 | `NOTION_TOKEN` | Your Notion internal integration token (the four DBs connected to it). |
-| `SANITY_API_WRITE_TOKEN` | Already set (server-side lead writes). Reused by the sync. |
+| `SANITY_API_WRITE_TOKEN` | Sanity project API token with write access to the synced document types. Must be available to Builds, not only Functions. |
 | `PUBLIC_SANITY_PROJECT_ID` / `PUBLIC_SANITY_DATASET` / `PUBLIC_SANITY_API_VERSION` | Already set. |
 
 (Only `NOTION_TOKEN` is likely new.)

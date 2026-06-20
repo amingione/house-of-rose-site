@@ -5,10 +5,10 @@
 # NOTE: Base directory NOT required in Netlify UI — publish path is absolute from repo root
 
 [build]
-  # 1. install deps  2. (only when triggered by the content build hook) pull Notion → Sanity
-  # 3. build the web package. The sync step no-ops on normal git deploys — see
-  # scripts/netlify-content-sync.mjs and docs/publish-button.md.
-  command = "npm install && node scripts/netlify-content-sync.mjs && npm run build -w @house-of-rose/web"
+  # Content lives in Sanity (edited in Sanity Studio). The build just installs deps and builds
+  # the static site, fetching published content at build time. The old Notion→Sanity build-time
+  # sync was removed — it wrote dotted _ids that Sanity treats as private/unreadable.
+  command = "npm install && npm run build -w @house-of-rose/web"
   publish = "packages/web/dist"
 
 [functions]
