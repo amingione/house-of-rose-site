@@ -7,8 +7,7 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy",
-    "sync:notion": "node scripts/sync-from-notion.mjs"
+    "deploy-graphql": "sanity graphql deploy"
   },
   "dependencies": {
     "@sanity/vision": "^6.1.0",
