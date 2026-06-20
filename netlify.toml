@@ -10,7 +10,8 @@
   publish   = "packages/studio/dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # Sanity Studio v6 requires Node >=22.12
+  NODE_VERSION = "22"
 
 # Security headers for the Studio
 [[headers]]

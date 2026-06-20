@@ -13,7 +13,8 @@
   directory = "packages/web/netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # Match monorepo engines floor (Sanity Studio v6 needs Node >=22.12)
+  NODE_VERSION = "22"
 
 # Security headers
 [[headers]]
