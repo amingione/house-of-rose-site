@@ -10,13 +10,13 @@ That position distinguishes House of Rose from larger competitors selling expans
 
 ## Public Estimates: top competitor map
 
-These rankings are directional estimates based on service overlap, proximity, public search visibility, locations, reputation signals, and competitive positioning as of **June 20, 2026**. Public review counts and search results can vary by platform and location.
+These rankings are directional estimates based on service overlap, proximity, public search visibility, locations, reputation signals, and competitive positioning as of **June 20, 2026**. Public review counts and search results can vary by platform and location. **Organic-search claims in this document are now backed by measured Ahrefs data — see [Search visibility — measured](#search-visibility--measured-ahrefs-june-2026).** The threat ranking below is weighted toward menu breadth, footprint, and brand awareness; on organic search specifically, every local competitor is weak (see the measured section), so search is an open lane rather than a defended one.
 
 | Rank  | Competitor                                                        |      Threat | Competitive assessment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ----- | ----------------------------------------------------------------- | ----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **1** | **FIBB Aesthetics, Laser & Wellness / Face It Botox Bar**         |   Very high | Its Punta Gorda location is at 109 E Olympia Avenue, close to House of Rose. It combines injectables, advanced lasers, HydraFacial, Face Reality, microneedling, hormones, peptides, weight loss, memberships, education, recurring promotions, and multiple Southwest Florida locations. Its large treatment menu and substantial client-story content create strong acquisition and SEO advantages. House of Rose should compete through specialization and intimacy—not breadth. ([Face It Botox Bar][2]) |
-| **2** | **Sweet Spot MediSpa**                                            |   Very high | Sweet Spot operates in Punta Gorda and Fort Myers and offers numerous neurotoxins, fillers, lasers, microneedling, skin tightening, body treatments, weight-loss services, and regenerative medicine. It also has a substantial promotion and public-review footprint, giving it strong visibility among price-conscious and comparison-shopping consumers. ([Sweet Spot MediSpa][3])                                                                                                                        |
-| **3** | **Nuview Aesthetics & Wellness**                                  |        High | Nuview’s Punta Gorda location offers CoolPeel CO₂, Morpheus8, IPL, injectables, fillers, PRFM, IV therapies, and GLP-1 programs. Its “less is often more” philosophy overlaps directly with House of Rose’s natural-results message, while its technology portfolio is considerably broader. ([Nuview Aesthetics][4])                                                                                                                                                                                        |
+| **1** | **FIBB Aesthetics, Laser & Wellness / Face It Botox Bar**         |   Very high | Its Punta Gorda location is at 109 E Olympia Avenue, close to House of Rose. It combines injectables, advanced lasers, HydraFacial, Face Reality, microneedling, hormones, peptides, weight loss, memberships, education, recurring promotions, and multiple Southwest Florida locations. Its large treatment menu and substantial client-story content drive acquisition, though its measured organic search footprint is modest (DR 14, ~514 organic visits/mo, 70 ranking keywords — the strongest of the *local* independents but small in absolute terms). House of Rose should compete through specialization and intimacy—not breadth. ([Face It Botox Bar][2]) |
+| **2** | **Sweet Spot MediSpa**                                            |   Very high | Sweet Spot operates in Punta Gorda and Fort Myers and offers numerous neurotoxins, fillers, lasers, microneedling, skin tightening, body treatments, weight-loss services, and regenerative medicine. It also has a substantial promotion and public-review footprint, giving it visibility among price-conscious and comparison-shopping consumers — though its organic search presence is small (DR 7, ~312 organic visits/mo, 55 keywords). Its threat is breadth and promotions, not search authority. ([Sweet Spot MediSpa][3])                                                                                                                        |
+| **3** | **Nuview Aesthetics & Wellness**                                  |        High | Nuview’s Punta Gorda location offers CoolPeel CO₂, Morpheus8, IPL, injectables, fillers, PRFM, IV therapies, and GLP-1 programs. Its “less is often more” philosophy overlaps directly with House of Rose’s natural-results message, while its technology portfolio is considerably broader. Note: despite the device breadth, Nuview is effectively invisible in organic search (DR 0.3, ~6 organic visits/mo, 2 keywords) — its threat is device marketing and brand, not search. ([Nuview Aesthetics][4])                                                                                                                                                                                        |
 | **4** | **Spago Day Spa Salon & MediSpa**                                 |        High | Spago has a longstanding downtown Punta Gorda presence and combines traditional spa services with injectables, skin tightening, hormone therapy, prescription weight loss, liposuction, and surgical services. Its legacy awareness and existing social/review footprint are major strengths, although House of Rose has a more modern and tightly defined brand. ([Spago Day Spa Salon & Medispa][5])                                                                                                       |
 | **5** | **Florida Skin Center / Advanced Dermatology & Cosmetic Surgery** |        High | Located at 329 E Olympia Avenue, this competitor benefits from board-certified dermatology credentials, medical authority, and potential cross-referrals from clinical dermatology. Its cosmetic offering includes Botox, fillers, dermaplaning, lasers, microneedling, PRP, peels, and hair treatments. House of Rose’s advantage is a more luxurious, private, relationship-oriented experience. ([AdvancedDerm][6])                                                                                       |
 | **6** | **Sure Radiance**                                                 | Medium-high | Sure Radiance competes through a highly personal provider relationship, free consultations, injectables, fillers, peels, microneedling, lasers, events, and visible pricing. Its public footprint appears smaller than the leading competitors, but it can attract consumers seeking a direct relationship with a single injector. ([Sure Radiance][7])                                                                                                                                                      |
@@ -26,6 +26,56 @@ These rankings are directional estimates based on service overlap, proximity, pu
 **Skin Sanctuary** and **ästhetik spa & skincare** are significant competitors for recurring facials, microneedling, BioRePeel, dermaplaning, acne services, skincare retail, and wellness-oriented consumers—even though they do not appear to compete as directly in injectables. Skin Sanctuary benefits from longstanding local recognition, while ästhetik has a distinctive Fishermen’s Village location, branded skincare, and active educational content. ([Skin Sanctuary][8])
 
 **Carlisa Health & Wellness** is an adjacent watchlist competitor because of its overlap in Botox, fillers, IV therapy, GLP-1 programs, hormones, Glo2Facial, PRP, and skin treatments. Its medical-primary-care positioning may appeal to consumers who prioritize clinical continuity. ([Carlisa Health and Wellness][9])
+
+## Search visibility — measured (Ahrefs, June 2026)
+
+The search claims below are **measured**, not estimated. Source: Ahrefs Site Explorer + Keywords Explorer (US index), pulled June 20, 2026. (Google Search Console data is not available — no GSC property is connected for houseofrosefl.com — so these are Ahrefs index figures, which slightly under-count brand-new sites but are directly comparable across competitors.)
+
+### The local organic field is wide open
+
+| Business | Domain Rating | Est. organic visits/mo | Organic keywords | Keywords in top 3 | Ref. domains |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Advanced Derm *(national chain, not a local peer)* | 56 | 71,902 | 5,325 | 1,991 | 3,730 |
+| FIBB / Face It Botox Bar | 14 | 514 | 70 | 30 | 254 |
+| Sweet Spot MediSpa | 7 | 312 | 55 | 10 | 205 |
+| Spago Day Spa | 4.4 | 54 | 8 | 4 | 247 |
+| Skin Sanctuary | 0 | 18 | 7 | 1 | 174 |
+| Nuview Aesthetics | 0.3 | 6 | 2 | 1 | 197 |
+| Sure Radiance | 2.2 | 0 | 0 | 0 | 190 |
+| Carlisa Health & Wellness | 2.4 | 0 | 0 | 0 | 184 |
+| **House of Rose** | **0** | **0** | **0** | **0** | **125** |
+
+**What this changes about the strategy:**
+
+* **The threat ranking does not hold on organic search.** The only domain with real organic traffic is Advanced Derm — a national dermatology chain whose 71,902 visits/mo come from the corporate domain, **not** its Punta Gorda location, so it is not a like-for-like local competitor. Among true local independents, the leader (FIBB) pulls ~514 visits/mo from 70 keywords. Nuview and Spago — both ranked "High" threat above — are essentially invisible in organic search. **No local competitor has built search authority that House of Rose has to overcome.**
+* **House of Rose starting at zero is normal, not a crisis.** DR 0 / 0 keywords is the expected state for a newly launched site (note it already has 125 referring domains — a healthy backlink base to build on). The gap to the local leader is ~70 keywords and a few hundred monthly visits — months of work, not years.
+* **Vulnerability #3 below is confirmed but re-framed:** House of Rose is invisible in search *because the site is new*, not because competitors are entrenched. The lane is open; first credible mover wins it.
+
+### The keyword opportunity is regenerative + informational, **not** geo-modified
+
+The doc recommends building "[treatment] in Punta Gorda" pages. Measured volumes show those geo-modified head terms have **almost no search demand**, while the regenerative treatment terms (without a city modifier) have real national volume at near-zero difficulty:
+
+| Keyword | US volume/mo | Difficulty (0–100) | Traffic potential | AI Overview present? | Lane |
+| --- | ---: | ---: | ---: | --- | --- |
+| under eye filler | 21,000 | 12 | 4,400 | Yes | National / informational |
+| prf treatment | 5,000 | 0 | 2,700 | Yes | National / regenerative |
+| prp hair restoration | 2,300 | 31 | 3,600 | Yes | National / regenerative |
+| prf under eye | 1,000 | 0 | 6,600 | Yes | National / regenerative |
+| prf hair restoration | 700 | 0 | 600 | Yes | National / regenerative |
+| ez gel filler | 450 | 0 | 1,400 | Yes | National / regenerative |
+| bio filler | 200 | 0 | 450 | Yes | National / regenerative |
+| natural looking botox | 150 | 0 | 50 | No | National / brand |
+| botox punta gorda | 20 | — | — | n/a | Local (Map Pack) |
+| med spa punta gorda | 0 | — | — | n/a | Local (Map Pack) |
+| microneedling punta gorda | 0 | — | — | n/a | Local (Map Pack) |
+| facials punta gorda | 0 | — | — | n/a | Local (Map Pack) |
+| dermal fillers punta gorda | 0 | — | — | n/a | Local (Map Pack) |
+
+**What this changes:**
+
+* **Don't build geo-modified treatment pages for organic traffic — they have ~0 search volume.** "med spa punta gorda," "microneedling punta gorda," "facials punta gorda," and "dermal fillers punta gorda" each register **0** monthly searches; "botox punta gorda" registers ~20. Local intent in this market is captured through the **Google Business Profile / Map Pack**, not through standalone city-modified landing pages. Prioritize GBP optimization, reviews, and local citations for the "near me / in Punta Gorda" demand.
+* **The real organic prize is regenerative authority content at the national level** — exactly the specialization this analysis recommends. "prf treatment" (5,000/mo, KD 0), "prf under eye" (1,000/mo, KD 0, traffic potential 6,600), "ez gel filler" (450/mo, KD 0), and "under eye filler" (21,000/mo, KD 12) are all low-difficulty and on-strategy. A new DR-0 site can realistically rank for the KD-0 terms.
+* **AI Overviews fire on nearly every regenerative term** (prf treatment, prf under eye, under eye filler, ez gel filler, bio filler all show `ai_overview`). This is direct confirmation that the site's AEO playbook is pointed at the right surface — answer-first, entity-clear PRF/EZ-Gel content has a live AI-Overview citation opportunity that none of the local competitors are contesting.
 
 ## House of Rose’s strongest competitive advantages
 
@@ -67,9 +117,11 @@ The website communicates atmosphere and philosophy well, but the inspected pages
 
 Competitors such as FIBB use extensive client stories, while several others prominently display review signals and galleries. ([Face It Botox Bar][14])
 
-### 3. Organic-search visibility appears underdeveloped
+### 3. Organic-search visibility is undeveloped — but so is everyone's (measured)
 
-In the public search snapshot I reviewed, established competitors repeatedly appeared for high-intent local searches involving Botox, med spas, microneedling, and skincare in Punta Gorda. House of Rose was difficult to find for several non-branded treatment searches. The website’s blog also currently indicates that posts are forthcoming, leaving competitors with active treatment and local-content libraries an advantage. Live rankings may differ by location and personalization. ([House of Rose Aesthetics][15])
+Per Ahrefs (US index, June 20, 2026), House of Rose ranks for **0 organic keywords** with **0 estimated organic visits/mo** (DR 0) — confirming it is currently invisible in non-branded search. The important nuance the measured data adds: **this is a new-site problem, not a competitive moat being held against it.** The strongest local independent (FIBB) ranks for just 70 keywords / ~514 visits a month, and several "high threat" competitors (Nuview, Sure Radiance, Carlisa) rank for 0–2 keywords themselves. No local rival has an entrenched content library to overcome — the one domain with real traffic (Advanced Derm, 71,902 visits/mo) is a national chain, not the local office.
+
+The blog currently shows posts as forthcoming, so the treatment-content library is still to be built — but the upside is concrete: the on-strategy regenerative terms ("prf treatment" 5,000/mo, "prf under eye" 1,000/mo, "ez gel filler" 450/mo) carry **difficulty 0** and trigger AI Overviews, meaning a brand-new site can realistically rank and earn AI-citation visibility. See [Search visibility — measured](#search-visibility--measured-ahrefs-june-2026) for the full data. Live rankings may differ by location and personalization. ([House of Rose Aesthetics][15])
 
 ### 4. Larger competitors can win on devices and promotions
 
@@ -104,17 +156,20 @@ Permanent jewelry can remain a useful event and referral product, but giving it 
 
 ### Own high-intent regenerative searches
 
-Prioritize dedicated, locally optimized pages for:
+**Measured-data correction:** geo-modified head terms ("med spa punta gorda," "microneedling punta gorda," "facials punta gorda" = **0** searches/mo each) carry almost no organic demand, so don't build city-modified landing pages *for organic traffic*. Split the strategy by lane:
 
-* PRF under-eye treatment in Punta Gorda
-* EZ Gel bio-filler in Punta Gorda
-* PRF hair restoration
-* Microneedling for mature skin
-* Natural-looking injectables
-* Acne treatment and Face Reality
-* Med spa memberships for seasonal residents
+**Lane A — National regenerative authority pages (the real organic prize).** Target the low-difficulty, on-strategy treatment terms that actually have volume and trigger AI Overviews:
 
-Each page should answer cost range, candidacy, recovery, treatment sequence, expected timeline, safety, and frequently asked questions. Avoid producing generic 400-word blog posts; create authoritative treatment resources with original practitioner insights.
+* PRF treatment — *5,000/mo, difficulty 0, AI Overview present*
+* PRF under-eye / under-eye filler — *1,000 + 21,000/mo, difficulty 0–12, AI Overview present, traffic potential 6,600*
+* EZ Gel bio-filler — *450/mo, difficulty 0, AI Overview present*
+* PRP / PRF hair restoration — *2,300 + 700/mo, difficulty 0–31, AI Overview present*
+
+Ground each page locally (NAP, "serving Punta Gorda / Charlotte County," local proof) without depending on a city modifier to rank — the page wins the national informational term *and* converts local readers.
+
+**Lane B — Local intent via Google Business Profile, not landing pages.** "near me / in Punta Gorda" demand resolves in the Map Pack. Prioritize GBP optimization, review velocity, and local citations over standalone geo pages. Membership / seasonal-resident and Face Reality / acne pages remain worth building for conversion and internal linking, just not as organic-traffic plays.
+
+Each page should answer cost range, candidacy, recovery, treatment sequence, expected timeline, safety, and frequently asked questions. Avoid producing generic 400-word blog posts; create authoritative treatment resources with original practitioner insights. (Volumes: Ahrefs US, June 2026 — see [Search visibility — measured](#search-visibility--measured-ahrefs-june-2026).)
 
 ### Turn every consultation into measurable proof
 
