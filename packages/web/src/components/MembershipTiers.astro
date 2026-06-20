@@ -1,0 +1,47 @@
+---
+/**
+ * Membership / plan cards.
+ * Renders a set of Membership documents (each a tier / plan / rider) as cards.
+ * Mirrors the Notion "Memberships & Plans" flat model — group by lane at the page level.
+ */
+
+import type { Membership } from '@/lib/queries';
+
+interface Props {
+  memberships: Membership[];
+  heading?: string;
+  intro?: string;
+  bookingHref?: string;
+}
+
+const { memberships, heading, intro, bookingHref = '/contact' } = Astro.props;
+---
+
+<section class="membership">
+  {(heading || intro) && (
+    <header class="max-w-[700px] mb-12">
+      {heading && <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mb-3">{heading}</h2>}
+      {intro && <p class="text-[#888] text-[15px] leading-[1.75]">{intro}</p>}
+    </header>
+  )}
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
+    {memberships.map((plan) => (
+      <article class="flex flex-col bg-charcoal p-8">
+        <h3 class="font-serif text-[22px] text-white mb-1">{plan.title}</h3>
+        {plan.whatsIncluded && <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{plan.whatsIncluded}</p>}
+        {plan.monthlyPrice && (
+          <p class="font-serif text-[32px] text-white leading-none mb-5">
+            {plan.monthlyPrice}
+          </p>
+        )}
+        {plan.perks && (
+          <p class="text-[#bbb] text-[14px] leading-[1.6] mb-8 whitespace-pre-line">{plan.perks}</p>
+        )}
+        <a href={bookingHref} class="mt-auto btn-outline-gold w-full text-center">
+          Become a Member
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

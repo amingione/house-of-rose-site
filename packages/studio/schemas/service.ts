@@ -145,6 +145,68 @@ export const service = defineType({
       ],
       options: { collapsed: true },
     }),
+    // ─── Catalog & pricing (mirrors Notion "HOUSE OF ROSE: Services") ─────────
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Skin Renewal', value: 'skin-renewal' },
+          { title: 'Injectables & Bio-Fillers', value: 'injectables-bio-fillers' },
+          { title: 'Wellness & Restoration', value: 'wellness-restoration' },
+          { title: 'Beauty & Enhancements', value: 'beauty-enhancements' },
+          { title: 'Retail / Home Care', value: 'retail-home-care' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'signatureName',
+      title: 'Signature Name',
+      type: 'string',
+      description: 'Branded name for the service, if different from the title.',
+    }),
+    defineField({
+      name: 'provider',
+      title: 'Provider',
+      type: 'reference',
+      to: [{ type: 'provider' }],
+    }),
+    defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Live', value: 'live' },
+          { title: 'Proposed', value: 'proposed' },
+          { title: 'Parked', value: 'parked' },
+          { title: 'Actual Menu', value: 'actual-menu' },
+          { title: 'Duplicate', value: 'duplicate' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'pricingModel',
+      title: 'Pricing Model',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Per Session', value: 'per-session' },
+          { title: 'Per Unit', value: 'per-unit' },
+          { title: 'Per Area', value: 'per-area' },
+          { title: 'Program', value: 'program' },
+          { title: 'Add-On', value: 'add-on' },
+          { title: 'Consult', value: 'consult' },
+          { title: 'Per Item', value: 'per-item' },
+        ],
+      },
+    }),
+    defineField({ name: 'foundingPrice', title: 'Founding Price', type: 'string' }),
+    defineField({ name: 'rackPrice', title: 'Rack Price', type: 'string' }),
+    defineField({ name: 'memberPrice', title: 'Member Price', type: 'string' }),
+    defineField({ name: 'pricingNotes', title: 'Pricing Notes', type: 'text', rows: 3 }),
+    defineField({ name: 'competitorPricing', title: 'Competitor Pricing', type: 'text', rows: 3 }),
   ],
   orderings: [
     { title: 'Manual Order', name: 'orderRank', by: [{ field: 'orderRank', direction: 'asc' }] },

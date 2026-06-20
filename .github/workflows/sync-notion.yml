@@ -1,0 +1,44 @@
+name: Sync Notion → Sanity
+
+# Manual-only publish. Nothing syncs automatically — the site updates only when
+# this workflow is run, so you can draft freely in Notion until you're ready.
+on:
+  workflow_dispatch:        # "Run workflow" button in the GitHub Actions tab
+  repository_dispatch:      # external trigger (Zapier / Notion webhook)
+    types: [sync-notion]
+
+concurrency:
+  group: sync-notion
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sync Notion → Sanity
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+          PUBLIC_SANITY_PROJECT_ID: 4e7axyi7
+          PUBLIC_SANITY_DATASET: production
+          SANITY_API_VERSION: 2025-04-26
+        run: npm run sync:notion -w packages/studio
+
+      - name: Trigger Netlify rebuild (so the static site shows new data)
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -n "$NETLIFY_BUILD_HOOK_URL" ]; then
+            curl -fsSL -X POST "$NETLIFY_BUILD_HOOK_URL" && echo "Netlify build triggered."
+          else
+            echo "No NETLIFY_BUILD_HOOK_URL secret set — skipping rebuild."
+          fi

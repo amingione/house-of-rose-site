@@ -399,3 +399,155 @@ export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
     }
   }
 `;
+
+// ─── Brand & Growth — mirrors Notion service system ──────────────────────────
+
+export type ProviderLane =
+  | 'advanced-aesthetics'
+  | 'injectables-medical'
+  | 'wellness'
+  | 'classic-facials'
+  | 'beauty-enhancements';
+
+export interface Provider {
+  _id: string;
+  title: string;
+  fullName?: string;
+  lane?: ProviderLane;
+  roleCredential?: string;
+  scopeOfPractice?: string;
+}
+
+export interface BrandPillar {
+  name: string;
+  meaning?: string;
+}
+
+export interface BrandProfile {
+  title: string;
+  angle: string;
+  idealClient?: string;
+  differentiators?: string[];
+  pillars?: BrandPillar[];
+  voiceTraits?: string[];
+  taglines?: string[];
+}
+
+export type PackageType = 'series' | 'journey' | 'combo';
+export type PackageStatus = 'live' | 'proposed' | 'parked';
+
+export interface PackageServiceRef {
+  _id: string;
+  title: string;
+  slug: string;
+  tagline?: string;
+}
+
+export interface TreatmentPackage {
+  _id: string;
+  title: string;
+  slug: string;
+  type?: PackageType;
+  status?: PackageStatus;
+  provider?: { title: string; lane?: ProviderLane };
+  servicesIncluded?: PackageServiceRef[];
+  whatsIncluded?: string;
+  cadence?: string;
+  foundingPrice?: string;
+  rackPrice?: string;
+  outcome?: string;
+  positioning?: string;
+  candidacyNote?: string;
+  image?: SanityImage;
+}
+
+export type MembershipType = 'membership-tier' | 'regenerative-plan' | 'wellness-rider';
+export type MembershipLane =
+  | 'lily'
+  | 'iris'
+  | 'hydrangea'
+  | 'magnolia'
+  | 'house-collective'
+  | 'cross-lane';
+
+export interface Membership {
+  _id: string;
+  title: string;
+  slug: string;
+  type?: MembershipType;
+  lane?: MembershipLane;
+  status?: 'live' | 'proposed' | 'brainstorm';
+  provider?: { title: string };
+  monthlyPrice?: string;
+  whatsIncluded?: string;
+  perks?: string;
+  linkedServices?: { _id: string; title: string; slug: string }[];
+  linkedPackages?: { _id: string; title: string; slug: string }[];
+}
+
+export const BRAND_PROFILE_QUERY = /* groq */ `
+  *[_type == "brandProfile"] | order(_updatedAt desc)[0] {
+    title,
+    angle,
+    idealClient,
+    differentiators,
+    pillars[] { name, meaning },
+    voiceTraits,
+    taglines
+  }
+`;
+
+const PACKAGE_FIELDS = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  type,
+  status,
+  "provider": provider->{ title, lane },
+  "servicesIncluded": servicesIncluded[]->{ _id, title, "slug": slug.current, tagline },
+  whatsIncluded,
+  cadence,
+  foundingPrice,
+  rackPrice,
+  outcome,
+  positioning,
+  candidacyNote,
+  ${IMAGE_FIELDS}
+`;
+
+export const ALL_TREATMENT_PACKAGES_QUERY = /* groq */ `
+  *[_type == "treatmentPackage" && status != "parked"] | order(orderRank asc, _createdAt desc) {
+    ${PACKAGE_FIELDS}
+  }
+`;
+
+export const TREATMENT_PACKAGE_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "treatmentPackage" && slug.current == $slug][0] {
+    ${PACKAGE_FIELDS}
+  }
+`;
+
+export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
+  *[_type == "treatmentPackage" && defined(slug.current)]{ "slug": slug.current }
+`;
+
+export const ALL_MEMBERSHIPS_QUERY = /* groq */ `
+  *[_type == "membership"] | order(orderRank asc, _createdAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    type,
+    lane,
+    status,
+    "provider": provider->{ title },
+    monthlyPrice,
+    whatsIncluded,
+    perks,
+    "linkedServices": linkedServices[]->{ _id, title, "slug": slug.current },
+    "linkedPackages": linkedPackages[]->{ _id, title, "slug": slug.current }
+  }
+`;
+
+export const ALL_MEMBERSHIP_SLUGS_QUERY = /* groq */ `
+  *[_type == "membership" && defined(slug.current)]{ "slug": slug.current }
+`;

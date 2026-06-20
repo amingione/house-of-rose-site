@@ -1,0 +1,77 @@
+---
+/**
+ * Treatment package / series card.
+ * Used on the packages listing page and (expanded) on the package detail page.
+ * Mirrors the Notion "Packages & Series" model — services are real Service refs.
+ */
+
+import { urlFor } from '@/lib/sanity';
+import type { TreatmentPackage } from '@/lib/queries';
+
+interface Props {
+  pkg: TreatmentPackage;
+  /** Render full detail: service rationale, cadence, positioning, pricing, candidacy. */
+  expanded?: boolean;
+}
+
+const { pkg, expanded = false } = Astro.props;
+const headline = pkg.outcome ?? pkg.whatsIncluded ?? '';
+const price = pkg.foundingPrice ?? pkg.rackPrice;
+---
+
+<article class="package-card group block bg-charcoal-lighter">
+  {pkg.image && (
+    <div class="aspect-[4/3] overflow-hidden mb-6">
+      <img
+        src={urlFor(pkg.image).width(640).height(480).fit('crop').url()}
+        alt={pkg.image.alt ?? pkg.title}
+        width={640}
+        height={480}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+  )}
+
+  <div class="px-6 pb-6">
+    <h3 class="font-serif text-2xl text-white mb-2">{pkg.title}</h3>
+    {headline && <p class="text-[#888] text-sm leading-relaxed mb-4">{headline}</p>}
+
+    {pkg.servicesIncluded && pkg.servicesIncluded.length > 0 && (
+      <ul class="space-y-1.5 mb-5">
+        {pkg.servicesIncluded.map((service) => (
+          <li class="text-sm text-[#aaa]">
+            <span class="text-white">{service.title}</span>
+            {expanded && service.tagline && (
+              <span class="text-[#666]"> — {service.tagline}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {expanded && pkg.cadence && (
+      <p class="text-sm text-[#888] mb-3">
+        <span class="text-gold uppercase tracking-wide text-xs">Cadence</span><br />
+        {pkg.cadence}
+      </p>
+    )}
+    {expanded && pkg.positioning && (
+      <p class="text-sm text-[#888] italic mb-5">{pkg.positioning}</p>
+    )}
+
+    {price && (
+      <p class="text-white/80 text-[12px] tracking-[0.16em] uppercase mb-4">{price}</p>
+    )}
+
+    <a
+      href={`/packages/${pkg.slug}`}
+      class="learn-more text-gold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200"
+    >
+      {expanded ? 'Reserve this ritual' : 'Explore the ritual'} <span>→</span>
+    </a>
+
+    {expanded && pkg.candidacyNote && (
+      <p class="text-[11px] text-[#555] leading-relaxed mt-5">{pkg.candidacyNote}</p>
+    )}
+  </div>
+</article>

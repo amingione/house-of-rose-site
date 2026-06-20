@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
+
+const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
+---
+
+<BaseLayout
+  title="Signature Treatment Packages | House of Rose Punta Gorda, FL"
+  description="Curated, results-driven treatment packages at House of Rose — services combined into signature rituals for glow, texture, tone, and renewal in Punta Gorda, FL."
+  preloadImage="/images/house-of-rose-collection.webp"
+>
+  <Hero
+    title="Signature Packages"
+    kicker="Curated Rituals"
+    size="small"
+    backgroundImage="/images/house-of-rose-collection.webp"
+  />
+
+  <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="max-w-[700px] mb-12">
+        <span class="kicker">Results, By Design</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white mt-2 mb-4">
+          Treatments, thoughtfully combined.
+        </h2>
+        <p class="text-[#888] text-[15px] leading-[1.75]">
+          Each package pairs complementary services around a single, clear outcome — sequenced for results that compound. Your provider confirms the right combination for your skin at consultation.
+        </p>
+      </div>
+
+      {packages.length > 0 ? (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {packages.map((pkg) => (
+            <TreatmentPackageCard pkg={pkg} />
+          ))}
+        </div>
+      ) : (
+        <p class="text-[#666] text-[14px]">New signature packages are being curated. Please check back soon.</p>
+      )}
+    </div>
+  </section>
+
+  <!-- Booking CTA -->
+  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <span class="kicker">Reserve Your Experience</span>
+      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
+        Begin Your Transformation
+      </h2>
+      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+        Schedule a private consultation and let our team design a signature ritual around your goals.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
+        </a>
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
+          Book Online
+        </a>
+      </div>
+      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+        525 E Olympia Ave, Ste 9<br />Punta Gorda, FL 33950
+      </p>
+    </div>
+  </section>
+</BaseLayout>

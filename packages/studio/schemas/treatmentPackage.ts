@@ -1,13 +1,19 @@
 import { defineField, defineType } from 'sanity';
 
+/**
+ * Treatment Package — mirrors the Notion "HOUSE OF ROSE: Packages & Series" database.
+ * Operational fields (Type, Status, Provider, Services Included, Founding/Rack pricing,
+ * Cadence) match Notion; marketing fields (outcome, positioning, candidacyNote, image)
+ * are website-only enrichment.
+ */
 export const treatmentPackage = defineType({
   name: 'treatmentPackage',
-  title: 'Treatment Package',
+  title: 'Package / Series',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Package Name',
+      title: 'Package',
       type: 'string',
       validation: (R) => R.required(),
     }),
@@ -19,59 +25,89 @@ export const treatmentPackage = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
-      name: 'outcome',
-      title: 'Ideal Outcome',
-      type: 'text',
-      rows: 2,
-      description: 'Responsible, non-guaranteeing language. The visible/emotional result.',
-      validation: (R) => R.required(),
+      name: 'type',
+      title: 'Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Series', value: 'series' },
+          { title: 'Journey', value: 'journey' },
+          { title: 'Combo / Add-On Bundle', value: 'combo' },
+        ],
+        layout: 'radio',
+      },
     }),
     defineField({
-      name: 'services',
-      title: 'Included Services',
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Live', value: 'live' },
+          { title: 'Proposed', value: 'proposed' },
+          { title: 'Parked', value: 'parked' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'proposed',
+    }),
+    defineField({
+      name: 'provider',
+      title: 'Provider',
+      type: 'reference',
+      to: [{ type: 'provider' }],
+    }),
+    defineField({
+      name: 'servicesIncluded',
+      title: 'Services Included',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({ name: 'name', title: 'Service', type: 'string', validation: (R) => R.required() }),
-            defineField({
-              name: 'rationale',
-              title: 'Why It Belongs',
-              type: 'string',
-              description: 'One line on the role it plays toward the outcome.',
-            }),
-            defineField({
-              name: 'service',
-              title: 'Linked Service (optional)',
-              type: 'reference',
-              to: [{ type: 'service' }],
-              description: 'Optionally link to the canonical service document.',
-            }),
-          ],
-          preview: { select: { title: 'name', subtitle: 'rationale' } },
-        },
-      ],
-      validation: (R) => R.min(2),
+      of: [{ type: 'reference', to: [{ type: 'service' }] }],
+      description: 'The Service documents this package contains (mirrors Notion "Services Included").',
+    }),
+    defineField({
+      name: 'whatsIncluded',
+      title: "What's Included",
+      type: 'text',
+      rows: 3,
+      description: 'Plain-language summary of what the package contains.',
     }),
     defineField({
       name: 'cadence',
-      title: 'Sequencing / Cadence',
+      title: 'Cadence',
       type: 'text',
       rows: 2,
-      description: 'Experience-level guidance only; clinical specifics defer to the provider.',
+      description: 'Experience-level timing/sequencing; clinical specifics defer to the provider.',
+    }),
+    defineField({
+      name: 'foundingPrice',
+      title: 'Founding Price',
+      type: 'string',
+      description: 'Intro / founding-member rate (free text — supports ranges).',
+    }),
+    defineField({
+      name: 'rackPrice',
+      title: 'Rack Price',
+      type: 'string',
+      description: 'Standard published rate (free text — supports ranges).',
+    }),
+    // ─── Website-only marketing enrichment ───────────────────────────────────
+    defineField({
+      name: 'outcome',
+      title: 'Ideal Outcome (website)',
+      type: 'text',
+      rows: 2,
+      description: 'Responsible, non-guaranteeing language. The visible/emotional result.',
     }),
     defineField({
       name: 'positioning',
-      title: 'Premium Positioning Angle',
+      title: 'Premium Positioning Angle (website)',
       type: 'text',
       rows: 2,
     }),
     defineField({
       name: 'candidacyNote',
-      title: 'Candidacy Note',
+      title: 'Candidacy Note (website)',
       type: 'string',
-      description: 'Final combinations confirmed by the licensed provider based on candidacy and contraindications.',
       initialValue:
         'Final treatment combinations are confirmed by your licensed provider based on candidacy, contraindications, and local regulations.',
     }),
@@ -94,6 +130,6 @@ export const treatmentPackage = defineType({
     { title: 'Name A–Z', name: 'titleAsc', by: [{ field: 'title', direction: 'asc' }] },
   ],
   preview: {
-    select: { title: 'title', subtitle: 'outcome', media: 'image' },
+    select: { title: 'title', subtitle: 'type', media: 'image' },
   },
 });

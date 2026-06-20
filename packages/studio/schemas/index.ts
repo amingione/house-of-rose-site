@@ -8,6 +8,7 @@ import { testimonial } from './testimonial';
 import { blogPost } from './blogPost';
 import { leadSubmission } from './leadSubmission';
 import { brandProfile } from './brandProfile';
+import { provider } from './provider';
 import { treatmentPackage } from './treatmentPackage';
 import { membership } from './membership';
 
@@ -23,8 +24,9 @@ export const schemaTypes = [
   testimonial,
   blogPost,
   leadSubmission,
-  // Brand & growth (Luxe Aesthetics Advisor)
+  // Brand & growth (Luxe Aesthetics Advisor) — mirrors Notion service system
   brandProfile,
+  provider,
   treatmentPackage,
   membership,
 ];
