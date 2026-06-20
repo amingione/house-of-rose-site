@@ -7,6 +7,9 @@ import { product } from './product';
 import { testimonial } from './testimonial';
 import { blogPost } from './blogPost';
 import { leadSubmission } from './leadSubmission';
+import { brandProfile } from './brandProfile';
+import { treatmentPackage } from './treatmentPackage';
+import { membership } from './membership';
 
 export const schemaTypes = [
   // Singletons
@@ -20,4 +23,8 @@ export const schemaTypes = [
   testimonial,
   blogPost,
   leadSubmission,
+  // Brand & growth (Luxe Aesthetics Advisor)
+  brandProfile,
+  treatmentPackage,
+  membership,
 ];

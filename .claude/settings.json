@@ -15,5 +15,16 @@
       "Bash(git push:*)"
     ]
   },
-  "outputStyle": "explanatory"
+  "outputStyle": "explanatory",
+  "extraKnownMarketplaces": {
+    "launchwell-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "amingione/launchwell-marketplace"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "luxe-aesthetics-advisor@launchwell-marketplace": true
+  }
 }

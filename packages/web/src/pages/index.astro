@@ -11,25 +11,25 @@ const SHOP_URL = "/shop";
 // Homepage service groups (curated 4-pillar model — not a treatment dump)
 const serviceGroups = [
 	{
-		name: "Regenerative Aesthetics",
+		name: "Regenerative Skin Treatments",
 		description:
 			"ProCell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks.",
 		image: "/images/new-microchanneling.webp",
 	},
 	{
-		name: "Injectables & Advanced Treatments",
+		name: "Injectables & Structural Enhancements",
 		description:
 			"Botox, dermal fillers, PRF under-eye rejuvenation, EZ Gel bio-filler, and PRF hair restoration — chosen with a careful, balanced approach.",
 		image: "/images/new-injectables.webp",
 	},
 	{
-		name: "Skin Health & Treatment Planning",
+		name: "Skin Health & Corrective Care",
 		description:
 			"Face Reality acne care, Glo2Facials, dermaplaning, LED therapy, and personalized skin guidance rooted in what your skin is showing today—not assumptions.",
 		image: "/images/new-facials.png",
 	},
 	{
-		name: "Wellness & Lifestyle Services",
+		name: "Wellness & Performance Support",
 		description:
 			"IV hydration, GLP-1 weight management, permanent jewelry, memberships, and select offerings that complement your aesthetic goals and overall care experience.",
 		image: "/images/new-wellness.webp",
@@ -126,13 +126,13 @@ const organizationData = {
 	<Hero
 		title="HOUSE OF ROSE\nAESTHETICS"
 		subtitle="PUNTA GORDA, FL"
-		kicker="Advanced Aesthetics & Wellness"
-		description="Thoughtful aesthetics, skin health, and wellness—guided with care, precision, and a personalized approach. From regenerative treatments and injectables to advanced facials, skin analysis, and curated home care, every detail is designed to support lasting results."
+		kicker="Refined Aesthetics. Natural Results"
+		description="Precision-driven treatments, regenerative techniques, and personalized care designed to enhance your natural features—not change them. Every treatment plan is intentional, every result is meant to look effortless, and every detail is built around long-term skin health."
 		size="full"
 		centerContent={true}
 		showCTA={true}
-		ctaPrimary={{ text: "Book Online", href: BOOKING_URL }}
-		ctaSecondary={{ text: "Explore Services", href: "/services" }}
+		ctaPrimary={{ text: "Book Your Consultation", href: BOOKING_URL }}
+		ctaSecondary={{ text: "Explore Treatments", href: "/services" }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 	/>
 
@@ -148,16 +148,23 @@ const organizationData = {
 			<p
 				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				House of Rose Aesthetics was created for clients who want more
-				than a quick appointment and a standard treatment menu. Our
-				approach is tailored, intentional, and built around long-term
-				skin health, natural-looking results, and care that feels
-				personal from the start.
+				House of Rose Aesthetics was created for clients who expect
+				more than a standard appointment or transactional treatment
+				menu.
+			</p>
+			<p
+				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+			>
+				Our approach is intentional, results-focused, and built around
+				long-term skin health. Every recommendation is made with
+				precision—balancing advanced aesthetic treatments, regenerative
+				techniques, and personalized care to deliver outcomes that feel
+				refined, natural, and aligned with you.
 			</p>
 			<p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
-				We bring together advanced aesthetics, wellness support, and
-				thoughtfully selected skincare in one refined setting—so your
-				treatment plan feels cohesive, not pieced together.
+				Rather than focusing on isolated services, we design cohesive
+				treatment plans that evolve with your skin, your goals, and the
+				results you want to maintain over time.
 			</p>
 		</div>
 		<div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -183,24 +190,30 @@ const organizationData = {
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-white leading-tight mt-2 mb-7"
 			>
-				Regenerative, restorative, and highly personalized.
+				Where regenerative aesthetics meets precision care.
 			</h2>
 			<p
 				class="text-white/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-4"
 			>
-				Our service menu is designed to support the skin from multiple
-				angles: renewal, correction, maintenance, and home care.
-				Regenerative treatments such as PRF remain one of our signature
-				specialties, but they are part of a broader philosophy centered
-				on healthy skin, informed treatment planning, and results that
-				feel like you—only more refreshed.
+				Our approach is centered on supporting the skin
+				intelligently—from regeneration and correction to maintenance
+				and long-term results.
 			</p>
 			<p
-				class="text-white/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto"
+				class="text-white/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-7"
 			>
-				Rather than taking a one-size-fits-all approach, we focus on
-				what your skin actually needs, when it needs it, and how to
-				support those results over time.
+				Signature treatments such as PRF are part of a broader
+				philosophy: enhancing skin function, restoring balance, and
+				creating visible improvements without overcorrection. Every
+				treatment is selected with purpose, layered strategically, and
+				tailored to how your skin responds over time.
+			</p>
+			<p
+				class="font-serif text-white text-[clamp(17px,2vw,22px)] leading-[1.5] max-w-[560px] mx-auto"
+			>
+				This is not trend-driven aesthetics. This is structured,
+				outcome-focused care designed to deliver results that feel
+				effortless—and last.
 			</p>
 		</div>
 	</section>
@@ -216,10 +229,11 @@ const organizationData = {
 					A curated menu of advanced treatments.
 				</h2>
 				<p class="text-[#888] text-[15px] leading-[1.75]">
-					From skin renewal and corrective treatments to injectables
-					and wellness support, every service at House of Rose is
-					selected to work as part of a larger plan—not just a single
-					visit.
+					A curated selection of treatments designed to work
+					together—not in isolation. Each service at House of Rose is
+					carefully chosen to support real outcomes: improved skin
+					quality, balanced features, and long-term maintenance through
+					personalized treatment planning.
 				</p>
 			</div>
 
@@ -285,18 +299,22 @@ const organizationData = {
 			<p
 				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				Our in-office skin analysis technology helps take the guesswork
-				out of treatment planning. By visually assessing key areas of
-				skin health, it allows us to make more informed recommendations
-				for both services and home care—so your plan is guided by what
-				your skin is actually communicating.
+				Our advanced skin analysis technology allows us to look beyond
+				surface-level concerns and evaluate your skin with greater
+				precision.
 			</p>
 			<p
-				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-7"
+				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				This creates a more precise starting point, a more personalized
-				path forward, and a better understanding of where to focus
-				first.
+				By analyzing key markers of skin health, we're able to create a
+				treatment plan that is guided by real data—not assumptions—
+				resulting in more targeted treatments, more efficient progress,
+				and better long-term outcomes.
+			</p>
+			<p
+				class="text-white/90 text-[15px] italic leading-[1.75] max-w-[560px] mb-7"
+			>
+				It's where every truly personalized plan begins.
 			</p>
 			<div>
 				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex"
@@ -318,17 +336,20 @@ const organizationData = {
 			<p
 				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				Healthy, beautiful skin is rarely built in one visit. Our
-				memberships and treatment plans are designed for clients who
-				want consistency, thoughtful guidance, and a more connected
-				approach to maintenance over time.
+				Results are built over time—and maintained with intention. Our
+				membership options are designed for clients who want consistent
+				care, structured treatment plans, and ongoing access to
+				professional guidance.
 			</p>
 			<p
 				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-7"
 			>
-				Members receive continued access to curated benefits, preferred
-				pricing on select treatments, and product support that makes
-				staying on plan feel simple and well organized.
+				Rather than booking sporadically, members benefit from a more
+				connected approach that supports long-term results and
+				simplifies decision-making. With preferred access, curated
+				treatment pathways, and ongoing support, memberships are the
+				most effective way to stay aligned with your skin goals
+				year-round.
 			</p>
 			<div>
 				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex"
@@ -372,18 +393,19 @@ const organizationData = {
 			<p
 				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				The products we carry are not added for shelf space—they are
-				chosen to support treatment outcomes, simplify home care, and
-				give clients reliable options between appointments. From
-				post-treatment aftercare to acne support, mineral makeup, SPF,
-				and corrective skincare, our product selection is built to work
-				with your plan, not compete with it.
+				Every product we carry is selected to support treatment outcomes
+				and simplify your routine at home. From post-treatment aftercare
+				to acne support, mineral makeup, SPF, and corrective skincare,
+				our selection is built to work with your plan, not compete with
+				it.
 			</p>
 			<p
 				class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-7"
 			>
-				Whether you prefer in-studio guidance or online ordering,
-				recommendations are always made with intention.
+				Rather than overwhelming you with options, we provide curated
+				recommendations tailored to your skin, your treatments, and your
+				long-term goals—so everything you use works together with
+				intention.
 			</p>
 			<div>
 				<a href={SHOP_URL} class="btn-outline-gold inline-flex"
@@ -409,17 +431,17 @@ const organizationData = {
 			<p
 				class="text-white/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-4"
 			>
-				Appointments at House of Rose are designed to feel focused and
-				unhurried. We take the time to understand your goals, evaluate
-				your skin, and make recommendations that feel aligned—not
-				rushed, not excessive, and never based on what happens to be
-				trending.
+				Appointments at House of Rose are designed to feel calm,
+				focused, and entirely personalized. We take the time to
+				understand your goals, evaluate your skin with precision, and
+				recommend treatments that are aligned—not excessive, not rushed,
+				and never driven by trends.
 			</p>
 			<p
 				class="text-white/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto"
 			>
-				You should leave with clarity about what was done, why it was
-				chosen, and how to support your results moving forward.
+				You'll leave with clarity—what was done, why it matters, and
+				exactly how to maintain your results.
 			</p>
 		</div>
 	</section>
@@ -469,14 +491,14 @@ const organizationData = {
 			<h2
 				class="font-serif text-[clamp(28px,5vw,46px)] text-white leading-tight mb-5"
 			>
-				Begin with care that feels personal.
+				Refined results begin with the right plan.
 			</h2>
 			<p
 				class="text-[#999] text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
 			>
-				Advanced treatments. Informed recommendations. A setting
-				designed to feel calm, polished, and considered from start to
-				finish.
+				Advanced treatments, expert guidance, and a setting designed to
+				feel elevated, calm, and intentional—so every step of your
+				experience feels considered.
 			</p>
 			<a
 				href={BOOKING_URL}
@@ -484,7 +506,7 @@ const organizationData = {
 				rel="noopener noreferrer"
 				class="btn-gold"
 			>
-				Reserve Your Appointment
+				Start Your Consultation
 			</a>
 			<p
 				class="text-[#555] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
