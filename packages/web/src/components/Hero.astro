@@ -5,98 +5,141 @@
  */
 
 interface Props {
-  title: string;
-  subtitle?: string;
-  kicker?: string;
-  description?: string;
-  backgroundClass?: string;
-  backgroundImage?: string;
-  size?: 'full' | 'small';
-  showCTA?: boolean;
-  ctaPrimary?: { text: string; href: string };
-  ctaSecondary?: { text: string; href: string };
+	title: string;
+	subtitle?: string;
+	kicker?: string;
+	description?: string;
+	backgroundClass?: string;
+	backgroundImage?: string;
+	size?: "full" | "small";
+	centerContent?: boolean;
+	showCTA?: boolean;
+	ctaPrimary?: { text: string; href: string };
+	ctaSecondary?: { text: string; href: string };
 }
 
 const {
-  title,
-  subtitle,
-  kicker,
-  description,
-  backgroundClass = 'bg-charcoal',
-  backgroundImage,
-  size = 'full',
-  showCTA = false,
-  ctaPrimary,
-  ctaSecondary,
+	title,
+	subtitle,
+	kicker,
+	description,
+	backgroundClass = "bg-charcoal",
+	backgroundImage,
+	size = "full",
+	centerContent = false,
+	showCTA = false,
+	ctaPrimary,
+	ctaSecondary,
 } = Astro.props;
 
-const sizeClasses = size === 'full' ? 'h-screen min-h-[560px]' : 'h-[55vh] min-h-[360px]';
+const sizeClasses =
+	size === "full" ? "h-screen min-h-[560px]" : "h-[55vh] min-h-[360px]";
+
+const titleLines = title.split("\n");
 ---
 
 <section
-  class={`hero relative w-full ${sizeClasses} flex items-end overflow-hidden ${backgroundClass}`}
+	class={`hero relative w-full ${sizeClasses} flex items-end overflow-hidden ${backgroundClass}`}
 >
-  {backgroundImage && (
-    <div class="absolute inset-0">
-      <img
-        src={backgroundImage}
-        alt=""
-        role="presentation"
-        class="w-full h-full object-cover"
-        loading="eager"
-      />
-    </div>
-  )}
-  <!-- Premium gradient overlay -->
-  <div class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.85)] via-[rgba(10,8,6,0.40)] to-[rgba(10,8,6,0.65)]"></div>
+	{
+		backgroundImage && (
+			<div class="absolute inset-0">
+				<img
+					src={backgroundImage}
+					alt=""
+					role="presentation"
+					class="w-full h-full object-cover"
+					loading="eager"
+				/>
+			</div>
+		)
+	}
+	<!-- Premium gradient overlay -->
+	<div
+		class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.85)] via-[rgba(10,8,6,0.40)] to-[rgba(10,8,6,0.65)]"
+	>
+	</div>
 
-  <!-- Content -->
-  <div
-    class={`relative z-10 max-w-[1280px] mx-auto px-6 w-full ${size !== 'full' ? 'pb-12' : ''}`}
-    style={size === 'full' ? 'padding-bottom: clamp(44px,8vh,74px)' : undefined}
-  >
-    {kicker && <span class="kicker">{kicker}</span>}
-    {subtitle && (
-      <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">
-        {subtitle}
-      </span>
-    )}
-    <h1 class="font-serif text-[clamp(36px,8vw,84px)] leading-tight font-normal text-white mb-4">
-      {title}
-    </h1>
-    {description && (
-      <p class="text-white/75 text-base max-w-[430px] leading-relaxed mb-9">
-        {description}
-      </p>
-    )}
-    {showCTA && (ctaPrimary || ctaSecondary) && (
-      <div class="flex gap-3 flex-wrap">
-        {ctaPrimary && (
-          <a
-            href={ctaPrimary.href}
-            class="btn-gold"
-            {...(ctaPrimary.href.startsWith('http') && {
-              target: '_blank',
-              rel: 'noopener noreferrer'
-            })}
-          >
-            {ctaPrimary.text}
-          </a>
-        )}
-        {ctaSecondary && (
-          <a
-            href={ctaSecondary.href}
-            class="btn-outline-white"
-            {...(ctaSecondary.href.startsWith('http') && {
-              target: '_blank',
-              rel: 'noopener noreferrer'
-            })}
-          >
-            {ctaSecondary.text}
-          </a>
-        )}
-      </div>
-    )}
-    <slot />
-  </div>
+	<!-- Content -->
+	<div
+		class={`relative z-10 ${centerContent ? "max-w-[960px] text-center" : "max-w-[1280px]"} mx-auto px-6 w-full ${size !== "full" ? "pb-12" : ""}`}
+		style={size === "full"
+			? "padding-bottom: clamp(44px,8vh,74px)"
+			: undefined}
+	>
+		{
+			kicker && (
+				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-2">
+					{kicker}
+				</span>
+			)
+		}
+		{
+			subtitle && (
+				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-4">
+					{subtitle}
+				</span>
+			)
+		}
+		<h1
+			class="font-serif text-[clamp(36px,8vw,84px)] leading-tight font-normal text-white mb-4"
+		>
+			{
+				titleLines.map((line, index) => (
+					<span
+						class={index === 0 ? "block font-display" : "block"}
+						style={
+							index === 1
+								? "font-family: Arial, sans-serif; font-size: 0.42em; letter-spacing: 0.55em;"
+								: undefined
+						}
+					>
+						{line}
+					</span>
+				))
+			}
+		</h1>
+		{
+			description && (
+				<p
+					class={`text-white/75 text-base max-w-[430px] leading-relaxed mb-9 ${centerContent ? "mx-auto" : ""}`}
+				>
+					{description}
+				</p>
+			)
+		}
+		{
+			showCTA && (ctaPrimary || ctaSecondary) && (
+				<div
+					class={`flex gap-3 flex-wrap ${centerContent ? "justify-center" : ""}`}
+				>
+					{ctaPrimary && (
+						<a
+							href={ctaPrimary.href}
+							class="btn-gold"
+							{...(ctaPrimary.href.startsWith("http") && {
+								target: "_blank",
+								rel: "noopener noreferrer",
+							})}
+						>
+							{ctaPrimary.text}
+						</a>
+					)}
+					{ctaSecondary && (
+						<a
+							href={ctaSecondary.href}
+							class="btn-outline-white"
+							{...(ctaSecondary.href.startsWith("http") && {
+								target: "_blank",
+								rel: "noopener noreferrer",
+							})}
+						>
+							{ctaSecondary.text}
+						</a>
+					)}
+				</div>
+			)
+		}
+		<slot />
+	</div>
 </section>

@@ -33,6 +33,8 @@ export default {
         },
       },
       fontFamily: {
+        // Cochin display face — used for the hero wordmark
+        display: ['Cochin', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
         serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
         sans: [
           'system-ui',

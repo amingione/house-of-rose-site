@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Cochin display face ──────────────────────────────────────────
+   Self-hosted from /public/fonts. Used for the hero wordmark.
+   `swap` keeps the title visible during font load (no FOIT). */
+@font-face {
+  font-family: 'Cochin';
+  src: url('/fonts/Cochin-Regular.woff2') format('woff2'),
+       url('/fonts/Cochin-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cochin';
+  src: url('/fonts/Cochin-Bold.woff2') format('woff2'),
+       url('/fonts/Cochin-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --color-bg: theme('colors.charcoal.DEFAULT');
