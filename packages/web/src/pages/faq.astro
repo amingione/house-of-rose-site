@@ -36,8 +36,8 @@ const routeFor = (g: FaqGroup): string => {
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Answers</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-5">Frequently asked questions</h1>
-      <p class="text-white/80 text-[16px] leading-relaxed">Everything clients ask about treatments, pricing, and what to expect.</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Frequently asked questions</h1>
+      <p class="text-ink/80 text-[16px] leading-relaxed">Everything clients ask about treatments, pricing, and what to expect.</p>
     </div>
   </section>
 
@@ -51,9 +51,9 @@ const routeFor = (g: FaqGroup): string => {
           </div>
           <div class="space-y-5">
             {(g.faqs ?? []).map((f) => (
-              <div class="border-b border-white/5 pb-5">
-                <h3 class="text-white text-[16px] font-medium mb-2">{f.question}</h3>
-                <p class="text-[#888] text-[14px] leading-relaxed">{f.answer}</p>
+              <div class="border-b border-ink/5 pb-5">
+                <h3 class="text-ink text-[16px] font-medium mb-2">{f.question}</h3>
+                <p class="text-[#9a8c78] text-[14px] leading-relaxed">{f.answer}</p>
               </div>
             ))}
           </div>
@@ -67,7 +67,7 @@ const routeFor = (g: FaqGroup): string => {
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold/10">
     <div class="max-w-[860px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white leading-tight mb-6">Still have a question?</h2>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Still have a question?</h2>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book a Consult</a>

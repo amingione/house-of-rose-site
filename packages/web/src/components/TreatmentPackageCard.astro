@@ -33,16 +33,16 @@ const price = pkg.foundingPrice ?? pkg.rackPrice;
   )}
 
   <div class="px-6 pb-6">
-    <h3 class="font-serif text-2xl text-white mb-2">{pkg.title}</h3>
-    {headline && <p class="text-[#888] text-sm leading-relaxed mb-4">{headline}</p>}
+    <h3 class="font-serif text-2xl text-ink mb-2">{pkg.title}</h3>
+    {headline && <p class="text-[#9a8c78] text-sm leading-relaxed mb-4">{headline}</p>}
 
     {pkg.servicesIncluded && pkg.servicesIncluded.length > 0 && (
       <ul class="space-y-1.5 mb-5">
         {pkg.servicesIncluded.map((service) => (
           <li class="text-sm text-[#aaa]">
-            <span class="text-white">{service.title}</span>
+            <span class="text-ink">{service.title}</span>
             {expanded && service.tagline && (
-              <span class="text-[#666]"> — {service.tagline}</span>
+              <span class="text-[#7a6e5c]"> — {service.tagline}</span>
             )}
           </li>
         ))}
@@ -50,17 +50,17 @@ const price = pkg.foundingPrice ?? pkg.rackPrice;
     )}
 
     {expanded && pkg.cadence && (
-      <p class="text-sm text-[#888] mb-3">
+      <p class="text-sm text-[#9a8c78] mb-3">
         <span class="text-gold uppercase tracking-wide text-xs">Cadence</span><br />
         {pkg.cadence}
       </p>
     )}
     {expanded && pkg.positioning && (
-      <p class="text-sm text-[#888] italic mb-5">{pkg.positioning}</p>
+      <p class="text-sm text-[#9a8c78] italic mb-5">{pkg.positioning}</p>
     )}
 
     {price && (
-      <p class="text-white/80 text-[12px] tracking-[0.16em] uppercase mb-4">{price}</p>
+      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4">{price}</p>
     )}
 
     <a
@@ -71,7 +71,7 @@ const price = pkg.foundingPrice ?? pkg.rackPrice;
     </a>
 
     {expanded && pkg.candidacyNote && (
-      <p class="text-[11px] text-[#555] leading-relaxed mt-5">{pkg.candidacyNote}</p>
+      <p class="text-[11px] text-[#7a6e5c] leading-relaxed mt-5">{pkg.candidacyNote}</p>
     )}
   </div>
 </article>

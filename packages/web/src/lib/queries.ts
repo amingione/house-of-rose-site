@@ -24,6 +24,8 @@ export type ServiceKind = 'hub' | 'treatment' | 'standalone';
 export interface Service {
   _id: string;
   title: string;
+  /** Branded botanical name (e.g. "The Gilded Lily"); `title` holds the technical name. */
+  signatureName?: string;
   slug: string;
   kind?: ServiceKind;
   parentService?: { title: string; slug: string };
@@ -169,6 +171,7 @@ export const ALL_SERVICES_QUERY = /* groq */ `
   *[_type == "service" && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
     _id,
     title,
+    signatureName,
     "slug": slug.current,
     kind,
     tagline,
@@ -196,12 +199,14 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
   *[_type == "service" && slug.current == $slug][0] {
     _id,
     title,
+    signatureName,
     "slug": slug.current,
     kind,
     "parentService": parentService->{ title, "slug": slug.current },
     "treatments": *[_type == "service" && parentService._ref == ^._id] | order(orderRank asc, title asc) {
       _id,
       title,
+      signatureName,
       "slug": slug.current,
       tagline,
       price,

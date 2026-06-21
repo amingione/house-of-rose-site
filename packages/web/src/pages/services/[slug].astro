@@ -117,7 +117,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
-      <a href={service.parentService ? `/services/${service.parentService.slug}` : '/services'} class="inline-flex items-center gap-2 text-white/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+      <a href={service.parentService ? `/services/${service.parentService.slug}` : '/services'} class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> {service.parentService ? service.parentService.title : 'All Services'}
       </a>
       {service.tagline && (
@@ -125,11 +125,14 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {service.tagline}
         </span>
       )}
-      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-white">
-        {service.title}
+      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory">
+        {service.signatureName ?? service.title}
       </h1>
+      {service.signatureName && (
+        <p class="mt-2 text-ivory/65 text-[13px] tracking-[0.22em] uppercase">{service.title}</p>
+      )}
       {(service.price || service.duration) && (
-        <p class="mt-3 text-white/70 text-[13px] tracking-[0.18em] uppercase">
+        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase">
           {service.price}{service.price && service.duration && <span class="text-gold mx-2">·</span>}{service.duration}
         </p>
       )}
@@ -141,7 +144,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     <!-- What It Is -->
     <div>
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What It Is</span>
-      <p class="text-white/80 text-[15px] leading-relaxed">
+      <p class="text-ink/80 text-[15px] leading-relaxed">
         {service.description ?? 'Details coming soon.'}
       </p>
     </div>
@@ -151,14 +154,14 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       {service.whoItsFor && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Who It's For</span>
-          <p class="text-[#888] text-[14px] leading-relaxed">{service.whoItsFor}</p>
+          <p class="text-[#9a8c78] text-[14px] leading-relaxed">{service.whoItsFor}</p>
         </div>
       )}
 
       {service.process && service.process.length > 0 && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Process</span>
-          <ol class="list-decimal list-inside space-y-2 text-[#888] text-[14px] leading-relaxed">
+          <ol class="list-decimal list-inside space-y-2 text-[#9a8c78] text-[14px] leading-relaxed">
             {service.process.map((step) => (
               <li>{step}</li>
             ))}
@@ -173,15 +176,15 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
       <div class="max-w-[1280px] mx-auto">
         <span class="kicker">Treatments</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2 mb-10">
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
           Choose your protocol
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
           {service.treatments.map((t) => (
             <a href={`/services/${t.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter">
-              <h3 class="font-serif text-[20px] text-white mb-2 group-hover:text-gold transition-colors">{t.title}</h3>
+              <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors">{t.title}</h3>
               {t.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-4">{t.tagline}</p>}
-              <p class="text-white/70 text-[12px] tracking-[0.16em] uppercase">
+              <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
                 {t.price}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration}
               </p>
               <span class="learn-more group-hover:text-gold mt-3 inline-block">View Treatment</span>
@@ -201,8 +204,8 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         </span>
         <div class="space-y-6">
           {service.faqs.map((faq) => (
-            <div class="border-b border-white/5 pb-6">
-              <h3 class="text-white text-[17px] font-medium mb-3">{faq.question}</h3>
+            <div class="border-b border-ink/5 pb-6">
+              <h3 class="text-ink text-[17px] font-medium mb-3">{faq.question}</h3>
               <p class="text-[#777] text-[14px] leading-relaxed">{faq.answer}</p>
             </div>
           ))}
@@ -246,7 +249,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
     <div class="max-w-[840px] mx-auto text-center">
       <span class="kicker">Reserve Your Experience</span>
-      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-white leading-tight mb-4">
+      <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         Ready to experience {service.title}?
       </h2>
       <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
@@ -260,7 +263,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           Book Online
         </a>
       </div>
-      <p class="text-[#444] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+      <p class="text-[#8a7c66] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Ste 9<br />Punta Gorda, FL 33950
       </p>
     </div>

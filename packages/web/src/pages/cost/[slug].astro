@@ -50,8 +50,8 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Pricing Guide</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-6">{guide.title}</h1>
-      <p class="text-white/85 text-[17px] leading-relaxed">{guide.answer}</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6">{guide.title}</h1>
+      <p class="text-ink/85 text-[17px] leading-relaxed">{guide.answer}</p>
       {priceRange && (
         <p class="mt-6 inline-block border border-gold/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
           Typical range: <span class="font-medium">{priceRange}</span>
@@ -66,9 +66,9 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What Affects the Cost</span>
         <div class="space-y-6">
           {guide.costFactors.map((f) => (
-            <div class="border-b border-white/5 pb-6">
-              <h2 class="text-white text-[18px] font-medium mb-2">{f.factor}</h2>
-              <p class="text-[#888] text-[14px] leading-relaxed">{f.effect}</p>
+            <div class="border-b border-ink/5 pb-6">
+              <h2 class="text-ink text-[18px] font-medium mb-2">{f.factor}</h2>
+              <p class="text-[#9a8c78] text-[14px] leading-relaxed">{f.effect}</p>
             </div>
           ))}
         </div>
@@ -80,7 +80,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
     <section class="bg-charcoal py-14 px-6">
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What's Included</span>
-        <p class="text-white/80 text-[15px] leading-relaxed whitespace-pre-line">{guide.whatsIncluded}</p>
+        <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line">{guide.whatsIncluded}</p>
       </div>
     </section>
   )}
@@ -91,8 +91,8 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
         <div class="space-y-6">
           {guide.faqs.map((f) => (
-            <div class="border-b border-white/5 pb-6">
-              <h2 class="text-white text-[17px] font-medium mb-3">{f.question}</h2>
+            <div class="border-b border-ink/5 pb-6">
+              <h2 class="text-ink text-[17px] font-medium mb-3">{f.question}</h2>
               <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
             </div>
           ))}
@@ -108,7 +108,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
           ← Explore {guide.treatment.title}
         </a>
       )}
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white leading-tight mb-6">Get an exact quote</h2>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Get an exact quote</h2>
       <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">Pricing depends on your skin and goals. Book a private consultation for a personalized plan.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>

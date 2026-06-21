@@ -9,6 +9,7 @@ import type { SanityImage } from '@/lib/queries';
 
 interface Props {
   title: string;
+  signatureName?: string;
   slug: string;
   tagline?: string;
   image?: SanityImage;
@@ -16,7 +17,10 @@ interface Props {
   number?: string;
 }
 
-const { title, slug, tagline, image, variant = 'grid', number } = Astro.props;
+const { title, signatureName, slug, tagline, image, variant = 'grid', number } = Astro.props;
+// Lead with the branded signature name; show the technical name as a subtitle.
+const headline = signatureName ?? title;
+const subName = signatureName ? title : undefined;
 ---
 
 {variant === 'grid' ? (
@@ -32,12 +36,13 @@ const { title, slug, tagline, image, variant = 'grid', number } = Astro.props;
         />
       </div>
     )}
-    <span class="service-name">{title}</span>
+    <span class="service-name">{headline}</span>
+    {subName && <span class="block text-gold/70 text-[11px] tracking-[0.18em] uppercase mt-1">{subName}</span>}
     {tagline && <p class="service-desc mt-1">{tagline}</p>}
     <span class="learn-more group-hover:text-gold">Learn More</span>
   </a>
 ) : (
-  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-white/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6">
+  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-ink/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6">
     {image && (
       <div class="w-28 h-28 flex-shrink-0 overflow-hidden bg-charcoal-lighter">
         <img
@@ -50,9 +55,10 @@ const { title, slug, tagline, image, variant = 'grid', number } = Astro.props;
       </div>
     )}
     <div class="flex-1">
-      {number && <p class="text-[#444] text-xs mb-1">{number}</p>}
-      <h3 class="font-serif text-2xl text-white mb-2">{title}</h3>
-      {tagline && <p class="text-[#666] text-sm leading-relaxed">{tagline}</p>}
+      {number && <p class="text-[#8a7c66] text-xs mb-1">{number}</p>}
+      <h3 class="font-serif text-2xl text-ink mb-1">{headline}</h3>
+      {subName && <p class="text-gold/70 text-[11px] tracking-[0.18em] uppercase mb-2">{subName}</p>}
+      {tagline && <p class="text-[#7a6e5c] text-sm leading-relaxed">{tagline}</p>}
     </div>
     <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
   </a>

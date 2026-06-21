@@ -20,18 +20,18 @@ const { memberships, heading, intro, bookingHref = '/contact' } = Astro.props;
 <section class="membership">
   {(heading || intro) && (
     <header class="max-w-[700px] mb-12">
-      {heading && <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mb-3">{heading}</h2>}
-      {intro && <p class="text-[#888] text-[15px] leading-[1.75]">{intro}</p>}
+      {heading && <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mb-3">{heading}</h2>}
+      {intro && <p class="text-[#9a8c78] text-[15px] leading-[1.75]">{intro}</p>}
     </header>
   )}
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
     {memberships.map((plan) => (
       <article class="flex flex-col bg-charcoal p-8">
-        <h3 class="font-serif text-[22px] text-white mb-1">{plan.title}</h3>
+        <h3 class="font-serif text-[22px] text-ink mb-1">{plan.title}</h3>
         {plan.whatsIncluded && <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{plan.whatsIncluded}</p>}
         {plan.monthlyPrice && (
-          <p class="font-serif text-[32px] text-white leading-none mb-5">
+          <p class="font-serif text-[32px] text-ink leading-none mb-5">
             {plan.monthlyPrice}
           </p>
         )}
