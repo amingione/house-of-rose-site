@@ -8,7 +8,7 @@ const { services = [] } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-charcoal-light border-t border-white/5 py-11 px-6">
+<footer class="bg-charcoal-light border-t border-ink/5 py-11 px-6">
 	<div class="max-w-[1280px] mx-auto">
 		<!-- Top section -->
 		<div class="flex justify-between flex-wrap gap-8 mb-8">
@@ -20,7 +20,7 @@ const currentYear = new Date().getFullYear();
 					House of Rose Aesthetics
 				</p>
 				<p
-					class="text-[#444] text-[10px] tracking-[0.38em] uppercase mt-1"
+					class="text-[#8a7c66] text-[10px] tracking-[0.38em] uppercase mt-1"
 				>
 					Punta Gorda, FL
 				</p>
@@ -32,43 +32,43 @@ const currentYear = new Date().getFullYear();
 				<div class="flex flex-col gap-0.5">
 					<a
 						href="/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Home
 					</a>
 					<a
 						href="/services/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Services
 					</a>
 					<a
 						href="/experience/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Experience
 					</a>
 					<a
 						href="/blog/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Journal
 					</a>
 					<a
 						href="/contact/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Contact
 					</a>
 					<a
 						href="/rent-a-room/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Rent a Suite
 					</a>
 					<a
 						href="/privacy-policy/"
-						class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+						class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
 						Privacy Policy
 					</a>
@@ -76,10 +76,10 @@ const currentYear = new Date().getFullYear();
 
 				<!-- Resources / AEO hubs -->
 					<div class="flex flex-col gap-0.5">
-						<a href="/faq/" class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">FAQ</a>
-						<a href="/areas/" class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Areas We Serve</a>
-						<a href="/results/" class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Results</a>
-						<a href="/sitemap/" class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Sitemap</a>
+						<a href="/faq/" class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">FAQ</a>
+						<a href="/areas/" class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Areas We Serve</a>
+						<a href="/results/" class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Results</a>
+						<a href="/sitemap/" class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Sitemap</a>
 					</div>
 
 					<!-- Service Links -->
@@ -89,7 +89,7 @@ const currentYear = new Date().getFullYear();
 							{services.slice(0, 5).map((service) => (
 								<a
 									href={`/services/${service.slug}`}
-									class="footer-link text-[#555] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+									class="footer-link text-[#7a6e5c] tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 								>
 									{service.title}
 								</a>
@@ -102,13 +102,13 @@ const currentYear = new Date().getFullYear();
 
 		<!-- Bottom section -->
 		<div
-			class="border-t border-white/5 pt-5 flex justify-between flex-wrap gap-1.5"
+			class="border-t border-ink/5 pt-5 flex justify-between flex-wrap gap-1.5"
 		>
-			<p class="text-[#333] text-[10px] tracking-[0.16em]">
+			<p class="text-[#5f5446] text-[10px] tracking-[0.16em]">
 				© {currentYear} House of Rose LLC. All rights reserved.
 			</p>
 			<address
-				class="not-italic text-[#333] text-[10px] tracking-[0.16em] text-right"
+				class="not-italic text-[#5f5446] text-[10px] tracking-[0.16em] text-right"
 			>
 				<span
 					>525 E Olympia Ave, Unit 9 &mdash; Punta Gorda, FL 33950</span

@@ -81,13 +81,13 @@ const faqs = [
   <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
       <span class="kicker">What It Is</span>
-      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
         A clearer starting point.
       </h2>
-      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4">
         Most treatment plans begin with a guess. Ours begins with a closer look. Using in-studio skin analysis, we assess the areas that matter most—so we can recommend treatments and home care based on evidence, not assumptions.
       </p>
-      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
+      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]">
         It's a more precise starting point, a more personalized path forward, and a clearer understanding of where to focus first.
       </p>
     </div>
@@ -108,7 +108,7 @@ const faqs = [
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[640px] mb-12">
         <span class="kicker">How It Works</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2">
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">
           Three steps, one honest picture.
         </h2>
       </div>
@@ -116,7 +116,7 @@ const faqs = [
         {steps.map((step) => (
           <div class="bg-charcoal-light p-8">
             <span class="font-serif text-gold/50 text-[28px]">{step.n}</span>
-            <h3 class="font-serif text-[21px] text-white mt-2 mb-3">{step.title}</h3>
+            <h3 class="font-serif text-[21px] text-ink mt-2 mb-3">{step.title}</h3>
             <p class="text-[#777] text-[14px] leading-[1.7]">{step.body}</p>
           </div>
         ))}
@@ -129,17 +129,17 @@ const faqs = [
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-[clamp(32px,5vw,72px)] items-center">
       <div>
         <span class="kicker">What We Look At</span>
-        <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-5">
+        <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-5">
           Six markers of skin health.
         </h2>
-        <p class="text-[#888] text-[15px] leading-[1.75] max-w-[460px]">
+        <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[460px]">
           Each one is assessed and explained in plain terms—so you understand not just what we recommend, but why.
         </p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
         {looksAt.map((item) => (
           <div class="bg-charcoal p-6">
-            <span class="text-white text-[15px]">{item}</span>
+            <span class="text-ink text-[15px]">{item}</span>
           </div>
         ))}
       </div>
@@ -154,10 +154,10 @@ const faqs = [
     <div class="absolute inset-0 bg-black/74"></div>
     <div class="relative z-10 max-w-[680px] mx-auto text-center">
       <span class="kicker">Why It Matters</span>
-      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-white leading-tight mt-2 mb-6">
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6">
         Personalized, not pieced together.
       </h2>
-      <p class="text-white/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto">
+      <p class="text-ivory/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto">
         When your plan is built around your skin's real condition, every appointment works toward the same outcome. You focus on what matters first, skip what you don't need, and have a clear way to measure progress over time.
       </p>
     </div>
@@ -167,15 +167,15 @@ const faqs = [
   <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[960px] mx-auto text-center">
       <span class="kicker">From Analysis to Plan</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white mt-2 mb-5">
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5">
         Your results map to a protocol.
       </h2>
-      <p class="text-[#888] text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
+      <p class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
         Whatever the analysis surfaces, there's a defined path for it — explore what we treat, or let the consultation sequence it for you.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         {concernLinks.map((c) => (
-          <a href={`/concerns/${c.slug}`} class="border border-gold/30 text-white/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors">
+          <a href={`/concerns/${c.slug}`} class="border border-gold/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors">
             {c.title}
           </a>
         ))}
@@ -187,14 +187,14 @@ const faqs = [
   <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[760px] mx-auto">
       <span class="kicker">Questions</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white mt-2 mb-10">
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-10">
         Good to know.
       </h2>
-      <div class="divide-y divide-white/8 border-t border-white/8">
+      <div class="divide-y divide-white/8 border-t border-ink/8">
         {faqs.map((faq) => (
           <div class="py-7">
-            <h3 class="text-white text-[16px] mb-2.5">{faq.q}</h3>
-            <p class="text-[#888] text-[14px] leading-[1.75]">{faq.a}</p>
+            <h3 class="text-ink text-[16px] mb-2.5">{faq.q}</h3>
+            <p class="text-[#9a8c78] text-[14px] leading-[1.75]">{faq.a}</p>
           </div>
         ))}
       </div>
@@ -205,10 +205,10 @@ const faqs = [
   <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker">Begin Here</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-white leading-tight mt-2 mb-5">
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
         Start with a clearer picture.
       </h2>
-      <p class="text-[#888] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
         Book online to begin with a skin analysis, or reach out if you'd like to talk through your goals first.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">

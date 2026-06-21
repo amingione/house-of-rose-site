@@ -23,8 +23,8 @@ const breadcrumb = breadcrumbList([
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Areas We Serve</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-5">Advanced aesthetics across Southwest Florida</h1>
-      <p class="text-white/80 text-[16px] max-w-[640px] leading-relaxed">From our Punta Gorda studio, House of Rose serves clients throughout Charlotte County and SW Florida.</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Advanced aesthetics across Southwest Florida</h1>
+      <p class="text-ink/80 text-[16px] max-w-[640px] leading-relaxed">From our Punta Gorda studio, House of Rose serves clients throughout Charlotte County and SW Florida.</p>
     </div>
   </section>
 
@@ -32,9 +32,9 @@ const breadcrumb = breadcrumbList([
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
       {areas.map((area) => (
         <a href={`/areas/${area.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter">
-          <h2 class="font-serif text-[22px] text-white mb-2 group-hover:text-gold transition-colors">{area.title}</h2>
+          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors">{area.title}</h2>
           {area.city && <p class="text-gold text-[11px] tracking-[0.2em] uppercase mb-3">{area.city}{area.region ? ` · ${area.region}` : ''}</p>}
-          {area.intro && <p class="text-[#888] text-[14px] leading-relaxed">{area.intro}</p>}
+          {area.intro && <p class="text-[#9a8c78] text-[14px] leading-relaxed">{area.intro}</p>}
           <span class="learn-more group-hover:text-gold mt-4 inline-block">Explore</span>
         </a>
       ))}

@@ -211,13 +211,13 @@ const rider = {
   <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
       <span class="kicker">The Idea</span>
-      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-white leading-tight mt-2 mb-6">
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
         Collagen banking, on the right rhythm.
       </h2>
-      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px] mb-4">
+      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4">
         Because PRF and ProCell microchanneling are designed to be spaced four to six weeks apart, a monthly rhythm isn't just convenient—it's how results actually compound. Membership keeps you on that cadence.
       </p>
-      <p class="text-[#888] text-[15px] leading-[1.75] max-w-[560px]">
+      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]">
         Our memberships are organized by lane: The Lily Membership for advanced aesthetics, The Iris Membership for injectable care, The Smooth Ritual Membership for waxing, and the Hydrangea add-on for our IV Hydration Lounge. Hold more than one and you join the House Collective—priority booking across every provider, and first invitations to member events.
       </p>
     </div>
@@ -239,19 +239,19 @@ const rider = {
       <div class="max-w-[1280px] mx-auto">
         <div class="max-w-[700px] mb-12">
           <span class="kicker">{lane.kicker}</span>
-          <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2 mb-4">
+          <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-4">
             {lane.name}
           </h2>
-          <p class="text-[#888] text-[15px] leading-[1.75]">{lane.intro}</p>
+          <p class="text-[#9a8c78] text-[15px] leading-[1.75]">{lane.intro}</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
           {lane.tiers.map((tier) => (
             <div class={`flex flex-col bg-charcoal p-8 ${tier.featured ? 'ring-1 ring-gold/40' : ''}`}>
-              <h3 class="font-serif text-[22px] text-white mb-1">{tier.name}</h3>
+              <h3 class="font-serif text-[22px] text-ink mb-1">{tier.name}</h3>
               <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{tier.summary}</p>
               <div class="flex items-baseline gap-1 mb-2">
-                <span class="font-serif text-[40px] text-white leading-none">${tier.price}</span>
+                <span class="font-serif text-[40px] text-ink leading-none">${tier.price}</span>
                 <span class="text-[#777] text-[13px]">/ month</span>
               </div>
               {tier.value && (
@@ -272,7 +272,7 @@ const rider = {
           ))}
         </div>
 
-        <p class="text-[#555] text-[12px] leading-[1.7] mt-7 max-w-[760px]">
+        <p class="text-[#7a6e5c] text-[12px] leading-[1.7] mt-7 max-w-[760px]">
           {lane.footnote}
         </p>
       </div>
@@ -283,11 +283,11 @@ const rider = {
   <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10" id="hydrangea">
     <div class="max-w-[960px] mx-auto text-center">
       <span class="kicker">IV Hydration Lounge</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2 mb-3">
+      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-3">
         {rider.name}
       </h2>
-      <p class="text-white/85 text-[15px] mb-2">
-        <span class="font-serif text-[32px] text-white">${rider.price}</span>
+      <p class="text-ink/85 text-[15px] mb-2">
+        <span class="font-serif text-[32px] text-ink">${rider.price}</span>
         <span class="text-[#777] text-[13px]"> / month with any membership</span>
         <span class="text-gold mx-2">·</span>
         <span class="text-[#777] text-[13px]">${rider.standalone} / month standalone</span>
@@ -310,10 +310,10 @@ const rider = {
   <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10">
     <div class="max-w-[960px] mx-auto text-center">
       <span class="kicker">Beyond Membership</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2 mb-3">
+      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-3">
         The Rose Method Regeneration Plans
       </h2>
-      <p class="text-[#888] text-[15px] max-w-[560px] mx-auto mb-7 leading-[1.8]">
+      <p class="text-[#9a8c78] text-[15px] max-w-[560px] mx-auto mb-7 leading-[1.8]">
         For lasting, structural change, our regeneration plans pair treatments into a guided, multi-month journey—Renewal, Regeneration, and Restoration. A deeper commitment than a monthly membership, designed for transformation.
       </p>
       <a href="/plans" class="btn-outline-gold">Explore the Plans</a>
@@ -324,10 +324,10 @@ const rider = {
   <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker">Join</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-white leading-tight mt-2 mb-5">
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
         Stay consistent. See it compound.
       </h2>
-      <p class="text-[#888] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
         Reach out to choose your membership and we'll get you set up. Not sure which fits? We'll help you decide based on your goals.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
