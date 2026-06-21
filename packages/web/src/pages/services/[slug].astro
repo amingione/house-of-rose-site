@@ -126,8 +126,11 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         </span>
       )}
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-white">
-        {service.title}
+        {service.signatureName ?? service.title}
       </h1>
+      {service.signatureName && (
+        <p class="mt-2 text-white/65 text-[13px] tracking-[0.22em] uppercase">{service.title}</p>
+      )}
       {(service.price || service.duration) && (
         <p class="mt-3 text-white/70 text-[13px] tracking-[0.18em] uppercase">
           {service.price}{service.price && service.duration && <span class="text-gold mx-2">·</span>}{service.duration}
