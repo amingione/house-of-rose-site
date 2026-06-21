@@ -25,7 +25,7 @@ export default {
         // LIGHT surfaces so existing `bg-charcoal*` classes render ivory/greige.
         charcoal: {
           DEFAULT: '#F4ECDC', // ivory — primary page surface
-          light: '#EFE5D4',   // soft taupe — accent bands / header-footer warmth
+          light: '#EADBC2',   // taupe — accent bands (more pronounced)
           lighter: '#EADFCB', // warm greige — hover/raised surfaces
         },
         // Semantic brand tokens
