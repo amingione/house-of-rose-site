@@ -25,7 +25,7 @@ export default {
         // LIGHT surfaces so existing `bg-charcoal*` classes render ivory/greige.
         charcoal: {
           DEFAULT: '#F4ECDC', // ivory — primary page surface
-          light: '#FBF7EF',   // lighter ivory — header/footer surfaces
+          light: '#EFE5D4',   // soft taupe — accent bands / header-footer warmth
           lighter: '#EADFCB', // warm greige — hover/raised surfaces
         },
         // Semantic brand tokens
@@ -33,8 +33,11 @@ export default {
         ivory: '#F4ECDC',
         breath: '#F8F4EC',
         greige: '#C7BBA9',
-        burgundy: { DEFAULT: '#5C1F2E', deep: '#4A1825' },
-        mauve: '#8E5A66',
+        // Botanical green (the eucalyptus/greenery in the studio) — secondary accent + primary CTA
+        green: { DEFAULT: '#3F4D3A', deep: '#2F3A2B', sage: '#8C9A7D', soft: '#B9C2AB' },
+        // Warm neutral accents from the actual space (mocha wall, walnut wood)
+        taupe: { DEFAULT: '#8A7259', soft: '#EDE2D0' },
+        walnut: { DEFAULT: '#3E2C20', deep: '#2C1F16' },
         // `cream.*` repurposed to INK tints so `text-cream*`/`border-cream*` read on light.
         cream: {
           DEFAULT: '#14110F',

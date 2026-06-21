@@ -53,7 +53,7 @@
 @layer components {
   /* Button: Gold background */
   .btn-gold {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-burgundy text-ivory font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-green text-ivory font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
   }
 
   /* Button: Outline (on light) */
