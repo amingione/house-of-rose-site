@@ -4,6 +4,7 @@ import { sanityFetch } from '@/lib/sanity';
 import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import ComingSoon from '@/components/ComingSoon.astro';
 
 interface Props {
   title?: string;
@@ -25,6 +26,7 @@ const {
 
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
+const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = (title === siteName || title.includes(siteName))
@@ -76,6 +78,7 @@ const pageTitle = (title === siteName || title.includes(siteName))
     <slot name="head" />
   </head>
   <body>
+    {comingSoon && <ComingSoon />}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
