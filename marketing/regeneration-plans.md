@@ -78,7 +78,7 @@ Three ascending plans share the same DNA and let a client self-select by ambitio
 Each is presented in the five-part House of Rose package structure. **All sessions, spacing, and
 combinations are confirmed by your provider; not every client is a candidate for every service.**
 
-> *Assumed client (luxury market):* a discerning Punta Gorda / Southwest Florida client who wants
+> *Assumed client (market):* a discerning Punta Gorda / Southwest Florida client who wants
 > to look visibly better — refreshed, never overfilled — and is ready to commit to a guided path
 > rather than chase one-off treatments.
 
