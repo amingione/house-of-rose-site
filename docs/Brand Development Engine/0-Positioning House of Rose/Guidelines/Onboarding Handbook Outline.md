@@ -164,7 +164,7 @@ Client:
 
 > Great question 😊
 >
-> It’s $125 and includes the scan plus a consultation so we can guide you properly.
+> Our Skin Analysis Experience includes the scan plus a full consultation so we can guide you to exactly what your skin needs — from $125.
 >
 > What are you mainly looking to improve with your skin?
 
