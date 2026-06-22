@@ -44,10 +44,10 @@ const phases: Phase[] = [
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[700px] mb-12">
         <span class="kicker">The Method</span>
-        <h2 class="font-serif text-[clamp(24px,3.6vw,38px)] text-white mt-2 mb-4">
+        <h2 class="font-serif text-[clamp(24px,3.6vw,38px)] text-ink mt-2 mb-4">
           Not everything at once. Everything at the right time.
         </h2>
-        <p class="text-[#888] text-[15px] leading-[1.75]">
+        <p class="text-[#9a8c78] text-[15px] leading-[1.75]">
           Every plan is a different path through the same four phases — weighted to your skin and your goals, sequenced so results compound rather than scatter.
         </p>
       </div>
@@ -56,8 +56,8 @@ const phases: Phase[] = [
         {phases.map((phase) => (
           <div class="bg-charcoal p-8">
             <span class="text-gold text-[12px] tracking-[0.22em] uppercase">{phase.step}</span>
-            <h3 class="font-serif text-[22px] text-white mt-3 mb-2">{phase.name}</h3>
-            <p class="text-[#888] text-[14px] leading-[1.6]">{phase.description}</p>
+            <h3 class="font-serif text-[22px] text-ink mt-3 mb-2">{phase.name}</h3>
+            <p class="text-[#9a8c78] text-[14px] leading-[1.6]">{phase.description}</p>
           </div>
         ))}
       </div>
@@ -69,10 +69,10 @@ const phases: Phase[] = [
     <div class="max-w-[1080px] mx-auto">
       <div class="max-w-[700px] mb-12">
         <span class="kicker">The Plans</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-white mt-2 mb-4">
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-4">
           Choose your level of transformation.
         </h2>
-        <p class="text-[#888] text-[15px] leading-[1.75]">
+        <p class="text-[#9a8c78] text-[15px] leading-[1.75]">
           Each plan is structured over several months and built around your consultation. Your provider confirms the right combination for your candidacy and goals.
         </p>
       </div>
@@ -85,12 +85,12 @@ const phases: Phase[] = [
                 <span class="text-gold text-[12px] tracking-[0.22em] uppercase">
                   {`Plan 0${i + 1}`}
                 </span>
-                <h3 class="font-serif text-[clamp(24px,3vw,32px)] text-white mt-2 mb-4">{plan.title}</h3>
+                <h3 class="font-serif text-[clamp(24px,3vw,32px)] text-ink mt-2 mb-4">{plan.title}</h3>
                 {plan.whatsIncluded && (
                   <p class="text-[#bbb] text-[15px] leading-[1.7] mb-5 max-w-[640px]">{plan.whatsIncluded}</p>
                 )}
                 {plan.perks && (
-                  <p class="text-[#888] text-[13px] leading-[1.6] mb-6 italic">{plan.perks}</p>
+                  <p class="text-[#9a8c78] text-[13px] leading-[1.6] mb-6 italic">{plan.perks}</p>
                 )}
                 {plan.linkedServices && plan.linkedServices.length > 0 && (
                   <ul class="flex flex-wrap gap-2">
@@ -104,12 +104,12 @@ const phases: Phase[] = [
               </div>
               <div class="lg:border-l border-gold/10 lg:pl-8">
                 {plan.monthlyPrice && (
-                  <p class="text-white text-[15px] leading-[1.5] mb-1">
-                    <span class="font-serif text-[26px] text-white block mb-1">Investment</span>
+                  <p class="text-ink text-[15px] leading-[1.5] mb-1">
+                    <span class="font-serif text-[26px] text-ink block mb-1">Investment</span>
                     {plan.monthlyPrice}
                   </p>
                 )}
-                <p class="text-[#666] text-[12px] leading-[1.6] mt-3 mb-6">
+                <p class="text-[#7a6e5c] text-[12px] leading-[1.6] mt-3 mb-6">
                   Monthly payment options available to support consistency.
                 </p>
                 <a href="/contact" class="btn-gold w-full text-center">Design Your Plan</a>
@@ -118,10 +118,10 @@ const phases: Phase[] = [
           ))}
         </div>
       ) : (
-        <p class="text-[#666] text-[14px]">Our regeneration plans are being curated. Please check back soon.</p>
+        <p class="text-[#7a6e5c] text-[14px]">Our regeneration plans are being curated. Please check back soon.</p>
       )}
 
-      <p class="text-[#555] text-[12px] leading-[1.7] mt-8 max-w-[760px]">
+      <p class="text-[#7a6e5c] text-[12px] leading-[1.7] mt-8 max-w-[760px]">
         Outcomes are individual and depend on your skin, candidacy, and consistency. Final treatment combinations, intervals, and suitability are determined by your licensed provider. Not every client is a candidate for every service.
       </p>
     </div>
@@ -131,10 +131,10 @@ const phases: Phase[] = [
   <section class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker">Begin</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-white leading-tight mt-2 mb-5">
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
         Start with a consultation.
       </h2>
-      <p class="text-[#888] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
         Every plan begins with a private consultation where we design your structured path. We'll guide you from there.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">

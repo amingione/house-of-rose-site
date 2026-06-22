@@ -45,8 +45,8 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[960px] mx-auto">
       <span class="kicker">Comparison</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-white leading-tight mt-3 mb-6">{cmp.title}</h1>
-      <p class="text-white/85 text-[17px] leading-relaxed">{cmp.intro}</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6">{cmp.title}</h1>
+      <p class="text-ink/85 text-[17px] leading-relaxed">{cmp.intro}</p>
     </div>
   </section>
 
@@ -56,9 +56,9 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
         {[a, b].filter(Boolean).map((opt) => (
           <div class="bg-charcoal p-8">
             <h2 class="font-serif text-[24px] text-gold mb-3">{opt!.label}</h2>
-            {opt!.summary && <p class="text-white/80 text-[15px] leading-relaxed mb-4">{opt!.summary}</p>}
+            {opt!.summary && <p class="text-ink/80 text-[15px] leading-relaxed mb-4">{opt!.summary}</p>}
             {opt!.bestFor && (
-              <p class="text-[#888] text-[14px] leading-relaxed"><span class="text-white/70">Best for:</span> {opt!.bestFor}</p>
+              <p class="text-[#9a8c78] text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> {opt!.bestFor}</p>
             )}
             {opt!.service && (
               <a href={`/services/${opt!.service.slug}`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
@@ -75,15 +75,15 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
         <table class="w-full border-collapse text-left">
           <thead>
             <tr class="border-b border-gold/20">
-              <th class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-white/50 font-normal"></th>
+              <th class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-ink/50 font-normal"></th>
               <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{a?.label ?? 'Option A'}</th>
               <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{b?.label ?? 'Option B'}</th>
             </tr>
           </thead>
           <tbody>
             {cmp.rows.map((row) => (
-              <tr class="border-b border-white/5">
-                <td class="py-4 pr-4 text-white/70 text-[14px] font-medium">{row.attribute}</td>
+              <tr class="border-b border-ink/5">
+                <td class="py-4 pr-4 text-ink/70 text-[14px] font-medium">{row.attribute}</td>
                 <td class="py-4 px-4 text-[#999] text-[14px]">{row.valueA}</td>
                 <td class="py-4 px-4 text-[#999] text-[14px]">{row.valueB}</td>
               </tr>
@@ -98,7 +98,7 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
     <section class="bg-charcoal-light py-14 px-6">
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Verdict</span>
-        <p class="text-white/85 text-[16px] leading-relaxed whitespace-pre-line">{cmp.verdict}</p>
+        <p class="text-ink/85 text-[16px] leading-relaxed whitespace-pre-line">{cmp.verdict}</p>
       </div>
     </section>
   )}
@@ -109,8 +109,8 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
         <div class="space-y-6">
           {cmp.faqs.map((f) => (
-            <div class="border-b border-white/5 pb-6">
-              <h2 class="text-white text-[17px] font-medium mb-3">{f.question}</h2>
+            <div class="border-b border-ink/5 pb-6">
+              <h2 class="text-ink text-[17px] font-medium mb-3">{f.question}</h2>
               <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
             </div>
           ))}
@@ -121,7 +121,7 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
 
   <section class="bg-charcoal-light py-12 px-6 border-t border-gold/10">
     <div class="max-w-[860px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-white leading-tight mb-6">Not sure which is right for you?</h2>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Not sure which is right for you?</h2>
       <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">A consultation is the fastest way to a confident decision. We'll recommend the right protocol for your skin.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>

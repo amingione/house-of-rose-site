@@ -35,7 +35,7 @@
   }
 
   body {
-    @apply bg-charcoal text-white font-sans antialiased;
+    @apply bg-charcoal text-ink font-sans antialiased;
   }
 
   /* Force high-quality smooth image rendering for photos */
@@ -53,12 +53,12 @@
 @layer components {
   /* Button: Gold background */
   .btn-gold {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-gold text-black font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-green text-ivory font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
   }
 
-  /* Button: Outline white */
+  /* Button: Outline (on light) */
   .btn-outline-white {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-cream-300 text-white font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:border-gold hover:text-gold;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ink/30 text-ink font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:border-gold hover:text-gold;
   }
 
   /* Button: Outline gold */
@@ -73,22 +73,22 @@
 
   /* Section heading */
   .section-heading {
-    @apply font-serif text-4xl text-white font-normal;
+    @apply font-serif text-4xl text-ink font-normal;
   }
 
   /* Service card */
   .service-card {
-    @apply bg-charcoal p-6 text-left border-none w-full min-h-[44px] transition-all duration-300 hover:bg-charcoal-lighter;
+    @apply bg-breath p-6 text-left border border-gold/15 w-full min-h-[44px] transition-all duration-300 hover:border-gold/40 hover:bg-charcoal-lighter;
   }
 
   /* Service name in card */
   .service-name {
-    @apply block text-[10px] tracking-[0.3em] uppercase text-gold mb-1.5;
+    @apply block font-serif text-xl text-ink mb-1.5 normal-case tracking-normal;
   }
 
   /* Service description */
   .service-desc {
-    @apply text-[#666] text-[13px] leading-relaxed;
+    @apply text-[#7a6e5c] text-[13px] leading-relaxed;
   }
 
   /* Learn more link */
@@ -127,10 +127,10 @@
   background: transparent;
 }
 #header.stuck {
-  background: rgba(10, 10, 10, 0.92);
+  background: rgba(244, 236, 220, 0.94);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(201, 168, 106, 0.12);
+  border-bottom: 1px solid rgba(201, 162, 75, 0.22);
 }
 #header.stuck .brand-link img {
   height: 2.5rem; /* 40px — comfortably inside the 80px bar */

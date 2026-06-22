@@ -42,7 +42,7 @@ const subName = signatureName ? title : undefined;
     <span class="learn-more group-hover:text-gold">Learn More</span>
   </a>
 ) : (
-  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-white/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6">
+  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-ink/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6">
     {image && (
       <div class="w-28 h-28 flex-shrink-0 overflow-hidden bg-charcoal-lighter">
         <img
@@ -55,10 +55,10 @@ const subName = signatureName ? title : undefined;
       </div>
     )}
     <div class="flex-1">
-      {number && <p class="text-[#444] text-xs mb-1">{number}</p>}
-      <h3 class="font-serif text-2xl text-white mb-1">{headline}</h3>
+      {number && <p class="text-[#8a7c66] text-xs mb-1">{number}</p>}
+      <h3 class="font-serif text-2xl text-ink mb-1">{headline}</h3>
       {subName && <p class="text-gold/70 text-[11px] tracking-[0.18em] uppercase mb-2">{subName}</p>}
-      {tagline && <p class="text-[#666] text-sm leading-relaxed">{tagline}</p>}
+      {tagline && <p class="text-[#7a6e5c] text-sm leading-relaxed">{tagline}</p>}
     </div>
     <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
   </a>

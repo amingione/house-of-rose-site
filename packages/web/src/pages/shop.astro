@@ -71,7 +71,7 @@ const orderingOptions = [
         <div class="max-w-[1280px] mx-auto">
           <div class="max-w-[700px] mb-10">
             <span class="kicker">{brand.name}</span>
-            <p class="text-[#888] text-[15px] leading-[1.75] mt-3">{brand.intro}</p>
+            <p class="text-[#9a8c78] text-[15px] leading-[1.75] mt-3">{brand.intro}</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gold/10">
             {items.map((product) => (
@@ -88,11 +88,11 @@ const orderingOptions = [
                     />
                   </div>
                 )}
-                <h3 class="text-white text-[15px] font-medium leading-snug mb-1">{product.title}</h3>
-                {product.tagline && <p class="text-[#666] text-[12.5px] leading-[1.6] mb-3">{product.tagline}</p>}
-                <p class="mt-auto text-white/80 text-[13px] tracking-[0.12em] uppercase">
+                <h3 class="text-ink text-[15px] font-medium leading-snug mb-1">{product.title}</h3>
+                {product.tagline && <p class="text-[#7a6e5c] text-[12.5px] leading-[1.6] mb-3">{product.tagline}</p>}
+                <p class="mt-auto text-ink/80 text-[13px] tracking-[0.12em] uppercase">
                   {formatPrice(product.price)}
-                  {product.size && <span class="text-[#555] normal-case tracking-normal"> · {product.size}</span>}
+                  {product.size && <span class="text-[#7a6e5c] normal-case tracking-normal"> · {product.size}</span>}
                 </p>
               </div>
             ))}
@@ -106,10 +106,10 @@ const orderingOptions = [
   <section class="bg-charcoal-light py-[clamp(36px,5vw,56px)] px-6">
     <div class="max-w-[840px] mx-auto text-center">
       <span class="kicker">Face Reality</span>
-      <h2 class="font-serif text-[clamp(22px,3.5vw,30px)] text-white mt-2 mb-4">
+      <h2 class="font-serif text-[clamp(22px,3.5vw,30px)] text-ink mt-2 mb-4">
         Acne home care, prescribed — not browsed.
       </h2>
-      <p class="text-[#888] text-[14.5px] leading-[1.8] max-w-[620px] mx-auto">
+      <p class="text-[#9a8c78] text-[14.5px] leading-[1.8] max-w-[620px] mx-auto">
         Face Reality home-care products are matched to your acne type and adjusted as your skin responds, so they're available exclusively to Clarity Program clients in studio. Curious?
         <a href="/services/face-reality-acne-program" class="text-gold hover:underline">Start with the program.</a>
       </p>
@@ -121,7 +121,7 @@ const orderingOptions = [
     <div class="max-w-[1120px] mx-auto">
       <div class="text-center mb-12">
         <span class="kicker">How to Order</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-white mt-2">
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2">
           Three ways, all of them easy.
         </h2>
       </div>
@@ -129,14 +129,14 @@ const orderingOptions = [
         {orderingOptions.map((opt, i) => (
           <div class="text-center">
             <p class="text-gold/30 text-[40px] font-serif mb-3">{`0${i + 1}`}</p>
-            <p class="text-white text-[16px] font-medium mb-2 tracking-wide">{opt.title}</p>
-            <p class="text-[#666] text-[14px] leading-relaxed max-w-[300px] mx-auto">{opt.body}</p>
+            <p class="text-ink text-[16px] font-medium mb-2 tracking-wide">{opt.title}</p>
+            <p class="text-[#7a6e5c] text-[14px] leading-relaxed max-w-[300px] mx-auto">{opt.body}</p>
           </div>
         ))}
       </div>
       <div class="text-center">
         <a href="tel:+18449417673" class="btn-gold">Call to Order — (844) 941-7673</a>
-        <p class="text-[#555] text-[12px] mt-5">Bundle and membership clients receive preferred pricing on full-size products — mention it when you order.</p>
+        <p class="text-[#7a6e5c] text-[12px] mt-5">Bundle and membership clients receive preferred pricing on full-size products — mention it when you order.</p>
       </div>
     </div>
   </section>
