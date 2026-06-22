@@ -10,7 +10,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
 <BaseLayout
   title="The House of Rose Experience | Luxury Spa & Wellness Punta Gorda FL"
   description={experienceContent?.heroSubtitle ?? "A private luxury experience for every visit. See what to expect at House of Rose — Punta Gorda's premier spa & wellness sanctuary."}
-  preloadImage="/images/bg-hydration.jpg"
+  preloadImage="/images/hor-lounge.jpg"
 >
   <!-- Hero -->
   <Hero
@@ -18,7 +18,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     kicker="What to Expect"
     description={experienceContent?.heroSubtitle}
     size="small"
-    backgroundImage="/images/bg-hydration.jpg"
+    backgroundImage="/images/hor-lounge.jpg"
   />
 
   <!-- Story Section -->
@@ -42,7 +42,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
       </div>
       <div class="relative min-h-[330px] bg-charcoal-lighter">
         <img
-          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/bg-reception.jpg'}
+          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/hor-exterior.jpg'}
           alt={experienceContent?.storyImage?.alt ?? 'House of Rose reception desk'}
           class="w-full h-full object-cover"
           width="800"
