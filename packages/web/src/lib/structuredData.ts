@@ -13,7 +13,7 @@ import type { FAQ } from '@/lib/queries';
 // ─── Canonical business facts (NAP) — single source for JSON-LD ────────────────
 
 export const LOCAL_BUSINESS = {
-  name: 'House of Rose Luxury Spa & Wellness',
+  name: 'House of Rose Aesthetics',
   legalName: 'House of Rose Aesthetics',
   telephone: '+18449417673',
   streetAddress: '525 E Olympia Ave, Ste 9',

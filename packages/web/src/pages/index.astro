@@ -132,7 +132,7 @@ const organizationData = {
 		centerContent={true}
 		showCTA={true}
 		ctaPrimary={{ text: "Book Your Consultation", href: BOOKING_URL }}
-		ctaSecondary={{ text: "Explore Treatments", href: "/services" }}
+		ctaSecondary={{ text: "Start With Skin Analysis", href: SKIN_ANALYSIS_URL }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 	/>
 
@@ -157,7 +157,8 @@ const organizationData = {
 			>
 				Our approach is intentional, results-focused, and built around
 				long-term skin health. Every recommendation is made with
-				precision—balancing advanced aesthetic treatments, regenerative
+				precision—using AI-assisted skin analysis where it helps,
+				then balancing advanced aesthetic treatments, regenerative
 				techniques, and personalized care to deliver outcomes that feel
 				refined, natural, and aligned with you.
 			</p>
@@ -290,70 +291,75 @@ const organizationData = {
 		<div
 			class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2"
 		>
-			<span class="kicker">Skin Analysis</span>
+			<span class="kicker">AI Skin Analysis</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 			>
-				See your skin with more clarity.
+				Your plan should start with evidence.
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				Our advanced skin analysis technology allows us to look beyond
-				surface-level concerns and evaluate your skin with greater
-				precision.
+				Our in-studio AI skin scanner uses advanced imaging to evaluate
+				visible and subsurface patterns such as pigmentation, texture,
+				pores, fine lines, hydration cues, and sun damage.
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				By analyzing key markers of skin health, we're able to create a
-				treatment plan that is guided by real data—not assumptions—
-				resulting in more targeted treatments, more efficient progress,
-				and better long-term outcomes.
+				That analysis becomes your baseline: a clearer way to choose the
+				right treatments, track change over time, and understand why a
+				provider recommends one step before another.
 			</p>
 			<p
 				class="text-ink/90 text-[15px] italic leading-[1.75] max-w-[560px] mb-7"
 			>
-				It's where every truly personalized plan begins.
+				It's the trust factor behind every truly personalized plan.
 			</p>
-			<div>
-				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex"
-					>Learn About Skin Analysis</a
+			<div class="flex gap-3 flex-wrap">
+				<a href={SKIN_ANALYSIS_URL} class="btn-gold inline-flex"
+					>Learn About AI Skin Analysis</a
+				>
+				<a
+					href={BOOKING_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn-outline-gold inline-flex">Book Your Scan</a
 				>
 			</div>
 		</div>
 	</section>
 
-	<!-- ── SECTION 6 · MEMBERSHIPS / TREATMENT PLANS ───────────────── -->
+	<!-- ── SECTION 6 · THE ROSE CIRCLE ─────────────────────────────── -->
 	<section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
 		<div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-			<span class="kicker">Memberships & Ongoing Care</span>
+			<span class="kicker">The Rose Circle</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 			>
-				Care that continues beyond a single appointment.
+				Where your results are protected.
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 			>
-				Results are built over time—and maintained with intention. Our
-				membership options are designed for clients who want consistent
-				care, structured treatment plans, and ongoing access to
-				professional guidance.
+				Results are built over time and maintained with intention. The
+				Rose Circle is our continuity membership for clients who want
+				consistent care, priority access, curated treatment credits, and
+				ongoing professional guidance after the first plan begins.
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
 			>
-				Rather than booking sporadically, members benefit from a more
-				connected approach that supports long-term results and
-				simplifies decision-making. With preferred access, curated
-				treatment pathways, and ongoing support, memberships are the
-				most effective way to stay aligned with your skin goals
-				year-round.
+				Start with the scanner, build the right treatment path, then use
+				The Rose Circle to keep momentum year-round. It is not a discount
+				club; it is the relationship that helps your skin stay on course.
 			</p>
-			<div>
+			<div class="flex gap-3 flex-wrap">
 				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex"
-					>Explore Memberships</a
+					>Explore The Rose Circle</a
+				>
+				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex"
+					>Start With Analysis</a
 				>
 			</div>
 		</div>
