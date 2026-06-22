@@ -4,335 +4,205 @@ import Hero from '@/components/Hero.astro';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
 
-// Lane-tiered membership architecture — providers run distinct lanes; memberships coexist.
-// Source: vault 04-Membership/membership-brainstorm-comparison.md (Lily = Idea D inclusion model, Iris = Diana's program scoped to injectables, Hydrangea = wellness rider)
+// Source of truth: marketing/regeneration-plans.md §5 — The Rose Circle continuity membership.
+// Memberships = The Rose Circle (Petal / Bloom / En Pleine Rose). Regeneration Plans live on /plans.
 
-interface MembershipTier {
+interface Tier {
   name: string;
+  french?: string;
   price: string;
-  summary: string;
+  tagline: string;
+  builtFor: string;
   benefits: string[];
-  value?: string;
+  note?: string;
   featured: boolean;
 }
 
-interface MembershipLane {
-  id: string;
-  kicker: string;
-  name: string;
-  intro: string;
-  tiers: MembershipTier[];
-  footnote: string;
-}
-
-const lanes: MembershipLane[] = [
+const tiers: Tier[] = [
   {
-    id: 'lily',
-    kicker: 'Advanced Aesthetics',
-    name: 'The Lily Membership',
-    intro:
-      'Your monthly treatment, included. Lily is built around the 4–6 week cadence our regenerative protocols are designed for — choose your tier, and your treatment each month is simply part of it.',
-    tiers: [
-      {
-        name: 'Lily Essentials',
-        price: '149',
-        summary: 'A standing monthly ritual for glow and maintenance.',
-        benefits: [
-          'One treatment monthly: Dermaplaning Facial, Clarity acne session, or Glo2Facial',
-          '10% off additional services',
-          'LED add-on at member rate',
-          '15% off home-care products',
-          'Priority booking & birthday treatment',
-        ],
-        value: 'Valued at up to $234/month',
-        featured: false,
-      },
-      {
-        name: 'Lily Signature',
-        price: '299',
-        summary: 'Monthly ProCell microchanneling — collagen, on schedule.',
-        benefits: [
-          'One treatment monthly: ProCell Face, ProCell MD, or BioRePeel + Dermaplane',
-          '10% off additional services',
-          'LED add-on at member rate',
-          '15% off home-care products',
-          'Priority booking & birthday treatment',
-        ],
-        value: 'Valued at up to $484/month',
-        featured: true,
-      },
-      {
-        name: 'Lily Regenerative',
-        price: '499',
-        summary: 'The Gilded Lily — our signature PRF protocol, monthly.',
-        benefits: [
-          'One PRF microchanneling treatment monthly ($650 value)',
-          '10% off additional services',
-          'LED add-on at member rate',
-          '15% off home-care products',
-          'Priority booking & birthday treatment',
-        ],
-        value: 'Valued at $685/month',
-        featured: false,
-      },
+    name: 'Petal',
+    price: '129',
+    tagline: 'The maintenance tier',
+    builtFor: 'For the client who has completed Renewal — or a single signature treatment — and wants to hold her glow.',
+    benefits: [
+      'One signature maintenance treatment monthly (Glo2Facial-tier), banked within the quarter if unused',
+      'Member pricing on add-ons and home care',
+      'Priority booking before public availability',
+      'A welcome SPF 30 on enrollment',
     ],
-    footnote:
-      'Missed months roll forward once. Seasonal residents may pause their membership at no charge — we are snowbird-friendly by design.',
+    note: 'The easy yes — your on-ramp into the Circle.',
+    featured: false,
   },
   {
-    id: 'iris',
-    kicker: 'Injectables',
-    name: 'The Iris Membership',
-    intro:
-      'Banked credit toward injectable care — neurotoxins, dermal fillers, and PRF treatments — plus member pricing that rewards consistency.',
-    tiers: [
-      {
-        name: 'Iris I',
-        price: '99',
-        summary: 'A simple way to begin banking toward your care.',
-        benefits: [
-          '$99 banked toward treatments each month',
-          '10% off dermal fillers',
-          'Member pricing on neurotoxins',
-        ],
-        featured: false,
-      },
-      {
-        name: 'Iris II',
-        price: '199',
-        summary: 'For clients on a consistent, ongoing plan.',
-        benefits: [
-          '$199 banked toward treatments each month',
-          '15% off dermal fillers',
-          'Complimentary monthly B12 injection',
-          'Member pricing on neurotoxins',
-        ],
-        featured: true,
-      },
-      {
-        name: 'Iris III',
-        price: '299',
-        summary: 'Our most complete injectables membership.',
-        benefits: [
-          '$299 banked toward treatments each month',
-          '20% off dermal fillers',
-          'Priority scheduling',
-          'Exclusive member events',
-          'Preferred neurotoxin pricing',
-        ],
-        featured: false,
-      },
+    name: 'Bloom',
+    price: '269',
+    tagline: 'The signature tier',
+    builtFor: 'For the Regeneration Plan graduate protecting a real collagen investment — the heart of the program.',
+    benefits: [
+      'Everything in Petal',
+      'A quarterly advanced-treatment credit — toward microchanneling, PRF, or BioRePeel',
+      'A monthly LightStim LED session, included',
+      'Member rate at the IV Hydration Lounge',
+      'A seasonal home-care allowance toward your ProCell MD / GlyMed+ protocol',
+      'Member-only evenings & first access to new treatments',
     ],
-    footnote:
-      'Banked amounts apply toward injectable treatments; member pricing applies on top.',
+    featured: true,
   },
   {
-    id: 'magnolia',
-    kicker: 'Waxing & Beauty',
-    name: 'The Smooth Ritual Membership',
-    intro:
-      'Your standing wax, included — always smooth, never a last-minute scramble. The boutique answer to the wax-chain pass, with hard wax on every sensitive zone.',
-    tiers: [
-      {
-        name: 'Smooth Ritual — Brow & Lip',
-        price: '25',
-        summary: 'A monthly brow + lip, kept crisp.',
-        benefits: [
-          'Monthly brow + lip wax ($40 value)',
-          '10% off all other waxing',
-          '15% off retail aftercare',
-          'Priority booking',
-        ],
-        value: 'Valued at $40/month',
-        featured: false,
-      },
-      {
-        name: 'Smooth Ritual — Brazilian',
-        price: '59',
-        summary: 'One Brazilian a month, effortlessly smooth.',
-        benefits: [
-          'One Brazilian monthly ($65 value)',
-          '10% off all other waxing',
-          '15% off retail aftercare',
-          'Priority booking & birthday wax',
-        ],
-        value: 'Valued at $65/month',
-        featured: true,
-      },
-      {
-        name: 'Smooth Ritual — Total Body',
-        price: '99',
-        summary: 'Choose your smooth, head to toe.',
-        benefits: [
-          'One each month: Brazilian + Underarms, Full Legs, or Bikini + Underarms',
-          '15% off retail aftercare',
-          'Priority booking & birthday wax',
-          'Complimentary brow cleanup each visit',
-        ],
-        value: 'Valued at up to $93/month',
-        featured: false,
-      },
+    name: 'En Pleine Rose',
+    french: '"In full bloom"',
+    price: '549',
+    tagline: 'The concierge tier · by invitation',
+    builtFor: 'For the Restoration client who wants an ongoing relationship, not appointments.',
+    benefits: [
+      'Everything in Bloom',
+      'Regenerative treatment credits that accrue monthly — toward PRF, EZ Gel, or neurotoxin maintenance',
+      'A dedicated provider and true concierge scheduling',
+      'NAD+ / IV maintenance on a curated cadence',
+      'An annual skin-longevity review — your plan, re-planned each year',
+      'Invitation-only experiences and the studio’s highest priority',
     ],
-    footnote:
-      'Hard wax exclusively on every sensitive zone. Missed months roll forward once.',
+    note: 'By invitation, or following The Restoration Plan.',
+    featured: false,
   },
 ];
 
-const rider = {
-  name: 'The Hydrangea Wellness Add-On',
-  price: '89',
-  standalone: '109',
-  benefits: [
-    'One Hydration IV each month ($129 value)',
-    '10% off all additional drips, NAD+ therapy, and vitamin shots',
-    'Attachable to any Lily or Iris membership',
-  ],
-};
+const pathway = [
+  { step: 'The Entry', body: 'A consultation or Internal Hydration Session — the diagnostic that designs your plan.' },
+  { step: 'The Plan', body: 'An outcome-anchored Regeneration Plan — your transformation, structured over 3–6 months.' },
+  { step: 'The Rose Circle', body: 'The relationship after results — maintenance, access, and belonging, for life.' },
+];
 ---
 
 <BaseLayout
-  title="Memberships in Punta Gorda, FL | House of Rose Aesthetics"
-  description="Membership plans at House of Rose Aesthetics in Punta Gorda, FL. Bank toward your treatments each month and keep your results compounding with consistent, personalized care."
+  title="The Rose Circle Membership | House of Rose Aesthetics, Punta Gorda FL"
+  description="The Rose Circle is House of Rose's continuity membership — Petal, Bloom, and En Pleine Rose. Maintain the results you've built with priority access, curated credits, and belonging. Punta Gorda, FL."
   preloadImage="/images/house-of-rose-collection.webp"
 >
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title="Care that continues beyond a single appointment."
-    kicker="Memberships & Ongoing Care"
-    description="Healthy skin is built over time, not in one visit. Our memberships are designed for clients who want consistency, preferred pricing, and a more connected approach to their care."
+    title={"The Rose Circle"}
+    kicker="Membership · Continuity Care"
+    description="Your results, protected. Your place, reserved. The Rose Circle is how you stay in relationship with the studio after a plan ends — maintaining the collagen you've built, with priority access and an experience worth keeping."
     size="small"
     showCTA={true}
     ctaPrimary={{ text: 'Become a Member', href: '/contact' }}
-    ctaSecondary={{ text: 'Book a Treatment', href: BOOKING_URL }}
+    ctaSecondary={{ text: 'Explore the Plans', href: '/plans' }}
     backgroundImage="/images/house-of-rose-collection.webp"
   />
 
-  <!-- ── THE IDEA: COLLAGEN BANKING ───────────────────────────────── -->
-  <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
-    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
+  <!-- ── THE IDEA ─────────────────────────────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
+    <div class="max-w-[820px] mx-auto text-center">
       <span class="kicker">The Idea</span>
-      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
-        Collagen banking, on the right rhythm.
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ink leading-tight mt-2 mb-6">
+        A plan creates the transformation. The Circle keeps it.
       </h2>
-      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        Because PRF and ProCell microchanneling are designed to be spaced four to six weeks apart, a monthly rhythm isn't just convenient—it's how results actually compound. Membership keeps you on that cadence.
+      <p class="text-[#7a6e5c] text-[16px] leading-[1.85] max-w-[640px] mx-auto">
+        Regenerative work compounds — and stopping means watching it fade. The Rose Circle is built as
+        access, curation, and belonging: a way to protect the results you've earned and stay close to
+        the studio, never a discount club. Three tiers, each matched to where you are in your journey.
       </p>
-      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]">
-        Our memberships are organized by lane: The Lily Membership for advanced aesthetics, The Iris Membership for injectable care, The Smooth Ritual Membership for waxing, and the Hydrangea add-on for our IV Hydration Lounge. Hold more than one and you join the House Collective—priority booking across every provider, and first invitations to member events.
-      </p>
-    </div>
-    <div class="relative min-h-[340px] bg-charcoal-lighter">
-      <img
-        src="/images/house-of-rose-collection.webp"
-        alt="House of Rose Aesthetics membership and ongoing care in Punta Gorda, Florida"
-        loading="lazy"
-        class="w-full h-full object-cover"
-        width="1400"
-        height="933"
-      />
     </div>
   </section>
 
-  <!-- ── MEMBERSHIP LANES ─────────────────────────────────────────── -->
-  {lanes.map((lane, laneIndex) => (
-    <section class={laneIndex % 2 === 0 ? 'bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6' : 'bg-charcoal py-[clamp(48px,7vw,96px)] px-6'} id={lane.id}>
-      <div class="max-w-[1280px] mx-auto">
-        <div class="max-w-[700px] mb-12">
-          <span class="kicker">{lane.kicker}</span>
-          <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-4">
-            {lane.name}
-          </h2>
-          <p class="text-[#9a8c78] text-[15px] leading-[1.75]">{lane.intro}</p>
-        </div>
+  <!-- ── THE THREE TIERS ──────────────────────────────────────────── -->
+  <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6" id="tiers">
+    <div class="max-w-[1280px] mx-auto">
+      <div class="max-w-[640px] mb-12">
+        <span class="kicker">The Three Tiers</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">Choose your bloom.</h2>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
-          {lane.tiers.map((tier) => (
-            <div class={`flex flex-col bg-charcoal p-8 ${tier.featured ? 'ring-1 ring-gold/40' : ''}`}>
-              <h3 class="font-serif text-[22px] text-ink mb-1">{tier.name}</h3>
-              <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{tier.summary}</p>
-              <div class="flex items-baseline gap-1 mb-2">
-                <span class="font-serif text-[40px] text-ink leading-none">${tier.price}</span>
-                <span class="text-[#777] text-[13px]">/ month</span>
-              </div>
-              {tier.value && (
-                <p class="text-gold text-[11px] tracking-[0.18em] uppercase mb-6">{tier.value}</p>
-              )}
-              <ul class="space-y-3 mb-8 flex-1">
-                {tier.benefits.map((b) => (
-                  <li class="flex gap-2.5 text-[#bbb] text-[14px] leading-[1.55]">
-                    <span class="text-gold mt-0.5">—</span>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact" class={tier.featured ? 'btn-gold w-full text-center' : 'btn-outline-gold w-full text-center'}>
-                Join {tier.name}
-              </a>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/15">
+        {tiers.map((tier) => (
+          <div class={`flex flex-col bg-breath p-8 ${tier.featured ? 'ring-1 ring-gold/50' : ''}`}>
+            {tier.featured && (
+              <span class="text-gold text-[10px] tracking-[0.3em] uppercase mb-3">Most Loved</span>
+            )}
+            <h3 class="font-serif text-[26px] text-ink leading-none">{tier.name}</h3>
+            {tier.french && <p class="text-[#9a8c78] text-[12px] italic mt-1">{tier.french}</p>}
+            <p class="text-gold text-[11px] tracking-[0.2em] uppercase mt-2 mb-5">{tier.tagline}</p>
+            <div class="flex items-baseline gap-1 mb-4">
+              <span class="text-[#7a6e5c] text-[13px]">From</span>
+              <span class="font-serif text-[42px] text-ink leading-none">${tier.price}</span>
+              <span class="text-[#7a6e5c] text-[13px]">/ month</span>
             </div>
-          ))}
-        </div>
-
-        <p class="text-[#7a6e5c] text-[12px] leading-[1.7] mt-7 max-w-[760px]">
-          {lane.footnote}
-        </p>
-      </div>
-    </section>
-  ))}
-
-  <!-- ── HYDRANGEA WELLNESS RIDER ─────────────────────────────────── -->
-  <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10" id="hydrangea">
-    <div class="max-w-[960px] mx-auto text-center">
-      <span class="kicker">IV Hydration Lounge</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-3">
-        {rider.name}
-      </h2>
-      <p class="text-ink/85 text-[15px] mb-2">
-        <span class="font-serif text-[32px] text-ink">${rider.price}</span>
-        <span class="text-[#777] text-[13px]"> / month with any membership</span>
-        <span class="text-gold mx-2">·</span>
-        <span class="text-[#777] text-[13px]">${rider.standalone} / month standalone</span>
-      </p>
-      <ul class="inline-flex flex-col items-start gap-2.5 my-6 text-left">
-        {rider.benefits.map((b) => (
-          <li class="flex gap-2.5 text-[#bbb] text-[14px] leading-[1.55]">
-            <span class="text-gold mt-0.5">—</span>
-            <span>{b}</span>
-          </li>
+            <p class="text-ink/75 text-[14px] leading-[1.6] mb-6">{tier.builtFor}</p>
+            <ul class="space-y-3 mb-8 flex-1">
+              {tier.benefits.map((b) => (
+                <li class="flex gap-2.5 text-[#5f5446] text-[14px] leading-[1.55]">
+                  <span class="text-gold mt-0.5">—</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            {tier.note && <p class="text-[#9a8c78] text-[12px] italic mb-5">{tier.note}</p>}
+            <a href="/contact" class={tier.featured ? 'btn-gold w-full text-center' : 'btn-outline-gold w-full text-center'}>
+              {tier.name === 'En Pleine Rose' ? 'Request an Invitation' : `Join ${tier.name}`}
+            </a>
+          </div>
         ))}
-      </ul>
-      <div>
-        <a href="/contact" class="btn-outline-gold">Add Hydrangea</a>
+      </div>
+
+      <p class="text-[#7a6e5c] text-[12px] leading-[1.7] mt-7 max-w-[820px]">
+        Credits are designed to be used, not lost — unused monthly value banks within its season, so
+        you keep a rhythm without pressure. Seasonal residents may pause at no charge; we are
+        snowbird-friendly by design. Final treatment combinations and candidacy are always confirmed
+        with your licensed provider.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── THE PATHWAY ──────────────────────────────────────────────── -->
+  <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
+    <div class="max-w-[1080px] mx-auto">
+      <div class="text-center max-w-[640px] mx-auto mb-14">
+        <span class="kicker">The Pathway</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2">How you move through the House.</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {pathway.map((p, i) => (
+          <div class="text-center">
+            <p class="font-serif text-gold/40 text-[44px] mb-3">{String(i + 1).padStart(2, '0')}</p>
+            <p class="text-ink text-[17px] font-serif mb-3">{p.step}</p>
+            <p class="text-[#7a6e5c] text-[14px] leading-relaxed max-w-[300px] mx-auto">{p.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- ── REGENERATIVE PLANS TEASER ────────────────────────────────── -->
-  <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold/10">
-    <div class="max-w-[960px] mx-auto text-center">
-      <span class="kicker">Beyond Membership</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-3">
-        The Rose Method Regeneration Plans
+  <!-- ── REGENERATION PLANS TEASER ────────────────────────────────── -->
+  <section class="bg-walnut py-[clamp(48px,7vw,88px)] px-6">
+    <div class="max-w-[820px] mx-auto text-center">
+      <span class="kicker">Before the Circle</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ivory mt-2 mb-4">
+        It begins with a Regeneration Plan.
       </h2>
-      <p class="text-[#9a8c78] text-[15px] max-w-[560px] mx-auto mb-7 leading-[1.8]">
-        For lasting, structural change, our regeneration plans pair treatments into a guided, multi-month journey—Renewal, Regeneration, and Restoration. A deeper commitment than a monthly membership, designed for transformation.
+      <p class="text-ivory/70 text-[15px] max-w-[600px] mx-auto mb-8 leading-[1.85]">
+        The Rose Method™ sequences your transformation in phases — Reveal, Regenerate, Restore, Sustain.
+        Renewal, Regeneration, and Restoration are the structured journeys that build the results the
+        Circle is designed to protect.
       </p>
-      <a href="/plans" class="btn-outline-gold">Explore the Plans</a>
+      <a href="/plans" class="btn-outline-white">Explore the Regeneration Plans</a>
     </div>
   </section>
 
   <!-- ── CTA ──────────────────────────────────────────────────────── -->
-  <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
+  <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/15">
     <div class="max-w-[640px] mx-auto text-center">
-      <span class="kicker">Join</span>
+      <span class="kicker">Join the Circle</span>
       <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
-        Stay consistent. See it compound.
+        Your results, protected. Your place, reserved.
       </h2>
-      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        Reach out to choose your membership and we'll get you set up. Not sure which fits? We'll help you decide based on your goals.
+      <p class="text-[#7a6e5c] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+        Reach out to choose your tier — or start with a consultation and we'll design the plan that
+        leads you here. Not sure which fits? We'll help you decide based on your goals.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="/contact" class="btn-gold">Become a Member</a>
-        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-outline-gold">Book a Treatment</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-outline-gold">Book a Consultation</a>
       </div>
     </div>
   </section>

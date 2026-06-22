@@ -33,7 +33,7 @@ const {
 } = Astro.props;
 
 const sizeClasses =
-	size === "full" ? "h-screen min-h-[560px]" : "h-[55vh] min-h-[360px]";
+	size === "full" ? "min-h-screen" : "min-h-[60vh] min-h-[400px]";
 
 const titleLines = title.split("\n");
 ---
@@ -62,7 +62,7 @@ const titleLines = title.split("\n");
 
 	<!-- Content -->
 	<div
-		class={`relative z-10 ${centerContent ? "max-w-[960px] text-center" : "max-w-[1280px]"} mx-auto px-6 w-full ${size !== "full" ? "pb-12" : ""}`}
+		class={`relative z-10 ${centerContent ? "max-w-[960px] text-center" : "max-w-[1280px]"} mx-auto px-6 w-full pt-28 ${size !== "full" ? "pb-12" : ""}`}
 		style={size === "full"
 			? "padding-bottom: clamp(44px,8vh,74px)"
 			: undefined}
