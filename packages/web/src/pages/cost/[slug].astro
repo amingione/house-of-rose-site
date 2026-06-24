@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_COST_GUIDE_SLUGS_QUERY,
   COST_GUIDE_BY_SLUG_QUERY,
@@ -47,11 +48,12 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
   <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
   {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
 
+  <div {...sbObjectId(guide._id)}>
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Pricing Guide</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6">{guide.title}</h1>
-      <p class="text-ink/85 text-[17px] leading-relaxed">{guide.answer}</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6" {...sbFieldPath('title')}>{guide.title}</h1>
+      <p class="text-ink/85 text-[17px] leading-relaxed" {...sbFieldPath('answer')}>{guide.answer}</p>
       {priceRange && (
         <p class="mt-6 inline-block border border-gold/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
           Typical range: <span class="font-medium">{priceRange}</span>
@@ -65,10 +67,10 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What Affects the Cost</span>
         <div class="space-y-6">
-          {guide.costFactors.map((f) => (
+          {guide.costFactors.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[18px] font-medium mb-2">{f.factor}</h2>
-              <p class="text-[#9a8c78] text-[14px] leading-relaxed">{f.effect}</p>
+              <h2 class="text-ink text-[18px] font-medium mb-2" {...sbFieldPathParts('costFactors', i, 'factor')}>{f.factor}</h2>
+              <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPathParts('costFactors', i, 'effect')}>{f.effect}</p>
             </div>
           ))}
         </div>
@@ -80,7 +82,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
     <section class="bg-charcoal py-14 px-6">
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What's Included</span>
-        <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line">{guide.whatsIncluded}</p>
+        <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line" {...sbFieldPath('whatsIncluded')}>{guide.whatsIncluded}</p>
       </div>
     </section>
   )}
@@ -90,10 +92,10 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
         <div class="space-y-6">
-          {guide.faqs.map((f) => (
+          {guide.faqs.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[17px] font-medium mb-3">{f.question}</h2>
-              <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
+              <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
+              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
             </div>
           ))}
         </div>
@@ -116,4 +118,5 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>

@@ -1,4 +1,5 @@
 import { siteSettings } from './siteSettings';
+import { homepage } from './homepage';
 import { experienceContent } from './experienceContent';
 import { serviceCollection } from './serviceCollection';
 import { service } from './service';
@@ -25,6 +26,7 @@ export const schemaTypes = [
   faq,
   // Singletons
   siteSettings,
+  homepage,
   experienceContent,
   // Content
   serviceCollection,

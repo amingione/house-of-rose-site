@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_BLOG_POSTS_QUERY, type BlogPost } from '@/lib/queries';
 
 const posts = await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY);
@@ -37,7 +38,7 @@ function formatDate(iso: string) {
       ) : (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10">
           {posts.map((post) => (
-            <article class="bg-charcoal group">
+            <article class="bg-charcoal group" {...sbObjectId(post._id)}>
               <a href={`/blog/${post.slug}`} class="block">
                 {post.featuredImage ? (
                   <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
@@ -59,19 +60,19 @@ function formatDate(iso: string) {
                 <div class="p-6">
                   <div class="flex items-center gap-3 mb-3">
                     {post.category && (
-                      <span class="text-gold text-[10px] tracking-[0.3em] uppercase">{post.category}</span>
+                      <span class="text-gold text-[10px] tracking-[0.3em] uppercase" {...sbFieldPath('category')}>{post.category}</span>
                     )}
                     {post.estimatedReadingTime && post.estimatedReadingTime > 0 && (
                       <span class="text-[#8a7c66] text-[10px] tracking-[0.2em]">{post.estimatedReadingTime} min read</span>
                     )}
                   </div>
 
-                  <h2 class="font-serif text-ink text-[20px] leading-snug mb-3 group-hover:text-gold transition-colors">
+                  <h2 class="font-serif text-ink text-[20px] leading-snug mb-3 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>
                     {post.title}
                   </h2>
 
                   {post.excerpt && (
-                    <p class="text-[#7a6e5c] text-[13px] leading-relaxed line-clamp-3 mb-4">
+                    <p class="text-[#7a6e5c] text-[13px] leading-relaxed line-clamp-3 mb-4" {...sbFieldPath('excerpt')}>
                       {post.excerpt}
                     </p>
                   )}

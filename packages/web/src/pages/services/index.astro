@@ -5,6 +5,9 @@ import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
 
+// Visual Editor: inline click-to-edit is delegated to <ServiceCard>, which emits
+// the sbObjectId / sbFieldPath annotations when passed `objectId={service._id}`.
+
 const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 ---
 
@@ -33,6 +36,7 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
           image={service.image}
           variant="row"
           number={`${String(index + 1).padStart(2, '0')}`}
+          objectId={service._id}
         />
       ))}
     </div>

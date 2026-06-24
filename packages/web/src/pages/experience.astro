@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import { EXPERIENCE_CONTENT_QUERY, type ExperienceContent } from '@/lib/queries';
 
 const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTENT_QUERY);
@@ -21,21 +22,22 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     backgroundImage="/images/hor-lounge.jpg"
   />
 
-  <!-- Story Section -->
   {experienceContent && (
+  <div {...(experienceContent._id ? sbObjectId(experienceContent._id) : {})}>
+  <!-- Story Section -->
     <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
       <div class="p-[clamp(38px,6vw,76px)]">
         <span class="kicker">Our Story</span>
-        <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-ink leading-tight mb-5">
+        <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-ink leading-tight mb-5" {...sbFieldPath('storyHeading')}>
           {experienceContent.storyHeading ?? "Where Beauty Blooms Within."}
         </h2>
         {experienceContent.storyParagraph1 && (
-          <p class="text-[#777] text-[15px] leading-relaxed mb-3">
+          <p class="text-[#777] text-[15px] leading-relaxed mb-3" {...sbFieldPath('storyParagraph1')}>
             {experienceContent.storyParagraph1}
           </p>
         )}
         {experienceContent.storyParagraph2 && (
-          <p class="text-[#777] text-[15px] leading-relaxed">
+          <p class="text-[#777] text-[15px] leading-relaxed" {...sbFieldPath('storyParagraph2')}>
             {experienceContent.storyParagraph2}
           </p>
         )}
@@ -51,10 +53,9 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
         />
       </div>
     </section>
-  )}
 
   <!-- The House of Rose Standard -->
-  {experienceContent?.standards && experienceContent.standards.length > 0 && (
+  {experienceContent.standards && experienceContent.standards.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
       <div class="max-w-[960px] mx-auto text-center mb-16">
         <span class="kicker">Our Commitment</span>
@@ -64,12 +65,12 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
       </div>
 
       <div class="max-w-[1120px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-        {experienceContent.standards.map((standard) => (
+        {experienceContent.standards.map((standard, i) => (
           <div class="text-center">
-            <p class="text-ink text-[17px] font-medium mb-3 tracking-wide">
+            <p class="text-ink text-[17px] font-medium mb-3 tracking-wide" {...sbFieldPathParts('standards', i, 'title')}>
               {standard.title}
             </p>
-            <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
+            <p class="text-[#7a6e5c] text-[14px] leading-relaxed" {...sbFieldPathParts('standards', i, 'description')}>
               {standard.description}
             </p>
           </div>
@@ -105,10 +106,10 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
                   <p class="text-gold/30 text-[48px] font-serif mb-2">
                     {String(step.step).padStart(2, '0')}
                   </p>
-                  <h3 class="text-ink text-[22px] font-medium mb-3 tracking-wide">
+                  <h3 class="text-ink text-[22px] font-medium mb-3 tracking-wide" {...sbFieldPathParts('journeySteps', index, 'title')}>
                     {step.title}
                   </h3>
-                  <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
+                  <p class="text-[#7a6e5c] text-[14px] leading-relaxed" {...sbFieldPathParts('journeySteps', index, 'description')}>
                     {step.description}
                   </p>
                 </div>
@@ -124,6 +125,8 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
         </div>
       </div>
     </section>
+  )}
+  </div>
   )}
 
   <!-- Contact CTA -->

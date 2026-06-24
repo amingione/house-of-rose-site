@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection } from '@/lib/queries';
 
 const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
@@ -18,7 +19,7 @@ const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY
     ) : (
       <div class="space-y-24">
         {collections.map((col) => (
-          <div>
+          <div {...sbObjectId(col._id)}>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
               {col.image && (
                 <div class="aspect-[4/3] overflow-hidden bg-cream-200">
@@ -32,9 +33,9 @@ const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY
                 </div>
               )}
               <div>
-                <h2 class="font-serif text-4xl text-charcoal mb-4">{col.title}</h2>
+                <h2 class="font-serif text-4xl text-charcoal mb-4" {...sbFieldPath('title')}>{col.title}</h2>
                 {col.description && (
-                  <p class="text-charcoal/70 leading-relaxed mb-6">{col.description}</p>
+                  <p class="text-charcoal/70 leading-relaxed mb-6" {...sbFieldPath('description')}>{col.description}</p>
                 )}
                 <a href={`/services/collections/${col.slug}`} class="btn-outline">
                   View Collection
@@ -44,12 +45,12 @@ const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY
             {col.services.length > 0 && (
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {col.services.map((svc) => (
-                  <a href={`/services/${svc.slug}`} class="group bg-cream-100 p-5 hover:shadow-md transition-shadow duration-300">
-                    <p class="font-serif text-lg text-charcoal mb-1 group-hover:text-rose-700 transition-colors">{svc.title}</p>
-                    {svc.tagline && <p class="text-sm text-charcoal/60 mb-3">{svc.tagline}</p>}
+                  <a href={`/services/${svc.slug}`} class="group bg-cream-100 p-5 hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
+                    <p class="font-serif text-lg text-charcoal mb-1 group-hover:text-rose-700 transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
+                    {svc.tagline && <p class="text-sm text-charcoal/60 mb-3" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
                     <div class="flex items-center justify-between">
-                      {svc.duration && <span class="text-xs text-charcoal/40">{svc.duration}</span>}
-                      {svc.price && <span class="text-sm text-rose-700">{svc.price}</span>}
+                      {svc.duration && <span class="text-xs text-charcoal/40" {...sbFieldPath('duration')}>{svc.duration}</span>}
+                      {svc.price && <span class="text-sm text-rose-700" {...sbFieldPath('price')}>{svc.price}</span>}
                     </div>
                   </a>
                 ))}

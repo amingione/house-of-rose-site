@@ -48,6 +48,33 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **CMS**: Sanity v3 + GROQ
 - **Language**: TypeScript (strict, no `any`)
 - **Hosting**: Netlify — storefront at `houseofrosefl.com`, Studio at `studio.houseofrosefl.com`
+- **Visual editing**: Netlify Visual Editor (Stackbit) over Sanity — see below
+
+---
+
+## Visual Editing (Netlify Visual Editor)
+Click-to-edit / side-by-side editing sits **on top of** Sanity — **not** a second CMS,
+and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
+
+- **Config**: `stackbit.config.ts` (repo root) — Sanity content source + `PAGE_ROUTES`
+  map (keep in sync with the Routes table below) + Astro `custom` SSG dev command.
+- **Dev deps only**: `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types`
+  (never imported by site code — production build untouched).
+- **Run locally**: `npm run dev:visual` (editor on `:3000`, Astro preview on `:4321`).
+  The editor origin `http://localhost:3000` is already in the Sanity CORS list.
+- **Env** (add to `.env.local`, auto-loaded by `stackbit.config.ts`):
+  `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_STUDIO_URL`, `SANITY_ACCESS_TOKEN`
+  (Editor token, read+write, for two-way sync).
+- **Inline edit**: all Sanity-backed pages + shared components are annotated via
+  `packages/web/src/lib/visualEditing.ts` (`data-sb-*` helpers). Arrays use the
+  numeric **index** (`faqs.0.question`), refs are rescoped with their own `_id`.
+- **Automation** (`scripts/visual-editing/`): `npm run ve:check` (coverage gate),
+  `ve:sync` (PAGE_ROUTES drift), `ve:new` (scaffold pre-annotated page/component +
+  auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
+  Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
+- **Hardcoded pages** (`index`, `memberships`, `contact`, `privacy-policy`,
+  `rent-a-room`, `skin-analysis`, `thank-you`) are **not** yet Sanity-backed →
+  Phase 3 migration plan in `docs/VISUAL-EDITING.md`.
 
 ---
 

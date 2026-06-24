@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import { FAQ_AGGREGATE_QUERY, type FaqGroup, type FAQ } from '@/lib/queries';
 import { jsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
 
@@ -44,16 +45,16 @@ const routeFor = (g: FaqGroup): string => {
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[860px] mx-auto space-y-12">
       {groups.map((g) => (
-        <div>
+        <div {...sbObjectId(g._id)}>
           <div class="flex items-baseline justify-between mb-6 border-b border-gold/15 pb-3">
-            <h2 class="font-serif text-[22px] text-gold">{g.source}</h2>
+            <h2 class="font-serif text-[22px] text-gold" {...sbFieldPath('title')}>{g.source}</h2>
             <a href={routeFor(g)} class="learn-more">View page →</a>
           </div>
           <div class="space-y-5">
-            {(g.faqs ?? []).map((f) => (
+            {(g.faqs ?? []).map((f, i) => (
               <div class="border-b border-ink/5 pb-5">
-                <h3 class="text-ink text-[16px] font-medium mb-2">{f.question}</h3>
-                <p class="text-[#9a8c78] text-[14px] leading-relaxed">{f.answer}</p>
+                <h3 class="text-ink text-[16px] font-medium mb-2" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h3>
+                <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
               </div>
             ))}
           </div>

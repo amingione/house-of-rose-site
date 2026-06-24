@@ -5,6 +5,9 @@ import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
 
+// Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
+// emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
+
 const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
 ---
 
@@ -35,7 +38,7 @@ const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QU
       {packages.length > 0 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {packages.map((pkg) => (
-            <TreatmentPackageCard pkg={pkg} />
+            <TreatmentPackageCard pkg={pkg} objectId={pkg._id} />
           ))}
         </div>
       ) : (

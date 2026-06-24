@@ -5,6 +5,7 @@
  */
 
 import { urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { SanityImage } from '@/lib/queries';
 
 interface Props {
@@ -15,16 +16,28 @@ interface Props {
   image?: SanityImage;
   variant?: 'grid' | 'row';
   number?: string;
+  /**
+   * Sanity _id of the service this card represents. When provided, the card is
+   * wired for Visual Editor click-to-edit (rescopes to this document). Omit for
+   * hardcoded/non-Sanity usage (e.g. the homepage) — annotations stay inert.
+   */
+  objectId?: string;
 }
 
-const { title, signatureName, slug, tagline, image, variant = 'grid', number } = Astro.props;
+const { title, signatureName, slug, tagline, image, variant = 'grid', number, objectId } = Astro.props;
 // Lead with the branded signature name; show the technical name as a subtitle.
 const headline = signatureName ?? title;
 const subName = signatureName ? title : undefined;
+// Visual Editor annotations — only emitted when an objectId is supplied.
+const objAttrs = objectId ? sbObjectId(objectId) : {};
+const headlinePath = signatureName ? sbFieldPath('signatureName') : sbFieldPath('title');
+const subNamePath = sbFieldPath('title');
+const taglinePath = sbFieldPath('tagline');
+const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
 ---
 
 {variant === 'grid' ? (
-  <a href={`/services/${slug}`} class="service-card group block">
+  <a href={`/services/${slug}`} class="service-card group block" {...objAttrs}>
     {image && (
       <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
         <img
@@ -36,13 +49,13 @@ const subName = signatureName ? title : undefined;
         />
       </div>
     )}
-    <span class="service-name">{headline}</span>
-    {subName && <span class="block text-gold/70 text-[11px] tracking-[0.18em] uppercase mt-1">{subName}</span>}
-    {tagline && <p class="service-desc mt-1">{tagline}</p>}
+    <span class="service-name" {...fp(headlinePath)}>{headline}</span>
+    {subName && <span class="block text-gold/70 text-[11px] tracking-[0.18em] uppercase mt-1" {...fp(subNamePath)}>{subName}</span>}
+    {tagline && <p class="service-desc mt-1" {...fp(taglinePath)}>{tagline}</p>}
     <span class="learn-more group-hover:text-gold">Learn More</span>
   </a>
 ) : (
-  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-ink/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6">
+  <a href={`/services/${slug}`} class="service-row group flex items-center gap-6 py-6 border-b border-ink/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6" {...objAttrs}>
     {image && (
       <div class="w-28 h-28 flex-shrink-0 overflow-hidden bg-charcoal-lighter">
         <img
@@ -56,9 +69,9 @@ const subName = signatureName ? title : undefined;
     )}
     <div class="flex-1">
       {number && <p class="text-[#8a7c66] text-xs mb-1">{number}</p>}
-      <h3 class="font-serif text-2xl text-ink mb-1">{headline}</h3>
-      {subName && <p class="text-gold/70 text-[11px] tracking-[0.18em] uppercase mb-2">{subName}</p>}
-      {tagline && <p class="text-[#7a6e5c] text-sm leading-relaxed">{tagline}</p>}
+      <h3 class="font-serif text-2xl text-ink mb-1" {...fp(headlinePath)}>{headline}</h3>
+      {subName && <p class="text-gold/70 text-[11px] tracking-[0.18em] uppercase mb-2" {...fp(subNamePath)}>{subName}</p>}
+      {tagline && <p class="text-[#7a6e5c] text-sm leading-relaxed" {...fp(taglinePath)}>{tagline}</p>}
     </div>
     <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
   </a>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_COLLECTION_SLUGS_QUERY,
   COLLECTION_BY_SLUG_QUERY,
@@ -25,7 +26,7 @@ if (!collection) {
   description={collection.description ?? ''}
   image={collection.image ? urlFor(collection.image).width(1200).height(630).fit('crop').url() : undefined}
 >
-  <section class="py-24 max-w-6xl mx-auto px-6">
+  <section class="py-24 max-w-6xl mx-auto px-6" {...sbObjectId(collection._id)}>
     <div class="mb-4">
       <a href="/services/collections" class="text-xs tracking-widest uppercase text-rose-700 hover:underline">
         ← All Collections
@@ -45,9 +46,9 @@ if (!collection) {
     )}
 
     <div class="max-w-2xl mb-16">
-      <h1 class="font-serif text-5xl text-charcoal mb-4">{collection.title}</h1>
+      <h1 class="font-serif text-5xl text-charcoal mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
       {collection.description && (
-        <p class="text-xl text-charcoal/70 leading-relaxed">{collection.description}</p>
+        <p class="text-xl text-charcoal/70 leading-relaxed" {...sbFieldPath('description')}>{collection.description}</p>
       )}
     </div>
 
@@ -56,7 +57,7 @@ if (!collection) {
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {collection.services.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="group bg-cream-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
+          <a href={`/services/${svc.slug}`} class="group bg-cream-100 overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
             {svc.image && (
               <div class="aspect-[3/2] overflow-hidden bg-cream-200">
                 <img
@@ -69,11 +70,11 @@ if (!collection) {
               </div>
             )}
             <div class="p-6">
-              <p class="font-serif text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors">{svc.title}</p>
-              {svc.tagline && <p class="text-sm text-charcoal/60 leading-relaxed mb-4">{svc.tagline}</p>}
+              <p class="font-serif text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
+              {svc.tagline && <p class="text-sm text-charcoal/60 leading-relaxed mb-4" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
               <div class="flex items-center justify-between">
-                {svc.duration && <span class="text-xs text-charcoal/50">{svc.duration}</span>}
-                {svc.price && <span class="text-sm font-medium text-rose-700">{svc.price}</span>}
+                {svc.duration && <span class="text-xs text-charcoal/50" {...sbFieldPath('duration')}>{svc.duration}</span>}
+                {svc.price && <span class="text-sm font-medium text-rose-700" {...sbFieldPath('price')}>{svc.price}</span>}
               </div>
             </div>
           </a>

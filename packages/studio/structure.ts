@@ -14,6 +14,16 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
             .documentId('siteSettings')
         ),
 
+      // Singleton — Home Page
+      S.listItem()
+        .title('Home Page')
+        .id('homepage')
+        .child(
+          S.document()
+            .schemaType('homepage')
+            .documentId('homepage')
+        ),
+
       S.divider(),
 
       // Services

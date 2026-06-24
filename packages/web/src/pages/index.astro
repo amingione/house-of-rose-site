@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
+import { sanityFetch } from "@/lib/sanity";
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
+import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 
 // Booking + internal links (single source of truth so they're easy to swap)
 const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
@@ -8,33 +11,39 @@ const SKIN_ANALYSIS_URL = "/skin-analysis";
 const MEMBERSHIPS_URL = "/memberships";
 const SHOP_URL = "/shop";
 
+// ─── Home content from Sanity (singleton) ──────────────────────────────────────
+// Falls back to the original copy if a field is empty, so there's no regression.
+const hp = (await sanityFetch<HomePage | null>(HOMEPAGE_QUERY)) ?? ({} as HomePage);
+const oid = hp._id ? sbObjectId(hp._id) : {};
+
 // Homepage service groups (curated 4-pillar model — not a treatment dump)
-const serviceGroups = [
+const FALLBACK_SERVICE_GROUPS = [
 	{
 		name: "Regenerative Skin Treatments",
 		description:
 			"ProCell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks.",
-		image: "/images/new-microchanneling.webp",
+		imagePath: "/images/new-microchanneling.webp",
 	},
 	{
 		name: "Injectables & Structural Enhancements",
 		description:
 			"Botox, dermal fillers, PRF under-eye rejuvenation, EZ Gel bio-filler, and PRF hair restoration — chosen with a careful, balanced approach.",
-		image: "/images/new-injectables.webp",
+		imagePath: "/images/new-injectables.webp",
 	},
 	{
 		name: "Skin Health & Corrective Care",
 		description:
 			"Face Reality acne care, Glo2Facials, dermaplaning, LED therapy, and personalized skin guidance rooted in what your skin is showing today—not assumptions.",
-		image: "/images/new-facials.png",
+		imagePath: "/images/new-facials.png",
 	},
 	{
 		name: "Wellness & Performance Support",
 		description:
 			"IV hydration, GLP-1 weight management, permanent jewelry, memberships, and select offerings that complement your aesthetic goals and overall care experience.",
-		image: "/images/new-wellness.webp",
+		imagePath: "/images/new-wellness.webp",
 	},
 ];
+const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SERVICE_GROUPS;
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 const websiteData = {
@@ -105,8 +114,8 @@ const organizationData = {
 ---
 
 <BaseLayout
-	title="House of Rose Aesthetics | Advanced Aesthetics & Wellness in Punta Gorda, FL"
-	description="Personalized aesthetics, skin health, regenerative treatments, injectables, facials, wellness support, and curated skincare in Punta Gorda, Florida."
+	title={hp.seoTitle ?? "House of Rose Aesthetics | Advanced Aesthetics & Wellness in Punta Gorda, FL"}
+	description={hp.seoDescription ?? "Personalized aesthetics, skin health, regenerative treatments, injectables, facials, wellness support, and curated skincare in Punta Gorda, Florida."}
 	preloadImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 >
 	<script
@@ -122,50 +131,49 @@ const organizationData = {
 		slot="head"
 	/>
 
+	<div {...oid}>
 	<!-- ── SECTION 1 · HERO ─────────────────────────────────────────── -->
 	<Hero
-		title="HOUSE OF ROSE\nAESTHETICS"
-		subtitle="PUNTA GORDA, FL"
-		kicker="Refined Aesthetics. Natural Results"
-		description="Precision-driven treatments, regenerative techniques, and personalized care designed to enhance your natural features—not change them. Every treatment plan is intentional, every result is meant to look effortless, and every detail is built around long-term skin health."
+		title={hp.heroTitle ?? "HOUSE OF ROSE\nAESTHETICS"}
+		subtitle={hp.heroSubtitle ?? "PUNTA GORDA, FL"}
+		kicker={hp.heroKicker ?? "Refined Aesthetics. Natural Results"}
+		description={hp.heroDescription ?? "Precision-driven treatments, regenerative techniques, and personalized care designed to enhance your natural features—not change them. Every treatment plan is intentional, every result is meant to look effortless, and every detail is built around long-term skin health."}
 		size="full"
 		centerContent={true}
 		showCTA={true}
-		ctaPrimary={{ text: "Book Your Consultation", href: BOOKING_URL }}
-		ctaSecondary={{ text: "Start With Skin Analysis", href: SKIN_ANALYSIS_URL }}
+		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Consultation", href: BOOKING_URL }}
+		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Start With Skin Analysis", href: SKIN_ANALYSIS_URL }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
+		titleField="heroTitle"
+		subtitleField="heroSubtitle"
+		kickerField="heroKicker"
+		descriptionField="heroDescription"
 	/>
 
 	<!-- ── SECTION 2 · INTRO / BRAND POSITIONING ───────────────────── -->
 	<section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
 		<div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-			<span class="kicker">About House of Rose</span>
+			<span class="kicker" {...sbFieldPath("aboutKicker")}>{hp.aboutKicker ?? "About House of Rose"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
+				{...sbFieldPath("aboutHeading")}
 			>
-				A more considered approach to aesthetics.
+				{hp.aboutHeading ?? "A more considered approach to aesthetics."}
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				{...sbFieldPath("aboutPara1")}
 			>
-				House of Rose Aesthetics was created for clients who expect
-				more than a standard appointment or transactional treatment
-				menu.
+				{hp.aboutPara1 ?? "House of Rose Aesthetics was created for clients who expect more than a standard appointment or transactional treatment menu."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				{...sbFieldPath("aboutPara2")}
 			>
-				Our approach is intentional, results-focused, and built around
-				long-term skin health. Every recommendation is made with
-				precision—using AI-assisted skin analysis where it helps,
-				then balancing advanced aesthetic treatments, regenerative
-				techniques, and personalized care to deliver outcomes that feel
-				refined, natural, and aligned with you.
+				{hp.aboutPara2 ?? "Our approach is intentional, results-focused, and built around long-term skin health. Every recommendation is made with precision—using AI-assisted skin analysis where it helps, then balancing advanced aesthetic treatments, regenerative techniques, and personalized care to deliver outcomes that feel refined, natural, and aligned with you."}
 			</p>
-			<p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]">
-				Rather than focusing on isolated services, we design cohesive
-				treatment plans that evolve with your skin, your goals, and the
-				results you want to maintain over time.
+			<p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
+				{hp.aboutPara3 ?? "Rather than focusing on isolated services, we design cohesive treatment plans that evolve with your skin, your goals, and the results you want to maintain over time."}
 			</p>
 		</div>
 		<div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -187,34 +195,30 @@ const organizationData = {
 	>
 		<div class="absolute inset-0 bg-black/72"></div>
 		<div class="relative z-10 max-w-[760px] mx-auto text-center">
-			<span class="kicker">Our Approach</span>
+			<span class="kicker" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
+				{...sbFieldPath("approachHeading")}
 			>
-				Where regenerative aesthetics meets precision care.
+				{hp.approachHeading ?? "Where regenerative aesthetics meets precision care."}
 			</h2>
 			<p
 				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-4"
+				{...sbFieldPath("approachPara1")}
 			>
-				Our approach is centered on supporting the skin
-				intelligently—from regeneration and correction to maintenance
-				and long-term results.
+				{hp.approachPara1 ?? "Our approach is centered on supporting the skin intelligently—from regeneration and correction to maintenance and long-term results."}
 			</p>
 			<p
 				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-7"
+				{...sbFieldPath("approachPara2")}
 			>
-				Signature treatments such as PRF are part of a broader
-				philosophy: enhancing skin function, restoring balance, and
-				creating visible improvements without overcorrection. Every
-				treatment is selected with purpose, layered strategically, and
-				tailored to how your skin responds over time.
+				{hp.approachPara2 ?? "Signature treatments such as PRF are part of a broader philosophy: enhancing skin function, restoring balance, and creating visible improvements without overcorrection. Every treatment is selected with purpose, layered strategically, and tailored to how your skin responds over time."}
 			</p>
 			<p
 				class="font-serif text-ivory text-[clamp(17px,2vw,22px)] leading-[1.5] max-w-[560px] mx-auto"
+				{...sbFieldPath("approachClosing")}
 			>
-				This is not trend-driven aesthetics. This is structured,
-				outcome-focused care designed to deliver results that feel
-				effortless—and last.
+				{hp.approachClosing ?? "This is not trend-driven aesthetics. This is structured, outcome-focused care designed to deliver results that feel effortless—and last."}
 			</p>
 		</div>
 	</section>
@@ -223,28 +227,25 @@ const organizationData = {
 	<section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
 		<div class="max-w-[1280px] mx-auto">
 			<div class="max-w-[640px] mb-12">
-				<span class="kicker">Services</span>
+				<span class="kicker" {...sbFieldPath("servicesKicker")}>{hp.servicesKicker ?? "Services"}</span>
 				<h2
 					class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-5"
+					{...sbFieldPath("servicesHeading")}
 				>
-					A curated menu of advanced treatments.
+					{hp.servicesHeading ?? "A curated menu of advanced treatments."}
 				</h2>
-				<p class="text-[#9a8c78] text-[15px] leading-[1.75]">
-					A curated selection of treatments designed to work
-					together—not in isolation. Each service at House of Rose is
-					carefully chosen to support real outcomes: improved skin
-					quality, balanced features, and long-term maintenance through
-					personalized treatment planning.
+				<p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath("servicesIntro")}>
+					{hp.servicesIntro ?? "A curated selection of treatments designed to work together—not in isolation. Each service at House of Rose is carefully chosen to support real outcomes: improved skin quality, balanced features, and long-term maintenance through personalized treatment planning."}
 				</p>
 			</div>
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
 				{
-					serviceGroups.map((group) => (
+					serviceGroups.map((group, i) => (
 						<a href="/services" class="group block bg-charcoal">
 							<div class="aspect-[16/10] overflow-hidden bg-charcoal-lighter">
 								<img
-									src={group.image}
+									src={group.imagePath}
 									alt={group.name}
 									loading="lazy"
 									class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -253,10 +254,10 @@ const organizationData = {
 								/>
 							</div>
 							<div class="p-7">
-								<h3 class="font-serif text-[21px] text-ink mb-2.5">
+								<h3 class="font-serif text-[21px] text-ink mb-2.5" {...sbFieldPathParts("serviceGroups", i, "name")}>
 									{group.name}
 								</h3>
-								<p class="text-[#777] text-[14px] leading-[1.7]">
+								<p class="text-[#777] text-[14px] leading-[1.7]" {...sbFieldPathParts("serviceGroups", i, "description")}>
 									{group.description}
 								</p>
 							</div>
@@ -269,8 +270,9 @@ const organizationData = {
 				<a
 					href="/services"
 					class="text-[11px] tracking-[0.2em] uppercase border-b border-gold text-gold pb-0.5 min-h-[44px] inline-flex items-end hover:opacity-75 transition-opacity"
+					{...sbFieldPath("servicesCtaText")}
 				>
-					View All Services
+					{hp.servicesCtaText ?? "View All Services"}
 				</a>
 			</div>
 		</div>
@@ -291,40 +293,40 @@ const organizationData = {
 		<div
 			class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2"
 		>
-			<span class="kicker">AI Skin Analysis</span>
+			<span class="kicker" {...sbFieldPath("scanKicker")}>{hp.scanKicker ?? "AI Skin Analysis"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
+				{...sbFieldPath("scanHeading")}
 			>
-				Your plan should start with evidence.
+				{hp.scanHeading ?? "Your plan should start with evidence."}
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				{...sbFieldPath("scanPara1")}
 			>
-				Our in-studio AI skin scanner uses advanced imaging to evaluate
-				visible and subsurface patterns such as pigmentation, texture,
-				pores, fine lines, hydration cues, and sun damage.
+				{hp.scanPara1 ?? "Our in-studio AI skin scanner uses advanced imaging to evaluate visible and subsurface patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				{...sbFieldPath("scanPara2")}
 			>
-				That analysis becomes your baseline: a clearer way to choose the
-				right treatments, track change over time, and understand why a
-				provider recommends one step before another.
+				{hp.scanPara2 ?? "That analysis becomes your baseline: a clearer way to choose the right treatments, track change over time, and understand why a provider recommends one step before another."}
 			</p>
 			<p
 				class="text-ink/90 text-[15px] italic leading-[1.75] max-w-[560px] mb-7"
+				{...sbFieldPath("scanQuote")}
 			>
-				It's the trust factor behind every truly personalized plan.
+				{hp.scanQuote ?? "It's the trust factor behind every truly personalized plan."}
 			</p>
 			<div class="flex gap-3 flex-wrap">
-				<a href={SKIN_ANALYSIS_URL} class="btn-gold inline-flex"
-					>Learn About AI Skin Analysis</a
+				<a href={SKIN_ANALYSIS_URL} class="btn-gold inline-flex" {...sbFieldPath("scanCtaPrimaryText")}
+					>{hp.scanCtaPrimaryText ?? "Learn About AI Skin Analysis"}</a
 				>
 				<a
 					href={BOOKING_URL}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="btn-outline-gold inline-flex">Book Your Scan</a
+					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book Your Scan"}</a
 				>
 			</div>
 		</div>
@@ -333,33 +335,31 @@ const organizationData = {
 	<!-- ── SECTION 6 · THE ROSE CIRCLE ─────────────────────────────── -->
 	<section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
 		<div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-			<span class="kicker">The Rose Circle</span>
+			<span class="kicker" {...sbFieldPath("circleKicker")}>{hp.circleKicker ?? "The Rose Circle"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
+				{...sbFieldPath("circleHeading")}
 			>
-				Where your results are protected.
+				{hp.circleHeading ?? "Where your results are protected."}
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				{...sbFieldPath("circlePara1")}
 			>
-				Results are built over time and maintained with intention. The
-				Rose Circle is our continuity membership for clients who want
-				consistent care, priority access, curated treatment credits, and
-				ongoing professional guidance after the first plan begins.
+				{hp.circlePara1 ?? "Results are built over time and maintained with intention. The Rose Circle is our continuity membership for clients who want consistent care, priority access, curated treatment credits, and ongoing professional guidance after the first plan begins."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
+				{...sbFieldPath("circlePara2")}
 			>
-				Start with the scanner, build the right treatment path, then use
-				The Rose Circle to keep momentum year-round. It is not a discount
-				club; it is the relationship that helps your skin stay on course.
+				{hp.circlePara2 ?? "Start with the scanner, build the right treatment path, then use The Rose Circle to keep momentum year-round. It is not a discount club; it is the relationship that helps your skin stay on course."}
 			</p>
 			<div class="flex gap-3 flex-wrap">
-				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex"
-					>Explore The Rose Circle</a
+				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaPrimaryText")}
+					>{hp.circleCtaPrimaryText ?? "Explore The Rose Circle"}</a
 				>
-				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex"
-					>Start With Analysis</a
+				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaSecondaryText")}
+					>{hp.circleCtaSecondaryText ?? "Start With Analysis"}</a
 				>
 			</div>
 		</div>
@@ -390,32 +390,28 @@ const organizationData = {
 		<div
 			class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2"
 		>
-			<span class="kicker">Curated Home Care</span>
+			<span class="kicker" {...sbFieldPath("careKicker")}>{hp.careKicker ?? "Curated Home Care"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
+				{...sbFieldPath("careHeading")}
 			>
-				Professional skincare, selected with purpose.
+				{hp.careHeading ?? "Professional skincare, selected with purpose."}
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				{...sbFieldPath("carePara1")}
 			>
-				Every product we carry is selected to support treatment outcomes
-				and simplify your routine at home. From post-treatment aftercare
-				to acne support, mineral makeup, SPF, and corrective skincare,
-				our selection is built to work with your plan, not compete with
-				it.
+				{hp.carePara1 ?? "Every product we carry is selected to support treatment outcomes and simplify your routine at home. From post-treatment aftercare to acne support, mineral makeup, SPF, and corrective skincare, our selection is built to work with your plan, not compete with it."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
+				{...sbFieldPath("carePara2")}
 			>
-				Rather than overwhelming you with options, we provide curated
-				recommendations tailored to your skin, your treatments, and your
-				long-term goals—so everything you use works together with
-				intention.
+				{hp.carePara2 ?? "Rather than overwhelming you with options, we provide curated recommendations tailored to your skin, your treatments, and your long-term goals—so everything you use works together with intention."}
 			</p>
 			<div>
-				<a href={SHOP_URL} class="btn-outline-gold inline-flex"
-					>Shop Skincare</a
+				<a href={SHOP_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("careCtaText")}
+					>{hp.careCtaText ?? "Shop Skincare"}</a
 				>
 			</div>
 		</div>
@@ -428,26 +424,24 @@ const organizationData = {
 	>
 		<div class="absolute inset-0 bg-black/74"></div>
 		<div class="relative z-10 max-w-[720px] mx-auto text-center">
-			<span class="kicker">The Experience</span>
+			<span class="kicker" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
+				{...sbFieldPath("expHeading")}
 			>
-				Calm, personal, and thoughtfully paced.
+				{hp.expHeading ?? "Calm, personal, and thoughtfully paced."}
 			</h2>
 			<p
 				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-4"
+				{...sbFieldPath("expPara1")}
 			>
-				Appointments at House of Rose are designed to feel calm,
-				focused, and entirely personalized. We take the time to
-				understand your goals, evaluate your skin with precision, and
-				recommend treatments that are aligned—not excessive, not rushed,
-				and never driven by trends.
+				{hp.expPara1 ?? "Appointments at House of Rose are designed to feel calm, focused, and entirely personalized. We take the time to understand your goals, evaluate your skin with precision, and recommend treatments that are aligned—not excessive, not rushed, and never driven by trends."}
 			</p>
 			<p
 				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto"
+				{...sbFieldPath("expPara2")}
 			>
-				You'll leave with clarity—what was done, why it matters, and
-				exactly how to maintain your results.
+				{hp.expPara2 ?? "You'll leave with clarity—what was done, why it matters, and exactly how to maintain your results."}
 			</p>
 		</div>
 	</section>
@@ -455,25 +449,24 @@ const organizationData = {
 	<!-- ── SECTION 9 · LOCAL / TRUST / CONTACT ─────────────────────── -->
 	<section class="bg-charcoal py-[clamp(56px,8vw,104px)] px-6">
 		<div class="max-w-[760px] mx-auto text-center">
-			<span class="kicker">Punta Gorda</span>
+			<span class="kicker" {...sbFieldPath("localKicker")}>{hp.localKicker ?? "Punta Gorda"}</span>
 			<h2
 				class="font-serif text-[clamp(26px,4vw,42px)] text-ink leading-tight mt-2 mb-7"
+				{...sbFieldPath("localHeading")}
 			>
-				A refined destination for aesthetics and wellness.
+				{hp.localHeading ?? "A refined destination for aesthetics and wellness."}
 			</h2>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4"
+				{...sbFieldPath("localPara1")}
 			>
-				House of Rose Aesthetics serves clients in Punta Gorda and
-				across Southwest Florida who are looking for a more thoughtful
-				way to approach skin, beauty, and self-care.
+				{hp.localPara1 ?? "House of Rose Aesthetics serves clients in Punta Gorda and across Southwest Florida who are looking for a more thoughtful way to approach skin, beauty, and self-care."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
+				{...sbFieldPath("localPara2")}
 			>
-				If you already know what you're looking for, you can book
-				online. If you'd rather begin with a conversation, we're here to
-				help you find the right starting point.
+				{hp.localPara2 ?? "If you already know what you're looking for, you can book online. If you'd rather begin with a conversation, we're here to help you find the right starting point."}
 			</p>
 			<div class="flex gap-3 justify-center flex-wrap">
 				<a
@@ -496,30 +489,31 @@ const organizationData = {
 		<div class="relative z-10 max-w-[640px] mx-auto text-center">
 			<h2
 				class="font-serif text-[clamp(28px,5vw,46px)] text-ink leading-tight mb-5"
+				{...sbFieldPath("finalHeading")}
 			>
-				Refined results begin with the right plan.
+				{hp.finalHeading ?? "Refined results begin with the right plan."}
 			</h2>
 			<p
 				class="text-[#999] text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
+				{...sbFieldPath("finalPara")}
 			>
-				Advanced treatments, expert guidance, and a setting designed to
-				feel elevated, calm, and intentional—so every step of your
-				experience feels considered.
+				{hp.finalPara ?? "Advanced treatments, expert guidance, and a setting designed to feel elevated, calm, and intentional—so every step of your experience feels considered."}
 			</p>
 			<a
 				href={BOOKING_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="btn-gold"
+				{...sbFieldPath("finalCtaText")}
 			>
-				Start Your Consultation
+				{hp.finalCtaText ?? "Start Your Consultation"}
 			</a>
 			<p
 				class="text-[#7a6e5c] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
-			>
-				525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950<br />
-				Mon–Fri 10AM–6PM · (844) 941-7673
-			</p>
+				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 10AM–6PM · (844) 941-7673").replace(/\n/g, "<br />")}
+				{...sbFieldPath("finalAddressLine")}
+			/>
 		</div>
 	</section>
+	</div>
 </BaseLayout>

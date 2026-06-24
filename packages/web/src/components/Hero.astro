@@ -4,6 +4,8 @@
  * Can be used for full-height heroes or smaller heroes
  */
 
+import { sbFieldPath } from "@/lib/visualEditing";
+
 interface Props {
 	title: string;
 	subtitle?: string;
@@ -16,6 +18,15 @@ interface Props {
 	showCTA?: boolean;
 	ctaPrimary?: { text: string; href: string };
 	ctaSecondary?: { text: string; href: string };
+	/**
+	 * Optional Visual Editor field paths. When provided, the matching element
+	 * emits `data-sb-field-path` (relative to an ancestor `data-sb-object-id`)
+	 * so the hero copy is click-to-editable. Omitted by default → inert.
+	 */
+	titleField?: string;
+	subtitleField?: string;
+	kickerField?: string;
+	descriptionField?: string;
 }
 
 const {
@@ -30,7 +41,13 @@ const {
 	showCTA = false,
 	ctaPrimary,
 	ctaSecondary,
+	titleField,
+	subtitleField,
+	kickerField,
+	descriptionField,
 } = Astro.props;
+
+const sbAttr = (field?: string) => (field ? sbFieldPath(field) : {});
 
 const sizeClasses =
 	size === "full" ? "min-h-screen" : "min-h-[60vh] min-h-[400px]";
@@ -69,20 +86,21 @@ const titleLines = title.split("\n");
 	>
 		{
 			kicker && (
-				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-2">
+				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-2" {...sbAttr(kickerField)}>
 					{kicker}
 				</span>
 			)
 		}
 		{
 			subtitle && (
-				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-4">
+				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-4" {...sbAttr(subtitleField)}>
 					{subtitle}
 				</span>
 			)
 		}
 		<h1
 			class="font-serif text-[clamp(36px,8vw,84px)] leading-tight font-normal text-white mb-4"
+			{...sbAttr(titleField)}
 		>
 			{
 				titleLines.map((line, index) => (
@@ -103,6 +121,7 @@ const titleLines = title.split("\n");
 			description && (
 				<p
 					class={`text-white/75 text-base max-w-[430px] leading-relaxed mb-9 ${centerContent ? "mx-auto" : ""}`}
+					{...sbAttr(descriptionField)}
 				>
 					{description}
 				</p>
