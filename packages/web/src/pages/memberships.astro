@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
 
@@ -18,7 +20,75 @@ interface Tier {
   featured: boolean;
 }
 
-const tiers: Tier[] = [
+interface PathwayStep {
+  step: string;
+  body: string;
+}
+
+interface MembershipsPage {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  heroCtaPrimaryText?: string;
+  heroCtaSecondaryText?: string;
+  ideaKicker?: string;
+  ideaHeading?: string;
+  ideaBody?: string;
+  tiersKicker?: string;
+  tiersHeading?: string;
+  tiers?: Tier[];
+  tiersFootnote?: string;
+  pathwayKicker?: string;
+  pathwayHeading?: string;
+  pathway?: PathwayStep[];
+  teaserKicker?: string;
+  teaserHeading?: string;
+  teaserBody?: string;
+  teaserCtaText?: string;
+  finalKicker?: string;
+  finalHeading?: string;
+  finalBody?: string;
+  finalCtaPrimaryText?: string;
+  finalCtaSecondaryText?: string;
+}
+
+const MEMBERSHIPS_PAGE_QUERY = `*[_type == "membershipsPage"][0]{
+  _id,
+  seoTitle,
+  seoDescription,
+  heroKicker,
+  heroTitle,
+  heroDescription,
+  heroCtaPrimaryText,
+  heroCtaSecondaryText,
+  ideaKicker,
+  ideaHeading,
+  ideaBody,
+  tiersKicker,
+  tiersHeading,
+  tiers[]{ _key, name, french, price, tagline, builtFor, benefits, note, featured },
+  tiersFootnote,
+  pathwayKicker,
+  pathwayHeading,
+  pathway[]{ _key, step, body },
+  teaserKicker,
+  teaserHeading,
+  teaserBody,
+  teaserCtaText,
+  finalKicker,
+  finalHeading,
+  finalBody,
+  finalCtaPrimaryText,
+  finalCtaSecondaryText
+}`;
+
+const data = (await sanityFetch<MembershipsPage | null>(MEMBERSHIPS_PAGE_QUERY)) ?? ({} as MembershipsPage);
+
+// ─── Fallbacks (original hardcoded copy — no regression if a field is empty) ──
+const FALLBACK_TIERS: Tier[] = [
   {
     name: 'Petal',
     price: '129',
@@ -67,41 +137,48 @@ const tiers: Tier[] = [
   },
 ];
 
-const pathway = [
+const FALLBACK_PATHWAY: PathwayStep[] = [
   { step: 'The Entry', body: 'A consultation or Internal Hydration Session — the diagnostic that designs your plan.' },
   { step: 'The Plan', body: 'An outcome-anchored Regeneration Plan — your transformation, structured over 3–6 months.' },
   { step: 'The Rose Circle', body: 'The relationship after results — maintenance, access, and belonging, for life.' },
 ];
+
+const tiers = data.tiers?.length ? data.tiers : FALLBACK_TIERS;
+const pathway = data.pathway?.length ? data.pathway : FALLBACK_PATHWAY;
+const usingFallbackTiers = !data.tiers?.length;
+const usingFallbackPathway = !data.pathway?.length;
 ---
 
 <BaseLayout
-  title="The Rose Circle Membership | House of Rose Aesthetics, Punta Gorda FL"
-  description="The Rose Circle is House of Rose's continuity membership — Petal, Bloom, and En Pleine Rose. Maintain the results you've built with priority access, curated credits, and belonging. Punta Gorda, FL."
+  title={data.seoTitle ?? "The Rose Circle Membership | House of Rose Aesthetics, Punta Gorda FL"}
+  description={data.seoDescription ?? "The Rose Circle is House of Rose's continuity membership — Petal, Bloom, and En Pleine Rose. Maintain the results you've built with priority access, curated credits, and belonging. Punta Gorda, FL."}
   preloadImage="/images/hor-lounge.jpg"
 >
+  <div {...(data._id ? sbObjectId(data._id) : {})}>
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title={"The Rose Circle"}
-    kicker="Membership · Continuity Care"
-    description="Your results, protected. Your place, reserved. The Rose Circle is how you stay in relationship with the studio after a plan ends — maintaining the collagen you've built, with priority access and an experience worth keeping."
+    title={data.heroTitle ?? "The Rose Circle"}
+    kicker={data.heroKicker ?? "Membership · Continuity Care"}
+    description={data.heroDescription ?? "Your results, protected. Your place, reserved. The Rose Circle is how you stay in relationship with the studio after a plan ends — maintaining the collagen you've built, with priority access and an experience worth keeping."}
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: 'Become a Member', href: '/contact' }}
-    ctaSecondary={{ text: 'Explore the Plans', href: '/plans' }}
+    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Become a Member', href: '/contact' }}
+    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'Explore the Plans', href: '/plans' }}
     backgroundImage="/images/hor-lounge.jpg"
+    titleField="heroTitle"
+    kickerField="heroKicker"
+    descriptionField="heroDescription"
   />
 
   <!-- ── THE IDEA ─────────────────────────────────────────────────── -->
   <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[820px] mx-auto text-center">
-      <span class="kicker">The Idea</span>
-      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ink leading-tight mt-2 mb-6">
-        A plan creates the transformation. The Circle keeps it.
+      <span class="kicker" {...sbFieldPath("ideaKicker")}>{data.ideaKicker ?? "The Idea"}</span>
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath("ideaHeading")}>
+        {data.ideaHeading ?? "A plan creates the transformation. The Circle keeps it."}
       </h2>
-      <p class="text-[#7a6e5c] text-[16px] leading-[1.85] max-w-[640px] mx-auto">
-        Regenerative work compounds — and stopping means watching it fade. The Rose Circle is built as
-        access, curation, and belonging: a way to protect the results you've earned and stay close to
-        the studio, never a discount club. Three tiers, each matched to where you are in your journey.
+      <p class="text-[#7a6e5c] text-[16px] leading-[1.85] max-w-[640px] mx-auto" {...sbFieldPath("ideaBody")}>
+        {data.ideaBody ?? "Regenerative work compounds — and stopping means watching it fade. The Rose Circle is built as access, curation, and belonging: a way to protect the results you've earned and stay close to the studio, never a discount club. Three tiers, each matched to where you are in your journey."}
       </p>
     </div>
   </section>
@@ -110,34 +187,34 @@ const pathway = [
   <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6" id="tiers">
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[640px] mb-12">
-        <span class="kicker">The Three Tiers</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">Choose your bloom.</h2>
+        <span class="kicker" {...sbFieldPath("tiersKicker")}>{data.tiersKicker ?? "The Three Tiers"}</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2" {...sbFieldPath("tiersHeading")}>{data.tiersHeading ?? "Choose your bloom."}</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/15">
-        {tiers.map((tier) => (
+        {tiers.map((tier, i) => (
           <div class={`flex flex-col bg-breath p-8 ${tier.featured ? 'ring-1 ring-gold/50' : ''}`}>
             {tier.featured && (
               <span class="text-gold text-[10px] tracking-[0.3em] uppercase mb-3">Most Loved</span>
             )}
-            <h3 class="font-serif text-[26px] text-ink leading-none">{tier.name}</h3>
-            {tier.french && <p class="text-[#9a8c78] text-[12px] italic mt-1">{tier.french}</p>}
-            <p class="text-gold text-[11px] tracking-[0.2em] uppercase mt-2 mb-5">{tier.tagline}</p>
+            <h3 class="font-serif text-[26px] text-ink leading-none" {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "name"))}>{tier.name}</h3>
+            {tier.french && <p class="text-[#9a8c78] text-[12px] italic mt-1" {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "french"))}>{tier.french}</p>}
+            <p class="text-gold text-[11px] tracking-[0.2em] uppercase mt-2 mb-5" {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "tagline"))}>{tier.tagline}</p>
             <div class="flex items-baseline gap-1 mb-4">
               <span class="text-[#7a6e5c] text-[13px]">From</span>
-              <span class="font-serif text-[42px] text-ink leading-none">${tier.price}</span>
+              <span class="font-serif text-[42px] text-ink leading-none" {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "price"))}>${tier.price}</span>
               <span class="text-[#7a6e5c] text-[13px]">/ month</span>
             </div>
-            <p class="text-ink/75 text-[14px] leading-[1.6] mb-6">{tier.builtFor}</p>
+            <p class="text-ink/75 text-[14px] leading-[1.6] mb-6" {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "builtFor"))}>{tier.builtFor}</p>
             <ul class="space-y-3 mb-8 flex-1">
-              {tier.benefits.map((b) => (
+              {tier.benefits.map((b, bi) => (
                 <li class="flex gap-2.5 text-[#5f5446] text-[14px] leading-[1.55]">
                   <span class="text-gold mt-0.5">—</span>
-                  <span>{b}</span>
+                  <span {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "benefits", bi))}>{b}</span>
                 </li>
               ))}
             </ul>
-            {tier.note && <p class="text-[#9a8c78] text-[12px] italic mb-5">{tier.note}</p>}
+            {tier.note && <p class="text-[#9a8c78] text-[12px] italic mb-5" {...(usingFallbackTiers ? {} : sbFieldPathParts("tiers", i, "note"))}>{tier.note}</p>}
             <a href="/contact" class={tier.featured ? 'btn-gold w-full text-center' : 'btn-outline-gold w-full text-center'}>
               {tier.name === 'En Pleine Rose' ? 'Request an Invitation' : `Join ${tier.name}`}
             </a>
@@ -145,11 +222,8 @@ const pathway = [
         ))}
       </div>
 
-      <p class="text-[#7a6e5c] text-[12px] leading-[1.7] mt-7 max-w-[820px]">
-        Credits are designed to be used, not lost — unused monthly value banks within its season, so
-        you keep a rhythm without pressure. Seasonal residents may pause at no charge; we are
-        snowbird-friendly by design. Final treatment combinations and candidacy are always confirmed
-        with your licensed provider.
+      <p class="text-[#7a6e5c] text-[12px] leading-[1.7] mt-7 max-w-[820px]" {...sbFieldPath("tiersFootnote")}>
+        {data.tiersFootnote ?? "Credits are designed to be used, not lost — unused monthly value banks within its season, so you keep a rhythm without pressure. Seasonal residents may pause at no charge; we are snowbird-friendly by design. Final treatment combinations and candidacy are always confirmed with your licensed provider."}
       </p>
     </div>
   </section>
@@ -158,15 +232,15 @@ const pathway = [
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1080px] mx-auto">
       <div class="text-center max-w-[640px] mx-auto mb-14">
-        <span class="kicker">The Pathway</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2">How you move through the House.</h2>
+        <span class="kicker" {...sbFieldPath("pathwayKicker")}>{data.pathwayKicker ?? "The Pathway"}</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2" {...sbFieldPath("pathwayHeading")}>{data.pathwayHeading ?? "How you move through the House."}</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         {pathway.map((p, i) => (
           <div class="text-center">
             <p class="font-serif text-gold/40 text-[44px] mb-3">{String(i + 1).padStart(2, '0')}</p>
-            <p class="text-ink text-[17px] font-serif mb-3">{p.step}</p>
-            <p class="text-[#7a6e5c] text-[14px] leading-relaxed max-w-[300px] mx-auto">{p.body}</p>
+            <p class="text-ink text-[17px] font-serif mb-3" {...(usingFallbackPathway ? {} : sbFieldPathParts("pathway", i, "step"))}>{p.step}</p>
+            <p class="text-[#7a6e5c] text-[14px] leading-relaxed max-w-[300px] mx-auto" {...(usingFallbackPathway ? {} : sbFieldPathParts("pathway", i, "body"))}>{p.body}</p>
           </div>
         ))}
       </div>
@@ -176,34 +250,32 @@ const pathway = [
   <!-- ── REGENERATION PLANS TEASER ────────────────────────────────── -->
   <section class="bg-walnut py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[820px] mx-auto text-center">
-      <span class="kicker">Before the Circle</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ivory mt-2 mb-4">
-        It begins with a Regeneration Plan.
+      <span class="kicker" {...sbFieldPath("teaserKicker")}>{data.teaserKicker ?? "Before the Circle"}</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ivory mt-2 mb-4" {...sbFieldPath("teaserHeading")}>
+        {data.teaserHeading ?? "It begins with a Regeneration Plan."}
       </h2>
-      <p class="text-ivory/70 text-[15px] max-w-[600px] mx-auto mb-8 leading-[1.85]">
-        The Rose Method™ sequences your transformation in phases — Reveal, Regenerate, Restore, Sustain.
-        Renewal, Regeneration, and Restoration are the structured journeys that build the results the
-        Circle is designed to protect.
+      <p class="text-ivory/70 text-[15px] max-w-[600px] mx-auto mb-8 leading-[1.85]" {...sbFieldPath("teaserBody")}>
+        {data.teaserBody ?? "The Rose Method™ sequences your transformation in phases — Reveal, Regenerate, Restore, Sustain. Renewal, Regeneration, and Restoration are the structured journeys that build the results the Circle is designed to protect."}
       </p>
-      <a href="/plans" class="btn-outline-white">Explore the Regeneration Plans</a>
+      <a href="/plans" class="btn-outline-white" {...sbFieldPath("teaserCtaText")}>{data.teaserCtaText ?? "Explore the Regeneration Plans"}</a>
     </div>
   </section>
 
   <!-- ── CTA ──────────────────────────────────────────────────────── -->
   <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/15">
     <div class="max-w-[640px] mx-auto text-center">
-      <span class="kicker">Join the Circle</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
-        Your results, protected. Your place, reserved.
+      <span class="kicker" {...sbFieldPath("finalKicker")}>{data.finalKicker ?? "Join the Circle"}</span>
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath("finalHeading")}>
+        {data.finalHeading ?? "Your results, protected. Your place, reserved."}
       </h2>
-      <p class="text-[#7a6e5c] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        Reach out to choose your tier — or start with a consultation and we'll design the plan that
-        leads you here. Not sure which fits? We'll help you decide based on your goals.
+      <p class="text-[#7a6e5c] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]" {...sbFieldPath("finalBody")}>
+        {data.finalBody ?? "Reach out to choose your tier — or start with a consultation and we'll design the plan that leads you here. Not sure which fits? We'll help you decide based on your goals."}
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="/contact" class="btn-gold">Become a Member</a>
-        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-outline-gold">Book a Consultation</a>
+        <a href="/contact" class="btn-gold" {...sbFieldPath("finalCtaPrimaryText")}>{data.finalCtaPrimaryText ?? "Become a Member"}</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-outline-gold" {...sbFieldPath("finalCtaSecondaryText")}>{data.finalCtaSecondaryText ?? "Book a Consultation"}</a>
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>

@@ -72,9 +72,12 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   `ve:sync` (PAGE_ROUTES drift), `ve:new` (scaffold pre-annotated page/component +
   auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
   Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
-- **Hardcoded pages** (`index`, `memberships`, `contact`, `privacy-policy`,
-  `rent-a-room`, `skin-analysis`, `thank-you`) are **not** yet Sanity-backed →
-  Phase 3 migration plan in `docs/VISUAL-EDITING.md`.
+- **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
+  `homepage`, `membershipsPage`, `contactPage`, `privacyPolicy`, `rentARoom`,
+  `skinAnalysis`, `thankYou` — each edited under Studio → **Pages** (or **Home Page**),
+  rendered with Sanity-first + hardcoded fallbacks, fully click-to-edit. Forms
+  (contact, rent-a-room) and JSON-LD were left untouched. Every site page is now
+  inline-editable (`ve:check` = 0 missing).
 
 ---
 

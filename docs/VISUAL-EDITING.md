@@ -175,11 +175,32 @@ Re-install manually with `node scripts/visual-editing/install-git-hook.mjs`.
 
 ---
 
-## Phase 3 — migrating the hardcoded pages into Sanity (in progress)
+## Phase 3 — hardcoded pages migrated into Sanity ✅ DONE
 
-Eight pages still render hardcoded content in `.astro` and therefore can't be
-inline-edited until modeled in Sanity: `index` (homepage), `memberships`,
-`contact`, `privacy-policy`, `rent-a-room`, `skin-analysis`, `thank-you`.
+All formerly-hardcoded pages are now Sanity-backed singletons (schema deployed,
+content seeded + published to `production`, pages rewired with Sanity-first +
+original-copy fallbacks, and annotated). Edit them in Studio → **Home Page** /
+**Pages**:
+
+| Page | Sanity type (singleton `_id`) |
+|------|-------------------------------|
+| `/` | `homepage` |
+| `/memberships` | `membershipsPage` |
+| `/contact` | `contactPage` (form untouched) |
+| `/privacy-policy` | `privacyPolicy` |
+| `/rent-a-room` | `rentARoom` (form untouched) |
+| `/skin-analysis` | `skinAnalysis` |
+| `/thank-you` | `thankYou` |
+
+Every site page now passes `npm run ve:check` (0 missing). Singletons are edited
+via the Studio **Pages** group and inline on the live preview; they intentionally
+aren't in `PAGE_ROUTES` (that map is for slug-routed document types only).
+
+<details><summary>Original migration plan (for reference / future pages)</summary>
+
+Eight pages once rendered hardcoded content in `.astro`: `index` (homepage),
+`memberships`, `contact`, `privacy-policy`, `rent-a-room`, `skin-analysis`,
+`thank-you`.
 
 Plan (each page is a vertical slice):
 
@@ -198,6 +219,8 @@ Plan (each page is a vertical slice):
 
 Steps 2–3 and the final build **must run on your machine** (the Studio deploy +
 content seed write to the live `production` dataset and need the Sanity CLI/login).
+
+</details>
 
 ---
 

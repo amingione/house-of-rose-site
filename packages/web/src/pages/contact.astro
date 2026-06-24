@@ -1,19 +1,66 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+
+// ─── Contact content from Sanity (singleton) ───────────────────────────────────
+// Each field falls back to the original hardcoded copy, so there's no regression
+// when the document is empty. The lead form + SMS-consent block are NOT modeled.
+interface ContactPage {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  phoneLabel?: string;
+  phoneNumber?: string;
+  phoneHours?: string;
+  bookLabel?: string;
+  bookLinkText?: string;
+  bookNote?: string;
+  visitLabel?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  formKicker?: string;
+  formHeading?: string;
+  formIntro?: string;
+  mapKicker?: string;
+  mapHeading?: string;
+  mapCtaText?: string;
+}
+
+const CONTACT_PAGE_QUERY = /* groq */ `*[_type == "contactPage"][0]{
+  _id,
+  seoTitle, seoDescription,
+  heroKicker, heroTitle, heroDescription,
+  phoneLabel, phoneNumber, phoneHours,
+  bookLabel, bookLinkText, bookNote,
+  visitLabel, addressLine1, addressLine2,
+  formKicker, formHeading, formIntro,
+  mapKicker, mapHeading, mapCtaText
+}`;
+
+const data = (await sanityFetch<ContactPage | null>(CONTACT_PAGE_QUERY)) ?? ({} as ContactPage);
+const oid = data._id ? sbObjectId(data._id) : {};
 ---
 
 <BaseLayout
-  title="Contact House of Rose | Advanced Aesthetics, Punta Gorda FL"
-  description="Book a consultation at House of Rose in Punta Gorda, FL. Call (844) 941-7673, book online, or stop by — 525 E Olympia Ave, Ste 9."
+  title={data.seoTitle ?? "Contact House of Rose | Advanced Aesthetics, Punta Gorda FL"}
+  description={data.seoDescription ?? "Book a consultation at House of Rose in Punta Gorda, FL. Call (844) 941-7673, book online, or stop by — 525 E Olympia Ave, Ste 9."}
 >
+  <div {...oid}>
   <!-- Hero -->
   <Hero
-    title="Contact Us"
-    kicker="Get in Touch"
-    description="We're here to answer your questions and help you begin your wellness journey."
+    title={data.heroTitle ?? "Contact Us"}
+    kicker={data.heroKicker ?? "Get in Touch"}
+    description={data.heroDescription ?? "We're here to answer your questions and help you begin your wellness journey."}
     size="small"
     backgroundImage="/images/hor-exterior.jpg"
+    titleField="heroTitle"
+    kickerField="heroKicker"
+    descriptionField="heroDescription"
   />
 
   <!-- Contact Information -->
@@ -21,30 +68,31 @@ import Hero from '@/components/Hero.astro';
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
       <!-- Phone -->
       <div class="text-center">
-        <span class="kicker">Call Us</span>
-        <a href="tel:+18449417673" class="block text-ink text-[20px] hover:text-gold transition-colors mt-3">
-          (844) 941-7673
+        <span class="kicker" {...sbFieldPath('phoneLabel')}>{data.phoneLabel ?? "Call Us"}</span>
+        <a href="tel:+18449417673" class="block text-ink text-[20px] hover:text-gold transition-colors mt-3" {...sbFieldPath('phoneNumber')}>
+          {data.phoneNumber ?? "(844) 941-7673"}
         </a>
-        <p class="text-[#7a6e5c] text-[13px] mt-2">Mon-Fri, 10AM-6PM EST</p>
+        <p class="text-[#7a6e5c] text-[13px] mt-2" {...sbFieldPath('phoneHours')}>{data.phoneHours ?? "Mon-Fri, 10AM-6PM EST"}</p>
       </div>
 
       <!-- Book Online -->
       <div class="text-center">
-        <span class="kicker">Book Online</span>
+        <span class="kicker" {...sbFieldPath('bookLabel')}>{data.bookLabel ?? "Book Online"}</span>
         <a
           href="https://houseofrose.glossgenius.com/services"
           target="_blank"
           rel="noopener noreferrer"
           class="block text-ink text-[20px] hover:text-gold transition-colors mt-3"
+          {...sbFieldPath('bookLinkText')}
         >
-          Schedule Now
+          {data.bookLinkText ?? "Schedule Now"}
         </a>
-        <p class="text-[#7a6e5c] text-[13px] mt-2">24/7 Online Booking</p>
+        <p class="text-[#7a6e5c] text-[13px] mt-2" {...sbFieldPath('bookNote')}>{data.bookNote ?? "24/7 Online Booking"}</p>
       </div>
 
       <!-- Location -->
       <div class="text-center">
-        <span class="kicker">Visit Us</span>
+        <span class="kicker" {...sbFieldPath('visitLabel')}>{data.visitLabel ?? "Visit Us"}</span>
         <address class="not-italic mt-3">
           <a
             href="https://maps.google.com/?q=525+E+Olympia+Ave+Ste+9+Punta+Gorda+FL+33950"
@@ -52,8 +100,8 @@ import Hero from '@/components/Hero.astro';
             rel="noopener noreferrer"
             class="block text-ink text-[17px] hover:text-gold transition-colors leading-relaxed"
           >
-            525 E Olympia Ave, Ste 9<br />
-            Punta Gorda, FL 33950
+            <span {...sbFieldPath('addressLine1')}>{data.addressLine1 ?? "525 E Olympia Ave, Ste 9"}</span><br />
+            <span {...sbFieldPath('addressLine2')}>{data.addressLine2 ?? "Punta Gorda, FL 33950"}</span>
           </a>
         </address>
       </div>
@@ -64,12 +112,12 @@ import Hero from '@/components/Hero.astro';
   <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
     <div class="max-w-[840px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker">Send Us a Message</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-ink mt-2">
-          We'd Love to Hear From You
+        <span class="kicker" {...sbFieldPath('formKicker')}>{data.formKicker ?? "Send Us a Message"}</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-ink mt-2" {...sbFieldPath('formHeading')}>
+          {data.formHeading ?? "We'd Love to Hear From You"}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4">
-          Fill out the form below and we'll get back to you within 24 hours.
+        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4" {...sbFieldPath('formIntro')}>
+          {data.formIntro ?? "Fill out the form below and we'll get back to you within 24 hours."}
         </p>
       </div>
 
@@ -238,9 +286,9 @@ import Hero from '@/components/Hero.astro';
   <section class="bg-charcoal py-16 px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-8">
-        <span class="kicker">Find Us</span>
-        <h2 class="font-serif text-[32px] text-ink mt-2">
-          Directions
+        <span class="kicker" {...sbFieldPath('mapKicker')}>{data.mapKicker ?? "Find Us"}</span>
+        <h2 class="font-serif text-[32px] text-ink mt-2" {...sbFieldPath('mapHeading')}>
+          {data.mapHeading ?? "Directions"}
         </h2>
       </div>
 
@@ -263,12 +311,14 @@ import Hero from '@/components/Hero.astro';
           target="_blank"
           rel="noopener noreferrer"
           class="btn-outline-gold inline-flex"
+          {...sbFieldPath('mapCtaText')}
         >
-          Get Directions
+          {data.mapCtaText ?? "Get Directions"}
         </a>
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>
 
 <style>

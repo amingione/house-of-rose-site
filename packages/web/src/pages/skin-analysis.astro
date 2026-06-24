@@ -2,15 +2,93 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { jsonLd, breadcrumbList, faqPage, service } from '@/lib/structuredData';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
 const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const pageTitle = 'AI Skin Analysis in Punta Gorda, FL | House of Rose Aesthetics';
+
+// ─── Skin Analysis content from Sanity (singleton) ─────────────────────────────
+// Falls back to the original hardcoded copy if a field is empty (no regression).
+interface SkinAnalysisStep {
+  _key?: string;
+  n?: string;
+  title?: string;
+  body?: string;
+}
+interface SkinAnalysisConcern {
+  _key?: string;
+  title?: string;
+  slug?: string;
+}
+interface SkinAnalysisFaq {
+  _key?: string;
+  q?: string;
+  a?: string;
+}
+interface SkinAnalysis {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  heroCtaPrimaryText?: string;
+  heroCtaSecondaryText?: string;
+  whatKicker?: string;
+  whatHeading?: string;
+  whatPara1?: string;
+  whatPara2?: string;
+  howKicker?: string;
+  howHeading?: string;
+  steps?: SkinAnalysisStep[];
+  lookKicker?: string;
+  lookHeading?: string;
+  lookPara?: string;
+  looksAt?: string[];
+  whyKicker?: string;
+  whyHeading?: string;
+  whyPara?: string;
+  planKicker?: string;
+  planHeading?: string;
+  planPara?: string;
+  concernLinks?: SkinAnalysisConcern[];
+  faqKicker?: string;
+  faqHeading?: string;
+  faqs?: SkinAnalysisFaq[];
+  ctaKicker?: string;
+  ctaHeading?: string;
+  ctaPara?: string;
+  ctaPrimaryText?: string;
+  ctaSecondaryText?: string;
+}
+
+const SKIN_ANALYSIS_QUERY = `*[_type == "skinAnalysis"][0]{
+  _id,
+  seoTitle, seoDescription,
+  heroKicker, heroTitle, heroDescription, heroCtaPrimaryText, heroCtaSecondaryText,
+  whatKicker, whatHeading, whatPara1, whatPara2,
+  howKicker, howHeading,
+  steps[]{ _key, n, title, body },
+  lookKicker, lookHeading, lookPara, looksAt,
+  whyKicker, whyHeading, whyPara,
+  planKicker, planHeading, planPara,
+  concernLinks[]{ _key, title, slug },
+  faqKicker, faqHeading,
+  faqs[]{ _key, q, a },
+  ctaKicker, ctaHeading, ctaPara, ctaPrimaryText, ctaSecondaryText
+}`;
+
+const data = (await sanityFetch<SkinAnalysis | null>(SKIN_ANALYSIS_QUERY)) ?? ({} as SkinAnalysis);
+
+const pageTitle =
+  data.seoTitle ?? 'AI Skin Analysis in Punta Gorda, FL | House of Rose Aesthetics';
 const pageDescription =
+  data.seoDescription ??
   'AI-assisted skin analysis at House of Rose Aesthetics in Punta Gorda, FL. Advanced imaging helps identify pigmentation, texture, pores, fine lines, hydration cues, and sun damage so your treatment plan starts with evidence.';
 
-const steps = [
+const FALLBACK_STEPS: SkinAnalysisStep[] = [
   {
     n: '01',
     title: 'Capture',
@@ -28,7 +106,7 @@ const steps = [
   },
 ];
 
-const looksAt = [
+const FALLBACK_LOOKS_AT = [
   'Pigmentation & sun damage',
   'Texture & smoothness',
   'Pores & congestion',
@@ -37,7 +115,7 @@ const looksAt = [
   'Firmness & laxity',
 ];
 
-const concernLinks = [
+const FALLBACK_CONCERN_LINKS: SkinAnalysisConcern[] = [
   { title: 'Fine Lines & Laxity', slug: 'fine-lines-laxity' },
   { title: 'Acne Scarring', slug: 'acne-scarring' },
   { title: 'Sun Damage', slug: 'sun-damage' },
@@ -46,7 +124,7 @@ const concernLinks = [
   { title: 'Hair Thinning', slug: 'hair-thinning' },
 ];
 
-const faqs = [
+const FALLBACK_FAQS: SkinAnalysisFaq[] = [
   {
     q: 'Do I need a skin analysis before treatment?',
     a: 'It is not required for every appointment, but AI-assisted skin analysis gives your provider a clearer baseline. It helps House of Rose recommend treatments in the right order, so you are investing in what is most likely to support your skin goals.',
@@ -73,7 +151,12 @@ const faqs = [
   },
 ];
 
-const faqSchema = faqPage(faqs.map((faq) => ({ question: faq.q, answer: faq.a })));
+const steps = data.steps?.length ? data.steps : FALLBACK_STEPS;
+const looksAt = data.looksAt?.length ? data.looksAt : FALLBACK_LOOKS_AT;
+const concernLinks = data.concernLinks?.length ? data.concernLinks : FALLBACK_CONCERN_LINKS;
+const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
+
+const faqSchema = faqPage(faqs.map((faq) => ({ question: faq.q ?? '', answer: faq.a ?? '' })));
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: siteUrl },
   { name: 'AI Skin Analysis', item: canonicalURL.toString() },
@@ -99,30 +182,34 @@ const serviceSchema = service(
   <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
   {faqSchema && <script is:inline type="application/ld+json" set:html={jsonLd(faqSchema)} slot="head" />}
 
+  <div {...(data._id ? sbObjectId(data._id) : {})}>
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title="AI skin analysis gives your treatment plan a clearer starting point."
-    kicker="AI Skin Analysis · Punta Gorda"
-    description="House of Rose uses in-studio AI-assisted imaging to evaluate skin patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage before building your personalized treatment plan."
+    title={data.heroTitle ?? "AI skin analysis gives your treatment plan a clearer starting point."}
+    kicker={data.heroKicker ?? "AI Skin Analysis · Punta Gorda"}
+    description={data.heroDescription ?? "House of Rose uses in-studio AI-assisted imaging to evaluate skin patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage before building your personalized treatment plan."}
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: 'Book Your Scan', href: BOOKING_URL }}
-    ctaSecondary={{ text: 'View Services', href: '/services' }}
+    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Book Your Scan', href: BOOKING_URL }}
+    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services' }}
     backgroundImage="/images/hor-skin-studio.jpg"
+    titleField="heroTitle"
+    kickerField="heroKicker"
+    descriptionField="heroDescription"
   />
 
   <!-- ── WHAT IT IS ───────────────────────────────────────────────── -->
   <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-      <span class="kicker">What It Is</span>
-      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
-        A smarter baseline for skin health.
+      <span class="kicker" {...sbFieldPath('whatKicker')}>{data.whatKicker ?? "What It Is"}</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath('whatHeading')}>
+        {data.whatHeading ?? "A smarter baseline for skin health."}
       </h2>
-      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        Most treatment plans begin with a guess. Ours can begin with a closer look. AI-assisted skin analysis helps us assess the markers that matter, including pigmentation, texture, pores, hydration cues, and signs of sun exposure.
+      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4" {...sbFieldPath('whatPara1')}>
+        {data.whatPara1 ?? "Most treatment plans begin with a guess. Ours can begin with a closer look. AI-assisted skin analysis helps us assess the markers that matter, including pigmentation, texture, pores, hydration cues, and signs of sun exposure."}
       </p>
-      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]">
-        It is a more precise starting point, a more personalized path forward, and a clearer way to decide what your skin needs first. The scan supports provider judgment; it does not replace a medical evaluation or guarantee a specific result.
+      <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath('whatPara2')}>
+        {data.whatPara2 ?? "It is a more precise starting point, a more personalized path forward, and a clearer way to decide what your skin needs first. The scan supports provider judgment; it does not replace a medical evaluation or guarantee a specific result."}
       </p>
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -141,17 +228,17 @@ const serviceSchema = service(
   <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[640px] mb-12">
-        <span class="kicker">How It Works</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">
-          Three steps, one evidence-led plan.
+        <span class="kicker" {...sbFieldPath('howKicker')}>{data.howKicker ?? "How It Works"}</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2" {...sbFieldPath('howHeading')}>
+          {data.howHeading ?? "Three steps, one evidence-led plan."}
         </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
-        {steps.map((step) => (
+        {steps.map((step, i) => (
           <div class="bg-charcoal-light p-8">
-            <span class="font-serif text-gold/50 text-[28px]">{step.n}</span>
-            <h3 class="font-serif text-[21px] text-ink mt-2 mb-3">{step.title}</h3>
-            <p class="text-[#777] text-[14px] leading-[1.7]">{step.body}</p>
+            <span class="font-serif text-gold/50 text-[28px]" {...sbFieldPathParts('steps', i, 'n')}>{step.n}</span>
+            <h3 class="font-serif text-[21px] text-ink mt-2 mb-3" {...sbFieldPathParts('steps', i, 'title')}>{step.title}</h3>
+            <p class="text-[#777] text-[14px] leading-[1.7]" {...sbFieldPathParts('steps', i, 'body')}>{step.body}</p>
           </div>
         ))}
       </div>
@@ -162,18 +249,18 @@ const serviceSchema = service(
   <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-[clamp(32px,5vw,72px)] items-center">
       <div>
-        <span class="kicker">What We Look At</span>
-        <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-5">
-          Six markers that shape your plan.
+        <span class="kicker" {...sbFieldPath('lookKicker')}>{data.lookKicker ?? "What We Look At"}</span>
+        <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('lookHeading')}>
+          {data.lookHeading ?? "Six markers that shape your plan."}
         </h2>
-        <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[460px]">
-          Each marker is reviewed and explained in plain terms, so you understand not just what we recommend, but why that recommendation belongs in your sequence.
+        <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[460px]" {...sbFieldPath('lookPara')}>
+          {data.lookPara ?? "Each marker is reviewed and explained in plain terms, so you understand not just what we recommend, but why that recommendation belongs in your sequence."}
         </p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
-        {looksAt.map((item) => (
+        {looksAt.map((item, i) => (
           <div class="bg-charcoal p-6">
-            <span class="text-ink text-[15px]">{item}</span>
+            <span class="text-ink text-[15px]" {...sbFieldPathParts('looksAt', i)}>{item}</span>
           </div>
         ))}
       </div>
@@ -187,12 +274,12 @@ const serviceSchema = service(
   >
     <div class="absolute inset-0 bg-black/74"></div>
     <div class="relative z-10 max-w-[680px] mx-auto text-center">
-      <span class="kicker">Why It Matters</span>
-      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6">
-        Personalized, measurable, and easier to trust.
+      <span class="kicker" {...sbFieldPath('whyKicker')}>{data.whyKicker ?? "Why It Matters"}</span>
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6" {...sbFieldPath('whyHeading')}>
+        {data.whyHeading ?? "Personalized, measurable, and easier to trust."}
       </h2>
-      <p class="text-ivory/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto">
-        When your plan is built around your skin's current condition, every appointment can work toward the same outcome. You focus on what matters first, skip what does not belong, and have a clearer way to compare progress over time.
+      <p class="text-ivory/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto" {...sbFieldPath('whyPara')}>
+        {data.whyPara ?? "When your plan is built around your skin's current condition, every appointment can work toward the same outcome. You focus on what matters first, skip what does not belong, and have a clearer way to compare progress over time."}
       </p>
     </div>
   </section>
@@ -200,16 +287,16 @@ const serviceSchema = service(
   <!-- ── FROM ANALYSIS TO PLAN ────────────────────────────────────── -->
   <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[960px] mx-auto text-center">
-      <span class="kicker">From Analysis to Plan</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5">
-        Your scan maps to a protocol.
+      <span class="kicker" {...sbFieldPath('planKicker')}>{data.planKicker ?? "From Analysis to Plan"}</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5" {...sbFieldPath('planHeading')}>
+        {data.planHeading ?? "Your scan maps to a protocol."}
       </h2>
-      <p class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
-        Whatever the analysis surfaces, there is a defined path for it. Explore the concerns we treat, or let your House of Rose consultation sequence the right starting point for you.
+      <p class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10" {...sbFieldPath('planPara')}>
+        {data.planPara ?? "Whatever the analysis surfaces, there is a defined path for it. Explore the concerns we treat, or let your House of Rose consultation sequence the right starting point for you."}
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        {concernLinks.map((c) => (
-          <a href={`/concerns/${c.slug}`} class="border border-gold/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors">
+        {concernLinks.map((c, i) => (
+          <a href={`/concerns/${c.slug}`} class="border border-gold/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors" {...sbFieldPathParts('concernLinks', i, 'title')}>
             {c.title}
           </a>
         ))}
@@ -220,15 +307,15 @@ const serviceSchema = service(
   <!-- ── FAQ ──────────────────────────────────────────────────────── -->
   <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[760px] mx-auto">
-      <span class="kicker">Questions</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-10">
-        Good to know.
+      <span class="kicker" {...sbFieldPath('faqKicker')}>{data.faqKicker ?? "Questions"}</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-10" {...sbFieldPath('faqHeading')}>
+        {data.faqHeading ?? "Good to know."}
       </h2>
       <div class="divide-y divide-white/8 border-t border-ink/8">
-        {faqs.map((faq) => (
+        {faqs.map((faq, i) => (
           <div class="py-7">
-            <h3 class="text-ink text-[16px] mb-2.5">{faq.q}</h3>
-            <p class="text-[#9a8c78] text-[14px] leading-[1.75]">{faq.a}</p>
+            <h3 class="text-ink text-[16px] mb-2.5" {...sbFieldPathParts('faqs', i, 'q')}>{faq.q}</h3>
+            <p class="text-[#9a8c78] text-[14px] leading-[1.75]" {...sbFieldPathParts('faqs', i, 'a')}>{faq.a}</p>
           </div>
         ))}
       </div>
@@ -238,17 +325,18 @@ const serviceSchema = service(
   <!-- ── CTA ──────────────────────────────────────────────────────── -->
   <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold/10">
     <div class="max-w-[640px] mx-auto text-center">
-      <span class="kicker">Begin Here</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
-        Start with the scan.
+      <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? "Begin Here"}</span>
+      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('ctaHeading')}>
+        {data.ctaHeading ?? "Start with the scan."}
       </h2>
-      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        Book online to begin with AI-assisted skin analysis in Punta Gorda, or reach out if you would like to talk through your goals first.
+      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]" {...sbFieldPath('ctaPara')}>
+        {data.ctaPara ?? "Book online to begin with AI-assisted skin analysis in Punta Gorda, or reach out if you would like to talk through your goals first."}
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
-        <a href="/contact" class="btn-outline-gold">Contact Us</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-gold" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Book Online"}</a>
+        <a href="/contact" class="btn-outline-gold" {...sbFieldPath('ctaSecondaryText')}>{data.ctaSecondaryText ?? "Contact Us"}</a>
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>

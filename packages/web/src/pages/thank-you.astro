@@ -1,16 +1,37 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+
+// ─── Thank You content from Sanity (singleton) ──────────────────────────────────
+// Falls back to the original copy if a field is empty, so there's no regression.
+interface ThankYou {
+  _id?: string;
+  kicker?: string;
+  heading?: string;
+  paragraph1?: string;
+  paragraph2?: string;
+  ctaPrimaryText?: string;
+  ctaSecondaryText?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+}
+
+const data =
+  (await sanityFetch<ThankYou | null>(
+    `*[_type=="thankYou"][0]{ _id, kicker, heading, paragraph1, paragraph2, ctaPrimaryText, ctaSecondaryText, seoTitle, seoDescription }`,
+  )) ?? ({} as ThankYou);
 ---
 
 <BaseLayout
-  title="Thank You | House of Rose Aesthetics"
-  description="Thank you for reaching out to House of Rose. We'll be in touch shortly."
+  title={data.seoTitle ?? 'Thank You | House of Rose Aesthetics'}
+  description={data.seoDescription ?? "Thank you for reaching out to House of Rose. We'll be in touch shortly."}
 >
   <!-- noindex — utility page, not for search -->
   <meta name="robots" content="noindex, nofollow" slot="head" />
 
   <section class="bg-charcoal min-h-[70vh] flex items-center justify-center px-6 py-24">
-    <div class="max-w-[560px] mx-auto text-center">
+    <div class="max-w-[560px] mx-auto text-center" {...(data._id ? sbObjectId(data._id) : {})}>
 
       <!-- Rose motif -->
       <div class="mb-8 flex justify-center">
@@ -19,33 +40,34 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         <div class="w-16 h-px bg-gold/40 self-center"></div>
       </div>
 
-      <span class="block text-gold text-[11px] tracking-[0.4em] uppercase mb-6">
-        Message Received
+      <span class="block text-gold text-[11px] tracking-[0.4em] uppercase mb-6" {...sbFieldPath('kicker')}>
+        {data.kicker ?? 'Message Received'}
       </span>
 
-      <h1 class="font-serif text-[clamp(32px,5vw,48px)] text-ink font-normal leading-tight mb-6">
-        Thank you for reaching out.
+      <h1 class="font-serif text-[clamp(32px,5vw,48px)] text-ink font-normal leading-tight mb-6" {...sbFieldPath('heading')}>
+        {data.heading ?? 'Thank you for reaching out.'}
       </h1>
 
-      <p class="text-[#9a8c78] text-[16px] leading-relaxed mb-4">
-        We've received your message and will be in touch within 24–48 hours.
+      <p class="text-[#9a8c78] text-[16px] leading-relaxed mb-4" {...sbFieldPath('paragraph1')}>
+        {data.paragraph1 ?? "We've received your message and will be in touch within 24–48 hours."}
       </p>
 
-      <p class="text-[#7a6e5c] text-[14px] leading-relaxed mb-12">
-        In the meantime, you're welcome to browse our services or book directly online.
+      <p class="text-[#7a6e5c] text-[14px] leading-relaxed mb-12" {...sbFieldPath('paragraph2')}>
+        {data.paragraph2 ?? "In the meantime, you're welcome to browse our services or book directly online."}
       </p>
 
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="/" class="btn-outline-gold">
-          Back to Home
+        <a href="/" class="btn-outline-gold" {...sbFieldPath('ctaPrimaryText')}>
+          {data.ctaPrimaryText ?? 'Back to Home'}
         </a>
         <a
           href="https://houseofrose.glossgenius.com/services"
           target="_blank"
           rel="noopener noreferrer"
           class="btn-gold"
+          {...sbFieldPath('ctaSecondaryText')}
         >
-          Book Online
+          {data.ctaSecondaryText ?? 'Book Online'}
         </a>
       </div>
 

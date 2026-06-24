@@ -1,97 +1,230 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 
 const bookingEmail = import.meta.env.PUBLIC_BOOKING_EMAIL;
 
 if (!bookingEmail) {
   throw new Error('Missing PUBLIC_BOOKING_EMAIL');
 }
+
+// ─── Rent a Suite content from Sanity (singleton) ────────────────────────────
+// Falls back to the original hardcoded copy if a field is empty, so there's no
+// regression when the document is absent or partially filled.
+interface RentARoomPerk {
+  _key: string;
+  kicker: string;
+  title: string;
+  description: string;
+}
+interface RentARoomCandidate {
+  _key: string;
+  number: string;
+  title: string;
+  description: string;
+}
+interface RentARoomSpec {
+  _key: string;
+  label: string;
+  value: string;
+}
+interface RentARoom {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  heroCtaPrimaryText?: string;
+  heroCtaSecondaryText?: string;
+  perksKicker?: string;
+  perksHeading?: string;
+  perksIntro?: string;
+  perks?: RentARoomPerk[];
+  specsKicker?: string;
+  specsHeading?: string;
+  roomSpecs?: RentARoomSpec[];
+  ctaKicker?: string;
+  ctaHeading?: string;
+  ctaBody?: string;
+  ctaButtonText?: string;
+  candidatesKicker?: string;
+  candidatesHeading?: string;
+  candidatesIntro?: string;
+  candidates?: RentARoomCandidate[];
+  applyKicker?: string;
+  applyHeading?: string;
+  applyIntro?: string;
+  bottomCtaKicker?: string;
+  bottomCtaText?: string;
+}
+
+const RENT_A_ROOM_QUERY = /* groq */ `*[_type == "rentARoom"][0]{
+  _id,
+  seoTitle,
+  seoDescription,
+  heroKicker,
+  heroTitle,
+  heroDescription,
+  heroCtaPrimaryText,
+  heroCtaSecondaryText,
+  perksKicker,
+  perksHeading,
+  perksIntro,
+  perks[]{ _key, kicker, title, description },
+  specsKicker,
+  specsHeading,
+  roomSpecs[]{ _key, label, value },
+  ctaKicker,
+  ctaHeading,
+  ctaBody,
+  ctaButtonText,
+  candidatesKicker,
+  candidatesHeading,
+  candidatesIntro,
+  candidates[]{ _key, number, title, description },
+  applyKicker,
+  applyHeading,
+  applyIntro,
+  bottomCtaKicker,
+  bottomCtaText
+}`;
+
+const data = (await sanityFetch<RentARoom | null>(RENT_A_ROOM_QUERY)) ?? ({} as RentARoom);
+const oid = data._id ? sbObjectId(data._id) : {};
+
+// ─── Fallback copy (exact original) ─────────────────────────────────────────
+const FALLBACK_PERKS: RentARoomPerk[] = [
+  {
+    _key: 'p1',
+    kicker: 'No Competing Services',
+    title: 'Guaranteed Clientele',
+    description:
+      'We enforce a no-competing-services policy. If someone calls for your specialty, that booking belongs to you — no internal competition.',
+  },
+  {
+    _key: 'p2',
+    kicker: 'Team Member Listing',
+    title: 'Visible on Our Website',
+    description:
+      "You're listed as a House of Rose team member with your services on our booking platform — giving you immediate exposure to our existing client base.",
+  },
+  {
+    _key: 'p3',
+    kicker: 'Business Development',
+    title: 'We Send You Clients',
+    description:
+      'When calls come in requesting your services, we direct that business straight to you. No leads left on the table.',
+  },
+  {
+    _key: 'p4',
+    kicker: 'Marketing Included',
+    title: 'Shop-Run Advertising',
+    description:
+      'House of Rose runs ongoing digital and local advertising for the shop. Your services benefit from our marketing investment at no extra cost.',
+  },
+  {
+    _key: 'p5',
+    kicker: 'Utilities Included',
+    title: 'No Hidden Costs',
+    description:
+      "All utilities are covered in your monthly rate. Water, electric — no surprises. You know exactly what you're paying.",
+  },
+  {
+    _key: 'p6',
+    kicker: 'Your Space',
+    title: 'Sink & Product Display',
+    description:
+      'Each room includes a sink and dedicated shelf space to display and sell your own retail products. Build your brand within ours.',
+  },
+];
+
+const FALLBACK_SPECS: RentARoomSpec[] = [
+  { _key: 's1', label: 'Room Size', value: '10 × 14 ft private suite' },
+  { _key: 's2', label: 'Monthly Rate', value: '$850 – $1,100 / month' },
+  { _key: 's3', label: 'Utilities', value: 'Included — all covered' },
+  { _key: 's4', label: 'Sink', value: 'Available in room' },
+  { _key: 's5', label: 'Product Display', value: 'Shelf space included' },
+  { _key: 's6', label: 'Insurance', value: 'Renter carries own policy' },
+  { _key: 's7', label: 'Location', value: '525 E Olympia Ave, Ste 9 — Punta Gorda, FL 33950' },
+];
+
+const FALLBACK_CANDIDATES: RentARoomCandidate[] = [
+  {
+    _key: 'c1',
+    number: '01',
+    title: 'Aestheticians',
+    description:
+      'Licensed facial specialists, skin care therapists, and estheticians looking for a private suite to serve clients in an elevated, private setting.',
+  },
+  {
+    _key: 'c2',
+    number: '02',
+    title: 'Massage Therapists',
+    description:
+      'Licensed massage specialists who want a dedicated treatment room with all the infrastructure — without the overhead of a standalone studio.',
+  },
+  {
+    _key: 'c3',
+    number: '03',
+    title: 'PMU Artists',
+    description:
+      'Permanent makeup artists specializing in microblading, brows, lips, or liner — working in a clean, professional space that matches your artistry.',
+  },
+];
+
+const perks = data.perks?.length ? data.perks : FALLBACK_PERKS;
+const roomSpecs = data.roomSpecs?.length ? data.roomSpecs : FALLBACK_SPECS;
+const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDATES;
 ---
 
 <BaseLayout
-  title="Rent a Private Suite | House of Rose — Punta Gorda FL"
-  description="Suite rentals for aestheticians, massage therapists & PMU artists in Punta Gorda, FL. Private rooms in an elevated, advanced-aesthetics studio. Starting at $850/mo. No utilities. Apply today."
+  title={data.seoTitle ?? 'Rent a Private Suite | House of Rose — Punta Gorda FL'}
+  description={data.seoDescription ?? 'Suite rentals for aestheticians, massage therapists & PMU artists in Punta Gorda, FL. Private rooms in an elevated, advanced-aesthetics studio. Starting at $850/mo. No utilities. Apply today.'}
 >
+  <div {...oid}>
   <!-- ── Hero ──────────────────────────────────────────────────── -->
   <Hero
-    title="Grow Your Practice Here"
-    kicker="Suite Rentals"
-    description="Private, fully-equipped rooms in an elevated studio environment — where independent professionals thrive."
+    title={data.heroTitle ?? 'Grow Your Practice Here'}
+    kicker={data.heroKicker ?? 'Suite Rentals'}
+    description={data.heroDescription ?? 'Private, fully-equipped rooms in an elevated studio environment — where independent professionals thrive.'}
     size="small"
     backgroundImage="/images/hor-skin-studio.jpg"
     showCTA={true}
-    ctaPrimary={{ text: 'Apply Now', href: '#apply' }}
-    ctaSecondary={{ text: 'Learn More', href: '#perks' }}
+    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Apply Now', href: '#apply' }}
+    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'Learn More', href: '#perks' }}
+    titleField="heroTitle"
+    kickerField="heroKicker"
+    descriptionField="heroDescription"
   />
 
   <!-- ── Why House of Rose ─────────────────────────────────────── -->
   <section id="perks" class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-16">
-        <span class="kicker">What's Included</span>
-        <h2 class="font-serif text-[clamp(30px,4vw,46px)] text-ink mt-2">
-          Everything You Need to Succeed
+        <span class="kicker" {...sbFieldPath('perksKicker')}>{data.perksKicker ?? "What's Included"}</span>
+        <h2 class="font-serif text-[clamp(30px,4vw,46px)] text-ink mt-2" {...sbFieldPath('perksHeading')}>
+          {data.perksHeading ?? 'Everything You Need to Succeed'}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed">
-          We handle the business infrastructure. You focus on your clients.
+        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('perksIntro')}>
+          {data.perksIntro ?? 'We handle the business infrastructure. You focus on your clients.'}
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
-        <!-- Perk 1 -->
-        <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-          <span class="kicker">No Competing Services</span>
-          <h3 class="font-serif text-[20px] text-ink mb-3">Guaranteed Clientele</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            We enforce a no-competing-services policy. If someone calls for your specialty, that booking belongs to you — no internal competition.
-          </p>
-        </div>
-
-        <!-- Perk 2 -->
-        <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-          <span class="kicker">Team Member Listing</span>
-          <h3 class="font-serif text-[20px] text-ink mb-3">Visible on Our Website</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            You're listed as a House of Rose team member with your services on our booking platform — giving you immediate exposure to our existing client base.
-          </p>
-        </div>
-
-        <!-- Perk 3 -->
-        <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-          <span class="kicker">Business Development</span>
-          <h3 class="font-serif text-[20px] text-ink mb-3">We Send You Clients</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            When calls come in requesting your services, we direct that business straight to you. No leads left on the table.
-          </p>
-        </div>
-
-        <!-- Perk 4 -->
-        <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-          <span class="kicker">Marketing Included</span>
-          <h3 class="font-serif text-[20px] text-ink mb-3">Shop-Run Advertising</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            House of Rose runs ongoing digital and local advertising for the shop. Your services benefit from our marketing investment at no extra cost.
-          </p>
-        </div>
-
-        <!-- Perk 5 -->
-        <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-          <span class="kicker">Utilities Included</span>
-          <h3 class="font-serif text-[20px] text-ink mb-3">No Hidden Costs</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            All utilities are covered in your monthly rate. Water, electric — no surprises. You know exactly what you're paying.
-          </p>
-        </div>
-
-        <!-- Perk 6 -->
-        <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-          <span class="kicker">Your Space</span>
-          <h3 class="font-serif text-[20px] text-ink mb-3">Sink &amp; Product Display</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            Each room includes a sink and dedicated shelf space to display and sell your own retail products. Build your brand within ours.
-          </p>
-        </div>
+        {
+          perks.map((perk, i) => (
+            <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
+              <span class="kicker" {...sbFieldPathParts('perks', i, 'kicker')}>{perk.kicker}</span>
+              <h3 class="font-serif text-[20px] text-ink mb-3" {...sbFieldPathParts('perks', i, 'title')}>{perk.title}</h3>
+              <p class="text-[#7a6e5c] text-[14px] leading-relaxed" {...sbFieldPathParts('perks', i, 'description')}>
+                {perk.description}
+              </p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -100,56 +233,38 @@ if (!bookingEmail) {
   <section class="bg-charcoal-lighter py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker">Room Specifications</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
-          Private Suites Built for Professionals
+        <span class="kicker" {...sbFieldPath('specsKicker')}>{data.specsKicker ?? 'Room Specifications'}</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('specsHeading')}>
+          {data.specsHeading ?? 'Private Suites Built for Professionals'}
         </h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Specs list -->
         <dl class="space-y-0 divide-y divide-white/5">
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Room Size</dt>
-            <dd class="text-ink text-[15px]">10 × 14 ft private suite</dd>
-          </div>
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Monthly Rate</dt>
-            <dd class="text-ink text-[15px]">$850 – $1,100 / month</dd>
-          </div>
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Utilities</dt>
-            <dd class="text-ink text-[15px]">Included — all covered</dd>
-          </div>
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Sink</dt>
-            <dd class="text-ink text-[15px]">Available in room</dd>
-          </div>
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Product Display</dt>
-            <dd class="text-ink text-[15px]">Shelf space included</dd>
-          </div>
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Insurance</dt>
-            <dd class="text-ink text-[15px]">Renter carries own policy</dd>
-          </div>
-          <div class="flex justify-between items-center py-5">
-            <dt class="text-[11px] tracking-[0.3em] uppercase text-gold">Location</dt>
-            <dd class="text-ink text-[15px]">525 E Olympia Ave, Ste 9 — Punta Gorda, FL 33950</dd>
-          </div>
+          {
+            roomSpecs.map((spec, i) => (
+              <div class="flex justify-between items-center py-5">
+                <dt class="text-[11px] tracking-[0.3em] uppercase text-gold" {...sbFieldPathParts('roomSpecs', i, 'label')}>{spec.label}</dt>
+                <dd class="text-ink text-[15px]" {...sbFieldPathParts('roomSpecs', i, 'value')}>{spec.value}</dd>
+              </div>
+            ))
+          }
         </dl>
 
         <!-- CTA aside -->
         <div class="bg-charcoal p-10 border border-gold/20">
-          <span class="kicker">Ready to Apply?</span>
-          <h3 class="font-serif text-[clamp(22px,3vw,30px)] text-ink mb-4 leading-snug">
-            Space Is Limited.<br />Reserve Yours.
-          </h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed mb-8">
-            We keep our suite count intentionally small to protect the no-competing-services guarantee. When a specialty slot fills, it's closed until it opens again.
+          <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? 'Ready to Apply?'}</span>
+          <h3
+            class="font-serif text-[clamp(22px,3vw,30px)] text-ink mb-4 leading-snug"
+            set:html={(data.ctaHeading ?? 'Space Is Limited.\nReserve Yours.').replace(/\n/g, '<br />')}
+            {...sbFieldPath('ctaHeading')}
+          />
+          <p class="text-[#7a6e5c] text-[14px] leading-relaxed mb-8" {...sbFieldPath('ctaBody')}>
+            {data.ctaBody ?? "We keep our suite count intentionally small to protect the no-competing-services guarantee. When a specialty slot fills, it's closed until it opens again."}
           </p>
-          <a href="#apply" class="btn-gold">
-            Submit Your Application
+          <a href="#apply" class="btn-gold" {...sbFieldPath('ctaButtonText')}>
+            {data.ctaButtonText ?? 'Submit Your Application'}
           </a>
         </div>
       </div>
@@ -160,48 +275,29 @@ if (!bookingEmail) {
   <section class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-16">
-        <span class="kicker">Ideal Candidates</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
-          Who We're Looking For
+        <span class="kicker" {...sbFieldPath('candidatesKicker')}>{data.candidatesKicker ?? 'Ideal Candidates'}</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('candidatesHeading')}>
+          {data.candidatesHeading ?? "Who We're Looking For"}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed">
-          We partner with licensed, passionate professionals who are ready to grow their independent practice in a premium environment.
+        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('candidatesIntro')}>
+          {data.candidatesIntro ?? 'We partner with licensed, passionate professionals who are ready to grow their independent practice in a premium environment.'}
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Aesthetician -->
-        <div class="border border-ink/[0.08] p-8 text-center hover:border-gold/40 transition-colors duration-300">
-          <div class="w-12 h-12 border border-gold/30 mx-auto mb-6 flex items-center justify-center">
-            <span class="text-gold text-[10px] tracking-[0.3em] uppercase">01</span>
-          </div>
-          <h3 class="font-serif text-[22px] text-ink mb-3">Aestheticians</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            Licensed facial specialists, skin care therapists, and estheticians looking for a private suite to serve clients in an elevated, private setting.
-          </p>
-        </div>
-
-        <!-- Massage -->
-        <div class="border border-ink/[0.08] p-8 text-center hover:border-gold/40 transition-colors duration-300">
-          <div class="w-12 h-12 border border-gold/30 mx-auto mb-6 flex items-center justify-center">
-            <span class="text-gold text-[10px] tracking-[0.3em] uppercase">02</span>
-          </div>
-          <h3 class="font-serif text-[22px] text-ink mb-3">Massage Therapists</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            Licensed massage specialists who want a dedicated treatment room with all the infrastructure — without the overhead of a standalone studio.
-          </p>
-        </div>
-
-        <!-- PMU -->
-        <div class="border border-ink/[0.08] p-8 text-center hover:border-gold/40 transition-colors duration-300">
-          <div class="w-12 h-12 border border-gold/30 mx-auto mb-6 flex items-center justify-center">
-            <span class="text-gold text-[10px] tracking-[0.3em] uppercase">03</span>
-          </div>
-          <h3 class="font-serif text-[22px] text-ink mb-3">PMU Artists</h3>
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed">
-            Permanent makeup artists specializing in microblading, brows, lips, or liner — working in a clean, professional space that matches your artistry.
-          </p>
-        </div>
+        {
+          candidates.map((candidate, i) => (
+            <div class="border border-ink/[0.08] p-8 text-center hover:border-gold/40 transition-colors duration-300">
+              <div class="w-12 h-12 border border-gold/30 mx-auto mb-6 flex items-center justify-center">
+                <span class="text-gold text-[10px] tracking-[0.3em] uppercase" {...sbFieldPathParts('candidates', i, 'number')}>{candidate.number}</span>
+              </div>
+              <h3 class="font-serif text-[22px] text-ink mb-3" {...sbFieldPathParts('candidates', i, 'title')}>{candidate.title}</h3>
+              <p class="text-[#7a6e5c] text-[14px] leading-relaxed" {...sbFieldPathParts('candidates', i, 'description')}>
+                {candidate.description}
+              </p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -210,12 +306,12 @@ if (!bookingEmail) {
   <section id="apply" class="bg-charcoal-lighter py-[clamp(56px,8vw,96px)] px-6">
     <div class="max-w-[840px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker">Apply for a Suite</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
-          Tell Us About Yourself
+        <span class="kicker" {...sbFieldPath('applyKicker')}>{data.applyKicker ?? 'Apply for a Suite'}</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('applyHeading')}>
+          {data.applyHeading ?? 'Tell Us About Yourself'}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed">
-          Fill out the form below and we'll be in touch within 48 hours to schedule a tour and answer any questions.
+        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('applyIntro')}>
+          {data.applyIntro ?? "Fill out the form below and we'll be in touch within 48 hours to schedule a tour and answer any questions."}
         </p>
       </div>
 
@@ -392,8 +488,8 @@ if (!bookingEmail) {
   <section class="bg-charcoal border-t border-ink/5 py-12 px-6">
     <div class="max-w-[960px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div>
-        <span class="kicker">Have Questions?</span>
-        <p class="text-ink text-[16px] font-serif">We're happy to walk you through the details before you apply.</p>
+        <span class="kicker" {...sbFieldPath('bottomCtaKicker')}>{data.bottomCtaKicker ?? 'Have Questions?'}</span>
+        <p class="text-ink text-[16px] font-serif" {...sbFieldPath('bottomCtaText')}>{data.bottomCtaText ?? "We're happy to walk you through the details before you apply."}</p>
       </div>
       <div class="flex gap-4 flex-wrap justify-center">
         <a href="tel:+18449417673" class="btn-outline-gold">
@@ -405,6 +501,7 @@ if (!bookingEmail) {
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>
 
 <style>
