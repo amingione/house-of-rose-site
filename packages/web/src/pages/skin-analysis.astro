@@ -1,34 +1,40 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import { jsonLd, breadcrumbList, faqPage, service } from '@/lib/structuredData';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
+const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = 'AI Skin Analysis in Punta Gorda, FL | House of Rose Aesthetics';
+const pageDescription =
+  'AI-assisted skin analysis at House of Rose Aesthetics in Punta Gorda, FL. Advanced imaging helps identify pigmentation, texture, pores, fine lines, hydration cues, and sun damage so your treatment plan starts with evidence.';
 
 const steps = [
   {
     n: '01',
     title: 'Capture',
-    body: 'We take a clear, consistent image of your skin in controlled in-studio lighting, so the assessment starts from an accurate baseline—not a phone selfie.',
+    body: 'We capture consistent in-studio images in controlled lighting, including advanced views that help reveal what is happening at and below the visible surface.',
   },
   {
     n: '02',
     title: 'Analyze',
-    body: 'The analysis highlights the markers that matter—texture, tone, hydration, firmness, and visible signs of aging—and where each one sits relative to your goals.',
+    body: 'AI-assisted analysis helps quantify the markers that matter: pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure or aging.',
   },
   {
     n: '03',
     title: 'Plan',
-    body: 'We review the results together and build a personalized plan, sequenced sensibly and focused on what your skin actually needs first—nothing it doesn\'t.',
+    body: 'We review the images together and build a personalized plan, sequenced sensibly around what your skin needs first and what can be tracked over time.',
   },
 ];
 
 const looksAt = [
+  'Pigmentation & sun damage',
   'Texture & smoothness',
-  'Tone & pigmentation',
-  'Firmness & laxity',
   'Pores & congestion',
-  'Hydration',
-  'Visible signs of aging',
+  'Fine lines & wrinkles',
+  'Hydration cues',
+  'Firmness & laxity',
 ];
 
 const concernLinks = [
@@ -43,36 +49,64 @@ const concernLinks = [
 const faqs = [
   {
     q: 'Do I need a skin analysis before treatment?',
-    a: 'It\'s not required, but it makes everything that follows more precise. The analysis helps us recommend the right treatments in the right order, so you\'re investing in what will actually move the needle for your skin.',
+    a: 'It is not required for every appointment, but AI-assisted skin analysis gives your provider a clearer baseline. It helps House of Rose recommend treatments in the right order, so you are investing in what is most likely to support your skin goals.',
+  },
+  {
+    q: 'What does the AI skin scanner look for?',
+    a: 'The scanner helps evaluate visible and subsurface patterns such as pigmentation, sun damage, pores, texture, fine lines, wrinkles, hydration cues, and overall skin quality. The results are reviewed by your provider and used for treatment planning, not as a medical diagnosis.',
+  },
+  {
+    q: 'Can the scan track before-and-after progress?',
+    a: 'Yes. The scan creates a baseline that can be compared over time, which is especially helpful for regenerative treatments, corrective skincare, acne care, pigmentation work, and long-term skin maintenance.',
   },
   {
     q: 'How long does it take?',
-    a: 'The analysis itself takes only a few minutes. The valuable part is the conversation afterward, where we walk through what we see and outline a plan together.',
+    a: 'The image capture takes only a few minutes. The valuable part is the conversation afterward, where we walk through what we see and outline a plan together.',
   },
   {
-    q: 'Is it uncomfortable?',
-    a: 'Not at all. It\'s a non-invasive assessment—no needles, no downtime. We capture an image and review the results with you.',
+    q: 'Is AI skin analysis uncomfortable?',
+    a: 'No. It is non-invasive, with no needles and no downtime. We capture images, review the findings with you, and explain what the analysis means for your plan.',
   },
   {
     q: 'What happens to my photos?',
     a: 'Your images are kept private and used only to inform your personal treatment plan. They are not shared or published without your explicit permission.',
   },
 ];
+
+const faqSchema = faqPage(faqs.map((faq) => ({ question: faq.q, answer: faq.a })));
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: siteUrl },
+  { name: 'AI Skin Analysis', item: canonicalURL.toString() },
+]);
+const serviceSchema = service(
+  {
+    name: 'AI Skin Analysis',
+    description: pageDescription,
+    url: canonicalURL.toString(),
+    image: new URL('/images/new-consultation.png', siteUrl).toString(),
+    serviceType: 'AI-assisted skin analysis and treatment planning',
+  },
+  siteUrl,
+);
 ---
 
 <BaseLayout
-  title="Skin Analysis in Punta Gorda, FL | House of Rose Aesthetics"
-  description="In-studio skin analysis at House of Rose Aesthetics in Punta Gorda, FL. A clearer starting point for personalized treatment planning—guided by what your skin is actually showing."
+  title={pageTitle}
+  description={pageDescription}
   preloadImage="/images/hor-skin-studio.jpg"
 >
+  <script is:inline type="application/ld+json" set:html={jsonLd(serviceSchema)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  {faqSchema && <script is:inline type="application/ld+json" set:html={jsonLd(faqSchema)} slot="head" />}
+
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title="See your skin with more clarity."
-    kicker="Skin Analysis"
-    description="An in-studio skin analysis that takes the guesswork out of treatment planning—so your recommendations are guided by what your skin is actually showing."
+    title="AI skin analysis gives your treatment plan a clearer starting point."
+    kicker="AI Skin Analysis · Punta Gorda"
+    description="House of Rose uses in-studio AI-assisted imaging to evaluate skin patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage before building your personalized treatment plan."
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: 'Book Online', href: BOOKING_URL }}
+    ctaPrimary={{ text: 'Book Your Scan', href: BOOKING_URL }}
     ctaSecondary={{ text: 'View Services', href: '/services' }}
     backgroundImage="/images/hor-skin-studio.jpg"
   />
@@ -82,13 +116,13 @@ const faqs = [
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
       <span class="kicker">What It Is</span>
       <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
-        A clearer starting point.
+        A smarter baseline for skin health.
       </h2>
       <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        Most treatment plans begin with a guess. Ours begins with a closer look. Using in-studio skin analysis, we assess the areas that matter most—so we can recommend treatments and home care based on evidence, not assumptions.
+        Most treatment plans begin with a guess. Ours can begin with a closer look. AI-assisted skin analysis helps us assess the markers that matter, including pigmentation, texture, pores, hydration cues, and signs of sun exposure.
       </p>
       <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]">
-        It's a more precise starting point, a more personalized path forward, and a clearer understanding of where to focus first.
+        It is a more precise starting point, a more personalized path forward, and a clearer way to decide what your skin needs first. The scan supports provider judgment; it does not replace a medical evaluation or guarantee a specific result.
       </p>
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -109,7 +143,7 @@ const faqs = [
       <div class="max-w-[640px] mb-12">
         <span class="kicker">How It Works</span>
         <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">
-          Three steps, one honest picture.
+          Three steps, one evidence-led plan.
         </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
@@ -130,10 +164,10 @@ const faqs = [
       <div>
         <span class="kicker">What We Look At</span>
         <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-5">
-          Six markers of skin health.
+          Six markers that shape your plan.
         </h2>
         <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[460px]">
-          Each one is assessed and explained in plain terms—so you understand not just what we recommend, but why.
+          Each marker is reviewed and explained in plain terms, so you understand not just what we recommend, but why that recommendation belongs in your sequence.
         </p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
@@ -155,10 +189,10 @@ const faqs = [
     <div class="relative z-10 max-w-[680px] mx-auto text-center">
       <span class="kicker">Why It Matters</span>
       <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6">
-        Personalized, not pieced together.
+        Personalized, measurable, and easier to trust.
       </h2>
       <p class="text-ivory/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto">
-        When your plan is built around your skin's real condition, every appointment works toward the same outcome. You focus on what matters first, skip what you don't need, and have a clear way to measure progress over time.
+        When your plan is built around your skin's current condition, every appointment can work toward the same outcome. You focus on what matters first, skip what does not belong, and have a clearer way to compare progress over time.
       </p>
     </div>
   </section>
@@ -168,10 +202,10 @@ const faqs = [
     <div class="max-w-[960px] mx-auto text-center">
       <span class="kicker">From Analysis to Plan</span>
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5">
-        Your results map to a protocol.
+        Your scan maps to a protocol.
       </h2>
       <p class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
-        Whatever the analysis surfaces, there's a defined path for it — explore what we treat, or let the consultation sequence it for you.
+        Whatever the analysis surfaces, there is a defined path for it. Explore the concerns we treat, or let your House of Rose consultation sequence the right starting point for you.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         {concernLinks.map((c) => (
@@ -206,10 +240,10 @@ const faqs = [
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker">Begin Here</span>
       <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
-        Start with a clearer picture.
+        Start with the scan.
       </h2>
       <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        Book online to begin with a skin analysis, or reach out if you'd like to talk through your goals first.
+        Book online to begin with AI-assisted skin analysis in Punta Gorda, or reach out if you would like to talk through your goals first.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
