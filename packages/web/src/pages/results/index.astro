@@ -6,7 +6,7 @@ import { jsonLd, breadcrumbList } from '@/lib/structuredData';
 
 const studies = await sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(Astro.url.pathname, site).toString();
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },

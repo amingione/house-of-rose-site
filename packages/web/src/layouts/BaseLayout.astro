@@ -28,7 +28,9 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
 const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteURL = Astro.site ?? new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, siteURL);
+const defaultOgImage = new URL('/logos/hr-monogram-2026/og.png', siteURL).toString();
 const pageTitle = (title === siteName || title.includes(siteName))
   ? title
   : `${title} | ${siteName}`;
@@ -48,7 +50,7 @@ const pageTitle = (title === siteName || title.includes(siteName))
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={image ?? `${Astro.site}logos/hr-monogram-2026/og.png`} />
+    <meta property="og:image" content={image ?? defaultOgImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
@@ -58,7 +60,7 @@ const pageTitle = (title === siteName || title.includes(siteName))
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image ?? `${Astro.site}logos/hr-monogram-2026/og.png`} />
+    <meta name="twitter:image" content={image ?? defaultOgImage} />
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />

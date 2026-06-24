@@ -16,11 +16,7 @@ import {
 } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
-  if (!site) {
-    throw new Error('Missing PUBLIC_SITE_URL');
-  }
-
-  const base = site.toString().replace(/\/$/, '');
+  const base = (site?.toString() ?? 'https://houseofrosefl.com/').replace(/\/$/, '');
 
   const [services, posts, collections, costGuides, comparisons, localAreas] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),

@@ -18,7 +18,7 @@ const area = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
 if (!area) return Astro.redirect('/areas', 307);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImage = area.image?.asset?.url;
 
 const breadcrumb = breadcrumbList([

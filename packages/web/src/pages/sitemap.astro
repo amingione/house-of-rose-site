@@ -57,7 +57,7 @@ const [
 ]);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(Astro.url.pathname, site).toString();
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
