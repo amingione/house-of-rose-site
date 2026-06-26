@@ -60,8 +60,11 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   map (keep in sync with the Routes table below) + Astro `custom` SSG dev command.
 - **Dev deps only**: `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types`
   (never imported by site code — production build untouched).
-- **Run locally**: `npm run dev:visual` (editor on `:3000`, Astro preview on `:4321`).
-  The editor origin `http://localhost:3000` is already in the Sanity CORS list.
+- **Run locally**: `npm run dev:visual` (editor on `:3000`; Astro preview on a
+  Stackbit-assigned port injected via the `{PORT}` placeholder in `devCommand`).
+  The editor origin `http://localhost:3000` is already in the Sanity CORS list —
+  don't pass `--port` to `stackbit dev` (it moves the editor off that origin and
+  breaks Sanity reads/writes via CORS).
 - **Env** (add to `.env.local`, auto-loaded by `stackbit.config.ts`):
   `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_STUDIO_URL`, `SANITY_ACCESS_TOKEN`
   (Editor token, read+write, for two-way sync).
