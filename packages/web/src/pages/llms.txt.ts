@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
+import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
@@ -16,11 +17,7 @@ import {
 } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
-  if (!site) {
-    throw new Error('Missing PUBLIC_SITE_URL');
-  }
-
-  const base = site.toString().replace(/\/$/, '');
+  const base = resolveBaseUrl(site, 'llms.txt');
 
   const [services, posts, collections, costGuides, comparisons, localAreas] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),

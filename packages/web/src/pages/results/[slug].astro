@@ -19,7 +19,7 @@ const cs = await sanityFetch<CaseStudy>(CASE_STUDY_BY_SLUG_QUERY, { slug });
 if (!cs || cs.consentGiven !== true) return Astro.redirect('/results', 307);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(Astro.url.pathname, site).toString();
 const beforeUrl = cs.beforeImage?.asset?.url;
 const afterUrl = cs.afterImage?.asset?.url;
 

@@ -6,6 +6,9 @@ interface ImportMetaEnv {
   readonly PUBLIC_SANITY_API_VERSION: string;
   readonly PUBLIC_SITE_URL: string;
   readonly PUBLIC_BOOKING_EMAIL: string;
+  readonly PUBLIC_GA4_ID?: string;
+  readonly PUBLIC_GSC_VERIFY?: string;
+  readonly PUBLIC_COMING_SOON?: string;
   readonly SANITY_API_WRITE_TOKEN?: string;
   readonly RESEND_API_KEY?: string;
   readonly PRIVACY_SUPPORT_FROM?: string;

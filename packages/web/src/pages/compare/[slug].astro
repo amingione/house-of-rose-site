@@ -19,7 +19,7 @@ const cmp = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug });
 if (!cmp) return Astro.redirect('/services', 307);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const canonical = new URL(Astro.url.pathname, site).toString();
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },

@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
+import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_SITEMAP_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
@@ -22,11 +23,7 @@ import {
 } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
-  if (!site) {
-    throw new Error('Missing PUBLIC_SITE_URL');
-  }
-
-  const baseUrl = site.toString().replace(/\/$/, '');
+  const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
 
   const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages] = await Promise.all([
     sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
