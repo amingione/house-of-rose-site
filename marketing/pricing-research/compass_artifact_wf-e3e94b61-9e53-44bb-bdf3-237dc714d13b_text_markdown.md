@@ -2,7 +2,7 @@
 
 ## TL;DR
 - **Punta Gorda/Charlotte County is a structurally underserved luxury aesthetics market**: a wealthy, older, homeowner-heavy population (median age 66.3 in Punta Gorda city, ~$108,025 average household income in zip 33950, 11.7% of households earning $200K+) sandwiched between two luxury hubs (Naples and Sarasota), with only a handful of "boutique"-positioned competitors and **virtually zero published per-unit transparency on PRF, Procell, BioRePeel, or membership pricing.** This is pricing whitespace in a $17B+ U.S. med spa industry that grew from 8,899 locations in 2022 to 10,488 in 2023 (per the AmSpa 2024 Medical Spa State of the Industry Report).
-- **Position House of Rose at the top of the local market** — 10–25% above the Sweet Spot/Monic Menard tier on injectables, indexed to Naples on regenerative/PRF/Procell services — built around a **single flagship "Rose Collagen Bank" membership** at $249–$649/month with 100% rollover credits that match the natural 4–6 week PRF/Procell protocol cadence, plus separated tiers for the RN injector and the licensed esthetician.
+- **Position House of Rose at the top of the local market** — 10–25% above the Sweet Spot/Monic Menard tier on injectables, indexed to Naples on regenerative/PRF/Procell services — built around a **single flagship "Rose Collagen Bank" membership** at $249–$649/month with full stored-value credits that match the natural 4–6 week PRF/Procell protocol cadence, plus separated tiers for the RN injector and the licensed esthetician.
 - **Lead with regenerative + longevity language, not "anti-aging"** — PRF, Procell microchanneling, BioRePeel, and Osmosis sit at the cutting edge of what national luxury practices now call "skin longevity" and are largely absent from the Charlotte County market. Use consultation-only/by-appointment-only positioning, "investment" framing, and bankable membership credits to convert affluent retirees and 45–64 professionals without ever competing on per-unit Botox price (the race-to-the-bottom Tribe/Sweet Spot are already running).
 
 ---
@@ -63,7 +63,7 @@ Confirmed med spas in Punta Gorda/Port Charlotte (Yelp + direct research): **Swe
 - **"Collagen banking"** entered mass beauty media in early 2024. Per Global Cosmetic Industry magazine (gcimagazine.com), "the trend, which came out of nowhere in the winter of 2024, has been dominated by one SKU, Dermalogica's Pro-Collagen Banking Serum"; Neutrogena's Collagen Bank range launched exclusively on TikTok Shop in July 2024.
 - Underlying biology supporting the concept is well-documented: Varani et al. (2006), "Decreased collagen production in chronologically aged skin," *American Journal of Pathology* 168(6):1861–1868, established the ~1% per year decline of fibroblast collagen production with age; Brincat MP, Kabalan S, Studd JW et al., "A study of the decrease of skin collagen content, skin thickness, and bone mass in the postmenopausal woman," *Obstetrics & Gynecology* 1987;70(6):840–845 (PMID 3120067), documented the ~30% skin collagen loss in the first 5 years post-menopause. **This biology makes 45–55-year-old perimenopausal women — exactly Charlotte County's wealth pocket — the highest-LTV segment.**
 - Cartessa Aesthetics and Modern Medical Spa explicitly recommend building a "Skin Longevity Membership" around collagen-stimulating services (RF microneedling, PRF, exosomes) rather than fillers or anti-aging fear-marketing.
-- Industry consensus on **bankable/rollover memberships** as the winning structure: Body+Beauty Lab Philadelphia ($150/mo Bank model), Concierge Aesthetics ($50/mo banked credit), dermani MEDSPA (rollover until cancellation), PURE Medical Spa "Beauty Dollars," Reclaim STL (100% banked) — all roll-over. Prospyr case studies show **JEM Aesthetics hit $100K MRR** on a Beauty Bank model and **New Medical Spa doubled annually for three years** on tiered hybrid plans ($69–$299 tiers).
+- Industry consensus on **stored-value memberships** as the winning structure: Body+Beauty Lab Philadelphia ($150/mo Bank model), Concierge Aesthetics ($50/mo stored credit), dermani MEDSPA (carry-forward until cancellation), PURE Medical Spa "Beauty Dollars," Reclaim STL (100% stored) — all carry-forward. Prospyr case studies show **JEM Aesthetics hit $100K MRR** on a Beauty Bank model and **New Medical Spa doubled annually for three years** on tiered hybrid plans ($69–$299 tiers).
 - The **4–6 week PRF/Procell protocol cadence is the perfect biological match for a monthly membership.** Every clinical authority surveyed (Frey Salon, IRIYA, West Asheville, 360 Wellness, Procell Therapies' own site, St. Pete Wellness MedSpa) recommends 4–6 week spacing for these treatments.
 
 ### 6. Pricing psychology fundamentals
@@ -120,13 +120,13 @@ Confirmed med spas in Punta Gorda/Port Charlotte (Yelp + direct research): **Swe
 
 ### The Flagship: "Rose Collagen Bank" Membership Program
 
-Three tiers — **100% rollover credits, 12-month credit validity, 6-month initial commitment, then month-to-month with 30-day notice**:
+Three tiers — **full stored-value credits, 12-month credit validity, 6-month initial commitment, then month-to-month with 30-day notice**:
 
-| Tier | Monthly | Banked Credit | Service Discount | Best For |
+| Tier | Monthly | Stored Credit | Service Discount | Best For |
 |---|---|---|---|---|
-| **Rose Bud** | **$249/mo** | $249 banked toward any service | 10% off retail (Osmosis/SkinBetter) | Skincare-focused; Express Facial + occasional BioRePeel |
-| **Rose Bloom** (flagship) | **$399/mo** | $399 banked + one complimentary Express Glow Facial monthly | 10% off services, 15% off retail, Botox at $13.50/u | The 50% of members — matches one PRF or one Procell every 4–6 weeks |
-| **Rose Reserve** (VIP) | **$649/mo** | $649 banked + monthly Osmosis Signature + quarterly BioRePeel | 15% off services, 20% off retail, Botox at $12/u, priority booking, complimentary birthday Glow + champagne, quarterly skin analysis | Top-spend 20%; pays for itself with quarterly PRF + monthly Procell |
+| **Rose Bud** | **$249/mo** | $249 stored toward any service | 10% off retail (Osmosis/SkinBetter) | Skincare-focused; Express Facial + occasional BioRePeel |
+| **Rose Bloom** (flagship) | **$399/mo** | $399 stored + one complimentary Express Glow Facial monthly | 10% off services, 15% off retail, Botox at $13.50/u | The 50% of members — matches one PRF or one Procell every 4–6 weeks |
+| **Rose Reserve** (VIP) | **$649/mo** | $649 stored + monthly Osmosis Signature + quarterly BioRePeel | 15% off services, 20% off retail, Botox at $12/u, priority booking, complimentary birthday Glow + champagne, quarterly skin analysis | Top-spend 20%; pays for itself with quarterly PRF + monthly Procell |
 
 **Why this structure wins:**
 - **The 4–6 week PRF/Procell protocol IS the monthly visit cadence** — members come every month for a clinical reason, not a marketing one.

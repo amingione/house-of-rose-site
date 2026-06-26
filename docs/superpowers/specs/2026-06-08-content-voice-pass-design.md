@@ -110,7 +110,7 @@ Use the project `service-page` skill for **structure + Service/MedicalBusiness J
 Market the in-office analysis tech per homepage Section 5. CTA: "Learn About Skin Analysis" → consult/Book Online.
 
 ### Memberships  ⚠️ APPROVAL GATE
-Real tiers: GLOW / ELITE / VIP (three banked-credit membership levels; full terms held internally / in GlossGenius — not shown publicly). Reframe to the homepage's skin-health-continuity voice. **Draft the reframed copy and send to Amber for approval BEFORE changing or publishing.** Do not alter live membership terms without sign-off.
+Rose Circle launch framing: provider-lane, consultation-first, 6-month guided membership path. Full terms stay internal / in GlossGenius and are not shown publicly. Public copy should not show preset tiers, public prices, or membership-detail promises before consultation.
 
 ### Providers / Team
 Branded bios for the 4 providers (Diana RN, Amber medical aesthetician + phlebotomist, Brandy aesthetician, Brooke permanent jewelry). Trust/expertise framing; no per-service price/menu. Compliance-clean credentials language.

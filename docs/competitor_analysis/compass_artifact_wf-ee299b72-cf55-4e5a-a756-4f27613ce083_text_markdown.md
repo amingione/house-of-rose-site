@@ -236,7 +236,7 @@ These bundles are positioned as curated experiences, never as discounts. Pricing
 | **The Glow Protocol** | HydraFacial Signature + The Glow IV + LED add-on | **$485** | $525 |
 | **The Bridal Countdown (8 weeks)** | 2× Refined Facial + 1× BioRePeel + Lash Lift & Tint + Brow Lamination + Permanent Jewelry Bracelet (14k gold-filled) | **$795** | $885 |
 | **The Annual Skin Membership** | Monthly facial of choice (Signature or HydraFacial Signature), 10% off all add-ons, 10% off retail, priority booking | **$165 / month** | — |
-| **The Injectable Insider** | Annual membership: 1 unit of Botox banked monthly toward your next visit, 10% off filler, complimentary post-treatment LED, two priority booking slots per quarter | **$45 / month** | — |
+| **The Injectable Insider** | Annual membership: 1 unit of Botox stored monthly toward your next visit, 10% off filler, complimentary post-treatment LED, two priority booking slots per quarter | **$45 / month** | — |
 | **Microneedling Series** | 3× Microneedling Face + complimentary LED at each visit + take-home recovery kit | **$995** | $1,110 |
 | **ProCell Foundation Series** | 6× ProCell Microchanneling Face + ProCell home aftercare kit + 3 complimentary LED sessions | **$2,295** | $2,575 |
 | **The Acne Commitment** | Face Reality 12-Week Boot Camp + 1 BioRePeel at week 8 (when skin is ready) + 90-day product starter set placeholder (products billed separately) | **$995** (program + BioRePeel only) | $1,090 |

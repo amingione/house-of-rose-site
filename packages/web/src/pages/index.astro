@@ -142,7 +142,7 @@ const organizationData = {
 		centerContent={true}
 		showCTA={true}
 		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Consultation", href: BOOKING_URL }}
-		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Start With Skin Analysis", href: SKIN_ANALYSIS_URL }}
+		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 		titleField="heroTitle"
 		subtitleField="heroSubtitle"
@@ -346,20 +346,20 @@ const organizationData = {
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("circlePara1")}
 			>
-				{hp.circlePara1 ?? "Results are built over time and maintained with intention. The Rose Circle is our continuity membership for clients who want consistent care, priority access, curated treatment credits, and ongoing professional guidance after the first plan begins."}
+				{hp.circlePara1 ?? "The Rose Circle is our 6-month guided membership path for clients who want custom care at member rates after skin analysis and provider evaluation."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
 				{...sbFieldPath("circlePara2")}
 			>
-				{hp.circlePara2 ?? "Start with the scanner, build the right treatment path, then use The Rose Circle to keep momentum year-round. It is not a discount club; it is the relationship that helps your skin stay on course."}
+				{hp.circlePara2 ?? "Start with the scanner, let your provider examine your skin, then commit to a real plan with enough time for healthy visible change to evolve. It is not a discount club or a gimmick."}
 			</p>
 			<div class="flex gap-3 flex-wrap">
 				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaPrimaryText")}
-					>{hp.circleCtaPrimaryText ?? "Explore The Rose Circle"}</a
+					>{hp.circleCtaPrimaryText ?? "View The Rose Circle"}</a
 				>
 				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaSecondaryText")}
-					>{hp.circleCtaSecondaryText ?? "Start With Analysis"}</a
+					>{hp.circleCtaSecondaryText ?? "Book Your Skin Analysis"}</a
 				>
 			</div>
 		</div>

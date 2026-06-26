@@ -32,5 +32,4 @@ Wax Type:
  $25/mo
 **Monthly brow + lip ($40 value)**
 
-**Choose 1/mo: Brazilian + Underarms, Full Legs, or Bikini + Underarms**
-**All tiers · 10–15% off retail · priority booking · missed month rolls forward**
+**Rose Circle Wax Pass terms are confirmed at consultation. A 6-month minimum commitment applies.**

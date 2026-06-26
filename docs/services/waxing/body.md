@@ -39,7 +39,7 @@ Wax Type:
  Total Body
 - $99/mo
  Choose 1/mo: Brazilian + Underarms, Full Legs, or Bikini + Underarms
- All tiers · 10–15% off retail · priority booking · missed month rolls forward
+ Rose Circle Wax Pass terms are confirmed at consultation. A 6-month minimum commitment applies.
 
 ## Wax Pass & combos
 - Brazilian Wax Pass — buy 5, get 1

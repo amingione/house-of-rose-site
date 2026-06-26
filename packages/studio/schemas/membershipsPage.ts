@@ -1,13 +1,9 @@
 import { defineField, defineType } from 'sanity';
 
 /**
- * Singleton for the Memberships page (/memberships) — migrated from hardcoded
- * memberships.astro so all marketing copy is editable in the Studio + Netlify
- * Visual Editor. This models the PAGE's own copy only.
- *
- * NOTE: This is separate from the `membership` document type (lane memberships)
- * and the MembershipTiers component. The three Rose Circle tier cards on this
- * page are page-specific marketing content, so they live here as an array.
+ * Singleton for the Rose Circle page (/memberships). This page is intentionally
+ * provider-lane based and consultation-first. Public tier pricing and preset
+ * package selection do not belong here.
  */
 export const membershipsPage = defineType({
   name: 'membershipsPage',
@@ -17,58 +13,61 @@ export const membershipsPage = defineType({
   groups: [
     { name: 'hero', title: 'Hero' },
     { name: 'idea', title: 'The Idea' },
-    { name: 'tiers', title: 'The Three Tiers' },
+    { name: 'commitment', title: '6-Month Commitment' },
+    { name: 'lanes', title: 'Provider Lanes' },
+    { name: 'scanner', title: 'AI Skin Scanner' },
     { name: 'pathway', title: 'The Pathway' },
-    { name: 'plansTeaser', title: 'Plans Teaser' },
+    { name: 'methodTeaser', title: 'Rose Method Teaser' },
     { name: 'finalCta', title: 'Final CTA' },
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
-    // ── SEO ──
     defineField({ name: 'seoTitle', title: 'SEO Title', type: 'string', group: 'seo' }),
     defineField({ name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 3, group: 'seo' }),
 
-    // ── Hero ──
     defineField({ name: 'heroKicker', title: 'Kicker', type: 'string', group: 'hero' }),
     defineField({ name: 'heroTitle', title: 'Title', type: 'string', group: 'hero' }),
     defineField({ name: 'heroDescription', title: 'Description', type: 'text', rows: 4, group: 'hero' }),
     defineField({ name: 'heroCtaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'hero' }),
     defineField({ name: 'heroCtaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'hero' }),
 
-    // ── The Idea ──
     defineField({ name: 'ideaKicker', title: 'Kicker', type: 'string', group: 'idea' }),
     defineField({ name: 'ideaHeading', title: 'Heading', type: 'text', rows: 2, group: 'idea' }),
     defineField({ name: 'ideaBody', title: 'Body', type: 'text', rows: 4, group: 'idea' }),
 
-    // ── The Three Tiers ──
-    defineField({ name: 'tiersKicker', title: 'Kicker', type: 'string', group: 'tiers' }),
-    defineField({ name: 'tiersHeading', title: 'Heading', type: 'string', group: 'tiers' }),
+    defineField({ name: 'commitmentKicker', title: 'Kicker', type: 'string', group: 'commitment' }),
+    defineField({ name: 'commitmentHeading', title: 'Heading', type: 'text', rows: 2, group: 'commitment' }),
+    defineField({ name: 'commitmentBody', title: 'Body', type: 'text', rows: 5, group: 'commitment' }),
+
+    defineField({ name: 'lanesKicker', title: 'Kicker', type: 'string', group: 'lanes' }),
+    defineField({ name: 'lanesHeading', title: 'Heading', type: 'text', rows: 2, group: 'lanes' }),
+    defineField({ name: 'lanesIntro', title: 'Intro', type: 'text', rows: 4, group: 'lanes' }),
     defineField({
-      name: 'tiers',
-      title: 'Tiers',
+      name: 'lanes',
+      title: 'Provider Lanes',
       type: 'array',
-      group: 'tiers',
+      group: 'lanes',
       of: [
         {
           type: 'object',
           fields: [
-            defineField({ name: 'name', title: 'Name', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'french', title: 'French Subtitle', type: 'string', description: 'e.g. "In full bloom" — optional.' }),
-            defineField({ name: 'price', title: 'Price (monthly, number only)', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'tagline', title: 'Tagline', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'builtFor', title: 'Built For', type: 'text', rows: 3, validation: (R) => R.required() }),
-            defineField({ name: 'benefits', title: 'Benefits', type: 'array', of: [{ type: 'string' }] }),
+            defineField({ name: 'name', title: 'Lane Name', type: 'string', validation: (R) => R.required() }),
+            defineField({ name: 'provider', title: 'Provider', type: 'string', validation: (R) => R.required() }),
+            defineField({ name: 'description', title: 'Description', type: 'text', rows: 3, validation: (R) => R.required() }),
+            defineField({ name: 'includes', title: 'Includes', type: 'array', of: [{ type: 'string' }] }),
             defineField({ name: 'note', title: 'Note', type: 'text', rows: 2 }),
-            defineField({ name: 'featured', title: 'Featured (Most Loved)', type: 'boolean', initialValue: false }),
           ],
-          preview: { select: { title: 'name', subtitle: 'tagline' } },
+          preview: { select: { title: 'name', subtitle: 'provider' } },
         },
       ],
-      validation: (R) => R.max(6),
+      validation: (R) => R.max(8),
     }),
-    defineField({ name: 'tiersFootnote', title: 'Footnote', type: 'text', rows: 4, group: 'tiers' }),
 
-    // ── The Pathway ──
+    defineField({ name: 'scannerKicker', title: 'Kicker', type: 'string', group: 'scanner' }),
+    defineField({ name: 'scannerHeading', title: 'Heading', type: 'text', rows: 2, group: 'scanner' }),
+    defineField({ name: 'scannerBody', title: 'Body', type: 'text', rows: 4, group: 'scanner' }),
+    defineField({ name: 'scannerPoints', title: 'Scanner Points', type: 'array', of: [{ type: 'string' }], group: 'scanner' }),
+
     defineField({ name: 'pathwayKicker', title: 'Kicker', type: 'string', group: 'pathway' }),
     defineField({ name: 'pathwayHeading', title: 'Heading', type: 'string', group: 'pathway' }),
     defineField({
@@ -89,13 +88,11 @@ export const membershipsPage = defineType({
       validation: (R) => R.max(6),
     }),
 
-    // ── Plans Teaser ──
-    defineField({ name: 'teaserKicker', title: 'Kicker', type: 'string', group: 'plansTeaser' }),
-    defineField({ name: 'teaserHeading', title: 'Heading', type: 'text', rows: 2, group: 'plansTeaser' }),
-    defineField({ name: 'teaserBody', title: 'Body', type: 'text', rows: 4, group: 'plansTeaser' }),
-    defineField({ name: 'teaserCtaText', title: 'CTA Text', type: 'string', group: 'plansTeaser' }),
+    defineField({ name: 'teaserKicker', title: 'Kicker', type: 'string', group: 'methodTeaser' }),
+    defineField({ name: 'teaserHeading', title: 'Heading', type: 'text', rows: 2, group: 'methodTeaser' }),
+    defineField({ name: 'teaserBody', title: 'Body', type: 'text', rows: 4, group: 'methodTeaser' }),
+    defineField({ name: 'teaserCtaText', title: 'CTA Text', type: 'string', group: 'methodTeaser' }),
 
-    // ── Final CTA ──
     defineField({ name: 'finalKicker', title: 'Kicker', type: 'string', group: 'finalCta' }),
     defineField({ name: 'finalHeading', title: 'Heading', type: 'text', rows: 2, group: 'finalCta' }),
     defineField({ name: 'finalBody', title: 'Body', type: 'text', rows: 3, group: 'finalCta' }),
