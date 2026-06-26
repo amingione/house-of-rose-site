@@ -15,7 +15,7 @@ import type { FAQ } from '@/lib/queries';
 export const LOCAL_BUSINESS = {
   name: 'House of Rose Aesthetics',
   legalName: 'House of Rose Aesthetics',
-  telephone: '+18449417673',
+  telephone: '+18449417376',
   streetAddress: '525 E Olympia Ave, Ste 9',
   addressLocality: 'Punta Gorda',
   addressRegion: 'FL',

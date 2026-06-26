@@ -422,8 +422,8 @@ import Hero from '@/components/Hero.astro';
         <p class="text-white text-[16px] font-serif">We're happy to walk you through the details before you apply.</p>
       </div>
       <div class="flex gap-4 flex-wrap justify-center">
-        <a href="tel:+18449417673" class="btn-outline-gold">
-          (844) 941-7673
+        <a href="tel:+18449417376" class="btn-outline-gold">
+          (844) 941-7376
         </a>
         <a href="mailto:book@houseofrosefl.com" class="btn-outline-white">
           Email Us

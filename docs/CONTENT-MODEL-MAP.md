@@ -96,7 +96,7 @@ Authoritative values live in Sanity `siteSettings` and are mirrored in
 
 - **Name:** House of Rose Aesthetics (House of Rose Luxury Spa & Wellness)
 - **Address:** 525 E Olympia Ave, Ste 9, Punta Gorda, FL 33950
-- **Phone:** (844) 941-7673 · **Geo:** 26.9298, −82.0454
+- **Phone:** (844) 941-7376 · **Geo:** 26.9298, −82.0454
 - **Booking:** https://houseofrose.glossgenius.com/services
 - **Service area:** Punta Gorda, Port Charlotte, Englewood, Venice, North Port, Sarasota,
   Cape Coral — Charlotte County & SW Florida
