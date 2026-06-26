@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
   TREATMENT_PACKAGE_BY_SLUG_QUERY,
@@ -33,7 +34,7 @@ const packageSchema = {
   description: summary,
   provider: {
     '@type': 'HealthAndBeautyBusiness',
-    name: 'House of Rose Luxury Spa & Wellness',
+    name: 'House of Rose Aesthetics',
     url: site,
     telephone: '+18449417673',
     address: {
@@ -90,6 +91,7 @@ const pageDescription = summary;
   <script is:inline type="application/ld+json" set:html={JSON.stringify(packageSchema)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
+  <div {...sbObjectId(pkg._id)}>
   <!-- Hero -->
   <section
     class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"
@@ -101,12 +103,12 @@ const pageDescription = summary;
         <span class="text-lg">←</span> All Packages
       </a>
       <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">Signature Package</span>
-      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory">
+      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
         {pkg.title}
       </h1>
-      {summary && <p class="mt-4 text-ivory/75 text-[15px] max-w-[640px] leading-relaxed">{summary}</p>}
+      {summary && <p class="mt-4 text-ivory/75 text-[15px] max-w-[640px] leading-relaxed" {...sbFieldPath(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{summary}</p>}
       {price && (
-        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase">{price}</p>
+        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase" {...sbFieldPath(pkg.foundingPrice ? 'foundingPrice' : 'rackPrice')}>{price}</p>
       )}
     </div>
   </section>
@@ -117,16 +119,16 @@ const pageDescription = summary;
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What's Included</span>
       <div class="space-y-px bg-gold/10">
         {services.map((service, index) => (
-          <div class="bg-charcoal p-7 flex gap-6">
+          <div class="bg-charcoal p-7 flex gap-6" {...(service._id ? sbObjectId(service._id) : {})}>
             <span class="font-serif text-gold/30 text-[28px] leading-none">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div>
-              <a href={`/services/${service.slug}`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors">
+              <a href={`/services/${service.slug}`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors" {...(service._id ? sbFieldPath('title') : {})}>
                 {service.title}
               </a>
               {service.tagline && (
-                <p class="text-[#9a8c78] text-[14px] leading-relaxed mt-2">{service.tagline}</p>
+                <p class="text-[#9a8c78] text-[14px] leading-relaxed mt-2" {...(service._id ? sbFieldPath('tagline') : {})}>{service.tagline}</p>
               )}
             </div>
           </div>
@@ -138,7 +140,7 @@ const pageDescription = summary;
   {pkg.whatsIncluded && services.length === 0 && (
     <section class="bg-charcoal py-16 px-6 md:px-12 max-w-[960px] mx-auto">
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-6">What's Included</span>
-      <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line">{pkg.whatsIncluded}</p>
+      <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line" {...sbFieldPath('whatsIncluded')}>{pkg.whatsIncluded}</p>
     </section>
   )}
 
@@ -148,13 +150,13 @@ const pageDescription = summary;
       {pkg.cadence && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Sequencing &amp; Cadence</span>
-          <p class="text-ink/80 text-[15px] leading-relaxed">{pkg.cadence}</p>
+          <p class="text-ink/80 text-[15px] leading-relaxed" {...sbFieldPath('cadence')}>{pkg.cadence}</p>
         </div>
       )}
       {pkg.positioning && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Ritual</span>
-          <p class="text-[#9a8c78] text-[15px] leading-relaxed italic">{pkg.positioning}</p>
+          <p class="text-[#9a8c78] text-[15px] leading-relaxed italic" {...sbFieldPath('positioning')}>{pkg.positioning}</p>
         </div>
       )}
     </section>
@@ -171,7 +173,7 @@ const pageDescription = summary;
         Start with a private consultation. We'll confirm your candidacy and tailor the ritual to your skin.
       </p>
       {pkg.candidacyNote && (
-        <p class="text-[#7a6e5c] text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10">{pkg.candidacyNote}</p>
+        <p class="text-[#7a6e5c] text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10" {...sbFieldPath('candidacyNote')}>{pkg.candidacyNote}</p>
       )}
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
@@ -186,4 +188,5 @@ const pageDescription = summary;
       </p>
     </div>
   </section>
+  </div>
 </BaseLayout>

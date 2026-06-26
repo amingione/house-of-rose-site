@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_CASE_STUDIES_QUERY, type CaseStudy } from '@/lib/queries';
 import { jsonLd, breadcrumbList } from '@/lib/structuredData';
 
@@ -31,7 +32,7 @@ const breadcrumb = breadcrumbList([
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
       {studies.map((cs) => (
-        <a href={`/results/${cs.slug}`} class="bg-charcoal group block transition-colors hover:bg-charcoal-lighter">
+        <a href={`/results/${cs.slug}`} class="bg-charcoal group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(cs._id)}>
           {cs.afterImage?.asset?.url && (
             <div class="aspect-square overflow-hidden bg-charcoal-lighter">
               <img
@@ -45,7 +46,7 @@ const breadcrumb = breadcrumbList([
             </div>
           )}
           <div class="p-6">
-            <h2 class="font-serif text-[19px] text-ink mb-1 group-hover:text-gold transition-colors">{cs.title}</h2>
+            <h2 class="font-serif text-[19px] text-ink mb-1 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{cs.title}</h2>
             {cs.treatment && <p class="text-gold text-[11px] tracking-[0.18em] uppercase">{cs.treatment.title}</p>}
             {cs.timeframe && <p class="text-[#777] text-[13px] mt-2">{cs.timeframe}</p>}
           </div>

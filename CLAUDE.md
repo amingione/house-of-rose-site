@@ -48,6 +48,39 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **CMS**: Sanity v3 + GROQ
 - **Language**: TypeScript (strict, no `any`)
 - **Hosting**: Netlify — storefront at `houseofrosefl.com`, Studio at `studio.houseofrosefl.com`
+- **Visual editing**: Netlify Visual Editor (Stackbit) over Sanity — see below
+
+---
+
+## Visual Editing (Netlify Visual Editor)
+Click-to-edit / side-by-side editing sits **on top of** Sanity — **not** a second CMS,
+and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
+
+- **Config**: `stackbit.config.ts` (repo root) — Sanity content source + `PAGE_ROUTES`
+  map (keep in sync with the Routes table below) + Astro `custom` SSG dev command.
+- **Dev deps only**: `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types`
+  (never imported by site code — production build untouched).
+- **Run locally**: `npm run dev:visual` (editor on `:3000`; Astro preview on a
+  Stackbit-assigned port injected via the `{PORT}` placeholder in `devCommand`).
+  The editor origin `http://localhost:3000` is already in the Sanity CORS list —
+  don't pass `--port` to `stackbit dev` (it moves the editor off that origin and
+  breaks Sanity reads/writes via CORS).
+- **Env** (add to `.env.local`, auto-loaded by `stackbit.config.ts`):
+  `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_STUDIO_URL`, `SANITY_ACCESS_TOKEN`
+  (Editor token, read+write, for two-way sync).
+- **Inline edit**: all Sanity-backed pages + shared components are annotated via
+  `packages/web/src/lib/visualEditing.ts` (`data-sb-*` helpers). Arrays use the
+  numeric **index** (`faqs.0.question`), refs are rescoped with their own `_id`.
+- **Automation** (`scripts/visual-editing/`): `npm run ve:check` (coverage gate),
+  `ve:sync` (PAGE_ROUTES drift), `ve:new` (scaffold pre-annotated page/component +
+  auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
+  Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
+- **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
+  `homepage`, `membershipsPage`, `contactPage`, `privacyPolicy`, `rentARoom`,
+  `skinAnalysis`, `thankYou` — each edited under Studio → **Pages** (or **Home Page**),
+  rendered with Sanity-first + hardcoded fallbacks, fully click-to-edit. Forms
+  (contact, rent-a-room) and JSON-LD were left untouched. Every site page is now
+  inline-editable (`ve:check` = 0 missing).
 
 ---
 

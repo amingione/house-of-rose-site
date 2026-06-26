@@ -58,7 +58,7 @@
 
   /* Button: Outline (on light) */
   .btn-outline-white {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ink/30 text-ink font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:border-gold hover:text-gold;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ivory/70 text-ivory font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:border-gold hover:text-gold;
   }
 
   /* Button: Outline gold */

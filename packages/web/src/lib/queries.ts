@@ -15,6 +15,7 @@ export interface SanityImage {
 }
 
 export interface FAQ {
+  _key?: string;
   question: string;
   answer: string;
 }
@@ -130,17 +131,20 @@ export interface Testimonial {
 }
 
 export interface Standard {
+  _key?: string;
   title: string;
   description: string;
 }
 
 export interface JourneyStep {
+  _key?: string;
   step: string;
   title: string;
   description: string;
 }
 
 export interface ExperienceContent {
+  _id?: string;
   heroTitle?: string;
   heroSubtitle?: string;
   storyHeading?: string;
@@ -221,6 +225,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     process,
     _updatedAt,
     faqs[] {
+      _key,
       question,
       answer
     },
@@ -404,6 +409,7 @@ export const FEATURED_TESTIMONIALS_QUERY = /* groq */ `
 
 export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
   *[_type == "experienceContent"][0] {
+    _id,
     heroTitle,
     heroSubtitle,
     storyHeading,
@@ -414,10 +420,12 @@ export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
       alt
     },
     standards[] {
+      _key,
       title,
       description
     },
     journeySteps[] {
+      _key,
       step,
       title,
       description
@@ -611,6 +619,7 @@ export interface ServiceRef {
 
 // 2. Cost guide — /cost/[slug]
 export interface CostFactor {
+  _key?: string;
   factor: string;
   effect: string;
 }
@@ -641,6 +650,7 @@ export interface ComparisonOption {
 }
 
 export interface ComparisonRow {
+  _key?: string;
   attribute: string;
   valueA?: string;
   valueB?: string;
@@ -711,7 +721,7 @@ export const ALL_COST_GUIDES_QUERY = /* groq */ `
 export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
   *[_type == "costGuide" && slug.current == $slug][0] {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit,
-    whatsIncluded, costFactors[]{ factor, effect }, faqs[]{ question, answer }, _updatedAt,
+    whatsIncluded, costFactors[]{ _key, factor, effect }, faqs[]{ _key, question, answer }, _updatedAt,
     "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
     "relatedServices": relatedServices[]->{ ${SERVICE_REF_FIELDS} },
     "seo": seo { metaTitle, metaDescription }
@@ -741,8 +751,8 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
     _id, title, "slug": slug.current, intro, verdict, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
-    rows[]{ attribute, valueA, valueB },
-    faqs[]{ question, answer },
+    rows[]{ _key, attribute, valueA, valueB },
+    faqs[]{ _key, question, answer },
     "seo": seo { metaTitle, metaDescription }
   }
 `;
@@ -764,7 +774,7 @@ export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current == $slug][0] {
     _id, title, "slug": slug.current, city, region, intro, whyLocal, neighborhoods, _updatedAt,
     "servedServices": servedServices[]->{ ${SERVICE_REF_FIELDS} },
-    faqs[]{ question, answer },
+    faqs[]{ _key, question, answer },
     ${IMAGE_FIELDS},
     "seo": seo { metaTitle, metaDescription }
   }
@@ -801,6 +811,7 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
 
 // ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
 export interface FaqGroup {
+  _id: string;
   source: string;
   slug: string;
   type: 'service' | 'costGuide' | 'comparison' | 'localArea';
@@ -810,9 +821,94 @@ export interface FaqGroup {
 export const FAQ_AGGREGATE_QUERY = /* groq */ `
   *[_type in ["service", "costGuide", "comparison", "localArea"] && count(faqs) > 0]
     | order(_type asc, title asc) {
+      _id,
       "source": title,
       "slug": slug.current,
       "type": _type,
-      faqs[]{ question, answer }
+      faqs[]{ _key, question, answer }
     }
+`;
+
+// ── Home page (singleton) — migrated from hardcoded index.astro ──────────────
+export interface HomeServiceGroup {
+  _key?: string;
+  name: string;
+  description: string;
+  imagePath?: string;
+}
+
+export interface HomePage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroSubtitle?: string;
+  heroDescription?: string;
+  heroCtaPrimaryText?: string;
+  heroCtaSecondaryText?: string;
+  aboutKicker?: string;
+  aboutHeading?: string;
+  aboutPara1?: string;
+  aboutPara2?: string;
+  aboutPara3?: string;
+  approachKicker?: string;
+  approachHeading?: string;
+  approachPara1?: string;
+  approachPara2?: string;
+  approachClosing?: string;
+  servicesKicker?: string;
+  servicesHeading?: string;
+  servicesIntro?: string;
+  serviceGroups?: HomeServiceGroup[];
+  servicesCtaText?: string;
+  scanKicker?: string;
+  scanHeading?: string;
+  scanPara1?: string;
+  scanPara2?: string;
+  scanQuote?: string;
+  scanCtaPrimaryText?: string;
+  scanCtaSecondaryText?: string;
+  circleKicker?: string;
+  circleHeading?: string;
+  circlePara1?: string;
+  circlePara2?: string;
+  circleCtaPrimaryText?: string;
+  circleCtaSecondaryText?: string;
+  careKicker?: string;
+  careHeading?: string;
+  carePara1?: string;
+  carePara2?: string;
+  careCtaText?: string;
+  expKicker?: string;
+  expHeading?: string;
+  expPara1?: string;
+  expPara2?: string;
+  localKicker?: string;
+  localHeading?: string;
+  localPara1?: string;
+  localPara2?: string;
+  finalHeading?: string;
+  finalPara?: string;
+  finalCtaText?: string;
+  finalAddressLine?: string;
+}
+
+export const HOMEPAGE_QUERY = /* groq */ `
+  *[_type == "homepage"][0]{
+    _id,
+    seoTitle, seoDescription,
+    heroKicker, heroTitle, heroSubtitle, heroDescription, heroCtaPrimaryText, heroCtaSecondaryText,
+    aboutKicker, aboutHeading, aboutPara1, aboutPara2, aboutPara3,
+    approachKicker, approachHeading, approachPara1, approachPara2, approachClosing,
+    servicesKicker, servicesHeading, servicesIntro,
+    serviceGroups[]{ _key, name, description, imagePath },
+    servicesCtaText,
+    scanKicker, scanHeading, scanPara1, scanPara2, scanQuote, scanCtaPrimaryText, scanCtaSecondaryText,
+    circleKicker, circleHeading, circlePara1, circlePara2, circleCtaPrimaryText, circleCtaSecondaryText,
+    careKicker, careHeading, carePara1, carePara2, careCtaText,
+    expKicker, expHeading, expPara1, expPara2,
+    localKicker, localHeading, localPara1, localPara2,
+    finalHeading, finalPara, finalCtaText, finalAddressLine
+  }
 `;

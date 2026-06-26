@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_PRODUCTS_QUERY, type Product, type ProductBrand } from '@/lib/queries';
 
 const products = await sanityFetch<Product[]>(ALL_PRODUCTS_QUERY);
@@ -75,7 +76,7 @@ const orderingOptions = [
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gold/10">
             {items.map((product) => (
-              <div class="bg-charcoal p-6 flex flex-col">
+              <div class="bg-charcoal p-6 flex flex-col" {...sbObjectId(product._id)}>
                 {product.image && (
                   <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                     <img
@@ -88,11 +89,11 @@ const orderingOptions = [
                     />
                   </div>
                 )}
-                <h3 class="text-ink text-[15px] font-medium leading-snug mb-1">{product.title}</h3>
-                {product.tagline && <p class="text-[#7a6e5c] text-[12.5px] leading-[1.6] mb-3">{product.tagline}</p>}
+                <h3 class="text-ink text-[15px] font-medium leading-snug mb-1" {...sbFieldPath('title')}>{product.title}</h3>
+                {product.tagline && <p class="text-[#7a6e5c] text-[12.5px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{product.tagline}</p>}
                 <p class="mt-auto text-ink/80 text-[13px] tracking-[0.12em] uppercase">
-                  {formatPrice(product.price)}
-                  {product.size && <span class="text-[#7a6e5c] normal-case tracking-normal"> · {product.size}</span>}
+                  <span {...sbFieldPath('price')}>{formatPrice(product.price)}</span>
+                  {product.size && <span class="text-[#7a6e5c] normal-case tracking-normal" {...sbFieldPath('size')}> · {product.size}</span>}
                 </p>
               </div>
             ))}

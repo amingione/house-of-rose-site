@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { REGENERATIVE_PLANS_QUERY, type Membership } from '@/lib/queries';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
@@ -25,7 +26,7 @@ const phases: Phase[] = [
 <BaseLayout
   title="Regeneration Plans in Punta Gorda, FL | House of Rose Aesthetics"
   description="The Rose Method regeneration plans — structured, multi-month treatment journeys that rebuild skin quality through timing, consistency, and personalized, provider-guided care in Punta Gorda, FL."
-  preloadImage="/images/house-of-rose-collection.webp"
+  preloadImage="/images/hor-lobby.jpg"
 >
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
@@ -36,7 +37,7 @@ const phases: Phase[] = [
     showCTA={true}
     ctaPrimary={{ text: 'Design Your Plan', href: '/contact' }}
     ctaSecondary={{ text: 'Book a Consultation', href: BOOKING_URL }}
-    backgroundImage="/images/house-of-rose-collection.webp"
+    backgroundImage="/images/hor-lobby.jpg"
   />
 
   <!-- ── THE METHOD ───────────────────────────────────────────────── -->
@@ -80,23 +81,23 @@ const phases: Phase[] = [
       {plans.length > 0 ? (
         <div class="flex flex-col gap-px bg-gold/10">
           {plans.map((plan, i) => (
-            <article class="bg-charcoal p-[clamp(28px,4vw,48px)] grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
+            <article class="bg-charcoal p-[clamp(28px,4vw,48px)] grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start" {...sbObjectId(plan._id)}>
               <div>
                 <span class="text-gold text-[12px] tracking-[0.22em] uppercase">
                   {`Plan 0${i + 1}`}
                 </span>
-                <h3 class="font-serif text-[clamp(24px,3vw,32px)] text-ink mt-2 mb-4">{plan.title}</h3>
+                <h3 class="font-serif text-[clamp(24px,3vw,32px)] text-ink mt-2 mb-4" {...sbFieldPath('title')}>{plan.title}</h3>
                 {plan.whatsIncluded && (
-                  <p class="text-[#bbb] text-[15px] leading-[1.7] mb-5 max-w-[640px]">{plan.whatsIncluded}</p>
+                  <p class="text-[#bbb] text-[15px] leading-[1.7] mb-5 max-w-[640px]" {...sbFieldPath('whatsIncluded')}>{plan.whatsIncluded}</p>
                 )}
                 {plan.perks && (
-                  <p class="text-[#9a8c78] text-[13px] leading-[1.6] mb-6 italic">{plan.perks}</p>
+                  <p class="text-[#9a8c78] text-[13px] leading-[1.6] mb-6 italic" {...sbFieldPath('perks')}>{plan.perks}</p>
                 )}
                 {plan.linkedServices && plan.linkedServices.length > 0 && (
                   <ul class="flex flex-wrap gap-2">
                     {plan.linkedServices.map((s) => (
-                      <li class="text-[#bbb] text-[12px] border border-gold/20 rounded-full px-3 py-1">
-                        {s.title}
+                      <li class="text-[#bbb] text-[12px] border border-gold/20 rounded-full px-3 py-1" {...(s._id ? sbObjectId(s._id) : {})}>
+                        <span {...(s._id ? sbFieldPath('title') : {})}>{s.title}</span>
                       </li>
                     ))}
                   </ul>
@@ -106,7 +107,7 @@ const phases: Phase[] = [
                 {plan.monthlyPrice && (
                   <p class="text-ink text-[15px] leading-[1.5] mb-1">
                     <span class="font-serif text-[26px] text-ink block mb-1">Investment</span>
-                    {plan.monthlyPrice}
+                    <span {...sbFieldPath('monthlyPrice')}>{plan.monthlyPrice}</span>
                   </p>
                 )}
                 <p class="text-[#7a6e5c] text-[12px] leading-[1.6] mt-3 mb-6">
@@ -139,7 +140,7 @@ const phases: Phase[] = [
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="/contact" class="btn-gold">Design Your Plan</a>
-        <a href="/memberships" class="btn-outline-gold">View Memberships</a>
+        <a href="/memberships" class="btn-outline-gold">View The Rose Circle</a>
       </div>
     </div>
   </section>

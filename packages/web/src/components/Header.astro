@@ -33,7 +33,7 @@ const isActive = (path: string) =>
 		</a>
 
 		<!-- Desktop Navigation -->
-		<nav class="desktop-nav hidden md:flex items-center gap-6">
+		<nav class="desktop-nav hidden lg:flex items-center gap-6">
 			<a
 				href="/"
 				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
@@ -62,17 +62,7 @@ const isActive = (path: string) =>
 						: "text-ivory/95 hover:text-gold"
 				}`}
 			>
-				Memberships
-			</a>
-			<a
-				href="/plans/"
-				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
-					isActive("/plans")
-						? "text-gold"
-						: "text-ivory/95 hover:text-gold"
-				}`}
-			>
-				Plans
+				The Rose Circle
 			</a>
 			<a
 				href="/shop/"
@@ -95,16 +85,6 @@ const isActive = (path: string) =>
 				Experience
 			</a>
 			<a
-				href="/blog/"
-				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
-					isActive("/blog")
-						? "text-gold"
-						: "text-ivory/95 hover:text-gold"
-				}`}
-			>
-				Journal
-			</a>
-			<a
 				href="/contact/"
 				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
 					isActive("/contact")
@@ -113,16 +93,6 @@ const isActive = (path: string) =>
 				}`}
 			>
 				Contact
-			</a>
-			<a
-				href="/rent-a-room/"
-				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
-					isActive("/rent-a-room")
-						? "text-gold"
-						: "text-ivory/95 hover:text-gold"
-				}`}
-			>
-				Rent a Suite
 			</a>
 			<a
 				href="https://houseofrose.glossgenius.com/services"
@@ -137,7 +107,7 @@ const isActive = (path: string) =>
 		<!-- Mobile Menu Button -->
 		<button
 			id="mobile-menu-btn"
-			class="md:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative ml-auto"
+			class="lg:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative ml-auto"
 			aria-label="Toggle menu"
 		>
 			<span
@@ -155,7 +125,7 @@ const isActive = (path: string) =>
 	<!-- Mobile Drawer -->
 	<div
 		id="mobile-drawer"
-		class="hidden md:hidden bg-charcoal-light/98 border-t border-gold/10 py-6"
+		class="hidden lg:hidden bg-charcoal-light/98 border-t border-gold/10 py-6"
 	>
 		<nav class="flex flex-col items-center">
 			<a
@@ -174,13 +144,7 @@ const isActive = (path: string) =>
 				href="/memberships/"
 				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
 			>
-				Memberships
-			</a>
-			<a
-				href="/plans/"
-				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
-			>
-				Plans
+				The Rose Circle
 			</a>
 			<a
 				href="/shop/"
@@ -195,22 +159,10 @@ const isActive = (path: string) =>
 				Experience
 			</a>
 			<a
-				href="/blog/"
-				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
-			>
-				Journal
-			</a>
-			<a
 				href="/contact/"
 				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
 			>
 				Contact
-			</a>
-			<a
-				href="/rent-a-room/"
-				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
-			>
-				Rent a Suite
 			</a>
 			<a
 				href="https://houseofrose.glossgenius.com/services"

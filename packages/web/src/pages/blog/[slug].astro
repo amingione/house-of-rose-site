@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_BLOG_POST_SLUGS_QUERY,
   BLOG_POST_BY_SLUG_QUERY,
@@ -105,6 +106,7 @@ const breadcrumbSchema = {
   <script is:inline type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
 
+  <div {...sbObjectId(post._id)}>
   <!-- Hero -->
   <section
     class="relative w-full h-[50vh] min-h-[320px] flex items-end bg-charcoal"
@@ -118,9 +120,9 @@ const breadcrumbSchema = {
         <span class="text-lg">←</span> The Rose Journal
       </a>
       {post.category && (
-        <span class="block text-gold text-[10px] tracking-[0.4em] uppercase mb-3">{post.category}</span>
+        <span class="block text-gold text-[10px] tracking-[0.4em] uppercase mb-3" {...sbFieldPath('category')}>{post.category}</span>
       )}
-      <h1 class="font-serif text-[clamp(28px,5vw,48px)] leading-tight font-normal text-ivory">
+      <h1 class="font-serif text-[clamp(28px,5vw,48px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
         {post.title}
       </h1>
       <div class="flex items-center gap-4 mt-4 text-ivory/50 text-[12px] tracking-[0.15em]">
@@ -137,13 +139,14 @@ const breadcrumbSchema = {
     <div class="max-w-[800px] mx-auto">
 
       {post.excerpt && (
-        <p class="text-[#999] text-[17px] leading-relaxed italic mb-10 border-l-2 border-gold/40 pl-5">
+        <p class="text-[#999] text-[17px] leading-relaxed italic mb-10 border-l-2 border-gold/40 pl-5" {...sbFieldPath('excerpt')}>
           {post.excerpt}
         </p>
       )}
 
       {bodyHTML ? (
         <div
+          {...sbFieldPath('body')}
           class="prose prose-invert prose-lg max-w-none
             prose-headings:font-serif prose-headings:font-normal prose-headings:text-ink
             prose-h2:text-[clamp(22px,3vw,30px)] prose-h2:mt-12 prose-h2:mb-4
@@ -205,4 +208,5 @@ const breadcrumbSchema = {
       </div>
     </section>
   )}
+  </div>
 </BaseLayout>

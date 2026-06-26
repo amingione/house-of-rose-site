@@ -6,15 +6,22 @@
  */
 
 import type { Membership } from '@/lib/queries';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 
 interface Props {
   memberships: Membership[];
   heading?: string;
   intro?: string;
   bookingHref?: string;
+  /**
+   * When true, each card is wired for Visual Editor click-to-edit, rescoped to
+   * the membership document it renders (uses `plan._id`). Membership docs always
+   * carry `_id`, so this is safe to enable wherever Sanity data is passed.
+   */
+  editable?: boolean;
 }
 
-const { memberships, heading, intro, bookingHref = '/contact' } = Astro.props;
+const { memberships, heading, intro, bookingHref = '/contact', editable = true } = Astro.props;
 ---
 
 <section class="membership">
@@ -27,16 +34,16 @@ const { memberships, heading, intro, bookingHref = '/contact' } = Astro.props;
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold/10">
     {memberships.map((plan) => (
-      <article class="flex flex-col bg-charcoal p-8">
-        <h3 class="font-serif text-[22px] text-ink mb-1">{plan.title}</h3>
-        {plan.whatsIncluded && <p class="text-[#777] text-[13px] leading-[1.6] mb-5">{plan.whatsIncluded}</p>}
+      <article class="flex flex-col bg-charcoal p-8" {...(editable && plan._id ? sbObjectId(plan._id) : {})}>
+        <h3 class="font-serif text-[22px] text-ink mb-1" {...(editable && plan._id ? sbFieldPath('title') : {})}>{plan.title}</h3>
+        {plan.whatsIncluded && <p class="text-[#777] text-[13px] leading-[1.6] mb-5" {...(editable && plan._id ? sbFieldPath('whatsIncluded') : {})}>{plan.whatsIncluded}</p>}
         {plan.monthlyPrice && (
-          <p class="font-serif text-[32px] text-ink leading-none mb-5">
+          <p class="font-serif text-[32px] text-ink leading-none mb-5" {...(editable && plan._id ? sbFieldPath('monthlyPrice') : {})}>
             {plan.monthlyPrice}
           </p>
         )}
         {plan.perks && (
-          <p class="text-[#bbb] text-[14px] leading-[1.6] mb-8 whitespace-pre-line">{plan.perks}</p>
+          <p class="text-[#bbb] text-[14px] leading-[1.6] mb-8 whitespace-pre-line" {...(editable && plan._id ? sbFieldPath('perks') : {})}>{plan.perks}</p>
         )}
         <a href={bookingHref} class="mt-auto btn-outline-gold w-full text-center">
           Become a Member

@@ -1,101 +1,112 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { sanityFetch } from "@/lib/sanity";
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
 
 const privacySupportEmail = "support@updates.houseofrosefl.com";
+
+// ─── Privacy Policy content from Sanity (singleton) ─────────────────────────────
+// Falls back to the original hardcoded copy if a field is empty, so there's no
+// regression and nothing is lost. Section bodies are plain text (rendered with
+// whitespace-pre-line) — list bullets/numbers live inside the text.
+interface PrivacySection {
+	_key: string;
+	heading: string;
+	body: string;
+}
+
+interface PrivacyPolicy {
+	_id?: string;
+	seoTitle?: string;
+	seoDescription?: string;
+	pageTitle?: string;
+	lastUpdated?: string;
+	intro?: string;
+	sections?: PrivacySection[];
+}
+
+const PRIVACY_POLICY_QUERY = /* groq */ `
+	*[_type == "privacyPolicy"][0]{
+		_id,
+		seoTitle,
+		seoDescription,
+		pageTitle,
+		lastUpdated,
+		intro,
+		sections[]{ _key, heading, body }
+	}
+`;
+
+const data =
+	(await sanityFetch<PrivacyPolicy | null>(PRIVACY_POLICY_QUERY)) ??
+	({} as PrivacyPolicy);
+
+const FALLBACK_SECTIONS: PrivacySection[] = [
+	{
+		_key: "s1",
+		heading: "Information We Collect",
+		body: "We may collect information you provide when you contact us, request services, book an appointment, subscribe to messaging, or communicate with House of Rose LLC. This may include your name, contact information, appointment details, preferences, and messages you send to us.",
+	},
+	{
+		_key: "s2",
+		heading: "How We Use Information",
+		body: "We use customer information to answer questions, provide support, manage appointments, communicate about services, send requested messages, and operate our business.",
+	},
+	{
+		_key: "s3",
+		heading: "Data Sharing",
+		body: "• Customer data is not shared with 3rd parties for promotional or marketing purposes.\n• Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.",
+	},
+	{
+		_key: "s4",
+		heading: "House of Rose LLC Messaging Terms and Conditions",
+		body: "1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, promotional offers or discounts, any promotion of your products/services.\n2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.\n3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.\n4. Carriers are not liable for delayed or undelivered messages.\n5. As always, message and data rates may apply for any messages sent to you from us and to us from you. Message frequency will vary based on communication needs. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.\n6. If you have any questions regarding privacy, please read our privacy policy contained in the rest of this document/page.",
+	},
+	{
+		_key: "s5",
+		heading: "Contact",
+		body: `If you have questions about this privacy policy or House of Rose LLC messaging, use the privacy support form below. Messages are sent from ${privacySupportEmail}.`,
+	},
+];
+
+const sections =
+	data.sections && data.sections.length ? data.sections : FALLBACK_SECTIONS;
+
+const pageTitle = data.pageTitle ?? "Privacy Policy";
+const intro =
+	data.intro ??
+	"House of Rose LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging.";
+
+const oid = data._id ? sbObjectId(data._id) : {};
 ---
 
 <BaseLayout
-	title="Privacy Policy"
-	description="House of Rose LLC privacy policy, data sharing practices, and messaging terms and conditions."
+	title={data.seoTitle ?? "Privacy Policy"}
+	description={data.seoDescription ??
+		"House of Rose LLC privacy policy, data sharing practices, and messaging terms and conditions."}
 >
-	<section class="bg-charcoal py-24 max-w-4xl mx-auto px-6">
+	<section class="bg-charcoal py-24 max-w-4xl mx-auto px-6" {...oid}>
 		<div class="text-center mb-16">
 			<p class="text-xs tracking-[0.3em] uppercase text-gold mb-4">
 				House of Rose LLC
 			</p>
-			<h1 class="font-serif text-5xl text-ink">Privacy Policy</h1>
+			<h1 class="font-serif text-5xl text-ink" {...sbFieldPath("pageTitle")}>{pageTitle}</h1>
+			{data.lastUpdated && (
+				<p class="mt-4 text-sm text-ink/60" {...sbFieldPath("lastUpdated")}>{data.lastUpdated}</p>
+			)}
 		</div>
 
 		<div class="prose prose-lg max-w-none text-ink/80">
-			<p class="lead text-xl text-ink/70 leading-relaxed">
-				House of Rose LLC respects your privacy. This policy explains
-				how we handle customer information, including information
-				connected to SMS messaging.
+			<p class="lead text-xl text-ink/70 leading-relaxed" {...sbFieldPath("intro")}>
+				{intro}
 			</p>
 
-			<h2>Information We Collect</h2>
-			<p>
-				We may collect information you provide when you contact us,
-				request services, book an appointment, subscribe to messaging,
-				or communicate with House of Rose LLC. This may include your
-				name, contact information, appointment details, preferences, and
-				messages you send to us.
-			</p>
-
-			<h2>How We Use Information</h2>
-			<p>
-				We use customer information to answer questions, provide
-				support, manage appointments, communicate about services, send
-				requested messages, and operate our business.
-			</p>
-
-			<h2>Data Sharing</h2>
-			<ul>
-				<li>
-					• Customer data is not shared with 3rd parties for
-					promotional or marketing purposes.
-				</li>
-				<li>
-					• Mobile opt-in and consent are never shared with anyone for
-					any purpose. Any information sharing that may be mentioned
-					elsewhere in this policy excludes mobile opt-in data.
-				</li>
-			</ul>
-
-			<h2>House of Rose LLC Messaging Terms and Conditions</h2>
-			<ol>
-				<li>
-					1. The messaging program consists of general conversational
-					messaging to answer questions and provide support to
-					customers, promotional offers or discounts, any promotion of
-					your products/services.
-				</li>
-				<li>
-					2. You can cancel the SMS service at any time. Just text 'STOP'
-					to the phone number from which you received messages. After
-					you send the SMS message 'STOP' to us, we will send you an
-					SMS message to confirm that you have been unsubscribed.
-					After this, you will no longer receive SMS messages from us.
-					If you want to join again, just sign up as you did the first
-					time and we will start sending SMS messages to you again.
-				</li>
-				<li>
-					3. If you are experiencing issues with the messaging program
-					you can reply with the keyword HELP for more assistance, or
-					you can get help directly at info@houseofrosefl.com.
-				</li>
-				<li>
-					4. Carriers are not liable for delayed or undelivered messages.
-				</li>
-				<li>
-					5. As always, message and data rates may apply for any messages
-					sent to you from us and to us from you. Message frequency
-					will vary based on communication needs. If you have any
-					questions about your text plan or data plan, it is best to
-					contact your wireless provider.
-				</li>
-				<li>
-					6. If you have any questions regarding privacy, please read our
-					privacy policy contained in the rest of this document/page.
-				</li>
-			</ol>
-
-			<h2>Contact</h2>
-			<p>
-				If you have questions about this privacy policy or House of Rose
-				LLC messaging, use the privacy support form below. Messages are
-				sent from <strong>{privacySupportEmail}</strong>.
-			</p>
+			{sections.map((section, i) => (
+				<>
+					<h2 {...sbFieldPathParts("sections", i, "heading")}>{section.heading}</h2>
+					<p class="whitespace-pre-line" {...sbFieldPathParts("sections", i, "body")}>{section.body}</p>
+				</>
+			))}
 		</div>
 
 		<form

@@ -5,19 +5,22 @@ import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
 
+// Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
+// emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
+
 const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
 ---
 
 <BaseLayout
   title="Signature Treatment Packages | House of Rose Punta Gorda, FL"
   description="Curated, results-driven treatment packages at House of Rose — services combined into signature rituals for glow, texture, tone, and renewal in Punta Gorda, FL."
-  preloadImage="/images/house-of-rose-collection.webp"
+  preloadImage="/images/hor-lobby.jpg"
 >
   <Hero
     title="Signature Packages"
     kicker="Curated Rituals"
     size="small"
-    backgroundImage="/images/house-of-rose-collection.webp"
+    backgroundImage="/images/hor-lobby.jpg"
   />
 
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
@@ -35,7 +38,7 @@ const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QU
       {packages.length > 0 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {packages.map((pkg) => (
-            <TreatmentPackageCard pkg={pkg} />
+            <TreatmentPackageCard pkg={pkg} objectId={pkg._id} />
           ))}
         </div>
       ) : (

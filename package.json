@@ -12,13 +12,24 @@
     "build": "npm run build:web && npm run build:studio",
     "lint": "npm run lint -w packages/web",
     "sync:notion": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio",
-    "sync:notion:dry": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio -- --dry"
+    "sync:notion:dry": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio -- --dry",
+    "dev:visual": "stackbit dev",
+    "ve:check": "node scripts/visual-editing/check-coverage.mjs",
+    "ve:sync": "node scripts/visual-editing/sync-page-routes.mjs",
+    "ve:new": "node scripts/visual-editing/scaffold.mjs",
+    "prepare": "node scripts/visual-editing/install-git-hook.mjs"
   },
   "engines": {
     "node": ">=22.12"
   },
   "devDependencies": {
+    "@stackbit/cli": "^0.3.136",
+    "@stackbit/cms-sanity": "^0.2.93",
+    "@stackbit/types": "^2.1.15",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3"
   }
 }

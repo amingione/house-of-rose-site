@@ -1,4 +1,11 @@
 import { siteSettings } from './siteSettings';
+import { homepage } from './homepage';
+import { thankYou } from './thankYou';
+import { skinAnalysis } from './skinAnalysis';
+import { contactPage } from './contactPage';
+import { privacyPolicy } from './privacyPolicy';
+import { rentARoom } from './rentARoom';
+import { membershipsPage } from './membershipsPage';
 import { experienceContent } from './experienceContent';
 import { serviceCollection } from './serviceCollection';
 import { service } from './service';
@@ -25,6 +32,13 @@ export const schemaTypes = [
   faq,
   // Singletons
   siteSettings,
+  homepage,
+  thankYou,
+  skinAnalysis,
+  contactPage,
+  privacyPolicy,
+  rentARoom,
+  membershipsPage,
   experienceContent,
   // Content
   serviceCollection,

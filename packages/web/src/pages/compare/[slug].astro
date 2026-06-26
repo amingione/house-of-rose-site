@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_COMPARISON_SLUGS_QUERY,
   COMPARISON_BY_SLUG_QUERY,
@@ -42,23 +43,24 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
   <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
   {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
 
+  <div {...sbObjectId(cmp._id)}>
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[960px] mx-auto">
       <span class="kicker">Comparison</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6">{cmp.title}</h1>
-      <p class="text-ink/85 text-[17px] leading-relaxed">{cmp.intro}</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6" {...sbFieldPath('title')}>{cmp.title}</h1>
+      <p class="text-ink/85 text-[17px] leading-relaxed" {...sbFieldPath('intro')}>{cmp.intro}</p>
     </div>
   </section>
 
   {(a || b) && (
     <section class="bg-charcoal-light py-14 px-6">
       <div class="max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/10">
-        {[a, b].filter(Boolean).map((opt) => (
+        {([['optionA', a], ['optionB', b]] as const).filter(([, opt]) => opt).map(([key, opt]) => (
           <div class="bg-charcoal p-8">
-            <h2 class="font-serif text-[24px] text-gold mb-3">{opt!.label}</h2>
-            {opt!.summary && <p class="text-ink/80 text-[15px] leading-relaxed mb-4">{opt!.summary}</p>}
+            <h2 class="font-serif text-[24px] text-gold mb-3" {...sbFieldPath(`${key}.label`)}>{opt!.label}</h2>
+            {opt!.summary && <p class="text-ink/80 text-[15px] leading-relaxed mb-4" {...sbFieldPath(`${key}.summary`)}>{opt!.summary}</p>}
             {opt!.bestFor && (
-              <p class="text-[#9a8c78] text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> {opt!.bestFor}</p>
+              <p class="text-[#9a8c78] text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> <span {...sbFieldPath(`${key}.bestFor`)}>{opt!.bestFor}</span></p>
             )}
             {opt!.service && (
               <a href={`/services/${opt!.service.slug}`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
@@ -81,11 +83,11 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
             </tr>
           </thead>
           <tbody>
-            {cmp.rows.map((row) => (
+            {cmp.rows.map((row, i) => (
               <tr class="border-b border-ink/5">
-                <td class="py-4 pr-4 text-ink/70 text-[14px] font-medium">{row.attribute}</td>
-                <td class="py-4 px-4 text-[#999] text-[14px]">{row.valueA}</td>
-                <td class="py-4 px-4 text-[#999] text-[14px]">{row.valueB}</td>
+                <td class="py-4 pr-4 text-ink/70 text-[14px] font-medium" {...sbFieldPathParts('rows', i, 'attribute')}>{row.attribute}</td>
+                <td class="py-4 px-4 text-[#999] text-[14px]" {...sbFieldPathParts('rows', i, 'valueA')}>{row.valueA}</td>
+                <td class="py-4 px-4 text-[#999] text-[14px]" {...sbFieldPathParts('rows', i, 'valueB')}>{row.valueB}</td>
               </tr>
             ))}
           </tbody>
@@ -98,7 +100,7 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
     <section class="bg-charcoal-light py-14 px-6">
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Verdict</span>
-        <p class="text-ink/85 text-[16px] leading-relaxed whitespace-pre-line">{cmp.verdict}</p>
+        <p class="text-ink/85 text-[16px] leading-relaxed whitespace-pre-line" {...sbFieldPath('verdict')}>{cmp.verdict}</p>
       </div>
     </section>
   )}
@@ -108,10 +110,10 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
         <div class="space-y-6">
-          {cmp.faqs.map((f) => (
+          {cmp.faqs.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[17px] font-medium mb-3">{f.question}</h2>
-              <p class="text-[#777] text-[14px] leading-relaxed">{f.answer}</p>
+              <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
+              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
             </div>
           ))}
         </div>
@@ -129,4 +131,5 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
       </div>
     </div>
   </section>
+  </div>
 </BaseLayout>
