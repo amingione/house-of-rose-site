@@ -73,8 +73,8 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Home** (${base}/): Overview of services, brand philosophy, and booking`,
     `- **Services** (${base}/services/): Full menu of treatments across regenerative aesthetics, injectables, skin health, and wellness`,
     `- **AI Skin Analysis** (${base}/skin-analysis/): In-studio AI-assisted imaging for pigmentation, texture, pores, fine lines, hydration cues, sun damage, and evidence-led treatment planning`,
-    `- **The Rose Circle** (${base}/memberships/): Continuity membership for maintaining results with priority access, curated treatment credits, and ongoing care`,
-    `- **Regeneration Plans** (${base}/plans/): Structured Rose Method treatment journeys designed over several months`,
+    `- **The Rose Circle** (${base}/memberships/): 6-month guided membership path with provider-lane care, member rates, AI skin analysis, and consultation-built plans`,
+    `- **The Rose Method** (${base}/plans/): Science-led process behind custom skin plans: AI skin analysis, provider examination, phased care, and 6-month progress tracking`,
     `- **Signature Packages** (${base}/packages/): Curated treatment packages and pathways`,
     `- **Experience** (${base}/experience/): What clients can expect — focused, unhurried appointments, personalized recommendations, and clear guidance on results`,
     `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
@@ -149,7 +149,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `## Positioning`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida (Charlotte and Lee Counties) as a private, appointment-only destination for advanced aesthetics and wellness. The focus is regenerative, restorative, and highly personalized care — with PRF among its signature specialties — delivered as part of a complete treatment plan rather than one-off services.`,
+    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida (Charlotte and Lee Counties) as a private, appointment-only destination for advanced aesthetics and wellness. The focus is regenerative, restorative, and highly personalized care — with PRF among its signature specialties — delivered through consultation-built plans rather than preset public packages or one-off services.`,
   );
 
   return new Response(lines.join('\n'), {
