@@ -1,0 +1,20 @@
+diff --git a/node_modules/@stackbit/cms-sanity/dist/sanity-schema-fetcher.js b/node_modules/@stackbit/cms-sanity/dist/sanity-schema-fetcher.js
+index 387c4bf..aaa463b 100644
+--- a/node_modules/@stackbit/cms-sanity/dist/sanity-schema-fetcher.js
++++ b/node_modules/@stackbit/cms-sanity/dist/sanity-schema-fetcher.js
+@@ -100,6 +100,15 @@ async function fetchSchemaV3({ studioPath }) {
+ }
+ async function fetchSchema({ studioPath }) {
+     console.log('sanity studio path: ' + studioPath);
++    // House of Rose: Sanity 6 removed the internal CLI file this connector
++    // monkey-patches. `npm run dev:visual` pre-extracts the authored schema to
++    // .stackbit/sanity-schema.json (see scripts/visual-editing/extract-sanity-schema.mjs).
++    // Use it when present. Patched via patch-package.
++    const overridePath = path.resolve(studioPath, '.stackbit', 'sanity-schema.json');
++    if (await fs_extra_1.default.pathExists(overridePath)) {
++        console.log('[house-of-rose] using pre-extracted sanity schema: ' + overridePath);
++        return JSON.parse(await fs_extra_1.default.readFile(overridePath, 'utf8'));
++    }
+     const candidates = ['sanity.config.js', 'sanity.config.jsx', 'sanity.config.ts', 'sanity.config.tsx'];
+     for (const sanityConfigFileName of candidates) {
+         const sanityConfigPath = path.resolve(studioPath, sanityConfigFileName);
