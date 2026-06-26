@@ -5,6 +5,6 @@ Core Features & Specifications
 • 3D Skin Mapping: Creates a comprehensive 3D visualization of the face with localized zoom analysis and slicing features. 
 • Predictive Analysis: Simulates future skin aging trends to recommend proactive, preventative skincare regimens. 
 • Hardware & Software: Features a 15.6-inch touchscreen and an Android/Windows-based operating system with built-in cloud data storage and multi-device synchronization. 
-• Dual Functionality: also features an advanced handpiece attachment to conduct scalp and hair follicle analysis. [6, 9]  
+• Dual Functionality: Also features an advanced handpiece attachment to conduct scalp and hair follicle analysis. [6, 9]  
 
 
