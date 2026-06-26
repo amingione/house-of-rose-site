@@ -17,7 +17,7 @@
     "ve:check": "node scripts/visual-editing/check-coverage.mjs",
     "ve:sync": "node scripts/visual-editing/sync-page-routes.mjs",
     "ve:new": "node scripts/visual-editing/scaffold.mjs",
-    "prepare": "node scripts/visual-editing/apply-patches.mjs && node scripts/visual-editing/install-git-hook.mjs"
+    "prepare": "node scripts/visual-editing/apply-patches.mjs && node scripts/visual-editing/extract-sanity-schema.mjs --soft && node scripts/visual-editing/install-git-hook.mjs"
   },
   "engines": {
     "node": ">=22.12"
@@ -26,6 +26,7 @@
     "@stackbit/cli": "^0.3.136",
     "@stackbit/cms-sanity": "^0.2.93",
     "@stackbit/types": "^2.1.15",
+    "esbuild": "^0.28.1",
     "patch-package": "^8.0.1",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"

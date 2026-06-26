@@ -101,8 +101,17 @@ async function main() {
   );
 }
 
+// `--soft` (used from the `prepare` lifecycle) never blocks an install/build:
+// a failed extraction just means the Visual Editor won't have a fresh schema.
+// `npm run dev:visual` runs WITHOUT --soft so local errors surface immediately.
+const SOFT = process.argv.includes('--soft');
+
 main().catch((err) => {
   // eslint-disable-next-line no-console
   console.error('[extract-sanity-schema] FAILED:', err?.stack || err);
+  if (SOFT) {
+    console.warn('[extract-sanity-schema] --soft: continuing despite failure.');
+    process.exit(0);
+  }
   process.exit(1);
 });
