@@ -61,15 +61,24 @@ function loadEnvFile(file: string): void {
 loadEnvFile('.env.local');
 loadEnvFile('.env');
 
-function requireEnv(name: string): string {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(
-      `[stackbit.config] Missing required env var "${name}". ` +
-        `Add it to .env.local (local) or the Visual Editor project env (cloud).`,
-    );
+/**
+ * Return the first non-empty value among `names`, or throw listing all of them.
+ *
+ * The Netlify Visual Editor cloud container only exposes the storefront's
+ * `PUBLIC_SANITY_*` build vars (and the server-side `SANITY_API_WRITE_TOKEN`) —
+ * NOT the editor-specific `SANITY_PROJECT_ID` / `SANITY_ACCESS_TOKEN` names used
+ * locally. Accepting both keeps local dev and the cloud editor working off the
+ * same project without duplicating env vars.
+ */
+function requireEnv(names: string[]): string {
+  for (const name of names) {
+    const value = process.env[name];
+    if (value) return value;
   }
-  return value;
+  throw new Error(
+    `[stackbit.config] Missing required env var. Set one of: ${names.join(', ')}. ` +
+      `Add it to .env.local (local) or the Visual Editor project env (cloud).`,
+  );
 }
 
 /**
@@ -119,9 +128,10 @@ export default defineStackbitConfig({
       rootPath: path.resolve(ROOT, 'packages/web'),
       studioPath: path.resolve(ROOT, 'packages/studio'),
       studioUrl: process.env.SANITY_STUDIO_URL ?? 'https://studio.houseofrosefl.com',
-      projectId: requireEnv('SANITY_PROJECT_ID'),
-      token: requireEnv('SANITY_ACCESS_TOKEN'),
-      dataset: process.env.SANITY_DATASET ?? 'production',
+      projectId: requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']),
+      token: requireEnv(['SANITY_ACCESS_TOKEN', 'SANITY_API_WRITE_TOKEN']),
+      dataset:
+        process.env.SANITY_DATASET ?? process.env.PUBLIC_SANITY_DATASET ?? 'production',
     }),
   ],
 
