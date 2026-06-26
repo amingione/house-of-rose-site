@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site diff --stat)",
+      "Bash(git -C /Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site diff 'packages/web/src/pages/blog/[slug].astro' 'packages/web/src/pages/packages/[slug].astro' 'packages/web/src/pages/services/[slug].astro')",
+      "Bash(npm config *)",
+      "Bash(env)",
+      "Bash(ls -la .astro/)",
+      "Bash(ls node_modules/@portabletext/to-html)",
+      "Bash(ls -d node_modules/.bin/astro)",
+      "Bash(npx astro *)"
+    ]
+  }
+}
