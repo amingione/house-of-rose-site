@@ -18,6 +18,20 @@
   # Match monorepo engines floor (Sanity Studio v6 needs Node >=22.12)
   NODE_VERSION = "22"
 
+[context.production.environment]
+  # Keep the public production domain gated until launch.
+  PUBLIC_COMING_SOON = "true"
+
+[context.branch-deploy.environment]
+  # Branch deploys are for reviewing the real site before launch.
+  PUBLIC_COMING_SOON = "false"
+
+[context.deploy-preview.environment]
+  PUBLIC_COMING_SOON = "false"
+
+[context."preview".environment]
+  PUBLIC_COMING_SOON = "false"
+
 # Security headers
 [[headers]]
   for = "/*"
