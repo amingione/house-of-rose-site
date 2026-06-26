@@ -17,7 +17,7 @@ side-by-side visual editing. It sits **on top of** the existing Sanity project
 |-------|----------|---------|
 | Editor config | `stackbit.config.ts` (repo root) | Connects the editor to Sanity, maps page types → routes, runs Astro in the editor container |
 | Dev deps | root `devDependencies` | `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types` — dev-only, never imported by the site |
-| Script | `npm run dev:visual` | `stackbit dev --port 4321` (runs the local visual editor) |
+| Script | `npm run dev:visual` | `stackbit dev` (runs the local visual editor on `:3000`) |
 | Annotation helper | `packages/web/src/lib/visualEditing.ts` | `data-sb-*` helpers for inline click-to-edit |
 | Env vars | `.env.example` → `.env.local` | `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_STUDIO_URL`, `SANITY_ACCESS_TOKEN` |
 
@@ -69,9 +69,15 @@ Add a new page-backed document type by adding one line to `PAGE_ROUTES`.
    in `npm run dev:web`). The editor shows the live site with a Pages panel,
    Content panel, and the sitemap navigator.
 
-> Port note: Stackbit defaults to `3000` and expects the site dev server on a
-> port it controls (`{PORT}`). The `dev:visual` script passes `--port 4321`; if
-> 4321 is busy, change it or stop the standalone `npm run dev:web`.
+> Port note: `stackbit dev` serves the **editor** on `http://localhost:3000`
+> (its default) — this is the origin you open, and the one registered in Sanity
+> CORS, so do **not** override it with `--port`. The `--port` flag changes the
+> editor port, **not** the Astro preview port; passing `--port 4321` moves the
+> editor onto an origin Sanity CORS doesn't allow, which breaks content
+> loading/saving. The Astro preview runs on a separate port that Stackbit
+> assigns itself and injects into the `devCommand` via the `{PORT}` placeholder,
+> so you never set it by hand. If `3000` is already in use, free it (or pass
+> `--port <free-port>` **and** add that origin to Sanity CORS).
 
 ---
 

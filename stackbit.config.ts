@@ -92,7 +92,9 @@ const PAGE_ROUTES: Record<string, string> = {
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
   ssgName: 'custom',
-  nodeVersion: '20',
+  // Match the repo's engines.node (">=22.12") so the cloud editor container
+  // installs with the same Node major as local dev.
+  nodeVersion: '22',
 
   // Run the existing env-aware Astro dev server inside the Visual Editor
   // container. We reuse scripts/run-with-env.mjs so PUBLIC_SANITY_* load exactly
