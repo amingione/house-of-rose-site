@@ -20,7 +20,7 @@ if (!post) {
   return Astro.redirect('/blog', 307);
 }
 
-const site = Astro.site?.toString() ?? `${Astro.url.origin}/`;
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const pageTitle = post.seo?.metaTitle ?? `${post.title} | House of Rose`;
 const pageDescription = post.seo?.metaDescription ?? post.excerpt ?? '';

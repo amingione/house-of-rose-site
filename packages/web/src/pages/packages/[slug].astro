@@ -19,7 +19,7 @@ if (!pkg) {
   return Astro.redirect('/packages', 307);
 }
 
-const site = Astro.site?.toString() ?? `${Astro.url.origin}/`;
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const summary = pkg.outcome ?? pkg.whatsIncluded ?? '';
 const services = pkg.servicesIncluded ?? [];

@@ -20,7 +20,7 @@ if (!service) {
 }
 
 // Build structured data for SEO
-const site = Astro.site?.toString() ?? `${Astro.url.origin}/`;
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;

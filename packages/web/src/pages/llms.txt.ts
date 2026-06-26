@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
+import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
@@ -16,7 +17,7 @@ import {
 } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
-  const base = (site?.toString() ?? 'https://houseofrosefl.com/').replace(/\/$/, '');
+  const base = resolveBaseUrl(site, 'llms.txt');
 
   const [services, posts, collections, costGuides, comparisons, localAreas] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),

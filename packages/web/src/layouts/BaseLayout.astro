@@ -28,7 +28,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
 const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 
-const siteURL = Astro.site ?? new URL(Astro.url.origin);
+const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const defaultOgImage = new URL('/logos/hr-monogram-2026/og.png', siteURL).toString();
 const pageTitle = (title === siteName || title.includes(siteName))
