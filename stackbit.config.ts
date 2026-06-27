@@ -105,12 +105,18 @@ export default defineStackbitConfig({
   // installs with the same Node major as local dev.
   nodeVersion: '22',
 
-  // Run the existing env-aware Astro dev server inside the Visual Editor
-  // container. We reuse scripts/run-with-env.mjs so PUBLIC_SANITY_* load exactly
-  // as in normal `npm run dev:web`. `--root packages/web` targets the storefront
-  // package from the monorepo root.
+  // Run the env-aware Astro dev server inside the Visual Editor container.
+  // We `cd packages/web` FIRST so Astro's cwd is the web package: `@astrojs/
+  // tailwind` resolves `tailwind.config` relative to the process cwd, so
+  // launching from the repo root (`astro --root packages/web`) leaves Tailwind's
+  // `content` empty → every class (e.g. `bg-charcoal`) "does not exist" → HTTP
+  // 500 on every page and a preview that never connects. run-with-env loads the
+  // repo-root .env.local regardless of cwd (it anchors to its own location), so
+  // PUBLIC_SANITY_* still resolve. Astro is invoked directly (not via `npm run`)
+  // so Stackbit can track the process and detect readiness. {PORT} is the port
+  // Stackbit assigns and forwards its preview to.
   devCommand:
-    'node scripts/run-with-env.mjs node_modules/.bin/astro dev --root packages/web --port {PORT} --hostname 127.0.0.1',
+    'cd packages/web && node ../../scripts/run-with-env.mjs ../../node_modules/.bin/astro dev --port {PORT} --hostname 127.0.0.1',
 
   // Vite/Astro compatibility inside the editor container.
   experimental: {

@@ -1,5 +1,13 @@
 import { readFileSync } from 'node:fs';
 import { spawn } from 'node:child_process';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// Anchor .env.local to the repo root (this script lives in <root>/scripts/), so
+// the env loads correctly even when invoked from a different cwd — e.g. the
+// Visual Editor devCommand runs Astro from inside packages/web. Falls back to a
+// cwd-relative .env.local for any caller that relies on the old behavior.
+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const [, , ...command] = process.argv;
 
@@ -38,7 +46,13 @@ function parseEnvLine(line) {
 }
 
 try {
-  const envFile = readFileSync('.env.local', 'utf8');
+  let envFile;
+  try {
+    envFile = readFileSync(join(REPO_ROOT, '.env.local'), 'utf8');
+  } catch (rootError) {
+    if (rootError.code !== 'ENOENT') throw rootError;
+    envFile = readFileSync('.env.local', 'utf8'); // cwd fallback
+  }
 
   for (const line of envFile.split(/\r?\n/)) {
     const parsed = parseEnvLine(line);
@@ -60,6 +74,14 @@ const child = spawn(command[0], command.slice(1), {
   env: process.env,
   stdio: 'inherit',
 });
+
+// Forward termination signals to the child so it doesn't get orphaned when a
+// parent (e.g. the Visual Editor launcher) tears us down.
+for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP']) {
+  process.on(signal, () => {
+    if (!child.killed) child.kill(signal);
+  });
+}
 
 child.on('exit', (code, signal) => {
   if (signal) {
