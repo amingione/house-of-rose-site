@@ -1,12 +1,15 @@
 # Google Business Profile — Build & Optimization Kit
 **House of Rose Aesthetics · Punta Gorda, FL**
-_Status: claimed but bare → this is a field-by-field overwrite/upgrade kit._
-_Last built: 2026-06-26 · Source of truth for NAP: Sanity `siteSettings` (project 4e7axyi7)._
+_Status: **LIVE** — opened June 15, 2026. Primary category: **Medical spa**. This is the optimization source of truth._
+_Last revised: 2026-06-27 · Source of truth for NAP: Sanity `siteSettings` (project 4e7axyi7)._
 
-> Brand law for this entire document: **never the words "med spa," "medical spa," or "day spa"** in any
-> customer-visible field. We are an **advanced aesthetics studio**. Voice = confident, not loud; specific
-> over superlative; honest. Pricing always reads **"From $X"**, never a bare flat number. No guarantees —
-> "designed to," "supports," "many clients see."
+> **Brand law.** In customer-facing **prose** (description, posts, review replies, Q&A) we lead as an
+> **advanced aesthetics & wellness studio** — voice confident, not loud; specific over superlative; honest;
+> pricing reads **"From $X"**; no guarantees ("designed to," "supports," "many clients see"). The GBP
+> **category** field is a separate, Google-controlled ranking taxonomy: **"Medical spa" is the primary
+> category** — chosen deliberately for reach, fully defensible because House of Rose operates licensed, with a
+> medical director and Guardian-managed compliance. Category label ≠ brand voice. Both are correct in their
+> place — never write "med spa / medical spa / day spa" in prose.
 
 ---
 
@@ -29,78 +32,103 @@ you have right now. Build it to 100%.
 
 ---
 
-## 1. The one strategic decision: category (please read)
+## 1. Category stack (DECIDED — Medical spa primary)
 
-Primary category is the **#1 local ranking factor in 2026 — above proximity.** Here's the honest tension:
-**Google has no "Advanced Aesthetics" category.** You must pick from Google's fixed taxonomy, and the single
-category that most strongly maps to the high-volume "botox near me" / "med spa near me" packs is literally
-named **"Medical spa"** — a banned brand word. Secondary categories are also faintly visible on the profile,
-so "Medical spa" can't be fully hidden.
+Primary category is the **#1 local ranking factor in 2026 — above proximity.** You've chosen to lead with
+**Medical spa**, and that's the right call: it's the category Google maps the highest-volume demand to
+(`botox near me` 83K, `med spa near me` 30K), and it's fully defensible — you operate licensed, under a
+medical director, with Guardian-managed compliance. This is the locked stack:
 
-So you choose between two paths. **My recommendation is Path A.**
+| Slot | Category | Why |
+|---|---|---|
+| **Primary** ⭐ | `Medical spa` | Captures the top "near me" packs; correct for injectables + regenerative under medical oversight |
+| Secondary | `Skin care clinic` | Facials, BioRePeel, microchanneling, PRF skin |
+| Secondary | `Facial spa` | Facial-specific "near me" queries |
+| Secondary | `Vitamin & supplements store` | Houses GLP-1, B-12, IV — Google already auto-groups these here |
 
-### ✅ Path A — Brand-pure (recommended)
-- **Primary:** `Skin care clinic` (brand-safe, premium, displays cleanly; still ranks for facials,
-  microchanneling, PRF, and pulls injectable intent as an aesthetics-medical category).
-- **Secondary (all brand-safe):** `Facial spa`, `Wellness center`, `Weight loss service`,
-  `Vitamin & supplements store` _(for IV — only if it fits; otherwise omit)_, `Hair replacement service`
-  _(for PRF hair)_.
-- **Cost:** you forgo some ranking power on the very top "med spa / botox near me" packs. You make that up
-  with reviews + completeness + proximity (you're central in 33950).
+**Removed (deliberately):**
+- ❌ `Wellness center` — too broad; Google maps it to rehab/holistic and auto-suggests off-fit items. IV +
+  hormone wellness are carried by Medical spa + Vitamin & supplements store instead.
+- ⚠️ `Weight loss service` — removed by choice. Google reads it as *fitness* (auto-suggests Zumba/workout
+  items), which sits you beside gyms. **Only re-add if you want "medical weight loss / semaglutide near me"
+  reach — and if so, ignore the auto-items and add only a custom "GLP-1 Weight Wellness" item.** GLP-1 is
+  already covered without it.
 
-### ⚠️ Path B — Max reach
-- Same as A, **plus add `Medical spa` as a secondary category** purely for ranking.
-- **Gain:** materially stronger pull on the 83K/30K "near me" packs.
-- **Cost:** the word "Medical spa" appears in your category list (not as the headline label, but visible to
-  anyone who expands categories). A brand compromise — your call.
+**Principle:** a category's auto-suggested *service items* reveal how Google interprets that category. Junk
+suggestions (rehab, Zumba) = wrong-intent category → drop it. You never have to add a suggested item; you can
+keep a fitting category and list only your own custom items.
 
-> Default this kit to **Path A**. If you later decide reach > purity, the only change is adding one secondary
-> category. Nothing else in this document changes.
+**Optional adds to consider** (only if truly offered): `Hair replacement service` (PRF hair restoration),
+`Waxing hair removal service` (professional waxing — you list it, so add it). You have up to 9 secondaries;
+don't stuff — every category should map to a service you actually deliver and want to be found for.
+
+**One heads-up on medical categories:** Google occasionally asks medical/clinic-categorized profiles for
+extra verification, or tries to auto-shift them to "Medical clinic." Because you're fully licensed, that's
+fine — keep your medical director / license details handy if Google requests them, and re-check the primary
+category after any Google "we updated your info" email (they sometimes revert it). Your pending edit
+(removing `Health and beauty shop`, setting `Medical spa` primary, demoting `Skin care clinic`) is exactly
+right.
+
+> **Brand reconciliation:** the public *label* under your name will read "Medical spa." Everywhere you control
+> the words — name, description, posts, replies, services, website — you stay **"advanced aesthetics &
+> wellness studio."** The category earns the reach; the prose carries the brand.
 
 ---
 
 ## 2. Core business info (exact, copy-paste)
 
-| Field | Value |
+| Field | Value (live) |
 |---|---|
 | **Business name** | `House of Rose Aesthetics` |
 | **Address** | `525 E Olympia Ave, Unit 9` · `Punta Gorda, FL 33950` |
-| **Phone (primary)** | `(844) 941-7376` |
-| **Website** | `https://houseofrosefl.com` |
-| **Appointment link** | _Leave booking button off for now — you chose **call to book**. Phone is the CTA._ |
-| **Hours** | ⬇ confirm and set (see note) |
-| **Opening date** | Set your true open date (helps "new business" signals) |
+| **Phone (primary)** | `(844) 941-7673` — spells **ROSE**. Keep digits in GBP; use `(844) 941-ROSE` in marketing/print. |
+| **Texting / chat** | `(844) 941-7673` (SMS enabled ✅) |
+| **Website** | `https://houseofrosefl.com/` |
+| **Facebook** | `facebook.com/people/House-Of-Rose-Aesthetics/` ✅ |
+| **Hours** | Mon–Fri `10:00 AM–6:00 PM` · Sat & Sun `Closed` ✅ |
+| **Opening date** | `June 15, 2026` ✅ |
+| **Appointment link** | Booking button off — CTA is **call/text**. Add a menu link (below). |
 
-**Name policy — do not break this:** Google's name rules forbid adding descriptors or keywords to the name.
-Use **exactly** `House of Rose Aesthetics`. Do **not** make it "House of Rose Aesthetics | Advanced Aesthetics
-Punta Gorda" — that risks a suspension and a hard reinstatement. The "advanced aesthetics studio" language
-lives in the **description and services** instead (sections 4–5), where it's allowed and still indexed.
+**Name policy — do not break this:** Google forbids descriptors/keywords in the name. Keep it **exactly**
+`House of Rose Aesthetics`. Never "House of Rose Aesthetics | Medical Spa Punta Gorda" — that risks suspension
+and a painful reinstatement. The "advanced aesthetics & wellness studio" language lives in the description,
+services, and posts, where it's allowed and still indexed.
 
-**Hours:** I don't have your live hours. Set real ones (by-appointment studios still set hours — don't leave
-blank). If appointment-only, set hours **and** turn on the "By appointment only" attribute (section 6). Add
-holiday hours and a hurricane/closure note in a Post when relevant (Charlotte County seasonal exposure).
+**Add a "Menu / services link"** (currently empty in your profile → "Add"): point it to
+`https://houseofrosefl.com/services`. This feeds Google your full menu and gives searchers a path even though
+the Book button is off.
 
-**Service area:** You have a physical suite clients visit, so keep the **address visible** (do not hide it /
-do not set service-area-only). You may optionally add service areas to widen reach: `Punta Gorda`,
-`Punta Gorda Isles`, `Port Charlotte`, `Charlotte Harbor`, `Burnt Store`, `Babcock Ranch`.
+**Texting is on — respond fast.** Google tracks message response time and can show "typically replies in a
+few minutes." Set an away message and check it daily, or the metric will work against you.
+
+**Hours note:** since you're appointment-required, keep these main hours **and** the "Appointment required"
+attribute on (both are set ✅). Add **Special hours** for holidays, and post a hurricane/closure note when
+Charlotte County is under a warning.
+
+**Service area (set ✅):** `Punta Gorda`, `Port Charlotte`, `Charlotte Harbor`, `Babcock Ranch`,
+`Burnt Store Marina`, `Punta Gorda Isles`. Keep the **physical address visible** (don't switch to
+service-area-only — you have a suite clients visit).
 
 ---
 
-## 3. Business description (750-char max — paste as-is)
+## 3. Business description (750-char max)
 
-> Use this verbatim. It's in House of Rose voice, contains no banned words, and naturally carries the terms
-> Google reads (Punta Gorda, advanced aesthetics, regenerative, PRF, microchanneling, IV, wellness).
-> **Character count: ~735 / 750.**
+**Your live description (deployed ✅ — keep it):** strong, accurate to your real menu, and on-voice. It leads
+with "advanced aesthetics and wellness studio," names the differentiators (Rose Method™, AI skin imaging),
+and carries the terms Google reads. No changes required.
 
 ```
-House of Rose Aesthetics is a private, by-appointment advanced aesthetics studio in Punta Gorda, Florida — where beauty blooms within. We build lasting results from your own biology through a structured, well-paced method, delivered with clinical expertise and honest, hospitality-grade care.
-
-Our focus is regenerative: PRF, Procell microchanneling, BioRePeel, and result-driven facials that support your skin's own collagen over time — refreshed, never overdone. We also offer thoughtful injectables, IV hydration and wellness drips, and personalized weight and hormone wellness.
-
-You'll work with a named provider who listens first and never sells you what you don't need. Serving Punta Gorda, Punta Gorda Isles, and Charlotte County. Call to begin.
+House of Rose Aesthetics is an advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, BioRePeel, PRF and ProCell Microchanneling, GLP-1 support, professional waxing, facials, and IV Hydration Therapy. Using the Rose Method™ and advanced AI skin imaging technology, we curate each treatment plan around your skin, goals, and progress, allowing for precise tracking and thoughtful treatment enhancements over time. At House of Rose, skin health is not just surface level. Beauty blooms from within.
 ```
 
-_Note: keep "we'll never sell you something you don't need" energy. No "anti-aging," no "med spa," no hype._
+**Optional refinement** (if you ever want a touch more "private, by-appointment, named-provider" warmth — same
+length class, ~720 chars, still no banned words):
+
+```
+House of Rose Aesthetics is a private, by-appointment advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, PRF and ProCell Microchanneling, BioRePeel, facials, professional waxing, IV Hydration Therapy, and GLP-1 support. Guided by the Rose Method™ and advanced AI skin imaging, we build each plan around your skin, goals, and progress — tracking results and refining over time with a provider who listens first and never sells you what you don't need. Skin health here isn't surface level. Beauty blooms from within.
+```
+
+_Either is fine. No "anti-aging," no "med spa," no hype — value framed as care, not discounts._
 
 ---
 
@@ -124,7 +152,7 @@ Add each as a Service with its name + a description. Brand rules applied:
 > A regenerative treatment using your own PRF to support skin firmness and tone across the full face. Built as
 > a paced series for compounding, natural-looking results.
 
-**PRF Hair Restoration** · _From $850_
+### DIDNT INCLUDE NOT DOING HAIR **PRF Hair Restoration** · _From $850_
 > PRF microinjections that support thicker, healthier-looking hair over a series. Discreet, natural, and done
 > by appointment.
 
@@ -167,6 +195,11 @@ Add each as a Service with its name + a description. Brand rules applied:
 **Lip Enhancement** · _Shared at consultation_
 > Subtle, balanced lip refinement designed to look like you on your best day.
 
+> **Pricing flexibility (your call):** now that you're operating fully licensed, you *may* show "From $" on
+> injectables too (e.g. neuromodulators "From $15/unit"). The "shared at consultation" approach is still the
+> recommended luxury play — it keeps you out of the Sweet Spot/Tribe per-unit price war and forces the
+> high-converting consult. Keep consult-only unless you have a strategic reason to post a number.
+
 ### Group D — Wellness
 
 **IV Hydration Therapy** · _From $185_
@@ -186,25 +219,123 @@ Add each as a Service with its name + a description. Brand rules applied:
 > Personalized bioidentical hormone wellness to support energy, mood, and vitality through life's
 > transitions. Begins with labs and a thorough consultation.
 
-> **Also in your menu (repo confirms):** waxing (face/body, Rose Pass). Add a **Waxing** service line if it's
-> bookable at launch — Persona "Mark" specifically values discreet grooming. Brand-safe, low effort, more
-> service coverage.
+### Group E — Waxing (live ✅ — you list it in your description)
+
+**Professional Waxing (Face & Body · Rose Pass)** · _From $X_
+> Clean, comfortable professional waxing for face and body, by appointment. Ask about the Rose Pass for
+> regulars. _(Add your real starting price.)_
+
+---
+
+## 4B. Google's structured "Recommended" service items — prices + descriptions
+
+These are the fixed items Google generated for your categories. **You can't rename them** (the name is locked
+by Google), but each has a **price** and a **~300-char description** you control. Rules I applied: price reads
+**"From $X"** (set price type = "starts at"); descriptions are voice-correct, no guarantees, and **bridge the
+Google name to your real brand language** (e.g. the "Microneedling" item describes your *ProCell
+Microchanneling*; "PRP facial" describes your *PRF*). Prices are anchored to your Punta Gorda pricing
+strategy and validated against current 2026 market data.
+
+> **Keep both these AND your custom services from Section 4** — you asked to, and it's the right move: the
+> structured items boost category relevance in the map pack; your custom services add the detail and story.
+> Where they overlap I note the twin so you keep pricing identical across both.
+
+### Medical spa (primary)
+
+**B-12 injections** · _From $35_ (series from $145)
+> A quick B-12 boost to support energy and metabolism. Add it to any visit or come in on its own. Series
+> pricing available.
+
+**BOTOX treatments** · _From $15/unit_ · _member from $12_ — _or set price type "No price" for consult-only_
+> Thoughtful, conservative treatment for a refreshed, natural look — never frozen. Your plan and unit count
+> are tailored at a consultation. Member rates available.
+> _Twin of your custom "Neuromodulator Treatment." Strategy note: consult-only is still the recommended
+> luxury play; only post the per-unit number if you want the transparency edge._
+
+**Dysport treatment** · _From $15/unit_ · _member from $12_ — _or "No price"_
+> A smooth, natural-looking option that spreads evenly across larger areas like the forehead. Your plan is
+> tailored at consultation. Member rates available.
+
+**JUVÉDERM treatments** · _From $795_ — _or "No price" for consult-only_
+> Natural-looking volume and contour with JUVÉDERM, placed with restraint by your provider. Candidacy and
+> pricing are reviewed together at your consultation.
+
+**Lip fillers** · _From $725_ — _or "No price"_
+> Subtle, balanced lip enhancement designed to look like you on your best day. We plan it together at
+> consultation for a soft, natural result.
+
+**PRP facial** · _From $650_
+> We use PRF — platelet-rich fibrin, the additive-free evolution of PRP — drawn from your own blood and paired
+> with microchanneling to support natural rejuvenation and a healthy glow over a series.
+> _Twin of your custom PRF services. PRF > PRP; the description does that work since Google locks the name._
+
+**Microneedling** · _From $425_
+> Our signature is ProCell Microchanneling: a refined microchanneling technique paired with growth-factor
+> serums to support smoother texture, tone, and firmness over a paced series — not generic microneedling.
+> _Twin of your custom "Procell Microchanneling."_
+
+**Chemical peels** · _From $295_
+> Result-driven peels, including BioRePeel, that support clearer, brighter, more even skin with little to no
+> downtime. We match the peel to your skin and goals.
+> _Twin of your custom "BioRePeel." (Market: FL light peels avg ~$250; your BioRePeel anchor holds.)_
+
+**Dermaplaning** · _From $95_
+> Gentle resurfacing that removes dead skin and fine vellus hair for an immediate smooth, luminous finish. A
+> loved add-on to microchanneling or a peel.
+
+**IV therapy** · _From $185_
+> Boutique IV hydration and wellness drips to support energy, recovery, and glow — in a calm, private suite.
+> Choose a signature blend or a tailored drip. NAD+ from $425.
+
+### Facial spa (additional)
+_Google duplicates four items here. Use the **same price + description** as above so they stay consistent:_
+**BOTOX treatments** (From $15/unit) · **Chemical peels** (From $295) · **Dermaplaning** (From $95) ·
+**Microneedling** (From $425).
+
+### Skin care clinic (additional)
+
+**Regenerative Skin Treatment** _(your custom item)_ · _From $425_
+> The heart of the Rose Method™ — regenerative treatments like PRF and ProCell Microchanneling that support
+> your skin's own collagen over a paced series. Built the right way, for results that look like you.
+
+### Vitamin & supplements store (additional — house GLP-1, B-12, IV here)
+Google already auto-groups GLP-1 and B-12 into this category, so we lean into it. Add these custom items
+(Wellness center and Weight loss service were dropped — see Section 1):
+
+**GLP-1 Weight Wellness** · _From $499/month_
+> A supervised, personalized program with consultation, labs, and ongoing visits. Designed around your health,
+> not a number on a scale.
+
+**IV Hydration & Vitamin Injections** · _From $35_
+> IV drips and targeted B-12, glutathione, and lipo injections to support energy, recovery, and glow.
+
+> _If you ever re-add `Weight loss service` for semaglutide reach, reuse the GLP-1 item above and skip Google's
+> Zumba/workout auto-suggestions._
+
+> **Price-type cheat sheet:** in the GBP services editor each item lets you pick **Free / Fixed / "Starts at"
+> (range) / No price.** Use **"Starts at"** for everything priced "From $X." Use **"No price"** for injectables
+> if you keep the consult-only play. Never leave a description blank — that field is indexed.
 
 ---
 
 ## 5. Highlights / "From the business" attributes
 
-Set these identity & service attributes (they show as badges and feed relevance):
+**Your live attributes (set ✅):** Latino-owned · Women-owned · Transgender safespace · LGBTQ+ friendly ·
+Appointment required · Onsite services · English + Spanish · Free parking lot · Wheelchair-accessible
+entrance/restroom/seating/parking · Gender-neutral restroom · Has restroom · Accepts debit/credit/checks ·
+Amex/Discover/MC/Visa. This is a strong, complete set — the dual Latino-owned + Women-owned badges are a real
+differentiator none of your competitors carry.
 
-- **Identity:** Woman-owned ✅ (confirm), Small business ✅
-- **Accessibility:** Wheelchair-accessible entrance / restroom — set truthfully for Unit 9
-- **Amenities:** Restroom ✅, Free Wi-Fi (if offered), Gender-neutral restroom (if true)
-- **Planning:** **Appointment required ✅**, Appointments recommended ✅
-- **Service options:** "On-site services" ✅
-- **Crowd / welcoming:** LGBTQ+ friendly ✅ (on-brand, on-positioning)
-- **Payments:** Credit cards, Debit, NFC mobile payments, Financing available (Cherry, if offered)
+**Worth adding/considering (only if true):**
+- **NFC / Apple Pay / Google Pay** — currently off. Affluent + younger clients expect tap-to-pay; enable if
+  your terminal supports it (most GlossGenius/Square readers do).
+- **Free Wi-Fi** — small luxury signal for the suite.
+- **Restroom / wheelchair attributes** are set — good; keep them honest to Unit 9's real layout.
+- **Financing** (Cherry/Affirm) — if you offer it, add it; the pricing strategy leans on financing to lift
+  average ticket.
 
-> Only toggle attributes that are **true**. Google surfaces some of these as filters in the map pack.
+> Only toggle attributes that are **true**. Google surfaces several of these as map-pack filters, so the more
+> accurate badges you carry, the more filtered searches you appear in.
 
 ---
 
@@ -229,7 +360,7 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 > proud to offer in Charlotte County.
 
 **Q: Do you take walk-ins?**
-> A: We're by appointment only, so every guest gets unhurried, private care. Call (844) 941-7376 to begin.
+> A: We're by appointment only, so every guest gets unhurried, private care. Call (844) 941-7673 to begin.
 
 **Q: Do I have to commit to injectables to come here?**
 > A: Not at all. Many guests start with skin — a facial, BioRePeel, or microchanneling — and build a plan
@@ -250,7 +381,7 @@ Post **weekly** minimum. Posts expire from prominence, so cadence matters. No hy
 
 **Post 1 — Welcome (What's new)**
 > Welcome to House of Rose Aesthetics — Punta Gorda's private home for advanced, regenerative aesthetics.
-> Where beauty blooms within. Refreshed, never overdone. Call (844) 941-7376 to begin. 🌹
+> Where beauty blooms within. Refreshed, never overdone. Call (844) 941-7673 to begin. 🌹
 
 **Post 2 — Signature service (PRF)**
 > Meet PRF: regeneration from your own biology. Many clients choose it to soften under-eyes naturally — no
@@ -309,7 +440,7 @@ Sweet Spot and Carlisa dominate the local pack on **review volume.** Your gap an
   - _5★ reply:_ "Thank you, [Name] — it means so much. We loved helping you glow. See you next visit at the
     studio in Punta Gorda. 🌹"
   - _Critical reply:_ calm, accountable, no defensiveness, move it offline: "Thank you for telling us, [Name].
-    That's not the experience we want anyone to have — please call us at (844) 941-7376 so we can make it
+    That's not the experience we want anyone to have — please call us at (844) 941-7673 so we can make it
     right." (Owns it, protects the brand; never argue publicly.)
 - **Never** incentivize reviews (gift cards/discounts for reviews violate Google policy and FTC rules).
 
@@ -319,7 +450,7 @@ Sweet Spot and Carlisa dominate the local pack on **review volume.** Your gap an
 
 Google cross-checks your name/address/phone across the web. Make all three **byte-identical** everywhere:
 
-`House of Rose Aesthetics` · `525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950` · `(844) 941-7376`
+`House of Rose Aesthetics` · `525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950` · `(844) 941-7673`
 
 - Match the website footer + `siteSettings` + `LocalBusiness` JSON-LD in `structuredData.ts` (the kit's NAP
   already comes from there — keep them in lockstep).
@@ -331,18 +462,20 @@ Google cross-checks your name/address/phone across the web. Make all three **byt
 
 ## 11. Launch checklist (in order)
 
-1. ☐ Claim/verify is complete; you have full owner access.
-2. ☐ Name = `House of Rose Aesthetics` (no descriptors).
-3. ☐ Primary category set (Path A: `Skin care clinic`) + brand-safe secondaries.
-4. ☐ Address, phone `(844) 941-7376`, website, hours, opening date, service areas.
-5. ☐ Description pasted (section 3).
-6. ☐ All services added with descriptions + pricing convention (section 4).
-7. ☐ Attributes toggled — appointment required, woman-owned, LGBTQ+ friendly, etc.
-8. ☐ 15–20 geo-named photos uploaded (logo, cover, exterior, interior, team, at-work).
-9. ☐ 7 Q&As posted from owner + marked helpful (section 6).
-10. ☐ First 3 Google Posts published; rest scheduled weekly.
-11. ☐ Review link + QR generated; GlossGenius request flow live; in-person ask scripted.
-12. ☐ NAP citations matched across Apple, Bing, Yelp, Facebook, IG, Chamber.
+1. ✅ Claim/verify complete; full owner access.
+2. ✅ Name = `House of Rose Aesthetics` (no descriptors).
+3. ⏳ Primary category `Medical spa` + 5 secondaries (pending Google review — confirm it sticks).
+4. ✅ Address, phone `(844) 941-7673`, texting, website, hours (Mon–Fri 10–6), opening date, service areas.
+5. ✅ Description live (section 3).
+6. ☐ Add a **Menu/services link** → `houseofrosefl.com/services`.
+7. ☐ Add all services with descriptions + pricing convention (section 4), incl. Waxing.
+8. ✅ Attributes set (Latino-owned, women-owned, LGBTQ+, appointment required…). ☐ Consider enabling NFC/Apple Pay.
+9. ☐ 15–20 geo-named photos uploaded (logo, cover, exterior, interior, team, at-work).
+10. ☐ 7 Q&As posted from owner + marked helpful (section 6).
+11. ☐ First 3 Google Posts published; rest scheduled weekly.
+12. ☐ Review link + QR generated; GlossGenius request flow live; in-person ask scripted.
+13. ☐ NAP citations matched across Apple, Bing, Yelp, Facebook, IG, Chamber.
+14. ☐ Set an SMS away-message and check texts daily (response-time metric).
 
 ## 12. Ongoing cadence
 
