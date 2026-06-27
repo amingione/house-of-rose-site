@@ -81,6 +81,52 @@ Add a new page-backed document type by adding one line to `PAGE_ROUTES`.
 
 ---
 
+## Sanity 6 compatibility bridge (REQUIRED — read before debugging `dev:visual`)
+
+`@stackbit/cms-sanity@0.2.93` is the **latest published** connector and is frozen
+at the Sanity **v3** era. It reads the Studio schema by monkey-patching a Sanity
+internal CLI file (`node_modules/sanity/lib/_internal/cli/threads/getGraphQLAPIs.js`).
+This Studio runs **`sanity@6`**, which deleted that internal CLI surface entirely
+(the CLI is now the separate `@sanity/cli` package). Out of the box `stackbit dev`
+therefore dies with: `Could not find Sanity file: …getGraphQLAPIs.js`.
+
+We bridge it **dev-only**, without downgrading Sanity:
+
+| Piece | What it does |
+|-------|--------------|
+| `scripts/visual-editing/extract-sanity-schema.mjs` | esbuild-bundles `packages/studio/schemas/index.ts` (Sanity/React external) and writes the authored `schema.types` to `packages/studio/.stackbit/sanity-schema.json` in the exact shape the connector's `fetchSchema()` returns (`{ projectId, dataset, title, models }`). Runs first in `dev:visual`. |
+| `patches/@stackbit+cms-sanity+0.2.93.patch` | Teaches the connector's `fetchSchema()` to return that JSON when present (instead of the dead internal-file path). Generated with `patch-package`. |
+| `scripts/visual-editing/apply-patches.mjs` | `prepare`-time reapply of `patches/` after every `npm install`. Non-fatal if `patch-package` is missing (prod / `--omit=dev`). |
+
+`.stackbit/` is gitignored — the schema JSON is regenerated on each `dev:visual`.
+After editing any **Studio schema**, just re-run `npm run dev:visual` to refresh it.
+
+> Validation/preview/`hidden` functions are dropped (JSON round-trip). The editor
+> only needs field **shapes**, so this is intentional and harmless.
+
+### Env var names the editor needs (NOT the `PUBLIC_*` ones)
+
+`stackbit.config.ts` calls `requireEnv()` for names **distinct** from the site's
+`PUBLIC_SANITY_*`. They must exist in `.env.local`:
+
+```dotenv
+SANITY_PROJECT_ID=4e7axyi7
+SANITY_DATASET=production
+SANITY_STUDIO_URL=https://studio.houseofrosefl.com
+SANITY_ACCESS_TOKEN=sk_…   # Editor (read+write); reuse SANITY_API_WRITE_TOKEN's value
+```
+
+### Troubleshooting `dev:visual`
+
+| Symptom | Cause → Fix |
+|---------|-------------|
+| `stackbit: command not found` / `@stackbit/*` missing | Dev deps were omitted. Check `echo $NODE_ENV` (must not be `production`) and `npm config get omit` (must not be `dev`), then `npm install --include=dev`. |
+| `[stackbit.config] Missing required env var "SANITY_PROJECT_ID"` | The four `SANITY_*` names above aren't in `.env.local`. Add them. |
+| `Could not find Sanity file: …getGraphQLAPIs.js` | The connector patch isn't applied. Run `node scripts/visual-editing/apply-patches.mjs` (or `npm install`). |
+| Editor starts but 0 models | `extract-sanity-schema` failed — run it directly to see the error: `node scripts/visual-editing/extract-sanity-schema.mjs`. |
+
+---
+
 ## Cloud setup (collaborate with editors)
 
 For non-developers to edit in the browser, enable Visual Editor on the Netlify

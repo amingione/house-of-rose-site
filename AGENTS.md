@@ -14,6 +14,8 @@ document, read:
 
 - `docs/SEO-AEO-PLAYBOOK.md` — the strategy, the 7 page types, writing rules, the publish checklist.
 - `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc type → route → JSON-LD → GROQ query.
+- `docs/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
+  no reverse-aging / guarantees / stem-cell / cure-disease / Groupon / unsupported exosome-peptide claims).
 
 Hard rules (inherited by every task):
 1. Every content page is one of the **7 canonical page types** — never invent ad-hoc page shapes.
@@ -24,6 +26,9 @@ Hard rules (inherited by every task):
 5. No orphan pages: wire internal links + `sitemap.xml.ts` + `llms.txt.ts`.
 6. New page-type doc types: shared `seo` + `faq` objects, registered in `schemas/index.ts`,
    listed under the Marketing / SEO group in `structure.ts`.
+7. **Compliance is non-negotiable** — never call House of Rose a "med spa"; no guarantees,
+   reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported exosome/peptide
+   claims. Follow `docs/COMPLIANCE-COPY-RULES.md` on every customer-facing surface.
 
 ## Framework Rules
 - Pages are `.astro` files — use Astro component syntax

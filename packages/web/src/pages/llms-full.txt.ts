@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ site }) => {
     `House of Rose serves clients throughout Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, North Port, Sarasota, and Cape Coral. Appointments are private and unhurried, with no walk-ins.`,
     ``,
     `**Contact:**`,
-    `- Phone: (844) 941-7673`,
+    `- Phone: (844) 941-7376`,
     `- Email: info@houseofrosefl.com`,
     `- Booking: https://houseofrose.glossgenius.com/services`,
     `- Address: 525 E Olympia Ave, Ste 9, Punta Gorda, FL 33950`,
