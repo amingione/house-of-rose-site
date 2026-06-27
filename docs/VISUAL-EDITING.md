@@ -116,6 +116,25 @@ SANITY_STUDIO_URL=https://studio.houseofrosefl.com
 SANITY_ACCESS_TOKEN=sk_…   # Editor (read+write); reuse SANITY_API_WRITE_TOKEN's value
 ```
 
+### How `npm run dev:visual` works locally
+
+`stackbit dev` does **not** start the framework dev server — it runs the editor/
+proxy on `:8090` and forwards preview requests to a dev server it expects on
+`http://localhost:3000`. (The `devCommand` in `stackbit.config.ts` is consumed by
+the **cloud** Visual Editor container, not local `stackbit dev`.) So local dev is
+orchestrated by `scripts/visual-editing/dev-visual.mjs`, which:
+
+1. extracts the Sanity schema (the Sanity-6 bridge above),
+2. starts **Astro on `:3000`** from inside `packages/web` (so `@astrojs/tailwind`
+   resolves `tailwind.config` — launching from the repo root yields empty
+   Tailwind `content` and HTTP 500 on every page),
+3. waits until Astro actually serves, then
+4. starts **Stackbit** (`:8090`), which proxies the preview to Astro.
+
+`Ctrl+C` tears down all three. Open the `http://localhost:8090/_stackbit` URL it
+prints. `run-with-env` loads the repo-root `.env.local` regardless of cwd and
+forwards termination signals so Astro is never orphaned.
+
 ### Troubleshooting `dev:visual`
 
 | Symptom | Cause → Fix |
@@ -124,6 +143,7 @@ SANITY_ACCESS_TOKEN=sk_…   # Editor (read+write); reuse SANITY_API_WRITE_TOKEN
 | `[stackbit.config] Missing required env var "SANITY_PROJECT_ID"` | The four `SANITY_*` names above aren't in `.env.local`. Add them. |
 | `Could not find Sanity file: …getGraphQLAPIs.js` | The connector patch isn't applied. Run `node scripts/visual-editing/apply-patches.mjs` (or `npm install`). |
 | Editor starts but 0 models | `extract-sanity-schema` failed — run it directly to see the error: `node scripts/visual-editing/extract-sanity-schema.mjs`. |
+| Editor loads but preview is blank / "can't connect" / 500 | Astro on `:3000` isn't serving. `dev-visual.mjs` waits for it, but if you run `stackbit dev` directly it won't start Astro. Use `npm run dev:visual`. If `:3000` is taken, free it (`lsof -nP -iTCP:3000 -sTCP:LISTEN`). |
 
 ---
 

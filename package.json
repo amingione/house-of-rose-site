@@ -13,7 +13,7 @@
     "lint": "npm run lint -w packages/web",
     "sync:notion": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio",
     "sync:notion:dry": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio -- --dry",
-    "dev:visual": "node scripts/visual-editing/extract-sanity-schema.mjs && stackbit dev",
+    "dev:visual": "node scripts/visual-editing/dev-visual.mjs",
     "ve:check": "node scripts/visual-editing/check-coverage.mjs",
     "ve:sync": "node scripts/visual-editing/sync-page-routes.mjs",
     "ve:new": "node scripts/visual-editing/scaffold.mjs",
