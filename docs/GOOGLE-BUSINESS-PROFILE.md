@@ -1,4 +1,9 @@
 # Google Business Profile — Build & Optimization Kit
+---
+```
+/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/docs/GOOGLE-BUSINESS-PROFILE.md
+```
+---
 **House of Rose Aesthetics · Punta Gorda, FL**
 _Status: **LIVE** — opened June 15, 2026. Primary category: **Medical spa**. This is the optimization source of truth._
 _Last revised: 2026-06-27 · Source of truth for NAP: Sanity `siteSettings` (project 4e7axyi7)._
@@ -9,7 +14,7 @@ _Last revised: 2026-06-27 · Source of truth for NAP: Sanity `siteSettings` (pro
 > **category** field is a separate, Google-controlled ranking taxonomy: **"Medical spa" is the primary
 > category** — chosen deliberately for reach, fully defensible because House of Rose operates licensed, with a
 > medical director and Guardian-managed compliance. Category label ≠ brand voice. Both are correct in their
-> place — never write "med spa / medical spa / day spa" in prose.
+> place — **never write "med spa / medical spa / day spa" in prose.**
 
 ---
 
@@ -25,8 +30,7 @@ Live Ahrefs pull (US, June 2026) for this market:
 | `botox port charlotte` | 80 | ✅ | Winnable |
 | `[service] punta gorda` (most) | ~0–20 | — | Almost no standalone volume |
 
-**Takeaway:** Nobody is typing long "microchanneling punta gorda fl" strings. They type **"near me"** and
-**pick from the Google map pack.** The map pack is won by the Business Profile — primary category, proximity,
+> **Takeaway:** Nobody is typing long "microchanneling punta gorda fl" strings. They type **"near me"** and **pick from the Google map pack.** The map pack is won by the Business Profile — primary category, proximity,
 reviews, completeness — not by keyword pages. So this profile is the single highest-leverage marketing asset
 you have right now. Build it to 100%.
 
@@ -46,7 +50,7 @@ medical director, with Guardian-managed compliance. This is the locked stack:
 | Secondary | `Facial spa` | Facial-specific "near me" queries |
 | Secondary | `Vitamin & supplements store` | Houses GLP-1, B-12, IV — Google already auto-groups these here |
 
-**Removed (deliberately):**
+> **Removed (deliberately):**
 - ❌ `Wellness center` — too broad; Google maps it to rehab/holistic and auto-suggests off-fit items. IV +
   hormone wellness are carried by Medical spa + Vitamin & supplements store instead.
 - ⚠️ `Weight loss service` — removed by choice. Google reads it as *fitness* (auto-suggests Zumba/workout
@@ -95,7 +99,7 @@ and a painful reinstatement. The "advanced aesthetics & wellness studio" languag
 services, and posts, where it's allowed and still indexed.
 
 **Add a "Menu / services link"** (currently empty in your profile → "Add"): point it to
-`https://houseofrosefl.com/services`. This feeds Google your full menu and gives searchers a path even though
+`https://houseofrosefl.com/services/` (trailing slash — the site uses directory URLs). This feeds Google your full menu and gives searchers a path even though
 the Book button is off.
 
 **Texting is on — respond fast.** Google tracks message response time and can show "typically replies in a
@@ -467,7 +471,7 @@ Google cross-checks your name/address/phone across the web. Make all three **byt
 3. ⏳ Primary category `Medical spa` + 5 secondaries (pending Google review — confirm it sticks).
 4. ✅ Address, phone `(844) 941-7673`, texting, website, hours (Mon–Fri 10–6), opening date, service areas.
 5. ✅ Description live (section 3).
-6. ☐ Add a **Menu/services link** → `houseofrosefl.com/services`.
+6. ☐ Add a **Menu/services link** → `houseofrosefl.com/services/`.
 7. ☐ Add all services with descriptions + pricing convention (section 4), incl. Waxing.
 8. ✅ Attributes set (Latino-owned, women-owned, LGBTQ+, appointment required…). ☐ Consider enabling NFC/Apple Pay.
 9. ☐ 15–20 geo-named photos uploaded (logo, cover, exterior, interior, team, at-work).

@@ -37,6 +37,7 @@ Hard rules (inherited by every task):
 - Use `sanityFetch<T>()` from `src/lib/sanity.ts` for all GROQ queries
 - GROQ queries are defined in `src/lib/queries.ts` — add new ones there, don't inline them in pages
 - `output: 'static'` — `getStaticPaths()` is required for dynamic routes
+- **URLs use trailing slashes** — Astro `directory` build format; inner pages live at `/path/` (e.g. `/services/`, `/services/prf/`, `/experience/`). Never write or link an inner-page URL without the trailing slash — it relies on a redirect and breaks (same issue as FAS Motorsports). Root domain is slash-optional. Canonical NAP + this rule live in `CLAUDE.md`.
 
 ## TypeScript Rules
 - Strict mode — no `any`

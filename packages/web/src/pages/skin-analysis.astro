@@ -272,13 +272,19 @@ const serviceSchema = service(
     class="relative py-[clamp(72px,10vw,140px)] px-6 bg-cover bg-center"
     style="background-image: url('/images/new-microchanneling.webp');"
   >
-    <div class="absolute inset-0 bg-black/74"></div>
+    <!-- Warm walnut gradient scrim — same AA-verified treatment as the homepage photo
+         bands. Inline style so it can't be Tailwind-purged; every stop clears AA for
+         ivory text + the gold.300 kicker over a worst-case bright photo pixel. -->
+    <div
+      class="absolute inset-0"
+      style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
+    ></div>
     <div class="relative z-10 max-w-[680px] mx-auto text-center">
-      <span class="kicker" {...sbFieldPath('whyKicker')}>{data.whyKicker ?? "Why It Matters"}</span>
+      <span class="kicker text-gold-300" {...sbFieldPath('whyKicker')}>{data.whyKicker ?? "Why It Matters"}</span>
       <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6" {...sbFieldPath('whyHeading')}>
         {data.whyHeading ?? "Personalized, measurable, and easier to trust."}
       </h2>
-      <p class="text-ivory/75 text-[15px] leading-[1.8] max-w-[600px] mx-auto" {...sbFieldPath('whyPara')}>
+      <p class="text-ivory text-[15px] leading-[1.8] max-w-[600px] mx-auto" {...sbFieldPath('whyPara')}>
         {data.whyPara ?? "When your plan is built around your skin's current condition, every appointment can work toward the same outcome. You focus on what matters first, skip what does not belong, and have a clearer way to compare progress over time."}
       </p>
     </div>

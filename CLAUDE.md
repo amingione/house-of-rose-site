@@ -6,6 +6,21 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 
 ---
 
+## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
+- **Name:** House of Rose Aesthetics
+- **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
+- **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
+- **Email:** info@houseofrosefl.com — _`book@…` was never a real address; do not use it anywhere_
+- **Hours:** Mon–Fri 10:00 AM–6:00 PM · Sat–Sun closed
+- **Web/social:** https://houseofrosefl.com · IG `houseofrosefl` · FB `House-Of-Rose-Aesthetics` · opened June 15, 2026
+- **GBP primary category:** `Medical spa` (backend ranking field only). **In customer-facing prose always "advanced aesthetics & wellness studio" — never "med spa / medical spa / day spa".**
+- **GBP CTA:** call/text (no online-booking button).
+
+## URL rule — trailing slash REQUIRED on inner pages
+Astro's default `build.format` is `directory` and `site` resolves to `https://houseofrosefl.com/`, so every inner page lives at its **trailing-slash** URL (`/services/`, `/experience/`, `/services/prf/`, `/privacy-policy/`). Writing an inner-page URL **without** the slash relies on a redirect and can break — the same failure seen on FAS Motorsports. Root domain (`houseofrosefl.com`) is slash-optional. **Rule: every absolute or internal link to an inner page ends in `/`.**
+
+---
+
 ## Repo: house-of-rose-site
 **Monorepo** at `~/LocalStorm/Workspace/DevProjects/house_of_rose/house-of-rose-site/`
 
@@ -97,7 +112,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 - `PUBLIC_SANITY_API_VERSION` = `2025-04-26`
 - `SANITY_API_WRITE_TOKEN` = (secret — server-side lead submission writes, do not commit)
 - `PUBLIC_SITE_URL` = `https://houseofrosefl.com`
-- `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com`
+- `PUBLIC_BOOKING_EMAIL` = `info@houseofrosefl.com`
 
 **Netlify UI configuration:**
 - **Studio site**: No base directory needed (uses root `netlify.toml`)
