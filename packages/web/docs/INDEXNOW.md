@@ -85,8 +85,18 @@ verify with the `curl` above, then re-run.
 2. Replace `packages/web/public/<old>.txt` with `<new>.txt` containing the new key.
 3. Deploy. The CLI auto-discovers the new key file — no code change needed.
 
-## Optional next step (not yet wired)
+## Automated submission on deploy (wired)
 
-To make submission fully hands-off, call `npm run indexnow` from a Netlify
-post-deploy step or a Sanity publish webhook. Left manual for now per setup
-scope — flip it on whenever you want.
+Production Netlify deploys submit automatically. The web build command in
+`packages/web/netlify.toml` ends with `node scripts/postdeploy-indexnow.mjs`,
+which:
+
+- runs **only** when `CONTEXT=production` (deploy previews and branch deploys are
+  skipped, so pre-release URLs are never submitted);
+- **never fails the deploy** — any IndexNow error or timeout is logged and
+  swallowed (the wrapper always exits 0);
+- reads `PUBLIC_SITE_URL` from the Netlify build environment (no `.env.local` in
+  CI) and reuses `scripts/indexnow.mjs`.
+
+`npm run indexnow` remains available for manual/ad-hoc submission (e.g. a single
+freshly published URL) without waiting for a deploy.
