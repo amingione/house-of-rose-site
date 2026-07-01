@@ -1,6 +1,6 @@
 # House of Rose — Charlotte County Competitive Landscape & Service/Pricing Strategy
 
-**Prepared for:** House of Rose | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33982
+**Prepared for:** House of Rose | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
 **Opening:** June 1, 2026
 **Positioning:** Luxury boutique medical spa — clinical precision wrapped in genuine hospitality
 
