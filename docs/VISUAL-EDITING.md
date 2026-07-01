@@ -257,7 +257,8 @@ original-copy fallbacks, and annotated). Edit them in Studio → **Home Page** /
 | Page | Sanity type (singleton `_id`) |
 |------|-------------------------------|
 | `/` | `homepage` |
-| `/memberships` | `membershipsPage` |
+| `/rose-circle` | `roseCirclePage` (client affiliation — not a membership) |
+| `/memberships` | `membershipsPage` (real recurring memberships: Rose Pass, IV Hydration Membership, Collagen Bank) |
 | `/contact` | `contactPage` (form untouched) |
 | `/privacy-policy` | `privacyPolicy` |
 | `/rent-a-room` | `rentARoom` (form untouched) |

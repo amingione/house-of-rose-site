@@ -11,8 +11,11 @@
 
 ## 1. Why this exists
 
-House of Rose packages its services into **plans and a membership** — *Regeneration Plans* (the
-Rose Method™ ladder) and *The Rose Circle* continuity membership — rather than à-la-carte facials.
+House of Rose packages its services into **plans, a client affiliation, and recurring
+memberships** — *Regeneration Plans* (the Rose Method™ ladder), *The Rose Circle* (the direct
+client affiliation that unlocks the fully immersive, provider-guided experience — **not** a
+membership), and recurring *memberships* (Rose Pass, IV Hydration Membership, Rose Collagen Bank)
+— rather than à-la-carte facials.
 Productizing aesthetics raises the compliance stakes: the more we describe outcomes, sequences, and
 "transformation," the easier it is to drift into language Florida regulators, the FTC, and the
 brand itself prohibit.
@@ -59,7 +62,7 @@ Whenever copy *sells* a plan, package, membership, or advanced treatment, it mus
    confirmed by your licensed provider based on candidacy, contraindications, and local
    regulations." (see `treatmentPackage.candidacyNote`).
 2. **Candidacy is real.** "Not every client is a candidate for every service." State it wherever a
-   plan is sold (`/plans`, `/packages`, `/memberships`).
+   plan is sold (`/plans`, `/packages`, `/memberships`, `/rose-circle`).
 3. **Individual outcomes.** "Outcomes are individual and depend on your skin, candidacy, and
    consistency." Case studies render only with `consentGiven == true`.
 4. **Pricing as investment.** Always "investment," "from," or "starting at"; monthly options framed

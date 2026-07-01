@@ -55,6 +55,16 @@ const isActive = (path: string) =>
 				Services
 			</a>
 			<a
+				href="/rose-circle/"
+				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
+					isActive("/rose-circle")
+						? "text-gold"
+						: "text-ivory/95 hover:text-gold"
+				}`}
+			>
+				The Rose Circle
+			</a>
+			<a
 				href="/memberships/"
 				class={`nav-link text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 ${
 					isActive("/memberships")
@@ -62,7 +72,7 @@ const isActive = (path: string) =>
 						: "text-ivory/95 hover:text-gold"
 				}`}
 			>
-				The Rose Circle
+				Memberships
 			</a>
 			<a
 				href="/shop/"
@@ -141,10 +151,16 @@ const isActive = (path: string) =>
 				Services
 			</a>
 			<a
-				href="/memberships/"
+				href="/rose-circle/"
 				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
 			>
 				The Rose Circle
+			</a>
+			<a
+				href="/memberships/"
+				class="mobile-nav-link text-[13px] tracking-[0.22em] uppercase text-ink/75 py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+			>
+				Memberships
 			</a>
 			<a
 				href="/shop/"

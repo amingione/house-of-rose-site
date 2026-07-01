@@ -1,9 +1,15 @@
 import { defineField, defineType } from 'sanity';
 
 /**
- * Singleton for the Rose Circle page (/memberships). This page is intentionally
- * provider-lane based and consultation-first. Public tier pricing and preset
- * package selection do not belong here.
+ * Singleton for the public Memberships page (/memberships) — the site's actual
+ * recurring membership products: Rose Pass (wax membership), IV Hydration
+ * Membership, and the Rose Collagen Bank. This is distinct from the Rose
+ * Circle (/rose-circle, see `roseCirclePage`), which is not a membership — it
+ * is the fully immersive, provider-guided client affiliation.
+ *
+ * This document only holds page copy (hero/intro/section framing/final CTA).
+ * The actual plan cards under each group are `membership` documents tagged
+ * with a matching `membershipGroup` and rendered via MembershipTiers.astro.
  */
 export const membershipsPage = defineType({
   name: 'membershipsPage',
@@ -12,12 +18,12 @@ export const membershipsPage = defineType({
   __experimental_actions: ['update', 'publish'],
   groups: [
     { name: 'hero', title: 'Hero' },
-    { name: 'idea', title: 'The Idea' },
-    { name: 'commitment', title: '6-Month Commitment' },
-    { name: 'lanes', title: 'Provider Lanes' },
-    { name: 'scanner', title: 'AI Skin Scanner' },
-    { name: 'pathway', title: 'The Pathway' },
-    { name: 'methodTeaser', title: 'Rose Method Teaser' },
+    { name: 'intro', title: 'Intro' },
+    { name: 'rosePass', title: 'Rose Pass' },
+    { name: 'ivHydration', title: 'IV Hydration Membership' },
+    { name: 'basicFacials', title: 'Basic Facials Membership' },
+    { name: 'advancedFacials', title: 'Advanced Facials Membership' },
+    { name: 'collagenBank', title: 'Collagen Bank' },
     { name: 'finalCta', title: 'Final CTA' },
     { name: 'seo', title: 'SEO' },
   ],
@@ -28,70 +34,31 @@ export const membershipsPage = defineType({
     defineField({ name: 'heroKicker', title: 'Kicker', type: 'string', group: 'hero' }),
     defineField({ name: 'heroTitle', title: 'Title', type: 'string', group: 'hero' }),
     defineField({ name: 'heroDescription', title: 'Description', type: 'text', rows: 4, group: 'hero' }),
-    defineField({ name: 'heroCtaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'hero' }),
-    defineField({ name: 'heroCtaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'hero' }),
+    defineField({ name: 'heroCtaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'hero', description: 'Single hero CTA by design — booking is already covered by the persistent header "Book Now" button.' }),
 
-    defineField({ name: 'ideaKicker', title: 'Kicker', type: 'string', group: 'idea' }),
-    defineField({ name: 'ideaHeading', title: 'Heading', type: 'text', rows: 2, group: 'idea' }),
-    defineField({ name: 'ideaBody', title: 'Body', type: 'text', rows: 4, group: 'idea' }),
+    defineField({ name: 'introKicker', title: 'Kicker', type: 'string', group: 'intro' }),
+    defineField({ name: 'introHeading', title: 'Heading', type: 'text', rows: 2, group: 'intro' }),
+    defineField({ name: 'introBody', title: 'Body', type: 'text', rows: 4, group: 'intro' }),
 
-    defineField({ name: 'commitmentKicker', title: 'Kicker', type: 'string', group: 'commitment' }),
-    defineField({ name: 'commitmentHeading', title: 'Heading', type: 'text', rows: 2, group: 'commitment' }),
-    defineField({ name: 'commitmentBody', title: 'Body', type: 'text', rows: 5, group: 'commitment' }),
+    defineField({ name: 'rosePassKicker', title: 'Kicker', type: 'string', group: 'rosePass' }),
+    defineField({ name: 'rosePassHeading', title: 'Heading', type: 'text', rows: 2, group: 'rosePass' }),
+    defineField({ name: 'rosePassBody', title: 'Body', type: 'text', rows: 4, group: 'rosePass' }),
 
-    defineField({ name: 'lanesKicker', title: 'Kicker', type: 'string', group: 'lanes' }),
-    defineField({ name: 'lanesHeading', title: 'Heading', type: 'text', rows: 2, group: 'lanes' }),
-    defineField({ name: 'lanesIntro', title: 'Intro', type: 'text', rows: 4, group: 'lanes' }),
-    defineField({
-      name: 'lanes',
-      title: 'Provider Lanes',
-      type: 'array',
-      group: 'lanes',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({ name: 'name', title: 'Lane Name', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'provider', title: 'Provider', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'description', title: 'Description', type: 'text', rows: 3, validation: (R) => R.required() }),
-            defineField({ name: 'includes', title: 'Includes', type: 'array', of: [{ type: 'string' }] }),
-            defineField({ name: 'note', title: 'Note', type: 'text', rows: 2 }),
-          ],
-          preview: { select: { title: 'name', subtitle: 'provider' } },
-        },
-      ],
-      validation: (R) => R.max(8),
-    }),
+    defineField({ name: 'ivHydrationKicker', title: 'Kicker', type: 'string', group: 'ivHydration' }),
+    defineField({ name: 'ivHydrationHeading', title: 'Heading', type: 'text', rows: 2, group: 'ivHydration' }),
+    defineField({ name: 'ivHydrationBody', title: 'Body', type: 'text', rows: 4, group: 'ivHydration' }),
 
-    defineField({ name: 'scannerKicker', title: 'Kicker', type: 'string', group: 'scanner' }),
-    defineField({ name: 'scannerHeading', title: 'Heading', type: 'text', rows: 2, group: 'scanner' }),
-    defineField({ name: 'scannerBody', title: 'Body', type: 'text', rows: 4, group: 'scanner' }),
-    defineField({ name: 'scannerPoints', title: 'Scanner Points', type: 'array', of: [{ type: 'string' }], group: 'scanner' }),
+    defineField({ name: 'basicFacialsKicker', title: 'Kicker', type: 'string', group: 'basicFacials' }),
+    defineField({ name: 'basicFacialsHeading', title: 'Heading', type: 'text', rows: 2, group: 'basicFacials' }),
+    defineField({ name: 'basicFacialsBody', title: 'Body', type: 'text', rows: 4, group: 'basicFacials' }),
 
-    defineField({ name: 'pathwayKicker', title: 'Kicker', type: 'string', group: 'pathway' }),
-    defineField({ name: 'pathwayHeading', title: 'Heading', type: 'string', group: 'pathway' }),
-    defineField({
-      name: 'pathway',
-      title: 'Pathway Steps',
-      type: 'array',
-      group: 'pathway',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({ name: 'step', title: 'Step', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'body', title: 'Body', type: 'text', rows: 3, validation: (R) => R.required() }),
-          ],
-          preview: { select: { title: 'step', subtitle: 'body' } },
-        },
-      ],
-      validation: (R) => R.max(6),
-    }),
+    defineField({ name: 'advancedFacialsKicker', title: 'Kicker', type: 'string', group: 'advancedFacials' }),
+    defineField({ name: 'advancedFacialsHeading', title: 'Heading', type: 'text', rows: 2, group: 'advancedFacials' }),
+    defineField({ name: 'advancedFacialsBody', title: 'Body', type: 'text', rows: 4, group: 'advancedFacials' }),
 
-    defineField({ name: 'teaserKicker', title: 'Kicker', type: 'string', group: 'methodTeaser' }),
-    defineField({ name: 'teaserHeading', title: 'Heading', type: 'text', rows: 2, group: 'methodTeaser' }),
-    defineField({ name: 'teaserBody', title: 'Body', type: 'text', rows: 4, group: 'methodTeaser' }),
-    defineField({ name: 'teaserCtaText', title: 'CTA Text', type: 'string', group: 'methodTeaser' }),
+    defineField({ name: 'collagenBankKicker', title: 'Kicker', type: 'string', group: 'collagenBank' }),
+    defineField({ name: 'collagenBankHeading', title: 'Heading', type: 'text', rows: 2, group: 'collagenBank' }),
+    defineField({ name: 'collagenBankBody', title: 'Body', type: 'text', rows: 4, group: 'collagenBank' }),
 
     defineField({ name: 'finalKicker', title: 'Kicker', type: 'string', group: 'finalCta' }),
     defineField({ name: 'finalHeading', title: 'Heading', type: 'text', rows: 2, group: 'finalCta' }),

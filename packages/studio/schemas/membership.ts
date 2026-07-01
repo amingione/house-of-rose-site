@@ -2,9 +2,13 @@ import { defineField, defineType } from 'sanity';
 
 /**
  * Membership / Plan — mirrors the Notion "HOUSE OF ROSE: Memberships & Plans" database.
- * Each document is a single tier / plan / rider, grouped by Lane (Lily / Iris / Hydrangea /
- * Magnolia / House Collective / Cross-Lane). The website memberships page may group these
- * by lane at render time.
+ * Each document is a single tier / plan / rider, grouped internally by Lane (Advanced
+ * Aesthetics / Injectables & Medical / Wellness / Beauty & Enhancements / House Collective /
+ * Cross-Category) — the same plain-English taxonomy as `provider.ts`, not flower codenames.
+ * The public /memberships page (packages/web/src/pages/memberships.astro) groups by
+ * `membershipGroup` instead — Rose Pass, IV Hydration Membership, and Rose Collagen Bank —
+ * since those are the site's actual recurring membership products (distinct from the Rose
+ * Circle client affiliation at /rose-circle, which is not a membership).
  */
 export const membership = defineType({
   name: 'membership',
@@ -41,15 +45,32 @@ export const membership = defineType({
       name: 'lane',
       title: 'Lane',
       type: 'string',
+      description: 'Matches the provider lane taxonomy (see provider.ts) for internal consistency.',
       options: {
         list: [
-          { title: 'Lily — Advanced Aesthetics', value: 'lily' },
-          { title: 'Iris — Injectables', value: 'iris' },
-          { title: 'Hydrangea — Wellness', value: 'hydrangea' },
-          { title: 'Magnolia — Waxing & Beauty', value: 'magnolia' },
+          { title: 'Advanced Aesthetics', value: 'advanced-aesthetics' },
+          { title: 'Injectables & Medical', value: 'injectables-medical' },
+          { title: 'Wellness', value: 'wellness' },
+          { title: 'Beauty & Enhancements', value: 'beauty-enhancements' },
           { title: 'House Collective', value: 'house-collective' },
-          { title: 'Cross-Lane / Regenerative', value: 'cross-lane' },
+          { title: 'Cross-Category / Regenerative', value: 'cross-category' },
         ],
+      },
+    }),
+    defineField({
+      name: 'membershipGroup',
+      title: 'Public Group (/memberships page)',
+      type: 'string',
+      description: 'Which section of the public /memberships page this plan is grouped under. Leave blank to keep it out of that page.',
+      options: {
+        list: [
+          { title: 'Rose Pass (Wax Membership)', value: 'rose-pass' },
+          { title: 'IV Hydration Membership', value: 'iv-hydration' },
+          { title: 'Basic Facials Membership', value: 'basic-facials' },
+          { title: 'Advanced Facials Membership', value: 'advanced-facials' },
+          { title: 'Rose Collagen Bank', value: 'collagen-bank' },
+        ],
+        layout: 'radio',
       },
     }),
     defineField({

@@ -10,7 +10,6 @@ import type { SanityImage } from '@/lib/queries';
 
 interface Props {
   title: string;
-  signatureName?: string;
   slug: string;
   tagline?: string;
   image?: SanityImage;
@@ -24,14 +23,12 @@ interface Props {
   objectId?: string;
 }
 
-const { title, signatureName, slug, tagline, image, variant = 'grid', number, objectId } = Astro.props;
-// Lead with the branded signature name; show the technical name as a subtitle.
-const headline = signatureName ?? title;
-const subName = signatureName ? title : undefined;
+const { title, slug, tagline, image, variant = 'grid', number, objectId } = Astro.props;
+// Always lead with the technical/industry-standard name — matches what people search for.
+const headline = title;
 // Visual Editor annotations — only emitted when an objectId is supplied.
 const objAttrs = objectId ? sbObjectId(objectId) : {};
-const headlinePath = signatureName ? sbFieldPath('signatureName') : sbFieldPath('title');
-const subNamePath = sbFieldPath('title');
+const headlinePath = sbFieldPath('title');
 const taglinePath = sbFieldPath('tagline');
 const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
 ---
@@ -50,7 +47,6 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
       </div>
     )}
     <span class="service-name" {...fp(headlinePath)}>{headline}</span>
-    {subName && <span class="block text-gold/70 text-[11px] tracking-[0.18em] uppercase mt-1" {...fp(subNamePath)}>{subName}</span>}
     {tagline && <p class="service-desc mt-1" {...fp(taglinePath)}>{tagline}</p>}
     <span class="learn-more group-hover:text-gold">Learn More</span>
   </a>
@@ -70,7 +66,6 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
     <div class="flex-1">
       {number && <p class="text-[#8a7c66] text-xs mb-1">{number}</p>}
       <h3 class="font-serif text-2xl text-ink mb-1" {...fp(headlinePath)}>{headline}</h3>
-      {subName && <p class="text-gold/70 text-[11px] tracking-[0.18em] uppercase mb-2" {...fp(subNamePath)}>{subName}</p>}
       {tagline && <p class="text-[#7a6e5c] text-sm leading-relaxed" {...fp(taglinePath)}>{tagline}</p>}
     </div>
     <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>

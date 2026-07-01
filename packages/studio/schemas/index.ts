@@ -6,6 +6,7 @@ import { contactPage } from './contactPage';
 import { privacyPolicy } from './privacyPolicy';
 import { rentARoom } from './rentARoom';
 import { membershipsPage } from './membershipsPage';
+import { roseCirclePage } from './roseCirclePage';
 import { experienceContent } from './experienceContent';
 import { serviceCollection } from './serviceCollection';
 import { service } from './service';
@@ -39,6 +40,7 @@ export const schemaTypes = [
   privacyPolicy,
   rentARoom,
   membershipsPage,
+  roseCirclePage,
   experienceContent,
   // Content
   serviceCollection,

@@ -91,11 +91,15 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
   Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
 - **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
-  `homepage`, `membershipsPage`, `contactPage`, `privacyPolicy`, `rentARoom`,
+  `homepage`, `roseCirclePage`, `membershipsPage`, `contactPage`, `privacyPolicy`, `rentARoom`,
   `skinAnalysis`, `thankYou` — each edited under Studio → **Pages** (or **Home Page**),
   rendered with Sanity-first + hardcoded fallbacks, fully click-to-edit. Forms
   (contact, rent-a-room) and JSON-LD were left untouched. Every site page is now
   inline-editable (`ve:check` = 0 missing).
+  **Note:** `roseCirclePage` (`/rose-circle/`) is the client-affiliation page — it is
+  intentionally NOT a membership. `membershipsPage` (`/memberships/`) is the real
+  recurring-membership hub (Rose Pass, IV Hydration Membership, Rose Collagen Bank),
+  backed by `membership` documents grouped via `membershipGroup`.
 
 ---
 
@@ -140,6 +144,8 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/services/collections` | `services/collections/index.astro` | All collections |
 | `/services/collections/[collection]` | `services/collections/[collection].astro` | Single collection |
 | `/experience` | `experience.astro` | Static |
+| `/rose-circle` | `rose-circle.astro` | Rose Circle client affiliation singleton (`roseCirclePage`) — NOT a membership |
+| `/memberships` | `memberships.astro` | Real memberships hub singleton (`membershipsPage`) + grouped `membership` docs (Rose Pass, IV Hydration Membership, Collagen Bank) |
 | `/cost/[slug]` | `cost/[slug].astro` | Cost guide by slug (`costGuide`) |
 | `/compare/[slug]` | `compare/[slug].astro` | Comparison by slug (`comparison`) |
 | `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |

@@ -33,6 +33,8 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
             .items([
               S.listItem().title('Experience Page').id('experiencePage')
                 .child(S.document().schemaType('experienceContent').documentId('experienceContent')),
+              S.listItem().title('Rose Circle Page').id('roseCirclePage')
+                .child(S.document().schemaType('roseCirclePage').documentId('roseCirclePage')),
               S.listItem().title('Memberships Page').id('membershipsPage')
                 .child(S.document().schemaType('membershipsPage').documentId('membershipsPage')),
               S.listItem().title('Skin Analysis Page').id('skinAnalysis')
@@ -68,6 +70,15 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
         .title('Products')
         .schemaType('product')
         .child(S.documentTypeList('product').title('Products')),
+
+      S.divider(),
+
+      // Memberships — Rose Pass, IV Hydration Membership, Collagen Bank, etc.
+      // (grouped on the public /memberships page via `membershipGroup`)
+      S.listItem()
+        .title('Memberships')
+        .schemaType('membership')
+        .child(S.documentTypeList('membership').title('Memberships')),
 
       S.divider(),
 

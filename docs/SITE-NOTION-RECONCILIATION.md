@@ -2,12 +2,17 @@
 *2026-06-21 · Notion = source of truth · Sanity (`4e7axyi7`/production) = CMS feeding houseofrosefl.com · Brand standard = v1.0 (Advanced Aesthetics, full destination, "Where beauty blooms within").*
 
 ## ✅ P0 EXECUTED (2026-06-21) — pending deploy
-- **Signature names LIVE in Sanity** for 7 services: The Porcelain Petal (Dermaplaning), The Lumière
+- ~~**Signature names LIVE in Sanity** for 7 services: The Porcelain Petal (Dermaplaning), The Lumière
   (Glo2Facial), The Camellia Peel (BioRePeel), The Gilded Lily (PRF Skin Texture), The Clarity Session
-  (Face Reality), The Evergreen (PRF Under-Eye), Forever Rose (Permanent Jewelry).
-- **Frontend wired** to lead with the signature name + technical name as subtitle: `queries.ts`
+  (Face Reality), The Evergreen (PRF Under-Eye), Forever Rose (Permanent Jewelry).~~
+  **REVERSED 2026-07-01:** the botanical signature-name layer was removed entirely, on/services and
+  treatment packages, in favor of industry-standard technical names everywhere (better AEO/Google
+  searchability — nobody searches "the porcelain petal near me"). `signatureName` field dropped from
+  `service.ts`; the 5 botanically-titled `treatmentPackage` docs were renamed (see #2 below, now
+  struck). 301 redirects added in `packages/web/netlify.toml` for the changed package URLs.
+- ~~**Frontend wired** to lead with the signature name + technical name as subtitle: `queries.ts`
   (interface + `ALL_SERVICES_QUERY` + `SERVICE_BY_SLUG_QUERY`), `ServiceCard.astro`,
-  `services/index.astro`, `services/[slug].astro`.
+  `services/index.astro`, `services/[slug].astro`.~~ Reversed — all four now render `title` only.
 - **Off-brand syringe imagery detached** (reversible): Injectables collection hero (syringe flat-lay)
   + Botox service (gloved hand + syringe).
 - **Deploy needed:** static site rebuilds at build time — push the repo changes / trigger a Netlify
@@ -31,9 +36,9 @@ The site is **well-populated and largely aligned** with Notion — 28 services, 
 10 of 14 image assets in Sanity are the **old direction** — filenames/alt text read *"Luxury-medical-aesthetics,"* *"dark charcoal,"* *"gloved provider's hand holding a fine syringe,"* *"clinical setting."* This is exactly the **clinical / coffin / self-proclaimed-luxury / syringe-hero** look the Photography guide (02-04) and Positioning keystone forbid, and it skews injectable-led rather than full-house.
 **Action:** replace with warm, editorial, natural-light imagery (ivory/greige/burgundy, all five lanes, no syringe heroes). Until a founding shoot exists, pull only frames that pass the Photography Do/Don't. *This is the single biggest gap between the site and v1.0.*
 
-### 2. Signature (botanical) naming layer is missing on the site
-Notion source of truth names services as **botanical signatures** with the technical name as subtitle — *The Porcelain Petal* (Dermaplaning), *The Lumière* (Glo2Facial), *The Gilded Lily* (PRF Microchanneling), *The Camellia Peel* (BioRePeel), *The Clarity Session*. Sanity uses the **generic technical names** only ("Glo2Facial by Geneo," "BioRePeel," "Dermaplaning"…).
-**Action:** decide the convention (recommend: signature name as title, technical as subtitle/`alternateName` for SEO) and apply. This is a core differentiator ("botanical luxury; Rose reserved for the brand") that the live site currently drops.
+### 2. Signature (botanical) naming layer — ❌ DECIDED AGAINST (2026-07-01)
+Notion source of truth names services as **botanical signatures** with the technical name as subtitle — *The Porcelain Petal* (Dermaplaning), *The Lumière* (Glo2Facial), *The Gilded Lily* (PRF Microchanneling), *The Camellia Peel* (BioRePeel), *The Clarity Session*. Sanity briefly carried these too (see P0 above), but they've been removed.
+**Decision:** the botanical layer hurts AEO — nobody searches "the porcelain petal near me," they search "dermaplaning near me." The technical/industry-standard name is now the *only* public name for every service and treatment package. Notion can keep the botanical names internally as a fun brand flourish; the live site does not surface them.
 
 ---
 
@@ -62,9 +67,10 @@ Notion source of truth includes services not visible in the published Sanity ser
 
 ## P2 — Normalization / polish
 
-### 7. Lane labels are inconsistent
+### 7. Lane labels are inconsistent — ✅ ACTIONED (2026-07-01)
 Mixed Title Case and slugs: **"Injectables & Aesthetics"** (Sanity) vs **"Injectables & Bio-Fillers"** (Notion); **"beauty-enhancements"** (slug) vs **"Beauty & Enhancements"**; "Skin Renewal" and "Wellness & Restoration" are consistent.
 **Action:** normalize to one canonical set of five lane labels (match Notion: Skin Renewal · Injectables & Bio-Fillers · Wellness & Restoration · Beauty & Enhancements · + Regeneration as needed) and use slugs only in routing.
+**Done:** `membership.ts`'s `lane` field now reuses `provider.ts`'s plain-English taxonomy (Advanced Aesthetics / Injectables & Medical / Wellness / Beauty & Enhancements / House Collective / Cross-Category) instead of the Lily/Iris/Hydrangea/Magnolia/Cross-Lane flower codenames. The floral *product* titles were renamed too — see the updated "What's already aligned" note below.
 
 ### 8. Service imagery coverage
 Only 4 of 28 services have an image (and those are the off-brand ones). Most cards will render imageless.
@@ -73,7 +79,7 @@ Only 4 of 28 services have an image (and those are the off-brand ones). Most car
 ---
 
 ## What's already aligned (no action)
-- **Memberships/plans:** Lily (Essentials/Signature/Regenerative), Iris (I/II/III), Hydrangea rider, House Collective, the three Regeneration Plans (Renewal/Regeneration/Restoration), and Smooth Ritual waxing tiers — all present and matching the Notion architecture. ✓
+- **Memberships/plans:** Advanced Aesthetics (Essentials/Signature/Regenerative), Injectables Membership (I/II/III), Wellness Rider, House Collective, the three Regeneration Plans (Renewal/Regeneration/Restoration), and the waxing tiers (now branded **Rose Pass** — Brow & Lip/Brazilian/Total Body, live on `/memberships`) — all present and matching the Notion architecture, renamed off their original floral codenames 2026-07-01. ✓
 - **Providers:** Amber, Diana, Brooke, Brandy. ✓
 - **Retail "Ritual" line + pro lines:** Calm/Clear/Daily/Shield/Smooth Ritual + GlyMed+/Skin Script/ProCell aftercare. ✓
 - **Pricing format:** majority already "From $X." ✓
@@ -82,7 +88,7 @@ Only 4 of 28 services have an image (and those are the off-brand ones). Most car
 
 ## Recommended order of operations
 1. **P0 #1 imagery** — swap the clinical/charcoal/syringe assets for warm, on-brand, full-house imagery (biggest brand fix).
-2. **P0 #2 naming** — apply the botanical signature-name convention.
+2. ~~**P0 #2 naming** — apply the botanical signature-name convention.~~ Decided against — see #2 above.
 3. **P1 #3–#6** — fill null prices, reconcile stale/duplicate services, verify rack prices.
 4. **P2 #7–#8** — normalize lane labels, add per-service imagery.
 

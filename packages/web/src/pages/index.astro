@@ -8,7 +8,7 @@ import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 // Booking + internal links (single source of truth so they're easy to swap)
 const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
 const SKIN_ANALYSIS_URL = "/skin-analysis";
-const MEMBERSHIPS_URL = "/memberships";
+const ROSE_CIRCLE_URL = "/rose-circle";
 const SHOP_URL = "/shop";
 
 // ─── Home content from Sanity (singleton) ──────────────────────────────────────
@@ -141,8 +141,8 @@ const organizationData = {
 		size="full"
 		centerContent={true}
 		showCTA={true}
-		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Consultation", href: BOOKING_URL }}
-		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
+		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
+		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Explore Services", href: "/services" }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 		titleField="heroTitle"
 		subtitleField="heroSubtitle"
@@ -353,7 +353,7 @@ const organizationData = {
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("circlePara1")}
 			>
-				{hp.circlePara1 ?? "The Rose Circle is our 6-month guided membership path for clients who want custom care at member rates after skin analysis and provider evaluation."}
+				{hp.circlePara1 ?? "The Rose Circle is our 6-month guided client affiliation for clients who want custom care at member rates after skin analysis and provider evaluation."}
 			</p>
 			<p
 				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
@@ -362,7 +362,7 @@ const organizationData = {
 				{hp.circlePara2 ?? "Start with the scanner, let your provider examine your skin, then commit to a real plan with enough time for healthy visible change to evolve. It is not a discount club or a gimmick."}
 			</p>
 			<div class="flex gap-3 flex-wrap">
-				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaPrimaryText")}
+				<a href={ROSE_CIRCLE_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaPrimaryText")}
 					>{hp.circleCtaPrimaryText ?? "View The Rose Circle"}</a
 				>
 				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaSecondaryText")}
@@ -373,7 +373,7 @@ const organizationData = {
 		<div class="relative min-h-[340px] bg-charcoal-lighter">
 			<img
 				src="/images/hor-lobby.jpg"
-				alt="House of Rose Aesthetics membership and ongoing care"
+				alt="House of Rose Aesthetics Rose Circle and ongoing care"
 				loading="lazy"
 				class="w-full h-full object-cover"
 				width="1400"

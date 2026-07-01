@@ -374,8 +374,9 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 > A: 525 E Olympia Ave, Unit 9, in Punta Gorda. _(Add your parking specifics here.)_
 
 **Q: Do you offer memberships?**
-> A: Yes — ask about the Rose Collagen Bank, designed so your visits and credits match your treatment plan.
-> _(Adjust to your live membership.)_
+> A: Yes — the Rose Pass (wax membership), IV Hydration Membership, and the Rose Collagen Bank. Ask which
+> fits your routine at your next visit. (The Rose Circle is different — that's our guided client
+> affiliation, not a membership.)
 
 ---
 

@@ -30,7 +30,6 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
       {services.map((service, index) => (
         <ServiceCard
           title={service.title}
-          signatureName={service.signatureName}
           slug={service.slug}
           tagline={service.tagline}
           image={service.image}

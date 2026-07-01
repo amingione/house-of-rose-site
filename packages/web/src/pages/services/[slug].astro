@@ -129,12 +129,9 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {service.tagline}
         </span>
       )}
-      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath(service.signatureName ? 'signatureName' : 'title')}>
-        {service.signatureName ?? service.title}
+      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
+        {service.title}
       </h1>
-      {service.signatureName && (
-        <p class="mt-2 text-ivory/65 text-[13px] tracking-[0.22em] uppercase" {...sbFieldPath('title')}>{service.title}</p>
-      )}
       {(service.price || service.duration) && (
         <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase">
           {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && service.duration && <span class="text-gold mx-2">·</span>}{service.duration && <span {...sbFieldPath('duration')}>{service.duration}</span>}

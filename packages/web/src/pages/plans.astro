@@ -4,7 +4,7 @@ import Hero from '@/components/Hero.astro';
 
 const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
 const SKIN_ANALYSIS_URL = '/skin-analysis';
-const MEMBERSHIPS_URL = '/memberships';
+const ROSE_CIRCLE_URL = '/rose-circle';
 
 interface Phase {
   step: string;
@@ -72,7 +72,6 @@ const methodSteps: MethodStep[] = [
     size="small"
     showCTA={true}
     ctaPrimary={{ text: 'Book Your Skin Analysis', href: SKIN_ANALYSIS_URL }}
-    ctaSecondary={{ text: 'Schedule a Consultation', href: BOOKING_URL }}
     backgroundImage="/images/hor-lobby.jpg"
   />
 
@@ -147,7 +146,7 @@ const methodSteps: MethodStep[] = [
           The Rose Circle applies the method month by month.
         </h2>
         <p class="text-[#7a6e5c] text-[15px] leading-[1.85]">
-          The Rose Circle is the guided 6-month membership path for clients who want the Rose Method applied consistently at member rates. Nothing is selected from a preset public package; the provider lane, services, cadence, and adjustments are built around the client after analysis.
+          The Rose Circle is the guided 6-month client affiliation for clients who want the Rose Method applied consistently at member rates. Nothing is selected from a preset public package; the phases, services, cadence, and adjustments are built around the client after analysis.
         </p>
       </div>
       <div class="bg-charcoal p-[clamp(28px,5vw,44px)] border border-gold/10">
@@ -156,7 +155,7 @@ const methodSteps: MethodStep[] = [
         <p class="text-[#9a8c78] text-[14px] leading-[1.7] mb-7">
           Rose Circle members receive provider-guided care, member-rate services, and AI skin scan comparisons throughout the plan.
         </p>
-        <a href={MEMBERSHIPS_URL} class="btn-outline-gold w-full text-center">View The Rose Circle</a>
+        <a href={ROSE_CIRCLE_URL} class="btn-outline-gold w-full text-center">View The Rose Circle</a>
       </div>
     </div>
   </section>
