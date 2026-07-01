@@ -166,19 +166,6 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 | **Lash Lift & Tint** | **$95** | 60 min | A keratin lift and dye treatment that elevates and darkens your natural lashes for four to six weeks. |
 | **Brow Lamination & Tint** | **$95** | 45 min | A texture treatment that softens and shapes the brow, paired with tint and a precision wax. Lasts six to eight weeks. |
 ---
- # | **Classic Lash Extensions — Full Set** | **$185** | 2 hr | One synthetic extension applied to one natural lash. # A clean, mascara-like result. |
-# | **Hybrid Lash Extensions — Full Set** | **$235** | 2.5 hr | A blend of classic and volume technique for textured fullness. |
-# | **Volume Lash Extensions — Full Set** | **$295** | 2.5–3 hr | Lightweight handmade fans of three to six extensions per natural lash for soft density. |
-# | **Mega Volume Lash Extensions — Full Set** | **$365** | 3 hr | Six to twelve ultra-fine fibers per fan for maximum density, reserved for advanced sets. |
-# | **Classic Fill (2–3 weeks)** | **$85** | 75 min | — |
-# | **Hybrid Fill (2–3 weeks)** | **$105** | 75 min | — |
-# | **Volume Fill (2–3 weeks)** | **$125** | 90 min | — |
-# | **Mega Volume Fill (2–3 weeks)** | **$145** | 90 min | — |
-# | **LED Lash Bonding (replaces traditional adhesive)** | **+$25 surcharge** to any full set or fill | — | A photo-cured bonding system that allows clients with adhesive sensitivity to wear extensions comfortably. |
-
-**Bench note:** National 2025 lash pricing: Classic $150–$200, Hybrid $200–$250, Volume $240–$300, Mega $300–$400. House of Rose pricing places Punta Gorda firmly in the upper-mid bracket aligned with Naples and Sarasota markets.
-
----
 
 ### G. Waxing
 
@@ -234,9 +221,9 @@ These bundles are positioned as curated experiences, never as discounts. Pricing
 |---|---|---|---|
 | **The Introduction** | Signature Facial + Lash Lift & Tint + Brow Shape | **$295** | $328 |
 | **The Reset Day** | Refined Facial + The Reset IV + Brow Shape & Tint | **$425** | $448 |
-| **The Glow Protocol** | HydraFacial Signature + The Glow IV + LED add-on | **$485** | $525 |
+| **The Glow Protocol** | Glo2Facial Signature + The Glow IV + LED add-on | **$485** | $525 |
 | **The Bridal Countdown (8 weeks)** | 2× Refined Facial + 1× BioRePeel + Lash Lift & Tint + Brow Lamination + Permanent Jewelry Bracelet (14k gold-filled) | **$795** | $885 |
-| **The Annual Skin Membership** | Monthly facial of choice (Signature or HydraFacial Signature), 10% off all add-ons, 10% off retail, priority booking | **$165 / month** | — |
+| **The Annual Skin Membership** | Monthly facial of choice (Signature or Glo2Facial Signature), 10% off all add-ons, 10% off retail | **$165 / month** | — |
 | **The Injectable Insider** | Annual membership: 1 unit of Botox stored monthly toward your next visit, 10% off filler, complimentary post-treatment LED, two priority booking slots per quarter | **$45 / month** | — |
 | **Microneedling Series** | 3× Microneedling Face + complimentary LED at each visit + take-home recovery kit | **$995** | $1,110 |
 | **ProCell Foundation Series** | 6× ProCell Microchanneling Face + ProCell home aftercare kit + 3 complimentary LED sessions | **$2,295** | $2,575 |
