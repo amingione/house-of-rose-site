@@ -145,6 +145,9 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |
 | `/results` · `/results/[slug]` | `results/...` | Before/after proof (`caseStudy`) |
 | `/faq` | `faq.astro` | Aggregated FAQ hub (FAQPage JSON-LD) |
+| `/amber` | `amber.astro` | Static — Amber's tap-to-share digital business card (self-contained black/gold card, no Header/Footer, `Person` JSON-LD; downloads `public/amber.vcf`) |
+| `/diana` | `diana.astro` | Static — Diana Morrison, RN tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/diana.vcf`) |
+| `/aundrea` | `aundrea.astro` | Static — Aundrea Pedigo tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/aundrea.vcf`) |
 
 ---
 

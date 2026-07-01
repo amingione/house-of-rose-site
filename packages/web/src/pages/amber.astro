@@ -1,0 +1,331 @@
+---
+/**
+ * /amber/ — Amber Mingione digital business card (tap-to-share contact page).
+ *
+ * Standalone, full-bleed luxury card matching the black-and-gold Canva business
+ * card — intentionally rendered WITHOUT the site Header/Footer chrome so it reads
+ * as a clean, distraction-free contact card for NFC taps, QR scans, and link shares.
+ *
+ * "Save Contact" downloads /amber.vcf (kept in sync with public/amber.vcf).
+ * NAP follows the canonical siteSettings source of truth (Unit 9, 33950, +18449417673).
+ */
+
+const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
+const canonicalURL = new URL('/amber/', siteURL).toString();
+const ogImage = new URL('/logos/house-of-rose-monogram/hr-monogram-gold.png', siteURL).toString();
+
+const PHONE_E164 = '+18449417673';
+const PHONE_DISPLAY = '844-941-ROSE (7673)';
+const EMAIL = 'amber@houseofrosefl.com';
+const WEBSITE = 'www.houseofrosefl.com';
+const ADDRESS_LINE1 = '525 E. Olympia Ave. Unit 9';
+const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
+const MAPS_URL =
+  'https://maps.google.com/?q=525+E.+Olympia+Ave+Unit+9,+Punta+Gorda,+FL+33950';
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Amber Mingione',
+  jobTitle: 'Advanced Aesthetics Specialist',
+  telephone: PHONE_E164,
+  email: EMAIL,
+  url: 'https://houseofrosefl.com/amber/',
+  worksFor: {
+    '@type': 'HealthAndBeautyBusiness',
+    name: 'House of Rose Aesthetics',
+    url: 'https://houseofrosefl.com/',
+    telephone: PHONE_E164,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '525 E. Olympia Ave. Unit 9',
+      addressLocality: 'Punta Gorda',
+      addressRegion: 'FL',
+      postalCode: '33950',
+      addressCountry: 'US',
+    },
+  },
+  knowsAbout: [
+    'Microchanneling',
+    'Microneedling with SkinPen',
+    'Procell Therapies',
+    'PRF (Platelet-Rich Fibrin)',
+    'Glo2Facial',
+    'Dermaplaning',
+    'Face Reality Acne Expert — Acne Bootcamp',
+    'Glass Skin Micro-Tox',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>Amber Mingione | House of Rose Aesthetics</title>
+    <meta
+      name="description"
+      content="Amber Mingione — Advanced Aesthetics Specialist at House of Rose Aesthetics in Punta Gorda, FL. Tap to save my contact or book your appointment."
+    />
+    <meta property="og:title" content="Amber Mingione | House of Rose Aesthetics" />
+    <meta
+      property="og:description"
+      content="Advanced Aesthetics Specialist — Microchanneling, Procell & PRF. Tap to save my contact."
+    />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="profile" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+
+    <style>
+      @font-face {
+        font-family: 'Cochin';
+        src: url('/fonts/Cochin-Regular.woff2') format('woff2'),
+             url('/fonts/Cochin-Regular.woff') format('woff');
+        font-weight: 400; font-style: normal; font-display: swap;
+      }
+      @font-face {
+        font-family: 'Cochin';
+        src: url('/fonts/Cochin-Bold.woff2') format('woff2'),
+             url('/fonts/Cochin-Bold.woff') format('woff');
+        font-weight: 700; font-style: normal; font-display: swap;
+      }
+
+      :root {
+        --gold: #c9a24b;
+        --gold-soft: #e7d6a8;
+        --gold-line: rgba(201, 162, 75, 0.45);
+        --ink: #0b0b0c;
+        --panel: #161514;
+        --txt: #f4ecdc;
+        --muted: #b9ad96;
+        --serif: 'Cochin', Georgia, 'Times New Roman', serif;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: var(--serif);
+        color: var(--txt);
+        background:
+          radial-gradient(130% 90% at 50% -10%, #1c1b19 0%, #000 62%);
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 440px;
+        background:
+          linear-gradient(180deg, #141312 0%, #0a0a0a 100%);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65);
+        position: relative;
+      }
+
+      /* faint rose accent, bottom-right, like the printed card */
+      .card::after {
+        content: '';
+        position: absolute;
+        right: -60px; bottom: -40px;
+        width: 320px; height: 320px;
+        background: url('/images/background-rose.webp') no-repeat center / contain;
+        opacity: 0.10;
+        filter: grayscale(1) brightness(1.3);
+        pointer-events: none;
+      }
+
+      /* ── Crest / logo block ───────────────────────────── */
+      .crest {
+        position: relative;
+        margin: 18px 18px 0;
+        padding: 40px 24px 30px;
+        text-align: center;
+        border: 1px solid var(--gold-line);
+        border-radius: 14px;
+        background:
+          radial-gradient(120% 120% at 50% 0%, rgba(201,162,75,0.08), transparent 60%);
+      }
+      .crest img { width: 96px; height: auto; display: block; margin: 0 auto; }
+      .wordmark {
+        margin-top: 18px;
+        font-weight: 700;
+        font-size: clamp(26px, 7vw, 34px);
+        letter-spacing: 0.14em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .sub-box {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 6px 18px;
+        border: 1px solid var(--gold-line);
+        font-size: 11px;
+        letter-spacing: 0.42em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+      }
+
+      /* ── Identity ─────────────────────────────────────── */
+      .identity { position: relative; padding: 30px 28px 6px; }
+      .name {
+        font-weight: 700;
+        font-size: clamp(26px, 7vw, 32px);
+        letter-spacing: 0.12em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+      }
+      .role {
+        margin-top: 6px;
+        font-size: 12px;
+        letter-spacing: 0.26em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      /* ── Contact rows ─────────────────────────────────── */
+      .rows { position: relative; padding: 22px 28px 4px; display: grid; gap: 4px; }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 8px;
+        border-radius: 10px;
+        color: var(--txt);
+        text-decoration: none;
+        transition: background 0.15s ease;
+      }
+      .row:hover, .row:active { background: rgba(201,162,75,0.07); }
+      .row .ico {
+        flex: 0 0 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--gold-line);
+        border-radius: 50%;
+        color: var(--gold);
+      }
+      .row .ico svg { width: 17px; height: 17px; }
+      .row .val { font-size: 15px; letter-spacing: 0.02em; line-height: 1.35; }
+      .row .val small { display: block; color: var(--muted); font-size: 13px; }
+
+      /* ── Actions ──────────────────────────────────────── */
+      .actions { padding: 18px 28px 6px; display: grid; gap: 12px; }
+      .save {
+        appearance: none; cursor: pointer; border: none;
+        display: block; width: 100%; padding: 17px;
+        border-radius: 12px; text-align: center; text-decoration: none;
+        font-family: var(--serif); font-weight: 700;
+        font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: #1a1206;
+        background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+        box-shadow: 0 10px 26px rgba(201,162,75,0.28);
+      }
+      .save:active { transform: translateY(1px); }
+      .book {
+        display: block; width: 100%; padding: 16px;
+        border-radius: 12px; text-align: center; text-decoration: none;
+        font-weight: 700; font-size: 13px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--gold-soft);
+        border: 1px solid var(--gold-line);
+        background: rgba(255,255,255,0.02);
+      }
+
+      /* ── Services + credentials ───────────────────────── */
+      .meta { position: relative; padding: 24px 28px 34px; text-align: center; }
+      .divider {
+        display: flex; align-items: center; justify-content: center;
+        gap: 14px; margin-bottom: 16px; color: var(--gold);
+      }
+      .divider::before, .divider::after {
+        content: ''; height: 1px; width: 54px; background: var(--gold-line);
+      }
+      .services { font-size: 13px; letter-spacing: 0.04em; color: var(--txt); line-height: 1.9; }
+      .services b {
+        display: block; margin-bottom: 6px; color: var(--gold-soft);
+        font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700;
+      }
+      .creds {
+        margin-top: 18px; font-size: 10.5px; letter-spacing: 0.22em;
+        color: var(--muted); text-transform: uppercase; line-height: 2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <!-- Crest -->
+      <header class="crest">
+        <img src="/logos/house-of-rose-monogram/hr-monogram-gold.png" alt="House of Rose Aesthetics monogram" width="96" height="110" />
+        <div class="wordmark">House of Rose</div>
+        <div class="sub-box">Aesthetics</div>
+      </header>
+
+      <!-- Identity -->
+      <section class="identity">
+        <h1 class="name">Amber Mingione</h1>
+        <p class="role">Advanced Aesthetics Specialist</p>
+      </section>
+
+      <!-- Contact rows -->
+      <nav class="rows" aria-label="Contact methods">
+        <a class="row" href={`tel:${PHONE_E164}`}>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="val">{PHONE_DISPLAY}</span>
+        </a>
+
+        <a class="row" href={`mailto:${EMAIL}`}>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </span>
+          <span class="val">{EMAIL}</span>
+        </a>
+
+        <a class="row" href="https://www.houseofrosefl.com" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
+          <span class="val">{WEBSITE}</span>
+        </a>
+
+        <a class="row" href={MAPS_URL} target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="val">{ADDRESS_LINE1}<small>{ADDRESS_LINE2}</small></span>
+        </a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="actions">
+        <a class="save" id="saveBtn" href="/amber.vcf">+ Save My Contact</a>
+        <a class="book" href={`tel:${PHONE_E164}`}>Call or Text to Book</a>
+      </div>
+
+      <!-- Services + credentials -->
+      <footer class="meta">
+        <div class="divider" aria-hidden="true">✦</div>
+        <div class="services">
+          <b>Services</b>
+          Microchanneling · Microneedling with SkinPen<br />
+          Procell Therapies · PRF · Glo2Facial<br />
+          Dermaplaning · Glass Skin Micro-Tox<br />
+          Face Reality Acne Expert — Acne Bootcamp
+        </div>
+        <div class="creds">
+          Licensed Esthetician · Medical Assistant · Phlebotomist
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -49,6 +49,28 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# vCard — serve inline as text/vcard so iOS opens Contacts (prefilled) on tap,
+# instead of downloading a file. Powers the "Save My Contact" button on /amber/.
+[[headers]]
+  for = "/amber.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"AmberMingione.vcf\""
+
+# vCard — same inline behavior for Diana's card (/diana/).
+[[headers]]
+  for = "/diana.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"DianaMorrison.vcf\""
+
+# vCard — same inline behavior for Aundrea's card (/aundrea/).
+[[headers]]
+  for = "/aundrea.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"AundreaPedigo.vcf\""
+
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]
   from   = "/*"
