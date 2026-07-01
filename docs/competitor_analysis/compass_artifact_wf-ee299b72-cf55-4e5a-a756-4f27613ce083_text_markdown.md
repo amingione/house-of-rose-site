@@ -2,7 +2,7 @@
 
 **Prepared for:** House of Rose | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
 **Opening:** June 1, 2026
-**Positioning:** Luxury boutique medical spa — clinical precision wrapped in genuine hospitality
+**Positioning:** Medical Spa — clinical precision wrapped in genuine hospitality
 
 ---
 
@@ -45,9 +45,8 @@ The following are services and brand experiences **not currently delivered well*
 3. **Face Reality Acne Boot Camp.** No Charlotte County med spa currently markets a structured, certified 12-week clinical acne program. The closest options are dermatology referrals.
 4. **A curated IV Hydration menu with NAD+, glutathione, and recovery drips.** Sweet Spot offers IV add-ons in the weight-loss context only; Nuview offers IV vitamins; no one offers a true designed IV bar experience.
 5. **Permanent Jewelry as a luxury complement to a med spa visit.** No Charlotte County med spa offers this. Most permanent jewelry in SW Florida is sold at boutique retail (Naples, Fort Myers, Destin).
-6. **Lash extensions integrated with medical aesthetics.** Skin Sanctuary offers lash lift/tint only. No premium med spa in Charlotte County offers a full classic-through-mega-volume lash extension menu.
-7. **GLP-1 weight management delivered with concierge-level monitoring** rather than transactional refill bookings.
-8. **A modern, calm-luxury physical environment.** The county's premium operator (Skin Sanctuary) shares a building with multiple suite-style providers; Sweet Spot is a clinical office; C's and Spago feel dated. House of Rose's standalone unit can deliver a true destination feel.
+6. **GLP-1 weight management delivered with concierge-level monitoring** rather than transactional refill bookings.
+7. **A modern, calm-luxury physical environment.** The county's premium operator (Skin Sanctuary) shares a building with multiple suite-style providers; Sweet Spot is a clinical office; C's and Spago feel dated. House of Rose's standalone unit can deliver a true destination feel.
 
 ---
 
@@ -221,7 +220,7 @@ These bundles are positioned as curated experiences, never as discounts. Pricing
 |---|---|---|---|
 | **The Introduction** | Signature Facial + Lash Lift & Tint + Brow Shape | **$295** | $328 |
 | **The Reset Day** | Refined Facial + The Reset IV + Brow Shape & Tint | **$425** | $448 |
-| **The Glow Protocol** | Glo2Facial Signature + The Glow IV + LED add-on | **$485** | $525 |
+| **The Glow Protocol** | HydraFacial Signature + The Glow IV + LED add-on | **$485** | $525 |
 | **The Bridal Countdown (8 weeks)** | 2× Refined Facial + 1× BioRePeel + Lash Lift & Tint + Brow Lamination + Permanent Jewelry Bracelet (14k gold-filled) | **$795** | $885 |
 | **The Annual Skin Membership** | Monthly facial of choice (Signature or Glo2Facial Signature), 10% off all add-ons, 10% off retail | **$165 / month** | — |
 | **The Injectable Insider** | Annual membership: 1 unit of Botox stored monthly toward your next visit, 10% off filler, complimentary post-treatment LED, two priority booking slots per quarter | **$45 / month** | — |
@@ -230,7 +229,7 @@ These bundles are positioned as curated experiences, never as discounts. Pricing
 | **The Acne Commitment** | Face Reality 12-Week Boot Camp + 1 BioRePeel at week 8 (when skin is ready) + 90-day product starter set placeholder (products billed separately) | **$995** (program + BioRePeel only) | $1,090 |
 | **NAD+ Loading Plus** | 4× NAD+ 500mg + 4× Glutathione push + 4× B12 boost | **$2,495** | $2,720 |
 | **The Permanent Jewelry Duo** | Two 14k gold-filled bracelets welded same visit (gift or shared milestone) | **$165** | $190 |
-| **The Welding Soirée** | Up to 6 guests, on-site or in-spa, 60-minute event with sparkling rosé, 14k gold-filled welds for first piece, charms à la carte | **$595 hosting fee** + per-piece pricing | — |
+| **The Welding Soirée** | Up to 6 guests, on-site or in-spa event with sparkling rosé, 14k gold-filled welds for first piece, charms à la carte | **$595 hosting fee** + per-piece pricing | — |
 
 ---
 
