@@ -19,8 +19,10 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy        = "strict-origin-when-cross-origin"
-    # Studio must be embeddable in its own origin only
-    X-Frame-Options        = "SAMEORIGIN"
+    # Allow embedding only by the Studio itself and the Sanity dashboard (manage/dashboard
+    # iframe the deployed Studio). CSP frame-ancestors supersedes X-Frame-Options and, unlike
+    # it, supports an origin allow-list — so we drop X-Frame-Options (which can't express one).
+    Content-Security-Policy = "frame-ancestors 'self' https://sanity.io https://*.sanity.io"
 
 # SPA fallback — Studio is a React SPA; all paths serve index.html
 [[redirects]]
