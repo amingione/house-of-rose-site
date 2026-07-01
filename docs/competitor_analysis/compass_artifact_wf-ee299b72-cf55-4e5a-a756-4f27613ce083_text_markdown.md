@@ -120,10 +120,10 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 
 | Service | Price | Duration | Description |
 |---|---|---|---|
-| **The Signature Facial** | **$165** | 60 min | A bespoke facial built around your skin assessment that day — cleanse, exfoliation (enzyme or dermaplane at provider discretion), extractions, treatment mask, and customized serum infusion. The ideal first visit. |
+| **The Signature Facial** | **$165** | 60 min | A bespoke facial built around your skin assessment that day — cleanse, enzyme exfoliation, extractions, treatment mask, and customized serum infusion. The ideal first visit. |
 | **The Refined Facial** | **$215** | 75 min | A deeper version of the Signature, with extended massage protocol, an additional exfoliation pass, and a results-focused mask layered with LED phototherapy. |
-| **HydraFacial — Signature** | **$245** | 60 min | Deep cleanse, exfoliation, extraction, and infusion of professional serums via patented vortex technology. No downtime. |
-| **HydraFacial — Platinum (with Lymphatic + LED + Booster)** | **$345** | 90 min | The full HydraFacial protocol enhanced with lymphatic drainage, red light phototherapy, and a targeted booster (Britenol, Dermabuilder, or Growth Factor). |
+| **HydroDermabrasion — Signature** | **$245** | 60 min | Deep cleanse, exfoliation, extraction, and infusion of professional serums via patented vortex technology. No downtime. |
+| **HydroDermabrasion — Platinum (with Lymphatic + LED + Booster)** | **$345** | 90 min | The full HydraFacial protocol enhanced with lymphatic drainage, red light phototherapy, and a targeted booster (Britenol, Dermabuilder, or Growth Factor). |
 | **BioRePeel CL3** | **$195 / single** | 45 min | A biphasic TCA peel that delivers active ingredients to the dermis without surface peeling or downtime. Most clients see a glow after a single session. |
 | **BioRePeel — Series of 4** | **$695** (saves $85) | — | The clinical series for cumulative collagen response, pigmentation, and texture. |
 | **Custom Chemical Peel (PCA, Perfect Derma, Glycolic, Lactic)** | **$185** | 45 min | A targeted peel selected for your skin's current needs. Downtime varies by depth. |
@@ -165,15 +165,16 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 |---|---|---|---|
 | **Lash Lift & Tint** | **$95** | 60 min | A keratin lift and dye treatment that elevates and darkens your natural lashes for four to six weeks. |
 | **Brow Lamination & Tint** | **$95** | 45 min | A texture treatment that softens and shapes the brow, paired with tint and a precision wax. Lasts six to eight weeks. |
-| **Classic Lash Extensions — Full Set** | **$185** | 2 hr | One synthetic extension applied to one natural lash. A clean, mascara-like result. |
-| **Hybrid Lash Extensions — Full Set** | **$235** | 2.5 hr | A blend of classic and volume technique for textured fullness. |
-| **Volume Lash Extensions — Full Set** | **$295** | 2.5–3 hr | Lightweight handmade fans of three to six extensions per natural lash for soft density. |
-| **Mega Volume Lash Extensions — Full Set** | **$365** | 3 hr | Six to twelve ultra-fine fibers per fan for maximum density, reserved for advanced sets. |
-| **Classic Fill (2–3 weeks)** | **$85** | 75 min | — |
-| **Hybrid Fill (2–3 weeks)** | **$105** | 75 min | — |
-| **Volume Fill (2–3 weeks)** | **$125** | 90 min | — |
-| **Mega Volume Fill (2–3 weeks)** | **$145** | 90 min | — |
-| **LED Lash Bonding (replaces traditional adhesive)** | **+$25 surcharge** to any full set or fill | — | A photo-cured bonding system that allows clients with adhesive sensitivity to wear extensions comfortably. |
+---
+ # | **Classic Lash Extensions — Full Set** | **$185** | 2 hr | One synthetic extension applied to one natural lash. # A clean, mascara-like result. |
+# | **Hybrid Lash Extensions — Full Set** | **$235** | 2.5 hr | A blend of classic and volume technique for textured fullness. |
+# | **Volume Lash Extensions — Full Set** | **$295** | 2.5–3 hr | Lightweight handmade fans of three to six extensions per natural lash for soft density. |
+# | **Mega Volume Lash Extensions — Full Set** | **$365** | 3 hr | Six to twelve ultra-fine fibers per fan for maximum density, reserved for advanced sets. |
+# | **Classic Fill (2–3 weeks)** | **$85** | 75 min | — |
+# | **Hybrid Fill (2–3 weeks)** | **$105** | 75 min | — |
+# | **Volume Fill (2–3 weeks)** | **$125** | 90 min | — |
+# | **Mega Volume Fill (2–3 weeks)** | **$145** | 90 min | — |
+# | **LED Lash Bonding (replaces traditional adhesive)** | **+$25 surcharge** to any full set or fill | — | A photo-cured bonding system that allows clients with adhesive sensitivity to wear extensions comfortably. |
 
 **Bench note:** National 2025 lash pricing: Classic $150–$200, Hybrid $200–$250, Volume $240–$300, Mega $300–$400. House of Rose pricing places Punta Gorda firmly in the upper-mid bracket aligned with Naples and Sarasota markets.
 
