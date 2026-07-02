@@ -89,7 +89,7 @@ right.
 | **Texting / chat** | `(844) 941-7673` (SMS enabled ✅) |
 | **Website** | `https://houseofrosefl.com/` |
 | **Facebook** | `facebook.com/people/House-Of-Rose-Aesthetics/` ✅ |
-| **Hours** | Mon–Fri `9:00 AM–5:00 PM` · Sat & Sun `Closed` ⚠️ needs update in GBP dashboard |
+| **Hours** | Mon–Fri `9:00 AM–5:00 PM` · Sat & Sun `Closed` ✅ |
 | **Opening date** | `June 15, 2026` ✅ |
 | **Appointment link** | Booking button off — CTA is **call/text**. Add a menu link (below). |
 
@@ -470,7 +470,7 @@ Google cross-checks your name/address/phone across the web. Make all three **byt
 1. ✅ Claim/verify complete; full owner access.
 2. ✅ Name = `House of Rose Aesthetics` (no descriptors).
 3. ⏳ Primary category `Medical spa` + 5 secondaries (pending Google review — confirm it sticks).
-4. ✅ Address, phone `(844) 941-7673`, texting, website, hours (Mon–Fri 9–5 ⚠️ update pending in GBP dashboard), opening date, service areas.
+4. ✅ Address, phone `(844) 941-7673`, texting, website, hours (Mon–Fri 9–5), opening date, service areas.
 5. ✅ Description live (section 3).
 6. ☐ Add a **Menu/services link** → `houseofrosefl.com/services/`.
 7. ☐ Add all services with descriptions + pricing convention (section 4), incl. Waxing.
