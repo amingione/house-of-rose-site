@@ -11,7 +11,7 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
 - **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
 - **Email:** info@houseofrosefl.com — _`book@…` was never a real address; do not use it anywhere_
-- **Hours:** Mon–Fri 10:00 AM–6:00 PM · Sat–Sun closed
+- **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed
 - **Web/social:** https://houseofrosefl.com · IG `houseofrosefl` · FB `House-Of-Rose-Aesthetics` · opened June 15, 2026
 - **GBP primary category:** `Medical spa` (backend ranking field only). **In customer-facing prose always "advanced aesthetics & wellness studio" — never "med spa / medical spa / day spa".**
 - **GBP CTA:** call/text (no online-booking button).

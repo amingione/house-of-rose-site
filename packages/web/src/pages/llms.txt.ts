@@ -116,7 +116,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Phone:** (844) 941-7673`,
     `- **Email:** info@houseofrosefl.com`,
     `- **Booking:** https://houseofrose.glossgenius.com/services`,
-    `- **Hours:** Monday–Friday 10:00 AM–6:00 PM`,
+    `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
     `- **Instagram:** @houseofrosefl`,
     `- **Facebook:** @houseofrosefl`,
     `- **Service Area:** Punta Gorda, Port Charlotte, Englewood, Venice, North Port, Sarasota, Cape Coral — Charlotte County & Southwest Florida`,
