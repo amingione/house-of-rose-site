@@ -88,8 +88,8 @@ const organizationData = {
 	openingHoursSpecification: {
 		"@type": "OpeningHoursSpecification",
 		dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-		opens: "10:00",
-		closes: "18:00",
+		opens: "9:00",
+		closes: "17:00",
 	},
 	priceRange: "$$",
 	areaServed: {
@@ -524,7 +524,7 @@ const organizationData = {
 			</a>
 			<p
 				class="text-[#7a6e5c] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
-				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 10AM–6PM · (844) 941-7673").replace(/\n/g, "<br />")}
+				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 9AM–5PM · (844) 941-7673").replace(/\n/g, "<br />")}
 				{...sbFieldPath("finalAddressLine")}
 			/>
 		</div>
