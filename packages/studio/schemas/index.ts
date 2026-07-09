@@ -7,6 +7,9 @@ import { privacyPolicy } from './privacyPolicy';
 import { rentARoom } from './rentARoom';
 import { membershipsPage } from './membershipsPage';
 import { roseCirclePage } from './roseCirclePage';
+import { professionalMakeupPage } from './professionalMakeupPage';
+import { janeIredalePage } from './janeIredalePage';
+import { makeupEventsPage } from './makeupEventsPage';
 import { experienceContent } from './experienceContent';
 import { serviceCollection } from './serviceCollection';
 import { service } from './service';
@@ -41,6 +44,9 @@ export const schemaTypes = [
   rentARoom,
   membershipsPage,
   roseCirclePage,
+  professionalMakeupPage,
+  janeIredalePage,
+  makeupEventsPage,
   experienceContent,
   // Content
   serviceCollection,

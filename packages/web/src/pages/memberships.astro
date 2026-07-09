@@ -32,9 +32,9 @@ interface MembershipsPage {
   advancedFacialsKicker?: string;
   advancedFacialsHeading?: string;
   advancedFacialsBody?: string;
-  collagenBankKicker?: string;
-  collagenBankHeading?: string;
-  collagenBankBody?: string;
+  injectablesKicker?: string;
+  injectablesHeading?: string;
+  injectablesBody?: string;
   finalKicker?: string;
   finalHeading?: string;
   finalBody?: string;
@@ -65,9 +65,9 @@ const MEMBERSHIPS_PAGE_QUERY = `*[_type == "membershipsPage"][0]{
   advancedFacialsKicker,
   advancedFacialsHeading,
   advancedFacialsBody,
-  collagenBankKicker,
-  collagenBankHeading,
-  collagenBankBody,
+  injectablesKicker,
+  injectablesHeading,
+  injectablesBody,
   finalKicker,
   finalHeading,
   finalBody,
@@ -120,13 +120,13 @@ const FALLBACK_ADVANCED_FACIALS: Membership[] = [
   },
 ];
 
-const FALLBACK_COLLAGEN_BANK: Membership[] = [
+const FALLBACK_INJECTABLES: Membership[] = [
   {
-    _id: 'fallback-collagen-bank',
-    title: 'Rose Collagen Bank',
-    slug: 'rose-collagen-bank',
-    whatsIncluded: 'Recurring collagen-supportive maintenance care for clients who have completed a Rose Regeneration Plan.',
-    perks: 'Protects and extends your transformation results at member rates, with cadence set by your provider based on your plan.',
+    _id: 'fallback-injectables',
+    title: 'Injectables Membership',
+    slug: 'injectables-membership',
+    whatsIncluded: 'Member-rate access to our injectable menu — neuromodulators (Botox, Dysport, Daxxify) and dermal fillers — on a recurring membership.',
+    perks: 'Member toxin pricing, discounts on dermal fillers, and Rose Rewards credit on every visit. No consultation required to join; candidacy confirmed with your provider.',
   },
 ];
 
@@ -134,25 +134,25 @@ const rosePassPlans = allMemberships.filter((m) => m.membershipGroup === 'rose-p
 const ivHydrationPlans = allMemberships.filter((m) => m.membershipGroup === 'iv-hydration');
 const basicFacialsPlans = allMemberships.filter((m) => m.membershipGroup === 'basic-facials');
 const advancedFacialsPlans = allMemberships.filter((m) => m.membershipGroup === 'advanced-facials');
-const collagenBankPlans = allMemberships.filter((m) => m.membershipGroup === 'collagen-bank');
+const injectablesPlans = allMemberships.filter((m) => m.membershipGroup === 'injectables');
 
 const rosePass = rosePassPlans.length ? rosePassPlans : FALLBACK_ROSE_PASS;
 const ivHydration = ivHydrationPlans.length ? ivHydrationPlans : FALLBACK_IV_HYDRATION;
 const basicFacials = basicFacialsPlans.length ? basicFacialsPlans : FALLBACK_BASIC_FACIALS;
 const advancedFacials = advancedFacialsPlans.length ? advancedFacialsPlans : FALLBACK_ADVANCED_FACIALS;
-const collagenBank = collagenBankPlans.length ? collagenBankPlans : FALLBACK_COLLAGEN_BANK;
+const injectables = injectablesPlans.length ? injectablesPlans : FALLBACK_INJECTABLES;
 ---
 
 <BaseLayout
   title={data.seoTitle ?? 'Memberships | House of Rose Aesthetics, Punta Gorda FL'}
-  description={data.seoDescription ?? 'Rose Pass wax membership, IV Hydration Membership, and the Rose Collagen Bank — recurring, member-rate care at House of Rose Aesthetics in Punta Gorda, FL. Pricing confirmed at consultation.'}
+  description={data.seoDescription ?? 'Rose Pass wax membership, IV Hydration, Injectables, and Basic & Advanced Facials memberships — recurring, member-rate care at House of Rose Aesthetics in Punta Gorda, FL. Pricing confirmed at consultation.'}
   preloadImage="/images/bg-hydration.webp"
 >
   <div {...(data._id ? sbObjectId(data._id) : {})}>
     <Hero
       title={data.heroTitle ?? 'House of Rose Memberships'}
       kicker={data.heroKicker ?? 'Memberships'}
-      description={data.heroDescription ?? 'Simple, recurring ways to stay connected to House of Rose between visits: the Rose Pass for waxing, IV Hydration Membership for wellness, and the Rose Collagen Bank for protecting your results. No discounts, no gimmicks — structured, member-rate care.'}
+      description={data.heroDescription ?? 'Simple, recurring ways to stay connected to House of Rose between visits — waxing, IV hydration, injectables, and facials, all at member rates and tied together by Rose Rewards. No discounts, no gimmicks — structured, member-rate care.'}
       size="small"
       showCTA={true}
       ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Explore The Rose Circle', href: ROSE_CIRCLE_URL }}
@@ -169,7 +169,7 @@ const collagenBank = collagenBankPlans.length ? collagenBankPlans : FALLBACK_COL
           {data.introHeading ?? 'Simple memberships for the care you already love.'}
         </h2>
         <p class="text-[#7a6e5c] text-[16px] leading-[1.85] max-w-[680px] mx-auto" {...sbFieldPath('introBody')}>
-          {data.introBody ?? 'Each membership is a focused, recurring commitment to one part of your routine — waxing, IV wellness, facials, or collagen maintenance — at member rates, with no discount-club gimmicks. Want something more comprehensive? The Rose Circle builds a full plan around your whole complexion using the Rose Method.'}
+          {data.introBody ?? 'Each membership is a focused, recurring commitment to one part of your routine — waxing, IV wellness, injectables, or facials — at member rates, with no discount-club gimmicks. Want something more comprehensive? The Rose Circle builds a full plan around your whole complexion using the Rose Method.'}
         </p>
       </div>
     </section>
@@ -234,18 +234,18 @@ const collagenBank = collagenBankPlans.length ? collagenBankPlans : FALLBACK_COL
       </div>
     </section>
 
-    <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10" id="collagen-bank">
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10" id="injectables">
       <div class="max-w-[1080px] mx-auto">
         <div class="max-w-[720px] mb-10">
-          <span class="kicker" {...sbFieldPath('collagenBankKicker')}>{data.collagenBankKicker ?? 'Rose Collagen Bank'}</span>
-          <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-4" {...sbFieldPath('collagenBankHeading')}>
-            {data.collagenBankHeading ?? 'Protect the results your Regeneration Plan built.'}
+          <span class="kicker" {...sbFieldPath('injectablesKicker')}>{data.injectablesKicker ?? 'Injectables'}</span>
+          <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-4" {...sbFieldPath('injectablesHeading')}>
+            {data.injectablesHeading ?? 'Member-rate tox and filler on a recurring plan.'}
           </h2>
-          <p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath('collagenBankBody')}>
-            {data.collagenBankBody ?? 'Once you’ve completed a Regeneration Plan (a multi-month treatment plan built with your provider — see The Rose Method), the Rose Collagen Bank is how you maintain it: recurring collagen-supportive care that protects your outcome and extends it over time, at member rates.'}
+          <p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath('injectablesBody')}>
+            {data.injectablesBody ?? 'Member pricing on neuromodulators and dermal fillers, plus Rose Rewards credit on every visit. No consultation required to join — your provider confirms candidacy and dosing at your appointment.'}
           </p>
         </div>
-        <MembershipTiers memberships={collagenBank} bookingHref={BOOKING_URL} ctaText="Ask If You're a Fit" editable={collagenBankPlans.length > 0} />
+        <MembershipTiers memberships={injectables} bookingHref={BOOKING_URL} ctaText="Ask About This Plan" editable={injectablesPlans.length > 0} />
       </div>
     </section>
 

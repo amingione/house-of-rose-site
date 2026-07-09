@@ -37,6 +37,20 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
                 .child(S.document().schemaType('roseCirclePage').documentId('roseCirclePage')),
               S.listItem().title('Memberships Page').id('membershipsPage')
                 .child(S.document().schemaType('membershipsPage').documentId('membershipsPage')),
+              S.listItem()
+                .title('Professional Makeup')
+                .child(
+                  S.list()
+                    .title('Professional Makeup')
+                    .items([
+                      S.listItem().title('Professional Makeup — Landing').id('professionalMakeupPage')
+                        .child(S.document().schemaType('professionalMakeupPage').documentId('professionalMakeupPage')),
+                      S.listItem().title('Jane Iredale — Feature').id('janeIredalePage')
+                        .child(S.document().schemaType('janeIredalePage').documentId('janeIredalePage')),
+                      S.listItem().title('Makeup Events').id('makeupEventsPage')
+                        .child(S.document().schemaType('makeupEventsPage').documentId('makeupEventsPage')),
+                    ])
+                ),
               S.listItem().title('Skin Analysis Page').id('skinAnalysis')
                 .child(S.document().schemaType('skinAnalysis').documentId('skinAnalysis')),
               S.listItem().title('Rent a Room Page').id('rentARoom')

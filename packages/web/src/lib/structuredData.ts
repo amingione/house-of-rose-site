@@ -200,3 +200,33 @@ export function imageObject(input: ImageObjectInput): JsonLd {
     creator: { '@type': 'Organization', name: LOCAL_BUSINESS.name },
   };
 }
+
+export interface BrandInput {
+  /** Brand name, e.g. "jane iredale". */
+  name: string;
+  description?: string;
+  /** Absolute URL of the page featuring the brand. */
+  url?: string;
+  /** Brand's own website, e.g. https://janeiredale.com/ */
+  sameAs?: string;
+  slogan?: string;
+  logo?: string;
+}
+
+/**
+ * Brand node for brand-feature pages (e.g. the Jane Iredale page). Emitted
+ * alongside a BreadcrumbList (+ FAQPage when FAQs exist). Keep claims neutral —
+ * no efficacy or medical assertions belong in structured data either.
+ */
+export function brand(input: BrandInput): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Brand',
+    name: input.name,
+    ...(input.description && { description: input.description }),
+    ...(input.url && { url: input.url }),
+    ...(input.slogan && { slogan: input.slogan }),
+    ...(input.logo && { logo: input.logo }),
+    ...(input.sameAs && { sameAs: [input.sameAs] }),
+  };
+}

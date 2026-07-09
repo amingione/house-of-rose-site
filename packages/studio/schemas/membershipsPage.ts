@@ -23,7 +23,8 @@ export const membershipsPage = defineType({
     { name: 'ivHydration', title: 'IV Hydration Membership' },
     { name: 'basicFacials', title: 'Basic Facials Membership' },
     { name: 'advancedFacials', title: 'Advanced Facials Membership' },
-    { name: 'collagenBank', title: 'Collagen Bank' },
+    { name: 'injectables', title: 'Injectables Membership' },
+    { name: 'collagenBank', title: 'Collagen Bank (retired)' },
     { name: 'finalCta', title: 'Final CTA' },
     { name: 'seo', title: 'SEO' },
   ],
@@ -55,6 +56,10 @@ export const membershipsPage = defineType({
     defineField({ name: 'advancedFacialsKicker', title: 'Kicker', type: 'string', group: 'advancedFacials' }),
     defineField({ name: 'advancedFacialsHeading', title: 'Heading', type: 'text', rows: 2, group: 'advancedFacials' }),
     defineField({ name: 'advancedFacialsBody', title: 'Body', type: 'text', rows: 4, group: 'advancedFacials' }),
+
+    defineField({ name: 'injectablesKicker', title: 'Kicker', type: 'string', group: 'injectables' }),
+    defineField({ name: 'injectablesHeading', title: 'Heading', type: 'text', rows: 2, group: 'injectables' }),
+    defineField({ name: 'injectablesBody', title: 'Body', type: 'text', rows: 4, group: 'injectables' }),
 
     defineField({ name: 'collagenBankKicker', title: 'Kicker', type: 'string', group: 'collagenBank' }),
     defineField({ name: 'collagenBankHeading', title: 'Heading', type: 'text', rows: 2, group: 'collagenBank' }),

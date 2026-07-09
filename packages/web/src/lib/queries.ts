@@ -497,7 +497,7 @@ export type MembershipLane =
   | 'beauty-enhancements'
   | 'house-collective'
   | 'cross-category';
-export type MembershipGroup = 'rose-pass' | 'iv-hydration' | 'basic-facials' | 'advanced-facials' | 'collagen-bank';
+export type MembershipGroup = 'rose-pass' | 'iv-hydration' | 'basic-facials' | 'advanced-facials' | 'injectables' | 'collagen-bank';
 
 export interface Membership {
   _id: string;
@@ -922,5 +922,204 @@ export const HOMEPAGE_QUERY = /* groq */ `
     expKicker, expHeading, expPara1, expPara2,
     localKicker, localHeading, localPara1, localPara2,
     finalHeading, finalPara, finalCtaText, finalAddressLine
+  }
+`;
+
+// ── Professional Makeup (nested singletons) — /services/professional-makeup/* ──
+// See docs/services/PROFESSIONAL-MAKEUP-BUILD-PLAN.md. Provider: Aundrea Pedigo.
+
+export interface LinkRef {
+  _key?: string;
+  label: string;
+  description?: string;
+  href: string;
+}
+
+export interface MakeupServiceType {
+  _key?: string;
+  name: string;
+  blurb?: string;
+  bestFor?: string;
+  priceLabel?: string;
+}
+
+export interface MakeupUseCase {
+  _key?: string;
+  title: string;
+  body?: string;
+}
+
+export interface ProfessionalMakeupPage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  image?: SanityImage;
+  philosophyKicker?: string;
+  philosophyHeading?: string;
+  philosophyBody?: string;
+  servicesKicker?: string;
+  servicesHeading?: string;
+  servicesIntro?: string;
+  services?: MakeupServiceType[];
+  useCasesKicker?: string;
+  useCasesHeading?: string;
+  useCases?: MakeupUseCase[];
+  trialRunHeading?: string;
+  trialRunBody?: string;
+  providerKicker?: string;
+  providerHeading?: string;
+  providerBody?: string;
+  provider?: { title: string; roleCredential?: string };
+  relatedLinks?: LinkRef[];
+  faqs?: FAQ[];
+}
+
+export const PROFESSIONAL_MAKEUP_PAGE_QUERY = /* groq */ `
+  *[_type == "professionalMakeupPage"][0]{
+    _id, seoTitle, seoDescription,
+    heroKicker, heroTitle, heroDescription,
+    ${IMAGE_FIELDS},
+    philosophyKicker, philosophyHeading, philosophyBody,
+    servicesKicker, servicesHeading, servicesIntro,
+    services[]{ _key, name, blurb, bestFor, priceLabel },
+    useCasesKicker, useCasesHeading,
+    useCases[]{ _key, title, body },
+    trialRunHeading, trialRunBody,
+    providerKicker, providerHeading, providerBody,
+    "provider": provider->{ title, roleCredential },
+    relatedLinks[]{ _key, label, description, href },
+    faqs[]{ _key, question, answer }
+  }
+`;
+
+export interface JaneIredalePillar {
+  _key?: string;
+  name: string;
+  body?: string;
+  examples?: string[];
+}
+
+export interface JaneIredaleSwap {
+  _key?: string;
+  category: string;
+  conventional?: string;
+  swap: string;
+  note?: string;
+}
+
+export interface LookStep {
+  _key?: string;
+  step: string;
+  product?: string;
+  shade?: string;
+}
+
+export interface SignatureLook {
+  _key?: string;
+  name: string;
+  summary?: string;
+  steps?: LookStep[];
+}
+
+export interface JaneIredalePage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  image?: SanityImage;
+  introKicker?: string;
+  introHeading?: string;
+  introBody?: string;
+  pillarsHeading?: string;
+  pillars?: JaneIredalePillar[];
+  benefitsHeading?: string;
+  benefits?: string[];
+  whyUsKicker?: string;
+  whyUsHeading?: string;
+  whyUsBody?: string;
+  swapsKicker?: string;
+  swapsHeading?: string;
+  swapsIntro?: string;
+  swaps?: JaneIredaleSwap[];
+  looksKicker?: string;
+  looksHeading?: string;
+  looksIntro?: string;
+  looks?: SignatureLook[];
+  ctaHeading?: string;
+  ctaBody?: string;
+  relatedLinks?: LinkRef[];
+  supplementDisclaimer?: string;
+  faqs?: FAQ[];
+}
+
+export const JANE_IREDALE_PAGE_QUERY = /* groq */ `
+  *[_type == "janeIredalePage"][0]{
+    _id, seoTitle, seoDescription,
+    heroKicker, heroTitle, heroDescription,
+    ${IMAGE_FIELDS},
+    introKicker, introHeading, introBody,
+    pillarsHeading,
+    pillars[]{ _key, name, body, examples },
+    benefitsHeading, benefits,
+    whyUsKicker, whyUsHeading, whyUsBody,
+    swapsKicker, swapsHeading, swapsIntro,
+    swaps[]{ _key, category, conventional, swap, note },
+    looksKicker, looksHeading, looksIntro,
+    looks[]{ _key, name, summary, steps[]{ _key, step, product, shade } },
+    ctaHeading, ctaBody,
+    relatedLinks[]{ _key, label, description, href },
+    supplementDisclaimer,
+    faqs[]{ _key, question, answer }
+  }
+`;
+
+export interface MakeupBookingOption {
+  _key?: string;
+  name: string;
+  summary?: string;
+  includes?: string[];
+  bestFor?: string;
+  priceLabel?: string;
+}
+
+export interface MakeupEventsPage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  image?: SanityImage;
+  introKicker?: string;
+  introHeading?: string;
+  introBody?: string;
+  optionsKicker?: string;
+  optionsHeading?: string;
+  bookingOptions?: MakeupBookingOption[];
+  trialRunHeading?: string;
+  trialRunBody?: string;
+  bookingHeading?: string;
+  bookingBody?: string;
+  relatedLinks?: LinkRef[];
+  faqs?: FAQ[];
+}
+
+export const MAKEUP_EVENTS_PAGE_QUERY = /* groq */ `
+  *[_type == "makeupEventsPage"][0]{
+    _id, seoTitle, seoDescription,
+    heroKicker, heroTitle, heroDescription,
+    ${IMAGE_FIELDS},
+    introKicker, introHeading, introBody,
+    optionsKicker, optionsHeading,
+    bookingOptions[]{ _key, name, summary, includes, bestFor, priceLabel },
+    trialRunHeading, trialRunBody,
+    bookingHeading, bookingBody,
+    relatedLinks[]{ _key, label, description, href },
+    faqs[]{ _key, question, answer }
   }
 `;

@@ -2,7 +2,7 @@
 
 **Prepared for:** House of Rose Aesthetics | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
 **Phone:** (844) 941-7673 (spells ROSE) · **Email:** info@houseofrosefl.com
-**Opening:** June 15, 2026
+**Opening:** July 9, 2026
 **Positioning:** Luxury boutique advanced aesthetics & wellness studio — clinical precision wrapped in genuine hospitality
 
 ---
