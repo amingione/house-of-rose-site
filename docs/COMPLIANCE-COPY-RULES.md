@@ -12,19 +12,26 @@
 ## 1. Why this exists
 
 House of Rose packages its services into **plans, a client affiliation, and recurring
-memberships** — *Regeneration Plans* (the Rose Method™ ladder), *The Rose Circle* (the direct
-client affiliation that unlocks the fully immersive, provider-guided experience — **not** a
-membership), and recurring *memberships* (Rose Pass, IV Hydration Membership, Rose Collagen Bank)
-— rather than à-la-carte facials.
+memberships** — *The Rose Method* (the consult → AI skin analysis → custom treatment-plan process;
+its plans are **not** memberships), *The Rose Circle* (the program/umbrella members belong to when
+they hold a monthly membership — it holds Rose Rewards and member pricing), and recurring
+*memberships* by lane (Advanced Facials, Injectables, IV Hydration, Basic Facials, Rose Pass)
+— rather than à-la-carte facials. _(Rose Collagen Bank & House Collective are retired — do not list
+them as current offerings.)_
 Productizing aesthetics raises the compliance stakes: the more we describe outcomes, sequences, and
 "transformation," the easier it is to drift into language Florida regulators, the FTC, and the
 brand itself prohibit.
 
-House of Rose is a **private, appointment-only aesthetics & wellness studio in Punta Gorda, FL**.
-It is **not** a "med spa," and copy must never imply it diagnoses, treats, or cures any medical
-condition. Advanced/clinical treatments are delivered under the appropriate licensed provider and
+House of Rose leads publicly as a **private, appointment-only advanced aesthetics & wellness studio
+in Punta Gorda, FL**. **"Med spa" / "medical spa" positioning is now ON — "allow, don't lead":** the
+GBP primary category is `Medical spa`, and the term is permitted in meta, SEO, and supporting copy
+where it aids discovery; **we never deny being a med spa.** Just don't make it the lead brand
+descriptor (lead with "advanced aesthetics & wellness studio"), and still avoid "day spa" (undersells).
+Regardless of label, copy must **never imply House of Rose diagnoses, treats, or cures any medical
+condition.** Advanced/clinical treatments are delivered under the appropriate licensed provider and
 medical-director oversight — that authority lives with the *provider*, never with the marketing
-copy. When in doubt, defer to the provider and say less.
+copy. When in doubt, defer to the provider and say less. _(This reverses the earlier "never say med
+spa" rule; the medical-claims guardrails below are unchanged.)_
 
 These rules are conservative by design. If a phrase is borderline, **don't use it.**
 
@@ -36,7 +43,8 @@ Each row is a hard avoid. The "Say instead" column is the approved, compliance-s
 
 | ❌ Never say | Why it's a problem | ✅ Say instead |
 | --- | --- | --- |
-| "med spa," "medspa," "medical spa," "clinic" (describing House of Rose) | FL med-spa regulation + brand positioning; implies a medical practice we don't hold out as | "advanced aesthetics & wellness studio," "private studio," "by appointment" |
+| "day spa" (describing House of Rose) | Undersells; implies non-medical relaxation spa | "advanced aesthetics & wellness studio," "private studio," "by appointment" |
+| _"med spa" / "medical spa"_ — **allowed, don't lead** | Permitted in meta/GBP/SEO and supporting copy; the GBP category is `Medical spa`. Just don't make it the lead brand descriptor, and never deny being one. | Lead with "advanced aesthetics & wellness studio"; use "med spa" where it aids discovery |
 | "reverse aging," "anti-aging," "turn back the clock," "age-defying" | Implies a result skin biology can't deliver; unprovable claim | "supports skin longevity," "helps reveal healthier-looking skin," "age-*affirming* / regenerative care" |
 | "guaranteed," "guaranteed results," "permanent," "will eliminate / erase / cure" | Outcome guarantee; individual results vary and are never assured | "designed to," "supports," "helps," "many clients notice," "intended to" |
 | "stem cell" / "stem-cell therapy" (as a treatment we provide or a claim) | Unapproved/overstated regenerative claim; regulatory minefield | Name the actual service (e.g. "PRF," "ProCell microchanneling") and describe it factually |
@@ -47,8 +55,8 @@ Each row is a hard avoid. The "Say instead" column is the approved, compliance-s
 | Uniform before/after promises ("you will look like…") | Implies a guaranteed, universal outcome | "individual results vary," show consented, honest case studies only |
 
 > The avoid-list mirrors LWB-11's brief: reverse-aging, guaranteed results, stem-cell claims,
-> cure/treat-disease language, Groupon-style discounting, and unsupported exosome/peptide claims —
-> and never calling House of Rose a "med spa."
+> cure/treat-disease language, Groupon-style discounting, and unsupported exosome/peptide claims.
+> _(Note: "med spa" is no longer on the avoid-list — it's allowed, just not the lead descriptor.)_
 
 ---
 
@@ -93,7 +101,7 @@ Brand voice in one line: *confident, not loud; specific over superlative; sensor
 
 Before publishing or editing any customer-facing copy, confirm:
 
-- [ ] House of Rose is never called a "med spa" / "medical spa" / "clinic."
+- [ ] "Med spa" is used as support, not the lead descriptor (lead = "advanced aesthetics & wellness studio"); no "day spa"; never deny being a med spa.
 - [ ] No guarantees, no "permanent," no "reverse aging" / "anti-aging."
 - [ ] No "treats / cures / heals" + a medical condition.
 - [ ] No stem-cell / unsupported exosome / unsupported peptide efficacy claims.

@@ -312,7 +312,7 @@ Every service description on the menu, website, and in-suite collateral should f
 
 ---
 
-## 8. Phasing Recommendation for June 15, 2026 Opening
+## 8. Phasing Recommendation for July 9, 2026 Opening
 
 **At launch (Day 1):** Injectables & Bio-Fillers, PRF — all forms (the flagship), Signature & Refined Facial, Glo2Facial with RF by Geneo, BioRePeel (Camellia) + chemical peels, Microneedling & Microchanneling (ProCell), Dermaplaning, LightStim LED (add-on), Lash Lift & Tint, Brow services, Facial & Body Waxing, Permanent Jewelry, IV Hydration menu (Reset, Myers, Immunity, Glow, Recovery, Detox, NAD+).
 

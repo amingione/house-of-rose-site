@@ -12,18 +12,18 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
 - **Email:** info@houseofrosefl.com — _`book@…` was never a real address; do not use it anywhere_
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed
-- **Web/social:** https://houseofrosefl.com · IG `houseofrosefl` · FB `House-Of-Rose-Aesthetics` · opened June 15, 2026
-- **GBP primary category:** `Medical spa` (backend ranking field only). **In customer-facing prose always "advanced aesthetics & wellness studio" — never "med spa / medical spa / day spa".**
+- **Web/social:** https://houseofrosefl.com · IG `houseofrosefl` · FB `House-Of-Rose-Aesthetics` · opening July 9, 2026
+- **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** lead in prose with "advanced aesthetics & wellness," but "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). _(This reverses the earlier "never say med spa" rule.)_
 - **GBP CTA:** call/text (no online-booking button).
 
 ## Providers & Team (memory — never re-ask)
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, ProCell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
-- **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **facial waxing is NOT hers** (waxing = Rose Pass).
-- **Brooke = Aundrea Pedigo** — _same person_ (also uses "Morrison"). Lane: **The Rose Pass** (waxing) + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
+- **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing only outisde of the wax pass** (waxing = Rose Pass).
+- **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **The Rose Pass** (waxing) + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
 
 ## Membership model (SETTLED — The Rose Circle)
-- **The Rose Circle** is the **program/umbrella itself** (owned by House of Rose) — NOT a membership. It holds the memberships, **Rose Rewards** (cash-back credit), and member pricing.
+- **The Rose Circle** is the **program/umbrella itself** (owned by House of Rose) — NOT a membership. It holds the memberships, **Rose Rewards** (cash-back credited towards the member's account to be used towards products or services), and member pricing.
 - **Rose Rewards:** 1% of purchases (excl. membership fees) → account credit. **Bundle 2+ memberships → 5×.**
 - **Memberships (single per lane, by provider):** Advanced Facials (Amber $149) · Injectables (Diana $99) · IV Hydration (Diana $109 standalone) · Basic Facials (Brandy $99) · Rose Pass (Aundrea $25/$59/$99 wax tiers). No consultation to join; consultation not included.
 - **The Rose Method** = the consult → AI skin analysis → custom treatment-plan process. Its plans are **NOT memberships** (evolving, time-boxed, end goal). Plan rewards: **2% cash back on treatment cost, 3% if paid in full upfront, 5% off designated aftercare only**; accrues as they pay.

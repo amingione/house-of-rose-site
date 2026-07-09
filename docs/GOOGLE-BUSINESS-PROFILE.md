@@ -5,16 +5,17 @@
 ```
 ---
 **House of Rose Aesthetics · Punta Gorda, FL**
-_Status: **LIVE** — opened June 15, 2026. Primary category: **Medical spa**. This is the optimization source of truth._
+_Status: **LIVE** — opening July 9, 2026. Primary category: **Medical spa**. This is the optimization source of truth._
 _Last revised: 2026-06-27 · Source of truth for NAP: Sanity `siteSettings` (project 4e7axyi7)._
 
-> **Brand law.** In customer-facing **prose** (description, posts, review replies, Q&A) we lead as an
+> **Brand law.** In customer-facing **prose** (description, posts, review replies, Q&A) we **lead** as an
 > **advanced aesthetics & wellness studio** — voice confident, not loud; specific over superlative; honest;
 > pricing reads **"From $X"**; no guarantees ("designed to," "supports," "many clients see"). The GBP
 > **category** field is a separate, Google-controlled ranking taxonomy: **"Medical spa" is the primary
 > category** — chosen deliberately for reach, fully defensible because House of Rose operates licensed, with a
-> medical director and Guardian-managed compliance. Category label ≠ brand voice. Both are correct in their
-> place — **never write "med spa / medical spa / day spa" in prose.**
+> medical director and Guardian-managed compliance. **Med-spa positioning is now ON — "allow, don't lead":**
+> "med spa / medical spa" is permitted in prose, posts, and Q&A where it aids discovery, and **we never deny
+> being a med spa** — just don't make it the lead descriptor. Only **"day spa"** stays off-limits (undersells).
 
 ---
 
@@ -90,7 +91,7 @@ right.
 | **Website** | `https://houseofrosefl.com/` |
 | **Facebook** | `facebook.com/people/House-Of-Rose-Aesthetics/` ✅ |
 | **Hours** | Mon–Fri `9:00 AM–5:00 PM` · Sat & Sun `Closed` ✅ |
-| **Opening date** | `June 15, 2026` ✅ |
+| **Opening date** | `July 9, 2026` ✅ |
 | **Appointment link** | Booking button off — CTA is **call/text**. Add a menu link (below). |
 
 **Name policy — do not break this:** Google forbids descriptors/keywords in the name. Keep it **exactly**
