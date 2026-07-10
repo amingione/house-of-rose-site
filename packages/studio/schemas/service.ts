@@ -161,12 +161,6 @@ export const service = defineType({
       },
     }),
     defineField({
-      name: 'signatureName',
-      title: 'Signature Name',
-      type: 'string',
-      description: 'Branded name for the service, if different from the title.',
-    }),
-    defineField({
       name: 'provider',
       title: 'Provider',
       type: 'reference',

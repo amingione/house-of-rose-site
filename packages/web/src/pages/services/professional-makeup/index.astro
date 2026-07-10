@@ -1,0 +1,300 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/Hero.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import {
+  PROFESSIONAL_MAKEUP_PAGE_QUERY,
+  type ProfessionalMakeupPage,
+  type MakeupServiceType,
+  type MakeupUseCase,
+  type LinkRef,
+  type FAQ,
+} from '@/lib/queries';
+import { jsonLd, service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structuredData';
+
+const PHONE_DISPLAY = '(844) 941-7673';
+const PHONE_TEL = 'tel:+18449417673';
+const SMS_HREF = 'sms:+18449417673';
+const BOOKING_URL = 'https://houseofrose.glossgenius.com/services';
+
+const data =
+  (await sanityFetch<ProfessionalMakeupPage | null>(PROFESSIONAL_MAKEUP_PAGE_QUERY)) ??
+  ({} as ProfessionalMakeupPage);
+
+// ── Fallbacks (render even before the Sanity singleton is populated) ──────────
+const FALLBACK_SERVICES: MakeupServiceType[] = [
+  {
+    name: 'Event Makeup',
+    blurb:
+      'A polished, camera-ready application for the moments that matter. We build the look around your features and your outfit, using professional Jane Iredale mineral makeup so your skin still looks like skin.',
+    bestFor: 'Prom, weddings, engagement and family photography, any special outing.',
+    priceLabel: 'From $150',
+  },
+  {
+    name: 'General & Lesson Application',
+    blurb:
+      'A day-to-day application, or a one-on-one session where we teach you how to recreate your look at home and which products suit your skin.',
+    bestFor: 'A confidence refresh, learning your everyday routine, gifting a session.',
+    priceLabel: 'Application from $85 · Private lesson from $175',
+  },
+];
+
+const FALLBACK_USECASES: MakeupUseCase[] = [
+  {
+    title: 'Event-grade wear',
+    body:
+      'For weddings, prom, and photography, we prioritize longevity and a finish that photographs cleanly — a mineral base means no harsh flashback under a camera flash and comfortable wear from morning to last dance.',
+  },
+  {
+    title: 'Everyday, skin-first',
+    body:
+      'The same skin-loving mineral makeup we use for events is what we recommend for daily wear — breathable, buildable, and chosen to complement your complexion rather than mask it.',
+  },
+];
+
+const FALLBACK_LINKS: LinkRef[] = [
+  {
+    label: 'Jane Iredale — The Skincare Makeup',
+    description: 'Why we use it, the benefits, and how to swap it into your routine.',
+    href: '/services/professional-makeup/jane-iredale/',
+  },
+  {
+    label: 'Group & Event Bookings',
+    description: 'Weddings and parties — block times, private spa rental, or we travel to you.',
+    href: '/services/professional-makeup/events/',
+  },
+];
+
+const FALLBACK_FAQS: FAQ[] = [
+  {
+    question: 'Is a trial run included with event makeup?',
+    answer:
+      'A trial run is booked as a separate session at the same price as your event application. It is not included, but it is strongly recommended for weddings and photography so we can coordinate colors, color-match and swatch-test foundation, and perfect the look before the day itself.',
+  },
+  {
+    question: 'What makeup do you use?',
+    answer:
+      'We apply professional Jane Iredale mineral makeup — a breathable, non-comedogenic, skin-loving line that photographs beautifully and is comfortable to wear through a full event.',
+  },
+  {
+    question: 'Can I have makeup applied after a facial or skin treatment?',
+    answer:
+      'In many cases, yes. Jane Iredale mineral makeup is non-comedogenic and is often chosen for post-treatment wear, but timing depends on the treatment and your provider’s guidance — we confirm suitability with you first.',
+  },
+  {
+    question: 'Where are you located?',
+    answer:
+      'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. For makeup bookings, call or text (844) 941-7673.',
+  },
+];
+
+const services = data.services?.length ? data.services : FALLBACK_SERVICES;
+const usingFallbackServices = !data.services?.length;
+const useCases = data.useCases?.length ? data.useCases : FALLBACK_USECASES;
+const usingFallbackUseCases = !data.useCases?.length;
+const relatedLinks = data.relatedLinks?.length ? data.relatedLinks : FALLBACK_LINKS;
+const usingFallbackLinks = !data.relatedLinks?.length;
+const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
+
+const providerName = data.provider?.title ?? 'Aundrea Pedigo';
+const providerCredential = data.provider?.roleCredential ?? 'Professional Makeup Artist';
+
+// ── SEO + JSON-LD ────────────────────────────────────────────────────────────
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const heroImg = data.image?.asset?.url;
+
+const pageTitle =
+  data.seoTitle ?? 'Professional Makeup in Punta Gorda, FL | House of Rose Aesthetics';
+const pageDescription =
+  data.seoDescription ??
+  'Professional makeup at House of Rose Aesthetics in Punta Gorda, FL — event, wedding, prom, and photography looks applied with skin-first Jane Iredale mineral makeup by Aundrea Pedigo.';
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: `${site}services/` },
+  { name: 'Professional Makeup', item: canonical },
+]);
+
+const serviceLd = serviceSchema(
+  {
+    name: 'Professional Makeup',
+    description:
+      'Event, wedding, prom, and photography makeup applied with Jane Iredale mineral makeup at House of Rose Aesthetics.',
+    url: canonical,
+    image: heroImg,
+    serviceType: 'Makeup application',
+  },
+  site,
+);
+const faqLd = faqPage(faqs);
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={heroImg}
+>
+  <script is:inline type="application/ld+json" set:html={jsonLd(serviceLd)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  {faqLd && <script is:inline type="application/ld+json" set:html={jsonLd(faqLd)} slot="head" />}
+
+  <div {...(data._id ? sbObjectId(data._id) : {})}>
+    <Hero
+      title={data.heroTitle ?? 'Professional Makeup'}
+      kicker={data.heroKicker ?? 'House of Rose Aesthetics'}
+      description={data.heroDescription ??
+        'Camera-ready makeup for weddings, prom, photography, and every occasion in between — applied with skin-first Jane Iredale mineral makeup, in-studio in Punta Gorda or on location for your event.'}
+      size="small"
+      showCTA={true}
+      ctaPrimary={{ text: 'Call or Text to Book', href: PHONE_TEL }}
+      backgroundImage={heroImg ?? '/images/hor-lounge.jpg'}
+      titleField="heroTitle"
+      kickerField="heroKicker"
+      descriptionField="heroDescription"
+    />
+
+    <!-- Skin-First Philosophy -->
+    <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
+      <div class="max-w-[860px] mx-auto text-center">
+        <span class="kicker" {...sbFieldPath('philosophyKicker')}>{data.philosophyKicker ?? 'Our Philosophy'}</span>
+        <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath('philosophyHeading')}>
+          {data.philosophyHeading ?? 'Makeup that starts with healthy skin.'}
+        </h2>
+        <p class="text-[#9a8c78] text-[16px] leading-[1.85] max-w-[720px] mx-auto whitespace-pre-line" {...sbFieldPath('philosophyBody')}>
+          {data.philosophyBody ??
+            'Beautiful makeup begins long before the first brush touches the skin. We believe the best results come from enhancing — not hiding — your natural features. Using professional Jane Iredale mineral makeup, we create breathable, skin-loving looks that feel lightweight, photograph beautifully, and wear comfortably all day. Whether you are preparing for a special event, professional photos, or simply want to feel your best, our goal is for you to look like the most confident version of yourself — fresh, refined, and unmistakably you.'}
+        </p>
+      </div>
+    </section>
+
+    <!-- What We Offer -->
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6 border-t border-gold/10">
+      <div class="max-w-[1180px] mx-auto">
+        <div class="max-w-[760px] mb-12">
+          <span class="kicker" {...sbFieldPath('servicesKicker')}>{data.servicesKicker ?? 'What We Offer'}</span>
+          <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-4" {...sbFieldPath('servicesHeading')}>
+            {data.servicesHeading ?? 'Makeup for the moments that matter.'}
+          </h2>
+          <p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath('servicesIntro')}>
+            {data.servicesIntro ??
+              'Every application is provided by our makeup artist and tailored to you — your features, your coloring, and the look you are after.'}
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/15">
+          {services.map((s, i) => (
+            <article class="flex flex-col bg-breath p-8">
+              <h3 class="font-serif text-[24px] text-ink leading-tight mb-3" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'name'))}>{s.name}</h3>
+              {s.blurb && (
+                <p class="text-ink/75 text-[14px] leading-[1.7] mb-4" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'blurb'))}>{s.blurb}</p>
+              )}
+              {s.bestFor && (
+                <p class="text-[#9a8c78] text-[12px] tracking-[0.06em] mb-2" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'bestFor'))}><span class="text-gold">Best for:</span> {s.bestFor}</p>
+              )}
+              {s.priceLabel && (
+                <p class="text-gold text-[13px] mt-auto pt-3" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'priceLabel'))}>{s.priceLabel}</p>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Event vs. Everyday -->
+    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10">
+      <div class="max-w-[1080px] mx-auto">
+        <div class="max-w-[720px] mb-10">
+          <span class="kicker" {...sbFieldPath('useCasesKicker')}>{data.useCasesKicker ?? 'Event & Everyday'}</span>
+          <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2" {...sbFieldPath('useCasesHeading')}>
+            {data.useCasesHeading ?? 'Chosen by artists for events. Loved for every day.'}
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {useCases.map((u, i) => (
+            <div class="border-l-2 border-gold/30 pl-6">
+              <h3 class="font-serif text-[20px] text-ink mb-2" {...(usingFallbackUseCases ? {} : sbFieldPathParts('useCases', i, 'title'))}>{u.title}</h3>
+              {u.body && <p class="text-[#9a8c78] text-[14px] leading-[1.8]" {...(usingFallbackUseCases ? {} : sbFieldPathParts('useCases', i, 'body'))}>{u.body}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Trial Run -->
+    <section class="bg-walnut py-[clamp(44px,6vw,80px)] px-6 border-t border-gold/10">
+      <div class="max-w-[820px] mx-auto text-center">
+        <span class="kicker">Highly Recommended</span>
+        <h2 class="font-serif text-[clamp(22px,3.4vw,34px)] text-ivory mt-2 mb-4" {...sbFieldPath('trialRunHeading')}>
+          {data.trialRunHeading ?? 'Book a trial run before your event.'}
+        </h2>
+        <p class="text-ivory/75 text-[15px] leading-[1.85] max-w-[640px] mx-auto" {...sbFieldPath('trialRunBody')}>
+          {data.trialRunBody ??
+            'A trial run is booked as a separate session at the same price as your event application — it is not included, but for weddings and photography we strongly recommend it. Together we coordinate your colors (eye, lip, cheek), color-match and swatch-test your foundation options, and perfect the exact look you want, so the day itself is effortless.'}
+        </p>
+      </div>
+    </section>
+
+    <!-- Provider -->
+    <section class="bg-charcoal-light py-[clamp(44px,6vw,80px)] px-6 border-t border-gold/10">
+      <div class="max-w-[820px] mx-auto text-center">
+        <span class="kicker" {...sbFieldPath('providerKicker')}>{data.providerKicker ?? 'Your Artist'}</span>
+        <h2 class="font-serif text-[clamp(22px,3.4vw,32px)] text-ink mt-2 mb-4" {...sbFieldPath('providerHeading')}>
+          {data.providerHeading ?? `Makeup by ${providerName}`}
+        </h2>
+        <p class="text-[#9a8c78] text-[15px] leading-[1.85] max-w-[600px] mx-auto" {...sbFieldPath('providerBody')}>
+          {data.providerBody ??
+            `Professional makeup at House of Rose is led by ${providerName}, ${providerCredential.toLowerCase()}, specializing in skin-first, event-ready application.`}
+        </p>
+      </div>
+    </section>
+
+    <!-- Explore More (funnel) -->
+    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10">
+      <div class="max-w-[1080px] mx-auto">
+        <h2 class="font-serif text-[clamp(22px,3.4vw,32px)] text-ink mb-8 text-center">Explore More</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/15">
+          {relatedLinks.map((l, i) => (
+            <a href={l.href} class="group flex flex-col bg-breath p-8 transition-colors hover:bg-charcoal-light">
+              <h3 class="font-serif text-[20px] text-ink mb-2" {...(usingFallbackLinks ? {} : sbFieldPathParts('relatedLinks', i, 'label'))}>{l.label}</h3>
+              {l.description && <p class="text-[#9a8c78] text-[14px] leading-[1.7] mb-4" {...(usingFallbackLinks ? {} : sbFieldPathParts('relatedLinks', i, 'description'))}>{l.description}</p>}
+              <span class="learn-more mt-auto">Learn more →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    {faqs.length > 0 && (
+      <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10">
+        <div class="max-w-[820px] mx-auto">
+          <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mb-8 text-center">Common Questions</h2>
+          <div class="space-y-6">
+            {faqs.map((f, i) => (
+              <div class="border-b border-ink/10 pb-6">
+                <h3 class="font-serif text-[18px] text-ink mb-2" {...(data.faqs?.length ? sbFieldPathParts('faqs', i, 'question') : {})}>{f.question}</h3>
+                <p class="text-[#9a8c78] text-[14px] leading-[1.8]" {...(data.faqs?.length ? sbFieldPathParts('faqs', i, 'answer') : {})}>{f.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Booking CTA -->
+    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/15">
+      <div class="max-w-[640px] mx-auto text-center">
+        <h2 class="font-serif text-[clamp(24px,4.2vw,40px)] text-ink leading-tight mb-4">Ready to book your look?</h2>
+        <p class="text-[#9a8c78] text-[15px] max-w-[500px] mx-auto mb-8 leading-[1.8]">
+          Call or text us to schedule your makeup application or event booking. We’ll confirm timing, coordinate your look, and answer any questions.
+        </p>
+        <div class="flex gap-3 justify-center flex-wrap">
+          <a href={PHONE_TEL} class="btn-gold">{PHONE_DISPLAY}</a>
+          <a href={SMS_HREF} class="btn-outline-gold">Text Us</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-outline-gold">Book Online</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

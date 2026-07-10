@@ -1,8 +1,9 @@
 # House of Rose — Charlotte County Competitive Landscape & Service/Pricing Strategy
 
-**Prepared for:** House of Rose | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33982
-**Opening:** June 1, 2026
-**Positioning:** Luxury boutique medical spa — clinical precision wrapped in genuine hospitality
+**Prepared for:** House of Rose Aesthetics | 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
+**Phone:** (844) 941-7673 (spells ROSE) · **Email:** info@houseofrosefl.com
+**Opening:** July 9, 2026
+**Positioning:** Luxury boutique advanced aesthetics & wellness studio — clinical precision wrapped in genuine hospitality
 
 ---
 
@@ -10,7 +11,7 @@
 
 Charlotte County's aesthetic market is bifurcated. On one end sits a small group of legacy operators (C's Medi Spa, Spago Day Spa) anchored in value-tier and dated medi-classic positioning. On the other end sits Skin Sanctuary — the county's only true premium aesthetician-led skin studio and the dominant "Best of Charlotte" winner since 2013. In the middle, a cluster of APRN- and PA-owned injection practices (Sweet Spot MediSpa, Sure Radiance, Florida Lakes Spa, Skin Secrets by Dr. McLaren, FIBB, Nuview Medspa) compete largely on price-per-unit, technical credentialing, and convenience.
 
-What is missing is a single destination that delivers (a) physician/APRN-grade injectables and weight-management protocols, (b) advanced corrective skin care including ProCell Microchanneling and Face Reality Acne Boot Camp, (c) IV hydration and wellness, and (d) lifestyle services like permanent jewelry and lash artistry — all under one elevated, intentional roof. House of Rose fills that gap. The closest premium competitor, Skin Sanctuary, does facials and BioRePeel beautifully but does not offer injectables, IV therapy, GLP-1, ProCell, Face Reality Boot Camp, or permanent jewelry. Sweet Spot offers injectables and GLP-1 but operates in a clinical medical-office aesthetic rather than hospitality-driven luxury.
+What is missing is a single destination that delivers (a) physician/APRN-grade injectables, PRF regenerative treatments, and natural bio-fillers, (b) weight-management protocols, (c) advanced corrective skin care including the Glo2Facial with RF by Geneo, ProCell Microchanneling, and the Face Reality Clarity Program, (d) IV hydration and wellness, and (e) lifestyle services like permanent jewelry and natural-lash artistry — all under one elevated, intentional roof. House of Rose fills that gap. The closest premium competitor, Skin Sanctuary, does facials and BioRePeel beautifully but does not offer injectables, PRF, IV therapy, GLP-1, ProCell, the Face Reality Clarity Program, or permanent jewelry. Sweet Spot offers injectables and GLP-1 but operates in a clinical medical-office aesthetic rather than hospitality-driven luxury.
 
 House of Rose's pricing should sit at the upper edge of the Charlotte County range and align with Naples / Fort Myers premium tier — high enough to signal quality without being aspirationally out of reach for the affluent retiree, second-home, and professional client base in 33950, 33980, 33982, and 33983.
 
@@ -41,11 +42,11 @@ House of Rose's pricing should sit at the upper edge of the Charlotte County ran
 The following are services and brand experiences **not currently delivered well** by any single Charlotte County competitor — and where House of Rose can establish category ownership:
 
 1. **A unified luxury spa offering injectables + advanced esthetics + IV + GLP-1 under one roof.** Today, clients drive between Skin Sanctuary (skin), Sweet Spot (injectables), and a separate provider for IV or weight loss. House of Rose is the first to consolidate.
-2. **ProCell Microchanneling.** Skin Sanctuary offers Nano Channeling (RevitaPen) and traditional microneedling — but no Charlotte County competitor offers ProCell's bone-marrow-derived stem cytokine protocol specifically.
-3. **Face Reality Acne Boot Camp.** No Charlotte County med spa currently markets a structured, certified 12-week clinical acne program. The closest options are dermatology referrals.
+2. **PRF regenerative treatments, natural bio-fillers & ProCell Microchanneling.** No Charlotte County competitor offers CARE-certified PRF in every form (microneedling, under-eye, EZ Gel bio-filler, hair restoration, body), a 100% natural filler alternative, or ProCell's bone-marrow-derived stem cytokine protocol. Skin Sanctuary offers Nano Channeling (RevitaPen) and traditional microneedling only. This regenerative stack — PRF above all — is House of Rose's single strongest point of category ownership.
+3. **Face Reality Clarity Program (certified 12-week acne).** No Charlotte County med spa currently markets a structured, certified 12-week clinical acne program. The closest options are dermatology referrals.
 4. **A curated IV Hydration menu with NAD+, glutathione, and recovery drips.** Sweet Spot offers IV add-ons in the weight-loss context only; Nuview offers IV vitamins; no one offers a true designed IV bar experience.
 5. **Permanent Jewelry as a luxury complement to a med spa visit.** No Charlotte County med spa offers this. Most permanent jewelry in SW Florida is sold at boutique retail (Naples, Fort Myers, Destin).
-6. **Lash extensions integrated with medical aesthetics.** Skin Sanctuary offers lash lift/tint only. No premium med spa in Charlotte County offers a full classic-through-mega-volume lash extension menu.
+6. **Natural-lash artistry, brow design & event makeup alongside medical aesthetics.** House of Rose keeps lash lift & tint, brow lamination, and professional event makeup in-house as high-margin, low-chair-time beauty layers that pair with pre-event Dermaplaning and Glo2Facial. (Full lash extensions are intentionally *not* offered — they compete for chair time against higher-value regenerative and injectable bookings.)
 7. **GLP-1 weight management delivered with concierge-level monitoring** rather than transactional refill bookings.
 8. **A modern, calm-luxury physical environment.** The county's premium operator (Skin Sanctuary) shares a building with multiple suite-style providers; Sweet Spot is a clinical office; C's and Spago feel dated. House of Rose's standalone unit can deliver a true destination feel.
 
@@ -70,6 +71,7 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 | **Cheek & Mid-Face Filler — Juvederm Voluma / Restylane Lyft** | **$895 / syringe** | 60 min | Mid-face structural support to restore lift and balance. Most clients begin with two syringes; a phased plan is typical. |
 | **Jawline & Chin Sculpting** | **$895 / syringe** | 60 min | Definition along the lower face for clients addressing volume loss or structural balance. Number of syringes determined at consultation. |
 | **Tear Trough Correction** | **$895 / syringe** | 45 min | Hyaluronic acid placed under the eye to address hollowing. A precise treatment reserved for appropriate candidates. |
+| **EZ Gel Bio-Filler (Alb-PRF) — Natural Volume** | **from $699** | 75 min | A 100% natural filler alternative built from your own plasma — gently heated and combined with liquid PRF to restore volume in the cheeks, nasolabial folds, and lips with zero synthetic ingredients. The signature choice for clients avoiding synthetic HA or resetting after filler fatigue. *(See Section B — PRF.)* |
 | *Add-on: Pre-treatment nitrous (ProNox)* | **+$65** | — | Optional comfort support during injections. |
 | *Add-on: Post-treatment LED Phototherapy* | **+$45** | 20 min | Red light to calm and accelerate recovery. |
 
@@ -77,7 +79,23 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 
 ---
 
-### B. The Medical Weight Management Program (GLP-1)
+### B. PRF — Platelet-Rich Fibrin (Regenerative)
+
+House of Rose is **CARE-certified in the PRF protocol** and offers it in *every form it is used* — one biology, five delivery methods. Platelet-Rich Fibrin is the next generation beyond PRP: a concentrated, 100% natural matrix of platelets, fibrin, and growth factors drawn from the client's own blood, spun slowly with no additives for a longer, sustained release. **No Charlotte County competitor offers a full PRF-in-every-form menu** — this is a category House of Rose owns outright.
+
+| Service | Price | Duration | Description |
+|---|---|---|---|
+| **PRF Microneedling — The Gilded Lily** | **from $650** | 90 min | Our signature "liquid-gold" regenerative facial: PRF massaged into the skin through microchannels to drive texture, tone, and tightening from the client's own growth factors. |
+| **PRF Injections — Under-Eye & Skin** | **from $599** | 60 min | PRF placed via cannula to renew the under-eye area and remodel skin — natural regeneration where synthetic filler is not the right tool. |
+| **EZ Gel Bio-Filler — Natural Volume** | **from $699** | 75 min | Thermally engineered PRF (Alb-PRF) formed into a natural bio-filler for the cheeks, nasolabial folds, and lips. The structure of filler with the regenerative benefit of PRF — zero synthetic ingredients. |
+| **PRF Hair Restoration** | **from $799** | 60 min | Scalp injections that wake dormant follicles to support density and thickness — naturally, from the client's own biology. |
+| **PRF Body Treatments** | **from $650 / area** | 90 min | Regeneration beyond the face — scars, stretch marks, and crepey skin, often paired with microneedling or BioRePeel. |
+
+**Bench note:** PRP/PRF in SW Florida runs $600–$1,000+ per session by form and add-on layering. House of Rose's PRF menu is priced at the regenerative-premium tier and, critically, is **uncontested locally** — Skin Sanctuary, Sweet Spot, and the injection practices do not market a certified, multi-form PRF protocol. This is the strongest single point of category ownership in the entire menu.
+
+---
+
+### C. The Medical Weight Management Program (GLP-1)
 
 | Service | Price | Duration | Description |
 |---|---|---|---|
@@ -93,7 +111,7 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 
 ---
 
-### C. IV Hydration & Wellness Infusions
+### D. IV Hydration & Wellness Infusions
 
 | Drip | Price | Duration | Description |
 |---|---|---|---|
@@ -116,16 +134,21 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 
 ---
 
-### D. Advanced Corrective Skin
+### E. Advanced Corrective Skin
 
 | Service | Price | Duration | Description |
 |---|---|---|---|
 | **The Signature Facial** | **$165** | 60 min | A bespoke facial built around your skin assessment that day — cleanse, exfoliation (enzyme or dermaplane at provider discretion), extractions, treatment mask, and customized serum infusion. The ideal first visit. |
 | **The Refined Facial** | **$215** | 75 min | A deeper version of the Signature, with extended massage protocol, an additional exfoliation pass, and a results-focused mask layered with LED phototherapy. |
-| **HydraFacial — Signature** | **$245** | 60 min | Deep cleanse, exfoliation, extraction, and infusion of professional serums via patented vortex technology. No downtime. |
-| **HydraFacial — Platinum (with Lymphatic + LED + Booster)** | **$345** | 90 min | The full HydraFacial protocol enhanced with lymphatic drainage, red light phototherapy, and a targeted booster (Britenol, Dermabuilder, or Growth Factor). |
-| **BioRePeel CL3** | **$195 / single** | 45 min | A biphasic TCA peel that delivers active ingredients to the dermis without surface peeling or downtime. Most clients see a glow after a single session. |
-| **BioRePeel — Series of 4** | **$695** (saves $85) | — | The clinical series for cumulative collagen response, pigmentation, and texture. |
+| **Glo2Facial with RF by Geneo — The Lumière** | **$225** | 60 min | Patented Geneo oxygenation from within (OxyPod activation), lite exfoliation, ultrasound infusion of active nutrients, TriPollar RF firming, and a relaxing lymphatic massage. Skin leaves plumped, luminous, and event-ready — no downtime, no irritation. *(House of Rose does not offer HydraFacial; this Geneo Glo2Facial with RF is our oxygenation + resurfacing flagship, delivered on our own device.)* |
+| **Glo2Facial Elevated — The Lumière (RF + LED + Booster)** | **$345** | 90 min | The full Glo2Facial protocol with extended TriPollar RF tightening, LightStim LED phototherapy, and a targeted OxyPod booster. The results-day flagship. |
+| **Dermaplaning — The Porcelain Petal** | **from $135** | 50 min | Manual resurfacing that lifts dead surface cells and vellus hair for an instant glass-skin finish — the week-of choice before weddings, photos, and events. Offered standalone or as an add-on to any treatment. |
+| **Dermaplaning — Package of 4** | **$340** | — | The maintenance set for a consistently smooth, camera-ready finish. |
+| **BioRePeel (Camellia Peel) — Single** | **from $295** | 45 min | An Italian-developed two-phase TCA peel that stimulates deep renewal without visible peeling or downtime — the "no-peel peel." The ideal reset between regenerative treatments or before an event. |
+| **BioRePeel — Camellia Peel Series of 4** | **$1,050** (à la carte $1,180) | — | The clinical series, spaced every other week, for cumulative texture, tone, and clarity. |
+| **BioRePeel Advanced — Acne Scarring Protocol** | **from $450** | 75 min | The certified microneedling + BioRePeel protocol for stubborn acne scarring. |
+| **BioRePeel Duo — Gold Spot Upgrade** | **from $395** | 60 min | The full blue peel plus a targeted gold formula on stubborn spots and pigmentation. |
+| **BioRePeel Body — Stretch Marks & Scarring** | **from $375 / zone** | 75 min | Induced-peel body remodeling for stretch marks, scarring, and crepey skin. |
 | **Custom Chemical Peel (PCA, Perfect Derma, Glycolic, Lactic)** | **$185** | 45 min | A targeted peel selected for your skin's current needs. Downtime varies by depth. |
 | **The Perfect Derma Peel** | **$295** | 45 min | A medium-depth peel incorporating glutathione for pigmentation, fine lines, and texture. Light flaking 3–5 days. |
 | **Microneedling — Face** | **$325** | 75 min | Collagen induction therapy using a precision device with sterile, fixed-depth tips. A growth factor serum is layered to enhance the response. Series of 3 recommended. |
@@ -136,67 +159,80 @@ House of Rose sits at the **upper end** of Charlotte County and aligns with Napl
 | **ProCell Microchanneling — Face & Neck** | **$485** | 90 min | The extended treatment for clients addressing the full upper plane of the face and neck. |
 | **ProCell Microchanneling — Series of 3** | **$1,050** (saves $105) | — | The standard protocol for cumulative collagen response. |
 | **ProCell Microchanneling — Series of 6** | **$1,995** (saves $315) | — | The advanced protocol for deeper correction; includes complimentary post-treatment LED with each session. |
-| *Add-on: LED Phototherapy* | **+$45** | 20 min | Red and near-infrared light to support healing and inflammation. |
+| *Add-on: LightStim LED Phototherapy* | **+$45** | 20 min | Red and near-infrared light to support healing and inflammation. Offered as an add-on only — the finishing layer on any facial or treatment. |
 | *Add-on: Dermaplaning* | **+$55** | 15 min | Manual exfoliation and vellus hair removal, layered with most facials. |
 | *Add-on: Lymphatic Drainage Massage (face)* | **+$65** | 20 min | Manual decongestion technique to reduce puffiness and support clearance. |
 | *Add-on: Exosome Serum Layer* | **+$245** | — | A regenerative serum layered into microneedling or microchanneling. |
 
-**Bench note:** Skin Sanctuary anchors Charlotte County premium at HydraFacial $235 and Microneedling $195. House of Rose at $245 / $325 reflects luxury positioning, justified by deeper protocols, longer appointments, and exosome / ProCell options not offered locally. ProCell at $385 sits within the national $300–$500 range. SW FL fellow med spas (Naples, Fort Myers) charge $325–$700 for microneedling.
+**Bench note:** Skin Sanctuary anchors Charlotte County premium at HydraFacial $235 and Microneedling $195. House of Rose intentionally does **not** compete on HydraFacial — the **Glo2Facial with RF by Geneo ($225 / $345)** is a differentiated oxygenation-plus-radiofrequency device experience Skin Sanctuary does not offer, which sidesteps a direct like-for-like price comparison. Microneedling / ProCell at $325–$485 (plus exosome options) reflects luxury positioning and protocols not offered locally; ProCell sits within the national $300–$500 range, and SW FL peers (Naples, Fort Myers) charge $325–$700 for microneedling.
 
 ---
 
-### E. Face Reality Acne Boot Camp
+### F. Face Reality Acne Program — The Clarity Program
 
 | Service | Price | Duration | Description |
 |---|---|---|---|
-| **Acne Consultation & First Treatment** | **$185** | 75 min | The clinical intake — skin assessment, full history of products, medications, diet, and lifestyle factors, paired with your first treatment. The customized home regimen is determined here. Required to enter the program. |
-| **Face Reality Acne Boot Camp — 12 Weeks** | **$895** (six bi-weekly treatments + ongoing provider support) | — | The complete 12-week certified protocol: six in-office treatments every two weeks, ongoing texting/email support, and skin assessment at each visit. Home-care products billed separately and run approximately $150–$250 across the program. |
-| **Bi-Weekly Acne Treatment (in-program)** | Included in Boot Camp pricing above | 45 min | Cleansing, steam, extraction, customized exfoliation, high-frequency, and LED. |
-| **Acne Maintenance Treatment (post-program)** | **$165** | 45 min | Once skin is clear, monthly maintenance to protect the result. |
+| **Acne Consultation & First Treatment** | **from $139** | 75 min | The clinical intake — skin assessment, full history of products, medications, diet, and lifestyle factors, paired with your first treatment. The customized home regimen is determined here. Required to enter the program. |
+| **The Clarity Program — 12 Weeks** | **$899** (six bi-weekly treatments + ongoing provider support) | — | The complete 12-week certified Face Reality protocol: six in-office treatments every two weeks, ongoing texting/email support, and skin assessment at each visit. Home-care products billed separately and run approximately $150–$250 across the program. |
+| **Bi-Weekly Acne Treatment (in-program)** | Included in the Clarity Program pricing above | 45 min | Cleansing, steam, extraction, customized exfoliation, high-frequency, and LED. |
+| **Acne Peel — Single Session / Maintenance** | **from $139** | 60 min | A single Face Reality acne session — customized acne peel matched to your acne type, professional extractions, and LED. Bookable as a first experience before committing to the program, or as monthly maintenance once skin is clear. |
 | *Add-on: Back or Chest Treatment* | **+$95** | 30 min | Body acne addressed in tandem with the facial protocol. |
 
-**Bench note:** Face Reality Boot Camps run $500–$865 nationally. Premium markets and dedicated acne-expert practices charge $750–$895 for the full 12-week program. House of Rose at $895 reflects the dedicated certified Acne Expert positioning and is the only structured certified program in Charlotte County.
+**Bench note:** Face Reality Boot Camps run $500–$865 nationally. Premium markets and dedicated acne-expert practices charge $750–$895 for the full 12-week program. House of Rose at $899 reflects the dedicated certified Acne Expert positioning and is the only structured certified program in Charlotte County.
 
 ---
 
-### F. Brow & Lash
+### G. Brow, Lash & Makeup
 
 | Service | Price | Duration | Description |
 |---|---|---|---|
 | **Lash Lift & Tint** | **$95** | 60 min | A keratin lift and dye treatment that elevates and darkens your natural lashes for four to six weeks. |
 | **Brow Lamination & Tint** | **$95** | 45 min | A texture treatment that softens and shapes the brow, paired with tint and a precision wax. Lasts six to eight weeks. |
-| **Classic Lash Extensions — Full Set** | **$185** | 2 hr | One synthetic extension applied to one natural lash. A clean, mascara-like result. |
-| **Hybrid Lash Extensions — Full Set** | **$235** | 2.5 hr | A blend of classic and volume technique for textured fullness. |
-| **Volume Lash Extensions — Full Set** | **$295** | 2.5–3 hr | Lightweight handmade fans of three to six extensions per natural lash for soft density. |
-| **Mega Volume Lash Extensions — Full Set** | **$365** | 3 hr | Six to twelve ultra-fine fibers per fan for maximum density, reserved for advanced sets. |
-| **Classic Fill (2–3 weeks)** | **$85** | 75 min | — |
-| **Hybrid Fill (2–3 weeks)** | **$105** | 75 min | — |
-| **Volume Fill (2–3 weeks)** | **$125** | 90 min | — |
-| **Mega Volume Fill (2–3 weeks)** | **$145** | 90 min | — |
-| **LED Lash Bonding (replaces traditional adhesive)** | **+$25 surcharge** to any full set or fill | — | A photo-cured bonding system that allows clients with adhesive sensitivity to wear extensions comfortably. |
+| **Brow Tint** | **$22** | 15 min | A gentle dye to define and deepen the natural brow. Pairs with a brow wax (Section H). |
+| **Professional Event Makeup** | **from $85** | 60 min | Camera-ready application for weddings, portraits, and milestone events — often booked alongside a Dermaplaning or Glo2Facial the same week. |
 
-**Bench note:** National 2025 lash pricing: Classic $150–$200, Hybrid $200–$250, Volume $240–$300, Mega $300–$400. House of Rose pricing places Punta Gorda firmly in the upper-mid bracket aligned with Naples and Sarasota markets.
+**Bench note:** Lash lift & tint and brow lamination are the retention-driving, low-chair-time beauty layers House of Rose keeps in-house, and pair naturally with pre-event Dermaplaning and Glo2Facial. **Full lash-extension sets are intentionally not offered** — they demand dedicated lash-tech chair time that competes with higher-value regenerative and injectable bookings; clients seeking extensions are referred out while House of Rose owns the natural-lash (lift/tint) and event-makeup lane.
 
 ---
 
-### G. Waxing
+### H. Waxing
 
-| Service | Price |
+Hard wax only on the face and sensitive zones (bikini, Brazilian, underarms); soft strip wax for large body areas.
+
+**Facial Waxing** — *from $15*
+
+| Zone | Price |
 |---|---|
-| Brow Shape | **$28** |
-| Brow Tint | **$22** |
-| Brow Shape & Tint | **$45** |
-| Lip | **$18** |
-| Chin | **$22** |
-| Sides of Face | **$28** |
-| Full Face | **$65** |
-| Underarm | **$32** |
+| Brows | **from $25** |
+| Upper Lip | **$15** |
+| Chin | **$15** |
+| Cheeks / Sideburns / Neck | **$18** |
+| Nose / Ears | **$18** |
+| Brow + Lip | **$35** |
+| Full Face (9 zones) | **$70** |
 
-**Bench note:** C's Medi Spa charges $10 for brows, $10 for lip — a clear value-tier signal. House of Rose pricing matches Naples / Fort Myers premium and signals a professional, intentional service rather than a transactional add-on.
+**Body Waxing** — *from $28*
+
+| Zone | Price |
+|---|---|
+| Underarms | **$28** |
+| Half Arms | **$42** |
+| Full Arms | **$50** |
+| Lower Legs | **$48** |
+| Full Legs | **$85** |
+| Stomach | **$35** |
+| Back | **$70** |
+| Chest | **$60** |
+| Feet & Toes | **$30** |
+| Bikini Line | **$45** |
+| Bikini Full | **$55** |
+| Brazilian | **$65** |
+
+**Bench note:** C's Medi Spa charges $10 for brows and $10 for lip — a clear value-tier signal. House of Rose facial waxing (hard wax only) and the full body menu match Naples / Fort Myers premium and read as intentional professional services, not transactional add-ons.
 
 ---
 
-### H. Permanent Jewelry — The Forever Bar
+### I. Permanent Jewelry — The Forever Rose
 
 | Item | Price |
 |---|---|
@@ -233,16 +269,18 @@ These bundles are positioned as curated experiences, never as discounts. Pricing
 |---|---|---|---|
 | **The Introduction** | Signature Facial + Lash Lift & Tint + Brow Shape | **$295** | $328 |
 | **The Reset Day** | Refined Facial + The Reset IV + Brow Shape & Tint | **$425** | $448 |
-| **The Glow Protocol** | HydraFacial Signature + The Glow IV + LED add-on | **$485** | $525 |
-| **The Bridal Countdown (8 weeks)** | 2× Refined Facial + 1× BioRePeel + Lash Lift & Tint + Brow Lamination + Permanent Jewelry Bracelet (14k gold-filled) | **$795** | $885 |
-| **The Annual Skin Membership** | Monthly facial of choice (Signature or HydraFacial Signature), 10% off all add-ons, 10% off retail, priority booking | **$165 / month** | — |
+| **The Glow Protocol** | Glo2Facial with RF (The Lumière) + The Glow IV + LED add-on | **$485** | $505 |
+| **The Bridal Bloom (8 weeks)** | 2× Refined Facial + 1× BioRePeel (Camellia) + Lash Lift & Tint + Brow Lamination + Permanent Jewelry Bracelet (14k gold-filled) | **$895** | $1,010 |
+| **The Annual Skin Membership** | Monthly facial of choice (Signature or Glo2Facial with RF), 10% off all add-ons, 10% off retail, priority booking | **$165 / month** | — |
 | **The Injectable Insider** | Annual membership: 1 unit of Botox stored monthly toward your next visit, 10% off filler, complimentary post-treatment LED, two priority booking slots per quarter | **$45 / month** | — |
 | **Microneedling Series** | 3× Microneedling Face + complimentary LED at each visit + take-home recovery kit | **$995** | $1,110 |
-| **ProCell Foundation Series** | 6× ProCell Microchanneling Face + ProCell home aftercare kit + 3 complimentary LED sessions | **$2,295** | $2,575 |
-| **The Acne Commitment** | Face Reality 12-Week Boot Camp + 1 BioRePeel at week 8 (when skin is ready) + 90-day product starter set placeholder (products billed separately) | **$995** (program + BioRePeel only) | $1,090 |
+| **ProCell Microchanneling — Series of 4** | 4× ProCell Microchanneling Face + ProCell home aftercare kit + complimentary LED at each visit | **$1,099** | $1,299 |
+| **The Acne Commitment** | The Clarity Program (Face Reality 12-Week) + 1 BioRePeel (Camellia) at week 8 (when skin is ready) + 90-day product starter set placeholder (products billed separately) | **$1,050** (program + BioRePeel only) | $1,194 |
 | **NAD+ Loading Plus** | 4× NAD+ 500mg + 4× Glutathione push + 4× B12 boost | **$2,495** | $2,720 |
 | **The Permanent Jewelry Duo** | Two 14k gold-filled bracelets welded same visit (gift or shared milestone) | **$165** | $190 |
 | **The Welding Soirée** | Up to 6 guests, on-site or in-spa, 60-minute event with sparkling rosé, 14k gold-filled welds for first piece, charms à la carte | **$595 hosting fee** + per-piece pricing | — |
+
+**Live signature packages (as sold today — reconcile the strategic bundles above against these before publishing):** The Gilded Lily Journey (PRF) — **$1,895** · The Evergreen Series — **$1,750** · The Revival Series — **$1,099** · PRF Microneedling Series of 4 — **$2,300** · ProCell Microchanneling Series of 4 — **$1,099** · Camellia Peel (BioRePeel) Series of 4 — **$1,050** · Dermaplaning Package of 4 — **$340** · The Clarity Program (Face Reality 12-Week) — **$899** · The Bridal Bloom. Membership is delivered live as **The Rose Circle** — a 6-month guided path with member rates, AI skin analysis, and consultation-built plans (the Skin Membership / Injectable Insider tiers above are strategic proposals to fold into The Rose Circle).
 
 ---
 
@@ -252,9 +290,10 @@ These bundles are positioned as curated experiences, never as discounts. Pricing
 - **Filler at $795–$895/syringe** sits in the upper-FL bracket ($650–$1,000) and is consistent with West Palm Beach averages. This protects against the "med spa volume injector" perception.
 - **GLP-1 at $425 (semaglutide) / $595 (tirzepatide)** is competitive with the South FL boutique tier ($350–$700) and well above the discount telehealth tier ($199–$299). Bundling labs, monitoring, and clinical follow-up into the price reinforces the "real medicine, not refill mill" position.
 - **IV pricing** matches the Tampa luxury and Fort Myers boutique tier (The Blonde Injector, Tampa Bay Total Wellness), and is positioned $20–$50 above standard Florida IV bars.
-- **HydraFacial at $245 / Signature at $165** is intentionally $10 above Skin Sanctuary's $235 anchor — a small but deliberate signal of premium. The Refined Facial at $215 fills the white space between the standard and HydraFacial price points.
+- **Glo2Facial with RF by Geneo at $225 / Signature Facial at $165** competes on *differentiation, not price*. House of Rose does not offer HydraFacial; Geneo's oxygenation-plus-radiofrequency device is not something Skin Sanctuary offers, so there is no like-for-like comparison to lose. The Refined Facial at $215 fills the white space between the Signature and the Glo2Facial Elevated ($345).
+- **PRF at $599–$799 by form** is the single most defensible line on the menu. House of Rose is CARE-certified and the only Charlotte County operator offering PRF in *every* form — microneedling, under-eye, EZ Gel bio-filler, hair restoration, and body. This is the flagship category-ownership play; lead marketing with it.
 - **ProCell at $385–$485** owns a category Charlotte County does not currently address.
-- **Face Reality Boot Camp at $895** is the only structured 12-week certified acne program in the county. The price positions it as serious clinical work, not a facial series.
+- **The Clarity Program (Face Reality 12-Week) at $899** is the only structured certified acne program in the county. The price positions it as serious clinical work, not a facial series.
 - **Permanent Jewelry** functions as both a profitable add-on and a powerful word-of-mouth driver. Group welding events are an ideal soft-launch tool for the 525 E Olympia Ave space.
 - **No "save," "deal," "affordable," or "discount" language anywhere** in published menus, social copy, or in-suite collateral. Where bundles offer better economics, the language is structured: "à la carte total $448 · package $425."
 - **Memberships replace promotions.** The Skin Membership ($165/mo) and Injectable Insider ($45/mo) build recurring revenue and remove the temptation to discount.
@@ -273,12 +312,12 @@ Every service description on the menu, website, and in-suite collateral should f
 
 ---
 
-## 8. Phasing Recommendation for June 1, 2026 Opening
+## 8. Phasing Recommendation for July 9, 2026 Opening
 
-**At launch (Day 1):** Injectables, Signature & Refined Facial, HydraFacial, BioRePeel, Microneedling, Lash Lift & Tint, Brow Services, Waxing, Permanent Jewelry, IV Hydration menu (Reset, Myers, Immunity, Glow, Recovery, Detox, NAD+).
+**At launch (Day 1):** Injectables & Bio-Fillers, PRF — all forms (the flagship), Signature & Refined Facial, Glo2Facial with RF by Geneo, BioRePeel (Camellia) + chemical peels, Microneedling & Microchanneling (ProCell), Dermaplaning, LightStim LED (add-on), Lash Lift & Tint, Brow services, Facial & Body Waxing, Permanent Jewelry, IV Hydration menu (Reset, Myers, Immunity, Glow, Recovery, Detox, NAD+).
 
-**Phase 2 (months 2–3):** ProCell Microchanneling launch, GLP-1 program launch, Lash Extensions full menu, Membership programs.
+**Phase 2 (months 2–3):** GLP-1 program launch, The Rose Circle membership, ProCell / PRF series programs, event makeup.
 
-**Phase 3 (months 4–6):** Face Reality Acne Boot Camp launch (requires Acne Expert certification timing), Welding Soirée private events, Bridal Countdown package marketing.
+**Phase 3 (months 4–6):** The Clarity Program (Face Reality 12-Week) launch (requires Acne Expert certification timing), Welding Soirée private events, The Bridal Bloom package marketing.
 
 This phasing protects the team's bandwidth at opening, allows the core revenue services (injectables, facials, IV) to anchor early reviews, and creates natural marketing waves through the first six months without relying on promotional pricing.

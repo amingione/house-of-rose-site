@@ -1,0 +1,23 @@
+name: Drift Guard
+
+# Fails the build if retired or wrong-fact strings reappear in the shipping source
+# (memberships / Rose Circle / Rose Rewards / Rose Method / Rose Pass, dead botanical
+# names, wrong NAP, "day spa"). Canonical facts live in CLAUDE.md.
+# "med spa" is allowed — only "day spa" is banned.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  drift-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run drift guard
+        run: node scripts/drift-guard.mjs

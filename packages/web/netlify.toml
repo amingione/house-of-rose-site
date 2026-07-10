@@ -8,7 +8,9 @@
   # Content lives in Sanity (edited in Sanity Studio). The build just installs deps and builds
   # the static site, fetching published content at build time. The old Notion→Sanity build-time
   # sync was removed — it wrote dotted _ids that Sanity treats as private/unreadable.
-  command = "npm install && npm run build -w @house-of-rose/web"
+  # The trailing postdeploy-indexnow step pings IndexNow (Bing/Yandex/…) on
+  # production deploys only and can never fail the build — see scripts/postdeploy-indexnow.mjs.
+  command = "npm install && npm run build -w @house-of-rose/web && node scripts/postdeploy-indexnow.mjs"
   publish = "packages/web/dist"
 
 [functions]
@@ -46,6 +48,70 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# vCard — serve inline as text/vcard so iOS opens Contacts (prefilled) on tap,
+# instead of downloading a file. Powers the "Save My Contact" button on /amber/.
+[[headers]]
+  for = "/amber.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"AmberMingione.vcf\""
+
+# vCard — same inline behavior for Diana's card (/diana/).
+[[headers]]
+  for = "/diana.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"DianaMorrison.vcf\""
+
+# vCard — same inline behavior for Aundrea's card (/aundrea/).
+[[headers]]
+  for = "/aundrea.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"AundreaPedigo.vcf\""
+
+# Botanical → industry-standard treatmentPackage slug renames (2026-07-01)
+[[redirects]]
+  from   = "/packages/the-bridal-bloom/"
+  to     = "/packages/bridal-prep-package/"
+  status = 301
+
+[[redirects]]
+  from   = "/packages/camellia-peel-series-of-4/"
+  to     = "/packages/biorepeel-series-of-4/"
+  status = 301
+
+[[redirects]]
+  from   = "/packages/the-clarity-program/"
+  to     = "/packages/face-reality-12-week-program/"
+  status = 301
+
+[[redirects]]
+  from   = "/packages/the-evergreen-series/"
+  to     = "/packages/prf-under-eye-series-of-3/"
+  status = 301
+
+[[redirects]]
+  from   = "/packages/the-gilded-lily-journey/"
+  to     = "/packages/prf-microchanneling-journey/"
+  status = 301
+
+# Retired — memberships, Rose Circle, and Rose Method plans (business dropped memberships)
+[[redirects]]
+  from   = "/memberships/*"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/rose-circle/*"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/plans/*"
+  to     = "/"
+  status = 301
 
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]

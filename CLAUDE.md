@@ -6,6 +6,42 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 
 ---
 
+## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
+- **Name:** House of Rose Aesthetics
+- **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
+- **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
+- **Email:** info@houseofrosefl.com — _`book@…` was never a real address; do not use it anywhere_
+- **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed
+- **Web/social:** https://houseofrosefl.com · IG `houseofrosefl` · FB `House-Of-Rose-Aesthetics` · opening July 9, 2026
+- **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** lead in prose with "advanced aesthetics & wellness," but "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). _(This reverses the earlier "never say med spa" rule.)_
+- **GBP CTA:** call/text (no online-booking button).
+
+## Providers & Team (memory — never re-ask)
+- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, ProCell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**.
+- **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
+- **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane).
+- **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **Waxing** + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
+
+## Memberships — REMOVED (2026-07-07) · House of Rose does NOT do memberships
+The entire membership system was torn out. **Do not reintroduce any of it.** Removed everywhere
+(Sanity content, site pages, nav, studio schema, GROQ queries):
+- All lane memberships (Advanced Facials, Basic Facials, IV Hydration, Injectables).
+- **The Rose Pass** (wax pass) and its tiers.
+- **The Rose Circle** (the rewards/affiliation program) — page + schema deleted.
+- **Rose Rewards** (cash-back points) — the concept is gone; don't reference it.
+- **The Rose Method** and the `/plans` page + Regeneration/Renewal/Restoration plan docs.
+- Already-retired: Rose Collagen Bank, House Collective.
+
+Redirects: `/memberships/*`, `/rose-circle/*`, `/plans/*` → `/` (301, in `packages/web/netlify.toml`).
+**GLP-1** remains a normal **service** (Diana), not tied to any membership/rewards program.
+
+- **Naming law (still active):** all botanical/flowery names are dead (Lily/Iris/Hydrangea/Porcelain Petal/Gilded Lily/etc.). Use plain, searchable, real-world names. The brand terms "Rose Circle," "Rose Method," and "Rose Pass" are now **retired too** (they only existed for the membership system).
+
+## URL rule — trailing slash REQUIRED on inner pages
+Astro's default `build.format` is `directory` and `site` resolves to `https://houseofrosefl.com/`, so every inner page lives at its **trailing-slash** URL (`/services/`, `/experience/`, `/services/prf/`, `/privacy-policy/`). Writing an inner-page URL **without** the slash relies on a redirect and can break — the same failure seen on FAS Motorsports. Root domain (`houseofrosefl.com`) is slash-optional. **Rule: every absolute or internal link to an inner page ends in `/`.**
+
+---
+
 ## Repo: house-of-rose-site
 **Monorepo** at `~/LocalStorm/Workspace/DevProjects/house_of_rose/house-of-rose-site/`
 
@@ -76,11 +112,10 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
   Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
 - **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
-  `homepage`, `membershipsPage`, `contactPage`, `privacyPolicy`, `rentARoom`,
-  `skinAnalysis`, `thankYou` — each edited under Studio → **Pages** (or **Home Page**),
-  rendered with Sanity-first + hardcoded fallbacks, fully click-to-edit. Forms
-  (contact, rent-a-room) and JSON-LD were left untouched. Every site page is now
-  inline-editable (`ve:check` = 0 missing).
+  `homepage`, `contactPage`, `privacyPolicy`, `rentARoom`, `skinAnalysis`, `thankYou` — each
+  edited under Studio → **Pages** (or **Home Page**), rendered with Sanity-first + hardcoded
+  fallbacks, fully click-to-edit. Forms (contact, rent-a-room) and JSON-LD were left untouched.
+  _(The `roseCirclePage` and `membershipsPage` singletons were deleted in the 2026-07-07 membership teardown.)_
 
 ---
 
@@ -97,7 +132,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 - `PUBLIC_SANITY_API_VERSION` = `2025-04-26`
 - `SANITY_API_WRITE_TOKEN` = (secret — server-side lead submission writes, do not commit)
 - `PUBLIC_SITE_URL` = `https://houseofrosefl.com`
-- `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com`
+- `PUBLIC_BOOKING_EMAIL` = `info@houseofrosefl.com`
 
 **Netlify UI configuration:**
 - **Studio site**: No base directory needed (uses root `netlify.toml`)
@@ -124,12 +159,18 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/services/[slug]` | `services/[slug].astro` | Single service by slug |
 | `/services/collections` | `services/collections/index.astro` | All collections |
 | `/services/collections/[collection]` | `services/collections/[collection].astro` | Single collection |
+| `/services/professional-makeup` | `services/professional-makeup/index.astro` | Professional Makeup hub singleton (`professionalMakeupPage`) — landing for makeup services; provider Aundrea Pedigo. NOT a `service` doc (avoids slug collision with `/services/[slug]`). |
+| `/services/professional-makeup/jane-iredale` | `services/professional-makeup/jane-iredale.astro` | Jane Iredale brand feature singleton (`janeIredalePage`) — makeup/skincare/supplements, benefits, post-treatment use, this-for-that swap guide, Get-the-Look. |
+| `/services/professional-makeup/events` | `services/professional-makeup/events.astro` | Makeup group/event bookings singleton (`makeupEventsPage`) — in-house block times, spa rental "Pre-Party Package", travel. |
 | `/experience` | `experience.astro` | Static |
 | `/cost/[slug]` | `cost/[slug].astro` | Cost guide by slug (`costGuide`) |
 | `/compare/[slug]` | `compare/[slug].astro` | Comparison by slug (`comparison`) |
 | `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |
 | `/results` · `/results/[slug]` | `results/...` | Before/after proof (`caseStudy`) |
 | `/faq` | `faq.astro` | Aggregated FAQ hub (FAQPage JSON-LD) |
+| `/amber` | `amber.astro` | Static — Amber's tap-to-share digital business card (self-contained black/gold card, no Header/Footer, `Person` JSON-LD; downloads `public/amber.vcf`) |
+| `/diana` | `diana.astro` | Static — Diana Morrison, RN tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/diana.vcf`) |
+| `/aundrea` | `aundrea.astro` | Static — Aundrea Pedigo tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/aundrea.vcf`) |
 
 ---
 

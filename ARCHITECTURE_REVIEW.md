@@ -380,8 +380,8 @@ const IMAGE_FIELDS = /* groq */ `
 
 **Current**:
 ```astro
-<a href="tel:+18449417376" class="btn-outline-gold">
-  (844) 941-7376
+<a href="tel:+18449417673" class="btn-outline-gold">
+  (844) 941-7673
 </a>
 ```
 

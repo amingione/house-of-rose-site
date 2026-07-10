@@ -109,11 +109,9 @@ Use the project `service-page` skill for **structure + Service/MedicalBusiness J
 ### Skin Analysis
 Market the in-office analysis tech per homepage Section 5. CTA: "Learn About Skin Analysis" → consult/Book Online.
 
-### Memberships  ⚠️ APPROVAL GATE
-Rose Circle launch framing: provider-lane, consultation-first, 6-month guided membership path. Full terms stay internal / in GlossGenius and are not shown publicly. Public copy should not show preset tiers, public prices, or membership-detail promises before consultation.
 
 ### Providers / Team
-Branded bios for the 4 providers (Diana RN, Amber medical aesthetician + phlebotomist, Brandy aesthetician, Brooke permanent jewelry). Trust/expertise framing; no per-service price/menu. Compliance-clean credentials language.
+Branded bios for the 4 providers (Diana RN, Amber aesthetician + Medical Assistant, Brandy aesthetician, Brooke aesthetician + Permanant Jewlery). Trust/expertise framing; no per-service price/menu. Compliance-clean credentials language.
 
 ### Experience
 Homepage Section 8 expanded: calm, unhurried, informed-consent tone.

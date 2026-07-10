@@ -74,7 +74,7 @@ SANITY_API_WRITE_TOKEN=<secret>
 
 # Site configuration
 PUBLIC_SITE_URL=https://houseofrosefl.com
-PUBLIC_BOOKING_EMAIL=book@houseofrosefl.com
+PUBLIC_BOOKING_EMAIL=info@houseofrosefl.com
 ```
 
 For local development, copy these to root `.env.local` (gitignored). The write token is used only by server-side Netlify Functions that save lead submissions to Sanity.

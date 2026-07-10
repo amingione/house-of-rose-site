@@ -15,8 +15,8 @@ import type { FAQ } from '@/lib/queries';
 export const LOCAL_BUSINESS = {
   name: 'House of Rose Aesthetics',
   legalName: 'House of Rose Aesthetics',
-  telephone: '+18449417376',
-  streetAddress: '525 E Olympia Ave, Ste 9',
+  telephone: '+18449417673',
+  streetAddress: '525 E Olympia Ave, Unit 9',
   addressLocality: 'Punta Gorda',
   addressRegion: 'FL',
   postalCode: '33950',
@@ -198,5 +198,35 @@ export function imageObject(input: ImageObjectInput): JsonLd {
     ...(input.caption && { caption: input.caption }),
     ...(input.url && { url: input.url }),
     creator: { '@type': 'Organization', name: LOCAL_BUSINESS.name },
+  };
+}
+
+export interface BrandInput {
+  /** Brand name, e.g. "jane iredale". */
+  name: string;
+  description?: string;
+  /** Absolute URL of the page featuring the brand. */
+  url?: string;
+  /** Brand's own website, e.g. https://janeiredale.com/ */
+  sameAs?: string;
+  slogan?: string;
+  logo?: string;
+}
+
+/**
+ * Brand node for brand-feature pages (e.g. the Jane Iredale page). Emitted
+ * alongside a BreadcrumbList (+ FAQPage when FAQs exist). Keep claims neutral —
+ * no efficacy or medical assertions belong in structured data either.
+ */
+export function brand(input: BrandInput): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Brand',
+    name: input.name,
+    ...(input.description && { description: input.description }),
+    ...(input.url && { url: input.url }),
+    ...(input.slogan && { slogan: input.slogan }),
+    ...(input.logo && { logo: input.logo }),
+    ...(input.sameAs && { sameAs: [input.sameAs] }),
   };
 }

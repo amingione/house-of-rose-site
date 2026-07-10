@@ -26,7 +26,8 @@ Hard rules (inherited by every task):
 5. No orphan pages: wire internal links + `sitemap.xml.ts` + `llms.txt.ts`.
 6. New page-type doc types: shared `seo` + `faq` objects, registered in `schemas/index.ts`,
    listed under the Marketing / SEO group in `structure.ts`.
-7. **Compliance is non-negotiable** — never call House of Rose a "med spa"; no guarantees,
+7. **Compliance is non-negotiable** — "med spa / medical spa" is now **allowed (don't lead;** lead with
+   "advanced aesthetics & wellness studio," never deny being one, avoid "day spa"); no guarantees,
    reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported exosome/peptide
    claims. Follow `docs/COMPLIANCE-COPY-RULES.md` on every customer-facing surface.
 
@@ -37,6 +38,7 @@ Hard rules (inherited by every task):
 - Use `sanityFetch<T>()` from `src/lib/sanity.ts` for all GROQ queries
 - GROQ queries are defined in `src/lib/queries.ts` — add new ones there, don't inline them in pages
 - `output: 'static'` — `getStaticPaths()` is required for dynamic routes
+- **URLs use trailing slashes** — Astro `directory` build format; inner pages live at `/path/` (e.g. `/services/`, `/services/prf/`, `/experience/`). Never write or link an inner-page URL without the trailing slash — it relies on a redirect and breaks (same issue as FAS Motorsports). Root domain is slash-optional. Canonical NAP + this rule live in `CLAUDE.md`.
 
 ## TypeScript Rules
 - Strict mode — no `any`

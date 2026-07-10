@@ -21,7 +21,11 @@ const hookPath = path.join(hooksDir, 'pre-commit');
 
 const hook = `#!/bin/sh
 # Auto-installed by scripts/visual-editing/install-git-hook.mjs
-# Enforces inline click-to-edit coverage + PAGE_ROUTES sync before commit.
+# Enforces the drift guard + inline click-to-edit coverage + PAGE_ROUTES sync before commit.
+echo "[drift-guard] scanning shipping source for retired/wrong-fact strings…"
+node scripts/drift-guard.mjs || {
+  echo "[drift-guard] blocked — fix the strings above (see CLAUDE.md), or narrow a rule in scripts/drift-guard.mjs."; exit 1;
+}
 echo "[ve] checking click-to-edit coverage…"
 node scripts/visual-editing/sync-page-routes.mjs || {
   echo "[ve] PAGE_ROUTES out of sync — run: npm run ve:sync -- --fix"; exit 1;
@@ -33,4 +37,4 @@ node scripts/visual-editing/check-coverage.mjs || {
 
 writeFileSync(hookPath, hook);
 chmodSync(hookPath, 0o755);
-console.log('[ve] installed .git/hooks/pre-commit (coverage + route sync).');
+console.log('[ve] installed .git/hooks/pre-commit (drift guard + coverage + route sync).');

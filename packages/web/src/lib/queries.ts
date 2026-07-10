@@ -25,8 +25,6 @@ export type ServiceKind = 'hub' | 'treatment' | 'standalone';
 export interface Service {
   _id: string;
   title: string;
-  /** Branded botanical name (e.g. "The Gilded Lily"); `title` holds the technical name. */
-  signatureName?: string;
   slug: string;
   kind?: ServiceKind;
   parentService?: { title: string; slug: string };
@@ -175,7 +173,6 @@ export const ALL_SERVICES_QUERY = /* groq */ `
   *[_type == "service" && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
     _id,
     title,
-    signatureName,
     "slug": slug.current,
     kind,
     tagline,
@@ -203,14 +200,12 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
   *[_type == "service" && slug.current == $slug][0] {
     _id,
     title,
-    signatureName,
     "slug": slug.current,
     kind,
     "parentService": parentService->{ title, "slug": slug.current },
     "treatments": *[_type == "service" && parentService._ref == ^._id] | order(orderRank asc, title asc) {
       _id,
       title,
-      signatureName,
       "slug": slug.current,
       tagline,
       price,
@@ -494,30 +489,6 @@ export interface TreatmentPackage {
   image?: SanityImage;
 }
 
-export type MembershipType = 'membership-tier' | 'regenerative-plan' | 'wellness-rider';
-export type MembershipLane =
-  | 'lily'
-  | 'iris'
-  | 'hydrangea'
-  | 'magnolia'
-  | 'house-collective'
-  | 'cross-lane';
-
-export interface Membership {
-  _id: string;
-  title: string;
-  slug: string;
-  type?: MembershipType;
-  lane?: MembershipLane;
-  status?: 'live' | 'proposed' | 'brainstorm';
-  provider?: { title: string };
-  monthlyPrice?: string;
-  whatsIncluded?: string;
-  perks?: string;
-  linkedServices?: { _id: string; title: string; slug: string }[];
-  linkedPackages?: { _id: string; title: string; slug: string }[];
-}
-
 export const BRAND_PROFILE_QUERY = /* groq */ `
   *[_type == "brandProfile"] | order(_updatedAt desc)[0] {
     title,
@@ -564,42 +535,6 @@ export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
   *[_type == "treatmentPackage" && defined(slug.current)]{ "slug": slug.current }
 `;
 
-export const ALL_MEMBERSHIPS_QUERY = /* groq */ `
-  *[_type == "membership"] | order(orderRank asc, _createdAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    type,
-    lane,
-    status,
-    "provider": provider->{ title },
-    monthlyPrice,
-    whatsIncluded,
-    perks,
-    "linkedServices": linkedServices[]->{ _id, title, "slug": slug.current },
-    "linkedPackages": linkedPackages[]->{ _id, title, "slug": slug.current }
-  }
-`;
-
-export const ALL_MEMBERSHIP_SLUGS_QUERY = /* groq */ `
-  *[_type == "membership" && defined(slug.current)]{ "slug": slug.current }
-`;
-
-// Regenerative Plans — the cross-lane, multi-month programs (Renewal → Regeneration →
-// Restoration). Surfaced on their own /plans page, separate from the monthly lane memberships.
-export const REGENERATIVE_PLANS_QUERY = /* groq */ `
-  *[_type == "membership" && type == "regenerative-plan"] | order(orderRank asc, _createdAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    monthlyPrice,
-    whatsIncluded,
-    perks,
-    "provider": provider->{ title },
-    "linkedServices": linkedServices[]->{ _id, title, "slug": slug.current },
-    "linkedPackages": linkedPackages[]->{ _id, title, "slug": slug.current }
-  }
-`;
 
 // ─── Marketing / SEO / AEO page types — see docs/CONTENT-MODEL-MAP.md ─────────
 
@@ -869,12 +804,6 @@ export interface HomePage {
   scanQuote?: string;
   scanCtaPrimaryText?: string;
   scanCtaSecondaryText?: string;
-  circleKicker?: string;
-  circleHeading?: string;
-  circlePara1?: string;
-  circlePara2?: string;
-  circleCtaPrimaryText?: string;
-  circleCtaSecondaryText?: string;
   careKicker?: string;
   careHeading?: string;
   carePara1?: string;
@@ -905,10 +834,208 @@ export const HOMEPAGE_QUERY = /* groq */ `
     serviceGroups[]{ _key, name, description, imagePath },
     servicesCtaText,
     scanKicker, scanHeading, scanPara1, scanPara2, scanQuote, scanCtaPrimaryText, scanCtaSecondaryText,
-    circleKicker, circleHeading, circlePara1, circlePara2, circleCtaPrimaryText, circleCtaSecondaryText,
     careKicker, careHeading, carePara1, carePara2, careCtaText,
     expKicker, expHeading, expPara1, expPara2,
     localKicker, localHeading, localPara1, localPara2,
     finalHeading, finalPara, finalCtaText, finalAddressLine
+  }
+`;
+
+// ── Professional Makeup (nested singletons) — /services/professional-makeup/* ──
+// See docs/services/PROFESSIONAL-MAKEUP-BUILD-PLAN.md. Provider: Aundrea Pedigo.
+
+export interface LinkRef {
+  _key?: string;
+  label: string;
+  description?: string;
+  href: string;
+}
+
+export interface MakeupServiceType {
+  _key?: string;
+  name: string;
+  blurb?: string;
+  bestFor?: string;
+  priceLabel?: string;
+}
+
+export interface MakeupUseCase {
+  _key?: string;
+  title: string;
+  body?: string;
+}
+
+export interface ProfessionalMakeupPage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  image?: SanityImage;
+  philosophyKicker?: string;
+  philosophyHeading?: string;
+  philosophyBody?: string;
+  servicesKicker?: string;
+  servicesHeading?: string;
+  servicesIntro?: string;
+  services?: MakeupServiceType[];
+  useCasesKicker?: string;
+  useCasesHeading?: string;
+  useCases?: MakeupUseCase[];
+  trialRunHeading?: string;
+  trialRunBody?: string;
+  providerKicker?: string;
+  providerHeading?: string;
+  providerBody?: string;
+  provider?: { title: string; roleCredential?: string };
+  relatedLinks?: LinkRef[];
+  faqs?: FAQ[];
+}
+
+export const PROFESSIONAL_MAKEUP_PAGE_QUERY = /* groq */ `
+  *[_type == "professionalMakeupPage"][0]{
+    _id, seoTitle, seoDescription,
+    heroKicker, heroTitle, heroDescription,
+    ${IMAGE_FIELDS},
+    philosophyKicker, philosophyHeading, philosophyBody,
+    servicesKicker, servicesHeading, servicesIntro,
+    services[]{ _key, name, blurb, bestFor, priceLabel },
+    useCasesKicker, useCasesHeading,
+    useCases[]{ _key, title, body },
+    trialRunHeading, trialRunBody,
+    providerKicker, providerHeading, providerBody,
+    "provider": provider->{ title, roleCredential },
+    relatedLinks[]{ _key, label, description, href },
+    faqs[]{ _key, question, answer }
+  }
+`;
+
+export interface JaneIredalePillar {
+  _key?: string;
+  name: string;
+  body?: string;
+  examples?: string[];
+}
+
+export interface JaneIredaleSwap {
+  _key?: string;
+  category: string;
+  conventional?: string;
+  swap: string;
+  note?: string;
+}
+
+export interface LookStep {
+  _key?: string;
+  step: string;
+  product?: string;
+  shade?: string;
+}
+
+export interface SignatureLook {
+  _key?: string;
+  name: string;
+  summary?: string;
+  steps?: LookStep[];
+}
+
+export interface JaneIredalePage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  image?: SanityImage;
+  introKicker?: string;
+  introHeading?: string;
+  introBody?: string;
+  pillarsHeading?: string;
+  pillars?: JaneIredalePillar[];
+  benefitsHeading?: string;
+  benefits?: string[];
+  whyUsKicker?: string;
+  whyUsHeading?: string;
+  whyUsBody?: string;
+  swapsKicker?: string;
+  swapsHeading?: string;
+  swapsIntro?: string;
+  swaps?: JaneIredaleSwap[];
+  looksKicker?: string;
+  looksHeading?: string;
+  looksIntro?: string;
+  looks?: SignatureLook[];
+  ctaHeading?: string;
+  ctaBody?: string;
+  relatedLinks?: LinkRef[];
+  supplementDisclaimer?: string;
+  faqs?: FAQ[];
+}
+
+export const JANE_IREDALE_PAGE_QUERY = /* groq */ `
+  *[_type == "janeIredalePage"][0]{
+    _id, seoTitle, seoDescription,
+    heroKicker, heroTitle, heroDescription,
+    ${IMAGE_FIELDS},
+    introKicker, introHeading, introBody,
+    pillarsHeading,
+    pillars[]{ _key, name, body, examples },
+    benefitsHeading, benefits,
+    whyUsKicker, whyUsHeading, whyUsBody,
+    swapsKicker, swapsHeading, swapsIntro,
+    swaps[]{ _key, category, conventional, swap, note },
+    looksKicker, looksHeading, looksIntro,
+    looks[]{ _key, name, summary, steps[]{ _key, step, product, shade } },
+    ctaHeading, ctaBody,
+    relatedLinks[]{ _key, label, description, href },
+    supplementDisclaimer,
+    faqs[]{ _key, question, answer }
+  }
+`;
+
+export interface MakeupBookingOption {
+  _key?: string;
+  name: string;
+  summary?: string;
+  includes?: string[];
+  bestFor?: string;
+  priceLabel?: string;
+}
+
+export interface MakeupEventsPage {
+  _id: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  image?: SanityImage;
+  introKicker?: string;
+  introHeading?: string;
+  introBody?: string;
+  optionsKicker?: string;
+  optionsHeading?: string;
+  bookingOptions?: MakeupBookingOption[];
+  trialRunHeading?: string;
+  trialRunBody?: string;
+  bookingHeading?: string;
+  bookingBody?: string;
+  relatedLinks?: LinkRef[];
+  faqs?: FAQ[];
+}
+
+export const MAKEUP_EVENTS_PAGE_QUERY = /* groq */ `
+  *[_type == "makeupEventsPage"][0]{
+    _id, seoTitle, seoDescription,
+    heroKicker, heroTitle, heroDescription,
+    ${IMAGE_FIELDS},
+    introKicker, introHeading, introBody,
+    optionsKicker, optionsHeading,
+    bookingOptions[]{ _key, name, summary, includes, bestFor, priceLabel },
+    trialRunHeading, trialRunBody,
+    bookingHeading, bookingBody,
+    relatedLinks[]{ _key, label, description, href },
+    faqs[]{ _key, question, answer }
   }
 `;

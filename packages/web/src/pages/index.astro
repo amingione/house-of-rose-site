@@ -8,7 +8,6 @@ import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 // Booking + internal links (single source of truth so they're easy to swap)
 const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
 const SKIN_ANALYSIS_URL = "/skin-analysis";
-const MEMBERSHIPS_URL = "/memberships";
 const SHOP_URL = "/shop";
 
 // ─── Home content from Sanity (singleton) ──────────────────────────────────────
@@ -39,7 +38,7 @@ const FALLBACK_SERVICE_GROUPS = [
 	{
 		name: "Wellness & Performance Support",
 		description:
-			"IV hydration, GLP-1 weight management, permanent jewelry, memberships, and select offerings that complement your aesthetic goals and overall care experience.",
+			"IV hydration, GLP-1 weight management, permanent jewelry, and select offerings that complement your aesthetic goals and overall care experience.",
 		imagePath: "/images/new-wellness.webp",
 	},
 ];
@@ -70,7 +69,7 @@ const organizationData = {
 	description:
 		"House of Rose Aesthetics in Punta Gorda, FL — advanced aesthetics and wellness. Regenerative treatments, injectables, facials, skin analysis, IV hydration, and curated skincare.",
 	url: Astro.site?.toString(),
-	telephone: "+18449417376",
+	telephone: "+18449417673",
 	email: import.meta.env.PUBLIC_BOOKING_EMAIL,
 	address: {
 		"@type": "PostalAddress",
@@ -141,8 +140,8 @@ const organizationData = {
 		size="full"
 		centerContent={true}
 		showCTA={true}
-		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Consultation", href: BOOKING_URL }}
-		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
+		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
+		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Explore Services", href: "/services" }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 		titleField="heroTitle"
 		subtitleField="heroSubtitle"
@@ -193,9 +192,16 @@ const organizationData = {
 		class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
 		style="background-image: url('/images/hor-skin-studio.jpg');"
 	>
-		<div class="absolute inset-0 bg-black/72"></div>
+		<!-- Warm walnut gradient scrim. Inline style (can't be Tailwind-purged / always renders).
+		     Every stop tuned so ivory text ≥ AAA and the gold.300 kicker ≥ AA even over a
+		     pure-white photo pixel (worst case). Top 0.86 keeps the kicker legible; the photo
+		     still reads as a faint warm texture at ~10-14%. -->
+		<div
+			class="absolute inset-0"
+			style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
+		></div>
 		<div class="relative z-10 max-w-[760px] mx-auto text-center">
-			<span class="kicker" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
+			<span class="kicker text-gold-300" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("approachHeading")}
@@ -203,13 +209,13 @@ const organizationData = {
 				{hp.approachHeading ?? "Where regenerative aesthetics meets precision care."}
 			</h2>
 			<p
-				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-4"
+				class="text-ivory text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-4"
 				{...sbFieldPath("approachPara1")}
 			>
 				{hp.approachPara1 ?? "Our approach is centered on supporting the skin intelligently—from regeneration and correction to maintenance and long-term results."}
 			</p>
 			<p
-				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-7"
+				class="text-ivory text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-7"
 				{...sbFieldPath("approachPara2")}
 			>
 				{hp.approachPara2 ?? "Signature treatments such as PRF are part of a broader philosophy: enhancing skin function, restoring balance, and creating visible improvements without overcorrection. Every treatment is selected with purpose, layered strategically, and tailored to how your skin responds over time."}
@@ -332,49 +338,6 @@ const organizationData = {
 		</div>
 	</section>
 
-	<!-- ── SECTION 6 · THE ROSE CIRCLE ─────────────────────────────── -->
-	<section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
-		<div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-			<span class="kicker" {...sbFieldPath("circleKicker")}>{hp.circleKicker ?? "The Rose Circle"}</span>
-			<h2
-				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
-				{...sbFieldPath("circleHeading")}
-			>
-				{hp.circleHeading ?? "Where your results are protected."}
-			</h2>
-			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
-				{...sbFieldPath("circlePara1")}
-			>
-				{hp.circlePara1 ?? "The Rose Circle is our 6-month guided membership path for clients who want custom care at member rates after skin analysis and provider evaluation."}
-			</p>
-			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
-				{...sbFieldPath("circlePara2")}
-			>
-				{hp.circlePara2 ?? "Start with the scanner, let your provider examine your skin, then commit to a real plan with enough time for healthy visible change to evolve. It is not a discount club or a gimmick."}
-			</p>
-			<div class="flex gap-3 flex-wrap">
-				<a href={MEMBERSHIPS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaPrimaryText")}
-					>{hp.circleCtaPrimaryText ?? "View The Rose Circle"}</a
-				>
-				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaSecondaryText")}
-					>{hp.circleCtaSecondaryText ?? "Book Your Skin Analysis"}</a
-				>
-			</div>
-		</div>
-		<div class="relative min-h-[340px] bg-charcoal-lighter">
-			<img
-				src="/images/hor-lobby.jpg"
-				alt="House of Rose Aesthetics membership and ongoing care"
-				loading="lazy"
-				class="w-full h-full object-cover"
-				width="1400"
-				height="933"
-			/>
-		</div>
-	</section>
-
 	<!-- ── SECTION 7 · PRODUCT / HOME CARE PREVIEW ─────────────────── -->
 	<section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
 		<div class="relative min-h-[340px] bg-charcoal order-2 md:order-1">
@@ -422,9 +385,16 @@ const organizationData = {
 		class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
 		style="background-image: url('/images/hor-skin-studio.jpg');"
 	>
-		<div class="absolute inset-0 bg-black/74"></div>
+		<!-- Warm walnut gradient scrim — same AA-verified treatment as the "Our Approach"
+		     section above (this band reuses hor-skin-studio.jpg). Inline style so it can't
+		     be Tailwind-purged; every stop clears AA for ivory text + the gold.300 kicker
+		     over a worst-case white photo pixel. -->
+		<div
+			class="absolute inset-0"
+			style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
+		></div>
 		<div class="relative z-10 max-w-[720px] mx-auto text-center">
-			<span class="kicker" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
+			<span class="kicker text-gold-300" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("expHeading")}
@@ -432,13 +402,13 @@ const organizationData = {
 				{hp.expHeading ?? "Calm, personal, and thoughtfully paced."}
 			</h2>
 			<p
-				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-4"
+				class="text-ivory text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-4"
 				{...sbFieldPath("expPara1")}
 			>
 				{hp.expPara1 ?? "Appointments at House of Rose are designed to feel calm, focused, and entirely personalized. We take the time to understand your goals, evaluate your skin with precision, and recommend treatments that are aligned—not excessive, not rushed, and never driven by trends."}
 			</p>
 			<p
-				class="text-ivory/75 text-[15px] leading-[1.8] max-w-[620px] mx-auto"
+				class="text-ivory text-[15px] leading-[1.8] max-w-[620px] mx-auto"
 				{...sbFieldPath("expPara2")}
 			>
 				{hp.expPara2 ?? "You'll leave with clarity—what was done, why it matters, and exactly how to maintain your results."}
@@ -510,7 +480,7 @@ const organizationData = {
 			</a>
 			<p
 				class="text-[#7a6e5c] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
-				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 10AM–6PM · (844) 941-7376").replace(/\n/g, "<br />")}
+				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 9AM–5PM · (844) 941-7673").replace(/\n/g, "<br />")}
 				{...sbFieldPath("finalAddressLine")}
 			/>
 		</div>

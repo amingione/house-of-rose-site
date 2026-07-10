@@ -2,7 +2,7 @@ import { createClient } from '@sanity/client';
 
 const THANK_YOU_PATH = '/thank-you/';
 
-type SubmissionType = 'contact' | 'suiteRental';
+type SubmissionType = 'contact' | 'suiteRental' | 'skinAnalysis';
 
 interface LeadSubmissionDocument {
   _type: 'leadSubmission';
@@ -55,6 +55,10 @@ const getSubmissionType = (formName: string): SubmissionType | null => {
 
   if (formName === 'suite-rental-application') {
     return 'suiteRental';
+  }
+
+  if (formName === 'skin-analysis') {
+    return 'skinAnalysis';
   }
 
   return null;

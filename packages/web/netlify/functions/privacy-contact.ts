@@ -1,7 +1,7 @@
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const DEFAULT_FROM = "House of Rose Privacy Support <support@updates.houseofrosefl.com>";
 const DEFAULT_TO = "info@houseofrosefl.com";
-const PRIVACY_PAGE_URL = "https://houseofrosefl.com/privacy-policy";
+const PRIVACY_PAGE_URL = "https://houseofrosefl.com/privacy-policy/";
 
 interface PrivacyContactSubmission {
 	name: string;

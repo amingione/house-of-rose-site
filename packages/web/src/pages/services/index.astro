@@ -30,7 +30,6 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
       {services.map((service, index) => (
         <ServiceCard
           title={service.title}
-          signatureName={service.signatureName}
           slug={service.slug}
           tagline={service.tagline}
           image={service.image}
@@ -39,6 +38,26 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
           objectId={service._id}
         />
       ))}
+    </div>
+  </section>
+
+  <!-- Also at House of Rose — Professional Makeup (singleton hub, not a service doc) -->
+  <section class="bg-charcoal-light py-[clamp(40px,6vw,72px)] px-6 border-t border-gold/10">
+    <div class="max-w-[1080px] mx-auto">
+      <a
+        href="/services/professional-makeup/"
+        class="group grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-6 bg-breath p-8 transition-colors hover:bg-charcoal"
+      >
+        <div>
+          <span class="kicker">Also at House of Rose</span>
+          <h2 class="font-serif text-[clamp(24px,3.4vw,34px)] text-ink mt-2 mb-2">Professional Makeup</h2>
+          <p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[640px]">
+            Event, wedding, prom, and photography makeup applied with skin-first Jane Iredale mineral
+            makeup — in-studio or on location. Explore our looks, the Jane Iredale line, and group event bookings.
+          </p>
+        </div>
+        <span class="learn-more whitespace-nowrap">Explore Makeup →</span>
+      </a>
     </div>
   </section>
 
@@ -98,15 +117,15 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
         Schedule a private consultation and let our team build a protocol around your goals.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417376" class="btn-outline-gold">
-          (844) 941-7376
+        <a href="tel:+18449417673" class="btn-outline-gold">
+          (844) 941-7673
         </a>
         <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
           Book Online
         </a>
       </div>
       <p class="text-[#8a7c66] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
-        525 E Olympia Ave, Ste 9<br />Punta Gorda, FL 33950
+        525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
       </p>
     </div>
   </section>

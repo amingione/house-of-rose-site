@@ -32,6 +32,12 @@ const brands: BrandSection[] = [
     intro:
       'Approachable, results-driven daily care — clean formulations at honest prices. Where most clients start, and what most routines are built on.',
   },
+  {
+    id: 'face-reality',
+    name: 'Face Reality',
+    intro:
+      'The #1 professional acne line, and the backbone of our Face Reality 12-Week Program. Mandelic and glycolic serums, benzoyl peroxide treatments, gentle cleansers, and barrier care — matched to your acne type and adjusted as your skin responds.',
+  },
 ];
 
 const byBrand = (id: ProductBrand): Product[] => products.filter((p) => p.brand === id);
@@ -55,7 +61,7 @@ const orderingOptions = [
 
 <BaseLayout
   title="Curated Skincare Shop | House of Rose Punta Gorda, FL"
-  description="Professional skincare curated by House of Rose — ProCell aftercare serums, GlyMed+ pharmaceutical-grade care, and Skin Script daily essentials. In-studio, pickup, or shipped."
+  description="Professional skincare curated by House of Rose — ProCell aftercare serums, GlyMed+ pharmaceutical-grade care, Skin Script daily essentials, and Face Reality acne care. In-studio, pickup, or shipped."
 >
   <Hero
     title="Curated, not collected."
@@ -103,16 +109,12 @@ const orderingOptions = [
     );
   })}
 
-  <!-- Face Reality note -->
-  <section class="bg-charcoal-light py-[clamp(36px,5vw,56px)] px-6">
+  <!-- Face Reality — Face Reality 12-Week Program guidance -->
+  <section class="bg-charcoal-light py-[clamp(28px,4vw,44px)] px-6">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Face Reality</span>
-      <h2 class="font-serif text-[clamp(22px,3.5vw,30px)] text-ink mt-2 mb-4">
-        Acne home care, prescribed — not browsed.
-      </h2>
-      <p class="text-[#9a8c78] text-[14.5px] leading-[1.8] max-w-[620px] mx-auto">
-        Face Reality home-care products are matched to your acne type and adjusted as your skin responds, so they're available exclusively to Clarity Program clients in studio. Curious?
-        <a href="/services/face-reality-acne-program" class="text-gold hover:underline">Start with the program.</a>
+      <p class="text-[#9a8c78] text-[14px] leading-[1.8] max-w-[640px] mx-auto">
+        New to Face Reality? These are prescribed by acne type and adjusted as your skin responds — so if you're unsure where to start,
+        <a href="/services/face-reality-acne-program" class="text-gold hover:underline">begin with the Face Reality 12-Week Program</a> and we'll build your routine.
       </p>
     </div>
   </section>
@@ -136,8 +138,8 @@ const orderingOptions = [
         ))}
       </div>
       <div class="text-center">
-        <a href="tel:+18449417376" class="btn-gold">Call to Order — (844) 941-7376</a>
-        <p class="text-[#7a6e5c] text-[12px] mt-5">Bundle and membership clients receive preferred pricing on full-size products — mention it when you order.</p>
+        <a href="tel:+18449417673" class="btn-gold">Call to Order — (844) 941-7673</a>
+        <p class="text-[#7a6e5c] text-[12px] mt-5">Bundle clients receive preferred pricing on full-size products — mention it when you order.</p>
       </div>
     </div>
   </section>
