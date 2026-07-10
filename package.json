@@ -11,6 +11,7 @@
     "build:studio": "node scripts/run-with-env.mjs npm run build -w packages/studio",
     "build": "npm run build:web && npm run build:studio",
     "lint": "npm run lint -w packages/web",
+    "guard:drift": "node scripts/drift-guard.mjs",
     "sync:notion": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio",
     "sync:notion:dry": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio -- --dry",
     "indexnow": "node scripts/run-with-env.mjs node scripts/indexnow.mjs",
