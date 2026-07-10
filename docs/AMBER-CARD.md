@@ -24,7 +24,7 @@ Change the values **in two places** and keep them identical:
 - Phone: **(844) 941-7673** → E.164 `+18449417673` (spells ROSE)
 - Email: **amber@houseofrosefl.com**
 - Address: **525 E. Olympia Ave. Unit 9, Punta Gorda, FL 33950** — note **"Unit 9"**,
-  never "Suite/Ste 9" (the Canva card prints "Suite 9"; the site follows the
+  never "Suite/F" (the Canva card prints "Suite 9"; the site follows the
   canonical `Unit 9` for local-SEO consistency).
 
 ## Make it a real tap-to-share
