@@ -8,7 +8,6 @@ import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 // Booking + internal links (single source of truth so they're easy to swap)
 const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
 const SKIN_ANALYSIS_URL = "/skin-analysis";
-const ROSE_CIRCLE_URL = "/rose-circle";
 const SHOP_URL = "/shop";
 
 // ─── Home content from Sanity (singleton) ──────────────────────────────────────
@@ -39,7 +38,7 @@ const FALLBACK_SERVICE_GROUPS = [
 	{
 		name: "Wellness & Performance Support",
 		description:
-			"IV hydration, GLP-1 weight management, permanent jewelry, memberships, and select offerings that complement your aesthetic goals and overall care experience.",
+			"IV hydration, GLP-1 weight management, permanent jewelry, and select offerings that complement your aesthetic goals and overall care experience.",
 		imagePath: "/images/new-wellness.webp",
 	},
 ];
@@ -336,49 +335,6 @@ const organizationData = {
 					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book Your Scan"}</a
 				>
 			</div>
-		</div>
-	</section>
-
-	<!-- ── SECTION 6 · THE ROSE CIRCLE ─────────────────────────────── -->
-	<section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
-		<div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-			<span class="kicker" {...sbFieldPath("circleKicker")}>{hp.circleKicker ?? "The Rose Circle"}</span>
-			<h2
-				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
-				{...sbFieldPath("circleHeading")}
-			>
-				{hp.circleHeading ?? "Where your results are protected."}
-			</h2>
-			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
-				{...sbFieldPath("circlePara1")}
-			>
-				{hp.circlePara1 ?? "The Rose Circle is our 6-month guided client affiliation for clients who want custom care at member rates after skin analysis and provider evaluation."}
-			</p>
-			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
-				{...sbFieldPath("circlePara2")}
-			>
-				{hp.circlePara2 ?? "Start with the scanner, let your provider examine your skin, then commit to a real plan with enough time for healthy visible change to evolve. It is not a discount club or a gimmick."}
-			</p>
-			<div class="flex gap-3 flex-wrap">
-				<a href={ROSE_CIRCLE_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaPrimaryText")}
-					>{hp.circleCtaPrimaryText ?? "View The Rose Circle"}</a
-				>
-				<a href={SKIN_ANALYSIS_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("circleCtaSecondaryText")}
-					>{hp.circleCtaSecondaryText ?? "Book Your Skin Analysis"}</a
-				>
-			</div>
-		</div>
-		<div class="relative min-h-[340px] bg-charcoal-lighter">
-			<img
-				src="/images/hor-lobby.jpg"
-				alt="House of Rose Aesthetics Rose Circle and ongoing care"
-				loading="lazy"
-				class="w-full h-full object-cover"
-				width="1400"
-				height="933"
-			/>
 		</div>
 	</section>
 

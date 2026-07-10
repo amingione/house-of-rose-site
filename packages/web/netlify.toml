@@ -97,6 +97,22 @@
   to     = "/packages/prf-microchanneling-journey/"
   status = 301
 
+# Retired — memberships, Rose Circle, and Rose Method plans (business dropped memberships)
+[[redirects]]
+  from   = "/memberships/*"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/rose-circle/*"
+  to     = "/"
+  status = 301
+
+[[redirects]]
+  from   = "/plans/*"
+  to     = "/"
+  status = 301
+
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]
   from   = "/*"

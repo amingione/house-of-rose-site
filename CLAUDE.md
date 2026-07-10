@@ -19,16 +19,23 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 ## Providers & Team (memory — never re-ask)
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, ProCell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
-- **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing only outisde of the wax pass** (waxing = Rose Pass).
-- **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **The Rose Pass** (waxing) + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
+- **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane).
+- **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **Waxing** + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
 
-## Membership model (SETTLED — The Rose Circle)
-- **The Rose Circle** is the **program/umbrella itself** (owned by House of Rose) — NOT a membership. It holds the memberships, **Rose Rewards** (cash-back credited towards the member's account to be used towards products or services), and member pricing.
-- **Rose Rewards:** 1% of purchases (excl. membership fees) → account credit. **Bundle 2+ memberships → 5×.**
-- **Memberships (single per lane, by provider):** Advanced Facials (Amber $149) · Injectables (Diana $99) · IV Hydration (Diana $109 standalone) · Basic Facials (Brandy $99) · Rose Pass (Aundrea $25/$59/$99 wax tiers). No consultation to join; consultation not included.
-- **The Rose Method** = the consult → AI skin analysis → custom treatment-plan process. Its plans are **NOT memberships** (evolving, time-boxed, end goal). Plan rewards: **2% cash back on treatment cost, 3% if paid in full upfront, 5% off designated aftercare only**; accrues as they pay.
-- **GLP-1** = Rose Circle rewards-eligible, not a membership. **Rose Collagen Bank & House Collective = retired.**
-- **Naming law:** all botanical/flowery names are dead (Lily/Iris/Hydrangea/Porcelain Petal/Gilded Lily/etc.). Use plain, searchable, real-world names. "Rose Circle" / "Rose Method" / "Rose Pass" survive (brand-anchored, not botanical).
+## Memberships — REMOVED (2026-07-07) · House of Rose does NOT do memberships
+The entire membership system was torn out. **Do not reintroduce any of it.** Removed everywhere
+(Sanity content, site pages, nav, studio schema, GROQ queries):
+- All lane memberships (Advanced Facials, Basic Facials, IV Hydration, Injectables).
+- **The Rose Pass** (wax pass) and its tiers.
+- **The Rose Circle** (the rewards/affiliation program) — page + schema deleted.
+- **Rose Rewards** (cash-back points) — the concept is gone; don't reference it.
+- **The Rose Method** and the `/plans` page + Regeneration/Renewal/Restoration plan docs.
+- Already-retired: Rose Collagen Bank, House Collective.
+
+Redirects: `/memberships/*`, `/rose-circle/*`, `/plans/*` → `/` (301, in `packages/web/netlify.toml`).
+**GLP-1** remains a normal **service** (Diana), not tied to any membership/rewards program.
+
+- **Naming law (still active):** all botanical/flowery names are dead (Lily/Iris/Hydrangea/Porcelain Petal/Gilded Lily/etc.). Use plain, searchable, real-world names. The brand terms "Rose Circle," "Rose Method," and "Rose Pass" are now **retired too** (they only existed for the membership system).
 
 ## URL rule — trailing slash REQUIRED on inner pages
 Astro's default `build.format` is `directory` and `site` resolves to `https://houseofrosefl.com/`, so every inner page lives at its **trailing-slash** URL (`/services/`, `/experience/`, `/services/prf/`, `/privacy-policy/`). Writing an inner-page URL **without** the slash relies on a redirect and can break — the same failure seen on FAS Motorsports. Root domain (`houseofrosefl.com`) is slash-optional. **Rule: every absolute or internal link to an inner page ends in `/`.**
@@ -105,16 +112,10 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
   Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
 - **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
-  `homepage`, `roseCirclePage`, `membershipsPage`, `contactPage`, `privacyPolicy`, `rentARoom`,
-  `skinAnalysis`, `thankYou` — each edited under Studio → **Pages** (or **Home Page**),
-  rendered with Sanity-first + hardcoded fallbacks, fully click-to-edit. Forms
-  (contact, rent-a-room) and JSON-LD were left untouched. Every site page is now
-  inline-editable (`ve:check` = 0 missing).
-  **Note:** `roseCirclePage` (`/rose-circle/`) is the client-affiliation page — it is
-  intentionally NOT a membership. `membershipsPage` (`/memberships/`) is the real
-  recurring-membership hub (Rose Pass, IV Hydration Membership, Injectables + Basic/Advanced Facials),
-  backed by `membership` documents grouped via `membershipGroup`. _(Rose Collagen Bank retired — its
-  `collagen-bank` group value is kept in the schema only for legacy docs; the hub now features Injectables.)_
+  `homepage`, `contactPage`, `privacyPolicy`, `rentARoom`, `skinAnalysis`, `thankYou` — each
+  edited under Studio → **Pages** (or **Home Page**), rendered with Sanity-first + hardcoded
+  fallbacks, fully click-to-edit. Forms (contact, rent-a-room) and JSON-LD were left untouched.
+  _(The `roseCirclePage` and `membershipsPage` singletons were deleted in the 2026-07-07 membership teardown.)_
 
 ---
 
@@ -162,8 +163,6 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/services/professional-makeup/jane-iredale` | `services/professional-makeup/jane-iredale.astro` | Jane Iredale brand feature singleton (`janeIredalePage`) — makeup/skincare/supplements, benefits, post-treatment use, this-for-that swap guide, Get-the-Look. |
 | `/services/professional-makeup/events` | `services/professional-makeup/events.astro` | Makeup group/event bookings singleton (`makeupEventsPage`) — in-house block times, spa rental "Pre-Party Package", travel. |
 | `/experience` | `experience.astro` | Static |
-| `/rose-circle` | `rose-circle.astro` | Rose Circle client affiliation singleton (`roseCirclePage`) — NOT a membership |
-| `/memberships` | `memberships.astro` | Real memberships hub singleton (`membershipsPage`) + grouped `membership` docs (Rose Pass, IV Hydration Membership, Injectables, Basic/Advanced Facials) |
 | `/cost/[slug]` | `cost/[slug].astro` | Cost guide by slug (`costGuide`) |
 | `/compare/[slug]` | `compare/[slug].astro` | Comparison by slug (`comparison`) |
 | `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |

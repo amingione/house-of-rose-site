@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 /**
  * Provider — mirrors the Notion "HOUSE OF ROSE: Providers" database.
- * Chain: Provider → Service → Package/Series → Membership/Plan.
+ * Chain: Provider → Service → Package/Series.
  */
 export const provider = defineType({
   name: 'provider',

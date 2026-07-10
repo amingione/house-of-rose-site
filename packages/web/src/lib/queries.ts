@@ -489,32 +489,6 @@ export interface TreatmentPackage {
   image?: SanityImage;
 }
 
-export type MembershipType = 'membership-tier' | 'regenerative-plan' | 'wellness-rider';
-export type MembershipLane =
-  | 'advanced-aesthetics'
-  | 'injectables-medical'
-  | 'wellness'
-  | 'beauty-enhancements'
-  | 'house-collective'
-  | 'cross-category';
-export type MembershipGroup = 'rose-pass' | 'iv-hydration' | 'basic-facials' | 'advanced-facials' | 'injectables' | 'collagen-bank';
-
-export interface Membership {
-  _id: string;
-  title: string;
-  slug: string;
-  type?: MembershipType;
-  lane?: MembershipLane;
-  membershipGroup?: MembershipGroup;
-  status?: 'live' | 'proposed' | 'brainstorm';
-  provider?: { title: string };
-  monthlyPrice?: string;
-  whatsIncluded?: string;
-  perks?: string;
-  linkedServices?: { _id: string; title: string; slug: string }[];
-  linkedPackages?: { _id: string; title: string; slug: string }[];
-}
-
 export const BRAND_PROFILE_QUERY = /* groq */ `
   *[_type == "brandProfile"] | order(_updatedAt desc)[0] {
     title,
@@ -561,57 +535,6 @@ export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
   *[_type == "treatmentPackage" && defined(slug.current)]{ "slug": slug.current }
 `;
 
-export const ALL_MEMBERSHIPS_QUERY = /* groq */ `
-  *[_type == "membership"] | order(orderRank asc, _createdAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    type,
-    lane,
-    membershipGroup,
-    status,
-    "provider": provider->{ title },
-    monthlyPrice,
-    whatsIncluded,
-    perks,
-    "linkedServices": linkedServices[]->{ _id, title, "slug": slug.current },
-    "linkedPackages": linkedPackages[]->{ _id, title, "slug": slug.current }
-  }
-`;
-
-// Live memberships grouped for the public /memberships page (Rose Pass, IV Hydration
-// Membership, Rose Collagen Bank). Excludes anything without a membershipGroup or not live.
-export const PUBLIC_MEMBERSHIPS_QUERY = /* groq */ `
-  *[_type == "membership" && status == "live" && defined(membershipGroup)] | order(orderRank asc, _createdAt asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    membershipGroup,
-    monthlyPrice,
-    whatsIncluded,
-    perks
-  }
-`;
-
-export const ALL_MEMBERSHIP_SLUGS_QUERY = /* groq */ `
-  *[_type == "membership" && defined(slug.current)]{ "slug": slug.current }
-`;
-
-// Regenerative Plans — the cross-lane, multi-month programs (Renewal → Regeneration →
-// Restoration). Surfaced on their own /plans page, separate from the monthly lane memberships.
-export const REGENERATIVE_PLANS_QUERY = /* groq */ `
-  *[_type == "membership" && type == "regenerative-plan"] | order(orderRank asc, _createdAt desc) {
-    _id,
-    title,
-    "slug": slug.current,
-    monthlyPrice,
-    whatsIncluded,
-    perks,
-    "provider": provider->{ title },
-    "linkedServices": linkedServices[]->{ _id, title, "slug": slug.current },
-    "linkedPackages": linkedPackages[]->{ _id, title, "slug": slug.current }
-  }
-`;
 
 // ─── Marketing / SEO / AEO page types — see docs/CONTENT-MODEL-MAP.md ─────────
 
@@ -881,12 +804,6 @@ export interface HomePage {
   scanQuote?: string;
   scanCtaPrimaryText?: string;
   scanCtaSecondaryText?: string;
-  circleKicker?: string;
-  circleHeading?: string;
-  circlePara1?: string;
-  circlePara2?: string;
-  circleCtaPrimaryText?: string;
-  circleCtaSecondaryText?: string;
   careKicker?: string;
   careHeading?: string;
   carePara1?: string;
@@ -917,7 +834,6 @@ export const HOMEPAGE_QUERY = /* groq */ `
     serviceGroups[]{ _key, name, description, imagePath },
     servicesCtaText,
     scanKicker, scanHeading, scanPara1, scanPara2, scanQuote, scanCtaPrimaryText, scanCtaSecondaryText,
-    circleKicker, circleHeading, circlePara1, circlePara2, circleCtaPrimaryText, circleCtaSecondaryText,
     careKicker, careHeading, carePara1, carePara2, careCtaText,
     expKicker, expHeading, expPara1, expPara2,
     localKicker, localHeading, localPara1, localPara2,

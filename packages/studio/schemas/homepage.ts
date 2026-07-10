@@ -17,7 +17,6 @@ export const homepage = defineType({
     { name: 'approach', title: 'Approach' },
     { name: 'services', title: 'Services' },
     { name: 'scan', title: 'AI Skin Analysis' },
-    { name: 'circle', title: 'Rose Circle' },
     { name: 'homecare', title: 'Home Care' },
     { name: 'experience', title: 'Experience' },
     { name: 'local', title: 'Local' },
@@ -83,14 +82,6 @@ export const homepage = defineType({
     defineField({ name: 'scanQuote', title: 'Quote Line', type: 'text', rows: 2, group: 'scan' }),
     defineField({ name: 'scanCtaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'scan' }),
     defineField({ name: 'scanCtaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'scan' }),
-
-    // ── Rose Circle ──
-    defineField({ name: 'circleKicker', title: 'Kicker', type: 'string', group: 'circle' }),
-    defineField({ name: 'circleHeading', title: 'Heading', type: 'string', group: 'circle' }),
-    defineField({ name: 'circlePara1', title: 'Paragraph 1', type: 'text', rows: 4, group: 'circle' }),
-    defineField({ name: 'circlePara2', title: 'Paragraph 2', type: 'text', rows: 3, group: 'circle' }),
-    defineField({ name: 'circleCtaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'circle' }),
-    defineField({ name: 'circleCtaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'circle' }),
 
     // ── Home Care ──
     defineField({ name: 'careKicker', title: 'Kicker', type: 'string', group: 'homecare' }),

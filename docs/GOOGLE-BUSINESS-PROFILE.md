@@ -336,7 +336,7 @@ differentiator none of your competitors carry.
   your terminal supports it (most GlossGenius/Square readers do).
 - **Free Wi-Fi** — small luxury signal for the suite.
 - **Restroom / wheelchair attributes** are set — good; keep them honest to Unit 9's real layout.
-- **Financing** (Cherry/Affirm) — if you offer it, add it; the pricing strategy leans on financing to lift
+- **Financing** (Affirm/Klarna/AfterPay) — if you offer it, add it; the pricing strategy leans on financing to lift
   average ticket.
 
 > Only toggle attributes that are **true**. Google surfaces several of these as map-pack filters, so the more
@@ -365,7 +365,7 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 > proud to offer in Charlotte County.
 
 **Q: Do you take walk-ins?**
-> A: We're by appointment only, so every guest gets unhurried, private care. Call (844) 941-7673 to begin.
+> A: We're by appointment only for facials and injections, so every guest gets unhurried, private care. Our IV Hydration Therapy allows walk-ins as its set up to provide leisure and relaxtion for our guests. Call (844) 941-7673 to begin.
 
 **Q: Do I have to commit to injectables to come here?**
 > A: Not at all. Many guests start with skin — a facial, BioRePeel, or microchanneling — and build a plan
@@ -374,10 +374,6 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 **Q: Where are you located and is there parking?**
 > A: 525 E Olympia Ave, Unit 9, in Punta Gorda. _(Add your parking specifics here.)_
 
-**Q: Do you offer memberships?**
-> A: Yes — the Rose Pass (wax membership), IV Hydration Membership, and the Rose Collagen Bank. Ask which
-> fits your routine at your next visit. (The Rose Circle is different — that's our guided client
-> affiliation, not a membership.)
 
 ---
 

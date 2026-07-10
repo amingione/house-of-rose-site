@@ -5,8 +5,6 @@ import { skinAnalysis } from './skinAnalysis';
 import { contactPage } from './contactPage';
 import { privacyPolicy } from './privacyPolicy';
 import { rentARoom } from './rentARoom';
-import { membershipsPage } from './membershipsPage';
-import { roseCirclePage } from './roseCirclePage';
 import { professionalMakeupPage } from './professionalMakeupPage';
 import { janeIredalePage } from './janeIredalePage';
 import { makeupEventsPage } from './makeupEventsPage';
@@ -21,7 +19,6 @@ import { leadSubmission } from './leadSubmission';
 import { brandProfile } from './brandProfile';
 import { provider } from './provider';
 import { treatmentPackage } from './treatmentPackage';
-import { membership } from './membership';
 // Shared objects + AEO page types — see docs/SEO-AEO-PLAYBOOK.md
 import { seo } from './objects/seo';
 import { faq } from './objects/faq';
@@ -42,8 +39,6 @@ export const schemaTypes = [
   contactPage,
   privacyPolicy,
   rentARoom,
-  membershipsPage,
-  roseCirclePage,
   professionalMakeupPage,
   janeIredalePage,
   makeupEventsPage,
@@ -60,7 +55,6 @@ export const schemaTypes = [
   brandProfile,
   provider,
   treatmentPackage,
-  membership,
   // Marketing / SEO / AEO page types — see docs/CONTENT-MODEL-MAP.md
   costGuide,
   comparison,
