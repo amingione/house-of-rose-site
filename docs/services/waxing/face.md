@@ -1,7 +1,7 @@
 # Facial Waxing
 ---
 Providers:
- [Aundrea/Brooke Morrison]() 
+ [Aundrea Morrison]() 
  [Brandy Case]()
 Wax Type:
  - Hard Wax
@@ -25,11 +25,3 @@ Wax Type:
  $35
 - Full Face — 9 zones
  $70
-
-## Smooth Ritual
-**memberships**
-- Brow & Lip
- $25/mo
-**Monthly brow + lip ($40 value)**
-
-**Rose Circle Wax Pass terms are confirmed at consultation. A 6-month minimum commitment applies.**
