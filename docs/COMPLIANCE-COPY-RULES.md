@@ -11,12 +11,9 @@
 
 ## 1. Why this exists
 
-House of Rose packages its services into **plans, a client affiliation, and recurring
-memberships** — *The Rose Method* (the consult → AI skin analysis → custom treatment-plan process;
-its plans are **not** memberships), *The Rose Circle* (the program/umbrella members belong to when
-they hold a monthly membership — it holds Rose Rewards and member pricing), and recurring
-*memberships* by lane (Advanced Facials, Injectables, IV Hydration, Basic Facials, Rose Pass)
-— rather than à-la-carte facials. _(Rose Collagen Bank & House Collective are retired — do not list
+House of Rose sells **individual services and treatment packages**, with **AI skin analysis** as the
+evidence-based first step that draws clients in and guides what they book. _(Memberships, Rose Pass,
+The Rose Circle, Rose Rewards, and the Rose Method were removed 2026-07-07 — do not reference any of
 them as current offerings.)_
 Productizing aesthetics raises the compliance stakes: the more we describe outcomes, sequences, and
 "transformation," the easier it is to drift into language Florida regulators, the FTC, and the
@@ -62,7 +59,7 @@ Each row is a hard avoid. The "Say instead" column is the approved, compliance-s
 
 ## 3. Required guardrails — what every plan/treatment surface must carry
 
-Whenever copy *sells* a plan, package, membership, or advanced treatment, it must include:
+Whenever copy *sells* a package or advanced treatment, it must include:
 
 1. **Provider authority.** Final treatment combinations, dosing, intervals, and suitability are
    determined by the licensed provider at consultation — not promised in marketing.
@@ -70,11 +67,11 @@ Whenever copy *sells* a plan, package, membership, or advanced treatment, it mus
    confirmed by your licensed provider based on candidacy, contraindications, and local
    regulations." (see `treatmentPackage.candidacyNote`).
 2. **Candidacy is real.** "Not every client is a candidate for every service." State it wherever a
-   plan is sold (`/plans`, `/packages`, `/memberships`, `/rose-circle`).
+   package or advanced treatment is sold (e.g. `/packages`, service pages).
 3. **Individual outcomes.** "Outcomes are individual and depend on your skin, candidacy, and
    consistency." Case studies render only with `consentGiven == true`.
-4. **Pricing as investment.** Always "investment," "from," or "starting at"; monthly options framed
-   as *support for consistency*, never financing pressure or a discount.
+4. **Pricing as investment.** Always "investment," "from," or "starting at"; never financing pressure
+   or a discount.
 
 ---
 
@@ -89,8 +86,8 @@ medical result:
   "advanced aesthetics & wellness," "personalized," "unhurried," "curated," "guided plan."
 - **Structure (the differentiator):** "Skin transforms through timing, consistency, and structure,"
   "sequenced," "phased," "a plan, not a punch card."
-- **Membership framing:** "access," "priority booking," "member pricing," "curated credits,"
-  "belonging," "continuity" — **never** "discount club."
+- **AI Skin Analysis (the draw):** "evidence-based," "see your skin," "before any treatment,"
+  "the smart first step," "no pressure, no commitment."
 
 Brand voice in one line: *confident, not loud; specific over superlative; sensory but disciplined.*
 (See also the brand-voice guidance in `llms.txt` / `llms-full.txt`.)
@@ -119,6 +116,5 @@ copy polish, every time.
 
 - `docs/SEO-AEO-PLAYBOOK.md` — content strategy, the 7 page types, the publish checklist.
 - `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc → route → JSON-LD → GROQ.
-- `marketing/regeneration-plans.md` §8 — the originating voice & compliance notes for the plans/membership architecture.
 - Schemas that encode these guardrails: `treatmentPackage` (`candidacyNote`, `outcome`),
-  `membership`, `caseStudy` (`consentGiven`).
+  `caseStudy` (`consentGiven`).

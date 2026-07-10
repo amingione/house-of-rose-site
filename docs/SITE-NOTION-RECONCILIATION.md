@@ -1,6 +1,11 @@
 # Site ↔ Notion Reconciliation Review
 *2026-06-21 · Notion = source of truth · Sanity (`4e7axyi7`/production) = CMS feeding houseofrosefl.com · Brand standard = v1.0 (Advanced Aesthetics, full destination, "Where beauty blooms within").*
 
+> **⚠️ HISTORICAL SNAPSHOT (2026-06-21).** Superseded on **2026-07-07**: **all memberships, Rose Pass,
+> The Rose Circle, Rose Rewards, and the Rose Method were removed** from the site and Sanity. Any
+> membership/plan content below is history only — do **not** treat it as current. Current source of
+> truth = `CLAUDE.md`. Med-spa positioning is also now "allow, don't lead" (not the v1.0 stance).
+
 ## ✅ P0 EXECUTED (2026-06-21) — pending deploy
 - ~~**Signature names LIVE in Sanity** for 7 services: The Porcelain Petal (Dermaplaning), The Lumière
   (Glo2Facial), The Camellia Peel (BioRePeel), The Gilded Lily (PRF Skin Texture), The Clarity Session

@@ -193,7 +193,7 @@ the attributes.
   `{...sbObjectId(ref._id)}`, then annotated relative to that ref.
 - **Components** forward annotations via an optional `objectId` prop and stay inert
   when it's omitted (so hardcoded usage like the homepage is unaffected). See
-  `ServiceCard.astro`, `TreatmentPackageCard.astro`, `MembershipTiers.astro`.
+  `ServiceCard.astro`, `TreatmentPackageCard.astro`.
 
 ```astro
 ---
@@ -257,8 +257,6 @@ original-copy fallbacks, and annotated). Edit them in Studio → **Home Page** /
 | Page | Sanity type (singleton `_id`) |
 |------|-------------------------------|
 | `/` | `homepage` |
-| `/rose-circle` | `roseCirclePage` (client affiliation — not a membership) |
-| `/memberships` | `membershipsPage` (real recurring memberships: Rose Pass, IV Hydration Membership, Collagen Bank) |
 | `/contact` | `contactPage` (form untouched) |
 | `/privacy-policy` | `privacyPolicy` |
 | `/rent-a-room` | `rentARoom` (form untouched) |
@@ -271,16 +269,15 @@ aren't in `PAGE_ROUTES` (that map is for slug-routed document types only).
 
 <details><summary>Original migration plan (for reference / future pages)</summary>
 
-Eight pages once rendered hardcoded content in `.astro`: `index` (homepage),
-`memberships`, `contact`, `privacy-policy`, `rent-a-room`, `skin-analysis`,
-`thank-you`.
+Several pages once rendered hardcoded content in `.astro`: `index` (homepage),
+`contact`, `privacy-policy`, `rent-a-room`, `skin-analysis`, `thank-you`.
 
 Plan (each page is a vertical slice):
 
 1. **Model** — add a Sanity schema. A reusable `page` document (hero + Portable
    Text body + flexible sections) covers the simple pages (`privacy-policy`,
-   `rent-a-room`, `skin-analysis`, `thank-you`, `contact`); `homepage` and
-   `memberships` get bespoke singletons.
+   `rent-a-room`, `skin-analysis`, `thank-you`, `contact`); `homepage` gets a
+   bespoke singleton.
 2. **Deploy schema** — `npm run deploy:studio` (or `sanity deploy` in
    `packages/studio`).
 3. **Seed content** — a migration script (`packages/studio/scripts/seed-*.ts`

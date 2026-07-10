@@ -119,18 +119,18 @@ service-area-only — you have a suite clients visit).
 ## 3. Business description (750-char max)
 
 **Your live description (deployed ✅ — keep it):** strong, accurate to your real menu, and on-voice. It leads
-with "advanced aesthetics and wellness studio," names the differentiators (Rose Method™, AI skin imaging),
-and carries the terms Google reads. No changes required.
+with "advanced aesthetics and wellness studio," names the differentiators (AI skin imaging, regenerative
+treatments), and carries the terms Google reads. No changes required.
 
 ```
-House of Rose Aesthetics is an advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, BioRePeel, PRF and ProCell Microchanneling, GLP-1 support, professional waxing, facials, and IV Hydration Therapy. Using the Rose Method™ and advanced AI skin imaging technology, we curate each treatment plan around your skin, goals, and progress, allowing for precise tracking and thoughtful treatment enhancements over time. At House of Rose, skin health is not just surface level. Beauty blooms from within.
+House of Rose Aesthetics is an advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, BioRePeel, PRF and ProCell Microchanneling, GLP-1 support, professional waxing, facials, and IV Hydration Therapy. Using advanced AI skin imaging technology, we curate each treatment plan around your skin, goals, and progress, allowing for precise tracking and thoughtful treatment enhancements over time. At House of Rose, skin health is not just surface level. Beauty blooms from within.
 ```
 
 **Optional refinement** (if you ever want a touch more "private, by-appointment, named-provider" warmth — same
 length class, ~720 chars, still no banned words):
 
 ```
-House of Rose Aesthetics is a private, by-appointment advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, PRF and ProCell Microchanneling, BioRePeel, facials, professional waxing, IV Hydration Therapy, and GLP-1 support. Guided by the Rose Method™ and advanced AI skin imaging, we build each plan around your skin, goals, and progress — tracking results and refining over time with a provider who listens first and never sells you what you don't need. Skin health here isn't surface level. Beauty blooms from within.
+House of Rose Aesthetics is a private, by-appointment advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, PRF and ProCell Microchanneling, BioRePeel, facials, professional waxing, IV Hydration Therapy, and GLP-1 support. Guided by advanced AI skin imaging, we build each plan around your skin, goals, and progress — tracking results and refining over time with a provider who listens first and never sells you what you don't need. Skin health here isn't surface level. Beauty blooms from within.
 ```
 
 _Either is fine. No "anti-aging," no "med spa," no hype — value framed as care, not discounts._
@@ -167,7 +167,7 @@ Add each as a Service with its name + a description. Brand rules applied:
 
 **BioRePeel** · _From $295_
 > A no-downtime peel that supports clearer, brighter, more even skin. Excellent on its own or layered with
-> microchanneling in a Rose Method series.
+> microchanneling in a treatment series.
 
 ### Group B — Facials & skin
 
@@ -226,9 +226,8 @@ Add each as a Service with its name + a description. Brand rules applied:
 
 ### Group E — Waxing (live ✅ — you list it in your description)
 
-**Professional Waxing (Face & Body · Rose Pass)** · _From $X_
-> Clean, comfortable professional waxing for face and body, by appointment. Ask about the Rose Pass for
-> regulars. _(Add your real starting price.)_
+**Professional Waxing (Face & Body)** · _From $X_
+> Clean, comfortable professional waxing for face and body, by appointment. _(Add your real starting price.)_
 
 ---
 
@@ -300,8 +299,8 @@ _Google duplicates four items here. Use the **same price + description** as abov
 ### Skin care clinic (additional)
 
 **Regenerative Skin Treatment** _(your custom item)_ · _From $425_
-> The heart of the Rose Method™ — regenerative treatments like PRF and ProCell Microchanneling that support
-> your skin's own collagen over a paced series. Built the right way, for results that look like you.
+> Regenerative treatments like PRF and ProCell Microchanneling that support your skin's own collagen over
+> a paced series. Built the right way, for results that look like you.
 
 ### Vitamin & supplements store (additional — house GLP-1, B-12, IV here)
 Google already auto-groups GLP-1 and B-12 into this category, so we lean into it. Add these custom items
@@ -397,13 +396,13 @@ Post **weekly** minimum. Posts expire from prominence, so cadence matters. No hy
 > Boutique IV hydration in a calm, private suite — to support energy, recovery, and glow. From $185. By
 > appointment.
 
-**Post 5 — The method / brand**
-> Not everything at once. Everything at the right time. The Rose Method builds results the right way, so they
+**Post 5 — The approach / brand**
+> Not everything at once. Everything at the right time. We build results the right way, so they
 > compound and look unmistakably like you.
 
-**Post 6 — Founding members / offer (if live)**
-> Our founding membership is open to a small first group. Credits that match your treatment plan, priority
-> booking, and quiet, personal care. Call to ask about the Rose Collagen Bank. _(Adjust to live offer.)_
+**Post 6 — AI Skin Analysis (the draw)**
+> See your skin before you decide anything. Our in-studio AI skin analysis is the evidence-based first
+> step — book it and we'll build your plan around exactly what we find. No pressure, no commitment.
 
 > Add a real **photo** to every post. Avoid the word "deal." Frame value as access, not discounts.
 
