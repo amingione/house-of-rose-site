@@ -1,80 +1,81 @@
-# Advanced Facials & Skin Renewal — Master Treatment, Pricing & Description Guide
+# Advanced Skin — Regenerative & Corrective · Master Treatment, Pricing & Description Guide
 
-**Provider lane:** Amber — Advanced Esthetics, **regenerative & corrective skin** (microchanneling / microneedling, topical PRF, ProCell, BioRePeel, Glo2Facial resurfacing, dermaplaning, acne — targeting tightening, scars, stretch marks, wrinkles and texture on **face and body**). *Relaxing/maintenance facials are Brandy's lane; injectables, IV, GLP-1 (Diana) and waxing / permanent jewelry (Aundrea) are separate lanes — none included here.*
+**Provider lane:** Amber — Advanced Esthetics, **regenerative & corrective skin** (microchanneling / microneedling, topical PRF, ProCell, BioRePeel, Glo2Facial, dermaplaning, acne — targeting tightening, scars, stretch marks, wrinkles and texture on **face and body**). *Relaxing/maintenance facials are Brandy's lane; injectables, IV, GLP-1 (Diana) and waxing / permanent jewelry (Aundrea) are separate lanes — none included here.*
 **Location / market:** House of Rose Aesthetics · Punta Gorda, FL (Charlotte County / SW Florida)
 **Last updated:** 2026-07-10
-**Sources:** synthesized from the repo's competitor briefs (`docs/competitor_analysis/`), price research (`marketing/pricing-research/`), the PRF compliance deep-dive (`docs/services/PRF/`), the packages/cadence guide (`docs/services/facials/packagesAdd-ons.md`), and live SW-FL market research (July 2026).
 
-**Pricing calibration (2026-07-10):** Recalibrated for the local market — Punta Gorda median household income ~$85,779, 53.6% aged 65+, affluent but value-conscious retirees; local "microneedling" anchor ~$195 (Skin Sanctuary). Added an accessible **ProCell Pro entry tier ($250)**, trimmed single-session premiums (ceiling ~$525 vs prior $595), and structured for a **lead-with-the-series** sale. No local competitor offers ProCell growth-factor or PRF channeling — that differentiation supports the premium tiers.
-
-> **Read the Compliance & Guardrails section before publishing any of this copy.** Several phrases (e.g. "FDA-approved," "superior," "stem cell," "non-surgical BBL," "permanent") are prohibited under Florida Board of Medicine rules and are avoided throughout.
+> **Read the Compliance & Guardrails section before publishing any of this copy.** Prohibited phrases ("FDA-approved," "superior," "stem cell," "non-surgical BBL," "permanent") are avoided throughout.
 
 ---
 
-## 1. Signature Facials — Face
+## The Package Framework (applies to every treatment)
 
-| Treatment | Description | Duration | Single | 3 Sessions | 5 Sessions |
+One consistent structure across the whole menu — easy to sell, easy to understand, clinically sound:
+
+- **Single Visit** — try it, or maintain results.
+- **Series of 3 — "Renewal Series"** (~10% value) — most concerns show visible change by three sessions. The committed starting point.
+- **Series of 6 — "Full Correction Series"** (~20% value) — the complete corrective course. This is the standard for **body work, scarring, and stretch marks** (thicker skin remodels slower), and the best value and best result for the client.
+
+**The client journey / how clients enter:**
+1. **Glo2Facial — the gateway** ($185). The accessible entry point and the base for our corrective work.
+2. **Regenerative channeling — the step up** (ProCell Pro → MD → PRF). ProCell Pro ($250) is the entry *into channeling*.
+3. **Signature combos** (Glo2Facial + channeling) and **body correction**.
+
+*Sell the series, not the single visit — frame corrections as a plan. Pricing calibrated for the local market (Punta Gorda median household income ~$85,779; 53.6% aged 65+; affluent but value-conscious; local "microneedling" anchor ~$195). No local competitor offers ProCell growth-factor or PRF channeling.*
+
+---
+
+## 1. Start Here — The Signature Facial *(Entry / Gateway)*
+
+| Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
 |---|---|---|---|---|---|
-| **Glo2Facial** | Oxygenation, gentle exfoliation, and lymphatic massage using Geneo OxyPods + primer gel to trigger oxygenation within the skin — an immediate, luminous glow with no downtime. Fully customizable (brightening, hydrating, detox, smoothing). | 60 min | $185 | $499 | $785 |
+| **Glo2Facial** | Oxygenation, gentle exfoliation, and lymphatic massage (Geneo OxyPods + primer) to trigger oxygenation within the skin — an immediate, luminous glow with no downtime. **Our entry point and the base for corrective work.** Fully customizable (brightening, hydrating, detox, smoothing). | 60 min | $185 | $499 | $885 |
 
 ---
 
-## 2. Glo2Facial + Microchanneling — Signature Combos (Face)
+## 2. Regenerative Channeling — Face *(the step up · treatment only)*
 
-The Glo2Facial base paired with microchanneling infusion. Choose the serum tier.
+Microchanneling / microneedling with a growth-factor serum tier. ProCell Pro is the entry into channeling.
 
-| Treatment | Description | Duration | Single | 3 Sessions | 5 Sessions |
+| Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
 |---|---|---|---|---|---|
-| **with ProCell Pro** | Glo2Facial + microchanneling with the professional-grade bone-marrow-derived growth-factor + cytokine serum — designed to maintain and build collagen and elastin (often suited to preventative / under-40 goals). | 90 min | $395 | $1,065 | $1,675 |
-| **with ProCell MD** | Glo2Facial + microchanneling with the medical-grade serum — roughly double the growth factors of Pro plus TGF-ß3 and IL-1, for more advanced correction, collagen restoration, and faster recovery (often suited to 40+ / age-related concerns). | 90 min | $445 | $1,200 | $1,890 |
-| **with PRF** | Glo2Facial + microchanneling with a topical infusion of your own platelet-rich fibrin (autologous growth factors from your own blood) to support natural renewal and glow. *Topical only — no injections.* | 90 min | $525 | $1,415 | $2,230 |
+| **ProCell Pro Microchanneling / Microneedling** *(channeling entry)* | Precision channeling with the professional-grade ProCell Pro growth-factor + cytokine serum — the accessible way into regenerative channeling. | 60–75 min | $250 | $675 | $1,200 |
+| **ProCell MD Microchanneling / Microneedling** | Channeling with the medical-grade ProCell MD serum (2× growth factors + TGF-ß3 & IL-1) for more advanced correction and faster recovery. | 60–75 min | $325 | $875 | $1,560 |
+| **PRF Microchanneling / Microneedling** | Channeling with your own platelet-rich fibrin (topical) for firmness and renewal. *Topical only — no injections.* | 90 min | $425 | $1,145 | $2,040 |
+| **GlowTox — Microchanneling + Daxxify** | Microchanneling with Daxxify for a smooth, refined, pore-minimized, event-ready finish. *Neurotoxin component requires the RN (Diana); book jointly. Offered single or as a 3-visit series.* | 60 min | $425 | $1,145 | — |
 
 ---
 
-## 3. Microchanneling & Microneedling — Face (treatment only, no Glo2Facial)
+## 3. Signature Combos — Glo2Facial + Microchanneling
 
-| Treatment | Description | Duration | Single | 3 Sessions | 5 Sessions |
+The Glo2Facial gateway paired with regenerative channeling. Choose the serum tier.
+
+| Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
 |---|---|---|---|---|---|
-| **ProCell Pro Microchanneling / Microneedling** *(entry)* | Precision channeling with the professional-grade ProCell Pro growth-factor + cytokine serum — the accessible entry point into regenerative channeling. | 60–75 min | $250 | $675 | $1,065 |
-| **ProCell MD Microchanneling / Microneedling** | Precision channeling with the medical-grade ProCell MD serum (2× growth factors + TGF-ß3 & IL-1) to support collagen, tone, and refined texture. | 60–75 min | $325 | $875 | $1,375 |
-| **PRF Microchanneling / Microneedling** | Channeling with your own platelet-rich fibrin (topical) to support firmness and renewal. *Topical only — no injections.* | 90 min | $425 | $1,145 | $1,795 |
+| **with ProCell Pro** | Glo2Facial + channeling with the professional-grade growth-factor serum — maintain and build collagen (preventative / under-40). | 90 min | $395 | $1,065 | $1,895 |
+| **with ProCell MD** | Glo2Facial + channeling with the medical-grade serum (2× growth factors + TGF-ß3 & IL-1) — advanced correction (40+ / age-related). | 90 min | $445 | $1,200 | $2,135 |
+| **with PRF** | Glo2Facial + channeling with a topical infusion of your own platelet-rich fibrin. *Topical only — no injections.* | 90 min | $525 | $1,415 | $2,520 |
 
 ---
 
-## 4. GlowTox Facial
+## 4. Body & Corrective — Regenerative
 
-| Treatment | Description | Duration | Single | 3 Sessions |
-|---|---|---|---|---|
-| **GlowTox — Microchanneling + Daxxify** | Microchanneling delivered with Daxxify for a smooth, refined, pore-minimized, event-ready finish. *Neurotoxin component requires the RN (Diana); book jointly.* | 60 min | $425 | $1,145 |
+Amber's practice is **regenerative & corrective** — tightening, scars, stretch marks, wrinkles, crepey skin — which is why **BioRePeel, PRF (topical), and ProCell run on the body as well as the face.** This is not relaxing/maintenance facial work (Brandy's lane); every body service targets a correction. Body skin is thicker and slower to remodel, so **the Series of 6 is the standard here.** All PRF is **topical only**. Priced **per zone** (neck & décolleté, hands, back, abdomen/stretch marks, individual scar areas).
 
----
-
-## 5. Body & Extended-Area Treatments  *(NEW)*
-
-Amber's practice is **regenerative & corrective** — skin tightening, scars, stretch marks, wrinkles, and crepey skin — which is exactly why **BioRePeel, PRF (topical), and ProCell run on the body as well as the face.** This is *not* relaxing/maintenance facial work (that's Brandy's lane); every body service here targets a correction. Body skin is thicker and slower to remodel, so **body series run 6 sessions** (vs 3–5 for the face), spaced ~4 weeks apart. All PRF here is **topical only**.
-
-| Category | Treatment | Description | Duration | Single | Series |
+| Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
 |---|---|---|---|---|---|
-| Extension | **Neck & Décolleté Extension** | Add-on that extends any face microchanneling / PRF treatment down onto the neck and chest — targets sun damage, crepiness, and fine lines. | +20 min | +$95 | — |
-| Microchanneling | **ProCell Microchanneling — Body** *(per zone)* | Growth-factor channeling for stretch marks, scars, crepey skin, hands, or décolleté — supports collagen, tightening, and smoother tone over a series. Zones: neck & décolleté, hands, back, abdomen/stretch marks, individual scar areas. | 60–75 min | $349 | 3 for $940 · 6 for $1,675 |
-| Microneedling / PRF | **PRF Microchanneling / Microneedling — Body** *(per zone)* | Topical PRF channeling for firmness, tightening, and renewal on the body — crepey skin (neck, décolleté, knees), stretch marks, and scarring. *Topical only — no injections.* | 90 min | $475 | 3 for $1,285 · 6 for $2,280 |
-| Peel | **BioRePeel — Body** *(per zone)* | TCA-based resurfacing peel for the body (back, chest, hands, stretch marks) to improve tone, texture, and firmness with minimal downtime. GOLD formulation for hands/elbows/knees/feet. | 45 min | $325 | 4 for $1,105 |
-| Corrective | **Back Treatment — Acne & Texture** | Corrective back treatment for body-acne scarring, congestion, and texture; pairs with the Acne Bootcamp or a BioRePeel/ProCell series. | 60 min | from $159 | 3 for $429 |
+| **ProCell Microchanneling — Body** | Growth-factor channeling for stretch marks, scars, crepey skin, hands, or décolleté — supports collagen, tightening, and smoother tone over a series. | 60–75 min | $349 | $940 | $1,675 |
+| **PRF Microchanneling / Microneedling — Body** | Topical PRF channeling for firmness, tightening, and renewal — crepey skin (neck, décolleté, knees), stretch marks, scarring. *Topical only.* | 90 min | $475 | $1,285 | $2,280 |
+| **BioRePeel — Body** | TCA-based resurfacing peel (back, chest, hands, stretch marks) for tone, texture, and firmness with minimal downtime. GOLD formulation for hands/elbows/knees/feet. | 45 min | $325 | $875 | $1,560 |
+| **Back Treatment — Acne & Texture** | Corrective back treatment for body-acne scarring, congestion, and texture; pairs with the Acne Bootcamp or a BioRePeel/ProCell series. | 60 min | from $159 | $429 | $765 |
 
-*Signature corrective combinations — e.g. ProCell or PRF channeling **with** a BioRePeel finish on stretch marks/scars, or a tightening series for crepey neck & décolleté — are curated per client and confirmed at consultation.*
+**Neck & Décolleté Extension** — add to any face channeling / PRF treatment to extend onto the neck and chest: **+$95** *(add-on, not standalone)*.
 
----
-
-## 6. Acne Program
-
-| Treatment | Description | Duration | Price |
-|---|---|---|---|
-| **Acne Bootcamp — 12-Week Program** | Guided Face Reality acne program: biweekly in-studio treatments + customized home care to support clearer, calmer skin. Offered as the complete bootcamp only — not à la carte peels. | 12-week program | $899 |
-| **Back / Chest Acne Add-On** | Adds body-acne treatment (back or chest) to the Bootcamp. | +30 min | +$95 |
+*Signature corrective combinations — e.g. ProCell or PRF channeling **with** a BioRePeel finish on stretch marks/scars, or a tightening Series of 6 for crepey neck & décolleté — are curated per client and confirmed at consultation.*
 
 ---
 
-## 7. Enhancements & Add-Ons (Face)
+## 5. Enhancements & Add-Ons (Face)
 
 Added to any microchanneling / microneedling treatment — **not offered as standalone facials.**
 
@@ -86,27 +87,36 @@ Added to any microchanneling / microneedling treatment — **not offered as stan
 
 ---
 
-## 8. Clinical Reference — Microchanneling vs. Microneedling (when to use which)
+## 6. Acne Program
+
+| Treatment | Description | Duration | Price |
+|---|---|---|---|
+| **Acne Bootcamp — 12-Week Program** | Guided Face Reality acne program: biweekly in-studio treatments + customized home care to support clearer, calmer skin. Offered as the complete bootcamp only. | 12-week program | $899 |
+| **Back / Chest Acne Add-On** | Adds body-acne treatment (back or chest) to the Bootcamp. | +30 min | +$95 |
+
+---
+
+## 7. Clinical Reference — Microchanneling vs. Microneedling (when to use which)
 
 Both create controlled micro-channels to stimulate the skin's own collagen and improve serum delivery. The difference is the device and depth — **frame this as precision and comfort, never as one being clinically "superior"** (compliance).
 
-- **Microchanneling (ProCell):** a stamping device with fixed-depth, precisely-spaced, hair-thin filaments creating uniform shallow channels (~0.25 mm). Gentler, more uniform, minimal downtime (~60–90 min of redness). *Best for:* sensitive skin, maintenance and prevention, overall rejuvenation, and clients who want little to no downtime.
-- **Microneedling:** fine needles at adjustable/deeper depth for more aggressive collagen stimulation; slightly more downtime (often a day or two of redness). *Best for:* deeper acne scars, stretch marks, and more significant textural correction.
-- **Rule of thumb:** minimal-downtime / sensitive / maintenance → microchanneling; deeper scarring / stretch marks / aggressive correction → microneedling (adjustable depth). **Final choice, depth, and candidacy are the provider's clinical decision at consultation.**
+- **Microchanneling (ProCell):** stamping device, fixed-depth precisely-spaced filaments, uniform shallow channels (~0.25 mm). Gentler, uniform, minimal downtime. *Best for:* sensitive skin, maintenance and prevention, overall rejuvenation, low-downtime clients.
+- **Microneedling:** fine needles at adjustable/deeper depth for more aggressive collagen stimulation; slightly more downtime. *Best for:* deeper acne scars, stretch marks, significant textural correction.
+- **Rule of thumb:** minimal-downtime / sensitive / maintenance → microchanneling; deeper scarring / stretch marks / aggressive correction → microneedling. Final choice, depth, and candidacy are the provider's decision at consultation.
 
 ---
 
-## 9. Serum Tiers — ProCell MD vs. ProCell Pro vs. PRF
+## 8. Serum Tiers — ProCell Pro vs. ProCell MD vs. PRF
 
 Both ProCell serums are two-step systems (Cellular Renewal Serum + Healing Accelerator Serum) built on conditioned media from human bone-marrow mesenchymal stem cells (as of April 2025, recombinant/lab-made growth factors — **not** sheep/placental, and containing no cells, DNA, or blood).
 
-- **ProCell Pro** — professional-grade growth-factor + cytokine serum; maintains and builds collagen/elastin; preventative / under-40. *Entry tier.*
+- **ProCell Pro** — professional-grade growth-factor + cytokine serum; maintains and builds collagen/elastin; preventative / under-40. *Channeling entry tier.*
 - **ProCell MD** — medical-grade; ~**2× the growth factors** of Pro plus **TGF-ß3, IL-1, and IGF-1**; more significant collagen restoration + faster recovery; 40+ / age-related. *Premium tier.*
-- **PRF (Platelet-Rich Fibrin)** — your own growth factors, drawn and spun down, applied **topically** into the channels. Autologous. *Top tier.* **At House of Rose, PRF with Amber is topical only — no injections.**
+- **PRF (Platelet-Rich Fibrin)** — your own growth factors, applied **topically** into the channels. Autologous. *Top tier.* **At House of Rose, PRF with Amber is topical only — no injections.**
 
 ---
 
-## 10. What's In It — Active Ingredients (front-desk reference)
+## 9. What's In It — Active Ingredients (front-desk reference)
 
 - **Growth factors** — proteins that signal skin cells to repair, renew, and produce collagen/elastin. The core actives.
 - **Cytokines** — broader family of cell-signaling proteins that coordinate the repair response.
@@ -120,10 +130,10 @@ Both ProCell serums are two-step systems (Cellular Renewal Serum + Healing Accel
 
 ---
 
-## 11. Compliance & Guardrails  *(binding — from the repo PRF compliance doc + FL Board of Medicine)*
+## 10. Compliance & Guardrails  *(binding — from the repo PRF compliance doc + FL Board of Medicine)*
 
-- **Never** say "FDA-approved" for PRF/PRP (only the prep device is FDA-cleared), or "permanent," "guaranteed," "cure," "best," or "superior."
-- **Never** market PRF as "stem cell therapy/injection," describe ProCell serums as "sheep/placental," or offer exosome injectables or a "non-surgical BBL" (gluteal PRF) — all active FDA/Board concerns.
+- **Never** say "FDA-approved" for PRF/PRP, or "permanent," "guaranteed," "cure," "best," or "superior."
+- **Never** market PRF as "stem cell therapy/injection," describe ProCell serums as "sheep/placental," or offer exosome injectables or a "non-surgical BBL."
 - **PRF with Amber is topical only** (no injections). Injectable PRF/EZ Gel and PRF hair restoration are the RN's (Diana's) lane.
 - Any before/after or results claim needs an **"individual results vary"** disclaimer; discounts/packages need the Fla. Stat. 456.062 disclaimer; identify the licensee performing each service.
 - **Safe language:** "natural," "autologous," "uses your own blood," "stimulates your own collagen," "minimal downtime," "designed to," "many clients see," "supports."
@@ -131,14 +141,14 @@ Both ProCell serums are two-step systems (Cellular Renewal Serum + Healing Accel
 
 ---
 
-## 12. Cadence Reference (experience guidance, not medical protocol)
+## 11. Cadence Reference (experience guidance, not medical protocol)
 
-- **Face series:** 3–6 sessions, ~4–6 weeks apart.
-- **Body series:** 6 sessions standard (thicker skin), ~4 weeks apart; deeper scarring/stretch marks may need 6+.
-- **ProCell channeling:** every 3–4 weeks; **PRF/microneedling:** every 4–6 weeks.
+- **Face series:** Series of 3 or 6, ~4–6 weeks apart.
+- **Body series:** Series of 6 standard (thicker skin), ~4 weeks apart; deeper scarring/stretch marks may need 6+.
+- **ProCell channeling:** every 3–4 weeks; **PRF / microneedling:** every 4–6 weeks.
 - **PRF timeline:** early changes 2–6 weeks; collagen remodeling peaks 3–6 months; results commonly last 6–12 months.
-- **BioRePeel:** typically a series of 4; minimal downtime.
+- **BioRePeel:** offered as a Series of 3 or 6; minimal downtime.
 
 ---
 
-*Pricing is competitively positioned for the Punta Gorda / Charlotte County market (benchmarked vs Skin Sanctuary, Sweet Spot MediSpa, C's Medi Spa, Nouveau, and SW-FL/FL ProCell + PRF + BioRePeel rates). "From" prices are starting points; final pricing is confirmed after consultation & skin analysis based on area size and skin condition.*
+*Pricing is competitively positioned for the Punta Gorda / Charlotte County market. "From" prices are starting points; final pricing is confirmed after consultation & skin analysis based on area size and skin condition.*
