@@ -26,6 +26,16 @@ export const LOCAL_BUSINESS = {
   geoRadiusMeters: 50000,
 } as const;
 
+export const BUSINESS_PROFILES = [
+  'https://www.instagram.com/houseofrosefl/',
+  'https://www.facebook.com/people/House-Of-Rose-Aesthetics/',
+] as const;
+
+export const BUSINESS_URLS = {
+  booking: 'https://houseofrose.glossgenius.com/services',
+  map: 'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950',
+} as const;
+
 type JsonLd = Record<string, unknown>;
 
 /** Serialize one or more JSON-LD objects for `set:html` on a <script type="application/ld+json">. */
@@ -36,11 +46,15 @@ export function jsonLd(data: JsonLd): string {
 // ─── Shared graph fragments ────────────────────────────────────────────────────
 
 function providerNode(siteUrl: string): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
   return {
     '@type': 'HealthAndBeautyBusiness',
+    '@id': `${baseUrl}#business`,
     name: LOCAL_BUSINESS.name,
-    url: siteUrl,
+    alternateName: 'House of Rose',
+    url: baseUrl,
     telephone: LOCAL_BUSINESS.telephone,
+    sameAs: [...BUSINESS_PROFILES],
     address: {
       '@type': 'PostalAddress',
       streetAddress: LOCAL_BUSINESS.streetAddress,
@@ -49,6 +63,19 @@ function providerNode(siteUrl: string): JsonLd {
       postalCode: LOCAL_BUSINESS.postalCode,
       addressCountry: LOCAL_BUSINESS.addressCountry,
     },
+  };
+}
+
+function websiteNode(siteUrl: string): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  return {
+    '@type': 'WebSite',
+    '@id': `${baseUrl}#website`,
+    url: baseUrl,
+    name: LOCAL_BUSINESS.name,
+    alternateName: 'House of Rose',
+    inLanguage: 'en-US',
+    publisher: { '@id': `${baseUrl}#business` },
   };
 }
 
@@ -72,10 +99,139 @@ export interface BreadcrumbItem {
   item: string;
 }
 
+export interface SiteEntityGraphInput {
+  url: string;
+  name: string;
+  description: string;
+  image: string;
+  imageAlt?: string;
+  email?: string;
+}
+
+/**
+ * Shared entity graph emitted by BaseLayout on every standard page. Stable
+ * `@id` references connect the local business, its website, and the current
+ * webpage so crawlers can consolidate identity signals across the site.
+ */
+export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  const pageUrl = new URL(input.url, baseUrl).toString();
+  const business = {
+    ...providerNode(baseUrl),
+    description:
+      'Private, appointment-only advanced aesthetics and wellness studio in Punta Gorda, Florida.',
+    ...(input.email && { email: input.email }),
+    logo: {
+      '@type': 'ImageObject',
+      '@id': `${baseUrl}#logo`,
+      url: new URL('/logos/hr-monogram-2026/og.png', baseUrl).toString(),
+      contentUrl: new URL('/logos/hr-monogram-2026/og.png', baseUrl).toString(),
+      caption: LOCAL_BUSINESS.name,
+    },
+    image: { '@id': `${baseUrl}#logo` },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: LOCAL_BUSINESS.latitude,
+      longitude: LOCAL_BUSINESS.longitude,
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+    priceRange: '$$',
+    areaServed: [
+      'Punta Gorda',
+      'Port Charlotte',
+      'Englewood',
+      'Venice',
+      'North Port',
+      'Sarasota',
+      'Cape Coral',
+      'Charlotte County',
+      'Southwest Florida',
+    ].map((name) => ({ '@type': 'Place', name })),
+    hasMap: BUSINESS_URLS.map,
+    currenciesAccepted: 'USD',
+    paymentAccepted: 'Cash, Credit Card',
+    potentialAction: {
+      '@type': 'ReserveAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: BUSINESS_URLS.booking,
+        actionPlatform: [
+          'https://schema.org/DesktopWebPlatform',
+          'https://schema.org/MobileWebPlatform',
+        ],
+      },
+      result: { '@type': 'Reservation', name: 'Aesthetics consultation or appointment' },
+    },
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      business,
+      websiteNode(baseUrl),
+      {
+        '@type': 'ImageObject',
+        '@id': `${pageUrl}#primaryimage`,
+        url: input.image,
+        contentUrl: input.image,
+        caption: input.imageAlt ?? input.name,
+        representativeOfPage: true,
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: input.name,
+        description: input.description,
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${baseUrl}#website` },
+        about: { '@id': `${baseUrl}#business` },
+        primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+      },
+    ],
+  };
+}
+
+export interface PersonProfileInput {
+  name: string;
+  jobTitle: string;
+  url: string;
+  email?: string;
+  telephone?: string;
+  image?: string;
+  knowsAbout?: string[];
+}
+
+/** Person entity for provider profile and digital-card pages. */
+export function personProfile(input: PersonProfileInput, siteUrl: string): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${input.url}#person`,
+    name: input.name,
+    jobTitle: input.jobTitle,
+    url: input.url,
+    mainEntityOfPage: { '@type': 'ProfilePage', '@id': `${input.url}#webpage`, url: input.url },
+    worksFor: { '@id': `${baseUrl}#business` },
+    ...(input.email && { email: input.email }),
+    ...(input.telephone && { telephone: input.telephone }),
+    ...(input.image && { image: input.image }),
+    ...(input.knowsAbout?.length && { knowsAbout: input.knowsAbout }),
+  };
+}
+
 export function breadcrumbList(items: BreadcrumbItem[]): JsonLd {
+  const pageUrl = items.at(-1)?.item;
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    ...(pageUrl && { '@id': `${pageUrl}#breadcrumb` }),
     itemListElement: items.map((it, i) => ({
       '@type': 'ListItem',
       position: i + 1,
@@ -111,6 +267,7 @@ export function article(input: ArticleInput, siteUrl: string): JsonLd {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${input.url}#article`,
     headline: input.headline,
     ...(input.description && { description: input.description }),
     mainEntityOfPage: { '@type': 'WebPage', '@id': input.url },
@@ -136,6 +293,7 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${input.url}#service`,
     name: input.name,
     description: input.description ?? '',
     provider: providerNode(siteUrl),
@@ -159,12 +317,16 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
 
 /** LocalBusiness node for local-authority (/areas) pages. */
 export function localBusiness(input: { url: string; areaName?: string; image?: string }): JsonLd {
+  const baseUrl = new URL('/', input.url).toString();
   return {
     '@context': 'https://schema.org',
     '@type': 'HealthAndBeautyBusiness',
+    '@id': `${baseUrl}#business`,
     name: LOCAL_BUSINESS.name,
-    url: input.url,
+    alternateName: 'House of Rose',
+    url: baseUrl,
     telephone: LOCAL_BUSINESS.telephone,
+    sameAs: [...BUSINESS_PROFILES],
     ...(input.image && { image: input.image }),
     address: {
       '@type': 'PostalAddress',
@@ -180,6 +342,13 @@ export function localBusiness(input: { url: string; areaName?: string; image?: s
       longitude: LOCAL_BUSINESS.longitude,
     },
     areaServed: input.areaName ?? `${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion}`,
+    hasMap: BUSINESS_URLS.map,
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
   };
 }
 
@@ -197,7 +366,7 @@ export function imageObject(input: ImageObjectInput): JsonLd {
     contentUrl: input.contentUrl,
     ...(input.caption && { caption: input.caption }),
     ...(input.url && { url: input.url }),
-    creator: { '@type': 'Organization', name: LOCAL_BUSINESS.name },
+    creator: { '@id': `${new URL('/', input.url ?? input.contentUrl).toString()}#business` },
   };
 }
 

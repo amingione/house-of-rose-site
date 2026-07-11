@@ -115,7 +115,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Booking:** https://houseofrose.glossgenius.com/services`,
     `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
     `- **Instagram:** @houseofrosefl`,
-    `- **Facebook:** @houseofrosefl`,
+    `- **Facebook:** House-Of-Rose-Aesthetics`,
     `- **Service Area:** Punta Gorda, Port Charlotte, Englewood, Venice, North Port, Sarasota, Cape Coral — Charlotte County & Southwest Florida`,
   );
 

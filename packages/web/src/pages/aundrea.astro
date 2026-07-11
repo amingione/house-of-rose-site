@@ -8,6 +8,7 @@
  *
  * NAP follows the canonical siteSettings source of truth (Unit 9, 33950, +18449417673).
  */
+import { jsonLd, personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/aundrea/', siteURL).toString();
@@ -22,28 +23,13 @@ const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
 const MAPS_URL =
   'https://maps.google.com/?q=525+E.+Olympia+Ave+Unit+9,+Punta+Gorda,+FL+33950';
 
-const personLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
+const personLd = personProfile({
   name: 'Aundrea Pedigo',
   jobTitle: 'Professional Makeup Artist',
   telephone: PHONE_E164,
   email: EMAIL,
-  url: 'https://houseofrosefl.com/aundrea/',
-  worksFor: {
-    '@type': 'HealthAndBeautyBusiness',
-    name: 'House of Rose Aesthetics',
-    url: 'https://houseofrosefl.com/',
-    telephone: PHONE_E164,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '525 E. Olympia Ave. Unit 9',
-      addressLocality: 'Punta Gorda',
-      addressRegion: 'FL',
-      postalCode: '33950',
-      addressCountry: 'US',
-    },
-  },
+  url: canonicalURL,
+  image: ogImage,
   knowsAbout: [
     'Lashes',
     'Makeup',
@@ -51,7 +37,7 @@ const personLd = {
     'Permanent jewelry',
     'Ear piercing',
   ],
-};
+}, siteURL.toString());
 ---
 
 <!doctype html>
@@ -73,9 +59,8 @@ const personLd = {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
-    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
-    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+    <script is:inline type="application/ld+json" set:html={jsonLd(personLd)} />
 
     <style>
       @font-face {

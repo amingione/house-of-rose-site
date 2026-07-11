@@ -44,72 +44,6 @@ const FALLBACK_SERVICE_GROUPS = [
 ];
 const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SERVICE_GROUPS;
 
-// ─── Structured data ──────────────────────────────────────────────────────────
-const websiteData = {
-	"@context": "https://schema.org",
-	"@type": "WebSite",
-	name: "House of Rose Aesthetics",
-	alternateName: "House of Rose",
-	url: Astro.site?.toString(),
-	potentialAction: {
-		"@type": "SearchAction",
-		target: {
-			"@type": "EntryPoint",
-			urlTemplate: `${Astro.site}services?q={search_term_string}`,
-		},
-		"query-input": "required name=search_term_string",
-	},
-};
-
-const organizationData = {
-	"@context": "https://schema.org",
-	"@type": "HealthAndBeautyBusiness",
-	name: "House of Rose Aesthetics",
-	alternateName: "House of Rose",
-	description:
-		"House of Rose Aesthetics in Punta Gorda, FL — advanced aesthetics and wellness. Regenerative treatments, injectables, facials, skin analysis, IV hydration, and curated skincare.",
-	url: Astro.site?.toString(),
-	telephone: "+18449417673",
-	email: import.meta.env.PUBLIC_BOOKING_EMAIL,
-	address: {
-		"@type": "PostalAddress",
-		streetAddress: "525 E Olympia Ave, Unit 9",
-		addressLocality: "Punta Gorda",
-		addressRegion: "FL",
-		postalCode: "33950",
-		addressCountry: "US",
-	},
-	geo: {
-		"@type": "GeoCoordinates",
-		latitude: "26.9298",
-		longitude: "-82.0454",
-	},
-	openingHoursSpecification: {
-		"@type": "OpeningHoursSpecification",
-		dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-		opens: "9:00",
-		closes: "17:00",
-	},
-	priceRange: "$$",
-	areaServed: {
-		"@type": "GeoCircle",
-		geoMidpoint: {
-			"@type": "GeoCoordinates",
-			latitude: "26.9298",
-			longitude: "-82.0454",
-		},
-		geoRadius: "50000",
-	},
-	sameAs: [
-		"https://www.instagram.com/houseofrosefl",
-		"https://www.facebook.com/houseofrosefl",
-		"https://houseofrose.glossgenius.com/services",
-	],
-	hasMap: "https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950",
-	currenciesAccepted: "USD",
-	paymentAccepted: "Cash, Credit Card",
-	slogan: "Where Beauty Blooms Within",
-};
 ---
 
 <BaseLayout
@@ -117,19 +51,6 @@ const organizationData = {
 	description={hp.seoDescription ?? "Personalized aesthetics, skin health, regenerative treatments, injectables, facials, wellness support, and curated skincare in Punta Gorda, Florida."}
 	preloadImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 >
-	<script
-		is:inline
-		type="application/ld+json"
-		set:html={JSON.stringify(websiteData)}
-		slot="head"
-	/>
-	<script
-		is:inline
-		type="application/ld+json"
-		set:html={JSON.stringify(organizationData)}
-		slot="head"
-	/>
-
 	<div {...oid}>
 	<!-- ── SECTION 1 · HERO ─────────────────────────────────────────── -->
 	<Hero
