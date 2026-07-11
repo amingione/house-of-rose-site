@@ -31,8 +31,17 @@ if (!product) {
 const formatPrice = (cents?: number): string =>
   typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '';
 
+// CTA precedence:
+//   1. priced + in stock            → native cart (Stripe checkout on our own site)
+//   2. purchaseUrl                  → external link (brand storefront / gift card portal)
+//   3. neither                      → call to order
+// `purchaseUrl` is now the ESCAPE HATCH, not the default — see docs/CHECKOUT.md.
+const canBuy = typeof product.price === 'number' && product.price > 0 && product.inStock !== false;
 const hasCheckout = Boolean(product.purchaseUrl);
-const ctaLabel = hasCheckout ? getProductPurchaseCta(product) : null;
+const ctaLabel = canBuy || hasCheckout ? getProductPurchaseCta(product) : null;
+const cartImage = product.image
+  ? urlFor(product.image).width(144).height(144).fit('crop').url()
+  : '';
 
 const BRAND_TITLES: Record<string, string> = {
   procell: 'ProCell Therapies',
@@ -114,7 +123,21 @@ const productSchema = {
             </p>
           )}
 
-          {hasCheckout ? (
+          {canBuy ? (
+            <button
+              type="button"
+              class="btn-gold w-full sm:w-auto"
+              data-add-to-cart
+              data-product-id={product._id}
+              data-title={product.title}
+              data-slug={product.slug}
+              data-price={String(product.price)}
+              data-image={cartImage}
+              data-size={product.size ?? ''}
+            >
+              {ctaLabel}
+            </button>
+          ) : hasCheckout ? (
             <a href={product.purchaseUrl} target="_blank" rel="noopener noreferrer" class="btn-gold">
               {ctaLabel}
             </a>

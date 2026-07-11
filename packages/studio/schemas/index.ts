@@ -17,6 +17,7 @@ import { promotion } from './promotion';
 import { shopBrand } from './shopBrand';
 import { blogPost } from './blogPost';
 import { leadSubmission } from './leadSubmission';
+import { order } from './order';
 import { brandProfile } from './brandProfile';
 import { provider } from './provider';
 import { treatmentPackage } from './treatmentPackage';
@@ -53,6 +54,7 @@ export const schemaTypes = [
   shopBrand,
   blogPost,
   leadSubmission,
+  order,
   // Brand & growth (Luxe Aesthetics Advisor) — mirrors Notion service system
   brandProfile,
   provider,

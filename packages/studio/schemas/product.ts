@@ -118,6 +118,32 @@ export const product = defineType({
       description: 'Show this product in the Top Sellers rail on the shop page.',
       initialValue: false,
     }),
+
+    // ── Checkout & fulfillment (see docs/CHECKOUT.md) ──────────────────────
+    // `price` above is the source of truth for what a client is charged. The
+    // checkout functions re-read it from Sanity server-side on every request —
+    // a browser can never dictate an amount. There is deliberately no Stripe
+    // Product/Price mirror to drift out of sync.
+    defineField({
+      name: 'shippable',
+      title: 'Can Be Shipped',
+      type: 'boolean',
+      description:
+        'Off for in-studio-only items (gift cards redeemed in person, treatment add-ons). ' +
+        'Un-shippable items can still be bought — the cart just skips shipping for them.',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'weightOz',
+      title: 'Shipping Weight (oz)',
+      type: 'number',
+      description:
+        'Packed weight in ounces, used to get live carrier rates at checkout. Include the bottle, ' +
+        'not just the contents. If left blank we assume 4 oz — set it properly on anything heavy ' +
+        '(kits, sets) or the shipping quote will under-charge us.',
+      validation: (Rule) => Rule.min(0.1).max(1120).warning('Over 70 lb is not a parcel shipment.'),
+      hidden: ({ parent }) => parent?.shippable === false,
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'category', media: 'image' },

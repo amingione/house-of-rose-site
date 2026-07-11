@@ -14,9 +14,14 @@ const { product, reveal = 'bottom' } = Astro.props;
 const formatPrice = (cents?: number): string =>
   typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '';
 
+// Priced + in stock → quick-add straight to the cart. `purchaseUrl` is the escape
+// hatch for anything we don't sell ourselves. See docs/CHECKOUT.md.
+const canBuy = typeof product.price === 'number' && product.price > 0 && product.inStock !== false;
 const hasCheckout = Boolean(product.purchaseUrl);
 const ctaLabel = hasCheckout ? getProductPurchaseCta(product) : getProductLearnMoreCta(product);
-const ctaHref = hasCheckout ? product.purchaseUrl! : `/shop/${product.slug}`;
+const cartImage = product.image
+  ? urlFor(product.image).width(144).height(144).fit('crop').url()
+  : '';
 ---
 
 <div
@@ -54,11 +59,38 @@ const ctaHref = hasCheckout ? product.purchaseUrl! : `/shop/${product.slug}`;
     {product.size && <span class="text-muted normal-case tracking-normal" {...sbFieldPath('size')}> · {product.size}</span>}
   </p>
 
-  <a
-    href={ctaHref}
-    class="mt-auto learn-more"
-    {...(hasCheckout ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-  >
-    {ctaLabel} →
-  </a>
+  <div class="mt-auto flex items-center justify-between gap-3">
+    <a
+      href={`/shop/${product.slug}`}
+      class="learn-more"
+    >
+      Details →
+    </a>
+
+    {canBuy ? (
+      <button
+        type="button"
+        class="btn-outline-gold !px-4 !py-2 !min-h-[40px] shrink-0"
+        data-add-to-cart
+        data-product-id={product._id}
+        data-title={product.title}
+        data-slug={product.slug}
+        data-price={String(product.price)}
+        data-image={cartImage}
+        data-size={product.size ?? ''}
+        aria-label={`Add ${product.title} to cart`}
+      >
+        Add
+      </button>
+    ) : hasCheckout ? (
+      <a
+        href={product.purchaseUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline-gold !px-4 !py-2 !min-h-[40px] shrink-0"
+      >
+        {ctaLabel}
+      </a>
+    ) : null}
+  </div>
 </div>

@@ -5,6 +5,7 @@ import { sanityFetch } from '@/lib/sanity';
 import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import CartDrawer from '@/components/shop/CartDrawer.astro';
 import ComingSoon from '@/components/ComingSoon.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { SEO } from 'astro-seo';
@@ -124,6 +125,9 @@ const entityGraph = siteEntityGraph(
     </main>
 
     <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />
+
+    <!-- Rendered once, outside <main>, so the cart survives swup navigation -->
+    <CartDrawer />
 
     <!-- Scroll-reveal init — zero JS shipped unless data-reveal attributes are present on the page -->
     <script>

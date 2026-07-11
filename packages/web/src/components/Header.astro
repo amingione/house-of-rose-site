@@ -102,12 +102,44 @@ const isActive = (path: string) =>
 			>
 				Book Now
 			</a>
+			<button
+				data-open-cart
+				class="nav-link cart-btn relative min-w-[44px] min-h-[44px] flex items-center justify-center"
+				aria-label="Open cart"
+			>
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+					<path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+					<circle cx="8" cy="17" r="1.2" fill="currentColor" />
+					<circle cx="14" cy="17" r="1.2" fill="currentColor" />
+				</svg>
+				<span
+					data-cart-count
+					class="hidden absolute -top-0.5 -right-0.5 bg-gold-metal text-ink text-[10px] font-bold leading-none min-w-[16px] h-[16px] rounded-full flex items-center justify-center px-1"
+				>0</span>
+			</button>
 		</nav>
+
+		<!-- Mobile cart + menu -->
+		<button
+			data-open-cart
+			class="lg:hidden nav-link cart-btn relative min-w-[44px] min-h-[44px] flex items-center justify-center ml-auto mr-1"
+			aria-label="Open cart"
+		>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+				<path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+				<circle cx="8" cy="17" r="1.2" fill="currentColor" />
+				<circle cx="14" cy="17" r="1.2" fill="currentColor" />
+			</svg>
+			<span
+				data-cart-count
+				class="hidden absolute -top-0.5 -right-0.5 bg-gold-metal text-ink text-[10px] font-bold leading-none min-w-[16px] h-[16px] rounded-full flex items-center justify-center px-1"
+			>0</span>
+		</button>
 
 		<!-- Mobile Menu Button -->
 		<button
 			id="mobile-menu-btn"
-			class="lg:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative ml-auto"
+			class="lg:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative"
 			aria-label="Toggle menu"
 		>
 			<span
