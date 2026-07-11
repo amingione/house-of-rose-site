@@ -1,0 +1,46 @@
+import { defineField, defineType } from 'sanity';
+
+/** Singleton content for the customer-support FAQ page at /support/. */
+export const supportPage = defineType({
+  name: 'supportPage',
+  title: 'Support Page',
+  type: 'document',
+  groups: [
+    { name: 'hero', title: 'Hero' },
+    { name: 'contact', title: 'Contact Options' },
+    { name: 'faq', title: 'FAQs' },
+    { name: 'cta', title: 'Final CTA' },
+    { name: 'seo', title: 'SEO' },
+  ],
+  fields: [
+    defineField({ name: 'seoTitle', title: 'SEO Title', type: 'string', group: 'seo' }),
+    defineField({ name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 3, group: 'seo' }),
+    defineField({ name: 'heroTitle', title: 'Title', type: 'string', group: 'hero' }),
+    defineField({ name: 'heroDescription', title: 'Description', type: 'text', rows: 3, group: 'hero' }),
+    defineField({ name: 'contactHeading', title: 'Heading', type: 'string', group: 'contact' }),
+    defineField({ name: 'contactIntro', title: 'Introduction', type: 'text', rows: 3, group: 'contact' }),
+    defineField({ name: 'callTitle', title: 'Call — Title', type: 'string', group: 'contact' }),
+    defineField({ name: 'callBody', title: 'Call — Description', type: 'text', rows: 2, group: 'contact' }),
+    defineField({ name: 'callCta', title: 'Call — Link Text', type: 'string', group: 'contact' }),
+    defineField({ name: 'emailTitle', title: 'Email — Title', type: 'string', group: 'contact' }),
+    defineField({ name: 'emailBody', title: 'Email — Description', type: 'text', rows: 2, group: 'contact' }),
+    defineField({ name: 'emailCta', title: 'Email — Link Text', type: 'string', group: 'contact' }),
+    defineField({ name: 'bookingTitle', title: 'Booking — Title', type: 'string', group: 'contact' }),
+    defineField({ name: 'bookingBody', title: 'Booking — Description', type: 'text', rows: 2, group: 'contact' }),
+    defineField({ name: 'bookingCta', title: 'Booking — Link Text', type: 'string', group: 'contact' }),
+    defineField({ name: 'faqHeading', title: 'FAQ Heading', type: 'string', group: 'faq' }),
+    defineField({ name: 'faqIntro', title: 'FAQ Introduction', type: 'text', rows: 2, group: 'faq' }),
+    defineField({
+      name: 'faqs',
+      title: 'FAQs',
+      type: 'array',
+      group: 'faq',
+      of: [{ type: 'faq' }],
+      validation: (rule) => rule.max(20),
+    }),
+    defineField({ name: 'ctaHeading', title: 'Heading', type: 'string', group: 'cta' }),
+    defineField({ name: 'ctaBody', title: 'Description', type: 'text', rows: 2, group: 'cta' }),
+    defineField({ name: 'ctaText', title: 'Button Text', type: 'string', group: 'cta' }),
+  ],
+  preview: { prepare: () => ({ title: 'Support Page Content' }) },
+});

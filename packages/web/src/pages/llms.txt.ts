@@ -46,6 +46,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Rent a Suite](${base}/rent-a-room/): Private treatment room rentals for licensed aestheticians and wellness professionals`,
     `- [Journal](${base}/blog/): Expert insights on wellness, beauty, and living well in Southwest Florida`,
     `- [FAQ](${base}/faq/): Answers about treatments, pricing, and what to expect`,
+    `- [Support](${base}/support/): Help with appointments, booking, directions, and contacting the studio`,
     `- [Areas We Serve](${base}/areas/): Punta Gorda, Port Charlotte & Southwest Florida`,
     `- [Results](${base}/results/): Before & after outcomes, shared with client consent`,
     `- [Sitemap](${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,

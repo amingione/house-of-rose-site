@@ -53,6 +53,8 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
                 .child(S.document().schemaType('rentARoom').documentId('rentARoom')),
               S.listItem().title('Contact Page').id('contactPage')
                 .child(S.document().schemaType('contactPage').documentId('contactPage')),
+              S.listItem().title('Support Page').id('supportPage')
+                .child(S.document().schemaType('supportPage').documentId('supportPage')),
               S.listItem().title('Privacy Policy Page').id('privacyPolicy')
                 .child(S.document().schemaType('privacyPolicy').documentId('privacyPolicy')),
               S.listItem().title('Thank You Page').id('thankYou')
