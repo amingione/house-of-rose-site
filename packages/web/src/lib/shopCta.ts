@@ -43,13 +43,30 @@ const LEARN_MORE_POOL = ['Learn More', 'See Details', 'Read More', 'Discover Mor
 const BRAND_CTA_POOL = ['Shop {brand}', 'Explore the Line', 'See the Collection', 'Browse {brand}', 'Discover {brand}'];
 
 /**
- * Purchase CTA for a product card — used when the product has a purchaseUrl
- * (external checkout). Falls back to a category-appropriate phrase pool.
+ * Purchase CTA for a product we DON'T sell ourselves — i.e. the button is a link
+ * that navigates out to `purchaseUrl`. A varied, evocative phrase is right here,
+ * because the button really does take you somewhere to shop.
  */
 export function getProductPurchaseCta(product: Pick<Product, '_id' | 'ctaLabel' | 'category'>): string {
   if (product.ctaLabel?.trim()) return product.ctaLabel.trim();
   const pool = CATEGORY_CTA_POOLS[product.category ?? 'default'] ?? CATEGORY_CTA_POOLS.default;
   return pick(product._id, pool);
+}
+
+/**
+ * CTA for the native ADD-TO-CART button.
+ *
+ * Deliberately NOT the varied pool above. That pool exists for links that navigate
+ * ("Shop the Routine", "Take It Home") — language which, on a button that silently
+ * drops one item into a cart, promises a destination it never delivers. Clicking
+ * "Shop the Routine" and getting a cart drawer reads as "nothing happened".
+ *
+ * A button must say what it does. Editors can still override per product with
+ * `ctaLabel` if they want their own voice — but the default states the action.
+ */
+export function getAddToCartCta(product: Pick<Product, 'ctaLabel'>): string {
+  if (product.ctaLabel?.trim()) return product.ctaLabel.trim();
+  return 'Add to Cart';
 }
 
 /**

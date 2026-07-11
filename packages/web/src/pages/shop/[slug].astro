@@ -4,7 +4,7 @@ import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import ProductCard from '@/components/shop/ProductCard.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
-import { getProductPurchaseCta } from '@/lib/shopCta';
+import { getProductPurchaseCta, getAddToCartCta } from '@/lib/shopCta';
 import {
   ALL_PRODUCT_SLUGS_QUERY,
   PRODUCT_BY_SLUG_QUERY,
@@ -38,7 +38,12 @@ const formatPrice = (cents?: number): string =>
 // `purchaseUrl` is now the ESCAPE HATCH, not the default — see docs/CHECKOUT.md.
 const canBuy = typeof product.price === 'number' && product.price > 0 && product.inStock !== false;
 const hasCheckout = Boolean(product.purchaseUrl);
-const ctaLabel = canBuy || hasCheckout ? getProductPurchaseCta(product) : null;
+// Add-to-cart is an action → say what it does. purchaseUrl is a link → evocative is fine.
+const ctaLabel = canBuy
+  ? getAddToCartCta(product)
+  : hasCheckout
+    ? getProductPurchaseCta(product)
+    : null;
 const cartImage = product.image
   ? urlFor(product.image).width(144).height(144).fit('crop').url()
   : '';
