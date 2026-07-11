@@ -60,6 +60,34 @@ export const SUPPORT_PAGE_QUERY = /* groq */ `
   }
 `;
 
+export interface TermsSection {
+  _key: string;
+  heading: string;
+  body: string;
+}
+
+export interface TermsOfService {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  pageTitle?: string;
+  effectiveDate?: string;
+  intro?: string;
+  sections?: TermsSection[];
+}
+
+export const TERMS_OF_SERVICE_QUERY = /* groq */ `
+  *[_type == "termsOfService" && _id == "termsOfService"][0] {
+    _id,
+    seoTitle,
+    seoDescription,
+    pageTitle,
+    effectiveDate,
+    intro,
+    sections[]{ _key, heading, body }
+  }
+`;
+
 export type ServiceKind = 'hub' | 'treatment' | 'standalone';
 
 export interface Service {

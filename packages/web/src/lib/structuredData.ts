@@ -236,6 +236,28 @@ export function breadcrumbList(items: BreadcrumbItem[]): JsonLd {
   };
 }
 
+export interface WebPageInput {
+  name: string;
+  description: string;
+  url: string;
+}
+
+/** Generic page entity for legal and utility pages that do not fit a richer page schema. */
+export function webPage(input: WebPageInput, siteUrl: string): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${input.url}#webpage`,
+    url: input.url,
+    name: input.name,
+    description: input.description,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${baseUrl}#website` },
+    about: { '@id': `${baseUrl}#business` },
+  };
+}
+
 export function faqPage(faqs: Pick<FAQ, 'question' | 'answer'>[]): JsonLd | null {
   if (!faqs || faqs.length === 0) return null;
   return {

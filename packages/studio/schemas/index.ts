@@ -4,6 +4,7 @@ import { thankYou } from './thankYou';
 import { skinAnalysis } from './skinAnalysis';
 import { contactPage } from './contactPage';
 import { supportPage } from './supportPage';
+import { termsOfService } from './termsOfService';
 import { privacyPolicy } from './privacyPolicy';
 import { rentARoom } from './rentARoom';
 import { professionalMakeupPage } from './professionalMakeupPage';
@@ -41,6 +42,7 @@ export const schemaTypes = [
   skinAnalysis,
   contactPage,
   supportPage,
+  termsOfService,
   privacyPolicy,
   rentARoom,
   professionalMakeupPage,

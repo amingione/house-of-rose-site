@@ -125,7 +125,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
   Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
 - **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
-  `homepage`, `contactPage`, `supportPage`, `privacyPolicy`, `rentARoom`, `skinAnalysis`, `thankYou` — each
+  `homepage`, `contactPage`, `supportPage`, `privacyPolicy`, `termsOfService`, `rentARoom`, `skinAnalysis`, `thankYou` — each
   edited under Studio → **Pages** (or **Home Page**), rendered with Sanity-first + hardcoded
   fallbacks, fully click-to-edit. Forms (contact, rent-a-room) and JSON-LD were left untouched.
   _(The `roseCirclePage` and `membershipsPage` singletons were deleted in the 2026-07-07 membership teardown.)_
@@ -184,6 +184,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/results` · `/results/[slug]` | `results/...` | Before/after proof (`caseStudy`) |
 | `/faq` | `faq.astro` | Aggregated FAQ hub (FAQPage JSON-LD) |
 | `/support` | `support.astro` | Customer support singleton (`supportPage`) — appointments, booking, contact options, and support FAQs (FAQPage JSON-LD) |
+| `/terms-of-service` | `terms-of-service.astro` | Legal terms singleton (`termsOfService`) — website use, appointments, communications, and online product orders (WebPage JSON-LD) |
 | `/shop` | `shop.astro` | Product catalog — promotions (`promotion`), category filter, top sellers, brand-grouped grid (`shopBrand` + `product`). See `docs/SHOP-ARCHITECTURE.md`. |
 | `/shop/[slug]` | `shop/[slug].astro` | Single product detail page (`product`) — checkout CTA when `purchaseUrl` is set, related products from the same brand. `Product` JSON-LD. |
 | `/amber` | `amber.astro` | Static — Amber's tap-to-share digital business card (self-contained black/gold card, no Header/Footer, `Person` JSON-LD; downloads `public/amber.vcf`) |
