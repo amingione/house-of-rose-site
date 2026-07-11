@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
@@ -103,8 +104,8 @@ const breadcrumbSchema = {
   image={post.featuredImage ? urlFor(post.featuredImage).width(1200).height(630).fit('crop').url() : undefined}
   preloadImage={post.featuredImage ? urlFor(post.featuredImage).width(1920).height(1080).url() : undefined}
 >
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  <SchemaMarkup item={blogPostingSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
 
   <div {...sbObjectId(post._id)}>
   <!-- Hero -->

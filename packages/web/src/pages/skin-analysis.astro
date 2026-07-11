@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import { jsonLd, breadcrumbList, faqPage, service } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, faqPage, service } from '@/lib/structuredData';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 
@@ -178,9 +179,9 @@ const serviceSchema = service(
   description={pageDescription}
   preloadImage="/images/hor-skin-studio.jpg"
 >
-  <script is:inline type="application/ld+json" set:html={jsonLd(serviceSchema)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  {faqSchema && <script is:inline type="application/ld+json" set:html={jsonLd(faqSchema)} slot="head" />}
+  <SchemaMarkup item={serviceSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
 
   <div {...(data._id ? sbObjectId(data._id) : {})}>
   <!-- ── HERO ─────────────────────────────────────────────────────── -->

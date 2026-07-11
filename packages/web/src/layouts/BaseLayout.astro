@@ -1,12 +1,14 @@
 ---
 import '@/styles/global.css';
+import '@polgubau/astro-reveal/styles';
 import { sanityFetch } from '@/lib/sanity';
 import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import ComingSoon from '@/components/ComingSoon.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { SEO } from 'astro-seo';
-import { jsonLd, siteEntityGraph } from '@/lib/structuredData';
+import { siteEntityGraph } from '@/lib/structuredData';
 
 interface Props {
   title?: string;
@@ -90,7 +92,7 @@ const entityGraph = siteEntityGraph(
         },
       }}
     />
-    <script is:inline type="application/ld+json" set:html={jsonLd(entityGraph)} />
+    <SchemaMarkup item={entityGraph} />
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />
@@ -117,10 +119,15 @@ const entityGraph = siteEntityGraph(
     <Header currentPath={Astro.url.pathname} />
 
     <!-- Page content -->
-    <main id="main-content">
+    <main id="main-content" class="transition-fade">
       <slot />
     </main>
 
     <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />
+
+    <!-- Scroll-reveal init — zero JS shipped unless data-reveal attributes are present on the page -->
+    <script>
+      import '@polgubau/astro-reveal';
+    </script>
   </body>
 </html>

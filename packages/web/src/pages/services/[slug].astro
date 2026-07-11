@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
@@ -109,9 +110,9 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   preloadImage={service.image ? urlFor(service.image).width(1920).height(1080).url() : undefined}
 >
   <!-- Structured Data for SEO -->
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
-  {faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
+  <SchemaMarkup item={serviceSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
+  {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   {/* Visual Editor: all editable copy below belongs to this service document */}
   <div {...sbObjectId(service._id)}>
   <!-- Hero -->

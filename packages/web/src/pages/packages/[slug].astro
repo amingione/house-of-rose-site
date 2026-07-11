@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
@@ -88,8 +89,8 @@ const pageDescription = summary;
   image={pkg.image ? urlFor(pkg.image).width(1200).height(630).fit('crop').url() : undefined}
   preloadImage={pkg.image ? urlFor(pkg.image).width(1920).height(1080).url() : undefined}
 >
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(packageSchema)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  <SchemaMarkup item={packageSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
 
   <div {...sbObjectId(pkg._id)}>
   <!-- Hero -->

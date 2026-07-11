@@ -194,3 +194,27 @@ body:not(:has(.hero-dark)) #header:not(.stuck) .menu-line,
 #header.stuck .brand-link img {
   height: 2.5rem; /* 40px — comfortably inside the 80px bar */
 }
+
+/* ── Swup page transition ─────────────────────────────────────────
+   theme: false in astro.config.ts — this replaces swup's built-in 'fade'
+   theme with a slower, quieter fade + lift that matches the site's
+   luxury-spa pace instead of a generic SPA snap. Respects reduced motion. */
+.transition-fade {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+html.is-animating .transition-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .transition-fade {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Swup progress bar is disabled (config.progress: false) — no styles needed.
+   Reveal-on-scroll animations (data-reveal="...") are styled by
+   @polgubau/astro-reveal itself; see BaseLayout.astro for the import. */

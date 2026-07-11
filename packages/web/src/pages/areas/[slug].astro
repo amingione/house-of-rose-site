@@ -7,7 +7,8 @@ import {
   LOCAL_AREA_BY_SLUG_QUERY,
   type LocalArea,
 } from '@/lib/queries';
-import { jsonLd, breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -35,9 +36,9 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} image={heroImage}>
-  <script is:inline type="application/ld+json" set:html={jsonLd(business)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+  <SchemaMarkup item={business} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {faq && <SchemaMarkup item={faq} slot="head" />}
 
   <div {...sbObjectId(area._id)}>
   <section

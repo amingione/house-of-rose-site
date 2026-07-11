@@ -73,6 +73,8 @@ export interface ServiceCollection {
 
 export type ProductBrand = 'procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
 
+export type ProductCategory = 'skincare' | 'candles' | 'gift-cards' | 'accessories' | 'other';
+
 export interface Product {
   _id: string;
   title: string;
@@ -80,11 +82,43 @@ export interface Product {
   tagline?: string;
   brand?: ProductBrand;
   size?: string;
-  category?: string;
+  category?: ProductCategory;
   inStock?: boolean;
   description?: string;
   price?: number;
+  purchaseUrl?: string;
+  ctaLabel?: string;
+  badge?: string;
+  isFeatured?: boolean;
   image?: SanityImage;
+  relatedProducts?: Product[];
+}
+
+export type PromotionLinkType = 'internal' | 'external';
+
+export interface Promotion {
+  _id: string;
+  headline: string;
+  teaser?: string;
+  ctaLabel: string;
+  linkType: PromotionLinkType;
+  internalPath?: string;
+  externalUrl?: string;
+  scopeBrand?: ProductBrand;
+  scopeCategory?: ProductCategory;
+  image?: SanityImage;
+}
+
+export interface ShopBrand {
+  _id: string;
+  title: string;
+  brandKey: ProductBrand;
+  tagline?: string;
+  story?: string;
+  ctaLabel?: string;
+  externalUrl?: string;
+  logo?: string;
+  heroImage?: SanityImage;
 }
 
 export interface SiteSettings {
@@ -117,15 +151,6 @@ export interface BlogPost {
   relatedService?: { title: string; slug: string; tagline?: string };
   seo?: { metaTitle?: string; metaDescription?: string };
   estimatedReadingTime?: number;
-}
-
-export interface Testimonial {
-  _id: string;
-  quote: string;
-  author?: string;
-  role?: string;
-  backgroundImage?: SanityImage;
-  featured?: boolean;
 }
 
 export interface Standard {
@@ -287,6 +312,10 @@ export const ALL_PRODUCTS_QUERY = /* groq */ `
     inStock,
     description,
     price,
+    purchaseUrl,
+    ctaLabel,
+    badge,
+    isFeatured,
     ${IMAGE_FIELDS}
   }
 `;
@@ -297,9 +326,61 @@ export const PRODUCT_BY_SLUG_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     tagline,
+    brand,
+    size,
+    category,
+    inStock,
     description,
     price,
+    purchaseUrl,
+    ctaLabel,
+    badge,
+    isFeatured,
+    ${IMAGE_FIELDS},
+    "relatedProducts": *[_type == "product" && brand == ^.brand && slug.current != ^.slug.current] | order(title asc) [0...4] {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      price,
+      badge,
+      ${IMAGE_FIELDS}
+    }
+  }
+`;
+
+export const ALL_PROMOTIONS_QUERY = /* groq */ `
+  *[_type == "promotion" && active == true
+    && (!defined(startDate) || startDate <= now())
+    && (!defined(endDate) || endDate >= now())
+  ] | order(orderRank asc) {
+    _id,
+    headline,
+    teaser,
+    ctaLabel,
+    linkType,
+    internalPath,
+    externalUrl,
+    scopeBrand,
+    scopeCategory,
     ${IMAGE_FIELDS}
+  }
+`;
+
+export const ALL_SHOP_BRANDS_QUERY = /* groq */ `
+  *[_type == "shopBrand"] | order(orderRank asc, title asc) {
+    _id,
+    title,
+    brandKey,
+    tagline,
+    story,
+    ctaLabel,
+    externalUrl,
+    "logo": logo.asset->url,
+    "heroImage": heroImage {
+      asset->{ url, metadata { dimensions } },
+      alt
+    }
   }
 `;
 
@@ -387,19 +468,6 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
 
 export const ALL_BLOG_POST_SLUGS_QUERY = /* groq */ `
   *[_type == "blogPost" && defined(slug.current) && defined(publishedAt)]{ "slug": slug.current }
-`;
-
-export const FEATURED_TESTIMONIALS_QUERY = /* groq */ `
-  *[_type == "testimonial" && featured == true] | order(_createdAt desc) {
-    _id,
-    quote,
-    author,
-    role,
-    "backgroundImage": backgroundImage {
-      asset->{ url, metadata { dimensions } },
-      alt
-    }
-  }
 `;
 
 export const EXPERIENCE_CONTENT_QUERY = /* groq */ `

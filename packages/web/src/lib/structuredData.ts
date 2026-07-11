@@ -36,12 +36,7 @@ export const BUSINESS_URLS = {
   map: 'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950',
 } as const;
 
-type JsonLd = Record<string, unknown>;
-
-/** Serialize one or more JSON-LD objects for `set:html` on a <script type="application/ld+json">. */
-export function jsonLd(data: JsonLd): string {
-  return JSON.stringify(data);
-}
+export type JsonLd = Record<string, unknown>;
 
 // ─── Shared graph fragments ────────────────────────────────────────────────────
 

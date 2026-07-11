@@ -13,7 +13,8 @@ import { serviceCollection } from './serviceCollection';
 import { service } from './service';
 import { concern } from './concern';
 import { product } from './product';
-import { testimonial } from './testimonial';
+import { promotion } from './promotion';
+import { shopBrand } from './shopBrand';
 import { blogPost } from './blogPost';
 import { leadSubmission } from './leadSubmission';
 import { brandProfile } from './brandProfile';
@@ -48,7 +49,8 @@ export const schemaTypes = [
   service,
   concern,
   product,
-  testimonial,
+  promotion,
+  shopBrand,
   blogPost,
   leadSubmission,
   // Brand & growth (Luxe Aesthetics Advisor) — mirrors Notion service system

@@ -21,7 +21,8 @@ import {
   type CaseStudy,
   type TreatmentPackage,
 } from '@/lib/queries';
-import { jsonLd, breadcrumbList } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList } from '@/lib/structuredData';
 
 interface SitemapLink {
   title: string;
@@ -164,7 +165,7 @@ const sectionData: SitemapSection[] = [
   title="Sitemap | House of Rose Aesthetics"
   description="HTML sitemap for House of Rose Aesthetics in Punta Gorda, FL, with links to services, treatment packages, concerns, guides, locations, results, and site resources."
 >
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">

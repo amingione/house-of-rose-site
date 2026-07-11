@@ -96,6 +96,28 @@ export const product = defineType({
       type: 'url',
       description: 'External link (booking system, Square, etc.) if not selling directly through the site',
     }),
+    defineField({
+      name: 'ctaLabel',
+      title: 'Shop Button Text',
+      type: 'string',
+      description:
+        'Custom copy for this product\'s shop button, e.g. "Shop the Set", "Add to Routine", "Restock Now". ' +
+        'Never reference the checkout platform by name — clients don\'t need to know. Leave blank to use a ' +
+        'category-appropriate default.',
+    }),
+    defineField({
+      name: 'badge',
+      title: 'Badge',
+      type: 'string',
+      description: 'Optional ribbon/tag on the product card — free text, e.g. "Bestseller", "New", "Back in Stock", "Limited". Leave blank for none.',
+    }),
+    defineField({
+      name: 'isFeatured',
+      title: 'Featured (Top Sellers)',
+      type: 'boolean',
+      description: 'Show this product in the Top Sellers rail on the shop page.',
+      initialValue: false,
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'category', media: 'image' },

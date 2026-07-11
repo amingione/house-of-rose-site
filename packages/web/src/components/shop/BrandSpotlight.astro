@@ -1,0 +1,40 @@
+---
+import ProductCard from './ProductCard.astro';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { getBrandCta } from '@/lib/shopCta';
+import type { Product, ShopBrand } from '@/lib/queries';
+
+interface Props {
+  brand: ShopBrand;
+  products: Product[];
+}
+
+const { brand, products } = Astro.props;
+const ctaLabel = brand.externalUrl ? getBrandCta(brand) : null;
+// Fallback brand objects (no shopBrand doc yet — see shop.astro) have a
+// synthetic id and aren't real Sanity documents, so they're not editable.
+const isRealDoc = !brand._id.startsWith('fallback-');
+---
+
+{products.length > 0 && (
+  <section class="bg-charcoal py-[clamp(40px,6vw,72px)] px-6 border-t border-gold-metal/5" id={brand.brandKey}>
+    <div class="max-w-[1280px] mx-auto">
+      <div class="max-w-[700px] mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4" data-reveal="left" data-speed="fast" {...(isRealDoc ? sbObjectId(brand._id) : {})}>
+        <div>
+          <span class="kicker" {...(isRealDoc ? sbFieldPath('title') : {})}>{brand.title}</span>
+          {brand.story && <p class="text-muted text-[15px] leading-[1.75] mt-3" {...(isRealDoc ? sbFieldPath('story') : {})}>{brand.story}</p>}
+        </div>
+        {ctaLabel && (
+          <a href={brand.externalUrl} target="_blank" rel="noopener noreferrer" class="btn-outline-gold shrink-0 self-start md:self-end" {...(isRealDoc ? sbFieldPath('externalUrl') : {})}>
+            {ctaLabel}
+          </a>
+        )}
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gold-metal/10" data-stagger="80">
+        {products.map((product) => (
+          <ProductCard product={product} reveal="bottom" />
+        ))}
+      </div>
+    </div>
+  </section>
+)}

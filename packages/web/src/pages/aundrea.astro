@@ -8,7 +8,8 @@
  *
  * NAP follows the canonical siteSettings source of truth (Unit 9, 33950, +18449417673).
  */
-import { jsonLd, personProfile } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/aundrea/', siteURL).toString();
@@ -60,7 +61,7 @@ const personLd = personProfile({
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
     <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
-    <script is:inline type="application/ld+json" set:html={jsonLd(personLd)} />
+    <SchemaMarkup item={personLd} />
 
     <style>
       @font-face {

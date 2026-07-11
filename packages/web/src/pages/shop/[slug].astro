@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import ProductCard from '@/components/shop/ProductCard.astro';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { getProductPurchaseCta } from '@/lib/shopCta';
+import {
+  ALL_PRODUCT_SLUGS_QUERY,
+  PRODUCT_BY_SLUG_QUERY,
+  type Product,
+} from '@/lib/queries';
+
+export async function getStaticPaths() {
+  const slugs = await sanityFetch<{ slug: string }[]>(ALL_PRODUCT_SLUGS_QUERY);
+  return slugs.map(({ slug }) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const product = await sanityFetch<Product>(PRODUCT_BY_SLUG_QUERY, { slug });
+
+if (!product) {
+  return Astro.redirect('/shop', 307);
+}
+
+const formatPrice = (cents?: number): string =>
+  typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '';
+
+const hasCheckout = Boolean(product.purchaseUrl);
+const ctaLabel = hasCheckout ? getProductPurchaseCta(product) : null;
+
+const BRAND_TITLES: Record<string, string> = {
+  procell: 'ProCell Therapies',
+  glymed: 'GlyMed+',
+  'skin-script': 'Skin Script',
+  'face-reality': 'Face Reality',
+  'house-of-rose': 'House of Rose',
+};
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonicalURL = new URL(Astro.url.pathname, site);
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.title,
+  description: product.description ?? product.tagline ?? '',
+  ...(product.brand && { brand: { '@type': 'Brand', name: BRAND_TITLES[product.brand] ?? product.brand } }),
+  ...(product.image && { image: urlFor(product.image).width(1200).height(1200).fit('crop').url() }),
+  ...(typeof product.price === 'number' && {
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      price: (product.price / 100).toFixed(2),
+      availability: product.inStock === false
+        ? 'https://schema.org/OutOfStock'
+        : 'https://schema.org/InStock',
+      url: canonicalURL.toString(),
+    },
+  }),
+};
+---
+
+<BaseLayout
+  title={`${product.title} | House of Rose Shop`}
+  description={product.tagline ?? product.description?.slice(0, 155) ?? `${product.title} — available at House of Rose Aesthetics, Punta Gorda, FL.`}
+>
+  <Fragment slot="head">
+    <SchemaMarkup item={productSchema} />
+  </Fragment>
+
+  <section class="bg-charcoal pt-[clamp(96px,12vw,140px)] pb-[clamp(48px,7vw,80px)] px-6">
+    <div class="max-w-[1120px] mx-auto">
+      <a href="/shop" class="text-muted text-[12px] tracking-[0.14em] uppercase hover:text-gold transition-colors duration-200 mb-8 inline-block" data-reveal="left" data-speed="fast">
+        ← Back to Shop
+      </a>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start" {...sbObjectId(product._id)}>
+        {product.image && (
+          <div class="aspect-square overflow-hidden bg-charcoal-lighter relative" data-reveal="left">
+            {product.badge && (
+              <span class="absolute top-5 left-5 z-10 bg-gold-metal text-ink text-[10px] font-medium tracking-[0.14em] uppercase px-2.5 py-1" {...sbFieldPath('badge')}>
+                {product.badge}
+              </span>
+            )}
+            <img
+              src={urlFor(product.image).width(800).height(800).fit('crop').url()}
+              alt={product.image.alt ?? product.title}
+              width={800}
+              height={800}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
+        <div data-reveal="right">
+          {product.brand && <span class="kicker">{BRAND_TITLES[product.brand] ?? product.brand}</span>}
+          <h1 class="font-serif text-[clamp(28px,4vw,42px)] text-ink mt-2 mb-3" {...sbFieldPath('title')}>{product.title}</h1>
+          {product.tagline && <p class="text-muted text-[16px] leading-[1.7] mb-6" {...sbFieldPath('tagline')}>{product.tagline}</p>}
+
+          <p class="text-ink text-[18px] tracking-[0.1em] uppercase mb-8">
+            <span {...sbFieldPath('price')}>{formatPrice(product.price)}</span>
+            {product.size && <span class="text-muted normal-case tracking-normal text-[14px]"> · {product.size}</span>}
+          </p>
+
+          {product.description && (
+            <p class="text-muted text-[15px] leading-[1.8] mb-8 whitespace-pre-line" {...sbFieldPath('description')}>
+              {product.description}
+            </p>
+          )}
+
+          {hasCheckout ? (
+            <a href={product.purchaseUrl} target="_blank" rel="noopener noreferrer" class="btn-gold">
+              {ctaLabel}
+            </a>
+          ) : (
+            <a href="tel:+18449417673" class="btn-gold">Call to Order — (844) 941-7673</a>
+          )}
+          {product.inStock === false && (
+            <p class="text-muted text-[12px] mt-4 uppercase tracking-[0.12em]">Currently out of stock — call to check availability.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {product.relatedProducts && product.relatedProducts.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(40px,6vw,64px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1120px] mx-auto">
+        <div class="mb-10" data-reveal="bottom" data-speed="fast">
+          <span class="kicker">More from {product.brand ? BRAND_TITLES[product.brand] ?? product.brand : 'the shop'}</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-px bg-gold-metal/10" data-stagger="80">
+          {product.relatedProducts.map((related) => (
+            <ProductCard product={related} reveal="bottom" />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

@@ -20,7 +20,8 @@
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import { jsonLd, article, breadcrumbList, faqPage } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { article, breadcrumbList, faqPage } from '@/lib/structuredData';
 import type { FAQ } from '@/lib/queries';
 
 const PHONE_DISPLAY = '(844) 941-7673';
@@ -145,9 +146,9 @@ const faqLd = faqPage(faqs);
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} image={HERO_IMG} preloadImage={HERO_IMG}>
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
-  {faqLd && <script is:inline type="application/ld+json" set:html={jsonLd(faqLd)} slot="head" />}
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  <SchemaMarkup item={articleSchema} slot="head" />
+  {faqLd && <SchemaMarkup item={faqLd} slot="head" />}
 
   <Hero
     title={'Microchanneling, Microneedling\n& Topical PRF'}

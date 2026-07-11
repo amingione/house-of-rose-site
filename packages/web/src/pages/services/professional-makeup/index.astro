@@ -11,7 +11,8 @@ import {
   type LinkRef,
   type FAQ,
 } from '@/lib/queries';
-import { jsonLd, service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structuredData';
 
 const PHONE_DISPLAY = '(844) 941-7673';
 const PHONE_TEL = 'tel:+18449417673';
@@ -136,9 +137,9 @@ const faqLd = faqPage(faqs);
   description={pageDescription}
   image={heroImg}
 >
-  <script is:inline type="application/ld+json" set:html={jsonLd(serviceLd)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  {faqLd && <script is:inline type="application/ld+json" set:html={jsonLd(faqLd)} slot="head" />}
+  <SchemaMarkup item={serviceLd} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {faqLd && <SchemaMarkup item={faqLd} slot="head" />}
 
   <div {...(data._id ? sbObjectId(data._id) : {})}>
     <Hero

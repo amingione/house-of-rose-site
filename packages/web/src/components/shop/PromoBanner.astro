@@ -1,0 +1,53 @@
+---
+import { urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import type { Promotion } from '@/lib/queries';
+
+interface Props {
+  promotions: Promotion[];
+}
+
+const { promotions } = Astro.props;
+---
+
+{promotions.length > 0 && (
+  <section class="bg-charcoal-light py-[clamp(32px,5vw,56px)] px-6 border-b border-gold-metal/10" aria-label="Current promotions">
+    <div class="max-w-[1280px] mx-auto" data-stagger="120">
+      <div class={`grid gap-px bg-gold-metal/10 ${promotions.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
+        {promotions.map((promo) => {
+          const href = promo.linkType === 'external' ? promo.externalUrl : promo.internalPath;
+          if (!href) return null;
+          const isExternal = promo.linkType === 'external';
+          return (
+            <a
+              href={href}
+              class="group bg-charcoal-light p-8 flex flex-col md:flex-row items-center gap-6 hover:bg-charcoal transition-colors duration-300"
+              data-reveal="scale"
+              data-speed="normal"
+              {...sbObjectId(promo._id)}
+              {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {promo.image && (
+                <div class="w-full md:w-32 h-32 shrink-0 overflow-hidden bg-charcoal-lighter">
+                  <img
+                    src={urlFor(promo.image).width(256).height(256).fit('crop').url()}
+                    alt={promo.image.alt ?? promo.headline}
+                    width={256}
+                    height={256}
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+              <div class="flex-1 text-center md:text-left">
+                <h3 class="font-serif text-[clamp(20px,2.6vw,26px)] text-ink mb-2" {...sbFieldPath('headline')}>{promo.headline}</h3>
+                {promo.teaser && <p class="text-muted text-[14px] leading-relaxed mb-4 max-w-[420px] mx-auto md:mx-0" {...sbFieldPath('teaser')}>{promo.teaser}</p>}
+                <span class="learn-more group-hover:opacity-80" {...sbFieldPath('ctaLabel')}>{promo.ctaLabel} →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}

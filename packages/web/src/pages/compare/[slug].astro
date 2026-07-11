@@ -7,7 +7,8 @@ import {
   COMPARISON_BY_SLUG_QUERY,
   type Comparison,
 } from '@/lib/queries';
-import { jsonLd, breadcrumbList, faqPage, article } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COMPARISON_SLUGS_QUERY);
@@ -39,9 +40,9 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
-  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  <SchemaMarkup item={articleSchema} slot="head" />
+  {faq && <SchemaMarkup item={faq} slot="head" />}
 
   <div {...sbObjectId(cmp._id)}>
   <section class="bg-charcoal pt-32 pb-12 px-6">

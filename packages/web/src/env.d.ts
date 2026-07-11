@@ -1,5 +1,11 @@
 /// <reference types="astro/client" />
 
+// @polgubau/astro-reveal's "./styles" export maps to a plain .css file with
+// no extension in the specifier, so Astro's built-in `*.css` ambient module
+// pattern (which matches on extension) never matches this import. Declare it
+// explicitly so `import '@polgubau/astro-reveal/styles'` type-checks.
+declare module '@polgubau/astro-reveal/styles';
+
 interface ImportMetaEnv {
   readonly PUBLIC_SANITY_PROJECT_ID: string;
   readonly PUBLIC_SANITY_DATASET: string;
