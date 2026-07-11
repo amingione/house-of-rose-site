@@ -30,7 +30,7 @@ const breadcrumb = breadcrumbList([
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
       {studies.map((cs) => (
         <a href={`/results/${cs.slug}`} class="bg-charcoal group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(cs._id)}>
           {cs.afterImage?.asset?.url && (
@@ -48,12 +48,12 @@ const breadcrumb = breadcrumbList([
           <div class="p-6">
             <h2 class="font-serif text-[19px] text-ink mb-1 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{cs.title}</h2>
             {cs.treatment && <p class="text-gold text-[11px] tracking-[0.18em] uppercase">{cs.treatment.title}</p>}
-            {cs.timeframe && <p class="text-[#777] text-[13px] mt-2">{cs.timeframe}</p>}
+            {cs.timeframe && <p class="text-muted text-[13px] mt-2">{cs.timeframe}</p>}
           </div>
         </a>
       ))}
       {studies.length === 0 && (
-        <p class="bg-charcoal p-7 text-[#777] text-[14px]">Before & after galleries are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">Before & after galleries are coming soon.</p>
       )}
     </div>
   </section>

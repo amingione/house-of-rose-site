@@ -44,15 +44,15 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
 
   <div class="px-6 pb-6">
     <h3 class="font-serif text-2xl text-ink mb-2" {...fp('title')}>{pkg.title}</h3>
-    {headline && <p class="text-[#9a8c78] text-sm leading-relaxed mb-4" {...fp(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{headline}</p>}
+    {headline && <p class="text-muted text-sm leading-relaxed mb-4" {...fp(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{headline}</p>}
 
     {pkg.servicesIncluded && pkg.servicesIncluded.length > 0 && (
       <ul class="space-y-1.5 mb-5">
         {pkg.servicesIncluded.map((service) => (
-          <li class="text-sm text-[#aaa]" {...(objectId && service._id ? sbObjectId(service._id) : {})}>
+          <li class="text-sm text-muted" {...(objectId && service._id ? sbObjectId(service._id) : {})}>
             <span class="text-ink" {...(objectId && service._id ? sbFieldPath('title') : {})}>{service.title}</span>
             {expanded && service.tagline && (
-              <span class="text-[#7a6e5c]" {...(objectId && service._id ? sbFieldPath('tagline') : {})}> — {service.tagline}</span>
+              <span class="text-muted" {...(objectId && service._id ? sbFieldPath('tagline') : {})}> — {service.tagline}</span>
             )}
           </li>
         ))}
@@ -60,13 +60,13 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
     )}
 
     {expanded && pkg.cadence && (
-      <p class="text-sm text-[#9a8c78] mb-3">
+      <p class="text-sm text-muted mb-3">
         <span class="text-gold uppercase tracking-wide text-xs">Cadence</span><br />
         <span {...fp('cadence')}>{pkg.cadence}</span>
       </p>
     )}
     {expanded && pkg.positioning && (
-      <p class="text-sm text-[#9a8c78] italic mb-5" {...fp('positioning')}>{pkg.positioning}</p>
+      <p class="text-sm text-muted italic mb-5" {...fp('positioning')}>{pkg.positioning}</p>
     )}
 
     {price && (
@@ -81,7 +81,7 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
     </a>
 
     {expanded && pkg.candidacyNote && (
-      <p class="text-[11px] text-[#7a6e5c] leading-relaxed mt-5" {...fp('candidacyNote')}>{pkg.candidacyNote}</p>
+      <p class="text-[11px] text-muted leading-relaxed mt-5" {...fp('candidacyNote')}>{pkg.candidacyNote}</p>
     )}
   </div>
 </article>

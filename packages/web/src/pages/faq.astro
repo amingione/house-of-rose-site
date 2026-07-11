@@ -46,7 +46,7 @@ const routeFor = (g: FaqGroup): string => {
     <div class="max-w-[860px] mx-auto space-y-12">
       {groups.map((g) => (
         <div {...sbObjectId(g._id)}>
-          <div class="flex items-baseline justify-between mb-6 border-b border-gold/15 pb-3">
+          <div class="flex items-baseline justify-between mb-6 border-b border-gold-metal/15 pb-3">
             <h2 class="font-serif text-[22px] text-gold" {...sbFieldPath('title')}>{g.source}</h2>
             <a href={routeFor(g)} class="learn-more">View page →</a>
           </div>
@@ -54,19 +54,19 @@ const routeFor = (g: FaqGroup): string => {
             {(g.faqs ?? []).map((f, i) => (
               <div class="border-b border-ink/5 pb-5">
                 <h3 class="text-ink text-[16px] font-medium mb-2" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h3>
-                <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
+                <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
               </div>
             ))}
           </div>
         </div>
       ))}
       {groups.length === 0 && (
-        <p class="text-[#777] text-[14px]">FAQs will appear here as content is added.</p>
+        <p class="text-muted text-[14px]">FAQs will appear here as content is added.</p>
       )}
     </div>
   </section>
 
-  <section class="bg-charcoal py-12 px-6 border-t border-gold/10">
+  <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Still have a question?</h2>
       <div class="flex gap-3 justify-center flex-wrap">

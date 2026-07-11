@@ -41,7 +41,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
 
   <div {...sbObjectId(area._id)}>
   <section
-    class="relative w-full min-h-[44vh] flex items-end bg-charcoal pt-32 pb-12 px-6"
+    class="on-dark hero-dark relative w-full min-h-[44vh] flex items-end bg-walnut pt-32 pb-12 px-6"
     style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
   >
     {heroImage && <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>}
@@ -65,11 +65,11 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
     <section class="bg-charcoal py-14 px-6">
       <div class="max-w-[1280px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Popular in {area.city}</span>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {area.servedServices.map((s) => (
             <a href={`/services/${s.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
               <h2 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{s.title}</h2>
-              {s.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
+              {s.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
               {s.price && <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase" {...sbFieldPath('price')}>{s.price}</p>}
               <span class="learn-more group-hover:text-gold mt-3 inline-block">Learn More</span>
             </a>
@@ -83,7 +83,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
     <section class="bg-charcoal-light py-12 px-6">
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Also Serving Nearby</span>
-        <p class="text-[#9a8c78] text-[14px] leading-relaxed">{area.neighborhoods.join(' · ')}</p>
+        <p class="text-muted text-[14px] leading-relaxed">{area.neighborhoods.join(' · ')}</p>
       </div>
     </section>
   )}
@@ -96,7 +96,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
           {area.faqs.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
             </div>
           ))}
         </div>
@@ -104,10 +104,10 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
     </section>
   )}
 
-  <section class="bg-charcoal-light py-12 px-6 border-t border-gold/10">
+  <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Book your visit from {area.city}</h2>
-      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
+      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>

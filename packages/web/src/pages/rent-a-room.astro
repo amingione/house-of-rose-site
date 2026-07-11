@@ -208,7 +208,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         <h2 class="font-serif text-[clamp(30px,4vw,46px)] text-ink mt-2" {...sbFieldPath('perksHeading')}>
           {data.perksHeading ?? 'Everything You Need to Succeed'}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('perksIntro')}>
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('perksIntro')}>
           {data.perksIntro ?? 'We handle the business infrastructure. You focus on your clients.'}
         </p>
       </div>
@@ -219,7 +219,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
             <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
               <span class="kicker" {...sbFieldPathParts('perks', i, 'kicker')}>{perk.kicker}</span>
               <h3 class="font-serif text-[20px] text-ink mb-3" {...sbFieldPathParts('perks', i, 'title')}>{perk.title}</h3>
-              <p class="text-[#7a6e5c] text-[14px] leading-relaxed" {...sbFieldPathParts('perks', i, 'description')}>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('perks', i, 'description')}>
                 {perk.description}
               </p>
             </div>
@@ -253,14 +253,14 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         </dl>
 
         <!-- CTA aside -->
-        <div class="bg-charcoal p-10 border border-gold/20">
+        <div class="bg-charcoal p-10 border border-gold-metal/20">
           <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? 'Ready to Apply?'}</span>
           <h3
             class="font-serif text-[clamp(22px,3vw,30px)] text-ink mb-4 leading-snug"
             set:html={(data.ctaHeading ?? 'Space Is Limited.\nReserve Yours.').replace(/\n/g, '<br />')}
             {...sbFieldPath('ctaHeading')}
           />
-          <p class="text-[#7a6e5c] text-[14px] leading-relaxed mb-8" {...sbFieldPath('ctaBody')}>
+          <p class="text-muted text-[14px] leading-relaxed mb-8" {...sbFieldPath('ctaBody')}>
             {data.ctaBody ?? "We keep our suite count intentionally small to protect the no-competing-services guarantee. When a specialty slot fills, it's closed until it opens again."}
           </p>
           <a href="#apply" class="btn-gold" {...sbFieldPath('ctaButtonText')}>
@@ -279,7 +279,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('candidatesHeading')}>
           {data.candidatesHeading ?? "Who We're Looking For"}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('candidatesIntro')}>
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('candidatesIntro')}>
           {data.candidatesIntro ?? 'We partner with licensed, passionate professionals who are ready to grow their independent practice in a premium environment.'}
         </p>
       </div>
@@ -287,12 +287,12 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {
           candidates.map((candidate, i) => (
-            <div class="border border-ink/[0.08] p-8 text-center hover:border-gold/40 transition-colors duration-300">
-              <div class="w-12 h-12 border border-gold/30 mx-auto mb-6 flex items-center justify-center">
-                <span class="text-gold text-[10px] tracking-[0.3em] uppercase" {...sbFieldPathParts('candidates', i, 'number')}>{candidate.number}</span>
+            <div class="border border-ink/[0.08] p-8 text-center hover:border-gold-metal/40 transition-colors duration-300">
+              <div class="w-12 h-12 border border-gold-metal/30 mx-auto mb-6 flex items-center justify-center">
+                <span class="text-gold text-[11px] tracking-[0.3em] uppercase" {...sbFieldPathParts('candidates', i, 'number')}>{candidate.number}</span>
               </div>
               <h3 class="font-serif text-[22px] text-ink mb-3" {...sbFieldPathParts('candidates', i, 'title')}>{candidate.title}</h3>
-              <p class="text-[#7a6e5c] text-[14px] leading-relaxed" {...sbFieldPathParts('candidates', i, 'description')}>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('candidates', i, 'description')}>
                 {candidate.description}
               </p>
             </div>
@@ -310,7 +310,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('applyHeading')}>
           {data.applyHeading ?? 'Tell Us About Yourself'}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('applyIntro')}>
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('applyIntro')}>
           {data.applyIntro ?? "Fill out the form below and we'll be in touch within 48 hours to schedule a tour and answer any questions."}
         </p>
       </div>
@@ -455,14 +455,14 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         </div>
 
         <!-- Insurance acknowledgement -->
-        <div class="bg-charcoal/60 border border-gold/20 p-6">
+        <div class="bg-charcoal/60 border border-gold-metal/20 p-6">
           <label class="flex items-start gap-3 cursor-pointer group">
             <input
               type="checkbox"
               name="insurance-acknowledgement"
               value="yes"
               required
-              class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold checked:border-gold focus:outline-none transition-colors cursor-pointer"
+              class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold-metal checked:border-gold focus:outline-none transition-colors cursor-pointer"
             />
             <span class="text-ink/80 text-[14px] leading-relaxed group-hover:text-ink transition-colors">
               I understand that renters are responsible for maintaining their own professional liability insurance policy. *
@@ -477,7 +477,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
           </button>
         </div>
 
-        <p class="text-[#7a6e5c] text-[12px]">
+        <p class="text-muted text-[12px]">
           * Required fields. We'll respond within 48 hours to schedule a tour.
         </p>
       </form>
@@ -495,7 +495,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href={`mailto:${bookingEmail}`} class="btn-outline-white">
+        <a href={`mailto:${bookingEmail}`} class="btn-outline-gold">
           Email Us
         </a>
       </div>

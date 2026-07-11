@@ -28,13 +28,13 @@ if (!collection) {
 >
   <section class="py-24 max-w-6xl mx-auto px-6" {...sbObjectId(collection._id)}>
     <div class="mb-4">
-      <a href="/services/collections" class="text-xs tracking-widest uppercase text-rose-700 hover:underline">
+      <a href="/services/collections" class="text-xs tracking-widest uppercase text-gold hover:underline">
         ← All Collections
       </a>
     </div>
 
     {collection.image && (
-      <div class="aspect-[21/9] overflow-hidden bg-cream-200 mb-12">
+      <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
         <img
           src={urlFor(collection.image).width(1600).height(685).fit('crop').url()}
           alt={collection.image.alt ?? collection.title}
@@ -46,20 +46,20 @@ if (!collection) {
     )}
 
     <div class="max-w-2xl mb-16">
-      <h1 class="font-serif text-5xl text-charcoal mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
+      <h1 class="font-serif text-5xl text-ink mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
       {collection.description && (
-        <p class="text-xl text-charcoal/70 leading-relaxed" {...sbFieldPath('description')}>{collection.description}</p>
+        <p class="text-xl text-muted leading-relaxed" {...sbFieldPath('description')}>{collection.description}</p>
       )}
     </div>
 
     {collection.services.length === 0 ? (
-      <p class="text-charcoal/50">Services coming soon.</p>
+      <p class="text-muted">Services coming soon.</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {collection.services.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="group bg-cream-100 overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
+          <a href={`/services/${svc.slug}`} class="group bg-breath overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
             {svc.image && (
-              <div class="aspect-[3/2] overflow-hidden bg-cream-200">
+              <div class="aspect-[3/2] overflow-hidden bg-charcoal-lighter">
                 <img
                   src={urlFor(svc.image).width(600).height(400).fit('crop').url()}
                   alt={svc.image.alt ?? svc.title}
@@ -70,11 +70,11 @@ if (!collection) {
               </div>
             )}
             <div class="p-6">
-              <p class="font-serif text-xl text-charcoal mb-2 group-hover:text-rose-700 transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
-              {svc.tagline && <p class="text-sm text-charcoal/60 leading-relaxed mb-4" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
+              <p class="font-serif text-xl text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
+              {svc.tagline && <p class="text-sm text-muted leading-relaxed mb-4" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
               <div class="flex items-center justify-between">
-                {svc.duration && <span class="text-xs text-charcoal/50" {...sbFieldPath('duration')}>{svc.duration}</span>}
-                {svc.price && <span class="text-sm font-medium text-rose-700" {...sbFieldPath('price')}>{svc.price}</span>}
+                {svc.duration && <span class="text-xs text-muted" {...sbFieldPath('duration')}>{svc.duration}</span>}
+                {svc.price && <span class="text-sm font-medium text-gold" {...sbFieldPath('price')}>{svc.price}</span>}
               </div>
             </div>
           </a>

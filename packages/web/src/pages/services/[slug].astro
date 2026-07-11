@@ -116,7 +116,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <div {...sbObjectId(service._id)}>
   <!-- Hero -->
   <section
-    class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"
+    class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
     style={service.image ? `background-image: url(${urlFor(service.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
@@ -125,7 +125,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         <span class="text-lg">←</span> {service.parentService ? service.parentService.title : 'All Services'}
       </a>
       {service.tagline && (
-        <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3" {...sbFieldPath('tagline')}>
+        <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3" {...sbFieldPath('tagline')}>
           {service.tagline}
         </span>
       )}
@@ -155,14 +155,14 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       {service.whoItsFor && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Who It's For</span>
-          <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
+          <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
         </div>
       )}
 
       {service.process && service.process.length > 0 && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Process</span>
-          <ol class="list-decimal list-inside space-y-2 text-[#9a8c78] text-[14px] leading-relaxed">
+          <ol class="list-decimal list-inside space-y-2 text-muted text-[14px] leading-relaxed">
             {service.process.map((step, i) => (
               <li {...sbFieldPath(`process.${i}`)}>{step}</li>
             ))}
@@ -180,11 +180,11 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
           Choose your protocol
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
             <a href={`/services/${t.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
               <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{t.title}</h3>
-              {t.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
+              {t.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
               <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
                 {t.price}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration}
               </p>
@@ -207,7 +207,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {service.faqs.map((faq, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h3 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{faq.question}</h3>
-              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{faq.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{faq.answer}</p>
             </div>
           ))}
         </div>
@@ -221,7 +221,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 max-w-[1280px] mx-auto">
         Related Services
       </span>
-      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
         {service.relatedServices.map((related) => (
           <div class="bg-charcoal">
             <a href={`/services/${related.slug}`} class="service-card group block" {...sbObjectId(related._id)}>
@@ -247,13 +247,13 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   )}
 
   <!-- Booking CTA -->
-  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
       <span class="kicker">Reserve Your Experience</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         Ready to experience {service.title}?
       </h2>
-      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+      <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
         Begin with a private consultation. We will design your personal protocol.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
@@ -264,7 +264,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           Book Online
         </a>
       </div>
-      <p class="text-[#8a7c66] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+      <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
       </p>
     </div>

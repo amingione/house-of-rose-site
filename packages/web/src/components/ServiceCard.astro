@@ -64,9 +64,9 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
       </div>
     )}
     <div class="flex-1">
-      {number && <p class="text-[#8a7c66] text-xs mb-1">{number}</p>}
+      {number && <p class="text-muted text-xs mb-1">{number}</p>}
       <h3 class="font-serif text-2xl text-ink mb-1" {...fp(headlinePath)}>{headline}</h3>
-      {tagline && <p class="text-[#7a6e5c] text-sm leading-relaxed" {...fp(taglinePath)}>{tagline}</p>}
+      {tagline && <p class="text-muted text-sm leading-relaxed" {...fp(taglinePath)}>{tagline}</p>}
     </div>
     <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
   </a>

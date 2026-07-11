@@ -92,7 +92,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 			</p>
 			<h1 class="font-serif text-5xl text-ink" {...sbFieldPath("pageTitle")}>{pageTitle}</h1>
 			{data.lastUpdated && (
-				<p class="mt-4 text-sm text-ink/60" {...sbFieldPath("lastUpdated")}>{data.lastUpdated}</p>
+				<p class="mt-4 text-sm text-ink/75" {...sbFieldPath("lastUpdated")}>{data.lastUpdated}</p>
 			)}
 		</div>
 
@@ -113,7 +113,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 			id="privacy-contact"
 			method="post"
 			action="/.netlify/functions/privacy-contact"
-			class="mt-12 border border-gold/20 bg-charcoal-light p-6 shadow-sm"
+			class="mt-12 border border-gold-metal/20 bg-charcoal-light p-6 shadow-sm"
 		>
 			<div class="mb-6">
 				<p class="text-xs tracking-[0.3em] uppercase text-gold mb-2">
@@ -186,7 +186,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 			</label>
 
 			<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-				<p class="text-sm text-ink/60">
+				<p class="text-sm text-ink/75">
 					Visible sender: {privacySupportEmail}
 				</p>
 				<button type="submit" class="btn-gold">Send Request</button>

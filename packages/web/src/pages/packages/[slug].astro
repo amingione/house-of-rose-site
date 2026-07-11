@@ -94,7 +94,7 @@ const pageDescription = summary;
   <div {...sbObjectId(pkg._id)}>
   <!-- Hero -->
   <section
-    class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"
+    class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
     style={pkg.image ? `background-image: url(${urlFor(pkg.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
@@ -102,7 +102,7 @@ const pageDescription = summary;
       <a href="/packages" class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> All Packages
       </a>
-      <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">Signature Package</span>
+      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">Signature Package</span>
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
         {pkg.title}
       </h1>
@@ -117,10 +117,10 @@ const pageDescription = summary;
   {services.length > 0 && (
     <section class="bg-charcoal py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What's Included</span>
-      <div class="space-y-px bg-gold/10">
+      <div class="space-y-px bg-gold-metal/10">
         {services.map((service, index) => (
           <div class="bg-charcoal p-7 flex gap-6" {...(service._id ? sbObjectId(service._id) : {})}>
-            <span class="font-serif text-gold/30 text-[28px] leading-none">
+            <span class="font-serif text-gold text-[28px] leading-none">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div>
@@ -128,7 +128,7 @@ const pageDescription = summary;
                 {service.title}
               </a>
               {service.tagline && (
-                <p class="text-[#9a8c78] text-[14px] leading-relaxed mt-2" {...(service._id ? sbFieldPath('tagline') : {})}>{service.tagline}</p>
+                <p class="text-muted text-[14px] leading-relaxed mt-2" {...(service._id ? sbFieldPath('tagline') : {})}>{service.tagline}</p>
               )}
             </div>
           </div>
@@ -156,24 +156,24 @@ const pageDescription = summary;
       {pkg.positioning && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Ritual</span>
-          <p class="text-[#9a8c78] text-[15px] leading-relaxed italic" {...sbFieldPath('positioning')}>{pkg.positioning}</p>
+          <p class="text-muted text-[15px] leading-relaxed italic" {...sbFieldPath('positioning')}>{pkg.positioning}</p>
         </div>
       )}
     </section>
   )}
 
   <!-- Booking CTA -->
-  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
       <span class="kicker">Reserve Your Experience</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         Ready to begin {pkg.title}?
       </h2>
-      <p class="text-[#777] text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
+      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
         Start with a private consultation. We'll confirm your candidacy and tailor the ritual to your skin.
       </p>
       {pkg.candidacyNote && (
-        <p class="text-[#7a6e5c] text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10" {...sbFieldPath('candidacyNote')}>{pkg.candidacyNote}</p>
+        <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10" {...sbFieldPath('candidacyNote')}>{pkg.candidacyNote}</p>
       )}
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
@@ -183,7 +183,7 @@ const pageDescription = summary;
           Book Online
         </a>
       </div>
-      <p class="text-[#8a7c66] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+      <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
       </p>
     </div>

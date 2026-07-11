@@ -81,18 +81,18 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				{hp.aboutHeading ?? "A more considered approach to aesthetics."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara1")}
 			>
 				{hp.aboutPara1 ?? "House of Rose Aesthetics was created for clients who expect more than a standard appointment or transactional treatment menu."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara2")}
 			>
 				{hp.aboutPara2 ?? "Our approach is intentional, results-focused, and built around long-term skin health. Every recommendation is made with precision—using AI-assisted skin analysis where it helps, then balancing advanced aesthetic treatments, regenerative techniques, and personalized care to deliver outcomes that feel refined, natural, and aligned with you."}
 			</p>
-			<p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
+			<p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
 				{hp.aboutPara3 ?? "Rather than focusing on isolated services, we design cohesive treatment plans that evolve with your skin, your goals, and the results you want to maintain over time."}
 			</p>
 		</div>
@@ -110,7 +110,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 
 	<!-- ── SECTION 3 · SIGNATURE APPROACH (full-bleed) ─────────────── -->
 	<section
-		class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
+		class="on-dark relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
 		style="background-image: url('/images/hor-skin-studio.jpg');"
 	>
 		<!-- Warm walnut gradient scrim. Inline style (can't be Tailwind-purged / always renders).
@@ -122,7 +122,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 			style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
 		></div>
 		<div class="relative z-10 max-w-[760px] mx-auto text-center">
-			<span class="kicker text-gold-300" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
+			<span class="kicker text-gold" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("approachHeading")}
@@ -161,12 +161,12 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				>
 					{hp.servicesHeading ?? "A curated menu of advanced treatments."}
 				</h2>
-				<p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath("servicesIntro")}>
+				<p class="text-muted text-[15px] leading-[1.75]" {...sbFieldPath("servicesIntro")}>
 					{hp.servicesIntro ?? "A curated selection of treatments designed to work together—not in isolation. Each service at House of Rose is carefully chosen to support real outcomes: improved skin quality, balanced features, and long-term maintenance through personalized treatment planning."}
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
 				{
 					serviceGroups.map((group, i) => (
 						<a href="/services" class="group block bg-charcoal">
@@ -184,7 +184,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 								<h3 class="font-serif text-[21px] text-ink mb-2.5" {...sbFieldPathParts("serviceGroups", i, "name")}>
 									{group.name}
 								</h3>
-								<p class="text-[#777] text-[14px] leading-[1.7]" {...sbFieldPathParts("serviceGroups", i, "description")}>
+								<p class="text-muted text-[14px] leading-[1.7]" {...sbFieldPathParts("serviceGroups", i, "description")}>
 									{group.description}
 								</p>
 							</div>
@@ -228,13 +228,13 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				{hp.scanHeading ?? "Your plan should start with evidence."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara1")}
 			>
 				{hp.scanPara1 ?? "Our in-studio AI skin scanner uses advanced imaging to evaluate visible and subsurface patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara2")}
 			>
 				{hp.scanPara2 ?? "That analysis becomes your baseline: a clearer way to choose the right treatments, track change over time, and understand why a provider recommends one step before another."}
@@ -282,13 +282,13 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				{hp.careHeading ?? "Professional skincare, selected with purpose."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("carePara1")}
 			>
 				{hp.carePara1 ?? "Every product we carry is selected to support treatment outcomes and simplify your routine at home. From post-treatment aftercare to acne support, mineral makeup, SPF, and corrective skincare, our selection is built to work with your plan, not compete with it."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-7"
 				{...sbFieldPath("carePara2")}
 			>
 				{hp.carePara2 ?? "Rather than overwhelming you with options, we provide curated recommendations tailored to your skin, your treatments, and your long-term goals—so everything you use works together with intention."}
@@ -303,7 +303,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 
 	<!-- ── SECTION 8 · THE EXPERIENCE (full-bleed) ─────────────────── -->
 	<section
-		class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
+		class="on-dark relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
 		style="background-image: url('/images/hor-skin-studio.jpg');"
 	>
 		<!-- Warm walnut gradient scrim — same AA-verified treatment as the "Our Approach"
@@ -315,7 +315,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 			style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
 		></div>
 		<div class="relative z-10 max-w-[720px] mx-auto text-center">
-			<span class="kicker text-gold-300" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
+			<span class="kicker text-gold" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("expHeading")}
@@ -348,13 +348,13 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				{hp.localHeading ?? "A refined destination for aesthetics and wellness."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4"
+				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4"
 				{...sbFieldPath("localPara1")}
 			>
 				{hp.localPara1 ?? "House of Rose Aesthetics serves clients in Punta Gorda and across Southwest Florida who are looking for a more thoughtful way to approach skin, beauty, and self-care."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
+				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
 				{...sbFieldPath("localPara2")}
 			>
 				{hp.localPara2 ?? "If you already know what you're looking for, you can book online. If you'd rather begin with a conversation, we're here to help you find the right starting point."}
@@ -373,7 +373,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 
 	<!-- ── SECTION 10 · FINAL CTA / FOOTER PREVIEW ─────────────────── -->
 	<section
-		class="relative py-[clamp(64px,9vw,120px)] px-6 bg-cover bg-center border-t border-gold/10"
+		class="relative py-[clamp(64px,9vw,120px)] px-6 bg-cover bg-center border-t border-gold-metal/10"
 		style="background-image: url('/images/background-rose.webp');"
 	>
 		<div class="absolute inset-0 bg-charcoal/88"></div>
@@ -385,7 +385,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				{hp.finalHeading ?? "Refined results begin with the right plan."}
 			</h2>
 			<p
-				class="text-[#999] text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
+				class="text-muted text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
 				{...sbFieldPath("finalPara")}
 			>
 				{hp.finalPara ?? "Advanced treatments, expert guidance, and a setting designed to feel elevated, calm, and intentional—so every step of your experience feels considered."}
@@ -400,7 +400,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 				{hp.finalCtaText ?? "Start Your Consultation"}
 			</a>
 			<p
-				class="text-[#7a6e5c] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
+				class="text-muted text-[11px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
 				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 9AM–5PM · (844) 941-7673").replace(/\n/g, "<br />")}
 				{...sbFieldPath("finalAddressLine")}
 			/>

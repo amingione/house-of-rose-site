@@ -33,10 +33,10 @@ function formatDate(iso: string) {
 
       {posts.length === 0 ? (
         <div class="text-center py-24">
-          <p class="text-[#7a6e5c] text-[15px]">Posts coming soon.</p>
+          <p class="text-muted text-[15px]">Posts coming soon.</p>
         </div>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
           {posts.map((post) => (
             <article class="bg-charcoal group" {...sbObjectId(post._id)}>
               <a href={`/blog/${post.slug}`} class="block">
@@ -53,17 +53,17 @@ function formatDate(iso: string) {
                   </div>
                 ) : (
                   <div class="aspect-[4/3] bg-charcoal-lighter flex items-center justify-center">
-                    <span class="font-serif text-[#5f5446] text-[28px]">HofR</span>
+                    <span class="font-serif text-muted text-[28px]">HofR</span>
                   </div>
                 )}
 
                 <div class="p-6">
                   <div class="flex items-center gap-3 mb-3">
                     {post.category && (
-                      <span class="text-gold text-[10px] tracking-[0.3em] uppercase" {...sbFieldPath('category')}>{post.category}</span>
+                      <span class="text-gold text-[11px] tracking-[0.3em] uppercase" {...sbFieldPath('category')}>{post.category}</span>
                     )}
                     {post.estimatedReadingTime && post.estimatedReadingTime > 0 && (
-                      <span class="text-[#8a7c66] text-[10px] tracking-[0.2em]">{post.estimatedReadingTime} min read</span>
+                      <span class="text-muted text-[11px] tracking-[0.2em]">{post.estimatedReadingTime} min read</span>
                     )}
                   </div>
 
@@ -72,13 +72,13 @@ function formatDate(iso: string) {
                   </h2>
 
                   {post.excerpt && (
-                    <p class="text-[#7a6e5c] text-[13px] leading-relaxed line-clamp-3 mb-4" {...sbFieldPath('excerpt')}>
+                    <p class="text-muted text-[13px] leading-relaxed line-clamp-3 mb-4" {...sbFieldPath('excerpt')}>
                       {post.excerpt}
                     </p>
                   )}
 
                   <div class="flex items-center justify-between">
-                    <time class="text-[#8a7c66] text-[11px] tracking-[0.15em]" datetime={post.publishedAt}>
+                    <time class="text-muted text-[11px] tracking-[0.15em]" datetime={post.publishedAt}>
                       {formatDate(post.publishedAt)}
                     </time>
                     <span class="text-gold text-[11px] tracking-[0.2em] uppercase border-b border-gold pb-px group-hover:opacity-75 transition-opacity">
@@ -102,7 +102,7 @@ function formatDate(iso: string) {
       <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-4">
         Every treatment starts with a conversation.
       </h2>
-      <p class="text-[#777] text-[15px] mb-8">
+      <p class="text-muted text-[15px] mb-8">
         Book a private consultation at House of Rose in Punta Gorda, FL.
       </p>
       <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">

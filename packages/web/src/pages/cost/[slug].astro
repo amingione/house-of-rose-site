@@ -55,7 +55,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6" {...sbFieldPath('title')}>{guide.title}</h1>
       <p class="text-ink/85 text-[17px] leading-relaxed" {...sbFieldPath('answer')}>{guide.answer}</p>
       {priceRange && (
-        <p class="mt-6 inline-block border border-gold/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
+        <p class="mt-6 inline-block border border-gold-metal/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
           Typical range: <span class="font-medium">{priceRange}</span>
         </p>
       )}
@@ -70,7 +70,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
           {guide.costFactors.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h2 class="text-ink text-[18px] font-medium mb-2" {...sbFieldPathParts('costFactors', i, 'factor')}>{f.factor}</h2>
-              <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPathParts('costFactors', i, 'effect')}>{f.effect}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('costFactors', i, 'effect')}>{f.effect}</p>
             </div>
           ))}
         </div>
@@ -95,7 +95,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
           {guide.faqs.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
             </div>
           ))}
         </div>
@@ -103,7 +103,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
     </section>
   )}
 
-  <section class="bg-charcoal py-12 px-6 border-t border-gold/10">
+  <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       {guide.treatment && (
         <a href={`/services/${guide.treatment.slug}`} class="learn-more inline-block mb-8">
@@ -111,7 +111,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
         </a>
       )}
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Get an exact quote</h2>
-      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">Pricing depends on your skin and goals. Book a private consultation for a personalized plan.</p>
+      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">Pricing depends on your skin and goals. Book a private consultation for a personalized plan.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>

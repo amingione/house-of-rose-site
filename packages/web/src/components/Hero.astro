@@ -56,7 +56,7 @@ const titleLines = title.split("\n");
 ---
 
 <section
-	class={`hero relative w-full ${sizeClasses} flex items-end overflow-hidden ${backgroundClass}`}
+	class={`on-dark hero-dark hero relative w-full ${sizeClasses} flex items-end overflow-hidden ${backgroundClass}`}
 >
 	{
 		backgroundImage && (
@@ -73,7 +73,7 @@ const titleLines = title.split("\n");
 	}
 	<!-- Premium gradient overlay -->
 	<div
-		class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.85)] via-[rgba(10,8,6,0.40)] to-[rgba(10,8,6,0.65)]"
+		class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.88)] via-[rgba(10,8,6,0.62)] to-[rgba(10,8,6,0.74)]"
 	>
 	</div>
 
@@ -86,20 +86,20 @@ const titleLines = title.split("\n");
 	>
 		{
 			kicker && (
-				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-2" {...sbAttr(kickerField)}>
+				<span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-2" {...sbAttr(kickerField)}>
 					{kicker}
 				</span>
 			)
 		}
 		{
 			subtitle && (
-				<span class="block text-[11px] tracking-[0.4em] uppercase text-white/90 mb-4" {...sbAttr(subtitleField)}>
+				<span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-4" {...sbAttr(subtitleField)}>
 					{subtitle}
 				</span>
 			)
 		}
 		<h1
-			class="font-serif text-[clamp(36px,8vw,84px)] leading-tight font-normal text-white mb-4"
+			class="font-serif text-[clamp(36px,8vw,84px)] leading-tight font-normal text-ivory mb-4"
 			{...sbAttr(titleField)}
 		>
 			{
@@ -120,7 +120,7 @@ const titleLines = title.split("\n");
 		{
 			description && (
 				<p
-					class={`text-white/75 text-base max-w-[430px] leading-relaxed mb-9 ${centerContent ? "mx-auto" : ""}`}
+					class={`text-muted-strong text-base max-w-[430px] leading-relaxed mb-9 ${centerContent ? "mx-auto" : ""}`}
 					{...sbAttr(descriptionField)}
 				>
 					{description}

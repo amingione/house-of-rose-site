@@ -72,7 +72,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
         <a href="tel:+18449417673" class="block text-ink text-[20px] hover:text-gold transition-colors mt-3" {...sbFieldPath('phoneNumber')}>
           {data.phoneNumber ?? "(844) 941-7673"}
         </a>
-        <p class="text-[#7a6e5c] text-[13px] mt-2" {...sbFieldPath('phoneHours')}>{data.phoneHours ?? "Mon-Fri, 9AM-5PM EST"}</p>
+        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('phoneHours')}>{data.phoneHours ?? "Mon-Fri, 9AM-5PM EST"}</p>
       </div>
 
       <!-- Book Online -->
@@ -87,7 +87,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
         >
           {data.bookLinkText ?? "Schedule Now"}
         </a>
-        <p class="text-[#7a6e5c] text-[13px] mt-2" {...sbFieldPath('bookNote')}>{data.bookNote ?? "24/7 Online Booking"}</p>
+        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>{data.bookNote ?? "24/7 Online Booking"}</p>
       </div>
 
       <!-- Location -->
@@ -116,7 +116,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
         <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-ink mt-2" {...sbFieldPath('formHeading')}>
           {data.formHeading ?? "We'd Love to Hear From You"}
         </h2>
-        <p class="text-[#777] text-[15px] max-w-[560px] mx-auto mt-4" {...sbFieldPath('formIntro')}>
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4" {...sbFieldPath('formIntro')}>
           {data.formIntro ?? "Fill out the form below and we'll get back to you within 24 hours."}
         </p>
       </div>
@@ -182,7 +182,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
             placeholder="(555) 123-4567"
           />
-          <p class="text-[#7a6e5c] text-[12px] mt-1.5">10 digits, no dashes or spaces</p>
+          <p class="text-muted text-[12px] mt-1.5">10 digits, no dashes or spaces</p>
         </div>
 
         <!-- Message -->
@@ -203,7 +203,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
         <div class="border-t border-ink/10 pt-8 mt-8">
           <h3 class="text-ink text-[17px] font-medium mb-4">Text Message Consent</h3>
 
-          <div class="bg-charcoal/50 border border-gold/20 p-6 mb-6 text-[13px] leading-relaxed">
+          <div class="bg-charcoal/50 border border-gold-metal/20 p-6 mb-6 text-[13px] leading-relaxed">
             <p class="text-ink/90 mb-4">
               House of Rose LLC would like your consent to send informational and/or marketing text message communications from <strong class="text-gold">+1 (844) 941-7673</strong> to your mobile number listed above.
             </p>
@@ -216,11 +216,11 @@ const oid = data._id ? sbObjectId(data._id) : {};
               <strong class="text-ink">Marketing messages</strong> may include discount codes, special deals or texts promoting our products/services.
             </p>
 
-            <p class="text-[#9a8c78] text-[12px] mb-3">
+            <p class="text-muted text-[12px] mb-3">
               Consent is not a condition of purchase. Msg frequency varies. Msg & data rates may apply. Reply HELP for help. Reply STOP to opt - out.
             </p>
 
-            <p class="text-[#9a8c78] text-[12px]">
+            <p class="text-muted text-[12px]">
               We do not share your mobile opt-in information with anyone. Our <a href="/privacy-policy" class="text-gold hover:underline">privacy policy and messaging terms and conditions</a> are available for more information.
             </p>
           </div>
@@ -232,7 +232,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
                 type="checkbox"
                 name="consent-informational"
                 value="yes"
-                class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold checked:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-colors cursor-pointer"
+                class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold-metal checked:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-colors cursor-pointer"
               />
               <span class="text-ink/90 text-[14px] group-hover:text-ink transition-colors">
                 Yes, I consent to receive <strong>informational messages</strong> from House of Rose LLC
@@ -244,7 +244,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
                 type="checkbox"
                 name="consent-marketing"
                 value="yes"
-                class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold checked:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-colors cursor-pointer"
+                class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold-metal checked:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-colors cursor-pointer"
               />
               <span class="text-ink/90 text-[14px] group-hover:text-ink transition-colors">
                 Yes, I consent to receive <strong>marketing text messages</strong> from House of Rose LLC
@@ -256,7 +256,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
                 type="checkbox"
                 name="consent-none"
                 value="yes"
-                class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold checked:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-colors cursor-pointer"
+                class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold-metal checked:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition-colors cursor-pointer"
               />
               <span class="text-ink/90 text-[14px] group-hover:text-ink transition-colors">
                 No, I do not want to receive any text messages from House of Rose LLC
@@ -275,7 +275,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
           </button>
         </div>
 
-        <p class="text-[#7a6e5c] text-[12px] mt-4">
+        <p class="text-muted text-[12px] mt-4">
           * Required fields. By submitting this form, you agree to our <a href="/privacy-policy" class="text-gold hover:underline">privacy policy</a>.
         </p>
       </form>

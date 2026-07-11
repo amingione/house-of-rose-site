@@ -32,12 +32,12 @@ const pageDescription = concern.seo?.metaDescription ?? concern.intro ?? '';
       <a href="/services" class="inline-flex items-center gap-2 text-ink/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> All Services
       </a>
-      <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">What We Treat</span>
+      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">What We Treat</span>
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ink mb-6" {...sbFieldPath('title')}>
         {concern.title}
       </h1>
       {concern.intro && (
-        <p class="text-[#999] text-[15px] leading-[1.8] max-w-[680px]" {...sbFieldPath('intro')}>{concern.intro}</p>
+        <p class="text-muted text-[15px] leading-[1.8] max-w-[680px]" {...sbFieldPath('intro')}>{concern.intro}</p>
       )}
     </div>
   </section>
@@ -50,7 +50,7 @@ const pageDescription = concern.seo?.metaDescription ?? concern.intro ?? '';
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
           Treatments for {concern.title.toLowerCase()}
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {concern.treatments.map((t) => (
             <a href={`/services/${t.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
               {t.image && (
@@ -66,7 +66,7 @@ const pageDescription = concern.seo?.metaDescription ?? concern.intro ?? '';
                 </div>
               )}
               <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{t.title}</h3>
-              {t.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
+              {t.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
               <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
                 {t.price && <span {...sbFieldPath('price')}>{t.price}</span>}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration && <span {...sbFieldPath('duration')}>{t.duration}</span>}
               </p>
@@ -78,13 +78,13 @@ const pageDescription = concern.seo?.metaDescription ?? concern.intro ?? '';
   )}
 
   <!-- CTA -->
-  <section class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+  <section class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
       <span class="kicker">Not Sure Which Is Right?</span>
       <h2 class="font-serif text-[clamp(26px,4.5vw,40px)] text-ink leading-tight mt-2 mb-5">
         Start with a consultation.
       </h2>
-      <p class="text-[#9a8c78] text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
         Every concern has more than one path — we will map yours at a private consultation.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
