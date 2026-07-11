@@ -134,14 +134,15 @@ export const product = defineType({
       initialValue: true,
     }),
     defineField({
-      name: 'weightOz',
-      title: 'Shipping Weight (oz)',
+      name: 'weightLb',
+      title: 'Shipping Weight (lb)',
       type: 'number',
       description:
-        'Packed weight in ounces, used to get live carrier rates at checkout. Include the bottle, ' +
-        'not just the contents. If left blank we assume 4 oz — set it properly on anything heavy ' +
-        '(kits, sets) or the shipping quote will under-charge us.',
-      validation: (Rule) => Rule.min(0.1).max(1120).warning('Over 70 lb is not a parcel shipment.'),
+        'Packed weight in POUNDS, used to get live carrier rates at checkout. Include the bottle, ' +
+        'not just the contents — a 4 oz serum is about 0.35 lb packed. Decimals are fine (0.25, 1.5). ' +
+        'If left blank we assume 0.25 lb — set it properly on anything heavy (kits, sets) or the ' +
+        'shipping quote will under-charge us and the difference comes out of margin.',
+      validation: (Rule) => Rule.min(0.01).max(70).warning('Over 70 lb is not a parcel shipment.'),
       hidden: ({ parent }) => parent?.shippable === false,
     }),
   ],

@@ -47,8 +47,9 @@ Redirects: `/memberships/*`, `/rose-circle/*`, `/plans/*` → `/` (301, in `pack
   Hosted Stripe Checkout can't do this (static `shipping_options`) — that's why we use Elements.
 - **Never `return Astro.redirect()` from a prerendered page** — it stops Astro emitting the
   sibling index chunk and breaks the build (`Cannot find module dist/pages/shop.astro.mjs`).
-- Set `weightOz` on heavy products or shipping under-charges. `purchaseUrl` is now the escape
-  hatch, not the default. Orders land in Sanity as `order` docs; check `fulfillmentError`.
+- **Weights are in POUNDS** (`weightLb`, Shippo `mass_unit: 'lb'`) — never ounces. Set it on
+  heavy products or shipping under-charges. `purchaseUrl` is now the escape hatch, not the
+  default. Orders land in Sanity as `order` docs; check `fulfillmentError`.
 
 ## URL rule — trailing slash REQUIRED on inner pages
 Astro's default `build.format` is `directory` and `site` resolves to `https://houseofrosefl.com/`, so every inner page lives at its **trailing-slash** URL (`/services/`, `/experience/`, `/services/prf/`, `/privacy-policy/`). Writing an inner-page URL **without** the slash relies on a redirect and can break — the same failure seen on FAS Motorsports. Root domain (`houseofrosefl.com`) is slash-optional. **Rule: every absolute or internal link to an inner page ends in `/`.**

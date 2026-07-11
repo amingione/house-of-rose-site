@@ -98,9 +98,11 @@ A product is **buyable online** when it has a `price` (in cents) and `inStock �
 Otherwise the page falls back to `purchaseUrl` (external link), then to call-to-order.
 
 - **`price`** — cents. `3200` = $32.00.
-- **`weightOz`** — *packed* weight, bottle included. Defaults to 4 oz if blank, plus
-  3 oz packaging. **Set this on anything heavy (kits, sets) or we under-charge shipping
-  and eat the difference.**
+- **`weightLb`** — *packed* weight in **pounds**, bottle included. A 4 oz serum is
+  ~0.35 lb packed. Decimals are fine. Defaults to 0.25 lb if blank, plus 0.2 lb
+  packaging, and Shippo is told `mass_unit: 'lb'` — the unit is pounds end to end, on
+  purpose. **Set this on anything heavy (kits, sets) or we under-charge shipping and eat
+  the difference.** Carriers round up to the next pound, so we never quote below 1 lb.
 - **`shippable`** — off for in-studio-only items. They can still be bought; the cart
   just skips shipping for them.
 - **`purchaseUrl`** — now the **escape hatch**, not the default. Use it only for things
@@ -134,7 +136,7 @@ Subscribe to `payment_intent.succeeded` and `payment_intent.payment_failed`.
 ## Before taking real money
 
 1. Set the env vars above (test keys first).
-2. Set `weightOz` on the heavy items.
+2. Set `weightLb` on the heavy items (pounds — 0.25 lb ≈ a serum, a kit is 2–4 lb).
 3. Place a test order end-to-end with Stripe test card `4242 4242 4242 4242` — confirm
    an `order` appears in the Studio as `shipped` with a label URL.
 4. **Confirm the brands allow online resale.** Face Reality requires a fully-executed

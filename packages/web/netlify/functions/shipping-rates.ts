@@ -60,7 +60,7 @@ export default async function handler(request: Request): Promise<Response> {
       return json({ requiresShipping: false, rates: [], subtotal: cart.subtotal });
     }
 
-    const rates = await getRates(parseAddress(body.address), cart.totalWeightOz);
+    const rates = await getRates(parseAddress(body.address), cart.totalWeightLb);
 
     return json({
       requiresShipping: true,

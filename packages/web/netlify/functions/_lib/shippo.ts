@@ -78,20 +78,21 @@ async function shippo<T>(path: string, body: unknown): Promise<T> {
  * skincare (dense bottles in small boxes), so weight is the honest driver of cost.
  * Upgrade to real box-packing only if the rates start looking wrong.
  */
-function parcelFor(weightOz: number): Record<string, string> {
+function parcelFor(weightLb: number): Record<string, string> {
   const tiers = [
-    { max: 16, length: '6', width: '6', height: '4' },
-    { max: 48, length: '10', width: '8', height: '6' },
-    { max: Infinity, length: '14', width: '12', height: '8' },
+    { max: 1, length: '6', width: '6', height: '4' },   // single bottle
+    { max: 3, length: '10', width: '8', height: '6' },  // a routine
+    { max: Infinity, length: '14', width: '12', height: '8' }, // kit / multi-brand order
   ];
-  const box = tiers.find((t) => weightOz <= t.max) ?? tiers[tiers.length - 1];
+  const box = tiers.find((t) => weightLb <= t.max) ?? tiers[tiers.length - 1];
   return {
     length: box.length,
     width: box.width,
     height: box.height,
     distance_unit: 'in',
-    weight: Math.max(weightOz, 1).toFixed(2),
-    mass_unit: 'oz',
+    // Carriers round up to the next pound anyway; never quote below 1 lb.
+    weight: Math.max(weightLb, 1).toFixed(2),
+    mass_unit: 'lb',
   };
 }
 
@@ -99,13 +100,13 @@ export interface ShipmentQuote {
   rates: ShippoRate[];
 }
 
-export async function getRates(to: ShippoAddress, weightOz: number): Promise<ShippoRate[]> {
+export async function getRates(to: ShippoAddress, weightLb: number): Promise<ShippoRate[]> {
   const shipment = await shippo<ShipmentQuote & { messages?: Array<{ text: string }> }>(
     '/shipments/',
     {
       address_from: shipFrom,
       address_to: to,
-      parcels: [parcelFor(weightOz)],
+      parcels: [parcelFor(weightLb)],
       async: false, // block until rates are ready — we're mid-checkout
     },
   );

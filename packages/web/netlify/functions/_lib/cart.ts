@@ -21,20 +21,22 @@ export interface ResolvedItem {
   quantity: number;
   unitPrice: number; // cents, from Sanity
   lineTotal: number; // cents
-  weightOz: number;
+  weightLb: number;
   shippable: boolean;
 }
 
 export interface ResolvedCart {
   items: ResolvedItem[];
   subtotal: number; // cents
-  totalWeightOz: number;
+  totalWeightLb: number;
   requiresShipping: boolean;
 }
 
-const DEFAULT_WEIGHT_OZ = 4;
+// Pounds everywhere — matches how Amber has always entered weights, and Shippo is told
+// `mass_unit: 'lb'`. Mixing units here is how a shipping quote goes silently wrong.
+const DEFAULT_WEIGHT_LB = 0.25; // ~4 oz packed — a typical serum
 /** Box + packing material. Under-quoting shipping comes straight out of margin. */
-const PACKAGING_WEIGHT_OZ = 3;
+const PACKAGING_WEIGHT_LB = 0.2;
 const MAX_QUANTITY_PER_ITEM = 20;
 
 export const sanity = createClient({
@@ -52,7 +54,7 @@ interface SanityProductRow {
   price: number | null;
   inStock: boolean | null;
   shippable: boolean | null;
-  weightOz: number | null;
+  weightLb: number | null;
 }
 
 export class CartError extends Error {
@@ -87,7 +89,7 @@ export async function resolveCart(requested: RequestedItem[]): Promise<ResolvedC
 
   const rows = await sanity.fetch<SanityProductRow[]>(
     /* groq */ `*[_type == "product" && _id in $ids]{
-      _id, title, "slug": slug.current, price, inStock, shippable, weightOz
+      _id, title, "slug": slug.current, price, inStock, shippable, weightLb
     }`,
     { ids },
   );
@@ -116,20 +118,20 @@ export async function resolveCart(requested: RequestedItem[]): Promise<ResolvedC
       quantity: req.quantity,
       unitPrice: product.price,
       lineTotal: product.price * req.quantity,
-      weightOz: shippable ? (product.weightOz ?? DEFAULT_WEIGHT_OZ) : 0,
+      weightLb: shippable ? (product.weightLb ?? DEFAULT_WEIGHT_LB) : 0,
       shippable,
     };
   });
 
   const subtotal = items.reduce((sum, i) => sum + i.lineTotal, 0);
   const requiresShipping = items.some((i) => i.shippable);
-  const contentsWeight = items.reduce((w, i) => w + i.weightOz * i.quantity, 0);
+  const contentsWeight = items.reduce((w, i) => w + i.weightLb * i.quantity, 0);
 
   return {
     items,
     subtotal,
     requiresShipping,
-    totalWeightOz: requiresShipping ? contentsWeight + PACKAGING_WEIGHT_OZ : 0,
+    totalWeightLb: requiresShipping ? contentsWeight + PACKAGING_WEIGHT_LB : 0,
   };
 }
 
