@@ -19,8 +19,13 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const product = await sanityFetch<Product>(PRODUCT_BY_SLUG_QUERY, { slug });
 
+// Every slug here comes straight from getStaticPaths (i.e. from Sanity), so a miss is a
+// data-integrity bug, not a runtime 404 — fail the build loudly instead of redirecting.
+// NOTE: do NOT `return Astro.redirect()` from this page. Returning a Response from a
+// prerendered route in `output: 'static'` prevents Astro from emitting the sibling
+// /shop index chunk (dist/pages/shop.astro.mjs), which breaks the whole build.
 if (!product) {
-  return Astro.redirect('/shop', 307);
+  throw new Error(`[shop/[slug]] No product found in Sanity for slug "${slug}"`);
 }
 
 const formatPrice = (cents?: number): string =>
