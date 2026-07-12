@@ -54,6 +54,11 @@ export default async function handler(request: Request): Promise<Response> {
     if (order.status !== 'shipped') {
       return json({ skipped: 'Order is not marked shipped.' });
     }
+    // Shipped with no tracking = the label was never bought (or was bought outside the
+    // system). Still email — an "on its way" note without tracking beats silence.
+    if (!order.trackingNumber) {
+      console.warn(`[order-shipped] ${order.orderNumber} marked shipped with no tracking number.`);
+    }
     if (order.shippedEmailSentAt) {
       // Sanity retries webhooks; don't email the customer twice.
       return json({ skipped: 'Shipping email already sent.' });

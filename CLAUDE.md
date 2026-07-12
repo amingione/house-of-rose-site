@@ -48,8 +48,11 @@ Redirects: `/memberships/*`, `/rose-circle/*`, `/plans/*` → `/` (301, in `pack
 - **Never `return Astro.redirect()` from a prerendered page** — it stops Astro emitting the
   sibling index chunk and breaks the build (`Cannot find module dist/pages/shop.astro.mjs`).
 - **Emails via Resend**: confirmation on payment (`stripe-webhook`), tracking when Amber marks
-  the order `shipped` in the Studio (Sanity webhook → `order-shipped`). The Shippo label is
-  bought at payment but does NOT mean shipped — don't email tracking before the box leaves.
+  the order `shipped` in the Studio (Sanity webhook → `order-shipped`).
+- **Labels are NEVER auto-bought.** Payment does not spend postage — a chargeback would cost us
+  the goods AND the label, stock can be stale, addresses can be typo'd, weights can be wrong.
+  Amber ticks `buyLabel` on a paid order → `buy-label.ts` (idempotent; re-quotes if the Shippo
+  rate expired; records real `labelCost` vs what the client paid).
 - **The cart is cleared on `/order-confirmed/`**, never after `confirmPayment()` (that redirects
   away, so code after it never runs — the customer would return to a full cart).
 - **Weights are in POUNDS** (`weightLb`, Shippo `mass_unit: 'lb'`) — never ounces. Set it on

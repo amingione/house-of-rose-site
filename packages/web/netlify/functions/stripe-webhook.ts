@@ -1,6 +1,5 @@
 import Stripe from 'stripe';
 import { sanity } from './_lib/cart';
-import { buyLabel } from './_lib/shippo';
 import { sendOrderConfirmation, type EmailOrder } from './_lib/email';
 
 /** Shape of the `order` doc we read back after patching it paid. */
@@ -11,13 +10,14 @@ type SanityOrder = Partial<EmailOrder> & { _id: string };
  *
  * Fires after the customer pays. Two jobs, in this order:
  *   1. Mark the Sanity order `paid`.
- *   2. Buy the Shippo label for the rate they chose.
+ *   2. Email the customer their confirmation.
  *
- * Ordering matters. If step 2 throws, the money is ALREADY captured — we must never
- * lose the order. So the order is marked paid first, and a label failure is recorded
- * on `fulfillmentError` for Amber to handle by hand. A 500 here would make Stripe
- * retry and risk buying a second label, so we swallow fulfilment errors and return
- * 200 once the order is safely marked paid.
+ * It does NOT buy a shipping label. Spending real postage the moment a card clears means
+ * paying before anyone has looked at the order — see the comment at step 3. Amber ticks
+ * `buyLabel` in the Studio when she's ready, which fires buy-label.ts.
+ *
+ * The email is best-effort: it logs and moves on rather than throwing, because a failed
+ * receipt must never fail a captured payment.
  *
  * Signature verification is mandatory — without it anyone who finds this URL can mark
  * orders paid and make us buy labels.
@@ -85,47 +85,17 @@ export default async function handler(request: Request): Promise<Response> {
       shippingAddress: order.shippingAddress,
     });
 
-    // 3. Fulfilment. Best-effort — never let this un-record a paid order.
-    const rateId = intent.metadata?.shippoRateId;
-    if (!rateId) {
-      return new Response('ok', { status: 200 }); // in-studio pickup, nothing to ship
-    }
-
-    try {
-      const label = await buyLabel(rateId);
-
-      if (label.status !== 'SUCCESS') {
-        throw new Error(
-          label.messages?.map((m) => m.text).join('; ') ?? `Shippo status ${label.status}`,
-        );
-      }
-
-      // NOTE: status stays `paid`, NOT `shipped`. The label existing means it's ready to
-      // go, not gone. Amber flips the order to `shipped` in the Studio when the parcel
-      // actually leaves — that's what triggers the tracking email (see order-shipped.ts).
-      await sanity
-        .patch(orderId)
-        .set({
-          shippoTransactionId: label.object_id,
-          labelUrl: label.label_url ?? undefined,
-          trackingNumber: label.tracking_number ?? undefined,
-          trackingUrl: label.tracking_url_provider ?? undefined,
-        })
-        .commit();
-    } catch (labelError) {
-      // Paid but unlabelled. Surface it loudly in the Studio rather than 500-ing,
-      // which would make Stripe retry and potentially buy a duplicate label.
-      console.error('[stripe-webhook] label purchase failed', labelError);
-      await sanity
-        .patch(orderId)
-        .set({
-          fulfillmentError: `Payment captured but label purchase failed: ${
-            labelError instanceof Error ? labelError.message : String(labelError)
-          }. Buy this label manually in Shippo.`,
-        })
-        .commit();
-    }
-
+    // 3. NO LABEL IS BOUGHT HERE — on purpose.
+    //
+    // Buying postage the instant a card clears means spending real money before anyone
+    // has looked at the order. A fraudulent card that later charges back leaves us out
+    // the goods AND the postage; `inStock` in Sanity is hand-maintained and can be stale;
+    // Stripe validates an address's FORMAT, not its deliverability; and an under-entered
+    // weightLb produces a label USPS bills us for later, silently. All of that is cheaper
+    // to catch before we've paid the carrier.
+    //
+    // So the order sits at `paid` with its Shippo rate id stored, and Amber ticks
+    // `buyLabel` in the Studio when she's ready — see buy-label.ts.
     return new Response('ok', { status: 200 });
   } catch (error) {
     // Sanity itself is down — let Stripe retry, the write is idempotent.

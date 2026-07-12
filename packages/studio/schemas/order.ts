@@ -13,11 +13,19 @@ import { defineField, defineType } from 'sanity';
  * webhook then has a durable record to attach the payment and label to, and an
  * abandoned checkout simply leaves a `pending` order behind (useful data in itself).
  *
- * ONE editable field: `status`. Flipping it to `shipped` is what sends the customer
- * their tracking email (netlify/functions/order-shipped.ts) — the label being bought
- * does NOT, because the label is printed seconds after payment while the box is still
- * on the counter. Everything else is machine-written and locked: editing a price or a
- * Stripe id here would silently desync us from Stripe/Shippo.
+ * TWO editable controls, and both spend or promise something, so both are deliberate:
+ *
+ *   `buyLabel` — tick it to actually PURCHASE the shipping label (real postage, real
+ *                money). Nothing buys a label automatically. Payment succeeding does not
+ *                buy postage: a card can be fraudulent, stock can be wrong, an address
+ *                can be typo'd, and a weight can be under-entered — all of which are
+ *                cheaper to catch before you've paid USPS.
+ *
+ *   `status`   — flip to `shipped` once the parcel is really gone. THAT sends the
+ *                customer their tracking email (netlify/functions/order-shipped.ts).
+ *
+ * Everything else is machine-written and locked: editing a price or a Stripe id here
+ * would silently desync us from Stripe/Shippo.
  */
 export const order = defineType({
   name: 'order',
@@ -41,7 +49,8 @@ export const order = defineType({
       options: {
         list: [
           { title: 'Pending payment', value: 'pending' },
-          { title: 'Paid — label ready, not yet shipped', value: 'paid' },
+          { title: 'Paid — needs a label', value: 'paid' },
+          { title: 'Label purchased — ready to ship', value: 'readyToShip' },
           { title: 'Shipped (emails the customer tracking)', value: 'shipped' },
           { title: 'Payment failed', value: 'failed' },
           { title: 'Refunded', value: 'refunded' },
@@ -114,6 +123,27 @@ export const order = defineType({
     }),
     defineField({ readOnly: true, name: 'trackingNumber', title: 'Tracking Number', type: 'string' }),
     defineField({ name: 'trackingUrl', title: 'Tracking URL', type: 'url' }),
+    defineField({
+      name: 'buyLabel',
+      title: '⚠️ Purchase shipping label',
+      type: 'boolean',
+      description:
+        'Tick this and publish to BUY THE LABEL — this spends real postage money. Labels are ' +
+        'never bought automatically. Check the address, confirm the item is actually on the ' +
+        'shelf, and make sure the weight is right first. If the original rate has expired ' +
+        '(Shippo rates last about a week) we re-quote the same service automatically.',
+      initialValue: false,
+      hidden: ({ parent }) => parent?.status === 'pending' || Boolean(parent?.shippoTransactionId),
+    }),
+    defineField({
+      readOnly: true,
+      name: 'labelCost',
+      title: 'Label Cost (cents)',
+      type: 'number',
+      description:
+        'What the postage actually cost us. Compare to "Shipping (cents)" — what the client ' +
+        'paid. A gap means the weight was wrong or the rate moved.',
+    }),
     defineField({
       name: 'labelUrl',
       title: 'Shipping Label (PDF)',

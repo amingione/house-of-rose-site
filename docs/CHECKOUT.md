@@ -51,9 +51,15 @@ charging the old price?"). The server reads Sanity on every request instead.
    browser → /order-confirmed/        stripe-webhook
      · verifies the PaymentIntent       1. order → paid
      · CLEARS THE CART                  2. Resend: order confirmation email
-     · "thanks, email coming"           3. buy Shippo label (status stays `paid`)
+     · "thanks, email coming"           3. NO LABEL BOUGHT — deliberate
 
-   ...later, Amber marks the order `shipped` in the Studio
+   ...Amber checks the order, then ticks `buyLabel` in the Studio
+              │
+              ▼
+   Sanity webhook → buy-label ──► Shippo: buy postage → status `readyToShip`
+              │                   (re-quotes if the original rate expired)
+              ▼
+   ...she packs it, prints the label, drops it off, sets status `shipped`
               │
               ▼
    Sanity webhook → order-shipped ──► Resend: "on its way" + tracking
@@ -70,7 +76,8 @@ charging the old price?"). The server reads Sanity on every request instead.
 | `netlify/functions/_lib/shippo.ts` | Shippo over REST (no SDK — it has churned through breaking majors). |
 | `netlify/functions/shipping-rates.ts` | Live carrier rates for this cart + address. |
 | `netlify/functions/create-payment-intent.ts` | Recomputes the amount, writes the order, creates the PaymentIntent. |
-| `netlify/functions/stripe-webhook.ts` | Marks paid, emails the confirmation, buys the label. |
+| `netlify/functions/stripe-webhook.ts` | Marks paid, emails the confirmation. **Buys nothing.** |
+| `netlify/functions/buy-label.ts` | Sanity webhook → buys postage when Amber ticks `buyLabel`. |
 | `netlify/functions/order-shipped.ts` | Sanity webhook → emails tracking when Amber marks it shipped. |
 | `netlify/functions/_lib/email.ts` | Resend (REST, no SDK). Both customer emails. Best-effort by design. |
 | `src/pages/order-confirmed.astro` | Stripe `return_url`. Verifies the intent, **clears the cart**, thanks them. |
@@ -89,11 +96,25 @@ chars/value, nowhere near enough for a line-item cart. So Stripe carries only th
 Sanity `_id` and the durable record lives here. An abandoned checkout leaves a
 `pending` order behind — that's useful data, not a bug.
 
-**The webhook marks paid FIRST, then buys the label.** If the label fails, the money is
-already captured — we must never lose the order. A label failure is recorded on
-`order.fulfillmentError` and returns **200**, because a 500 makes Stripe retry and risk
-buying a *second* label. Check `fulfillmentError` in the Studio: those orders are paid
-but need a label bought by hand.
+**Labels are NEVER bought automatically.** Payment succeeding does not buy postage. It
+would mean spending real money the instant a card clears, before a human has looked at
+anything — and a fraudulent card that later charges back costs us the goods *and* the
+postage. `inStock` is hand-maintained and goes stale. Stripe validates an address's
+FORMAT, not its deliverability. An under-entered `weightLb` yields a label USPS quietly
+bills an adjustment for. All cheaper to catch before we've paid the carrier.
+
+So Amber ticks **`buyLabel`** on a paid order in the Studio, which fires `buy-label.ts`.
+It's idempotent (refuses if `shippoTransactionId` exists — Sanity retries webhooks, and
+two labels means paying twice), and on failure it unticks the box and writes
+`fulfillmentError` so she can fix the address and retry. Nothing is charged for postage
+on a failure.
+
+**The cost of deferring is rate expiry.** Shippo rate objects go stale after about a
+week, so the rate the customer paid against may no longer be purchasable. `buy-label`
+re-quotes the same carrier + service and records what the postage *actually* cost in
+`labelCost`. Compare it to `shippingCost` (what the client paid): a gap means the weight
+was wrong or the rate moved. We absorb the difference rather than re-charging a customer
+for our own delay.
 
 **The cart drawer binds once; the buttons bind per-navigation.** The drawer lives
 outside `<main>` and survives swup; the buttons don't. Re-binding the drawer on every
@@ -163,11 +184,13 @@ Set in Netlify (**Site settings → Environment variables**), and in
 > write orders without it. It's set in Netlify, but local testing will fail until you add
 > it locally too.
 
-**Sanity webhook (Manage → API → Webhooks):**
-- URL: `https://houseofrosefl.com/.netlify/functions/order-shipped`
-- Trigger: on **update**, filter `_type == "order" && status == "shipped"`
-- Projection: `{ _id }`
-- Secret: same value as `SANITY_WEBHOOK_SECRET`
+**Sanity webhooks (Manage → API → Webhooks) — TWO of them, both `POST`, both using
+`SANITY_WEBHOOK_SECRET`, both projecting `{ _id }`, both triggering on **update**:**
+
+| Function | Filter |
+|---|---|
+| `/.netlify/functions/buy-label` | `_type == "order" && buyLabel == true && !defined(shippoTransactionId)` |
+| `/.netlify/functions/order-shipped` | `_type == "order" && status == "shipped"` |
 
 **Stripe webhook endpoint:** `https://houseofrosefl.com/.netlify/functions/stripe-webhook`
 Subscribe to `payment_intent.succeeded` and `payment_intent.payment_failed`.
@@ -179,9 +202,11 @@ Subscribe to `payment_intent.succeeded` and `payment_intent.payment_failed`.
 1. Set the env vars above (test keys first).
 2. Set `weightLb` on the heavy items (pounds — 0.25 lb ≈ a serum, a kit is 2–4 lb).
 3. Place a test order end-to-end with Stripe test card `4242 4242 4242 4242`. Confirm:
-   the order appears in the Studio as `paid` with a label URL, the confirmation email
-   arrives, and the cart is empty afterwards. Then flip it to `shipped` and confirm the
-   tracking email arrives exactly once.
+   the order appears in the Studio as `paid` with **no label**, the confirmation email
+   arrives, and the cart is empty afterwards. Then tick `buyLabel` → it should flip to
+   `readyToShip` with a label URL and tracking. Then set `shipped` → the tracking email
+   arrives exactly once. **Use a Shippo TEST token for this, or you will buy real
+   postage.**
 4. **Confirm the brands allow online resale.** Face Reality requires a fully-executed
    Supply Agreement, and pro lines commonly restrict online sale and enforce MAP
    pricing. This is a business blocker, not a technical one — check before listing 125
