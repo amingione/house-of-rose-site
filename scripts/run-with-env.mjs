@@ -55,6 +55,18 @@ function parseEnvLine(line) {
  * process, which only had the root file. The result was every Sanity-webhook function
  * 401ing locally with a secret that was sitting right there in the other file.
  */
+/**
+ * Anything already in the real environment WINS over both files.
+ *
+ * Precedence: shell env > packages/web/.env.local > root .env.local
+ *
+ * Without this, `FOO=bar npm run dev:functions` silently does nothing — the file
+ * clobbers the variable you just set on the command line. That matters for exactly the
+ * case you'd reach for it: pointing STRIPE_WEBHOOK_SECRET at the throwaway whsec_ that
+ * `stripe listen` prints, which is different from the deployed endpoint's secret.
+ */
+const PRESET = new Set(Object.keys(process.env));
+
 function loadEnvFile(path) {
   let contents;
   try {
@@ -68,6 +80,7 @@ function loadEnvFile(path) {
     const parsed = parseEnvLine(line);
     if (parsed) {
       const [key, value] = parsed;
+      if (PRESET.has(key)) continue; // explicit env beats the file
       process.env[key] = value;
     }
   }

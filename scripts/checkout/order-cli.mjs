@@ -225,6 +225,88 @@ async function seed() {
   console.log(`\n  Next:  ${c.bold(`npm run order -- label ${order._id}`)}\n`);
 }
 
+/**
+ * Drive a REAL Stripe payment, end to end.
+ *
+ *   1. POST create-payment-intent — the real function, real Sanity write, real Shippo rate
+ *   2. Confirm the PaymentIntent with a test card via the Stripe API
+ *   3. Stripe fires payment_intent.succeeded → stripe-webhook → CONFIRMATION EMAIL
+ *
+ * Step 3 is the whole point. `seed` fabricates a paid order directly in Sanity and
+ * therefore NEVER exercises the webhook — which means it never sends the confirmation
+ * email, the one email that fires on every real order. Testing with `seed` alone gives
+ * you false confidence.
+ *
+ * Requires a Stripe listener forwarding events to the local function:
+ *   stripe listen --forward-to localhost:8888/.netlify/functions/stripe-webhook
+ * ...and STRIPE_WEBHOOK_SECRET set to the whsec_ that `stripe listen` prints.
+ */
+async function checkout() {
+  const product = await sanity.fetch(
+    `*[_type == "product" && defined(price) && price > 0 && inStock != false][0]{ _id, title, price }`,
+  );
+  if (!product) die('No priced, in-stock product to buy.');
+
+  const address = {
+    line1: '1600 Pennsylvania Avenue NW',
+    city: 'Washington',
+    state: 'DC',
+    postal_code: '20500',
+    country: 'US',
+  };
+  const email = env.LEAD_NOTIFY_TO ?? 'info@houseofrosefl.com';
+
+  console.log(`\n  ${c.dim('1/3')} quoting shipping…`);
+  const ratesRes = await fetch(`${FN_BASE}/shipping-rates`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items: [{ productId: product._id, quantity: 2 }], address }),
+  }).catch(() => die(`Couldn't reach ${FN_BASE}. Is \`netlify dev\` running?`));
+
+  const rates = await ratesRes.json();
+  if (!ratesRes.ok) die(`shipping-rates: ${rates.error}`);
+  const rate = rates.rates?.[0];
+  console.log(`      ${rate.label} — ${money(rate.amount)}`);
+
+  console.log(`  ${c.dim('2/3')} creating the PaymentIntent (real function, real order)…`);
+  const piRes = await fetch(`${FN_BASE}/create-payment-intent`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      items: [{ productId: product._id, quantity: 2 }],
+      shippingRateId: rate.id,
+      email,
+      name: 'Test Customer',
+      phone: '+18449417673',
+      address,
+    }),
+  });
+  const pi = await piRes.json();
+  if (!piRes.ok) die(`create-payment-intent: ${pi.error}`);
+  console.log(`      ${c.bold(pi.orderNumber)} · ${money(pi.amount)} (${money(pi.subtotal)} + ${money(pi.shipping)} shipping)`);
+
+  // The client secret embeds the intent id: pi_XXX_secret_YYY
+  const intentId = pi.clientSecret.split('_secret_')[0];
+
+  console.log(`  ${c.dim('3/3')} confirming with test card 4242…`);
+  const confirmRes = await fetch(`https://api.stripe.com/v1/payment_intents/${intentId}/confirm`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({ payment_method: 'pm_card_visa', return_url: 'https://houseofrosefl.com/order-confirmed/' }),
+  });
+  const confirmed = await confirmRes.json();
+  if (!confirmRes.ok) die(`Stripe confirm failed: ${confirmed.error?.message}`);
+
+  console.log(`\n  ${c.green('✔')} PaymentIntent ${c.bold(confirmed.status)} — ${intentId}`);
+  console.log(c.dim(`  Stripe will now fire payment_intent.succeeded at your listener.`));
+  console.log(c.dim(`  If \`stripe listen\` is forwarding, stripe-webhook marks it paid and`));
+  console.log(c.dim(`  sends the CONFIRMATION email to ${email}.\n`));
+  console.log(`  Then:  ${c.bold(`npm run order -- list`)}   (status should be "paid")\n`);
+}
+
 async function label(id) {
   if (LIVE_SHIPPO && !flag('yes-spend-real-money')) {
     die(
@@ -311,6 +393,7 @@ const needsId = (fn) => {
 const commands = {
   list,
   seed,
+  checkout,
   cleanup,
   show: () => needsId(show),
   label: () => needsId(label),
@@ -326,7 +409,8 @@ if (commands[cmd]) {
   ${c.bold('Order CLI')} ${c.dim('— rehearse fulfilment without Sanity webhooks or the Studio')}
 
     npm run order -- list                recent orders
-    npm run order -- seed                fake a PAID order (no Stripe needed)
+    npm run order -- seed                fake a PAID order — SKIPS Stripe, so NO confirmation email
+    npm run order -- checkout            REAL Stripe payment → webhook → confirmation email
     npm run order -- show   <orderId>    dump the raw document
     npm run order -- label  <orderId>    tick buyLabel → fire buy-label
     npm run order -- ship   <orderId>    set shipped   → fire order-shipped
@@ -334,6 +418,7 @@ if (commands[cmd]) {
     npm run order -- cleanup             delete every seeded TEST- order
 
   ${c.dim(`Needs \`netlify dev\` running (--url to override ${FN_BASE.replace('/.netlify/functions', '')}).`)}
+  ${c.dim('`checkout` also needs: stripe listen --forward-to localhost:8888/.netlify/functions/stripe-webhook')}
   ${
     LIVE_SHIPPO
       ? c.red('  ⚠  SHIPPO_API_KEY is LIVE — `label` will refuse without --yes-spend-real-money.')
