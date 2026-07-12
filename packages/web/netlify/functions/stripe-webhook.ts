@@ -1,6 +1,10 @@
 import Stripe from 'stripe';
 import { sanity } from './_lib/cart';
 import { buyLabel } from './_lib/shippo';
+import { sendOrderConfirmation, type EmailOrder } from './_lib/email';
+
+/** Shape of the `order` doc we read back after patching it paid. */
+type SanityOrder = Partial<EmailOrder> & { _id: string };
 
 /**
  * POST /.netlify/functions/stripe-webhook   (Stripe → us)
@@ -63,9 +67,25 @@ export default async function handler(request: Request): Promise<Response> {
     }
 
     // 1. Money is in. Record that first, unconditionally.
-    await sanity.patch(orderId).set({ status: 'paid' }).commit();
+    const order = await sanity
+      .patch(orderId)
+      .set({ status: 'paid' })
+      .commit<SanityOrder>();
 
-    // 2. Fulfilment. Best-effort — never let this un-record a paid order.
+    // 2. Receipt. Best-effort — a failed email must never fail a captured payment.
+    await sendOrderConfirmation({
+      orderNumber: order.orderNumber ?? 'your order',
+      email: order.email ?? '',
+      name: order.name,
+      items: order.items ?? [],
+      subtotal: order.subtotal ?? 0,
+      shippingCost: order.shippingCost ?? 0,
+      total: order.total ?? 0,
+      shippingMethod: order.shippingMethod,
+      shippingAddress: order.shippingAddress,
+    });
+
+    // 3. Fulfilment. Best-effort — never let this un-record a paid order.
     const rateId = intent.metadata?.shippoRateId;
     if (!rateId) {
       return new Response('ok', { status: 200 }); // in-studio pickup, nothing to ship
@@ -80,10 +100,12 @@ export default async function handler(request: Request): Promise<Response> {
         );
       }
 
+      // NOTE: status stays `paid`, NOT `shipped`. The label existing means it's ready to
+      // go, not gone. Amber flips the order to `shipped` in the Studio when the parcel
+      // actually leaves — that's what triggers the tracking email (see order-shipped.ts).
       await sanity
         .patch(orderId)
         .set({
-          status: 'shipped',
           shippoTransactionId: label.object_id,
           labelUrl: label.label_url ?? undefined,
           trackingNumber: label.tracking_number ?? undefined,

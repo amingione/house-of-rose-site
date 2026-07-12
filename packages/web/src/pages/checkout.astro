@@ -106,7 +106,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
 <script>
   import { loadStripe, type Stripe, type StripeElements } from '@stripe/stripe-js';
-  import { cartItems, cartSubtotal, toLineItems, clearCart, formatPrice } from '@/stores/cart';
+  import { cartItems, cartSubtotal, toLineItems, formatPrice } from '@/stores/cart';
 
   interface ShippingRate {
     id: string;
@@ -337,15 +337,16 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
           elements,
           clientSecret: data.clientSecret,
           confirmParams: {
-            return_url: `${window.location.origin}/thank-you/?order=${data.orderNumber ?? ''}`,
+            return_url: `${window.location.origin}/order-confirmed/?order=${encodeURIComponent(data.orderNumber ?? '')}`,
             receipt_email: email,
           },
         });
 
-        // Only reached if confirmation failed — otherwise Stripe redirects away.
+        // Only reached if confirmation FAILED — on success Stripe redirects the browser
+        // to return_url and nothing below this line ever runs. That's exactly why the
+        // cart is cleared on /order-confirmed/ and not here: a clearCart() at this point
+        // would be dead code, and the customer would return to a full cart.
         if (confirmError) throw new Error(confirmError.message ?? 'Payment failed.');
-
-        clearCart();
       } catch (error) {
         showError(error instanceof Error ? error.message : 'Something went wrong.');
         setBusy(false);

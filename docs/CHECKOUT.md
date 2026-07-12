@@ -44,9 +44,19 @@ charging the old price?"). The server reads Sanity on every request instead.
                           └─ create PaymentIntent(amount = subtotal + shipping)
                                     │
                                     ▼
-                        Stripe confirms ──► stripe-webhook
-                                              1. order → paid
-                                              2. buy Shippo label → shipped
+                        Stripe confirms
+                              │
+              ┌───────────────┴───────────────┐
+              ▼                               ▼
+   browser → /order-confirmed/        stripe-webhook
+     · verifies the PaymentIntent       1. order → paid
+     · CLEARS THE CART                  2. Resend: order confirmation email
+     · "thanks, email coming"           3. buy Shippo label (status stays `paid`)
+
+   ...later, Amber marks the order `shipped` in the Studio
+              │
+              ▼
+   Sanity webhook → order-shipped ──► Resend: "on its way" + tracking
 ```
 
 ### Files
@@ -60,7 +70,10 @@ charging the old price?"). The server reads Sanity on every request instead.
 | `netlify/functions/_lib/shippo.ts` | Shippo over REST (no SDK — it has churned through breaking majors). |
 | `netlify/functions/shipping-rates.ts` | Live carrier rates for this cart + address. |
 | `netlify/functions/create-payment-intent.ts` | Recomputes the amount, writes the order, creates the PaymentIntent. |
-| `netlify/functions/stripe-webhook.ts` | Marks paid, buys the label. |
+| `netlify/functions/stripe-webhook.ts` | Marks paid, emails the confirmation, buys the label. |
+| `netlify/functions/order-shipped.ts` | Sanity webhook → emails tracking when Amber marks it shipped. |
+| `netlify/functions/_lib/email.ts` | Resend (REST, no SDK). Both customer emails. Best-effort by design. |
+| `src/pages/order-confirmed.astro` | Stripe `return_url`. Verifies the intent, **clears the cart**, thanks them. |
 
 ---
 
@@ -85,6 +98,20 @@ but need a label bought by hand.
 **The cart drawer binds once; the buttons bind per-navigation.** The drawer lives
 outside `<main>` and survives swup; the buttons don't. Re-binding the drawer on every
 nav attached a second delegated listener and made `qty-up` increment by two.
+
+**The cart is cleared on /order-confirmed/, NOT after `confirmPayment()`.** That call
+redirects the browser away, so any `clearCart()` written after it is dead code — the
+customer would land back on the site with a full cart and could pay for the same thing
+twice. Only `/order-confirmed/` clears it, and only once Stripe itself reports the
+intent as `succeeded` (a failed payment deliberately keeps the cart intact so they can
+retry without rebuilding it).
+
+**"Shipped" is a human fact, not a label-printing fact.** The webhook buys the Shippo
+label seconds after payment, while the box is still on the counter. So the label does
+NOT send the tracking email and does NOT set `status: shipped` — the order stays `paid`
+with a label attached. Amber flips it to `shipped` in the Studio when the parcel
+actually leaves; that fires the Sanity webhook → `order-shipped` → tracking email.
+Emailing a tracking number that won't scan for two days teaches customers to ignore us.
 
 **`elements.update({ amount })` is cosmetic.** It changes what Stripe *displays*. The
 charged amount is whatever `create-payment-intent` computes. They can't disagree in the
@@ -127,6 +154,20 @@ Set in Netlify (**Site settings → Environment variables**), and in
 | `SHIPPO_API_KEY` | server | live vs test token |
 | `SANITY_API_WRITE_TOKEN` | server | already set — writes orders |
 | `SHIP_FROM_*` | server | optional; defaults to the studio NAP in `_lib/shippo.ts` |
+| `RESEND_API_KEY` | server | already set — sends both customer emails |
+| `ORDER_EMAIL_FROM` | server | optional; defaults to `House of Rose <orders@updates.houseofrosefl.com>` |
+| `ORDER_EMAIL_REPLY_TO` | server | optional; defaults to `info@houseofrosefl.com` |
+| `SANITY_WEBHOOK_SECRET` | server | **new** — shared secret for the `order-shipped` webhook |
+
+> ⚠️ **`SANITY_API_WRITE_TOKEN` is NOT in `packages/web/.env.local`.** Checkout cannot
+> write orders without it. It's set in Netlify, but local testing will fail until you add
+> it locally too.
+
+**Sanity webhook (Manage → API → Webhooks):**
+- URL: `https://houseofrosefl.com/.netlify/functions/order-shipped`
+- Trigger: on **update**, filter `_type == "order" && status == "shipped"`
+- Projection: `{ _id }`
+- Secret: same value as `SANITY_WEBHOOK_SECRET`
 
 **Stripe webhook endpoint:** `https://houseofrosefl.com/.netlify/functions/stripe-webhook`
 Subscribe to `payment_intent.succeeded` and `payment_intent.payment_failed`.
@@ -137,8 +178,10 @@ Subscribe to `payment_intent.succeeded` and `payment_intent.payment_failed`.
 
 1. Set the env vars above (test keys first).
 2. Set `weightLb` on the heavy items (pounds — 0.25 lb ≈ a serum, a kit is 2–4 lb).
-3. Place a test order end-to-end with Stripe test card `4242 4242 4242 4242` — confirm
-   an `order` appears in the Studio as `shipped` with a label URL.
+3. Place a test order end-to-end with Stripe test card `4242 4242 4242 4242`. Confirm:
+   the order appears in the Studio as `paid` with a label URL, the confirmation email
+   arrives, and the cart is empty afterwards. Then flip it to `shipped` and confirm the
+   tracking email arrives exactly once.
 4. **Confirm the brands allow online resale.** Face Reality requires a fully-executed
    Supply Agreement, and pro lines commonly restrict online sale and enforce MAP
    pricing. This is a business blocker, not a technical one — check before listing 125

@@ -13,15 +13,16 @@ import { defineField, defineType } from 'sanity';
  * webhook then has a durable record to attach the payment and label to, and an
  * abandoned checkout simply leaves a `pending` order behind (useful data in itself).
  *
- * Read-only in the Studio — every field is machine-written, and editing one here
- * would desync it from Stripe/Shippo. Amber uses this to see what sold and to grab
- * a tracking number, not to edit orders.
+ * ONE editable field: `status`. Flipping it to `shipped` is what sends the customer
+ * their tracking email (netlify/functions/order-shipped.ts) — the label being bought
+ * does NOT, because the label is printed seconds after payment while the box is still
+ * on the counter. Everything else is machine-written and locked: editing a price or a
+ * Stripe id here would silently desync us from Stripe/Shippo.
  */
 export const order = defineType({
   name: 'order',
   title: 'Order',
   type: 'document',
-  readOnly: true,
   fields: [
     defineField({
       name: 'orderNumber',
@@ -33,11 +34,15 @@ export const order = defineType({
       name: 'status',
       title: 'Status',
       type: 'string',
+      description:
+        'Set this to "Shipped" once the parcel is actually handed to the carrier — that is ' +
+        'what emails the customer their tracking number. Do not mark it shipped just because ' +
+        'the label printed.',
       options: {
         list: [
           { title: 'Pending payment', value: 'pending' },
-          { title: 'Paid', value: 'paid' },
-          { title: 'Shipped', value: 'shipped' },
+          { title: 'Paid — label ready, not yet shipped', value: 'paid' },
+          { title: 'Shipped (emails the customer tracking)', value: 'shipped' },
           { title: 'Payment failed', value: 'failed' },
           { title: 'Refunded', value: 'refunded' },
         ],
@@ -45,12 +50,12 @@ export const order = defineType({
       },
       initialValue: 'pending',
     }),
-    defineField({ name: 'placedAt', title: 'Placed At', type: 'datetime' }),
+    defineField({ readOnly: true, name: 'placedAt', title: 'Placed At', type: 'datetime' }),
 
     // ── Customer ──
-    defineField({ name: 'email', title: 'Email', type: 'string' }),
+    defineField({ readOnly: true, name: 'email', title: 'Email', type: 'string' }),
     defineField({ name: 'name', title: 'Name', type: 'string' }),
-    defineField({ name: 'phone', title: 'Phone', type: 'string' }),
+    defineField({ readOnly: true, name: 'phone', title: 'Phone', type: 'string' }),
 
     // ── Line items (denormalised on purpose) ──
     // Snapshot of title/price AT TIME OF PURCHASE. If a product is later renamed or
@@ -81,10 +86,10 @@ export const order = defineType({
     }),
 
     // ── Money (all in cents, matching Stripe) ──
-    defineField({ name: 'subtotal', title: 'Subtotal (cents)', type: 'number' }),
-    defineField({ name: 'shippingCost', title: 'Shipping (cents)', type: 'number' }),
-    defineField({ name: 'tax', title: 'Tax (cents)', type: 'number' }),
-    defineField({ name: 'total', title: 'Total (cents)', type: 'number' }),
+    defineField({ readOnly: true, name: 'subtotal', title: 'Subtotal (cents)', type: 'number' }),
+    defineField({ readOnly: true, name: 'shippingCost', title: 'Shipping (cents)', type: 'number' }),
+    defineField({ readOnly: true, name: 'tax', title: 'Tax (cents)', type: 'number' }),
+    defineField({ readOnly: true, name: 'total', title: 'Total (cents)', type: 'number' }),
 
     // ── Shipping ──
     defineField({
@@ -107,7 +112,7 @@ export const order = defineType({
       type: 'string',
       description: 'Carrier + service the client chose, e.g. "USPS Priority Mail".',
     }),
-    defineField({ name: 'trackingNumber', title: 'Tracking Number', type: 'string' }),
+    defineField({ readOnly: true, name: 'trackingNumber', title: 'Tracking Number', type: 'string' }),
     defineField({ name: 'trackingUrl', title: 'Tracking URL', type: 'url' }),
     defineField({
       name: 'labelUrl',
@@ -117,9 +122,18 @@ export const order = defineType({
     }),
 
     // ── External references ──
-    defineField({ name: 'stripePaymentIntentId', title: 'Stripe PaymentIntent', type: 'string' }),
-    defineField({ name: 'shippoRateId', title: 'Shippo Rate ID', type: 'string' }),
-    defineField({ name: 'shippoTransactionId', title: 'Shippo Transaction ID', type: 'string' }),
+    defineField({ readOnly: true, name: 'stripePaymentIntentId', title: 'Stripe PaymentIntent', type: 'string' }),
+    defineField({ readOnly: true, name: 'shippoRateId', title: 'Shippo Rate ID', type: 'string' }),
+    defineField({ readOnly: true, name: 'shippoTransactionId', title: 'Shippo Transaction ID', type: 'string' }),
+    defineField({
+      readOnly: true,
+      name: 'shippedEmailSentAt',
+      title: 'Shipping Email Sent At',
+      type: 'datetime',
+      description:
+        'Set automatically once the tracking email goes out. Its presence is what stops a ' +
+        'Sanity webhook retry from emailing the customer "it shipped!" three times.',
+    }),
     defineField({
       name: 'fulfillmentError',
       title: 'Fulfillment Error',
