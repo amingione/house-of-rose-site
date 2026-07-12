@@ -21,7 +21,8 @@
     "ve:sync": "node scripts/visual-editing/sync-page-routes.mjs",
     "ve:new": "node scripts/visual-editing/scaffold.mjs",
     "prepare": "node scripts/visual-editing/apply-patches.mjs && node scripts/visual-editing/extract-sanity-schema.mjs --soft && node scripts/visual-editing/install-git-hook.mjs",
-    "order": "node scripts/checkout/order-cli.mjs"
+    "order": "node scripts/checkout/order-cli.mjs",
+    "dev:functions": "netlify dev --filter @house-of-rose/web"
   },
   "engines": {
     "node": ">=22.12"

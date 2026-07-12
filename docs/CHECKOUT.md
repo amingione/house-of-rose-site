@@ -197,6 +197,35 @@ Subscribe to `payment_intent.succeeded` and `payment_intent.payment_failed`.
 
 ---
 
+## Testing the fulfilment flow locally
+
+`netlify dev` will ask which workspace to run — it's a monorepo. **Always pick
+`@house-of-rose/web`**; the studio has no functions. Skip the prompt entirely:
+
+```zsh
+npm run dev:functions        # netlify dev --filter @house-of-rose/web
+```
+
+Then, in another terminal, rehearse the whole fulfilment flow WITHOUT configuring a
+single Sanity webhook — the CLI patches the doc and POSTs `{ _id }` to the real handler
+exactly as Sanity would:
+
+```zsh
+npm run order -- seed          # fake a PAID order (no Stripe checkout needed)
+npm run order -- label <id>    # tick buyLabel  → buy-label   → fake label + tracking
+npm run order -- ship  <id>    # set shipped    → order-shipped → tracking email
+npm run order -- ship  <id>    # should SKIP, not send a second email
+npm run order -- cleanup       # delete the seeded TEST- orders
+```
+
+`seed` deliberately omits `shippoRateId`, which forces `buy-label` down its **re-quote**
+branch — the path that only runs when a real rate has expired, and therefore the one
+least likely to be exercised by accident.
+
+`label` refuses to run against a LIVE Shippo token without `--yes-spend-real-money`.
+
+---
+
 ## Before taking real money
 
 1. Set the env vars above (test keys first).
