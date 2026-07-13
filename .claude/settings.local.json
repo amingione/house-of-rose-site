@@ -10,7 +10,13 @@
       "Bash(ls -d node_modules/.bin/astro)",
       "Bash(npx astro *)",
       "Bash(git add *)",
-      "Bash(python3 -c \"import json,sys; print\\(json.load\\(sys.stdin\\)['scripts']\\)\")"
+      "Bash(python3 -c \"import json,sys; print\\(json.load\\(sys.stdin\\)['scripts']\\)\")",
+      "mcp__claude_ai_Sanity__query_documents",
+      "Bash(mkdir -p \"/private/tmp/claude-501/-Users-ambermingione-LocalStorm-Workspace-DevProjects-GitHub-house-of-rose-site/4581db09-8bb0-4730-9bc7-2fa897413270/scratchpad/phase2\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 *)",
+      "Read(//Users/ambermingione/Documents/PRF EDU/**)",
+      "Read(//Users/ambermingione/Documents/PRF EDU/part 3 - indications for prf/Facial esthetics/**)"
     ]
   },
   "enabledMcpjsonServers": [
