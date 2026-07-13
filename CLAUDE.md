@@ -215,6 +215,13 @@ local authority — see `docs/SEO-AEO-PLAYBOOK.md` and `docs/CONTENT-MODEL-MAP.m
 - **AEO doc types**: `costGuide`, `comparison`, `localArea`, `caseStudy` (+ shared `seo`, `faq`
   objects). Canonical NAP lives in `siteSettings`, mirrored in `structuredData.ts` (`LOCAL_BUSINESS`).
 
+### Site Elevation Prompt Pack
+`docs/prompts/site-elevation/` — phased Claude Code prompts (Fable 5, high effort) for the
+full-site elevation program: audit/perfect → parallel treatment research → CTA
+differentiation + journey loops → new pages + Sanity draft seeding → QA gates. Start every
+phase session with `00-MASTER-PROMPT.md`; see the pack's `README.md`. Research briefs live
+in `docs/research/`; source-of-truth for treatment facts/pricing is `docs/services/**`.
+
 ---
 
 ## Local Dev

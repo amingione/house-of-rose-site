@@ -92,6 +92,9 @@ const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImg = data.image?.asset?.url;
+const fallbackHeroImage = '/images/house-of-rose/space/professional-makeup-kit-square.webp';
+const pageImage = heroImg ?? fallbackHeroImage;
+const pageImageUrl = new URL(pageImage, site).toString();
 
 const pageTitle = data.seoTitle ?? 'Wedding & Event Makeup | House of Rose Aesthetics, Punta Gorda FL';
 const pageDescription =
@@ -111,7 +114,7 @@ const serviceLd = serviceSchema(
     description:
       'Group and event makeup bookings — in-studio block times, private spa rental, or on-location travel.',
     url: canonical,
-    image: heroImg,
+    image: pageImageUrl,
     serviceType: 'Event makeup application',
   },
   site,
@@ -119,7 +122,7 @@ const serviceLd = serviceSchema(
 const faqLd = faqPage(faqs);
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} image={heroImg}>
+<BaseLayout title={pageTitle} description={pageDescription} image={pageImage} preloadImage={pageImage}>
   <SchemaMarkup item={serviceLd} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
   {faqLd && <SchemaMarkup item={faqLd} slot="head" />}
@@ -133,7 +136,7 @@ const faqLd = faqPage(faqs);
       size="small"
       showCTA={true}
       ctaPrimary={{ text: 'Call or Text to Plan', href: PHONE_TEL }}
-      backgroundImage={heroImg ?? '/images/hor-lounge.jpg'}
+      backgroundImage={pageImage}
       titleField="heroTitle"
       kickerField="heroKicker"
       descriptionField="heroDescription"

@@ -105,6 +105,9 @@ const providerCredential = data.provider?.roleCredential ?? 'Professional Makeup
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImg = data.image?.asset?.url;
+const fallbackHeroImage = '/images/house-of-rose/space/professional-makeup-kit-square.webp';
+const pageImage = heroImg ?? fallbackHeroImage;
+const pageImageUrl = new URL(pageImage, site).toString();
 
 const pageTitle =
   data.seoTitle ?? 'Professional Makeup in Punta Gorda, FL | House of Rose Aesthetics';
@@ -124,7 +127,7 @@ const serviceLd = serviceSchema(
     description:
       'Event, wedding, prom, and photography makeup applied with Jane Iredale mineral makeup at House of Rose Aesthetics.',
     url: canonical,
-    image: heroImg,
+    image: pageImageUrl,
     serviceType: 'Makeup application',
   },
   site,
@@ -135,7 +138,8 @@ const faqLd = faqPage(faqs);
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  image={heroImg}
+  image={pageImage}
+  preloadImage={pageImage}
 >
   <SchemaMarkup item={serviceLd} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
@@ -150,7 +154,7 @@ const faqLd = faqPage(faqs);
       size="small"
       showCTA={true}
       ctaPrimary={{ text: 'Call or Text to Book', href: PHONE_TEL }}
-      backgroundImage={heroImg ?? '/images/hor-lounge.jpg'}
+      backgroundImage={pageImage}
       titleField="heroTitle"
       kickerField="heroKicker"
       descriptionField="heroDescription"

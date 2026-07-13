@@ -147,6 +147,8 @@ const supplementDisclaimer =
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImg = data.image?.asset?.url;
+const fallbackHeroImage = '/images/house-of-rose/space/professional-makeup-kit-square.webp';
+const pageImage = heroImg ?? fallbackHeroImage;
 
 const pageTitle = data.seoTitle ?? 'Jane Iredale Mineral Makeup | House of Rose Aesthetics, Punta Gorda FL';
 const pageDescription =
@@ -170,7 +172,7 @@ const brandLd = brand({
 const faqLd = faqPage(faqs);
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} image={heroImg}>
+<BaseLayout title={pageTitle} description={pageDescription} image={pageImage} preloadImage={pageImage}>
   <SchemaMarkup item={brandLd} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
   {faqLd && <SchemaMarkup item={faqLd} slot="head" />}
@@ -183,7 +185,7 @@ const faqLd = faqPage(faqs);
         'The professional mineral makeup we reach for — good for your skin, beautiful on camera, and the reason our looks feel like you at your best.'}
       size="small"
       showCTA={false}
-      backgroundImage={heroImg ?? '/images/hor-lounge.jpg'}
+      backgroundImage={pageImage}
       titleField="heroTitle"
       kickerField="heroKicker"
       descriptionField="heroDescription"

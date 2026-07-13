@@ -21,9 +21,50 @@ if (!service) {
   return Astro.redirect('/services', 307);
 }
 
+const FALLBACK_SERVICE_IMAGES: Record<string, string> = {
+  'injectables': '/images/house-of-rose/space/injectables-suite-editorial-hero.webp',
+  'dermal-fillers': '/images/house-of-rose/space/injectables-suite-editorial-hero.webp',
+  'ez-gel-bio-filler': '/images/house-of-rose/space/injectables-suite-editorial-hero.webp',
+  'injectables-bio-fillers': '/images/house-of-rose/space/injectables-suite-editorial-hero.webp',
+  'prf-injections': '/images/house-of-rose/space/injectables-suite-editorial-hero.webp',
+  'iv-hydration-therapy': '/images/house-of-rose/space/iv-hydration-recliner-hero.webp',
+  'glp-1-weight-management': '/images/house-of-rose/space/iv-hydration-recliner-hero.webp',
+  'wellness': '/images/house-of-rose/space/iv-hydration-recliner-hero.webp',
+  'body-waxing': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'facial-waxing': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'dermaplaning': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'face-reality-acne-program': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'acne-bootcamp': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'acne-peel': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'prf': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'prf-microneedling': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'microchanneling': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'microchanneling-microneedling': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'microneedling-corrective': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'microneedling-body': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'prf-body-treatments': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'procell-microchanneling-body': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'biorepeel': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'biorepeel-body': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'biorepeel-advanced-acne-scarring': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'biorepeel-gold-spot-treatment': '/images/house-of-rose/space/advanced-facials-treatment-tile.webp',
+  'glo2facial': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'back-treatment': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'lightstim-led-therapy': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+};
+
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
+const fallbackImage = slug ? FALLBACK_SERVICE_IMAGES[slug] : undefined;
+const socialImage = service.image
+  ? urlFor(service.image).width(1200).height(630).fit('crop').url()
+  : fallbackImage
+    ? new URL(fallbackImage, site).toString()
+    : undefined;
+const heroImage = service.image
+  ? urlFor(service.image).width(1920).height(1080).url()
+  : fallbackImage;
 
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
@@ -48,9 +89,7 @@ const serviceSchema = {
     }
   },
   "url": canonicalURL.toString(),
-  ...(service.image && {
-    "image": urlFor(service.image).width(1200).height(630).fit('crop').url()
-  }),
+  ...(socialImage && { "image": socialImage }),
   "serviceType": service.tagline ?? service.title,
   ...(priceNumber !== null && {
     "offers": {
@@ -106,8 +145,8 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  image={service.image ? urlFor(service.image).width(1200).height(630).fit('crop').url() : undefined}
-  preloadImage={service.image ? urlFor(service.image).width(1920).height(1080).url() : undefined}
+  image={socialImage}
+  preloadImage={heroImage}
 >
   <!-- Structured Data for SEO -->
   <SchemaMarkup item={serviceSchema} slot="head" />
@@ -118,7 +157,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <!-- Hero -->
   <section
     class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
-    style={service.image ? `background-image: url(${urlFor(service.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
+    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">

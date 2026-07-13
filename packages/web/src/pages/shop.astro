@@ -74,11 +74,15 @@ const orderingOptions = [
     body: 'Out of town or out of product? We ship anywhere in the U.S. — call us and it\'s on its way.',
   },
 ];
+
+const heroImage = '/images/house-of-rose/space/retail-display-wall-wide.webp';
 ---
 
 <BaseLayout
   title="Shop | House of Rose Punta Gorda, FL"
   description="Professional skincare curated by House of Rose — ProCell aftercare serums, GlyMed+ pharmaceutical-grade care, Skin Script daily essentials, Face Reality acne care, and gift cards. In-studio, pickup, or shipped."
+  image={heroImage}
+  preloadImage={heroImage}
 >
   <Hero
     title="Curated, not collected."
@@ -86,6 +90,7 @@ const orderingOptions = [
     description="Every product here earns its place — chosen because it extends a treatment we perform, protects a result you paid for, or belongs in the daily routine we'd build for you."
     size="small"
     showCTA={false}
+    backgroundImage={heroImage}
   />
 
   <PromoBanner promotions={promotions} />
