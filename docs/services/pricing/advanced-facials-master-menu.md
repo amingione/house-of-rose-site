@@ -69,11 +69,13 @@ These are **two different tools for different jobs**, not gentle-vs-strong tiers
 
 ---
 
-## 4. GlowTox
+## 4. Micro-Tox / GlowTox — Clinical Hold
 
 | Treatment | Description | Duration | Single | Series of 3 |
 |---|---|---|---|---|
-| **GlowTox — Microchanneling + Daxxify** | Microchanneling with Daxxify for a smooth, refined, pore-minimized, event-ready finish. *Neurotoxin component requires the RN (Diana); book jointly.* | 60 min | $425 | $1,145 |
+| **Micro-Tox / GlowTox** | **Do not market or book as microchanneling with Daxxify.** Daxxify is not topical and must not be mixed into a needling protocol. Any off-label intradermal neurotoxin concept belongs to Diana, RN's clinical lane and requires medical-director approval, a separate SOP/consent, and confirmed pricing before it becomes a service. | — | Pending clinical approval | — |
+
+**Catalog reconciliation required:** GlossGenius currently lists a `GlowTox Facial` at `$475`, while this older menu listed `$425` and a series. Neither figure is approved for website copy until the clinical workflow, provider lane, and final investment are confirmed.
 
 ---
 
@@ -120,7 +122,7 @@ Regenerative & corrective work on the body — tightening, scars, stretch marks,
 
 - **ProCell Pro** — professional-grade growth-factor + cytokine serum (bone-marrow-derived conditioned media; as of April 2025, recombinant/lab-made — *not* sheep/placental, no cells/DNA/blood). Maintenance / preventative / under-40. *Entry tier.*
 - **ProCell MD** — **2× the growth factors of Pro**; the go-to for 40+ and age-related collagen support. *Premium tier.*
-- **Topical PRF** — *your own* platelet-rich fibrin, applied **topically** into the channels. Autologous, distinct from the ProCell serums and from PRF injections. **Topical only — no injections at House of Rose (Amber's lane).** Injectable PRF / EZ Gel / PRF hair are the RN's (Diana's) lane.
+- **Topical PRF** — *your own* platelet-rich fibrin, applied **topically** during an appropriate needling protocol. Autologous, distinct from the ProCell serums and from PRF injections. **Topical only — no injections at House of Rose (Amber's lane).** Injectable PRF / EZ Gel / PRF hair are the RN's (Diana's) lane.
 
 ---
 

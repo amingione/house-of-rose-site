@@ -21,8 +21,8 @@
   NODE_VERSION = "22"
 
 [context.production.environment]
-  # Keep the public production domain gated until launch.
-  PUBLIC_COMING_SOON = "true"
+  # LAUNCHED 2026-07-13 — public production domain is live (was gated by coming-soon).
+  PUBLIC_COMING_SOON = "false"
 
 [context.branch-deploy.environment]
   # Branch deploys are for reviewing the real site before launch.
@@ -112,6 +112,12 @@
   from   = "/plans/*"
   to     = "/"
   status = 301
+
+# Retired static guide → canonical Sanity-backed needling hub.
+[[redirects]]
+from   = "/guides/microchanneling-prf/"
+to     = "/services/microchanneling/"
+status = 301
 
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]

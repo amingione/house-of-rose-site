@@ -52,7 +52,6 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/experience/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/faq/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/support/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/guides/microchanneling-prf/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/cost/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/compare/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/areas/`, priority: '0.7', changefreq: 'monthly', lastmod: now },

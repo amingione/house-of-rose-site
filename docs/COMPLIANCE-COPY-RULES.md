@@ -12,9 +12,9 @@
 ## 1. Why this exists
 
 House of Rose sells **individual services and treatment packages**, with **AI skin analysis** as the
-evidence-based first step that draws clients in and guides what they book. _(Memberships, Rose Pass,
-The Rose Circle, Rose Rewards, and the Rose Method were removed 2026-07-07 — do not reference any of
-them as current offerings.)_
+evidence-based first step that draws clients in and guides what they book. _(Memberships were explored but
+**deferred post-launch** 2026-07-13 — not currently sold; see `CLAUDE.md`. The retired brand names "Rose
+Pass" / "The Rose Circle" / "Rose Rewards" / "Rose Method" stay dead.)_
 Productizing aesthetics raises the compliance stakes: the more we describe outcomes, sequences, and
 "transformation," the easier it is to drift into language Florida regulators, the FTC, and the
 brand itself prohibit.

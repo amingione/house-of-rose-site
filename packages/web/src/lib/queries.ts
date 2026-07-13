@@ -106,9 +106,31 @@ export interface Service {
   faqs?: FAQ[];
   image?: SanityImage;
   collection?: { title: string; slug: string };
+  provider?: Provider;
   relatedServices?: Service[];
+  comparisons?: ServiceComparison[];
+  costGuides?: ServiceCostGuide[];
   _updatedAt?: string;
   seo?: { metaTitle?: string; metaDescription?: string };
+}
+
+/** A comparison that contextually references a service as either option. */
+export interface ServiceComparison {
+  _id: string;
+  title: string;
+  slug: string;
+  intro: string;
+}
+
+/** A pricing guide that is contextually attached to a service page. */
+export interface ServiceCostGuide {
+  _id: string;
+  title: string;
+  slug: string;
+  answer: string;
+  priceLow?: number;
+  priceHigh?: number;
+  priceUnit?: string;
 }
 
 export interface SitemapService {
@@ -320,12 +342,36 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
     collection->{ title, "slug": slug.current },
+    "provider": provider->{ _id, title, fullName, lane, roleCredential, scopeOfPractice },
     "relatedServices": relatedServices[]-> {
       _id,
       title,
       "slug": slug.current,
       tagline,
       ${IMAGE_FIELDS}
+    },
+    "comparisons": *[
+      _type == "comparison" &&
+      defined(slug.current) &&
+      (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
+    ] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      intro
+    },
+    "costGuides": *[
+      _type == "costGuide" &&
+      defined(slug.current) &&
+      treatment._ref == ^._id
+    ] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      answer,
+      priceLow,
+      priceHigh,
+      priceUnit
     }
   }
 `;

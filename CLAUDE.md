@@ -22,20 +22,18 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane).
 - **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **Waxing** + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
 
-## Memberships — REMOVED (2026-07-07) · House of Rose does NOT do memberships
-The entire membership system was torn out. **Do not reintroduce any of it.** Removed everywhere
-(Sanity content, site pages, nav, studio schema, GROQ queries):
-- All lane memberships (Advanced Facials, Basic Facials, IV Hydration, Injectables).
-- **The Rose Pass** (wax pass) and its tiers.
-- **The Rose Circle** (the rewards/affiliation program) — page + schema deleted.
-- **Rose Rewards** (cash-back points) — the concept is gone; don't reference it.
-- **The Rose Method** and the `/plans` page + Regeneration/Renewal/Restoration plan docs.
-- Already-retired: Rose Collagen Bank, House Collective.
+## Memberships — DEFERRED (post-launch) · not shipping
+Amber explored reinstating memberships (2026-07-13) but **deferred them to get the site live**. The
+prototype build (schema, `/memberships/` page, nav/sitemap/llms wiring, redirect changes) was
+**reverted** — memberships are **not in the site or Studio**. `/memberships/*`, `/rose-circle/*`,
+`/plans/*` again 301 → `/` (in `packages/web/netlify.toml`). **Do not add membership UI/schema until
+Amber revisits.** The research is preserved for later in `docs/research/memberships*.md` +
+`_pricing-catalog.md` (Diana's own menus surfaced real tiers: Essentials $99 / Radiance $199 / Luxe
+$299 — revisit post-launch). **GLP-1** remains a normal **service** (Diana).
 
-Redirects: `/memberships/*`, `/rose-circle/*`, `/plans/*` → `/` (301, in `packages/web/netlify.toml`).
-**GLP-1** remains a normal **service** (Diana), not tied to any membership/rewards program.
-
-- **Naming law (still active):** all botanical/flowery names are dead (Lily/Iris/Hydrangea/Porcelain Petal/Gilded Lily/etc.). Use plain, searchable, real-world names. The brand terms "Rose Circle," "Rose Method," and "Rose Pass" are now **retired too** (they only existed for the membership system).
+- **Naming law (still active):** botanical/flowery service names are dead (Lily/Iris/Hydrangea/Porcelain
+  Petal/Gilded Lily/etc.) — use plain, searchable names. The brand terms "Rose Circle," "Rose Method," and
+  "Rose Pass" stay **retired**.
 
 ## Checkout — Stripe Elements + Shippo (see `docs/CHECKOUT.md`, binding)
 - **GlossGenius CANNOT sell products online** (no online store — their docs say so). It is

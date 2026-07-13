@@ -145,6 +145,22 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </div>
   </section>
 
+  <!-- Provider attribution (when assigned in Sanity) -->
+  {service.provider && (
+    <section class="bg-charcoal-light py-10 px-6 border-y border-gold-metal/10">
+      <div class="max-w-[960px] mx-auto" {...sbObjectId(service.provider._id)}>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-3">Your Provider</span>
+        <h2 class="font-serif text-[clamp(22px,3vw,30px)] text-ink">
+          {service.provider.fullName ?? service.provider.title}
+          {service.provider.roleCredential && <span class="text-ink/65"> · {service.provider.roleCredential}</span>}
+        </h2>
+        {service.provider.scopeOfPractice && (
+          <p class="text-muted text-[14px] leading-relaxed mt-3 max-w-[720px]">{service.provider.scopeOfPractice}</p>
+        )}
+      </div>
+    </section>
+  )}
+
   <!-- Treatments under this service (hub pages) -->
   {service.treatments && service.treatments.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
@@ -164,6 +180,62 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
               <span class="learn-more group-hover:text-gold mt-3 inline-block">View Treatment</span>
             </a>
           ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Decision-stage links only appear when this service is part of a comparison. -->
+  {service.comparisons && service.comparisons.length > 0 && (
+    <section class="bg-charcoal py-16 px-6">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="kicker">Compare Your Options</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-4">
+          See how this treatment fits your goals
+        </h2>
+        <p class="text-muted text-[15px] leading-relaxed max-w-[680px] mb-10">
+          When more than one approach may fit, these clear comparisons can help you prepare for a more informed consultation.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10">
+          {service.comparisons.map((comparison) => (
+            <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(comparison._id)}>
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{comparison.title}</h3>
+              <p class="text-muted text-[14px] leading-relaxed">{comparison.intro}</p>
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the Comparison</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Contextual pricing guides surface only when this service has one. -->
+  {service.costGuides && service.costGuides.length > 0 && (
+    <section class="bg-charcoal-light py-16 px-6 border-y border-gold-metal/10">
+      <div class="max-w-[960px] mx-auto">
+        <span class="kicker">Plan Your Investment</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-4">
+          Clear pricing for this treatment
+        </h2>
+        <div class="grid grid-cols-1 gap-px bg-gold-metal/10 mt-8">
+          {service.costGuides.map((guide) => {
+            const price = guide.priceLow != null && guide.priceHigh != null
+              ? `$${guide.priceLow.toLocaleString()}–$${guide.priceHigh.toLocaleString()}`
+              : guide.priceLow != null
+                ? `From $${guide.priceLow.toLocaleString()}`
+                : null;
+
+            return (
+              <a href={`/cost/${guide.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(guide._id)}>
+                <div class="flex flex-wrap items-baseline justify-between gap-3 mb-3">
+                  <h3 class="font-serif text-[21px] text-ink group-hover:text-gold transition-colors">{guide.title}</h3>
+                  {price && <span class="text-gold text-[13px] tracking-[0.12em] uppercase">{price}{guide.priceUnit ? ` ${guide.priceUnit}` : ''}</span>}
+                </div>
+                <p class="text-muted text-[14px] leading-relaxed">{guide.answer}</p>
+                <span class="learn-more group-hover:text-gold mt-4 inline-block">View Pricing Guide</span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

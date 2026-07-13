@@ -97,10 +97,9 @@ visible placeholder in the flagship answer-first slot).
   reused labels ("Learn More", "Book a Consult") repeat across ~10 templates; per the phase rules
   this is Phase 3 CTA work, not a break. Service/concern/cost/compare templates still don't hand
   off to each other directly (only the guide + FAQ do full journey wiring) — Phase 3.
-- **Provider-lane question — "Glass Skin Micro-Tox" on Amber's card/vCard** (`amber.astro`,
-  `amber.vcf`): "micro-tox" reads as neurotoxin = Diana's injectables lane; Amber is PRF **topical
-  only**. Needs Amber to confirm: is this Diana's service (move it) or a topical treatment Amber
-  delivers (relabel so it can't read as an injectable)? Left unchanged pending her call.
+- **Resolved provider-lane correction — "Glass Skin Micro-Tox" was removed from Amber's card/vCard.**
+  Any future Micro-Tox service belongs to Diana, RN's injectable lane and remains on clinical hold until
+  medical-director approval, scope confirmation, and a separate SOP are complete.
 - **Provider emails** `amber@ / diana@ / aundrea@houseofrosefl.com` — confirm these mailboxes exist
   (only `info@` is canonical). Non-blocking.
 - **CartDrawer focus trap / CategoryNav `aria-pressed`** — deeper a11y; deferred (not blockers).
