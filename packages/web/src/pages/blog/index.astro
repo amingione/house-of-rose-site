@@ -4,6 +4,7 @@ import Hero from '@/components/Hero.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_BLOG_POSTS_QUERY, type BlogPost } from '@/lib/queries';
+import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 
 const posts = await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY);
 
@@ -39,7 +40,7 @@ function formatDate(iso: string) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
           {posts.map((post) => (
             <article class="bg-charcoal group" {...sbObjectId(post._id)}>
-              <a href={`/blog/${post.slug}`} class="block">
+              <a href={`/blog/${post.slug}/`} class="block">
                 {post.featuredImage ? (
                   <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
                     <img
@@ -52,8 +53,8 @@ function formatDate(iso: string) {
                     />
                   </div>
                 ) : (
-                  <div class="aspect-[4/3] bg-charcoal-lighter flex items-center justify-center">
-                    <span class="font-serif text-muted text-[28px]">HofR</span>
+                  <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
+                    <img src={DEFAULT_JOURNAL_IMAGE} alt={post.title} width={600} height={450} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 )}
 

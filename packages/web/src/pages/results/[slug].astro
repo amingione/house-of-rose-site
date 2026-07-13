@@ -17,7 +17,12 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const cs = await sanityFetch<CaseStudy>(CASE_STUDY_BY_SLUG_QUERY, { slug });
-if (!cs || cs.consentGiven !== true) return Astro.redirect('/results', 307);
+// Never `return Astro.redirect()` from a prerendered route (breaks the static build).
+// getStaticPaths only emits consented slugs (ALL_CASE_STUDY_SLUGS_QUERY gates consentGiven),
+// so reaching here without consent is a data-integrity bug — fail loudly.
+if (!cs || cs.consentGiven !== true) {
+  throw new Error(`[results/[slug]] Missing or non-consented case study for slug "${slug}"`);
+}
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -45,7 +50,7 @@ const pageDescription = cs.seo?.metaDescription ?? cs.outcome ?? `${cs.title} be
   <div {...sbObjectId(cs._id)}>
   <section class="bg-charcoal pt-32 pb-10 px-6">
     <div class="max-w-[960px] mx-auto">
-      <a href="/results" class="learn-more inline-block mb-5">← All Results</a>
+      <a href="/results/" class="learn-more inline-block mb-5">← All Results</a>
       <span class="kicker">Before &amp; After</span>
       <h1 class="font-serif text-[clamp(28px,5vw,48px)] text-ink leading-tight mt-3 mb-4" {...sbFieldPath('title')}>{cs.title}</h1>
       <p class="text-muted text-[13px] tracking-[0.14em] uppercase">
@@ -89,7 +94,7 @@ const pageDescription = cs.seo?.metaDescription ?? cs.outcome ?? `${cs.title} be
   <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       {cs.treatment && (
-        <a href={`/services/${cs.treatment.slug}`} class="learn-more inline-block mb-8">← Explore {cs.treatment.title}</a>
+        <a href={`/services/${cs.treatment.slug}/`} class="learn-more inline-block mb-8">← Explore {cs.treatment.title}</a>
       )}
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Ready for your own results?</h2>
       <div class="flex gap-3 justify-center flex-wrap">

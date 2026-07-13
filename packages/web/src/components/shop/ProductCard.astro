@@ -3,6 +3,7 @@ import { urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { getProductPurchaseCta, getProductLearnMoreCta } from '@/lib/shopCta';
 import type { Product } from '@/lib/queries';
+import { DEFAULT_PRODUCT_IMAGE } from '@/lib/imageFallbacks';
 
 interface Props {
   product: Product;
@@ -21,7 +22,10 @@ const hasCheckout = Boolean(product.purchaseUrl);
 const ctaLabel = hasCheckout ? getProductPurchaseCta(product) : getProductLearnMoreCta(product);
 const cartImage = product.image
   ? urlFor(product.image).width(144).height(144).fit('crop').url()
-  : '';
+  : DEFAULT_PRODUCT_IMAGE;
+const imageSrc = product.image
+  ? urlFor(product.image).width(400).height(400).fit('crop').url()
+  : DEFAULT_PRODUCT_IMAGE;
 ---
 
 <div
@@ -38,18 +42,16 @@ const cartImage = product.image
     </span>
   )}
 
-  {product.image && (
-    <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
+  <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
       <img
-        src={urlFor(product.image).width(400).height(400).fit('crop').url()}
-        alt={product.image.alt ?? product.title}
+        src={imageSrc}
+        alt={product.image?.alt ?? product.title}
         width={400}
         height={400}
         loading="lazy"
         class="w-full h-full object-cover"
       />
     </div>
-  )}
 
   <h3 class="text-ink text-[15px] font-medium leading-snug mb-1" {...sbFieldPath('title')}>{product.title}</h3>
   {product.tagline && <p class="text-muted text-[12.5px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{product.tagline}</p>}
@@ -61,7 +63,7 @@ const cartImage = product.image
 
   <div class="mt-auto flex items-center justify-between gap-3">
     <a
-      href={`/shop/${product.slug}`}
+      href={`/shop/${product.slug}/`}
       class="learn-more"
     >
       Details →

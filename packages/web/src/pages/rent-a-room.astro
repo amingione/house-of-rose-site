@@ -100,7 +100,7 @@ const FALLBACK_PERKS: RentARoomPerk[] = [
   {
     _key: 'p1',
     kicker: 'No Competing Services',
-    title: 'Guaranteed Clientele',
+    title: 'Your Specialty, Protected',
     description:
       'We enforce a no-competing-services policy. If someone calls for your specialty, that booking belongs to you — no internal competition.',
   },
@@ -182,7 +182,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
 
 <BaseLayout
   title={data.seoTitle ?? 'Rent a Private Suite | House of Rose — Punta Gorda FL'}
-  description={data.seoDescription ?? 'Suite rentals for aestheticians, massage therapists & PMU artists in Punta Gorda, FL. Private rooms in an elevated, advanced-aesthetics studio. Starting at $850/mo. No utilities. Apply today.'}
+  description={data.seoDescription ?? 'Suite rentals for aestheticians, massage therapists & PMU artists in Punta Gorda, FL. Private rooms in an elevated, advanced-aesthetics studio. Starting at $850/mo, utilities included. Apply today.'}
 >
   <div {...oid}>
   <!-- ── Hero ──────────────────────────────────────────────────── -->
@@ -261,7 +261,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
             {...sbFieldPath('ctaHeading')}
           />
           <p class="text-muted text-[14px] leading-relaxed mb-8" {...sbFieldPath('ctaBody')}>
-            {data.ctaBody ?? "We keep our suite count intentionally small to protect the no-competing-services guarantee. When a specialty slot fills, it's closed until it opens again."}
+            {data.ctaBody ?? "We keep our suite count intentionally small to protect the no-competing-services policy. When a specialty slot fills, it's closed until it opens again."}
           </p>
           <a href="#apply" class="btn-gold" {...sbFieldPath('ctaButtonText')}>
             {data.ctaButtonText ?? 'Submit Your Application'}

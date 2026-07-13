@@ -308,6 +308,8 @@ export interface ServiceInput {
   serviceType?: string;
   /** Minimum price in USD, if known. */
   minPrice?: number | null;
+  /** For packages: the included services, rendered as an OfferCatalog. */
+  catalog?: { name: string; items: string[] };
 }
 
 export function service(input: ServiceInput, siteUrl: string): JsonLd {
@@ -332,17 +334,33 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
         },
       },
     }),
+    ...(input.catalog && input.catalog.items.length > 0 && {
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: input.catalog.name,
+        itemListElement: input.catalog.items.map((name) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name },
+        })),
+      },
+    }),
     areaServed: areaServedNode(),
   };
 }
 
-/** LocalBusiness node for local-authority (/areas) pages. */
+/**
+ * LocalBusiness node for local-authority (/areas) pages. Uses a page-scoped `@id`
+ * (`#localbusiness`) rather than the global `#business` so Google does NOT merge it
+ * with BaseLayout's site-wide business node — that merge collapsed the per-area
+ * `areaServed` into the global service-area array. This node asserts the business's
+ * presence *for this specific city*.
+ */
 export function localBusiness(input: { url: string; areaName?: string; image?: string }): JsonLd {
   const baseUrl = new URL('/', input.url).toString();
   return {
     '@context': 'https://schema.org',
     '@type': 'HealthAndBeautyBusiness',
-    '@id': `${baseUrl}#business`,
+    '@id': `${input.url}#localbusiness`,
     name: LOCAL_BUSINESS.name,
     alternateName: 'House of Rose',
     url: baseUrl,
@@ -418,5 +436,98 @@ export function brand(input: BrandInput): JsonLd {
     ...(input.slogan && { slogan: input.slogan }),
     ...(input.logo && { logo: input.logo }),
     ...(input.sameAs && { sameAs: [input.sameAs] }),
+  };
+}
+
+export interface ProductInput {
+  name: string;
+  description?: string;
+  /** Absolute URL of the product page. */
+  url: string;
+  image?: string;
+  brand?: string;
+  /** Price in USD dollars, if known. */
+  price?: number | null;
+  inStock?: boolean;
+  /** External purchase URL (escape hatch); defaults to the product page URL. */
+  offerUrl?: string;
+}
+
+/**
+ * Product node for shop detail pages. An `Offer` is emitted whenever a price is
+ * known OR an external purchase URL exists (so call-to-order products with a
+ * `purchaseUrl` still carry an offer). Price is USD dollars.
+ */
+export function product(input: ProductInput): JsonLd {
+  const hasOffer = input.price != null || Boolean(input.offerUrl);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${input.url}#product`,
+    name: input.name,
+    ...(input.description && { description: input.description }),
+    url: input.url,
+    ...(input.image && { image: input.image }),
+    ...(input.brand && { brand: { '@type': 'Brand', name: input.brand } }),
+    ...(hasOffer && {
+      offers: {
+        '@type': 'Offer',
+        url: input.offerUrl ?? input.url,
+        availability:
+          input.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+        ...(input.price != null && { priceCurrency: 'USD', price: input.price.toFixed(2) }),
+      },
+    }),
+  };
+}
+
+export interface BlogPostingInput {
+  headline: string;
+  description?: string;
+  /** Absolute URL of the post. */
+  url: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  readingTimeMinutes?: number;
+}
+
+/** BlogPosting node for journal articles. Author/publisher resolve to the canonical business. */
+export function blogPosting(input: BlogPostingInput, siteUrl: string): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${input.url}#article`,
+    headline: input.headline,
+    ...(input.description && { description: input.description }),
+    url: input.url,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${input.url}#webpage` },
+    ...(input.image && { image: input.image }),
+    ...(input.datePublished && { datePublished: input.datePublished }),
+    ...(input.dateModified && { dateModified: input.dateModified }),
+    ...(input.readingTimeMinutes && { timeRequired: `PT${input.readingTimeMinutes}M` }),
+    author: providerNode(siteUrl),
+    publisher: providerNode(siteUrl),
+  };
+}
+
+export interface ItemListEntry {
+  name: string;
+  /** Absolute URL. */
+  url: string;
+}
+
+/** Ordered ItemList — for hub/index pages that link out to a set of pages (concerns, collections). */
+export function itemList(entries: ItemListEntry[], name?: string): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    ...(name && { name }),
+    itemListElement: entries.map((entry, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: entry.name,
+      url: entry.url,
+    })),
   };
 }

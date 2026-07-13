@@ -135,7 +135,9 @@ const pageDescription =
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
-  { name: 'Guides', item: `${site}guides/` },
+  // No /guides/ index exists yet — parent the guide under Services (a real page) so
+  // the breadcrumb never links to a 404.
+  { name: 'Services', item: `${site}services/` },
   { name: 'Microchanneling, Microneedling & Topical PRF', item: canonical },
 ]);
 const articleSchema = article(

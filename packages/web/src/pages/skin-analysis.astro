@@ -192,7 +192,7 @@ const serviceSchema = service(
     size="small"
     showCTA={true}
     ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Book Your Scan', href: BOOKING_URL }}
-    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services' }}
+    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services/' }}
     backgroundImage="/images/hor-skin-studio.webp"
     titleField="heroTitle"
     kickerField="heroKicker"
@@ -303,7 +303,7 @@ const serviceSchema = service(
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         {concernLinks.map((c, i) => (
-          <a href={`/concerns/${c.slug}`} class="border border-gold-metal/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors" {...sbFieldPathParts('concernLinks', i, 'title')}>
+          <a href={`/concerns/${c.slug}/`} class="border border-gold-metal/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors" {...sbFieldPathParts('concernLinks', i, 'title')}>
             {c.title}
           </a>
         ))}

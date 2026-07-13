@@ -2,12 +2,14 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { DEFAULT_PACKAGE_IMAGE } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
   TREATMENT_PACKAGE_BY_SLUG_QUERY,
   type TreatmentPackage,
 } from '@/lib/queries';
+import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -17,8 +19,10 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const pkg = await sanityFetch<TreatmentPackage>(TREATMENT_PACKAGE_BY_SLUG_QUERY, { slug });
 
+// Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
+// Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
 if (!pkg) {
-  return Astro.redirect('/packages', 307);
+  throw new Error(`[packages/[slug]] No treatment package found in Sanity for slug "${slug}"`);
 }
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -26,58 +30,28 @@ const canonicalURL = new URL(Astro.url.pathname, site);
 const summary = pkg.outcome ?? pkg.whatsIncluded ?? '';
 const services = pkg.servicesIncluded ?? [];
 const price = pkg.foundingPrice ?? pkg.rackPrice;
+const packageImage = pkg.image
+  ? urlFor(pkg.image).width(1920).height(1080).fit('crop').url()
+  : DEFAULT_PACKAGE_IMAGE;
 
-// Structured data — model the package as a Service offered by the business.
-const packageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: pkg.title,
-  description: summary,
-  provider: {
-    '@type': 'HealthAndBeautyBusiness',
-    name: 'House of Rose Aesthetics',
-    url: site,
-    telephone: '+18449417673',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '525 E Olympia Ave, Unit 9',
-      addressLocality: 'Punta Gorda',
-      addressRegion: 'FL',
-      postalCode: '33950',
-      addressCountry: 'US',
-    },
+// Structured data — model the package as a Service (with an OfferCatalog of included services).
+const packageSchema = serviceJsonLd(
+  {
+    name: pkg.title,
+    description: summary || undefined,
+    url: canonicalURL.toString(),
+    image: pkg.image ? urlFor(pkg.image).width(1200).height(630).fit('crop').url() : undefined,
+    serviceType: 'Treatment package',
+    catalog: services.length > 0 ? { name: pkg.title, items: services.map((s) => s.title) } : undefined,
   },
-  url: canonicalURL.toString(),
-  ...(pkg.image && {
-    image: urlFor(pkg.image).width(1200).height(630).fit('crop').url(),
-  }),
-  serviceType: 'Treatment package',
-  ...(services.length > 0 && {
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: pkg.title,
-      itemListElement: services.map((s) => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: s.title },
-      })),
-    },
-  }),
-  areaServed: {
-    '@type': 'GeoCircle',
-    geoMidpoint: { '@type': 'GeoCoordinates', latitude: '26.9298', longitude: '-82.0454' },
-    geoRadius: '50000',
-  },
-};
+  site,
+);
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: site },
-    { '@type': 'ListItem', position: 2, name: 'Packages', item: new URL('/packages/', site).toString() },
-    { '@type': 'ListItem', position: 3, name: pkg.title, item: canonicalURL.toString() },
-  ],
-};
+const breadcrumbSchema = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Packages', item: new URL('/packages/', site).toString() },
+  { name: pkg.title, item: canonicalURL.toString() },
+]);
 
 const pageTitle = `${pkg.title} | Signature Package | House of Rose`;
 const pageDescription = summary;
@@ -86,8 +60,8 @@ const pageDescription = summary;
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  image={pkg.image ? urlFor(pkg.image).width(1200).height(630).fit('crop').url() : undefined}
-  preloadImage={pkg.image ? urlFor(pkg.image).width(1920).height(1080).url() : undefined}
+  image={packageImage}
+  preloadImage={packageImage}
 >
   <SchemaMarkup item={packageSchema} slot="head" />
   <SchemaMarkup item={breadcrumbSchema} slot="head" />
@@ -96,11 +70,11 @@ const pageDescription = summary;
   <!-- Hero -->
   <section
     class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
-    style={pkg.image ? `background-image: url(${urlFor(pkg.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
+    style={`background-image: url(${packageImage}); background-size: cover; background-position: center;`}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
-      <a href="/packages" class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+      <a href="/packages/" class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> All Packages
       </a>
       <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">Signature Package</span>
@@ -125,7 +99,7 @@ const pageDescription = summary;
               {String(index + 1).padStart(2, '0')}
             </span>
             <div>
-              <a href={`/services/${service.slug}`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors" {...(service._id ? sbFieldPath('title') : {})}>
+              <a href={`/services/${service.slug}/`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors" {...(service._id ? sbFieldPath('title') : {})}>
                 {service.title}
               </a>
               {service.tagline && (

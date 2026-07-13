@@ -5,11 +5,13 @@ import ProductCard from '@/components/shop/ProductCard.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { getProductPurchaseCta, getAddToCartCta } from '@/lib/shopCta';
+import { DEFAULT_PRODUCT_IMAGE } from '@/lib/imageFallbacks';
 import {
   ALL_PRODUCT_SLUGS_QUERY,
   PRODUCT_BY_SLUG_QUERY,
   type Product,
 } from '@/lib/queries';
+import { product as productJsonLd } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_PRODUCT_SLUGS_QUERY);
@@ -46,7 +48,10 @@ const ctaLabel = canBuy
     : null;
 const cartImage = product.image
   ? urlFor(product.image).width(144).height(144).fit('crop').url()
-  : '';
+  : DEFAULT_PRODUCT_IMAGE;
+const productImage = product.image
+  ? urlFor(product.image).width(800).height(800).fit('crop').url()
+  : DEFAULT_PRODUCT_IMAGE;
 
 const BRAND_TITLES: Record<string, string> = {
   procell: 'ProCell Therapies',
@@ -59,30 +64,23 @@ const BRAND_TITLES: Record<string, string> = {
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 
-const productSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
+const productSchema = productJsonLd({
   name: product.title,
-  description: product.description ?? product.tagline ?? '',
-  ...(product.brand && { brand: { '@type': 'Brand', name: BRAND_TITLES[product.brand] ?? product.brand } }),
-  ...(product.image && { image: urlFor(product.image).width(1200).height(1200).fit('crop').url() }),
-  ...(typeof product.price === 'number' && {
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'USD',
-      price: (product.price / 100).toFixed(2),
-      availability: product.inStock === false
-        ? 'https://schema.org/OutOfStock'
-        : 'https://schema.org/InStock',
-      url: canonicalURL.toString(),
-    },
-  }),
-};
+  description: product.description ?? product.tagline ?? undefined,
+  url: canonicalURL.toString(),
+  image: product.image ? urlFor(product.image).width(1200).height(1200).fit('crop').url() : undefined,
+  brand: product.brand ? (BRAND_TITLES[product.brand] ?? product.brand) : undefined,
+  price: typeof product.price === 'number' ? product.price / 100 : undefined,
+  inStock: product.inStock,
+  offerUrl: product.purchaseUrl ?? undefined,
+});
 ---
 
 <BaseLayout
   title={`${product.title} | House of Rose Shop`}
   description={product.tagline ?? product.description?.slice(0, 155) ?? `${product.title} — available at House of Rose Aesthetics, Punta Gorda, FL.`}
+  image={productImage}
+  preloadImage={productImage}
 >
   <Fragment slot="head">
     <SchemaMarkup item={productSchema} />
@@ -90,27 +88,25 @@ const productSchema = {
 
   <section class="bg-charcoal pt-[clamp(96px,12vw,140px)] pb-[clamp(48px,7vw,80px)] px-6">
     <div class="max-w-[1120px] mx-auto">
-      <a href="/shop" class="text-muted text-[12px] tracking-[0.14em] uppercase hover:text-gold transition-colors duration-200 mb-8 inline-block" data-reveal="left" data-speed="fast">
+      <a href="/shop/" class="text-muted text-[12px] tracking-[0.14em] uppercase hover:text-gold transition-colors duration-200 mb-8 inline-block" data-reveal="left" data-speed="fast">
         ← Back to Shop
       </a>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start" {...sbObjectId(product._id)}>
-        {product.image && (
-          <div class="aspect-square overflow-hidden bg-charcoal-lighter relative" data-reveal="left">
+        <div class="aspect-square overflow-hidden bg-charcoal-lighter relative" data-reveal="left">
             {product.badge && (
               <span class="absolute top-5 left-5 z-10 bg-gold-metal text-ink text-[10px] font-medium tracking-[0.14em] uppercase px-2.5 py-1" {...sbFieldPath('badge')}>
                 {product.badge}
               </span>
             )}
             <img
-              src={urlFor(product.image).width(800).height(800).fit('crop').url()}
-              alt={product.image.alt ?? product.title}
+              src={productImage}
+              alt={product.image?.alt ?? product.title}
               width={800}
               height={800}
               class="w-full h-full object-cover"
             />
           </div>
-        )}
 
         <div data-reveal="right">
           {product.brand && <span class="kicker">{BRAND_TITLES[product.brand] ?? product.brand}</span>}

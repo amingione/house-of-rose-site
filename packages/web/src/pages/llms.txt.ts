@@ -66,7 +66,9 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`## Services`, ``);
     for (const s of services) {
       const desc = s.tagline ? ` — ${s.tagline}` : '';
-      const price = s.price ? ` Starting at $${s.price}.` : '';
+      // `service.price` is editor-authored free text (e.g. "From $45", "Consultation required")
+      // — print it verbatim so we never emit a mangled "$From $45".
+      const price = s.price ? ` ${s.price}.` : '';
       lines.push(`- [${s.title}](${base}/services/${s.slug}/)${desc}.${price}`);
     }
     lines.push(``);

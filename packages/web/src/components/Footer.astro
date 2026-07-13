@@ -55,6 +55,18 @@ const currentYear = new Date().getFullYear();
 						Professional Makeup
 					</a>
 					<a
+						href="/packages/"
+						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Packages
+					</a>
+					<a
+						href="/shop/"
+						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Shop
+					</a>
+					<a
 						href="/blog/"
 						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 					>
@@ -92,6 +104,9 @@ const currentYear = new Date().getFullYear();
 						<a href="/support/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Support</a>
 						<a href="/guides/microchanneling-prf/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Treatment Guide</a>
 						<a href="/skin-analysis/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">AI Skin Analysis</a>
+						<a href="/cost/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Pricing Guides</a>
+						<a href="/compare/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Compare Treatments</a>
+						<a href="/services/collections/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Collections</a>
 						<a href="/areas/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Areas We Serve</a>
 						<a href="/results/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Results</a>
 						<a href="/sitemap/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Sitemap</a>
@@ -103,7 +118,7 @@ const currentYear = new Date().getFullYear();
 						<div class="flex flex-col gap-0.5">
 							{services.slice(0, 5).map((service) => (
 								<a
-									href={`/services/${service.slug}`}
+									href={`/services/${service.slug}/`}
 									class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
 								>
 									{service.title}

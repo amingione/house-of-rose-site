@@ -9,6 +9,7 @@ import {
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
+import { DEFAULT_AREA_IMAGE } from '@/lib/imageFallbacks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -17,11 +18,13 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const area = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
-if (!area) return Astro.redirect('/areas', 307);
+// Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
+// come from getStaticPaths, so a miss is a data bug — fail loudly.
+if (!area) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
-const heroImage = area.image?.asset?.url;
+const heroImage = area.image?.asset?.url ?? DEFAULT_AREA_IMAGE;
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -43,9 +46,9 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
   <div {...sbObjectId(area._id)}>
   <section
     class="on-dark hero-dark relative w-full min-h-[44vh] flex items-end bg-walnut pt-32 pb-12 px-6"
-    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
+    style={`background-image: url(${heroImage}); background-size: cover; background-position: center;`}
   >
-    {heroImage && <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>}
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
     <div class="relative z-10 max-w-[960px] mx-auto w-full">
       <span class="kicker"><span {...sbFieldPath('city')}>{area.city}</span>{area.region ? ' · ' : ''}{area.region && <span {...sbFieldPath('region')}>{area.region}</span>}</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ivory leading-tight mt-3 mb-5" {...sbFieldPath('title')}>{area.title}</h1>
@@ -68,7 +71,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Popular in {area.city}</span>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {area.servedServices.map((s) => (
-            <a href={`/services/${s.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
+            <a href={`/services/${s.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
               <h2 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{s.title}</h2>
               {s.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
               {s.price && <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase" {...sbFieldPath('price')}>{s.price}</p>}

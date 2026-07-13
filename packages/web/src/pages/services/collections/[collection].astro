@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { breadcrumbList, itemList } from '@/lib/structuredData';
 import {
   ALL_COLLECTION_SLUGS_QUERY,
   COLLECTION_BY_SLUG_QUERY,
   type ServiceCollection,
 } from '@/lib/queries';
+import { getCollectionFallbackImage, getServiceFallbackImage } from '@/lib/imageFallbacks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COLLECTION_SLUGS_QUERY);
@@ -16,34 +19,59 @@ export async function getStaticPaths() {
 const { collection: slug } = Astro.params;
 const collection = await sanityFetch<ServiceCollection>(COLLECTION_BY_SLUG_QUERY, { slug });
 
+// Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
+// Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
 if (!collection) {
-  return Astro.redirect('/services/collections', 307);
+  throw new Error(`[collections/[collection]] No collection found in Sanity for slug "${slug}"`);
 }
+const collectionImage = collection.image
+  ? urlFor(collection.image).width(1600).height(685).fit('crop').url()
+  : getCollectionFallbackImage(collection.slug);
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: `${site}services/` },
+  { name: 'Collections', item: `${site}services/collections/` },
+  { name: collection.title, item: canonical },
+]);
+const serviceListSchema = collection.services?.length
+  ? itemList(
+      collection.services.map((svc) => ({
+        name: svc.title,
+        url: new URL(`/services/${svc.slug}/`, site).toString(),
+      })),
+      collection.title,
+    )
+  : null;
+const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
 ---
 
 <BaseLayout
-  title={collection.title}
-  description={collection.description ?? ''}
-  image={collection.image ? urlFor(collection.image).width(1200).height(630).fit('crop').url() : undefined}
+  title={pageTitle}
+  description={collection.description ?? `${collection.title} — a curated collection of treatments at House of Rose Aesthetics in Punta Gorda, FL.`}
+  image={collectionImage}
+  preloadImage={collectionImage}
 >
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {serviceListSchema && <SchemaMarkup item={serviceListSchema} slot="head" />}
   <section class="py-24 max-w-6xl mx-auto px-6" {...sbObjectId(collection._id)}>
     <div class="mb-4">
-      <a href="/services/collections" class="text-xs tracking-widest uppercase text-gold hover:underline">
+      <a href="/services/collections/" class="text-xs tracking-widest uppercase text-gold hover:underline">
         ← All Collections
       </a>
     </div>
 
-    {collection.image && (
-      <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
+    <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
         <img
-          src={urlFor(collection.image).width(1600).height(685).fit('crop').url()}
-          alt={collection.image.alt ?? collection.title}
+          src={collectionImage}
+          alt={collection.image?.alt ?? collection.title}
           width={1600}
           height={685}
           class="w-full h-full object-cover"
         />
       </div>
-    )}
 
     <div class="max-w-2xl mb-16">
       <h1 class="font-serif text-5xl text-ink mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
@@ -57,18 +85,16 @@ if (!collection) {
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {collection.services.map((svc) => (
-          <a href={`/services/${svc.slug}`} class="group bg-breath overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
-            {svc.image && (
-              <div class="aspect-[3/2] overflow-hidden bg-charcoal-lighter">
+          <a href={`/services/${svc.slug}/`} class="group bg-breath overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
+            <div class="aspect-[3/2] overflow-hidden bg-charcoal-lighter">
                 <img
-                  src={urlFor(svc.image).width(600).height(400).fit('crop').url()}
-                  alt={svc.image.alt ?? svc.title}
+                  src={svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug)}
+                  alt={svc.image?.alt ?? svc.title}
                   width={600}
                   height={400}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-            )}
             <div class="p-6">
               <p class="font-serif text-xl text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
               {svc.tagline && <p class="text-sm text-muted leading-relaxed mb-4" {...sbFieldPath('tagline')}>{svc.tagline}</p>}

@@ -20,10 +20,10 @@ const breadcrumb = breadcrumbList([
 
 const routeFor = (g: FaqGroup): string => {
   switch (g.type) {
-    case 'costGuide': return `/cost/${g.slug}`;
-    case 'comparison': return `/compare/${g.slug}`;
-    case 'localArea': return `/areas/${g.slug}`;
-    default: return `/services/${g.slug}`;
+    case 'costGuide': return `/cost/${g.slug}/`;
+    case 'comparison': return `/compare/${g.slug}/`;
+    case 'localArea': return `/areas/${g.slug}/`;
+    default: return `/services/${g.slug}/`;
   }
 };
 ---

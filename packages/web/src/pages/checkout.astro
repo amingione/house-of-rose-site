@@ -69,7 +69,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
             <div id="payment-element"></div>
           </div>
 
-          <p id="checkout-error" class="hidden text-[14px] text-[#9B2C2C] bg-[#FDECEC] border border-[#9B2C2C]/30 px-4 py-3"></p>
+          <p id="checkout-error" role="alert" aria-live="assertive" class="hidden text-[14px] text-[#9B2C2C] bg-[#FDECEC] border border-[#9B2C2C]/30 px-4 py-3"></p>
 
           <button id="submit-btn" type="submit" class="btn-gold w-full" disabled>
             <span id="submit-label">Pay</span>

@@ -17,7 +17,9 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const cmp = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug });
-if (!cmp) return Astro.redirect('/services', 307);
+// Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
+// come from getStaticPaths, so a miss is a data bug — fail loudly.
+if (!cmp) throw new Error(`[compare/[slug]] No comparison found in Sanity for slug "${slug}"`);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -64,7 +66,7 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
               <p class="text-muted text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> <span {...sbFieldPath(`${key}.bestFor`)}>{opt!.bestFor}</span></p>
             )}
             {opt!.service && (
-              <a href={`/services/${opt!.service.slug}`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
+              <a href={`/services/${opt!.service.slug}/`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
             )}
           </div>
         ))}

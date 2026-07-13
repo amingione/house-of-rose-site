@@ -7,8 +7,8 @@ import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 
 // Booking + internal links (single source of truth so they're easy to swap)
 const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
-const SKIN_ANALYSIS_URL = "/skin-analysis";
-const SHOP_URL = "/shop";
+const SKIN_ANALYSIS_URL = "/skin-analysis/";
+const SHOP_URL = "/shop/";
 
 // ─── Home content from Sanity (singleton) ──────────────────────────────────────
 // Falls back to the original copy if a field is empty, so there's no regression.
@@ -42,7 +42,12 @@ const FALLBACK_SERVICE_GROUPS = [
 		imagePath: "/images/house-of-rose/space/iv-hydration-suite-tile.webp",
 	},
 ];
-const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SERVICE_GROUPS;
+const serviceGroups = hp.serviceGroups?.length
+	? hp.serviceGroups.map((group, index) => ({
+		...group,
+		imagePath: FALLBACK_SERVICE_GROUPS[index]?.imagePath ?? FALLBACK_SERVICE_GROUPS[0].imagePath,
+	}))
+	: FALLBACK_SERVICE_GROUPS;
 
 ---
 
@@ -62,7 +67,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 		centerContent={true}
 		showCTA={true}
 		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
-		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Explore Services", href: "/services" }}
+		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Explore Services", href: "/services/" }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 		titleField="heroTitle"
 		subtitleField="heroSubtitle"
@@ -169,7 +174,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
 				{
 					serviceGroups.map((group, i) => (
-						<a href="/services" class="group block bg-charcoal">
+						<a href="/services/" class="group block bg-charcoal">
 							<div class="aspect-[16/10] overflow-hidden bg-charcoal-lighter">
 								<img
 									src={group.imagePath}
@@ -195,7 +200,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 
 			<div class="mt-12">
 				<a
-					href="/services"
+					href="/services/"
 					class="text-[11px] tracking-[0.2em] uppercase border-b border-gold text-gold pb-0.5 min-h-[44px] inline-flex items-end hover:opacity-75 transition-opacity"
 					{...sbFieldPath("servicesCtaText")}
 				>
@@ -366,7 +371,7 @@ const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SER
 					rel="noopener noreferrer"
 					class="btn-gold">Book Online</a
 				>
-				<a href="/contact" class="btn-outline-gold">Contact Us</a>
+				<a href="/contact/" class="btn-outline-gold">Contact Us</a>
 			</div>
 		</div>
 	</section>

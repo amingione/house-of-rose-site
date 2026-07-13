@@ -141,6 +141,8 @@ const isActive = (path: string) =>
 			id="mobile-menu-btn"
 			class="lg:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative"
 			aria-label="Toggle menu"
+			aria-expanded="false"
+			aria-controls="mobile-drawer"
 		>
 			<span
 				class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"
@@ -268,6 +270,7 @@ const isActive = (path: string) =>
 			mobileDrawer?.classList.remove("open");
 			mobileDrawer?.classList.add("hidden");
 			mobileMenuBtn?.classList.remove("open");
+			mobileMenuBtn?.setAttribute("aria-expanded", "false");
 			header?.classList.remove("menu-open");
 			// only restore the transparent/dark treatment if a dark hero is behind us
 			if (window.pageYOffset <= 60) applyBackdrop();
@@ -275,6 +278,7 @@ const isActive = (path: string) =>
 			mobileDrawer?.classList.remove("hidden");
 			mobileDrawer?.classList.add("open");
 			mobileMenuBtn?.classList.add("open");
+			mobileMenuBtn?.setAttribute("aria-expanded", "true");
 			// opaque bar + dark-on-light nav while the drawer is open
 			header?.classList.add("menu-open");
 			header?.classList.remove("on-dark");

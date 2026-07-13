@@ -17,7 +17,9 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const guide = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug });
-if (!guide) return Astro.redirect('/services', 307);
+// Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
+// come from getStaticPaths, so a miss is a data bug — fail loudly.
+if (!guide) throw new Error(`[cost/[slug]] No cost guide found in Sanity for slug "${slug}"`);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -107,7 +109,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       {guide.treatment && (
-        <a href={`/services/${guide.treatment.slug}`} class="learn-more inline-block mb-8">
+        <a href={`/services/${guide.treatment.slug}/`} class="learn-more inline-block mb-8">
           ← Explore {guide.treatment.title}
         </a>
       )}
