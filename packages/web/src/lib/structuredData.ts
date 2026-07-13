@@ -116,11 +116,15 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
     description:
       'Private, appointment-only advanced aesthetics and wellness studio in Punta Gorda, Florida.',
     ...(input.email && { email: input.email }),
+    // Google wants an actual logo here, not a social card. `og.png` is the
+    // 1200x630 share image; the square monogram is the real mark.
     logo: {
       '@type': 'ImageObject',
       '@id': `${baseUrl}#logo`,
-      url: new URL('/logos/hr-monogram-2026/og.png', baseUrl).toString(),
-      contentUrl: new URL('/logos/hr-monogram-2026/og.png', baseUrl).toString(),
+      url: new URL('/logos/hr-monogram-2026/monogram-gold-512.png', baseUrl).toString(),
+      contentUrl: new URL('/logos/hr-monogram-2026/monogram-gold-512.png', baseUrl).toString(),
+      width: 512,
+      height: 512,
       caption: LOCAL_BUSINESS.name,
     },
     image: { '@id': `${baseUrl}#logo` },
