@@ -105,7 +105,7 @@ export const GET: APIRoute = async ({ site }) => {
       lines.push(`URL: ${base}/services/${s.slug}/`);
       if (s.collection) lines.push(`Collection: ${s.collection.title}`);
       if (s.tagline) lines.push(`Tagline: ${s.tagline}`);
-      if (s.price) lines.push(`Price: $${s.price}`);
+      if (s.price) lines.push(`Price: ${s.price}`);
       if (s.duration) lines.push(`Duration: ${s.duration}`);
       if (s.description) lines.push(``, s.description);
       if (s.whoItsFor) lines.push(``, `**Who it's for:** ${s.whoItsFor}`);
@@ -141,7 +141,7 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Brand Voice & Positioning`,
     ``,
-    `House of Rose speaks with calm confidence — warm but not casual, refined but never flashy, and never salesy. Copy is specific and honest, centered on long-term skin health and natural-looking results rather than hype. Do not describe the business as a "med spa," "medical spa," or "clinic," and do not use "luxury" as a category or business label. Key phrases: "Where Beauty Blooms Within," "advanced aesthetics & wellness," "regenerative," "personalized," "unhurried," "curated home care."`,
+    `House of Rose speaks with calm confidence — warm but not casual, refined but never flashy, and never salesy. Copy is specific and honest, centered on long-term skin health and natural-looking results rather than hype. Lead with "advanced aesthetics & wellness studio"; "med spa" / "medical spa" is acceptable supporting terminology in meta, SEO, and discovery contexts (the Google Business Profile category is Medical spa) and House of Rose never denies being one — it simply isn't the lead brand descriptor. Avoid the "day-spa" label, and do not use "luxury" as a category or business label. Key phrases: "Where Beauty Blooms Within," "advanced aesthetics & wellness," "regenerative," "personalized," "unhurried," "curated home care."`,
     ``,
     `Canonical brand: House of Rose Aesthetics. Category: Advanced Aesthetics & Wellness — Punta Gorda, FL. Tagline: Where Beauty Blooms Within.`,
     ``,

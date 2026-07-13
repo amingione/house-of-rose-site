@@ -2,12 +2,14 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { getServiceFallbackImage } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
   SERVICE_BY_SLUG_QUERY,
   type Service,
 } from '@/lib/queries';
+import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
@@ -17,8 +19,12 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const service = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, { slug });
 
+// Slugs come from getStaticPaths (Sanity), so a miss is a data-integrity bug, not a
+// runtime 404. Fail the build loudly — never `return Astro.redirect()` from a prerendered
+// route: returning a Response in `output: 'static'` stops Astro emitting the sibling index
+// chunk and breaks the build (see shop/[slug].astro).
 if (!service) {
-  return Astro.redirect('/services', 307);
+  throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
 }
 
 const FALLBACK_SERVICE_IMAGES: Record<string, string> = {
@@ -51,12 +57,14 @@ const FALLBACK_SERVICE_IMAGES: Record<string, string> = {
   'glo2facial': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
   'back-treatment': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
   'lightstim-led-therapy': '/images/house-of-rose/space/basic-facials-waxing-room-tile.webp',
+  'neck-decollete-extension': '/images/house-of-rose/space/treatment-room-soft-square.webp',
+  'permanent-jewelry': '/images/house-of-rose/square/mirror-console-square.webp',
 };
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const fallbackImage = slug ? FALLBACK_SERVICE_IMAGES[slug] : undefined;
+const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
 const socialImage = service.image
   ? urlFor(service.image).width(1200).height(630).fit('crop').url()
   : fallbackImage
@@ -69,74 +77,33 @@ const heroImage = service.image
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": service.title,
-  "description": service.description ?? service.tagline ?? '',
-  "provider": {
-    "@type": "HealthAndBeautyBusiness",
-    "name": "House of Rose Aesthetics",
-    "url": site,
-    "telephone": "+18449417673",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "525 E Olympia Ave, Unit 9",
-      "addressLocality": "Punta Gorda",
-      "addressRegion": "FL",
-      "postalCode": "33950",
-      "addressCountry": "US"
-    }
+const serviceSchema = serviceJsonLd(
+  {
+    name: service.title,
+    description: service.description ?? service.tagline ?? undefined,
+    url: canonicalURL.toString(),
+    image: socialImage,
+    serviceType: service.tagline ?? service.title,
+    minPrice: priceNumber,
   },
-  "url": canonicalURL.toString(),
-  ...(socialImage && { "image": socialImage }),
-  "serviceType": service.tagline ?? service.title,
-  ...(priceNumber !== null && {
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "minPrice": priceNumber,
-        "priceCurrency": "USD"
-      }
-    }
-  }),
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": "26.9298",
-      "longitude": "-82.0454"
-    },
-    "geoRadius": "50000"
-  }
-};
+  site,
+);
 
-const breadcrumbItems = [
-  { "@type": "ListItem", "position": 1, "name": "Home", "item": site },
-  { "@type": "ListItem", "position": 2, "name": "Services", "item": new URL('/services/', site).toString() },
+const breadcrumbSchema = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: new URL('/services/', site).toString() },
   ...(service.parentService
-    ? [{ "@type": "ListItem", "position": 3, "name": service.parentService.title, "item": new URL(`/services/${service.parentService.slug}/`, site).toString() }]
+    ? [
+        {
+          name: service.parentService.title,
+          item: new URL(`/services/${service.parentService.slug}/`, site).toString(),
+        },
+      ]
     : []),
-  { "@type": "ListItem", "position": service.parentService ? 4 : 3, "name": service.title, "item": canonicalURL.toString() }
-];
+  { name: service.title, item: canonicalURL.toString() },
+]);
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbItems
-};
-
-const faqSchema = service.faqs && service.faqs.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": service.faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-  }))
-} : null;
+const faqSchema = faqPage(service.faqs ?? []);
 
 const pageTitle = service.seo?.metaTitle ?? `${service.title} in Punta Gorda, FL | House of Rose`;
 const pageDescription = service.seo?.metaDescription ?? service.tagline ?? service.description ?? '';
@@ -161,7 +128,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
-      <a href={service.parentService ? `/services/${service.parentService.slug}` : '/services'} class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+      <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> {service.parentService ? service.parentService.title : 'All Services'}
       </a>
       {service.tagline && (
@@ -222,7 +189,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
-            <a href={`/services/${t.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
+            <a href={`/services/${t.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
               <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{t.title}</h3>
               {t.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
               <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
@@ -264,7 +231,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
         {service.relatedServices.map((related) => (
           <div class="bg-charcoal">
-            <a href={`/services/${related.slug}`} class="service-card group block" {...sbObjectId(related._id)}>
+            <a href={`/services/${related.slug}/`} class="service-card group block" {...sbObjectId(related._id)}>
               {related.image && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
