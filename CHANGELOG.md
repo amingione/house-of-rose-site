@@ -3,6 +3,17 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
+## 2026-07-14 — In-depth service copy across the whole catalog
+
+Brought **every** service page up to the in-depth, informative AEO standard (the site educates; booking is on
+GlossGenius). 7 parallel agents wrote brief-backed copy for the **28 advanced/treatment services** (Advanced
+Facials, Microchanneling & Microneedling, topical PRF, Injectables, Wellness, Face Reality, Aundrea's
+waxing/jewelry/dermaplaning) — 180–260-word descriptions + who-it's-for + 5–6 process steps + 4–6 FAQs each,
+patched live via the Sanity API. Plus the AI Skin Analysis description deepened. Combined with the earlier
+15 facial/lash/makeup rewrites, **all ~44 services now carry deep copy** (0 remain under 150 words).
+Compliance held throughout: topical-vs-injectable PRF crisp, no cure/anti-aging/guarantee language, provider
+authority + candidacy + individual-outcomes on all medical lanes, GLP-1 guarantee-free, precise FDA citations only.
+
 ## 2026-07-13 — Sanity catalog reconciled to GlossGenius (live-data changes)
 
 Published directly to Sanity (buffered from the live static site until this rebuild):
