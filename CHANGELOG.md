@@ -13,7 +13,10 @@ Published directly to Sanity (buffered from the live static site until this rebu
   Facials, Microchanneling & Microneedling, Lash Services, Makeup, Enhancements & Add-ons, Acne Bootcamp),
   renamed Injectables & Aesthetics→**Injectables & Bio-Fillers** and Beauty & Enhancements→**Permanent Jewelry**;
   reassigned all 30 services + set providers (old catch-all "Skin Renewal" 19→5).
-- **Created 15 missing GG services** with content: the 9 basic facials (Aundrea/Brandy), 3 lash services, 3 makeup.
+- **Created 15 missing GG services** (9 basic facials [Aundrea/Brandy], 3 lash, 3 makeup), then **upgraded all 15
+  to in-depth, informative AEO copy** (200–245-word descriptions + who-it's-for + step-by-step + 4–5 FAQs each).
+  Content model confirmed: booking happens on **GlossGenius**; Sanity service copy is the deep, educational
+  "learn everything" version, **not** sales copy (saved to memory).
 - **Added `AI Skin Analysis` service** (the evidence-based first step) — full content, Complimentary, in Advanced
   Facials (Amber); compliance-clean (guides a plan, does not diagnose). Coexists with the `/skin-analysis/` singleton page.
 - **Removed** standalone Acne Peel + Back Treatment (Face Reality is the $899 program only; unpublished).
