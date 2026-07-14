@@ -3,6 +3,23 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
+## 2026-07-13 — Sanity catalog reconciled to GlossGenius (live-data changes)
+
+Published directly to Sanity (buffered from the live static site until this rebuild):
+- **Price reconciliation (6 services):** Glo2Facial $185→**$195**, Dermal Fillers $700→**$650**, PRF Injections
+  $599→**$495**, IV Hydration $129→**$125**, GLP-1 $349→**$279/mo**, Botox blank→**$14/unit** (+ fixed the
+  price stated in each SEO meta). GLP-1 pending Diana's COGS confirmation.
+- **Collection restructure → GlossGenius's 12 categories:** created 7 new collections (Facials, Advanced
+  Facials, Microchanneling & Microneedling, Lash Services, Makeup, Enhancements & Add-ons, Acne Bootcamp),
+  renamed Injectables & Aesthetics→**Injectables & Bio-Fillers** and Beauty & Enhancements→**Permanent Jewelry**;
+  reassigned all 30 services + set providers (old catch-all "Skin Renewal" 19→5).
+- **Created 15 missing GG services** with content: the 9 basic facials (Aundrea/Brandy), 3 lash services, 3 makeup.
+- **Removed** standalone Acne Peel + Back Treatment (Face Reality is the $899 program only; unpublished).
+- Working files: `docs/research/sanity-services.csv`, `sanity-collections.csv`, `_sanity-collection-restructure.md`.
+
+Still open: the advanced-facial combos + GlowTox (Diana/med-director review) not yet added; makeup `service`
+docs coexist with the professional-makeup singleton pages (consolidate later); 3/6-session + acne packages → `treatmentPackage`.
+
 ## 2026-07-13 — Go-live prep: memberships REVERTED (deferred), coming-soon → live
 
 Owner deferred memberships to launch the site. Reverted all membership shipping code (deleted
