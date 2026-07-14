@@ -76,7 +76,7 @@
 ### 0.2 Major GG-vs-CMS divergences (Amber must resolve — affects the whole catalog, not just memberships)
 
 - **On the website/Sanity but NOT bookable in GlossGenius:** BioRePeel (×4 Sanity services), corrective
-  microneedling, microneedling/PRF **body** treatments, the ProCell **Pro-vs-MD standalone tiers** ($250/$325),
+  microneedling, microneedling/PRF **body** treatments, the ProCell **Pro-vs-MD standalone tiers** ($250/$349),
   **carboxy** facial, **dermaplaning** (add-on only per Amber, not a GG service), and the **Face Reality Acne
   Bootcamp / acne-peel / back-treatment** ($899/$139/$159 — the GG "Acne Bootcamp" category has 0 services).
 - **In GlossGenius but thin/absent on the site:** the 9-service **basic-facial ladder** ($80–$200), **Lash
@@ -85,7 +85,7 @@
 - **Price corrections (GG wins over BOTH local docs and Sanity):** Glo2Facial **$195** (local said $185);
   waxing is cheaper across the board (Underarm **$20** vs local $28; no **Brazilian** at all); makeup far cheaper
   (Everyday **$30** vs local $85; Event **$80** vs local $150); permanent jewelry **$65** flat (not "From $45");
-  ProCell microchanneling is a single **$349** line (not Pro $250 / MD $325).
+  ProCell microchanneling is a single **$349** line — now RESOLVED as the **MD** tier; **Pro $250** must be added to GG as the entry tier (see §10a).
 - **Confirmed drifts where GG validates the LOCAL docs and proves SANITY wrong:** IV $100 (Sanity $129),
   fillers from $650 (Sanity $700), PRF injections $495/$595 (Sanity $599), GLP-1 $225/$325 (Sanity $349),
   ProCell body/microchanneling $349. → Sanity service prices should be corrected to GG in Phase 4.
@@ -103,7 +103,7 @@
 | Glo2Facial — Series of 3 | $499 | series (3) | — | — (not priced) | — series absent in Sanity | master-menu §1 |
 | Glo2Facial — Series of 6 | $885 | series (6) | — | — | — | master-menu §1 |
 | ProCell Microchanneling — Pro (face) | $250 | per session | 60–75 min | From $250 | ✅ | master-menu §2 |
-| ProCell Microchanneling — MD (face) | $325 | per session | 60–75 min | (single `microchanneling` line = From $250) | ⚠️ Sanity lists only one "From $250" line; MD tier ($325) not separately published | master-menu §2 |
+| ProCell Microchanneling — MD (face) | **$349** | per session | 60–75 min | (single `microchanneling` line = From $250) | ⚠️ Sanity lists only one "From $250" line; **MD tier ($349) must be published separately** | GlossGenius (live) — see §10a |
 | Microneedling — Corrective (face) | $295 | per session | 60–75 min | From $295 | ✅ | master-menu §3 |
 | GlowTox Facial | $475 in GlossGenius; $425 in legacy menu | per session | 60 min | — (not in Sanity) | **Clinical and price reconciliation required.** Do not describe it as topical Daxxify, a microchanneling treatment, or a needling add-on. | GlossGenius catalog + legacy master menu §4 |
 | ProCell Microchanneling — Body | $349 | per zone | 60–75 min | From $349 per zone | ✅ | master-menu §6 |
@@ -279,7 +279,7 @@
 |---|---|---|---|
 | Glo2Facial | $185 | $499 | $885 |
 | ProCell Microchanneling — Pro | $250 | $675 | $1,200 |
-| ProCell Microchanneling — MD | $325 | $875 | $1,560 |
+| ProCell Microchanneling — MD | **$349** | **$940** | **$1,675** |
 | Microneedling — Corrective | $295 | $795 | $1,415 |
 | Micro-Tox / GlowTox | Pending clinical approval and final pricing | — | — |
 | ProCell Microchanneling — Body | $349 | $940 | $1,675 |
@@ -334,3 +334,42 @@ The most common single service a member would realistically use each month, and 
 | **Diana — GLP-1** | Monthly program (Semaglutide) | **$225/month** (Tirzepatide $325/month) | Already a monthly program — its own subscription; the $225 semaglutide start is the natural anchor. |
 
 **Un-priceable lanes right now:** Brandy — Basic Facials (entire lane, hard blocker). Partially blocked: Permanent-jewelry tiers, carboxy, EZ-Gel, standalone dermaplaning, and BioRePeel face — the lane *anchors* exist for jewelry/dermaplaning but the itemized/standalone numbers need Amber/Aundrea/Diana confirmation before a tier can itemize them.
+
+---
+
+## §10a — ProCell face price: RESOLVED (2026-07-14)
+
+**Decision: MD face = $349. Pro face = $250. $325 is retired from the ProCell face menu.**
+
+The catalog previously carried MD face at both **$349** (live in GlossGenius) and **$325** (local series
+table). GlossGenius wins, per the truth rule at the top of this file — and independently, $349 is the
+better number:
+
+- **No legacy clients.** House of Rose opened 2026-07-09; there is no one to grandfather and no
+  "price increase" to absorb. This is the only free moment to set the number.
+- **MD uses the costlier serum than Pro.** The tier gap must reflect input cost or the upsell has no logic.
+- **$24 is not a decision variable in this market.** Punta Gorda: median age 66.3, ~53.5% aged 65+,
+  median household income $85,779. The barrier to booking microchanneling here is *trust*, not price —
+  which is what the free AI Skin Analysis funnel exists to solve. Cutting to $325 would surrender margin
+  for zero expected conversion lift.
+- **Pro holds at $250** because it is the published from-price anchor (`microchanneling` hub = "From $250")
+  across Sanity and the marketing site. Never move a from-price without cause. The resulting **$99 Pro→MD
+  gap** is wide enough to make MD read as a real upgrade — and MD is where the margin is.
+
+**Resolved grid**
+
+| Treatment | Single | 3-series (~10%) | 6-series (~20%) |
+|---|---|---|---|
+| ProCell Microchanneling — Pro (face) | $250 | $675 | $1,200 |
+| ProCell Microchanneling — MD (face) | **$349** | **$940** | **$1,675** |
+| ProCell Microchanneling — Body (per zone) | $349 | $940 | $1,675 |
+
+MD-face and Body now share the same series math, collapsing the ProCell grid from three price ladders
+to two. **$325 remains valid only for Microneedling — Body and BioRePeel — Body** (and, unrelated,
+Tirzepatide/month) — removing it from the ProCell face menu eliminates one of the round-number
+collisions that generated the drift in the first place.
+
+**Actions**
+- [ ] **GlossGenius:** MD $349 is already correct — no change. **Add ProCell Microchanneling — Pro (face) $250.**
+- [ ] **Sanity:** keep `microchanneling` hub at "From $250"; publish the **MD $349** tier as its own line.
+- [ ] **`docs/services/ALL-SERVICES-PRICING.MD`:** updated 2026-07-14 (MD $349 | $940 | $1,675).

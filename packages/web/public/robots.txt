@@ -4,6 +4,9 @@
 User-agent: *
 Allow: /
 
+# Internal staff tools — never index
+Disallow: /staff/
+
 # Sitemaps
 Sitemap: https://houseofrosefl.com/sitemap.xml
 

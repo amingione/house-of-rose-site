@@ -18,7 +18,8 @@
       "Read(//Users/ambermingione/Documents/PRF EDU/**)",
       "Read(//Users/ambermingione/Documents/PRF EDU/part 3 - indications for prf/Facial esthetics/**)",
       "Bash(git rev-list *)",
-      "Bash(awk '{print \"behind:\", $1, \"ahead:\", $2}')"
+      "Bash(awk '{print \"behind:\", $1, \"ahead:\", $2}')",
+      "Bash(awk '{print \"behind:\",$1,\"ahead:\",$2}')"
     ]
   },
   "enabledMcpjsonServers": [

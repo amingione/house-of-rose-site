@@ -99,16 +99,24 @@
 - **PRF Skin Renewal** — $450 ✅ (1h, 3 serum options)
 
 **NOT YET IN GG 🟥** (Amber to add with pricing):
-- Microchanneling + ProCell Pro serum
+- **ProCell Microchanneling — Pro (face) — $250** ← add as the entry tier beneath MD $349
 - Microneedling + BioRePeel (with/without add-ons)
 - Microchanneling + PRF (standalone — not Glo2 combo)
 - Other combinations
+
+> **💲 ProCell face price — RESOLVED (2026-07-14).** The MD face tier is **$349**, not $325.
+> $349 is the price live in GlossGenius (the system of record); the old $325 series-table figure is
+> **retired from the ProCell face menu**. Rationale: no legacy clients (opened 2026-07-09), MD uses the
+> costlier serum, and in a market with $85,779 median HH income / 66.3 median age a $24 delta is not a
+> decision variable. Pro holds at **$250** — it is the published "From $250" anchor across Sanity + the
+> marketing site, and the **$99 Pro→MD gap** is what makes the MD upgrade legible.
+> **$325 remains valid ONLY for Microneedling — Body and BioRePeel — Body.**
 
 ### **Face Treatments (with Series pricing):**
 
 - **Glo2Facial** — Single $185 | 3x $499 | 6x $885
 - **ProCell Microchanneling — Pro** — $250 | $675 | $1,200
-- **ProCell Microchanneling — MD** — $325 | $875 | $1,560
+- **ProCell Microchanneling — MD** — $349 | $940 | $1,675
 - **Microneedling — Corrective** — $295 | $795 | $1,415
 
 ### **Body Treatments (per zone, with Series pricing):**

@@ -3,6 +3,15 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
+## 2026-07-14 — Confirmations applied (task 3 of 3)
+
+Owner decisions applied: **GLP-1 → most-competitive $225/month** (overrides the $279 margin-safe option;
+undercuts the direct local comp). **Combo prices flipped** — Glo2Facial + ProCell MD $525, + ProCell Pro $475
+(MD is the stronger serum, so it's the pricier pairing). **Permanent-jewelry metal tiers added** (From $60;
+bracelets $60/$75/$85, anklets $65/$85/$95, via a pricing note + FAQ). **Makeup: keep both** — the
+professional-makeup hub + the 3 makeup service pages form a hub-and-spoke topical cluster (stronger SEO than
+consolidating). Follow-up: interlink the makeup hub ↔ spokes.
+
 ## 2026-07-14 — Treatment packages: Series of 3/6 built (task 2 of 3)
 
 Built the Series-of-3 and Series-of-6 packages (master-menu §9 pricing) as `treatmentPackage` docs, live:
