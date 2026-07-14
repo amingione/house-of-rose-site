@@ -261,13 +261,13 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   )}
 
   <!-- Related Services -->
-  {service.relatedServices && service.relatedServices.length > 0 && (
+  {service.relatedServices && service.relatedServices.filter(Boolean).length > 0 && (
     <section class="bg-charcoal py-16 px-6">
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 max-w-[1280px] mx-auto">
         Related Services
       </span>
       <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-        {service.relatedServices.map((related) => (
+        {service.relatedServices.filter(Boolean).map((related) => (
           <div class="bg-charcoal">
             <a href={`/services/${related.slug}/`} class="service-card group block" {...sbObjectId(related._id)}>
               {related.image && (
@@ -287,6 +287,16 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
             </a>
           </div>
         ))}
+      </div>
+    </section>
+  )}
+
+  {service.collection?.slug === 'makeup' && (
+    <section class="bg-charcoal-light py-8 px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto text-center">
+        <a href="/services/professional-makeup/" class="text-gold text-[12px] tracking-[0.22em] uppercase hover:text-ink transition-colors">
+          Part of our Professional Makeup services →
+        </a>
       </div>
     </section>
   )}
