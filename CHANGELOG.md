@@ -3,6 +3,17 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
+## 2026-07-14 — Treatment packages: Series of 3/6 built (task 2 of 3)
+
+Built the Series-of-3 and Series-of-6 packages (master-menu §9 pricing) as `treatmentPackage` docs, live:
+Glo2Facial ($499/$885), ProCell Microchanneling ($675/$1,200), Corrective Microneedling ($795/$1,415), and
+the three body treatments (ProCell/Microneedling/BioRePeel Body, $875–$1,675/zone) — 12 packages. Filled the
+**Acne Bootcamp** ($899 program), Dermaplaning Package of 4 ($340), and PRF Under-Eye Series of 3 ($1,350).
+Parked the duplicate ProCell "Series of 4" (identical to The Revival Series). **Correction:** an earlier
+wrong-field query (`price`/`services` vs `rackPrice`/`servicesIncluded`) made me misread existing packages as
+empty; I restored the BioRePeel + PRF-topical Series-of-4 packages I'd briefly parked.
+Flag: series prices trace to the master menu (pre-GG singles) — confirm/refresh vs current GG singles; GG has no packages yet.
+
 ## 2026-07-14 — Advanced-facial combos added (task 1 of 3)
 
 Created the three GlossGenius Glo2 advanced-facial combos with full in-depth copy and published live:
