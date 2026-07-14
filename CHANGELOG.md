@@ -14,6 +14,8 @@ Published directly to Sanity (buffered from the live static site until this rebu
   renamed Injectables & Aesthetics→**Injectables & Bio-Fillers** and Beauty & Enhancements→**Permanent Jewelry**;
   reassigned all 30 services + set providers (old catch-all "Skin Renewal" 19→5).
 - **Created 15 missing GG services** with content: the 9 basic facials (Aundrea/Brandy), 3 lash services, 3 makeup.
+- **Added `AI Skin Analysis` service** (the evidence-based first step) — full content, Complimentary, in Advanced
+  Facials (Amber); compliance-clean (guides a plan, does not diagnose). Coexists with the `/skin-analysis/` singleton page.
 - **Removed** standalone Acne Peel + Back Treatment (Face Reality is the $899 program only; unpublished).
 - Working files: `docs/research/sanity-services.csv`, `sanity-collections.csv`, `_sanity-collection-restructure.md`.
 
