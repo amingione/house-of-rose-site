@@ -3,6 +3,14 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
+## 2026-07-14 — Advanced-facial combos added (task 1 of 3)
+
+Created the three GlossGenius Glo2 advanced-facial combos with full in-depth copy and published live:
+**Glo2Facial + ProCell MD** ($475), **Glo2Facial + ProCell Pro** ($525), **Glo2Facial + PRF** ($595) — all Amber,
+Advanced Facials, topical-PRF line held. **GlowTox Facial** ($475) created but **kept as an unpublished draft
+(status: proposed)** pending Diana, RN + medical-director review (Daxxify-as-topical needs clinical sign-off).
+Note: GG prices the Pro combo ($525) above the MD combo ($475) — possible swap, flag to verify.
+
 ## 2026-07-14 — In-depth service copy across the whole catalog
 
 Brought **every** service page up to the in-depth, informative AEO standard (the site educates; booking is on
