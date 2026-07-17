@@ -2,9 +2,9 @@
 
 **Date:** 2026-07-13
 
-**Purpose.** The single reconciliation checklist for Amber, aggregated from all 22 research briefs (§8/§10/§11/Sources and every "GAP"/"flag" callout). Each conflict has a recommended source-of-truth. Governing rule from the briefs: **local docs (`docs/services/**`, canonical master menus) are pricing truth; Sanity is corrected to match; web research is never a price source.** All URLs use trailing slashes.
+**Purpose.** The single reconciliation checklist for Amber, aggregated from the research briefs and every "GAP"/"flag" callout. Each conflict has a recommended source-of-truth. Governing rule from the briefs: **local docs (`docs/services/**`, canonical master menus) are pricing truth; Sanity is corrected to match; web research is never a price source.** All URLs use trailing slashes.
 
-> ⚠️ **Read Section 8 first if you are cleaning up membership references.** The membership teardown was **reversed on 2026-07-13** — briefs that flagged membership content "to remove" are now flagging **assets to rebuild**. Do not delete membership content.
+> **Memberships: not offered. None exist and none are planned. Do not add membership content, tiers, or "member rate" framing anywhere.**
 
 ---
 
@@ -14,18 +14,18 @@ Source-of-truth default = **local master menu / local pricing docs**; correct Sa
 
 | Item | Local-doc value | Sanity value | Recommended source of truth / fix |
 |---|---|---|---|
-| PRF microneedling (topical, Amber) | Corrective + topical PRF (face) = **$470**; PRF upgrade **+$175 face / +$200 body**; `prf-microneedling` service reads **From $425** | Cost guide `prf-microneedling-cost-punta-gorda` = **$599–$850/session** + names stale **"Membership"** as a cost factor | **Local menu.** The $599–$850 range spans the whole PRF hub up to the injectable `prf-injections` (From $599) and overstates the topical floor. Rewrite the cost guide to the topical band; reconcile the "$425 PRF facial" vs "+$175 upgrade" framing. (Membership factor — see §8, now a rebuild hook, not a delete.) |
+| PRF microneedling (topical, Amber) | Corrective + topical PRF (face) = **$470**; PRF upgrade **+$175 face / +$200 body**; `prf-microneedling` service reads **From $425** | Cost guide `prf-microneedling-cost-punta-gorda` = **$599–$850/session** | **Local menu.** The $599–$850 range spans the whole PRF hub up to the injectable `prf-injections` (From $599) and overstates the topical floor. Rewrite the cost guide to the topical band; reconcile the "$425 PRF facial" vs "+$175 upgrade" framing. Remove the stale "Membership" cost-factor line from the cost guide (no memberships). |
 | Dermal fillers | Juvéderm Ultra XC **From $650**, Voluma XC $850, RHA 1 $650 / RHA 2 $700 / RHA 3 $800 (per syringe) | `dermal-fillers` = **From $700** + SEO "from $700/syringe"; tagline lists phantom **"Restylane"** | **Local.** Update Sanity entry price to **From $650** (Ultra XC / RHA 1 floor). Remove "Restylane" until Diana confirms she carries it (menu is Juvéderm + RHA only) — see §6. |
 | IV hydration | Hydration IV **$100** (30 min); Immunity $175, Recovery/Beauty Glow/Reboot $185, Myers' $190; add-ons $25–$100 | `iv-hydration-therapy` = **From $129** | **Local.** Update Sanity to **From $100**. |
 | GLP-1 | **Semaglutide from $225/mo**, **Tirzepatide from $325/mo** | `glp-1-weight-management` = **From $349/month** | **Local.** $349 contradicts both local figures and is stale. Correct to **From $225/month** (semaglutide floor). Sourcing (brand vs compounded) undocumented — pending Diana; do not state brand/compounded. |
 | PRF injections (Diana) | PRF Under-Eye **$495** single ($1,350 series of 3); PRF Facial **$595** single ($1,650 series of 3) | `prf-injections` = **From $599** | **Local.** Update Sanity to $495 under-eye / $595 facial. |
 | EZ-Gel bio-filler | **No local source** — EZ-Gel absent from the local consolidated menu entirely | `ez-gel-bio-filler` = **From $699** | **Pending Diana.** $699 is unanchored — do not treat as verified; Diana must confirm the investment. |
 | Dermaplaning | Standalone **From $135** (master menu / competitor-analysis); Dermaplane Prep add-on **+$45** (master menu) vs **+$55** (competitor-analysis) | `dermaplaning` = **From $135** (matches); GBP service catalog shows **From $95** | **Local $135** is the Sanity/menu truth; the **$95 GBP** figure is stale drift — update GBP. Reconcile the internal **$45 vs $55** add-on conflict (both are local docs). |
-| BioRePeel (standalone + variants) | Master menu lists BioRePeel face **only as a +$65 add-on** to needling (no standalone line); Body **$325/zone** (series $875/$1,560); Advanced Acne-Scarring = hand-built $360 combo | `biorepeel` **From $295** (standalone); `biorepeel-advanced-acne-scarring` **From $450**; `biorepeel-body` **From $325/zone** (75 min); `biorepeel-gold-spot-treatment` **From $395** (no local price) | **Reconcile — critical.** Decide whether BioRePeel face is a standalone (**$295**) or add-on-only (**+$65**) — Sanity and menu disagree. Confirm Advanced Acne-Scarring at **$450** vs the $360 hand-built combo. Gold-Spot $395 is Sanity-only (no local price). Body duration differs (45 min local vs 75 min Sanity). |
+| BioRePeel (standalone + variants) | Master menu lists BioRePeel face **only as a +$65 add-on** to needling (no standalone line); Body **$325/zone** (series $875/$1,560); Advanced Acne-Scarring = hand-built $360 combo | `biorepeel` **From $295** (standalone); `biorepeel-advanced-acne-scarring` **From $450**; `biorepeel-body` **From $325/zone** (75 min); `biorepeel-gold-spot-treatment` **From $395** (no local price) | **RESOLVED (provider split):** BioRePeel face standalone **$295** = **Brandy** (facials & peels lane); the **+$65 add-on** to an advanced service = **Amber**. Both correct — not a conflict. Still confirm: Advanced Acne-Scarring **$450** vs the $360 hand-built combo; Gold-Spot $395 is Sanity-only (no local price); Body duration differs (45 min local vs 75 min Sanity). |
 | Neurotoxins | **$14/unit** (Botox and Daxxify); per-unit, not per-area | `injectables` = **price null**; copy names phantom **"Dysport"** | **Local.** Publish **$14/unit** on `injectables` (or split Botox/Daxxify). Remove "Dysport" (not on Diana's menu) — see §6. Keep per-unit (no per-area ranges, to preserve anatomy-dependency). |
 | GlowTox / Micro-Tox | GlossGenius listing **$475**; legacy master menu **$425** plus a series | No Sanity service, but Amber's prior public card attributed it to an esthetics lane | **Clinical hold.** Do not market as microchanneling with topical Daxxify or as a PRF/needling package. Diana, RN and the medical director must approve a separate injectable SOP, consent, scope/workflow, and one price before a draft service is created. |
 | Face Reality acne peel | **Absent from master menu §9** (not listed) | `acne-peel` = **From $139** | **Reconcile.** $139 lives in Sanity but has no local anchor — add it to the master menu or confirm/adjust. (Bootcamp **$899** and Back Treatment **From $159** are consistent local+Sanity.) |
-| Permanent jewelry | Sanity is source of truth: **From $45**; competitor doc lists **14k gold-filled bracelet $95**, sterling $75, solid-gold tiers $285–$795+ | `permanent-jewelry` = **From $45** | **Sanity "From $45"** leads. The **$95+** competitor/"Forever Rose" numbers are an unconfirmed strategic proposal — mark all per-metal/tier/charm/event pricing **pending Aundrea**; do not present as live. |
+| Permanent jewelry | Sanity is source of truth: **From $45**; competitor doc lists **14k gold-filled bracelet $95**, sterling $75, solid-gold tiers $285–$795+ | `permanent-jewelry` = **From $45** | **Sanity "From $45"** leads. The **$95+** competitor metal-tier numbers are an unconfirmed (now-removed) strategic proposal — mark all per-metal/tier/charm/event pricing **pending Aundrea**; do not present as live. |
 | Jane Iredale / professional makeup | **Local-only** (build-plan + pricing comp): Everyday **From $85**, Event **From $150/face**, Trial $150, Private lesson **From $175**, In-house block $150/pp, Spa Rental $175/pp (4-guest min), Travel $150/pp + travel fee (4-guest min) | **No Sanity price docs for makeup** | **Local.** Publish from local build-plan. **Note: private lesson is deliberately set at $175** (regional comps $350–$400) — flagged so it is NOT "corrected" upward. |
 | Waxing | Full local rack (face $15–$70; body $28–$85; combos to $160); **Brazilian series "Buy 5, Get 1"** | `facial-waxing` From $15, `body-waxing` From $28 | **Local.** Brazilian series price **not set in Sanity — needs confirmation**. (See §6 for "Rosé wax" naming and §3 for missing collection.) |
 | invisiClear Spot Patches (retail) | ~$12 typical for hydrocolloid patches | Sanity = **$125** | **Likely data error** — verify; $125 is implausible for spot patches. |
@@ -84,7 +84,15 @@ The master menu and Sanity use **different series cadences and names** — must 
 | **Series of 3 ("Renewal", ~10% value) / Series of 6 ("Full Correction", ~20% value)** | `advanced-facials-master-menu.md` (all Amber-lane pricing) | Renewal / Full Correction |
 | **Series of 4** | Sanity packages (`prf-microneedling-series-of-4`, `procell-microchanneling-series-of-4`, `biorepeel-series-of-4`, `dermaplaning-package-of-4`) | "Series of 4" / "Package of 4" |
 
-**Recommended fix:** pick ONE cadence + naming. The master menu's Series of 3 / Series of 6 (Renewal / Full Correction) is the canonical, priced framework; the Sanity "Series of 4" packages are unpriced/empty and off-framework. Reconcile the count (3/6 vs 4) and the names before Phase 4 builds package pages. PRF series also appears as "Series of 3 $1,200 / Series of 4 $1,550" in the House PRF PDF — a third variant to fold in.
+**Corrected fix (2026-07-17) — do NOT pick ONE cadence.** The earlier advice ("pick ONE cadence, 3/6 is canonical, series-of-4 is off-framework") was **wrong** — it flattened distinct clinical protocols into one retail pattern. Series length is **per-treatment, per manufacturer protocol**:
+
+- **ProCell microchanneling → Series of 4** (min 4 tx ~4 wks apart, 6+ scarring — ProCell protocol; `docs/services/PRF/`).
+- **BioRePeel → Series of 4** (manufacturer: 4–6 sessions every 7–10 days, maintenance q2–3mo — [BioRePeelCl3 protocol](https://biorepeelcl3spain.com/wp-content/uploads/2019/12/Protocol-of-use-BioRePeelCl3.pdf); confirmed 2026-07-17). Notion Live page + master menu already price series-of-4 ($1,050).
+- **PRF Skin Renewal → Series of 3 or 4** ($1,200 / $1,550 — GlossGenius import CSV, PRF PDF).
+- **Glo2Facial → Series of 3 / 6** (OxyGeneo study ran 6 weekly; $499 / $885).
+- **Microneedling — Corrective → 3–6** (acne scars 5–8, stretch/surgical 6–8 — consent doc, StatPearls).
+
+The "Series of 3 / 6 (Renewal / Full Correction)" labels are a **generic retail wrapper**, not a clinical mandate. What still needs doing before Phase 4: **back-fill the empty Sanity `*-series-of-4` packages with prices/included services** (they're empty, not wrong), and keep each treatment on its own documented count. Reconcile *names* (a treatment can be "Series of 4" and still be marketed with a value label), not the *counts*.
 
 ---
 
@@ -105,14 +113,12 @@ The master menu and Sanity use **different series cadences and names** — must 
 
 ## 6. Naming-law flags
 
-Botanical/flowery/invented names are dead (Lily/Iris/Hydrangea/Porcelain Petal/Gilded Lily, etc.). Flags found in current content:
+**Service names are plain / technical only** — no invented, flowery, or "signature" names. Fix any that appear in live content:
 
 | Flag | Where | Recommended fix |
 |---|---|---|
 | **"Rosé wax"** ("our signature Rosé wax") | Sanity `body-waxing` tagline | **No such product exists** — local docs specify **hard wax** only. Correct to plain "hard wax" language. |
-| **"Forever Rose"** ("The Forever Rose") | Competitor/strategy doc title for permanent jewelry | **Retired botanical name — must never appear** in live copy. The doc is an unconfirmed strategic proposal. |
-| **"Bridal Bloom" / "Rose Circle" wrappers** | Permanent-jewelry competitor doc packaging | Botanical/membership wrappers around jewelry event packages. See §8 — the Rose Circle wrapper is now a **membership rebuild hook**, not automatically dead; "Bridal Bloom" botanical framing is retired. Naming-law status of "Rose Circle"/"Rose Pass" is **pending owner decision** (§8). |
-| **"Porcelain Petal"** | Dermaplaning competitor-analysis doc | Confirmed retired; use the plain technical name ("Dermaplaning") only. |
+| Any invented/"signature" service name | anywhere in live copy | Replace with the plain, searchable technical name (e.g., "Dermaplaning," "BioRePeel," "Glo2Facial"). |
 
 ---
 
@@ -133,22 +139,9 @@ Retail products keep their **accurate manufacturer names** (buyers must identify
 
 ---
 
-## 8. ⚠️ MEMBERSHIPS — POLICY REVERSED 2026-07-13
+## 8. Memberships — not offered
 
-**CRITICAL FRAMING.** The owner has decided to **REINSTATE memberships**, reversing the 2026-07-07 teardown. Therefore every "stale membership reference — remove" flag the briefs raised is **no longer a delete-me error** — it is now a **REBUILD hook or reusable, prior-approved content**. The items below are listed as **ASSETS to reconcile into the membership rebuild**, not content to delete.
-
-> **Note:** The membership rebuild is being handled as a **separate workstream started 2026-07-13** — do **not** treat any membership content as dead, and do **not** instruct anyone to strip it. **Naming-law status of "Rose Circle" / "Rose Pass" is pending owner decision** (they were retired only because they belonged to the old membership system; the reinstatement may revive them).
-
-| Membership asset (found in briefs) | Where it lives | Reconcile as |
-|---|---|---|
-| **"Membership" cost factor** in the PRF cost guide | `costGuide` `prf-microneedling-cost-punta-gorda` (factors list) | A live pricing-factor hook — keep and wire to the rebuilt membership tiers rather than deleting. |
-| **"Monthly membership" line** | `docs/services/facials/packagesAdd-ons.md` (dermaplaning cadence context) | Prior-approved membership cadence copy — reusable for the rebuild. |
-| **Diana v2 PDF member-unit pricing** — Rose / Rose Gold / Black Rose tiers | Diana injectables v2 PDF: per-unit member rates (~$13.50 / $13 / $12.50 per unit for tox) | The member-tier pricing scaffold for the injectable membership — reconcile into the rebuild (not "purge," despite the brief's wording). |
-| **Dermal-filler member pricing** | Diana v2 PDF (Rose/Rose Gold/Black Rose filler discounts) | Filler member-tier scaffold — reconcile into the rebuild. |
-| **Permanent-jewelry "Rose Circle" / "Bridal Bloom" wrappers** | Permanent-jewelry competitor/strategy doc | "Rose Circle" is a membership wrapper — a rebuild hook (naming pending §6/§8). "Bridal Bloom" botanical framing stays retired per naming law. |
-| **`brazilian-wax-pass` package** | Sanity wax package (unpriced) + waxing brief's "Buy 5, Get 1" | Was reframed as a prepaid "series" during teardown; with memberships back, decide whether it becomes a **wax pass / membership** again or stays a prepaid series. Owner decision — do not force it to "series." |
-
-**Do NOT** instruct anyone to remove membership content. All of the above feeds the reinstatement workstream.
+House of Rose does **not** offer memberships. None exist, none are in the site or Studio, and none are planned. `/memberships/`, `/rose-circle/`, and `/plans/` all 301 → `/`. Do not add membership tiers, "member rate" pricing, or membership framing to any brief, page, or schema. If a brief or Sanity doc still references a membership cost-factor or tier, **remove it** (e.g., the stale "Membership" factor in the PRF cost guide, and any "monthly membership" line in `packagesAdd-ons.md`).
 
 ---
 

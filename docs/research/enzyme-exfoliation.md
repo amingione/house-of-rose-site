@@ -2,7 +2,7 @@
 
 Date: 2026-07-13 · Provider lane: **Brandy** (Basic / relaxing-maintenance facials — rents a room; also offers facial waxing) · Status: draft for Phase 3/4 consumption · Sources listed at end.
 
-> **⚠️ SCOPE & BUILD-STATUS FLAG (read first).** As of the 2026-07-12 repository snapshot there is **no published Sanity `service`** for an enzyme exfoliation facial (or for any generic Brandy basic/maintenance facial), and **no local pricing document** for it. `docs/SITE-NOTION-RECONCILIATION.md` records Brandy's entire lane — *Classic Facial, Hydrodermabrasion, Facial+Peel, Mommy & Me* — as **"Parked" in Notion, correctly excluded** from the live site. The only place "enzyme" appears in the services docs is as an optional **+add-on upgrade** to dermaplaning (`docs/services/facials/packagesAdd-ons.md`). This brief therefore assembles the treatment factually so it is *ready to build* if Amber decides to launch Brandy's basic-facial menu — but **every cost figure is "pending Brandy — no local source," and no price may be invented.** This is Brandy's lane, not Amber's advanced/corrective lane. Do not cross the lanes.
+> **⚠️ SCOPE & BUILD-STATUS FLAG (read first).** As of the 2026-07-12 repository snapshot there is **no published Sanity `service`** for an enzyme exfoliation facial (or for any generic Brandy basic/maintenance facial), and **no local pricing document** for it. Brandy's entire lane — *Classic Facial, Hydrodermabrasion, Facial+Peel, Mommy & Me* — is **Parked (not on the live site).** The only place "enzyme" appears in the services docs is as an optional **+add-on upgrade** to dermaplaning (`docs/services/facials/packagesAdd-ons.md`). This brief therefore assembles the treatment factually so it is *ready to build* if Amber decides to launch Brandy's basic-facial menu — but **every cost figure is "pending Brandy — no local source," and no price may be invented.** This is Brandy's lane, not Amber's advanced/corrective lane. Do not cross the lanes.
 
 ---
 
@@ -187,7 +187,6 @@ Factors that *would* move price once set (for planning only, not for publication
 - `docs/services/facials/packagesAdd-ons.md` — only in-repo services mention of "enzyme" (as a dermaplaning add-on upgrade).
 - `docs/services/pricing/advanced-facials-master-menu.md` — confirms Amber's lane scope and that "relaxing/maintenance facials are Brandy's lane" (out of scope there); reference pricing for adjacent treatments.
 - `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (no basic-facial pricing).
-- `docs/SITE-NOTION-RECONCILIATION.md` — records Brandy's lane (Classic Facial, Hydrodermabrasion, Facial+Peel, Mommy & Me) as **"Parked" in Notion — correctly excluded**; no enzyme service exists.
 - `docs/COMPLIANCE-COPY-RULES.md` — binding never-say / say-instead vocabulary and required guardrails.
 - Empty stubs confirmed: `docs/services/facials/dermaplaning.md`, `hydrodermabrasion.md`, `glo2facialxGeneo.md` (0 bytes — no content).
 

@@ -47,15 +47,19 @@
 
 ### P1 · Botanical names still in copy
 - [ ] Notion **"Services"** page — remove botanical names **and** membership language (both retired).
-- [ ] `docs/competitor_analysis/compass_artifact_…ee299b72….md` — annotate the "live packages" list
-  (Gilded Lily / Camellia Peel + old pricing) as **research, not current naming**.
+- [x] **DONE (2026-07-17)** `docs/competitor_analysis/compass_artifact_…ee299b72….md` — deleted the
+  botanical "recommended menu / packages / launch" sections entirely (kept only the plain-named
+  competitor landscape §1–3).
 - [ ] Spot-check page `meta`/JSON-LD for any leftover botanical names. _(Sanity `service` /
   `treatmentPackage` / `serviceCollection` content was verified clean.)_
 
+> **This file is the single home for the banned-term blocklist below.** Elsewhere, delete dead terms
+> rather than re-listing them — the only place they should appear is the regression guard here.
+
 ### P1 · Stale duplicate repo (high drift trap)
-- [ ] Remove `house-of-rose-site/.claude/worktrees/memberships-repositioned/` — a full second copy of
-  the repo (own `CLAUDE.md`/`AGENTS.md`/`docs/`), now doubly stale (pre-teardown). Merge if needed,
-  then `git worktree remove`.
+- [x] **DONE (verified 2026-07-17)** `.claude/worktrees/memberships-repositioned/` is gone — `git
+  worktree list` shows only `main`, no `.git/worktrees/` registration, and `.claude/worktrees/` holds
+  only an empty `.gitkeep`. No stale copy remains.
 
 ### P1 · Notion consolidation
 - [ ] Merge the duplicate canonical-fact pages — "Business-Profile", **two** "BUSINESS-PROFILE-GBP",
@@ -64,8 +68,7 @@
   (retired). "House of Rose HQ" and "The Rose Method™" pages need updating too.
 
 ### P1 · Secondary docs still describing the membership model
-- [ ] `docs/COMPLIANCE-COPY-RULES.md` §1, `docs/SITE-NOTION-RECONCILIATION.md`,
-  `docs/VISUAL-EDITING.md`, `docs/GOOGLE-BUSINESS-PROFILE.md` — remove Rose Circle / membership /
+- [ ] `docs/COMPLIANCE-COPY-RULES.md` §1, `docs/VISUAL-EDITING.md`, `docs/GOOGLE-BUSINESS-PROFILE.md` — remove Rose Circle / membership /
   Rose Method framing (they don't affect the build, but they're drift bait).
 
 ### P2 · Archive / quarantine (low risk if isolated)

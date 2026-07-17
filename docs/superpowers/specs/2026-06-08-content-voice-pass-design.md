@@ -1,7 +1,11 @@
 # House of Rose Aesthetics — Content & Voice Pass (Design Spec)
 
+> **⚠️ SUPERSEDED HISTORICAL SPEC.** The site has since shipped and this plan no longer reflects the
+> current build. In particular, **memberships are not offered and were removed** — ignore every
+> "Memberships" page / nav item / section / tier reference below.
+
 **Date:** 2026-06-08
-**Status:** Draft for user review
+**Status:** Superseded (historical)
 **Owner:** Amber Mingione
 **Repo:** `house-of-rose-site` (Astro + Sanity monorepo)
 **Sanity:** project `4e7axyi7`, dataset `production`

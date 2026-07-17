@@ -187,7 +187,7 @@ Add each as a Service with its name + a description. Brand rules applied:
 
 **Neuromodulator Treatment (Botox / Dysport / Xeomin / Jeuveau)** · _Shared at consultation_
 > Thoughtful, conservative neuromodulator treatment for a refreshed — never frozen — look. Pricing and a
-> personalized plan are shared at your consultation; member rates available.
+> personalized plan are shared at your consultation.
 
 **Dermal Filler** · _Shared at consultation_
 > Natural-looking volume and contour, placed with restraint by a named provider. Candidacy and pricing are
@@ -252,13 +252,13 @@ strategy and validated against current 2026 market data.
 
 **BOTOX treatments** · _From $15/unit_ · _member from $12_ — _or set price type "No price" for consult-only_
 > Thoughtful, conservative treatment for a refreshed, natural look — never frozen. Your plan and unit count
-> are tailored at a consultation. Member rates available.
+> are tailored at a consultation.
 > _Twin of your custom "Neuromodulator Treatment." Strategy note: consult-only is still the recommended
 > luxury play; only post the per-unit number if you want the transparency edge._
 
 **Dysport treatment** · _From $15/unit_ · _member from $12_ — _or "No price"_
 > A smooth, natural-looking option that spreads evenly across larger areas like the forehead. Your plan is
-> tailored at consultation. Member rates available.
+> tailored at consultation.
 
 **JUVÉDERM treatments** · _From $795_ — _or "No price" for consult-only_
 > Natural-looking volume and contour with JUVÉDERM, placed with restraint by your provider. Candidacy and

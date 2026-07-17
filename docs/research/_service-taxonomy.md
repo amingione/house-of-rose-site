@@ -3,7 +3,7 @@
 **Date:** 2026-07-13 · **Source:** Amber's intended categorization
 (`Obsidian/House of Rose/05-SERVICES/Services.md`), priced against the live **GlossGenius catalog**
 (`docs/glossgenius_catalog.csv` = commerce truth). This is the authoritative Category → Provider →
-Service → Options/Add-ons map for Phase-4 Sanity `serviceCollection` restructure **and** membership grouping.
+Service → Options/Add-ons map for the Phase-4 Sanity `serviceCollection` restructure.
 
 **Price legend:** ✅ in GG at this price · ⚠️ in GG but structured differently · 🟥 NOT in GlossGenius yet
 (intended per Amber, needs adding to GG before it's bookable/priceable).
@@ -181,9 +181,3 @@ Microchanneling $349 · PRF Skin Renewal $450. Glo2Facial is an **advanced facia
    names; the naming law killed *botanical* names, "Rose" is the brand. Keep as-is unless you want to rename in GG.
 7. **Phase 4:** rebuild Sanity `serviceCollection`s to these 12 categories (current 4 don't match).
 
-## Membership grouping (ties to `memberships-pricing.md`)
-- **Facial-of-the-Month tiers** draw from the **Basic Facials ladder** (Brandy/Aundrea, $80–$200) + **Advanced
-  Facials/Glo2** (Amber, $195).
-- **IV membership** = IV Hydration Therapy lane ($185 drip).
-- **Weight Management** (GLP-1) is already monthly — its own program.
-- Waxing/Lashes could become a "grooming" add-on membership later (lower priority; smaller ticket).

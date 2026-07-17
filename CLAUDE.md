@@ -1,5 +1,51 @@
 # House of Rose — Working Memory
 
+## ⚠️ Rule #0 — Verify before you assert or change (binding on EVERY task)
+Anything that has to be **factually correct** — pricing, series counts, service names, descriptions,
+provider lanes, hours, NAP, protocols — must be **checked against the real sources before I state or
+change it**, and I do not invent, round, or "make it consistent" from memory.
+
+**Verification order (do all that apply, in this order):**
+1. **Existing local docs** — `docs/services/**` (incl. GlossGenius import CSVs), `docs/research/**`
+   (treatment briefs + `_pricing-catalog.md`, `_gaps.md`), `docs/competitor_analysis/**`.
+2. **Notion** — the House of Rose HQ workspace (service pages carry `Competitor Pricing`, `Pricing
+   Notes`, protocol, and provider fields). Search + fetch the specific page.
+3. **Confirm with research** — the clinical/manufacturer/market fact (protocol, comp price, label
+   claim). If no comp/source exists locally or in Notion, **research the web for our area** and cite it.
+
+**Then:**
+- **Cite the source** for any number/claim I set (which doc/Notion page/URL it came from).
+- **Do NOT normalize across everything. This is the #1 recurring failure.** Different services, providers,
+  and platforms legitimately differ — and that difference is usually *correct*, not drift to be "fixed":
+  - **By protocol:** ProCell = series of **4** (manufacturer min 4, 6+ scarring); BioRePeel = **4** (mfr 4–6);
+    Glo2Facial = **3/6**; microneedling = **3–6**. Series length is per-treatment, never one house count.
+  - **By provider lane:** the *same treatment* can have *different models* per provider. BioRePeel = **add-on
+    only** for Amber (advanced lane, +$65 onto microchanneling) but a **standalone** for Brandy (facials &
+    peels lane). Two primary models, both correct. Always ask "whose lane?" before assuming one model.
+  - **By platform:** GlossGenius (commerce truth) ≠ Sanity (display) ≠ local docs (staging) ≠ Notion (HQ).
+    They are *allowed* to differ; reconcile toward the right source-of-truth per the truth rule, don't
+    flatten them to look identical.
+  Before "fixing" an inconsistency, find out **why** it exists. If I can't explain the why, I don't change it.
+- **Don't treat stale/retired material as current, and don't preserve it "for reference."** Two things
+  are permanently dead unless Amber explicitly revives them: **memberships** (no memberships of any kind)
+  and **invented/flowery "signature" service names** (use plain technical names only). Also dead: any
+  "special/discount" framing. If I find any of these in a doc, **delete it — don't annotate it**, because
+  a note that names the dead thing just gets referenced and reintroduced. Historical artifacts are not
+  the menu; the live menu is `docs/services/ALL-SERVICES-PRICING.MD` + GlossGenius + Notion.
+- **When I find something actually incorrect** (drift, a stale price, a wrong name, a dead concept treated
+  as live, a provider-lane error), **clean it up** — correct it, cite the fix, flag the conflict — rather
+  than leaving it or silently overwriting the reason it existed.
+- Where sources genuinely disagree and it's a real business call, **surface it and ask** — don't pick
+  one and steamroll.
+
+_Origin: 2026-07-17 — repeated failure across one session: (1) changed ProCell series to fit a pattern
+without checking why 4 existed (ProCell protocol); (2) invented a BioRePeel "standalone vs add-on"
+conflict that was really an Amber-vs-Brandy provider split; (3) surfaced dead botanical names +
+memberships as if live. Core issue = **forcing one canonical pattern onto everything instead of letting
+provider / protocol / platform differences stand.** Don't repeat this._
+
+---
+
 ## Business
 House of Rose is a luxury spa & wellness brand.
 This is a **completely separate business from FAS Motorsports** — no shared infrastructure, no Medusa, no Vendure.
@@ -17,23 +63,19 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **GBP CTA:** call/text (no online-booking button).
 
 ## Providers & Team (memory — never re-ask)
-- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, ProCell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**.
+- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, ProCell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service (microchanneling/microneedling) — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
-- **Brandy** — Lane: **Basic Facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane).
+- **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane). **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
 - **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **Waxing** + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
 
-## Memberships — DEFERRED (post-launch) · not shipping
-Amber explored reinstating memberships (2026-07-13) but **deferred them to get the site live**. The
-prototype build (schema, `/memberships/` page, nav/sitemap/llms wiring, redirect changes) was
-**reverted** — memberships are **not in the site or Studio**. `/memberships/*`, `/rose-circle/*`,
-`/plans/*` again 301 → `/` (in `packages/web/netlify.toml`). **Do not add membership UI/schema until
-Amber revisits.** The research is preserved for later in `docs/research/memberships*.md` +
-`_pricing-catalog.md` (Diana's own menus surfaced real tiers: Essentials $99 / Radiance $199 / Luxe
-$299 — revisit post-launch). **GLP-1** remains a normal **service** (Diana).
+## Memberships — NOT OFFERED
+House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are
+planned. `/memberships/*`, `/rose-circle/*`, `/plans/*` all 301 → `/`. **Never add membership UI,
+schema, tiers, or "member rate" framing anywhere.** (GLP-1 is a normal **service** — Diana — not a
+membership.)
 
-- **Naming law (still active):** botanical/flowery service names are dead (Lily/Iris/Hydrangea/Porcelain
-  Petal/Gilded Lily/etc.) — use plain, searchable names. The brand terms "Rose Circle," "Rose Method," and
-  "Rose Pass" stay **retired**.
+- **Naming law:** service names are **plain, technical, searchable only** — no invented, flowery, or
+  "signature" names, and no membership-style program names.
 
 ## Checkout — Stripe Elements + Shippo (see `docs/CHECKOUT.md`, binding)
 - **GlossGenius CANNOT sell products online** (no online store — their docs say so). It is

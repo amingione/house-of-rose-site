@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-13 · **Provider lane:** Aundrea Pedigo (waxing face/body · permanent jewelry · professional makeup / Jane Iredale) · **Status:** draft for Phase 3/4 consumption · Sources listed at the end.
 
-> **Scope note:** This is a **beauty-enhancement / experience** offering, not a medical or aesthetic *treatment*. No collagen/skin claims, no downtime, no candidacy-by-skin-type. The compliance frame here is lighter than the facial/injectable lanes — but two hard rules still bind: (1) do **not** use the literal word **"permanent"** as a promise the way the naming implies it can *never* come off — it snips off in seconds, and we should say so; (2) the retired botanical name **"Forever Rose"** and every membership/"Rose Circle"/"Rose Pass" wrapper are **dead** and must never appear.
+> **Scope note:** This is a **beauty-enhancement / experience** offering, not a medical or aesthetic *treatment*. No collagen/skin claims, no downtime, no candidacy-by-skin-type. The compliance frame here is lighter than the facial/injectable lanes — but two hard rules still bind: (1) do **not** use the literal word **"permanent"** as a promise the way the naming implies it can *never* come off — it snips off in seconds, and we should say so; (2) invented/flowery service names and any membership wrapper are **dead** and must never appear — use the plain name "Permanent Jewelry."
 
 ---
 
@@ -139,7 +139,7 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
 - **Group event** — hosting/booking structure vs. à-la-carte per-piece pricing.
 - **Re-weld / repair** — replacing a broken jump ring or re-welding after removal.
 
-> **⚠️ Do NOT publish a full metal/tier price table.** The only detailed local pricing lives in `docs/competitor_analysis/compass_artifact_…_markdown.md` §I ("14k Gold-Filled Bracelet $95," "Sterling Silver Bracelet $75," "Solid Gold Tiers $285–$795+," charms, layering, group fees, etc.). That document is a **strategic proposal**, it is titled with the **retired botanical name "Forever Rose,"** it is wrapped in **removed membership/Rose-Circle language**, and its bracelet price (**$95**) **directly contradicts** the Sanity source of truth (**From $45**). **Treat every per-metal/per-tier number in that doc as "pending Aundrea" — do not present it as live pricing.** Lead with the Sanity "From $45"; mark metal-tier, charm, event, and re-weld pricing as *confirmed at booking / pending Aundrea* and flag in §GAPS.
+> **⚠️ Do NOT publish a full metal/tier price table.** There is **no confirmed local metal-tier pricing** — the only detailed numbers ("$95 14k gold-filled," "$75 sterling," "$285–$795+ solid gold") came from an old strategic proposal that has been removed, and they contradict the Sanity source of truth (**From $45**). **Lead with the Sanity "From $45";** mark metal-tier, charm, event, and re-weld pricing as *pending Aundrea* and flag in §GAPS.
 
 ---
 
@@ -171,7 +171,7 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
   - The word **"permanent"** is the product name and unavoidable — but pair it honestly with "clasp-free / no clasp, snips off anytime." Never imply it can *never* be removed.
   - Compliance rule bans **"permanent"** as an *outcome* word ("permanent results/removal") — that ban is about medical claims; the *product category* "permanent jewelry" is a fixed industry term and is fine, but do **not** bleed it into any skin/medical claim.
   - Never call it **"day spa"** anything, never wrap it in **membership / Rose Pass / Rose Circle / Rose Rewards / Rose Method** language (all removed 2026-07-07).
-  - Never use the retired botanical name **"Forever Rose"** (or any flowery service name — naming law).
+  - Never use any invented/flowery service name — plain "Permanent Jewelry" only (naming law).
   - No **discount language** — "deal / % off / sale / cheap." Pricing is "from," "starting at," "investment."
 - **Required guardrails:** honest removal story (snips off), honest metal durability (gold-filled ≠ literally forever), pacemaker/pregnancy/allergy notes, MRI-removal note. No overclaiming that it's indestructible or truly un-removable.
 
@@ -217,9 +217,8 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
 **Local docs read (paths):**
 - `docs/services/pricing/advanced-facials-master-menu.md` — confirms permanent jewelry is Aundrea's separate lane, explicitly out of scope for the facials menu (no jewelry pricing there).
 - `docs/services/waxing/body.md`, `docs/services/waxing/face.md` — Aundrea's waxing lane context (no jewelry content).
-- `docs/competitor_analysis/compass_artifact_wf-ee299b72-…_text_markdown.md` §I "Permanent Jewelry — The Forever Rose" + §5/§6 — the **only** detailed local price/positioning source; **strategic proposal, not confirmed**; uses retired "Forever Rose" name + removed membership language; bracelet price ($95) conflicts with Sanity ($45).
+- Permanent-jewelry metal-tier pricing has **no confirmed local source** — pending Aundrea. Sanity "From $45" is the only confirmed number.
 - `docs/competitor_analysis/Punta-Gordas-regenerative-aesthetics-studio.md` — positioning guidance (keep jewelry as event/referral draw, not first-screen medical headline).
-- `docs/SITE-NOTION-RECONCILIATION.md` — confirms "Forever Rose" is a **retired** botanical name (signature-name layer removed 2026-07-01) and memberships removed 2026-07-07.
 - `docs/prompts/site-elevation/02-research-agents.md`, `00-MASTER-PROMPT.md` — provider-lane assignment (Aundrea: waxing / permanent jewelry / makeup).
 
 **Sanity docs consulted (from published snapshot):**

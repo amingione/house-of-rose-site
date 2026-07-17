@@ -1,6 +1,6 @@
 # BioRePeel — Research Brief
 
-**Date:** 2026-07-13 · **Provider lane:** Amber (advanced facials) · **Status:** draft for Phase 3/4 consumption
+**Date:** 2026-07-13 (provider-split corrected 2026-07-17) · **Provider lanes:** **Brandy** = standalone BioRePeel facial + standalone series (basic facials & peels lane); **Amber** = BioRePeel as a **+$65 add-on to an advanced service** + the advanced acne-scarring/body/gold variants. · **Status:** draft for Phase 3/4 consumption
 **Sanity slugs in scope:** hub `biorepeel`, treatments `biorepeel-advanced-acne-scarring`, `biorepeel-body`, `biorepeel-gold-spot-treatment`, package `biorepeel-series-of-4`, concerns `acne-scarring` / `sun-damage` / `fine-lines-laxity`
 (Sources list at end.)
 
@@ -8,7 +8,7 @@
 
 ## 1. The 3-sentence answer
 
-BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, texture, and radiance with little to no visible peeling and essentially no downtime — you can walk out and back into your day. Its two-phase (biphasic) formula pairs 35% trichloroacetic acid with salicylic and other acids, GABA, amino acids, and vitamins to exfoliate the surface while feeding the skin underneath. At House of Rose in Punta Gorda it is Amber's treatment, offered as a standalone face peel and in advanced acne-scarring, body, and targeted gold spot-treatment variants — with final candidacy confirmed by the provider at consultation, because not every client is a candidate and individual outcomes vary.
+BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, texture, and radiance with little to no visible peeling and essentially no downtime — you can walk out and back into your day. Its two-phase (biphasic) formula pairs 35% trichloroacetic acid with salicylic and other acids, GABA, amino acids, and vitamins to exfoliate the surface while feeding the skin underneath. At House of Rose in Punta Gorda, BioRePeel is **provider-split**: **Brandy** (basic facials & peels lane) offers the **standalone** face peel and standalone series; **Amber** (advanced lane) offers it **only as a +$65 add-on onto an advanced service** (microchanneling/microneedling) and performs the advanced acne-scarring, body, and gold spot-treatment variants — with final candidacy confirmed by the provider at consultation, because not every client is a candidate and individual outcomes vary.
 
 ## 2. How it works
 
@@ -54,7 +54,7 @@ BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, textu
 
 ## 6. Concern mapping
 
-- **`acne-scarring`** (existing) — primary map for the standalone peel (post-acne marks/texture, "the appearance of") and the flagship map for the **advanced acne-scarring protocol** (BioRePeel + microneedling).
+- **`acne-scarring`** (existing) — primary map for post-acne marks/texture ("the appearance of"), and the flagship map for the **advanced acne-scarring protocol** (BioRePeel add-on + microneedling — Amber's lane).
 - **`sun-damage`** (existing) — strong map: BioRePeel targets dullness, uneven tone, and early photoaging / the visible signs of sun damage. Good candidate to link the hub prominently here.
 - **`fine-lines-laxity`** (existing) — supporting map: surface fine lines and skin-quality/radiance (biostimulation of collagen/elastin per manufacturer).
 - **`stretch-marks`** (existing) — maps to the **BioRePeel Body** variant (appearance of stretch marks / body texture), alongside microneedling-body.
@@ -75,17 +75,21 @@ BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, textu
 
 - **Standalone BioRePeel (face):**
   - **Sanity (published) `biorepeel` hub:** **From $295**, 45 min.
-  - **Master menu (2026-07-10):** lists BioRePeel (face) only as a **+$65 add-on** to a needling treatment, not as a standalone-priced service. **CONFLICT — flag (see §GAPS).**
+  - **NOT a conflict — it's a PROVIDER SPLIT (confirmed by Amber 2026-07-17):**
+    - **Amber (advanced lane):** BioRePeel is **add-on only** — layered onto an *advanced* service (microchanneling/microneedling) at **+$65**. Amber does **not** offer it as a standalone facial.
+    - **Brandy (basic facials & peels lane):** BioRePeel **standalone** face peel, and a **standalone series of 4** ($1,050 per master menu / Notion). Standalone BioRePeel lives in Brandy's lane because she does facials and peels.
+    - So Sanity's "standalone From $295" = **Brandy's** offering; the master-menu "+$65 add-on" = **Amber's**. Both correct. Route by provider; do not collapse into one model.
 - **BioRePeel Advanced — Acne Scarring Protocol:** **Sanity: From $450**, 75 min. (Master menu has no explicit line for this combined price; it prices microneedling-corrective at $295 single and BioRePeel add-on at +$65 — a hand-built combo, not the published $450. **CONFLICT / gap.**)
 - **BioRePeel Body — Stretch Marks & Scarring:** **Sanity: From $325 per zone**, 75 min. **Master menu agrees:** BioRePeel — Body **$325 single** / $875 series-of-3 / $1,560 series-of-6, 45 min. (Duration differs: 45 min in menu vs 75 min in Sanity — minor conflict.)
 - **BioRePeel Duo — Gold Spot Upgrade:** **Sanity: From $395**, 60 min. (No master-menu line — Sanity-only.)
-- **BioRePeel — Series of 4 (package):** Sanity package **exists but is empty** (no price, no included services). Master-menu framework is **Series of 3 (Renewal, ~10% value) and Series of 6 (Full Correction, ~20% value)** — **not** a "series of 4." **CONFLICT — the package name and the pricing framework disagree; flag.**
+- **BioRePeel — Series of 4 (package):** **series-of-4 is CORRECT — it is the manufacturer protocol**, not drift. BioRePeelCl3 FND is applied **every 7–10 days for 4–6 sessions**, then maintenance every 2–3 months ([BioRePeelCl3 protocol of use](https://biorepeelcl3spain.com/wp-content/uploads/2019/12/Protocol-of-use-BioRePeelCl3.pdf); [Med Supply Solutions](https://www.medsupplysolutions.com/blog/biorepeel/biorepeel-protocol/), confirmed 2026-07-17). Notion "BioRePeel" page (Status: Live) = "Single or series of 4"; Notion master menu prices **series of 4 $1,050** (single $245 founding / $295 rack). The old note here — that series-of-4 "conflicts with the canonical 3/6 framework" — was **wrong**: the 3/6 "Renewal/Full Correction" labels are a generic retail wrapper; BioRePeel's own cadence is **4 (min) → 6 (severe)**. Do not flatten it into 3/6. _(The empty Sanity `biorepeel-series-of-4` package just needs the $1,050 price + included services back-filled.)_
+  - **Comp:** Skin Sanctuary (Punta Gorda) BioRePeel **$325 single / $1,200 series-of-4**; Spago peels $175–$250 — source: Notion BioRePeel page. HoR $295 / $1,050 undercuts Skin Sanctuary on both.
 
 All pricing is presented as "investment / from / starting at." Final pricing is confirmed after consultation and skin analysis based on variant, area size, and skin condition.
 
 ## 9. FAQ bank (answer-first, compliance-clean)
 
-1. **What is BioRePeel?** A TCA-based resurfacing peel designed to refresh tone, texture, and radiance with little to no visible peeling and essentially no downtime. At House of Rose it's Amber's treatment, offered as a face peel plus advanced, body, and gold spot-treatment variants.
+1. **What is BioRePeel?** A TCA-based resurfacing peel designed to refresh tone, texture, and radiance with little to no visible peeling and essentially no downtime. At House of Rose, **Brandy** offers the standalone BioRePeel facial; **Amber** offers it as a +$65 add-on to an advanced treatment and performs the advanced acne-scarring, body, and gold spot variants.
 2. **Will I actually peel?** Usually only lightly, if at all — that's the point of BioRePeel. Some clients get mild flaking over a few days; many get none. It does not cause the heavy sheeting of a deep peel. Individual reactions vary.
 3. **Is there downtime?** Generally none. Skin may look slightly pink for a few hours and feel tight or mildly dry. Most clients return to normal activities right away. No downtime is ever guaranteed.
 4. **Does it hurt?** The standalone peel causes a brief tingling, warmth, or mild stinging during application — not needle pain. The advanced acne-scarring version adds microneedling, typically performed with numbing.
@@ -103,7 +107,7 @@ All pricing is presented as "investment / from / starting at." Final pricing is 
 
 ## 10. Provider + compliance notes
 
-- **Lane:** BioRePeel is **Amber's** treatment (advanced facials). It is **not** an injectable and involves no neurotoxin/filler — no crossover into Diana's lane. The advanced acne-scarring variant uses **microneedling** (Amber), not injections. Light/enzyme "basic" peels are **Brandy's** lane — keep the distinction clear so referrals route correctly.
+- **Lane (provider-split):** **Standalone** BioRePeel = **Brandy** (facials & peels). BioRePeel **as a +$65 add-on to an advanced service** + the advanced acne-scarring/body/gold variants = **Amber**. It is **not** an injectable and involves no neurotoxin/filler — no crossover into Diana's lane. The advanced acne-scarring variant uses **microneedling** (Amber), not injections. Light/enzyme "basic" peels are **Brandy's** lane — keep the distinction clear so referrals route correctly.
 - **Never write (topic-specific):** "treats acne," "cures acne," "removes/erases scars," "eliminates," "permanent," "reverses aging," "anti-aging," "FDA-approved," "clinically proven" (unless citing a specific verifiable clearance — do not), any specific "% of scars filled" or efficacy statistic from clinic blogs, "guaranteed" results or downtime, "day spa." Do not claim the peel "delivers actives deep into the dermis" as a cure mechanism.
 - **Say instead:** "for the appearance of" acne marks/scars/texture, "the visible signs of sun damage," "designed to," "supports," "helps reveal," "many clients notice," "minimal to no downtime" (not "zero" as a promise). Pricing = "investment / from / starting at."
 - **Required guardrails on every BioRePeel surface:** provider authority (final candidacy, variant, and combinations confirmed by the licensed provider at consultation & skin analysis) · "not every client is a candidate" · "individual outcomes vary" · packages/series carry the Fla. Stat. 456.062 disclaimer and identify the licensee performing the service.
@@ -129,7 +133,7 @@ All pricing is presented as "investment / from / starting at." Final pricing is 
 ## 12. Why House of Rose
 
 - **The no-downtime advantage, honestly framed.** BioRePeel gives Punta Gorda / Charlotte County clients real resurfacing without disappearing for a week — ideal for the SW Florida lifestyle (events, boating, snowbird season) where a peeling face isn't an option. We describe it accurately: minimal-to-light flaking, not a miracle.
-- **A true ladder, not one product.** From Brandy's gentle light peels → Amber's standalone BioRePeel → the advanced acne-scarring protocol (peel + microneedling) → body and gold spot variants, the client is matched to the right depth for their concern by a licensed provider — no upselling into the wrong tool.
+- **A true ladder, not one product.** From Brandy's gentle light peels → **Brandy's standalone BioRePeel** → **Amber's BioRePeel add-on on an advanced service** → the advanced acne-scarring protocol (peel + microneedling) → body and gold spot variants, the client is matched to the right depth for their concern by a licensed provider — no upselling into the wrong tool.
 - **Advanced, provider-led, appointment-only.** BioRePeel sits in a genuinely advanced regenerative/corrective menu (ProCell, microchanneling, topical PRF, Glo2Facial) that local basic-facial menus don't offer, delivered by an esthetician + RN assistant in a private studio with skin analysis at every consult.
 - **Locally grounded and compliant.** Punta Gorda pricing calibrated to the market, honest limits stated up front, and every surface carries provider-authority and individual-results language — trust as a differentiator, not fine print.
 

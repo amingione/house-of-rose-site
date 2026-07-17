@@ -1,7 +1,7 @@
 # House of Rose — Authoritative Service-Price Catalog
 
 **Date:** 2026-07-13
-**Purpose:** The single authoritative price input for (a) membership-tier pricing derivation and (b) Phase-4 Sanity price reconciliation.
+**Purpose:** The authoritative price input for Phase-4 Sanity price reconciliation.
 **Truth rule (corrected by owner 2026-07-13):** **GlossGenius is the true system of record** for services + pricing — that's where House of Rose services are actually sold and paid for. The local docs (`docs/services/**`, incl. the `*_GlossGenius_Import.csv`) are the **staging/import source** for GlossGenius, and **Sanity is a display/content middle-man** that feeds service collections + briefs to the marketing website — Sanity is **not** the commerce truth. So the figures below (local docs, with the Sanity snapshot as a proxy) are working truth for derivation, but **every price must ultimately be confirmed against the live GlossGenius menu.** Never the web, never invented. Where local and Sanity disagree, local (the GlossGenius import) wins and the drift is flagged; Sanity-only figures are unsourced until confirmed in GlossGenius.
 
 **Sources used**
@@ -73,7 +73,7 @@
 
 **Empty in GG:** Acne Bootcamp (0 services), Injections (0), Hormone Therapy (0). **Memberships: none created. Packages: none created.** Resource: "Injection Room."
 
-### 0.2 Major GG-vs-CMS divergences (Amber must resolve — affects the whole catalog, not just memberships)
+### 0.2 Major GG-vs-CMS divergences (Amber must resolve — affects the whole catalog)
 
 - **On the website/Sanity but NOT bookable in GlossGenius:** BioRePeel (×4 Sanity services), corrective
   microneedling, microneedling/PRF **body** treatments, the ProCell **Pro-vs-MD standalone tiers** ($250/$349),
@@ -138,7 +138,7 @@
 | Light peels (maintenance) | **NONE** | — | — | — none | 🟥 unbuilt lane | — |
 | Facial waxing (Brandy also offers) | see §3 (Aundrea's rate card) | per zone | — | see §3 | — | waxing/face.md |
 
-> **BLOCKER:** Brandy's basic-facial lane is entirely unpriced and unbuilt in Sanity. **No basic-facials membership tier can be built** until Brandy/Amber set enzyme, hydrodermabrasion, and light-peel prices and they are entered in Sanity.
+> **BLOCKER:** Brandy's basic-facial & peel lane is entirely unpriced and unbuilt in Sanity. Nothing in that lane can publish until Brandy/Amber set enzyme, hydrodermabrasion, light-peel, and standalone-BioRePeel prices and they are entered in Sanity.
 
 ---
 
@@ -300,46 +300,30 @@
 
 ---
 
-## 10. UNPRICED / GAP LIST (membership blockers)
+## 10. UNPRICED / GAP LIST
 
-Every service a membership might bundle that has **no authoritative local price**:
+Services with **no authoritative local price** that must be resolved before publish:
 
-| Gap | Status | Membership impact |
+| Gap | Status | Fix needed |
 |---|---|---|
-| **Brandy's ENTIRE basic-facial lane** — enzyme exfoliation, hydrodermabrasion, light peels | 🟥 No local price, no Sanity service, lane unbuilt. "Do not borrow Glo2Facial/dermaplaning" (research note). | **BLOCKS any Basic-Facials membership tier.** Cannot price a Brandy monthly benefit at all. |
-| **Carboxy facial** (Amber's lane, topical) | 🟥 "PENDING AMBER — NO LOCAL SOURCE." Explicitly: do not invent/infer; no Sanity service. | Cannot be bundled or used as an anchor until Amber prices it. |
-| **EZ-Gel Bio-Filler** | 🟥 Sanity-only "From $699"; no local source anywhere. | Any tier referencing EZ-Gel rests on an unvalidated number — confirm with Diana first. |
-| **Dermaplaning (standalone)** | ⚠️/🟥 Sanity $135 vs GBP draft $95; **no master-menu canonical single-session price** (only +$45 prep add-on). | Common membership add-on — the base price is **unresolved**; pick $135 or $95 before bundling. Amber to reconcile. |
-| **BioRePeel face (standalone)** | 🟥 Sanity "From $295" has no local source (master menu = +$65 add-on only). | Confirm the $295 face price before using in a tier. |
-| **Skin analysis** | ❓ Not priced in any pricing doc; research repeatedly frames it as part of a consult/Glo2Facial visit ("get a skin analysis"). **Likely complimentary — CONFIRM with Amber.** No Sanity `service`. | If complimentary, safe to include as a member perk at $0; confirm so it isn't mis-costed. |
-| **Permanent-jewelry metal tiers** | 🟥 Only "From $45" base is confirmed; sterling/gold-filled/solid-gold tier table is "pending Aundrea" (competitor draft contradicts the base). | A jewelry membership can anchor on "From $45" but cannot itemize metal tiers yet. |
-| **LED standalone vs add-on** | ⚠️ $35 (add-on, master menu) vs $65 (Sanity standalone `lightstim-led-therapy`) | Not a true conflict (different units) but pick the right one per bundle context. |
-
----
-
-## 11. "Typical monthly service" per lane — membership anchors
-
-The most common single service a member would realistically use each month, and its authoritative price — the number each membership tier should be derived from.
-
-| Lane | Typical monthly service | Anchor price (local) | Notes |
-|---|---|---|---|
-| **Amber — Advanced Facials** | Glo2Facial (the gateway / everyone's monthly glow) | **$185** | Cleanest, most-used entry; series math already exists ($499/3, $885/6). Mid-tier alt anchor: ProCell Pro $250. |
-| **Amber — Face Reality Acne** | Acne Peel (single session) | **From $139** | Program is a one-time $899 bootcamp, not monthly; the recurring member visit = the acne peel. |
-| **Brandy — Basic Facials** | Hydrodermabrasion / basic maintenance facial | **UN-PRICEABLE** | 🟥 No price exists. Anchor cannot be set — blocks the tier. |
-| **Aundrea — Waxing** | Brazilian | **$65** | The classic monthly wax; consistent 4–6 wk rebook cadence stated in body.md. |
-| **Aundrea — Permanent Jewelry** | Single welded piece | **From $45** | Base-only; metal tiers pending. Better as a retail/event lane than a monthly membership. |
-| **Aundrea — Makeup** | Everyday / General Application | **From $85** | Event makeup ($150) is occasional; the everyday look is the repeatable one (still not a natural "monthly" category). |
-| **Diana — Injectables** | Botox | **$14/unit** (typical 20–40 units ≈ $280–560/visit; touch-ups ~quarterly, not monthly) | Injectables recur quarterly, not monthly — a "prepaid units" or per-visit member benefit fits better than a monthly anchor. |
-| **Diana — IV & Wellness** | A wellness drip (Beauty Glow / Recovery / Reboot / Immunity band) | **$185** | $185 is the dominant IV price point (4 of 6 drips); base Hydration $100 is the floor. |
-| **Diana — GLP-1** | Monthly program (Semaglutide) | **$225/month** (Tirzepatide $325/month) | Already a monthly program — its own subscription; the $225 semaglutide start is the natural anchor. |
-
-**Un-priceable lanes right now:** Brandy — Basic Facials (entire lane, hard blocker). Partially blocked: Permanent-jewelry tiers, carboxy, EZ-Gel, standalone dermaplaning, and BioRePeel face — the lane *anchors* exist for jewelry/dermaplaning but the itemized/standalone numbers need Amber/Aundrea/Diana confirmation before a tier can itemize them.
+| **Brandy's ENTIRE basic-facial & peel lane** — enzyme exfoliation, hydrodermabrasion, light peels, standalone BioRePeel | 🟥 No local price, no Sanity service, lane unbuilt. "Do not borrow Glo2Facial/dermaplaning" (research note). | Brandy/Amber set enzyme, hydrodermabrasion, light-peel, and standalone-BioRePeel prices; enter in Sanity. |
+| **Carboxy facial** (Amber's lane, topical) | 🟥 "PENDING AMBER — NO LOCAL SOURCE." Explicitly: do not invent/infer; no Sanity service. | Amber prices it. |
+| **EZ-Gel Bio-Filler** | 🟥 Sanity-only "From $699"; no local source anywhere. | Confirm with Diana before using the number anywhere. |
+| **Dermaplaning (standalone)** | ⚠️/🟥 Sanity $135 vs GBP draft $95; **no master-menu canonical single-session price** (only +$45 prep add-on). | Amber picks $135 or $95. |
+| **BioRePeel face (standalone)** | Sanity "From $295" = **Brandy's standalone** (facials & peels lane); the master-menu "+$65 add-on" = **Amber's** advanced-lane add-on. Both valid (provider split). | Confirm Brandy's $295 standalone price in GG. |
+| **Skin analysis** | ❓ Not priced; research frames it as part of a consult/Glo2Facial visit. **Likely complimentary — CONFIRM with Amber.** No Sanity `service`. | Amber confirms complimentary vs priced. |
+| **Permanent-jewelry metal tiers** | 🟥 Only "From $45" base confirmed; sterling/gold-filled/solid-gold tier table "pending Aundrea." | Aundrea sets the metal-tier table. |
+| **LED standalone vs add-on** | ⚠️ $35 (add-on, master menu) vs $65 (Sanity standalone `lightstim-led-therapy`) | Not a true conflict (different units) — use the right one per context. |
 
 ---
 
 ## §10a — ProCell face price: RESOLVED (2026-07-14)
 
 **Decision: MD face = $349. Pro face = $250. $325 is retired from the ProCell face menu.**
+
+> **⛔ SUPERSEDED 2026-07-17 — see §10b below.** The $250/$349 figures above were set from round-number
+> logic. They have been re-derived from the documented competitor table (Notion "ProCell Microchanneling"
+> page + `docs/competitor_analysis/`). Keep §10a for history; **use §10b for live numbers.**
 
 The catalog previously carried MD face at both **$349** (live in GlossGenius) and **$325** (local series
 table). GlossGenius wins, per the truth rule at the top of this file — and independently, $349 is the
@@ -373,3 +357,42 @@ collisions that generated the drift in the first place.
 - [ ] **GlossGenius:** MD $349 is already correct — no change. **Add ProCell Microchanneling — Pro (face) $250.**
 - [ ] **Sanity:** keep `microchanneling` hub at "From $250"; publish the **MD $349** tier as its own line.
 - [ ] **`docs/services/ALL-SERVICES-PRICING.MD`:** updated 2026-07-14 (MD $349 | $940 | $1,675).
+
+
+---
+
+## §10b — ProCell price: COMP-ANCHORED (2026-07-17) ✅ AUTHORITATIVE
+
+Every ProCell number is now derived from documented competitor pricing, not round-number logic.
+Structure = **founding / rack** (launch/founding price vs standard) × **Pro / MD** serum tiers.
+
+### Competitor table (source: Notion "ProCell Microchanneling", Status: Live · `docs/competitor_analysis/` · web-validated 2026-07)
+
+| Competitor | Location | Service | Price |
+|---|---|---|---|
+| **Unnamed PG provider** | Punta Gorda | **ProCell microchanneling** | **$500 single · $1,200 series-of-3** ← only true local ProCell comp |
+| Skin Sanctuary | Punta Gorda | Microneedling / Nano Channeling | $195+ / $185+ |
+| C's Medi Spa | Port Charlotte | Microneedling | $175 |
+| Skin Spot Laser Club | Cape Coral | SkinPen microneedling | $285 member / $375 non-member |
+| Sweet Spot · Sure Radiance · Nuview · Carlisa | Punta Gorda | Microneedling / RF | by consult |
+| *National ProCell benchmark* | US | ProCell | avg ~$300 · range $250–$1,200 · FACE $366 · face+neck ~$425 |
+
+**Whitespace:** local skin-needling clusters at $175–$195; the single true ProCell rival is at $500 / $1,200-series. House of Rose prices **into the gap** — above commodity needling, under the $500 rival.
+
+### Authoritative grid
+
+| Treatment | Founding | Rack | Comp justification |
+|---|---|---|---|
+| ProCell Pro — Face | **$299** | **$399** | Fills $195→$500 whitespace; at/above national ProCell floor ~$300. |
+| ProCell MD — Face | **$349** | **$449** | Founding = live GG price; undercuts the $500 local rival by $151 (founding) / $51 (rack). |
+| ProCell MD — Face+Neck+Décolleté | **$449** | **$549** | Extended plane; still under national face+neck ~$425–$700 luxury band. |
+| ProCell — Series of 4 | **$1,099** | **$1,399** | **4 = ProCell protocol** (min 4 tx, ~4 wks apart; 6+ scarring — `docs/services/PRF/`). Founding series also undercuts the local rival's $1,200 *series-of-3* and adds a 4th session (~21% off à la carte). |
+| Microneedling — Corrective (Face) | **$295** | — | Above local microneedling $175–$195; the non-ProCell corrective tier. |
+
+**What changed vs §10a:** Pro Face **$250 → $299/$399** (the $250 sat *below* the national ProCell floor — under-priced vs comps). MD founding **stays $349** (= live GG). **Body** ProCell has **no direct local comp** → remains consult-based at the current figure until one is found.
+
+**On the series count — do NOT normalize.** ProCell is a **series of 4** because that is the **ProCell manufacturer protocol** (minimum 4 treatments ~4 weeks apart, 6+ for scarring — `docs/services/PRF/compass_artifact…`, `m17-skin-analysis-cheat-sheet.md`, and the GlossGenius import CSV which prices PRF Skin Renewal at series-of-3 $1,200 / series-of-4 $1,550). This is **treatment-specific and correct**; it is not the house 3/6 "Renewal/Full Correction" retail framework and must not be flattened into it. Other treatments keep their own cadence: Glo2Facial **3/6**, Microneedling corrective **3–6** (scarring 5–8), BioRePeel **unsettled** (see `biorepeel.md` §82 — flag, don't force). `_gaps.md` §87 asked to "pick ONE cadence" — the answer is **no**: different modalities have different clinically-correct series, and forcing a single count would misrepresent the protocol.
+
+### Actions
+- [ ] **GlossGenius:** MD founding $349 already live. Add **Pro $299/$399**, **MD rack $449**, **F+N+D $449/$549**, **Series of 4 $1,099/$1,399**.
+- [ ] **Sanity:** publish Pro + MD as distinct tiers with founding/rack; keep the microchanneling hub from-price aligned to **Pro founding $299**.

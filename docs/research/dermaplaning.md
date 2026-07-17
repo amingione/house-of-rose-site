@@ -183,10 +183,8 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 - `docs/services/facials/dermaplaning.md` — **empty (0 bytes)** — flagged as a content gap.
 - `docs/services/pricing/advanced-facials-master-menu.md` — Dermaplane Prep +$45 add-on; package framework; compliance guardrails.
 - `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
-- `docs/services/facials/packagesAdd-ons.md` — dermaplaning cadence (~monthly, 28–40 day turnover), package/add-on framing (note: references a "monthly membership" — stale, see GAPS).
-- `docs/competitor_analysis/compass_artifact_wf-…_text_markdown.md` — live-menu prices: Dermaplaning from $135 / Package of 4 $340 / add-on +$55 (conflict); "Porcelain Petal" botanical name (dead).
+- `docs/services/facials/packagesAdd-ons.md` — dermaplaning cadence (~monthly, 28–40 day turnover), package/add-on framing.
 - `docs/GOOGLE-BUSINESS-PROFILE.md` — GBP service catalog "Dermaplaning · From $95" (price conflict).
-- `docs/SITE-NOTION-RECONCILIATION.md` — confirms botanical name "The Porcelain Petal" is retired; technical name only.
 
 **Sanity docs consulted (snapshot):**
 - Service `dermaplaning` — "From $135", 50 min, Skin Renewal collection, tagline "The glass-skin finish", FAQ questions include "Will the hair grow back thicker or darker?"
