@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
-import { getServiceFallbackImage } from '@/lib/imageFallbacks';
+import { getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
@@ -39,6 +39,9 @@ const socialImage = service.image
 const heroImage = service.image
   ? urlFor(service.image).width(1920).height(1080).url()
   : fallbackImage;
+
+// Face Reality clinical before/after proof — only populated for the acne-program pages.
+const resultImages = slug ? getServiceResultImages(slug) : [];
 
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
@@ -145,6 +148,42 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </div>
   </section>
 
+  <!-- Face Reality clinical results (acne-program pages only) -->
+  {resultImages.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">Clinical Results</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mb-3">
+          The Face Reality Clear Skin Method
+        </h2>
+        <p class="text-muted text-[14px] leading-relaxed max-w-[680px] mb-10">
+          Unretouched Week&nbsp;1 to Week&nbsp;16 results from the Face Reality clinical
+          study — the same customized professional + home-care protocol Amber, a Face
+          Reality Certified Acne Specialist, follows in-studio. Individual results vary
+          with adherence to protocol.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {resultImages.map((img) => (
+            <figure class="bg-ivory border border-gold-metal/20 overflow-hidden">
+              <img
+                src={img.src}
+                alt={img.alt}
+                width="1080"
+                height="1350"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto"
+              />
+            </figure>
+          ))}
+        </div>
+        <p class="text-muted/70 text-[11px] tracking-[0.14em] uppercase mt-6">
+          Images © Face Reality Skincare · Clear Skin Method™ clinical study
+        </p>
+      </div>
+    </section>
+  )}
+
   <!-- Provider attribution (when assigned in Sanity) -->
   {service.provider && (
     <section class="bg-charcoal-light py-10 px-6 border-y border-gold-metal/10">
@@ -204,38 +243,6 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
               <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the Comparison</span>
             </a>
           ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Contextual pricing guides surface only when this service has one. -->
-  {service.costGuides && service.costGuides.length > 0 && (
-    <section class="bg-charcoal-light py-16 px-6 border-y border-gold-metal/10">
-      <div class="max-w-[960px] mx-auto">
-        <span class="kicker">Plan Your Investment</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-4">
-          Clear pricing for this treatment
-        </h2>
-        <div class="grid grid-cols-1 gap-px bg-gold-metal/10 mt-8">
-          {service.costGuides.map((guide) => {
-            const price = guide.priceLow != null && guide.priceHigh != null
-              ? `$${guide.priceLow.toLocaleString()}–$${guide.priceHigh.toLocaleString()}`
-              : guide.priceLow != null
-                ? `From $${guide.priceLow.toLocaleString()}`
-                : null;
-
-            return (
-              <a href={`/cost/${guide.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(guide._id)}>
-                <div class="flex flex-wrap items-baseline justify-between gap-3 mb-3">
-                  <h3 class="font-serif text-[21px] text-ink group-hover:text-gold transition-colors">{guide.title}</h3>
-                  {price && <span class="text-gold text-[13px] tracking-[0.12em] uppercase">{price}{guide.priceUnit ? ` ${guide.priceUnit}` : ''}</span>}
-                </div>
-                <p class="text-muted text-[14px] leading-relaxed">{guide.answer}</p>
-                <span class="learn-more group-hover:text-gold mt-4 inline-block">View Pricing Guide</span>
-              </a>
-            );
-          })}
         </div>
       </div>
     </section>
