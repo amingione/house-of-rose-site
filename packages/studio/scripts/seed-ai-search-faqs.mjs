@@ -5,7 +5,8 @@
  *   node scripts/run-with-env.mjs node packages/studio/scripts/seed-ai-search-faqs.mjs
  *   node scripts/run-with-env.mjs node packages/studio/scripts/seed-ai-search-faqs.mjs --apply
  */
-import { createClient } from '@sanity/client';
+// @sanity/client v3 is CommonJS; a static `import { createClient }` fails under
+// ESM, so it is loaded via dynamic import at point of use (see below).
 
 const shouldApply = process.argv.includes('--apply');
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID;
@@ -96,6 +97,13 @@ if (!token) {
   throw new Error('Missing SANITY_API_WRITE_TOKEN, SANITY_AUTH_TOKEN, or SANITY_TOKEN.');
 }
 
+const sanityClientModule = await import('@sanity/client');
+// This @sanity/client build exports the factory as the default; older/newer
+// builds expose a named `createClient`. Resolve whichever is present.
+const createClient =
+  sanityClientModule.createClient ??
+  sanityClientModule.default?.createClient ??
+  sanityClientModule.default;
 const client = createClient({ projectId, dataset, apiVersion, token, useCdn: false });
 
 try {
