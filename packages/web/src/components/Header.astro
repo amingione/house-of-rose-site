@@ -1,8 +1,16 @@
 ---
 /**
  * Header component with sticky navigation
- * Matches the mockup's design with transparent-to-solid transition on scroll
+ * Matches the mockup's design with transparent-to-solid transition on scroll.
+ *
+ * "Services" is a two-level mega-menu: a column of service collections, each of
+ * which reveals a flyout submenu of its individual services. Collections and
+ * services are pulled from Sanity at build time, so the menu always mirrors the
+ * live /services/collections/[slug]/ and /services/[slug]/ pages.
  */
+
+import { sanityFetch } from "@/lib/sanity";
+import { NAV_COLLECTIONS_QUERY, type NavCollection } from "@/lib/queries";
 
 interface Props {
 	currentPath?: string;
@@ -10,8 +18,14 @@ interface Props {
 
 const { currentPath = "/" } = Astro.props;
 
+const collections = (await sanityFetch<NavCollection[]>(NAV_COLLECTIONS_QUERY)) ?? [];
+const navCollections = collections.filter((c) => c?.slug);
+
 const isActive = (path: string) =>
 	currentPath === path || currentPath.startsWith(path + "/");
+
+const linkBase =
+	"nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200";
 ---
 
 <header
@@ -36,61 +50,120 @@ const isActive = (path: string) =>
 		<nav class="desktop-nav hidden lg:flex items-center gap-6">
 			<a
 				href="/"
-				class={`nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
-					isActive("/")
-						? "text-gold"
-						: "text-ivory hover:text-gold"
-				}`}
+				class={`${linkBase} ${isActive("/") ? "text-gold" : "text-ivory hover:text-gold"}`}
 			>
 				Home
 			</a>
-			<a
-				href="/services/"
-				class={`nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
-					isActive("/services")
-						? "text-gold"
-						: "text-ivory hover:text-gold"
-				}`}
-			>
-				Services
-			</a>
+
+			<!-- Services mega-menu -->
+			<div class="nav-dropdown group/services relative">
+				<a
+					href="/services/"
+					id="services-trigger"
+					aria-haspopup="true"
+					aria-expanded="false"
+					class={`${linkBase} inline-flex items-center gap-1 ${
+						isActive("/services") ? "text-gold" : "text-ivory hover:text-gold"
+					}`}
+				>
+					Services
+					<svg
+						class="dd-caret w-2.5 h-2.5 transition-transform duration-200"
+						viewBox="0 0 10 6"
+						fill="none"
+						aria-hidden="true"
+					>
+						<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</a>
+
+				<!-- Level 1: collections column -->
+				<div
+					class="dd-panel invisible opacity-0 group-hover/services:visible group-hover/services:opacity-100 group-focus-within/services:visible group-focus-within/services:opacity-100 absolute left-0 top-full pt-3 transition-opacity duration-200 z-50"
+				>
+					<ul
+						class="min-w-[280px] bg-ivory border border-gold-metal/40 shadow-xl py-2"
+						role="menu"
+					>
+						{
+							navCollections.map((col) => (
+								<li class="group/col relative" role="none">
+									<a
+										href={`/services/collections/${col.slug}/`}
+										role="menuitem"
+										class="flex items-center justify-between gap-4 px-5 py-2.5 text-[12px] font-medium tracking-[0.12em] uppercase text-ink hover:text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+									>
+										<span>{col.title}</span>
+										{col.services.length > 0 && (
+											<svg
+												class="w-2.5 h-2.5 shrink-0 opacity-60"
+												viewBox="0 0 6 10"
+												fill="none"
+												aria-hidden="true"
+											>
+												<path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+											</svg>
+										)}
+									</a>
+
+									{col.services.length > 0 && (
+										<div class="dd-flyout invisible opacity-0 group-hover/col:visible group-hover/col:opacity-100 group-focus-within/col:visible group-focus-within/col:opacity-100 absolute left-full top-0 pl-1 transition-opacity duration-200">
+											<ul
+												class="min-w-[300px] max-h-[70vh] overflow-y-auto bg-ivory border border-gold-metal/40 shadow-xl py-2"
+												role="menu"
+												aria-label={col.title}
+											>
+												{col.services.map((svc) => (
+													<li role="none">
+														<a
+															href={`/services/${svc.slug}/`}
+															role="menuitem"
+															class="block px-5 py-2 text-[12px] font-medium tracking-[0.06em] uppercase text-ink hover:text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+														>
+															{svc.title}
+														</a>
+													</li>
+												))}
+											</ul>
+										</div>
+									)}
+								</li>
+							))
+						}
+						<li role="none" class="border-t border-gold-metal/30 mt-2 pt-1">
+							<a
+								href="/services/"
+								role="menuitem"
+								class="block px-5 py-2.5 text-[12px] font-semibold tracking-[0.14em] uppercase text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+							>
+								View All Services
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
 			<a
 				href="/skin-analysis/"
-				class={`nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
-					isActive("/skin-analysis")
-						? "text-gold"
-						: "text-ivory hover:text-gold"
-				}`}
+				class={`${linkBase} ${isActive("/skin-analysis") ? "text-gold" : "text-ivory hover:text-gold"}`}
 			>
 				Skin Analysis
 			</a>
 			<a
 				href="/shop/"
-				class={`nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
-					isActive("/shop")
-						? "text-gold"
-						: "text-ivory hover:text-gold"
-				}`}
+				class={`${linkBase} ${isActive("/shop") ? "text-gold" : "text-ivory hover:text-gold"}`}
 			>
 				Shop
 			</a>
 			<a
 				href="/experience/"
-				class={`nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
-					isActive("/experience")
-						? "text-gold"
-						: "text-ivory hover:text-gold"
-				}`}
+				class={`${linkBase} ${isActive("/experience") ? "text-gold" : "text-ivory hover:text-gold"}`}
 			>
 				Experience
 			</a>
 			<a
 				href="/contact/"
-				class={`nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200 ${
-					isActive("/contact")
-						? "text-gold"
-						: "text-ivory hover:text-gold"
-				}`}
+				class={`${linkBase} ${isActive("/contact") ? "text-gold" : "text-ivory hover:text-gold"}`}
 			>
 				Contact
 			</a>
@@ -144,57 +217,90 @@ const isActive = (path: string) =>
 			aria-expanded="false"
 			aria-controls="mobile-drawer"
 		>
-			<span
-				class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"
-			></span>
-			<span
-				class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"
-			></span>
-			<span
-				class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"
-			></span>
+			<span class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"></span>
+			<span class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"></span>
+			<span class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"></span>
 		</button>
 	</div>
 
 	<!-- Mobile Drawer -->
 	<div
 		id="mobile-drawer"
-		class="hidden lg:hidden bg-ivory border-t border-gold-metal/40 py-4 shadow-xl"
+		class="hidden lg:hidden bg-ivory border-t border-gold-metal/40 py-4 shadow-xl max-h-[calc(100vh-5rem)] overflow-y-auto"
 	>
-		<nav class="flex flex-col items-center">
+		<nav class="flex flex-col">
 			<a
 				href="/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
 			>
 				Home
 			</a>
-			<a
-				href="/services/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 w-full text-center min-h-[48px] flex items-center justify-center"
-			>
-				Services
-			</a>
+
+			<!-- Services accordion -->
+			<details class="mobile-acc border-y border-gold-metal/20">
+				<summary
+					class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center justify-between cursor-pointer list-none"
+				>
+					<a href="/services/" class="hover:text-gold">Services</a>
+					<svg class="acc-caret w-3 h-3 transition-transform duration-200" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+						<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</summary>
+				<div class="pb-2">
+					{
+						navCollections.map((col) => (
+							<details class="mobile-acc-sub">
+								<summary class="text-[13px] font-medium tracking-[0.1em] uppercase text-ink/90 py-2.5 pl-8 pr-6 min-h-[44px] flex items-center justify-between cursor-pointer list-none">
+									<a href={`/services/collections/${col.slug}/`} class="hover:text-gold">
+										{col.title}
+									</a>
+									{col.services.length > 0 && (
+										<svg class="acc-caret w-2.5 h-2.5 transition-transform duration-200" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+											<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+									)}
+								</summary>
+								{col.services.length > 0 && (
+									<ul class="pb-1">
+										{col.services.map((svc) => (
+											<li>
+												<a
+													href={`/services/${svc.slug}/`}
+													class="block text-[12px] tracking-[0.06em] uppercase text-ink/75 hover:text-gold py-2 pl-12 pr-6 min-h-[40px] flex items-center"
+												>
+													{svc.title}
+												</a>
+											</li>
+										))}
+									</ul>
+								)}
+							</details>
+						))
+					}
+				</div>
+			</details>
+
 			<a
 				href="/skin-analysis/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
 			>
 				Skin Analysis
 			</a>
 			<a
 				href="/shop/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
 			>
 				Shop
 			</a>
 			<a
 				href="/experience/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
 			>
 				Experience
 			</a>
 			<a
 				href="/contact/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 w-full text-center min-h-[48px] flex items-center justify-center"
+				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
 			>
 				Contact
 			</a>
@@ -202,7 +308,7 @@ const isActive = (path: string) =>
 				href="https://houseofrose.glossgenius.com/services"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="mobile-cta text-[12px] font-medium tracking-[0.14em] uppercase px-6 py-3 bg-green text-ivory mt-3 min-h-[48px] inline-flex items-center"
+				class="mobile-cta text-[12px] font-medium tracking-[0.14em] uppercase px-6 py-3 bg-green text-ivory mt-3 mx-6 min-h-[48px] inline-flex items-center justify-center"
 			>
 				Book Now
 			</a>
@@ -262,6 +368,46 @@ const isActive = (path: string) =>
 			applyBackdrop(); // only go transparent again if there IS a dark hero
 		}
 	});
+
+	// Desktop "Services" dropdown — reflect open state for touch + keyboard users.
+	// Hover/focus visuals are pure CSS; this only syncs aria-expanded and lets a
+	// touch tap open the panel without navigating away on the first tap.
+	const servicesWrap = document.querySelector<HTMLElement>(".group\\/services");
+	const servicesTrigger = document.getElementById("services-trigger");
+	if (servicesWrap && servicesTrigger) {
+		const setExpanded = (open: boolean) =>
+			servicesTrigger.setAttribute("aria-expanded", open ? "true" : "false");
+		servicesWrap.addEventListener("mouseenter", () => setExpanded(true));
+		servicesWrap.addEventListener("mouseleave", () => setExpanded(false));
+		servicesWrap.addEventListener("focusin", () => setExpanded(true));
+		servicesWrap.addEventListener("focusout", (e) => {
+			if (!servicesWrap.contains(e.relatedTarget as Node)) setExpanded(false);
+		});
+		// First tap on a touch device opens the menu instead of following the link.
+		servicesTrigger.addEventListener("click", (e) => {
+			if (window.matchMedia("(hover: none)").matches) {
+				const isOpen = servicesTrigger.getAttribute("aria-expanded") === "true";
+				if (!isOpen) {
+					e.preventDefault();
+					setExpanded(true);
+					servicesWrap.classList.add("dd-touch-open");
+				}
+			}
+		});
+		document.addEventListener("click", (e) => {
+			if (!servicesWrap.contains(e.target as Node)) {
+				servicesWrap.classList.remove("dd-touch-open");
+				setExpanded(false);
+			}
+		});
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") {
+				servicesWrap.classList.remove("dd-touch-open");
+				setExpanded(false);
+				(document.activeElement as HTMLElement)?.blur();
+			}
+		});
+	}
 
 	// Mobile menu toggle
 	mobileMenuBtn?.addEventListener("click", () => {
@@ -339,8 +485,38 @@ const isActive = (path: string) =>
 		text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 	}
 
+	/* Dropdown caret flips when the Services menu is open (hover/focus/touch). */
+	.group\/services:hover .dd-caret,
+	.group\/services:focus-within .dd-caret,
+	.dd-touch-open .dd-caret {
+		transform: rotate(180deg);
+	}
+
+	/* Touch: keep the panel visible once tapped open (no hover on touch). */
+	.dd-touch-open .dd-panel {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	/* Panel text never needs the photo scrim — it sits on an ivory card. */
+	.dd-panel a,
+	.dd-flyout a {
+		text-shadow: none;
+	}
+
 	#mobile-drawer.open {
 		display: block;
+	}
+
+	/* Mobile accordion caret rotation */
+	.mobile-acc[open] > summary .acc-caret,
+	.mobile-acc-sub[open] > summary .acc-caret {
+		transform: rotate(180deg);
+	}
+
+	.mobile-acc summary::-webkit-details-marker,
+	.mobile-acc-sub summary::-webkit-details-marker {
+		display: none;
 	}
 
 	/* Hamburger → X animation */

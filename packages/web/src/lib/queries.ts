@@ -109,7 +109,6 @@ export interface Service {
   provider?: Provider;
   relatedServices?: Service[];
   comparisons?: ServiceComparison[];
-  costGuides?: ServiceCostGuide[];
   _updatedAt?: string;
   seo?: { metaTitle?: string; metaDescription?: string };
 }
@@ -120,17 +119,6 @@ export interface ServiceComparison {
   title: string;
   slug: string;
   intro: string;
-}
-
-/** A pricing guide that is contextually attached to a service page. */
-export interface ServiceCostGuide {
-  _id: string;
-  title: string;
-  slug: string;
-  answer: string;
-  priceLow?: number;
-  priceHigh?: number;
-  priceUnit?: string;
 }
 
 export interface SitemapService {
@@ -359,19 +347,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       title,
       "slug": slug.current,
       intro
-    },
-    "costGuides": *[
-      _type == "costGuide" &&
-      defined(slug.current) &&
-      treatment._ref == ^._id
-    ] | order(orderRank asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current,
-      answer,
-      priceLow,
-      priceHigh,
-      priceUnit
     }
   }
 `;
@@ -394,6 +369,27 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
     }
   }
 `;
+
+/**
+ * Lightweight variant of ALL_COLLECTIONS_QUERY for the header mega-menu:
+ * titles + slugs only (no images/descriptions) so the nav stays cheap to build.
+ */
+export const NAV_COLLECTIONS_QUERY = /* groq */ `
+  *[_type == "serviceCollection"] | order(orderRank asc, title asc) {
+    title,
+    "slug": slug.current,
+    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+      title,
+      "slug": slug.current
+    }
+  }
+`;
+
+export interface NavCollection {
+  title: string;
+  slug: string;
+  services: { title: string; slug: string }[];
+}
 
 export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
   *[_type == "serviceCollection" && slug.current == $slug][0] {
@@ -927,6 +923,22 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
+export interface AiSearchFaqSection {
+  _id: string;
+  heading?: string;
+  intro?: string;
+  faqs?: FAQ[];
+}
+
+export const AI_SEARCH_FAQ_QUERY = /* groq */ `
+  *[_type == "siteSettings" && _id == "siteSettings"][0] {
+    _id,
+    "heading": aiSearchFaqHeading,
+    "intro": aiSearchFaqIntro,
+    "faqs": aiSearchFaqs[]{ _key, question, answer }
+  }
+`;
+
 export interface FaqGroup {
   _id: string;
   source: string;

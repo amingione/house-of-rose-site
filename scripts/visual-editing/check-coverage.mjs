@@ -37,6 +37,10 @@ const ALLOWLIST = new Map([
     'pages/shop.astro',
     'Fetch-and-delegate only — every Sanity field it loads (product, promotion, shopBrand) is rendered and annotated by PromoBanner / TopSellers / CategoryNav / BrandSpotlight / ProductCard. Its own copy is hardcoded.',
   ],
+  [
+    'components/Header.astro',
+    'Navigation chrome only — reads NAV_COLLECTIONS_QUERY to build the Services mega-menu links (collection + service titles/slugs). These are navigational anchors, not editable page copy; the underlying titles are edited on their own service/collection docs.',
+  ],
   ['pages/sitemap.astro', 'Link index only — no editable copy rendered.'],
   ['pages/sitemap.xml.ts', 'Non-Astro route (XML sitemap).'],
   ['pages/llms.txt.ts', 'Non-Astro route (text endpoint).'],
