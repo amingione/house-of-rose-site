@@ -8,24 +8,27 @@ import {
   ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
+  AI_SEARCH_FAQ_QUERY,
   type Service,
   type BlogPost,
   type ServiceCollection,
   type CostGuide,
   type Comparison,
   type LocalArea,
+  type AiSearchFaqSection,
 } from '@/lib/queries';
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [services, posts, collections, costGuides, comparisons, localAreas] = await Promise.all([
+  const [services, posts, collections, costGuides, comparisons, localAreas, aiSearchFaq] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
+    sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
   ]);
 
   const lines: string[] = [
@@ -53,6 +56,13 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Sitemap](${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
     ``,
   ];
+
+  if (aiSearchFaq?.faqs?.length) {
+    lines.push(`## AI Search FAQ`, ``);
+    for (const faq of aiSearchFaq.faqs) {
+      lines.push(`### ${faq.question}`, ``, faq.answer, ``);
+    }
+  }
 
   if (collections.length > 0) {
     lines.push(`## Service Collections`, ``);

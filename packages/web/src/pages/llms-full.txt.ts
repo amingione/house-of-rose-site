@@ -4,8 +4,10 @@ import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_COLLECTIONS_QUERY,
   ALL_BLOG_POSTS_QUERY,
+  AI_SEARCH_FAQ_QUERY,
   type ServiceCollection,
   type BlogPost,
+  type AiSearchFaqSection,
 } from '@/lib/queries';
 
 // Full service detail query for llms-full
@@ -40,10 +42,11 @@ interface ServiceFull {
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [services, collections, posts] = await Promise.all([
+  const [services, collections, posts, aiSearchFaq] = await Promise.all([
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
+    sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
   ]);
 
   const lines: string[] = [
@@ -83,6 +86,15 @@ export const GET: APIRoute = async ({ site }) => {
     `---`,
     ``,
   ];
+
+  if (aiSearchFaq?.faqs?.length) {
+    lines.push(`## AI Search FAQ`, ``);
+    if (aiSearchFaq.intro) lines.push(aiSearchFaq.intro, ``);
+    for (const faq of aiSearchFaq.faqs) {
+      lines.push(`### ${faq.question}`, ``, faq.answer, ``);
+    }
+    lines.push(`---`, ``);
+  }
 
   if (collections.length > 0) {
     lines.push(`## Service Collections`, ``);

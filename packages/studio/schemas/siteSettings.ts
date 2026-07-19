@@ -66,6 +66,26 @@ export const siteSettings = defineType({
       type: 'string',
       description: 'Used as the mailto: link on Book Now buttons',
     }),
+    defineField({
+      name: 'aiSearchFaqHeading',
+      title: 'AI Search FAQ Heading',
+      type: 'string',
+      description: 'Heading for the business-level FAQ section on /faq/.',
+    }),
+    defineField({
+      name: 'aiSearchFaqIntro',
+      title: 'AI Search FAQ Introduction',
+      type: 'text',
+      rows: 2,
+      description: 'Short introduction shown above the business-level FAQ answers.',
+    }),
+    defineField({
+      name: 'aiSearchFaqs',
+      title: 'AI Search FAQs',
+      type: 'array',
+      of: [{ type: 'faq' }],
+      description: 'Direct, business-level answers used on /faq/, in FAQPage JSON-LD, and in the LLM text feeds.',
+    }),
   ],
   preview: {
     select: { title: 'siteName' },
