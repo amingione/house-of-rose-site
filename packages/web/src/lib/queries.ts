@@ -376,9 +376,11 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
  */
 export const NAV_COLLECTIONS_QUERY = /* groq */ `
   *[_type == "serviceCollection"] | order(orderRank asc, title asc) {
+    _id,
     title,
     "slug": slug.current,
     "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+      _id,
       title,
       "slug": slug.current
     }
@@ -386,9 +388,10 @@ export const NAV_COLLECTIONS_QUERY = /* groq */ `
 `;
 
 export interface NavCollection {
+  _id: string;
   title: string;
   slug: string;
-  services: { title: string; slug: string }[];
+  services: { _id: string; title: string; slug: string }[];
 }
 
 export const COLLECTION_BY_SLUG_QUERY = /* groq */ `

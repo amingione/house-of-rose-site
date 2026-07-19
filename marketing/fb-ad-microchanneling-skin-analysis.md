@@ -161,31 +161,31 @@ Aesthetics ads get rejected constantly. These are the trip-wires:
 
 ## 6. Offer ladder & expected economics
 
-| Step | What they get | Price (founding / rack) |
+| Step | What they get | Price |
 |---|---|---|
 | **1. Hook** | AI Skin Analysis | **Free** (or $50, credited toward first treatment — see note) |
-| **2. Core conversion** | ProCell Microchanneling — Pro (Face) | **$299 / $399** |
-| **3. Trade-up** | ProCell Microchanneling — MD (Face) | **$349 / $449** |
-| **4. Premium** | ProCell MD — Face + Neck + Décolleté | **$449 / $549** |
-| **5. Retention (the real money)** | ProCell Series of 4 | **$1,099 / $1,399** (~21% off) |
+| **2. Core conversion** | ProCell Microchanneling — Pro (Face) | **$299** |
+| **3. Trade-up** | ProCell Microchanneling — MD (Face) | **$349** |
+| **4. Premium** | ProCell MD — Face + Neck + Décolleté | **$449** |
+| **5. Retention (the real money)** | ProCell Series of 4 | **$1,099** (~21% off) |
 | **6. Add-ons** | Dermaplane prep +$45 · LED +$35 · Topical PRF (face) +$175 · Glo2 finish +$95 | |
 
-> **Prices are comp-anchored, not arbitrary.** The only true local ProCell rival charges **$500 single / $1,200 series-of-3** (unnamed Punta Gorda provider). House of Rose's founding grid undercuts that on every line while sitting well above commodity local microneedling ($175–$195). Full competitor table + derivation: `docs/research/_pricing-catalog.md` §10b.
+> **Prices are comp-anchored, not arbitrary.** Verified regional ProCell singles run **$300–$375** (ÉLAN $375; ProCell 60m $300 / 90m $350) and 4-packs **$1,050–$1,225**. House of Rose sits competitively in that band (Pro $299 floor, MD $349 mid, series-4 $1,099), above commodity microneedling ($175–$195). Full table + derivation: `docs/research/_pricing-catalog.md` §10b.
 
 > **Free vs. $50-credited:** Free maximizes lead volume; $50-credited maximizes *show* rate and screens out tire-kickers. In a high-income, low-urgency retiree market, **run Free first** — the barrier here is trust, not money. If no-shows exceed ~30%, switch to $50-credited.
 
 **The number that matters is not cost-per-lead — it's cost-per-*series*.** One 6-series microchanneling client ≈ $1,200–$1,675. At even a $40 CPL and a 20% analysis→series conversion, acquisition cost is ~$200 against a four-figure client. That math is why the free scan is the right call.
 
-> **✅ Pricing comp-anchored (2026-07-17):** ProCell grid re-derived from the documented competitor table (Notion "ProCell Microchanneling" page + `docs/competitor_analysis/`, web-validated). **MD founding $349 = live in GlossGenius.** Pro moved to **$299/$399** (the old $250 was below the national ProCell floor). Full derivation in `docs/research/_pricing-catalog.md` §10b. *(Ad copy still names no prices — the scan sells the price in person.)*
-> **Open action:** add Pro $299/$399, MD rack $449, F+N+D $449/$549, and Series-of-4 $1,099/$1,399 to GlossGenius; only MD founding $349 is live today.
+> **✅ Pricing local-competitive (2026-07-17):** ProCell anchored to the verified regional ProCell market — singles $300–$375, 4-packs $1,050–$1,225. Each service has one price. **MD $349 = live in GlossGenius**, mid-market. Pro **$299** at the market floor. (The earlier '$500 rival' figure was discarded as unverified — a PRF-needling/package price, not a bare ProCell single.) Full derivation in `docs/research/_pricing-catalog.md` §10b. *(Ad copy still names no prices — the scan sells the price in person.)*
+> **Open action:** add Pro $299, F+N+D $449, and Series-of-4 $1,099 to GlossGenius; MD $349 is already live.
 
 ---
 
 ## 7. Launch checklist
 
 - [x] ~~Reconcile ProCell MD price~~ → **comp-anchored: Pro $299/$399 · MD $349/$449 · F+N+D $449/$549 · Series-4 $1,099/$1,399** (`_pricing-catalog.md` §10b)
-- [ ] Add Pro, MD rack, F+N+D, and Series-of-4 lines to GlossGenius (only MD founding $349 is live)
-- [ ] Publish Pro + MD as distinct founding/rack tiers in Sanity (hub from-price = Pro founding $299)
+- [ ] Add Pro $299, F+N+D $449, and Series-of-4 $1,099 to GlossGenius (MD $349 already live)
+- [ ] Publish Pro + MD as distinct tiers in Sanity (hub from-price = Pro $299)
 - [ ] Confirm `/skin-analysis/` lead form fires a Meta Pixel `Lead` event on submit
 - [ ] Meta Pixel + Conversions API installed on houseofrosefl.com
 - [ ] Custom Audience: site visitors 180d · IG/FB engagers 365d

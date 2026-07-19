@@ -11,6 +11,7 @@
 
 import { sanityFetch } from "@/lib/sanity";
 import { NAV_COLLECTIONS_QUERY, type NavCollection } from "@/lib/queries";
+import { sbFieldPath, sbObjectId } from "@/lib/visualEditing";
 
 interface Props {
 	currentPath?: string;
@@ -87,13 +88,13 @@ const linkBase =
 					>
 						{
 							navCollections.map((col) => (
-								<li class="group/col relative" role="none">
+								<li class="group/col relative" role="none" {...sbObjectId(col._id)}>
 									<a
 										href={`/services/collections/${col.slug}/`}
 										role="menuitem"
 										class="flex items-center justify-between gap-4 px-5 py-2.5 text-[12px] font-medium tracking-[0.12em] uppercase text-ink hover:text-gold hover:bg-charcoal-lighter transition-colors duration-150"
 									>
-										<span>{col.title}</span>
+										<span {...sbFieldPath("title")}>{col.title}</span>
 										{col.services.length > 0 && (
 											<svg
 												class="w-2.5 h-2.5 shrink-0 opacity-60"
@@ -114,11 +115,12 @@ const linkBase =
 												aria-label={col.title}
 											>
 												{col.services.map((svc) => (
-													<li role="none">
+													<li role="none" {...sbObjectId(svc._id)}>
 														<a
 															href={`/services/${svc.slug}/`}
 															role="menuitem"
 															class="block px-5 py-2 text-[12px] font-medium tracking-[0.06em] uppercase text-ink hover:text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+															{...sbFieldPath("title")}
 														>
 															{svc.title}
 														</a>
@@ -249,9 +251,9 @@ const linkBase =
 				<div class="pb-2">
 					{
 						navCollections.map((col) => (
-							<details class="mobile-acc-sub">
+							<details class="mobile-acc-sub" {...sbObjectId(col._id)}>
 								<summary class="text-[13px] font-medium tracking-[0.1em] uppercase text-ink/90 py-2.5 pl-8 pr-6 min-h-[44px] flex items-center justify-between cursor-pointer list-none">
-									<a href={`/services/collections/${col.slug}/`} class="hover:text-gold">
+									<a href={`/services/collections/${col.slug}/`} class="hover:text-gold" {...sbFieldPath("title")}>
 										{col.title}
 									</a>
 									{col.services.length > 0 && (
@@ -263,10 +265,11 @@ const linkBase =
 								{col.services.length > 0 && (
 									<ul class="pb-1">
 										{col.services.map((svc) => (
-											<li>
+											<li {...sbObjectId(svc._id)}>
 												<a
 													href={`/services/${svc.slug}/`}
 													class="block text-[12px] tracking-[0.06em] uppercase text-ink/75 hover:text-gold py-2 pl-12 pr-6 min-h-[40px] flex items-center"
+													{...sbFieldPath("title")}
 												>
 													{svc.title}
 												</a>

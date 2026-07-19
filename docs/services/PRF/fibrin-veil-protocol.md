@@ -532,3 +532,14 @@ The treatment is designed to improve the appearance of:
 **$2,145**
 
 Individual eligibility, response, downtime and results vary. The PRF is applied topically and is not represented as being injected or delivered to a specific skin depth during this facial.
+## Rose PRF Fibrin Veil — Internal Investment Reference
+
+This file is the local reference for the proposed Rose PRF Fibrin Veil add-on. Exact investment is not published on the public website.
+
+| Eligible treatment area | Internal add-on investment |
+| --- | ---: |
+| Full face | $225 |
+| Face and neck | $275 |
+| Face, neck, and decollete | $325 |
+
+The base treatment is priced separately. Before the add-on is offered or booked, confirm the selected service, candidacy, and current price in GlossGenius.

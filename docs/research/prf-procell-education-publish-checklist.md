@@ -16,7 +16,6 @@ node packages/studio/scripts/seed-prf-procell-education.mjs --apply
 - Service hubs: Microchanneling & Microneedling, ProCell Microchanneling, PRF.
 - Service treatments: ProCell Pro, ProCell MD, Topical PRF, PRF Injections, EZ Gel Bio-Filler, Rose PRF Fibrin Veil.
 - Comparisons: Microchanneling vs Microneedling; ProCell Pro vs MD; ProCell vs Topical PRF; Topical PRF vs PRF Injections; PRF Injections vs EZ Gel; ProCell Serum vs PRF.
-- Cost guide: Rose PRF Fibrin Veil add-on investment.
 
 ## Before publishing any draft
 
@@ -24,5 +23,5 @@ node packages/studio/scripts/seed-prf-procell-education.mjs --apply
 - Confirm topical PRF remains Amber’s topical-only lane; PRF injections and EZ Gel remain Diana, RN’s injectable lane.
 - Confirm the current ProCell manufacturer wording before publishing the MD/Pro comparison.
 - Have Diana, RN approve injectable areas, candidacy, aftercare, consent, and outcome wording.
-- Keep all pages consult-only except the owner-approved Rose PRF Fibrin Veil investment; do not add unsupported claims or a device-delivery claim for topical PRF.
+- Keep all pages consult-only. Exact investments stay in local service documentation; public FAQs may use only non-exact orientation such as “begins in the low-$200s.” Do not add unsupported claims or a device-delivery claim for topical PRF.
 - Review every draft in Studio before publishing. Outcomes, candidacy, and any series timing are individual and provider-determined.
