@@ -92,7 +92,7 @@ const linkBase =
 									<a
 										href={`/services/collections/${col.slug}/`}
 										role="menuitem"
-										class="flex items-center justify-between gap-4 px-5 py-2.5 text-[12px] font-medium tracking-[0.12em] uppercase text-ink hover:text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+										class="flex items-center justify-between gap-4 px-5 py-2.5 text-[12px] font-medium tracking-[0.12em] uppercase text-ink group-hover/col:text-gold-200 group-hover/col:bg-walnut group-focus-within/col:text-gold-200 group-focus-within/col:bg-walnut transition-colors duration-150"
 									>
 										<span {...sbFieldPath("title")}>{col.title}</span>
 										{col.services.length > 0 && (
@@ -119,7 +119,7 @@ const linkBase =
 														<a
 															href={`/services/${svc.slug}/`}
 															role="menuitem"
-															class="block px-5 py-2 text-[12px] font-medium tracking-[0.06em] uppercase text-ink hover:text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+															class="block px-5 py-2 text-[12px] font-medium tracking-[0.06em] uppercase text-ink hover:text-gold-200 hover:bg-walnut focus-visible:text-gold-200 focus-visible:bg-walnut transition-colors duration-150"
 															{...sbFieldPath("title")}
 														>
 															{svc.title}
@@ -136,7 +136,7 @@ const linkBase =
 							<a
 								href="/services/"
 								role="menuitem"
-								class="block px-5 py-2.5 text-[12px] font-semibold tracking-[0.14em] uppercase text-gold hover:bg-charcoal-lighter transition-colors duration-150"
+								class="block px-5 py-2.5 text-[12px] font-semibold tracking-[0.14em] uppercase text-gold hover:text-gold-200 hover:bg-walnut focus-visible:text-gold-200 focus-visible:bg-walnut transition-colors duration-150"
 							>
 								View All Services
 							</a>
@@ -505,6 +505,15 @@ const linkBase =
 	.dd-panel a,
 	.dd-flyout a {
 		text-shadow: none;
+	}
+
+	/* The dropdown is an ivory card even while the header is `.on-dark` over a
+	   photo hero. Without this re-scope it inherits the on-dark champagne gold
+	   (#E7D6A8), which is invisible on the light panel (~1:1). */
+	.dd-panel {
+		--hr-gold: 122 92 42;
+		--hr-muted: 94 85 72;
+		--hr-muted-strong: 45 40 34;
 	}
 
 	#mobile-drawer.open {

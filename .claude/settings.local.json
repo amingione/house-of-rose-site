@@ -19,7 +19,13 @@
       "Read(//Users/ambermingione/Documents/PRF EDU/part 3 - indications for prf/Facial esthetics/**)",
       "Bash(git rev-list *)",
       "Bash(awk '{print \"behind:\", $1, \"ahead:\", $2}')",
-      "Bash(awk '{print \"behind:\",$1,\"ahead:\",$2}')"
+      "Bash(awk '{print \"behind:\",$1,\"ahead:\",$2}')",
+      "Bash(git reset *)",
+      "Bash(echo \"--- commit 1: $? ---\")",
+      "Bash(echo \"--- commit 2: $? ---\")",
+      "Bash(echo \"--- commit 1 exit: $? ---\")",
+      "Bash(echo \"--- commit 2 exit: $? ---\")",
+      "Bash(echo \"--- commit exit: $? ---\")"
     ]
   },
   "enabledMcpjsonServers": [
