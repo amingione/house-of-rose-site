@@ -26,7 +26,10 @@
       "Bash(echo \"--- commit 1 exit: $? ---\")",
       "Bash(echo \"--- commit 2 exit: $? ---\")",
       "Bash(echo \"--- commit exit: $? ---\")",
-      "Bash(git branch *)"
+      "Bash(git branch *)",
+      "Bash(curl -sI https://houseofrosefl.com/)",
+      "Bash(curl -s -o /tmp/hor_shipping_resp.json -w \"HTTP %{http_code}\\\\n\" -X POST https://houseofrosefl.com/.netlify/functions/shipping-rates -H \"Content-Type: application/json\" -d '{\"items\":[],\"address\":{\"line1\":\"123 Main St\",\"city\":\"Punta Gorda\",\"state\":\"FL\",\"postal_code\":\"33950\",\"country\":\"US\"}}')",
+      "Bash(rm -f /tmp/hor_shipping_resp.json)"
     ]
   },
   "enabledMcpjsonServers": [
