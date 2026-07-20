@@ -1,4 +1,12 @@
 /// <reference types="astro/client" />
+/// <reference types="astro/astro-jsx" />
+
+// VS Code's TypeScript service checks Astro's generated template as preserved
+// TSX, which still looks for the legacy global JSX namespace. Astro 5 exposes
+// the canonical element map under astroHTML.JSX, so bridge only that map here.
+declare namespace JSX {
+  type IntrinsicElements = astroHTML.JSX.IntrinsicElements;
+}
 
 // @polgubau/astro-reveal's "./styles" export maps to a plain .css file with
 // no extension in the specifier, so Astro's built-in `*.css` ambient module
