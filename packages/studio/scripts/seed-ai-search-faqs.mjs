@@ -82,7 +82,7 @@ const faqs = [
 ];
 
 const content = {
-  aiSearchFaqHeading: 'AI Search FAQ',
+  aiSearchFaqHeading: 'The Essentials',
   aiSearchFaqIntro: 'Direct answers about House of Rose Aesthetics, our Punta Gorda studio, and what to expect before you book.',
   aiSearchFaqs: faqs,
 };
