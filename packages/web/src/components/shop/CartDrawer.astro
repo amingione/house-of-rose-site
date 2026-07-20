@@ -150,6 +150,7 @@
       document.querySelectorAll<HTMLElement>('[data-cart-count]').forEach((el) => {
         el.textContent = String(count);
         el.classList.toggle('hidden', count === 0);
+        el.classList.toggle('flex', count > 0);
       });
     };
 
