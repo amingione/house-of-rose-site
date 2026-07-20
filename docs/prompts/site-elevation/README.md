@@ -8,7 +8,7 @@ journey loops so no page dead-ends.
 ## How to run
 
 ```zsh
-cd ~/LocalStorm/Workspace/DevProjects/house_of_rose/house-of-rose-site
+cd ~/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site
 claude --model fable-5
 ```
 
