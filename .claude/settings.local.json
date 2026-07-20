@@ -25,7 +25,8 @@
       "Bash(echo \"--- commit 2: $? ---\")",
       "Bash(echo \"--- commit 1 exit: $? ---\")",
       "Bash(echo \"--- commit 2 exit: $? ---\")",
-      "Bash(echo \"--- commit exit: $? ---\")"
+      "Bash(echo \"--- commit exit: $? ---\")",
+      "Bash(git branch *)"
     ]
   },
   "enabledMcpjsonServers": [
