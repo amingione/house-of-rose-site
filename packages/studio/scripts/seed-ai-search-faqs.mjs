@@ -1,5 +1,5 @@
 /**
- * Seeds the business-level AI Search FAQ into the siteSettings singleton.
+ * Seeds the plain-language "Essentials" FAQ into the siteSettings singleton.
  *
  * Usage:
  *   node scripts/run-with-env.mjs node packages/studio/scripts/seed-ai-search-faqs.mjs
@@ -114,7 +114,7 @@ try {
   }
 
   await client.patch('siteSettings').set(content).commit();
-  console.log(`Updated siteSettings with ${faqs.length} AI Search FAQs.`);
+  console.log(`Updated siteSettings with ${faqs.length} Essentials FAQ entries.`);
 } catch (error) {
   console.error(error instanceof Error ? error.message : 'Unknown Sanity update error.');
   process.exit(1);

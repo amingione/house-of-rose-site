@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ site }) => {
   ];
 
   if (aiSearchFaq?.faqs?.length) {
-    lines.push(`## AI Search FAQ`, ``);
+    lines.push(`## Frequently Asked Questions`, ``);
     for (const faq of aiSearchFaq.faqs) {
       lines.push(`### ${faq.question}`, ``, faq.answer, ``);
     }
