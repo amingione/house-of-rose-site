@@ -3,6 +3,21 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
+## 2026-07-14 — ProCell/PRF coverage review (items 1–3)
+
+Reviewed and decided from a business + customer view:
+1. **Rose PRF Fibrin Veil** — completed the thin page: 169-word informative description, **From $225** with tiered
+   coverage note (full face $225 / +neck $275 / +décolleté $325), who-it's-for, 5-step process, 5 FAQs.
+   Kept as a distinct topical-PRF finishing add-on in Enhancements & Add-ons (topical only, never injected).
+2. **Draft ProCell MD/Pro services** — decided NOT to publish (they'd diverge from GlossGenius's single ProCell
+   line and cannibalize the microchanneling hub, which already explains Pro vs MD). Cleaned the dangling refs
+   they left on `microchanneling`.
+3. **Removed `/guides/microchanneling-prf/` guide** — kept consolidated (redirect → the deep `/services/microchanneling/`
+   hub; avoids two pages competing on one topic). Connected the story by linking `microchanneling` → PRF (+ Glo2, hub).
+
+Note: local build blocked by the npm optional-deps bug (missing `@rollup`/`@esbuild` darwin natives in node_modules) —
+unrelated to content; Netlify installs fresh so it builds clean. Data verified directly in Sanity.
+
 ## 2026-07-14 — Confirmations applied (task 3 of 3)
 
 Owner decisions applied: **GLP-1 → most-competitive $225/month** (overrides the $279 margin-safe option;
