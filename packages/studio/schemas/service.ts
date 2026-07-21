@@ -20,10 +20,10 @@ export const service = defineType({
     }),
     defineField({
       name: 'collection',
-      title: 'Collection',
+      title: 'Collection (website grouping page)',
       type: 'reference',
       to: [{ type: 'serviceCollection' }],
-      description: 'Which collection does this service belong to?',
+      description: 'Controls where this service appears on the SITE — which /services/collections/ hub page it\'s listed under (e.g. "Facials"). Not the same as Category below, which is internal pricing/reporting only and is never shown to customers.',
     }),
     defineField({
       name: 'kind',
@@ -42,10 +42,10 @@ export const service = defineType({
     }),
     defineField({
       name: 'parentService',
-      title: 'Parent Service (hub)',
+      title: 'Parent Service (hub — not the same as Collection)',
       type: 'reference',
       to: [{ type: 'service' }],
-      description: 'For treatments: the canonical hub this protocol belongs to (the certification that defines it).',
+      description: 'For treatments only: the specific hub SERVICE this protocol belongs under (e.g. "Microneedling — Corrective" under the "Microneedling" hub). This is a service-to-service link, separate from Collection above (which links to a serviceCollection grouping page).',
       hidden: ({ document }) => document?.kind !== 'treatment',
     }),
     defineField({
@@ -130,6 +130,21 @@ export const service = defineType({
       ],
     }),
     defineField({
+      name: 'gallery',
+      title: 'Gallery',
+      type: 'array',
+      description: 'Additional supporting photos shown alongside the primary image (e.g. detail/product shots).',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: 'orderRank',
       title: 'Order',
       type: 'number',
@@ -138,18 +153,14 @@ export const service = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-      ],
-      options: { collapsed: true },
+      type: 'seo',
     }),
     // ─── Catalog & pricing (mirrors Notion "HOUSE OF ROSE: Services") ─────────
     defineField({
       name: 'category',
-      title: 'Category',
+      title: 'Category (internal pricing/reporting only)',
       type: 'string',
+      description: 'Internal bucket for pricing and reporting — NEVER shown on the website. Does not affect where the service appears on the site; that\'s controlled by Collection above.',
       options: {
         list: [
           { title: 'Skin Renewal', value: 'skin-renewal' },
@@ -196,9 +207,7 @@ export const service = defineType({
         ],
       },
     }),
-    defineField({ name: 'foundingPrice', title: 'Founding Price', type: 'string' }),
     defineField({ name: 'rackPrice', title: 'Rack Price', type: 'string' }),
-    defineField({ name: 'memberPrice', title: 'Member Price', type: 'string' }),
     defineField({ name: 'pricingNotes', title: 'Pricing Notes', type: 'text', rows: 3 }),
     defineField({ name: 'competitorPricing', title: 'Competitor Pricing', type: 'text', rows: 3 }),
   ],

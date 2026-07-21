@@ -122,7 +122,7 @@ const FALLBACK_CONCERN_LINKS: SkinAnalysisConcern[] = [
   { title: 'Sun Damage', slug: 'sun-damage' },
   { title: 'Dark Circles & Under-Eyes', slug: 'dark-circles' },
   { title: 'Stretch Marks', slug: 'stretch-marks' },
-  { title: 'Hair Thinning', slug: 'hair-thinning' },
+  { title: 'Texture', slug: 'texture' },
 ];
 
 const FALLBACK_FAQS: SkinAnalysisFaq[] = [
@@ -136,7 +136,7 @@ const FALLBACK_FAQS: SkinAnalysisFaq[] = [
   },
   {
     q: 'Can the scan track before-and-after progress?',
-    a: 'Yes. The scan creates a baseline that can be compared over time, which is especially helpful for regenerative treatments, corrective skincare, acne care, pigmentation work, and long-term skin maintenance.',
+    a: 'Yes. The scan creates a baseline that can be compared over time, which is especially helpful for advanced skin treatments, corrective skincare, acne care, pigmentation work, and long-term skin maintenance.',
   },
   {
     q: 'How long does it take?',
@@ -191,7 +191,7 @@ const serviceSchema = service(
     description={data.heroDescription ?? "House of Rose uses in-studio AI-assisted imaging to evaluate skin patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage before building your personalized treatment plan."}
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Book Your Scan', href: BOOKING_URL }}
+    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Begin With a Skin Consultation', href: '#consultation' }}
     ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services/' }}
     backgroundImage="/images/hor-skin-studio.webp"
     titleField="heroTitle"
@@ -330,7 +330,7 @@ const serviceSchema = service(
   </section>
 
   <!-- ── CTA ──────────────────────────────────────────────────────── -->
-  <section class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold-metal/10">
+  <section id="consultation" class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold-metal/10 scroll-mt-24">
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? "Begin Here"}</span>
       <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('ctaHeading')}>
@@ -338,6 +338,9 @@ const serviceSchema = service(
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]" {...sbFieldPath('ctaPara')}>
         {data.ctaPara ?? "Leave your details and we'll reach out to schedule your AI skin analysis in Punta Gorda — the evidence-based first step before any treatment. No pressure, no commitment."}
+      </p>
+      <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
+        Complimentary · By appointment · Punta Gorda
       </p>
       <form
         name="skin-analysis"
@@ -359,7 +362,8 @@ const serviceSchema = service(
         <label for="sa-phone" class="sr-only">Phone (optional)</label>
         <input id="sa-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)"
           class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none transition-colors" />
-        <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Reserve My Skin Analysis"}</button>
+        <input type="hidden" name="service-interest" value="AI Skin Analysis" />
+        <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Begin With a Skin Consultation"}</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
           Prefer to book instantly?
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">Book online</a>.

@@ -49,7 +49,7 @@ const data =
       </h1>
 
       <p class="text-muted text-[16px] leading-relaxed mb-4" {...sbFieldPath('paragraph1')}>
-        {data.paragraph1 ?? "We've received your message and will be in touch within 24–48 hours."}
+        {data.paragraph1 ?? "We've received your message. During studio hours, we aim to reply within two business hours."}
       </p>
 
       <p class="text-muted text-[14px] leading-relaxed mb-12" {...sbFieldPath('paragraph2')}>
@@ -76,3 +76,24 @@ const data =
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  interface AnalyticsWindow extends Window {
+    gtag?: (command: 'event', eventName: string, params?: Record<string, string>) => void;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const leadType = params.get('lead');
+  const allowedLeadTypes = new Set(['contact', 'suiteRental', 'skinAnalysis']);
+
+  if (leadType && allowedLeadTypes.has(leadType)) {
+    const eventKey = `hor_generate_lead_${leadType}`;
+    if (!sessionStorage.getItem(eventKey)) {
+      (window as AnalyticsWindow).gtag?.('event', 'generate_lead', {
+        lead_type: leadType,
+        page_location: '/thank-you/',
+      });
+      sessionStorage.setItem(eventKey, '1');
+    }
+  }
+</script>

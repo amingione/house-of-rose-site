@@ -15,7 +15,7 @@ export const seo = defineType({
       title: 'Meta Title',
       type: 'string',
       description: 'Answer-led, ≤ ~60 chars. Falls back to the document title.',
-      validation: (R) => R.max(70).warning('Keep under ~60 characters for full SERP display.'),
+      validation: (R) => R.max(60).warning('Keep at or under 60 characters for full SERP display.'),
     }),
     defineField({
       name: 'metaDescription',
@@ -23,7 +23,7 @@ export const seo = defineType({
       type: 'text',
       rows: 2,
       description: 'Direct answer to the page question, ≤ ~155 chars.',
-      validation: (R) => R.max(170).warning('Keep under ~155 characters.'),
+      validation: (R) => R.min(140).warning('Aim for 140–160 characters.').max(160).warning('Keep at or under 160 characters.'),
     }),
   ],
 });

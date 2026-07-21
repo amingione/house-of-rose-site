@@ -159,7 +159,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `## Positioning`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida (Charlotte and Lee Counties) as a private, appointment-only destination for advanced aesthetics and wellness. The focus is regenerative, restorative, and highly personalized care — with PRF among its signature specialties — delivered through consultation-built plans rather than preset public packages or one-off services.`,
+    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida (Charlotte and Lee Counties) as a private, appointment-only destination for advanced aesthetics and wellness. The focus is regenerative, restorative, and highly personalized care — with PRF among its core services — delivered through consultation-built plans rather than one-size-fits-all recommendations.`,
   );
 
   return new Response(lines.join('\n'), {

@@ -44,7 +44,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
       </div>
       <div class="relative min-h-[330px] bg-charcoal-lighter">
         <img
-          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/hor-exterior.webp'}
+          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/hor-lobby.webp'}
           alt={experienceContent?.storyImage?.alt ?? 'House of Rose reception desk'}
           class="w-full h-full object-cover"
           width="800"

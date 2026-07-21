@@ -6,6 +6,20 @@ export const concern = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'status',
+      title: 'Public Status',
+      type: 'string',
+      initialValue: 'live',
+      options: {
+        list: [
+          { title: 'Live', value: 'live' },
+          { title: 'Parked', value: 'parked' },
+        ],
+        layout: 'radio',
+      },
+      validation: (R) => R.required(),
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',

@@ -8,8 +8,10 @@ import Footer from '@/components/Footer.astro';
 import CartDrawer from '@/components/shop/CartDrawer.astro';
 import ComingSoon from '@/components/ComingSoon.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import LeadAnalytics from '@/components/LeadAnalytics.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph } from '@/lib/structuredData';
+import { formatSeoTitle } from '@/lib/seo';
 
 interface Props {
   title?: string;
@@ -44,9 +46,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const defaultOgImage = new URL('/logos/hr-monogram-2026/og.png', siteURL).toString();
 const socialImage = image ? new URL(image, siteURL).toString() : defaultOgImage;
 const socialImageAlt = imageAlt ?? `${siteName} in Punta Gorda, Florida`;
-const pageTitle = (title === siteName || title.includes(siteName))
-  ? title
-  : `${title} | ${siteName}`;
+const pageTitle = formatSeoTitle(title, siteName);
 const entityGraph = siteEntityGraph(
   {
     url: canonicalURL.toString(),
@@ -133,5 +133,6 @@ const entityGraph = siteEntityGraph(
     <script>
       import '@polgubau/astro-reveal';
     </script>
+    <LeadAnalytics />
   </body>
 </html>

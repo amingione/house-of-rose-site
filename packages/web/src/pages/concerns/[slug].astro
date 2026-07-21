@@ -76,7 +76,7 @@ const treatmentList = concern.treatments?.length
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {concern.treatments.map((t) => (
             <a href={`/services/${t.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
-              {t.image && (
+              {t.image?.asset && (
                 <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter mb-5">
                   <img
                     src={urlFor(t.image).width(560).height(420).fit('crop').url()}

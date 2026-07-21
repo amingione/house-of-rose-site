@@ -32,6 +32,20 @@ export const comparison = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      initialValue: 'parked',
+      options: {
+        list: [
+          { title: 'Live', value: 'live' },
+          { title: 'Parked', value: 'parked' },
+        ],
+        layout: 'radio',
+      },
+      validation: (R) => R.required(),
+    }),
+    defineField({
       name: 'intro',
       title: 'Direct Answer / Intro',
       type: 'text',

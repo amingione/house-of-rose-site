@@ -49,6 +49,20 @@ export interface EmailOrder {
   trackingUrl?: string;
 }
 
+export interface LeadEmail {
+  name: string;
+  email: string;
+  phone?: string;
+  submissionType: 'contact' | 'suiteRental' | 'skinAnalysis';
+  serviceInterest?: string;
+  message?: string;
+  page?: string;
+  landingPage?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+}
+
 const esc = (v: string): string =>
   v
     .replaceAll('&', '&amp;')
@@ -241,4 +255,68 @@ export async function sendOrderShipped(order: EmailOrder): Promise<boolean> {
     .join('\n');
 
   return send(order.email, `Your House of Rose order ${order.orderNumber} has shipped`, html, text, 'order-shipped');
+}
+
+const leadLabel = (type: LeadEmail['submissionType']): string => {
+  if (type === 'skinAnalysis') return 'skin consultation request';
+  if (type === 'suiteRental') return 'suite rental application';
+  return 'message';
+};
+
+/** Best-effort acknowledgment after the lead has been saved successfully. */
+export async function sendLeadAcknowledgement(lead: LeadEmail): Promise<boolean> {
+  const label = leadLabel(lead.submissionType);
+  const heading = lead.submissionType === 'skinAnalysis'
+    ? 'Your skin consultation request is in.'
+    : 'Thank you for reaching out.';
+  const responseWindow = lead.submissionType === 'suiteRental'
+    ? 'Our team will review your application and follow up within two business days.'
+    : 'Our team will review your request and follow up during business hours.';
+
+  const html = shell(
+    heading,
+    `<p style="margin:0 0 20px;font:400 15px/1.8 Arial,sans-serif;color:#5E5548;">
+      ${esc(firstName(lead.name))}, we received your ${esc(label)}. ${esc(responseWindow)}
+    </p>
+    ${lead.serviceInterest ? `<p style="margin:0 0 20px;font:400 14px/1.7 Arial,sans-serif;color:#5E5548;"><span style="color:#14110F;font-weight:700;">Interest</span><br />${esc(lead.serviceInterest)}</p>` : ''}
+    <p style="margin:0;font:400 14px/1.7 Arial,sans-serif;color:#5E5548;">
+      If your plans change, reply to this email or call or text ${PHONE}.
+    </p>`,
+  );
+
+  const text = [
+    `${firstName(lead.name)}, we received your ${label}.`,
+    responseWindow,
+    lead.serviceInterest ? `Interest: ${lead.serviceInterest}` : '',
+    `Questions or changes? Reply to this email or call or text ${PHONE}.`,
+    SITE,
+  ].filter(Boolean).join('\n\n');
+
+  return send(lead.email, 'We received your House of Rose request', html, text, 'lead-acknowledgement');
+}
+
+/** Best-effort internal notification. It is never sent to analytics. */
+export async function sendLeadNotification(lead: LeadEmail): Promise<boolean> {
+  const recipient = process.env.LEAD_NOTIFICATION_EMAIL ?? 'info@houseofrosefl.com';
+  const rows = [
+    ['Type', leadLabel(lead.submissionType)],
+    ['Name', lead.name],
+    ['Email', lead.email],
+    ['Phone', lead.phone],
+    ['Interest', lead.serviceInterest],
+    ['Form page', lead.page],
+    ['Landing page', lead.landingPage],
+    ['UTM source', lead.utmSource],
+    ['UTM medium', lead.utmMedium],
+    ['UTM campaign', lead.utmCampaign],
+    ['Message', lead.message],
+  ].filter((row): row is [string, string] => Boolean(row[1]));
+
+  const body = rows
+    .map(([label, value]) => `<p style="margin:0 0 12px;font:400 14px/1.6 Arial,sans-serif;color:#5E5548;"><span style="color:#14110F;font-weight:700;">${esc(label)}</span><br />${esc(value)}</p>`)
+    .join('');
+  const html = shell(`New ${leadLabel(lead.submissionType)}`, body);
+  const text = rows.map(([label, value]) => `${label}: ${value}`).join('\n\n');
+
+  return send(recipient, `New House of Rose ${leadLabel(lead.submissionType)}`, html, text, 'lead-notification');
 }

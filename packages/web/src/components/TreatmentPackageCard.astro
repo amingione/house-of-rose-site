@@ -24,7 +24,7 @@ interface Props {
 
 const { pkg, expanded = false, objectId } = Astro.props;
 const headline = pkg.outcome ?? pkg.whatsIncluded ?? '';
-const price = pkg.foundingPrice ?? pkg.rackPrice;
+const price = pkg.rackPrice;
 const imageSrc = pkg.image
   ? urlFor(pkg.image).width(640).height(480).fit('crop').url()
   : DEFAULT_PACKAGE_IMAGE;
@@ -72,14 +72,14 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
     )}
 
     {price && (
-      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4" {...fp(pkg.foundingPrice ? 'foundingPrice' : 'rackPrice')}>{price}</p>
+      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4" {...fp('rackPrice')}>{price}</p>
     )}
 
     <a
       href={`/packages/${pkg.slug}/`}
       class="learn-more text-gold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200"
     >
-      {expanded ? 'Reserve this ritual' : 'Explore the ritual'} <span>→</span>
+      {expanded ? 'Review this series' : 'View details'} <span>→</span>
     </a>
 
     {expanded && pkg.candidacyNote && (

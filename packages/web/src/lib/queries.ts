@@ -1,10 +1,13 @@
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
 const IMAGE_FIELDS = /* groq */ `
-  "image": image {
-    asset->{ url, metadata { dimensions } },
-    alt
-  }
+  "image": select(
+    defined(image.asset) => image {
+      asset->{ url, metadata { dimensions } },
+      alt
+    },
+    null
+  )
 `;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -105,6 +108,7 @@ export interface Service {
   process?: string[];
   faqs?: FAQ[];
   image?: SanityImage;
+  gallery?: SanityImage[];
   collection?: { title: string; slug: string };
   provider?: Provider;
   relatedServices?: Service[];
@@ -273,7 +277,7 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
 `;
 
 export const ALL_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
+  *[_type == "service" && status in ["live", "actual-menu"] && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -289,7 +293,7 @@ export const ALL_SERVICES_QUERY = /* groq */ `
 `;
 
 export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && defined(slug.current)] | order(coalesce(parentService->title, title) asc, kind asc, orderRank asc, title asc) {
+  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current)] | order(coalesce(parentService->title, title) asc, kind asc, orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -300,13 +304,13 @@ export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
 `;
 
 export const SERVICE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "service" && slug.current == $slug][0] {
+  *[_type == "service" && status in ["live", "actual-menu"] && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
     kind,
     "parentService": parentService->{ title, "slug": slug.current },
-    "treatments": *[_type == "service" && parentService._ref == ^._id] | order(orderRank asc, title asc) {
+    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && parentService._ref == ^._id] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -329,9 +333,10 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     },
     "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
+    "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
     collection->{ title, "slug": slug.current },
     "provider": provider->{ _id, title, fullName, lane, roleCredential, scopeOfPractice },
-    "relatedServices": relatedServices[]-> {
+    "relatedServices": relatedServices[]->[status in ["live", "actual-menu"]] {
       _id,
       title,
       "slug": slug.current,
@@ -358,7 +363,7 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
     "slug": slug.current,
     description,
     ${IMAGE_FIELDS},
-    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -379,7 +384,7 @@ export const NAV_COLLECTIONS_QUERY = /* groq */ `
     _id,
     title,
     "slug": slug.current,
-    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current
@@ -401,7 +406,7 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
     "slug": slug.current,
     description,
     ${IMAGE_FIELDS},
-    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -498,7 +503,7 @@ export const ALL_SHOP_BRANDS_QUERY = /* groq */ `
 `;
 
 export const ALL_CONCERNS_QUERY = /* groq */ `
-  *[_type == "concern"] | order(orderRank asc, title asc) {
+  *[_type == "concern" && status != "parked"] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -508,14 +513,14 @@ export const ALL_CONCERNS_QUERY = /* groq */ `
 `;
 
 export const CONCERN_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "concern" && slug.current == $slug][0] {
+  *[_type == "concern" && status != "parked" && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
     intro,
     ${IMAGE_FIELDS},
     "seo": seo { metaTitle, metaDescription },
-    "treatments": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -528,12 +533,12 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_CONCERN_SLUGS_QUERY = /* groq */ `
-  *[_type == "concern" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "concern" && status != "parked" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 // Slug arrays for Astro getStaticPaths()
 export const ALL_SERVICE_SLUGS_QUERY = /* groq */ `
-  *[_type == "service" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current)]{ "slug": slug.current }
 `;
 
 export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
@@ -662,7 +667,6 @@ export interface TreatmentPackage {
   servicesIncluded?: PackageServiceRef[];
   whatsIncluded?: string;
   cadence?: string;
-  foundingPrice?: string;
   rackPrice?: string;
   outcome?: string;
   positioning?: string;
@@ -692,7 +696,6 @@ const PACKAGE_FIELDS = /* groq */ `
   "servicesIncluded": servicesIncluded[]->{ _id, title, "slug": slug.current, tagline },
   whatsIncluded,
   cadence,
-  foundingPrice,
   rackPrice,
   outcome,
   positioning,
@@ -701,19 +704,19 @@ const PACKAGE_FIELDS = /* groq */ `
 `;
 
 export const ALL_TREATMENT_PACKAGES_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && status != "parked"] | order(orderRank asc, _createdAt desc) {
+  *[_type == "treatmentPackage" && status == "live"] | order(orderRank asc, _createdAt desc) {
     ${PACKAGE_FIELDS}
   }
 `;
 
 export const TREATMENT_PACKAGE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && slug.current == $slug][0] {
+  *[_type == "treatmentPackage" && status == "live" && slug.current == $slug][0] {
     ${PACKAGE_FIELDS}
   }
 `;
 
 export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "treatmentPackage" && status == "live" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 
@@ -854,7 +857,7 @@ const COMPARISON_OPTION_FIELDS = /* groq */ `
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
-  *[_type == "comparison"] | order(orderRank asc, title asc) {
+  *[_type == "comparison" && status == "live"] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, intro, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -863,7 +866,7 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
 `;
 
 export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "comparison" && slug.current == $slug][0] {
+  *[_type == "comparison" && status == "live" && slug.current == $slug][0] {
     _id, title, "slug": slug.current, intro, verdict, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -874,7 +877,7 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
-  *[_type == "comparison" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "comparison" && status == "live" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────

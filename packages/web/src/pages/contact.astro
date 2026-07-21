@@ -187,6 +187,27 @@ const oid = data._id ? sbObjectId(data._id) : {};
 
         <!-- Message -->
         <div>
+          <label for="service-interest" class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">
+            What can we help with?
+          </label>
+          <select
+            id="service-interest"
+            name="service-interest"
+            class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
+          >
+            <option value="General question">General question</option>
+            <option value="AI Skin Analysis">AI Skin Analysis</option>
+            <option value="ProCell Microchanneling">ProCell Microchanneling</option>
+            <option value="Topical PRF">Topical PRF</option>
+            <option value="Glo2Facial">Glo2Facial</option>
+            <option value="Dermaplaning">Dermaplaning</option>
+            <option value="Injectables">Injectables</option>
+            <option value="Wellness">Wellness</option>
+          </select>
+        </div>
+
+        <!-- Message -->
+        <div>
           <label for="message" class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">
             Message
           </label>

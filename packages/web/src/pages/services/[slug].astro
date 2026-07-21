@@ -31,14 +31,17 @@ if (!service) {
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
-const socialImage = service.image
+const socialImage = service.image?.asset
   ? urlFor(service.image).width(1200).height(630).fit('crop').url()
   : fallbackImage
     ? new URL(fallbackImage, site).toString()
     : undefined;
-const heroImage = service.image
-  ? urlFor(service.image).width(1920).height(1080).url()
-  : fallbackImage;
+// All service headers now share one universal banner (per Amber). service.image is no
+// longer used for the hero background — it still drives socialImage above, and any photo
+// that was previously doing header duty now surfaces in the Gallery section below instead
+// of being discarded.
+const heroImage = '/images/banner/background/HR-background.webp';
+const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
 
 // Face Reality clinical before/after proof — only populated for the acne-program pages.
 const resultImages = slug ? getServiceResultImages(slug) : [];
@@ -148,6 +151,30 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </div>
   </section>
 
+  <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
+  {galleryImages.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Gallery</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {galleryImages.map((img) => (
+            <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
+              <img
+                src={urlFor(img).width(900).height(1200).url()}
+                alt={img.alt ?? service.title}
+                width="900"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto object-cover"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Face Reality clinical results (acne-program pages only) -->
   {resultImages.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
@@ -193,9 +220,6 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {service.provider.fullName ?? service.provider.title}
           {service.provider.roleCredential && <span class="text-ink/65"> · {service.provider.roleCredential}</span>}
         </h2>
-        {service.provider.scopeOfPractice && (
-          <p class="text-muted text-[14px] leading-relaxed mt-3 max-w-[720px]">{service.provider.scopeOfPractice}</p>
-        )}
       </div>
     </section>
   )}
@@ -277,7 +301,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         {service.relatedServices.filter(Boolean).map((related) => (
           <div class="bg-charcoal">
             <a href={`/services/${related.slug}/`} class="service-card group block" {...sbObjectId(related._id)}>
-              {related.image && (
+              {related.image?.asset && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
                     src={urlFor(related.image).width(400).height(400).fit('crop').url()}
