@@ -19,7 +19,7 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-from reportlab.platypus import Frame, KeepTogether, Paragraph, Spacer
+from reportlab.platypus import Frame, Paragraph, Spacer
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -30,10 +30,7 @@ FULL_LOGO = ROOT / "packages/web/public/logos/house-ofRose_aesth.webp"
 DIANA = ROOT / "packages/web/public/images/providers/Diana.webp"
 AMBER = ROOT / "packages/web/public/images/providers/Amber.webp"
 WELCOME = ROOT / "packages/web/public/images/welcome-house-of-rose.webp"
-EXTERIOR = Path(
-    "/Users/ambermingione/Downloads/"
-    "hofr-med-spa2026-07-20 10:55:39 +0000_4.webp"
-)
+EXTERIOR = ROOT / "packages/web/public/images/H_OF_A_EXTERIOR_WINDOW_DECALS.webp"
 
 PAGE_W, PAGE_H = landscape(letter)
 PANEL_FLAP = 3.625 * inch
@@ -604,34 +601,22 @@ def draw_inside(c: canvas.Canvas) -> None:
     # Inside center: the three House of Rose service lanes.
     x, w = PANEL_X[1], PANEL_W[1]
     services = [
-        KeepTogether(
-            [
-                P("01  INJECTABLE PRF", "section_title"),
-                P(
-                    "Liquid PRF is placed by Diana Morrison, RN in provider-selected facial areas after a clinical consultation. It may be discussed for selected fine-line and delicate-area concerns when a subtle, gradual approach is appropriate.",
-                    "body_tight",
-                ),
-            ]
+        P("01  INJECTABLE PRF", "section_title"),
+        P(
+            "Liquid PRF is placed by Diana Morrison, RN in provider-selected facial areas after a clinical consultation. It may be discussed for selected fine-line and delicate-area concerns when a subtle, gradual approach is appropriate.",
+            "body_tight",
         ),
         Spacer(1, 5),
-        KeepTogether(
-            [
-                P("02  EZ GEL BIO-FILLER", "section_title"),
-                P(
-                    "Part of the PRF preparation is converted into a soft, client-derived gel. EZ Gel may be considered for subtle, temporary volume in smile-line, lower-face or other provider-selected areas. It is not a structural replacement for every dermal filler.",
-                    "body_tight",
-                ),
-            ]
+        P("02  EZ GEL BIO-FILLER", "section_title"),
+        P(
+            "Part of the PRF preparation is converted into a soft, client-derived gel. EZ Gel may be considered for subtle, temporary volume in smile-line, lower-face or other provider-selected areas. It is not a structural replacement for every dermal filler.",
+            "body_tight",
         ),
         Spacer(1, 5),
-        KeepTogether(
-            [
-                P("03  MICRONEEDLING + TOPICAL PRF", "section_title"),
-                P(
-                    "Amber Mingione performs the needling service and applies PRF to the skin surface as a topical adjunct. The PRF is not injected, and House of Rose does not describe the device as delivering blood products into the skin.",
-                    "body_tight",
-                ),
-            ]
+        P("03  MICRONEEDLING + TOPICAL PRF", "section_title"),
+        P(
+            "Amber Mingione performs the needling service and applies PRF to the skin surface as a topical adjunct. The PRF is not injected, and House of Rose does not describe the device as delivering blood products into the skin.",
+            "body_tight",
         ),
         Spacer(1, 7),
         P(
