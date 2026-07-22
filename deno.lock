@@ -41,7 +41,6 @@
           "dependencies": [
             "npm:@astrojs/check@~0.9.4",
             "npm:@astrojs/tailwind@^6.0.2",
-            "npm:@astrojs/ts-plugin@^1.10.9",
             "npm:@polgubau/astro-reveal@^1.0.2",
             "npm:@portabletext/to-html@^5.0.2",
             "npm:@sanity/client@^6.22.2",

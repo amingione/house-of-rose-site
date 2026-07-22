@@ -99,6 +99,28 @@ const PAGE_ROUTES: Record<string, string> = {
   product: '/shop/{slug}',
 };
 
+/**
+ * Singleton document type -> fixed public route (no `{slug}` — one document
+ * per type). Without an entry here, Visual Editor has no `urlPath` to build
+ * the sitemap/page-picker entry from, so these pages are invisible in the
+ * editor's page navigator even though they're fully Sanity-backed and
+ * click-to-edit annotated. Keep in sync with CLAUDE.md "Routes" table.
+ */
+const SINGLETON_PAGE_ROUTES: Record<string, string> = {
+  homepage: '/',
+  contactPage: '/contact',
+  supportPage: '/support',
+  termsOfService: '/terms-of-service',
+  privacyPolicy: '/privacy-policy',
+  rentARoom: '/rent-a-room',
+  skinAnalysis: '/skin-analysis',
+  thankYou: '/thank-you',
+  experienceContent: '/experience',
+  professionalMakeupPage: '/services/professional-makeup',
+  janeIredalePage: '/services/professional-makeup/jane-iredale',
+  makeupEventsPage: '/services/professional-makeup/events',
+};
+
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
   ssgName: 'custom',
@@ -126,6 +148,9 @@ export default defineStackbitConfig({
       logPatterns: {
         up: ['is ready', 'astro'],
       },
+      directRoutes: {
+        'socket.io': 'socket.io',
+      },
       passthrough: ['/vite-hmr/**'],
     },
   },
@@ -145,10 +170,13 @@ export default defineStackbitConfig({
   // Sanity CSI infers documents as `data` models; promote the page-backed
   // document types to `page` and give each its URL template. Visual Editor uses
   // these `urlPath`s to auto-generate the sitemap and Page Editor — substituting
-  // `{slug}` from each document's slug field — so no custom siteMap is needed.
-  modelExtensions: Object.entries(PAGE_ROUTES).map(([name, urlPath]) => ({
-    name,
-    type: 'page' as const,
-    urlPath,
-  })),
+  // `{slug}` from each document's slug field (or using the fixed singleton
+  // route as-is) — so no custom siteMap function is needed.
+  modelExtensions: Object.entries({ ...PAGE_ROUTES, ...SINGLETON_PAGE_ROUTES }).map(
+    ([name, urlPath]) => ({
+      name,
+      type: 'page' as const,
+      urlPath,
+    }),
+  ),
 });
