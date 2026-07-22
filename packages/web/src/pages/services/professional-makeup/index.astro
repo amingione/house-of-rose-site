@@ -113,9 +113,6 @@ const relatedLinks = data.relatedLinks?.length ? data.relatedLinks : FALLBACK_LI
 const usingFallbackLinks = !data.relatedLinks?.length;
 const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
 
-const providerName = data.provider?.title ?? 'Aundrea Pedigo';
-const providerCredential = data.provider?.roleCredential ?? 'Professional Makeup Artist';
-
 // ── SEO + JSON-LD ────────────────────────────────────────────────────────────
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -128,7 +125,7 @@ const pageTitle =
   data.seoTitle ?? 'Professional Makeup in Punta Gorda, FL | House of Rose Aesthetics';
 const pageDescription =
   data.seoDescription ??
-  'Professional makeup at House of Rose Aesthetics in Punta Gorda, FL — event, wedding, prom, and photography looks applied with skin-first Jane Iredale mineral makeup by Aundrea Pedigo.';
+  'Professional makeup at House of Rose Aesthetics in Punta Gorda, FL — event, wedding, prom, and photography looks applied with skin-first Jane Iredale mineral makeup.';
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -251,20 +248,6 @@ const faqLd = faqPage(faqs);
         <p class="text-ivory/75 text-[15px] leading-[1.85] max-w-[640px] mx-auto" {...sbFieldPath('trialRunBody')}>
           {data.trialRunBody ??
             'A trial run is booked as a separate session at the same price as your event application — it is not included, but for weddings and photography we strongly recommend it. Together we coordinate your colors (eye, lip, cheek), color-match and swatch-test your foundation options, and perfect the exact look you want, so the day itself is effortless.'}
-        </p>
-      </div>
-    </section>
-
-    <!-- Provider -->
-    <section class="bg-charcoal-light py-[clamp(44px,6vw,80px)] px-6 border-t border-gold-metal/10">
-      <div class="max-w-[820px] mx-auto text-center">
-        <span class="kicker" {...sbFieldPath('providerKicker')}>{data.providerKicker ?? 'Your Artist'}</span>
-        <h2 class="font-serif text-[clamp(22px,3.4vw,32px)] text-ink mt-2 mb-4" {...sbFieldPath('providerHeading')}>
-          {data.providerHeading ?? `Makeup by ${providerName}`}
-        </h2>
-        <p class="text-muted text-[15px] leading-[1.85] max-w-[600px] mx-auto" {...sbFieldPath('providerBody')}>
-          {data.providerBody ??
-            `Professional makeup at House of Rose is led by ${providerName}, ${providerCredential.toLowerCase()}, specializing in skin-first, event-ready application.`}
         </p>
       </div>
     </section>

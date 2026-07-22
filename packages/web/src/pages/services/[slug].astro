@@ -211,19 +211,6 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
-  <!-- Provider attribution (when assigned in Sanity) -->
-  {service.provider && (
-    <section class="bg-charcoal-light py-10 px-6 border-y border-gold-metal/10">
-      <div class="max-w-[960px] mx-auto" {...sbObjectId(service.provider._id)}>
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-3">Your Provider</span>
-        <h2 class="font-serif text-[clamp(22px,3vw,30px)] text-ink">
-          {service.provider.fullName ?? service.provider.title}
-          {service.provider.roleCredential && <span class="text-ink/65"> · {service.provider.roleCredential}</span>}
-        </h2>
-      </div>
-    </section>
-  )}
-
   <!-- Treatments under this service (hub pages) -->
   {service.treatments && service.treatments.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
