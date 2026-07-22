@@ -33,4 +33,11 @@ export default defineConfig({
   ],
   output: 'static',
   site: getSiteUrl(),
+  // Netlify Visual Editor proxies Vite's HMR websocket through this dedicated
+  // path in the cloud preview. Keep this aligned with stackbit.config.ts.
+  vite: {
+    server: {
+      hmr: { path: '/vite-hmr/' },
+    },
+  },
 });
