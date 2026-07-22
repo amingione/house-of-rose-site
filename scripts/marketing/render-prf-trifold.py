@@ -27,10 +27,9 @@ OUTPUT = ROOT / "output" / "pdf" / "house-of-rose-prf-trifold-brochure.pdf"
 
 MONOGRAM = ROOT / "packages/web/public/logos/house-of-rose-monogram/hr-logo-gold.webp"
 FULL_LOGO = ROOT / "packages/web/public/logos/house-ofRose_aesth.webp"
-DIANA = ROOT / "packages/web/public/images/providers/Diana.webp"
-AMBER = ROOT / "packages/web/public/images/providers/Amber.webp"
 WELCOME = ROOT / "packages/web/public/images/welcome-house-of-rose.webp"
 EXTERIOR = ROOT / "packages/web/public/images/H_OF_A_EXTERIOR_WINDOW_DECALS.webp"
+BEFORE_AFTER = ROOT / "packages/web/public/images/before-after/prf-undereyes-ezgel.png"
 
 PAGE_W, PAGE_H = landscape(letter)
 PANEL_FLAP = 3.625 * inch
@@ -169,41 +168,6 @@ def trimmed_logo(path: Path) -> ImageReader:
         return reader
 
 
-def draw_round_image(
-    c: canvas.Canvas,
-    path: Path,
-    center_x: float,
-    center_y: float,
-    radius: float,
-    *,
-    focal_y: float = 0.22,
-) -> None:
-    reader = _processed_cover_image(
-        path,
-        int(radius * 8),
-        int(radius * 8),
-        0.5,
-        focal_y,
-        1.02,
-    )
-    c.saveState()
-    clip = c.beginPath()
-    clip.circle(center_x, center_y, radius)
-    c.clipPath(clip, stroke=0, fill=0)
-    c.drawImage(
-        reader,
-        center_x - radius,
-        center_y - radius,
-        width=radius * 2,
-        height=radius * 2,
-        mask="auto",
-    )
-    c.restoreState()
-    c.setStrokeColor(GOLD)
-    c.setLineWidth(1.1)
-    c.circle(center_x, center_y, radius, stroke=1, fill=0)
-
-
 def paragraph_style(
     name: str,
     *,
@@ -257,25 +221,6 @@ STYLES = {
     "bullet": paragraph_style("bullet", size=8.8, leading=11.5, space_after=2),
     "small": paragraph_style("small", size=7.6, leading=9.6, color=MUTED, space_after=3),
     "small_ink": paragraph_style("small_ink", size=7.7, leading=9.8, color=SOFT_INK, space_after=3),
-    "provider_name": paragraph_style(
-        "provider_name",
-        font="Cochin-Bold",
-        size=10.4,
-        leading=11.4,
-        color=INK,
-        space_after=1,
-    ),
-    "provider_role": paragraph_style(
-        "provider_role",
-        font="Avenir-Medium",
-        size=7.2,
-        leading=8.7,
-        color=GOLD_DARK,
-        space_after=2,
-    ),
-    "provider_body": paragraph_style(
-        "provider_body", size=7.5, leading=9.5, color=SOFT_INK, space_after=4
-    ),
     "center_small": paragraph_style(
         "center_small", size=7.5, leading=9.6, color=SOFT_INK, alignment=TA_CENTER
     ),
@@ -343,7 +288,7 @@ def draw_outside(c: canvas.Canvas) -> None:
     c.setFillColor(PAPER)
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
 
-    # Fold-in flap: trust-building consultation panel.
+    # Fold-in flap: benefit-led introduction with candid expectations.
     flap_x, flap_w = PANEL_X[0], PANEL_W[0]
     c.setFillColor(CREAM)
     c.rect(flap_x, 0, flap_w, PAGE_H, stroke=0, fill=1)
@@ -357,28 +302,29 @@ def draw_outside(c: canvas.Canvas) -> None:
     draw_story(
         c,
         [
-            P("CONSULTATION FIRST", "panel_kicker"),
-            P("Is PRF right for you?", "panel_title"),
+            P("WHY CLIENTS CHOOSE PRF", "panel_kicker"),
+            P("Subtle renewal, made from you.", "panel_title"),
             P(
-                "PRF may be worth discussing if you prefer a client-derived option and want a conservative plan rather than dramatic correction. It is not automatically the right choice for every concern or treatment area.",
+                "Platelet-rich fibrin is prepared from a small sample of your own blood and used in a personalized aesthetic plan. It is designed for gradual, natural-looking improvement rather than dramatic correction.",
                 "body",
             ),
             Spacer(1, 7),
-            P("Your provider will review", "section_title"),
-            P("- Your goals and the exact area you want to discuss", "bullet"),
-            P("- Medical history, medications, supplements and prior procedures", "bullet"),
-            P("- Active skin concerns, healing history and recovery preferences", "bullet"),
-            P("- Whether PRF, EZ Gel, another option or no treatment is most appropriate", "bullet"),
+            P("Benefits we may discuss", "section_title"),
+            P("- A refreshed look beneath the eyes and in other delicate areas", "bullet"),
+            P("- Softer-looking fine lines and improved overall skin quality", "bullet"),
+            P("- More even-looking texture, tone and radiance", "bullet"),
+            P("- Subtle, temporary volume with EZ Gel where appropriate", "bullet"),
+            P("- A client-derived option without synthetic filler material", "bullet"),
             Spacer(1, 7),
-            P("A small blood draw is part of every PRF appointment.", "section_title"),
+            P("A plan selected for your goals", "section_title"),
             P(
-                "Depending on the service, temporary redness, swelling, tenderness, bruising, pinpoint bleeding, tightness or peeling may occur. Injectable procedures have additional risks that Diana, RN reviews during the clinical consultation.",
+                "Liquid PRF, EZ Gel and topical PRF are different approaches. A licensed provider confirms which option, treatment area and timing are appropriate after reviewing your health history and expectations.",
                 "body_tight",
             ),
             Spacer(1, 5),
             P(
-                "Bring questions. We will explain the alternatives - and tell you when PRF is not the right fit.",
-                "body",
+                "A small blood draw is part of every PRF appointment. Temporary redness, swelling, tenderness or bruising may occur. Not every client is a candidate, and individual results vary.",
+                "small_ink",
             ),
         ],
         flap_x + margin,
@@ -387,7 +333,7 @@ def draw_outside(c: canvas.Canvas) -> None:
         PAGE_H - 58,
     )
 
-    # Back cover: providers, contact details and final disclosure.
+    # Back cover: real client result, contact details and final disclosure.
     back_x, back_w = PANEL_X[1], PANEL_W[1]
     c.setFillColor(PAPER)
     c.rect(back_x, 0, back_w, PAGE_H, stroke=0, fill=1)
@@ -407,67 +353,79 @@ def draw_outside(c: canvas.Canvas) -> None:
     )
     draw_gold_rule(c, back_x + 24, PAGE_H - 96, back_w - 48)
 
-    c.setFont("Cochin", 16.2)
+    c.setFont("Cochin", 16.8)
     c.setFillColor(INK)
-    c.drawCentredString(back_x + back_w / 2, PAGE_H - 122, "Two providers. Clear boundaries.")
+    c.drawCentredString(back_x + back_w / 2, PAGE_H - 122, "Real result. Thoughtful expectations.")
 
-    portrait_y = PAGE_H - 184
-    draw_round_image(c, DIANA, back_x + 71, portrait_y, 29, focal_y=0.17)
-    draw_round_image(c, AMBER, back_x + back_w - 71, portrait_y, 29, focal_y=0.16)
-
-    provider_y = PAGE_H - 303
-    provider_w = (back_w - 56) / 2
-    draw_story(
+    result_x = back_x + 20
+    result_w = back_w - 40
+    result_h = result_w / 1.5
+    result_y = 312
+    draw_cover_image(
         c,
-        [
-            P("Diana Morrison, RN", "provider_name"),
-            P("AESTHETIC NURSE INJECTOR", "provider_role"),
-            P(
-                "Injectable PRF and EZ Gel consultation and treatment. Injectable services are provided within House of Rose's medical-director oversight structure.",
-                "provider_body",
-            ),
-        ],
-        back_x + 22,
-        provider_y,
-        provider_w,
-        88,
+        BEFORE_AFTER,
+        result_x,
+        result_y,
+        result_w,
+        result_h,
+        focal_x=0.5,
+        focal_y=0.5,
+        contrast=1.0,
     )
+    c.setStrokeColor(GOLD)
+    c.setLineWidth(0.8)
+    c.rect(result_x, result_y, result_w, result_h, stroke=1, fill=0)
     draw_story(
         c,
         [
-            P("Amber Mingione", "provider_name"),
-            P("ADVANCED AESTHETICS SPECIALIST", "provider_role"),
             P(
-                "Microneedling or microchanneling with topical PRF. Amber's PRF role is topical only - never injectable.",
-                "provider_body",
-            ),
+                "PRF EZ Gel under-eyes. One client's result; treatment plan, timing and response are individual.",
+                "center_small",
+            )
         ],
-        back_x + 34 + provider_w,
-        provider_y,
-        provider_w,
-        88,
+        back_x + 24,
+        274,
+        back_w - 48,
+        29,
+    )
+
+    c.setFont("Cochin-Bold", 11.7)
+    c.setFillColor(GOLD_DARK)
+    c.drawCentredString(back_x + back_w / 2, 260, "Designed to look refreshed - not overdone.")
+    draw_story(
+        c,
+        [
+            P(
+                "A consultation confirms whether injectable PRF, EZ Gel, topical PRF or another option best matches your goals.",
+                "center_small",
+            )
+        ],
+        back_x + 30,
+        221,
+        back_w - 60,
+        34,
     )
 
     c.setFillColor(DEEP_BLUE)
-    c.roundRect(back_x + 20, 92, back_w - 40, 148, 10, stroke=0, fill=1)
+    c.roundRect(back_x + 20, 83, back_w - 40, 126, 10, stroke=0, fill=1)
     c.setFillColor(GOLD_PALE)
     c.setFont("Avenir-Heavy", 7.2)
-    c.drawString(back_x + 35, 217, "SCHEDULE A PRF CONSULTATION")
+    c.drawString(back_x + 35, 187, "SCHEDULE A PRF CONSULTATION")
     c.setFillColor(WHITE)
-    c.setFont("Cochin", 15.8)
-    c.drawString(back_x + 35, 195, "A clear plan starts here.")
+    c.setFont("Cochin", 15.2)
+    c.drawString(back_x + 35, 166, "A clear plan starts here.")
     c.setFont("Avenir-Medium", 8.1)
-    c.drawString(back_x + 35, 173, "(844) 941-7673")
-    c.drawString(back_x + 35, 158, "houseofrosefl.com/services/prf/")
-    c.drawString(back_x + 35, 143, "525 E Olympia Ave, Unit 9")
-    c.drawString(back_x + 35, 128, "Punta Gorda, FL 33950")
-    draw_qr(c, "https://houseofrosefl.com/services/prf/", back_x + back_w - 91, 127, 52)
+    c.drawString(back_x + 35, 144, "(844) 941-7673")
+    c.drawString(back_x + 35, 129, "houseofrosefl.com/services/prf/")
+    c.drawString(back_x + 35, 114, "525 E Olympia Ave, Unit 9")
+    c.drawString(back_x + 35, 99, "Punta Gorda, FL 33950")
+    draw_qr(c, "https://houseofrosefl.com/services/prf/", back_x + back_w - 86, 111, 47)
 
     legal = (
         "Individual results vary. No result, timing, duration, number of visits or candidacy is guaranteed. "
         "This brochure is educational and does not replace an individualized assessment."
     )
-    draw_story(c, [P(legal, "center_small")], back_x + 28, 25, back_w - 56, 50)
+    draw_story(c, [P(legal, "center_small")], back_x + 28, 20, back_w - 56, 49)
 
     # Front cover: real storefront with restrained typography.
     cover_x, cover_w = PANEL_X[2], PANEL_W[2]
@@ -506,7 +464,7 @@ def draw_outside(c: canvas.Canvas) -> None:
     c.setFont("Cochin", 31)
     c.drawCentredString(cover_x + cover_w / 2, 296, "PRF + EZ Gel")
     c.setFont("Cochin-Italic", 17.6)
-    c.drawCentredString(cover_x + cover_w / 2, 273, "thoughtfully planned")
+    c.drawCentredString(cover_x + cover_w / 2, 273, "made from you")
 
     c.setFillColor(GOLD_PALE)
     c.setFont("Avenir-Heavy", 7.15)
@@ -517,8 +475,8 @@ def draw_outside(c: canvas.Canvas) -> None:
 
     c.setFillColor(WHITE)
     c.setFont("Avenir", 9.2)
-    c.drawCentredString(cover_x + cover_w / 2, 131, "Three distinct approaches.")
-    c.drawCentredString(cover_x + cover_w / 2, 116, "One carefully selected plan.")
+    c.drawCentredString(cover_x + cover_w / 2, 131, "Subtle renewal.")
+    c.drawCentredString(cover_x + cover_w / 2, 116, "A carefully selected plan.")
     c.setFillColor(GOLD_PALE)
     c.setFont("Avenir-Medium", 7.5)
     c.drawCentredString(cover_x + cover_w / 2, 46, "ADVANCED AESTHETICS & WELLNESS - PUNTA GORDA")
@@ -545,13 +503,13 @@ def draw_inside(c: canvas.Canvas) -> None:
     c.rect(0, PAGE_H - banner_h, PAGE_W, banner_h, stroke=0, fill=1)
     c.setFillColor(WHITE)
     c.setFont("Cochin", 23.5)
-    c.drawString(26, PAGE_H - 51, "Understand the difference.")
+    c.drawString(26, PAGE_H - 51, "PRF, designed around your goals.")
     c.setFillColor(GOLD_PALE)
     c.setFont("Avenir-Medium", 8.1)
     c.drawString(
         27,
         PAGE_H - 72,
-        "CLIENT-DERIVED OPTIONS - DISTINCT PREPARATION, PLACEMENT AND PROVIDER ROLES",
+        "CLIENT-DERIVED OPTIONS FOR SKIN QUALITY, DELICATE AREAS AND SUBTLE VOLUME",
     )
 
     # Very light visual separation at the fold locations.
@@ -580,12 +538,18 @@ def draw_inside(c: canvas.Canvas) -> None:
                 "body",
             ),
             Spacer(1, 5),
-            P("Why the distinction matters", "section_title"),
+            P("Why clients are drawn to PRF", "section_title"),
+            P(
+                "PRF is client-derived, personalized and designed for subtle change. Its fibrin-rich preparation supports a gradual approach that may help improve the appearance of fine lines, texture, tone and delicate under-eye concerns.",
+                "body_tight",
+            ),
+            Spacer(1, 6),
+            P("What makes it different", "section_title"),
             P(
                 "Injectable PRF, EZ Gel and topical PRF are not interchangeable. They have different preparation, placement and provider requirements. PRF is also not the same as hyaluronic acid dermal filler.",
                 "body_tight",
             ),
-            Spacer(1, 6),
+            Spacer(1, 5),
             P("A simple same-day pathway", "section_title"),
             P("<b>1.</b> Consultation and candidacy review", "bullet"),
             P("<b>2.</b> Small blood draw and centrifuge preparation", "bullet"),
@@ -603,19 +567,19 @@ def draw_inside(c: canvas.Canvas) -> None:
     services = [
         P("01  INJECTABLE PRF", "section_title"),
         P(
-            "Liquid PRF is placed by Diana Morrison, RN in provider-selected facial areas after a clinical consultation. It may be discussed for selected fine-line and delicate-area concerns when a subtle, gradual approach is appropriate.",
+            "Liquid PRF is placed by a licensed medical provider in selected facial areas after consultation. It may be discussed for delicate under-eye concerns, the appearance of fine lines and overall skin quality when a subtle, gradual approach is appropriate.",
             "body_tight",
         ),
         Spacer(1, 5),
         P("02  EZ GEL BIO-FILLER", "section_title"),
         P(
-            "Part of the PRF preparation is converted into a soft, client-derived gel. EZ Gel may be considered for subtle, temporary volume in smile-line, lower-face or other provider-selected areas. It is not a structural replacement for every dermal filler.",
+            "Part of the PRF preparation is converted into a soft, client-derived gel. EZ Gel may be considered for subtle, temporary volume beneath the eyes, around smile lines or in other provider-selected areas. It is not a structural replacement for every dermal filler.",
             "body_tight",
         ),
         Spacer(1, 5),
         P("03  MICRONEEDLING + TOPICAL PRF", "section_title"),
         P(
-            "Amber Mingione performs the needling service and applies PRF to the skin surface as a topical adjunct. The PRF is not injected, and House of Rose does not describe the device as delivering blood products into the skin.",
+            "PRF is applied to the skin surface as a topical adjunct during an appropriate needling service. This approach focuses on the appearance of texture, tone, fine lines and radiance. The PRF is not injected or delivered into the skin by the device.",
             "body_tight",
         ),
         Spacer(1, 7),
@@ -633,26 +597,26 @@ def draw_inside(c: canvas.Canvas) -> None:
         content_h,
     )
 
-    # Inside right: experience, evidence and safety expectations.
+    # Inside right: benefits, experience and safety expectations.
     x, w = PANEL_X[2], PANEL_W[2]
     draw_story(
         c,
         [
-            P("REALISTIC EXPECTATIONS", "panel_kicker"),
-            P("What to expect", "panel_title"),
+            P("BENEFITS + EXPERIENCE", "panel_kicker"),
+            P("What may improve", "panel_title"),
+            P("<b>Under-eyes</b> - a smoother, more rested-looking appearance in a delicate area", "bullet"),
+            P("<b>Fine lines</b> - softer-looking lines and refreshed-looking skin", "bullet"),
+            P("<b>Texture + tone</b> - more even-looking skin quality and radiance", "bullet"),
+            P("<b>Subtle volume</b> - temporary, natural-looking support with EZ Gel where appropriate", "bullet"),
+            Spacer(1, 6),
+            P("What your visit includes", "section_title"),
             P("<b>Before</b> - consultation, health-history review and treatment-area assessment", "bullet"),
             P("<b>During</b> - small blood draw, same-day preparation and the selected service", "bullet"),
             P("<b>After</b> - written care instructions, recovery guidance and follow-up timing", "bullet"),
             Spacer(1, 6),
-            P("Goals we may discuss", "section_title"),
-            P("- The appearance of fine lines and overall skin quality", "bullet"),
-            P("- Selected smile-line, lower-face or delicate-area concerns", "bullet"),
-            P("- Subtle, temporary volume where clinically appropriate", "bullet"),
-            P("- Texture-focused skin renewal with an appropriate needling service", "bullet"),
-            Spacer(1, 6),
-            P("Evidence, honestly", "section_title"),
+            P("Results develop gradually", "section_title"),
             P(
-                "Research on platelet concentrates in facial aesthetics is encouraging, but preparation methods, protocols and outcomes vary. Any change may be gradual and temporary, and more than one visit may be discussed. No result is guaranteed.",
+                "Research on platelet concentrates in facial aesthetics is encouraging, but preparation methods, protocols and outcomes vary. More than one visit may be discussed, and any change may be gradual and temporary.",
                 "body_tight",
             ),
             Spacer(1, 4),
@@ -676,7 +640,7 @@ def build_pdf() -> None:
     c.setTitle("House of Rose Aesthetics - PRF and EZ Gel Tri-Fold Brochure")
     c.setAuthor("House of Rose Aesthetics")
     c.setSubject(
-        "Customer education for injectable PRF, EZ Gel bio-filler, and microneedling with topical PRF"
+        "Benefit-led customer education for injectable PRF, EZ Gel bio-filler, and microneedling with topical PRF"
     )
     c.setKeywords("PRF, EZ Gel, bio-filler, microneedling, House of Rose, Punta Gorda")
 

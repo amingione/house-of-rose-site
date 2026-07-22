@@ -15,12 +15,11 @@
 
 - `packages/web/public/images/H_OF_A_EXTERIOR_WINDOW_DECALS.webp` - front cover storefront image.
 - `packages/web/public/images/welcome-house-of-rose.webp` - inside-spread studio image.
-- `packages/web/public/images/providers/Diana.webp` - Diana Morrison, RN portrait.
-- `packages/web/public/images/providers/Amber.webp` - Amber Mingione portrait.
+- `packages/web/public/images/before-after/prf-undereyes-ezgel.png` - supplied PRF EZ Gel under-eye before-and-after.
 - `packages/web/public/logos/house-of-rose-monogram/hr-logo-gold.webp` - front-cover monogram.
 - `packages/web/public/logos/house-ofRose_aesth.webp` - back-panel wordmark.
 
-No client before-and-after photographs or recognizable training clients were used. The photographs and logos were cropped only for layout; no people, treatment results, or studio features were generated or altered.
+The supplied before-and-after is reproduced as provided, without synthetic edits to the client or treatment result. The studio photographs and logos were cropped only for layout; no people, results or studio features were generated or altered. Confirm that written client consent covers in-office print use before distributing the brochure.
 
 ## Training materials reviewed
 
@@ -42,8 +41,10 @@ No client before-and-after photographs or recognizable training clients were use
 
 ## Compliance decisions reflected in the brochure
 
-- Injectable PRF and EZ Gel are assigned to Diana Morrison, RN; topical PRF is assigned to Amber Mingione and is explicitly not injectable.
+- No personal names appear. Injectable PRF and EZ Gel are assigned to a licensed medical provider; topical PRF is kept separate and is explicitly not injectable.
 - Microneedling with topical PRF is described as topical application to the skin surface, not device delivery of a blood product into the skin.
+- Benefit language uses "designed to," "may," and "helps improve the appearance of" rather than promising a uniform result.
+- The supplied before-and-after carries an individual-results qualifier and is presented as one client's outcome.
 - No hair-restoration service, membership, discount, price, guaranteed result, fixed treatment series, fixed duration, disease claim, anti-aging claim, or unsupported collagen claim appears.
 - Evidence is described as encouraging but still variable, with gradual and temporary changes possible and no outcome guaranteed.
 - The exact NAP is used: House of Rose Aesthetics, 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950, (844) 941-7673.

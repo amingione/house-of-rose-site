@@ -72,7 +72,7 @@
 
 ### Service-level objective
 
-- During Monday–Friday, 9:00 AM–5:00 PM, respond within two business hours.
+- During studio hours, respond as soon as possible and record the first-contact time.
 - Submissions before opening are due by 11:00 AM that business day.
 - Submissions after 3:00 PM, on weekends, or after closing are due by 11:00 AM the next business day.
 
@@ -196,4 +196,3 @@ npm run ve:check
 ```
 
 Then recrawl in Ahrefs and confirm there are no canonical-to-redirect errors, duplicated brand titles, broken images, missing alternatives, or active error-level issues.
-

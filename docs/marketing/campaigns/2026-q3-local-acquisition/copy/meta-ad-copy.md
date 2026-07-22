@@ -122,4 +122,4 @@ Use only if the website lead campaign produces fewer than three verified leads b
 - **Service-interest options:** Skin consultation; Glo2Facial; ProCell microchanneling; injectables; not sure yet.
 - **Privacy:** Do not request health history, diagnoses, medications, pregnancy status, or treatment candidacy in the ad form.
 - **Thank-you headline:** Your request is with House of Rose.
-- **Thank-you text:** During studio hours, we aim to respond within two business hours. Final recommendations and candidacy are confirmed with the appropriate provider.
+- **Thank-you text:** Our team will follow up as soon as possible. Final recommendations and candidacy are confirmed with the appropriate provider.

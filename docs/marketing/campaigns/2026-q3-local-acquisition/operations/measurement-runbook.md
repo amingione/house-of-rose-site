@@ -17,7 +17,7 @@ Qualification does not determine medical or treatment candidacy. That remains wi
 
 ## Response workflow
 
-- During Monday–Friday studio hours, acknowledge new leads within two business hours.
+- During studio hours, acknowledge new leads as soon as possible and record the first-contact time.
 - Use the contact method the person requested. If no preference is captured, begin with a concise text or email and offer a call.
 - Do not request detailed medical history over Meta, email, or ordinary text messaging.
 - Record contact attempt, response, service interest, consultation status, and booking outcome.
