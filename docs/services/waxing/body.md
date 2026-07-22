@@ -1,7 +1,7 @@
 # Body Waxing
 ---
 Providers:
- [Aundrea Morrison]()
+ [Aundrea Pedigo]()
 Wax Type:
  - Hard Wax
 ---
