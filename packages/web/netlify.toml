@@ -39,7 +39,10 @@
   for = "/*"
   [headers.values]
     X-Content-Type-Options  = "nosniff"
-    X-Frame-Options         = "SAMEORIGIN"
+    # X-Frame-Options cannot allow Netlify Visual Editor while also protecting
+    # the public site. CSP frame-ancestors provides the narrow allow-list the
+    # editor needs without permitting arbitrary third-party framing.
+    Content-Security-Policy = "frame-ancestors 'self' https://create.netlify.com"
     Referrer-Policy         = "strict-origin-when-cross-origin"
     Permissions-Policy      = "camera=(), microphone=(), geolocation=()"
 
