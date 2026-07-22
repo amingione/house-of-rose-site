@@ -4,6 +4,7 @@ import Hero from '@/components/Hero.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_BLOG_POSTS_QUERY, type BlogPost } from '@/lib/queries';
+import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 
 const posts = await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY);
 
@@ -25,7 +26,7 @@ function formatDate(iso: string) {
     kicker="Insights & Education"
     description="Expert perspectives on wellness, beauty, and living well in Southwest Florida."
     size="small"
-    backgroundImage="/images/hor-lounge.jpg"
+    backgroundImage="/images/hor-lounge.webp"
   />
 
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
@@ -33,13 +34,13 @@ function formatDate(iso: string) {
 
       {posts.length === 0 ? (
         <div class="text-center py-24">
-          <p class="text-[#7a6e5c] text-[15px]">Posts coming soon.</p>
+          <p class="text-muted text-[15px]">Posts coming soon.</p>
         </div>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
           {posts.map((post) => (
             <article class="bg-charcoal group" {...sbObjectId(post._id)}>
-              <a href={`/blog/${post.slug}`} class="block">
+              <a href={`/blog/${post.slug}/`} class="block">
                 {post.featuredImage ? (
                   <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
                     <img
@@ -52,18 +53,18 @@ function formatDate(iso: string) {
                     />
                   </div>
                 ) : (
-                  <div class="aspect-[4/3] bg-charcoal-lighter flex items-center justify-center">
-                    <span class="font-serif text-[#5f5446] text-[28px]">HofR</span>
+                  <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
+                    <img src={DEFAULT_JOURNAL_IMAGE} alt={post.title} width={600} height={450} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 )}
 
                 <div class="p-6">
                   <div class="flex items-center gap-3 mb-3">
                     {post.category && (
-                      <span class="text-gold text-[10px] tracking-[0.3em] uppercase" {...sbFieldPath('category')}>{post.category}</span>
+                      <span class="text-gold text-[11px] tracking-[0.3em] uppercase" {...sbFieldPath('category')}>{post.category}</span>
                     )}
                     {post.estimatedReadingTime && post.estimatedReadingTime > 0 && (
-                      <span class="text-[#8a7c66] text-[10px] tracking-[0.2em]">{post.estimatedReadingTime} min read</span>
+                      <span class="text-muted text-[11px] tracking-[0.2em]">{post.estimatedReadingTime} min read</span>
                     )}
                   </div>
 
@@ -72,13 +73,13 @@ function formatDate(iso: string) {
                   </h2>
 
                   {post.excerpt && (
-                    <p class="text-[#7a6e5c] text-[13px] leading-relaxed line-clamp-3 mb-4" {...sbFieldPath('excerpt')}>
+                    <p class="text-muted text-[13px] leading-relaxed line-clamp-3 mb-4" {...sbFieldPath('excerpt')}>
                       {post.excerpt}
                     </p>
                   )}
 
                   <div class="flex items-center justify-between">
-                    <time class="text-[#8a7c66] text-[11px] tracking-[0.15em]" datetime={post.publishedAt}>
+                    <time class="text-muted text-[11px] tracking-[0.15em]" datetime={post.publishedAt}>
                       {formatDate(post.publishedAt)}
                     </time>
                     <span class="text-gold text-[11px] tracking-[0.2em] uppercase border-b border-gold pb-px group-hover:opacity-75 transition-opacity">
@@ -102,7 +103,7 @@ function formatDate(iso: string) {
       <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-4">
         Every treatment starts with a conversation.
       </h2>
-      <p class="text-[#777] text-[15px] mb-8">
+      <p class="text-muted text-[15px] mb-8">
         Book a private consultation at House of Rose in Punta Gorda, FL.
       </p>
       <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">

@@ -11,7 +11,8 @@ import {
   type LinkRef,
   type FAQ,
 } from '@/lib/queries';
-import { jsonLd, service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structuredData';
 
 const PHONE_DISPLAY = '(844) 941-7673';
 const PHONE_TEL = 'tel:+18449417673';
@@ -64,6 +65,21 @@ const FALLBACK_LINKS: LinkRef[] = [
     description: 'Weddings and parties — block times, private spa rental, or we travel to you.',
     href: '/services/professional-makeup/events/',
   },
+  {
+    label: 'Everyday Makeup',
+    description: 'A natural, polished everyday look with skin-loving Jane Iredale minerals.',
+    href: '/services/everyday-makeup/',
+  },
+  {
+    label: 'Soft Glam / Event Makeup',
+    description: 'Elevated glam for events and special occasions.',
+    href: '/services/soft-glam-event-makeup/',
+  },
+  {
+    label: 'Full Glam / Bridal Makeup',
+    description: 'Full-coverage, long-wearing bridal and full-glam application.',
+    href: '/services/full-glam-bridal-makeup/',
+  },
 ];
 
 const FALLBACK_FAQS: FAQ[] = [
@@ -97,19 +113,19 @@ const relatedLinks = data.relatedLinks?.length ? data.relatedLinks : FALLBACK_LI
 const usingFallbackLinks = !data.relatedLinks?.length;
 const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
 
-const providerName = data.provider?.title ?? 'Aundrea Pedigo';
-const providerCredential = data.provider?.roleCredential ?? 'Professional Makeup Artist';
-
 // ── SEO + JSON-LD ────────────────────────────────────────────────────────────
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImg = data.image?.asset?.url;
+const fallbackHeroImage = '/images/house-of-rose/space/professional-makeup-kit-square.webp';
+const pageImage = heroImg ?? fallbackHeroImage;
+const pageImageUrl = new URL(pageImage, site).toString();
 
 const pageTitle =
   data.seoTitle ?? 'Professional Makeup in Punta Gorda, FL | House of Rose Aesthetics';
 const pageDescription =
   data.seoDescription ??
-  'Professional makeup at House of Rose Aesthetics in Punta Gorda, FL — event, wedding, prom, and photography looks applied with skin-first Jane Iredale mineral makeup by Aundrea Pedigo.';
+  'Professional makeup at House of Rose Aesthetics in Punta Gorda, FL — event, wedding, prom, and photography looks applied with skin-first Jane Iredale mineral makeup.';
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -123,7 +139,7 @@ const serviceLd = serviceSchema(
     description:
       'Event, wedding, prom, and photography makeup applied with Jane Iredale mineral makeup at House of Rose Aesthetics.',
     url: canonical,
-    image: heroImg,
+    image: pageImageUrl,
     serviceType: 'Makeup application',
   },
   site,
@@ -134,11 +150,12 @@ const faqLd = faqPage(faqs);
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  image={heroImg}
+  image={pageImage}
+  preloadImage={pageImage}
 >
-  <script is:inline type="application/ld+json" set:html={jsonLd(serviceLd)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  {faqLd && <script is:inline type="application/ld+json" set:html={jsonLd(faqLd)} slot="head" />}
+  <SchemaMarkup item={serviceLd} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {faqLd && <SchemaMarkup item={faqLd} slot="head" />}
 
   <div {...(data._id ? sbObjectId(data._id) : {})}>
     <Hero
@@ -149,7 +166,7 @@ const faqLd = faqPage(faqs);
       size="small"
       showCTA={true}
       ctaPrimary={{ text: 'Call or Text to Book', href: PHONE_TEL }}
-      backgroundImage={heroImg ?? '/images/hor-lounge.jpg'}
+      backgroundImage={pageImage}
       titleField="heroTitle"
       kickerField="heroKicker"
       descriptionField="heroDescription"
@@ -162,7 +179,7 @@ const faqLd = faqPage(faqs);
         <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath('philosophyHeading')}>
           {data.philosophyHeading ?? 'Makeup that starts with healthy skin.'}
         </h2>
-        <p class="text-[#9a8c78] text-[16px] leading-[1.85] max-w-[720px] mx-auto whitespace-pre-line" {...sbFieldPath('philosophyBody')}>
+        <p class="text-muted text-[16px] leading-[1.85] max-w-[720px] mx-auto whitespace-pre-line" {...sbFieldPath('philosophyBody')}>
           {data.philosophyBody ??
             'Beautiful makeup begins long before the first brush touches the skin. We believe the best results come from enhancing — not hiding — your natural features. Using professional Jane Iredale mineral makeup, we create breathable, skin-loving looks that feel lightweight, photograph beautifully, and wear comfortably all day. Whether you are preparing for a special event, professional photos, or simply want to feel your best, our goal is for you to look like the most confident version of yourself — fresh, refined, and unmistakably you.'}
         </p>
@@ -170,19 +187,19 @@ const faqLd = faqPage(faqs);
     </section>
 
     <!-- What We Offer -->
-    <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6 border-t border-gold/10">
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1180px] mx-auto">
         <div class="max-w-[760px] mb-12">
           <span class="kicker" {...sbFieldPath('servicesKicker')}>{data.servicesKicker ?? 'What We Offer'}</span>
           <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-4" {...sbFieldPath('servicesHeading')}>
             {data.servicesHeading ?? 'Makeup for the moments that matter.'}
           </h2>
-          <p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath('servicesIntro')}>
+          <p class="text-muted text-[15px] leading-[1.75]" {...sbFieldPath('servicesIntro')}>
             {data.servicesIntro ??
               'Every application is provided by our makeup artist and tailored to you — your features, your coloring, and the look you are after.'}
           </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/15">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/15">
           {services.map((s, i) => (
             <article class="flex flex-col bg-breath p-8">
               <h3 class="font-serif text-[24px] text-ink leading-tight mb-3" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'name'))}>{s.name}</h3>
@@ -190,7 +207,7 @@ const faqLd = faqPage(faqs);
                 <p class="text-ink/75 text-[14px] leading-[1.7] mb-4" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'blurb'))}>{s.blurb}</p>
               )}
               {s.bestFor && (
-                <p class="text-[#9a8c78] text-[12px] tracking-[0.06em] mb-2" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'bestFor'))}><span class="text-gold">Best for:</span> {s.bestFor}</p>
+                <p class="text-muted text-[12px] tracking-[0.06em] mb-2" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'bestFor'))}><span class="text-gold">Best for:</span> {s.bestFor}</p>
               )}
               {s.priceLabel && (
                 <p class="text-gold text-[13px] mt-auto pt-3" {...(usingFallbackServices ? {} : sbFieldPathParts('services', i, 'priceLabel'))}>{s.priceLabel}</p>
@@ -202,7 +219,7 @@ const faqLd = faqPage(faqs);
     </section>
 
     <!-- Event vs. Everyday -->
-    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10">
+    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1080px] mx-auto">
         <div class="max-w-[720px] mb-10">
           <span class="kicker" {...sbFieldPath('useCasesKicker')}>{data.useCasesKicker ?? 'Event & Everyday'}</span>
@@ -212,9 +229,9 @@ const faqLd = faqPage(faqs);
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {useCases.map((u, i) => (
-            <div class="border-l-2 border-gold/30 pl-6">
+            <div class="border-l-2 border-gold-metal/30 pl-6">
               <h3 class="font-serif text-[20px] text-ink mb-2" {...(usingFallbackUseCases ? {} : sbFieldPathParts('useCases', i, 'title'))}>{u.title}</h3>
-              {u.body && <p class="text-[#9a8c78] text-[14px] leading-[1.8]" {...(usingFallbackUseCases ? {} : sbFieldPathParts('useCases', i, 'body'))}>{u.body}</p>}
+              {u.body && <p class="text-muted text-[14px] leading-[1.8]" {...(usingFallbackUseCases ? {} : sbFieldPathParts('useCases', i, 'body'))}>{u.body}</p>}
             </div>
           ))}
         </div>
@@ -222,7 +239,7 @@ const faqLd = faqPage(faqs);
     </section>
 
     <!-- Trial Run -->
-    <section class="bg-walnut py-[clamp(44px,6vw,80px)] px-6 border-t border-gold/10">
+    <section class="on-dark bg-walnut py-[clamp(44px,6vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[820px] mx-auto text-center">
         <span class="kicker">Highly Recommended</span>
         <h2 class="font-serif text-[clamp(22px,3.4vw,34px)] text-ivory mt-2 mb-4" {...sbFieldPath('trialRunHeading')}>
@@ -235,29 +252,15 @@ const faqLd = faqPage(faqs);
       </div>
     </section>
 
-    <!-- Provider -->
-    <section class="bg-charcoal-light py-[clamp(44px,6vw,80px)] px-6 border-t border-gold/10">
-      <div class="max-w-[820px] mx-auto text-center">
-        <span class="kicker" {...sbFieldPath('providerKicker')}>{data.providerKicker ?? 'Your Artist'}</span>
-        <h2 class="font-serif text-[clamp(22px,3.4vw,32px)] text-ink mt-2 mb-4" {...sbFieldPath('providerHeading')}>
-          {data.providerHeading ?? `Makeup by ${providerName}`}
-        </h2>
-        <p class="text-[#9a8c78] text-[15px] leading-[1.85] max-w-[600px] mx-auto" {...sbFieldPath('providerBody')}>
-          {data.providerBody ??
-            `Professional makeup at House of Rose is led by ${providerName}, ${providerCredential.toLowerCase()}, specializing in skin-first, event-ready application.`}
-        </p>
-      </div>
-    </section>
-
     <!-- Explore More (funnel) -->
-    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10">
+    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1080px] mx-auto">
         <h2 class="font-serif text-[clamp(22px,3.4vw,32px)] text-ink mb-8 text-center">Explore More</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/15">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/15">
           {relatedLinks.map((l, i) => (
             <a href={l.href} class="group flex flex-col bg-breath p-8 transition-colors hover:bg-charcoal-light">
               <h3 class="font-serif text-[20px] text-ink mb-2" {...(usingFallbackLinks ? {} : sbFieldPathParts('relatedLinks', i, 'label'))}>{l.label}</h3>
-              {l.description && <p class="text-[#9a8c78] text-[14px] leading-[1.7] mb-4" {...(usingFallbackLinks ? {} : sbFieldPathParts('relatedLinks', i, 'description'))}>{l.description}</p>}
+              {l.description && <p class="text-muted text-[14px] leading-[1.7] mb-4" {...(usingFallbackLinks ? {} : sbFieldPathParts('relatedLinks', i, 'description'))}>{l.description}</p>}
               <span class="learn-more mt-auto">Learn more →</span>
             </a>
           ))}
@@ -267,14 +270,14 @@ const faqLd = faqPage(faqs);
 
     <!-- FAQs -->
     {faqs.length > 0 && (
-      <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/10">
+      <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6 border-t border-gold-metal/10">
         <div class="max-w-[820px] mx-auto">
           <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mb-8 text-center">Common Questions</h2>
           <div class="space-y-6">
             {faqs.map((f, i) => (
               <div class="border-b border-ink/10 pb-6">
                 <h3 class="font-serif text-[18px] text-ink mb-2" {...(data.faqs?.length ? sbFieldPathParts('faqs', i, 'question') : {})}>{f.question}</h3>
-                <p class="text-[#9a8c78] text-[14px] leading-[1.8]" {...(data.faqs?.length ? sbFieldPathParts('faqs', i, 'answer') : {})}>{f.answer}</p>
+                <p class="text-muted text-[14px] leading-[1.8]" {...(data.faqs?.length ? sbFieldPathParts('faqs', i, 'answer') : {})}>{f.answer}</p>
               </div>
             ))}
           </div>
@@ -283,10 +286,10 @@ const faqLd = faqPage(faqs);
     )}
 
     <!-- Booking CTA -->
-    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold/15">
+    <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6 border-t border-gold-metal/15">
       <div class="max-w-[640px] mx-auto text-center">
         <h2 class="font-serif text-[clamp(24px,4.2vw,40px)] text-ink leading-tight mb-4">Ready to book your look?</h2>
-        <p class="text-[#9a8c78] text-[15px] max-w-[500px] mx-auto mb-8 leading-[1.8]">
+        <p class="text-muted text-[15px] max-w-[500px] mx-auto mb-8 leading-[1.8]">
           Call or text us to schedule your makeup application or event booking. We’ll confirm timing, coordinate your look, and answer any questions.
         </p>
         <div class="flex gap-3 justify-center flex-wrap">

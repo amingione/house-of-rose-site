@@ -1,0 +1,15 @@
+---
+import { Schema } from 'astro-seo-schema';
+import type { Graph, Thing, WithContext } from 'schema-dts';
+import type { JsonLd } from '@/lib/structuredData';
+
+interface Props {
+  item: JsonLd;
+  space?: string | number;
+}
+
+const { item, space } = Astro.props;
+const schemaItem = item as unknown as Graph | WithContext<Thing>;
+---
+
+<Schema item={schemaItem} space={space} />

@@ -7,7 +7,8 @@ import {
   COMPARISON_BY_SLUG_QUERY,
   type Comparison,
 } from '@/lib/queries';
-import { jsonLd, breadcrumbList, faqPage, article } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COMPARISON_SLUGS_QUERY);
@@ -16,7 +17,9 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const cmp = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug });
-if (!cmp) return Astro.redirect('/services', 307);
+// Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
+// come from getStaticPaths, so a miss is a data bug — fail loudly.
+if (!cmp) throw new Error(`[compare/[slug]] No comparison found in Sanity for slug "${slug}"`);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -39,9 +42,9 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(articleSchema)} slot="head" />
-  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  <SchemaMarkup item={articleSchema} slot="head" />
+  {faq && <SchemaMarkup item={faq} slot="head" />}
 
   <div {...sbObjectId(cmp._id)}>
   <section class="bg-charcoal pt-32 pb-12 px-6">
@@ -54,16 +57,16 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
 
   {(a || b) && (
     <section class="bg-charcoal-light py-14 px-6">
-      <div class="max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-px bg-gold/10">
+      <div class="max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10">
         {([['optionA', a], ['optionB', b]] as const).filter(([, opt]) => opt).map(([key, opt]) => (
           <div class="bg-charcoal p-8">
             <h2 class="font-serif text-[24px] text-gold mb-3" {...sbFieldPath(`${key}.label`)}>{opt!.label}</h2>
             {opt!.summary && <p class="text-ink/80 text-[15px] leading-relaxed mb-4" {...sbFieldPath(`${key}.summary`)}>{opt!.summary}</p>}
             {opt!.bestFor && (
-              <p class="text-[#9a8c78] text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> <span {...sbFieldPath(`${key}.bestFor`)}>{opt!.bestFor}</span></p>
+              <p class="text-muted text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> <span {...sbFieldPath(`${key}.bestFor`)}>{opt!.bestFor}</span></p>
             )}
             {opt!.service && (
-              <a href={`/services/${opt!.service.slug}`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
+              <a href={`/services/${opt!.service.slug}/`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
             )}
           </div>
         ))}
@@ -76,8 +79,8 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
       <div class="max-w-[960px] mx-auto overflow-x-auto">
         <table class="w-full border-collapse text-left">
           <thead>
-            <tr class="border-b border-gold/20">
-              <th class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-ink/50 font-normal"></th>
+            <tr class="border-b border-gold-metal/20">
+              <th class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-ink/75 font-normal"></th>
               <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{a?.label ?? 'Option A'}</th>
               <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{b?.label ?? 'Option B'}</th>
             </tr>
@@ -86,8 +89,8 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
             {cmp.rows.map((row, i) => (
               <tr class="border-b border-ink/5">
                 <td class="py-4 pr-4 text-ink/70 text-[14px] font-medium" {...sbFieldPathParts('rows', i, 'attribute')}>{row.attribute}</td>
-                <td class="py-4 px-4 text-[#999] text-[14px]" {...sbFieldPathParts('rows', i, 'valueA')}>{row.valueA}</td>
-                <td class="py-4 px-4 text-[#999] text-[14px]" {...sbFieldPathParts('rows', i, 'valueB')}>{row.valueB}</td>
+                <td class="py-4 px-4 text-muted text-[14px]" {...sbFieldPathParts('rows', i, 'valueA')}>{row.valueA}</td>
+                <td class="py-4 px-4 text-muted text-[14px]" {...sbFieldPathParts('rows', i, 'valueB')}>{row.valueB}</td>
               </tr>
             ))}
           </tbody>
@@ -113,7 +116,7 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
           {cmp.faqs.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
             </div>
           ))}
         </div>
@@ -121,10 +124,10 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
     </section>
   )}
 
-  <section class="bg-charcoal-light py-12 px-6 border-t border-gold/10">
+  <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Not sure which is right for you?</h2>
-      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">A consultation is the fastest way to a confident decision. We'll recommend the right protocol for your skin.</p>
+      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">A consultation is the fastest way to a confident decision. We'll recommend the right protocol for your skin.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book a Consult</a>

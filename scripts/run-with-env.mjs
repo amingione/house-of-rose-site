@@ -45,28 +45,50 @@ function parseEnvLine(line) {
   return [key, value];
 }
 
-try {
-  let envFile;
+/**
+ * Load BOTH env files, root first, then packages/web — the more specific file wins.
+ *
+ * There are two .env.local files and they are NOT the same. The root one predates the
+ * shop; packages/web/.env.local is where the checkout keys live (SANITY_WEBHOOK_SECRET,
+ * SHIPPO_API_KEY, STRIPE_*). Astro reads packages/web/.env.local itself via Vite, so
+ * `dev:web` never noticed the split — but Netlify Functions get their env from the
+ * process, which only had the root file. The result was every Sanity-webhook function
+ * 401ing locally with a secret that was sitting right there in the other file.
+ */
+/**
+ * Anything already in the real environment WINS over both files.
+ *
+ * Precedence: shell env > packages/web/.env.local > root .env.local
+ *
+ * Without this, `FOO=bar npm run dev:functions` silently does nothing — the file
+ * clobbers the variable you just set on the command line. That matters for exactly the
+ * case you'd reach for it: pointing STRIPE_WEBHOOK_SECRET at the throwaway whsec_ that
+ * `stripe listen` prints, which is different from the deployed endpoint's secret.
+ */
+const PRESET = new Set(Object.keys(process.env));
+
+function loadEnvFile(path) {
+  let contents;
   try {
-    envFile = readFileSync(join(REPO_ROOT, '.env.local'), 'utf8');
-  } catch (rootError) {
-    if (rootError.code !== 'ENOENT') throw rootError;
-    envFile = readFileSync('.env.local', 'utf8'); // cwd fallback
+    contents = readFileSync(path, 'utf8');
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
   }
 
-  for (const line of envFile.split(/\r?\n/)) {
+  for (const line of contents.split(/\r?\n/)) {
     const parsed = parseEnvLine(line);
-
     if (parsed) {
       const [key, value] = parsed;
+      if (PRESET.has(key)) continue; // explicit env beats the file
       process.env[key] = value;
     }
   }
-} catch (error) {
-  if (error.code !== 'ENOENT') {
-    throw error;
-  }
 }
+
+loadEnvFile(join(REPO_ROOT, '.env.local'));
+loadEnvFile(join(REPO_ROOT, 'packages/web/.env.local')); // overrides the root
+loadEnvFile('.env.local'); // cwd fallback for callers outside the repo root
 
 process.env.ASTRO_TELEMETRY_DISABLED ??= '1';
 

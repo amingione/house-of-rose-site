@@ -258,7 +258,9 @@ original-copy fallbacks, and annotated). Edit them in Studio → **Home Page** /
 |------|-------------------------------|
 | `/` | `homepage` |
 | `/contact` | `contactPage` (form untouched) |
+| `/support/` | `supportPage` |
 | `/privacy-policy` | `privacyPolicy` |
+| `/terms-of-service/` | `termsOfService` |
 | `/rent-a-room` | `rentARoom` (form untouched) |
 | `/skin-analysis` | `skinAnalysis` |
 | `/thank-you` | `thankYou` |

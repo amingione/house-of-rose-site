@@ -112,7 +112,7 @@ Dermaplaning + Glo2Facial Package         → treatmentPackage → /packages/[sl
 | Before/after | `ImageObject` (before+after) + `BreadcrumbList` |
 | Process | inherited from the Service page it lives on |
 
-Every page also inherits canonical URL, Open Graph, and Twitter tags from `BaseLayout.astro`.
+Every page also inherits canonical URL and Open Graph tags from `BaseLayout.astro`.
 Always set a meaningful `title` + `description` (prefer the doc's `seo.metaTitle` /
 `seo.metaDescription`, fall back to tagline/intro).
 

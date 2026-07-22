@@ -8,6 +8,8 @@
  *
  * NAP follows the canonical siteSettings source of truth (Unit 9, 33950, +18449417673).
  */
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/aundrea/', siteURL).toString();
@@ -16,34 +18,19 @@ const ogImage = new URL('/logos/house-of-rose-monogram/hr-monogram-gold.png', si
 const PHONE_E164 = '+18449417673';
 const PHONE_DISPLAY = '844-941-ROSE (7673)';
 const EMAIL = 'aundrea@houseofrosefl.com';
-const WEBSITE = 'www.houseofrosefl.com';
+const WEBSITE = 'houseofrosefl.com';
 const ADDRESS_LINE1 = '525 E. Olympia Ave. Unit 9';
 const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
 const MAPS_URL =
   'https://maps.google.com/?q=525+E.+Olympia+Ave+Unit+9,+Punta+Gorda,+FL+33950';
 
-const personLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
+const personLd = personProfile({
   name: 'Aundrea Pedigo',
   jobTitle: 'Professional Makeup Artist',
   telephone: PHONE_E164,
   email: EMAIL,
-  url: 'https://houseofrosefl.com/aundrea/',
-  worksFor: {
-    '@type': 'HealthAndBeautyBusiness',
-    name: 'House of Rose Aesthetics',
-    url: 'https://houseofrosefl.com/',
-    telephone: PHONE_E164,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '525 E. Olympia Ave. Unit 9',
-      addressLocality: 'Punta Gorda',
-      addressRegion: 'FL',
-      postalCode: '33950',
-      addressCountry: 'US',
-    },
-  },
+  url: canonicalURL,
+  image: ogImage,
   knowsAbout: [
     'Lashes',
     'Makeup',
@@ -51,7 +38,7 @@ const personLd = {
     'Permanent jewelry',
     'Ear piercing',
   ],
-};
+}, siteURL.toString());
 ---
 
 <!doctype html>
@@ -73,9 +60,8 @@ const personLd = {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
-    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
-    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+    <SchemaMarkup item={personLd} />
 
     <style>
       @font-face {
@@ -138,17 +124,27 @@ const personLd = {
         pointer-events: none;
       }
 
+      .avatar {
+        margin: 26px auto 0;
+        width: 128px; height: 128px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--gold);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 0 6px rgba(201,162,75,0.10);
+      }
+      .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
       .crest {
         position: relative;
         margin: 18px 18px 0;
-        padding: 40px 24px 30px;
+        padding: 28px 24px 30px;
         text-align: center;
         border: 1px solid var(--gold-line);
         border-radius: 14px;
         background:
           radial-gradient(120% 120% at 50% 0%, rgba(201,162,75,0.08), transparent 60%);
       }
-      .crest img { width: 96px; height: auto; display: block; margin: 0 auto; }
+      .crest img { width: 72px; height: auto; display: block; margin: 0 auto; }
       .wordmark {
         margin-top: 18px;
         font-weight: 700;
@@ -252,6 +248,10 @@ const personLd = {
 
   <body>
     <main class="card">
+      <div class="avatar">
+        <img src="/images/providers/Aundrea.webp" alt="Aundrea Pedigo, House of Rose Aesthetics" width="128" height="128" />
+      </div>
+
       <header class="crest">
         <img src="/logos/house-of-rose-monogram/hr-monogram-gold.png" alt="House of Rose Aesthetics monogram" width="96" height="110" />
         <div class="wordmark">House of Rose</div>
@@ -278,7 +278,7 @@ const personLd = {
           <span class="val">{EMAIL}</span>
         </a>
 
-        <a class="row" href="https://www.houseofrosefl.com" target="_blank" rel="noopener">
+        <a class="row" href="https://houseofrosefl.com" target="_blank" rel="noopener">
           <span class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </span>

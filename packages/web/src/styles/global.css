@@ -24,10 +24,29 @@
 }
 
 @layer base {
+  /* ── Context-aware accent channels (see tailwind.config.ts) ──────────
+     Every `text-gold` / `border-gold` / `text-muted` on the site resolves
+     through these vars, so an element is legible on whatever surface it
+     lands on. Light surfaces are the default; `.on-dark` flips the
+     channel for photo heroes, walnut bands, and the footer.
+     Values are space-separated RGB triplets (Tailwind alpha support).  */
   :root {
+    /* LIGHT surfaces — ivory #F4ECDC / breath #F8F4EC / taupe #EADBC2 */
+    --hr-gold: 122 92 42;         /* #7A5C2A — 5.27:1 on ivory, 4.54:1 on taupe */
+    --hr-muted: 94 85 72;         /* #5E5548 — 6.23:1 on ivory */
+    --hr-muted-strong: 45 40 34;  /* #2D2822 — body copy, 12.6:1 */
+
     --color-bg: theme('colors.charcoal.DEFAULT');
-    --color-text: theme('colors.cream.DEFAULT');
-    --color-accent: theme('colors.gold.DEFAULT');
+    --color-text: theme('colors.ink');
+    --color-accent: rgb(var(--hr-gold));
+  }
+
+  /* DARK surfaces — walnut #3E2C20, photo heroes under a near-black overlay.
+     Apply to the section/wrapper; all gold + muted descendants invert. */
+  .on-dark {
+    --hr-gold: 231 214 168;        /* #E7D6A8 — 9.19:1 on walnut, 13.9:1 on hero overlay */
+    --hr-muted: 216 207 192;       /* #D8CFC0 — 8.58:1 on walnut */
+    --hr-muted-strong: 244 236 220;/* ivory — 11.3:1 on walnut */
   }
 
   html {
@@ -51,24 +70,26 @@
 }
 
 @layer components {
-  /* Button: Gold background */
+  /* Button: primary (botanical green fill, ivory text — 7.66:1) */
   .btn-gold {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-green text-ivory font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-green text-ivory font-sans text-[12px] font-medium tracking-[0.18em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
   }
 
-  /* Button: Outline (on light) */
+  /* Button: Outline on a DARK surface (photo hero). Hover fills with metallic
+     gold + ink text (7.84:1) — never `text-gold` on a gold fill. */
   .btn-outline-white {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ivory/70 text-ivory font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:border-gold hover:text-gold;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ivory text-ivory font-sans text-[12px] font-medium tracking-[0.18em] uppercase min-h-[48px] transition-all duration-300 hover:bg-gold-metal hover:border-gold-metal hover:text-ink;
   }
 
-  /* Button: Outline gold */
+  /* Button: Outline gold — border + label track the context-aware channel. */
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-gold text-gold font-sans text-[11px] tracking-[0.25em] uppercase min-h-[48px] transition-all duration-300 hover:bg-gold hover:text-black;
+    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-gold text-gold font-sans text-[12px] font-medium tracking-[0.18em] uppercase min-h-[48px] transition-all duration-300 hover:bg-gold-metal hover:border-gold-metal hover:text-ink;
   }
 
-  /* Label/Kicker text */
+  /* Label/Kicker — was 10px @ 0.4em tracking in 2:1 gold: the single worst
+     offender. Now 11px, medium weight, tighter tracking, AA-compliant gold. */
   .kicker {
-    @apply block text-[10px] tracking-[0.4em] uppercase text-gold mb-3;
+    @apply block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3;
   }
 
   /* Section heading */
@@ -78,7 +99,7 @@
 
   /* Service card */
   .service-card {
-    @apply bg-breath p-6 text-left border border-gold/15 w-full min-h-[44px] transition-all duration-300 hover:border-gold/40 hover:bg-charcoal-lighter;
+    @apply bg-breath p-6 text-left border border-gold-metal/30 w-full min-h-[44px] transition-all duration-300 hover:border-gold-metal/60 hover:bg-charcoal-lighter;
   }
 
   /* Service name in card */
@@ -88,12 +109,12 @@
 
   /* Service description */
   .service-desc {
-    @apply text-[#7a6e5c] text-[13px] leading-relaxed;
+    @apply text-muted text-[14px] leading-relaxed;
   }
 
-  /* Learn more link */
+  /* Learn more link — was gold @ 50% opacity (~1.4:1). Now full-strength. */
   .learn-more {
-    @apply text-gold/50 text-[10px] tracking-[0.22em] uppercase mt-3 block transition-colors duration-200;
+    @apply text-gold text-[11px] font-medium tracking-[0.16em] uppercase mt-3 block transition-colors duration-200;
   }
 
   /* Focus-visible states for accessibility (WCAG 2.1 AA) */
@@ -126,12 +147,74 @@
 #header {
   background: transparent;
 }
-#header.stuck {
-  background: rgba(244, 236, 220, 0.94);
+
+/* ── Header backdrop safety ──────────────────────────────────────────
+   The transparent bar renders its nav in ivory, which is only legible over a
+   dark photo hero. Pages that don't open with one (/faq/, /areas/, /results/,
+   /privacy-policy/, /sitemap/, /thank-you/) were putting ivory text on the
+   ivory page — 1:1 contrast, invisible until `.stuck` fired on scroll.
+
+   `:has()` resolves this at first paint, before any JS runs: if the document
+   contains no `.hero-dark`, the bar is solid from the start. The Header script
+   adds `.solid` as a fallback for engines without :has(). Any new page inherits
+   the correct treatment automatically. */
+body:not(:has(.hero-dark)) #header:not(.stuck),
+#header.solid,
+#header.stuck,
+#header.menu-open {
+  background: rgb(244 236 220); /* fully opaque ivory — no see-through text */
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(201, 162, 75, 0.22);
+  border-bottom: 1px solid rgba(201, 162, 75, 0.35);
 }
+
+/* Light bar ⇒ dark-on-light nav + an accent channel that reads on ivory.
+   Specificity (1,1,1) intentionally outranks `#header.on-dark` (1,1,0). */
+body:not(:has(.hero-dark)) #header:not(.stuck),
+#header.solid {
+  --hr-gold: 122 92 42;
+  --hr-muted: 94 85 72;
+  --hr-muted-strong: 45 40 34;
+}
+body:not(:has(.hero-dark)) #header:not(.stuck) .nav-link,
+#header.solid .nav-link {
+  @apply text-ink;
+  text-shadow: none;
+}
+body:not(:has(.hero-dark)) #header:not(.stuck) .nav-cta,
+#header.solid .nav-cta {
+  @apply border-gold text-gold;
+  text-shadow: none;
+}
+body:not(:has(.hero-dark)) #header:not(.stuck) .menu-line,
+#header.solid .menu-line {
+  @apply bg-ink;
+}
+
 #header.stuck .brand-link img {
   height: 2.5rem; /* 40px — comfortably inside the 80px bar */
 }
+
+/* ── Swup page transition ─────────────────────────────────────────
+   theme: false in astro.config.ts — this replaces swup's built-in 'fade'
+   theme with a slower, quieter fade + lift that matches the site's
+   luxury-spa pace instead of a generic SPA snap. Respects reduced motion. */
+.transition-fade {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+html.is-animating .transition-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .transition-fade {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Swup progress bar is disabled (config.progress: false) — no styles needed.
+   Reveal-on-scroll animations (data-reveal="...") are styled by
+   @polgubau/astro-reveal itself; see BaseLayout.astro for the import. */

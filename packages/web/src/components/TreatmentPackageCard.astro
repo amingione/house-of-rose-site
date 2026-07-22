@@ -8,6 +8,7 @@
 import { urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { TreatmentPackage } from '@/lib/queries';
+import { DEFAULT_PACKAGE_IMAGE } from '@/lib/imageFallbacks';
 
 interface Props {
   pkg: TreatmentPackage;
@@ -23,36 +24,37 @@ interface Props {
 
 const { pkg, expanded = false, objectId } = Astro.props;
 const headline = pkg.outcome ?? pkg.whatsIncluded ?? '';
-const price = pkg.foundingPrice ?? pkg.rackPrice;
+const price = pkg.rackPrice;
+const imageSrc = pkg.image
+  ? urlFor(pkg.image).width(640).height(480).fit('crop').url()
+  : DEFAULT_PACKAGE_IMAGE;
 // Visual Editor annotations — only emitted when an objectId is supplied.
 const objAttrs = objectId ? sbObjectId(objectId) : {};
 const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
 ---
 
 <article class="package-card group block bg-charcoal-lighter" {...objAttrs}>
-  {pkg.image && (
-    <div class="aspect-[4/3] overflow-hidden mb-6">
+  <div class="aspect-[4/3] overflow-hidden mb-6">
       <img
-        src={urlFor(pkg.image).width(640).height(480).fit('crop').url()}
-        alt={pkg.image.alt ?? pkg.title}
+        src={imageSrc}
+        alt={pkg.image?.alt ?? pkg.title}
         width={640}
         height={480}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
     </div>
-  )}
 
   <div class="px-6 pb-6">
     <h3 class="font-serif text-2xl text-ink mb-2" {...fp('title')}>{pkg.title}</h3>
-    {headline && <p class="text-[#9a8c78] text-sm leading-relaxed mb-4" {...fp(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{headline}</p>}
+    {headline && <p class="text-muted text-sm leading-relaxed mb-4" {...fp(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{headline}</p>}
 
     {pkg.servicesIncluded && pkg.servicesIncluded.length > 0 && (
       <ul class="space-y-1.5 mb-5">
         {pkg.servicesIncluded.map((service) => (
-          <li class="text-sm text-[#aaa]" {...(objectId && service._id ? sbObjectId(service._id) : {})}>
+          <li class="text-sm text-muted" {...(objectId && service._id ? sbObjectId(service._id) : {})}>
             <span class="text-ink" {...(objectId && service._id ? sbFieldPath('title') : {})}>{service.title}</span>
             {expanded && service.tagline && (
-              <span class="text-[#7a6e5c]" {...(objectId && service._id ? sbFieldPath('tagline') : {})}> — {service.tagline}</span>
+              <span class="text-muted" {...(objectId && service._id ? sbFieldPath('tagline') : {})}> — {service.tagline}</span>
             )}
           </li>
         ))}
@@ -60,28 +62,28 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
     )}
 
     {expanded && pkg.cadence && (
-      <p class="text-sm text-[#9a8c78] mb-3">
+      <p class="text-sm text-muted mb-3">
         <span class="text-gold uppercase tracking-wide text-xs">Cadence</span><br />
         <span {...fp('cadence')}>{pkg.cadence}</span>
       </p>
     )}
     {expanded && pkg.positioning && (
-      <p class="text-sm text-[#9a8c78] italic mb-5" {...fp('positioning')}>{pkg.positioning}</p>
+      <p class="text-sm text-muted italic mb-5" {...fp('positioning')}>{pkg.positioning}</p>
     )}
 
     {price && (
-      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4" {...fp(pkg.foundingPrice ? 'foundingPrice' : 'rackPrice')}>{price}</p>
+      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4" {...fp('rackPrice')}>{price}</p>
     )}
 
     <a
-      href={`/packages/${pkg.slug}`}
+      href={`/packages/${pkg.slug}/`}
       class="learn-more text-gold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200"
     >
-      {expanded ? 'Reserve this ritual' : 'Explore the ritual'} <span>→</span>
+      {expanded ? 'Review this series' : 'View details'} <span>→</span>
     </a>
 
     {expanded && pkg.candidacyNote && (
-      <p class="text-[11px] text-[#7a6e5c] leading-relaxed mt-5" {...fp('candidacyNote')}>{pkg.candidacyNote}</p>
+      <p class="text-[11px] text-muted leading-relaxed mt-5" {...fp('candidacyNote')}>{pkg.candidacyNote}</p>
     )}
   </div>
 </article>

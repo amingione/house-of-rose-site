@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
   SERVICE_BY_SLUG_QUERY,
   type Service,
 } from '@/lib/queries';
+import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
@@ -16,87 +19,63 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const service = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, { slug });
 
+// Slugs come from getStaticPaths (Sanity), so a miss is a data-integrity bug, not a
+// runtime 404. Fail the build loudly — never `return Astro.redirect()` from a prerendered
+// route: returning a Response in `output: 'static'` stops Astro emitting the sibling index
+// chunk and breaks the build (see shop/[slug].astro).
 if (!service) {
-  return Astro.redirect('/services', 307);
+  throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
 }
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
+const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
+const socialImage = service.image?.asset
+  ? urlFor(service.image).width(1200).height(630).fit('crop').url()
+  : fallbackImage
+    ? new URL(fallbackImage, site).toString()
+    : undefined;
+// All service headers now share one universal banner (per Amber). service.image is no
+// longer used for the hero background — it still drives socialImage above, and any photo
+// that was previously doing header duty now surfaces in the Gallery section below instead
+// of being discarded.
+const heroImage = '/images/banner/background/HR-background.webp';
+const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
+
+// Face Reality clinical before/after proof — only populated for the acne-program pages.
+const resultImages = slug ? getServiceResultImages(slug) : [];
 
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": service.title,
-  "description": service.description ?? service.tagline ?? '',
-  "provider": {
-    "@type": "HealthAndBeautyBusiness",
-    "name": "House of Rose Aesthetics",
-    "url": site,
-    "telephone": "+18449417673",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "525 E Olympia Ave, Unit 9",
-      "addressLocality": "Punta Gorda",
-      "addressRegion": "FL",
-      "postalCode": "33950",
-      "addressCountry": "US"
-    }
+const serviceSchema = serviceJsonLd(
+  {
+    name: service.title,
+    description: service.description ?? service.tagline ?? undefined,
+    url: canonicalURL.toString(),
+    image: socialImage,
+    serviceType: service.tagline ?? service.title,
+    minPrice: priceNumber,
   },
-  "url": canonicalURL.toString(),
-  ...(service.image && {
-    "image": urlFor(service.image).width(1200).height(630).fit('crop').url()
-  }),
-  "serviceType": service.tagline ?? service.title,
-  ...(priceNumber !== null && {
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "USD",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "minPrice": priceNumber,
-        "priceCurrency": "USD"
-      }
-    }
-  }),
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": "26.9298",
-      "longitude": "-82.0454"
-    },
-    "geoRadius": "50000"
-  }
-};
+  site,
+);
 
-const breadcrumbItems = [
-  { "@type": "ListItem", "position": 1, "name": "Home", "item": site },
-  { "@type": "ListItem", "position": 2, "name": "Services", "item": new URL('/services/', site).toString() },
+const breadcrumbSchema = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: new URL('/services/', site).toString() },
   ...(service.parentService
-    ? [{ "@type": "ListItem", "position": 3, "name": service.parentService.title, "item": new URL(`/services/${service.parentService.slug}/`, site).toString() }]
+    ? [
+        {
+          name: service.parentService.title,
+          item: new URL(`/services/${service.parentService.slug}/`, site).toString(),
+        },
+      ]
     : []),
-  { "@type": "ListItem", "position": service.parentService ? 4 : 3, "name": service.title, "item": canonicalURL.toString() }
-];
+  { name: service.title, item: canonicalURL.toString() },
+]);
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbItems
-};
-
-const faqSchema = service.faqs && service.faqs.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": service.faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-  }))
-} : null;
+const faqSchema = faqPage(service.faqs ?? []);
 
 const pageTitle = service.seo?.metaTitle ?? `${service.title} in Punta Gorda, FL | House of Rose`;
 const pageDescription = service.seo?.metaDescription ?? service.tagline ?? service.description ?? '';
@@ -105,27 +84,27 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  image={service.image ? urlFor(service.image).width(1200).height(630).fit('crop').url() : undefined}
-  preloadImage={service.image ? urlFor(service.image).width(1920).height(1080).url() : undefined}
+  image={socialImage}
+  preloadImage={heroImage}
 >
   <!-- Structured Data for SEO -->
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
-  {faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />}
+  <SchemaMarkup item={serviceSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
+  {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   {/* Visual Editor: all editable copy below belongs to this service document */}
   <div {...sbObjectId(service._id)}>
   <!-- Hero -->
   <section
-    class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"
-    style={service.image ? `background-image: url(${urlFor(service.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
+    class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
+    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
-      <a href={service.parentService ? `/services/${service.parentService.slug}` : '/services'} class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+      <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> {service.parentService ? service.parentService.title : 'All Services'}
       </a>
       {service.tagline && (
-        <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3" {...sbFieldPath('tagline')}>
+        <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3" {...sbFieldPath('tagline')}>
           {service.tagline}
         </span>
       )}
@@ -146,7 +125,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     <div>
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What It Is</span>
       <p class="text-ink/80 text-[15px] leading-relaxed" {...sbFieldPath('description')}>
-        {service.description ?? 'Details coming soon.'}
+        {service.description ?? service.tagline ?? ''}
       </p>
     </div>
 
@@ -155,14 +134,14 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       {service.whoItsFor && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Who It's For</span>
-          <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
+          <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
         </div>
       )}
 
       {service.process && service.process.length > 0 && (
         <div>
           <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Process</span>
-          <ol class="list-decimal list-inside space-y-2 text-[#9a8c78] text-[14px] leading-relaxed">
+          <ol class="list-decimal list-inside space-y-2 text-muted text-[14px] leading-relaxed">
             {service.process.map((step, i) => (
               <li {...sbFieldPath(`process.${i}`)}>{step}</li>
             ))}
@@ -172,6 +151,66 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </div>
   </section>
 
+  <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
+  {galleryImages.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Gallery</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {galleryImages.map((img) => (
+            <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
+              <img
+                src={urlFor(img).width(900).height(1200).url()}
+                alt={img.alt ?? service.title}
+                width="900"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto object-cover"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Face Reality clinical results (acne-program pages only) -->
+  {resultImages.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">Clinical Results</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mb-3">
+          The Face Reality Clear Skin Method
+        </h2>
+        <p class="text-muted text-[14px] leading-relaxed max-w-[680px] mb-10">
+          Unretouched Week&nbsp;1 to Week&nbsp;16 results from the Face Reality clinical
+          study — the same customized professional + home-care protocol Amber, a Face
+          Reality Certified Acne Specialist, follows in-studio. Individual results vary
+          with adherence to protocol.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {resultImages.map((img) => (
+            <figure class="bg-ivory border border-gold-metal/20 overflow-hidden">
+              <img
+                src={img.src}
+                alt={img.alt}
+                width="1080"
+                height="1350"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto"
+              />
+            </figure>
+          ))}
+        </div>
+        <p class="text-muted/70 text-[11px] tracking-[0.14em] uppercase mt-6">
+          Images © Face Reality Skincare · Clear Skin Method™ clinical study
+        </p>
+      </div>
+    </section>
+  )}
+
   <!-- Treatments under this service (hub pages) -->
   {service.treatments && service.treatments.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
@@ -180,15 +219,39 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
           Choose your protocol
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
-            <a href={`/services/${t.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
+            <a href={`/services/${t.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
               <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{t.title}</h3>
-              {t.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
+              {t.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
               <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
                 {t.price}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration}
               </p>
               <span class="learn-more group-hover:text-gold mt-3 inline-block">View Treatment</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Decision-stage links only appear when this service is part of a comparison. -->
+  {service.comparisons && service.comparisons.length > 0 && (
+    <section class="bg-charcoal py-16 px-6">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="kicker">Compare Your Options</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-4">
+          See how this treatment fits your goals
+        </h2>
+        <p class="text-muted text-[15px] leading-relaxed max-w-[680px] mb-10">
+          When more than one approach may fit, these clear comparisons can help you prepare for a more informed consultation.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10">
+          {service.comparisons.map((comparison) => (
+            <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(comparison._id)}>
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{comparison.title}</h3>
+              <p class="text-muted text-[14px] leading-relaxed">{comparison.intro}</p>
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the Comparison</span>
             </a>
           ))}
         </div>
@@ -207,7 +270,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {service.faqs.map((faq, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h3 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{faq.question}</h3>
-              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{faq.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{faq.answer}</p>
             </div>
           ))}
         </div>
@@ -216,16 +279,16 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   )}
 
   <!-- Related Services -->
-  {service.relatedServices && service.relatedServices.length > 0 && (
+  {service.relatedServices && service.relatedServices.filter(Boolean).length > 0 && (
     <section class="bg-charcoal py-16 px-6">
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 max-w-[1280px] mx-auto">
         Related Services
       </span>
-      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
-        {service.relatedServices.map((related) => (
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
+        {service.relatedServices.filter(Boolean).map((related) => (
           <div class="bg-charcoal">
-            <a href={`/services/${related.slug}`} class="service-card group block" {...sbObjectId(related._id)}>
-              {related.image && (
+            <a href={`/services/${related.slug}/`} class="service-card group block" {...sbObjectId(related._id)}>
+              {related.image?.asset && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
                     src={urlFor(related.image).width(400).height(400).fit('crop').url()}
@@ -246,14 +309,24 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
+  {service.collection?.slug === 'makeup' && (
+    <section class="bg-charcoal-light py-8 px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto text-center">
+        <a href="/services/professional-makeup/" class="text-gold text-[12px] tracking-[0.22em] uppercase hover:text-ink transition-colors">
+          Part of our Professional Makeup services →
+        </a>
+      </div>
+    </section>
+  )}
+
   <!-- Booking CTA -->
-  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
       <span class="kicker">Reserve Your Experience</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         Ready to experience {service.title}?
       </h2>
-      <p class="text-[#777] text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
+      <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
         Begin with a private consultation. We will design your personal protocol.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
@@ -264,7 +337,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           Book Online
         </a>
       </div>
-      <p class="text-[#8a7c66] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+      <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
       </p>
     </div>

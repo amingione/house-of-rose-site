@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import SchemaMarkup from "@/components/SchemaMarkup.astro";
 import { sanityFetch } from "@/lib/sanity";
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
+import { webPage, breadcrumbList } from "@/lib/structuredData";
 
 const privacySupportEmail = "support@updates.houseofrosefl.com";
 
@@ -60,7 +62,7 @@ const FALLBACK_SECTIONS: PrivacySection[] = [
 	{
 		_key: "s4",
 		heading: "House of Rose LLC Messaging Terms and Conditions",
-		body: "1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, promotional offers or discounts, any promotion of your products/services.\n2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.\n3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.\n4. Carriers are not liable for delayed or undelivered messages.\n5. As always, message and data rates may apply for any messages sent to you from us and to us from you. Message frequency will vary based on communication needs. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.\n6. If you have any questions regarding privacy, please read our privacy policy contained in the rest of this document/page.",
+		body: "1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, along with invitations, announcements, and offers about our products and services.\n2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.\n3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.\n4. Carriers are not liable for delayed or undelivered messages.\n5. As always, message and data rates may apply for any messages sent to you from us and to us from you. Message frequency will vary based on communication needs. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.\n6. If you have any questions regarding privacy, please read our privacy policy contained in the rest of this document/page.",
 	},
 	{
 		_key: "s5",
@@ -78,13 +80,26 @@ const intro =
 	"House of Rose LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging.";
 
 const oid = data._id ? sbObjectId(data._id) : {};
+
+const site = Astro.site?.toString() ?? "https://houseofrosefl.com/";
+const canonical = new URL(Astro.url.pathname, site).toString();
+const pageMetaTitle = data.seoTitle ?? "Privacy Policy | House of Rose Aesthetics";
+const pageMetaDescription =
+	data.seoDescription ??
+	"House of Rose LLC privacy policy, data sharing practices, and messaging terms and conditions.";
+const webPageSchema = webPage(
+	{ name: pageTitle, description: pageMetaDescription, url: canonical },
+	site,
+);
+const breadcrumb = breadcrumbList([
+	{ name: "Home", item: site },
+	{ name: "Privacy Policy", item: canonical },
+]);
 ---
 
-<BaseLayout
-	title={data.seoTitle ?? "Privacy Policy"}
-	description={data.seoDescription ??
-		"House of Rose LLC privacy policy, data sharing practices, and messaging terms and conditions."}
->
+<BaseLayout title={pageMetaTitle} description={pageMetaDescription}>
+	<SchemaMarkup item={webPageSchema} slot="head" />
+	<SchemaMarkup item={breadcrumb} slot="head" />
 	<section class="bg-charcoal py-24 max-w-4xl mx-auto px-6" {...oid}>
 		<div class="text-center mb-16">
 			<p class="text-xs tracking-[0.3em] uppercase text-gold mb-4">
@@ -92,7 +107,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 			</p>
 			<h1 class="font-serif text-5xl text-ink" {...sbFieldPath("pageTitle")}>{pageTitle}</h1>
 			{data.lastUpdated && (
-				<p class="mt-4 text-sm text-ink/60" {...sbFieldPath("lastUpdated")}>{data.lastUpdated}</p>
+				<p class="mt-4 text-sm text-ink/75" {...sbFieldPath("lastUpdated")}>{data.lastUpdated}</p>
 			)}
 		</div>
 
@@ -113,7 +128,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 			id="privacy-contact"
 			method="post"
 			action="/.netlify/functions/privacy-contact"
-			class="mt-12 border border-gold/20 bg-charcoal-light p-6 shadow-sm"
+			class="mt-12 border border-gold-metal/20 bg-charcoal-light p-6 shadow-sm"
 		>
 			<div class="mb-6">
 				<p class="text-xs tracking-[0.3em] uppercase text-gold mb-2">
@@ -186,7 +201,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 			</label>
 
 			<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-				<p class="text-sm text-ink/60">
+				<p class="text-sm text-ink/75">
 					Visible sender: {privacySupportEmail}
 				</p>
 				<button type="submit" class="btn-gold">Send Request</button>

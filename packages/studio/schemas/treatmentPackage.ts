@@ -79,12 +79,6 @@ export const treatmentPackage = defineType({
       description: 'Experience-level timing/sequencing; clinical specifics defer to the provider.',
     }),
     defineField({
-      name: 'foundingPrice',
-      title: 'Founding Price',
-      type: 'string',
-      description: 'Intro / founding-member rate (free text — supports ranges).',
-    }),
-    defineField({
       name: 'rackPrice',
       title: 'Rack Price',
       type: 'string',

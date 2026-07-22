@@ -1,0 +1,144 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { TERMS_OF_SERVICE_QUERY, type TermsOfService, type TermsSection } from '@/lib/queries';
+import { breadcrumbList, webPage } from '@/lib/structuredData';
+import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
+
+const data = (await sanityFetch<TermsOfService | null>(TERMS_OF_SERVICE_QUERY)) ?? {};
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL('/terms-of-service/', site).toString();
+const pageTitle = data.pageTitle ?? 'Terms of Service';
+const description = data.seoDescription ?? 'Terms governing use of the House of Rose Aesthetics website, appointment services, online purchases, and customer communications.';
+const annotations = data._id ? sbObjectId(data._id) : {};
+
+const fallbackSections: TermsSection[] = [
+  {
+    _key: 'acceptance',
+    heading: 'Acceptance of these terms',
+    body: 'These Terms of Service form an agreement between you and House of Rose LLC. By using this website, submitting information, booking an appointment, or purchasing a product through the website, you agree to these terms and our Privacy Policy. If you do not agree, do not use the website or complete a transaction through it.',
+  },
+  {
+    _key: 'eligibility',
+    heading: 'Eligibility and accurate information',
+    body: 'You must be at least 18 years old, or have the involvement and consent of a parent or legal guardian where permitted, to make a purchase or book a service. You agree to provide current, complete, and accurate information and to keep payment and contact details up to date.',
+  },
+  {
+    _key: 'website-use',
+    heading: 'Permitted website use',
+    body: 'You may use this website only for lawful, personal purposes. You may not interfere with website security or operation, attempt unauthorized access, introduce malicious code, scrape or copy content through automated means without permission, impersonate another person, or use the website in a way that violates applicable law or the rights of others.',
+  },
+  {
+    _key: 'information',
+    heading: 'Educational information is not medical advice',
+    body: 'Website content is provided for general educational and informational purposes. It is not medical advice, a diagnosis, or a substitute for an individual consultation with an appropriately licensed professional. Not every person is a candidate for every service. Final recommendations, candidacy, contraindications, treatment details, and aftercare are determined by the appropriate provider. Seek emergency care or call 911 for a medical emergency; do not use this website or ordinary studio messaging for emergency care.',
+  },
+  {
+    _key: 'appointments',
+    heading: 'Appointments and services',
+    body: 'Appointment availability is not guaranteed until confirmed. Pricing, deposits, cancellation terms, rescheduling terms, late-arrival terms, and other service-specific conditions presented during booking or before treatment are incorporated into these terms. Clinical and aesthetic services may require separate consultation, consent, and acknowledgment forms. Individual outcomes vary, and no result is guaranteed.',
+  },
+  {
+    _key: 'orders',
+    heading: 'Product orders and payment',
+    body: 'Product descriptions, availability, and prices may change before an order is placed. Applicable taxes and available carrier rates are shown during checkout. By submitting an order, you authorize the displayed charges through the payment method you provide. We may decline or cancel an order for suspected fraud, pricing or inventory errors, payment failure, legal restrictions, or an inability to fulfill the order. If we cancel after payment is captured, the affected amount will be refunded to the original payment method.',
+  },
+  {
+    _key: 'shipping',
+    heading: 'Shipping, delivery, returns, and refunds',
+    body: 'Shipping dates and carrier transit times are estimates unless expressly stated otherwise. Risk of delay may arise after a package is transferred to a carrier. If merchandise cannot ship within the promised time, or within the time required by applicable law when no time is stated, we will provide the choices and refunds required by law. Return or exchange eligibility is governed by the policy shown at purchase and any rights that cannot legally be waived. Contact info@houseofrosefl.com or (844) 941-7673 with an order issue.',
+  },
+  {
+    _key: 'communications',
+    heading: 'Electronic communications',
+    body: 'You consent to receive transaction-related communications electronically at the contact information you provide. Marketing text messages are optional and governed by the consent disclosures and messaging terms in our Privacy Policy. Message and data rates may apply. You may withdraw marketing-text consent as described in that policy without affecting a purchase.',
+  },
+  {
+    _key: 'third-party',
+    heading: 'Third-party services and links',
+    body: 'This website may connect to independent services for booking, payments, shipping, maps, social media, or other functions. Their terms and privacy practices govern your direct use of those services. House of Rose LLC is not responsible for third-party websites or services that it does not control.',
+  },
+  {
+    _key: 'intellectual-property',
+    heading: 'Intellectual property',
+    body: 'The website and its original text, design, graphics, photographs, logos, and other content are owned by or licensed to House of Rose LLC and are protected by applicable intellectual-property laws. You may view and use the website for personal purposes, but you may not reproduce, distribute, sell, modify, or create derivative works from protected content without written permission.',
+  },
+  {
+    _key: 'disclaimer',
+    heading: 'Website disclaimer',
+    body: 'To the fullest extent permitted by law, the website is provided “as is” and “as available.” House of Rose LLC does not warrant that the website will always be uninterrupted, error-free, secure, or free of harmful components. Nothing in these terms excludes a warranty, duty, remedy, or right that applicable law does not permit us to exclude.',
+  },
+  {
+    _key: 'liability',
+    heading: 'Limitation of liability',
+    body: 'To the fullest extent permitted by law, House of Rose LLC and its owners, personnel, and service providers will not be liable for indirect, incidental, special, exemplary, or consequential losses arising from website use or an online transaction. These limits do not apply where prohibited by law and do not limit liability that cannot legally be limited, including any rights arising under separate treatment consent documents or applicable consumer-protection law.',
+  },
+  {
+    _key: 'law',
+    heading: 'Governing law and disputes',
+    body: 'These terms are governed by the laws of the State of Florida, without regard to conflict-of-law principles. Before filing a claim, you agree to contact House of Rose LLC and make a good-faith effort to resolve the concern informally. Any dispute that cannot be resolved informally will be handled in a court with lawful jurisdiction, subject to any consumer rights that apply.',
+  },
+  {
+    _key: 'changes',
+    heading: 'Changes, severability, and entire agreement',
+    body: 'We may update these terms by posting a revised version and changing the effective date. Changes apply prospectively unless otherwise stated or required by law. If a provision is found unenforceable, the remaining provisions remain in effect. These terms, the Privacy Policy, and any terms presented at booking, checkout, or treatment form the agreement governing the applicable interaction.',
+  },
+  {
+    _key: 'contact',
+    heading: 'Contact us',
+    body: 'Questions about these terms may be sent to House of Rose LLC at info@houseofrosefl.com, (844) 941-7673, or 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.',
+  },
+];
+
+const sections = data.sections?.length ? data.sections : fallbackSections;
+const pageSchema = webPage({ name: pageTitle, description, url: canonical }, site);
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Terms of Service', item: canonical },
+]);
+---
+
+<BaseLayout title={data.seoTitle ?? 'Terms of Service | House of Rose Aesthetics'} description={description}>
+  <SchemaMarkup item={pageSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
+  <main class="w-full max-w-[100vw] overflow-x-hidden bg-charcoal pt-32 pb-24 px-6" {...annotations}>
+    <article class="w-full min-w-0 max-w-4xl mx-auto">
+      <header class="text-center mb-16">
+        <p class="text-xs tracking-[0.3em] uppercase text-gold mb-4">House of Rose LLC</p>
+        <h1 class="font-serif text-[clamp(38px,7vw,58px)] text-ink" {...sbFieldPath('pageTitle')}>{pageTitle}</h1>
+        <p class="mt-4 text-sm text-ink/75" {...sbFieldPath('effectiveDate')}>{data.effectiveDate ?? 'Effective July 11, 2026'}</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="lead text-xl text-ink/70 leading-relaxed" {...sbFieldPath('intro')}>
+          {data.intro ?? 'These terms explain the rules that apply when you use the House of Rose Aesthetics website, book services, communicate with our team, or purchase products online.'}
+        </p>
+
+        {sections.map((section, index) => (
+          <section>
+            <h2 {...sbFieldPathParts('sections', index, 'heading')}>{section.heading}</h2>
+            <p class="whitespace-pre-line" {...sbFieldPathParts('sections', index, 'body')}>{section.body}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    @apply text-gold font-serif text-2xl mb-4 mt-10;
+  }
+
+  .prose p,
+  .prose li {
+    @apply text-ink/80;
+  }
+
+  .prose a,
+  .prose strong {
+    @apply text-ink;
+  }
+</style>

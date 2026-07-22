@@ -1,43 +1,66 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection } from '@/lib/queries';
+import { getCollectionFallbackImage } from '@/lib/imageFallbacks';
 
 const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: `${site}services/` },
+  { name: 'Collections', item: canonical },
+]);
+const collectionsListSchema = collections.length
+  ? itemList(
+      collections.map((col) => ({
+        name: col.title,
+        url: new URL(`/services/collections/${col.slug}/`, site).toString(),
+      })),
+      'Service Collections',
+    )
+  : null;
 ---
 
-<BaseLayout title="Collections" description="Curated service collections for every intention.">
+<BaseLayout
+  title="Service Collections | House of Rose Aesthetics, Punta Gorda FL"
+  description="Explore House of Rose's curated service collections — skin renewal, injectables & aesthetics, wellness, and beauty enhancements in Punta Gorda, FL."
+>
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {collectionsListSchema && <SchemaMarkup item={collectionsListSchema} slot="head" />}
   <section class="py-24 max-w-6xl mx-auto px-6">
     <div class="text-center mb-16">
-      <p class="text-xs tracking-[0.3em] uppercase text-rose-700 mb-4">Curated Experiences</p>
-      <h1 class="font-serif text-5xl text-charcoal">Service Collections</h1>
+      <p class="kicker mb-4">Curated Experiences</p>
+      <h1 class="font-serif text-5xl text-ink">Service Collections</h1>
     </div>
 
     {collections.length === 0 ? (
-      <p class="text-center text-charcoal/50">Collections coming soon.</p>
+      <p class="text-center text-muted">Collections coming soon.</p>
     ) : (
       <div class="space-y-24">
         {collections.map((col) => (
           <div {...sbObjectId(col._id)}>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
-              {col.image && (
-                <div class="aspect-[4/3] overflow-hidden bg-cream-200">
+              <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
                   <img
-                    src={urlFor(col.image).width(800).height(600).fit('crop').url()}
-                    alt={col.image.alt ?? col.title}
+                    src={col.image ? urlFor(col.image).width(800).height(600).fit('crop').url() : getCollectionFallbackImage(col.slug)}
+                    alt={col.image?.alt ?? col.title}
                     width={800}
                     height={600}
                     class="w-full h-full object-cover"
                   />
                 </div>
-              )}
               <div>
-                <h2 class="font-serif text-4xl text-charcoal mb-4" {...sbFieldPath('title')}>{col.title}</h2>
+                <h2 class="font-serif text-4xl text-ink mb-4" {...sbFieldPath('title')}>{col.title}</h2>
                 {col.description && (
-                  <p class="text-charcoal/70 leading-relaxed mb-6" {...sbFieldPath('description')}>{col.description}</p>
+                  <p class="text-muted leading-relaxed mb-6" {...sbFieldPath('description')}>{col.description}</p>
                 )}
-                <a href={`/services/collections/${col.slug}`} class="btn-outline">
+                <a href={`/services/collections/${col.slug}/`} class="btn-outline">
                   View Collection
                 </a>
               </div>
@@ -45,12 +68,12 @@ const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY
             {col.services.length > 0 && (
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {col.services.map((svc) => (
-                  <a href={`/services/${svc.slug}`} class="group bg-cream-100 p-5 hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
-                    <p class="font-serif text-lg text-charcoal mb-1 group-hover:text-rose-700 transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
-                    {svc.tagline && <p class="text-sm text-charcoal/60 mb-3" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
+                  <a href={`/services/${svc.slug}/`} class="group bg-breath p-5 hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
+                    <p class="font-serif text-lg text-ink mb-1 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
+                    {svc.tagline && <p class="text-sm text-muted mb-3" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
                     <div class="flex items-center justify-between">
-                      {svc.duration && <span class="text-xs text-charcoal/40" {...sbFieldPath('duration')}>{svc.duration}</span>}
-                      {svc.price && <span class="text-sm text-rose-700" {...sbFieldPath('price')}>{svc.price}</span>}
+                      {svc.duration && <span class="text-xs text-muted" {...sbFieldPath('duration')}>{svc.duration}</span>}
+                      {svc.price && <span class="text-sm text-gold" {...sbFieldPath('price')}>{svc.price}</span>}
                     </div>
                   </a>
                 ))}

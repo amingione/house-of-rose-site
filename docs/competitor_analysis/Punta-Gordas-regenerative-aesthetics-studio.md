@@ -6,7 +6,7 @@ House of Rose’s most defensible position is **not “another full-service med 
 
 > **Punta Gorda’s regenerative aesthetics studio—specializing in PRF, bio-filler, and data-guided skin protocols for natural-looking results.**
 
-That position distinguishes House of Rose from larger competitors selling expansive treatment menus, promotions, devices, and traditional injectables. House of Rose already has the foundations: extensive PRF applications, advanced skin analysis, private consultations, curated memberships, and a “less but better” treatment philosophy. ([House of Rose Aesthetics][1])
+That position distinguishes House of Rose from larger competitors selling expansive treatment menus, promotions, devices, and traditional injectables. House of Rose already has the foundations: extensive PRF applications, advanced skin analysis, private consultations, and a “less but better” treatment philosophy. ([House of Rose Aesthetics][1])
 
 ## Public Estimates: top competitor map
 
@@ -93,7 +93,7 @@ House of Rose describes itself as a small private practice with consultation-led
 
 **4. Seasonal-resident retention**
 
-The ability for seasonal residents to pause memberships without charge is unusually well aligned with Punta Gorda’s market. Charlotte County has an especially large older-adult population, making natural age-management, continuity of care, and “snowbird-friendly” programs strategically relevant. ([House of Rose Aesthetics][13])
+Snowbird-friendly, flexible seasonal scheduling is unusually well aligned with Punta Gorda’s market. Charlotte County has an especially large older-adult population, making natural age-management, continuity of care, and “snowbird-friendly” programs strategically relevant. ([House of Rose Aesthetics][13])
 
 ## The biggest vulnerabilities
 
@@ -144,7 +144,7 @@ Botox, facials, wellness, permanent jewelry, and other services can remain avail
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | “I look tired, but I don’t want obvious filler” | **Regenerative Eye Renewal:** skin analysis, PRF under-eye or EZ Gel, and follow-up imaging                     |
 | “My skin is changing as I age”                  | **Collagen Renewal Plan:** analysis, PRF microneedling or ProCell, BioRePeel, and home-care plan                |
-| “I live here seasonally”                        | **Snowbird Skin Plan:** arrival assessment, in-season treatments, pre-departure treatment, and membership pause |
+| “I live here seasonally”                        | **Snowbird Skin Plan:** arrival assessment, in-season treatments, pre-departure treatment, and flexible seasonal scheduling |
 
 These packages should be framed as protocols, not discounts.
 
@@ -167,20 +167,19 @@ Permanent jewelry can remain a useful event and referral product, but giving it 
 
 Ground each page locally (NAP, "serving Punta Gorda / Charlotte County," local proof) without depending on a city modifier to rank — the page wins the national informational term *and* converts local readers.
 
-**Lane B — Local intent via Google Business Profile, not landing pages.** "near me / in Punta Gorda" demand resolves in the Map Pack. Prioritize GBP optimization, review velocity, and local citations over standalone geo pages. Membership / seasonal-resident and Face Reality / acne pages remain worth building for conversion and internal linking, just not as organic-traffic plays.
+**Lane B — Local intent via Google Business Profile, not landing pages.** "near me / in Punta Gorda" demand resolves in the Map Pack. Prioritize GBP optimization, review velocity, and local citations over standalone geo pages. Seasonal-resident and Face Reality / acne pages remain worth building for conversion and internal linking, just not as organic-traffic plays.
 
 Each page should answer cost range, candidacy, recovery, treatment sequence, expected timeline, safety, and frequently asked questions. Avoid producing generic 400-word blog posts; create authoritative treatment resources with original practitioner insights. (Volumes: Ahrefs US, June 2026 — see [Search visibility — measured](#search-visibility--measured-ahrefs-june-2026).)
 
 ### Turn every consultation into measurable proof
 
-Record the acquisition source, primary concern, skin-analysis baseline, recommended protocol, booked treatment, follow-up result, membership conversion, and review request. The most useful operating metrics are:
+Record the acquisition source, primary concern, skin-analysis baseline, recommended protocol, booked treatment, follow-up result, and review request. The most useful operating metrics are:
 
 * Consultation booking rate
 * Consultation-to-treatment conversion
 * Cost per booked consultation
 * Revenue by first acquired treatment
 * PRF and regenerative-service revenue share
-* Membership attachment rate
 * 90-day repeat rate
 * New review velocity
 * Percentage of patients arriving from referrals

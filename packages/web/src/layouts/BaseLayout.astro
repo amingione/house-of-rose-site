@@ -1,16 +1,26 @@
 ---
 import '@/styles/global.css';
+import '@polgubau/astro-reveal/styles';
 import { sanityFetch } from '@/lib/sanity';
 import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import CartDrawer from '@/components/shop/CartDrawer.astro';
 import ComingSoon from '@/components/ComingSoon.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import LeadAnalytics from '@/components/LeadAnalytics.astro';
+import { SEO } from 'astro-seo';
+import { siteEntityGraph } from '@/lib/structuredData';
+import { formatSeoTitle } from '@/lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   preloadImage?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
 }
 
 const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
@@ -21,7 +31,10 @@ const {
   title = siteName,
   description = settings?.description ?? 'Private, appointment-only regenerative aesthetics in Punta Gorda, FL — specializing in PRF and natural skin renewal.',
   image,
+  imageAlt,
   preloadImage,
+  noindex = false,
+  nofollow = false,
 } = Astro.props;
 
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
@@ -31,9 +44,20 @@ const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
 const defaultOgImage = new URL('/logos/hr-monogram-2026/og.png', siteURL).toString();
-const pageTitle = (title === siteName || title.includes(siteName))
-  ? title
-  : `${title} | ${siteName}`;
+const socialImage = image ? new URL(image, siteURL).toString() : defaultOgImage;
+const socialImageAlt = imageAlt ?? `${siteName} in Punta Gorda, Florida`;
+const pageTitle = formatSeoTitle(title, siteName);
+const entityGraph = siteEntityGraph(
+  {
+    url: canonicalURL.toString(),
+    name: pageTitle,
+    description,
+    image: socialImage,
+    imageAlt: socialImageAlt,
+    email: settings?.email,
+  },
+  siteURL.toString(),
+);
 ---
 
 <!doctype html>
@@ -42,25 +66,34 @@ const pageTitle = (title === siteName || title.includes(siteName))
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {gscVerify && <meta name="google-site-verification" content={gscVerify} />}
-    <link rel="canonical" href={canonicalURL} />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <!-- Open Graph -->
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={image ?? defaultOgImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="House of Rose Aesthetics" />
-    <meta property="og:locale" content="en_US" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image ?? defaultOgImage} />
+    <SEO
+      title={pageTitle}
+      description={description}
+      canonical={canonicalURL.toString()}
+      noindex={noindex}
+      nofollow={nofollow}
+      robotsExtras="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      openGraph={{
+        basic: {
+          title: pageTitle,
+          type: 'website',
+          image: socialImage,
+          url: canonicalURL.toString(),
+        },
+        optional: {
+          description,
+          locale: 'en_US',
+          siteName,
+        },
+        image: {
+          width: 1200,
+          height: 630,
+          alt: socialImageAlt,
+        },
+      }}
+    />
+    <SchemaMarkup item={entityGraph} />
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />
@@ -81,16 +114,25 @@ const pageTitle = (title === siteName || title.includes(siteName))
   </head>
   <body>
     {comingSoon && <ComingSoon />}
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
     <Header currentPath={Astro.url.pathname} />
 
     <!-- Page content -->
-    <main id="main-content">
+    <main id="main-content" class="transition-fade">
       <slot />
     </main>
 
     <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />
+
+    <!-- Rendered once, outside <main>, so the cart survives swup navigation -->
+    <CartDrawer />
+
+    <!-- Scroll-reveal init — zero JS shipped unless data-reveal attributes are present on the page -->
+    <script>
+      import '@polgubau/astro-reveal';
+    </script>
+    <LeadAnalytics />
   </body>
 </html>

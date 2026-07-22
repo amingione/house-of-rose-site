@@ -1,4 +1,6 @@
 import { createClient } from '@sanity/client';
+import { getFollowUpDueAt, safePathOrUrl, safeText } from './_lib/lead';
+import { sendLeadAcknowledgement, sendLeadNotification, type LeadEmail } from './_lib/email';
 
 const THANK_YOU_PATH = '/thank-you/';
 
@@ -9,10 +11,12 @@ interface LeadSubmissionDocument {
   submittedAt: string;
   submissionType: SubmissionType;
   status: 'new';
+  followUpDueAt: string;
   name: string;
   email: string;
   phone?: string;
   message?: string;
+  serviceInterest?: string;
   smsConsent?: {
     informational: boolean;
     marketing: boolean;
@@ -30,11 +34,20 @@ interface LeadSubmissionDocument {
     page?: string;
     userAgent?: string;
   };
+  attribution?: {
+    landingPage?: string;
+    referrer?: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    utmTerm?: string;
+    utmContent?: string;
+  };
 }
 
-const getValue = (formData: FormData, key: string): string => {
+const getValue = (formData: FormData, key: string, maxLength = 500): string => {
   const value = formData.get(key);
-  return typeof value === 'string' ? value.trim() : '';
+  return typeof value === 'string' ? safeText(value, maxLength) : '';
 };
 
 const getChecked = (formData: FormData, key: string): boolean => getValue(formData, key) === 'yes';
@@ -75,14 +88,25 @@ const buildDocument = (
     submittedAt: new Date().toISOString(),
     submissionType,
     status: 'new',
-    name: getValue(formData, 'name'),
-    email: getValue(formData, 'email'),
-    phone: getValue(formData, 'phone') || undefined,
-    message: getValue(formData, 'message') || undefined,
+    followUpDueAt: getFollowUpDueAt(new Date()),
+    name: getValue(formData, 'name', 120),
+    email: getValue(formData, 'email', 254).toLowerCase(),
+    phone: getValue(formData, 'phone', 40) || undefined,
+    message: getValue(formData, 'message', 4000) || undefined,
+    serviceInterest: getValue(formData, 'service-interest', 160) || undefined,
     source: {
       formName,
-      page: getValue(formData, 'source-page') || request.headers.get('referer') || undefined,
-      userAgent: request.headers.get('user-agent') || undefined,
+      page: safePathOrUrl(getValue(formData, 'source-page', 1000) || request.headers.get('referer') || '') || undefined,
+      userAgent: safeText(request.headers.get('user-agent') || '', 500) || undefined,
+    },
+    attribution: {
+      landingPage: safePathOrUrl(getValue(formData, 'landing-page', 1000)) || undefined,
+      referrer: safePathOrUrl(getValue(formData, 'referrer', 1000)) || undefined,
+      utmSource: getValue(formData, 'utm_source', 160) || undefined,
+      utmMedium: getValue(formData, 'utm_medium', 160) || undefined,
+      utmCampaign: getValue(formData, 'utm_campaign', 200) || undefined,
+      utmTerm: getValue(formData, 'utm_term', 200) || undefined,
+      utmContent: getValue(formData, 'utm_content', 200) || undefined,
     },
   };
 
@@ -141,6 +165,10 @@ export default async (request: Request): Promise<Response> => {
     return renderResponse('Name and email are required.', 400);
   }
 
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.email)) {
+    return renderResponse('A valid email is required.', 400);
+  }
+
   if (submissionType === 'contact' && !document.phone) {
     return renderResponse('Phone is required.', 400);
   }
@@ -158,11 +186,35 @@ export default async (request: Request): Promise<Response> => {
   });
 
   try {
-    await client.create(document);
+    const created = await client.create(document);
+    const emailLead: LeadEmail = {
+      name: document.name,
+      email: document.email,
+      phone: document.phone,
+      submissionType: document.submissionType,
+      serviceInterest: document.serviceInterest,
+      message: document.message,
+      page: document.source.page,
+      landingPage: document.attribution?.landingPage,
+      utmSource: document.attribution?.utmSource,
+      utmMedium: document.attribution?.utmMedium,
+      utmCampaign: document.attribution?.utmCampaign,
+    };
+
+    const [internalNotificationSent, acknowledgementSent] = await Promise.all([
+      sendLeadNotification(emailLead),
+      sendLeadAcknowledgement(emailLead),
+    ]);
+
+    await client
+      .patch(created._id)
+      .set({ internalNotificationSent, acknowledgementSent })
+      .commit()
+      .catch((error: unknown) => console.error('[lead-submit] Email status patch failed:', error));
   } catch (error) {
     console.error('[lead-submit] Sanity create failed:', error);
     return renderResponse('Your submission could not be saved. Please try again.', 502);
   }
 
-  return redirect(request, THANK_YOU_PATH);
+  return redirect(request, `${THANK_YOU_PATH}?lead=${submissionType}`);
 };

@@ -3,7 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_LOCAL_AREAS_QUERY, type LocalArea } from '@/lib/queries';
-import { jsonLd, breadcrumbList } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList } from '@/lib/structuredData';
 
 const areas = await sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -19,7 +20,7 @@ const breadcrumb = breadcrumbList([
   title="Areas We Serve | House of Rose Aesthetics, Punta Gorda FL"
   description="Advanced aesthetics and wellness for Punta Gorda, Port Charlotte, and Southwest Florida. Explore the areas House of Rose serves."
 >
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
@@ -30,17 +31,17 @@ const breadcrumb = breadcrumbList([
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
       {areas.map((area) => (
-        <a href={`/areas/${area.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(area._id)}>
+        <a href={`/areas/${area.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(area._id)}>
           <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{area.title}</h2>
           {area.city && <p class="text-gold text-[11px] tracking-[0.2em] uppercase mb-3"><span {...sbFieldPath('city')}>{area.city}</span>{area.region ? ' · ' : ''}{area.region && <span {...sbFieldPath('region')}>{area.region}</span>}</p>}
-          {area.intro && <p class="text-[#9a8c78] text-[14px] leading-relaxed" {...sbFieldPath('intro')}>{area.intro}</p>}
+          {area.intro && <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPath('intro')}>{area.intro}</p>}
           <span class="learn-more group-hover:text-gold mt-4 inline-block">Explore</span>
         </a>
       ))}
       {areas.length === 0 && (
-        <p class="bg-charcoal p-7 text-[#777] text-[14px]">Area pages are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">Area pages are coming soon.</p>
       )}
     </div>
   </section>

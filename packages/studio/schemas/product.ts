@@ -96,6 +96,55 @@ export const product = defineType({
       type: 'url',
       description: 'External link (booking system, Square, etc.) if not selling directly through the site',
     }),
+    defineField({
+      name: 'ctaLabel',
+      title: 'Shop Button Text',
+      type: 'string',
+      description:
+        'Custom copy for this product\'s shop button, e.g. "Shop the Set", "Add to Routine", "Restock Now". ' +
+        'Never reference the checkout platform by name — clients don\'t need to know. Leave blank to use a ' +
+        'category-appropriate default.',
+    }),
+    defineField({
+      name: 'badge',
+      title: 'Badge',
+      type: 'string',
+      description: 'Optional ribbon/tag on the product card — free text, e.g. "Bestseller", "New", "Back in Stock", "Limited". Leave blank for none.',
+    }),
+    defineField({
+      name: 'isFeatured',
+      title: 'Featured (Top Sellers)',
+      type: 'boolean',
+      description: 'Show this product in the Top Sellers rail on the shop page.',
+      initialValue: false,
+    }),
+
+    // ── Checkout & fulfillment (see docs/CHECKOUT.md) ──────────────────────
+    // `price` above is the source of truth for what a client is charged. The
+    // checkout functions re-read it from Sanity server-side on every request —
+    // a browser can never dictate an amount. There is deliberately no Stripe
+    // Product/Price mirror to drift out of sync.
+    defineField({
+      name: 'shippable',
+      title: 'Can Be Shipped',
+      type: 'boolean',
+      description:
+        'Off for in-studio-only items (gift cards redeemed in person, treatment add-ons). ' +
+        'Un-shippable items can still be bought — the cart just skips shipping for them.',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'weightLb',
+      title: 'Shipping Weight (lb)',
+      type: 'number',
+      description:
+        'Packed weight in POUNDS, used to get live carrier rates at checkout. Include the bottle, ' +
+        'not just the contents — a 4 oz serum is about 0.35 lb packed. Decimals are fine (0.25, 1.5). ' +
+        'If left blank we assume 0.25 lb — set it properly on anything heavy (kits, sets) or the ' +
+        'shipping quote will under-charge us and the difference comes out of margin.',
+      validation: (Rule) => Rule.min(0.01).max(70).warning('Over 70 lb is not a parcel shipment.'),
+      hidden: ({ parent }) => parent?.shippable === false,
+    }),
   ],
   preview: {
     select: { title: 'title', subtitle: 'category', media: 'image' },

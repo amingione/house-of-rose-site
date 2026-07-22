@@ -1,5 +1,5 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
+	"js/ts.tsdk.path": "node_modules/typescript/lib",
 	"workbench.editor.alwaysShowEditorActions": true,
 	"workbench.editor.autoLockGroups": {
 		"chatgpt.conversationEditor": true,

@@ -1,0 +1,98 @@
+---
+import { urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { getProductPurchaseCta, getProductLearnMoreCta } from '@/lib/shopCta';
+import type { Product } from '@/lib/queries';
+import { DEFAULT_PRODUCT_IMAGE } from '@/lib/imageFallbacks';
+
+interface Props {
+  product: Product;
+  reveal?: string;
+}
+
+const { product, reveal = 'bottom' } = Astro.props;
+
+const formatPrice = (cents?: number): string =>
+  typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '';
+
+// Priced + in stock → quick-add straight to the cart. `purchaseUrl` is the escape
+// hatch for anything we don't sell ourselves. See docs/CHECKOUT.md.
+const canBuy = typeof product.price === 'number' && product.price > 0 && product.inStock !== false;
+const hasCheckout = Boolean(product.purchaseUrl);
+const ctaLabel = hasCheckout ? getProductPurchaseCta(product) : getProductLearnMoreCta(product);
+const cartImage = product.image
+  ? urlFor(product.image).width(144).height(144).fit('crop').url()
+  : DEFAULT_PRODUCT_IMAGE;
+const imageSrc = product.image
+  ? urlFor(product.image).width(400).height(400).fit('crop').url()
+  : DEFAULT_PRODUCT_IMAGE;
+---
+
+<div
+  class="bg-charcoal p-6 flex flex-col relative"
+  data-category={product.category}
+  data-brand={product.brand}
+  data-reveal={reveal}
+  data-speed="fast"
+  {...sbObjectId(product._id)}
+>
+  {product.badge && (
+    <span class="absolute top-4 left-4 z-10 bg-gold-metal text-ink text-[10px] font-medium tracking-[0.14em] uppercase px-2.5 py-1" {...sbFieldPath('badge')}>
+      {product.badge}
+    </span>
+  )}
+
+  <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
+      <img
+        src={imageSrc}
+        alt={product.image?.alt ?? product.title}
+        width={400}
+        height={400}
+        loading="lazy"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+  <h3 class="text-ink text-[15px] font-medium leading-snug mb-1" {...sbFieldPath('title')}>{product.title}</h3>
+  {product.tagline && <p class="text-muted text-[12.5px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{product.tagline}</p>}
+
+  <p class="text-ink/80 text-[13px] tracking-[0.12em] uppercase mb-4">
+    <span {...sbFieldPath('price')}>{formatPrice(product.price)}</span>
+    {product.size && <span class="text-muted normal-case tracking-normal" {...sbFieldPath('size')}> · {product.size}</span>}
+  </p>
+
+  <div class="mt-auto flex items-center justify-between gap-3">
+    <a
+      href={`/shop/${product.slug}/`}
+      class="learn-more"
+    >
+      Details →
+    </a>
+
+    {canBuy ? (
+      <button
+        type="button"
+        class="btn-outline-gold !px-4 !py-2 !min-h-[40px] shrink-0"
+        data-add-to-cart
+        data-product-id={product._id}
+        data-title={product.title}
+        data-slug={product.slug}
+        data-price={String(product.price)}
+        data-image={cartImage}
+        data-size={product.size ?? ''}
+        aria-label={`Add ${product.title} to cart`}
+      >
+        Add
+      </button>
+    ) : hasCheckout ? (
+      <a
+        href={product.purchaseUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline-gold !px-4 !py-2 !min-h-[40px] shrink-0"
+      >
+        {ctaLabel}
+      </a>
+    ) : null}
+  </div>
+</div>

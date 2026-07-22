@@ -1,0 +1,380 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+/**
+ * Checkout — Stripe Elements (deferred intent).
+ *
+ * Why Elements and not hosted Checkout: hosted Checkout takes a STATIC shipping_options
+ * list, so it can't price a parcel against the address the customer is typing. With
+ * Elements we own the page, so the Address Element's `change` event drives a live
+ * Shippo quote for this exact cart to this exact address, and the total updates in
+ * place. Real carrier pricing, no zone table.
+ *
+ * Amount integrity: `elements.update({ amount })` only changes what's DISPLAYED. The
+ * charged amount is whatever create-payment-intent computes server-side from Sanity
+ * prices + a re-fetched Shippo rate. The two can never disagree in the customer's
+ * favour because the PaymentIntent is created fresh at submit.
+ *
+ * Static page — Elements mounts client-side. No adapter, `output: 'static'` intact.
+ */
+---
+
+<BaseLayout
+  title="Checkout | House of Rose"
+  description="Complete your order from House of Rose Aesthetics."
+  noindex={true}
+>
+  <section class="bg-charcoal pt-32 pb-20 px-6 min-h-[70vh]">
+    <div class="max-w-[1080px] mx-auto">
+      <span class="kicker">Secure Checkout</span>
+      <h1 class="font-serif text-[clamp(28px,4vw,42px)] text-ink mb-10">Complete your order</h1>
+
+      <!-- Empty state -->
+      <div id="checkout-empty" class="hidden text-center py-20">
+        <p class="text-muted text-[16px] mb-6">Your cart is empty.</p>
+        <a href="/shop/" class="btn-gold">Browse the Shop</a>
+      </div>
+
+      <div id="checkout-grid" class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12">
+        <!-- ── Form ── -->
+        <form id="checkout-form" class="space-y-8">
+          <div>
+            <h2 class="font-serif text-[20px] text-ink mb-4">Contact</h2>
+            <label for="email" class="block text-ink text-[13px] font-medium mb-1.5">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="w-full bg-breath border border-gold-metal/40 px-4 py-3 text-ink text-[15px] min-h-[48px] focus:outline-none focus:border-gold"
+            />
+            <p class="text-muted text-[12px] mt-1.5">Your receipt and tracking go here.</p>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-[20px] text-ink mb-4">Shipping address</h2>
+            <div id="address-element"></div>
+          </div>
+
+          <!-- Populated once the address is complete -->
+          <div id="shipping-section" class="hidden">
+            <h2 class="font-serif text-[20px] text-ink mb-4">Shipping method</h2>
+            <div id="shipping-rates" class="space-y-2"></div>
+            <p id="shipping-loading" class="text-muted text-[13px] hidden">Getting live rates…</p>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-[20px] text-ink mb-4">Payment</h2>
+            <div id="payment-element"></div>
+          </div>
+
+          <p id="checkout-error" role="alert" aria-live="assertive" class="hidden text-[14px] text-[#9B2C2C] bg-[#FDECEC] border border-[#9B2C2C]/30 px-4 py-3"></p>
+
+          <button id="submit-btn" type="submit" class="btn-gold w-full" disabled>
+            <span id="submit-label">Pay</span>
+          </button>
+
+          <p class="text-muted text-[12px] text-center">
+            Payments are processed securely. We never see or store your card details.
+          </p>
+        </form>
+
+        <!-- ── Summary ── -->
+        <aside class="bg-breath border border-gold-metal/30 p-6 h-fit lg:sticky lg:top-28">
+          <h2 class="font-serif text-[20px] text-ink mb-5">Order summary</h2>
+          <ul id="summary-lines" class="space-y-4 mb-5"></ul>
+          <dl class="space-y-2 pt-4 border-t border-gold-metal/30 text-[14px]">
+            <div class="flex justify-between">
+              <dt class="text-muted">Subtotal</dt>
+              <dd id="summary-subtotal" class="text-ink tabular-nums">$0.00</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-muted">Shipping</dt>
+              <dd id="summary-shipping" class="text-ink tabular-nums">—</dd>
+            </div>
+            <div class="flex justify-between pt-2 border-t border-gold-metal/30">
+              <dt class="text-ink font-medium">Total</dt>
+              <dd id="summary-total" class="text-ink font-serif text-[20px] tabular-nums">$0.00</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { loadStripe, type Stripe, type StripeElements } from '@stripe/stripe-js';
+  import { cartItems, cartSubtotal, toLineItems, formatPrice } from '@/stores/cart';
+
+  interface ShippingRate {
+    id: string;
+    label: string;
+    amount: number;
+    estimatedDays: number | null;
+  }
+
+  const PUBLISHABLE_KEY = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY as string | undefined;
+
+  async function init(): Promise<void> {
+    const form = document.getElementById('checkout-form') as HTMLFormElement | null;
+    const grid = document.getElementById('checkout-grid');
+    const emptyState = document.getElementById('checkout-empty');
+    if (!form || !grid || !emptyState) return;
+
+    const items = cartItems.get();
+    if (items.length === 0) {
+      grid.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      return;
+    }
+
+    // ── Summary ──
+    // Rendered BEFORE the Stripe guard on purpose: if payment can't load, the client
+    // should still see exactly what's in their order (and can phone it in) rather than
+    // staring at a bare error.
+    const subtotal = cartSubtotal.get();
+    const summaryLines = document.getElementById('summary-lines');
+    if (summaryLines) {
+      summaryLines.innerHTML = items
+        .map(
+          (i) => `
+          <li class="flex gap-3 text-[14px]">
+            <span class="text-muted tabular-nums">${i.quantity}×</span>
+            <span class="flex-1 text-ink leading-snug">${i.title}</span>
+            <span class="text-ink tabular-nums">${formatPrice(i.unitPrice * i.quantity)}</span>
+          </li>`,
+        )
+        .join('');
+    }
+    setText('summary-subtotal', formatPrice(subtotal));
+    setText('summary-total', formatPrice(subtotal));
+
+    // ── Stripe ──
+    if (!PUBLISHABLE_KEY) {
+      showError('Online checkout is temporarily unavailable. Call (844) 941-7673 to place this order.');
+      return;
+    }
+
+    const stripe: Stripe | null = await loadStripe(PUBLISHABLE_KEY);
+    if (!stripe) {
+      showError('Could not load the payment form. Please refresh.');
+      return;
+    }
+
+    // Deferred intent: no PaymentIntent exists yet. We create it at submit, once the
+    // final amount (goods + verified shipping rate) is known server-side.
+    const elements: StripeElements = stripe.elements({
+      mode: 'payment',
+      currency: 'usd',
+      amount: subtotal, // display only; updated as shipping resolves
+      appearance: {
+        theme: 'flat',
+        variables: {
+          colorPrimary: '#7A5C2A',
+          colorBackground: '#F8F4EC',
+          colorText: '#14110F',
+          colorDanger: '#9B2C2C',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          borderRadius: '0px',
+          spacingUnit: '4px',
+        },
+      },
+    });
+
+    const addressElement = elements.create('address', {
+      mode: 'shipping',
+      allowedCountries: ['US'], // our brands aren't authorised for sale outside the US
+      fields: { phone: 'always' },
+    });
+    addressElement.mount('#address-element');
+
+    const paymentElement = elements.create('payment');
+    paymentElement.mount('#payment-element');
+
+    // ── Live shipping rates, driven by the Address Element ──
+    let rates: ShippingRate[] = [];
+    let selectedRate: ShippingRate | null = null;
+    let address: Record<string, unknown> | null = null;
+    let recipientName = '';
+    let phone = '';
+    let quoteToken = 0;
+
+    addressElement.on('change', (event) => {
+      if (!event.complete) return;
+      address = event.value.address as unknown as Record<string, unknown>;
+      recipientName = event.value.name ?? '';
+      phone = event.value.phone ?? '';
+      void fetchRates();
+    });
+
+    async function fetchRates(): Promise<void> {
+      const token = ++quoteToken; // ignore responses from stale addresses
+      const section = document.getElementById('shipping-section');
+      const loading = document.getElementById('shipping-loading');
+      const list = document.getElementById('shipping-rates');
+      if (!section || !loading || !list) return;
+
+      section.classList.remove('hidden');
+      loading.classList.remove('hidden');
+      list.innerHTML = '';
+      selectedRate = null;
+      updateTotals();
+
+      try {
+        const res = await fetch('/.netlify/functions/shipping-rates', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: toLineItems(), address }),
+        });
+        const data = (await res.json()) as {
+          rates?: ShippingRate[];
+          requiresShipping?: boolean;
+          error?: string;
+        };
+        if (token !== quoteToken) return; // superseded
+        if (!res.ok) throw new Error(data.error ?? 'Could not get shipping rates.');
+
+        if (data.requiresShipping === false) {
+          section.classList.add('hidden');
+          selectedRate = null;
+          updateTotals();
+          return;
+        }
+
+        rates = data.rates ?? [];
+        list.innerHTML = rates
+          .map(
+            (r, i) => `
+            <label class="flex items-center gap-3 border border-gold-metal/40 px-4 py-3 cursor-pointer has-[:checked]:border-gold has-[:checked]:bg-gold-metal/10 min-h-[48px]">
+              <input type="radio" name="rate" value="${r.id}" ${i === 0 ? 'checked' : ''} class="accent-[#7A5C2A]" />
+              <span class="flex-1 text-ink text-[14px]">
+                ${r.label}
+                ${r.estimatedDays ? `<span class="text-muted"> · ${r.estimatedDays} day${r.estimatedDays === 1 ? '' : 's'}</span>` : ''}
+              </span>
+              <span class="text-ink text-[14px] tabular-nums">${formatPrice(r.amount)}</span>
+            </label>`,
+          )
+          .join('');
+
+        selectedRate = rates[0] ?? null;
+        list.querySelectorAll<HTMLInputElement>('input[name="rate"]').forEach((input) => {
+          input.addEventListener('change', () => {
+            selectedRate = rates.find((r) => r.id === input.value) ?? null;
+            updateTotals();
+          });
+        });
+        updateTotals();
+      } catch (error) {
+        if (token !== quoteToken) return;
+        list.innerHTML = `<p class="text-[13px] text-[#9B2C2C]">${
+          error instanceof Error ? error.message : 'Could not get shipping rates.'
+        }</p>`;
+      } finally {
+        if (token === quoteToken) loading.classList.add('hidden');
+      }
+    }
+
+    function updateTotals(): void {
+      const shipping = selectedRate?.amount ?? 0;
+      const total = subtotal + shipping;
+      setText('summary-shipping', selectedRate ? formatPrice(shipping) : '—');
+      setText('summary-total', formatPrice(total));
+      setText('submit-label', `Pay ${formatPrice(total)}`);
+
+      // Keep the Payment Element's displayed amount in step with the summary.
+      elements.update({ amount: total });
+
+      const submit = document.getElementById('submit-btn') as HTMLButtonElement | null;
+      if (submit) submit.disabled = false;
+    }
+
+    // Nothing to ship (in-studio items only) → payable immediately.
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      setText('submit-label', `Pay ${formatPrice(subtotal)}`);
+    }
+
+    // ── Submit ──
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideError();
+      setBusy(true);
+
+      try {
+        // Validate the Elements inputs before we create anything server-side.
+        const { error: submitError } = await elements.submit();
+        if (submitError) throw new Error(submitError.message ?? 'Please check your details.');
+
+        const email = (document.getElementById('email') as HTMLInputElement).value;
+
+        // Server recomputes the amount from Sanity + Shippo. Whatever we send here is
+        // only a hint; it cannot inflate or discount the charge.
+        const res = await fetch('/.netlify/functions/create-payment-intent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: toLineItems(),
+            shippingRateId: selectedRate?.id,
+            email,
+            name: recipientName,
+            phone,
+            address,
+          }),
+        });
+        const data = (await res.json()) as {
+          clientSecret?: string;
+          orderNumber?: string;
+          error?: string;
+        };
+        if (!res.ok || !data.clientSecret) {
+          throw new Error(data.error ?? 'Could not start payment.');
+        }
+
+        const { error: confirmError } = await stripe.confirmPayment({
+          elements,
+          clientSecret: data.clientSecret,
+          confirmParams: {
+            return_url: `${window.location.origin}/order-confirmed/?order=${encodeURIComponent(data.orderNumber ?? '')}`,
+            receipt_email: email,
+          },
+        });
+
+        // Only reached if confirmation FAILED — on success Stripe redirects the browser
+        // to return_url and nothing below this line ever runs. That's exactly why the
+        // cart is cleared on /order-confirmed/ and not here: a clearCart() at this point
+        // would be dead code, and the customer would return to a full cart.
+        if (confirmError) throw new Error(confirmError.message ?? 'Payment failed.');
+      } catch (error) {
+        showError(error instanceof Error ? error.message : 'Something went wrong.');
+        setBusy(false);
+      }
+    });
+  }
+
+  // ── helpers ──
+  function setText(id: string, text: string): void {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+  function showError(message: string): void {
+    const el = document.getElementById('checkout-error');
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove('hidden');
+  }
+  function hideError(): void {
+    document.getElementById('checkout-error')?.classList.add('hidden');
+  }
+  function setBusy(busy: boolean): void {
+    const btn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    if (!btn) return;
+    btn.disabled = busy;
+    setText('submit-label', busy ? 'Processing…' : 'Pay');
+  }
+
+  void init();
+  document.addEventListener('swup:contentReplaced', () => void init());
+</script>

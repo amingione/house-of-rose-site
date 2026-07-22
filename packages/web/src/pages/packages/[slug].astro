@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
+import { DEFAULT_PACKAGE_IMAGE } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
   TREATMENT_PACKAGE_BY_SLUG_QUERY,
   type TreatmentPackage,
 } from '@/lib/queries';
+import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -16,99 +19,71 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const pkg = await sanityFetch<TreatmentPackage>(TREATMENT_PACKAGE_BY_SLUG_QUERY, { slug });
 
+// Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
+// Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
 if (!pkg) {
-  return Astro.redirect('/packages', 307);
+  throw new Error(`[packages/[slug]] No treatment package found in Sanity for slug "${slug}"`);
 }
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const summary = pkg.outcome ?? pkg.whatsIncluded ?? '';
 const services = pkg.servicesIncluded ?? [];
-const price = pkg.foundingPrice ?? pkg.rackPrice;
+const price = pkg.rackPrice;
+const packageImage = pkg.image
+  ? urlFor(pkg.image).width(1920).height(1080).fit('crop').url()
+  : DEFAULT_PACKAGE_IMAGE;
 
-// Structured data — model the package as a Service offered by the business.
-const packageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: pkg.title,
-  description: summary,
-  provider: {
-    '@type': 'HealthAndBeautyBusiness',
-    name: 'House of Rose Aesthetics',
-    url: site,
-    telephone: '+18449417673',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '525 E Olympia Ave, Unit 9',
-      addressLocality: 'Punta Gorda',
-      addressRegion: 'FL',
-      postalCode: '33950',
-      addressCountry: 'US',
-    },
+// Structured data — model the package as a Service (with an OfferCatalog of included services).
+const packageSchema = serviceJsonLd(
+  {
+    name: pkg.title,
+    description: summary || undefined,
+    url: canonicalURL.toString(),
+    image: pkg.image ? urlFor(pkg.image).width(1200).height(630).fit('crop').url() : undefined,
+    serviceType: 'Treatment package',
+    catalog: services.length > 0 ? { name: pkg.title, items: services.map((s) => s.title) } : undefined,
   },
-  url: canonicalURL.toString(),
-  ...(pkg.image && {
-    image: urlFor(pkg.image).width(1200).height(630).fit('crop').url(),
-  }),
-  serviceType: 'Treatment package',
-  ...(services.length > 0 && {
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: pkg.title,
-      itemListElement: services.map((s) => ({
-        '@type': 'Offer',
-        itemOffered: { '@type': 'Service', name: s.title },
-      })),
-    },
-  }),
-  areaServed: {
-    '@type': 'GeoCircle',
-    geoMidpoint: { '@type': 'GeoCoordinates', latitude: '26.9298', longitude: '-82.0454' },
-    geoRadius: '50000',
-  },
-};
+  site,
+);
 
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: site },
-    { '@type': 'ListItem', position: 2, name: 'Packages', item: new URL('/packages/', site).toString() },
-    { '@type': 'ListItem', position: 3, name: pkg.title, item: canonicalURL.toString() },
-  ],
-};
+const breadcrumbSchema = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Packages', item: new URL('/packages/', site).toString() },
+  { name: pkg.title, item: canonicalURL.toString() },
+]);
 
-const pageTitle = `${pkg.title} | Signature Package | House of Rose`;
+const pageTitle = `${pkg.title} | Treatment Series`;
 const pageDescription = summary;
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  image={pkg.image ? urlFor(pkg.image).width(1200).height(630).fit('crop').url() : undefined}
-  preloadImage={pkg.image ? urlFor(pkg.image).width(1920).height(1080).url() : undefined}
+  image={packageImage}
+  preloadImage={packageImage}
 >
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(packageSchema)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  <SchemaMarkup item={packageSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
 
   <div {...sbObjectId(pkg._id)}>
   <!-- Hero -->
   <section
-    class="hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-charcoal"
-    style={pkg.image ? `background-image: url(${urlFor(pkg.image).width(1920).height(1080).url()}); background-size: cover; background-position: center;` : ''}
+    class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
+    style={`background-image: url(${packageImage}); background-size: cover; background-position: center;`}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
-      <a href="/packages" class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+      <a href="/packages/" class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
         <span class="text-lg">←</span> All Packages
       </a>
-      <span class="block text-[10px] tracking-[0.4em] uppercase text-gold mb-3">Signature Package</span>
+      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">Treatment Series</span>
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
         {pkg.title}
       </h1>
       {summary && <p class="mt-4 text-ivory/75 text-[15px] max-w-[640px] leading-relaxed" {...sbFieldPath(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{summary}</p>}
       {price && (
-        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase" {...sbFieldPath(pkg.foundingPrice ? 'foundingPrice' : 'rackPrice')}>{price}</p>
+        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase" {...sbFieldPath('rackPrice')}>{price}</p>
       )}
     </div>
   </section>
@@ -117,18 +92,18 @@ const pageDescription = summary;
   {services.length > 0 && (
     <section class="bg-charcoal py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What's Included</span>
-      <div class="space-y-px bg-gold/10">
+      <div class="space-y-px bg-gold-metal/10">
         {services.map((service, index) => (
           <div class="bg-charcoal p-7 flex gap-6" {...(service._id ? sbObjectId(service._id) : {})}>
-            <span class="font-serif text-gold/30 text-[28px] leading-none">
+            <span class="font-serif text-gold text-[28px] leading-none">
               {String(index + 1).padStart(2, '0')}
             </span>
             <div>
-              <a href={`/services/${service.slug}`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors" {...(service._id ? sbFieldPath('title') : {})}>
+              <a href={`/services/${service.slug}/`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors" {...(service._id ? sbFieldPath('title') : {})}>
                 {service.title}
               </a>
               {service.tagline && (
-                <p class="text-[#9a8c78] text-[14px] leading-relaxed mt-2" {...(service._id ? sbFieldPath('tagline') : {})}>{service.tagline}</p>
+                <p class="text-muted text-[14px] leading-relaxed mt-2" {...(service._id ? sbFieldPath('tagline') : {})}>{service.tagline}</p>
               )}
             </div>
           </div>
@@ -155,25 +130,25 @@ const pageDescription = summary;
       )}
       {pkg.positioning && (
         <div>
-          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Ritual</span>
-          <p class="text-[#9a8c78] text-[15px] leading-relaxed italic" {...sbFieldPath('positioning')}>{pkg.positioning}</p>
+          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Planning Approach</span>
+          <p class="text-muted text-[15px] leading-relaxed italic" {...sbFieldPath('positioning')}>{pkg.positioning}</p>
         </div>
       )}
     </section>
   )}
 
   <!-- Booking CTA -->
-  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold/10">
+  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Reserve Your Experience</span>
+      <span class="kicker">Begin With Clarity</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         Ready to begin {pkg.title}?
       </h2>
-      <p class="text-[#777] text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
-        Start with a private consultation. We'll confirm your candidacy and tailor the ritual to your skin.
+      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
+        Start with a private consultation. Your provider will confirm candidacy, current investment, and the sequence appropriate for your skin.
       </p>
       {pkg.candidacyNote && (
-        <p class="text-[#7a6e5c] text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10" {...sbFieldPath('candidacyNote')}>{pkg.candidacyNote}</p>
+        <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10" {...sbFieldPath('candidacyNote')}>{pkg.candidacyNote}</p>
       )}
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
@@ -183,7 +158,7 @@ const pageDescription = summary;
           Book Online
         </a>
       </div>
-      <p class="text-[#8a7c66] text-[10px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
+      <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
       </p>
     </div>

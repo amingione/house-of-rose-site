@@ -11,7 +11,7 @@
 
 The current `/services/[slug].astro` route is **flat**. Even a `kind: 'hub'` service with `treatment` children renders every page at `/services/{slug}/` — the parent/child link shows up only in the breadcrumb, never in the URL. So the nested URLs you specified — `/services/professional-makeup/jane-iredale/` and `/services/professional-makeup/events/` — **cannot** be produced by the existing service router.
 
-**Approach (your pick):** create a real nested route folder `packages/web/src/pages/services/professional-makeup/` with dedicated `.astro` pages, each backed by a **new Sanity singleton schema** so it stays click-to-edit in Studio and honors the "Sanity owns everything" law. This mirrors exactly how `rose-circle.astro` / `roseCirclePage`, `memberships.astro` / `membershipsPage`, etc. already work.
+**Approach (your pick):** create a real nested route folder `packages/web/src/pages/services/professional-makeup/` with dedicated `.astro` pages, each backed by a **new Sanity singleton schema** so it stays click-to-edit in Studio and honors the "Sanity owns everything" law. This mirrors how the other Sanity-backed singleton pages (contact, support, skin-analysis, etc.) already work.
 
 This keeps the hub/treatment `service` model intact for clinical treatments and gives Professional Makeup its own small, purpose-built content model.
 
@@ -82,7 +82,7 @@ Registered in `packages/studio/schemas/index.ts` under the **Singletons** block 
 - **FAQs:** `faqs[]` → `FAQPage`
 - **Hero image:** `image`
 
-> The IV Hydration cross-reference ("Party Planner Infusion") should link to the relevant IV/wellness service or membership page if one exists, so the perk is reachable — flag: confirm the destination URL.
+> The IV Hydration cross-reference ("Party Planner Infusion") should link to the relevant IV/wellness service so the perk is reachable — flag: confirm the destination URL.
 
 ---
 
@@ -188,7 +188,7 @@ Hub links out to feature, events, and proof; every sub-page links back to the hu
 ## 12. Open questions before I build
 
 1. **Provider on record for the pages** — landing/events attributed to **Aundrea Pedigo**; Jane Iredale before/after "Stephanie" is by **Amber**. Confirm both are credited, or should everything read as House of Rose?
-2. **IV Hydration link target** — the "Party Planner Infusion" perk: which existing page/membership should it link to? (Or create a stub?)
+2. **IV Hydration link target** — the "Party Planner Infusion" perk: which existing IV/wellness page should it link to? (Or create a stub?)
 3. **Consent** — signed model/consent releases on file for Stephanie and Jaclyn/Kiara before/afters?
 4. **Jane Iredale brand angle** — manage centrally via a `brandProfile` doc, or keep all copy inside the `janeIredalePage` singleton? (Recommend the singleton for page copy, optionally referencing a `brandProfile` for reusable brand voice.)
 5. **Booking mechanism** — GBP convention is call/text (no online booking button). `rose-circle.astro` references a GlossGenius URL. For makeup/events, call/text CTA only, or include the GlossGenius link too?

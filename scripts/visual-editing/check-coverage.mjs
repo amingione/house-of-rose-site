@@ -33,6 +33,10 @@ const COMPONENTS_DIR = path.join(WEB_SRC, 'components');
  * hatch. Paths are relative to packages/web/src.
  */
 const ALLOWLIST = new Map([
+  [
+    'pages/shop.astro',
+    'Fetch-and-delegate only — every Sanity field it loads (product, promotion, shopBrand) is rendered and annotated by PromoBanner / TopSellers / CategoryNav / BrandSpotlight / ProductCard. Its own copy is hardcoded.',
+  ],
   ['pages/sitemap.astro', 'Link index only — no editable copy rendered.'],
   ['pages/sitemap.xml.ts', 'Non-Astro route (XML sitemap).'],
   ['pages/llms.txt.ts', 'Non-Astro route (text endpoint).'],

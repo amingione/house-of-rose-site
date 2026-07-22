@@ -7,6 +7,6 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   ...astro.configs["flat/recommended"],
   {
-    ignores: ["dist/", ".astro/", "node_modules/"],
+    ignores: ["dist/", ".astro/", ".netlify/", "node_modules/"],
   }
 );

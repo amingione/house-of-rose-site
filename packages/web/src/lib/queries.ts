@@ -1,10 +1,13 @@
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
 const IMAGE_FIELDS = /* groq */ `
-  "image": image {
-    asset->{ url, metadata { dimensions } },
-    alt
-  }
+  "image": select(
+    defined(image.asset) => image {
+      asset->{ url, metadata { dimensions } },
+      alt
+    },
+    null
+  )
 `;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -19,6 +22,74 @@ export interface FAQ {
   question: string;
   answer: string;
 }
+
+export interface SupportPage {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  contactHeading?: string;
+  contactIntro?: string;
+  callTitle?: string;
+  callBody?: string;
+  callCta?: string;
+  emailTitle?: string;
+  emailBody?: string;
+  emailCta?: string;
+  bookingTitle?: string;
+  bookingBody?: string;
+  bookingCta?: string;
+  faqHeading?: string;
+  faqIntro?: string;
+  faqs?: FAQ[];
+  ctaHeading?: string;
+  ctaBody?: string;
+  ctaText?: string;
+}
+
+export const SUPPORT_PAGE_QUERY = /* groq */ `
+  *[_type == "supportPage" && _id == "supportPage"][0] {
+    _id,
+    seoTitle, seoDescription,
+    heroTitle, heroDescription,
+    contactHeading, contactIntro,
+    callTitle, callBody, callCta,
+    emailTitle, emailBody, emailCta,
+    bookingTitle, bookingBody, bookingCta,
+    faqHeading, faqIntro,
+    faqs[]{ _key, question, answer },
+    ctaHeading, ctaBody, ctaText
+  }
+`;
+
+export interface TermsSection {
+  _key: string;
+  heading: string;
+  body: string;
+}
+
+export interface TermsOfService {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  pageTitle?: string;
+  effectiveDate?: string;
+  intro?: string;
+  sections?: TermsSection[];
+}
+
+export const TERMS_OF_SERVICE_QUERY = /* groq */ `
+  *[_type == "termsOfService" && _id == "termsOfService"][0] {
+    _id,
+    seoTitle,
+    seoDescription,
+    pageTitle,
+    effectiveDate,
+    intro,
+    sections[]{ _key, heading, body }
+  }
+`;
 
 export type ServiceKind = 'hub' | 'treatment' | 'standalone';
 
@@ -37,10 +108,21 @@ export interface Service {
   process?: string[];
   faqs?: FAQ[];
   image?: SanityImage;
+  gallery?: SanityImage[];
   collection?: { title: string; slug: string };
+  provider?: Provider;
   relatedServices?: Service[];
+  comparisons?: ServiceComparison[];
   _updatedAt?: string;
   seo?: { metaTitle?: string; metaDescription?: string };
+}
+
+/** A comparison that contextually references a service as either option. */
+export interface ServiceComparison {
+  _id: string;
+  title: string;
+  slug: string;
+  intro: string;
 }
 
 export interface SitemapService {
@@ -73,6 +155,8 @@ export interface ServiceCollection {
 
 export type ProductBrand = 'procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
 
+export type ProductCategory = 'skincare' | 'candles' | 'gift-cards' | 'accessories' | 'other';
+
 export interface Product {
   _id: string;
   title: string;
@@ -80,11 +164,43 @@ export interface Product {
   tagline?: string;
   brand?: ProductBrand;
   size?: string;
-  category?: string;
+  category?: ProductCategory;
   inStock?: boolean;
   description?: string;
   price?: number;
+  purchaseUrl?: string;
+  ctaLabel?: string;
+  badge?: string;
+  isFeatured?: boolean;
   image?: SanityImage;
+  relatedProducts?: Product[];
+}
+
+export type PromotionLinkType = 'internal' | 'external';
+
+export interface Promotion {
+  _id: string;
+  headline: string;
+  teaser?: string;
+  ctaLabel: string;
+  linkType: PromotionLinkType;
+  internalPath?: string;
+  externalUrl?: string;
+  scopeBrand?: ProductBrand;
+  scopeCategory?: ProductCategory;
+  image?: SanityImage;
+}
+
+export interface ShopBrand {
+  _id: string;
+  title: string;
+  brandKey: ProductBrand;
+  tagline?: string;
+  story?: string;
+  ctaLabel?: string;
+  externalUrl?: string;
+  logo?: string;
+  heroImage?: SanityImage;
 }
 
 export interface SiteSettings {
@@ -117,15 +233,6 @@ export interface BlogPost {
   relatedService?: { title: string; slug: string; tagline?: string };
   seo?: { metaTitle?: string; metaDescription?: string };
   estimatedReadingTime?: number;
-}
-
-export interface Testimonial {
-  _id: string;
-  quote: string;
-  author?: string;
-  role?: string;
-  backgroundImage?: SanityImage;
-  featured?: boolean;
 }
 
 export interface Standard {
@@ -170,7 +277,7 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
 `;
 
 export const ALL_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
+  *[_type == "service" && status in ["live", "actual-menu"] && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -186,7 +293,7 @@ export const ALL_SERVICES_QUERY = /* groq */ `
 `;
 
 export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && defined(slug.current)] | order(coalesce(parentService->title, title) asc, kind asc, orderRank asc, title asc) {
+  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current)] | order(coalesce(parentService->title, title) asc, kind asc, orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -197,13 +304,13 @@ export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
 `;
 
 export const SERVICE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "service" && slug.current == $slug][0] {
+  *[_type == "service" && status in ["live", "actual-menu"] && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
     kind,
     "parentService": parentService->{ title, "slug": slug.current },
-    "treatments": *[_type == "service" && parentService._ref == ^._id] | order(orderRank asc, title asc) {
+    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && parentService._ref == ^._id] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -226,13 +333,25 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     },
     "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
+    "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
     collection->{ title, "slug": slug.current },
-    "relatedServices": relatedServices[]-> {
+    "provider": provider->{ _id, title, fullName, lane, roleCredential, scopeOfPractice },
+    "relatedServices": relatedServices[]->[status in ["live", "actual-menu"]] {
       _id,
       title,
       "slug": slug.current,
       tagline,
       ${IMAGE_FIELDS}
+    },
+    "comparisons": *[
+      _type == "comparison" &&
+      defined(slug.current) &&
+      (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
+    ] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      intro
     }
   }
 `;
@@ -244,7 +363,7 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
     "slug": slug.current,
     description,
     ${IMAGE_FIELDS},
-    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -256,6 +375,30 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
   }
 `;
 
+/**
+ * Lightweight variant of ALL_COLLECTIONS_QUERY for the header mega-menu:
+ * titles + slugs only (no images/descriptions) so the nav stays cheap to build.
+ */
+export const NAV_COLLECTIONS_QUERY = /* groq */ `
+  *[_type == "serviceCollection"] | order(orderRank asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
+      _id,
+      title,
+      "slug": slug.current
+    }
+  }
+`;
+
+export interface NavCollection {
+  _id: string;
+  title: string;
+  slug: string;
+  services: { _id: string; title: string; slug: string }[];
+}
+
 export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
   *[_type == "serviceCollection" && slug.current == $slug][0] {
     _id,
@@ -263,7 +406,7 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
     "slug": slug.current,
     description,
     ${IMAGE_FIELDS},
-    "services": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -287,6 +430,10 @@ export const ALL_PRODUCTS_QUERY = /* groq */ `
     inStock,
     description,
     price,
+    purchaseUrl,
+    ctaLabel,
+    badge,
+    isFeatured,
     ${IMAGE_FIELDS}
   }
 `;
@@ -297,14 +444,66 @@ export const PRODUCT_BY_SLUG_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     tagline,
+    brand,
+    size,
+    category,
+    inStock,
     description,
     price,
+    purchaseUrl,
+    ctaLabel,
+    badge,
+    isFeatured,
+    ${IMAGE_FIELDS},
+    "relatedProducts": *[_type == "product" && brand == ^.brand && slug.current != ^.slug.current] | order(title asc) [0...4] {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      price,
+      badge,
+      ${IMAGE_FIELDS}
+    }
+  }
+`;
+
+export const ALL_PROMOTIONS_QUERY = /* groq */ `
+  *[_type == "promotion" && active == true
+    && (!defined(startDate) || startDate <= now())
+    && (!defined(endDate) || endDate >= now())
+  ] | order(orderRank asc) {
+    _id,
+    headline,
+    teaser,
+    ctaLabel,
+    linkType,
+    internalPath,
+    externalUrl,
+    scopeBrand,
+    scopeCategory,
     ${IMAGE_FIELDS}
   }
 `;
 
+export const ALL_SHOP_BRANDS_QUERY = /* groq */ `
+  *[_type == "shopBrand"] | order(orderRank asc, title asc) {
+    _id,
+    title,
+    brandKey,
+    tagline,
+    story,
+    ctaLabel,
+    externalUrl,
+    "logo": logo.asset->url,
+    "heroImage": heroImage {
+      asset->{ url, metadata { dimensions } },
+      alt
+    }
+  }
+`;
+
 export const ALL_CONCERNS_QUERY = /* groq */ `
-  *[_type == "concern"] | order(orderRank asc, title asc) {
+  *[_type == "concern" && status != "parked"] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -314,14 +513,14 @@ export const ALL_CONCERNS_QUERY = /* groq */ `
 `;
 
 export const CONCERN_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "concern" && slug.current == $slug][0] {
+  *[_type == "concern" && status != "parked" && slug.current == $slug][0] {
     _id,
     title,
     "slug": slug.current,
     intro,
     ${IMAGE_FIELDS},
     "seo": seo { metaTitle, metaDescription },
-    "treatments": *[_type == "service" && references(^._id)] | order(orderRank asc, title asc) {
+    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -334,12 +533,12 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_CONCERN_SLUGS_QUERY = /* groq */ `
-  *[_type == "concern" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "concern" && status != "parked" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 // Slug arrays for Astro getStaticPaths()
 export const ALL_SERVICE_SLUGS_QUERY = /* groq */ `
-  *[_type == "service" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current)]{ "slug": slug.current }
 `;
 
 export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
@@ -387,19 +586,6 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
 
 export const ALL_BLOG_POST_SLUGS_QUERY = /* groq */ `
   *[_type == "blogPost" && defined(slug.current) && defined(publishedAt)]{ "slug": slug.current }
-`;
-
-export const FEATURED_TESTIMONIALS_QUERY = /* groq */ `
-  *[_type == "testimonial" && featured == true] | order(_createdAt desc) {
-    _id,
-    quote,
-    author,
-    role,
-    "backgroundImage": backgroundImage {
-      asset->{ url, metadata { dimensions } },
-      alt
-    }
-  }
 `;
 
 export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
@@ -481,7 +667,6 @@ export interface TreatmentPackage {
   servicesIncluded?: PackageServiceRef[];
   whatsIncluded?: string;
   cadence?: string;
-  foundingPrice?: string;
   rackPrice?: string;
   outcome?: string;
   positioning?: string;
@@ -511,7 +696,6 @@ const PACKAGE_FIELDS = /* groq */ `
   "servicesIncluded": servicesIncluded[]->{ _id, title, "slug": slug.current, tagline },
   whatsIncluded,
   cadence,
-  foundingPrice,
   rackPrice,
   outcome,
   positioning,
@@ -520,19 +704,19 @@ const PACKAGE_FIELDS = /* groq */ `
 `;
 
 export const ALL_TREATMENT_PACKAGES_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && status != "parked"] | order(orderRank asc, _createdAt desc) {
+  *[_type == "treatmentPackage" && status == "live"] | order(orderRank asc, _createdAt desc) {
     ${PACKAGE_FIELDS}
   }
 `;
 
 export const TREATMENT_PACKAGE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && slug.current == $slug][0] {
+  *[_type == "treatmentPackage" && status == "live" && slug.current == $slug][0] {
     ${PACKAGE_FIELDS}
   }
 `;
 
 export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "treatmentPackage" && status == "live" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 
@@ -673,7 +857,7 @@ const COMPARISON_OPTION_FIELDS = /* groq */ `
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
-  *[_type == "comparison"] | order(orderRank asc, title asc) {
+  *[_type == "comparison" && status == "live"] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, intro, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -682,7 +866,7 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
 `;
 
 export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "comparison" && slug.current == $slug][0] {
+  *[_type == "comparison" && status == "live" && slug.current == $slug][0] {
     _id, title, "slug": slug.current, intro, verdict, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -693,7 +877,7 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
-  *[_type == "comparison" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "comparison" && status == "live" && defined(slug.current)]{ "slug": slug.current }
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────
@@ -745,6 +929,22 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
+export interface AiSearchFaqSection {
+  _id: string;
+  heading?: string;
+  intro?: string;
+  faqs?: FAQ[];
+}
+
+export const AI_SEARCH_FAQ_QUERY = /* groq */ `
+  *[_type == "siteSettings" && _id == "siteSettings"][0] {
+    _id,
+    "heading": aiSearchFaqHeading,
+    "intro": aiSearchFaqIntro,
+    "faqs": aiSearchFaqs[]{ _key, question, answer }
+  }
+`;
+
 export interface FaqGroup {
   _id: string;
   source: string;

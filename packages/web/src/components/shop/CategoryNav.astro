@@ -1,0 +1,70 @@
+---
+import type { Product } from '@/lib/queries';
+
+interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+
+const CATEGORY_LABELS: Record<string, string> = {
+  skincare: 'Skincare',
+  candles: 'Candles & Aromatherapy',
+  'gift-cards': 'Gift Cards',
+  accessories: 'Accessories',
+  other: 'More',
+};
+
+const categories = [...new Set(products.map((p) => p.category).filter(Boolean))] as string[];
+---
+
+{categories.length > 1 && (
+  <nav class="sticky top-0 z-20 bg-charcoal/95 backdrop-blur border-b border-gold-metal/10 px-6 py-4" aria-label="Filter products by category" data-shop-category-nav>
+    <div class="max-w-[1280px] mx-auto flex flex-wrap gap-2">
+      <button type="button" class="category-pill is-active" data-filter="all">All</button>
+      {categories.map((cat) => (
+        <button type="button" class="category-pill" data-filter={cat}>
+          {CATEGORY_LABELS[cat] ?? cat}
+        </button>
+      ))}
+    </div>
+  </nav>
+)}
+
+<style>
+  .category-pill {
+    @apply px-4 py-2 text-[12px] font-medium tracking-[0.12em] uppercase text-muted border border-gold-metal/20 transition-colors duration-200 hover:text-ink hover:border-gold-metal/50 min-h-[36px];
+  }
+  .category-pill.is-active {
+    @apply text-ink border-gold bg-gold-metal/10;
+  }
+</style>
+
+<script>
+  // Re-runs on every swup page:view since reloadScripts defaults to true —
+  // needed because this filters DOM already present in the swapped #main-content.
+  function initCategoryFilter() {
+    const nav = document.querySelector('[data-shop-category-nav]');
+    if (!nav) return;
+
+    const pills = nav.querySelectorAll<HTMLButtonElement>('.category-pill');
+    const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+
+    nav.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest<HTMLButtonElement>('.category-pill');
+      if (!target) return;
+
+      pills.forEach((p) => p.classList.remove('is-active'));
+      target.classList.add('is-active');
+
+      const filter = target.dataset.filter;
+      cards.forEach((card) => {
+        const show = filter === 'all' || card.dataset.category === filter;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  }
+
+  initCategoryFilter();
+  document.addEventListener('swup:enable', initCategoryFilter);
+</script>

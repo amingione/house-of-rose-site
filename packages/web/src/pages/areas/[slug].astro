@@ -7,7 +7,9 @@ import {
   LOCAL_AREA_BY_SLUG_QUERY,
   type LocalArea,
 } from '@/lib/queries';
-import { jsonLd, breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
+import { DEFAULT_AREA_IMAGE } from '@/lib/imageFallbacks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -16,11 +18,13 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const area = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
-if (!area) return Astro.redirect('/areas', 307);
+// Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
+// come from getStaticPaths, so a miss is a data bug — fail loudly.
+if (!area) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
-const heroImage = area.image?.asset?.url;
+const heroImage = area.image?.asset?.url ?? DEFAULT_AREA_IMAGE;
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -35,16 +39,16 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} image={heroImage}>
-  <script is:inline type="application/ld+json" set:html={jsonLd(business)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
-  {faq && <script is:inline type="application/ld+json" set:html={jsonLd(faq)} slot="head" />}
+  <SchemaMarkup item={business} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {faq && <SchemaMarkup item={faq} slot="head" />}
 
   <div {...sbObjectId(area._id)}>
   <section
-    class="relative w-full min-h-[44vh] flex items-end bg-charcoal pt-32 pb-12 px-6"
-    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
+    class="on-dark hero-dark relative w-full min-h-[44vh] flex items-end bg-walnut pt-32 pb-12 px-6"
+    style={`background-image: url(${heroImage}); background-size: cover; background-position: center;`}
   >
-    {heroImage && <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>}
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
     <div class="relative z-10 max-w-[960px] mx-auto w-full">
       <span class="kicker"><span {...sbFieldPath('city')}>{area.city}</span>{area.region ? ' · ' : ''}{area.region && <span {...sbFieldPath('region')}>{area.region}</span>}</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ivory leading-tight mt-3 mb-5" {...sbFieldPath('title')}>{area.title}</h1>
@@ -65,11 +69,11 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
     <section class="bg-charcoal py-14 px-6">
       <div class="max-w-[1280px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Popular in {area.city}</span>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {area.servedServices.map((s) => (
-            <a href={`/services/${s.slug}`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
+            <a href={`/services/${s.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
               <h2 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{s.title}</h2>
-              {s.tagline && <p class="text-[#777] text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
+              {s.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
               {s.price && <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase" {...sbFieldPath('price')}>{s.price}</p>}
               <span class="learn-more group-hover:text-gold mt-3 inline-block">Learn More</span>
             </a>
@@ -83,7 +87,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
     <section class="bg-charcoal-light py-12 px-6">
       <div class="max-w-[860px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Also Serving Nearby</span>
-        <p class="text-[#9a8c78] text-[14px] leading-relaxed">{area.neighborhoods.join(' · ')}</p>
+        <p class="text-muted text-[14px] leading-relaxed">{area.neighborhoods.join(' · ')}</p>
       </div>
     </section>
   )}
@@ -96,7 +100,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
           {area.faqs.map((f, i) => (
             <div class="border-b border-ink/5 pb-6">
               <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-[#777] text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
             </div>
           ))}
         </div>
@@ -104,10 +108,10 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
     </section>
   )}
 
-  <section class="bg-charcoal-light py-12 px-6 border-t border-gold/10">
+  <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Book your visit from {area.city}</h2>
-      <p class="text-[#777] text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
+      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>

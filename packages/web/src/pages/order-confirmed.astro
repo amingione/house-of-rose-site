@@ -1,0 +1,156 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+/**
+ * Post-checkout success page — Stripe's `return_url`.
+ *
+ * Stripe appends `payment_intent`, `payment_intent_client_secret` and `redirect_status`
+ * to this URL. We do NOT trust `redirect_status` (it's just a query param anyone can
+ * type) — we retrieve the PaymentIntent with Stripe.js and read its real status.
+ *
+ * THIS is also where the cart gets cleared. `confirmPayment()` redirects the browser
+ * away, so any `clearCart()` after that call never executes — the customer would come
+ * back to a full cart and could pay twice for the same thing.
+ *
+ * Three outcomes:
+ *   succeeded  → thank you, receipt is coming, we'll email when it ships
+ *   processing → payment is still settling (some bank methods); receipt will follow
+ *   failed     → nothing was charged, cart is preserved so they can retry
+ */
+---
+
+<BaseLayout
+  title="Thank You for Your Order | House of Rose"
+  description="Your House of Rose order is confirmed."
+  noindex={true}
+>
+  <section class="bg-charcoal pt-32 pb-24 px-6 min-h-[70vh] flex items-center">
+    <div class="max-w-[640px] mx-auto text-center w-full">
+      <!-- Loading (default; JS swaps to one of the states below) -->
+      <div id="state-loading">
+        <p class="text-muted text-[15px]">Confirming your order…</p>
+      </div>
+
+      <!-- Success -->
+      <div id="state-success" class="hidden">
+        <span class="kicker">Order Confirmed</span>
+        <h1 class="font-serif text-[clamp(30px,5vw,46px)] text-ink mt-2 mb-6">
+          Thank you for your order.
+        </h1>
+        <p id="order-ref" class="hidden text-gold text-[13px] font-medium tracking-[0.16em] uppercase mb-6"></p>
+
+        <p class="text-muted text-[16px] leading-[1.9] mb-4">
+          Your payment went through and your order is in. A confirmation email is on its way
+          to you now with everything you bought and what it came to.
+        </p>
+        <p class="text-muted text-[16px] leading-[1.9] mb-10">
+          We'll email you again with tracking as soon as your order ships.
+        </p>
+
+        <div class="flex gap-4 flex-wrap justify-center">
+          <a href="/shop/" class="btn-gold">Continue Shopping</a>
+          <a href="/contact/" class="btn-outline-gold">Questions? Contact Us</a>
+        </div>
+
+        <p class="text-muted text-[13px] mt-10">
+          Didn't get the email within a few minutes? Check your spam folder, or call us at
+          <a href="tel:+18449417673" class="text-gold hover:underline">(844) 941-7673</a>.
+        </p>
+      </div>
+
+      <!-- Processing (ACH / some wallets settle asynchronously) -->
+      <div id="state-processing" class="hidden">
+        <span class="kicker">Payment Processing</span>
+        <h1 class="font-serif text-[clamp(28px,4.5vw,40px)] text-ink mt-2 mb-6">
+          We've got your order.
+        </h1>
+        <p class="text-muted text-[16px] leading-[1.9] mb-10">
+          Your payment is still being confirmed by your bank — this can take a moment. We'll
+          email you as soon as it clears, and again with tracking when your order ships.
+        </p>
+        <a href="/shop/" class="btn-gold">Continue Shopping</a>
+      </div>
+
+      <!-- Failed — nothing charged, cart intentionally NOT cleared -->
+      <div id="state-failed" class="hidden">
+        <span class="kicker">Payment Not Completed</span>
+        <h1 class="font-serif text-[clamp(28px,4.5vw,40px)] text-ink mt-2 mb-6">
+          Your payment didn't go through.
+        </h1>
+        <p class="text-muted text-[16px] leading-[1.9] mb-10">
+          Nothing was charged, and your cart is exactly as you left it. You can try again, or
+          call us and we'll take the order over the phone.
+        </p>
+        <div class="flex gap-4 flex-wrap justify-center">
+          <a href="/checkout/" class="btn-gold">Try Again</a>
+          <a href="tel:+18449417673" class="btn-outline-gold">Call (844) 941-7673</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { loadStripe } from '@stripe/stripe-js';
+  import { clearCart } from '@/stores/cart';
+
+  const PUBLISHABLE_KEY = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY as string | undefined;
+
+  const show = (id: string): void => {
+    ['state-loading', 'state-success', 'state-processing', 'state-failed'].forEach((s) => {
+      document.getElementById(s)?.classList.toggle('hidden', s !== id);
+    });
+  };
+
+  async function init(): Promise<void> {
+    if (!document.getElementById('state-loading')) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const clientSecret = params.get('payment_intent_client_secret');
+    const orderNumber = params.get('order');
+
+    if (orderNumber) {
+      const ref = document.getElementById('order-ref');
+      if (ref) {
+        ref.textContent = `Order ${orderNumber}`;
+        ref.classList.remove('hidden');
+      }
+    }
+
+    // No client secret → someone navigated here directly. Assume the best-case landing
+    // (they came from a completed order) rather than showing a scary failure.
+    if (!clientSecret || !PUBLISHABLE_KEY) {
+      clearCart();
+      show('state-success');
+      return;
+    }
+
+    const stripe = await loadStripe(PUBLISHABLE_KEY);
+    if (!stripe) {
+      clearCart();
+      show('state-success');
+      return;
+    }
+
+    const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+    switch (paymentIntent?.status) {
+      case 'succeeded':
+        // Only safe to empty the cart once Stripe itself says the money is in.
+        clearCart();
+        show('state-success');
+        break;
+      case 'processing':
+        clearCart();
+        show('state-processing');
+        break;
+      default:
+        // requires_payment_method / canceled / anything else → nothing was charged.
+        // Leave the cart intact so they can retry without rebuilding it.
+        show('state-failed');
+    }
+  }
+
+  void init();
+  document.addEventListener('swup:contentReplaced', () => void init());
+</script>

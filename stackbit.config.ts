@@ -96,6 +96,7 @@ const PAGE_ROUTES: Record<string, string> = {
   caseStudy: '/results/{slug}',
   blogPost: '/blog/{slug}',
   treatmentPackage: '/packages/{slug}',
+  product: '/shop/{slug}',
 };
 
 export default defineStackbitConfig({

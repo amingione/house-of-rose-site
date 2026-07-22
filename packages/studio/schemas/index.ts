@@ -3,6 +3,8 @@ import { homepage } from './homepage';
 import { thankYou } from './thankYou';
 import { skinAnalysis } from './skinAnalysis';
 import { contactPage } from './contactPage';
+import { supportPage } from './supportPage';
+import { termsOfService } from './termsOfService';
 import { privacyPolicy } from './privacyPolicy';
 import { rentARoom } from './rentARoom';
 import { professionalMakeupPage } from './professionalMakeupPage';
@@ -13,9 +15,11 @@ import { serviceCollection } from './serviceCollection';
 import { service } from './service';
 import { concern } from './concern';
 import { product } from './product';
-import { testimonial } from './testimonial';
+import { promotion } from './promotion';
+import { shopBrand } from './shopBrand';
 import { blogPost } from './blogPost';
 import { leadSubmission } from './leadSubmission';
+import { order } from './order';
 import { brandProfile } from './brandProfile';
 import { provider } from './provider';
 import { treatmentPackage } from './treatmentPackage';
@@ -37,6 +41,8 @@ export const schemaTypes = [
   thankYou,
   skinAnalysis,
   contactPage,
+  supportPage,
+  termsOfService,
   privacyPolicy,
   rentARoom,
   professionalMakeupPage,
@@ -48,9 +54,11 @@ export const schemaTypes = [
   service,
   concern,
   product,
-  testimonial,
+  promotion,
+  shopBrand,
   blogPost,
   leadSubmission,
+  order,
   // Brand & growth (Luxe Aesthetics Advisor) — mirrors Notion service system
   brandProfile,
   provider,

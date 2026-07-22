@@ -3,7 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_CASE_STUDIES_QUERY, type CaseStudy } from '@/lib/queries';
-import { jsonLd, breadcrumbList } from '@/lib/structuredData';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList } from '@/lib/structuredData';
 
 const studies = await sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -19,7 +20,7 @@ const breadcrumb = breadcrumbList([
   title="Before & After Results | House of Rose Aesthetics"
   description="Real client results from House of Rose in Punta Gorda, FL — before and after treatment outcomes, shared with consent."
 >
-  <script is:inline type="application/ld+json" set:html={jsonLd(breadcrumb)} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
@@ -29,32 +30,51 @@ const breadcrumb = breadcrumbList([
     </div>
   </section>
 
-  <section class="bg-charcoal-light py-14 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold/10">
-      {studies.map((cs) => (
-        <a href={`/results/${cs.slug}`} class="bg-charcoal group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(cs._id)}>
-          {cs.afterImage?.asset?.url && (
-            <div class="aspect-square overflow-hidden bg-charcoal-lighter">
-              <img
-                src={cs.afterImage.asset.url}
-                alt={cs.afterImage.alt ?? cs.title}
-                width={400}
-                height={400}
-                loading="lazy"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+  {studies.length > 0 ? (
+    <section class="bg-charcoal-light py-14 px-6">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
+        {studies.map((cs) => (
+          <a href={`/results/${cs.slug}/`} class="bg-charcoal group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(cs._id)}>
+            {cs.afterImage?.asset?.url && (
+              <div class="aspect-square overflow-hidden bg-charcoal-lighter">
+                <img
+                  src={cs.afterImage.asset.url}
+                  alt={cs.afterImage.alt ?? cs.title}
+                  width={400}
+                  height={400}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <div class="p-6">
+              <h2 class="font-serif text-[19px] text-ink mb-1 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{cs.title}</h2>
+              {cs.treatment && <p class="text-gold text-[11px] tracking-[0.18em] uppercase">{cs.treatment.title}</p>}
+              {cs.timeframe && <p class="text-muted text-[13px] mt-2">{cs.timeframe}</p>}
             </div>
-          )}
-          <div class="p-6">
-            <h2 class="font-serif text-[19px] text-ink mb-1 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{cs.title}</h2>
-            {cs.treatment && <p class="text-gold text-[11px] tracking-[0.18em] uppercase">{cs.treatment.title}</p>}
-            {cs.timeframe && <p class="text-[#777] text-[13px] mt-2">{cs.timeframe}</p>}
-          </div>
-        </a>
-      ))}
-      {studies.length === 0 && (
-        <p class="bg-charcoal p-7 text-[#777] text-[14px]">Before & after galleries are coming soon.</p>
-      )}
+          </a>
+        ))}
+      </div>
+    </section>
+  ) : (
+    <section class="bg-charcoal-light py-16 px-6">
+      <div class="max-w-[680px] mx-auto text-center">
+        <p class="text-muted text-[15px] leading-[1.8] mb-4">
+          Our consented before-and-after galleries are being photographed now. In the meantime, explore how our advanced treatments work and what to expect.
+        </p>
+        <p class="text-muted text-[15px] leading-[1.8] mb-8">
+		  Explore the <a href="/services/microchanneling/" class="text-gold hover:underline">microchanneling, microneedling &amp; topical PRF guide</a>, browse <a href="/services/" class="text-gold hover:underline">all treatments</a>, or start with an <a href="/skin-analysis/" class="text-gold hover:underline">AI skin analysis</a> to map your own plan.
+        </p>
+        <a href="/skin-analysis/" class="btn-outline-gold">See what your skin needs</a>
+      </div>
+    </section>
+  )}
+
+  <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <p class="text-muted text-[15px] leading-[1.8]">
+		  Curious what's realistic for your skin? Read the <a href="/services/microchanneling/" class="text-gold hover:underline">needling guide</a> or compare your options on the <a href="/compare/" class="text-gold hover:underline">comparison hub</a> before you book.
+      </p>
     </div>
   </section>
 </BaseLayout>

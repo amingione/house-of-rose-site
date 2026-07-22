@@ -11,6 +11,7 @@ import {
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
+  ALL_PRODUCT_SLUGS_QUERY,
   type SitemapService,
   type BlogPost,
   type ServiceCollection,
@@ -25,7 +26,7 @@ import {
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
 
-  const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages] = await Promise.all([
+  const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages, productSlugs] = await Promise.all([
     sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
@@ -35,6 +36,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
+    sanityFetch<{ slug: string }[]>(ALL_PRODUCT_SLUGS_QUERY),
   ]);
 
   const now = new Date().toISOString().split('T')[0];
@@ -43,10 +45,15 @@ export const GET: APIRoute = async ({ site }) => {
   const staticPages = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/services/`, priority: '0.9', changefreq: 'weekly', lastmod: now },
+    { loc: `${baseUrl}/services/professional-makeup/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/services/professional-makeup/jane-iredale/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/services/professional-makeup/events/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/blog/`, priority: '0.8', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/experience/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/faq/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/guides/microchanneling-prf/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/support/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/cost/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/compare/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/areas/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/packages/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
@@ -56,6 +63,7 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/contact/`, priority: '0.7', changefreq: 'yearly', lastmod: now },
     { loc: `${baseUrl}/rent-a-room/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/privacy-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
+    { loc: `${baseUrl}/terms-of-service/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
   ];
 
   // Service pages — include hub, standalone, and treatment pages.
@@ -99,6 +107,14 @@ export const GET: APIRoute = async ({ site }) => {
     lastmod: now,
   }));
 
+  // Shop product detail pages
+  const productPages = productSlugs.map((p) => ({
+    loc: `${baseUrl}/shop/${p.slug}/`,
+    priority: '0.6',
+    changefreq: 'monthly',
+    lastmod: now,
+  }));
+
   // AEO page types
   const costPages = costGuides.map((c) => ({ loc: `${baseUrl}/cost/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
   const comparePages = comparisons.map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
@@ -113,6 +129,7 @@ export const GET: APIRoute = async ({ site }) => {
     ...collectionPages,
     ...concernPages,
     ...packagePages,
+    ...productPages,
     ...blogPages,
     ...costPages,
     ...comparePages,

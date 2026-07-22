@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { ALL_COST_GUIDES_QUERY, type CostGuide } from '@/lib/queries';
+import { breadcrumbList, itemList } from '@/lib/structuredData';
+
+const guides = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Pricing', item: canonical },
+]);
+const guidesListSchema = guides.length
+  ? itemList(
+      guides.map((g) => ({ name: g.title, url: new URL(`/cost/${g.slug}/`, site).toString() })),
+      'Treatment Cost Guides',
+    )
+  : null;
+
+const formatRange = (g: CostGuide): string | null => {
+  if (g.priceLow == null || g.priceHigh == null) return null;
+  const unit = g.priceUnit ? ` ${g.priceUnit}` : '';
+  return `$${g.priceLow}–$${g.priceHigh}${unit}`;
+};
+---
+
+<BaseLayout
+  title="Treatment Cost Guides | House of Rose Aesthetics, Punta Gorda FL"
+  description="Honest pricing for advanced aesthetics in Punta Gorda, FL — what PRF, microchanneling, injectables, and more actually cost, and the factors that move the price."
+>
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {guidesListSchema && <SchemaMarkup item={guidesListSchema} slot="head" />}
+
+  <section class="bg-charcoal pt-32 pb-12 px-6">
+    <div class="max-w-[1280px] mx-auto">
+      <span class="kicker">Pricing</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What advanced aesthetics cost in Punta Gorda</h1>
+      <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
+        Straight answers on what treatments at House of Rose actually cost — real ranges, what's included, and the factors that move the price. Final pricing is confirmed at your consultation.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-charcoal-light py-14 px-6">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
+      {guides.map((g) => {
+        const range = formatRange(g);
+        return (
+          <a href={`/cost/${g.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
+            <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
+            {range && <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{range}</p>}
+            {g.answer && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('answer')}>{g.answer}</p>}
+            <span class="learn-more group-hover:text-gold mt-4 inline-block">See the guide</span>
+          </a>
+        );
+      })}
+      {guides.length === 0 && (
+        <p class="bg-charcoal p-7 text-muted text-[14px]">Cost guides are coming soon.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <p class="text-muted text-[15px] leading-[1.8] mb-6">
+        Not sure which treatment fits your budget and goals? Start with an in-studio AI skin analysis — it maps your concerns to the right plan before you commit.
+      </p>
+      <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
+    </div>
+  </section>
+</BaseLayout>

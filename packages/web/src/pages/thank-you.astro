@@ -26,21 +26,21 @@ const data =
 <BaseLayout
   title={data.seoTitle ?? 'Thank You | House of Rose Aesthetics'}
   description={data.seoDescription ?? "Thank you for reaching out to House of Rose. We'll be in touch shortly."}
+  noindex
+  nofollow
 >
-  <!-- noindex — utility page, not for search -->
-  <meta name="robots" content="noindex, nofollow" slot="head" />
 
   <section class="bg-charcoal min-h-[70vh] flex items-center justify-center px-6 py-24">
     <div class="max-w-[560px] mx-auto text-center" {...(data._id ? sbObjectId(data._id) : {})}>
 
       <!-- Rose motif -->
       <div class="mb-8 flex justify-center">
-        <div class="w-16 h-px bg-gold/40 self-center"></div>
+        <div class="w-16 h-px bg-gold-metal/40 self-center"></div>
         <span class="mx-4 text-gold text-2xl leading-none">✦</span>
-        <div class="w-16 h-px bg-gold/40 self-center"></div>
+        <div class="w-16 h-px bg-gold-metal/40 self-center"></div>
       </div>
 
-      <span class="block text-gold text-[11px] tracking-[0.4em] uppercase mb-6" {...sbFieldPath('kicker')}>
+      <span class="block text-gold text-[11px] font-medium tracking-[0.26em] uppercase mb-6" {...sbFieldPath('kicker')}>
         {data.kicker ?? 'Message Received'}
       </span>
 
@@ -48,11 +48,11 @@ const data =
         {data.heading ?? 'Thank you for reaching out.'}
       </h1>
 
-      <p class="text-[#9a8c78] text-[16px] leading-relaxed mb-4" {...sbFieldPath('paragraph1')}>
-        {data.paragraph1 ?? "We've received your message and will be in touch within 24–48 hours."}
+      <p class="text-muted text-[16px] leading-relaxed mb-4" {...sbFieldPath('paragraph1')}>
+        {data.paragraph1 ?? "We've received your message. During studio hours, we aim to reply within two business hours."}
       </p>
 
-      <p class="text-[#7a6e5c] text-[14px] leading-relaxed mb-12" {...sbFieldPath('paragraph2')}>
+      <p class="text-muted text-[14px] leading-relaxed mb-12" {...sbFieldPath('paragraph2')}>
         {data.paragraph2 ?? "In the meantime, you're welcome to browse our services or book directly online."}
       </p>
 
@@ -71,8 +71,29 @@ const data =
         </a>
       </div>
 
-      <div class="mt-16 w-16 h-px bg-gold/20 mx-auto"></div>
+      <div class="mt-16 w-16 h-px bg-gold-metal/20 mx-auto"></div>
 
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  interface AnalyticsWindow extends Window {
+    gtag?: (command: 'event', eventName: string, params?: Record<string, string>) => void;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const leadType = params.get('lead');
+  const allowedLeadTypes = new Set(['contact', 'suiteRental', 'skinAnalysis']);
+
+  if (leadType && allowedLeadTypes.has(leadType)) {
+    const eventKey = `hor_generate_lead_${leadType}`;
+    if (!sessionStorage.getItem(eventKey)) {
+      (window as AnalyticsWindow).gtag?.('event', 'generate_lead', {
+        lead_type: leadType,
+        page_location: '/thank-you/',
+      });
+      sessionStorage.setItem(eventKey, '1');
+    }
+  }
+</script>

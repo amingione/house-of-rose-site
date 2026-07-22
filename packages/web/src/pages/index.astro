@@ -7,8 +7,8 @@ import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 
 // Booking + internal links (single source of truth so they're easy to swap)
 const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
-const SKIN_ANALYSIS_URL = "/skin-analysis";
-const SHOP_URL = "/shop";
+const SKIN_ANALYSIS_URL = "/skin-analysis/";
+const SHOP_URL = "/shop/";
 
 // ─── Home content from Sanity (singleton) ──────────────────────────────────────
 // Falls back to the original copy if a field is empty, so there's no regression.
@@ -20,96 +20,35 @@ const FALLBACK_SERVICE_GROUPS = [
 	{
 		name: "Regenerative Skin Treatments",
 		description:
-			"ProCell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks.",
-		imagePath: "/images/new-microchanneling.webp",
+			"ProCell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced treatments selected to support healthier-looking texture and tone.",
+		imagePath: "/images/editorial/home/regenerative-skin-treatments.webp",
 	},
 	{
 		name: "Injectables & Structural Enhancements",
 		description:
-			"Botox, dermal fillers, PRF under-eye rejuvenation, EZ Gel bio-filler, and PRF hair restoration — chosen with a careful, balanced approach.",
-		imagePath: "/images/new-injectables.webp",
+			"Botox, Daxxify, dermal fillers, PRF under-eye options, and EZ Gel bio-filler—chosen with a careful, balanced approach.",
+		imagePath: "/images/editorial/home/injectables-consultation.webp",
 	},
 	{
 		name: "Skin Health & Corrective Care",
 		description:
 			"Face Reality acne care, Glo2Facials, dermaplaning, LED therapy, and personalized skin guidance rooted in what your skin is showing today—not assumptions.",
-		imagePath: "/images/new-facials.png",
+		imagePath: "/images/editorial/home/skin-health-analysis.webp",
 	},
 	{
 		name: "Wellness & Performance Support",
 		description:
 			"IV hydration, GLP-1 weight management, permanent jewelry, and select offerings that complement your aesthetic goals and overall care experience.",
-		imagePath: "/images/new-wellness.webp",
+		imagePath: "/images/editorial/home/wellness-iv-hydration.webp",
 	},
 ];
-const serviceGroups = hp.serviceGroups?.length ? hp.serviceGroups : FALLBACK_SERVICE_GROUPS;
+const serviceGroups = hp.serviceGroups?.length
+	? hp.serviceGroups.map((group, index) => ({
+		...group,
+		imagePath: FALLBACK_SERVICE_GROUPS[index]?.imagePath ?? FALLBACK_SERVICE_GROUPS[0].imagePath,
+	}))
+	: FALLBACK_SERVICE_GROUPS;
 
-// ─── Structured data ──────────────────────────────────────────────────────────
-const websiteData = {
-	"@context": "https://schema.org",
-	"@type": "WebSite",
-	name: "House of Rose Aesthetics",
-	alternateName: "House of Rose",
-	url: Astro.site?.toString(),
-	potentialAction: {
-		"@type": "SearchAction",
-		target: {
-			"@type": "EntryPoint",
-			urlTemplate: `${Astro.site}services?q={search_term_string}`,
-		},
-		"query-input": "required name=search_term_string",
-	},
-};
-
-const organizationData = {
-	"@context": "https://schema.org",
-	"@type": "HealthAndBeautyBusiness",
-	name: "House of Rose Aesthetics",
-	alternateName: "House of Rose",
-	description:
-		"House of Rose Aesthetics in Punta Gorda, FL — advanced aesthetics and wellness. Regenerative treatments, injectables, facials, skin analysis, IV hydration, and curated skincare.",
-	url: Astro.site?.toString(),
-	telephone: "+18449417673",
-	email: import.meta.env.PUBLIC_BOOKING_EMAIL,
-	address: {
-		"@type": "PostalAddress",
-		streetAddress: "525 E Olympia Ave, Unit 9",
-		addressLocality: "Punta Gorda",
-		addressRegion: "FL",
-		postalCode: "33950",
-		addressCountry: "US",
-	},
-	geo: {
-		"@type": "GeoCoordinates",
-		latitude: "26.9298",
-		longitude: "-82.0454",
-	},
-	openingHoursSpecification: {
-		"@type": "OpeningHoursSpecification",
-		dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-		opens: "9:00",
-		closes: "17:00",
-	},
-	priceRange: "$$",
-	areaServed: {
-		"@type": "GeoCircle",
-		geoMidpoint: {
-			"@type": "GeoCoordinates",
-			latitude: "26.9298",
-			longitude: "-82.0454",
-		},
-		geoRadius: "50000",
-	},
-	sameAs: [
-		"https://www.instagram.com/houseofrosefl",
-		"https://www.facebook.com/houseofrosefl",
-		"https://houseofrose.glossgenius.com/services",
-	],
-	hasMap: "https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950",
-	currenciesAccepted: "USD",
-	paymentAccepted: "Cash, Credit Card",
-	slogan: "Where Beauty Blooms Within",
-};
 ---
 
 <BaseLayout
@@ -117,19 +56,6 @@ const organizationData = {
 	description={hp.seoDescription ?? "Personalized aesthetics, skin health, regenerative treatments, injectables, facials, wellness support, and curated skincare in Punta Gorda, Florida."}
 	preloadImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 >
-	<script
-		is:inline
-		type="application/ld+json"
-		set:html={JSON.stringify(websiteData)}
-		slot="head"
-	/>
-	<script
-		is:inline
-		type="application/ld+json"
-		set:html={JSON.stringify(organizationData)}
-		slot="head"
-	/>
-
 	<div {...oid}>
 	<!-- ── SECTION 1 · HERO ─────────────────────────────────────────── -->
 	<Hero
@@ -141,7 +67,7 @@ const organizationData = {
 		centerContent={true}
 		showCTA={true}
 		ctaPrimary={{ text: hp.heroCtaPrimaryText ?? "Book Your Skin Analysis", href: SKIN_ANALYSIS_URL }}
-		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Explore Services", href: "/services" }}
+		ctaSecondary={{ text: hp.heroCtaSecondaryText ?? "Explore Services", href: "/services/" }}
 		backgroundImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 		titleField="heroTitle"
 		subtitleField="heroSubtitle"
@@ -160,24 +86,24 @@ const organizationData = {
 				{hp.aboutHeading ?? "A more considered approach to aesthetics."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara1")}
 			>
 				{hp.aboutPara1 ?? "House of Rose Aesthetics was created for clients who expect more than a standard appointment or transactional treatment menu."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara2")}
 			>
 				{hp.aboutPara2 ?? "Our approach is intentional, results-focused, and built around long-term skin health. Every recommendation is made with precision—using AI-assisted skin analysis where it helps, then balancing advanced aesthetic treatments, regenerative techniques, and personalized care to deliver outcomes that feel refined, natural, and aligned with you."}
 			</p>
-			<p class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
+			<p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
 				{hp.aboutPara3 ?? "Rather than focusing on isolated services, we design cohesive treatment plans that evolve with your skin, your goals, and the results you want to maintain over time."}
 			</p>
 		</div>
 		<div class="relative min-h-[340px] bg-charcoal-lighter">
 			<img
-				src="/images/hor-lounge.jpg"
+				src="/images/hor-lounge.webp"
 				alt="The House of Rose Aesthetics lounge in Punta Gorda, Florida"
 				loading="lazy"
 				class="w-full h-full object-cover"
@@ -189,8 +115,8 @@ const organizationData = {
 
 	<!-- ── SECTION 3 · SIGNATURE APPROACH (full-bleed) ─────────────── -->
 	<section
-		class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
-		style="background-image: url('/images/hor-skin-studio.jpg');"
+		class="on-dark relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
+		style="background-image: url('/images/hor-skin-studio.webp');"
 	>
 		<!-- Warm walnut gradient scrim. Inline style (can't be Tailwind-purged / always renders).
 		     Every stop tuned so ivory text ≥ AAA and the gold.300 kicker ≥ AA even over a
@@ -201,7 +127,7 @@ const organizationData = {
 			style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
 		></div>
 		<div class="relative z-10 max-w-[760px] mx-auto text-center">
-			<span class="kicker text-gold-300" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
+			<span class="kicker text-gold" {...sbFieldPath("approachKicker")}>{hp.approachKicker ?? "Our Approach"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("approachHeading")}
@@ -240,15 +166,15 @@ const organizationData = {
 				>
 					{hp.servicesHeading ?? "A curated menu of advanced treatments."}
 				</h2>
-				<p class="text-[#9a8c78] text-[15px] leading-[1.75]" {...sbFieldPath("servicesIntro")}>
+				<p class="text-muted text-[15px] leading-[1.75]" {...sbFieldPath("servicesIntro")}>
 					{hp.servicesIntro ?? "A curated selection of treatments designed to work together—not in isolation. Each service at House of Rose is carefully chosen to support real outcomes: improved skin quality, balanced features, and long-term maintenance through personalized treatment planning."}
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold/10">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
 				{
 					serviceGroups.map((group, i) => (
-						<a href="/services" class="group block bg-charcoal">
+						<a href="/services/" class="group block bg-charcoal">
 							<div class="aspect-[16/10] overflow-hidden bg-charcoal-lighter">
 								<img
 									src={group.imagePath}
@@ -263,7 +189,7 @@ const organizationData = {
 								<h3 class="font-serif text-[21px] text-ink mb-2.5" {...sbFieldPathParts("serviceGroups", i, "name")}>
 									{group.name}
 								</h3>
-								<p class="text-[#777] text-[14px] leading-[1.7]" {...sbFieldPathParts("serviceGroups", i, "description")}>
+								<p class="text-muted text-[14px] leading-[1.7]" {...sbFieldPathParts("serviceGroups", i, "description")}>
 									{group.description}
 								</p>
 							</div>
@@ -274,7 +200,7 @@ const organizationData = {
 
 			<div class="mt-12">
 				<a
-					href="/services"
+					href="/services/"
 					class="text-[11px] tracking-[0.2em] uppercase border-b border-gold text-gold pb-0.5 min-h-[44px] inline-flex items-end hover:opacity-75 transition-opacity"
 					{...sbFieldPath("servicesCtaText")}
 				>
@@ -288,7 +214,7 @@ const organizationData = {
 	<section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
 		<div class="relative min-h-[340px] bg-charcoal order-2 md:order-1">
 			<img
-				src="/images/new-consultation.png"
+				src="/images/house-of-rose/space/vignette-brochures-card.webp"
 				alt="In-office skin analysis at House of Rose Aesthetics"
 				loading="lazy"
 				class="w-full h-full object-cover"
@@ -307,13 +233,13 @@ const organizationData = {
 				{hp.scanHeading ?? "Your plan should start with evidence."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara1")}
 			>
 				{hp.scanPara1 ?? "Our in-studio AI skin scanner uses advanced imaging to evaluate visible and subsurface patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara2")}
 			>
 				{hp.scanPara2 ?? "That analysis becomes your baseline: a clearer way to choose the right treatments, track change over time, and understand why a provider recommends one step before another."}
@@ -342,12 +268,12 @@ const organizationData = {
 	<section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
 		<div class="relative min-h-[340px] bg-charcoal order-2 md:order-1">
 			<img
-				src="/images/house-of-rose-products.webp"
-				alt="Curated professional skincare at House of Rose Aesthetics"
+				src="/images/before-after/makeup/makeupbyxamber-jane-iredale-stephanie.png"
+				alt="Before and after Jane Iredale makeup application at House of Rose Aesthetics"
 				loading="lazy"
-				class="w-full h-full object-cover"
-				width="1400"
-				height="933"
+				class="w-full h-full object-contain"
+				width="1536"
+				height="1024"
 			/>
 		</div>
 		<div
@@ -361,13 +287,13 @@ const organizationData = {
 				{hp.careHeading ?? "Professional skincare, selected with purpose."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-4"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("carePara1")}
 			>
 				{hp.carePara1 ?? "Every product we carry is selected to support treatment outcomes and simplify your routine at home. From post-treatment aftercare to acne support, mineral makeup, SPF, and corrective skincare, our selection is built to work with your plan, not compete with it."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.75] max-w-[560px] mb-7"
+				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-7"
 				{...sbFieldPath("carePara2")}
 			>
 				{hp.carePara2 ?? "Rather than overwhelming you with options, we provide curated recommendations tailored to your skin, your treatments, and your long-term goals—so everything you use works together with intention."}
@@ -382,8 +308,8 @@ const organizationData = {
 
 	<!-- ── SECTION 8 · THE EXPERIENCE (full-bleed) ─────────────────── -->
 	<section
-		class="relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
-		style="background-image: url('/images/hor-skin-studio.jpg');"
+		class="on-dark relative py-[clamp(72px,11vw,150px)] px-6 bg-cover bg-center"
+		style="background-image: url('/images/hor-skin-studio.webp');"
 	>
 		<!-- Warm walnut gradient scrim — same AA-verified treatment as the "Our Approach"
 		     section above (this band reuses hor-skin-studio.jpg). Inline style so it can't
@@ -394,7 +320,7 @@ const organizationData = {
 			style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
 		></div>
 		<div class="relative z-10 max-w-[720px] mx-auto text-center">
-			<span class="kicker text-gold-300" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
+			<span class="kicker text-gold" {...sbFieldPath("expKicker")}>{hp.expKicker ?? "The Experience"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("expHeading")}
@@ -427,13 +353,13 @@ const organizationData = {
 				{hp.localHeading ?? "A refined destination for aesthetics and wellness."}
 			</h2>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4"
+				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4"
 				{...sbFieldPath("localPara1")}
 			>
 				{hp.localPara1 ?? "House of Rose Aesthetics serves clients in Punta Gorda and across Southwest Florida who are looking for a more thoughtful way to approach skin, beauty, and self-care."}
 			</p>
 			<p
-				class="text-[#9a8c78] text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
+				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
 				{...sbFieldPath("localPara2")}
 			>
 				{hp.localPara2 ?? "If you already know what you're looking for, you can book online. If you'd rather begin with a conversation, we're here to help you find the right starting point."}
@@ -445,15 +371,15 @@ const organizationData = {
 					rel="noopener noreferrer"
 					class="btn-gold">Book Online</a
 				>
-				<a href="/contact" class="btn-outline-gold">Contact Us</a>
+				<a href="/contact/" class="btn-outline-gold">Contact Us</a>
 			</div>
 		</div>
 	</section>
 
 	<!-- ── SECTION 10 · FINAL CTA / FOOTER PREVIEW ─────────────────── -->
 	<section
-		class="relative py-[clamp(64px,9vw,120px)] px-6 bg-cover bg-center border-t border-gold/10"
-		style="background-image: url('/images/background-rose.webp');"
+		class="relative py-[clamp(64px,9vw,120px)] px-6 bg-cover bg-center border-t border-gold-metal/10"
+		style="background-image: url('/images/banner/background/hr-br-4.webp');"
 	>
 		<div class="absolute inset-0 bg-charcoal/88"></div>
 		<div class="relative z-10 max-w-[640px] mx-auto text-center">
@@ -464,7 +390,7 @@ const organizationData = {
 				{hp.finalHeading ?? "Refined results begin with the right plan."}
 			</h2>
 			<p
-				class="text-[#999] text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
+				class="text-muted text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
 				{...sbFieldPath("finalPara")}
 			>
 				{hp.finalPara ?? "Advanced treatments, expert guidance, and a setting designed to feel elevated, calm, and intentional—so every step of your experience feels considered."}
@@ -479,7 +405,7 @@ const organizationData = {
 				{hp.finalCtaText ?? "Start Your Consultation"}
 			</a>
 			<p
-				class="text-[#7a6e5c] text-[10px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
+				class="text-muted text-[11px] tracking-[0.26em] uppercase mt-9 leading-relaxed"
 				set:html={(hp.finalAddressLine ?? "525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950\nMon–Fri 9AM–5PM · (844) 941-7673").replace(/\n/g, "<br />")}
 				{...sbFieldPath("finalAddressLine")}
 			/>
