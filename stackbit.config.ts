@@ -148,6 +148,9 @@ export default defineStackbitConfig({
       logPatterns: {
         up: ['is ready', 'astro'],
       },
+      directRoutes: {
+        'socket.io': 'socket.io',
+      },
       passthrough: ['/vite-hmr/**'],
     },
   },
