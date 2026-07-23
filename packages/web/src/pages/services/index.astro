@@ -4,6 +4,7 @@ import Hero from '@/components/Hero.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
+import { sbObjectField } from '@/lib/visualEditing';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
 // The homepage's four pillars (serviceGroups) deep-link here via anchor ids.
@@ -127,7 +128,11 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
             {section.collections.length > 1 && (
               <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
                 <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">
-                  <a href={`/services/collections/${collection.slug}/`} class="hover:text-gold transition-colors">
+                  <a
+                    href={`/services/collections/${collection.slug}/`}
+                    class="hover:text-gold transition-colors"
+                    {...sbObjectField(collection._id, 'title')}
+                  >
                     {collection.title}
                   </a>
                 </h3>
@@ -166,7 +171,12 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
         {unmapped.map(({ collection, services }) => (
           <div class="mb-12 last:mb-0">
             <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
-              <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">{collection.title}</h3>
+              <h3
+                class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink"
+                {...sbObjectField(collection._id, 'title')}
+              >
+                {collection.title}
+              </h3>
             </div>
             {services.map((service) => (
               <ServiceCard
