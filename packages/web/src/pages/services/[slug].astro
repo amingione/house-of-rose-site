@@ -41,7 +41,13 @@ const socialImage = service.image?.asset
 // that was previously doing header duty now surfaces in the Gallery section below instead
 // of being discarded.
 const heroImage = '/images/banner/background/HR-background.webp';
-const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
+const primaryGalleryImage = service.image?.asset ? service.image : undefined;
+const galleryImages = [
+  ...(primaryGalleryImage ? [primaryGalleryImage] : []),
+  ...(service.gallery?.filter(
+    (image) => image?.asset && image.asset.url !== primaryGalleryImage?.asset.url,
+  ) ?? []),
+];
 
 // Face Reality clinical before/after proof — only populated for the acne-program pages.
 const resultImages = slug ? getServiceResultImages(slug) : [];
