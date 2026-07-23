@@ -3,12 +3,84 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { ALL_SERVICES_QUERY, type Service } from '@/lib/queries';
+import { ALL_COLLECTIONS_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
 
-// Visual Editor: inline click-to-edit is delegated to <ServiceCard>, which emits
-// the sbObjectId / sbFieldPath annotations when passed `objectId={service._id}`.
+// ─── Grouped services index ───────────────────────────────────────────────────
+// The homepage's four pillars (serviceGroups) deep-link here via anchor ids.
+// Collections come from Sanity (`serviceCollection`); this page rolls them up
+// into the marketing umbrellas so clicking "Injectables" never shows lashes.
+// Mapping decided in docs/PRICING-RECONCILIATION-2026-07-23.md §4 (F1/F2).
 
-const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
+interface GroupSection {
+  /** Anchor id — must match GROUP_ANCHORS in pages/index.astro */
+  id: string;
+  kicker: string;
+  title: string;
+  /** serviceCollection slugs rolled into this umbrella, in display order */
+  collectionSlugs: string[];
+}
+
+const SERVICE_GROUP_SECTIONS: GroupSection[] = [
+  {
+    id: 'advanced-skin-treatments',
+    kicker: 'Amber · Advanced Aesthetics',
+    title: 'Advanced Skin Treatments',
+    collectionSlugs: ['advanced-facials', 'microchanneling-microneedling', 'skin-renewal'],
+  },
+  {
+    id: 'injectables-structural-enhancements',
+    kicker: 'Diana · Medical Aesthetics',
+    title: 'Injectables & Structural Enhancements',
+    collectionSlugs: ['injectables-bio-fillers'],
+  },
+  {
+    id: 'skin-health-corrective-care',
+    kicker: 'Skin Health',
+    title: 'Skin Health & Corrective Care',
+    collectionSlugs: ['facials', 'acne-bootcamp', 'enhancements-add-ons'],
+  },
+  {
+    id: 'wellness-performance-support',
+    kicker: 'Wellness',
+    title: 'Wellness & Performance Support',
+    collectionSlugs: ['wellness-restoration', 'permanent-jewelry'],
+  },
+  {
+    id: 'beauty-grooming',
+    kicker: 'Aundrea & Brandy · Beauty Studio',
+    title: 'Beauty & Grooming',
+    collectionSlugs: ['lash-services', 'makeup', 'waxing'],
+  },
+];
+
+const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+const bySlug = new Map<string, ServiceCollection>(collections.map((c) => [c.slug, c]));
+
+/** Hub docs are landing pages, not bookable services — keep them out of the menu list. */
+const bookable = (services: Service[]): Service[] => services.filter((s) => s.kind !== 'hub');
+
+interface ResolvedSection extends GroupSection {
+  collections: { collection: ServiceCollection; services: Service[] }[];
+}
+
+const sections: ResolvedSection[] = SERVICE_GROUP_SECTIONS.map((section) => ({
+  ...section,
+  collections: section.collectionSlugs
+    .map((slug) => bySlug.get(slug))
+    .filter((c): c is ServiceCollection => Boolean(c))
+    .map((collection) => ({ collection, services: bookable(collection.services) }))
+    .filter(({ services }) => services.length > 0),
+})).filter((section) => section.collections.length > 0);
+
+// Anything not mapped above still renders (future collections never silently vanish).
+const mappedSlugs = new Set(SERVICE_GROUP_SECTIONS.flatMap((s) => s.collectionSlugs));
+const unmapped = collections
+  .filter((c) => !mappedSlugs.has(c.slug))
+  .map((collection) => ({ collection, services: bookable(collection.services) }))
+  .filter(({ services }) => services.length > 0);
+
+let cardNumber = 0;
+const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
 ---
 
 <BaseLayout
@@ -21,25 +93,97 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
     title="Our Services"
     kicker="What We Offer"
     size="small"
-    backgroundImage="/images/hor-skin-studio.webp"
+    backgroundImage="/images/banner/hr-br-7.webp"
   />
 
-  <!-- Services List -->
-  <section class="bg-charcoal py-[clamp(36px,5vw,72px)]">
-    <div class="max-w-[1280px] mx-auto px-6">
-      {services.map((service, index) => (
-        <ServiceCard
-          title={service.title}
-          slug={service.slug}
-          tagline={service.tagline}
-          image={service.image}
-          variant="row"
-          number={`${String(index + 1).padStart(2, '0')}`}
-          objectId={service._id}
-        />
+  <!-- Group index (jump nav) -->
+  <nav aria-label="Service groups" class="bg-charcoal border-b border-gold-metal/10 py-6 px-6">
+    <div class="max-w-[1280px] mx-auto flex flex-wrap gap-x-8 gap-y-3">
+      {sections.map((section) => (
+        <a
+          href={`#${section.id}`}
+          class="text-[11px] tracking-[0.2em] uppercase text-gold border-b border-transparent hover:border-gold pb-0.5 transition-colors"
+        >
+          {section.title}
+        </a>
       ))}
     </div>
-  </section>
+  </nav>
+
+  <!-- Grouped services -->
+  {sections.map((section, sectionIndex) => (
+    <section
+      id={section.id}
+      class={`${sectionIndex % 2 === 0 ? 'bg-charcoal' : 'bg-charcoal-light'} py-[clamp(40px,6vw,80px)] scroll-mt-24`}
+    >
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="max-w-[720px] mb-10">
+          <span class="kicker">{section.kicker}</span>
+          <h2 class="font-serif text-[clamp(26px,3.6vw,38px)] text-ink mt-2">{section.title}</h2>
+        </div>
+
+        {section.collections.map(({ collection, services }) => (
+          <div class="mb-12 last:mb-0">
+            {section.collections.length > 1 && (
+              <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
+                <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">
+                  <a href={`/services/collections/${collection.slug}/`} class="hover:text-gold transition-colors">
+                    {collection.title}
+                  </a>
+                </h3>
+                <a
+                  href={`/services/collections/${collection.slug}/`}
+                  class="learn-more text-[11px] whitespace-nowrap ml-auto"
+                >
+                  View {collection.title} →
+                </a>
+              </div>
+            )}
+            {services.map((service) => (
+              <ServiceCard
+                title={service.title}
+                slug={service.slug}
+                tagline={service.tagline}
+                image={service.image}
+                variant="row"
+                number={nextNumber()}
+                objectId={service._id}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  {unmapped.length > 0 && (
+    <section id="more" class="bg-charcoal-light py-[clamp(40px,6vw,80px)] scroll-mt-24">
+      <div class="max-w-[1280px] mx-auto px-6">
+        <div class="max-w-[720px] mb-10">
+          <span class="kicker">More at House of Rose</span>
+          <h2 class="font-serif text-[clamp(26px,3.6vw,38px)] text-ink mt-2">Additional Services</h2>
+        </div>
+        {unmapped.map(({ collection, services }) => (
+          <div class="mb-12 last:mb-0">
+            <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
+              <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">{collection.title}</h3>
+            </div>
+            {services.map((service) => (
+              <ServiceCard
+                title={service.title}
+                slug={service.slug}
+                tagline={service.tagline}
+                image={service.image}
+                variant="row"
+                number={nextNumber()}
+                objectId={service._id}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- Also at House of Rose — Professional Makeup (singleton hub, not a service doc) -->
   <section class="bg-charcoal-light py-[clamp(40px,6vw,72px)] px-6 border-t border-gold-metal/10">
@@ -65,7 +209,7 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
   <section class="bg-charcoal py-[clamp(40px,6vw,72px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[1080px] mx-auto">
       <a
-		 href="/services/microchanneling/"
+        href="/services/microchanneling/"
         class="group grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-6 bg-breath p-8 transition-colors hover:bg-charcoal-light"
       >
         <div>
@@ -140,7 +284,7 @@ const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
+        <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">
           Book Online
         </a>
       </div>

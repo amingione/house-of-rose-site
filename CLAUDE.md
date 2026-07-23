@@ -195,6 +195,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 - `SANITY_API_WRITE_TOKEN` = (secret — server-side lead submission writes, do not commit)
 - `PUBLIC_SITE_URL` = `https://houseofrosefl.com`
 - `PUBLIC_BOOKING_EMAIL` = `info@houseofrosefl.com`
+- `PUBLIC_MAPBOX_ACCESS_TOKEN` = browser-safe public token (production value is URL-restricted to `houseofrosefl.com`)
 
 **Netlify UI configuration:**
 - **Studio site**: No base directory needed (uses root `netlify.toml`)
@@ -293,6 +294,7 @@ Production: set in Netlify dashboard
 | `SANITY_API_WRITE_TOKEN` | web functions | Server-only — creates lead submissions, never expose to browser |
 | `PUBLIC_SITE_URL` | web | Canonical URL for meta/og |
 | `PUBLIC_BOOKING_EMAIL` | web | Used on Book Now `mailto:` links |
+| `PUBLIC_MAPBOX_ACCESS_TOKEN` | web | Browser-safe `pk.` token for the contact map, address search, and directions; production token is URL-restricted |
 
 ---
 

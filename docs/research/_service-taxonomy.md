@@ -1,3 +1,5 @@
+> ⚠️ **PRICING IN THIS DOC IS SUPERSEDED (2026-07-23).** GlossGenius is commerce truth; the live menu is `docs/services/ALL-SERVICES-PRICING.MD`. Amber ruled: GLP-1 = GG $225/$325 · IVs = GG prices · GlowTox approved & live · memberships/Rose Circle deleted everywhere. Structure/taxonomy content below remains valid reference.
+
 # House of Rose — Canonical Service Taxonomy
 
 **Date:** 2026-07-13 · **Source:** Amber's intended categorization

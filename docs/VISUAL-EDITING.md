@@ -16,6 +16,7 @@ side-by-side visual editing. It sits **on top of** the existing Sanity project
 | Piece | Location | Purpose |
 |-------|----------|---------|
 | Editor config | `stackbit.config.ts` (repo root) | Connects the editor to Sanity, maps page types → routes, runs Astro in the editor container |
+| Sidebar shortcuts | `stackbit.config.ts` → `sidebarButtons` | Opens homepage content, site settings, the skin-analysis preview, Sanity Studio, and the Netlify project |
 | Dev deps | root `devDependencies` | `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types` — dev-only, never imported by the site |
 | Script | `npm run dev:visual` | `stackbit dev` (runs the local visual editor on `:3000`) |
 | Annotation helper | `packages/web/src/lib/visualEditing.ts` | `data-sb-*` helpers for inline click-to-edit |

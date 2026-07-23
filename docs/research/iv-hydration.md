@@ -1,14 +1,14 @@
 # IV Hydration & Vitamin Therapy — Research Brief
 
 **Date:** 2026-07-13 · **Provider lane:** Diana, RN (RN-administered infusions under medical-director oversight) · **Status:** draft for Phase 3/4 consumption · Sources at end.
-
+- PROVIDER LANE DOESNT GET MENTIONED IN CLIENT FACING ANYTHING
 > Compliance north star for this topic: hydration and vitamin infusions **support wellness** — they do **not** treat, cure, or prevent any disease. Every claim below uses "supports / helps replenish / designed to / many clients notice." Candidacy, contraindications, and any combination are confirmed by the licensed provider (Diana, RN) at consultation, under medical-director oversight. Not every client is a candidate; individual outcomes vary.
 
 ---
 
 ## 1. The 3-sentence answer
 
-IV hydration and vitamin therapy at House of Rose is an RN-administered infusion of fluids, electrolytes, and vitamins delivered directly into a vein by Diana, RN, under medical-director oversight, at our private Punta Gorda studio. Because the infusion bypasses digestion, it helps replenish fluid and nutrients quickly and completely — the menu runs from a simple **Hydration IV** (a fast fluid-and-electrolyte reset) up through the classic **Myers' Cocktail**, with targeted blends for immune support, post-activity recovery, a from-within "beauty glow," and morning-after rebound. It is designed to support hydration and overall wellness for SW Florida's heat-, water-, and activity-heavy lifestyle — it is not a treatment for any medical condition, and Diana screens every client for candidacy first.
+IV hydration and vitamin therapy at House of Rose is an infusion of fluids, electrolytes, and vitamins delivered directly , at our private Punta Gorda studio. Because the infusion bypasses digestion, it helps replenish fluid and nutrients quickly and completely — the menu runs from a simple **Hydration IV** (a fast fluid-and-electrolyte reset) up through the classic **Myers' Cocktail**, with targeted blends for immune support, post-activity recovery, a from-within "beauty glow," and morning-after rebound. It is designed to support hydration and overall wellness for SW Florida's heat-, water-, and activity-heavy lifestyle — it is not a treatment for any medical condition, and Diana screens every client for candidacy first.
 
 ## 2. How it works
 
@@ -19,7 +19,6 @@ IV hydration and vitamin therapy at House of Rose is an RN-administered infusion
 - **Water-soluble vitamins (B-complex, B12, vitamin C).** Given orally, absorption of these is capped and excess is lost; delivered IV, higher circulating levels are reached transiently. B vitamins are cofactors in energy metabolism; B12 (often as hydroxocobalamin) supports red-blood-cell and nerve function; vitamin C is an antioxidant and a cofactor in collagen synthesis.
 - **Magnesium & calcium.** Minerals in the Myers'-style blends; magnesium supports muscle and nervous-system function and is the classic Myers' component.
 - **Glutathione.** The body's "master antioxidant" tripeptide — it helps neutralize reactive oxygen species (the byproducts of normal metabolism) and supports the cellular redox balance the skin depends on for clarity. This is the science behind the "beauty / detox" positioning of the Glutathione add-on and Beauty Glow IV.
-- **NAD+.** Nicotinamide adenine dinucleotide is a coenzyme every cell needs for mitochondrial energy (ATP) production and for enzymes that handle DNA repair and cellular signaling. It's positioned around cellular energy and recovery. Honesty note: the human clinical evidence for infused NAD+ is early — tolerability data exist, but metabolic outcomes are still being studied. We frame it as "supports cellular energy," never as an anti-aging or disease claim.
 
 **The honest ceiling (keep this in the copy, not buried).** The high-quality clinical evidence that IV vitamin drips outperform a good diet and adequate oral hydration *in already-healthy people* is limited — reputable sources (Cleveland Clinic, peer-reviewed reviews) are candid that this is a wellness/self-care tool, not a proven medical therapy for the average person. That honesty is a feature: it's exactly why the value here is the **RN + medical-director standard of care**, not a miracle-cure promise.
 

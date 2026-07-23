@@ -126,7 +126,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950`,
     `- **Phone:** (844) 941-7673`,
     `- **Email:** info@houseofrosefl.com`,
-    `- **Booking:** https://houseofrose.glossgenius.com/services`,
+    `- **Booking:** https://houseofrose.glossgenius.com/book`,
     `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
     `- **Instagram:** @houseofrosefl`,
     `- **Facebook:** House-Of-Rose-Aesthetics`,

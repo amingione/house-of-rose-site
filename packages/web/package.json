@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
+    "@mapbox/search-js-web": "^1.5.1",
     "@polgubau/astro-reveal": "^1.0.2",
     "@portabletext/to-html": "^5.0.2",
     "@sanity/client": "^6.22.2",
@@ -22,6 +23,7 @@
     "astro": "^5.7.0",
     "astro-seo": "^1.1.0",
     "astro-seo-schema": "^5.2.0",
+    "mapbox-gl": "^3.26.0",
     "nanostores": "^1.4.0",
     "schema-dts": "^1.1.5",
     "stripe": "^22.3.1",

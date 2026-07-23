@@ -121,6 +121,13 @@ const SINGLETON_PAGE_ROUTES: Record<string, string> = {
   makeupEventsPage: '/services/professional-makeup/events',
 };
 
+const SANITY_PROJECT_ID = requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']);
+const SANITY_DATASET =
+  process.env.SANITY_DATASET ?? process.env.PUBLIC_SANITY_DATASET ?? 'production';
+const SANITY_SOURCE_PROJECT_ID = `${SANITY_PROJECT_ID}:${SANITY_DATASET}`;
+const SANITY_STUDIO_URL =
+  process.env.SANITY_STUDIO_URL ?? 'https://studio.houseofrosefl.com';
+
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
   ssgName: 'custom',
@@ -159,12 +166,50 @@ export default defineStackbitConfig({
     new SanityContentSource({
       rootPath: path.resolve(ROOT, 'packages/web'),
       studioPath: path.resolve(ROOT, 'packages/studio'),
-      studioUrl: process.env.SANITY_STUDIO_URL ?? 'https://studio.houseofrosefl.com',
-      projectId: requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']),
+      studioUrl: SANITY_STUDIO_URL,
+      projectId: SANITY_PROJECT_ID,
       token: requireEnv(['SANITY_ACCESS_TOKEN', 'SANITY_API_WRITE_TOKEN']),
-      dataset:
-        process.env.SANITY_DATASET ?? process.env.PUBLIC_SANITY_DATASET ?? 'production',
+      dataset: SANITY_DATASET,
     }),
+  ],
+
+  // Persistent editor shortcuts for the content and tools used most often.
+  // Relative links navigate inside the preview; absolute links open a new tab.
+  sidebarButtons: [
+    {
+      label: 'Home Page Content',
+      type: 'document',
+      icon: 'global-objects',
+      documentId: 'homepage',
+      srcType: 'sanity',
+      srcProjectId: SANITY_SOURCE_PROJECT_ID,
+    },
+    {
+      label: 'Site Settings',
+      type: 'document',
+      icon: 'tools',
+      documentId: 'siteSettings',
+      srcType: 'sanity',
+      srcProjectId: SANITY_SOURCE_PROJECT_ID,
+    },
+    {
+      label: 'Skin Analysis Page',
+      type: 'link',
+      icon: 'insights',
+      url: '/skin-analysis',
+    },
+    {
+      label: 'Sanity Studio',
+      type: 'link',
+      icon: 'external-link',
+      url: SANITY_STUDIO_URL,
+    },
+    {
+      label: 'Netlify Project',
+      type: 'link',
+      icon: 'external-link',
+      url: 'https://app.netlify.com/projects/house-of-rose-web',
+    },
   ],
 
   // Sanity CSI infers documents as `data` models; promote the page-backed

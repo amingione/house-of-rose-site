@@ -1,3 +1,5 @@
+> ⚠️ **PRICING IN THIS DOC IS SUPERSEDED (2026-07-23).** GlossGenius is commerce truth; the live menu is `docs/services/ALL-SERVICES-PRICING.MD`. Amber ruled: GLP-1 = GG $225/$325 · IVs = GG prices · GlowTox approved & live · memberships/Rose Circle deleted everywhere. Structure/taxonomy content below remains valid reference.
+
 # Sanity `serviceCollection` Restructure — DRAFT for Amber
 
 **Date:** 2026-07-13 · **Status:** draft spec for approval — **no Sanity docs changed yet** (writes are gated;

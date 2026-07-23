@@ -68,6 +68,12 @@ export const service = defineType({
       description: 'Starting-at price shown on the site (e.g., "From $399"). Leave empty for consult-only services.',
     }),
     defineField({
+      name: 'bookingUrl',
+      title: 'GlossGenius Booking Link',
+      type: 'url',
+      description: 'Per-service booking link from GlossGenius (Settings → Booking Links). Site falls back to houseofrose.glossgenius.com/book when empty.',
+    }),
+    defineField({
       name: 'duration',
       title: 'Duration',
       type: 'string',

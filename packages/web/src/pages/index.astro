@@ -6,7 +6,7 @@ import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
 import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 
 // Booking + internal links (single source of truth so they're easy to swap)
-const BOOKING_URL = "https://houseofrose.glossgenius.com/services";
+const BOOKING_URL = "https://houseofrose.glossgenius.com/book";
 const SKIN_ANALYSIS_URL = "/skin-analysis/";
 const SHOP_URL = "/shop/";
 
@@ -48,6 +48,19 @@ const serviceGroups = hp.serviceGroups?.length
 		imagePath: FALLBACK_SERVICE_GROUPS[index]?.imagePath ?? FALLBACK_SERVICE_GROUPS[0].imagePath,
 	}))
 	: FALLBACK_SERVICE_GROUPS;
+
+// Each homepage pillar deep-links to its grouped section on /services/ (anchors
+// defined in services/index.astro SERVICE_GROUP_SECTIONS). Keyed by a normalized
+// name so Sanity copy tweaks ("Advanced" vs "Regenerative") still resolve.
+const GROUP_ANCHORS: Record<string, string> = {
+	"advanced skin treatments": "/services/#advanced-skin-treatments",
+	"regenerative skin treatments": "/services/#advanced-skin-treatments",
+	"injectables & structural enhancements": "/services/#injectables-structural-enhancements",
+	"skin health & corrective care": "/services/#skin-health-corrective-care",
+	"wellness & performance support": "/services/#wellness-performance-support",
+};
+const groupHref = (name: string): string =>
+	GROUP_ANCHORS[name.trim().toLowerCase()] ?? "/services/";
 
 ---
 
@@ -103,7 +116,7 @@ const serviceGroups = hp.serviceGroups?.length
 		</div>
 		<div class="relative min-h-[340px] bg-charcoal-lighter">
 			<img
-				src="/images/hor-lounge.webp"
+				src="/images/welcome-house-of-rose.webp"
 				alt="The House of Rose Aesthetics lounge in Punta Gorda, Florida"
 				loading="lazy"
 				class="w-full h-full object-cover"
@@ -174,7 +187,7 @@ const serviceGroups = hp.serviceGroups?.length
 			<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
 				{
 					serviceGroups.map((group, i) => (
-						<a href="/services/" class="group block bg-charcoal">
+						<a href={groupHref(group.name)} class="group block bg-charcoal">
 							<div class="aspect-[16/10] overflow-hidden bg-charcoal-lighter">
 								<img
 									src={group.imagePath}
@@ -214,51 +227,51 @@ const serviceGroups = hp.serviceGroups?.length
 	<section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2">
 		<div class="relative min-h-[340px] bg-charcoal order-2 md:order-1">
 			<img
-				src="/images/house-of-rose/space/vignette-brochures-card.webp"
-				alt="In-office skin analysis at House of Rose Aesthetics"
+				src="/images/editorial/home/skin-analysis-consultation.webp"
+				alt="A client reviewing her skin analysis with a House of Rose aesthetics provider"
 				loading="lazy"
 				class="w-full h-full object-cover"
-				width="1200"
-				height="900"
+				width="1448"
+				height="1086"
 			/>
 		</div>
 		<div
 			class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2"
 		>
-			<span class="kicker" {...sbFieldPath("scanKicker")}>{hp.scanKicker ?? "AI Skin Analysis"}</span>
+			<span class="kicker" {...sbFieldPath("scanKicker")}>{hp.scanKicker ?? "Complimentary AI Skin Analysis"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 				{...sbFieldPath("scanHeading")}
 			>
-				{hp.scanHeading ?? "Your plan should start with evidence."}
+				{hp.scanHeading ?? "Get to know your skin—and get excited about what's possible."}
 			</h2>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara1")}
 			>
-				{hp.scanPara1 ?? "Our in-studio AI skin scanner uses advanced imaging to evaluate visible and subsurface patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage."}
+				{hp.scanPara1 ?? "Wondering what your skin actually needs? Your complimentary analysis gives you a closer look at texture, hydration, pores, pigmentation, fine lines, and sun exposure—all in one easy, non-invasive appointment."}
 			</p>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara2")}
 			>
-				{hp.scanPara2 ?? "That analysis becomes your baseline: a clearer way to choose the right treatments, track change over time, and understand why a provider recommends one step before another."}
+				{hp.scanPara2 ?? "We review everything with you in plain language, listen to what you want, and map out the options that fit your goals. You leave with answers, a personalized starting point, and no pressure to book a treatment."}
 			</p>
 			<p
 				class="text-ink/90 text-[15px] italic leading-[1.75] max-w-[560px] mb-7"
 				{...sbFieldPath("scanQuote")}
 			>
-				{hp.scanQuote ?? "It's the trust factor behind every truly personalized plan."}
+				{hp.scanQuote ?? "Come curious. Leave feeling clear, confident, and ready for what's next."}
 			</p>
 			<div class="flex gap-3 flex-wrap">
 				<a href={SKIN_ANALYSIS_URL} class="btn-gold inline-flex" {...sbFieldPath("scanCtaPrimaryText")}
-					>{hp.scanCtaPrimaryText ?? "Learn About AI Skin Analysis"}</a
+					>{hp.scanCtaPrimaryText ?? "See What to Expect"}</a
 				>
 				<a
 					href={BOOKING_URL}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book Your Scan"}</a
+					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book My Complimentary Analysis"}</a
 				>
 			</div>
 		</div>

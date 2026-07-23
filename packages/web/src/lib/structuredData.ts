@@ -32,7 +32,7 @@ export const BUSINESS_PROFILES = [
 ] as const;
 
 export const BUSINESS_URLS = {
-  booking: 'https://houseofrose.glossgenius.com/services',
+  booking: 'https://houseofrose.glossgenius.com/book',
   map: 'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950',
 } as const;
 

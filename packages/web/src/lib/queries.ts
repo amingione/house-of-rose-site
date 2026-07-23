@@ -103,6 +103,7 @@ export interface Service {
   tagline?: string;
   duration?: string;
   price?: number | string;
+  bookingUrl?: string;
   description?: string;
   whoItsFor?: string;
   process?: string[];
@@ -322,6 +323,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     tagline,
     price,
     duration,
+    bookingUrl,
     description,
     whoItsFor,
     process,
@@ -367,6 +369,7 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
       _id,
       title,
       "slug": slug.current,
+      kind,
       tagline,
       duration,
       price,
