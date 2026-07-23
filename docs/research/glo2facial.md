@@ -114,10 +114,10 @@ Maps to these **existing** `/concerns/` slugs:
 
 **Try-first / journey:**
 1. **Start:** Glo2Facial (gateway, $185) — experience the studio, get a skin analysis.
-2. **Correct:** graduate into ProCell Microchanneling (Pro → MD) or Microneedling — Corrective for texture/scars.
+2. **Correct:** graduate into Procell Microchanneling (Pro → MD) or Microneedling — Corrective for texture/scars.
 3. **Upgrade/finish:** add Topical PRF (Amber, topical only) or a Glo2Facial Finish; maintain with LED and monthly facials.
 
-**Retail follow-through (name real HoR shop brands):** support the glow between visits with a gentle brightening/hydrating home routine — the studio carries **Skin Script**, **GlyMed+**, **Face Reality** (acne-prone), **ProCell** aftercare, and the **House of Rose** line. Recommend a hydrating serum + daily SPF pairing; final product picks are the provider's at consultation. (Do not claim products "cure" or "treat" any condition.)
+**Retail follow-through (name real HoR shop brands):** support the glow between visits with a gentle brightening/hydrating home routine — the studio carries **Skin Script**, **GlyMed+**, **Face Reality** (acne-prone), **Procell** aftercare, and the **House of Rose** line. Recommend a hydrating serum + daily SPF pairing; final product picks are the provider's at consultation. (Do not claim products "cure" or "treat" any condition.)
 
 ---
 
@@ -208,7 +208,7 @@ Maps to these **existing** `/concerns/` slugs:
 ## 12. Why House of Rose
 
 - **The gateway, done right.** Glo2Facial is our deliberate entry point — a comfortable, no-downtime, luxurious first experience that opens the door to Amber's full advanced-skin lane (microchanneling, PRF-topical, corrective work). Most competitors sell it as a one-off; we build it into a real skin journey.
-- **The signature finish no one else pairs.** Layering the Glo2Facial Finish (+$95) onto microchanneling/microneedling is a House of Rose signature — clients leave glowing, not just flushed. Locally, no competitor pairs ProCell growth-factor channeling or topical PRF with an oxygenating finish.
+- **The signature finish no one else pairs.** Layering the Glo2Facial Finish (+$95) onto microchanneling/microneedling is a House of Rose signature — clients leave glowing, not just flushed. Locally, no competitor pairs Procell growth-factor channeling or topical PRF with an oxygenating finish.
 - **Right treatment, honest lane.** We'll tell you when hydrodermabrasion with Brandy is the better everyday call, when dermaplaning is what you actually want, and when needling is the tool for real texture change — no upselling into the wrong thing.
 - **Local & event-ready.** Punta Gorda / Charlotte County / SW Florida clients book it before weddings, reunions, and photoshoots precisely because there's no recovery — a private, appointment-only studio (opens July 9, 2026) where the licensed provider tailors the pod and plan to your skin.
 - **Grounded, never overclaimed.** We describe the real mechanism (exfoliate + infuse + oxygenate via the Bohr effect), cite the clinical study honestly, and keep results claims to "helps reveal," "for the appearance of," and "many clients notice."
@@ -229,7 +229,7 @@ Maps to these **existing** `/concerns/` slugs:
 - Concerns: `sun-damage`, `fine-lines-laxity`, `dark-circles` (also `acne-scarring`, `hair-thinning`, `stretch-marks`).
 - `localAreas.punta-gorda` — serves `glo2facial`.
 - Cost guide `prf-microneedling-cost-punta-gorda` (PRF-only; factors list still includes "Membership" — stale).
-- Shop brands present: `procell`, `glymed`, `skin-script`, `face-reality`, `house-of-rose`.
+- Shop brands present: `Procell`, `glymed`, `skin-script`, `face-reality`, `house-of-rose`.
 
 **Web sources (mechanism / candidacy only — no prices, no imported medical claims):**
 - Diaz D, Boonsiri M, Okawa J, Dekranes D, Ditre CM. "OxyGeneo®—A Unique Three-in-one Treatment of Exfoliation, Infusion, and Oxygenation via the Bohr Effect and TriPollar™ Radiofrequency for Skin Rejuvenation." *J Clin Aesthet Dermatol.* 2017;10(11):22–25. PMC5774907. — **Peer-reviewed** primary source for the Bohr-effect/CO₂ mechanism, capsule chemistry, three-in-one process, candidacy exclusions, no-downtime finding, and honest efficacy (texture/tone improved; fine lines modest; n=10).

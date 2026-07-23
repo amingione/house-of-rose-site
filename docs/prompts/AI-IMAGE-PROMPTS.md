@@ -48,7 +48,7 @@ Dimensions follow the site's existing ratio system so exports drop straight into
 - **Lighting**: soft window daylight + warm recessed cans, no flash
 - **Mood**: calm, quietly opulent, unhurried
 
-## 3. Advanced Facials — skin studio treatment in progress (Amber's lane: microchanneling, microneedling, ProCell, dermaplaning)
+## 3. Advanced Facials — skin studio treatment in progress (Amber's lane: microchanneling, microneedling, Procell, dermaplaning)
 **DONE**
 
 **Prompt:**

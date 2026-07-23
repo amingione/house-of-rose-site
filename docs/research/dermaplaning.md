@@ -85,7 +85,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 
 **Try first / sequencing.** For a client's first advanced visit, the entry point is typically the **Glo2Facial ($185)** gateway; dermaplaning is the natural quick add-on or standalone "event glow." For anyone booked for needling, a peel, or a Glo2Facial, dermaplaning as **prep** amplifies the result. Dermaplaning is not the corrective step — it feeds into the corrective pathway (needling / BioRePeel) by keeping the surface primed.
 
-**Retail follow-through (name real shop brands).** Because dermaplaned skin absorbs product better and is briefly more sun-sensitive, the sensible take-home is a **broad-spectrum SPF** (essential in SW Florida) plus **gentle hydration**. House of Rose carries professional retail brands — **ProCell** (aftercare/growth-factor serums), **GlyMed+**, **Skin Script**, and **Face Reality** — good sources for a daily SPF, a gentle non-acid cleanser, and a hydrating serum to wear between sessions. Advise pausing at-home retinoids/acids for ~72 hours post-treatment.
+**Retail follow-through (name real shop brands).** Because dermaplaned skin absorbs product better and is briefly more sun-sensitive, the sensible take-home is a **broad-spectrum SPF** (essential in SW Florida) plus **gentle hydration**. House of Rose carries professional retail brands — **Procell** (aftercare/growth-factor serums), **GlyMed+**, **Skin Script**, and **Face Reality** — good sources for a daily SPF, a gentle non-acid cleanser, and a hydrating serum to wear between sessions. Advise pausing at-home retinoids/acids for ~72 hours post-treatment.
 
 ## 8. Cost factors
 
@@ -159,7 +159,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 **Where the dermaplaning page should link *out*:**
 - `/services/glo2facial/` (the gateway/finish pairing) and the BioRePeel/peel service page.
 - `/services/facial-waxing/` — the honest "if you want coarse-hair removal, here's waxing" hand-off.
-- `/shop/` (SPF + gentle hydration retail follow-through: ProCell, GlyMed+, Skin Script, Face Reality).
+- `/shop/` (SPF + gentle hydration retail follow-through: Procell, GlyMed+, Skin Script, Face Reality).
 - `/faq/` and `/skin-analysis/` (book a consult).
 
 **Proposed new pages (type + slug):**

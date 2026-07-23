@@ -29,7 +29,7 @@ This package turns the 30-day acquisition plan into publish-ready campaign input
 | 01 | Local proof | You've passed it. Now come inside. | Real exterior | `/skin-analysis/` |
 | 02 | Consultation | See your skin first. | Real welcome area | `/skin-analysis/` |
 | 03 | Studio experience | A private appointment. A clear plan. | Real studio arrival and exterior | `/skin-analysis/` |
-| 04 | Advanced skin | Skin quality, planned. | House of Rose ProCell product photograph | `/services/microchanneling/` |
+| 04 | Advanced skin | Skin quality, planned. | House of Rose Procell product photograph | `/services/microchanneling/` |
 | 05 | Injectables | Injectables, with restraint. | Real injectables room | `/services/injectables/` |
 | 06 | Provider voice | Meet the person behind the plan. | Supplied Diana, RN portrait | `/services/injectables/` |
 
@@ -48,7 +48,7 @@ This package turns the 30-day acquisition plan into publish-ready campaign input
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
 - **Phone:** (844) 941-7673
 - **Hours:** Monday–Friday, 9:00 AM–5:00 PM; weekends closed
-- **Phase-one services:** AI-assisted skin consultation, Glo2Facial, ProCell microchanneling, Botox, Daxxify, and dermal fillers.
+- **Phase-one services:** AI-assisted skin consultation, Glo2Facial, Procell microchanneling, Botox, Daxxify, and dermal fillers.
 
 Business facts and current service names were checked against `CLAUDE.md`, `docs/research/_pricing-catalog.md`, and the current service routes. Prices are intentionally omitted from the ads because display and commerce sources still contain differences that must not be flattened.
 

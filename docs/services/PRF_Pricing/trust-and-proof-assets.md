@@ -19,7 +19,7 @@ Diana is a registered nurse and House of Rose's injector. She leads all injectab
 **Card line:** Registered Nurse · Aesthetic Nurse Injector
 
 ### Amber Mingione — Advanced Aesthetics Specialist
-Amber leads the advanced facial lane: microchanneling, microneedling, ProCell, topical PRF, dermaplaning, BioRePeel (as an add-on to her needling work), Glo2Facial, and carboxy. She's also a **Face Reality Certified Acne Specialist** who runs the full acne program. One boundary she keeps crisp: her PRF is **topical only — applied to the skin during treatment, never injected** (injectable PRF is Diana's lane). Amber holds an RN-assistant role alongside her esthetics license, which is part of why the clinical detail here runs deep.
+Amber leads the advanced facial lane: microchanneling, microneedling, Procell, topical PRF, dermaplaning, BioRePeel (as an add-on to her needling work), Glo2Facial, and carboxy. She's also a **Face Reality Certified Acne Specialist** who runs the full acne program. One boundary she keeps crisp: her PRF is **topical only — applied to the skin during treatment, never injected** (injectable PRF is Diana's lane). Amber holds an RN-assistant role alongside her esthetics license, which is part of why the clinical detail here runs deep.
 
 **Card line:** Advanced Aesthetics Specialist · Face Reality Certified Acne Expert
 

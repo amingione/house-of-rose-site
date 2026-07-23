@@ -27,7 +27,7 @@ leaves `ctaLabel` blank.
 |---|---|---|
 | `product` | A retail item. `price` (cents) + `inStock` make it buyable in the native cart; `weightOz`/`shippable` drive live shipping rates; `purchaseUrl` is now the ESCAPE HATCH for items we don't sell ourselves; `ctaLabel` (custom button text), `badge` (ribbon tag), `isFeatured` (Top Sellers rail) | Yes |
 | `promotion` | A sale/announcement banner. Links internal (a promo page, a product, or a `/shop#brandKey` anchor) or external (checkout). Date-windowed and brand/category-scoped, both optional | Yes |
-| `shopBrand` | Per-carried-brand storefront copy (ProCell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. **Not** the same as `brandProfile`, which is House of Rose's own brand-voice/strategy document | Yes |
+| `shopBrand` | Per-carried-brand storefront copy (Procell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. **Not** the same as `brandProfile`, which is House of Rose's own brand-voice/strategy document | Yes |
 
 If a brand has products but no `shopBrand` document yet, `shop.astro` falls
 back to hardcoded intro copy (`FALLBACK_BRAND_COPY`) so the page never looks

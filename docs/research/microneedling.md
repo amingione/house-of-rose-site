@@ -2,13 +2,13 @@
 
 **Date:** 2026-07-13 · **Provider lane:** Amber (Advanced Esthetics — regenerative & corrective skin) · **PRF is topical only, never injected** · **Status:** draft for Phase 3/4 consumption · Sources at end.
 
-> Scope: the **corrective/adjustable-depth microneedling category** (pen & stamp), on **face and body**, plus the **topical-PRF upgrade** on a needling protocol. This is Amber's lane. It is deliberately distinct from **ProCell microchanneling** (the branded, fixed-protocol, growth-factor version — its own brief). Where the two overlap, this brief draws the honest line.
+> Scope: the **corrective/adjustable-depth microneedling category** (pen & stamp), on **face and body**, plus the **topical-PRF upgrade** on a needling protocol. This is Amber's lane. It is deliberately distinct from **Procell microchanneling** (the branded, fixed-protocol, growth-factor version — its own brief). Where the two overlap, this brief draws the honest line.
 
 ---
 
 ## 1. The 3-sentence answer
 
-Corrective microneedling at House of Rose Aesthetics in Punta Gorda is adjustable-depth collagen-induction therapy: a pen or stamp device creates controlled micro-channels in the skin, and the provider dials the needle depth and pattern to a **specific correction** — the appearance of deeper or rolling acne scars, defined textural scarring, and stretch-mark texture on the body. It is not a stronger version of a facial; it is a different tool for a different job than ProCell microchanneling (which is the fixed-protocol choice for overall skin quality and glow). Amber performs it as an advanced esthetician, often as a planned series, with an optional **topical PRF** boost made from your own blood and applied **on the surface only — never injected**.
+Corrective microneedling at House of Rose Aesthetics in Punta Gorda is adjustable-depth collagen-induction therapy: a pen or stamp device creates controlled micro-channels in the skin, and the provider dials the needle depth and pattern to a **specific correction** — the appearance of deeper or rolling acne scars, defined textural scarring, and stretch-mark texture on the body. It is not a stronger version of a facial; it is a different tool for a different job than Procell microchanneling (which is the fixed-protocol choice for overall skin quality and glow). Amber performs it as an advanced esthetician, often as a planned series, with an optional **topical PRF** boost made from your own blood and applied **on the surface only — never injected**.
 
 ---
 
@@ -74,8 +74,8 @@ Corrective microneedling at House of Rose Aesthetics in Punta Gorda is adjustabl
 
 ## 5. Comparisons (honest)
 
-**Corrective microneedling vs. ProCell Microchanneling.** Two different tools, not gentle-vs-strong tiers of one thing.
-- **ProCell microchanneling wins** when the goal is **overall skin quality** — texture, fine lines, enlarged-looking pores, dullness, glow, maintenance — and when the client is sensitive skin / a first-timer wanting predictable low downtime. It's a **branded, fixed-protocol stamping system** delivered with ProCell's professional growth-factor serums (Pro for under-40/preventative; MD for 40+, 2× the growth factors of Pro). Predictable-recovery, comfortable, face + approved body areas.
+**Corrective microneedling vs. Procell Microchanneling.** Two different tools, not gentle-vs-strong tiers of one thing.
+- **Procell microchanneling wins** when the goal is **overall skin quality** — texture, fine lines, enlarged-looking pores, dullness, glow, maintenance — and when the client is sensitive skin / a first-timer wanting predictable low downtime. It's a **branded, fixed-protocol stamping system** delivered with Procell's professional growth-factor serums (Pro for under-40/preventative; MD for 40+, 2× the growth factors of Pro). Predictable-recovery, comfortable, face + approved body areas.
 - **Corrective microneedling wins** when a **specific correction** is the job and the provider needs to **dial depth and pattern** to it: deeper/rolling acne-scar appearance, defined scar texture, or stretch-mark texture on the body. It's the adjustable-depth pen/stamp category, often planned as a series, ± topical PRF.
 - **In one line:** channeling for *quality and glow*; corrective needling for *depth-targeted correction*. The provider chooses at consultation.
 
@@ -102,7 +102,7 @@ Proposed new concern pages (type: `concern`):
 
 ## 7. Pairings & pathways
 
-**Client journey (from the master menu).** ① **Glo2Facial** — the gateway/entry glow. ② **ProCell Microchanneling** (Pro→MD) *or* **Corrective/Body Microneedling** for correction. ③ **Upgrade** with **Topical PRF** or a **Glo2Facial finish**.
+**Client journey (from the master menu).** ① **Glo2Facial** — the gateway/entry glow. ② **Procell Microchanneling** (Pro→MD) *or* **Corrective/Body Microneedling** for correction. ③ **Upgrade** with **Topical PRF** or a **Glo2Facial finish**.
 
 **Stacks well with (add to a needling treatment):**
 - **Topical PRF** (face / body) — autologous boost, topical only.
@@ -112,9 +112,9 @@ Proposed new concern pages (type: `concern`):
 - **BioRePeel** — resurfacing layer for radiance/texture.
 - **Neck & Décolleté Extension** — extend facial work onto neck/chest.
 
-**Try first / sequencing.** For a first-timer or sensitive skin whose goal is quality/glow, start with Glo2Facial or ProCell microchanneling; escalate to corrective needling when a specific scar/texture/stretch-mark correction is the goal. Body work is planned as a longer series from the outset.
+**Try first / sequencing.** For a first-timer or sensitive skin whose goal is quality/glow, start with Glo2Facial or Procell microchanneling; escalate to corrective needling when a specific scar/texture/stretch-mark correction is the goal. Body work is planned as a longer series from the outset.
 
-**Retail follow-through (real shop brands).** Aftercare and long-term results lean on: a **gentle cleanser**, a **hyaluronic acid serum** (barrier support during healing), a **physical/mineral SPF 25+**, and — once healed — a **retinol** for long-term collagen support. Shop brands carried: **ProCell**, **GlyMed+**, **Skin Script**, **Face Reality**, and **House of Rose**. Match the SPF, HA serum, gentle cleanser, and retinol to the client from these lines at checkout. (Confirm exact SKUs against the live shop.)
+**Retail follow-through (real shop brands).** Aftercare and long-term results lean on: a **gentle cleanser**, a **hyaluronic acid serum** (barrier support during healing), a **physical/mineral SPF 25+**, and — once healed — a **retinol** for long-term collagen support. Shop brands carried: **Procell**, **GlyMed+**, **Skin Script**, **Face Reality**, and **House of Rose**. Match the SPF, HA serum, gentle cleanser, and retinol to the client from these lines at checkout. (Confirm exact SKUs against the live shop.)
 
 ---
 
@@ -146,7 +146,7 @@ Example combination from the menu: **Corrective microneedling + Topical PRF (fac
 
 **What is corrective microneedling?** It's adjustable-depth collagen-induction therapy: a pen or stamp makes controlled micro-channels in the skin, and the provider dials the depth to a specific concern — the appearance of deeper or rolling acne scars, defined texture, or stretch marks on the body.
 
-**How is it different from ProCell microchanneling?** They're two tools for two jobs. ProCell microchanneling is a branded, fixed-protocol stamping system for overall skin quality and glow; corrective microneedling is the adjustable-depth category the provider dials to a specific correction. Neither is simply "stronger" than the other.
+**How is it different from Procell microchanneling?** They're two tools for two jobs. Procell microchanneling is a branded, fixed-protocol stamping system for overall skin quality and glow; corrective microneedling is the adjustable-depth category the provider dials to a specific correction. Neither is simply "stronger" than the other.
 
 **Does it hurt?** Most people feel a vibrating, scratchy, sandpaper-like sensation; deeper settings and bony areas feel more intense. Topical numbing may be used per the provider's policy.
 
@@ -192,19 +192,19 @@ Example combination from the menu: **Corrective microneedling + Topical PRF (fac
 
 **Pages that should link *into* corrective microneedling:**
 - Hub `/services/microchanneling-microneedling/` (the explainer hub — should route "correction" intent here).
-- `/services/microchanneling/` (ProCell) — cross-link "when to choose corrective needling instead."
+- `/services/microchanneling/` (Procell) — cross-link "when to choose corrective needling instead."
 - Concern pages: `/concerns/acne-scarring/`, `/concerns/stretch-marks/`, `/concerns/fine-lines-laxity/`, `/concerns/sun-damage/`.
 - `/compare/prf-microchanneling-vs-microneedling/` and `/cost/prf-microneedling-cost-punta-gorda/`.
 - `/guides/microchanneling-prf/` (the rich static guide) and `/areas/punta-gorda/`.
 - Collection `/services/collections/skin-renewal/`.
 
 **Where these pages should link *out*:**
-- `/services/microneedling-corrective/` → PRF upgrade `/services/prf-microneedling/`, ProCell `/services/microchanneling/`, `/services/biorepeel-advanced-acne-scarring/`, add-ons (`/services/glo2facial/`, `/services/lightstim-led-therapy/`, `/services/dermaplaning/`, `/services/neck-decollete-extension/`), and consult/booking.
+- `/services/microneedling-corrective/` → PRF upgrade `/services/prf-microneedling/`, Procell `/services/microchanneling/`, `/services/biorepeel-advanced-acne-scarring/`, add-ons (`/services/glo2facial/`, `/services/lightstim-led-therapy/`, `/services/dermaplaning/`, `/services/neck-decollete-extension/`), and consult/booking.
 - `/services/microneedling-body/` → `/services/prf-body-treatments/`, `/services/biorepeel-body/`, `/concerns/stretch-marks/`.
 - Both → the comparison, the cost guide, the guide, and `/faq/`.
 
 **Proposed new pages (type + slug):**
-- **comparison** `/compare/microneedling-corrective-vs-procell-microchanneling/` — the core "two tools, two jobs" decision page (currently only the PRF-vs-microneedling comparison exists).
+- **comparison** `/compare/microneedling-corrective-vs-Procell-microchanneling/` — the core "two tools, two jobs" decision page (currently only the PRF-vs-microneedling comparison exists).
 - **comparison** `/compare/microneedling-vs-biorepeel/` — needling vs. peel for scars/texture.
 - **costGuide** `/cost/microneedling-cost-punta-gorda/` — corrective/body microneedling investment, replacing the stale PRF cost-guide numbers/membership factor.
 - **costGuide** `/cost/stretch-mark-treatment-cost-punta-gorda/` — body needling + BioRePeel Body + PRF Body.
@@ -215,7 +215,7 @@ Example combination from the menu: **Corrective microneedling + Topical PRF (fac
 
 ## 12. Why House of Rose
 
-- **The right tool, chosen — not a one-size protocol.** House of Rose treats microchanneling and microneedling as **two distinct tools**, and dials corrective needling's **depth and pattern** to the concern and area rather than running a single fixed setting. That distinction is the differentiator locally: per the master-menu note, no local competitor offers ProCell growth-factor channeling *or* PRF channeling, and the local plain-microneedling anchor is basic (~$195) by comparison.
+- **The right tool, chosen — not a one-size protocol.** House of Rose treats microchanneling and microneedling as **two distinct tools**, and dials corrective needling's **depth and pattern** to the concern and area rather than running a single fixed setting. That distinction is the differentiator locally: per the master-menu note, no local competitor offers Procell growth-factor channeling *or* PRF channeling, and the local plain-microneedling anchor is basic (~$195) by comparison.
 - **Autologous topical PRF, done honestly.** The topical-PRF upgrade uses your own blood, applied on the surface — clearly scoped as topical-only, with injectable PRF kept in the RN's lane. No overclaiming, no "vampire facial" theatrics.
 - **Face *and* body, with a realistic plan.** Per-zone body work (stretch marks, scars, neck/décolleté, hands, back) with an honest longer series for thicker skin — not oversold as a single fix.
 - **Locally grounded & appointment-only.** Punta Gorda / Charlotte County / SW Florida, private studio at 525 E Olympia Ave, Unit 9. Consultation & skin analysis lead every plan; single-use cartridges every session; written aftercare; provider-confirmed candidacy.
@@ -228,13 +228,13 @@ Example combination from the menu: **Corrective microneedling + Topical PRF (fac
 **Local docs (primary truth):**
 - `docs/services/pricing/advanced-facials-master-menu.md` — canonical pricing, the microchanneling-vs-microneedling distinction, package framework, compliance guardrails.
 - `docs/services/pricing/advanced-facials-pricing.md` — DEPRECATED stub (points to the master menu).
-- `docs/services/microchanneling/procell-prf-delivery-research-report.md` — client-education research, FDA positions, evidence quality, compliance copy rules.
+- `docs/services/microchanneling/Procell-prf-delivery-research-report.md` — client-education research, FDA positions, evidence quality, compliance copy rules.
 - `docs/services/microchanneling/PRF.md` — **empty file (0 bytes)** — flagged in GAPS.
 - `docs/services/Consent Forms/06-Needle-Depth-Speed-Clinical-Reference.docx` — House needle-depth & speed by region + needle-length-by-indication guide.
 - `docs/services/Consent Forms/02-Microneedling-PRF-Consent-Release-Form.docx` — consent, "topical only, no injections," risk list.
 - `docs/services/Consent Forms/05-Microneedling-PRF-Pre-Post-Care.docx` — pre/post-care, series planning (acne scars 5–8 tx; stretch/surgical/keloid 6–8 tx), NAP.
 
-**Sanity published content consulted (slugs):** services `microneedling-corrective`, `microneedling-body`, `prf-microneedling`, `microchanneling-microneedling` (hub), `microchanneling`, `prf`, `biorepeel`, `biorepeel-advanced-acne-scarring`, `biorepeel-body`, `prf-body-treatments`; cost guide `prf-microneedling-cost-punta-gorda`; comparison `prf-microchanneling-vs-microneedling`; concerns `acne-scarring`, `stretch-marks`, `fine-lines-laxity`, `sun-damage`; packages `prf-microneedling-series-of-4`, `procell-microchanneling-series-of-4`, `prf-microchanneling-journey`, `the-revival-series`; local area `punta-gorda`; collection `skin-renewal`.
+**Sanity published content consulted (slugs):** services `microneedling-corrective`, `microneedling-body`, `prf-microneedling`, `microchanneling-microneedling` (hub), `microchanneling`, `prf`, `biorepeel`, `biorepeel-advanced-acne-scarring`, `biorepeel-body`, `prf-body-treatments`; cost guide `prf-microneedling-cost-punta-gorda`; comparison `prf-microchanneling-vs-microneedling`; concerns `acne-scarring`, `stretch-marks`, `fine-lines-laxity`, `sun-damage`; packages `prf-microneedling-series-of-4`, `Procell-microchanneling-series-of-4`, `prf-microchanneling-journey`, `the-revival-series`; local area `punta-gorda`; collection `skin-renewal`.
 
 **Web (mechanism/candidacy/downtime only — never pricing/claims):**
 - FDA, Microneedling Devices (fda.gov) — authorized uses, patient screening, and the position that microneedling devices are **not** authorized to deliver blood products into skin. Regulator, authoritative.

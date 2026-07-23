@@ -81,7 +81,7 @@ Professional makeup is cosmetic, so it maps less to clinical `/concerns/` slugs 
 
 **What makeup stacks with in the same visit / occasion:** waxing (Aundrea's own lane — brows/facial for a clean canvas) and **permanent jewelry** (`/services/[slug]/permanent-jewelry/`, a "get-ready-together" add for bridal parties). These are all Aundrea's lane, which makes bundling natural.
 
-**Retail follow-through (the shop tie-in).** House of Rose applies and can retail Jane Iredale, so a lesson or application converts into a take-home routine via the **this-for-that swap guide** on the Jane Iredale page (primer → Smooth Affair; pressed foundation → PurePressed Base SPF 20/15; loose → Amazing Base SPF 20; liquid → Skintuition SPF 30; concealer → Enlighten Plus / Circle\Delete; setting → Amazing Matte / POMMISST; bronzer → PureBronze; blush → ColorLuxe Liquid Blush; highlight → Glow Time stick; brows → PureBrow; eyes → PurePressed Eye Shadow; mascara → Longest Lash / Lash Fixation; lip → Lip Pencil + ColorLuxe + HydroPure). **Jane Iredale is NOT yet a `shopBrand` in Sanity** (current retail brands: ProCell, GlyMed+, Skin Script, Face Reality, House of Rose) — see GAPS; adding it would let the makeup pages funnel directly to `/shop/`.
+**Retail follow-through (the shop tie-in).** House of Rose applies and can retail Jane Iredale, so a lesson or application converts into a take-home routine via the **this-for-that swap guide** on the Jane Iredale page (primer → Smooth Affair; pressed foundation → PurePressed Base SPF 20/15; loose → Amazing Base SPF 20; liquid → Skintuition SPF 30; concealer → Enlighten Plus / Circle\Delete; setting → Amazing Matte / POMMISST; bronzer → PureBronze; blush → ColorLuxe Liquid Blush; highlight → Glow Time stick; brows → PureBrow; eyes → PurePressed Eye Shadow; mascara → Longest Lash / Lash Fixation; lip → Lip Pencil + ColorLuxe + HydroPure). **Jane Iredale is NOT yet a `shopBrand` in Sanity** (current retail brands: Procell, GlyMed+, Skin Script, Face Reality, House of Rose) — see GAPS; adding it would let the makeup pages funnel directly to `/shop/`.
 
 ## 8. Cost factors (local-docs truth only)
 
@@ -174,7 +174,7 @@ Ranges are **premium-positioned at bridal-median / upper-event**, below the Napl
 - `packages/web/public/aundrea.vcf` and `packages/web/src/pages/aundrea.astro` (provider card).
 
 **Sanity (published/raw snapshot + live query):**
-- `phase2/sanity-published-snapshot.json` — no makeup/Jane Iredale docs; retail brands = ProCell/GlyMed+/Skin Script/Face Reality/House of Rose; `permanent-jewelry` service (From $45); `bridal-prep-package` package; `iv-hydration-therapy` service (From $129).
+- `phase2/sanity-published-snapshot.json` — no makeup/Jane Iredale docs; retail brands = Procell/GlyMed+/Skin Script/Face Reality/House of Rose; `permanent-jewelry` service (From $45); `bridal-prep-package` package; `iv-hydration-therapy` service (From $129).
 - Live Sanity query (project `4e7axyi7`/`production`): confirmed `professionalMakeupPage`/`janeIredalePage`/`makeupEventsPage` and any `shopBrand`/`brandProfile` docs do **not** exist (no published, draft, or raw). Provider `provider-brooke` → title "Aundrea", roleCredential "Permanent jewelry + beauty enhancements".
 
 **Web (brand positioning / mechanism only — NO prices imported):**

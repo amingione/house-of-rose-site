@@ -92,13 +92,13 @@ Maps cleanly to **existing** concern pages (all end in `/`):
 ## 7. Pairings & pathways
 
 **Stacks well with:**
-- **As a finish/add-on** after ProCell Microchanneling, Microneedling, or BioRePeel — CO₂ gel is documented as a soothing post-procedure step (post-laser/post-microneedling/post-RF). This mirrors how House of Rose already sells the **Glo2Facial Finish (+$95)** and **LightStim LED (+$35)** add-ons. *(Decide whether carboxy is a standalone facial, an add-on, or both — see GAPS re: overlap with Glo2Facial Finish.)*
+- **As a finish/add-on** after Procell Microchanneling, Microneedling, or BioRePeel — CO₂ gel is documented as a soothing post-procedure step (post-laser/post-microneedling/post-RF). This mirrors how House of Rose already sells the **Glo2Facial Finish (+$95)** and **LightStim LED (+$35)** add-ons. *(Decide whether carboxy is a standalone facial, an add-on, or both — see GAPS re: overlap with Glo2Facial Finish.)*
 - **LED (LightStim)** — layer for a light + oxygenation calming finish.
 - **Dark-circle pathway:** carboxy facial as the **needle-free** entry for tired-looking under-eyes; if the concern is structural hollowing/pigment, the consult routes to the RN (filler) lane — a clean cross-lane handoff.
 
 **Try first / sequence:** For a new client chasing "glow," **Glo2Facial** remains the gateway; carboxy is the targeted brightening/under-eye or gentle-finish choice. Sell as a **series + maintenance** for corrective (dark-circle/dullness) goals.
 
-**Retail follow-through (name real shop brands we carry):** support results at home with brightening/antioxidant and barrier care from our stocked lines — e.g., **GlyMed+** and **Skin Script** antioxidant/vitamin-C and hydrating steps, **ProCell** post-care where appropriate, and diligent **broad-spectrum SPF** (any stocked SPF). Confirm exact SKUs against the live shop; keep retail claims to "supports / helps maintain the appearance of."
+**Retail follow-through (name real shop brands we carry):** support results at home with brightening/antioxidant and barrier care from our stocked lines — e.g., **GlyMed+** and **Skin Script** antioxidant/vitamin-C and hydrating steps, **Procell** post-care where appropriate, and diligent **broad-spectrum SPF** (any stocked SPF). Confirm exact SKUs against the live shop; keep retail claims to "supports / helps maintain the appearance of."
 
 ---
 
@@ -165,7 +165,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 
 **Where a carboxy page should link OUT:**
 - `/services/glo2facial/` (comparison / gateway alternative)
-- `/services/procell-microchanneling/` and any microneedling service (as stack/finish partners) — *confirm exact published slugs against the snapshot*
+- `/services/Procell-microchanneling/` and any microneedling service (as stack/finish partners) — *confirm exact published slugs against the snapshot*
 - `/concerns/dark-circles/` (the concern it most serves)
 - `/shop/` brand/product pages for antioxidant/SPF home care
 - `/faq/` and booking (call/text — GlossGenius)
@@ -181,7 +181,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 
 - **A genuinely gentle, needle-free option** inside a serious advanced-aesthetics practice — carboxy gives the "glow + awake under-eyes" result without downtime, and sits honestly next to our more corrective needling work rather than overpromising.
 - **Clean cross-lane handoffs:** Amber (topical carboxy facial) and, when structure is the real issue, our RN's injectable/filler options — clients get routed to the *right* fix, not upsold the wrong one.
-- **Part of a coherent skin-quality ladder:** Glo2Facial (gateway) → ProCell/microneedling (correction) → carboxy & LED (support/finish) — a real plan, not a random menu.
+- **Part of a coherent skin-quality ladder:** Glo2Facial (gateway) → Procell/microneedling (correction) → carboxy & LED (support/finish) — a real plan, not a random menu.
 - **Local grounding:** private, appointment-only studio in **Punta Gorda** serving Charlotte County / SW Florida; honest pricing confirmed at consultation; candidacy assessed with a skin analysis. No overclaiming — outcomes are individual, and not every client is a candidate.
 
 ---
@@ -189,7 +189,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 ## Sources
 
 **Local docs read (repo paths):**
-- `docs/services/pricing/advanced-facials-master-menu.md` — canonical advanced-facials pricing/framework (Glo2Facial, ProCell, microneedling, add-ons, package framework, compliance). **Contains NO carboxy entry.**
+- `docs/services/pricing/advanced-facials-master-menu.md` — canonical advanced-facials pricing/framework (Glo2Facial, Procell, microneedling, add-ons, package framework, compliance). **Contains NO carboxy entry.**
 - `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (no carboxy).
 - `docs/services/facials/glo2facialxGeneo.md` — effectively empty (1 line); Glo2Facial detail lives in the master menu.
 - `CLAUDE.md` — provider lanes (carboxy listed under Amber's advanced facials).

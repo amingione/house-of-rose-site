@@ -67,12 +67,12 @@
         - heading "A curated menu of advanced treatments." [level=2] [ref=e60]
         - paragraph [ref=e61]: "A curated selection of treatments designed to work together—not in isolation. Each service at House of Rose is carefully chosen to support real outcomes: improved skin quality, balanced features, and long-term maintenance through personalized treatment planning."
       - generic [ref=e62]:
-        - link "Regenerative Skin Treatments Regenerative Skin Treatments ProCell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks." [ref=e63] [cursor=pointer]:
+        - link "Regenerative Skin Treatments Regenerative Skin Treatments Procell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks." [ref=e63] [cursor=pointer]:
           - /url: /services
           - img "Regenerative Skin Treatments" [ref=e65]
           - generic [ref=e66]:
             - heading "Regenerative Skin Treatments" [level=3] [ref=e67]
-            - paragraph [ref=e68]: ProCell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks.
+            - paragraph [ref=e68]: Procell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced renewal treatments for texture, tone, collagen, scars, and stretch marks.
         - link "Injectables & Structural Enhancements Injectables & Structural Enhancements Botox, dermal fillers, PRF under-eye rejuvenation, EZ Gel bio-filler, and PRF hair restoration — chosen with a careful, balanced approach." [ref=e69] [cursor=pointer]:
           - /url: /services
           - img "Injectables & Structural Enhancements" [ref=e71]

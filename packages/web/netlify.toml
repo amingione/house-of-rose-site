@@ -161,12 +161,12 @@ to     = "/services/prf/"
 status = 301
 
 [[redirects]]
-from   = "/compare/procell-serum-vs-prf/"
+from   = "/compare/Procell-serum-vs-prf/"
 to     = "/services/prf/"
 status = 301
 
 [[redirects]]
-from   = "/compare/procell-vs-topical-prf/"
+from   = "/compare/Procell-vs-topical-prf/"
 to     = "/compare/microchanneling-vs-microneedling/"
 status = 301
 

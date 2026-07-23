@@ -46,7 +46,7 @@ Topical PRF at House of Rose is an autologous add-on to Amber's advanced facials
 2. **Blood draw** — a small sample, like routine lab work.
 3. **Gentle low-speed spin** — no anticoagulant or additives, so a natural fibrin matrix forms.
 4. **Skin prep** — cleanse; topical numbing as appropriate; a new single-use cartridge for every session. Dermaplaning or a non-RF prep step may be considered only when the provider selects it; do not assume a fixed same-day stack.
-5. **Needling protocol** — ProCell microchanneling (with the Pro or MD serum) **or** corrective microneedling, dialed to the concern.
+5. **Needling protocol** — Procell microchanneling (with the Pro or MD serum) **or** corrective microneedling, dialed to the concern.
 6. **Topical PRF applied** — your fluid PRF is applied to the surface during the protocol. **Not injected.**
 7. **Finish & aftercare instructions** — provider-selected recovery support and written aftercare. Do not add RF, ultrasound, or a full Glo2 sequence to a needling visit unless a device-specific, clinician-approved protocol supports it.
 
@@ -54,7 +54,7 @@ Topical PRF at House of Rose is an autologous add-on to Amber's advanced facials
 
 **Sensation.** Tolerable for most; comfort is supported by numbing. Expect the needling sensation more than the PRF itself.
 
-**Downtime & short-term recovery.** Redness, tightness, dryness, mild roughness, itching, light peeling, tenderness, or pinpoint bleeding can occur; ~24 hours of redness after channeling is common (House PRF brochure). Exact recovery varies with device, depth, area, and skin — the provider gives written aftercare rather than promising a fixed window. If ProCell channeling is included, observe the **open-channel window** afterward (no makeup/sunscreen/touching for the period the provider specifies) and follow the prescribed home care. Avoid sun, heat, and strenuous exercise as directed.
+**Downtime & short-term recovery.** Redness, tightness, dryness, mild roughness, itching, light peeling, tenderness, or pinpoint bleeding can occur; ~24 hours of redness after channeling is common (House PRF brochure). Exact recovery varies with device, depth, area, and skin — the provider gives written aftercare rather than promising a fixed window. If Procell channeling is included, observe the **open-channel window** afterward (no makeup/sunscreen/touching for the period the provider specifies) and follow the prescribed home care. Avoid sun, heat, and strenuous exercise as directed.
 
 **Results timeline.** Early changes commonly appear around **2–6 weeks**; collagen remodeling continues to develop over **weeks to months**. Results are individual and depend on skin, candidacy, and consistency.
 
@@ -62,7 +62,7 @@ Topical PRF at House of Rose is an autologous add-on to Amber's advanced facials
 
 ## 5. Comparisons (when each honestly wins)
 
-- **Topical PRF vs ProCell Microchanneling (autologous PRF vs the ProCell growth-factor serum).** These are the **"what's delivered"** layer, not competing modalities — both are applied *during* channeling. The ProCell serum is a **manufacturer-specified recombinant / bone-marrow-derived growth-factor + cytokine serum** (Pro = maintenance/preventative/under-40; **MD = 2× the growth factors of Pro**, the go-to for 40+); it's a streamlined, no-blood-draw option with a consistent, verified formulation. **Topical PRF wins** when the client specifically wants an **autologous, "my-own-biology" boost** and is a good candidate for the blood draw. **ProCell serum wins** for clients who want a streamlined branded protocol with no blood draw. They are not mutually exclusive tiers — the provider selects per skin and goals. (Do **not** call ProCell serums "stem-cell" serums or say growth factors are "delivered deep into the skin.")
+- **Topical PRF vs Procell Microchanneling (autologous PRF vs the Procell growth-factor serum).** These are the **"what's delivered"** layer, not competing modalities — both are applied *during* channeling. The Procell serum is a **manufacturer-specified recombinant / bone-marrow-derived growth-factor + cytokine serum** (Pro = maintenance/preventative/under-40; **MD = 2× the growth factors of Pro**, the go-to for 40+); it's a streamlined, no-blood-draw option with a consistent, verified formulation. **Topical PRF wins** when the client specifically wants an **autologous, "my-own-biology" boost** and is a good candidate for the blood draw. **Procell serum wins** for clients who want a streamlined branded protocol with no blood draw. They are not mutually exclusive tiers — the provider selects per skin and goals. (Do **not** call Procell serums "stem-cell" serums or say growth factors are "delivered deep into the skin.")
 - **Topical PRF vs corrective microneedling (serum layer vs the tool).** Microneedling is the **adjustable-depth tool** dialed to a correction (deeper/rolling acne-scar appearance, defined texture, stretch-mark texture on the body). Topical PRF is an **upgrade layered onto** that microneedling — it doesn't replace it. Microneedling **alone** is the honest choice when the goal is depth-driven correction and the client prefers to skip the blood draw; **microneedling + topical PRF** is the choice when the client wants their own growth factors layered on top of that correction.
 - **Topical PRF (Amber) vs injectable PRF (Diana, RN).** Topical PRF is applied **on the surface** during needling — best positioned for **skin texture, fine lines, pores, and overall skin quality**. Injectable PRF is a **separate medical procedure** delivered **beneath the skin** by Diana — the standard for **under-eyes / tear troughs, midface, and hair/scalp**, targeting volume-loss context and deeper tissue quality. **Different lanes, different tools, different goals** — one does not substitute for the other, and Amber never performs the injectable version.
 - **Topical PRF vs PRF EZ-Gel bio-filler (Diana, RN).** EZ-Gel combines PRF with the patient's own heated-then-cooled albumin to form an **injectable gel** giving **subtle, temporary volume** plus regenerative benefit — a natural alternative to synthetic filler (but **not** as volumizing as HA filler, and never marketed as its equal). It is squarely **Diana's injectable lane.** Topical PRF adds **no volume** and is a **surface adjunct only.** If a client's real goal is subtle volume restoration, that's an EZ-Gel / injectable conversation with Diana — refer, don't stretch topical PRF to fit.
@@ -84,15 +84,15 @@ No new concern pages required — the existing six cover the topical-PRF surface
 ## 7. Pairings & pathways
 
 **What it stacks with (all within a single needling visit):**
-- **ProCell Microchanneling (Pro/MD)** — the signature pairing: channeling + your own PRF.
+- **Procell Microchanneling (Pro/MD)** — the signature pairing: channeling + your own PRF.
 - **Corrective microneedling** — for depth-driven correction + PRF layer.
 - **Glo2Facial finish (+$95)** — oxygenating "signature" finish for event glow.
 - **LightStim LED (+$35)** — to calm and support skin after channeling.
 - **Dermaplane prep (+$45)** — remove peach fuzz and prep the surface.
 
-**What to try first (the client journey):** ① **Glo2Facial** ($185) as the gateway/entry and skin-analysis moment → ② **ProCell Microchanneling** (Pro → MD) or **corrective microneedling** for the concern → ③ **upgrade with topical PRF** (or a Glo2Facial finish). Sell the **series**, not the single visit.
+**What to try first (the client journey):** ① **Glo2Facial** ($185) as the gateway/entry and skin-analysis moment → ② **Procell Microchanneling** (Pro → MD) or **corrective microneedling** for the concern → ③ **upgrade with topical PRF** (or a Glo2Facial finish). Sell the **series**, not the single visit.
 
-**Retail follow-through (drives results retention).** Home care is what holds the result between visits. Sensible, compliant retail (name real shop brands the studio carries): the **ProCell PRO / MD home systems** (recombinant/bone-marrow-derived growth-factor topicals — describe accurately, never "stem-cell"), plus barrier-supportive and SPF-forward regimens from the studio's professional lines (e.g., **GlyMed+**, **Skin Script**, **Face Reality** for acne-prone skin). Frame retail as "supports and extends your in-studio results," never as a cure.
+**Retail follow-through (drives results retention).** Home care is what holds the result between visits. Sensible, compliant retail (name real shop brands the studio carries): the **Procell PRO / MD home systems** (recombinant/bone-marrow-derived growth-factor topicals — describe accurately, never "stem-cell"), plus barrier-supportive and SPF-forward regimens from the studio's professional lines (e.g., **GlyMed+**, **Skin Script**, **Face Reality** for acne-prone skin). Frame retail as "supports and extends your in-studio results," never as a cure.
 
 ## 8. Cost factors
 
@@ -101,7 +101,7 @@ No new concern pages required — the existing six cover the topical-PRF surface
 **Local-doc pricing (canonical source: `docs/services/pricing/advanced-facials-master-menu.md`, updated 2026-07-10):**
 - **Topical PRF — face upgrade: +$175** (added to any needling treatment).
 - **Topical PRF — body upgrade: +$200** (per zone).
-- Base needling it layers onto: ProCell Microchanneling Pro **$250** (single) / MD **$325**; Corrective Microneedling **$295**. Example given in the master menu: *Microneedling — Corrective + Topical PRF = $470.*
+- Base needling it layers onto: Procell Microchanneling Pro **$250** (single) / MD **$325**; Corrective Microneedling **$295**. Example given in the master menu: *Microneedling — Corrective + Topical PRF = $470.*
 - Series framework: Series of 3 (~10% value) · Series of 6 (~20% value).
 
 **Pricing conflict to resolve (FLAG — see GAPS):** the House PRF PDFs (dated 2026-07-09) and the published Sanity services price PRF as a **bundled treatment**, not a +$175/+$200 upgrade:
@@ -122,7 +122,7 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 6. **Is there downtime?** Typically minimal. Redness, tightness, dryness, or light peeling can occur, and about a day of redness after channeling is common. Your exact recovery depends on the device, depth, and your skin — you'll get written aftercare rather than a fixed promise.
 7. **When will I see results?** Many clients notice early changes around two to six weeks, with collagen remodeling continuing over weeks to months. Individual outcomes vary.
 8. **How many sessions will I need?** Most corrective goals are planned as a series — often three to six sessions about four to six weeks apart — then individualized maintenance. Your provider may recommend a different plan after your skin analysis.
-9. **Which needling treatment should PRF go with — microchanneling or microneedling?** Microchanneling (ProCell) is the structured choice for overall skin quality; corrective microneedling is dialed to depth-driven concerns like the appearance of rolling acne scars. Topical PRF can be added to either — the provider chooses based on your concern.
+9. **Which needling treatment should PRF go with — microchanneling or microneedling?** Microchanneling (Procell) is the structured choice for overall skin quality; corrective microneedling is dialed to depth-driven concerns like the appearance of rolling acne scars. Topical PRF can be added to either — the provider chooses based on your concern.
 10. **Can topical PRF fix my under-eye hollows or dark circles?** Under-eye rejuvenation is best addressed by injectable PRF, which is Diana's separate lane. Amber's topical PRF supports the appearance of texture, fine lines, and overall skin quality, not volume.
 11. **Can PRF be used for hair thinning?** PRF scalp/hair treatments are injectable and are performed by Diana, RN — not part of Amber's topical facial service.
 12. **Does topical PRF add volume like filler?** No. Topical PRF supports skin quality and texture; it does not add meaningful volume. Subtle natural volume is a conversation about injectable options like EZ-Gel bio-filler with Diana.
@@ -161,7 +161,7 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 **Where the topical-PRF page should link *out*:**
 - The needling bases it stacks on: `/services/microchanneling/`, `/services/microneedling-corrective/`, `/services/prf-body-treatments/`.
 - The cross-lane referrals (clearly labeled as Diana, RN): `/services/prf-injections/`, `/services/ez-gel-bio-filler/`.
-- Packages: `/packages/prf-microchanneling-journey/`, `/packages/prf-microneedling-series-of-4/`, `/packages/procell-microchanneling-series-of-4/`.
+- Packages: `/packages/prf-microchanneling-journey/`, `/packages/prf-microneedling-series-of-4/`, `/packages/Procell-microchanneling-series-of-4/`.
 - `/faq/`, `/areas/punta-gorda/`, `/skin-analysis/`.
 
 **Proposed new pages (type + slug):**
@@ -174,7 +174,7 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 
 - **A genuinely open local lane.** No med spa in Punta Gorda / Charlotte County currently positions PRF as a signature treatment, and several still offer only older-generation PRP. House of Rose can own the "PRF specialist / natural-regenerative" positioning honestly — and the topical, esthetician-delivered version is a distinctive, approachable entry point that most local competitors don't offer at all.
 - **The autologous, "your-own-biology" story is true and compliant.** Made from your own blood, no anticoagulant, no animal additives, no synthetics — a real differentiator that needs no overclaiming.
-- **A clean signature stack.** Topical PRF + ProCell microchanneling pairs an autologous adjunct with a verified recombinant growth-factor system — a premium, compliant combination, with the ProCell PRO/MD home systems for retention.
+- **A clean signature stack.** Topical PRF + Procell microchanneling pairs an autologous adjunct with a verified recombinant growth-factor system — a premium, compliant combination, with the Procell PRO/MD home systems for retention.
 - **Honesty as the brand.** An educated SW-Florida clientele responds to realistic expectation-setting: PRF is promising but early-evidence; results build gradually; not everyone is a candidate. Saying so builds trust and doubles as E-E-A-T SEO.
 - **Locally grounded.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida; appointment-only, call/text-first booking; opens July 9, 2026.
 
@@ -183,7 +183,7 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 ## Sources
 
 **Local docs read (paths under repo root):**
-- `docs/services/microchanneling/procell-prf-delivery-research-report.md` — client-education research report; the primary compliance + topical-vs-injectable framing.
+- `docs/services/microchanneling/Procell-prf-delivery-research-report.md` — client-education research report; the primary compliance + topical-vs-injectable framing.
 - `docs/services/PRF/compass_artifact_wf-116088fa-2d44-4fdf-a81e-8886533f95e6_text_markdown.md` — PRF science/strategy package (mechanism, evidence citations, competitive landscape, compliance).
 - `docs/services/pricing/advanced-facials-master-menu.md` — **canonical pricing** (Topical PRF +$175 face / +$200 body; needling bases; series framework; compliance guardrails).
 - `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (points to the master menu; prices not used).
@@ -193,7 +193,7 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 - `docs/services/Diana/PRF_Pricing_House_of_Rose.pdf` — House PRF pricing PDF (bundled prices — conflicts with master menu; flagged).
 - `docs/research/_prf-source-library.md` — curated manifest of Amber's facial-PRF literature (referenced, not copied); anchors: `~/Documents/PRF EDU/part 3 - indications for prf/Facial esthetics/0. 2024 Davies Miron Facial Esthetics SR.pdf` and `~/Documents/PRF EDU/00 The evolution of Platelet Rich Fibrin.pdf` (mechanism/evidence literacy).
 
-**Sanity docs consulted (published snapshot):** services `prf` (hub), `prf-microneedling`, `prf-body-treatments`, `prf-injections`, `ez-gel-bio-filler`, `microchanneling`, `microneedling-corrective`, `microchanneling-microneedling` (hub); comparison `prf-microchanneling-vs-microneedling`; cost guide `prf-microneedling-cost-punta-gorda`; concerns `fine-lines-laxity`, `acne-scarring`, `stretch-marks`, `sun-damage`, `dark-circles`, `hair-thinning`; packages `prf-microchanneling-journey`, `prf-microneedling-series-of-4`, `prf-under-eye-series-of-3`, `procell-microchanneling-series-of-4`.
+**Sanity docs consulted (published snapshot):** services `prf` (hub), `prf-microneedling`, `prf-body-treatments`, `prf-injections`, `ez-gel-bio-filler`, `microchanneling`, `microneedling-corrective`, `microchanneling-microneedling` (hub); comparison `prf-microchanneling-vs-microneedling`; cost guide `prf-microneedling-cost-punta-gorda`; concerns `fine-lines-laxity`, `acne-scarring`, `stretch-marks`, `sun-damage`, `dark-circles`, `hair-thinning`; packages `prf-microchanneling-journey`, `prf-microneedling-series-of-4`, `prf-under-eye-series-of-3`, `Procell-microchanneling-series-of-4`.
 
 **Web sources (mechanism/regulatory literacy only — no prices, no medical claims imported):**
 - FDA, "Microneedling Devices" (fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices) and "Regulatory Considerations for Microneedling Products" (fda.gov/media/107708/download) — authoritative: microneedling devices are **not** approved to deliver cosmetics, topical meds, vitamins, or **blood products (PRP)** into skin; the topical-only compliance anchor.

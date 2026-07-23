@@ -62,9 +62,9 @@
 
 ## AMBER — Advanced Facials & Microneedling
 
-> **Amber's Protocol:** Every service EXCEPT standalone Glo2Facial requires **Step 1: Delivery Device** (Microchanneling or Microneedling). Then **Step 2: Topical** (PRF, ProCell MD, ProCell Pro, or BioRePeel). Then **Step 3: Add-ons** (Dermaplane prep, Glo2 prep, PRF mask, LED).
+> **Amber's Protocol:** Every service EXCEPT standalone Glo2Facial requires **Step 1: Delivery Device** (Microchanneling or Microneedling). Then **Step 2: Topical** (PRF, Procell MD, Procell Pro, or BioRePeel). Then **Step 3: Add-ons** (Dermaplane prep, Glo2 prep, PRF mask, LED).
 > 
-> ⚠️ **BioRePeel specificity:** if microneedling it Requires SkinPen microneedling protocol (slip/glide). OR  ProCell microchanneling device with a light molecular weight hyaluronic serum backroll for comfort. price accordngly (BioRePeel is tacky, not slippery).
+> ⚠️ **BioRePeel specificity:** if microneedling it Requires SkinPen microneedling protocol (slip/glide). OR  Procell microchanneling device with a light molecular weight hyaluronic serum backroll for comfort. price accordngly (BioRePeel is tacky, not slippery).
 
 ### 6a. Glo2Facial — STANDALONE (No Micro Required) 
 
@@ -79,14 +79,14 @@
 ### 6b. Microneedling & Microchanneling — FACE
 
 **Step 1: Choose Delivery Device**
-- **Microchanneling** (ProCell device — stamps, no glide)
+- **Microchanneling** (Procell device — stamps, no glide)
 - **Microneedling** (SkinPen — glide required)
 
 **Step 2: Choose Topical**
 - **PRF** ✅
-- **ProCell MD serum** ✅
-- **ProCell Pro serum** ✅
-- **BioRePeel** 🟥 (SkinPen protocol or  ProCell microchanneling device -- i prefer procell device - skinpen would be used if deep/scar acne pits are being targetted otherwise microchanneling is the call)
+- **Procell MD serum** ✅
+- **Procell Pro serum** ✅
+- **BioRePeel** 🟥 (SkinPen protocol or  Procell microchanneling device -- i prefer Procell device - skinpen would be used if deep/scar acne pits are being targetted otherwise microchanneling is the call)
 
 **Step 3: Add-ons (choose any/all)**
 - **Dermaplane prep** — exfoliates pre-treatment
@@ -95,13 +95,13 @@
 - **LED** — Lightstim add-on
 
 **LIVE in GG:**
-- **ProCell MD Microchanneling** — $349 ✅ (45m)
+- **Procell MD Microchanneling** — $349 ✅ (45m)
 - **PRF Skin Renewal** — $450 ✅ (1h, 3 serum options)
 
 **NOT YET IN GG 🟥** (Amber to add):
-- **ProCell Pro — Face** ($299)
-- **ProCell MD — Face & Neck & Décolleté** ($449)
-- **ProCell Series of 4** ($1,099)
+- **Procell Pro — Face** ($299)
+- **Procell MD — Face & Neck & Décolleté** ($449)
+- **Procell Series of 4** ($1,099)
 - Microneedling + BioRePeel (with/without add-ons)
 - Microchanneling + PRF (standalone — not Glo2 combo)
 
@@ -109,39 +109,39 @@
 
 ### 📊 Competitor pricing — microchanneling / skin-needling (Punta Gorda · Charlotte County · SW FL)
 
-> Sources: `docs/services/PRF/` comp note (ÉLAN, PRF-needling band) + regional ProCell pricing web-verified 2026-07 + local Skin Sanctuary/C's. The Notion "$500 unnamed rival" figure was **discarded as unverified** (see last row).
+> Sources: `docs/services/PRF/` comp note (ÉLAN, PRF-needling band) + regional Procell pricing web-verified 2026-07 + local Skin Sanctuary/C's. The Notion "$500 unnamed rival" figure was **discarded as unverified** (see last row).
 
 | Competitor | Location | Service | Price | Note |
 |---|---|---|---|---|
-| Skin Sanctuary | Punta Gorda | Microneedling / Nano Channeling | $195 / $185 | Bare needling — a cheaper, different modality than ProCell. |
+| Skin Sanctuary | Punta Gorda | Microneedling / Nano Channeling | $195 / $185 | Bare needling — a cheaper, different modality than Procell. |
 | C's Medi Spa | Port Charlotte | Microneedling | $175 | Value bare needling. |
 | ÉLAN | Regional | Microneedling | **$375 single · $1,050 / 3-pack** | Named regional comp. |
-| Regional ProCell (verified, web 2026-07) | SW FL / FL | ProCell microchanneling | **$300 (60m) · $350 (90m) · $375 (50m) single · 4-pack $1,050–$1,225** | The real ProCell single market. |
-| PRF/PRP microneedling (needling **+ PRF**) | Regional | — | **$350–$500 single** | The "with PRF" tier — this is where HoR's **PRF Skin Renewal $450** sits, NOT bare ProCell. |
-| ~~Unnamed PG "ProCell $500 single / $1,200 series-of-3"~~ | — | — | **UNVERIFIED / discarded** | Second-hand vault note; $500 is the PRF-needling ceiling and $1,200 matches a 4-pack, not a bare-ProCell single. Do not anchor on it. |
+| Regional Procell (verified, web 2026-07) | SW FL / FL | Procell microchanneling | **$300 (60m) · $350 (90m) · $375 (50m) single · 4-pack $1,050–$1,225** | The real Procell single market. |
+| PRF/PRP microneedling (needling **+ PRF**) | Regional | — | **$350–$500 single** | The "with PRF" tier — this is where HoR's **PRF Skin Renewal $450** sits, NOT bare Procell. |
+| ~~Unnamed PG "Procell $500 single / $1,200 series-of-3"~~ | — | — | **UNVERIFIED / discarded** | Second-hand vault note; $500 is the PRF-needling ceiling and $1,200 matches a 4-pack, not a bare-Procell single. Do not anchor on it. |
 
-**Read:** verified ProCell **single** sessions run **$300–$375**; ProCell **4-packs** run **$1,050–$1,225**. Bare microneedling is a cheaper, different modality ($175–$195 locally). House of Rose prices ProCell **into the real ProCell market**, not against the discarded $500 note.
+**Read:** verified Procell **single** sessions run **$300–$375**; Procell **4-packs** run **$1,050–$1,225**. Bare microneedling is a cheaper, different modality ($175–$195 locally). House of Rose prices Procell **into the real Procell market**, not against the discarded $500 note.
 
-> **💲 ProCell price — LOCAL-COMPETITIVE (2026-07-17, anchor corrected).** Each service has one price.
-> Anchored to the **verified** ProCell market: singles **$300–$375**, 4-packs **$1,050–$1,225** (ÉLAN $375/$1,050; regional ProCell $300–$375). The old "$500 single rival" was discarded — it was a PRF-needling / package figure, not a bare ProCell single.
-> - **Pro Face $299:** entry tier, sits right at the ProCell market floor (~$300) — the value option, above bare microneedling ($175–$195).
-> - **MD Face $349:** live in GlossGenius; mid-market (≈ ÉLAN $375 / 90-min ProCell $350).
+> **💲 Procell price — LOCAL-COMPETITIVE (2026-07-17, anchor corrected).** Each service has one price.
+> Anchored to the **verified** Procell market: singles **$300–$375**, 4-packs **$1,050–$1,225** (ÉLAN $375/$1,050; regional Procell $300–$375). The old "$500 single rival" was discarded — it was a PRF-needling / package figure, not a bare Procell single.
+> - **Pro Face $299:** entry tier, sits right at the Procell market floor (~$300) — the value option, above bare microneedling ($175–$195).
+> - **MD Face $349:** live in GlossGenius; mid-market (≈ ÉLAN $375 / 90-min Procell $350).
 > - **Face + Neck + Décolleté $449:** extended plane, priced above the single-face tiers.
-> - **Series of 4 $1,099:** the count is **4 = ProCell protocol** (min 4 tx, 6+ scarring; `docs/services/PRF/`); the price sits inside the real 4-pack band ($1,050–$1,225), ~21% off 4× $349. Not the house 3/6 retail framework.
+> - **Series of 4 $1,099:** the count is **4 = Procell protocol** (min 4 tx, 6+ scarring; `docs/services/PRF/`); the price sits inside the real 4-pack band ($1,050–$1,225), ~21% off 4× $349. Not the house 3/6 retail framework.
 >
-> **↳ Series length is per-treatment, not house-wide.** ProCell = 4 (protocol). Glo2Facial = 3/6. Microneedling corrective = 3–6 (scarring 5–8). PRF Skin Renewal = 3 or 4. Do not normalize these to one pattern.
+> **↳ Series length is per-treatment, not house-wide.** Procell = 4 (protocol). Glo2Facial = 3/6. Microneedling corrective = 3–6 (scarring 5–8). PRF Skin Renewal = 3 or 4. Do not normalize these to one pattern.
 
 ### **Face Treatments (with Series pricing):**
 
 - **Glo2Facial** — Single $185 | 3x $499 | 6x $885
-- **ProCell Microchanneling — Pro (Face)** — **$299** · Series of 4 **$1,099**
-- **ProCell Microchanneling — MD (Face)** — **$349** (live in GG) · Series of 4 **$1,099**
-- **ProCell Microchanneling — Face + Neck + Décolleté (MD)** — **$449**
-- **Microneedling — Corrective** — **$295** (local comp: Skin Sanctuary/C's microneedling $175–$195; SkinPen Cape Coral $375 non-member — $295 sits between, premium corrective, under ProCell) · Series of 3 $795 | Series of 6 $1,415
+- **Procell Microchanneling — Pro (Face)** — **$299** · Series of 4 **$1,099**
+- **Procell Microchanneling — MD (Face)** — **$349** (live in GG) · Series of 4 **$1,099**
+- **Procell Microchanneling — Face + Neck + Décolleté (MD)** — **$449**
+- **Microneedling — Corrective** — **$295** (local comp: Skin Sanctuary/C's microneedling $175–$195; SkinPen Cape Coral $375 non-member — $295 sits between, premium corrective, under Procell) · Series of 3 $795 | Series of 6 $1,415
 
 ### **Body Treatments (per zone, with Series pricing):**
 
-- **ProCell Microchanneling — Body** — $349 | $940 | $1,675  _(🟥 no direct local body comp — consult-based; holds current figure pending a comp)_
+- **Procell Microchanneling — Body** — $349 | $940 | $1,675  _(🟥 no direct local body comp — consult-based; holds current figure pending a comp)_
 - **Microneedling — Body** — $325 | $875 | $1,560
 - **BioRePeel — Body** — $325 | $875 | $1,560
 
@@ -162,12 +162,12 @@ The packages show approximately **10% savings on 3-series, 20% on 6-series**, c
 
 **Step 1: Choose Delivery Device**
 - **SkinPen Microneedling** (glide)
-- **ProCell Microchanneling** (stamp)
+- **Procell Microchanneling** (stamp)
 
 **Step 2: Choose Topical**
 - **PRF**
-- **ProCell MD serum**
-- **ProCell Pro serum**
+- **Procell MD serum**
+- **Procell Pro serum**
 - **BioRePeel** (SkinPen protocol or microchanneling device)
 
 **Step 3: Add-ons (choose any/all)**

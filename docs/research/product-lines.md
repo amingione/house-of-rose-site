@@ -1,16 +1,16 @@
 # Retail Product Lines — Research Brief
 
-Date: 2026-07-13 · Provider lane: **Cross-cutting retail** (sold via `/shop/`; ties to Amber — ProCell/GlyMed+/Skin Script/Face Reality; Aundrea — Jane Iredale; and post-treatment aftercare across every lane) · Status: draft for Phase 3/4 consumption · Sources listed at end.
+Date: 2026-07-13 · Provider lane: **Cross-cutting retail** (sold via `/shop/`; ties to Amber — Procell/GlyMed+/Skin Script/Face Reality; Aundrea — Jane Iredale; and post-treatment aftercare across every lane) · Status: draft for Phase 3/4 consumption · Sources listed at end.
 
 > **Scope.** This brief is the connective tissue between what House of Rose *does* in the chair and what a client *takes home*. It gives each carried brand a positioning capsule — who it's for, its hero categories, the in-studio treatments it supports as aftercare, and the honest compliance framing for the brand's real (and occasionally non-compliant) product names. It is a **retail-follow-through** brief, not a per-product catalog. All prices come from Sanity (the price source of truth); no price is ever taken from the web.
 >
-> **Retail truth = Sanity.** The shop groups products by `brand`. Published counts (queried live, `perspective: published`, 2026-07-13): **GlyMed+ 75 · Skin Script 52 · Face Reality 30 · ProCell 6 · House of Rose 3 = 166 total.** Distinct brands in the dataset: `face-reality`, `glymed`, `house-of-rose`, `procell`, `skin-script`. **Jane Iredale has 0 `product` docs** — it is a *makeup service* line (Aundrea's lane), not yet stocked as retail. **`shopBrand` storefront docs = 0** (the shop runs on hardcoded `FALLBACK_BRAND_COPY`). See GAPS.
+> **Retail truth = Sanity.** The shop groups products by `brand`. Published counts (queried live, `perspective: published`, 2026-07-13): **GlyMed+ 75 · Skin Script 52 · Face Reality 30 · Procell 6 · House of Rose 3 = 166 total.** Distinct brands in the dataset: `face-reality`, `glymed`, `house-of-rose`, `Procell`, `skin-script`. **Jane Iredale has 0 `product` docs** — it is a *makeup service* line (Aundrea's lane), not yet stocked as retail. **`shopBrand` storefront docs = 0** (the shop runs on hardcoded `FALLBACK_BRAND_COPY`). See GAPS.
 
 ---
 
 ## 1. The 3-sentence answer
 
-House of Rose carries five professional, provider-selected retail lines so a treatment doesn't end at the door: **GlyMed+** (pharmaceutical-grade clinical corrective), **Skin Script Rx** (accessible chirally-correct daily care and enzymes), **Face Reality** (the acne-program home-care system), **ProCell** (the matched microchanneling aftercare), and **House of Rose** (our own small ritual line). These are not drugstore products — every regimen is chosen for your skin by the licensed provider who performed your treatment, so the results you paid for in the chair keep going at home. Not every product suits every client, individual outcomes vary, and your provider confirms what's right for you at consultation.
+House of Rose carries five professional, provider-selected retail lines so a treatment doesn't end at the door: **GlyMed+** (pharmaceutical-grade clinical corrective), **Skin Script Rx** (accessible chirally-correct daily care and enzymes), **Face Reality** (the acne-program home-care system), **Procell** (the matched microchanneling aftercare), and **House of Rose** (our own small ritual line). These are not drugstore products — every regimen is chosen for your skin by the licensed provider who performed your treatment, so the results you paid for in the chair keep going at home. Not every product suits every client, individual outcomes vary, and your provider confirms what's right for you at consultation.
 
 ---
 
@@ -21,7 +21,7 @@ House of Rose carries five professional, provider-selected retail lines so a tre
 **One level deeper — why professional-grade, not drugstore.** Two structural differences matter and are honest to state:
 
 1. **Provider guidance.** Professional lines are dispensed by a licensed esthetician who knows what was done to your skin and can sequence actives (acids, retinol, peptides, growth factors) so they don't collide with a fresh treatment or each other. A drugstore aisle can't do that.
-2. **Formulation & concentration.** Professional lines carry actives at treatment-adjacent strengths in stable delivery systems, and several are built *specifically* for the pre/post-procedure window (ProCell's aftercare pair, GlyMed+'s Pre-/Post-Procedural kits). That's the point of buying them where you were treated.
+2. **Formulation & concentration.** Professional lines carry actives at treatment-adjacent strengths in stable delivery systems, and several are built *specifically* for the pre/post-procedure window (Procell's aftercare pair, GlyMed+'s Pre-/Post-Procedural kits). That's the point of buying them where you were treated.
 
 **The pathway, in shape.** Treatment or skin analysis → provider selects a matched home regimen → client buys via `/shop/` → regimen supports and extends the in-chair result → next visit, the provider adjusts. Face Reality is the clearest case: the 12-week Acne Bootcamp *is* biweekly treatments **plus** an adaptive Face Reality home regimen — the home care is half the program.
 
@@ -58,14 +58,14 @@ Organized per brand (the charter's §1–§4 collapsed into one per-brand capsul
 - **Retail follow-through:** the most tightly coupled of all five — Face Reality is *dispensed adaptively* through the 12 weeks (the regimen changes as skin adjusts). The $899 Bootcamp explicitly bundles "customized home care," so these products are program-driven, not shelf-browsed.
 - **Compliance note (web):** Face Reality's own marketing says "Clinically Proven Visible Results in 8 weeks" and lists acne grades it "treats." **Do NOT import** either framing into our copy — see §5/§10.
 
-### 3.4 ProCell (`procell`) — 6 products (the matched microchanneling aftercare)
+### 3.4 Procell (`Procell`) — 6 products (the matched microchanneling aftercare)
 
-- **1-line positioning:** The matched two-step at-home aftercare for a ProCell Microchanneling treatment — Pro and MD strengths mirroring the in-chair serum tier.
-- **Who it's for:** Anyone who just had (or is planning) ProCell Microchanneling — face or body. Tier-matched: Pro-treatment clients → Pro aftercare; MD-treatment clients → MD aftercare.
+- **1-line positioning:** The matched two-step at-home aftercare for a Procell Microchanneling treatment — Pro and MD strengths mirroring the in-chair serum tier.
+- **Who it's for:** Anyone who just had (or is planning) Procell Microchanneling — face or body. Tier-matched: Pro-treatment clients → Pro aftercare; MD-treatment clients → MD aftercare.
 - **Hero categories (2):** (1) **Cellular Renewal Serum (Step 1)**; (2) **Healing Accelerator (Step 2)** — each in **Pro** and **MD** strengths, plus a **Trial Set** per tier. That's the whole line: Pro Step 1 / Pro Step 2 / Pro Trial Set / MD Step 1 / MD Step 2 / MD Trial Set (6 SKUs).
-- **Treatments it supports as aftercare:** **ProCell Microchanneling** (`/services/microchanneling/`) and **ProCell Microchanneling — Body** (`/services/procell-microchanneling-body/`) — full coverage in the ProCell brief.
+- **Treatments it supports as aftercare:** **Procell Microchanneling** (`/services/microchanneling/`) and **Procell Microchanneling — Body** (`/services/Procell-microchanneling-body/`) — full coverage in the Procell brief.
 - **Retail follow-through:** the **Trial Set** is the natural first post-treatment purchase; match the aftercare tier to the treatment tier. Prices (Sanity, cents→USD): Pro Step 1 $65, Pro Step 2 $80, Pro Trial Set $75; MD Step 1 $150, MD Step 2 $160, MD Trial Set $310.
-- **Compliance (from ProCell brief):** describe as a **growth-factor + cytokine** aftercare line; **never** "stem-cell," never "delivered deep into the skin." (April 2025 reformulation = recombinant/lab-made growth factors, no cells/DNA/blood.)
+- **Compliance (from Procell brief):** describe as a **growth-factor + cytokine** aftercare line; **never** "stem-cell," never "delivered deep into the skin." (April 2025 reformulation = recombinant/lab-made growth factors, no cells/DNA/blood.)
 
 ### 3.5 House of Rose (`house-of-rose`) — 3 products (our own ritual line)
 
@@ -118,8 +118,8 @@ Both build a daily corrective regimen; the honest split is **depth vs accessibil
 ### 5.2 Face Reality vs everything else (the acne lane)
 Face Reality is **not** a general-glow alternative to Skin Script/GlyMed+ — it's a **condition-specific acne system** dispensed adaptively through a certified program. If the concern is active acne, Face Reality is the lane (with Amber's Certified Acne Specialist credential); the others are for tone, texture, aging-appearance, and maintenance. They can coexist once acne is controlled.
 
-### 5.3 ProCell vs GlyMed+ post-procedure aftercare
-Both support recovery after needling. **ProCell** is the *matched* aftercare designed by the treatment's own manufacturer (tier-matched to the in-chair serum) — the cleanest first choice for a ProCell client. **GlyMed+** (Post-Procedural kit, Recovery Cream with Arnica) is the broader clinical recovery toolkit the provider reaches for across peels, PRF, and mixed protocols. Often stacked, not either/or.
+### 5.3 Procell vs GlyMed+ post-procedure aftercare
+Both support recovery after needling. **Procell** is the *matched* aftercare designed by the treatment's own manufacturer (tier-matched to the in-chair serum) — the cleanest first choice for a Procell client. **GlyMed+** (Post-Procedural kit, Recovery Cream with Arnica) is the broader clinical recovery toolkit the provider reaches for across peels, PRF, and mixed protocols. Often stacked, not either/or.
 
 ### 5.4 Professional-grade + provider guidance vs drugstore
 Two honest differentiators (no overclaiming): **(1)** professional lines are **dispensed and sequenced by a licensed provider** who knows what was done to your skin, so actives don't collide; **(2)** several formulas are built for the **pre/post-procedure window** and carry treatment-adjacent actives in stable delivery systems. The value isn't "stronger = better" — it's *right product, right strength, right time, chosen by the person who treated you.* Say "professional-grade," "provider-selected," "designed to support" — never "clinically proven" or "guaranteed."
@@ -130,7 +130,7 @@ Two honest differentiators (no overclaiming): **(1)** professional lines are **d
 
 Maps each brand's heroes to existing `/concerns/` slugs (and flags gaps). Frame everything as "for the appearance of."
 
-| Concern (existing `/concerns/` slug) | GlyMed+ | Skin Script | Face Reality | ProCell | House of Rose |
+| Concern (existing `/concerns/` slug) | GlyMed+ | Skin Script | Face Reality | Procell | House of Rose |
 |---|---|---|---|---|---|
 | **`sun-damage`** | Vitamin C Serum, SPF range, Pigment Brightening Serum | Triple C, Citrus-C, Sheer Protection SPF 30 | — | supports post-channeling tone (aftercare) | Shield Ritual SPF 30 |
 | **`fine-lines-laxity`** | Retinol Rejuvenation, peptide serums, firming creams* | Peptide Moisturizer, Glycolic & Retinol Pads | — | matched microchanneling aftercare | — |
@@ -143,7 +143,7 @@ Maps each brand's heroes to existing `/concerns/` slugs (and flags gaps). Frame 
 
 **Proposed new concern pages (retail-relevant):**
 - **`/concerns/acne/`** (or `/concerns/active-acne/`) — currently only `acne-scarring` exists; Face Reality's core use case (active acne) has no concern page. High value.
-- **`/concerns/dull-uneven-texture/`** (also proposed in the ProCell brief) — Skin Script enzymes + ProCell everyday use case.
+- **`/concerns/dull-uneven-texture/`** (also proposed in the Procell brief) — Skin Script enzymes + Procell everyday use case.
 - **`/concerns/oily-congested-skin/`** — GlyMed+ (salicylic/BP range) + Face Reality; no page exists.
 
 ---
@@ -154,8 +154,8 @@ The single most important table in this brief: **treatment → matched retail br
 
 | In-studio treatment | Primary retail follow-through | Secondary / universal |
 |---|---|---|
-| **ProCell Microchanneling** (`/services/microchanneling/`) | **ProCell** aftercare (tier-matched Trial Set → Step 1/2) | GlyMed+ Post-Procedural kit; House of Rose SPF |
-| **ProCell Microchanneling — Body** | **ProCell** aftercare (tier-matched) | House of Rose Smooth Ritual Polish; SPF |
+| **Procell Microchanneling** (`/services/microchanneling/`) | **Procell** aftercare (tier-matched Trial Set → Step 1/2) | GlyMed+ Post-Procedural kit; House of Rose SPF |
+| **Procell Microchanneling — Body** | **Procell** aftercare (tier-matched) | House of Rose Smooth Ritual Polish; SPF |
 | **PRF / Microneedling — Corrective** | **GlyMed+** recovery (Recovery Cream w/ Arnica, Post-Procedural kit) | SPF; barrier creams |
 | **BioRePeel / peels** | **GlyMed+** barrier + SPF; **Skin Script** gentle daily care | House of Rose SPF |
 | **Glo2Facial / basic facials** | **Skin Script** daily regimen (enzymes, Vit C, SPF) | House of Rose rituals |
@@ -163,7 +163,7 @@ The single most important table in this brief: **treatment → matched retail br
 | **Professional / event makeup** | **Jane Iredale** mineral makeup (service, not retail yet) | SPF pre-makeup |
 | **Any treatment (universal close)** | **House of Rose Shield Ritual SPF 30** | — |
 
-**What to try first (retail entry ladder):** House of Rose SPF or a Skin Script intro/travel kit (low commitment) → Skin Script daily regimen → GlyMed+ corrective/procedural regimen → treatment-matched aftercare (ProCell / Face Reality) as dictated by the service booked.
+**What to try first (retail entry ladder):** House of Rose SPF or a Skin Script intro/travel kit (low commitment) → Skin Script daily regimen → GlyMed+ corrective/procedural regimen → treatment-matched aftercare (Procell / Face Reality) as dictated by the service booked.
 
 ---
 
@@ -175,13 +175,13 @@ All retail prices come from **Sanity** (cents→USD). No web prices.
 - **Brand tier** — GlyMed+ is the priciest line (clinical serums/kits run high — e.g. Essential Serum with Amino Acids $166, Firming Serum $142, Post-Procedural kit $146); Skin Script sits mid/accessible; House of Rose is the low-commitment tier ($18–$30).
 - **Product type** — serums and procedural kits > cleansers/toners > SPF/lip/basics.
 - **Kits vs singles** — GlyMed+ collections/kits and Skin Script travel/intro kits bundle multiple SKUs at a set investment.
-- **ProCell tier** — MD aftercare (~$150–$310) is roughly 2× the Pro aftercare (~$65–$80), mirroring the in-chair serum tiers.
+- **Procell tier** — MD aftercare (~$150–$310) is roughly 2× the Pro aftercare (~$65–$80), mirroring the in-chair serum tiers.
 
 **Observed ranges (Sanity, illustrative — always render "from"):**
 - GlyMed+: ~$17 (Hydrating Lip Balm) → $166 (Essential Serum with Amino Acids).
 - Skin Script: ~$30 (SPF/pads) → $66 (Advanced Renewal Serum) — **but 41 of 52 Skin Script products have `price: null`** (enzymes, masks, kits, back-bar items are unpriced). See GAPS.
 - Face Reality: ~$29 (2.5% Advanced Acne Med) → $125 (invisiClear Spot Patches).
-- ProCell: $65 → $310 (see §3.4).
+- Procell: $65 → $310 (see §3.4).
 - House of Rose: $18 → $30.
 
 **Conflict note:** the 41 null-price Skin Script items cannot be sold via the native cart (price + inStock gate buyability) and won't render a valid `Product` JSON-LD `offer`. Either backfill prices or mark them back-bar-only.
@@ -197,15 +197,15 @@ Professional lines aren't automatically "stronger" — the difference is that a 
 Many clients start with **Skin Script** for an effective, approachable professional routine, and move toward or blend in **GlyMed+** when the goal is more clinical correction or pre/post-procedure support. Your provider chooses based on your skin and goals at consultation.
 
 **Why does House of Rose carry so many products?**
-Because each treatment and concern has a matched home regimen. GlyMed+ covers corrective and procedural daily care, Skin Script covers accessible everyday care, Face Reality is the acne-program home system, ProCell is the microchanneling aftercare, and our House of Rose line is the simple daily ritual layer.
+Because each treatment and concern has a matched home regimen. GlyMed+ covers corrective and procedural daily care, Skin Script covers accessible everyday care, Face Reality is the acne-program home system, Procell is the microchanneling aftercare, and our House of Rose line is the simple daily ritual layer.
 
 **Is the Face Reality product line the same as the Acne Program?**
 The home products are half of the program. The 12-week Acne Bootcamp is biweekly in-studio treatments **plus** a customized Face Reality home regimen that adapts as your skin adjusts — so the products are dispensed through the program, not bought off a shelf.
 
-**Who chooses my ProCell aftercare — Pro or MD?**
+**Who chooses my Procell aftercare — Pro or MD?**
 Match your aftercare to your treatment tier: a Pro microchanneling treatment pairs with Pro aftercare, an MD treatment with MD aftercare. The Trial Set is an easy first step, and your esthetician confirms the tier.
 
-**Are ProCell products "stem-cell" serums?**
+**Are Procell products "stem-cell" serums?**
 No. They're professional growth-factor and cytokine aftercare. As of the current formula (April 2025) the growth factors are lab-made (recombinant), with no cells, DNA, or blood in the product. We never describe them as stem-cell therapy.
 
 **Can I wear makeup right after a treatment?**
@@ -230,7 +230,7 @@ Both. Your provider selects your regimen in studio, and you can purchase there o
 Tell your provider everything you use — including prescriptions and any recent treatments. They'll sequence your regimen so actives don't collide. Not every product suits every client.
 
 **Why buy aftercare where I was treated instead of anywhere?**
-Because the provider who treated you knows exactly what your skin went through and can match strength, timing, and product to your recovery — especially with treatment-specific lines like ProCell and Face Reality that are built for the pre/post-procedure window.
+Because the provider who treated you knows exactly what your skin went through and can match strength, timing, and product to your recovery — especially with treatment-specific lines like Procell and Face Reality that are built for the pre/post-procedure window.
 
 **Do you offer product discounts or sales?**
 We speak in terms of investment and value rather than discounts. Ask about kits and travel sizes as lower-commitment ways to start a regimen.
@@ -240,7 +240,7 @@ We speak in terms of investment and value rather than discounts. Ask about kits 
 ## 10. Provider + compliance notes
 
 **Lanes.**
-- **Amber** (advanced esthetician + RN assistant, **Face Reality Certified Acne Specialist**) — selects/dispenses **ProCell, GlyMed+, Skin Script, and Face Reality** as treatment aftercare and daily regimens.
+- **Amber** (advanced esthetician + RN assistant, **Face Reality Certified Acne Specialist**) — selects/dispenses **Procell, GlyMed+, Skin Script, and Face Reality** as treatment aftercare and daily regimens.
 - **Aundrea Pedigo** — **Jane Iredale** makeup (service lane, not retail).
 - **Brandy** — basic-facial clients naturally route to **Skin Script**-style daily care.
 - All retail sits under provider guidance; final regimen and candidacy are the provider's call at consultation.
@@ -274,18 +274,18 @@ Several **real manufacturer product names** contain banned terms. These are the 
 ## 11. Journey links (real slugs, trailing slashes)
 
 **Pages that should link *into* this retail content:**
-- Every treatment page whose result has a home regimen: `/services/microchanneling/`, `/services/procell-microchanneling-body/`, `/services/prf-microneedling/`, `/services/microneedling-corrective/`, `/services/biorepeel/`, `/services/glo2facial/`, `/services/face-reality-acne-program/`, `/services/acne-bootcamp/`, `/services/dermaplaning/`.
+- Every treatment page whose result has a home regimen: `/services/microchanneling/`, `/services/Procell-microchanneling-body/`, `/services/prf-microneedling/`, `/services/microneedling-corrective/`, `/services/biorepeel/`, `/services/glo2facial/`, `/services/face-reality-acne-program/`, `/services/acne-bootcamp/`, `/services/dermaplaning/`.
 - `/services/professional-makeup/jane-iredale/` → post-treatment mineral makeup.
 - Concern pages: `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`, `/concerns/dark-circles/`.
 - `/skin-analysis/` (the evidence-based first step that guides the regimen), `/faq/`, `/experience/`.
 
 **Where retail pages should link *out* to:**
-- `/shop/` → per-brand anchors (`/shop#glymed`, `#skin-script`, `#face-reality`, `#procell`, `#house-of-rose`) and `/shop/[slug]/` detail pages.
-- Back up to the treatment that the regimen supports (ProCell aftercare → `/services/microchanneling/`; Face Reality products → `/services/face-reality-acne-program/`).
+- `/shop/` → per-brand anchors (`/shop#glymed`, `#skin-script`, `#face-reality`, `#Procell`, `#house-of-rose`) and `/shop/[slug]/` detail pages.
+- Back up to the treatment that the regimen supports (Procell aftercare → `/services/microchanneling/`; Face Reality products → `/services/face-reality-acne-program/`).
 - `/skin-analysis/` and `/areas/punta-gorda/`.
 
 **Proposed new pages (type + slug):**
-- **5 `shopBrand` docs** (content, not routes) — `glymed`, `skin-script`, `face-reality`, `procell`, `house-of-rose` — to replace the hardcoded fallback brand copy with real, compliant, editable storytelling. **Highest-value, lowest-effort win.**
+- **5 `shopBrand` docs** (content, not routes) — `glymed`, `skin-script`, `face-reality`, `Procell`, `house-of-rose` — to replace the hardcoded fallback brand copy with real, compliant, editable storytelling. **Highest-value, lowest-effort win.**
 - **Comparison** — `/compare/skin-script-vs-glymed/` ("Skin Script vs GlyMed+: Which Daily Regimen Is Right for You?").
 - **Cost/guide** — `/guides/professional-skincare-vs-drugstore/` (why provider-selected, professional-grade care; compliance-clean).
 - **Concern** — `/concerns/acne/` (active acne — Face Reality's core; currently only `acne-scarring` exists).
@@ -296,8 +296,8 @@ Several **real manufacturer product names** contain banned terms. These are the 
 ## 12. Why House of Rose
 
 - **Provider-selected, not shelf-browsed.** Every regimen is chosen by the licensed provider who performed your treatment — the home care is a continuation of the plan, matched to your skin and what was just done to it.
-- **Five lines, one honest job each.** GlyMed+ for clinical correction, Skin Script for accessible daily care, Face Reality for the acne program's home half, ProCell for microchanneling aftercare, and our own House of Rose ritual line — no confusion about what does what.
-- **Treatment-matched aftercare that actually mirrors the chair.** ProCell aftercare is tier-matched (Pro/MD) to your in-chair serum; Face Reality is dispensed adaptively through your 12-week program. That's follow-through, not upsell.
+- **Five lines, one honest job each.** GlyMed+ for clinical correction, Skin Script for accessible daily care, Face Reality for the acne program's home half, Procell for microchanneling aftercare, and our own House of Rose ritual line — no confusion about what does what.
+- **Treatment-matched aftercare that actually mirrors the chair.** Procell aftercare is tier-matched (Pro/MD) to your in-chair serum; Face Reality is dispensed adaptively through your 12-week program. That's follow-through, not upsell.
 - **A real credential where it counts.** Amber is a Face Reality Certified Acne Specialist — a citable qualification, not an outcome promise.
 - **Locally grounded, honestly framed.** Professional-grade care for the Punta Gorda / Charlotte County / SW Florida client, described with "for the appearance of," "supports," and "individual results vary" — never anti-aging theater, stem-cell claims, or discount noise.
 
@@ -308,17 +308,17 @@ Several **real manufacturer product names** contain banned terms. These are the 
 **Local docs read (paths):**
 - `docs/SHOP-ARCHITECTURE.md` — shop content model (`product`/`promotion`/`shopBrand`), page structure, the "never name the checkout platform" rule, and the note that `promotion`/`shopBrand` docs don't exist yet.
 - `docs/COMPLIANCE-COPY-RULES.md` — binding never-say / say-instead table, required guardrails, med-spa "allow don't lead."
-- `docs/research/procell.md` — ProCell serum tiers, recombinant/April-2025 sourcing, the six ProCell aftercare SKUs + prices, stem-cell/injected-serum compliance lines.
-- `docs/services/pricing/advanced-facials-master-menu.md` — treatment pricing, ProCell/GlyMed+/Face Reality treatment context, §9 compliance guardrails.
+- `docs/research/Procell.md` — Procell serum tiers, recombinant/April-2025 sourcing, the six Procell aftercare SKUs + prices, stem-cell/injected-serum compliance lines.
+- `docs/services/pricing/advanced-facials-master-menu.md` — treatment pricing, Procell/GlyMed+/Face Reality treatment context, §9 compliance guardrails.
 - `docs/services/facials/faceRealityAcneProgram.md` — $899 12-week program, "sold as a program ONLY," Amber Mingione as Face Reality Certified Acne Specialist.
-- `docs/services/facials/packagesAdd-ons.md` — after-care-kit framing per treatment (ProCell aftercare serum + sunscreen; growth-factor serum kits).
+- `docs/services/facials/packagesAdd-ons.md` — after-care-kit framing per treatment (Procell aftercare serum + sunscreen; growth-factor serum kits).
 - `docs/services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md` — Jane Iredale as a makeup *service* line (three pillars: makeup/skincare/supplements), Aundrea's lane, this-for-that swap guide, post-treatment mineral makeup.
 - `memory/phase1-open-followups.md` — the logged open owner decision on non-compliant product names (keep accurate vs compliant display labels).
 
 **Sanity consulted (published, project 4e7axyi7 / dataset production):**
-- Live count query: GlyMed+ 75, Skin Script 52, Face Reality 30, ProCell 6, House of Rose 3 (166 total); Jane Iredale 0; `shopBrand` docs 0; `isFeatured` products 0; `purchaseUrl` products 0; 41 Skin Script products with `price: null`.
+- Live count query: GlyMed+ 75, Skin Script 52, Face Reality 30, Procell 6, House of Rose 3 (166 total); Jane Iredale 0; `shopBrand` docs 0; `isFeatured` products 0; `purchaseUrl` products 0; 41 Skin Script products with `price: null`.
 - Product docs by brand (titles, slugs, prices, badges) from `phase2/sanity-published-snapshot.json`.
-- Services: `microchanneling`, `procell-microchanneling-body`, `face-reality-acne-program`, `acne-bootcamp`, `acne-peel`, `back-treatment`, `biorepeel`, `glo2facial`, `dermaplaning`.
+- Services: `microchanneling`, `Procell-microchanneling-body`, `face-reality-acne-program`, `acne-bootcamp`, `acne-peel`, `back-treatment`, `biorepeel`, `glo2facial`, `dermaplaning`.
 - Concerns: `sun-damage`, `fine-lines-laxity`, `acne-scarring`, `stretch-marks`, `dark-circles`, `hair-thinning`.
 
 **Web sources (brand positioning/story only — never prices, never imported claims):**

@@ -41,7 +41,7 @@ Framed honestly — as the *appearance of* improvement, because that's what's tr
 - **Firmness and tone** look supported as the skin's scaffolding rebuilds.
 - **Dullness** gives way to a more even, luminous surface as skin remodels.
 
-If your skin is past forty or you're specifically after age-related collagen support, Amber will often steer you toward **ProCell MD microchanneling**, a gentler stamped protocol paired with a growth-factor serum carrying roughly twice the growth factors of the standard formula. It's the age-matched option in the lineup — and Amber will tell you when it's the smarter starting point than deeper corrective needling.
+If your skin is past forty or you're specifically after age-related collagen support, Amber will often steer you toward **Procell MD microchanneling**, a gentler stamped protocol paired with a growth-factor serum carrying roughly twice the growth factors of the standard formula. It's the age-matched option in the lineup — and Amber will tell you when it's the smarter starting point than deeper corrective needling.
 
 ### The optional topical PRF boost
 
@@ -71,7 +71,7 @@ A face treatment runs about **60–75 minutes**; adding PRF lengthens the visit 
 ### Investment
 
 - **Microneedling (corrective, face):** from **$295** per session
-- **ProCell microchanneling:** from **$299** (Pro) / from **$349** (MD, age-matched)
+- **Procell microchanneling:** from **$299** (Pro) / from **$349** (MD, age-matched)
 - **Topical PRF boost:** **+$175** (face)
 
 Series pricing brings the per-session cost down and is how most mature-skin plans are built. Amber sets the right combination at consultation.
@@ -84,7 +84,7 @@ Series pricing brings the per-session cost down and is how most mature-skin plan
 No — it's adjustable, which is why it suits mature skin well. Amber sets a depth appropriate to your skin rather than one aggressive setting.
 
 **Microneedling or microchanneling — what's the difference?**
-Microchanneling (ProCell) is a fixed, comfortable protocol built around overall skin quality and glow; corrective microneedling is the adjustable-depth option for targeted concerns. Amber picks based on your skin, not a script. (Full breakdown on our comparison page.)
+Microchanneling (Procell) is a fixed, comfortable protocol built around overall skin quality and glow; corrective microneedling is the adjustable-depth option for targeted concerns. Amber picks based on your skin, not a script. (Full breakdown on our comparison page.)
 
 **Does the PRF really add anything?**
 It adds your own growth factors to the surface during treatment. Our position: topical PRF studies are encouraging but vary person to person, so Amber recommends it where it makes sense rather than as a blanket upsell.
@@ -99,13 +99,13 @@ Give yourself lead time — a couple of weeks minimum for pinkness to settle, an
 ## Cost guide — `/cost/microneedling-cost/`
 
 **Meta title:** How Much Does Microneedling Cost in Punta Gorda? | House of Rose
-**Meta description:** Microneedling at House of Rose starts at $295 (corrective) or $299 (ProCell microchanneling), with an optional +$175 topical PRF boost. Here's what sets your number.
+**Meta description:** Microneedling at House of Rose starts at $295 (corrective) or $299 (Procell microchanneling), with an optional +$175 topical PRF boost. Here's what sets your number.
 
 **Answer-first:**
-At House of Rose in Punta Gorda, corrective microneedling starts at **$295 per session**, ProCell microchanneling from **$299** (or **$349** for the age-matched MD protocol), and the topical PRF boost adds **$175** to a face treatment. What you actually spend depends on which protocol fits your skin and whether you build a series — which, for mature skin, is usually the point.
+At House of Rose in Punta Gorda, corrective microneedling starts at **$295 per session**, Procell microchanneling from **$299** (or **$349** for the age-matched MD protocol), and the topical PRF boost adds **$175** to a face treatment. What you actually spend depends on which protocol fits your skin and whether you build a series — which, for mature skin, is usually the point.
 
 **What moves your number:**
-- **Protocol.** Adjustable corrective needling vs. the comfortable ProCell channeling vs. the higher-growth-factor MD serum — each is priced for what it's built to do.
+- **Protocol.** Adjustable corrective needling vs. the comfortable Procell channeling vs. the higher-growth-factor MD serum — each is priced for what it's built to do.
 - **Single vs. series.** Collagen builds over a course, so series pricing lowers the per-session cost and is how most plans run.
 - **Add-ons that earn it.** The topical PRF boost, a neck-and-décolleté extension, or an LED finish — added only where Amber sees a reason.
 - **Face vs. body.** Body zones (neck, hands, crepey skin) are priced separately and often need a longer series.
@@ -116,13 +116,13 @@ At House of Rose in Punta Gorda, corrective microneedling starts at **$295 per s
 
 ## Comparison page — `/compare/microneedling-vs-microchanneling/`
 
-**Meta title:** Microneedling vs. Microchanneling (ProCell): Which Is Right? | House of Rose
-**Meta description:** Corrective microneedling is adjustable-depth and targeted; ProCell microchanneling is a comfortable, glow-focused protocol. Here's how House of Rose chooses for mature skin.
+**Meta title:** Microneedling vs. Microchanneling (Procell): Which Is Right? | House of Rose
+**Meta description:** Corrective microneedling is adjustable-depth and targeted; Procell microchanneling is a comfortable, glow-focused protocol. Here's how House of Rose chooses for mature skin.
 
 **Answer-first:**
-Choose **corrective microneedling** when you want depth dialed to a specific concern — deeper lines, defined texture, crepiness. Choose **ProCell microchanneling** when your goal is overall skin quality and glow with a comfortable, predictable recovery, and especially when you want the age-matched MD growth-factor serum. Neither is "stronger"; they're different tools, and mature skin often starts with channeling and graduates to corrective work as needed.
+Choose **corrective microneedling** when you want depth dialed to a specific concern — deeper lines, defined texture, crepiness. Choose **Procell microchanneling** when your goal is overall skin quality and glow with a comfortable, predictable recovery, and especially when you want the age-matched MD growth-factor serum. Neither is "stronger"; they're different tools, and mature skin often starts with channeling and graduates to corrective work as needed.
 
-| | **Corrective microneedling** | **ProCell microchanneling** |
+| | **Corrective microneedling** | **Procell microchanneling** |
 |---|---|---|
 | Approach | Adjustable needle depth | Fixed, comfortable protocol |
 | Best for | Targeted lines, texture, crepiness | Overall quality, glow, first-timers |
@@ -139,15 +139,15 @@ Amber recommends the starting point at consultation — and it's genuinely a rec
 ## Review & build notes (not for the page)
 
 **Price citations (Rule #0):** primary source is `docs/staff/pricing/ALL-SERVICES-PRICING.MD` — the **live menu** (CLAUDE.md), anchor-corrected 2026-07-17, GlossGenius-aligned. It supersedes the older `advanced-facials-master-menu.md` (2026-07-10) where they differ:
-- ProCell Pro (Face) **$299** · ProCell MD (Face) **$349** (live in GG) — *corrected from the stale master-menu $250/$325*.
+- Procell Pro (Face) **$299** · Procell MD (Face) **$349** (live in GG) — *corrected from the stale master-menu $250/$325*.
 - Corrective microneedling (face): single **$295** / series of 3 **$795** / series of 6 **$1,415** (consistent across both docs).
 - Topical PRF boost **+$175 face / +$200 body**.
 
-**✅ Series-count — resolved (do NOT flatten):** the live menu settles it — **ProCell runs as a Series of 4 ($1,099)**, because the count is the ProCell protocol (min 4 tx; 6+ for scarring), *not* the house 3/6 retail wrapper. Corrective microneedling = **3–6** (scarring 5–8). This page keeps its client copy on "often three to six sessions" for the corrective focus and doesn't pin ProCell's count in prose; if the ProCell packaged series is surfaced, use **Series of 4**. Per the live doc: "Series length is per-treatment, not house-wide — do not normalize."
+**✅ Series-count — resolved (do NOT flatten):** the live menu settles it — **Procell runs as a Series of 4 ($1,099)**, because the count is the Procell protocol (min 4 tx; 6+ for scarring), *not* the house 3/6 retail wrapper. Corrective microneedling = **3–6** (scarring 5–8). This page keeps its client copy on "often three to six sessions" for the corrective focus and doesn't pin Procell's count in prose; if the Procell packaged series is surfaced, use **Series of 4**. Per the live doc: "Series length is per-treatment, not house-wide — do not normalize."
 
 **Do-not-say (binding):**
 - Topical PRF is **never injected**; never "the device injects/delivers PRF into skin," never "FDA-approved for PRF microneedling."
-- No "stem cell" for ProCell — its serum uses recombinant (lab-made) growth factors; describe factually.
+- No "stem cell" for Procell — its serum uses recombinant (lab-made) growth factors; describe factually.
 - No GlowTox / Micro-Tox (clinical hold).
 - No "reverse sun damage / anti-aging / erase / permanent / guaranteed." Use "the appearance of," "supports," "many clients notice."
 - Plain names only; no flowery/"signature" names; no membership or discount framing.

@@ -41,7 +41,7 @@ const SERVICE_IMAGES: Record<string, string> = {
   'microneedling-corrective': REGENERATIVE_EDITORIAL_IMAGE,
   'microneedling-body': REGENERATIVE_EDITORIAL_IMAGE,
   'prf-body-treatments': REGENERATIVE_EDITORIAL_IMAGE,
-  'procell-microchanneling-body': REGENERATIVE_EDITORIAL_IMAGE,
+  'Procell-microchanneling-body': REGENERATIVE_EDITORIAL_IMAGE,
   biorepeel: REGENERATIVE_EDITORIAL_IMAGE,
   'biorepeel-body': REGENERATIVE_EDITORIAL_IMAGE,
   'biorepeel-advanced-acne-scarring': REGENERATIVE_EDITORIAL_IMAGE,

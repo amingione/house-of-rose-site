@@ -123,14 +123,14 @@ with "advanced aesthetics and wellness studio," names the differentiators (AI sk
 treatments), and carries the terms Google reads. No changes required.
 
 ```
-House of Rose Aesthetics is an advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, BioRePeel, PRF and ProCell Microchanneling, GLP-1 support, professional waxing, facials, and IV Hydration Therapy. Using advanced AI skin imaging technology, we curate each treatment plan around your skin, goals, and progress, allowing for precise tracking and thoughtful treatment enhancements over time. At House of Rose, skin health is not just surface level. Beauty blooms from within.
+House of Rose Aesthetics is an advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, BioRePeel, PRF and Procell Microchanneling, GLP-1 support, professional waxing, facials, and IV Hydration Therapy. Using advanced AI skin imaging technology, we curate each treatment plan around your skin, goals, and progress, allowing for precise tracking and thoughtful treatment enhancements over time. At House of Rose, skin health is not just surface level. Beauty blooms from within.
 ```
 
 **Optional refinement** (if you ever want a touch more "private, by-appointment, named-provider" warmth — same
 length class, ~720 chars, still no banned words):
 
 ```
-House of Rose Aesthetics is a private, by-appointment advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, PRF and ProCell Microchanneling, BioRePeel, facials, professional waxing, IV Hydration Therapy, and GLP-1 support. Guided by advanced AI skin imaging, we build each plan around your skin, goals, and progress — tracking results and refining over time with a provider who listens first and never sells you what you don't need. Skin health here isn't surface level. Beauty blooms from within.
+House of Rose Aesthetics is a private, by-appointment advanced aesthetics and wellness studio in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We offer neurotoxins, dermal fillers, PRF and Procell Microchanneling, BioRePeel, facials, professional waxing, IV Hydration Therapy, and GLP-1 support. Guided by advanced AI skin imaging, we build each plan around your skin, goals, and progress — tracking results and refining over time with a provider who listens first and never sells you what you don't need. Skin health here isn't surface level. Beauty blooms from within.
 ```
 
 _Either is fine. No "anti-aging," no "med spa," no hype — value framed as care, not discounts._
@@ -236,7 +236,7 @@ Add each as a Service with its name + a description. Brand rules applied:
 These are the fixed items Google generated for your categories. **You can't rename them** (the name is locked
 by Google), but each has a **price** and a **~300-char description** you control. Rules I applied: price reads
 **"From $X"** (set price type = "starts at"); descriptions are voice-correct, no guarantees, and **bridge the
-Google name to your real brand language** (e.g. the "Microneedling" item describes your *ProCell
+Google name to your real brand language** (e.g. the "Microneedling" item describes your *Procell
 Microchanneling*; "PRP facial" describes your *PRF*). Prices are anchored to your Punta Gorda pricing
 strategy and validated against current 2026 market data.
 
@@ -274,7 +274,7 @@ strategy and validated against current 2026 market data.
 > _Twin of your custom PRF services. PRF > PRP; the description does that work since Google locks the name._
 
 **Microneedling** · _From $425_
-> Our signature is ProCell Microchanneling: a refined microchanneling technique paired with growth-factor
+> Our signature is Procell Microchanneling: a refined microchanneling technique paired with growth-factor
 > serums to support smoother texture, tone, and firmness over a paced series — not generic microneedling.
 > _Twin of your custom "Procell Microchanneling."_
 
@@ -299,7 +299,7 @@ _Google duplicates four items here. Use the **same price + description** as abov
 ### Skin care clinic (additional)
 
 **Regenerative Skin Treatment** _(your custom item)_ · _From $425_
-> Regenerative treatments like PRF and ProCell Microchanneling that support your skin's own collagen over
+> Regenerative treatments like PRF and Procell Microchanneling that support your skin's own collagen over
 > a paced series. Built the right way, for results that look like you.
 
 ### Vitamin & supplements store (additional — house GLP-1, B-12, IV here)

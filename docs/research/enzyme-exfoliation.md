@@ -115,7 +115,7 @@ Factors that *would* move price once set (for planning only, not for publication
 - Single visit vs. a prepaid maintenance series (treatment *packages/series* are allowed and current; **no memberships**).
 - Which professional enzyme line/formulation is used.
 
-**Contrast for reference only (Amber's lane, from `advanced-facials-master-menu.md`):** the studio's *advanced* entry point is Glo2Facial at **$185**; corrective work runs higher (ProCell $250+, Microneedling — Corrective $295, BioRePeel from $295). A Brandy *basic maintenance* enzyme facial would sit **below** these as an entry-level relaxing service — but the actual number is Brandy's to set and is not in any doc.
+**Contrast for reference only (Amber's lane, from `advanced-facials-master-menu.md`):** the studio's *advanced* entry point is Glo2Facial at **$185**; corrective work runs higher (Procell $250+, Microneedling — Corrective $295, BioRePeel from $295). A Brandy *basic maintenance* enzyme facial would sit **below** these as an entry-level relaxing service — but the actual number is Brandy's to set and is not in any doc.
 
 ---
 

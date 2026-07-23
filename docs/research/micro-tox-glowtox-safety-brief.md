@@ -24,7 +24,7 @@ If House of Rose elects to offer an intradermal microdroplet neurotoxin treatmen
 - A universal dose, dilution, injection map, depth, device technique, or a conversion from another toxin's units.
 - "Zero downtime," instant pore shrinking, redness elimination, oil control, airbrushed skin, camera-ready results, or any guaranteed outcome.
 - The term "sticky bone" as a facial treatment, or claims that a facial fibrin mask has a proven retention time, release profile, recovery benefit, or LED/occlusion sequence.
-- Stem-cell claims for ProCell, PRF, or any treatment.
+- Stem-cell claims for Procell, PRF, or any treatment.
 
 ## Product and FDA guardrails
 

@@ -59,8 +59,8 @@ Use only while Botox, Daxxify, and filler remain currently bookable:
 - `"glo2facial punta gorda"`
 - `[microneedling near me]`
 - `"microneedling punta gorda"`
-- `[procell microchanneling near me]`
-- `"procell microchanneling"`
+- `[Procell microchanneling near me]`
+- `"Procell microchanneling"`
 
 ### Campaign negatives
 
@@ -73,9 +73,9 @@ Review search terms daily for the first seven days. Add negatives only when the 
 - Business name: House of Rose Aesthetics.
 - Call asset: (844) 941-7673, scheduled Monday–Friday, 9:00 AM–5:00 PM.
 - Location asset: connect the verified Google Business Profile.
-- Sitelinks: Skin Analysis, Injectables, Glo2Facial, ProCell Microchanneling.
+- Sitelinks: Skin Analysis, Injectables, Glo2Facial, Procell Microchanneling.
 - Callouts: Private Appointments; Punta Gorda Studio; Consultation First; Provider-Led Care.
-- Structured snippet header: Services. Values: Skin Analysis, Glo2Facial, ProCell, Injectables.
+- Structured snippet header: Services. Values: Skin Analysis, Glo2Facial, Procell, Injectables.
 - Image assets: use the text-free files from the Google export folder only.
 
 ## Meta

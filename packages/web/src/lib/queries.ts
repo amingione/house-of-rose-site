@@ -154,7 +154,7 @@ export interface ServiceCollection {
   services: Service[];
 }
 
-export type ProductBrand = 'procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
+export type ProductBrand = 'Procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
 
 export type ProductCategory = 'skincare' | 'candles' | 'gift-cards' | 'accessories' | 'other';
 

@@ -111,9 +111,9 @@ Traditional **microdermabrasion** mechanically sands the surface with crystals o
 - **Hydrating mask finish** — reinforce hydration for event prep.
 - **Enzyme exfoliation** — as an alternative or complementary gentle exfoliation within the basic lane.
 
-**Pathways (step-up):** hydrodermabrasion (maintenance) → **Glo2Facial** (advanced signature glow, Amber) → **ProCell Microchanneling / Microneedling / BioRePeel / PRF** for correction. Keep the lane hand-off explicit: Brandy for maintenance, Amber for advanced/corrective.
+**Pathways (step-up):** hydrodermabrasion (maintenance) → **Glo2Facial** (advanced signature glow, Amber) → **Procell Microchanneling / Microneedling / BioRePeel / PRF** for correction. Keep the lane hand-off explicit: Brandy for maintenance, Amber for advanced/corrective.
 
-**Retail follow-through** (name real HoR shop brands once confirmed in Sanity shopBrands — snapshot did not include brand records, so treat as directional): support the glow at home with a **gentle cleanser, a hyaluronic-acid/hydrating serum, and daily SPF**. HoR retail brands referenced across the site include **ProCell, GlyMed+, Skin Script, Face Reality, and House of Rose** — pick a hydrating serum + SPF from whichever the provider stocks for maintenance clients. (Confirm exact SKUs against live `product`/`shopBrand` docs before naming on a page.)
+**Retail follow-through** (name real HoR shop brands once confirmed in Sanity shopBrands — snapshot did not include brand records, so treat as directional): support the glow at home with a **gentle cleanser, a hyaluronic-acid/hydrating serum, and daily SPF**. HoR retail brands referenced across the site include **Procell, GlyMed+, Skin Script, Face Reality, and House of Rose** — pick a hydrating serum + SPF from whichever the provider stocks for maintenance clients. (Confirm exact SKUs against live `product`/`shopBrand` docs before naming on a page.)
 
 ---
 
@@ -181,7 +181,7 @@ What will move price once set (for structuring the eventual menu):
 - `/services/dermaplaning/` (pairing)
 - `/services/lightstim-led-therapy/` (add-on)
 - `/services/collections/skin-renewal/`
-- Corrective step-up references: `/services/microchanneling/` (ProCell), `/services/microneedling-corrective/`, `/services/biorepeel/`
+- Corrective step-up references: `/services/microchanneling/` (Procell), `/services/microneedling-corrective/`, `/services/biorepeel/`
 - `/shop/` (retail hydration + SPF follow-through)
 - `/faq/`, `/contact/`, booking (call/text-first, GlossGenius)
 

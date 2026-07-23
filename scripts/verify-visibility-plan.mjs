@@ -39,8 +39,8 @@ const redirectedCanonicals = new Set([
   '/concerns/hair-thinning/',
   '/compare/prf-microchanneling-vs-microneedling/',
   '/compare/prf-injections-vs-ez-gel/',
-  '/compare/procell-serum-vs-prf/',
-  '/compare/procell-vs-topical-prf/',
+  '/compare/Procell-serum-vs-prf/',
+  '/compare/Procell-vs-topical-prf/',
   '/compare/topical-prf-vs-prf-injections/',
 ]);
 

@@ -18,3 +18,15 @@ index 387c4bf..aaa463b 100644
      const candidates = ['sanity.config.js', 'sanity.config.jsx', 'sanity.config.ts', 'sanity.config.tsx'];
      for (const sanityConfigFileName of candidates) {
          const sanityConfigPath = path.resolve(studioPath, sanityConfigFileName);
+diff --git a/node_modules/@stackbit/cms-sanity/tsconfig.json b/node_modules/@stackbit/cms-sanity/tsconfig.json
+new file mode 100644
+index 0000000..3394d65
+--- /dev/null
++++ b/node_modules/@stackbit/cms-sanity/tsconfig.json
+@@ -0,0 +1,6 @@
++{
++  "compilerOptions": {
++    "noEmit": true,
++    "skipLibCheck": true
++  }
++}

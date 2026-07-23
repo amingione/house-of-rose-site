@@ -30,7 +30,7 @@ Everything else (Obsidian pricing folders, HoR-ops treatment-menu.html, PRF_Pric
 | C6 | **Permanent Jewelry** | $65 | "From $60" | Taxonomy tiers ($60–$95) are proposal-only | Fix Sanity to $65 (or "From $65"). |
 | C7 | **Dermaplaning** | Not in GG | Standalone "From $135" | Notion: "add on only" · restructure plan: add-on +$45 | Sanity sells it standalone; the decision on file says add-on. Pick one, reflect it in GG. |
 | C8 | **Acne standalone services** | Not in GG | `acne-peel` $139 + `back-treatment` $159 still published (+1 draft) | Decision on file: **program only ($899)** — remove standalones | Remove the two Sanity services (the restructure plan already called this). |
-| C9 | **ProCell** | $349 (one line) | $349 ✅ | Notion note still shows the old **$399/$299 founding proposal** | Sanity/GG agree. Clean the stale Notion note — "founding" = discount framing, dead. |
+| C9 | **Procell** | $349 (one line) | $349 ✅ | Notion note still shows the old **$399/$299 founding proposal** | Sanity/GG agree. Clean the stale Notion note — "founding" = discount framing, dead. |
 
 ## 3. Dead concepts found alive (Rule #0 violations — recommend immediate purge)
 

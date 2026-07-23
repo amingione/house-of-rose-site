@@ -39,7 +39,7 @@ These files are named as the primary/assigned source doc for a topic but are 0-b
 
 | File | Topic it was assigned to | State |
 |---|---|---|
-| `docs/services/microchanneling/PRF.md` | Topical PRF / microchanneling / microneedling / ProCell | **0 bytes (empty)** — flagged by prf-topical, microneedling, microchanneling, procell briefs |
+| `docs/services/microchanneling/PRF.md` | Topical PRF / microchanneling / microneedling / Procell | **0 bytes (empty)** — flagged by prf-topical, microneedling, microchanneling, Procell briefs |
 | `docs/services/facials/biorepeel.md` | BioRePeel | **Research-prompt stub, no pricing** |
 | `docs/services/facials/dermaplaning.md` | Dermaplaning | **0 bytes (empty)** |
 | `docs/services/facials/glo2facialxGeneo.md` | Glo2Facial | **0 bytes (empty)** |
@@ -66,11 +66,11 @@ Services/content present in local pricing/lane docs (or required by a brief) but
 | **Skin analysis as a `service`** | Exists only as the `/skin-analysis/` singleton, not a first-class `service` doc (decision needed for service listing + JSON-LD). |
 | **Neurotoxins as a priced service** | `injectables` exists but is price-null / carries phantom Dysport — not yet a real service surface. |
 | **Jane Iredale `shopBrand`** | 0 retail product docs; exists only as a makeup service line. Would be the 6th `brand` if stocked. |
-| **5 missing `shopBrand` docs** | GlyMed+, Skin Script, Face Reality, ProCell, House of Rose — shop runs on hardcoded `FALLBACK_BRAND_COPY`; 0 `shopBrand` docs exist. Highest-value/lowest-effort win. |
+| **5 missing `shopBrand` docs** | GlyMed+, Skin Script, Face Reality, Procell, House of Rose — shop runs on hardcoded `FALLBACK_BRAND_COPY`; 0 `shopBrand` docs exist. Highest-value/lowest-effort win. |
 | **3 unpopulated makeup singletons** | `professionalMakeupPage`, `janeIredalePage`, `makeupEventsPage` — **empty in Sanity, render from `.astro` fallback**, despite CLAUDE.md claiming "deployed + seeded." Must be populated. |
-| **Empty / unpriced packages** | `dermaplaning-package-of-4` (unpriced; local $340), `face-reality-12-week-program` (title only, no price/services), all **3 wax packages** incl. `brazilian-wax-pass` (unpriced — see §8), `biorepeel-series-of-4` (empty), Glo2Facial series (`glo2facial-series-of-3` $499 / `glo2facial-series-of-6` $885 — don't exist), ProCell Series of 3/6 (don't exist). |
+| **Empty / unpriced packages** | `dermaplaning-package-of-4` (unpriced; local $340), `face-reality-12-week-program` (title only, no price/services), all **3 wax packages** incl. `brazilian-wax-pass` (unpriced — see §8), `biorepeel-series-of-4` (empty), Glo2Facial series (`glo2facial-series-of-3` $499 / `glo2facial-series-of-6` $885 — don't exist), Procell Series of 3/6 (don't exist). |
 | **Add-on upgrade pricing absent from Sanity services** | Topical PRF (+$175/+$200), Glo2Facial finish (+$95), Dermaplane prep (+$45), LED (+$35), BioRePeel (+$65), Neck & Décolleté (+$95) — priced in the master menu but not reflected on Sanity service docs. |
-| **ProCell MD not a distinct Sanity service** | Sanity has one `microchanneling` "From $250" (= Pro single); MD ($325) should be split out. |
+| **Procell MD not a distinct Sanity service** | Sanity has one `microchanneling` "From $250" (= Pro single); MD ($325) should be split out. |
 | **Merchandising levers unused** | 0 `promotion` docs, 0 `isFeatured` products (no Top Sellers rail), 0 `purchaseUrl` on products. |
 
 ---
@@ -82,11 +82,11 @@ The master menu and Sanity use **different series cadences and names** — must 
 | Framework | Where it lives | Naming |
 |---|---|---|
 | **Series of 3 ("Renewal", ~10% value) / Series of 6 ("Full Correction", ~20% value)** | `advanced-facials-master-menu.md` (all Amber-lane pricing) | Renewal / Full Correction |
-| **Series of 4** | Sanity packages (`prf-microneedling-series-of-4`, `procell-microchanneling-series-of-4`, `biorepeel-series-of-4`, `dermaplaning-package-of-4`) | "Series of 4" / "Package of 4" |
+| **Series of 4** | Sanity packages (`prf-microneedling-series-of-4`, `Procell-microchanneling-series-of-4`, `biorepeel-series-of-4`, `dermaplaning-package-of-4`) | "Series of 4" / "Package of 4" |
 
 **Corrected fix (2026-07-17) — do NOT pick ONE cadence.** The earlier advice ("pick ONE cadence, 3/6 is canonical, series-of-4 is off-framework") was **wrong** — it flattened distinct clinical protocols into one retail pattern. Series length is **per-treatment, per manufacturer protocol**:
 
-- **ProCell microchanneling → Series of 4** (min 4 tx ~4 wks apart, 6+ scarring — ProCell protocol; `docs/services/PRF/`).
+- **Procell microchanneling → Series of 4** (min 4 tx ~4 wks apart, 6+ scarring — Procell protocol; `docs/services/PRF/`).
 - **BioRePeel → Series of 4** (manufacturer: 4–6 sessions every 7–10 days, maintenance q2–3mo — [BioRePeelCl3 protocol](https://biorepeelcl3spain.com/wp-content/uploads/2019/12/Protocol-of-use-BioRePeelCl3.pdf); confirmed 2026-07-17). Notion Live page + master menu already price series-of-4 ($1,050).
 - **PRF Skin Renewal → Series of 3 or 4** ($1,200 / $1,550 — GlossGenius import CSV, PRF PDF).
 - **Glo2Facial → Series of 3 / 6** (OxyGeneo study ran 6 weekly; $499 / $885).
@@ -131,7 +131,7 @@ Retail products keep their **accurate manufacturer names** (buyers must identify
 | **GlyMed+ banned-term product names** | "Age Defying Masque," "Anti-Aging Exfoliant Masque," "Age Delay Cream," **"Firming Serum with Phyto-Stem Cells"** | Keep names as-is; **never build a claim on them.** No "anti-aging / age-defying / reverse aging," and **never "stem cell"** in our copy. |
 | **Skin Script "Ageless" product names** | "Ageless Skin Moisturizer," "Ageless Skin Hydrating Serum," "Ageless Lip Treatment" | Keep names; our copy avoids "ageless / age-reversal" framing. |
 | **Face Reality manufacturer claims** | "Clinically Proven Clear Skin Method™," "visible results in 8 weeks," **"90% success rate,"** grades of acne it "treats" | **Do not import as HoR claims.** Say "supports clearer-looking skin," "part of a guided acne program"; never "treats/cures/heals/clears acne." (Amber is a **Face Reality Certified Acne Specialist** — that credential is citable; the outcome claims are not.) |
-| **ProCell "stem cell"-adjacent marketing** | Manufacturer references mesenchymal/BM stem-cell literature, "conditioned medium," DNA repair | Use only the literal ingredient statement (growth factors, cytokines, DNA-repair enzymes, HA; bio-engineered/recombinant; no cells/DNA/blood). Never "stem cell," never "delivered deep into the skin." |
+| **Procell "stem cell"-adjacent marketing** | Manufacturer references mesenchymal/BM stem-cell literature, "conditioned medium," DNA repair | Use only the literal ingredient statement (growth factors, cytokines, DNA-repair enzymes, HA; bio-engineered/recombinant; no cells/DNA/blood). Never "stem cell," never "delivered deep into the skin." |
 | **invisiClear Spot Patches price** | Sanity $125 vs ~$12 typical | Likely a data error — verify (also in §1). |
 | **AI skin analysis** | Must not "diagnose," "detect disease/skin cancer/melanoma," claim "medical-grade/clinical diagnosis," or cite a specific metric count / FDA-approval | Say "helps us see/evaluate," "supports personalized recommendations," "evidence-based first step." |
 | **Needling / device language** | FDA: microneedling devices are **not** authorized to deliver cosmetics or blood products into skin | Never "injects/delivers PRF into the skin," never "FDA-approved PRF microneedling." |

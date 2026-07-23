@@ -3,13 +3,13 @@
 All notable site-elevation work is logged here, newest first. See
 `docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
 
-## 2026-07-14 — ProCell/PRF coverage review (items 1–3)
+## 2026-07-14 — Procell/PRF coverage review (items 1–3)
 
 Reviewed and decided from a business + customer view:
 1. **Rose PRF Fibrin Veil** — completed the thin page: 169-word informative description, **From $225** with tiered
    coverage note (full face $225 / +neck $275 / +décolleté $325), who-it's-for, 5-step process, 5 FAQs.
    Kept as a distinct topical-PRF finishing add-on in Enhancements & Add-ons (topical only, never injected).
-2. **Draft ProCell MD/Pro services** — decided NOT to publish (they'd diverge from GlossGenius's single ProCell
+2. **Draft Procell MD/Pro services** — decided NOT to publish (they'd diverge from GlossGenius's single Procell
    line and cannibalize the microchanneling hub, which already explains Pro vs MD). Cleaned the dangling refs
    they left on `microchanneling`.
 3. **Removed `/guides/microchanneling-prf/` guide** — kept consolidated (redirect → the deep `/services/microchanneling/`
@@ -21,7 +21,7 @@ unrelated to content; Netlify installs fresh so it builds clean. Data verified d
 ## 2026-07-14 — Confirmations applied (task 3 of 3)
 
 Owner decisions applied: **GLP-1 → most-competitive $225/month** (overrides the $279 margin-safe option;
-undercuts the direct local comp). **Combo prices flipped** — Glo2Facial + ProCell MD $525, + ProCell Pro $475
+undercuts the direct local comp). **Combo prices flipped** — Glo2Facial + Procell MD $525, + Procell Pro $475
 (MD is the stronger serum, so it's the pricier pairing). **Permanent-jewelry metal tiers added** (From $60;
 bracelets $60/$75/$85, anklets $65/$85/$95, via a pricing note + FAQ). **Makeup: keep both** — the
 professional-makeup hub + the 3 makeup service pages form a hub-and-spoke topical cluster (stronger SEO than
@@ -30,10 +30,10 @@ consolidating). Follow-up: interlink the makeup hub ↔ spokes.
 ## 2026-07-14 — Treatment packages: Series of 3/6 built (task 2 of 3)
 
 Built the Series-of-3 and Series-of-6 packages (master-menu §9 pricing) as `treatmentPackage` docs, live:
-Glo2Facial ($499/$885), ProCell Microchanneling ($675/$1,200), Corrective Microneedling ($795/$1,415), and
-the three body treatments (ProCell/Microneedling/BioRePeel Body, $875–$1,675/zone) — 12 packages. Filled the
+Glo2Facial ($499/$885), Procell Microchanneling ($675/$1,200), Corrective Microneedling ($795/$1,415), and
+the three body treatments (Procell/Microneedling/BioRePeel Body, $875–$1,675/zone) — 12 packages. Filled the
 **Acne Bootcamp** ($899 program), Dermaplaning Package of 4 ($340), and PRF Under-Eye Series of 3 ($1,350).
-Parked the duplicate ProCell "Series of 4" (identical to The Revival Series). **Correction:** an earlier
+Parked the duplicate Procell "Series of 4" (identical to The Revival Series). **Correction:** an earlier
 wrong-field query (`price`/`services` vs `rackPrice`/`servicesIncluded`) made me misread existing packages as
 empty; I restored the BioRePeel + PRF-topical Series-of-4 packages I'd briefly parked.
 Flag: series prices trace to the master menu (pre-GG singles) — confirm/refresh vs current GG singles; GG has no packages yet.
@@ -41,7 +41,7 @@ Flag: series prices trace to the master menu (pre-GG singles) — confirm/refres
 ## 2026-07-14 — Advanced-facial combos added (task 1 of 3)
 
 Created the three GlossGenius Glo2 advanced-facial combos with full in-depth copy and published live:
-**Glo2Facial + ProCell MD** ($475), **Glo2Facial + ProCell Pro** ($525), **Glo2Facial + PRF** ($595) — all Amber,
+**Glo2Facial + Procell MD** ($475), **Glo2Facial + Procell Pro** ($525), **Glo2Facial + PRF** ($595) — all Amber,
 Advanced Facials, topical-PRF line held. **GlowTox Facial** ($475) created but **kept as an unpublished draft
 (status: proposed)** pending Diana, RN + medical-director review (Daxxify-as-topical needs clinical sign-off).
 Note: GG prices the Pro combo ($525) above the MD combo ($475) — possible swap, flag to verify.
@@ -128,7 +128,7 @@ banned-phrase sweep clean (reworded a negated "discount" mention).
   $80–$200); Glo2Facial is **$195** (not $185); **no Brazilian / no series / no memberships** in GG (retired
   those anchors). Recommended **"Facial of the Month"** tiers = real GG prices (Essential $80–$100 · Signature
   $120 · Advanced/Glo2 $195) + IV $185/mo. **Flagged for Amber:** many site-marketed services (BioRePeel,
-  corrective microneedling, carboxy, Face Reality bootcamp, ProCell Pro/MD tiers, body treatments) are **not
+  corrective microneedling, carboxy, Face Reality bootcamp, Procell Pro/MD tiers, body treatments) are **not
   bookable in GlossGenius** — GG-vs-website menu reconciliation is a catalog-wide decision. Memory saved:
   GlossGenius = source of truth, Sanity = display middle-man.
 - **Canonical service taxonomy (2026-07-13):** Amber provided her intended categorization
@@ -175,7 +175,7 @@ banned-phrase sweep clean (reworded a negated "discount" mention).
 demand) and `_gaps.md` (consolidated contradictions for Amber). These briefs are the sole content
 input for Phases 3–4.
 
-**Briefs (22):** prf-topical · microneedling · microchanneling · procell · glo2facial · biorepeel ·
+**Briefs (22):** prf-topical · microneedling · microchanneling · Procell · glo2facial · biorepeel ·
 dermaplaning · carboxy-therapy · neurotoxins · dermal-fillers · prf-injections-ezgel · iv-hydration
 (+ routine-IV case) · glp-1 · enzyme-exfoliation · hydrodermabrasion · light-peels · waxing ·
 permanent-jewelry · professional-makeup · ai-skin-analysis · face-reality-acne-program · product-lines.

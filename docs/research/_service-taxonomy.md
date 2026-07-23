@@ -87,7 +87,7 @@ ultrasound w/ serum), and **LED**. Note: Glo2Facial here is a *prep step* — th
 standalone ($195) and as named combos.
 
 **LIVE in GlossGenius today (Amber's advanced facials — these ARE bookable):** Glo2Facial $195 · Glo2Facial +
-ProCell MD $475 · Glo2Facial + ProCell Pro $525 · Glo2Facial + PRF $595 · ProCell MD
+Procell MD $475 · Glo2Facial + Procell Pro $525 · Glo2Facial + PRF $595 · Procell MD
 Microchanneling $349 · PRF Skin Renewal $450. Glo2Facial is an **advanced facial (Amber)** — never a basic facial.
 
 **Separate catalog review required:** GlossGenius also lists `GlowTox Facial` at $475. It is not attributed here because the older local description incorrectly treated Daxxify as topical with microchanneling. Until Diana, RN and the medical director approve a separate injectable workflow and price, it must not be marketed as an Amber advanced facial or needling combination.
@@ -96,8 +96,8 @@ Microchanneling $349 · PRF Skin Renewal $450. Glo2Facial is an **advanced facia
 | Base option | GG status |
 |---|---|
 | BioRePeel Blue (Face) _(+ BioRePeel Gold spot add-on)_ | 🟥 not in GG |
-| ProCell MD (Face) | ⚠️ GG: "ProCell MD Microchanneling" $349; "Glo2 + ProCell MD" $475 |
-| ProCell PRO (Face) | ⚠️ GG: "Glo2 + ProCell Pro" $525; no standalone Pro line 🟥 |
+| Procell MD (Face) | ⚠️ GG: "Procell MD Microchanneling" $349; "Glo2 + Procell MD" $475 |
+| Procell PRO (Face) | ⚠️ GG: "Glo2 + Procell Pro" $525; no standalone Pro line 🟥 |
 | PRF Topical (Face) | ⚠️ GG: "Glo2 + PRF" $595; "PRF Skin Renewal" $450; no standalone topical line |
 | Micro-Tox / GlowTox | ⚠️ GG: "GlowTox Facial" $475; clinical review required. Do not describe as topical Daxxify or a needling service. |
 | **Prep add-ons** | Dermaplane prep 🟥 · Glo2Facial prep (standalone $195; combo pricing) · LED 🟥 (add-on only) |
@@ -106,12 +106,12 @@ Microchanneling $349 · PRF Skin Renewal $450. Glo2Facial is an **advanced facia
 | Base option | GG status |
 |---|---|
 | PRF Topical (Body) | 🟥 not in GG |
-| ProCell PRO (Body) | 🟥 not in GG |
-| ProCell MD (Body) | 🟥 not in GG |
+| Procell PRO (Body) | 🟥 not in GG |
+| Procell MD (Body) | 🟥 not in GG |
 | BioRePeel Gold (Body) — per zone, consult-only, > face price | 🟥 not in GG |
 | **Prep add-ons** | Glo2Facial prep · LED |
 
-> **Gap:** Amber's whole BODY lane, BioRePeel (face + body), standalone ProCell PRO, and standalone PRF-Topical
+> **Gap:** Amber's whole BODY lane, BioRePeel (face + body), standalone Procell PRO, and standalone PRF-Topical
 > are **not in GlossGenius** — they're intended but unbooked. Add to GG (with prices) before they can anchor
 > anything or be sold. Dermaplane/LED are add-ons with no standalone GG price.
 
@@ -170,8 +170,8 @@ Microchanneling $349 · PRF Skin Renewal $450. Glo2Facial is an **advanced facia
 ## Open decisions for Amber (from this taxonomy)
 
 1. ✅ **Facial provider split — RESOLVED** (from the Numbers sheet): Aundrea = the 3 Rose facials; Brandy = the other 6.
-2. **Add Amber's missing advanced-facial services to GlossGenius** (BioRePeel face+body, ProCell PRO/MD body,
-   PRF Topical face+body, standalone ProCell PRO) with prices — **Amber confirmed she will add these.**
+2. **Add Amber's missing advanced-facial services to GlossGenius** (BioRePeel face+body, Procell PRO/MD body,
+   PRF Topical face+body, standalone Procell PRO) with prices — **Amber confirmed she will add these.**
 3. **Add-on pricing** — Dermaplane prep (+$45), Glo2Facial prep (+$95), LED (+$35) exist in local docs; recategorize
    as add-ons in GG (see `_sanity-collection-restructure.md` §5).
 4. ✅ **Vitamin C IV add-on ($25) — INCLUDE** (confirmed) in Wellness & Restoration.

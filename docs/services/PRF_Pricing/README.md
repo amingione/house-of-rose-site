@@ -37,7 +37,7 @@ and none were echoed in softened form:
 |---|---|---|
 | PRF Under-Eye | **$550 / series of 3 $1,485** (raised from $495 per market) | `FINAL-PRICING.md` — FL PRF band $350–$1,000; flagship was underpriced |
 | Microneedling (corrective, face) | from $295 | `advanced-facials-master-menu.md` |
-| ProCell microchanneling | from $299 (Pro) / $349 (MD) · series of 4 $1,099 | `ALL-SERVICES-PRICING.MD` (live, anchor-corrected 2026-07-17) |
+| Procell microchanneling | from $299 (Pro) / $349 (MD) · series of 4 $1,099 | `ALL-SERVICES-PRICING.MD` (live, anchor-corrected 2026-07-17) |
 | Topical PRF boost | +$175 face | `advanced-facials-master-menu.md` |
 | Botox / Daxxify | $14/unit | `neurotoxins.md` §8 + `ALL-SERVICES-PRICING.MD` |
 | Filler | Ultra XC/RHA 1 from $650; RHA 2 $700; RHA 3 $800; Voluma $850 | `dermal-fillers.md` §8 (⚠ Sanity "$700" is drift) |
@@ -62,7 +62,7 @@ esthetics = book-or-call; trust/homepage get their own bank ("See your skin firs
 ## Open items for Amber (confirm before publishing)
 
 1. **Provider credential wording** — Amber's exact license/title; whether to name the medical director; Brandy's public name + whether her lane is launched; Aundrea's Lashes/Ear-Piercing (`_gaps.md` §5).
-2. **ProCell series/price** — resolved to the live menu: Pro $299 / MD $349, **Series of 4 $1,099** (ProCell protocol, not the house 3/6 wrapper). The older master menu's $250/$325 and 3/6 framing are stale. Confirm Sanity `microchanneling` + `*-series-of-4` packages carry $299/$349/$1,099 on wire-in.
+2. **Procell series/price** — resolved to the live menu: Pro $299 / MD $349, **Series of 4 $1,099** (Procell protocol, not the house 3/6 wrapper). The older master menu's $250/$325 and 3/6 framing are stale. Confirm Sanity `microchanneling` + `*-series-of-4` packages carry $299/$349/$1,099 on wire-in.
 3. **Acne consult fee** — no documented paid-consult fee (only a $50 late/no-show policy fee); confirm intent.
 4. **Final pricing is set** — see `FINAL-PRICING.md` for every number, the market rationale, and the exact GlossGenius + Sanity updates required (the one real change is PRF: raise to $550/$1,485; all else confirmed at current values). Acne Peel $139 is now market-validated (single acne treatments run $85–$195), so the earlier "Sanity-only" flag is resolved.
 

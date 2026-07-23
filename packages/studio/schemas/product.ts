@@ -34,7 +34,7 @@ export const product = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'ProCell Therapies', value: 'procell' },
+          { title: 'Procell Therapies', value: 'Procell' },
           { title: 'GlyMed+', value: 'glymed' },
           { title: 'Skin Script', value: 'skin-script' },
           { title: 'Face Reality', value: 'face-reality' },

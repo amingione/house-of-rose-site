@@ -4,7 +4,7 @@ You are Claude Code running **Fable 5 at high reasoning effort** inside the
 `house-of-rose-site` monorepo. Your mission across five phases: turn houseofrosefl.com into
 a **resourceful, one-of-a-kind, intelligence-heavy website** — the site a client lands on
 curious about PRF and leaves knowing exactly what the treatment is, how it compares to
-ProCell microchanneling, which option fits *them*, what injectables we offer, and why IV
+Procell microchanneling, which option fits *them*, what injectables we offer, and why IV
 hydration belongs in their routine. Informationally dense, extremely easy to use, and a
 genuine **WOW** on entry.
 

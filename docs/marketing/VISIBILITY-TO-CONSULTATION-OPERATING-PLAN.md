@@ -47,8 +47,8 @@
 
 ### Week 3 — Compare suitable paths
 
-- Feature ProCell Microchanneling, topical PRF needling, Glo2Facial, and dermaplaning.
-- Link the ProCell and topical PRF cost guides and the microchanneling-vs-microneedling comparison.
+- Feature Procell Microchanneling, topical PRF needling, Glo2Facial, and dermaplaning.
+- Link the Procell and topical PRF cost guides and the microchanneling-vs-microneedling comparison.
 - Avoid declaring one treatment universally better.
 
 ### Week 4 — Proof and next step
@@ -62,7 +62,7 @@
 | Cluster | Canonical route | Supporting assets |
 |---|---|---|
 | Skin consultation | `/skin-analysis/` | FAQ, local pages, consultation form |
-| ProCell Microchanneling | `/services/microchanneling/` | `/cost/procell-microchanneling-cost-punta-gorda/`, comparison, FAQs |
+| Procell Microchanneling | `/services/microchanneling/` | `/cost/Procell-microchanneling-cost-punta-gorda/`, comparison, FAQs |
 | Topical PRF needling | `/services/prf-microneedling/` and `/services/prf/` | `/cost/prf-microneedling-cost-punta-gorda/`, comparison, FAQs |
 | Glo2Facial | `/services/glo2facial/` | Process, candidacy, FAQs, skin-analysis links |
 | Dermaplaning | `/services/dermaplaning/` | Process, candidacy, FAQs, skin-analysis links |
@@ -109,7 +109,7 @@
 - Launch only after attribution, notifications, analytics, redirects, content checks, and staff response rehearsal pass.
 - Ad groups:
   - Skin analysis and skin consultation in Punta Gorda.
-  - ProCell Microchanneling in Punta Gorda/Port Charlotte.
+  - Procell Microchanneling in Punta Gorda/Port Charlotte.
   - Topical PRF microneedling/microchanneling in Punta Gorda.
   - Supporting local medical-spa intent where the landing page answers the query.
 - Match types: exact and phrase for the pilot.
@@ -132,11 +132,11 @@ Track these 25 terms on mobile and desktop for the Houseofrosefl project:
 7. skin consultation punta gorda
 8. skin analysis punta gorda
 9. ai skin analysis punta gorda
-10. procell microchanneling
-11. procell microchanneling punta gorda
-12. procell microchanneling port charlotte
-13. what is procell microchanneling
-14. how much does procell microchanneling cost
+10. Procell microchanneling
+11. Procell microchanneling punta gorda
+12. Procell microchanneling port charlotte
+13. what is Procell microchanneling
+14. how much does Procell microchanneling cost
 15. prf microneedling punta gorda
 16. prf microneedling port charlotte
 17. what is prf microneedling
@@ -154,8 +154,8 @@ Track these 25 terms on mobile and desktop for the Houseofrosefl project:
 Test the same prompts in Google AI Mode, ChatGPT, and Perplexity until Ahrefs Brand Radar is available. Record engine, prompt, date, brand mentioned, houseofrosefl.com cited, competing businesses, and notable answer changes.
 
 - What is a reputable advanced aesthetics studio in Punta Gorda?
-- Where can I get ProCell Microchanneling near Port Charlotte?
-- What does ProCell Microchanneling cost near Punta Gorda?
+- Where can I get Procell Microchanneling near Port Charlotte?
+- What does Procell Microchanneling cost near Punta Gorda?
 - What is the difference between microchanneling and microneedling?
 - Where can I start with a skin analysis in Punta Gorda?
 - Who offers topical PRF with microneedling in Charlotte County?

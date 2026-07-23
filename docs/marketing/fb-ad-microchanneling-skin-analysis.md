@@ -64,7 +64,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 >
 > Just a clear, honest picture of your skin — and a plan built from evidence instead of a sales pitch.
 >
-> For most of our clients, that plan starts with **ProCell Microchanneling** — the treatment that signals your own skin to rebuild collagen. Firmer texture. Softer lines. Real repair, not a temporary glow.
+> For most of our clients, that plan starts with **Procell Microchanneling** — the treatment that signals your own skin to rebuild collagen. Firmer texture. Softer lines. Real repair, not a temporary glow.
 >
 > But we won't tell you that until the scan tells us.
 >
@@ -87,7 +87,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 >
 > It's non-invasive imaging that maps sun damage, pigmentation, pores, hydration and fine lines, so your treatment plan starts with facts — not a guess and a credit card.
 >
-> Then, if the scan supports it, **ProCell Microchanneling** goes to work: micro-channels that trigger your skin's own collagen and elastin response, with growth-factor serums delivered exactly where they'll do the most good.
+> Then, if the scan supports it, **Procell Microchanneling** goes to work: micro-channels that trigger your skin's own collagen and elastin response, with growth-factor serums delivered exactly where they'll do the most good.
 >
 > Most clients are back to normal in a day. No surgery. No filler. Just your own skin, doing what it did 20 years ago.
 >
@@ -96,7 +96,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 > House of Rose Aesthetics — Punta Gorda
 
 **Headline:** `Florida Sun Leaves a Record. We Can Read It.`
-**Description:** `AI Skin Analysis + ProCell Microchanneling · Punta Gorda, FL`
+**Description:** `AI Skin Analysis + Procell Microchanneling · Punta Gorda, FL`
 **CTA button:** `Learn More`
 
 ---
@@ -108,7 +108,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 >
 > AI Skin Analysis at House of Rose — advanced imaging that reads pigmentation, texture, pores and fine lines in minutes. No needles. No downtime.
 >
-> Then we build the plan. Usually it starts with ProCell Microchanneling — collagen rebuilt from the inside out.
+> Then we build the plan. Usually it starts with Procell Microchanneling — collagen rebuilt from the inside out.
 >
 > Punta Gorda. Book your scan. 🌹
 
@@ -140,7 +140,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 
 Static alternatives, in order of expected performance:
 1. **Split-frame:** the AI analysis screen/scan visualization on one side, a calm treatment-room shot on the other. Overlay: *"Guess less. Know more."*
-2. **The device:** ProCell microchanneling tip in-hand, clean and clinical, gold/black brand palette. Overlay: *"Your collagen. Reactivated."*
+2. **The device:** Procell microchanneling tip in-hand, clean and clinical, gold/black brand palette. Overlay: *"Your collagen. Reactivated."*
 3. **Amber, credentialed:** headshot in the studio with the caption *"Amber — Advanced Facials & Microchanneling, House of Rose Aesthetics."*
 
 **Do NOT use:** before/after collages, close-up "problem skin" zooms, or anything a 68-year-old woman would read as *"they think I look old."* That is the exact instinct that loses this market — and it also violates Meta policy (below).
@@ -164,26 +164,26 @@ Aesthetics ads get rejected constantly. These are the trip-wires:
 | Step | What they get | Price |
 |---|---|---|
 | **1. Hook** | AI Skin Analysis | **Free** (or $50, credited toward first treatment — see note) |
-| **2. Core conversion** | ProCell Microchanneling — Pro (Face) | **$299** |
-| **3. Trade-up** | ProCell Microchanneling — MD (Face) | **$349** |
-| **4. Premium** | ProCell MD — Face + Neck + Décolleté | **$449** |
-| **5. Retention (the real money)** | ProCell Series of 4 | **$1,099** (~21% off) |
+| **2. Core conversion** | Procell Microchanneling — Pro (Face) | **$299** |
+| **3. Trade-up** | Procell Microchanneling — MD (Face) | **$349** |
+| **4. Premium** | Procell MD — Face + Neck + Décolleté | **$449** |
+| **5. Retention (the real money)** | Procell Series of 4 | **$1,099** (~21% off) |
 | **6. Add-ons** | Dermaplane prep +$45 · LED +$35 · Topical PRF (face) +$175 · Glo2 finish +$95 | |
 
-> **Prices are comp-anchored, not arbitrary.** Verified regional ProCell singles run **$300–$375** (ÉLAN $375; ProCell 60m $300 / 90m $350) and 4-packs **$1,050–$1,225**. House of Rose sits competitively in that band (Pro $299 floor, MD $349 mid, series-4 $1,099), above commodity microneedling ($175–$195). Full table + derivation: `docs/research/_pricing-catalog.md` §10b.
+> **Prices are comp-anchored, not arbitrary.** Verified regional Procell singles run **$300–$375** (ÉLAN $375; Procell 60m $300 / 90m $350) and 4-packs **$1,050–$1,225**. House of Rose sits competitively in that band (Pro $299 floor, MD $349 mid, series-4 $1,099), above commodity microneedling ($175–$195). Full table + derivation: `docs/research/_pricing-catalog.md` §10b.
 
 > **Free vs. $50-credited:** Free maximizes lead volume; $50-credited maximizes *show* rate and screens out tire-kickers. In a high-income, low-urgency retiree market, **run Free first** — the barrier here is trust, not money. If no-shows exceed ~30%, switch to $50-credited.
 
 **The number that matters is not cost-per-lead — it's cost-per-*series*.** One 6-series microchanneling client ≈ $1,200–$1,675. At even a $40 CPL and a 20% analysis→series conversion, acquisition cost is ~$200 against a four-figure client. That math is why the free scan is the right call.
 
-> **✅ Pricing local-competitive (2026-07-17):** ProCell anchored to the verified regional ProCell market — singles $300–$375, 4-packs $1,050–$1,225. Each service has one price. **MD $349 = live in GlossGenius**, mid-market. Pro **$299** at the market floor. (The earlier '$500 rival' figure was discarded as unverified — a PRF-needling/package price, not a bare ProCell single.) Full derivation in `docs/research/_pricing-catalog.md` §10b. *(Ad copy still names no prices — the scan sells the price in person.)*
+> **✅ Pricing local-competitive (2026-07-17):** Procell anchored to the verified regional Procell market — singles $300–$375, 4-packs $1,050–$1,225. Each service has one price. **MD $349 = live in GlossGenius**, mid-market. Pro **$299** at the market floor. (The earlier '$500 rival' figure was discarded as unverified — a PRF-needling/package price, not a bare Procell single.) Full derivation in `docs/research/_pricing-catalog.md` §10b. *(Ad copy still names no prices — the scan sells the price in person.)*
 > **Open action:** add Pro $299, F+N+D $449, and Series-of-4 $1,099 to GlossGenius; MD $349 is already live.
 
 ---
 
 ## 7. Launch checklist
 
-- [x] ~~Reconcile ProCell MD price~~ → **comp-anchored: Pro $299/$399 · MD $349/$449 · F+N+D $449/$549 · Series-4 $1,099/$1,399** (`_pricing-catalog.md` §10b)
+- [x] ~~Reconcile Procell MD price~~ → **comp-anchored: Pro $299/$399 · MD $349/$449 · F+N+D $449/$549 · Series-4 $1,099/$1,399** (`_pricing-catalog.md` §10b)
 - [ ] Add Pro $299, F+N+D $449, and Series-of-4 $1,099 to GlossGenius (MD $349 already live)
 - [ ] Publish Pro + MD as distinct tiers in Sanity (hub from-price = Pro $299)
 - [ ] Confirm `/skin-analysis/` lead form fires a Meta Pixel `Lead` event on submit

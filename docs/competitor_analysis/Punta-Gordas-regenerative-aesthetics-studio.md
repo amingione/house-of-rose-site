@@ -143,7 +143,7 @@ Botox, facials, wellness, permanent jewelry, and other services can remain avail
 | Consumer need                                   | Signature pathway                                                                                               |
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | “I look tired, but I don’t want obvious filler” | **Regenerative Eye Renewal:** skin analysis, PRF under-eye or EZ Gel, and follow-up imaging                     |
-| “My skin is changing as I age”                  | **Collagen Renewal Plan:** analysis, PRF microneedling or ProCell, BioRePeel, and home-care plan                |
+| “My skin is changing as I age”                  | **Collagen Renewal Plan:** analysis, PRF microneedling or Procell, BioRePeel, and home-care plan                |
 | “I live here seasonally”                        | **Snowbird Skin Plan:** arrival assessment, in-season treatments, pre-departure treatment, and flexible seasonal scheduling |
 
 These packages should be framed as protocols, not discounts.

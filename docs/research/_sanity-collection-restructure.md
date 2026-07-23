@@ -29,14 +29,14 @@ taxonomy which treats advanced facials as the microneedling/microchanneling lane
 | Service | Provider | GG price | kind | In GG? |
 |---|---|---|---|---|
 | Glo2Facial | Amber | $195 | treatment | ✅ |
-| Glo2Facial + ProCell MD | Amber | $475 | treatment | ✅ |
-| Glo2Facial + ProCell Pro | Amber | $525 | treatment | ✅ |
+| Glo2Facial + Procell MD | Amber | $475 | treatment | ✅ |
+| Glo2Facial + Procell Pro | Amber | $525 | treatment | ✅ |
 | Glo2Facial + PRF | Amber | $595 | treatment | ✅ |
 | GlowTox Facial | Amber | $475 | treatment | ✅ |
-| ProCell MD Microchanneling | Amber | $349 | treatment | ✅ |
+| Procell MD Microchanneling | Amber | $349 | treatment | ✅ |
 | PRF Skin Renewal (3 options) | Amber | $450 | treatment | ✅ |
 | BioRePeel Blue (Face) + Gold body/spot | Amber | 🟥 you'll add | treatment | not yet |
-| ProCell PRO / MD — Body · PRF Topical Body | Amber | 🟥 you'll add (per zone) | treatment | not yet |
+| Procell PRO / MD — Body · PRF Topical Body | Amber | 🟥 you'll add (per zone) | treatment | not yet |
 
 *Modular add-ons (see §5): Dermaplane prep, Glo2Facial prep, LED — attach to any of the above.*
 
@@ -110,9 +110,9 @@ treatment prep add-ons in §5.
 | Current service slug | Action | New collection | Note |
 |---|---|---|---|
 | `glo2facial` | keep + reprice $185→**$195** | Advanced Facials | |
-| `microchanneling` / `microchanneling-microneedling` | reconcile → **ProCell MD Microchanneling $349** | Advanced Facials | GG has ONE microchanneling line; collapse the Pro/MD/hub variants |
+| `microchanneling` / `microchanneling-microneedling` | reconcile → **Procell MD Microchanneling $349** | Advanced Facials | GG has ONE microchanneling line; collapse the Pro/MD/hub variants |
 | `prf` / `prf-microneedling` / `prf-body-treatments` | reconcile → **PRF Skin Renewal $450** + Glo2+PRF $595 | Advanced Facials | GG topical-PRF = PRF Skin Renewal; body not in GG yet |
-| `procell-microchanneling-body` / `microneedling-body` / `microneedling-corrective` | hold as 🟥 "you'll add to GG" | Advanced Facials | body + corrective not in GG yet |
+| `Procell-microchanneling-body` / `microneedling-body` / `microneedling-corrective` | hold as 🟥 "you'll add to GG" | Advanced Facials | body + corrective not in GG yet |
 | `biorepeel` / `biorepeel-advanced-acne-scarring` / `biorepeel-body` / `biorepeel-gold-spot-treatment` | hold as 🟥 "you'll add to GG" | Advanced Facials | BioRePeel not in GG yet |
 | `neck-decollete-extension` / `lightstim-led-therapy` | → **add-ons** (not standalone) | Enhancements & Add-ons | LED is add-on-only |
 | `dermaplaning` | → **add-on** (Dermaplane prep) | Enhancements & Add-ons | add-on only per you; Brandy may offer as a facial |

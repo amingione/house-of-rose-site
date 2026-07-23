@@ -15,15 +15,15 @@ must always match; this file is updated in the same commit as any change to eith
 | Service | Duration | Price |
 |---|---|---|
 | Glo2Facial | 60 min | $195 |
-| Glo2Facial + ProCell MD | 90 min | $475 |
-| Glo2Facial + ProCell Pro | 90 min | $525 |
+| Glo2Facial + Procell MD | 90 min | $475 |
+| Glo2Facial + Procell Pro | 90 min | $525 |
 | Glo2Facial + PRF | 90 min | $595 |
 | GlowTox Facial | 60 min | $475 |
-| ProCell MD Microchanneling | 45 min | $349 |
+| Procell MD Microchanneling | 45 min | $349 |
 | PRF Skin Renewal (3 options) | 60+ min | $450+ |
 
 **Not in GlossGenius yet (intended, unbookable until Amber adds them to GG — no public prices until then):**
-BioRePeel face/body · ProCell Pro/MD Body · PRF Topical Body · microneedling corrective · dermaplane/LED prep add-ons.
+BioRePeel face/body · Procell Pro/MD Body · PRF Topical Body · microneedling corrective · dermaplane/LED prep add-ons.
 
 ## Amber — Acne (Face Reality)
 | Service | Duration | Price |

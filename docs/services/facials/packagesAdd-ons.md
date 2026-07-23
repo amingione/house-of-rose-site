@@ -15,9 +15,9 @@
 - Dermaplaning
 •	Series length: Promote a three‑month package; skin turnover occurs every 28–40 days and most patients benefit from dermaplaning about once a month[5], which prevents over‑exfoliation and allows healing between sessions.
 •	Included extras: Offer optional upgrades such as an enzyme peel, hydrating mask or LED light therapy. A three‑month bundle can include a free add‑on (e.g., brow shaping) to encourage repeat bookings.
-- ProCell Microchanneling (Face & Body)
+- Procell Microchanneling (Face & Body)
 •	Series length: Design packages of three to six treatments scheduled every three to four weeks; industry guidance for microchanneling emphasises that the procedure works best when sold as a package of three to six visits[2] with deeper scars requiring four to six treatments and a three‑ to four‑week healing window[3].
-•	Included extras: Each session can include a collagen‑stimulating peptide serum and LED therapy. Provide a home‑care kit with ProCell aftercare serum and sunscreen. For facial packages, add a dermaplaning upgrade; for body packages, include a post‑treatment hydration wrap to enhance results.
+•	Included extras: Each session can include a collagen‑stimulating peptide serum and LED therapy. Provide a home‑care kit with Procell aftercare serum and sunscreen. For facial packages, add a dermaplaning upgrade; for body packages, include a post‑treatment hydration wrap to enhance results.
 ---
 
 [1] How Often Should You PRF Microneedle? - Division Street Dental

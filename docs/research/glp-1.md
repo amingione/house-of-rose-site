@@ -197,7 +197,7 @@ GLP-1 lives in the **wellness / metabolic pillar**, not the skin-concern pillar.
 - **Retail follow-through (sensible, non-medical):** support skin longevity during rapid change with
   our retail lines — a good **SPF** (e.g. the oil-free protective moisturizers with SPF 15/30/50),
   ceramide-supporting and hydrating products from **GlyMed+ / Skin Script / Face Reality**, and
-  collagen-supporting **ProCell** topicals where appropriate. Position as skin-health support, never
+  collagen-supporting **Procell** topicals where appropriate. Position as skin-health support, never
   as treating a medication side effect.
 
 ---

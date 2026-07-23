@@ -1,7 +1,7 @@
 # House of Rose — Final Pricing Decisions
 
 **Decided:** 2026-07-20 · **Authority:** Amber gave final pricing say for this pass.
-**Scope:** the services covered by the new copy decks (PRF injectables, microneedling/ProCell, neurotoxin + filler, Face Reality acne).
+**Scope:** the services covered by the new copy decks (PRF injectables, microneedling/Procell, neurotoxin + filler, Face Reality acne).
 
 ## The pricing philosophy applied here
 
@@ -27,8 +27,8 @@ market (Punta Gorda / Charlotte County). Pricing follows three rules:
 | Filler — Juvéderm Voluma XC | **from $850** /syringe | $850 | Structural/premium tier, in-band | HOLD |
 | Filler — RHA 1 / 2 / 3 | **$650 / $700 / $800** /syringe | same | RHA runs high end $700–$900 | HOLD |
 | Microneedling — Corrective (face) | **from $295** · series 3 $795 · series 6 $1,415 | $295 | Bare needling $175–$195 local; SkinPen $375 | HOLD |
-| ProCell Microchanneling — Pro (face) | **from $299** · series of 4 $1,099 | $299 | Verified ProCell single $300–$375; 4-pack $1,050–$1,225 | HOLD |
-| ProCell Microchanneling — MD (face) | **from $349** · series of 4 $1,099 | $349 | Mid-market (≈ ÉLAN $375 / 90-min ProCell $350) | HOLD |
+| Procell Microchanneling — Pro (face) | **from $299** · series of 4 $1,099 | $299 | Verified Procell single $300–$375; 4-pack $1,050–$1,225 | HOLD |
+| Procell Microchanneling — MD (face) | **from $349** · series of 4 $1,099 | $349 | Mid-market (≈ ÉLAN $375 / 90-min Procell $350) | HOLD |
 | Topical PRF boost | **+$175** face · **+$200** body | same | With-PRF needling tier $350–$500 (our PRF Skin Renewal $450) | HOLD |
 | Face Reality — Acne Bootcamp (12 wk) | **$899** program | $899 | Bootcamp ~$865 (Original Glam); +products $150–$300 | HOLD |
 | Face Reality — Acne Peel (single) | **from $139** | $139 | Single acne treatments $85–$195 | HOLD (now market-validated) |
@@ -66,7 +66,7 @@ open. If per-visit parity ever becomes a goal, that's Diana's SOP call, not a ma
 **GlossGenius (commerce truth — do first):**
 - PRF Under-Eye Rejuvenation: **$495 → $550** (and the series-of-3 option → **$1,485**).
 - PRF Facial Rejuvenation (1 area): **$595 → $650** (series-of-3 → **$1,750**).
-- Everything else already matches — confirm ProCell Pro $299 / MD $349 are live, and add the Acne
+- Everything else already matches — confirm Procell Pro $299 / MD $349 are live, and add the Acne
   Bootcamp/Peel/Back-Treatment services (the GG "Acne Bootcamp" category currently has 0 services).
 
 **Sanity (display — correct drift on wire-in):**
@@ -74,10 +74,10 @@ open. If per-visit parity ever becomes a goal, that's Diana's SOP call, not a ma
 - `dermal-fillers`: "From $700" → **From $650**; remove phantom "Restylane" tagline.
 - `injectables`: null → **$14/unit**; remove phantom "Dysport" tagline.
 - `acne-peel` From $139, `back-treatment` From $159, `acne-bootcamp` $899 — confirm (match).
-- ProCell `microchanneling` "From $250" → **From $299** (and the empty `*-series-of-4` packages → $1,099).
+- Procell `microchanneling` "From $250" → **From $299** (and the empty `*-series-of-4` packages → $1,099).
 
 **Master menu (`advanced-facials-master-menu.md`, 2026-07-10 — stale):**
-- Update ProCell to $299/$349 + Series of 4 $1,099, and PRF under-eye/facial to the new $550/$650, so the
+- Update Procell to $299/$349 + Series of 4 $1,099, and PRF under-eye/facial to the new $550/$650, so the
   older doc stops disagreeing with the live menu.
 
 ## Sources (July 2026 market verification)

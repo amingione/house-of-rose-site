@@ -16,20 +16,20 @@
 | Glo2Facial (single) | **$195** | $195 | ✅ KEEP | GG live. (Local said $185 — GG wins.) |
 | Glo2Facial — Series of 3 | **$499** | — | ➕ ADD | Local master menu (~10% value; derived off $185 — Amber confirm vs the $195 single). |
 | Glo2Facial — Series of 6 | **$885** | — | ➕ ADD | Local master menu (~20% value; same note). |
-| ProCell Microchanneling — **Pro** (Face) | **$299** | — | ➕ ADD | Entry tier at the verified ProCell market floor (~$300; regional singles $300–$375). Value option, above bare microneedling ($175–$195). |
-| ProCell Microchanneling — **MD** (Face) | **$349** | $349 | ✅ KEEP | GG live. Mid-market (≈ ÉLAN $375 / 90-min ProCell $350). |
-| ProCell MD — Face + Neck + Décolleté | **$449** | — | ➕ ADD | Extended plane; above the single-face tiers. |
-| ProCell Microchanneling — **Series of 4** | **$1,099** | — | ➕ ADD | **4 = ProCell protocol** (min 4 tx, 6+ scarring). Inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
+| Procell Microchanneling — **Pro** (Face) | **$299** | — | ➕ ADD | Entry tier at the verified Procell market floor (~$300; regional singles $300–$375). Value option, above bare microneedling ($175–$195). |
+| Procell Microchanneling — **MD** (Face) | **$349** | $349 | ✅ KEEP | GG live. Mid-market (≈ ÉLAN $375 / 90-min Procell $350). |
+| Procell MD — Face + Neck + Décolleté | **$449** | — | ➕ ADD | Extended plane; above the single-face tiers. |
+| Procell Microchanneling — **Series of 4** | **$1,099** | — | ➕ ADD | **4 = Procell protocol** (min 4 tx, 6+ scarring). Inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
 | PRF Skin Renewal (micro + PRF) — single | **$450** | $450 | ✅ KEEP | GG live. |
 | PRF Skin Renewal — Series of 3 | **$1,200** | — | ➕ ADD | GlossGenius import CSV / PRF PDF. |
 | PRF Skin Renewal — Series of 4 | **$1,550** | — | ➕ ADD | GlossGenius import CSV / PRF PDF (PRF runs 3-or-4, brochure "3–4"). |
-| Microneedling — Corrective (Face) | **$295** | — | ➕ ADD | §10b. Above local microneedling $175–$195; the non-ProCell corrective tier. |
-| Combo — Glo2Facial + ProCell MD | **$475** | $475 | ✅ KEEP | GG live. |
-| Combo — Glo2Facial + ProCell Pro | **$525** | $525 | ✅ KEEP | GG live. |
+| Microneedling — Corrective (Face) | **$295** | — | ➕ ADD | §10b. Above local microneedling $175–$195; the non-Procell corrective tier. |
+| Combo — Glo2Facial + Procell MD | **$475** | $475 | ✅ KEEP | GG live. |
+| Combo — Glo2Facial + Procell Pro | **$525** | $525 | ✅ KEEP | GG live. |
 | Combo — Glo2Facial + PRF | **$595** | $595 | ✅ KEEP | GG live. |
 | **GlowTox Facial** | **$475** | $475 | ⛔ HOLD | Clinical hold — injectable/tox concept. Diana RN + medical director must approve SOP/consent/scope before it's listed as bookable. Do not market as micro-channeling+tox. |
 
-**Body (per zone, consult-based) — ➕ ADD if listing body work:** ProCell Micro — Body **$349**, Microneedling — Body **$325**. _(No direct local body comp — hold current figures; per-zone, confirmed at consult.)_
+**Body (per zone, consult-based) — ➕ ADD if listing body work:** Procell Micro — Body **$349**, Microneedling — Body **$325**. _(No direct local body comp — hold current figures; per-zone, confirmed at consult.)_
 
 ---
 
@@ -126,15 +126,15 @@ Dermaplane prep **+$45** · Glo2 finish **+$95** · LED **+$35** · Topical PRF 
 ## The short list — what to actually DO in GlossGenius
 
 **➕ ADD (missing from GG):**
-1. ProCell Pro Face — $299
-2. ProCell MD Face+Neck+Décolleté — $449
-3. ProCell Series of 4 — $1,099
+1. Procell Pro Face — $299
+2. Procell MD Face+Neck+Décolleté — $449
+3. Procell Series of 4 — $1,099
 4. Microneedling Corrective (Face) — $295
 5. PRF Skin Renewal series — 3× $1,200 / 4× $1,550
 6. Glo2Facial series — 3× $499 / 6× $885
 7. BioRePeel standalone (Brandy) — $295, Series of 4 $1,050
 8. Face Reality — Bootcamp $899 / Back $159 / Acne Peel $139
-9. (optional) Body per-zone: ProCell $349 / Microneedling $325
+9. (optional) Body per-zone: Procell $349 / Microneedling $325
 
 **✏️ CHANGE / verify in GG:** MD $349 is right; add the missing tiers and series, and replace nontechnical facial listing names after Brandy confirms the mapped protocols and prices. All prices are single per service.
 

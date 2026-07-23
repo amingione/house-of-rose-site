@@ -65,10 +65,10 @@ const parkedPackageIds = [
   'package-microneedling-body-series-6',
   'package-gilded-lily-journey',
   'package-prf-microneedling-series-4',
-  'package-procell-body-series-3',
-  'package-procell-body-series-6',
-  'package-procell-micro-series-3',
-  'package-procell-micro-series-6',
+  'package-Procell-body-series-3',
+  'package-Procell-body-series-6',
+  'package-Procell-micro-series-3',
+  'package-Procell-micro-series-6',
   'package-revival-series',
 ];
 
@@ -76,26 +76,26 @@ const servicePatches = [
   {
     id: '2f050dfe-7ec7-459c-b3d6-f895a53805e8',
     set: {
-      title: 'ProCell Microchanneling',
+      title: 'Procell Microchanneling',
       slug: slug('microchanneling'),
       kind: 'hub',
       status: 'live',
       price: '$349',
       duration: '45 minutes',
-      tagline: 'Structured ProCell microchanneling selected around your skin goals and candidacy.',
-      description: 'ProCell Microchanneling is a structured stamping treatment used to support the appearance of texture, fine lines, enlarged-looking pores, dullness, and overall skin quality. At House of Rose in Punta Gorda, Amber begins with a skin consultation, confirms candidacy, opens a new single-use cartridge, and selects the appropriate ProCell protocol and aftercare. Individual outcomes and recovery vary.',
-      whoItsFor: 'Clients interested in improving visible texture, fine lines, enlarged-looking pores, or overall skin quality with a structured microchanneling protocol. Amber confirms candidacy and whether ProCell or another approach makes more sense before treatment.',
+      tagline: 'Structured Procell microchanneling selected around your skin goals and candidacy.',
+      description: 'Procell Microchanneling is a structured stamping treatment used to support the appearance of texture, fine lines, enlarged-looking pores, dullness, and overall skin quality. At House of Rose in Punta Gorda, Amber begins with a skin consultation, confirms candidacy, opens a new single-use cartridge, and selects the appropriate Procell protocol and aftercare. Individual outcomes and recovery vary.',
+      whoItsFor: 'Clients interested in improving visible texture, fine lines, enlarged-looking pores, or overall skin quality with a structured microchanneling protocol. Amber confirms candidacy and whether Procell or another approach makes more sense before treatment.',
       process: [
         'Begin with a skin consultation and candidacy review.',
-        'Confirm the ProCell protocol and aftercare appropriate for your plan.',
+        'Confirm the Procell protocol and aftercare appropriate for your plan.',
         'Complete treatment with a new single-use cartridge.',
         'Review recovery guidance and the timing of any follow-up visit.',
       ],
       faqs: [
-        faq('what-is-procell', 'What is ProCell Microchanneling?', 'ProCell is a branded microchanneling protocol that uses a stamping device to create controlled, temporary micro-openings. At House of Rose, it is selected for skin-quality goals only after Amber reviews your skin and candidacy.'),
-        faq('procell-vs-microneedling', 'How is ProCell Microchanneling different from microneedling?', 'ProCell is a structured microchanneling protocol, while microneedling is a broader, adjustable category. Neither is automatically better. The visible concern, area, skin history, and recovery preferences guide the choice.'),
-        faq('procell-cost', 'How much does ProCell Microchanneling cost?', 'The currently verified ProCell MD face treatment is $349. Your provider confirms the current investment and whether a different area or treatment plan is appropriate before you book.'),
-        faq('procell-series', 'How many sessions will I need?', 'ProCell goals are often planned as a protocol-based series, but the number and timing are individualized. Amber reviews your response before recommending another visit.'),
+        faq('what-is-Procell', 'What is Procell Microchanneling?', 'Procell is a branded microchanneling protocol that uses a stamping device to create controlled, temporary micro-openings. At House of Rose, it is selected for skin-quality goals only after Amber reviews your skin and candidacy.'),
+        faq('Procell-vs-microneedling', 'How is Procell Microchanneling different from microneedling?', 'Procell is a structured microchanneling protocol, while microneedling is a broader, adjustable category. Neither is automatically better. The visible concern, area, skin history, and recovery preferences guide the choice.'),
+        faq('Procell-cost', 'How much does Procell Microchanneling cost?', 'The currently verified Procell MD face treatment is $349. Your provider confirms the current investment and whether a different area or treatment plan is appropriate before you book.'),
+        faq('Procell-series', 'How many sessions will I need?', 'Procell goals are often planned as a protocol-based series, but the number and timing are individualized. Amber reviews your response before recommending another visit.'),
       ],
       relatedServices: [
         ref('818469ff-9dee-4939-ad55-54fb1ca4e184', 'topical-prf'),
@@ -104,8 +104,8 @@ const servicePatches = [
       ],
       seo: {
         _type: 'seo',
-        metaTitle: 'ProCell Microchanneling in Punta Gorda',
-        metaDescription: 'Learn what ProCell Microchanneling is, who it may suit, and the verified $349 face treatment at House of Rose in Punta Gorda.',
+        metaTitle: 'Procell Microchanneling in Punta Gorda',
+        metaDescription: 'Learn what Procell Microchanneling is, who it may suit, and the verified $349 face treatment at House of Rose in Punta Gorda.',
       },
     },
     unset: ['parentService'],
@@ -166,7 +166,7 @@ const servicePatches = [
         faq('candidate', 'Who may not be a candidate?', 'Certain health histories, medications, active skin concerns, pregnancy or breastfeeding, and other factors may require a different plan or timing. Your provider completes the candidacy review.'),
       ],
       relatedServices: [
-        ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'procell'),
+        ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'Procell'),
         ref('c3ffc30e-e13c-436e-b0c0-6aaeaeed2d6b', 'prf'),
       ],
       seo: {
@@ -230,30 +230,30 @@ const supportingDocuments = [
     orderRank: 10,
   },
   {
-    _id: 'hor-cost-procell-microchanneling',
+    _id: 'hor-cost-Procell-microchanneling',
     _type: 'costGuide',
-    title: 'How Much Does ProCell Microchanneling Cost in Punta Gorda?',
-    slug: slug('procell-microchanneling-cost-punta-gorda'),
+    title: 'How Much Does Procell Microchanneling Cost in Punta Gorda?',
+    slug: slug('Procell-microchanneling-cost-punta-gorda'),
     treatment: ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'treatment'),
-    answer: 'The currently verified ProCell MD face treatment at House of Rose is $349. The final investment depends on the approved treatment area and provider-selected plan, which are confirmed before you book.',
+    answer: 'The currently verified Procell MD face treatment at House of Rose is $349. The final investment depends on the approved treatment area and provider-selected plan, which are confirmed before you book.',
     priceLow: 349,
     priceHigh: 349,
     priceUnit: 'per session',
     costFactors: [
       { _key: 'area', factor: 'Treatment area', effect: 'The verified $349 investment applies to the current face treatment. Extended or body areas require a consultation and current quote.' },
-      { _key: 'protocol', factor: 'Protocol selection', effect: 'Amber confirms the appropriate ProCell protocol and whether another skin-renewal option would fit better.' },
+      { _key: 'protocol', factor: 'Protocol selection', effect: 'Amber confirms the appropriate Procell protocol and whether another skin-renewal option would fit better.' },
       { _key: 'follow-up', factor: 'Follow-up plan', effect: 'Future visits are based on goals, recovery, response, and the manufacturer-aligned protocol.' },
     ],
-    whatsIncluded: 'Skin consultation and candidacy review, a new single-use cartridge, the selected ProCell face protocol, aftercare, and follow-up guidance.',
+    whatsIncluded: 'Skin consultation and candidacy review, a new single-use cartridge, the selected Procell face protocol, aftercare, and follow-up guidance.',
     faqs: [
-      faq('starting-cost', 'What is the starting cost for ProCell Microchanneling?', 'The currently verified ProCell MD face treatment is $349. House of Rose confirms current pricing before treatment.'),
-      faq('series', 'Do I need a series?', 'Many ProCell goals are planned across more than one visit, but the number and timing are individualized. Amber reviews your response before recommending follow-up.'),
-      faq('consult', 'Why is a consultation important?', 'The consultation confirms candidacy, treatment area, recovery considerations, and whether ProCell is the most appropriate option for your goals.'),
+      faq('starting-cost', 'What is the starting cost for Procell Microchanneling?', 'The currently verified Procell MD face treatment is $349. House of Rose confirms current pricing before treatment.'),
+      faq('series', 'Do I need a series?', 'Many Procell goals are planned across more than one visit, but the number and timing are individualized. Amber reviews your response before recommending follow-up.'),
+      faq('consult', 'Why is a consultation important?', 'The consultation confirms candidacy, treatment area, recovery considerations, and whether Procell is the most appropriate option for your goals.'),
     ],
     seo: {
       _type: 'seo',
-      metaTitle: 'ProCell Microchanneling Cost in Punta Gorda',
-      metaDescription: 'ProCell MD face treatment at House of Rose is currently $349. Learn what is included and what your provider confirms before booking.',
+      metaTitle: 'Procell Microchanneling Cost in Punta Gorda',
+      metaDescription: 'Procell MD face treatment at House of Rose is currently $349. Learn what is included and what your provider confirms before booking.',
     },
     orderRank: 20,
   },
@@ -264,10 +264,10 @@ const supportingDocuments = [
     slug: slug('port-charlotte'),
     city: 'Port Charlotte',
     region: 'Charlotte County, FL',
-    intro: 'House of Rose Aesthetics serves Port Charlotte clients from its appointment-only studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Clients visit for AI Skin Analysis, ProCell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
+    intro: 'House of Rose Aesthetics serves Port Charlotte clients from its appointment-only studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Clients visit for AI Skin Analysis, Procell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
     whyLocal: 'House of Rose is located in downtown Punta Gorda, not in Port Charlotte. The studio serves clients from across Charlotte County with private appointments, provider-specific treatment lanes, and consultation-led recommendations.',
     servedServices: [
-      ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'procell'),
+      ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'Procell'),
       ref('818469ff-9dee-4939-ad55-54fb1ca4e184', 'topical-prf'),
       ref('0e5554bd-f58d-4dbe-be0a-972ad9a27a0e', 'glo2'),
       ref('e8b38f03-900f-4ec5-9246-07cc1b65ed11', 'dermaplaning'),
@@ -281,7 +281,7 @@ const supportingDocuments = [
     seo: {
       _type: 'seo',
       metaTitle: 'Advanced Aesthetics Near Port Charlotte, FL',
-      metaDescription: 'Port Charlotte clients visit House of Rose in Punta Gorda for AI Skin Analysis, ProCell, topical PRF, facials, injectables, and wellness.',
+      metaDescription: 'Port Charlotte clients visit House of Rose in Punta Gorda for AI Skin Analysis, Procell, topical PRF, facials, injectables, and wellness.',
     },
     orderRank: 20,
   },
@@ -316,7 +316,7 @@ const truthSetPatches = [
         {
           _key: 'sg1',
           name: 'Advanced Skin Treatments',
-          description: 'ProCell microchanneling and topical PRF needling selected around visible texture, tone, fine lines, scars, stretch marks, candidacy, and recovery preferences.',
+          description: 'Procell microchanneling and topical PRF needling selected around visible texture, tone, fine lines, scars, stretch marks, candidacy, and recovery preferences.',
           imagePath: '/images/new-microchanneling.webp',
         },
         {
@@ -343,7 +343,7 @@ const truthSetPatches = [
   {
     id: 'collection-advanced-facials',
     set: {
-      description: 'Consultation-led Glo2Facial, dermaplaning, ProCell, and topical PRF options selected around your visible skin goals and candidacy.',
+      description: 'Consultation-led Glo2Facial, dermaplaning, Procell, and topical PRF options selected around your visible skin goals and candidacy.',
     },
   },
   {
@@ -384,8 +384,8 @@ const truthSetPatches = [
 const verifiedComparisonId = '383712f3-f854-491c-954c-7b6fa6420827';
 const parkedComparisonIds = [
   'hor.comparison.prf-injections-vs-ez-gel',
-  'hor.comparison.procell-serum-vs-prf',
-  'hor.comparison.procell-vs-topical-prf',
+  'hor.comparison.Procell-serum-vs-prf',
+  'hor.comparison.Procell-vs-topical-prf',
   'hor.comparison.topical-prf-vs-prf-injections',
 ];
 
@@ -454,7 +454,7 @@ transaction = transaction
       seo: {
         _type: 'seo',
         metaTitle: 'Skin Texture Treatments in Punta Gorda, FL',
-        metaDescription: 'Explore consultation-led options for visible skin texture at House of Rose in Punta Gorda, including ProCell, topical PRF, and facials.',
+        metaDescription: 'Explore consultation-led options for visible skin texture at House of Rose in Punta Gorda, including Procell, topical PRF, and facials.',
       },
     },
   })
@@ -499,7 +499,7 @@ if (missingSupportingIds.length) {
   throw new Error(`Supporting documents were not persisted: ${missingSupportingIds.join(', ')}`);
 }
 
-const privateLegacySupportingIds = ['hor.cost.procell-microchanneling', 'hor.area.port-charlotte'];
+const privateLegacySupportingIds = ['hor.cost.Procell-microchanneling', 'hor.area.port-charlotte'];
 const existingLegacySupportingIds = await client.fetch(`*[_id in $ids]._id`, { ids: privateLegacySupportingIds });
 for (const legacyId of existingLegacySupportingIds) {
   await client.delete(legacyId);

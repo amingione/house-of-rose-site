@@ -118,12 +118,12 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
 
 **What it stacks with (inside House of Rose):**
 - **Any Aundrea appointment** — it's the natural add-on to **waxing** (`/services/waxing/`-type surfaces) or **professional makeup** (`/services/professional-makeup/`), all the same provider, so it can be tacked onto one visit.
-- **A spa/facial day** — the finishing touch after a Glo2Facial or ProCell session; "leave with glowing skin *and* a piece you'll keep."
+- **A spa/facial day** — the finishing touch after a Glo2Facial or Procell session; "leave with glowing skin *and* a piece you'll keep."
 - **Pre-event glam** — pairs with the **makeup events** offering (`/services/professional-makeup/events/`): a bridal party can do makeup + welded bracelets in one block.
 
 **What to try first / pathway:** there's no clinical sequencing — it's standalone. The natural *journey* is: single piece → add a **charm** later → **layer** a second chain at a future visit → book a **group event** for a milestone. Charms and connectors (birthstone/diamond) are the repeat-visit and gifting hook.
 
-**Retail follow-through:** unlike the skincare lanes, permanent jewelry's "retail" *is* the piece itself — **charms, connectors, and additional chains** are the natural upsell and the reason to come back. There's no cross-sell into the ProCell / GlyMed+ / Skin Script / Face Reality / Jane Iredale product lines here; keep it clean. (Whether charms/connectors are sold as `product` docs in Sanity or handled at the appointment is a **business decision — pending Aundrea**.)
+**Retail follow-through:** unlike the skincare lanes, permanent jewelry's "retail" *is* the piece itself — **charms, connectors, and additional chains** are the natural upsell and the reason to come back. There's no cross-sell into the Procell / GlyMed+ / Skin Script / Face Reality / Jane Iredale product lines here; keep it clean. (Whether charms/connectors are sold as `product` docs in Sanity or handled at the appointment is a **business decision — pending Aundrea**.)
 
 ---
 

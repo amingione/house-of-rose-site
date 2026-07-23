@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 /**
  * Retail brand storefront copy — the story block shown on /shop for each
- * carried line (ProCell, GlyMed+, Skin Script, Face Reality, House of Rose).
+ * carried line (Procell, GlyMed+, Skin Script, Face Reality, House of Rose).
  *
  * Distinct from `brandProfile` (House of Rose's own brand-voice/strategy doc).
  * This is product-line marketing copy, editable without a code change.
@@ -25,7 +25,7 @@ export const shopBrand = defineType({
       description: 'Must match the "Brand" value used on Product documents.',
       options: {
         list: [
-          { title: 'ProCell Therapies', value: 'procell' },
+          { title: 'Procell Therapies', value: 'Procell' },
           { title: 'GlyMed+', value: 'glymed' },
           { title: 'Skin Script', value: 'skin-script' },
           { title: 'Face Reality', value: 'face-reality' },
@@ -64,7 +64,7 @@ export const shopBrand = defineType({
       name: 'ctaLabel',
       title: 'Shop Brand CTA Text',
       type: 'string',
-      description: 'Free text — e.g. "Shop ProCell", "Explore the Line", "See the Collection". No platform names.',
+      description: 'Free text — e.g. "Shop Procell", "Explore the Line", "See the Collection". No platform names.',
     }),
     defineField({
       name: 'externalUrl',

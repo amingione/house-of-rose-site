@@ -39,11 +39,11 @@
 | Facials | Sculpt & Lift Facial | 1h | $180 |
 | Facials | Luxury Facial | 1h15 | $200 |
 | **Advanced Facials** (Amber) | Glo2Facial | 1h | **$195** |
-| Advanced Facials | Glo2Facial + ProCell MD | 1h30 | $475 |
-| Advanced Facials | Glo2Facial + ProCell Pro | 1h30 | $525 |
+| Advanced Facials | Glo2Facial + Procell MD | 1h30 | $475 |
+| Advanced Facials | Glo2Facial + Procell Pro | 1h30 | $525 |
 | Advanced Facials | Glo2Facial + PRF | 1h30 | $595 |
 | Advanced Facials | GlowTox Facial | 1h | $475 |
-| **Microchanneling & Microneedling** | ProCell MD Microchanneling | 45m | $349 |
+| **Microchanneling & Microneedling** | Procell MD Microchanneling | 45m | $349 |
 | **Skin Renewal** | PRF Skin Renewal | 1h | $450 (3 options) |
 | **Injectables & Bio-Fillers** | Daxxify · Botox | 20m | $14/unit |
 | Injectables | Juvéderm Ultra XC | 30m | $650 |
@@ -78,19 +78,19 @@
 ### 0.2 Major GG-vs-CMS divergences (Amber must resolve — affects the whole catalog)
 
 - **On the website/Sanity but NOT bookable in GlossGenius:** BioRePeel (×4 Sanity services), corrective
-  microneedling, microneedling/PRF **body** treatments, the ProCell **Pro-vs-MD standalone tiers** ($250/$349),
+  microneedling, microneedling/PRF **body** treatments, the Procell **Pro-vs-MD standalone tiers** ($250/$349),
   **carboxy** facial, **dermaplaning** (add-on only per Amber, not a GG service), and the **Face Reality Acne
   Bootcamp / acne-peel / back-treatment** ($899/$139/$159 — the GG "Acne Bootcamp" category has 0 services).
 - **In GlossGenius but thin/absent on the site:** the 9-service **basic-facial ladder** ($80–$200), **Lash
   services** (tint/lift/combo — a whole lane the site doesn't cover), and the **combo advanced facials**
-  (Glo2 + ProCell MD/Pro/PRF).
+  (Glo2 + Procell MD/Pro/PRF).
 - **Price corrections (GG wins over BOTH local docs and Sanity):** Glo2Facial **$195** (local said $185);
   waxing is cheaper across the board (Underarm **$20** vs local $28; no **Brazilian** at all); makeup far cheaper
   (Everyday **$30** vs local $85; Event **$80** vs local $150); permanent jewelry **$65** flat (not "From $45");
-  ProCell microchanneling is a single **$349** line — now RESOLVED as the **MD** tier; **Pro $250** must be added to GG as the entry tier (see §10a).
+  Procell microchanneling is a single **$349** line — now RESOLVED as the **MD** tier; **Pro $250** must be added to GG as the entry tier (see §10a).
 - **Confirmed drifts where GG validates the LOCAL docs and proves SANITY wrong:** IV $100 (Sanity $129),
   fillers from $650 (Sanity $700), PRF injections $495/$595 (Sanity $599), GLP-1 $225/$325 (Sanity $349),
-  ProCell body/microchanneling $349. → Sanity service prices should be corrected to GG in Phase 4.
+  Procell body/microchanneling $349. → Sanity service prices should be corrected to GG in Phase 4.
 
 > **Bottom line:** treat §0 as truth. The §1–§11 tables below are the *local-docs/Sanity view* and are retained
 > only to show what each system currently holds and where it drifts from GlossGenius.
@@ -104,11 +104,11 @@
 | Glo2Facial (gateway) | $185 | per session | 60 min | From $185 | ✅ | master-menu §1 |
 | Glo2Facial — Series of 3 | $499 | series (3) | — | — (not priced) | — series absent in Sanity | master-menu §1 |
 | Glo2Facial — Series of 6 | $885 | series (6) | — | — | — | master-menu §1 |
-| ProCell Microchanneling — Pro (face) | $250 | per session | 60–75 min | From $250 | ✅ | master-menu §2 |
-| ProCell Microchanneling — MD (face) | **$349** | per session | 60–75 min | (single `microchanneling` line = From $250) | ⚠️ Sanity lists only one "From $250" line; **MD tier ($349) must be published separately** | GlossGenius (live) — see §10a |
+| Procell Microchanneling — Pro (face) | $250 | per session | 60–75 min | From $250 | ✅ | master-menu §2 |
+| Procell Microchanneling — MD (face) | **$349** | per session | 60–75 min | (single `microchanneling` line = From $250) | ⚠️ Sanity lists only one "From $250" line; **MD tier ($349) must be published separately** | GlossGenius (live) — see §10a |
 | Microneedling — Corrective (face) | $295 | per session | 60–75 min | From $295 | ✅ | master-menu §3 |
 | GlowTox Facial | $475 in GlossGenius; $425 in legacy menu | per session | 60 min | — (not in Sanity) | **Clinical and price reconciliation required.** Do not describe it as topical Daxxify, a microchanneling treatment, or a needling add-on. | GlossGenius catalog + legacy master menu §4 |
-| ProCell Microchanneling — Body | $349 | per zone | 60–75 min | From $349 per zone | ✅ | master-menu §6 |
+| Procell Microchanneling — Body | $349 | per zone | 60–75 min | From $349 per zone | ✅ | master-menu §6 |
 | Microneedling — Body | $325 | per zone | 60–90 min | From $325 per zone | ✅ | master-menu §6 |
 | Microneedling + BioRePeel — Body | $325 | per zone | 45 min | `biorepeel-body` From $325 per zone | ✅ | master-menu §6 |
 | **Microneedling + BioRePeel (face) — standalone** | **no standalone single-session price in local docs** (master menu prices it only as a **+$65 add-on**) | — | 45 min | `biorepeel` **From $295** | 🟥 Sanity face price $295 has **no local source** — master menu only defines BioRePeel face as a +$65 upgrade | master-menu §5 |
@@ -280,11 +280,11 @@
 | Base treatment | Single | Series of 3 ("Renewal", ~10%) | Series of 6 ("Full Correction", ~20%) |
 |---|---|---|---|
 | Glo2Facial | $185 | $499 | $885 |
-| ProCell Microchanneling — Pro | $250 | $675 | $1,200 |
-| ProCell Microchanneling — MD | **$349** | **$940** | **$1,675** |
+| Procell Microchanneling — Pro | $250 | $675 | $1,200 |
+| Procell Microchanneling — MD | **$349** | **$940** | **$1,675** |
 | Microneedling — Corrective | $295 | $795 | $1,415 |
 | Micro-Tox / GlowTox | Pending clinical approval and final pricing | — | — |
-| ProCell Microchanneling — Body | $349 | $940 | $1,675 |
+| Procell Microchanneling — Body | $349 | $940 | $1,675 |
 | Microneedling — Body | $325 | $875 | $1,560 |
 | BioRePeel — Body | $325 | $875 | $1,560 |
 | Back Treatment — Acne & Texture | from $159 | $429 | $765 |
@@ -298,7 +298,7 @@
 | PRF Under-Eye Rejuvenation | $495 | **$1,350** |
 | PRF Facial Rejuvenation (1 area) | $595 | **$1,650** |
 
-**Sanity `package` docs — ALL empty / unpriced** (`price: null`, no included services): `bikini-underarms-combo`, `biorepeel-series-of-4`, `brazilian-wax-pass` (Buy 5 Get 1), `bridal-prep-package`, `dermaplaning-package-of-4`, `face-reality-12-week-program`, `full-body-smooth-combo`, `led-series-of-6`, `prf-microchanneling-journey`, `prf-microneedling-series-of-4`, `prf-under-eye-series-of-3`, `procell-microchanneling-series-of-4`, `the-revival-series`. **All "Series of 4" packages are empty and unpriced** — the local docs define Series-of-3 and Series-of-6, NOT Series-of-4 (except the Amber PRF Skin Renewal Series-of-4 $1,550). These Sanity packages need prices back-filled from §9 in Phase 4.
+**Sanity `package` docs — ALL empty / unpriced** (`price: null`, no included services): `bikini-underarms-combo`, `biorepeel-series-of-4`, `brazilian-wax-pass` (Buy 5 Get 1), `bridal-prep-package`, `dermaplaning-package-of-4`, `face-reality-12-week-program`, `full-body-smooth-combo`, `led-series-of-6`, `prf-microchanneling-journey`, `prf-microneedling-series-of-4`, `prf-under-eye-series-of-3`, `Procell-microchanneling-series-of-4`, `the-revival-series`. **All "Series of 4" packages are empty and unpriced** — the local docs define Series-of-3 and Series-of-6, NOT Series-of-4 (except the Amber PRF Skin Renewal Series-of-4 $1,550). These Sanity packages need prices back-filled from §9 in Phase 4.
 
 ---
 
@@ -319,12 +319,12 @@ Services with **no authoritative local price** that must be resolved before publ
 
 ---
 
-## §10a — ProCell face price: RESOLVED (2026-07-14)
+## §10a — Procell face price: RESOLVED (2026-07-14)
 
-**Decision: MD face = $349. Pro face = $250. $325 is retired from the ProCell face menu.**
+**Decision: MD face = $349. Pro face = $250. $325 is retired from the Procell face menu.**
 
 > **⛔ SUPERSEDED 2026-07-17 — see §10b below.** The $250/$349 figures above were set from round-number
-> logic. They have been re-derived from the documented competitor table (Notion "ProCell Microchanneling"
+> logic. They have been re-derived from the documented competitor table (Notion "Procell Microchanneling"
 > page + `docs/competitor_analysis/`). Keep §10a for history; **use §10b for live numbers.**
 
 The catalog previously carried MD face at both **$349** (live in GlossGenius) and **$325** (local series
@@ -346,54 +346,54 @@ better number:
 
 | Treatment | Single | 3-series (~10%) | 6-series (~20%) |
 |---|---|---|---|
-| ProCell Microchanneling — Pro (face) | $250 | $675 | $1,200 |
-| ProCell Microchanneling — MD (face) | **$349** | **$940** | **$1,675** |
-| ProCell Microchanneling — Body (per zone) | $349 | $940 | $1,675 |
+| Procell Microchanneling — Pro (face) | $250 | $675 | $1,200 |
+| Procell Microchanneling — MD (face) | **$349** | **$940** | **$1,675** |
+| Procell Microchanneling — Body (per zone) | $349 | $940 | $1,675 |
 
-MD-face and Body now share the same series math, collapsing the ProCell grid from three price ladders
+MD-face and Body now share the same series math, collapsing the Procell grid from three price ladders
 to two. **$325 remains valid only for Microneedling — Body and BioRePeel — Body** (and, unrelated,
-Tirzepatide/month) — removing it from the ProCell face menu eliminates one of the round-number
+Tirzepatide/month) — removing it from the Procell face menu eliminates one of the round-number
 collisions that generated the drift in the first place.
 
 **Actions**
-- [ ] **GlossGenius:** MD $349 is already correct — no change. **Add ProCell Microchanneling — Pro (face) $250.**
+- [ ] **GlossGenius:** MD $349 is already correct — no change. **Add Procell Microchanneling — Pro (face) $250.**
 - [ ] **Sanity:** keep `microchanneling` hub at "From $250"; publish the **MD $349** tier as its own line.
 - [ ] **`docs/services/ALL-SERVICES-PRICING.MD`:** updated 2026-07-14 (MD $349 | $940 | $1,675).
 
 
 ---
 
-## §10b — ProCell price: COMP-ANCHORED (2026-07-17) ✅ AUTHORITATIVE
+## §10b — Procell price: COMP-ANCHORED (2026-07-17) ✅ AUTHORITATIVE
 
-Every ProCell number is now derived from documented competitor pricing, not round-number logic.
+Every Procell number is now derived from documented competitor pricing, not round-number logic.
 GlossGenius holds a single price per service. **Pro / MD** are serum tiers.
 
-### Local competitor table (source: Notion "ProCell Microchanneling", Status: Live · `docs/competitor_analysis/`)
+### Local competitor table (source: Notion "Procell Microchanneling", Status: Live · `docs/competitor_analysis/`)
 
 | Competitor | Location | Service | Price |
 |---|---|---|---|
-| Regional ProCell (web-verified 2026-07) | SW FL / FL | **ProCell microchanneling** | **$300 (60m) · $350 (90m) · $375 (50m) single · 4-pack $1,050–$1,225** |
+| Regional Procell (web-verified 2026-07) | SW FL / FL | **Procell microchanneling** | **$300 (60m) · $350 (90m) · $375 (50m) single · 4-pack $1,050–$1,225** |
 | ÉLAN | Regional | Microneedling | $375 single · $1,050 / 3-pack |
-| PRF/PRP microneedling (needling **+ PRF**) | Regional | — | $350–$500 single _(= HoR PRF Skin Renewal $450 tier, not bare ProCell)_ |
+| PRF/PRP microneedling (needling **+ PRF**) | Regional | — | $350–$500 single _(= HoR PRF Skin Renewal $450 tier, not bare Procell)_ |
 | Skin Sanctuary | Punta Gorda | Microneedling / Nano Channeling | $195 / $185 _(bare needling, cheaper modality)_ |
 | C's Medi Spa | Port Charlotte | Microneedling | $175 |
-| ~~Unnamed PG "ProCell $500 single / $1,200-of-3"~~ | — | — | **DISCARDED — unverified** (PRF-needling ceiling / 4-pack, not a bare ProCell single) |
+| ~~Unnamed PG "Procell $500 single / $1,200-of-3"~~ | — | — | **DISCARDED — unverified** (PRF-needling ceiling / 4-pack, not a bare Procell single) |
 
-**Read:** verified ProCell singles run **$300–$375**, 4-packs **$1,050–$1,225**. Bare microneedling ($175–$195) is a cheaper, different modality. House of Rose prices ProCell into the real ProCell market.
+**Read:** verified Procell singles run **$300–$375**, 4-packs **$1,050–$1,225**. Bare microneedling ($175–$195) is a cheaper, different modality. House of Rose prices Procell into the real Procell market.
 
 ### Authoritative grid
 
 | Treatment | Price | Comp justification |
 |---|---|---|
-| ProCell Pro — Face | **$299** | Entry tier at the ProCell market floor (~$300); the value option, above bare microneedling ($175–$195). |
-| ProCell MD — Face | **$349** | Live GG price; mid-market (≈ ÉLAN $375 / 90-min ProCell $350). |
-| ProCell MD — Face+Neck+Décolleté | **$449** | Extended plane; above the single-face tiers. |
-| ProCell — Series of 4 | **$1,099** | **4 = ProCell protocol** (min 4 tx, ~4 wks apart; 6+ scarring — `docs/services/PRF/`). Sits inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
-| Microneedling — Corrective (Face) | **$295** | Above local microneedling $175–$195; the non-ProCell corrective tier. |
+| Procell Pro — Face | **$299** | Entry tier at the Procell market floor (~$300); the value option, above bare microneedling ($175–$195). |
+| Procell MD — Face | **$349** | Live GG price; mid-market (≈ ÉLAN $375 / 90-min Procell $350). |
+| Procell MD — Face+Neck+Décolleté | **$449** | Extended plane; above the single-face tiers. |
+| Procell — Series of 4 | **$1,099** | **4 = Procell protocol** (min 4 tx, ~4 wks apart; 6+ scarring — `docs/services/PRF/`). Sits inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
+| Microneedling — Corrective (Face) | **$295** | Above local microneedling $175–$195; the non-Procell corrective tier. |
 
-**What changed vs §10a:** Pro Face **$250 → $299** — $250 sat almost on top of local microneedling ($195), undervaluing a superior modality; $299 sits at the real ProCell market floor (~$300). MD **stays $349** (= live GG). **Body** ProCell has **no local comp** → consult-based at the current figure until one is found.
+**What changed vs §10a:** Pro Face **$250 → $299** — $250 sat almost on top of local microneedling ($195), undervaluing a superior modality; $299 sits at the real Procell market floor (~$300). MD **stays $349** (= live GG). **Body** Procell has **no local comp** → consult-based at the current figure until one is found.
 
-**On the series count — do NOT normalize.** ProCell is a **series of 4** because that is the **ProCell manufacturer protocol** (minimum 4 treatments ~4 weeks apart, 6+ for scarring — `docs/services/PRF/compass_artifact…`, `m17-skin-analysis-cheat-sheet.md`, and the GlossGenius import CSV which prices PRF Skin Renewal at series-of-3 $1,200 / series-of-4 $1,550). This is **treatment-specific and correct**; it is not the house 3/6 "Renewal/Full Correction" retail framework and must not be flattened into it. Other treatments keep their own cadence: Glo2Facial **3/6**, Microneedling corrective **3–6** (scarring 5–8), BioRePeel **unsettled** (see `biorepeel.md` §82 — flag, don't force). `_gaps.md` §87 asked to "pick ONE cadence" — the answer is **no**: different modalities have different clinically-correct series, and forcing a single count would misrepresent the protocol.
+**On the series count — do NOT normalize.** Procell is a **series of 4** because that is the **Procell manufacturer protocol** (minimum 4 treatments ~4 weeks apart, 6+ for scarring — `docs/services/PRF/compass_artifact…`, `m17-skin-analysis-cheat-sheet.md`, and the GlossGenius import CSV which prices PRF Skin Renewal at series-of-3 $1,200 / series-of-4 $1,550). This is **treatment-specific and correct**; it is not the house 3/6 "Renewal/Full Correction" retail framework and must not be flattened into it. Other treatments keep their own cadence: Glo2Facial **3/6**, Microneedling corrective **3–6** (scarring 5–8), BioRePeel **unsettled** (see `biorepeel.md` §82 — flag, don't force). `_gaps.md` §87 asked to "pick ONE cadence" — the answer is **no**: different modalities have different clinically-correct series, and forcing a single count would misrepresent the protocol.
 
 ### Actions
 - [ ] **GlossGenius:** MD $349 already live. Add **Pro $299**, **F+N+D $449**, **Series of 4 $1,099** as single-price services.

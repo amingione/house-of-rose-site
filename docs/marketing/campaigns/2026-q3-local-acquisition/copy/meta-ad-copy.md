@@ -62,19 +62,19 @@ Every destination below includes the required trailing slash before its query st
 
 ### 04A — Skin quality, planned
 
-- **Primary text:** Skin quality is rarely a one-appointment question. Glo2Facial and ProCell microchanneling can be considered as part of a structured plan for healthier-looking texture, tone, and radiance. Your provider confirms candidacy and the appropriate service at consultation; individual outcomes vary.
+- **Primary text:** Skin quality is rarely a one-appointment question. Glo2Facial and Procell microchanneling can be considered as part of a structured plan for healthier-looking texture, tone, and radiance. Your provider confirms candidacy and the appropriate service at consultation; individual outcomes vary.
 - **Headline:** Skin Quality, Planned
 - **Description:** Advanced skin care in Punta Gorda.
 - **CTA:** Learn More
 - **Destination:** `https://houseofrosefl.com/services/microchanneling/?utm_source=facebook&utm_medium=paid_social&utm_campaign=hor_advanced_skin_q3&utm_content=04a_skin_quality_feed`
 
-### 04B — ProCell consultation
+### 04B — Procell consultation
 
-- **Primary text:** ProCell microchanneling is a provider-selected option for clients exploring overall skin quality and a more structured treatment plan. Not every client is a candidate for every service; begin with a private consultation in Punta Gorda.
-- **Headline:** Explore ProCell Microchanneling
+- **Primary text:** Procell microchanneling is a provider-selected option for clients exploring overall skin quality and a more structured treatment plan. Not every client is a candidate for every service; begin with a private consultation in Punta Gorda.
+- **Headline:** Explore Procell Microchanneling
 - **Description:** Candidacy is confirmed at consultation.
 - **CTA:** Learn More
-- **Destination:** `https://houseofrosefl.com/services/microchanneling/?utm_source=instagram&utm_medium=paid_social&utm_campaign=hor_advanced_skin_q3&utm_content=04b_procell_story`
+- **Destination:** `https://houseofrosefl.com/services/microchanneling/?utm_source=instagram&utm_medium=paid_social&utm_campaign=hor_advanced_skin_q3&utm_content=04b_Procell_story`
 
 ## 05 — Injectables
 
@@ -119,7 +119,7 @@ Use only if the website lead campaign produces fewer than three verified leads b
 - **Form name:** House of Rose Consultation Request — Q3
 - **Intro:** Tell us what you would like to explore. A House of Rose team member will follow up during studio hours.
 - **Fields:** Name, email, phone, service interest, preferred contact method.
-- **Service-interest options:** Skin consultation; Glo2Facial; ProCell microchanneling; injectables; not sure yet.
+- **Service-interest options:** Skin consultation; Glo2Facial; Procell microchanneling; injectables; not sure yet.
 - **Privacy:** Do not request health history, diagnoses, medications, pregnancy status, or treatment candidacy in the ad form.
 - **Thank-you headline:** Your request is with House of Rose.
 - **Thank-you text:** Our team will follow up as soon as possible. Final recommendations and candidacy are confirmed with the appropriate provider.

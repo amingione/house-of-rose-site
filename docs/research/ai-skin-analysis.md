@@ -93,7 +93,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 | **Fine lines & laxity** → `/concerns/fine-lines-laxity/` | Wrinkle/texture patterns, surface crepiness, early laxity | Microchanneling, PRF microneedling, Glo2Facial, LED; injectables where appropriate | Amber (facials/PRF **topical only**) · Diana (tox/filler) |
 | **Acne scarring** → `/concerns/acne-scarring/` | Texture depressions, pore/congestion patterns, porphyrin-related activity, PIH-style pigment | Microchanneling, PRF microneedling, BioRePeel (incl. advanced acne-scarring), Face Reality acne program | Amber · Face Reality protocol |
 | **Dark circles & under-eyes** → `/concerns/dark-circles/` | Under-eye pigment vs. vascular vs. texture cues (helps distinguish likely driver) | PRF under-eye series, EZ-Gel/injectables where indicated | Amber (PRF topical) · Diana (injectable PRF/EZ-Gel) |
-| **Stretch marks** → `/concerns/stretch-marks/` | Textural/tone irregularity on body zones (via spot/localized capture) | Microneedling body, PRF body, ProCell microchanneling body | Amber |
+| **Stretch marks** → `/concerns/stretch-marks/` | Textural/tone irregularity on body zones (via spot/localized capture) | Microneedling body, PRF body, Procell microchanneling body | Amber |
 | **Hair thinning** → `/concerns/hair-thinning/` | Scalp/hair follicle read via the M17 handpiece attachment | Scalp-focused regenerative pathways / referral within lane | Amber (topical) · Diana (injectable PRF) — provider-confirmed |
 
 **Routing note (compliance):** the scan *suggests where to look*; the licensed provider confirms candidacy, the treatment, and whether it belongs in Amber's, Diana's, or Brandy's lane. PRF is **topical only with Amber** and **injectable only with Diana** — the scan must never be copy-framed as "prescribing" an injection.
@@ -105,14 +105,14 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 ## 7. Pairings & pathways
 
 **What it stacks with (it precedes everything):**
-- **Before a regenerative series** — PRF microchanneling/microneedling, ProCell microchanneling: the scan sets the baseline the whole series is measured against. Natural pathway into `/packages/prf-microchanneling-journey/`, `/packages/prf-microneedling-series-of-4/`, `/packages/procell-microchanneling-series-of-4/`.
+- **Before a regenerative series** — PRF microchanneling/microneedling, Procell microchanneling: the scan sets the baseline the whole series is measured against. Natural pathway into `/packages/prf-microchanneling-journey/`, `/packages/prf-microneedling-series-of-4/`, `/packages/Procell-microchanneling-series-of-4/`.
 - **Before a corrective skincare protocol** — Face Reality acne program, acne bootcamp, BioRePeel series: the scan documents the "before" and re-scans mark milestones. → `/packages/face-reality-12-week-program/`, `/packages/biorepeel-series-of-4/`.
 - **Before deciding facial vs. facial** — Glo2Facial vs. peel vs. maintenance facial: the scan sequences them.
 - **Alongside injectable consults** — the scan informs the aesthetic picture Diana works from (it does not diagnose or prescribe).
 
 **Try first:** the analysis *is* the "try first." It's the recommended opening move for anyone unsure where to start.
 
-**Retail follow-through (name real shop brands):** because the scan surfaces pigment, congestion, redness, and hydration cues, it routes naturally into home-care from the brands House of Rose already carries — **Face Reality** (acne-prone/congestion), **ProCell** (post-procedure/regenerative support), **GlyMed+** and **Skin Script** (correction, exfoliation, brightening for pigment/texture), and **House of Rose** own-brand. Home care is often the honest first recommendation for milder findings; frame it as "supports your plan," never as a cure.
+**Retail follow-through (name real shop brands):** because the scan surfaces pigment, congestion, redness, and hydration cues, it routes naturally into home-care from the brands House of Rose already carries — **Face Reality** (acne-prone/congestion), **Procell** (post-procedure/regenerative support), **GlyMed+** and **Skin Script** (correction, exfoliation, brightening for pigment/texture), and **House of Rose** own-brand. Home care is often the honest first recommendation for milder findings; frame it as "supports your plan," never as a cure.
 
 ---
 
@@ -225,8 +225,8 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 **Sanity content consulted (published snapshot):**
 - Concerns: `acne-scarring`, `dark-circles`, `fine-lines-laxity`, `hair-thinning`, `stretch-marks`, `sun-damage`.
 - Collections: `skin-renewal`, `injectables-aesthetics`, `wellness-restoration`, `beauty-enhancements`.
-- Services (routing targets): `microchanneling`, `prf-microneedling`, `glo2facial`, `biorepeel`, plus PRF/ProCell body + injectable services.
-- Packages: `prf-microchanneling-journey`, `face-reality-12-week-program`, `biorepeel-series-of-4`, `procell-microchanneling-series-of-4`, `prf-microneedling-series-of-4`.
+- Services (routing targets): `microchanneling`, `prf-microneedling`, `glo2facial`, `biorepeel`, plus PRF/Procell body + injectable services.
+- Packages: `prf-microchanneling-journey`, `face-reality-12-week-program`, `biorepeel-series-of-4`, `Procell-microchanneling-series-of-4`, `prf-microneedling-series-of-4`.
 - Live singleton: `skinAnalysis` (`/skin-analysis/`) — current hero/steps/looks-at/concern-chips/FAQ; no price; lead form + GlossGenius CTA.
 
 **Web sources (mechanism/framing only — no prices, no medical claims imported):**

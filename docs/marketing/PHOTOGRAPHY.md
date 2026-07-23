@@ -36,7 +36,7 @@ browser, which is exactly how the bugs below went unnoticed.
 
 ## Background-only assets
 
-`bg-texture-serum`, `bg-texture-procell`, `bg-texture-glass` come from soft-focus
+`bg-texture-serum`, `bg-texture-Procell`, `bg-texture-glass` come from soft-focus
 source frames. They are deliberately defocused and darkened.
 
 **Use them behind text only. Never as product cards.** The source is out of focus

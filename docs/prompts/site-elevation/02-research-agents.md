@@ -10,7 +10,7 @@ input for Phases 3–4.
    - PRF: `docs/services/PRF/`, `docs/services/Diana/PRF_Treatment_Guide_House_of_Rose.pdf`,
      `PRF_Brochure_House_of_Rose.pdf`, `PRF_Pricing_House_of_Rose.pdf`,
      `House_of_Rose_Injectable_PRF_Pricing.pdf`, `docs/services/filler/PRF_ez-gel.md`,
-     `docs/services/microchanneling/PRF.md` + `procell-prf-delivery-research-report.md`
+     `docs/services/microchanneling/PRF.md` + `Procell-prf-delivery-research-report.md`
    - Facials: `docs/services/facials/*` (Glo2Facial, BioRePeel, dermaplaning,
      hydrodermabrasion, Face Reality acne program, packages/add-ons)
    - Injectables: `docs/services/tox/daxxify.md`, `docs/services/filler/dermalfillers.md`,
@@ -25,7 +25,7 @@ input for Phases 3–4.
 ## The agents (run in parallel; one Task per topic)
 
 **Advanced treatments (Amber):** PRF topical · microneedling · microchanneling ·
-ProCell (MD vs Pro) · Glo2Facial · BioRePeel · dermaplaning · carboxy therapy
+Procell (MD vs Pro) · Glo2Facial · BioRePeel · dermaplaning · carboxy therapy
 
 **Injectables & wellness (Diana, RN):** neurotoxins (incl. Daxxify) · dermal fillers ·
 PRF injections & PRF EZ-Gel · IV hydration therapy · GLP-1 program
@@ -36,7 +36,7 @@ facial waxing
 **Aundrea:** waxing (face/body) · permanent jewelry · professional makeup + Jane Iredale
 
 **Cross-cutting:** AI skin analysis (the evidence-based first step) · Face Reality acne
-program · product lines (ProCell, GlyMed+, Skin Script, Face Reality, Jane Iredale,
+program · product lines (Procell, GlyMed+, Skin Script, Face Reality, Jane Iredale,
 House of Rose retail)
 
 ## Brief template — each agent writes `docs/research/<topic>.md`
@@ -45,7 +45,7 @@ House of Rose retail)
 2. **How it works** (mechanism, plain English + one level deeper for the curious)
 3. **Who it's for / not for** (candidacy, honest limits)
 4. **The visit** (protocol, sensation, downtime, aftercare, results timeline, cadence)
-5. **Comparisons** (vs each adjacent treatment we offer — e.g. PRF topical vs ProCell
+5. **Comparisons** (vs each adjacent treatment we offer — e.g. PRF topical vs Procell
    microchanneling vs microneedling; Glo2Facial vs hydrodermabrasion; Daxxify vs other tox;
    IV hydration vs oral — when each wins, honestly)
 6. **Concern mapping** (which client concerns this addresses → feeds `/concerns/`)

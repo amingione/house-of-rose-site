@@ -13,9 +13,9 @@ One row per brief. "Existing route it feeds" = the live Sanity service/singleton
 | Topic | Provider lane | Brief file | Existing Sanity/route it feeds | Proposed NEW pages (type + slug) |
 |---|---|---|---|---|
 | Topical PRF (advanced-facial adjunct) | Amber — advanced facials (PRF **topical only**) | `prf-topical.md` | `/services/prf/`, `/services/prf-microneedling/`, `/services/prf-body-treatments/`; comparison `prf-microchanneling-vs-microneedling`; cost `prf-microneedling-cost-punta-gorda`; guide `/guides/microchanneling-prf/` | costGuide `/cost/topical-prf-microchanneling-cost-punta-gorda/`; comparison `/compare/topical-prf-vs-injectable-prf/`; caseStudy `/results/topical-prf-texture-tightening/`; blog PRF-vs-PRP-vs-fillers explainer under `/blog/` |
-| Microneedling (corrective) | Amber — advanced esthetics | `microneedling.md` | `/services/microneedling-corrective/`, `/services/microneedling-body/`, `/services/microchanneling-microneedling/` (hub); cost `prf-microneedling-cost-punta-gorda` | comparison `/compare/microneedling-corrective-vs-procell-microchanneling/`; comparison `/compare/microneedling-vs-biorepeel/`; costGuide `/cost/microneedling-cost-punta-gorda/`; costGuide `/cost/stretch-mark-treatment-cost-punta-gorda/`; concern `/concerns/scars-textural/`; caseStudy `/results/[slug]/` |
-| Microchanneling (ProCell, fixed-protocol) | Amber — advanced esthetics | `microchanneling.md` | `/services/microchanneling/`, `/services/microchanneling-microneedling/` (hub), `/services/procell-microchanneling-body/`; collection `skin-renewal` | concern `/concerns/texture-and-pores/`; costGuide `/cost/procell-microchanneling-cost-punta-gorda/`; comparison `/compare/microchanneling-vs-glo2facial/`; caseStudy `/results/[slug]/` |
-| ProCell growth-factor serums (MD vs Pro) | Amber — advanced facials | `procell.md` | `/services/microchanneling/`, `/services/procell-microchanneling-body/` | comparison `/compare/procell-pro-vs-md/`; costGuide `/cost/procell-microchanneling-cost-punta-gorda/`; concern `/concerns/dull-uneven-texture/`; caseStudy `/results/procell-microchanneling-texture/` |
+| Microneedling (corrective) | Amber — advanced esthetics | `microneedling.md` | `/services/microneedling-corrective/`, `/services/microneedling-body/`, `/services/microchanneling-microneedling/` (hub); cost `prf-microneedling-cost-punta-gorda` | comparison `/compare/microneedling-corrective-vs-Procell-microchanneling/`; comparison `/compare/microneedling-vs-biorepeel/`; costGuide `/cost/microneedling-cost-punta-gorda/`; costGuide `/cost/stretch-mark-treatment-cost-punta-gorda/`; concern `/concerns/scars-textural/`; caseStudy `/results/[slug]/` |
+| Microchanneling (Procell, fixed-protocol) | Amber — advanced esthetics | `microchanneling.md` | `/services/microchanneling/`, `/services/microchanneling-microneedling/` (hub), `/services/Procell-microchanneling-body/`; collection `skin-renewal` | concern `/concerns/texture-and-pores/`; costGuide `/cost/Procell-microchanneling-cost-punta-gorda/`; comparison `/compare/microchanneling-vs-glo2facial/`; caseStudy `/results/[slug]/` |
+| Procell growth-factor serums (MD vs Pro) | Amber — advanced facials | `Procell.md` | `/services/microchanneling/`, `/services/Procell-microchanneling-body/` | comparison `/compare/Procell-pro-vs-md/`; costGuide `/cost/Procell-microchanneling-cost-punta-gorda/`; concern `/concerns/dull-uneven-texture/`; caseStudy `/results/Procell-microchanneling-texture/` |
 | Glo2Facial (Geneo) | Amber — advanced facials | `glo2facial.md` | `/services/glo2facial/`; collection `skin-renewal` | costGuide `/cost/glo2facial-cost-punta-gorda/`; comparison `/compare/glo2facial-vs-hydrodermabrasion/` (and/or `/compare/glo2facial-vs-microneedling/`); caseStudy `/results/glo2facial-glow/`; concern `/concerns/dull-dehydrated-skin/`; concern `/concerns/dry-skin/`; Sanity packages `glo2facial-series-of-3` + `glo2facial-series-of-6` |
 | BioRePeel (TCA resurfacing) | Amber — advanced facials | `biorepeel.md` | `/services/biorepeel/`, `/services/biorepeel-advanced-acne-scarring/`, `/services/biorepeel-body/`, `/services/biorepeel-gold-spot-treatment/`; package `biorepeel-series-of-4` (empty) | costGuide `/cost/biorepeel-cost-punta-gorda/`; comparison `/compare/biorepeel-vs-chemical-peel/` (and/or `/compare/biorepeel-vs-microneedling/`); concern `/concerns/congestion-and-uneven-texture/`; caseStudy `/results/biorepeel-[descriptor]/` |
 | Dermaplaning | Amber — advanced facials | `dermaplaning.md` | `/services/dermaplaning/`; package `dermaplaning-package-of-4` (unpriced) | concern `/concerns/dull-uneven-texture/`; package (publish+price) `/packages/dermaplaning-package-of-4/`; costGuide `/cost/dermaplaning-cost-punta-gorda/`; comparison `/compare/dermaplaning-vs-facial-waxing/` |
@@ -34,7 +34,7 @@ One row per brief. "Existing route it feeds" = the live Sanity service/singleton
 | Professional makeup + Jane Iredale | Aundrea Pedigo | `professional-makeup.md` | Singletons `professionalMakeupPage`, `janeIredalePage`, `makeupEventsPage` (**all UNPOPULATED in Sanity** — render from `.astro` fallback) | costGuide `/cost/professional-makeup/`; service (sub) `/services/professional-makeup/bridal/`; caseStudy `/results/jane-iredale-<name>/` ×2 (consent-gated); Jane Iredale `shopBrand` doc + `/shop/` product pages (not yet wired) |
 | AI skin analysis | Cross-cutting front door (routes to Amber/Diana/Brandy) | `ai-skin-analysis.md` | Singleton `/skin-analysis/` (no price; not a `service` doc) | concern `/concerns/pigmentation-melasma/`; concern `/concerns/redness-rosacea-appearance/`; concern `/concerns/pores-congestion/`; concern `/concerns/dehydration-barrier/`; comparison `/compare/ai-skin-analysis-vs-visual-consultation/`; guide `/guides/what-ai-skin-analysis-shows/`; (decision) Sanity `service` doc for skin analysis |
 | Face Reality acne program | Amber — advanced facials (Certified Acne Specialist) | `face-reality-acne-program.md` | `/services/face-reality-acne-program/` (From $139), `/services/acne-bootcamp/` ($899), `/services/acne-peel/` (From $139), `/services/back-treatment/` (From $159); package `face-reality-12-week-program` (unpriced) | concern `/concerns/acne-breakouts/` (or `/concerns/active-acne/`); concern (optional) `/concerns/post-inflammatory-marks/`; costGuide `/cost/acne-program-cost-punta-gorda/`; comparison `/compare/acne-program-vs-one-off-facials/` (or `/compare/acne-facials-vs-dermatologist/`); caseStudy `/results/[slug]/` |
-| Retail product lines | Cross-cutting retail (`/shop/`) | `product-lines.md` | `/shop/` + `/shop/[slug]/` (166 products: GlyMed+ 75, Skin Script 52, Face Reality 30, ProCell 6, House of Rose 3); **0 `shopBrand` docs** (hardcoded fallback copy) | shopBrand ×5 — `glymed`, `skin-script`, `face-reality`, `procell`, `house-of-rose`; comparison `/compare/skin-script-vs-glymed/`; guide `/guides/professional-skincare-vs-drugstore/`; concern `/concerns/acne/` (active acne); guide `/guides/post-treatment-aftercare/` |
+| Retail product lines | Cross-cutting retail (`/shop/`) | `product-lines.md` | `/shop/` + `/shop/[slug]/` (166 products: GlyMed+ 75, Skin Script 52, Face Reality 30, Procell 6, House of Rose 3); **0 `shopBrand` docs** (hardcoded fallback copy) | shopBrand ×5 — `glymed`, `skin-script`, `face-reality`, `Procell`, `house-of-rose`; comparison `/compare/skin-script-vs-glymed/`; guide `/guides/professional-skincare-vs-drugstore/`; concern `/concerns/acne/` (active acne); guide `/guides/post-treatment-aftercare/` |
 
 ---
 
@@ -43,7 +43,7 @@ One row per brief. "Existing route it feeds" = the live Sanity service/singleton
 Duplicate proposals across briefs are collapsed. **Demand signal** = how many briefs independently requested the page (a Phase-4 prioritization input). Where briefs proposed slug variants for the same page, they're listed together and Phase 4 must pick one canonical slug.
 
 ### concern (highest cross-brief demand — see the texture/dullness cluster)
-- `/concerns/dull-uneven-texture/` — **requested by 3+ briefs** (procell, dermaplaning, product-lines) + close variants below. **Top demand signal.** Slug variants proposed for the same "dullness / rough texture / enlarged pores / glow" concept, all to be reconciled into one canonical page:
+- `/concerns/dull-uneven-texture/` — **requested by 3+ briefs** (Procell, dermaplaning, product-lines) + close variants below. **Top demand signal.** Slug variants proposed for the same "dullness / rough texture / enlarged pores / glow" concept, all to be reconciled into one canonical page:
   - `/concerns/dullness-uneven-texture/` (enzyme-exfoliation)
   - `/concerns/dullness-uneven-tone/` (light-peels)
   - `/concerns/dull-congested-skin/` (hydrodermabrasion)
@@ -63,10 +63,10 @@ Duplicate proposals across briefs are collapsed. **Demand signal** = how many br
 
 ### comparison
 - `/compare/topical-prf-vs-injectable-prf/` — (prf-topical) — the flagship lane-split answer.
-- `/compare/microneedling-corrective-vs-procell-microchanneling/` — (microneedling) — the "two tools, two jobs" decision.
+- `/compare/microneedling-corrective-vs-Procell-microchanneling/` — (microneedling) — the "two tools, two jobs" decision.
 - `/compare/microneedling-vs-biorepeel/` — (microneedling, biorepeel — **2 briefs**).
 - `/compare/microchanneling-vs-glo2facial/` — (microchanneling).
-- `/compare/procell-pro-vs-md/` — (procell).
+- `/compare/Procell-pro-vs-md/` — (Procell).
 - `/compare/glo2facial-vs-hydrodermabrasion/` — (glo2facial, hydrodermabrasion — **2 briefs**).
 - `/compare/glo2facial-vs-microneedling/` — (glo2facial, optional).
 - `/compare/biorepeel-vs-chemical-peel/` — (biorepeel).
@@ -87,7 +87,7 @@ Duplicate proposals across briefs are collapsed. **Demand signal** = how many br
 - `/compare/permanent-jewelry-vs-traditional-jewelry/` — (permanent-jewelry, low priority).
 
 ### costGuide
-- `/cost/procell-microchanneling-cost-punta-gorda/` — (microchanneling, procell — **2 briefs**).
+- `/cost/Procell-microchanneling-cost-punta-gorda/` — (microchanneling, Procell — **2 briefs**).
 - `/cost/topical-prf-microchanneling-cost-punta-gorda/` — (prf-topical; or fold into existing PRF cost guide after correcting its range).
 - `/cost/microneedling-cost-punta-gorda/`, `/cost/stretch-mark-treatment-cost-punta-gorda/` — (microneedling).
 - `/cost/glo2facial-cost-punta-gorda/` — (glo2facial).
@@ -116,7 +116,7 @@ Duplicate proposals across briefs are collapsed. **Demand signal** = how many br
 
 ### caseStudy (all consent-gated; `/results/` is currently empty)
 - `/results/topical-prf-texture-tightening/` — (prf-topical).
-- `/results/procell-microchanneling-texture/` — (procell).
+- `/results/Procell-microchanneling-texture/` — (Procell).
 - `/results/glo2facial-glow/` — (glo2facial).
 - `/results/biorepeel-[descriptor]/` — (biorepeel).
 - `/results/prf-under-eye-punta-gorda/` — (prf-injections).
@@ -129,12 +129,12 @@ Duplicate proposals across briefs are collapsed. **Demand signal** = how many br
 - `/guides/post-treatment-aftercare/` — (product-lines; the aftercare product table as a page).
 
 ### shopBrand (content docs — replace hardcoded `FALLBACK_BRAND_COPY`)
-- `glymed`, `skin-script`, `face-reality`, `procell`, `house-of-rose` — **5 missing docs** (product-lines). **Highest-value, lowest-effort win.**
+- `glymed`, `skin-script`, `face-reality`, `Procell`, `house-of-rose` — **5 missing docs** (product-lines). **Highest-value, lowest-effort win.**
 - Jane Iredale `shopBrand` — 6th brand, once stocked as retail (professional-makeup, product-lines).
 
 ### other (blog / Sanity packages / Sanity data fixes)
 - blog — PRF-vs-PRP-vs-fillers explainer under `/blog/` (prf-topical).
-- Sanity packages to create/price: `glo2facial-series-of-3` + `glo2facial-series-of-6` (glo2facial); publish+price `dermaplaning-package-of-4` (dermaplaning); price the empty `biorepeel-series-of-4` (biorepeel); price the empty `face-reality-12-week-program` (face-reality); ProCell Series of 3/6 packages (procell).
+- Sanity packages to create/price: `glo2facial-series-of-3` + `glo2facial-series-of-6` (glo2facial); publish+price `dermaplaning-package-of-4` (dermaplaning); price the empty `biorepeel-series-of-4` (biorepeel); price the empty `face-reality-12-week-program` (face-reality); Procell Series of 3/6 packages (Procell).
 - Sanity data fix — assign both waxing services to `beauty-enhancements` collection (waxing).
 
 ---
@@ -155,6 +155,6 @@ The following topics have a research brief but **no live Sanity `service`** back
 
 **Also entirely unbuilt / unpopulated (content exists nowhere live):**
 - **The 3 makeup singletons** — `professionalMakeupPage`, `janeIredalePage`, `makeupEventsPage` — are **empty in Sanity** and render from `.astro` fallbacks, despite CLAUDE.md listing them as "deployed + seeded." Phase 4 must populate them.
-- **The 5 `shopBrand` docs** (GlyMed+, Skin Script, Face Reality, ProCell, House of Rose) — the shop runs entirely on hardcoded fallback copy.
+- **The 5 `shopBrand` docs** (GlyMed+, Skin Script, Face Reality, Procell, House of Rose) — the shop runs entirely on hardcoded fallback copy.
 
 _(The remaining ~15 topics DO have a live published Sanity service and only need editing — price/copy/collection corrections and new satellite pages — see `_gaps.md`.)_

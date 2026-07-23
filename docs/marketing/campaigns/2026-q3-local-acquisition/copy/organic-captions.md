@@ -12,7 +12,7 @@ See your skin first. Our AI-assisted skin consultation gives your provider a cle
 
 ### Advanced skin
 
-Glo2Facial and ProCell microchanneling are two different options within a thoughtful skin-quality plan. The appropriate service depends on goals, candidacy, and provider guidance. Request a private consultation at House of Rose Aesthetics in Punta Gorda.
+Glo2Facial and Procell microchanneling are two different options within a thoughtful skin-quality plan. The appropriate service depends on goals, candidacy, and provider guidance. Request a private consultation at House of Rose Aesthetics in Punta Gorda.
 
 ### Injectables
 
@@ -50,15 +50,15 @@ House of Rose Aesthetics · Punta Gorda · By appointment
 
 `#PuntaGorda #AdvancedAesthetics #PrivateStudio #HouseOfRoseAesthetics`
 
-### ProCell
+### Procell
 
 Skin quality, planned.
 
-ProCell microchanneling may be considered for clients exploring overall skin quality within a structured treatment plan. Your provider confirms candidacy and the appropriate option at consultation. Individual outcomes vary.
+Procell microchanneling may be considered for clients exploring overall skin quality within a structured treatment plan. Your provider confirms candidacy and the appropriate option at consultation. Individual outcomes vary.
 
 Explore advanced skin services at House of Rose Aesthetics in Punta Gorda.
 
-`#ProCell #Microchanneling #PuntaGordaAesthetics #HouseOfRoseAesthetics`
+`#Procell #Microchanneling #PuntaGordaAesthetics #HouseOfRoseAesthetics`
 
 ### Injectables
 
@@ -98,5 +98,5 @@ Hello, neighbors. House of Rose Aesthetics is a private, appointment-only advanc
 
 ### Advanced skin
 
-- **Title:** Skin Quality, Planned | ProCell at House of Rose
-- **Description:** Explore ProCell microchanneling through a consultation-first approach. Final recommendations and candidacy are confirmed by the appropriate provider; individual outcomes vary.
+- **Title:** Skin Quality, Planned | Procell at House of Rose
+- **Description:** Explore Procell microchanneling through a consultation-first approach. Final recommendations and candidacy are confirmed by the appropriate provider; individual outcomes vary.

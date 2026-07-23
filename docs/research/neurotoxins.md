@@ -99,7 +99,7 @@ For **fine surface lines, texture, tone, and skin quality** — as opposed to mu
 
 **What to try first.** For clients unsure whether their concern is movement-driven or volume/texture-driven, a **consultation with Diana** (or a skin analysis) is the right first step — the wrong tool won't fix the wrong problem. If the bother only shows up *with expression*, neurotoxin is the likely first move; if it's visible at rest, the conversation shifts toward filler, PRF, or combination.
 
-**Retail follow-through.** Neurotoxins don't require a specific home product, but skin-longevity results are supported by consistent professional-grade skincare. House of Rose carries **ProCell, GlyMed+, Skin Script, and Face Reality**; sensible follow-through includes daily SPF (essential in SW Florida sun) and a supportive daily regimen — recommended by the provider, not sold as a neurotoxin "requirement." Frame as "supports and maintains," never as a cure or a claim.
+**Retail follow-through.** Neurotoxins don't require a specific home product, but skin-longevity results are supported by consistent professional-grade skincare. House of Rose carries **Procell, GlyMed+, Skin Script, and Face Reality**; sensible follow-through includes daily SPF (essential in SW Florida sun) and a supportive daily regimen — recommended by the provider, not sold as a neurotoxin "requirement." Frame as "supports and maintains," never as a cure or a claim.
 
 ---
 

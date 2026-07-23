@@ -17,7 +17,7 @@ change it**, and I do not invent, round, or "make it consistent" from memory.
 - **Cite the source** for any number/claim I set (which doc/Notion page/URL it came from).
 - **Do NOT normalize across everything. This is the #1 recurring failure.** Different services, providers,
   and platforms legitimately differ — and that difference is usually *correct*, not drift to be "fixed":
-  - **By protocol:** ProCell = series of **4** (manufacturer min 4, 6+ scarring); BioRePeel = **4** (mfr 4–6);
+  - **By protocol:** Procell = series of **4** (manufacturer min 4, 6+ scarring); BioRePeel = **4** (mfr 4–6);
     Glo2Facial = **3/6**; microneedling = **3–6**. Series length is per-treatment, never one house count.
   - **By provider lane:** the *same treatment* can have *different models* per provider. BioRePeel = **add-on
     only** for Amber (advanced lane, +$65 onto microchanneling) but a **standalone** for Brandy (facials &
@@ -38,8 +38,8 @@ change it**, and I do not invent, round, or "make it consistent" from memory.
 - Where sources genuinely disagree and it's a real business call, **surface it and ask** — don't pick
   one and steamroll.
 
-_Origin: 2026-07-17 — repeated failure across one session: (1) changed ProCell series to fit a pattern
-without checking why 4 existed (ProCell protocol); (2) invented a BioRePeel "standalone vs add-on"
+_Origin: 2026-07-17 — repeated failure across one session: (1) changed Procell series to fit a pattern
+without checking why 4 existed (Procell protocol); (2) invented a BioRePeel "standalone vs add-on"
 conflict that was really an Amber-vs-Brandy provider split; (3) surfaced dead botanical names +
 memberships as if live. Core issue = **forcing one canonical pattern onto everything instead of letting
 provider / protocol / platform differences stand.** Don't repeat this._
@@ -63,7 +63,7 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 - **GBP CTA:** call/text (no online-booking button).
 
 ## Providers & Team (memory — never re-ask)
-- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, ProCell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service (microchanneling/microneedling) — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
+- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, Procell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service (microchanneling/microneedling) — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
 - **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane). **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
 - **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **Waxing** + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
@@ -212,7 +212,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `service` | Individual treatment — title, duration, price, image |
 | `product` | Retail product — skincare, candles, gift cards. Includes `purchaseUrl` (external checkout link), `ctaLabel` (free-text shop button copy), `badge` (ribbon tag), `isFeatured` (Top Sellers rail) |
 | `promotion` | Shop sale/promo banner — editorial headline/teaser/CTA, links internal (promo page, product, or `/shop#brand` anchor) or external (checkout). Active/date-window controlled |
-| `shopBrand` | Retail brand storefront copy (ProCell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. Distinct from `brandProfile` (House of Rose's own brand-voice/strategy doc) |
+| `shopBrand` | Retail brand storefront copy (Procell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. Distinct from `brandProfile` (House of Rose's own brand-voice/strategy doc) |
 
 ---
 

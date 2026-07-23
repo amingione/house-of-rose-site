@@ -66,7 +66,7 @@ Injectable PRF (platelet-rich fibrin) at House of Rose uses a small sample of **
 
 - **Try first / stack:** Injectable PRF pairs naturally with Diana's other injectables — a **neuromodulator (Botox/Daxxify)** for expression lines plus PRF/EZ-Gel for skin quality and subtle volume is a common, compliant combination. For under-eyes, PRF or EZ-Gel can precede or complement a small amount of **HA filler** where a true hollow remains.
 - **Cross-lane sequencing:** Many clients combine **Amber's topical PRF microchanneling** (skin-surface renewal) with **Diana's injectable PRF** (targeted under-eye/facial) across a plan — surface glow plus deep collagen. Keep the provider attribution crisp in copy.
-- **Retail follow-through:** Support the collagen/skin-quality result with **medical-grade home care** stocked at House of Rose — e.g., **ProCell** growth-factor home serums (MD/Pro systems), and brightening/antioxidant support from **GlyMed+**, **Skin Script**, or **Face Reality** as appropriate to the client's skin. (Provider confirms what suits your skin.)
+- **Retail follow-through:** Support the collagen/skin-quality result with **medical-grade home care** stocked at House of Rose — e.g., **Procell** growth-factor home serums (MD/Pro systems), and brightening/antioxidant support from **GlyMed+**, **Skin Script**, or **Face Reality** as appropriate to the client's skin. (Provider confirms what suits your skin.)
 
 ## 8. Cost factors
 

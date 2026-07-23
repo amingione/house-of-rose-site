@@ -1,4 +1,4 @@
-# ProCell, Topical PRF & Needling: Client-Education Research Report
+# Procell, Topical PRF & Needling: Client-Education Research Report
 
 **Purpose.** This is a research and copy-development document for House of Rose Aesthetics in Punta Gorda, Florida. It distinguishes established information from manufacturer positioning and from topics that should be discussed only in consultation. It is not a substitute for a provider's assessment, device instructions for use, or Florida scope-of-practice requirements.
 
@@ -6,27 +6,27 @@
 
 Microchanneling and microneedling are controlled-needling treatments intended to improve the *appearance* of skin texture, fine lines, certain scars, and stretch marks over time. The best choice is not simply “stronger versus gentler”: it depends on the concern, treatment area, skin history, tolerance for downtime, and the device/protocol selected by the licensed provider.
 
-Topical PRF is an autologous adjunct made from the client's own blood and applied on the surface during a needling treatment. It is distinct from PRF injections and from ProCell's proprietary topical products. It may be a good fit for a client who values an autologous approach, but it adds a blood draw, cost, and clinical screening. It should never be described as FDA-approved for delivery through microneedling, as the FDA specifically states that microneedling devices are not authorized to deliver blood products, medicines, vitamins, or cosmetics into skin.
+Topical PRF is an autologous adjunct made from the client's own blood and applied on the surface during a needling treatment. It is distinct from PRF injections and from Procell's proprietary topical products. It may be a good fit for a client who values an autologous approach, but it adds a blood draw, cost, and clinical screening. It should never be described as FDA-approved for delivery through microneedling, as the FDA specifically states that microneedling devices are not authorized to deliver blood products, medicines, vitamins, or cosmetics into skin.
 
 Results are individual. A series is common, and improvement develops gradually as skin remodels; no treatment should promise a particular degree of improvement or a permanent result.
 
 ---
 
-## 1. ProCell MD vs ProCell Pro
+## 1. Procell MD vs Procell Pro
 
 ### What can be said with confidence
 
-ProCell is a branded professional microchanneling system. The brand describes its modality as “microchanneling” and presents it as a form of collagen-induction treatment. At a practical level, a ProCell visit should be explained by the treatment plan—not by broad marketing language: the provider prepares the skin, uses a new single-use cartridge, follows the selected device settings and topical protocol, then gives recovery instructions.
+Procell is a branded professional microchanneling system. The brand describes its modality as “microchanneling” and presents it as a form of collagen-induction treatment. At a practical level, a Procell visit should be explained by the treatment plan—not by broad marketing language: the provider prepares the skin, uses a new single-use cartridge, follows the selected device settings and topical protocol, then gives recovery instructions.
 
 The labels **“MD”** and **“Pro”** need one final operational verification before they are used in public copy. Current public manufacturer pages do not provide a clear, stable comparison of their clinical indications, serum ingredients, depth settings, or outcome claims. Internal notes also use the labels inconsistently. Do **not** market one as a stronger, deeper, medical, or superior version of the other without the current manufacturer product sheet/IFU and ingredient panel in hand.
 
 ### Safe client-facing wording until the products are verified
 
-> “Your ProCell protocol is selected after a skin and candidacy review. We will explain the device setting, topical product, expected recovery, and why that option fits your goals before treatment.”
+> “Your Procell protocol is selected after a skin and candidacy review. We will explain the device setting, topical product, expected recovery, and why that option fits your goals before treatment.”
 
 ### Required provider verification before publishing an MD-versus-Pro comparison
 
-1. Confirm the exact product names, current label/IFU, lot tracking, and intended use with the authorized ProCell representative.
+1. Confirm the exact product names, current label/IFU, lot tracking, and intended use with the authorized Procell representative.
 2. Obtain the current full ingredient lists and contraindications for each topical product. Do not repeat a “growth factor,” “stem cell,” peptide, or exosome claim unless it is documented by the manufacturer and has been approved for the exact marketing context.
 3. Confirm whether the difference is a **serum**, **device/cartridge**, **professional credential**, or **in-house treatment tier**. These are not interchangeable.
 4. Document the house protocol: treatment areas, needle-depth ranges by area, numbing policy, single-use cartridge procedure, aftercare, and escalation plan.
@@ -34,15 +34,15 @@ The labels **“MD”** and **“Pro”** need one final operational verificatio
 
 ### Suggested decision language once verified
 
-Use an answer-first structure: “Both are ProCell microchanneling protocols. The difference is the topical protocol and/or treatment plan selected for your skin; neither is automatically right for every concern.” Then state only the confirmed difference, the expected recovery, and the appropriate client profile. Avoid “medical grade,” “clinically proven,” “regenerates,” “repairs DNA,” “stem-cell,” or guaranteed-result language.
+Use an answer-first structure: “Both are Procell microchanneling protocols. The difference is the topical protocol and/or treatment plan selected for your skin; neither is automatically right for every concern.” Then state only the confirmed difference, the expected recovery, and the appropriate client profile. Avoid “medical grade,” “clinically proven,” “regenerates,” “repairs DNA,” “stem-cell,” or guaranteed-result language.
 
 ---
 
-## 2. ProCell topical protocol vs topical PRF during microchanneling or microneedling
+## 2. Procell topical protocol vs topical PRF during microchanneling or microneedling
 
-| Question | ProCell topical protocol | Topical PRF adjunct |
+| Question | Procell topical protocol | Topical PRF adjunct |
 | --- | --- | --- |
-| What it is | A manufacturer-specified professional topical used as part of a ProCell protocol. | A blood-derived preparation made from the client's own sample and applied topically as part of the visit. |
+| What it is | A manufacturer-specified professional topical used as part of a Procell protocol. | A blood-derived preparation made from the client's own sample and applied topically as part of the visit. |
 | What the visit adds | Product selection and ingredient screening. | Blood draw, centrifugation/preparation, additional clinical screening, and time. |
 | Best discussion for | Clients who prefer a streamlined branded protocol and whose ingredient history fits the verified product. | Clients interested in an autologous adjunct and who are appropriate for the blood draw and needling protocol. |
 | What cannot be promised | That a proprietary topical will outperform another option for every client. | That PRF will be delivered to a specified skin layer, replace injections, or produce a guaranteed result. |
@@ -72,7 +72,7 @@ Both names describe treatments that use many tiny needles to create controlled p
 
 ### When microchanneling may be the better starting point
 
-Microchanneling may suit a client looking for a structured, provider-selected ProCell protocol for visible texture, fine lines, dull-looking skin, enlarged-looking pores, or mild unevenness, with a recovery plan that fits their schedule. It is also a reasonable choice when the goal is a carefully controlled facial or approved body-area protocol rather than an aggressive one-off treatment.
+Microchanneling may suit a client looking for a structured, provider-selected Procell protocol for visible texture, fine lines, dull-looking skin, enlarged-looking pores, or mild unevenness, with a recovery plan that fits their schedule. It is also a reasonable choice when the goal is a carefully controlled facial or approved body-area protocol rather than an aggressive one-off treatment.
 
 ### When microneedling may be the better term or protocol
 
@@ -128,9 +128,9 @@ The FDA advises careful screening for active skin infection, active rash, curren
 
 ## 6. Website-ready FAQ copy
 
-### Is ProCell microchanneling the same as microneedling?
+### Is Procell microchanneling the same as microneedling?
 
-ProCell microchanneling is a branded needling protocol within the broader microneedling category. Both use tiny needles to create controlled punctures in the skin, but the device, settings, topical protocol, and candidacy review matter more than the label alone.
+Procell microchanneling is a branded needling protocol within the broader microneedling category. Both use tiny needles to create controlled punctures in the skin, but the device, settings, topical protocol, and candidacy review matter more than the label alone.
 
 ### Is topical PRF the same as PRF injections?
 
@@ -164,11 +164,11 @@ No treatment should promise removal. Needling-based treatments may help improve 
 
 - “Stem-cell serum,” “stem-cell treatment,” “growth factors delivered deep into the skin,” “injects PRF,” or “FDA-approved PRF microneedling.”
 - “Erases scars,” “removes stretch marks,” “reverses aging,” “heals,” “treats acne,” or a guaranteed downtime/result claim.
-- Unverified claims that ProCell MD or ProCell Pro is more powerful, deeper, medical, superior, or better for a named condition.
+- Unverified claims that Procell MD or Procell Pro is more powerful, deeper, medical, superior, or better for a named condition.
 
 ### Before a page goes live
 
-1. Verify the final ProCell product names, device information, intended areas, and ingredients with the current manufacturer documentation.
+1. Verify the final Procell product names, device information, intended areas, and ingredients with the current manufacturer documentation.
 2. Have the licensed provider approve topical-PRF candidacy, blood-draw workflow, consent, infection-control documentation, and escalation protocol.
 3. Build the public comparison as the canonical **Comparison** page type at `/compare/prf-microchanneling-vs-microneedling/`, with typed `FAQPage`, `BreadcrumbList`, and `Article` builders from `src/lib/structuredData.ts`.
 4. Link it to the canonical microchanneling service page, relevant cost guide, FAQ hub, and Punta Gorda local-area page; add it to the sitemap and `llms.txt` workflow.
@@ -181,6 +181,6 @@ No treatment should promise removal. Needling-based treatments may help improve 
 1. [U.S. Food & Drug Administration: Microneedling Devices](https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices) — authorized uses, risks, patient screening, cartridge safety, and the limitation on delivery of cosmetics, drugs, vitamins, or blood products through microneedling devices. Accessed July 10, 2026.
 2. [FDA: Regulatory Considerations for Microneedling Products](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/regulatory-considerations-microneedling-products) — regulatory context for device versus cosmetic claims.
 3. [Diab et al., *Fluid Platelet-Rich Fibrin Versus Platelet-Rich Plasma in Combination With Needling in Atrophic Acne Scars*](https://pmc.ncbi.nlm.nih.gov/articles/PMC10205840/) — a clinical study; informative but not a basis for universal outcome claims or an equivalence claim between all PRF protocols.
-4. [ProCell Therapies](https://procelltherapies.com/) — manufacturer overview of ProCell microchanneling. Product-tier differences require current manufacturer documentation before publication.
-5. House of Rose internal service context in Notion: **ProCell Microchanneling** and **Amber—Advanced Facials & Skin Renewal**. Treated as operational context only; outdated memberships, pricing, and unsupported “stem-cell” phrasing were intentionally excluded.
+4. [Procell Therapies](https://Procelltherapies.com/) — manufacturer overview of Procell microchanneling. Product-tier differences require current manufacturer documentation before publication.
+5. House of Rose internal service context in Notion: **Procell Microchanneling** and **Amber—Advanced Facials & Skin Renewal**. Treated as operational context only; outdated memberships, pricing, and unsupported “stem-cell” phrasing were intentionally excluded.
 

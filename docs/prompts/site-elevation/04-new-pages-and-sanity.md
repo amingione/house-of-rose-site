@@ -11,7 +11,7 @@ topic × page type (service, cost, comparison, local, results, concern, guide), 
 exists / thin / missing. Prioritize by decision value:
 
 1. **Comparisons** (highest leverage — this is where "which is best for me" lives):
-   PRF topical vs ProCell microchanneling vs microneedling · Glo2Facial vs
+   PRF topical vs Procell microchanneling vs microneedling · Glo2Facial vs
    hydrodermabrasion · BioRePeel vs light peels · Daxxify vs other neurotoxins ·
    PRF EZ-Gel vs dermal filler · IV hydration vs oral supplementation ·
    basic facial vs advanced facial (who needs which)

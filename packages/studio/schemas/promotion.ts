@@ -58,7 +58,7 @@ export const promotion = defineType({
       name: 'internalPath',
       title: 'Internal Path',
       type: 'string',
-      description: 'e.g. "/shop/glow-serum" or "/shop#procell". Only used when Link Type is Internal.',
+      description: 'e.g. "/shop/glow-serum" or "/shop#Procell". Only used when Link Type is Internal.',
       hidden: ({ parent }) => parent?.linkType !== 'internal',
     }),
     defineField({
@@ -82,7 +82,7 @@ export const promotion = defineType({
       description: 'Optional — only surface this promo alongside a specific brand\'s products.',
       options: {
         list: [
-          { title: 'ProCell Therapies', value: 'procell' },
+          { title: 'Procell Therapies', value: 'Procell' },
           { title: 'GlyMed+', value: 'glymed' },
           { title: 'Skin Script', value: 'skin-script' },
           { title: 'Face Reality', value: 'face-reality' },

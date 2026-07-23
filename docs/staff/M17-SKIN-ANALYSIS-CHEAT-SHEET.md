@@ -54,7 +54,7 @@ reveals a different depth or property of the skin. The AI then scores **18 indic
 
 | # | Indicator | What it actually is | ✅ Say this | ❌ Never say | Book → | Who |
 |---|---|---|---|---|---|---|
-| 1 | **Pores** | Visible follicular openings, enlarged by oil + laxity | "Your pores are reading larger through the T-zone — that's usually oil volume plus a little loss of firmness around the opening." | "We'll shrink your pores" | ProCell Microchanneling — Pro **$250** · Glo2Facial **$195** | Amber |
+| 1 | **Pores** | Visible follicular openings, enlarged by oil + laxity | "Your pores are reading larger through the T-zone — that's usually oil volume plus a little loss of firmness around the opening." | "We'll shrink your pores" | Procell Microchanneling — Pro **$250** · Glo2Facial **$195** | Amber |
 | 2 | **Sebum** | Surface + follicular oil load (UV fluoresces oil) | "Your oil map is heaviest here. That's not a flaw — it's information about what your barrier is compensating for." | "You have oily skin, that's the problem" | Skin Reset Facial **$140** · Face Reality homecare | Brandy |
 | 3 | **Comedo** | Closed/open comedones — the "grit" | "These are comedones — congestion that hasn't surfaced yet. This is the most treatable thing on your whole report." | "Blackheads we'll extract and they'll be gone" | Signature Facial **$120** · Skin Reset **$140** · Dermaplane prep **+$45** | Brandy / Amber |
 | 4 | **Clogged Pore** | Impacted follicles, UV-visible | "You've got impaction showing under UV before it's visible in the mirror — this is why we scan first." | "Your pores are dirty" | Glo2Facial **$195** · Acne Bootcamp **$899** | Amber |
@@ -72,10 +72,10 @@ reveals a different depth or property of the skin. The AI then scores **18 indic
 
 | # | Indicator | What it actually is | ✅ Say this | ❌ Never say | Book → | Who |
 |---|---|---|---|---|---|---|
-| 6 | **Epidermis Pigment** | Surface-level melanin clusters | "This is surface pigment — it sits shallow, which is good news. Shallow responds." | "We'll erase these spots" | BioRePeel · ProCell MD **$349** · Skin Script homecare | Amber |
-| 7 | **Dermis Pigment** | Deeper melanin — slower, stubborner | "This layer sits deeper. It's a longer conversation — I'd rather be honest with you now than oversell you." | "Same treatment, same timeline" | ProCell MD series **3× $940 / 6× $1,675** | Amber |
+| 6 | **Epidermis Pigment** | Surface-level melanin clusters | "This is surface pigment — it sits shallow, which is good news. Shallow responds." | "We'll erase these spots" | BioRePeel · Procell MD **$349** · Skin Script homecare | Amber |
+| 7 | **Dermis Pigment** | Deeper melanin — slower, stubborner | "This layer sits deeper. It's a longer conversation — I'd rather be honest with you now than oversell you." | "Same treatment, same timeline" | Procell MD series **3× $940 / 6× $1,675** | Amber |
 | 8 | **Brown Area** | Total melanin distribution map | "This shows how evenly your tone is distributed. Evenness is what reads as 'glow' — more than brightness does." | "Your skin is discolored" | Glo2Facial **$195** · Luxe Rose Facial **$120** | Amber / Aundrea |
-| 9 | **UV Damage** ⭐ | Sun history stored in the skin — **often invisible in normal light** | "This is your sun history. It's already in the skin, it just hasn't surfaced yet. In Florida, this one is never zero." | "This is sun damage we can reverse" | ProCell MD **$349** · daily SPF (retail) | Amber |
+| 9 | **UV Damage** ⭐ | Sun history stored in the skin — **often invisible in normal light** | "This is your sun history. It's already in the skin, it just hasn't surfaced yet. In Florida, this one is never zero." | "This is sun damage we can reverse" | Procell MD **$349** · daily SPF (retail) | Amber |
 | 10 | **Melasma** ⚠️ | Hormonally-driven, heat-reactive pigment pattern | "This pattern is consistent with melasma. That matters because melasma is heat-reactive — the aggressive treatments people expect actually make it worse. We go slower on purpose." | "We'll clear your melasma" / anything aggressive | **Consult first.** Gentle only: Glo2Facial · Skin Script. **Flag to Amber/Diana.** | Amber → Diana |
 
 > **⭐ UV Damage is the second money slide — and it converts the "my skin is fine" client.**
@@ -109,7 +109,7 @@ reveals a different depth or property of the skin. The AI then scores **18 indic
 | 14 | **Acne** | Active lesion count + distribution | "Here's what's active right now — versus the porphyrin map, which is what's *coming*. Two different problems." | "We'll clear your acne" | Acne Bootcamp **$899** · Face Reality | Amber |
 | 15 | **Wrinkle** | Line depth + count. **Split it: dynamic vs. static.** | "Two kinds here. Lines that appear when you move — that's muscle, that's Diana's lane. Lines that sit there at rest — that's collagen, that's mine." | "This will remove your wrinkles" | **Dynamic:** Tox **$14/unit** (Diana) · **Static:** Microneedling — Corrective **$295** · PRF Facial **$595** | Diana ↔ Amber |
 | 16 | **Texture** | Surface roughness / irregularity | "Texture is the fastest-moving number on this whole report. It's also the one you'll feel before you see." | — | Dermaplane prep **+$45** · BioRePeel · Glo2Facial **$195** | Amber / Brandy |
-| 17 | **Collagen** | AI-modeled firmness / density estimate | "This is a density estimate. It's the number that responds to *series*, not to single visits — collagen is built, not applied." | "This measures your actual collagen level" | ProCell MD **3× $940 / 6× $1,675** · Sculpt & Lift **$180** · PRF **$595** | Amber / Diana |
+| 17 | **Collagen** | AI-modeled firmness / density estimate | "This is a density estimate. It's the number that responds to *series*, not to single visits — collagen is built, not applied." | "This measures your actual collagen level" | Procell MD **3× $940 / 6× $1,675** · Sculpt & Lift **$180** · PRF **$595** | Amber / Diana |
 | 18 | **Moisture** | Hydration / TEWL estimate | "Dehydration is the great faker — it makes lines, pores, and dullness all read worse than they are. Fix this first and half the report improves." | "You have dry skin" (dry ≠ dehydrated) | Glo2Facial **$195** · Hydration IV **$100** · Beauty Glow IV **$185** | Amber / Diana |
 
 > **Wrinkle is the cross-referral engine.** It is the only indicator that splits cleanly across two
@@ -149,11 +149,11 @@ Not an indicator. It's the **series close.** Run it **last**, after you've alrea
 
 | If the worst score is… | Entry (yes today) | Step up (the real ask) | Program (the goal) |
 |---|---|---|---|
-| Porphyrins / Comedo / Acne | Skin Reset Facial **$140** | ProCell Pro **$250** | **Acne Bootcamp $899** |
-| UV Damage / Pigment | Glo2Facial **$195** | ProCell MD **$349** | **MD 6× $1,675** |
+| Porphyrins / Comedo / Acne | Skin Reset Facial **$140** | Procell Pro **$250** | **Acne Bootcamp $899** |
+| UV Damage / Pigment | Glo2Facial **$195** | Procell MD **$349** | **MD 6× $1,675** |
 | Wrinkle (dynamic) | — | Tox **$14/unit** | Tox + Microchanneling cadence |
 | Wrinkle (static) / Collagen | Sculpt & Lift **$180** | Microneedling Corrective **$295** | **MD 6× $1,675** or PRF **$595** |
-| Texture / Pores | Dermaplane **+$45** add-on | Glo2Facial **$195** | ProCell Pro 3× **$675** |
+| Texture / Pores | Dermaplane **+$45** add-on | Glo2Facial **$195** | Procell Pro 3× **$675** |
 | Moisture | Glo2Facial **$195** | Hydration IV **$100** | Beauty Glow IV **$185** |
 | Sensitivity / Redness | LED **+$35** | Barrier homecare | Gentle facial cadence |
 | Melasma | ⚠️ **CONSULT ONLY** | — | — |
@@ -172,7 +172,7 @@ The scan makes retail feel *prescribed* rather than *pushed*. Tie the product to
 | Porphyrins · Acne · Comedo | **Face Reality** (acne-safe protocol) |
 | UV Damage · Brown Area | **Skin Script** brightening · **daily SPF** |
 | Sensitive Area · Moisture | **GlyMed+** barrier support |
-| Post-microchanneling | **ProCell** homecare (protects the investment) |
+| Post-microchanneling | **Procell** homecare (protects the investment) |
 | Post-treatment coverage | **Jane Iredale** (mineral, treatment-safe) |
 
 **Script:** *"I'm not going to hand you a shelf. Your porphyrin number is what's driving this, so
@@ -209,7 +209,7 @@ there's exactly one line that matters for you right now."*
 
 | Lane | Provider | Owns |
 |---|---|---|
-| **Advanced facials** | **Amber** (esthetician + RN assist) | Microchanneling · Microneedling · Glo2Facial · ProCell MD/Pro · BioRePeel · Dermaplane · Carboxy · **PRF topical only — no injections** |
+| **Advanced facials** | **Amber** (esthetician + RN assist) | Microchanneling · Microneedling · Glo2Facial · Procell MD/Pro · BioRePeel · Dermaplane · Carboxy · **PRF topical only — no injections** |
 | **Injectables · IV · GLP-1** | **Diana, RN** | Tox · Filler · **PRF injections** · IV Hydration · Semaglutide/Tirzepatide |
 | **Basic facials** | **Brandy** | Relaxing/maintenance facials · enzyme exfoliation · hydrodermabrasion · light peels · facial waxing |
 | **Waxing · Lashes · Makeup · Permanent jewelry** | **Aundrea** (Brooke) | Body + facial waxing · lash lift/tint · makeup · permanent jewelry · the 3 Rose facials |

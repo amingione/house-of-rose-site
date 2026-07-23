@@ -22,8 +22,8 @@ Neck & Décolleté Extension,neck-decollete-extension,standalone,,Amber,+$95,+20
 PRF Body Treatments,prf-body-treatments,treatment,prf,Amber,From $475 per zone,90 minutes,Skin Renewal,,,Skin Renewal,NOT in GG — Amber adding (body); topical PRF (Amber)
 PRF Skin Texture & Tightening,prf-microneedling,treatment,prf,Amber,From $425,90 minutes,Skin Renewal,,,Skin Renewal,GG = 'PRF Skin Renewal' $450 — reconcile $425→$450
 PRF — Platelet-Rich Fibrin,prf,hub,,Amber,,,Skin Renewal,,,Skin Renewal,Hub (Amber topical PRF); keep injectable PRF under Diana
-ProCell Microchanneling,microchanneling,treatment,microchanneling-microneedling,Amber,From $250,60–90 minutes,Skin Renewal,,,Microchanneling & Microneedling,GG = 'ProCell MD Microchanneling' $349 — reconcile $250 (Pro) vs $349 (MD)
-ProCell Microchanneling — Body,procell-microchanneling-body,standalone,,Amber,From $349 per zone,60–75 minutes,Skin Renewal,skin-renewal,proposed,Microchanneling & Microneedling,NOT in GG — Amber adding (body)
+Procell Microchanneling,microchanneling,treatment,microchanneling-microneedling,Amber,From $250,60–90 minutes,Skin Renewal,,,Microchanneling & Microneedling,GG = 'Procell MD Microchanneling' $349 — reconcile $250 (Pro) vs $349 (MD)
+Procell Microchanneling — Body,Procell-microchanneling-body,standalone,,Amber,From $349 per zone,60–75 minutes,Skin Renewal,skin-renewal,proposed,Microchanneling & Microneedling,NOT in GG — Amber adding (body)
 Body Waxing,body-waxing,standalone,,Aundrea,From $28,10–45 min by zone,Waxing,beauty-enhancements,live,Waxing,Reprice to GG per-zone (Underarm $20…Full Leg $65); fix 'Rosé wax' copy
 GLP-1 Weight Management,glp-1-weight-management,treatment,wellness,Diana,From $279/month,Ongoing program,Wellness & Restoration,,,Wellness & Restoration,Price fixed ✓ ($279; confirm vs COGS)
 IV Hydration Therapy,iv-hydration-therapy,treatment,wellness,Diana,From $125,45–60 minutes,Wellness & Restoration,,,Wellness & Restoration,Price fixed ✓; split into 6 IVs + add-ons
@@ -40,8 +40,8 @@ Skin Reset Facial,,,,Brandy,$140,50m,,,,Facials,CREATE — basic facial (Brandy)
 Mommy & Me Facial,,,,Brandy,$150,1h,,,,Facials,CREATE — basic facial (Brandy)
 Sculpt & Lift Facial,,,,Brandy,$180,1h,,,,Facials,CREATE — basic facial (Brandy)
 Luxury Facial,,,,Brandy,$200,1h15,,,,Facials,CREATE — basic facial (Brandy)
-Glo2Facial + ProCell MD,,,,Amber,$475,1h30,,,,Advanced Facials,CREATE — GG advanced combo
-Glo2Facial + ProCell Pro,,,,Amber,$525,1h30,,,,Advanced Facials,CREATE — GG advanced combo
+Glo2Facial + Procell MD,,,,Amber,$475,1h30,,,,Advanced Facials,CREATE — GG advanced combo
+Glo2Facial + Procell Pro,,,,Amber,$525,1h30,,,,Advanced Facials,CREATE — GG advanced combo
 Glo2Facial + PRF,,,,Amber,$595,1h30,,,,Advanced Facials,CREATE — GG advanced combo
 GlowTox Facial,,,,Amber,$475,1h,,,,Advanced Facials,CREATE — GG (⚠ clinical review pending Diana/med-director)
 PRF Skin Renewal,,,,Amber,$450,1h,,,,Skin Renewal,CREATE/RECONCILE with prf-microneedling

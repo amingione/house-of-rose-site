@@ -10,7 +10,7 @@ pages feel the same, and every page loops the reader forward.
    "Book now"/"Call us".
 2. **Every page ends with a "Where to next" block** of 2–4 *contextual* links drawn from
    the brief's Journey Links section. Labels are specific and curiosity-driven:
-   - "PRF or ProCell? See the honest comparison →"
+   - "PRF or Procell? See the honest comparison →"
    - "What actually moves the price of microchanneling →"
    - "Not sure where to start? Let the skin analysis decide →"
    - "See real results from this protocol →"

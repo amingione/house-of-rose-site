@@ -22,7 +22,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 6. Consultation seating with no client visible.
 7. Skin-analysis device and screen with no identifiable client data.
 8. Provider preparing a clean treatment tray.
-9. Glo2Facial or ProCell equipment and products, labels accurate and unobstructed.
+9. Glo2Facial or Procell equipment and products, labels accurate and unobstructed.
 10. Diana entering or preparing the injectables room; no needle close-up.
 11. Amber arranging advanced-skin products or reviewing a blank treatment-planning page.
 12. Exterior closing shot with the sign centered.
