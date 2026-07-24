@@ -80,6 +80,7 @@ const data =
 <script>
   interface AnalyticsWindow extends Window {
     gtag?: (command: 'event', eventName: string, params?: Record<string, string>) => void;
+    fbq?: (command: 'track', eventName: string, params?: Record<string, unknown>) => void;
   }
 
   const params = new URLSearchParams(window.location.search);
@@ -89,10 +90,12 @@ const data =
   if (leadType && allowedLeadTypes.has(leadType)) {
     const eventKey = `hor_generate_lead_${leadType}`;
     if (!sessionStorage.getItem(eventKey)) {
-      (window as AnalyticsWindow).gtag?.('event', 'generate_lead', {
+      const analyticsWindow = window as AnalyticsWindow;
+      analyticsWindow.gtag?.('event', 'generate_lead', {
         lead_type: leadType,
         page_location: '/thank-you/',
       });
+      analyticsWindow.fbq?.('track', 'Lead');
       sessionStorage.setItem(eventKey, '1');
     }
   }

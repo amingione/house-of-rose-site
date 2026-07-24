@@ -97,6 +97,17 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <SchemaMarkup item={serviceSchema} slot="head" />
   <SchemaMarkup item={breadcrumbSchema} slot="head" />
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
+  <script
+    slot="head"
+    is:inline
+    set:html={`window.fbq && fbq('track', 'ViewContent', ${JSON.stringify({
+      content_name: service.title,
+      content_category: 'service',
+      content_ids: [slug],
+      content_type: 'product',
+      ...(priceNumber != null ? { value: priceNumber, currency: 'USD' } : {}),
+    })});`}
+  />
   {/* Visual Editor: all editable copy below belongs to this service document */}
   <div {...sbObjectId(service._id)}>
   <!-- Hero -->

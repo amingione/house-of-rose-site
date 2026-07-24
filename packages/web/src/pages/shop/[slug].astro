@@ -84,6 +84,16 @@ const productSchema = productJsonLd({
 >
   <Fragment slot="head">
     <SchemaMarkup item={productSchema} />
+    <script
+      is:inline
+      set:html={`window.fbq && fbq('track', 'ViewContent', ${JSON.stringify({
+        content_name: product.title,
+        content_category: 'product',
+        content_ids: [slug],
+        content_type: 'product',
+        ...(typeof product.price === 'number' ? { value: product.price / 100, currency: 'USD' } : {}),
+      })});`}
+    />
   </Fragment>
 
   <section class="bg-charcoal pt-[clamp(96px,12vw,140px)] pb-[clamp(48px,7vw,80px)] px-6">

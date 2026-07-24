@@ -5,9 +5,11 @@
 
 <script>
   type Gtag = (command: 'event', eventName: string, params?: Record<string, string>) => void;
+  type Fbq = (command: 'track', eventName: string, params?: Record<string, unknown>) => void;
 
   interface AnalyticsWindow extends Window {
     gtag?: Gtag;
+    fbq?: Fbq;
     __horAnalyticsBound?: boolean;
   }
 
@@ -16,6 +18,10 @@
 
   const track = (eventName: string, params: Record<string, string> = {}): void => {
     analyticsWindow.gtag?.('event', eventName, params);
+  };
+
+  const trackMeta = (eventName: string, params?: Record<string, unknown>): void => {
+    analyticsWindow.fbq?.('track', eventName, params);
   };
 
   const getStoredAttribution = (): Record<string, string> => {
@@ -71,13 +77,18 @@
       const rawHref = target.getAttribute('href') ?? '';
       if (rawHref.startsWith('tel:')) {
         track('phone_click', { link_location: window.location.pathname });
+        trackMeta('Contact');
       } else if (rawHref.startsWith('sms:')) {
         track('sms_click', { link_location: window.location.pathname });
+        trackMeta('Contact');
+      } else if (rawHref.startsWith('mailto:')) {
+        trackMeta('Contact');
       } else {
         try {
           const destination = new URL(target.href);
           if (destination.hostname.endsWith('glossgenius.com')) {
             track('booking_click', { link_location: window.location.pathname });
+            trackMeta('Schedule');
           }
         } catch {
           // Ignore non-URL links.
