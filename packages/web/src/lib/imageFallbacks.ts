@@ -2,6 +2,7 @@ const REGENERATIVE_EDITORIAL_IMAGE = '/images/editorial/home/regenerative-skin-t
 const INJECTABLES_EDITORIAL_IMAGE = '/images/editorial/home/injectables-consultation.webp';
 const SKIN_HEALTH_EDITORIAL_IMAGE = '/images/editorial/home/skin-health-analysis.webp';
 const WELLNESS_EDITORIAL_IMAGE = '/images/editorial/home/wellness-iv-hydration.webp';
+const MICROCHANNELING_BANNER_IMAGE = '/images/banner/microchanneling/new-microchanneling.webp';
 
 // Face Reality brand assets (from docs/Face Reality — Branded Assets 2026).
 // Amber is a Face Reality Certified Acne Specialist, so the acne-program pages
@@ -9,7 +10,7 @@ const WELLNESS_EDITORIAL_IMAGE = '/images/editorial/home/wellness-iv-hydration.w
 const FACE_REALITY_SYSTEM_IMAGE = '/images/face-reality/clear-skin-system.webp';
 
 export const DEFAULT_SERVICE_IMAGE = SKIN_HEALTH_EDITORIAL_IMAGE;
-export const DEFAULT_COLLECTION_IMAGE = '/images/house-of-rose/space/skin-studio-wide.webp';
+export const DEFAULT_COLLECTION_IMAGE = '/images/hor-skin-studio.webp';
 export const DEFAULT_PACKAGE_IMAGE = '/images/house-of-rose/space/luxury-reception-lobby-hero.webp';
 export const DEFAULT_PRODUCT_IMAGE = '/images/house-of-rose/space/shop-product-gift-flatlay-square.webp';
 export const DEFAULT_JOURNAL_IMAGE = '/images/house-of-rose/space/brand-art-rose-hero.webp';
@@ -55,6 +56,9 @@ export const getServiceFallbackImage = (slug: string): string =>
 
 export const getCollectionFallbackImage = (slug: string): string => {
   const value = slug.toLowerCase();
+  if (value.includes('microchannel') || value.includes('microneedl')) {
+    return MICROCHANNELING_BANNER_IMAGE;
+  }
   if (value.includes('inject')) return INJECTABLES_EDITORIAL_IMAGE;
   if (value.includes('wellness') || value.includes('iv')) return WELLNESS_EDITORIAL_IMAGE;
   if (value.includes('skin') || value.includes('facial')) return SKIN_HEALTH_EDITORIAL_IMAGE;

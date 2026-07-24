@@ -4,7 +4,7 @@
 
 ### Local proof
 
-House of Rose Aesthetics is a private, appointment-only advanced aesthetics and wellness studio in Punta Gorda. Begin with a complimentary skin consultation, ask questions, and understand the options before deciding what fits. Call or text (844) 941-7673.
+House of Rose Aesthetics is a private, advanced aesthetics and wellness studio in Punta Gorda. Begin with a skin consultation, ask questions, and understand the options before deciding what fits.
 
 ### Consultation
 
