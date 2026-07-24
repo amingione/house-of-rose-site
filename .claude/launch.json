@@ -5,7 +5,8 @@
       "name": "web (Astro storefront)",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev:web"],
-      "port": 4321
+      "port": 4321,
+      "autoPort": true
     },
     {
       "name": "studio (Sanity Studio)",
