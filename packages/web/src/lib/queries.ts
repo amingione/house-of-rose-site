@@ -338,7 +338,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
     collection->{ title, "slug": slug.current },
     "provider": provider->{ _id, title, fullName, lane, roleCredential, scopeOfPractice },
-    "relatedServices": relatedServices[]->[status in ["live", "actual-menu"]] {
+    "relatedServices": relatedServices[@->status in ["live", "actual-menu"]]->{
       _id,
       title,
       "slug": slug.current,
