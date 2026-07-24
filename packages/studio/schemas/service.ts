@@ -94,6 +94,45 @@ export const service = defineType({
       description: 'Target audience and ideal candidates for this service',
     }),
     defineField({
+      name: 'benefits',
+      title: 'Client Benefits',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Short, client-facing benefits shown as scannable cards on the service page.',
+      validation: (R) => R.max(8),
+    }),
+    defineField({
+      name: 'treatmentAreas',
+      title: 'Treatment Areas',
+      type: 'array',
+      description: 'Areas that may be considered and the visible concerns addressed there.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'area',
+              title: 'Area',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'focus',
+              title: 'Appearance Focus',
+              type: 'text',
+              rows: 2,
+              description: 'Describe appearance goals without making a disease-treatment or guaranteed-result claim.',
+              validation: (R) => R.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'area', subtitle: 'focus' },
+          },
+        },
+      ],
+      validation: (R) => R.max(8),
+    }),
+    defineField({
       name: 'process',
       title: 'The Process',
       type: 'array',

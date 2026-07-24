@@ -93,6 +93,19 @@ export const TERMS_OF_SERVICE_QUERY = /* groq */ `
 
 export type ServiceKind = 'hub' | 'treatment' | 'standalone';
 
+export interface TreatmentArea {
+  _key: string;
+  area: string;
+  focus: string;
+}
+
+export interface ServiceConcern {
+  _id: string;
+  title: string;
+  slug: string;
+  intro?: string;
+}
+
 export interface Service {
   _id: string;
   title: string;
@@ -106,12 +119,14 @@ export interface Service {
   bookingUrl?: string;
   description?: string;
   whoItsFor?: string;
+  concerns?: ServiceConcern[];
+  benefits?: string[];
+  treatmentAreas?: TreatmentArea[];
   process?: string[];
   faqs?: FAQ[];
   image?: SanityImage;
   gallery?: SanityImage[];
   collection?: { title: string; slug: string };
-  provider?: Provider;
   relatedServices?: Service[];
   comparisons?: ServiceComparison[];
   _updatedAt?: string;
@@ -326,6 +341,18 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     bookingUrl,
     description,
     whoItsFor,
+    "concerns": concerns[]->{
+      _id,
+      title,
+      "slug": slug.current,
+      intro
+    },
+    benefits,
+    treatmentAreas[] {
+      _key,
+      area,
+      focus
+    },
     process,
     _updatedAt,
     faqs[] {
@@ -337,7 +364,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     ${IMAGE_FIELDS},
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
     collection->{ title, "slug": slug.current },
-    "provider": provider->{ _id, title, fullName, lane, roleCredential, scopeOfPractice },
     "relatedServices": relatedServices[@->status in ["live", "actual-menu"]]->{
       _id,
       title,

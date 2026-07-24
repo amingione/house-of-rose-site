@@ -347,3 +347,26 @@ cd ~/LocalStorm/Workspace/DevProjects/house_of_rose/house-of-rose-site && git pu
 - Sanity client/helpers live in `packages/web/src/lib/sanity.ts`
 - Create files in place — don't just output code blocks
 - Explain the *why* and *how*, skip pleasantries
+
+---
+
+## Two-Menu Content Architecture (binding — 2026-07-24)
+There are TWO separate service menus with DIFFERENT copy. Never write one voice for both, and never sync them.
+
+**Sanity = the customer-facing WEBSITE menu (houseofrosefl.com).**
+- Long, informative, persuasive, HIGHLY SEO-optimized — this is the copy that talks people into booking.
+- Depth: full benefit-led descriptions + what it does + what to expect; in-depth, professional.
+- SEO/AEO: keyword-optimized from real research (Semrush + Ahrefs, run with agents in parallel), local
+  market comps (Punta Gorda / Charlotte County / SW FL), gap-filling vs local competitors, and internal
+  interlinking across related services / concerns / cost / compare pages.
+- Fields work together: tagline, description, whoItsFor, faqs, process, seo.metaTitle/metaDescription.
+- No price (removed 2026-07-24). Provider lanes are internal-only, never customer-facing.
+
+**GlossGenius = the generic BOOKING menu (in-app booking/POS).**
+- SIMPLE and SHORT. One benefit-focused blurb per service, UNDER 2000 characters (aim 2–4 punchy sentences).
+- Sells the benefit — what they get, how they'll look and feel — nothing operational.
+- NEVER include in a GlossGenius description: "provider lane"; "by [provider]" / any provider attribution
+  or name; "category"; any price or dollar figure; "available in 3 or 6 sessions" / any series count;
+  "discount"/"special"/"deal".
+- Still compliant: no "cure," "guaranteed," "reverse aging," "stem cell," etc. (see COMPLIANCE-COPY-RULES.md).
+- No GlossGenius API access — GlossGenius copy is produced as a paste-ready deliverable for Amber to enter.

@@ -135,40 +135,135 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && service.duration && <span class="text-gold mx-2">·</span>}{service.duration && <span {...sbFieldPath('duration')}>{service.duration}</span>}
         </p>
       )}
+      <div class="flex flex-wrap gap-3 mt-7">
+        <a href="tel:+18449417673" class="btn-outline-gold">Call to Consult</a>
+        <a href="sms:+18449417673" class="btn-gold">Text Us</a>
+      </div>
     </div>
   </section>
 
-  <!-- Details Section -->
-  <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2 gap-12 py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
-    <!-- What It Is -->
-    <div>
-      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What It Is</span>
-      <p class="text-ink/80 text-[15px] leading-relaxed" {...sbFieldPath('description')}>
+  <!-- Answer-first treatment overview -->
+  <section class="bg-charcoal py-16 px-6">
+    <div class="max-w-[960px] mx-auto">
+      <span class="kicker">Treatment Overview</span>
+      <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-5">
+        What is {service.title}?
+      </h2>
+      <p class="text-ink/80 text-[16px] leading-[1.8]" {...sbFieldPath('description')}>
         {service.description ?? service.tagline ?? ''}
       </p>
     </div>
-
-    <!-- Who It's For + Process -->
-    <div class="space-y-8">
-      {service.whoItsFor && (
-        <div>
-          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Who It's For</span>
-          <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
-        </div>
-      )}
-
-      {service.process && service.process.length > 0 && (
-        <div>
-          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">The Process</span>
-          <ol class="list-decimal list-inside space-y-2 text-muted text-[14px] leading-relaxed">
-            {service.process.map((step, i) => (
-              <li {...sbFieldPath(`process.${i}`)}>{step}</li>
-            ))}
-          </ol>
-        </div>
-      )}
-    </div>
   </section>
+
+  <!-- Concern-to-treatment paths -->
+  {service.concerns && service.concerns.length > 0 && (
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto">
+        <span class="kicker">Start With What You See</span>
+        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-4">
+          Could {service.title} be right for your concerns?
+        </h2>
+        <p class="text-muted text-[15px] leading-relaxed max-w-[720px] mb-10">
+          This treatment may be considered when one or more of these visible concerns match your goals. A consultation confirms whether the technology, timing, and treatment area are appropriate for you.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
+          {service.concerns.map((concern) => (
+            <a
+              href={`/concerns/${concern.slug}/`}
+              class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter"
+              {...sbObjectId(concern._id)}
+            >
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>
+                {concern.title}
+              </h3>
+              {concern.intro && <p class="text-muted text-[14px] leading-relaxed">{concern.intro}</p>}
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">Explore This Concern</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Benefits and treatment areas -->
+  {(service.benefits?.length || service.treatmentAreas?.length) && (
+    <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        {service.benefits && service.benefits.length > 0 && (
+          <div>
+            <span class="kicker">Why Clients Choose It</span>
+            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
+              What benefits can {service.title} support?
+            </h2>
+            <ul class="space-y-3">
+              {service.benefits.map((benefit, i) => (
+                <li class="flex gap-3 text-muted text-[15px] leading-relaxed" {...sbFieldPathParts('benefits', i)}>
+                  <span class="text-gold mt-0.5" aria-hidden="true">✦</span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {service.treatmentAreas && service.treatmentAreas.length > 0 && (
+          <div>
+            <span class="kicker">Treatment Areas</span>
+            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
+              Where can {service.title} be used?
+            </h2>
+            <div class="space-y-4">
+              {service.treatmentAreas.map((item, i) => (
+                <div class="border-l border-gold-metal/40 pl-5 py-1">
+                  <h3 class="text-ink text-[16px] font-medium mb-1" {...sbFieldPathParts('treatmentAreas', i, 'area')}>
+                    {item.area}
+                  </h3>
+                  <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('treatmentAreas', i, 'focus')}>
+                    {item.focus}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Experience and candidacy -->
+  {(service.process?.length || service.whoItsFor) && (
+    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        {service.process && service.process.length > 0 && (
+          <div>
+            <span class="kicker">Your Visit</span>
+            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
+              What should you expect from {service.title}?
+            </h2>
+            <ol class="space-y-4">
+              {service.process.map((step, i) => (
+                <li class="grid grid-cols-[32px_1fr] gap-3 text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('process', i)}>
+                  <span class="font-serif text-gold text-[18px]">{String(i + 1).padStart(2, '0')}</span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+        {service.whoItsFor && (
+          <div>
+            <span class="kicker">Personalized Candidacy</span>
+            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
+              Who is a candidate for {service.title}?
+            </h2>
+            <p class="text-muted text-[15px] leading-[1.8]" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
+            <p class="text-muted/80 text-[13px] leading-relaxed mt-6 border-t border-gold-metal/20 pt-5">
+              Not every client is a candidate for every service. Final treatment combinations and candidacy are confirmed by your licensed provider based on candidacy, contraindications, and local regulations. Outcomes are individual and depend on your skin, candidacy, and consistency.
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
 
   <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
   {galleryImages.length > 0 && (
@@ -204,9 +299,8 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         </h2>
         <p class="text-muted text-[14px] leading-relaxed max-w-[680px] mb-10">
           Unretouched Week&nbsp;1 to Week&nbsp;16 results from the Face Reality clinical
-          study — the same customized professional + home-care protocol Amber, a Face
-          Reality Certified Acne Specialist, follows in-studio. Individual results vary
-          with adherence to protocol.
+          study — the same customized professional and home-care method used in-studio.
+          Individual results vary with adherence to protocol.
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {resultImages.map((img) => (
@@ -338,23 +432,24 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
-  <!-- Booking CTA -->
+  <!-- Consultation CTA -->
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Reserve Your Experience</span>
+      <span class="kicker">Begin With a Consultation</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Ready to experience {service.title}?
+        Is {service.title} the right next step?
       </h2>
-      <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Begin with a private consultation. We will design your personal protocol.
+      <p class="text-muted text-[15px] max-w-[560px] mx-auto mb-10 leading-relaxed">
+        Call or text to discuss your goals and arrange a consultation. Walk-ins are welcome when the schedule allows; an appointment is recommended to guarantee a time.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
-          (844) 941-7673
+          Call (844) 941-7673
         </a>
-        <a href={service.bookingUrl ?? 'https://houseofrose.glossgenius.com/book'} target="_blank" rel="noopener noreferrer" class="btn-gold">
-          Book Online
+        <a href="sms:+18449417673" class="btn-gold">
+          Text Us
         </a>
+        <a href="/skin-analysis/" class="btn-outline-gold">Start With Skin Analysis</a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
