@@ -80,7 +80,7 @@ Every destination below includes the required trailing slash before its query st
 
 ### 05A — Restraint
 
-- **Primary text:** Thoughtful injectables begin with facial anatomy, candidacy, and restraint. Diana, RN, discusses Botox, Daxxify, dermal fillers, and other appropriate options based on the consultation—not a one-size-fits-all treatment trend. Individual outcomes vary.
+- **Primary text:** Thoughtful injectables begin with facial anatomy, candidacy, and restraint. Diana, RN, discusses neurotoxin, dermal filler, and other appropriate options based on the consultation—not a one-size-fits-all treatment trend. Individual outcomes vary.
 - **Headline:** Injectables, With Restraint
 - **Description:** Provider-led consultation in Punta Gorda.
 - **CTA:** Learn More
@@ -90,7 +90,7 @@ Every destination below includes the required trailing slash before its query st
 
 - **Primary text:** The goal is a considered, natural-looking approach—not more for the sake of more. Meet with Diana, RN, to discuss injectable options, candidacy, and what fits your features and preferences.
 - **Headline:** A More Thoughtful Approach
-- **Description:** Botox, Daxxify and filler consultations.
+- **Description:** Neurotoxin and filler consultations.
 - **CTA:** Learn More
 - **Destination:** `https://houseofrosefl.com/services/injectables/?utm_source=instagram&utm_medium=paid_social&utm_campaign=hor_injectables_q3&utm_content=05b_natural_approach_story`
 
