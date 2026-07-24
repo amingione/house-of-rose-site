@@ -36,11 +36,13 @@ const socialImage = service.image?.asset
   : fallbackImage
     ? new URL(fallbackImage, site).toString()
     : undefined;
-// All service headers now share one universal banner (per Amber). service.image is no
-// longer used for the hero background — it still drives socialImage above, and any photo
-// that was previously doing header duty now surfaces in the Gallery section below instead
-// of being discarded.
-const heroImage = '/images/banner/background/HR-background.webp';
+// Keep the shared service banner by default, with an approved treatment-specific
+// hero for the Microchanneling & Microneedling hub.
+const isMicrochannelingHub = slug === 'microchanneling';
+const heroImage = isMicrochannelingHub
+  ? '/images/banner/microchanneling/new-microchanneling.webp'
+  : '/images/banner/background/HR-background.webp';
+const heroImagePosition = isMicrochannelingHub ? '68% center' : 'center';
 const primaryGalleryImage = service.image?.asset ? service.image : undefined;
 const galleryImages = [
   ...(primaryGalleryImage ? [primaryGalleryImage] : []),
@@ -113,7 +115,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <!-- Hero -->
   <section
     class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
-    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: center;` : ''}
+    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: ${heroImagePosition};` : ''}
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
