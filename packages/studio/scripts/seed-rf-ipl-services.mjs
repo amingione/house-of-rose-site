@@ -30,10 +30,10 @@ const SHOULD_WRITE = APPLY || REPLACE;
 const VALIDATE = process.argv.includes('--validate') || !SHOULD_WRITE;
 
 const ids = {
-  collection: 'drafts.hor.serviceCollection.rf-ipl-skin-treatments',
-  morpheus8: 'drafts.hor.service.morpheus8',
-  lumecca: 'drafts.hor.service.lumecca-peak-ipl',
-  forma: 'drafts.hor.service.forma-rf-facial',
+  collection: 'drafts.service-collection-rf-ipl-skin-treatments',
+  morpheus8: 'drafts.service-morpheus8',
+  lumecca: 'drafts.service-lumecca-peak-ipl',
+  forma: 'drafts.service-forma-rf-facial',
 };
 
 const concernIds = {
@@ -384,6 +384,7 @@ function validateSeed() {
 
   for (const document of documents) {
     assert(document._id.startsWith('drafts.'), `${document.title} must use a draft ID.`);
+    assert(!publishedId(document._id).includes('.'), `${document.title} must use a public-safe ID without periods.`);
     assert(document.slug?._type === 'slug' && document.slug.current, `${document.title} needs a valid slug.`);
   }
 
