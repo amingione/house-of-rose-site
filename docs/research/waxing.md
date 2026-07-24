@@ -178,7 +178,7 @@ All prices from the **local pricing docs** (`docs/services/waxing/face.md`, `doc
 - **Real expertise, matched to you.** Facial waxing from Aundrea *or* Brandy; body, bikini, and Brazilian from Aundrea — you're matched to the right provider, not a rotating chair.
 - **One studio, one grooming ecosystem.** Brows can flow straight into Jane Iredale makeup; body waxing sits alongside permanent jewelry and advanced/basic facials — all under one Punta Gorda roof (525 E Olympia Ave, Unit 9).
 - **Honest cadence, honest results.** We tell you the truth: waxing isn't permanent, but consistency at 4–6 weeks brings finer, sparser regrowth many clients love — and we give you the between-visit exfoliation plan to keep ingrowns away.
-- **Local, appointment-only, private.** Serving Punta Gorda, Port Charlotte, and Charlotte County / Southwest Florida, booking by call/text — a calm, private wax, not a walk-in mill.
+- **Local, walk-ins welcome, private.** Serving Punta Gorda, Port Charlotte, and Charlotte County / Southwest Florida — walk in anytime for waxing, or call/text ahead to book a time — a calm, private wax, not a high-volume chain.
 
 ---
 

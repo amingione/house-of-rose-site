@@ -227,7 +227,7 @@ Add each as a Service with its name + a description. Brand rules applied:
 ### Group E — Waxing (live ✅ — you list it in your description)
 
 **Professional Waxing (Face & Body)** · _From $X_
-> Clean, comfortable professional waxing for face and body, by appointment. _(Add your real starting price.)_
+> Clean, comfortable professional waxing for face and body. Walk-ins welcome — appointments recommended for guaranteed timing. _(Add your real starting price.)_
 
 ---
 
@@ -364,7 +364,7 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 > proud to offer in Charlotte County.
 
 **Q: Do you take walk-ins?**
-> A: We're by appointment only for facials and injections, so every guest gets unhurried, private care. Our IV Hydration Therapy allows walk-ins as its set up to provide leisure and relaxtion for our guests. Call (844) 941-7673 to begin.
+> A: Yes — walk-ins are welcome. Waxing and facials always take walk-ins, and we'll fit you in for other services, including injectables, whenever there's room on the schedule. For a guaranteed time, call or text (844) 941-7673 to book ahead.
 
 **Q: Do I have to commit to injectables to come here?**
 > A: Not at all. Many guests start with skin — a facial, BioRePeel, or microchanneling — and build a plan

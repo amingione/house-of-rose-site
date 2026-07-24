@@ -40,7 +40,8 @@ Each row is a hard avoid. The "Say instead" column is the approved, compliance-s
 
 | ❌ Never say | Why it's a problem | ✅ Say instead |
 | --- | --- | --- |
-| "day spa" (describing House of Rose) | Undersells; implies non-medical relaxation spa | "advanced aesthetics & wellness studio," "private studio," "by appointment" |
+| "day spa" (describing House of Rose) | Undersells; implies non-medical relaxation spa | "advanced aesthetics & wellness studio," "private studio" |
+| "by appointment only," "no walk-ins," "not a walk-in mill/clinic" (any framing that denies walk-ins) | Factually wrong — House of Rose takes walk-ins (waxing/facials always; other services, including injectables, whenever the schedule allows) | "walk-ins welcome," "walk-ins welcome — appointments recommended for guaranteed timing" |
 | _"med spa" / "medical spa"_ — **allowed, don't lead** | Permitted in meta/GBP/SEO and supporting copy; the GBP category is `Medical spa`. Just don't make it the lead brand descriptor, and never deny being one. | Lead with "advanced aesthetics & wellness studio"; use "med spa" where it aids discovery |
 | "reverse aging," "anti-aging," "turn back the clock," "age-defying" | Implies a result skin biology can't deliver; unprovable claim | "supports skin longevity," "helps reveal healthier-looking skin," "age-*affirming* / regenerative care" |
 | "guaranteed," "guaranteed results," "permanent," "will eliminate / erase / cure" | Outcome guarantee; individual results vary and are never assured | "designed to," "supports," "helps," "many clients notice," "intended to" |

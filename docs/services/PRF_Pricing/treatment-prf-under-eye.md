@@ -104,7 +104,7 @@ At House of Rose in Punta Gorda, PRF under-eye rejuvenation is **$550 for a sing
 - **What your skin needs.** A true deep hollow may call for a small amount of filler alongside or instead — a different plan, discussed openly.
 - **Maintenance.** A refresh every six to twelve months keeps results where you like them; that's a future session, not a hidden fee.
 
-**Why it's worth it here:** it's placed by Diana Morrison, RN, under medical-director oversight, in an unhurried appointment-only studio — not squeezed between walk-ins. You're paying for the judgment as much as the treatment.
+**Why it's worth it here:** it's placed by Diana Morrison, RN, under medical-director oversight, in an unhurried, private studio — not rushed through on a high-volume schedule. You're paying for the judgment as much as the treatment.
 
 **Cost-guide CTA:** Get your under-eye plan priced *(→ call/text)*
 

@@ -16,9 +16,9 @@ Every destination below includes the required trailing slash before its query st
 
 ### 01B — Local introduction
 
-- **Primary text:** House of Rose Aesthetics is now welcoming Punta Gorda clients by appointment. Expect an unhurried setting, thoughtful recommendations, and a plan shaped around candidacy—not pressure. Start with a complimentary skin consultation.
+- **Primary text:** House of Rose Aesthetics is now welcoming Punta Gorda clients — walk in, or book ahead. Expect an unhurried setting, thoughtful recommendations, and a plan shaped around candidacy—not pressure. Start with a complimentary skin consultation.
 - **Headline:** Meet House of Rose
-- **Description:** Advanced aesthetics and wellness, by appointment.
+- **Description:** Advanced aesthetics and wellness. Walk-ins welcome.
 - **CTA:** Learn More
 - **Destination:** `https://houseofrosefl.com/skin-analysis/?utm_source=instagram&utm_medium=paid_social&utm_campaign=hor_skin_consult_q3&utm_content=01b_local_proof_story`
 
@@ -54,7 +54,7 @@ Every destination below includes the required trailing slash before its query st
 
 - **Primary text:** No crowded waiting room. No pressure to choose from a long treatment menu. Begin with a conversation, understand the options, and move forward only when the plan makes sense for you.
 - **Headline:** Care, Without the Rush
-- **Description:** By appointment in Punta Gorda.
+- **Description:** Punta Gorda — walk-ins welcome.
 - **CTA:** Learn More
 - **Destination:** `https://houseofrosefl.com/skin-analysis/?utm_source=instagram&utm_medium=paid_social&utm_campaign=hor_skin_consult_q3&utm_content=03b_unhurried_story`
 

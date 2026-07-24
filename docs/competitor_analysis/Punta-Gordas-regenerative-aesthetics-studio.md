@@ -89,7 +89,7 @@ The skin-analysis proposition adds objective measurement around texture, hydrati
 
 **3. Private, unhurried experience**
 
-House of Rose describes itself as a small private practice with consultation-led care, personalized planning, and no walk-in atmosphere. That is a meaningful contrast with high-volume injectables businesses and sprawling treatment menus. ([House of Rose Aesthetics][12])
+House of Rose describes itself as a small private practice with consultation-led care and personalized planning, while still taking walk-ins (waxing/facials always, other services when the schedule allows). That combination — private and unhurried, but not appointment-gated — is a meaningful contrast with high-volume injectables businesses and sprawling treatment menus. ([House of Rose Aesthetics][12])
 
 **4. Seasonal-resident retention**
 

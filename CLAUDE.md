@@ -52,6 +52,40 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 
 ---
 
+## Walk-In Policy (binding — 2026-07-24, overrides all prior "appointment-only/no walk-ins" copy)
+House of Rose **takes walk-ins**. This was previously written up backwards across docs/site copy as
+"private, appointment-only, no walk-ins" — that is **not the real policy** and every instance of it is a
+copy bug, not a business rule, unless Amber says otherwise.
+- **Waxing and facials:** walk-ins always accepted.
+- **Everything else (including Botox/injectables, IV, body treatments, etc.):** walk-ins accepted
+  **whenever there's time on the schedule** — "time-permitting," not "never." House of Rose has walked in
+  Botox before; don't write copy that forecloses that.
+- Appointments are still the recommended/primary path (call/text to book ahead, no online-booking button —
+  that part stands), but **never claim "by appointment only," "no walk-ins," or "not a walk-in mill/clinic"
+  anywhere** — customer-facing pages, GBP, ad copy, FAQs, llms-full.txt, everywhere. If a doc says that,
+  it's wrong; fix it, don't preserve it as "the vibe."
+- Correct phrasing pattern: *"Walk-ins welcome — appointments recommended for [service]."* or *"We take
+  walk-ins when the schedule allows; call/text (844) 941-7673 to guarantee a time."*
+
+---
+
+## Public-Facing Copy Law (binding — 2026-07-24)
+- **Provider lanes are internal-only.** The Amber/Diana/Brandy/Aundrea lane split exists so the right
+  provider gets credited/paid in the booking system — it is **never** customer-facing framing. Do not
+  write "Amber's version of X" / "this is in [provider]'s lane" / category copy that explains lane
+  structure to the customer. Customers picked the category already; they don't need the internal reason
+  it's organized that way. Provider names stay on: booking/scheduling UI, GlossGenius, Sanity `provider`
+  refs, individual tap-to-share bio pages (`/amber`, `/diana`, `/aundrea`), and bios/testimonial
+  attribution — not stitched into service/category sales copy.
+- **Service descriptions must sell, not hedge.** No "may possibly," "could potentially," "results may
+  vary" filler stacked sentence after sentence — that's not clinical caution, it's copy that talks itself
+  out of the purchase. Lead with the outcome and benefit the client is paying for, back it with the real
+  protocol/mechanism, and keep FTC-sane claim language (no guarantees, no "cures," no fabricated stats) —
+  but confidence and benefit-forward language is the default, not apologetic hedging. A $200–$3,000 service
+  description that reads like a disclaimer is a bug.
+
+---
+
 ## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_

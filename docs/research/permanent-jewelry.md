@@ -208,7 +208,7 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
 - **A real experience, not a kiosk.** It's welded by **Aundrea**, a named provider who also does your waxing and makeup — so a bracelet can be the finishing touch on a real spa visit, not a mall pop-up transaction.
 - **The gifting / gathering draw.** Permanent jewelry is one of the few offerings that turns a booking into a *shared moment* — bridal parties, bachelorettes, girls' days, mother-daughter — with a lasting, personal keepsake everyone leaves wearing. That makes it a natural word-of-mouth and referral engine and an ideal soft-launch draw for the 525 E Olympia Ave space (opening July 9, 2026).
 - **Honest by design.** We tell clients the truth: it's clasp-free (not un-removable), it snips off anytime, gold-filled looks like solid gold but isn't literally forever, and we'll match the metal to your skin and budget. No overclaiming, no discount theater — just a beautiful, low-maintenance piece made to fit you.
-- **Locally grounded, appointment-only.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida, by appointment; call or text **(844) 941-7673** (spells ROSE) to book a single piece or arrange a group event.
+- **Locally grounded, walk-ins welcome.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida — walk in, or call or text **(844) 941-7673** (spells ROSE) to book ahead or arrange a group event.
 
 ---
 

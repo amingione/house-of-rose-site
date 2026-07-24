@@ -58,7 +58,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `House of Rose Aesthetics is a privately owned advanced aesthetics and wellness studio located at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. It was created for clients who want more than a quick appointment and a standard treatment menu — bringing together advanced aesthetics, wellness support, and thoughtfully selected skincare in one refined setting. The approach is tailored and intentional, built around long-term skin health, natural-looking results, and care that feels personal from the start.`,
     ``,
-    `House of Rose serves clients throughout Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, North Port, Sarasota, and Cape Coral. Appointments are private and unhurried, with no walk-ins.`,
+    `House of Rose serves clients throughout Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, North Port, Sarasota, and Cape Coral. Visits are private and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call or text (844) 941-7673 to book ahead.`,
     ``,
     `**Contact:**`,
     `- Phone: (844) 941-7673`,

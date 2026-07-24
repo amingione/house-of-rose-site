@@ -46,7 +46,7 @@ A private appointment. A clear plan.
 
 No crowded waiting room. No pressure to choose from a long treatment menu. Just an unhurried conversation about what fits—and what may not.
 
-House of Rose Aesthetics · Punta Gorda · By appointment
+House of Rose Aesthetics · Punta Gorda · Walk-ins welcome
 
 `#PuntaGorda #AdvancedAesthetics #PrivateStudio #HouseOfRoseAesthetics`
 
