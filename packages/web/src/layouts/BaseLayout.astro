@@ -37,7 +37,7 @@ const {
   nofollow = false,
 } = Astro.props;
 
-const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? 'G-QBDHB89WTR';
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
 // Never fire on `astro dev` — keeps local testing out of live Events Manager data.
 const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
