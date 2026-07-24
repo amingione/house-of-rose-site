@@ -32,7 +32,8 @@
       "Bash(rm -f /tmp/hor_shipping_resp.json)",
       "mcp__claude_ai_Netlify__netlify-project-services-reader",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://4e7axyi7.api.sanity.io/v2025-04-26/data/query/production?query=%2A%5B_type%3D%3D%22leadSubmission%22%5D%5B0%5D._id\")",
-      "Bash(curl -s \"https://4e7axyi7.api.sanity.io/v2025-04-26/data/query/production?query=%2A%5B_type%3D%3D%22leadSubmission%22%5D%5B0%5D._id\")"
+      "Bash(curl -s \"https://4e7axyi7.api.sanity.io/v2025-04-26/data/query/production?query=%2A%5B_type%3D%3D%22leadSubmission%22%5D%5B0%5D._id\")",
+      "Bash(curl -s -w \"\\\\nHTTP_STATUS:%{http_code}\\\\n\" \"https://4e7axyi7.api.sanity.io/v2025-04-26/data/query/production?query=%2A%5B_type%3D%3D%22leadSubmission%22%5D%5B0%5D._id\")"
     ]
   },
   "enabledMcpjsonServers": [
