@@ -11,9 +11,9 @@ const FACE_REALITY_SYSTEM_IMAGE = '/images/face-reality/clear-skin-system.webp';
 
 export const DEFAULT_SERVICE_IMAGE = SKIN_HEALTH_EDITORIAL_IMAGE;
 export const DEFAULT_COLLECTION_IMAGE = '/images/hor-skin-studio.webp';
-export const DEFAULT_PACKAGE_IMAGE = '/images/house-of-rose/space/luxury-reception-lobby-hero.webp';
-export const DEFAULT_PRODUCT_IMAGE = '/images/house-of-rose/space/shop-product-gift-flatlay-square.webp';
-export const DEFAULT_JOURNAL_IMAGE = '/images/house-of-rose/space/brand-art-rose-hero.webp';
+export const DEFAULT_PACKAGE_IMAGE = '/images/hor-lobby.webp';
+export const DEFAULT_PRODUCT_IMAGE = '/images/banner/background/background-rose.webp';
+export const DEFAULT_JOURNAL_IMAGE = '/images/banner/background/background-rose.webp';
 export const DEFAULT_AREA_IMAGE = '/images/hor-exterior.webp';
 
 const SERVICE_IMAGES: Record<string, string> = {
@@ -47,8 +47,8 @@ const SERVICE_IMAGES: Record<string, string> = {
   'biorepeel-body': REGENERATIVE_EDITORIAL_IMAGE,
   'biorepeel-advanced-acne-scarring': REGENERATIVE_EDITORIAL_IMAGE,
   'biorepeel-gold-spot-treatment': REGENERATIVE_EDITORIAL_IMAGE,
-  'neck-decollete-extension': '/images/house-of-rose/space/treatment-room-soft-square.webp',
-  'permanent-jewelry': '/images/house-of-rose/square/mirror-console-square.webp',
+  'neck-decollete-extension': '/images/hor-skin-studio.webp',
+  'permanent-jewelry': '/images/banner/background/background-rose.webp',
 };
 
 export const getServiceFallbackImage = (slug: string): string =>

@@ -29,7 +29,7 @@ const siteName = settings?.siteName ?? 'House of Rose Aesthetics';
 
 const {
   title = siteName,
-  description = settings?.description ?? 'Private, appointment-only regenerative aesthetics in Punta Gorda, FL — specializing in PRF and natural skin renewal.',
+  description = settings?.description ?? 'Advanced aesthetics and wellness in Punta Gorda, FL — specializing in PRF and natural skin renewal.',
   image,
   imageAlt,
   preloadImage,
@@ -96,7 +96,8 @@ const entityGraph = siteEntityGraph(
       }}
     />
     <SchemaMarkup item={entityGraph} />
-    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" async></script>
+    <!-- Swup reloads page scripts after each client-side navigation. Ahrefs must initialize once. -->
+    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" data-swup-ignore-script async></script>
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/logos/hr-monogram-2026/favicon-16.png" />
@@ -113,7 +114,7 @@ const entityGraph = siteEntityGraph(
     )}
     <!-- Meta Pixel -->
     {metaPixelId && (
-      <script is:inline set:html={`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${metaPixelId}');fbq('track', 'PageView');`}></script>
+      <script is:inline set:html={`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');window.__houseOfRoseMetaPixels=window.__houseOfRoseMetaPixels||[];if(!window.__houseOfRoseMetaPixels.includes('${metaPixelId}')){fbq('init','${metaPixelId}');window.__houseOfRoseMetaPixels.push('${metaPixelId}');}fbq('track','PageView');`}></script>
     )}
     <!-- Additional head content from pages -->
     <slot name="head" />
