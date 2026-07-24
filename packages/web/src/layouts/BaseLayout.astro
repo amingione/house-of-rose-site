@@ -39,6 +39,7 @@ const {
 
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
 const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
@@ -109,10 +110,19 @@ const entityGraph = siteEntityGraph(
         <script is:inline set:html={`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${ga4Id}');`}></script>
       </Fragment>
     )}
+    <!-- Meta Pixel -->
+    {metaPixelId && (
+      <script is:inline set:html={`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${metaPixelId}');fbq('track', 'PageView');`}></script>
+    )}
     <!-- Additional head content from pages -->
     <slot name="head" />
   </head>
   <body>
+    {metaPixelId && (
+      <noscript>
+        <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} alt="" />
+      </noscript>
+    )}
     {comingSoon && <ComingSoon />}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
