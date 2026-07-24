@@ -39,7 +39,8 @@ const {
 
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
-const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+// Never fire on `astro dev` — keeps local testing out of live Events Manager data.
+const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
 const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
