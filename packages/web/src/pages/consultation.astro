@@ -1,74 +1,79 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch } from '@/lib/sanity';
-import {
-  SERVICE_BY_SLUG_QUERY,
-  type FAQ,
-  type Service,
-} from '@/lib/queries';
+import type { FAQ } from '@/lib/queries';
 import {
   breadcrumbList,
   faqPage,
   service as serviceJsonLd,
 } from '@/lib/structuredData';
 
-const service = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, {
-  slug: 'microneedling',
-});
-
-if (!service) {
-  throw new Error(
-    '[services/microneedling/consultation] Microneedling service not found in Sanity',
-  );
-}
-
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const heroImage = '/images/hor-lounge.webp';
 const socialImage = new URL(heroImage, site).toString();
 const pageDescription =
-  'Request a microneedling consultation at House of Rose Aesthetics in Punta Gorda, FL. Explore personalized options for the appearance of uneven texture, fine lines, visible scarring, enlarged-looking pores, and stretch marks.';
+  'Explore regenerative skin treatments, advanced modalities, facials, IV hydration and weight management at House of Rose Aesthetics in Punta Gorda.';
 
 const faqs: FAQ[] = [
   {
-    question: 'How many microneedling sessions will I need?',
+    question: 'What does House of Rose Aesthetics specialize in?',
     answer:
-      'Many microneedling goals are planned as a series, often three to six visits spaced about four to six weeks apart. Your licensed provider recommends timing after reviewing your concern, treatment area, and how your skin responds.',
+      'House of Rose specializes in advanced regenerative skin treatments, with PRF and Procell Therapies at the center of our approach. We use multiple modalities—including Morpheus8, Forma, Lumecca Peak, SkinPen microneedling, and Glo2 oxygenation—to build a targeted plan around the visible result you want rather than selling one treatment to everyone.',
   },
   {
-    question: 'What is the downtime after microneedling?',
+    question: 'Do I need to know which treatment to request?',
     answer:
-      'Redness, tightness, dryness, and light flaking are common after microneedling. These effects often settle within several days, although deeper work and some body areas can take longer. You will receive written aftercare for your specific treatment.',
+      'No. Begin with the result or concern: firmness, texture, scarring, stretch marks, pigment, redness, hydration, glow, maintenance, or wellness support. Your provider reviews your goals, skin, health history, recovery preferences, and candidacy before recommending the appropriate modality or sequence.',
   },
   {
-    question: 'Can microneedling remove scars or stretch marks?',
+    question: 'What is regenerative skin renewal?',
     answer:
-      'No aesthetic treatment should promise removal. Microneedling is designed to improve the appearance of visible scarring, stretch marks, and uneven texture over time by supporting new collagen. Individual outcomes vary.',
+      'At House of Rose, regenerative skin renewal refers to provider-selected treatments that support the skin’s own renewal response and improve the appearance of texture, firmness, fine lines, or selected scars over time. Options may include PRF, Procell Microchanneling, SkinPen microneedling, or Morpheus8. The right treatment depends on the concern and candidacy.',
+  },
+  {
+    question: 'Which advanced skin technologies do you offer?',
+    answer:
+      'Our advanced skin options include Morpheus8 RF Microneedling for the face and selected body areas, Forma RF Facial, Lumecca Peak IPL Photofacial, Procell Microchanneling, SkinPen microneedling, PRF, and the Glo2Facial’s exfoliation, infusion, and oxygenation steps. Each technology addresses a different layer or visible concern.',
+  },
+  {
+    question: 'Do you also offer facials, chemical peels, and maintenance care?',
+    answer:
+      'Yes. House of Rose offers skin treatments for correction, preparation, hydration, event-ready glow, and ongoing maintenance. Depending on your goals, that may include customized facials, Glo2Facial, BioRePeel, dermaplaning, chemical exfoliation, professional home care, or maintenance visits between advanced treatments.',
+  },
+  {
+    question: 'What is available in the IV Hydration Therapy Lounge?',
+    answer:
+      'The IV Hydration Therapy Lounge offers RN-administered hydration and wellness infusions after service-specific screening. Available options support goals such as straightforward hydration, post-activity recovery, travel or morning-after replenishment, and from-within wellness. Infusions support wellness and are not presented as treatment for a diagnosed condition.',
+  },
+  {
+    question: 'Do you offer weight-management solutions?',
+    answer:
+      'Yes. House of Rose offers medically supervised, provider-guided weight management with candidacy screening and ongoing follow-up. Individual response varies, and the program is designed to work alongside nutrition, hydration, movement, and appropriate medical guidance.',
+  },
+  {
+    question: 'Do you take walk-ins?',
+    answer:
+      'Yes. Walk-ins are welcome for facials, and other services may be available when the schedule allows. Appointments are recommended for advanced skin, IV hydration, and weight-management services so the appropriate time and provider can be reserved. Call or text (844) 941-7673 to check availability.',
   },
 ];
 
 const schemaDescription =
-  'Microneedling consultations in Punta Gorda, Florida, with personalized treatment planning for the appearance of uneven texture, fine lines, visible scarring, enlarged-looking pores, and stretch marks.';
+  'Advanced aesthetics and wellness consultations in Punta Gorda for regenerative skin treatments, facials, IV hydration, and provider-guided weight management.';
 
 const serviceSchema = serviceJsonLd(
   {
-    name: 'Microneedling Consultation in Punta Gorda',
+    name: 'Advanced Aesthetics and Wellness Consultation in Punta Gorda',
     description: schemaDescription,
     url: canonicalURL.toString(),
     image: socialImage,
-    serviceType: 'Microneedling consultation',
+    serviceType: 'Advanced aesthetics and wellness consultation',
   },
   site,
 );
 
 const breadcrumbSchema = breadcrumbList([
   { name: 'Home', item: site },
-  { name: 'Services', item: new URL('/services/', site).toString() },
-  {
-    name: service.title,
-    item: new URL('/services/microneedling/', site).toString(),
-  },
   { name: 'Consultation', item: canonicalURL.toString() },
 ]);
 
@@ -76,54 +81,102 @@ const faqSchema = faqPage(faqs);
 
 const proofPoints = [
   {
-    title: 'Personalized treatment depth',
+    title: 'Regenerative focus',
     description:
-      'Your provider selects the treatment depth and approach for your skin, goals, and treatment area.',
+      'PRF and Procell Therapies anchor a skin-renewal approach designed around your visible goals.',
     icon: 'depth',
   },
   {
-    title: 'Single-use treatment cartridges',
+    title: 'Multiple modalities',
     description:
-      'A new single-use cartridge is used for every microneedling appointment.',
+      'Morpheus8, Forma, Lumecca Peak, microneedling, and oxygenation are selected by concern—not trend.',
     icon: 'cartridge',
   },
   {
-    title: 'Written aftercare guidance',
+    title: 'Skin + wellness',
     description:
-      'You leave with clear instructions for the first days after your treatment.',
+      'Advanced skin care, maintenance, IV hydration, and weight support come together in one studio.',
     icon: 'aftercare',
   },
 ] as const;
 
-const concerns = [
-  'Uneven texture',
-  'Fine lines',
-  'Visible scarring',
-  'Enlarged-looking pores',
-  'Stretch marks',
+const servicePillars = [
+  {
+    name: 'Regenerative Skin Renewal',
+    fit: 'PRF + Procell Therapies',
+    outcome:
+      'For clients focused on healthier-looking texture, visible firmness, collagen support, selected scars, and long-term skin quality.',
+    options:
+      'Topical and injectable PRF pathways, Procell Microchanneling, SkinPen microneedling, and provider-selected combinations.',
+  },
+  {
+    name: 'Advanced Technology',
+    fit: 'Targeted face + body modalities',
+    outcome:
+      'For the appearance of laxity, fine lines, uneven texture, enlarged-looking pores, pigment, redness, scars, or stretch marks.',
+    options:
+      'Morpheus8 RF Microneedling, Forma RF Facial, Lumecca Peak IPL, SkinPen, Procell, and Glo2 oxygenation.',
+  },
+  {
+    name: 'Skin Treatments & Maintenance',
+    fit: 'Correction, glow + consistent upkeep',
+    outcome:
+      'For hydration, smoother-looking surface texture, event-ready radiance, acne support, and maintaining progress between advanced treatments.',
+    options:
+      'Customized facials, Glo2Facial, BioRePeel and chemical exfoliation, dermaplaning, and professional home care.',
+  },
+  {
+    name: 'Wellness & Weight Support',
+    fit: 'Restoration from within',
+    outcome:
+      'For clients seeking hydration and wellness support or a medically supervised approach to weight management.',
+    options:
+      'The IV Hydration Therapy Lounge and provider-guided weight management with screening and ongoing follow-up.',
+  },
+] as const;
+
+const outcomePaths = [
+  {
+    name: 'Firm, smooth & refine',
+    fit: 'Regenerative + collagen-induction options',
+    description:
+      'PRF, Procell, SkinPen, and Morpheus8 give the provider different ways to address visible texture, mild laxity, selected scars, stretch marks, and overall skin quality.',
+  },
+  {
+    name: 'Clarify tone & restore radiance',
+    fit: 'Light, peel + oxygenation options',
+    description:
+      'Lumecca Peak, BioRePeel, Glo2 oxygenation, and professional skin care can be sequenced around visible pigment, redness, dullness, and uneven-looking tone.',
+  },
+  {
+    name: 'Maintain what you build',
+    fit: 'Facials + long-term skin support',
+    description:
+      'Forma, customized facials, chemical exfoliation, dermaplaning, and matched home care create a realistic maintenance rhythm between corrective treatments.',
+  },
 ] as const;
 
 const process = [
   {
-    title: 'Consultation',
+    title: 'Start with the result',
     description:
-      'We review your goals, skin history, medications, recovery preferences, and candidacy.',
+      'Tell us what you want to improve or maintain. We review the visible concern, priorities, health history, timing, and recovery preferences.',
   },
   {
-    title: 'Personalized treatment',
+    title: 'Select the modalities',
     description:
-      'A new single-use cartridge creates controlled microchannels using a depth selected for your treatment area.',
+      'Your provider explains which regenerative, energy-based, facial, peel, wellness, or maintenance options fit—and which ones do not.',
   },
   {
-    title: 'Aftercare & follow-up',
+    title: 'Sequence the plan',
     description:
-      'You leave with written aftercare and an individualized plan based on how your skin responds.',
+      'Correction, recovery, follow-up, and maintenance are placed in a sensible order so every visit has a clear purpose.',
   },
 ] as const;
 ---
 
 <BaseLayout
-  title="Microneedling Punta Gorda, FL"
+  title="Aesthetics & Wellness Punta Gorda, FL"
   description={pageDescription}
   image={socialImage}
   imageAlt="House of Rose Aesthetics studio lounge in Punta Gorda, Florida"
@@ -163,10 +216,13 @@ const process = [
           class="order-2 flex items-center px-5 py-12 sm:px-8 sm:py-16 lg:order-1 lg:py-20 lg:pl-[clamp(48px,6vw,96px)] lg:pr-8"
         >
           <div class="max-w-[590px]">
+            <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold sm:text-[12px]">
+              House of Rose Aesthetics · Punta Gorda, Florida
+            </p>
             <h1
-              class="font-display text-[clamp(46px,7vw,88px)] leading-[0.98] tracking-[-0.025em] text-ink"
+              class="font-display text-[clamp(46px,5.4vw,72px)] leading-[0.98] tracking-[-0.025em] text-ink"
             >
-              Microneedling in Punta Gorda
+              Regenerative skin, made personal
             </h1>
             <div class="my-7 flex items-center gap-3" aria-hidden="true">
               <span class="h-px w-20 bg-gold-metal"></span>
@@ -179,12 +235,15 @@ const process = [
               <span class="h-px w-20 bg-gold-metal"></span>
             </div>
             <p class="max-w-[540px] text-[17px] leading-[1.75] text-muted-strong sm:text-[18px]">
-              A consultation-first approach to smoother-looking texture, fine lines,
-              visible scarring, and stretch marks—personalized to your skin, goals,
-              and recovery preferences.
+              House of Rose specializes in regenerative skin treatments
+              including PRF and Procell Therapies. We combine the right
+              modalities—from Morpheus8, Forma, Lumecca Peak, microneedling,
+              and Glo2 oxygenation to facials, chemical peels, IV hydration,
+              and provider-guided weight management—to build a plan around the
+              result you want.
             </p>
             <div class="mt-8 hidden max-w-[470px] flex-col gap-3 sm:flex sm:flex-row">
-              <a href="#consultation" class="btn-gold w-full">Request a Consultation</a>
+              <a href="#consultation" class="btn-gold w-full">Begin Your Consultation</a>
               <a href="sms:+18449417673" class="btn-outline-gold w-full">Text the Studio</a>
             </div>
             <p class="mt-6 flex items-start gap-2 text-[12px] leading-relaxed text-muted sm:text-[13px]">
@@ -214,7 +273,7 @@ const process = [
     <section class="border-b border-gold-metal/30 bg-breath px-5 py-14 sm:px-8 sm:py-16">
       <div class="mx-auto max-w-[1180px]">
         <h2 class="text-center font-display text-[clamp(34px,4.8vw,54px)] leading-tight">
-          A thoughtful plan for visible skin renewal
+          One studio. A more complete way to care for you.
         </h2>
         <div class="mx-auto mt-9 grid max-w-[1050px] divide-y divide-gold-metal/35 md:grid-cols-3 md:divide-x md:divide-y-0">
           {
@@ -252,39 +311,52 @@ const process = [
     </section>
 
     <section class="bg-breath px-5 py-[clamp(64px,8vw,108px)] sm:px-8">
-      <div class="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-        <div>
-          <h2 class="font-display text-[clamp(38px,5vw,60px)] leading-[1.05]">
-            What can microneedling help improve?
+      <div class="mx-auto max-w-[1180px]">
+        <div class="max-w-[760px]">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+            What we offer
+          </p>
+          <h2 class="mt-4 font-display text-[clamp(38px,5vw,60px)] leading-[1.05]">
+            A complete path from correction to maintenance
           </h2>
           <div class="my-7 h-px w-32 bg-gold-metal"></div>
-          <p class="max-w-[530px] text-[16px] leading-[1.8] text-muted-strong">
-            Microneedling creates controlled microchannels that support the skin’s
-            natural collagen and elastin response. It is designed to improve the
-            appearance of uneven texture, fine lines, visible scarring,
-            enlarged-looking pores, and stretch marks over time.
+          <p class="text-[16px] leading-[1.8] text-muted-strong">
+            Our regenerative skin focus is supported by advanced technology,
+            professional skin care, and wellness services. That gives us room
+            to address what you want to change now, then create a practical
+            rhythm for maintaining your results.
           </p>
         </div>
-        <ul class="divide-y divide-gold-metal/45 border-y border-gold-metal/45">
+
+        <div class="mt-12 grid gap-px overflow-hidden border border-gold-metal/45 bg-gold-metal/45 lg:grid-cols-2">
           {
-            concerns.map((concern) => (
-              <li class="flex min-h-[64px] items-center gap-4 py-4 font-serif text-[21px] sm:text-[24px]">
-                <svg class="h-5 w-5 shrink-0 text-gold" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.2"/>
-                  <path d="M12 2.8v5M12 16.2v5M2.8 12h5M16.2 12h5M5.5 5.5l3.55 3.55M14.95 14.95l3.55 3.55M18.5 5.5l-3.55 3.55M9.05 14.95 5.5 18.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                </svg>
-                {concern}
-              </li>
+            servicePillars.map((option, index) => (
+              <article class="bg-breath p-7 sm:p-9">
+                <p class="font-display text-[30px] leading-none text-gold">
+                  {String(index + 1).padStart(2, '0')}
+                </p>
+                <h3 class="mt-5 font-serif text-[25px] leading-tight">{option.name}</h3>
+                <p class="mt-3 text-[11px] font-semibold uppercase tracking-[0.17em] text-gold">
+                  {option.fit}
+                </p>
+                <p class="mt-6 text-[13px] leading-[1.75] text-muted">
+                  <strong class="font-medium text-ink">Designed around:</strong>{' '}
+                  {option.outcome}
+                </p>
+                <p class="mt-4 border-t border-gold-metal/35 pt-4 text-[13px] leading-[1.75] text-muted">
+                  {option.options}
+                </p>
+              </article>
             ))
           }
-        </ul>
+        </div>
       </div>
     </section>
 
     <section class="on-dark bg-walnut px-5 py-[clamp(64px,7vw,92px)] sm:px-8">
       <div class="mx-auto max-w-[1180px]">
         <h2 class="text-center font-display text-[clamp(38px,5vw,58px)] leading-tight text-ivory">
-          What should you expect?
+          The plan is built around the result—not a single machine
         </h2>
         <div class="mx-auto mt-10 grid max-w-[1100px] gap-9 md:grid-cols-3 md:gap-0 md:divide-x md:divide-gold-metal/50">
           {
@@ -296,6 +368,40 @@ const process = [
                 </h3>
                 <p class="mt-4 text-[14px] leading-[1.75] text-muted">{step.description}</p>
               </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-gold-metal/30 bg-breath px-5 py-[clamp(64px,8vw,108px)] sm:px-8">
+      <div class="mx-auto max-w-[1180px]">
+        <div class="mx-auto max-w-[760px] text-center">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+            Targeted by concern
+          </p>
+          <h2 class="mt-4 font-display text-[clamp(38px,5vw,58px)] leading-[1.05]">
+            Different goals call for different pathways
+          </h2>
+          <p class="mt-6 text-[16px] leading-[1.8] text-muted-strong">
+            Thoughtful care is not about stacking every available service. It
+            is about selecting and sequencing the modalities that make sense
+            for your visible concern, timing, recovery preferences, and
+            candidacy.
+          </p>
+        </div>
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          {
+            outcomePaths.map((option) => (
+              <article class="border border-gold-metal/45 bg-white/30 p-7 sm:p-8">
+                <h3 class="font-serif text-[24px] leading-tight">{option.name}</h3>
+                <p class="mt-3 text-[11px] font-semibold uppercase tracking-[0.17em] text-gold">
+                  {option.fit}
+                </p>
+                <p class="mt-5 text-[14px] leading-[1.75] text-muted-strong">
+                  {option.description}
+                </p>
+              </article>
             ))
           }
         </div>
@@ -317,16 +423,23 @@ const process = [
       <div class="flex items-center px-5 py-14 sm:px-10 lg:px-[clamp(48px,6vw,88px)] lg:py-20">
         <div class="max-w-[520px]">
           <h2 class="font-display text-[clamp(40px,5vw,60px)] leading-[1.04]">
-            Is microneedling right for you?
+            Skin health is only one part of the picture
           </h2>
           <div class="my-7 h-px w-32 bg-gold-metal"></div>
           <p class="text-[15px] leading-[1.8] text-muted-strong">
+            The IV Hydration Therapy Lounge extends our approach to
+            from-within hydration and wellness support. Provider-guided weight
+            management adds screening, follow-up, and an individualized plan,
+            while our skin team supports correction, preparation, and
+            long-term maintenance.
+          </p>
+          <p class="mt-5 text-[14px] leading-[1.75] text-muted">
             Not every client is a candidate for every service. Final treatment
             combinations and candidacy are confirmed by your licensed provider
-            based on candidacy, contraindications, and local regulations. Outcomes
-            are individual and depend on your skin, candidacy, and consistency.
+            based on contraindications and local regulations. Outcomes are
+            individual and depend on your skin, candidacy, and consistency.
           </p>
-          <a href="#consultation" class="btn-gold mt-8">Request a Consultation</a>
+          <a href="#consultation" class="btn-gold mt-8">Begin Your Consultation</a>
         </div>
       </div>
     </section>
@@ -334,7 +447,7 @@ const process = [
     <section class="border-y border-gold-metal/30 bg-breath px-5 py-[clamp(64px,8vw,108px)] sm:px-8">
       <div class="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
         <h2 class="font-display text-[clamp(40px,5vw,62px)] leading-[1.03]">
-          Microneedling questions, answered.
+          House of Rose questions, answered.
         </h2>
         <div class="border-t border-gold-metal/50">
           {
@@ -360,12 +473,14 @@ const process = [
       <div class="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
         <div class="lg:pt-5">
           <h2 class="max-w-[520px] font-display text-[clamp(42px,5vw,64px)] leading-[1.03]">
-            Ready to talk about your skin goals?
+            Tell us what you want to change
           </h2>
           <div class="my-7 h-px w-32 bg-gold-metal"></div>
           <p class="max-w-[500px] text-[16px] leading-[1.8] text-muted-strong">
-            Send a simple consultation request. Our team will follow up to help you
-            choose a time and confirm the best starting point.
+            You do not have to choose a device, facial, infusion, or program on
+            your own. Send a simple consultation request and our team will help
+            you choose a time, review your priorities, and identify the best
+            starting point.
           </p>
           <p class="mt-8 flex items-start gap-4 text-[15px] leading-relaxed text-muted-strong">
             <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold text-gold" aria-hidden="true">
@@ -382,16 +497,16 @@ const process = [
         </div>
 
         <form
-          name="microneedling-consultation"
+          name="general-consultation"
           method="POST"
           action="/.netlify/functions/lead-submit"
           class="pl-0 lg:border-l lg:border-gold-metal/45 lg:pl-14"
         >
-          <input type="hidden" name="form-name" value="skin-analysis" />
+          <input type="hidden" name="form-name" value="general-consultation" />
           <input
             type="hidden"
             name="source-page"
-            value="/services/microneedling/consultation/"
+            value="/consultation/"
           />
           <p class="hidden" aria-hidden="true">
             <label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
@@ -399,11 +514,11 @@ const process = [
 
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="mn-name" class="mb-2 block text-[13px] font-medium text-ink">
+              <label for="consultation-name" class="mb-2 block text-[13px] font-medium text-ink">
                 Name
               </label>
               <input
-                id="mn-name"
+                id="consultation-name"
                 name="name"
                 type="text"
                 required
@@ -413,11 +528,11 @@ const process = [
               />
             </div>
             <div>
-              <label for="mn-email" class="mb-2 block text-[13px] font-medium text-ink">
+              <label for="consultation-email" class="mb-2 block text-[13px] font-medium text-ink">
                 Email
               </label>
               <input
-                id="mn-email"
+                id="consultation-email"
                 name="email"
                 type="email"
                 required
@@ -428,11 +543,11 @@ const process = [
               />
             </div>
             <div>
-              <label for="mn-phone" class="mb-2 block text-[13px] font-medium text-ink">
+              <label for="consultation-phone" class="mb-2 block text-[13px] font-medium text-ink">
                 Phone
               </label>
               <input
-                id="mn-phone"
+                id="consultation-phone"
                 name="phone"
                 type="tel"
                 required
@@ -443,13 +558,22 @@ const process = [
               />
             </div>
             <div>
-              <label for="mn-service" class="mb-2 block text-[13px] font-medium text-ink">
+              <label for="consultation-service" class="mb-2 block text-[13px] font-medium text-ink">
                 What would you like to explore?
               </label>
-              <select id="mn-service" name="service-interest" required class="landing-input">
-                <option value="Microneedling consultation">Microneedling consultation</option>
-                <option value="Procell Microchanneling consultation">Procell Microchanneling consultation</option>
-                <option value="Microneedling or Microchanneling guidance">Help me choose the right option</option>
+              <select id="consultation-service" name="service-interest" required class="landing-input">
+                <option value="Help me choose the right starting point">Help me choose the right starting point</option>
+                <option value="Regenerative skin renewal consultation">Regenerative Skin Renewal — PRF &amp; Procell</option>
+                <option value="Morpheus8 Face consultation">Morpheus8 — Face</option>
+                <option value="Morpheus8 Body consultation">Morpheus8 — Body</option>
+                <option value="Forma RF Facial consultation">Forma RF Facial</option>
+                <option value="Lumecca Peak IPL consultation">Lumecca Peak IPL</option>
+                <option value="Microneedling or microchanneling consultation">Microneedling / Microchanneling</option>
+                <option value="Glo2 oxygenation or advanced facial consultation">Glo2 Oxygenation / Advanced Facial</option>
+                <option value="Facials and chemical peels consultation">Facials &amp; Chemical Peels</option>
+                <option value="IV Hydration Therapy Lounge consultation">IV Hydration Therapy Lounge</option>
+                <option value="Weight management consultation">Weight-Management Consultation</option>
+                <option value="Maintenance skin plan consultation">Maintenance Skin Plan</option>
               </select>
             </div>
           </div>
@@ -488,7 +612,7 @@ const process = [
 
     <div class="fixed inset-x-0 bottom-0 z-40 border-t border-gold-metal/40 bg-breath p-3 md:hidden">
       <a href="#consultation" class="btn-gold w-full shadow-lg">
-        Request a Consultation
+        Begin Your Consultation
       </a>
     </div>
   </div>

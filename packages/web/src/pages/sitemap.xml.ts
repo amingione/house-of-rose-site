@@ -45,7 +45,7 @@ export const GET: APIRoute = async ({ site }) => {
   const staticPages = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/services/`, priority: '0.9', changefreq: 'weekly', lastmod: now },
-    { loc: `${baseUrl}/services/microneedling/consultation/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/consultation/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/services/professional-makeup/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/services/professional-makeup/jane-iredale/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/services/professional-makeup/events/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
