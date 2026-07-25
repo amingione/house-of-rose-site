@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { ALL_CONCERNS_QUERY, type Concern } from '@/lib/queries';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, itemList } from '@/lib/structuredData';
+
+const concerns = await sanityFetch<Concern[]>(ALL_CONCERNS_QUERY);
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'What We Treat', item: canonical },
+]);
+const concernsListSchema = concerns.length
+  ? itemList(
+      concerns.map((c) => ({ name: c.title, url: new URL(`/concerns/${c.slug}/`, site).toString() })),
+      'Skin & Aesthetic Concerns We Treat',
+    )
+  : null;
+---
+
+<BaseLayout
+  title="What We Treat — Skin & Aesthetic Concerns | House of Rose, Punta Gorda FL"
+  description="Acne scars, fine lines, dark spots, under-eyes, volume loss, texture, and more. See the concerns House of Rose treats in Punta Gorda and the treatments matched to each."
+>
+  <SchemaMarkup item={breadcrumb} slot="head" />
+  {concernsListSchema && <SchemaMarkup item={concernsListSchema} slot="head" />}
+
+  <section class="bg-charcoal pt-32 pb-12 px-6">
+    <div class="max-w-[1280px] mx-auto">
+      <span class="kicker">What We Treat</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Start with your concern</h1>
+      <p class="text-ink/80 text-[16px] max-w-[660px] leading-relaxed">
+        Every concern has more than one path. Find yours below and see the treatments at House of Rose matched to it — then we map the plan at your consultation.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-charcoal-light py-14 px-6">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
+      {concerns.map((c) => (
+        <a href={`/concerns/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
+          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{c.title}</h2>
+          {c.intro && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('intro')}>{c.intro}</p>}
+          <span class="learn-more group-hover:text-gold mt-4 inline-block">See treatments</span>
+        </a>
+      ))}
+      {concerns.length === 0 && (
+        <p class="bg-charcoal p-7 text-muted text-[14px]">Concern guides are coming soon.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
+    <div class="max-w-[680px] mx-auto text-center">
+      <span class="kicker">Not Sure Where To Start?</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Let your skin tell us.</h2>
+      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-8 leading-[1.8]">
+        An in-studio AI skin analysis reads your skin and maps it to the right treatments — the clearest first step before you book.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
+        <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
