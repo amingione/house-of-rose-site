@@ -18,6 +18,7 @@ export const leadSubmission = defineType({
       options: {
         list: [
           { title: 'Contact', value: 'contact' },
+          { title: 'General Consultation', value: 'consultation' },
           { title: 'AI Skin Analysis', value: 'skinAnalysis' },
           { title: 'Suite Rental Application', value: 'suiteRental' },
         ],
