@@ -10,6 +10,7 @@ import {
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
+const servicesBookingUrl = 'https://houseofrose.glossgenius.com/services';
 const heroImage = '/images/hor-lounge.webp';
 const socialImage = new URL(heroImage, site).toString();
 const pageDescription =
@@ -244,7 +245,14 @@ const process = [
             </p>
             <div class="mt-8 hidden max-w-[470px] flex-col gap-3 sm:flex sm:flex-row">
               <a href="#consultation" class="btn-gold w-full">Begin Your Consultation</a>
-              <a href="sms:+18449417673" class="btn-outline-gold w-full">Text the Studio</a>
+              <a
+                href={servicesBookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-outline-gold w-full"
+              >
+                View Services &amp; Book
+              </a>
             </div>
             <p class="mt-6 flex items-start gap-2 text-[12px] leading-relaxed text-muted sm:text-[13px]">
               <svg class="mt-0.5 h-4 w-4 shrink-0 text-gold" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -493,6 +501,17 @@ const process = [
               Call or text
               <a href="tel:+18449417673" class="border-b border-gold text-ink hover:text-gold">(844) 941-7673</a>.
             </span>
+          </p>
+          <p class="mt-5 text-[14px] leading-relaxed text-muted-strong">
+            Ready to choose a service?
+            <a
+              href={servicesBookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border-b border-gold text-ink hover:text-gold"
+            >
+              View services, availability, and book online
+            </a>.
           </p>
         </div>
 

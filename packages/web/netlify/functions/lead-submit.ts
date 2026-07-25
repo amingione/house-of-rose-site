@@ -4,7 +4,7 @@ import { sendLeadAcknowledgement, sendLeadNotification, type LeadEmail } from '.
 
 const THANK_YOU_PATH = '/thank-you/';
 
-type SubmissionType = 'contact' | 'suiteRental' | 'skinAnalysis';
+type SubmissionType = 'contact' | 'consultation' | 'suiteRental' | 'skinAnalysis';
 
 interface LeadSubmissionDocument {
   _type: 'leadSubmission';
@@ -72,6 +72,10 @@ const getSubmissionType = (formName: string): SubmissionType | null => {
 
   if (formName === 'skin-analysis') {
     return 'skinAnalysis';
+  }
+
+  if (formName === 'general-consultation') {
+    return 'consultation';
   }
 
   return null;
@@ -169,7 +173,7 @@ export default async (request: Request): Promise<Response> => {
     return renderResponse('A valid email is required.', 400);
   }
 
-  if (submissionType === 'contact' && !document.phone) {
+  if ((submissionType === 'contact' || submissionType === 'consultation') && !document.phone) {
     return renderResponse('Phone is required.', 400);
   }
 

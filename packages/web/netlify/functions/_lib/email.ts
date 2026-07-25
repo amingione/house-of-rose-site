@@ -53,7 +53,7 @@ export interface LeadEmail {
   name: string;
   email: string;
   phone?: string;
-  submissionType: 'contact' | 'suiteRental' | 'skinAnalysis';
+  submissionType: 'contact' | 'consultation' | 'suiteRental' | 'skinAnalysis';
   serviceInterest?: string;
   message?: string;
   page?: string;
@@ -258,17 +258,22 @@ export async function sendOrderShipped(order: EmailOrder): Promise<boolean> {
 }
 
 const leadLabel = (type: LeadEmail['submissionType']): string => {
+  if (type === 'consultation') return 'consultation request';
   if (type === 'skinAnalysis') return 'skin consultation request';
   if (type === 'suiteRental') return 'suite rental application';
   return 'message';
 };
 
+const leadHeading = (type: LeadEmail['submissionType']): string => {
+  if (type === 'consultation') return 'Your consultation request is in.';
+  if (type === 'skinAnalysis') return 'Your skin consultation request is in.';
+  return 'Thank you for reaching out.';
+};
+
 /** Best-effort acknowledgment after the lead has been saved successfully. */
 export async function sendLeadAcknowledgement(lead: LeadEmail): Promise<boolean> {
   const label = leadLabel(lead.submissionType);
-  const heading = lead.submissionType === 'skinAnalysis'
-    ? 'Your skin consultation request is in.'
-    : 'Thank you for reaching out.';
+  const heading = leadHeading(lead.submissionType);
   const responseWindow = lead.submissionType === 'suiteRental'
     ? 'Our team will review your application and follow up within two business days.'
     : 'Our team will review your request and follow up during business hours.';
