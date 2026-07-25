@@ -42,8 +42,8 @@ export default defineConfig({
   // path in the cloud preview. Keep this aligned with stackbit.config.ts.
   vite: {
     define: {
-      'import.meta.env.SANITY_API_READ_TOKEN': JSON.stringify(buildEnv.SANITY_API_READ_TOKEN ?? ''),
-      'import.meta.env.SANITY_USE_CDN': JSON.stringify(buildEnv.SANITY_USE_CDN ?? ''),
+      'import.meta.env.SANITY_API_READ_TOKEN': JSON.stringify(process.env.SANITY_API_READ_TOKEN || buildEnv.SANITY_API_READ_TOKEN || ''),
+      'import.meta.env.SANITY_USE_CDN': JSON.stringify(process.env.SANITY_USE_CDN || buildEnv.SANITY_USE_CDN || ''),
     },
     server: {
       hmr: { path: '/vite-hmr/' },
