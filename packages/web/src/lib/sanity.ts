@@ -29,7 +29,7 @@ if (import.meta.env.PUBLIC_SANITY_API_WRITE_TOKEN) {
  * (Netlify env var or `SANITY_USE_CDN=false npm run build`) instead of reverting
  * this default.
  */
-const useCdn = (import.meta.env.SANITY_USE_CDN ?? process.env.SANITY_USE_CDN) !== 'false';
+const useCdn = (import.meta.env.SANITY_USE_CDN || process.env.SANITY_USE_CDN) !== 'false';
 
 export const sanityClient = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
@@ -39,7 +39,7 @@ export const sanityClient = createClient({
   // Authenticated build reads: the public (token-less) read path did not return
   // some freshly published docs (e.g. comparison pages with custom IDs). Using the
   // server-only read token guarantees the build sees all published content.
-  token: import.meta.env.SANITY_API_READ_TOKEN ?? process.env.SANITY_API_READ_TOKEN,
+  token: import.meta.env.SANITY_API_READ_TOKEN || process.env.SANITY_API_READ_TOKEN || undefined,
   perspective: 'published',
 });
 
