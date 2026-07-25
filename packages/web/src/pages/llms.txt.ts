@@ -52,6 +52,8 @@ export const GET: APIRoute = async ({ site }) => {
     `- [FAQ](${base}/faq/): Answers about treatments, pricing, and what to expect`,
     `- [Support](${base}/support/): Help with appointments, booking, directions, and contacting the studio`,
     `- [Terms of Service](${base}/terms-of-service/): Terms for website use, appointments, communications, and online product orders`,
+    `- [Shipping Policy](${base}/shipping-policy/): Contiguous U.S. shipping timing and carrier-rate details`,
+    `- [Return Policy](${base}/return-policy/): Eligibility, reporting windows, return shipping, and refund timing`,
     `- [Areas We Serve](${base}/areas/): Punta Gorda, Port Charlotte & Southwest Florida`,
     `- [Results](${base}/results/): Before & after outcomes, shared with client consent`,
     `- [Sitemap](${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,

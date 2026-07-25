@@ -1,4 +1,5 @@
 import { createClient } from '@sanity/client';
+import { toCanonicalProduct } from '../../../src/lib/productContract';
 
 /**
  * Server-side cart resolution.
@@ -16,6 +17,7 @@ export interface RequestedItem {
 
 export interface ResolvedItem {
   productId: string;
+  sku: string;
   title: string;
   slug: string;
   quantity: number;
@@ -23,6 +25,7 @@ export interface ResolvedItem {
   lineTotal: number; // cents
   weightLb: number;
   shippable: boolean;
+  taxCode?: string;
 }
 
 export interface ResolvedCart {
@@ -53,8 +56,12 @@ interface SanityProductRow {
   slug: string;
   price: number | null;
   inStock: boolean | null;
+  inventoryQuantity: number | null;
+  availability: 'in_stock' | 'out_of_stock' | 'preorder' | 'backorder' | null;
   shippable: boolean | null;
   weightLb: number | null;
+  sku: string | null;
+  stripeTaxCode: string | null;
 }
 
 export class CartError extends Error {
@@ -89,7 +96,8 @@ export async function resolveCart(requested: RequestedItem[]): Promise<ResolvedC
 
   const rows = await sanity.fetch<SanityProductRow[]>(
     /* groq */ `*[_type == "product" && _id in $ids]{
-      _id, title, "slug": slug.current, price, inStock, shippable, weightLb
+      _id, title, "slug": slug.current, price, inStock, inventoryQuantity,
+      availability, shippable, weightLb, sku, stripeTaxCode
     }`,
     { ids },
   );
@@ -101,7 +109,11 @@ export async function resolveCart(requested: RequestedItem[]): Promise<ResolvedC
     if (!product) {
       throw new CartError('One of the items in your cart is no longer available.');
     }
-    if (product.inStock === false) {
+    if (
+      product.inStock === false ||
+      product.availability === 'out_of_stock' ||
+      (typeof product.inventoryQuantity === 'number' && product.inventoryQuantity < req.quantity)
+    ) {
       throw new CartError(`${product.title} is out of stock.`);
     }
     if (typeof product.price !== 'number' || product.price <= 0) {
@@ -109,17 +121,19 @@ export async function resolveCart(requested: RequestedItem[]): Promise<ResolvedC
       throw new CartError(`${product.title} isn't available for online purchase.`);
     }
 
-    const shippable = product.shippable !== false;
+    const canonical = toCanonicalProduct(product);
 
     return {
       productId: product._id,
+      sku: canonical.itemId,
       title: product.title,
       slug: product.slug,
       quantity: req.quantity,
       unitPrice: product.price,
       lineTotal: product.price * req.quantity,
-      weightLb: shippable ? (product.weightLb ?? DEFAULT_WEIGHT_LB) : 0,
-      shippable,
+      weightLb: canonical.shippable ? (canonical.shippingWeightLb ?? DEFAULT_WEIGHT_LB) : 0,
+      shippable: canonical.shippable,
+      taxCode: product.stripeTaxCode ?? undefined,
     };
   });
 

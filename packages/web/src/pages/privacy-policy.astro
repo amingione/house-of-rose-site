@@ -57,7 +57,7 @@ const FALLBACK_SECTIONS: PrivacySection[] = [
 	{
 		_key: "s3",
 		heading: "Data Sharing",
-		body: "• Customer data is not shared with 3rd parties for promotional or marketing purposes.\n• Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.",
+		body: "We use service providers to operate the website, fulfill orders, process payments and shipping, communicate with customers, measure website activity, and—when advertising consent is granted—measure retail advertising results. These providers may process only the information needed for those purposes under their own terms and our instructions. Mobile opt-in and consent records are not sold or shared with third parties for their own promotional purposes. We do not send health-service lead names, email addresses, phone numbers, treatment interests, or message content to Google for advertising audiences or Customer Match.",
 	},
 	{
 		_key: "s4",
@@ -71,8 +71,37 @@ const FALLBACK_SECTIONS: PrivacySection[] = [
 	},
 ];
 
-const sections =
+const REQUIRED_MEASUREMENT_SECTIONS: PrivacySection[] = [
+	{
+		_key: "measurement",
+		heading: "Website Measurement and Advertising",
+		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 to understand consented website activity, and Google Ads to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Meta Pixel and Ahrefs Analytics do not load until the applicable analytics or advertising permission is granted.",
+	},
+	{
+		_key: "attribution",
+		heading: "Click Identifiers, Retail Conversions, and Retention",
+		body: "We may capture Google click identifiers (gclid, gbraid, and wbraid), campaign parameters, landing page, referrer, and the consent setting in effect when you first arrive. Required attribution fields may be retained with a lead or order to prevent duplicate reporting and measure campaign results. For a completed retail purchase, we may send the order number, value, tax, shipping, currency, and SKU-based items to Google. If advertising and user-data consent are both granted, retail enhanced conversion processing may use normalized contact information in a dedicated one-time tag; that information is not placed in our ordinary website data layer. We retain consent choices for up to 180 days, and operational records for the period needed to fulfill transactions, meet legal obligations, resolve disputes, and protect the business.",
+	},
+	{
+		_key: "choices",
+		heading: "Your Privacy Choices",
+		body: "You may accept all optional measurement, reject nonessential processing, or choose analytics and advertising separately. Use the permanent “Privacy choices” link in the footer to review or withdraw consent. Withdrawing consent applies to future collection and does not undo processing that already occurred. If your browser sends a Global Privacy Control signal, advertising storage, advertising user data, and advertising personalization are forced off. Information required to process a request, booking, payment, shipment, fraud check, or legal obligation remains operational and is not treated as advertising consent.",
+	},
+];
+
+const sourceSections =
 	data.sections && data.sections.length ? data.sections : FALLBACK_SECTIONS;
+const reservedHeadings = new Set([
+	"data sharing",
+	"website measurement and advertising",
+	"click identifiers, retail conversions, and retention",
+	"your privacy choices",
+]);
+const sections = [
+	...sourceSections.filter((section) => !reservedHeadings.has(section.heading.trim().toLowerCase())),
+	FALLBACK_SECTIONS[2],
+	...REQUIRED_MEASUREMENT_SECTIONS,
+].filter((section): section is PrivacySection => Boolean(section));
 
 const pageTitle = data.pageTitle ?? "Privacy Policy";
 const intro =

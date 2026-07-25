@@ -1,0 +1,8 @@
+---
+const policyVersion = '2026-07-24';
+---
+
+<script
+  is:inline
+  set:html={`window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',security_storage:'granted',wait_for_update:500});window.dataLayer.push({event:'consent_default',consent_policy_version:'${policyVersion}'});`}
+></script>

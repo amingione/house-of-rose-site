@@ -16,6 +16,8 @@ import { atom, computed } from 'nanostores';
 export interface CartItem {
   /** Sanity `_id`. The only field the server trusts. */
   productId: string;
+  /** Display/measurement snapshot. The server re-reads the canonical value. */
+  sku: string;
   quantity: number;
   /** Display-only snapshot below — never used to compute an amount. */
   title: string;

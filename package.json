@@ -30,6 +30,11 @@
     "ve:new": "node scripts/visual-editing/scaffold.mjs",
     "prepare": "node scripts/visual-editing/apply-patches.mjs && node scripts/visual-editing/extract-sanity-schema.mjs --soft && node scripts/visual-editing/install-git-hook.mjs",
     "order": "node scripts/checkout/order-cli.mjs",
+    "google:catalog:migrate": "node scripts/run-with-env.mjs node packages/studio/scripts/migrate-google-catalog.mjs",
+    "google:catalog:ledger": "node scripts/run-with-env.mjs node packages/studio/scripts/migrate-google-catalog.mjs --write-ledger",
+    "google:gbp:export": "node scripts/run-with-env.mjs node scripts/google/export-gbp-services.mjs",
+    "google:offline:csv": "node scripts/run-with-env.mjs node scripts/google/export-offline-conversions.mjs",
+    "google:test": "node --import tsx --test scripts/google/*.test.ts",
     "dev:functions": "node scripts/run-with-env.mjs netlify dev --filter @house-of-rose/web"
   },
   "engines": {
@@ -42,7 +47,8 @@
     "esbuild": "^0.28.1",
     "patch-package": "^8.0.1",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "tsx": "^4.21.0"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3"

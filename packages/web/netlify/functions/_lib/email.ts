@@ -36,6 +36,7 @@ export interface EmailOrder {
   items: EmailOrderItem[];
   subtotal: number;
   shippingCost: number;
+  tax?: number;
   total: number;
   shippingMethod?: string;
   shippingAddress?: {
@@ -125,6 +126,7 @@ function itemsTable(order: EmailOrder): string {
     ${rows}
     ${line('Subtotal', money(order.subtotal))}
     ${line(order.shippingMethod ? `Shipping — ${order.shippingMethod}` : 'Shipping', order.shippingCost > 0 ? money(order.shippingCost) : 'Free')}
+    ${line('Tax', money(order.tax ?? 0))}
     ${line('Total', money(order.total), true)}
   </table>`;
 }
@@ -201,6 +203,7 @@ export async function sendOrderConfirmation(order: EmailOrder): Promise<boolean>
     ``,
     `Subtotal: ${money(order.subtotal)}`,
     `Shipping: ${order.shippingCost > 0 ? money(order.shippingCost) : 'Free'}`,
+    `Tax: ${money(order.tax ?? 0)}`,
     `Total: ${money(order.total)}`,
     ``,
     `We'll email you again with tracking as soon as your order ships.`,

@@ -25,7 +25,7 @@ export const shopBrand = defineType({
       description: 'Must match the "Brand" value used on Product documents.',
       options: {
         list: [
-          { title: 'Procell Therapies', value: 'Procell' },
+          { title: 'Procell Therapies', value: 'procell' },
           { title: 'GlyMed+', value: 'glymed' },
           { title: 'Skin Script', value: 'skin-script' },
           { title: 'Face Reality', value: 'face-reality' },
@@ -33,6 +33,37 @@ export const shopBrand = defineType({
         ],
       },
       validation: (R) => R.required(),
+    }),
+    defineField({
+      name: 'manufacturerName',
+      title: 'Manufacturer / Merchant Brand Name',
+      type: 'string',
+      description: 'Exact brand value submitted to Google Merchant Center.',
+      validation: (R) => R.required(),
+    }),
+    defineField({
+      name: 'manufacturerWebsite',
+      title: 'Manufacturer Website',
+      type: 'url',
+    }),
+    defineField({
+      name: 'resaleAuthorizationStatus',
+      title: 'Google Resale Authorization',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Verified', value: 'verified' },
+          { title: 'Needs Review', value: 'needs-review' },
+          { title: 'Not Authorized', value: 'not-authorized' },
+        ],
+      },
+      initialValue: 'needs-review',
+    }),
+    defineField({
+      name: 'resaleAuthorizationEvidence',
+      title: 'Authorization Evidence',
+      type: 'string',
+      description: 'Internal evidence location or reference. Do not paste credentials.',
     }),
     defineField({
       name: 'tagline',

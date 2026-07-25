@@ -4,6 +4,7 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { getProductPurchaseCta, getProductLearnMoreCta } from '@/lib/shopCta';
 import type { Product } from '@/lib/queries';
 import { DEFAULT_PRODUCT_IMAGE } from '@/lib/imageFallbacks';
+import { toCanonicalProduct } from '@/lib/productContract';
 
 interface Props {
   product: Product;
@@ -11,13 +12,14 @@ interface Props {
 }
 
 const { product, reveal = 'bottom' } = Astro.props;
+const canonicalProduct = toCanonicalProduct(product);
 
 const formatPrice = (cents?: number): string =>
   typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '';
 
 // Priced + in stock → quick-add straight to the cart. `purchaseUrl` is the escape
 // hatch for anything we don't sell ourselves. See docs/CHECKOUT.md.
-const canBuy = typeof product.price === 'number' && product.price > 0 && product.inStock !== false;
+const canBuy = canonicalProduct.purchasable;
 const hasCheckout = Boolean(product.purchaseUrl);
 const ctaLabel = hasCheckout ? getProductPurchaseCta(product) : getProductLearnMoreCta(product);
 const cartImage = product.image
@@ -65,6 +67,13 @@ const imageSrc = product.image
     <a
       href={`/shop/${product.slug}/`}
       class="learn-more"
+      data-select-item
+      data-product-id={product._id}
+      data-sku={canonicalProduct.itemId}
+      data-title={product.title}
+      data-brand={canonicalProduct.brand ?? ''}
+      data-category={canonicalProduct.category ?? ''}
+      data-price={String(canonicalProduct.unitPriceCents ?? 0)}
     >
       Details →
     </a>
@@ -75,9 +84,10 @@ const imageSrc = product.image
         class="btn-outline-gold !px-4 !py-2 !min-h-[40px] shrink-0"
         data-add-to-cart
         data-product-id={product._id}
+        data-sku={canonicalProduct.itemId}
         data-title={product.title}
         data-slug={product.slug}
-        data-price={String(product.price)}
+        data-price={String(canonicalProduct.unitPriceCents)}
         data-image={cartImage}
         data-size={product.size ?? ''}
         aria-label={`Add ${product.title} to cart`}

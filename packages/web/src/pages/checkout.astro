@@ -93,6 +93,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
               <dt class="text-muted">Shipping</dt>
               <dd id="summary-shipping" class="text-ink tabular-nums">—</dd>
             </div>
+            <div class="flex justify-between">
+              <dt class="text-muted">Tax</dt>
+              <dd id="summary-tax" class="text-ink tabular-nums">—</dd>
+            </div>
             <div class="flex justify-between pt-2 border-t border-gold-metal/30">
               <dt class="text-ink font-medium">Total</dt>
               <dd id="summary-total" class="text-ink font-serif text-[20px] tabular-nums">$0.00</dd>
@@ -107,6 +111,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 <script>
   import { loadStripe, type Stripe, type StripeElements } from '@stripe/stripe-js';
   import { cartItems, cartSubtotal, toLineItems, formatPrice } from '@/stores/cart';
+  import { captureAttribution, dispatchMeasurement } from '@/lib/measurement';
 
   interface ShippingRate {
     id: string;
@@ -128,6 +133,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       grid.classList.add('hidden');
       emptyState.classList.remove('hidden');
       return;
+    }
+    if (form.dataset.checkoutMeasured !== 'true') {
+      form.dataset.checkoutMeasured = 'true';
+      dispatchMeasurement({
+        event: 'begin_checkout',
+        ecommerce: {
+          currency: 'USD',
+          value: cartSubtotal.get() / 100,
+          items: items.map((item) => ({
+            item_id: item.sku ?? item.productId,
+            item_name: item.title,
+            price: item.unitPrice / 100,
+            quantity: item.quantity,
+          })),
+        },
+      });
     }
 
     // ── Summary ──
@@ -200,6 +221,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     let recipientName = '';
     let phone = '';
     let quoteToken = 0;
+    let quotedTotal = 0;
+    let quotedTax = 0;
+    let measuredShippingRateId = '';
 
     addressElement.on('change', (event) => {
       if (!event.complete) return;
@@ -220,7 +244,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       loading.classList.remove('hidden');
       list.innerHTML = '';
       selectedRate = null;
-      updateTotals();
+      void updateTotals().catch(() => {
+        setText('summary-tax', '—');
+      });
 
       try {
         const res = await fetch('/.netlify/functions/shipping-rates', {
@@ -239,7 +265,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         if (data.requiresShipping === false) {
           section.classList.add('hidden');
           selectedRate = null;
-          updateTotals();
+          void updateTotals().catch((error) => {
+            showError(error instanceof Error ? error.message : 'Tax could not be calculated.');
+          });
           return;
         }
 
@@ -262,10 +290,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         list.querySelectorAll<HTMLInputElement>('input[name="rate"]').forEach((input) => {
           input.addEventListener('change', () => {
             selectedRate = rates.find((r) => r.id === input.value) ?? null;
-            updateTotals();
+            void updateTotals().catch((error) => {
+              showError(error instanceof Error ? error.message : 'Tax could not be calculated.');
+            });
           });
         });
-        updateTotals();
+        await updateTotals();
       } catch (error) {
         if (token !== quoteToken) return;
         list.innerHTML = `<p class="text-[13px] text-[#9B2C2C]">${
@@ -276,25 +306,52 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       }
     }
 
-    function updateTotals(): void {
+    async function updateTotals(): Promise<void> {
       const shipping = selectedRate?.amount ?? 0;
-      const total = subtotal + shipping;
       setText('summary-shipping', selectedRate ? formatPrice(shipping) : '—');
-      setText('summary-total', formatPrice(total));
-      setText('submit-label', `Pay ${formatPrice(total)}`);
-
-      // Keep the Payment Element's displayed amount in step with the summary.
-      elements.update({ amount: total });
-
+      setText('summary-tax', 'Calculating…');
       const submit = document.getElementById('submit-btn') as HTMLButtonElement | null;
-      if (submit) submit.disabled = false;
-    }
+      if (submit) submit.disabled = true;
 
-    // Nothing to ship (in-studio items only) → payable immediately.
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      setText('submit-label', `Pay ${formatPrice(subtotal)}`);
+      if (!address) return;
+      const response = await fetch('/.netlify/functions/checkout-totals', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: toLineItems(),
+          shippingRateId: selectedRate?.id,
+          address,
+        }),
+      });
+      const totals = (await response.json()) as { tax?: number; total?: number; error?: string };
+      if (!response.ok || typeof totals.total !== 'number' || typeof totals.tax !== 'number') {
+        throw new Error(totals.error ?? 'Tax could not be calculated.');
+      }
+      quotedTotal = totals.total;
+      quotedTax = totals.tax;
+      setText('summary-tax', formatPrice(quotedTax));
+      setText('summary-total', formatPrice(quotedTotal));
+      setText('submit-label', `Pay ${formatPrice(quotedTotal)}`);
+      elements.update({ amount: quotedTotal });
+
+      if (submit) submit.disabled = false;
+      if (selectedRate && measuredShippingRateId !== selectedRate.id) {
+        measuredShippingRateId = selectedRate.id;
+        dispatchMeasurement({
+          event: 'add_shipping_info',
+          ecommerce: {
+            currency: 'USD',
+            value: quotedTotal / 100,
+            shipping_tier: selectedRate.label,
+            items: items.map((item) => ({
+              item_id: item.sku ?? item.productId,
+              item_name: item.title,
+              price: item.unitPrice / 100,
+              quantity: item.quantity,
+            })),
+          },
+        });
+      }
     }
 
     // ── Submit ──
@@ -307,8 +364,23 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         // Validate the Elements inputs before we create anything server-side.
         const { error: submitError } = await elements.submit();
         if (submitError) throw new Error(submitError.message ?? 'Please check your details.');
+        dispatchMeasurement({
+          event: 'add_payment_info',
+          ecommerce: {
+            currency: 'USD',
+            value: quotedTotal / 100,
+            payment_type: 'Stripe Payment Element',
+            items: items.map((item) => ({
+              item_id: item.sku ?? item.productId,
+              item_name: item.title,
+              price: item.unitPrice / 100,
+              quantity: item.quantity,
+            })),
+          },
+        });
 
         const email = (document.getElementById('email') as HTMLInputElement).value;
+        const attribution = captureAttribution();
 
         // Server recomputes the amount from Sanity + Shippo. Whatever we send here is
         // only a hint; it cannot inflate or discount the charge.
@@ -322,6 +394,24 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
             name: recipientName,
             phone,
             address,
+            attribution: {
+              gclid: attribution.gclid,
+              gbraid: attribution.gbraid,
+              wbraid: attribution.wbraid,
+              utmSource: attribution.utm_source,
+              utmMedium: attribution.utm_medium,
+              utmCampaign: attribution.utm_campaign,
+              landingPage: attribution.landingPage,
+            },
+            consentSnapshot: {
+              schemaVersion: attribution.consentSnapshot.schemaVersion,
+              policyVersion: attribution.consentSnapshot.policyVersion,
+              analytics_storage: attribution.consentSnapshot.analytics_storage,
+              ad_storage: attribution.consentSnapshot.ad_storage,
+              ad_user_data: attribution.consentSnapshot.ad_user_data,
+              ad_personalization: attribution.consentSnapshot.ad_personalization,
+              recordedAt: attribution.consentSnapshot.recordedAt,
+            },
           }),
         });
         const data = (await res.json()) as {

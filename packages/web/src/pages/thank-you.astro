@@ -75,28 +75,44 @@ const data =
 
     </div>
   </section>
-</BaseLayout>
 
-<script>
-  interface AnalyticsWindow extends Window {
-    gtag?: (command: 'event', eventName: string, params?: Record<string, string>) => void;
-    fbq?: (command: 'track', eventName: string, params?: Record<string, unknown>) => void;
-  }
+  <script>
+    import { dispatchMeasurement, getConsent } from '@/lib/measurement';
 
-  const params = new URLSearchParams(window.location.search);
-  const leadType = params.get('lead');
-  const allowedLeadTypes = new Set(['contact', 'suiteRental', 'skinAnalysis']);
+    const params = new URLSearchParams(window.location.search);
+    const receipt = params.get('receipt');
 
-  if (leadType && allowedLeadTypes.has(leadType)) {
-    const eventKey = `hor_generate_lead_${leadType}`;
-    if (!sessionStorage.getItem(eventKey)) {
-      const analyticsWindow = window as AnalyticsWindow;
-      analyticsWindow.gtag?.('event', 'generate_lead', {
-        lead_type: leadType,
-        page_location: '/thank-you/',
+    if (receipt) {
+      // Remove the receipt before another same-origin request or navigation can
+      // include it in a referrer. Verification keeps using the captured value.
+      history.replaceState({}, '', '/thank-you/');
+      void fetch('/.netlify/functions/verify-lead-conversion', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ receipt }),
+      }).then(async (response) => {
+        if (!response.ok) return;
+        const result = (await response.json()) as { event?: string; eventId?: string };
+        if (result.event === 'generate_lead' && result.eventId) {
+          dispatchMeasurement({ event: 'generate_lead', event_id: result.eventId });
+          const consent = getConsent();
+          if (
+            consent.ad_storage === 'granted' &&
+            consent.ad_personalization === 'granted' &&
+            typeof window.fbq === 'function'
+          ) {
+            window.fbq('track', 'Lead');
+          }
+        }
+      }).catch(() => {
+        // The thank-you experience remains successful even if measurement is unavailable.
       });
-      analyticsWindow.fbq?.('track', 'Lead');
-      sessionStorage.setItem(eventKey, '1');
     }
-  }
-</script>
+
+    declare global {
+      interface Window {
+        fbq?: (...args: unknown[]) => void;
+      }
+    }
+  </script>
+</BaseLayout>

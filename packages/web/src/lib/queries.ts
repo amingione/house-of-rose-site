@@ -76,6 +76,8 @@ export interface TermsOfService {
   pageTitle?: string;
   effectiveDate?: string;
   intro?: string;
+  shippingPolicy?: string;
+  returnPolicy?: string;
   sections?: TermsSection[];
 }
 
@@ -87,6 +89,8 @@ export const TERMS_OF_SERVICE_QUERY = /* groq */ `
     pageTitle,
     effectiveDate,
     intro,
+    shippingPolicy,
+    returnPolicy,
     sections[]{ _key, heading, body }
   }
 `;
@@ -196,7 +200,7 @@ export interface ServiceCollection {
   services: Service[];
 }
 
-export type ProductBrand = 'Procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
+export type ProductBrand = 'procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
 
 export type ProductCategory = 'skincare' | 'candles' | 'gift-cards' | 'accessories' | 'other';
 
@@ -206,9 +210,36 @@ export interface Product {
   slug: string;
   tagline?: string;
   brand?: ProductBrand;
+  brandName?: string;
+  sku?: string;
+  gtin?: string;
+  mpn?: string;
+  identifierExists?: boolean;
   size?: string;
   category?: ProductCategory;
   inStock?: boolean;
+  inventoryQuantity?: number;
+  availability?: 'in_stock' | 'out_of_stock' | 'preorder' | 'backorder';
+  availabilityDate?: string;
+  condition?: 'new' | 'refurbished' | 'used';
+  shippable?: boolean;
+  weightLb?: number;
+  variantGroupId?: string;
+  variantAttributes?: {
+    color?: string;
+    size?: string;
+    scent?: string;
+    material?: string;
+  };
+  merchantStatus?: 'eligible' | 'reviewRequired' | 'excluded';
+  policyClass?: string;
+  merchantDestinations?: string[];
+  productTypePath?: string;
+  googleProductCategoryId?: string;
+  campaignTier?: string;
+  retailCategory?: string;
+  priceBand?: string;
+  replenishmentClass?: string;
   description?: string;
   price?: number;
   purchaseUrl?: string;
@@ -216,6 +247,7 @@ export interface Product {
   badge?: string;
   isFeatured?: boolean;
   image?: SanityImage;
+  additionalImages?: SanityImage[];
   relatedProducts?: Product[];
 }
 
@@ -507,17 +539,23 @@ export const ALL_PRODUCTS_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     tagline,
-    brand,
+    "brand": coalesce(brandRef->brandKey, brand),
+    "brandName": coalesce(brandRef->manufacturerName, brandRef->title),
+    sku, gtin, mpn, identifierExists,
     size,
     category,
-    inStock,
+    inStock, inventoryQuantity, availability, availabilityDate, condition,
+    shippable, weightLb, variantGroupId, variantAttributes,
+    merchantStatus, policyClass, merchantDestinations, productTypePath,
+    googleProductCategoryId, campaignTier, retailCategory, priceBand, replenishmentClass,
     description,
     price,
     purchaseUrl,
     ctaLabel,
     badge,
     isFeatured,
-    ${IMAGE_FIELDS}
+    ${IMAGE_FIELDS},
+    "additionalImages": additionalImages[]{ asset->{ url, metadata { dimensions } }, alt }
   }
 `;
 
@@ -527,10 +565,15 @@ export const PRODUCT_BY_SLUG_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     tagline,
-    brand,
+    "brand": coalesce(brandRef->brandKey, brand),
+    "brandName": coalesce(brandRef->manufacturerName, brandRef->title),
+    sku, gtin, mpn, identifierExists,
     size,
     category,
-    inStock,
+    inStock, inventoryQuantity, availability, availabilityDate, condition,
+    shippable, weightLb, variantGroupId, variantAttributes,
+    merchantStatus, policyClass, merchantDestinations, productTypePath,
+    googleProductCategoryId, campaignTier, retailCategory, priceBand, replenishmentClass,
     description,
     price,
     purchaseUrl,
@@ -538,15 +581,36 @@ export const PRODUCT_BY_SLUG_QUERY = /* groq */ `
     badge,
     isFeatured,
     ${IMAGE_FIELDS},
-    "relatedProducts": *[_type == "product" && brand == ^.brand && slug.current != ^.slug.current] | order(title asc) [0...4] {
+    "additionalImages": additionalImages[]{ asset->{ url, metadata { dimensions } }, alt },
+    "relatedProducts": *[_type == "product" && coalesce(brandRef._ref, brand) == coalesce(^.brandRef._ref, ^.brand) && slug.current != ^.slug.current] | order(title asc) [0...4] {
       _id,
       title,
       "slug": slug.current,
       tagline,
+      "brand": coalesce(brandRef->brandKey, brand),
+      "brandName": coalesce(brandRef->manufacturerName, brandRef->title),
+      sku,
+      inventoryQuantity,
+      availability,
       price,
       badge,
       ${IMAGE_FIELDS}
     }
+  }
+`;
+
+export const MERCHANT_PRODUCTS_QUERY = /* groq */ `
+  *[_type == "product" && merchantStatus == "eligible"] | order(sku asc) {
+    _id, title, "slug": slug.current, description, tagline, price,
+    "brand": coalesce(brandRef->brandKey, brand),
+    "brandName": coalesce(brandRef->manufacturerName, brandRef->title),
+    sku, gtin, mpn, identifierExists, condition,
+    inventoryQuantity, availability, availabilityDate, shippable, weightLb,
+    variantGroupId, variantAttributes,
+    merchantStatus, policyClass, merchantDestinations, productTypePath,
+    googleProductCategoryId, campaignTier, retailCategory, priceBand, replenishmentClass,
+    ${IMAGE_FIELDS},
+    "additionalImages": additionalImages[]{ asset->{ url, metadata { dimensions } }, alt }
   }
 `;
 

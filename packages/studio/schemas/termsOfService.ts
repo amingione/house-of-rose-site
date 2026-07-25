@@ -23,6 +23,22 @@ export const termsOfService = defineType({
     }),
     defineField({ name: 'intro', title: 'Introduction', type: 'text', rows: 4, group: 'content' }),
     defineField({
+      name: 'shippingPolicy',
+      title: 'Shipping Policy',
+      type: 'text',
+      rows: 8,
+      group: 'content',
+      description: 'Canonical policy projected at /shipping-policy/.',
+    }),
+    defineField({
+      name: 'returnPolicy',
+      title: 'Return Policy',
+      type: 'text',
+      rows: 8,
+      group: 'content',
+      description: 'Canonical policy projected at /return-policy/.',
+    }),
+    defineField({
       name: 'sections',
       title: 'Sections',
       type: 'array',

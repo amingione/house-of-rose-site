@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { TERMS_OF_SERVICE_QUERY, type TermsOfService } from '@/lib/queries';
+import { breadcrumbList, webPage } from '@/lib/structuredData';
+import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+
+const data = (await sanityFetch<TermsOfService | null>(TERMS_OF_SERVICE_QUERY)) ?? {};
+const policy = data.returnPolicy ??
+  'Unopened and unused physical products may be returned within 30 days after delivery. The buyer is responsible for return shipping unless House of Rose sent the wrong item or the product arrived damaged. Contact us within seven days after delivery to report a damaged or incorrect item and include the order number and clear photographs when available. Products must be returned in their original condition and packaging. Original shipping charges are not refundable unless required by law or the return is caused by our error. Approved refunds are issued to the original payment method after the return is inspected and normally appear within 5–10 business days. Services, appointments, opened personal-care products, gift cards, and final-sale items are not returnable unless applicable law requires otherwise.';
+const annotations = data._id ? sbObjectId(data._id) : {};
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL('/return-policy/', site).toString();
+const description = 'Return eligibility, timing, damaged-item reporting, and refund timing for House of Rose retail orders.';
+---
+
+<BaseLayout title="Return Policy | House of Rose Aesthetics" description={description}>
+  <SchemaMarkup item={webPage({ name: 'Return Policy', description, url: canonical }, site)} slot="head" />
+  <SchemaMarkup item={breadcrumbList([{ name: 'Home', item: site }, { name: 'Return Policy', item: canonical }])} slot="head" />
+  <section class="bg-charcoal px-6 py-24" {...annotations}>
+    <article class="mx-auto max-w-3xl pt-12">
+      <p class="mb-4 text-xs uppercase tracking-[0.3em] text-gold">House of Rose LLC</p>
+      <h1 class="font-serif text-[clamp(38px,7vw,58px)] text-ink">Return Policy</h1>
+      <p class="mt-10 whitespace-pre-line text-[16px] leading-[1.9] text-muted" {...sbFieldPath('returnPolicy')}>{policy}</p>
+      <p class="mt-8 text-[14px] leading-relaxed text-muted">
+        Start a return or report an order issue through <a class="text-gold underline" href="/contact/">Contact</a> or call
+        <a class="text-gold underline" href="tel:+18449417673"> (844) 941-7673</a>.
+      </p>
+    </article>
+  </section>
+</BaseLayout>

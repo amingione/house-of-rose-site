@@ -65,6 +65,8 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/rent-a-room/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/privacy-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
     { loc: `${baseUrl}/terms-of-service/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
+    { loc: `${baseUrl}/shipping-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
+    { loc: `${baseUrl}/return-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
   ];
 
   // Service pages — include hub, standalone, and treatment pages.

@@ -11,6 +11,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@sanity/webhook": "^4.0.4",
     "@astrojs/tailwind": "^6.0.2",
     "@mapbox/search-js-web": "^1.5.1",
     "@polgubau/astro-reveal": "^1.0.2",

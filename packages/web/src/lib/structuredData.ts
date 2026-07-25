@@ -154,6 +154,17 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
     hasMap: BUSINESS_URLS.map,
     currenciesAccepted: 'USD',
     paymentAccepted: 'Cash, Credit Card',
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'US',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 30,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnShippingFees',
+      customerRemorseReturnFees: 'https://schema.org/ReturnShippingFees',
+      returnPolicyCountry: 'US',
+      merchantReturnLink: new URL('/return-policy/', baseUrl).toString(),
+    },
     potentialAction: {
       '@type': 'ReserveAction',
       target: {
@@ -445,10 +456,16 @@ export interface ProductInput {
   /** Absolute URL of the product page. */
   url: string;
   image?: string;
+  additionalImages?: string[];
   brand?: string;
+  sku?: string;
+  gtin?: string;
+  mpn?: string;
+  identifierExists?: boolean;
+  condition?: 'new' | 'refurbished' | 'used';
   /** Price in USD dollars, if known. */
   price?: number | null;
-  inStock?: boolean;
+  availability?: 'in_stock' | 'out_of_stock' | 'preorder' | 'backorder';
   /** External purchase URL (escape hatch); defaults to the product page URL. */
   offerUrl?: string;
 }
@@ -467,14 +484,48 @@ export function product(input: ProductInput): JsonLd {
     name: input.name,
     ...(input.description && { description: input.description }),
     url: input.url,
-    ...(input.image && { image: input.image }),
+    ...((input.image || input.additionalImages?.length) && {
+      image: [input.image, ...(input.additionalImages ?? [])].filter(Boolean),
+    }),
     ...(input.brand && { brand: { '@type': 'Brand', name: input.brand } }),
+    ...(input.sku && { sku: input.sku }),
+    ...(input.gtin && { gtin: input.gtin }),
+    ...(input.mpn && { mpn: input.mpn }),
+    ...(input.identifierExists === false && { identifierExists: false }),
     ...(hasOffer && {
       offers: {
         '@type': 'Offer',
         url: input.offerUrl ?? input.url,
-        availability:
-          input.inStock === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+        availability: {
+          in_stock: 'https://schema.org/InStock',
+          out_of_stock: 'https://schema.org/OutOfStock',
+          preorder: 'https://schema.org/PreOrder',
+          backorder: 'https://schema.org/BackOrder',
+        }[input.availability ?? 'in_stock'],
+        itemCondition: `https://schema.org/${
+          input.condition === 'used'
+            ? 'UsedCondition'
+            : input.condition === 'refurbished'
+              ? 'RefurbishedCondition'
+              : 'NewCondition'
+        }`,
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            addressCountry: 'US',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 0,
+              maxValue: 2,
+              unitCode: 'DAY',
+            },
+          },
+          shippingSettingsLink: new URL('/shipping-policy/', input.url).toString(),
+        },
         ...(input.price != null && { priceCurrency: 'USD', price: input.price.toFixed(2) }),
       },
     }),

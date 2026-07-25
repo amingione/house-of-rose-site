@@ -12,6 +12,7 @@ import {
   type Product,
 } from '@/lib/queries';
 import { product as productJsonLd } from '@/lib/structuredData';
+import { toCanonicalProduct } from '@/lib/productContract';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_PRODUCT_SLUGS_QUERY);
@@ -29,6 +30,7 @@ const product = await sanityFetch<Product>(PRODUCT_BY_SLUG_QUERY, { slug });
 if (!product) {
   throw new Error(`[shop/[slug]] No product found in Sanity for slug "${slug}"`);
 }
+const canonicalProduct = toCanonicalProduct(product);
 
 const formatPrice = (cents?: number): string =>
   typeof cents === 'number' ? `$${(cents / 100).toFixed(cents % 100 === 0 ? 0 : 2)}` : '';
@@ -38,7 +40,7 @@ const formatPrice = (cents?: number): string =>
 //   2. purchaseUrl                  → external link (brand storefront / gift card portal)
 //   3. neither                      → call to order
 // `purchaseUrl` is now the ESCAPE HATCH, not the default — see docs/CHECKOUT.md.
-const canBuy = typeof product.price === 'number' && product.price > 0 && product.inStock !== false;
+const canBuy = canonicalProduct.purchasable;
 const hasCheckout = Boolean(product.purchaseUrl);
 // Add-to-cart is an action → say what it does. purchaseUrl is a link → evocative is fine.
 const ctaLabel = canBuy
@@ -54,7 +56,7 @@ const productImage = product.image
   : DEFAULT_PRODUCT_IMAGE;
 
 const BRAND_TITLES: Record<string, string> = {
-  Procell: 'Procell Therapies',
+  procell: 'Procell Therapies',
   glymed: 'GlyMed+',
   'skin-script': 'Skin Script',
   'face-reality': 'Face Reality',
@@ -69,11 +71,26 @@ const productSchema = productJsonLd({
   description: product.description ?? product.tagline ?? undefined,
   url: canonicalURL.toString(),
   image: product.image ? urlFor(product.image).width(1200).height(1200).fit('crop').url() : undefined,
-  brand: product.brand ? (BRAND_TITLES[product.brand] ?? product.brand) : undefined,
-  price: typeof product.price === 'number' ? product.price / 100 : undefined,
-  inStock: product.inStock,
+  additionalImages: product.additionalImages?.map((image) =>
+    urlFor(image).width(1200).height(1200).fit('crop').url()),
+  brand: product.brandName ?? (product.brand ? (BRAND_TITLES[product.brand] ?? product.brand) : undefined),
+  sku: canonicalProduct.itemId,
+  gtin: product.gtin,
+  mpn: product.mpn,
+  identifierExists: product.identifierExists,
+  condition: product.condition,
+  price: canonicalProduct.unitPriceCents !== undefined ? canonicalProduct.unitPriceCents / 100 : undefined,
+  availability: canonicalProduct.availability,
   offerUrl: product.purchaseUrl ?? undefined,
 });
+const productMeasurement = {
+  item_id: canonicalProduct.itemId,
+  item_name: canonicalProduct.itemName,
+  item_brand: canonicalProduct.brand,
+  item_category: canonicalProduct.category,
+  price: canonicalProduct.unitPriceCents !== undefined ? canonicalProduct.unitPriceCents / 100 : undefined,
+  quantity: 1,
+};
 ---
 
 <BaseLayout
@@ -84,16 +101,6 @@ const productSchema = productJsonLd({
 >
   <Fragment slot="head">
     <SchemaMarkup item={productSchema} />
-    <script
-      is:inline
-      set:html={`window.fbq && fbq('track', 'ViewContent', ${JSON.stringify({
-        content_name: product.title,
-        content_category: 'product',
-        content_ids: [slug],
-        content_type: 'product',
-        ...(typeof product.price === 'number' ? { value: product.price / 100, currency: 'USD' } : {}),
-      })});`}
-    />
   </Fragment>
 
   <section class="bg-charcoal pt-[clamp(96px,12vw,140px)] pb-[clamp(48px,7vw,80px)] px-6">
@@ -140,9 +147,10 @@ const productSchema = productJsonLd({
               class="btn-gold w-full sm:w-auto"
               data-add-to-cart
               data-product-id={product._id}
+              data-sku={canonicalProduct.itemId}
               data-title={product.title}
               data-slug={product.slug}
-              data-price={String(product.price)}
+              data-price={String(canonicalProduct.unitPriceCents)}
               data-image={cartImage}
               data-size={product.size ?? ''}
             >
@@ -177,4 +185,26 @@ const productSchema = productJsonLd({
       </div>
     </section>
   )}
+  <script
+    id="product-measurement-data"
+    type="application/json"
+    is:inline
+    set:html={JSON.stringify(productMeasurement)}
+  ></script>
+  <script>
+    import { dispatchMeasurement, type RetailItem } from '@/lib/measurement';
+
+    const measurementData = document.getElementById('product-measurement-data');
+    if (measurementData?.textContent) {
+      const item = JSON.parse(measurementData.textContent) as RetailItem;
+      dispatchMeasurement({
+        event: 'view_item',
+        ecommerce: {
+          currency: 'USD',
+          value: item.price,
+          items: [item],
+        },
+      });
+    }
+  </script>
 </BaseLayout>

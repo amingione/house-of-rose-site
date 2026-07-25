@@ -66,6 +66,7 @@
     formatPrice,
     type CartItem,
   } from '@/stores/cart';
+  import { dispatchMeasurement } from '@/lib/measurement';
 
   /**
    * The drawer lives OUTSIDE <main>, so swup never replaces it — its listeners and
@@ -98,6 +99,22 @@
           panel.classList.remove('translate-x-full');
         });
         document.body.style.overflow = 'hidden';
+        const items = cartItems.get();
+        if (items.length) {
+          dispatchMeasurement({
+            event: 'view_cart',
+            ecommerce: {
+              currency: 'USD',
+              value: cartSubtotal.get() / 100,
+              items: items.map((item) => ({
+                item_id: item.sku ?? item.productId,
+                item_name: item.title,
+                price: item.unitPrice / 100,
+                quantity: item.quantity,
+              })),
+            },
+          });
+        }
       } else {
         scrim.classList.replace('opacity-100', 'opacity-0');
         panel.classList.add('translate-x-full');
@@ -164,9 +181,43 @@
       if (!id) return;
 
       const current = cartItems.get().find((i) => i.productId === id)?.quantity ?? 1;
+      const item = cartItems.get().find((candidate) => candidate.productId === id);
       if (target.closest('.qty-up')) setQuantity(id, current + 1);
-      else if (target.closest('.qty-down')) setQuantity(id, current - 1);
-      else if (target.closest('.remove')) removeItem(id);
+      else if (target.closest('.qty-down')) {
+        setQuantity(id, current - 1);
+        if (item) {
+          dispatchMeasurement({
+            event: 'remove_from_cart',
+            ecommerce: {
+              currency: 'USD',
+              value: item.unitPrice / 100,
+              items: [{
+                item_id: item.sku ?? item.productId,
+                item_name: item.title,
+                price: item.unitPrice / 100,
+                quantity: 1,
+              }],
+            },
+          });
+        }
+      } else if (target.closest('.remove')) {
+        removeItem(id);
+        if (item) {
+          dispatchMeasurement({
+            event: 'remove_from_cart',
+            ecommerce: {
+              currency: 'USD',
+              value: (item.unitPrice * item.quantity) / 100,
+              items: [{
+                item_id: item.sku ?? item.productId,
+                item_name: item.title,
+                price: item.unitPrice / 100,
+                quantity: item.quantity,
+              }],
+            },
+          });
+        }
+      }
     });
 
     drawerBound = true;
@@ -180,11 +231,27 @@
       btn.addEventListener('click', () => {
         addItem({
           productId: btn.dataset.productId ?? '',
+          sku: btn.dataset.sku ?? btn.dataset.productId ?? '',
           title: btn.dataset.title ?? '',
           slug: btn.dataset.slug ?? '',
           unitPrice: Number(btn.dataset.price ?? 0),
           image: btn.dataset.image || undefined,
           size: btn.dataset.size || undefined,
+        });
+        dispatchMeasurement({
+          event: 'add_to_cart',
+          ecommerce: {
+            currency: 'USD',
+            value: Number(btn.dataset.price ?? 0) / 100,
+            items: [
+              {
+                item_id: btn.dataset.sku ?? btn.dataset.productId ?? '',
+                item_name: btn.dataset.title ?? '',
+                price: Number(btn.dataset.price ?? 0) / 100,
+                quantity: 1,
+              },
+            ],
+          },
         });
       });
     });

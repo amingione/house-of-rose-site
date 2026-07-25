@@ -172,6 +172,8 @@ Set in Netlify (**Site settings → Environment variables**), and in
 | `PUBLIC_STRIPE_PUBLISHABLE_KEY` | browser | `pk_live_…` / `pk_test_…` |
 | `STRIPE_SECRET_KEY` | server | `sk_…` — **never** prefix with `PUBLIC_` |
 | `STRIPE_WEBHOOK_SECRET` | server | `whsec_…` from the webhook endpoint |
+| `STRIPE_TAX_ENABLED` | server | Set `true` only after Stripe Tax registration and controlled checkout validation |
+| `STRIPE_SHIPPING_TAX_CODE` | server | Optional Stripe tax code for shipping charges |
 | `SHIPPO_API_KEY` | server | live vs test token |
 | `SANITY_API_WRITE_TOKEN` | server | already set — writes orders |
 | `SHIP_FROM_*` | server | optional; defaults to the studio NAP in `_lib/shippo.ts` |
@@ -179,6 +181,7 @@ Set in Netlify (**Site settings → Environment variables**), and in
 | `ORDER_EMAIL_FROM` | server | optional; defaults to `House of Rose <orders@updates.houseofrosefl.com>` |
 | `ORDER_EMAIL_REPLY_TO` | server | optional; defaults to `info@houseofrosefl.com` |
 | `SANITY_WEBHOOK_SECRET` | server | **new** — shared secret for the `order-shipped` webhook |
+| `LEAD_MEASUREMENT_SECRET` | server | Long random key for signed, expiring lead conversion receipts |
 
 > ⚠️ **`SANITY_API_WRITE_TOKEN` is NOT in `packages/web/.env.local`.** Checkout cannot
 > write orders without it. It's set in Netlify, but local testing will fail until you add

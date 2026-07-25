@@ -96,6 +96,25 @@ const currentYear = new Date().getFullYear();
 					>
 						Terms of Service
 					</a>
+					<a
+						href="/shipping-policy/"
+						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Shipping Policy
+					</a>
+					<a
+						href="/return-policy/"
+						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Return Policy
+					</a>
+					<button
+						id="privacy-choices"
+						type="button"
+						class="footer-link text-left text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
+					>
+						Privacy choices
+					</button>
 				</div>
 
 					<!-- Resources / AEO hubs -->
@@ -152,3 +171,9 @@ const currentYear = new Date().getFullYear();
 		</div>
 	</div>
 </footer>
+
+<script>
+	document.getElementById('privacy-choices')?.addEventListener('click', () => {
+		window.dispatchEvent(new CustomEvent('hor:open-consent'));
+	});
+</script>

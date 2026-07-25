@@ -426,6 +426,96 @@ export const service = defineType({
     defineField({ name: 'rackPrice', title: 'Rack Price', type: 'string' }),
     defineField({ name: 'pricingNotes', title: 'Pricing Notes', type: 'text', rows: 3 }),
     defineField({ name: 'competitorPricing', title: 'Competitor Pricing', type: 'text', rows: 3 }),
+    defineField({
+      name: 'serviceKey',
+      title: 'Immutable Google Service Key',
+      type: 'string',
+      description: 'Stable operations key. Do not change after Google setup.',
+      readOnly: ({ document }) => Boolean(document?._createdAt && document?.serviceKey),
+      validation: (R) => R.regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, { name: 'lowercase kebab-case' }),
+    }),
+    defineField({
+      name: 'googleBusinessProfile',
+      title: 'Google Business Profile',
+      type: 'object',
+      fields: [
+        defineField({ name: 'enabled', title: 'Include in GBP Manifest', type: 'boolean', initialValue: false }),
+        defineField({ name: 'categoryId', title: 'Google Service Category / Group ID', type: 'string' }),
+        defineField({ name: 'displayName', title: 'Approved Display Name', type: 'string', validation: (R) => R.max(140) }),
+        defineField({ name: 'description', title: 'Approved GBP Description', type: 'text', rows: 4, validation: (R) => R.max(300) }),
+        defineField({
+          name: 'priceMode',
+          title: 'Price Mode',
+          type: 'string',
+          readOnly: true,
+          initialValue: 'none',
+          options: { list: [{ title: 'No price', value: 'none' }] },
+        }),
+        defineField({
+          name: 'reconciliationStatus',
+          title: 'Reconciliation Status',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Draft', value: 'draft' },
+              { title: 'Reviewed', value: 'reviewed' },
+              { title: 'Matches GBP', value: 'matched' },
+              { title: 'Needs Update', value: 'needs-update' },
+            ],
+          },
+          initialValue: 'draft',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'googleAds',
+      title: 'Google Ads',
+      type: 'object',
+      fields: [
+        defineField({ name: 'eligible', title: 'Eligible for Search Ads', type: 'boolean', initialValue: false }),
+        defineField({ name: 'campaignKey', title: 'Campaign Key', type: 'string' }),
+        defineField({ name: 'adGroupKey', title: 'Ad Group Key', type: 'string' }),
+        defineField({
+          name: 'policyClass',
+          title: 'Policy Class',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Standard Aesthetics', value: 'standard-aesthetics' },
+              { title: 'Advanced Provider-Led', value: 'advanced-provider-led' },
+              { title: 'Injectables — Restricted Review', value: 'injectables-review' },
+              { title: 'Not Eligible', value: 'not-eligible' },
+            ],
+          },
+        }),
+        defineField({ name: 'landingPage', title: 'Ads Landing Page', type: 'url' }),
+        defineField({
+          name: 'conversionGoalKey',
+          title: 'Primary Conversion Goal',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Generate Lead', value: 'generate_lead' },
+              { title: 'Consultation Booked', value: 'consultation_booked' },
+            ],
+          },
+          initialValue: 'generate_lead',
+        }),
+        defineField({
+          name: 'reviewState',
+          title: 'Ads Review State',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Draft', value: 'draft' },
+              { title: 'Approved', value: 'approved' },
+              { title: 'Blocked', value: 'blocked' },
+            ],
+          },
+          initialValue: 'draft',
+        }),
+      ],
+    }),
   ],
   orderings: [
     { title: 'Manual Order', name: 'orderRank', by: [{ field: 'orderRank', direction: 'asc' }] },

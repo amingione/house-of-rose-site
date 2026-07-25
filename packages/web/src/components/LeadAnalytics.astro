@@ -1,74 +1,14 @@
----
-// Attribution and conversion tracking intentionally avoid personally
-// identifiable information.
----
-
 <script>
-  type Gtag = (command: 'event', eventName: string, params?: Record<string, string>) => void;
-  type Fbq = (command: 'track', eventName: string, params?: Record<string, unknown>) => void;
-
-  interface AnalyticsWindow extends Window {
-    gtag?: Gtag;
-    fbq?: Fbq;
-    __horAnalyticsBound?: boolean;
-  }
-
-  const analyticsWindow = window as AnalyticsWindow;
-  const attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'] as const;
-
-  const track = (eventName: string, params: Record<string, string> = {}): void => {
-    analyticsWindow.gtag?.('event', eventName, params);
-  };
-
-  const trackMeta = (eventName: string, params?: Record<string, unknown>): void => {
-    analyticsWindow.fbq?.('track', eventName, params);
-  };
-
-  const getStoredAttribution = (): Record<string, string> => {
-    const params = new URLSearchParams(window.location.search);
-    const values: Record<string, string> = {};
-
-    for (const key of attributionKeys) {
-      const incoming = params.get(key)?.trim();
-      if (incoming) sessionStorage.setItem(`hor_${key}`, incoming);
-      const stored = incoming ?? sessionStorage.getItem(`hor_${key}`) ?? '';
-      if (stored) values[key] = stored;
-    }
-
-    if (!sessionStorage.getItem('hor_landing_page')) {
-      sessionStorage.setItem('hor_landing_page', `${window.location.pathname}${window.location.search}`);
-    }
-
-    if (!sessionStorage.getItem('hor_referrer') && document.referrer) {
-      sessionStorage.setItem('hor_referrer', document.referrer);
-    }
-
-    values['landing-page'] = sessionStorage.getItem('hor_landing_page') ?? window.location.pathname;
-    values.referrer = sessionStorage.getItem('hor_referrer') ?? '';
-    return values;
-  };
-
-  const attachAttribution = (): void => {
-    const attribution = getStoredAttribution();
-    const forms = document.querySelectorAll<HTMLFormElement>('form[action="/.netlify/functions/lead-submit"]');
-
-    for (const form of forms) {
-      for (const [name, value] of Object.entries(attribution)) {
-        let input = form.querySelector<HTMLInputElement>(`input[name="${name}"]`);
-        if (!input) {
-          input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = name;
-          form.append(input);
-        }
-        input.value = value;
-      }
-    }
-  };
+  import {
+    attachAttributionToLeadForms,
+    dispatchMeasurement,
+    initializeConsentAwareVendors,
+    trackPageView,
+  } from '@/lib/measurement';
 
   const bindClickTracking = (): void => {
-    if (analyticsWindow.__horAnalyticsBound) return;
-    analyticsWindow.__horAnalyticsBound = true;
+    if (document.documentElement.dataset.analyticsBound === 'true') return;
+    document.documentElement.dataset.analyticsBound = 'true';
 
     document.addEventListener('click', (event) => {
       const target = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href]') : null;
@@ -76,19 +16,33 @@
 
       const rawHref = target.getAttribute('href') ?? '';
       if (rawHref.startsWith('tel:')) {
-        track('phone_click', { link_location: window.location.pathname });
-        trackMeta('Contact');
+        dispatchMeasurement({ event: 'phone_click', link_location: window.location.pathname });
       } else if (rawHref.startsWith('sms:')) {
-        track('sms_click', { link_location: window.location.pathname });
-        trackMeta('Contact');
-      } else if (rawHref.startsWith('mailto:')) {
-        trackMeta('Contact');
+        dispatchMeasurement({ event: 'sms_click', link_location: window.location.pathname });
       } else {
         try {
           const destination = new URL(target.href);
+          if (target.hasAttribute('data-select-item')) {
+            dispatchMeasurement({
+              event: 'select_item',
+              ecommerce: {
+                currency: 'USD',
+                value: Number(target.dataset.price ?? 0) / 100,
+                items: [{
+                  item_id: target.dataset.sku ?? target.dataset.productId ?? '',
+                  item_name: target.dataset.title ?? '',
+                  item_brand: target.dataset.brand || undefined,
+                  item_category: target.dataset.category || undefined,
+                  price: Number(target.dataset.price ?? 0) / 100,
+                  quantity: 1,
+                  item_list_id: 'shop',
+                  item_list_name: 'House of Rose Shop',
+                }],
+              },
+            });
+          }
           if (destination.hostname.endsWith('glossgenius.com')) {
-            track('booking_click', { link_location: window.location.pathname });
-            trackMeta('Schedule');
+            dispatchMeasurement({ event: 'booking_click', link_location: window.location.pathname });
           }
         } catch {
           // Ignore non-URL links.
@@ -98,11 +52,12 @@
   };
 
   const initialize = (): void => {
-    attachAttribution();
+    initializeConsentAwareVendors();
+    attachAttributionToLeadForms();
     bindClickTracking();
+    trackPageView();
   };
 
   document.addEventListener('astro:page-load', initialize);
   initialize();
 </script>
-

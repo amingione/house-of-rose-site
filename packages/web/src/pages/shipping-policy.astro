@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { TERMS_OF_SERVICE_QUERY, type TermsOfService } from '@/lib/queries';
+import { breadcrumbList, webPage } from '@/lib/structuredData';
+import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+
+const data = (await sanityFetch<TermsOfService | null>(TERMS_OF_SERVICE_QUERY)) ?? {};
+const policy = data.shippingPolicy ??
+  'House of Rose ships eligible physical products to addresses in the contiguous United States. Orders are prepared for shipment within two business days after payment is confirmed, excluding weekends and observed holidays. Carrier options, prices, and estimated transit times are calculated from the delivery address and shown before payment. Transit estimates are provided by the carrier and begin after the package is accepted by the carrier. We send tracking by email when the order leaves the studio. Contact info@houseofrosefl.com or (844) 941-7673 if tracking shows an issue or if your package arrives damaged or contains the wrong item.';
+const annotations = data._id ? sbObjectId(data._id) : {};
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL('/shipping-policy/', site).toString();
+const description = 'Shipping destinations, handling time, carrier rates, and tracking for House of Rose retail orders.';
+---
+
+<BaseLayout title="Shipping Policy | House of Rose Aesthetics" description={description}>
+  <SchemaMarkup item={webPage({ name: 'Shipping Policy', description, url: canonical }, site)} slot="head" />
+  <SchemaMarkup item={breadcrumbList([{ name: 'Home', item: site }, { name: 'Shipping Policy', item: canonical }])} slot="head" />
+  <section class="bg-charcoal px-6 py-24" {...annotations}>
+    <article class="mx-auto max-w-3xl pt-12">
+      <p class="mb-4 text-xs uppercase tracking-[0.3em] text-gold">House of Rose LLC</p>
+      <h1 class="font-serif text-[clamp(38px,7vw,58px)] text-ink">Shipping Policy</h1>
+      <p class="mt-10 whitespace-pre-line text-[16px] leading-[1.9] text-muted" {...sbFieldPath('shippingPolicy')}>{policy}</p>
+      <p class="mt-8 text-[14px] leading-relaxed text-muted">
+        See the <a class="text-gold underline" href="/return-policy/">Return Policy</a> for damaged, incorrect, or returnable merchandise.
+      </p>
+    </article>
+  </section>
+</BaseLayout>

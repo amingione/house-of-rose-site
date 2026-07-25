@@ -9,6 +9,9 @@ import CartDrawer from '@/components/shop/CartDrawer.astro';
 import ComingSoon from '@/components/ComingSoon.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import LeadAnalytics from '@/components/LeadAnalytics.astro';
+import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
+import ConsentManager from '@/components/ConsentManager.astro';
+import GoogleTagManager from '@/components/GoogleTagManager.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph } from '@/lib/structuredData';
 import { formatSeoTitle } from '@/lib/seo';
@@ -39,7 +42,7 @@ const {
   chrome = 'site',
 } = Astro.props;
 
-const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? 'G-QBDHB89WTR';
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
 // Never fire on `astro dev` — keeps local testing out of live Events Manager data.
 const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
@@ -98,8 +101,12 @@ const entityGraph = siteEntityGraph(
       }}
     />
     <SchemaMarkup item={entityGraph} />
-    <!-- Swup reloads page scripts after each client-side navigation. Ahrefs must initialize once. -->
-    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="XdzOvGXmUENnBpyYIDhXOQ" data-swup-ignore-script async></script>
+    <ConsentBootstrap />
+    <script
+      is:inline
+      set:html={`window.__horMeasurementConfig={ahrefsKey:'XdzOvGXmUENnBpyYIDhXOQ',metaPixelId:${JSON.stringify(metaPixelId ?? '')}};`}
+    ></script>
+    <GoogleTagManager containerId={gtmId} />
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/logos/hr-monogram-2026/favicon-16.png" />
@@ -107,26 +114,10 @@ const entityGraph = siteEntityGraph(
     <link rel="icon" type="image/png" sizes="48x48" href="/logos/hr-monogram-2026/favicon-48.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/logos/hr-monogram-2026/favicon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/logos/hr-monogram-2026/apple-touch-icon.png" />
-    <!-- Google tag (gtag.js) -->
-    {ga4Id && (
-      <Fragment>
-        <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`} async></script>
-        <script is:inline set:html={`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${ga4Id}');`}></script>
-      </Fragment>
-    )}
-    <!-- Meta Pixel -->
-    {metaPixelId && (
-      <script is:inline set:html={`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');window.__houseOfRoseMetaPixels=window.__houseOfRoseMetaPixels||[];if(!window.__houseOfRoseMetaPixels.includes('${metaPixelId}')){fbq('init','${metaPixelId}');window.__houseOfRoseMetaPixels.push('${metaPixelId}');}fbq('track','PageView');`}></script>
-    )}
     <!-- Additional head content from pages -->
     <slot name="head" />
   </head>
   <body>
-    {metaPixelId && (
-      <noscript>
-        <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`} alt="" />
-      </noscript>
-    )}
     {comingSoon && <ComingSoon />}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
@@ -148,5 +139,6 @@ const entityGraph = siteEntityGraph(
       import '@polgubau/astro-reveal';
     </script>
     <LeadAnalytics />
+    <ConsentManager />
   </body>
 </html>

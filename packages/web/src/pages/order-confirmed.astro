@@ -91,10 +91,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  import { loadStripe } from '@stripe/stripe-js';
   import { clearCart } from '@/stores/cart';
-
-  const PUBLISHABLE_KEY = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY as string | undefined;
+  import { dispatchMeasurement } from '@/lib/measurement';
 
   const show = (id: string): void => {
     ['state-loading', 'state-success', 'state-processing', 'state-failed'].forEach((s) => {
@@ -107,41 +105,80 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
     const params = new URLSearchParams(window.location.search);
     const clientSecret = params.get('payment_intent_client_secret');
-    const orderNumber = params.get('order');
+    if (!clientSecret) {
+      show('state-failed');
+      return;
+    }
+    history.replaceState({}, '', '/order-confirmed/');
 
-    if (orderNumber) {
+    const response = await fetch('/.netlify/functions/verify-purchase', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clientSecret }),
+    });
+    if (!response.ok) {
+      show('state-failed');
+      return;
+    }
+    const result = (await response.json()) as {
+      paymentStatus?: 'succeeded' | 'processing' | 'failed';
+      transactionId?: string;
+      orderNumber?: string;
+      currency?: 'USD';
+      value?: number;
+      shipping?: number;
+      tax?: number;
+      discount?: number;
+      items?: Array<{
+        item_id: string;
+        item_name: string;
+        item_brand?: string;
+        item_category?: string;
+        price?: number;
+        quantity?: number;
+      }>;
+      enhancedConversionData?: {
+        email?: string;
+        phone_number?: string;
+      };
+    };
+    if (result.orderNumber) {
       const ref = document.getElementById('order-ref');
       if (ref) {
-        ref.textContent = `Order ${orderNumber}`;
+        ref.textContent = `Order ${result.orderNumber}`;
         ref.classList.remove('hidden');
       }
     }
 
-    // No client secret → someone navigated here directly. Assume the best-case landing
-    // (they came from a completed order) rather than showing a scary failure.
-    if (!clientSecret || !PUBLISHABLE_KEY) {
-      clearCart();
-      show('state-success');
-      return;
-    }
-
-    const stripe = await loadStripe(PUBLISHABLE_KEY);
-    if (!stripe) {
-      clearCart();
-      show('state-success');
-      return;
-    }
-
-    const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
-
-    switch (paymentIntent?.status) {
+    switch (result.paymentStatus) {
       case 'succeeded':
-        // Only safe to empty the cart once Stripe itself says the money is in.
+        if (
+          result.transactionId &&
+          result.currency === 'USD' &&
+          typeof result.value === 'number' &&
+          result.items
+        ) {
+          window.__horEnhancedConversionData = result.enhancedConversionData;
+          dispatchMeasurement({
+            event: 'purchase',
+            ecommerce: {
+              transaction_id: result.transactionId,
+              currency: result.currency,
+              value: result.value,
+              tax: result.tax ?? 0,
+              shipping: result.shipping ?? 0,
+              discount: result.discount,
+              items: result.items,
+            },
+          });
+          window.setTimeout(() => {
+            delete window.__horEnhancedConversionData;
+          }, 5000);
+        }
         clearCart();
         show('state-success');
         break;
       case 'processing':
-        clearCart();
         show('state-processing');
         break;
       default:
@@ -153,4 +190,13 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
   void init();
   document.addEventListener('swup:contentReplaced', () => void init());
+
+  declare global {
+    interface Window {
+      __horEnhancedConversionData?: {
+        email?: string;
+        phone_number?: string;
+      };
+    }
+  }
 </script>

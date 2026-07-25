@@ -1,12 +1,18 @@
 import { createClient } from '@sanity/client';
+import { randomUUID } from 'node:crypto';
 import { getFollowUpDueAt, safePathOrUrl, safeText } from './_lib/lead';
 import { sendLeadAcknowledgement, sendLeadNotification, type LeadEmail } from './_lib/email';
+import {
+  createLeadMeasurementReceipt,
+  hashMeasurementReceipt,
+} from './_lib/measurement-receipt';
 
 const THANK_YOU_PATH = '/thank-you/';
 
 type SubmissionType = 'contact' | 'consultation' | 'suiteRental' | 'skinAnalysis';
 
 interface LeadSubmissionDocument {
+  _id: string;
   _type: 'leadSubmission';
   submittedAt: string;
   submissionType: SubmissionType;
@@ -42,8 +48,26 @@ interface LeadSubmissionDocument {
     utmCampaign?: string;
     utmTerm?: string;
     utmContent?: string;
+    gclid?: string;
+    gbraid?: string;
+    wbraid?: string;
+    consentSnapshot?: {
+      schemaVersion: 1;
+      policyVersion: string;
+      analyticsStorage: 'granted' | 'denied';
+      adStorage: 'granted' | 'denied';
+      adUserData: 'granted' | 'denied';
+      adPersonalization: 'granted' | 'denied';
+      recordedAt: string;
+    };
   };
+  measurementReceiptHash?: string;
+  measurementReceiptExpiresAt?: string;
 }
+
+type MeasurementConsentSnapshot = NonNullable<
+  NonNullable<LeadSubmissionDocument['attribution']>['consentSnapshot']
+>;
 
 const getValue = (formData: FormData, key: string, maxLength = 500): string => {
   const value = formData.get(key);
@@ -51,6 +75,27 @@ const getValue = (formData: FormData, key: string, maxLength = 500): string => {
 };
 
 const getChecked = (formData: FormData, key: string): boolean => getValue(formData, key) === 'yes';
+
+const getConsentSnapshot = (formData: FormData): MeasurementConsentSnapshot | undefined => {
+  const raw = getValue(formData, 'consent-snapshot', 1500);
+  if (!raw) return undefined;
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const signal = (key: string): 'granted' | 'denied' =>
+      parsed[key] === 'granted' ? 'granted' : 'denied';
+    return {
+      schemaVersion: 1,
+      policyVersion: safeText(String(parsed.policyVersion ?? ''), 40) || 'unknown',
+      analyticsStorage: signal('analytics_storage'),
+      adStorage: signal('ad_storage'),
+      adUserData: signal('ad_user_data'),
+      adPersonalization: signal('ad_personalization'),
+      recordedAt: safeText(String(parsed.recordedAt ?? ''), 60) || new Date().toISOString(),
+    };
+  } catch {
+    return undefined;
+  }
+};
 
 const redirect = (request: Request, path: string, status = 303): Response =>
   Response.redirect(new URL(path, request.url), status);
@@ -88,6 +133,7 @@ const buildDocument = (
   formName: string,
 ): LeadSubmissionDocument => {
   const document: LeadSubmissionDocument = {
+    _id: `lead-${randomUUID()}`,
     _type: 'leadSubmission',
     submittedAt: new Date().toISOString(),
     submissionType,
@@ -111,6 +157,10 @@ const buildDocument = (
       utmCampaign: getValue(formData, 'utm_campaign', 200) || undefined,
       utmTerm: getValue(formData, 'utm_term', 200) || undefined,
       utmContent: getValue(formData, 'utm_content', 200) || undefined,
+      gclid: getValue(formData, 'gclid', 300) || undefined,
+      gbraid: getValue(formData, 'gbraid', 300) || undefined,
+      wbraid: getValue(formData, 'wbraid', 300) || undefined,
+      consentSnapshot: getConsentSnapshot(formData),
     },
   };
 
@@ -164,6 +214,22 @@ export default async (request: Request): Promise<Response> => {
   }
 
   const document = buildDocument(formData, request, submissionType, formName);
+  const measurementSecret = process.env.LEAD_MEASUREMENT_SECRET;
+  let measurementReceipt: string | undefined;
+  if (measurementSecret) {
+    const expiresAt = Date.now() + 30 * 60 * 1000;
+    measurementReceipt = createLeadMeasurementReceipt(
+      {
+        version: 1,
+        leadId: document._id,
+        nonce: randomUUID(),
+        expiresAt,
+      },
+      measurementSecret,
+    );
+    document.measurementReceiptHash = hashMeasurementReceipt(measurementReceipt);
+    document.measurementReceiptExpiresAt = new Date(expiresAt).toISOString();
+  }
 
   if (!document.name || !document.email) {
     return renderResponse('Name and email are required.', 400);
@@ -220,5 +286,10 @@ export default async (request: Request): Promise<Response> => {
     return renderResponse('Your submission could not be saved. Please try again.', 502);
   }
 
-  return redirect(request, `${THANK_YOU_PATH}?lead=${submissionType}`);
+  return redirect(
+    request,
+    measurementReceipt
+      ? `${THANK_YOU_PATH}?receipt=${encodeURIComponent(measurementReceipt)}`
+      : THANK_YOU_PATH,
+  );
 };

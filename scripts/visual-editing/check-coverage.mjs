@@ -39,6 +39,7 @@ const ALLOWLIST = new Map([
   ],
   ['pages/sitemap.astro', 'Link index only — no editable copy rendered.'],
   ['pages/sitemap.xml.ts', 'Non-Astro route (XML sitemap).'],
+  ['pages/feeds/google-merchant.xml.ts', 'Non-Astro route (Google Merchant XML feed).'],
   ['pages/llms.txt.ts', 'Non-Astro route (text endpoint).'],
   ['pages/llms-full.txt.ts', 'Non-Astro route (text endpoint).'],
 ]);

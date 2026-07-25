@@ -1,6 +1,8 @@
 import Stripe from 'stripe';
+import { randomUUID } from 'node:crypto';
 import { parseItems, resolveCart, sanity, fail, json, CartError } from './_lib/cart';
 import { getRate, dollarsToCents } from './_lib/shippo';
+import { calculateTax, type CheckoutAddress } from './_lib/tax';
 
 /**
  * POST /.netlify/functions/create-payment-intent
@@ -28,23 +30,55 @@ interface IntentRequest {
   email?: unknown;
   name?: unknown;
   phone?: unknown;
-  address?: {
-    line1?: string;
-    line2?: string;
-    city?: string;
-    state?: string;
-    postal_code?: string;
-    country?: string;
+  address?: CheckoutAddress;
+  attribution?: unknown;
+  consentSnapshot?: unknown;
+}
+
+const str = (value: unknown, maxLength = 300): string | undefined => {
+  if (typeof value !== 'string') return undefined;
+  const sanitized = [...value.trim()]
+    .filter((character) => {
+      const codePoint = character.codePointAt(0) ?? 0;
+      return codePoint >= 32 && codePoint !== 127;
+    })
+    .join('')
+    .slice(0, maxLength);
+  return sanitized || undefined;
+};
+
+const cleanAttribution = (value: unknown): Record<string, string> | undefined => {
+  if (!value || typeof value !== 'object') return undefined;
+  const source = value as Record<string, unknown>;
+  const allowed = ['gclid', 'gbraid', 'wbraid', 'utmSource', 'utmMedium', 'utmCampaign', 'landingPage'] as const;
+  const result = Object.fromEntries(
+    allowed.flatMap((key) => {
+      const cleaned = str(source[key], 300);
+      return cleaned ? [[key, cleaned]] : [];
+    }),
+  );
+  return Object.keys(result).length ? result : undefined;
+};
+
+const cleanConsent = (value: unknown): Record<string, string | number> | undefined => {
+  if (!value || typeof value !== 'object') return undefined;
+  const source = value as Record<string, unknown>;
+  const signal = (key: string): 'granted' | 'denied' =>
+    source[key] === 'granted' ? 'granted' : 'denied';
+  return {
+    schemaVersion: 1,
+    policyVersion: str(source.policyVersion, 40) ?? 'unknown',
+    analytics_storage: signal('analytics_storage'),
+    ad_storage: signal('ad_storage'),
+    ad_user_data: signal('ad_user_data'),
+    ad_personalization: signal('ad_personalization'),
+    recordedAt: str(source.recordedAt, 60) ?? new Date().toISOString(),
   };
-}
+};
 
-const str = (v: unknown): string | undefined => (typeof v === 'string' && v.trim() ? v.trim() : undefined);
-
-/** HOR-1042 — sequential-ish and human-quotable, without a counter to race on. */
-async function nextOrderNumber(): Promise<string> {
-  const count = await sanity.fetch<number>(`count(*[_type == "order"])`);
-  return `HOR-${1000 + (count ?? 0) + 1}`;
-}
+/** Unique, immutable, and still easy to quote to support. */
+const nextOrderNumber = (): string =>
+  `HOR-${Date.now().toString(36).toUpperCase()}-${randomUUID().slice(0, 6).toUpperCase()}`;
 
 export default async function handler(request: Request): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
@@ -69,11 +103,12 @@ export default async function handler(request: Request): Promise<Response> {
       shippingMethod = `${rate.provider} ${rate.servicelevel.name}`;
     }
 
-    const total = cart.subtotal + shippingCost;
+    const taxResult = await calculateTax(cart, body.address, shippingCost);
+    const total = taxResult.amountTotal;
     if (total <= 0) throw new CartError('That cart totals nothing.');
 
     // ── Persist the order BEFORE charging, so the webhook has something to find ──
-    const orderNumber = await nextOrderNumber();
+    const orderNumber = nextOrderNumber();
     const order = await sanity.create({
       _type: 'order',
       orderNumber,
@@ -87,13 +122,17 @@ export default async function handler(request: Request): Promise<Response> {
         _type: 'orderItem',
         product: { _type: 'reference', _ref: i.productId },
         title: i.title,
+        sku: i.sku,
         quantity: i.quantity,
         unitPrice: i.unitPrice,
       })),
       subtotal: cart.subtotal,
       shippingCost,
-      tax: 0,
+      tax: taxResult.taxAmount,
       total,
+      stripeTaxCalculationId: taxResult.calculationId,
+      attribution: cleanAttribution(body.attribution),
+      measurementConsent: cleanConsent(body.consentSnapshot),
       shippingAddress: {
         name: str(body.name),
         line1: body.address?.line1,
@@ -118,6 +157,7 @@ export default async function handler(request: Request): Promise<Response> {
         sanityOrderId: order._id,
         orderNumber,
         shippoRateId: shippingRateId ?? '',
+        taxCalculationId: taxResult.calculationId,
       },
       shipping: cart.requiresShipping
         ? {
@@ -144,6 +184,7 @@ export default async function handler(request: Request): Promise<Response> {
       amount: total,
       subtotal: cart.subtotal,
       shipping: shippingCost,
+      tax: taxResult.taxAmount,
     });
   } catch (error) {
     return fail(error);

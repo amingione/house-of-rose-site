@@ -1,0 +1,413 @@
+export type ConsentSignal = 'granted' | 'denied';
+
+export interface ConsentStateV1 {
+  schemaVersion: 1;
+  policyVersion: '2026-07-24';
+  analytics_storage: ConsentSignal;
+  ad_storage: ConsentSignal;
+  ad_user_data: ConsentSignal;
+  ad_personalization: ConsentSignal;
+  source: 'banner' | 'preferences' | 'gpc';
+  recordedAt: string;
+  expiresAt: string;
+}
+
+export interface AttributionContext {
+  gclid?: string;
+  gbraid?: string;
+  wbraid?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  landingPage: string;
+  referrer?: string;
+  consentSnapshot: ConsentStateV1;
+}
+
+export interface RetailItem {
+  item_id: string;
+  item_name: string;
+  item_brand?: string;
+  item_category?: string;
+  item_variant?: string;
+  price?: number;
+  quantity?: number;
+  index?: number;
+  item_list_id?: string;
+  item_list_name?: string;
+}
+
+type EcommerceEventName =
+  | 'view_item_list'
+  | 'select_item'
+  | 'view_item'
+  | 'add_to_cart'
+  | 'remove_from_cart'
+  | 'view_cart'
+  | 'begin_checkout'
+  | 'add_shipping_info'
+  | 'add_payment_info';
+
+export type MeasurementEvent =
+  | {
+      event: 'page_view';
+      page_path: string;
+      page_location: string;
+      page_title: string;
+    }
+  | {
+      event: EcommerceEventName;
+      ecommerce: {
+        currency: 'USD';
+        value?: number;
+        items: RetailItem[];
+        shipping_tier?: string;
+        payment_type?: string;
+      };
+    }
+  | {
+      event: 'purchase';
+      ecommerce: {
+        transaction_id: string;
+        currency: 'USD';
+        value: number;
+        tax: number;
+        shipping: number;
+        discount?: number;
+        items: RetailItem[];
+      };
+    }
+  | {
+      event: 'generate_lead';
+      event_id: string;
+    }
+  | {
+      event: 'phone_click' | 'sms_click' | 'booking_click';
+      link_location: string;
+    }
+  | {
+      event: 'consent_update';
+      consent: Pick<
+        ConsentStateV1,
+        'analytics_storage' | 'ad_storage' | 'ad_user_data' | 'ad_personalization' | 'policyVersion'
+      >;
+    };
+
+export interface GoogleAccountTargets {
+  googleAdsCustomerId: '492-149-3013';
+  ga4PropertyId: '534881520';
+  ga4MeasurementId: 'G-QBDHB89WTR';
+  gtmContainerId?: `GTM-${string}`;
+  merchantCenterId?: string;
+}
+
+interface MeasurementWindow extends Window {
+  dataLayer: Array<Record<string, unknown> | IArguments>;
+  gtag: (...args: unknown[]) => void;
+  fbq?: (...args: unknown[]) => void;
+  _fbq?: unknown;
+  __horMeasurementConfig?: {
+    ahrefsKey?: string;
+    metaPixelId?: string;
+  };
+  __horLoadedScripts?: Set<string>;
+  __horLastPageView?: string;
+  __horLastMetaPageView?: string;
+}
+
+const CONSENT_STORAGE_KEY = 'hor.consent.v1';
+const ATTRIBUTION_STORAGE_KEY = 'hor.attribution.v1';
+const CONSENT_DURATION_MS = 180 * 24 * 60 * 60 * 1000;
+const MAX_ATTRIBUTION_LENGTH = 300;
+const attributionKeys = [
+  'gclid',
+  'gbraid',
+  'wbraid',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+] as const;
+
+const browser = (): MeasurementWindow => window as unknown as MeasurementWindow;
+
+const sanitize = (value: string | null | undefined): string | undefined => {
+  const cleaned = value
+    ? [...value.trim()]
+        .filter((character) => {
+          const codePoint = character.codePointAt(0) ?? 0;
+          return codePoint >= 32 && codePoint !== 127;
+        })
+        .join('')
+        .slice(0, MAX_ATTRIBUTION_LENGTH)
+    : undefined;
+  return cleaned || undefined;
+};
+
+export const createConsentState = (
+  input: Pick<ConsentStateV1, 'analytics_storage' | 'ad_storage' | 'ad_user_data' | 'ad_personalization'>,
+  source: ConsentStateV1['source'],
+  gpc: boolean,
+  now = new Date(),
+): ConsentStateV1 => {
+  return {
+    schemaVersion: 1,
+    policyVersion: '2026-07-24',
+    analytics_storage: input.analytics_storage,
+    ad_storage: gpc ? 'denied' : input.ad_storage,
+    ad_user_data: gpc ? 'denied' : input.ad_user_data,
+    ad_personalization: gpc ? 'denied' : input.ad_personalization,
+    source: gpc ? 'gpc' : source,
+    recordedAt: now.toISOString(),
+    expiresAt: new Date(now.getTime() + CONSENT_DURATION_MS).toISOString(),
+  };
+};
+
+const deniedConsent = (source: ConsentStateV1['source'] = 'banner'): ConsentStateV1 =>
+  createConsentState(
+    {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    },
+    source,
+    source === 'gpc',
+  );
+
+const isConsentState = (value: unknown): value is ConsentStateV1 => {
+  if (!value || typeof value !== 'object') return false;
+  const state = value as Partial<ConsentStateV1>;
+  return (
+    state.schemaVersion === 1 &&
+    state.policyVersion === '2026-07-24' &&
+    ['granted', 'denied'].includes(state.analytics_storage ?? '') &&
+    ['granted', 'denied'].includes(state.ad_storage ?? '') &&
+    ['granted', 'denied'].includes(state.ad_user_data ?? '') &&
+    ['granted', 'denied'].includes(state.ad_personalization ?? '') &&
+    typeof state.expiresAt === 'string' &&
+    Date.parse(state.expiresAt) > Date.now()
+  );
+};
+
+export const getConsent = (): ConsentStateV1 => {
+  try {
+    const parsed: unknown = JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY) ?? 'null');
+    if (isConsentState(parsed)) return parsed;
+  } catch {
+    // Invalid or unavailable storage falls back to denied.
+  }
+  return deniedConsent(navigator.globalPrivacyControl ? 'gpc' : 'banner');
+};
+
+export const hasStoredConsent = (): boolean => {
+  try {
+    return isConsentState(JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY) ?? 'null') as unknown);
+  } catch {
+    return false;
+  }
+};
+
+const loadScript = (id: string, src: string): void => {
+  const w = browser();
+  w.__horLoadedScripts ??= new Set<string>();
+  if (w.__horLoadedScripts.has(id) || document.getElementById(id)) return;
+  const script = document.createElement('script');
+  script.id = id;
+  script.src = src;
+  script.async = true;
+  document.head.append(script);
+  w.__horLoadedScripts.add(id);
+};
+
+export const loadAhrefs = (consent: ConsentStateV1): void => {
+  const key = browser().__horMeasurementConfig?.ahrefsKey;
+  if (consent.analytics_storage === 'granted' && key) {
+    const id = 'hor-ahrefs-analytics';
+    if (document.getElementById(id)) return;
+    const script = document.createElement('script');
+    script.id = id;
+    script.src = 'https://analytics.ahrefs.com/analytics.js';
+    script.dataset.key = key;
+    script.async = true;
+    document.head.append(script);
+  }
+};
+
+export const loadMeta = (consent: ConsentStateV1): void => {
+  const pixelId = browser().__horMeasurementConfig?.metaPixelId;
+  if (consent.ad_storage !== 'granted' || consent.ad_personalization !== 'granted' || !pixelId) return;
+  const w = browser();
+  if (!w.fbq) {
+    const queue = ((...args: unknown[]) => {
+      if ('callMethod' in queue && typeof queue.callMethod === 'function') {
+        queue.callMethod(...args);
+      } else {
+        queue.queue.push(args);
+      }
+    }) as MeasurementWindow['fbq'] & {
+      callMethod?: (...args: unknown[]) => void;
+      queue: unknown[][];
+      loaded: boolean;
+      version: string;
+    };
+    queue.queue = [];
+    queue.loaded = true;
+    queue.version = '2.0';
+    w.fbq = queue;
+    w._fbq = queue;
+    loadScript('hor-meta-pixel', 'https://connect.facebook.net/en_US/fbevents.js');
+    w.fbq('init', pixelId);
+  }
+  const pageKey = `${location.pathname}${location.search}`;
+  if (w.__horLastMetaPageView !== pageKey) {
+    w.__horLastMetaPageView = pageKey;
+    w.fbq?.('track', 'PageView');
+  }
+};
+
+export const dispatchMeasurement = (event: MeasurementEvent): void => {
+  const w = browser();
+  w.dataLayer ??= [];
+  w.dataLayer.push(event);
+};
+
+export const applyConsent = (
+  input: Pick<ConsentStateV1, 'analytics_storage' | 'ad_storage' | 'ad_user_data' | 'ad_personalization'>,
+  source: ConsentStateV1['source'],
+): ConsentStateV1 => {
+  const previous = getConsent();
+  const now = new Date();
+  const gpc = navigator.globalPrivacyControl === true;
+  const consent = createConsentState(input, source, gpc, now);
+  localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent));
+  browser().gtag('consent', 'update', {
+    analytics_storage: consent.analytics_storage,
+    ad_storage: consent.ad_storage,
+    ad_user_data: consent.ad_user_data,
+    ad_personalization: consent.ad_personalization,
+  });
+  dispatchMeasurement({
+    event: 'consent_update',
+    consent: {
+      analytics_storage: consent.analytics_storage,
+      ad_storage: consent.ad_storage,
+      ad_user_data: consent.ad_user_data,
+      ad_personalization: consent.ad_personalization,
+      policyVersion: consent.policyVersion,
+    },
+  });
+  loadAhrefs(consent);
+  loadMeta(consent);
+  window.dispatchEvent(new CustomEvent('hor:consent-updated', { detail: consent }));
+  const revokedVendorConsent =
+    (previous.analytics_storage === 'granted' && consent.analytics_storage === 'denied') ||
+    (
+      (previous.ad_storage === 'granted' || previous.ad_personalization === 'granted') &&
+      (consent.ad_storage === 'denied' || consent.ad_personalization === 'denied')
+    );
+  if (revokedVendorConsent) {
+    // Non-Google scripts cannot reliably be unloaded. A clean reload ensures they
+    // are absent for all future collection after a visitor withdraws permission.
+    window.setTimeout(() => window.location.reload(), 50);
+  }
+  return consent;
+};
+
+export const parseAttributionParameters = (
+  incoming: URLSearchParams,
+): Partial<Pick<AttributionContext, (typeof attributionKeys)[number]>> =>
+  Object.fromEntries(
+    attributionKeys.flatMap((key) => {
+      const value = sanitize(incoming.get(key));
+      return value ? [[key, value]] : [];
+    }),
+  );
+
+export const captureAttribution = (): AttributionContext => {
+  const incoming = new URLSearchParams(location.search);
+  let stored: Partial<AttributionContext> = {};
+  try {
+    stored = JSON.parse(sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY) ?? '{}') as Partial<AttributionContext>;
+  } catch {
+    stored = {};
+  }
+
+  Object.assign(stored, parseAttributionParameters(incoming));
+  stored.landingPage ??= sanitize(`${location.pathname}${location.search}`) ?? location.pathname;
+  stored.referrer ??= sanitize(document.referrer);
+
+  const context: AttributionContext = {
+    ...stored,
+    landingPage: stored.landingPage ?? location.pathname,
+    consentSnapshot: getConsent(),
+  };
+  sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(context));
+  return context;
+};
+
+export const attachAttributionToLeadForms = (): void => {
+  const attribution = captureAttribution();
+  const values: Record<string, string | undefined> = {
+    gclid: attribution.gclid,
+    gbraid: attribution.gbraid,
+    wbraid: attribution.wbraid,
+    utm_source: attribution.utm_source,
+    utm_medium: attribution.utm_medium,
+    utm_campaign: attribution.utm_campaign,
+    utm_term: attribution.utm_term,
+    utm_content: attribution.utm_content,
+    'landing-page': attribution.landingPage,
+    referrer: attribution.referrer,
+    'consent-snapshot': JSON.stringify(attribution.consentSnapshot),
+  };
+  for (const form of document.querySelectorAll<HTMLFormElement>(
+    'form[action="/.netlify/functions/lead-submit"]',
+  )) {
+    for (const [name, value] of Object.entries(values)) {
+      if (!value) continue;
+      let input = form.querySelector<HTMLInputElement>(`input[name="${name}"]`);
+      if (!input) {
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        form.append(input);
+      }
+      input.value = value;
+    }
+  }
+};
+
+export const trackPageView = (): void => {
+  const w = browser();
+  const key = `${location.pathname}${location.search}|${document.title}`;
+  if (w.__horLastPageView === key) return;
+  w.__horLastPageView = key;
+  dispatchMeasurement({
+    event: 'page_view',
+    page_path: `${location.pathname}${location.search}`,
+    page_location: location.href,
+    page_title: document.title,
+  });
+};
+
+export const initializeConsentAwareVendors = (): void => {
+  const consent = getConsent();
+  browser().gtag('consent', 'update', {
+    analytics_storage: consent.analytics_storage,
+    ad_storage: consent.ad_storage,
+    ad_user_data: consent.ad_user_data,
+    ad_personalization: consent.ad_personalization,
+  });
+  loadAhrefs(consent);
+  loadMeta(consent);
+};
+
+declare global {
+  interface Navigator {
+    readonly globalPrivacyControl?: boolean;
+  }
+}

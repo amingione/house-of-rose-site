@@ -1,0 +1,118 @@
+<div
+  id="consent-banner"
+  class="fixed inset-x-4 bottom-4 z-[120] mx-auto hidden max-w-[760px] border border-gold-metal/40 bg-breath p-5 shadow-2xl sm:p-6"
+  role="region"
+  aria-label="Privacy choices"
+>
+  <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+    <div>
+      <h2 class="font-serif text-[22px] text-ink">Your privacy choices</h2>
+      <p class="mt-2 max-w-[560px] text-[13px] leading-relaxed text-muted">
+        We use optional analytics to understand site performance and optional advertising measurement
+        for retail purchases. Service interests and form messages are never sent to Google for audience building.
+      </p>
+      <a class="mt-2 inline-block text-[12px] text-gold underline underline-offset-4" href="/privacy-policy/">
+        Read the Privacy Policy
+      </a>
+    </div>
+    <div class="flex flex-wrap gap-2 md:max-w-[310px] md:justify-end">
+      <button id="consent-reject" type="button" class="btn-outline-gold min-h-[44px]">Reject nonessential</button>
+      <button id="consent-manage" type="button" class="btn-outline-gold min-h-[44px]">Manage preferences</button>
+      <button id="consent-accept" type="button" class="btn-gold min-h-[44px]">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<dialog
+  id="consent-dialog"
+  class="m-auto w-[min(560px,calc(100%-2rem))] border border-gold-metal/40 bg-breath p-0 text-ink shadow-2xl backdrop:bg-charcoal/70"
+>
+  <form method="dialog" id="consent-preferences" class="p-6 sm:p-8">
+    <div class="flex items-start justify-between gap-5">
+      <div>
+        <h2 class="font-serif text-[26px]">Manage privacy preferences</h2>
+        <p class="mt-2 text-[13px] leading-relaxed text-muted">Necessary storage is always active for security, checkout, and your privacy selection.</p>
+      </div>
+      <button value="cancel" aria-label="Close preferences" class="text-2xl leading-none text-muted">×</button>
+    </div>
+
+    <div class="mt-7 divide-y divide-gold-metal/20 border-y border-gold-metal/20">
+      <label class="flex min-h-[74px] items-center justify-between gap-5">
+        <span><strong class="block text-[14px]">Analytics</strong><small class="mt-1 block text-[12px] text-muted">Site usage and performance measurement.</small></span>
+        <input id="consent-analytics" type="checkbox" class="h-5 w-5 accent-[#A8894D]" />
+      </label>
+      <label class="flex min-h-[74px] items-center justify-between gap-5">
+        <span><strong class="block text-[14px]">Advertising measurement</strong><small class="mt-1 block text-[12px] text-muted">Retail ad attribution and eligible enhanced conversions.</small></span>
+        <input id="consent-advertising" type="checkbox" class="h-5 w-5 accent-[#A8894D]" />
+      </label>
+    </div>
+
+    <p id="consent-gpc-note" class="mt-4 hidden text-[12px] leading-relaxed text-muted">
+      Global Privacy Control is enabled in this browser, so advertising measurement remains off.
+    </p>
+
+    <div class="mt-7 flex flex-wrap justify-end gap-3">
+      <button value="cancel" class="btn-outline-gold">Cancel</button>
+      <button id="consent-save" value="default" class="btn-gold">Save preferences</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  import { applyConsent, getConsent, hasStoredConsent } from '@/lib/measurement';
+
+  const banner = document.getElementById('consent-banner');
+  const dialog = document.getElementById('consent-dialog') as HTMLDialogElement | null;
+  const analytics = document.getElementById('consent-analytics') as HTMLInputElement | null;
+  const advertising = document.getElementById('consent-advertising') as HTMLInputElement | null;
+  const gpcNote = document.getElementById('consent-gpc-note');
+
+  const closeBanner = (): void => banner?.classList.add('hidden');
+  const openPreferences = (): void => {
+    const current = getConsent();
+    if (analytics) analytics.checked = current.analytics_storage === 'granted';
+    if (advertising) {
+      advertising.checked = current.ad_storage === 'granted';
+      advertising.disabled = navigator.globalPrivacyControl === true;
+    }
+    gpcNote?.classList.toggle('hidden', navigator.globalPrivacyControl !== true);
+    dialog?.showModal();
+  };
+
+  document.getElementById('consent-accept')?.addEventListener('click', () => {
+    applyConsent({
+      analytics_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+    }, 'banner');
+    closeBanner();
+  });
+
+  document.getElementById('consent-reject')?.addEventListener('click', () => {
+    applyConsent({
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    }, 'banner');
+    closeBanner();
+  });
+
+  document.getElementById('consent-manage')?.addEventListener('click', openPreferences);
+  window.addEventListener('hor:open-consent', openPreferences);
+
+  document.getElementById('consent-save')?.addEventListener('click', () => {
+    const advertisingGranted = advertising?.checked === true && navigator.globalPrivacyControl !== true;
+    applyConsent({
+      analytics_storage: analytics?.checked ? 'granted' : 'denied',
+      ad_storage: advertisingGranted ? 'granted' : 'denied',
+      ad_user_data: advertisingGranted ? 'granted' : 'denied',
+      ad_personalization: advertisingGranted ? 'granted' : 'denied',
+    }, 'preferences');
+    closeBanner();
+    dialog?.close();
+  });
+
+  if (!hasStoredConsent()) banner?.classList.remove('hidden');
+</script>

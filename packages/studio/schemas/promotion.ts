@@ -82,7 +82,7 @@ export const promotion = defineType({
       description: 'Optional — only surface this promo alongside a specific brand\'s products.',
       options: {
         list: [
-          { title: 'Procell Therapies', value: 'Procell' },
+          { title: 'Procell Therapies', value: 'procell' },
           { title: 'GlyMed+', value: 'glymed' },
           { title: 'Skin Script', value: 'skin-script' },
           { title: 'Face Reality', value: 'face-reality' },

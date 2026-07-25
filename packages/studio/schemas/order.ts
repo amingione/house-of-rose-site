@@ -80,6 +80,7 @@ export const order = defineType({
           fields: [
             { name: 'product', title: 'Product', type: 'reference', to: [{ type: 'product' }] },
             { name: 'title', title: 'Title (at purchase)', type: 'string' },
+            { name: 'sku', title: 'SKU (at purchase)', type: 'string' },
             { name: 'quantity', title: 'Quantity', type: 'number' },
             { name: 'unitPrice', title: 'Unit Price (cents, at purchase)', type: 'number' },
           ],
@@ -99,6 +100,40 @@ export const order = defineType({
     defineField({ readOnly: true, name: 'shippingCost', title: 'Shipping (cents)', type: 'number' }),
     defineField({ readOnly: true, name: 'tax', title: 'Tax (cents)', type: 'number' }),
     defineField({ readOnly: true, name: 'total', title: 'Total (cents)', type: 'number' }),
+    defineField({ readOnly: true, name: 'stripeTaxCalculationId', title: 'Stripe Tax Calculation', type: 'string' }),
+    defineField({ readOnly: true, name: 'stripeTaxTransactionId', title: 'Stripe Tax Transaction', type: 'string' }),
+    defineField({ readOnly: true, name: 'inventoryDecrementedAt', title: 'Inventory Decremented', type: 'datetime' }),
+    defineField({ readOnly: true, name: 'confirmationEmailSentAt', title: 'Confirmation Email Sent', type: 'datetime' }),
+    defineField({
+      name: 'attribution',
+      title: 'Order Attribution',
+      type: 'object',
+      readOnly: true,
+      fields: [
+        defineField({ name: 'gclid', title: 'GCLID', type: 'string' }),
+        defineField({ name: 'gbraid', title: 'GBRAID', type: 'string' }),
+        defineField({ name: 'wbraid', title: 'WBRAID', type: 'string' }),
+        defineField({ name: 'utmSource', title: 'UTM Source', type: 'string' }),
+        defineField({ name: 'utmMedium', title: 'UTM Medium', type: 'string' }),
+        defineField({ name: 'utmCampaign', title: 'UTM Campaign', type: 'string' }),
+        defineField({ name: 'landingPage', title: 'Landing Page', type: 'string' }),
+      ],
+    }),
+    defineField({
+      name: 'measurementConsent',
+      title: 'Measurement Consent',
+      type: 'object',
+      readOnly: true,
+      fields: [
+        defineField({ name: 'schemaVersion', title: 'Schema Version', type: 'number' }),
+        defineField({ name: 'policyVersion', title: 'Policy Version', type: 'string' }),
+        defineField({ name: 'analytics_storage', title: 'Analytics Storage', type: 'string' }),
+        defineField({ name: 'ad_storage', title: 'Ad Storage', type: 'string' }),
+        defineField({ name: 'ad_user_data', title: 'Ad User Data', type: 'string' }),
+        defineField({ name: 'ad_personalization', title: 'Ad Personalization', type: 'string' }),
+        defineField({ name: 'recordedAt', title: 'Recorded At', type: 'datetime' }),
+      ],
+    }),
 
     // ── Shipping ──
     defineField({

@@ -15,6 +15,7 @@ import {
   type ShopBrand,
   type ProductBrand,
 } from '@/lib/queries';
+import { toCanonicalProduct } from '@/lib/productContract';
 
 const [products, promotions, shopBrands] = await Promise.all([
   sanityFetch<Product[]>(ALL_PRODUCTS_QUERY),
@@ -26,7 +27,7 @@ const [products, promotions, shopBrands] = await Promise.all([
 // yet in Sanity — keeps the page from looking empty while editors backfill
 // real brand story content in the Studio.
 const FALLBACK_BRAND_COPY: Record<ProductBrand, string> = {
-  Procell:
+  procell:
     'The aftercare system behind our microchanneling results. Growth-factor serums in two strengths — MD for clients in active treatment series, PRO for maintenance — because what you apply at home determines how far your in-studio results go.',
   glymed:
     'Professional pharmaceutical-grade skincare we prescribe around treatment cycles: barrier repair after peels, glycolic renewal between visits, recovery care, and the daily SPF that protects everything else.',
@@ -38,9 +39,9 @@ const FALLBACK_BRAND_COPY: Record<ProductBrand, string> = {
     'House of Rose exclusives — the pieces we couldn\'t find anywhere else, so we made them ourselves.',
 };
 
-const BRAND_ORDER: ProductBrand[] = ['Procell', 'glymed', 'skin-script', 'face-reality', 'house-of-rose'];
+const BRAND_ORDER: ProductBrand[] = ['procell', 'glymed', 'skin-script', 'face-reality', 'house-of-rose'];
 const BRAND_TITLES: Record<ProductBrand, string> = {
-  Procell: 'Procell Therapies',
+  procell: 'Procell Therapies',
   glymed: 'GlyMed+',
   'skin-script': 'Skin Script',
   'face-reality': 'Face Reality',
@@ -76,6 +77,19 @@ const orderingOptions = [
 ];
 
 const heroImage = '/images/hor-lounge.webp';
+const measurementItems = products.map((product, index) => {
+  const canonical = toCanonicalProduct(product);
+  return {
+    item_id: canonical.itemId,
+    item_name: canonical.itemName,
+    item_brand: canonical.brand,
+    item_category: canonical.category,
+    price: canonical.unitPriceCents !== undefined ? canonical.unitPriceCents / 100 : undefined,
+    index,
+    item_list_id: 'shop',
+    item_list_name: 'House of Rose Shop',
+  };
+});
 ---
 
 <BaseLayout
@@ -94,6 +108,13 @@ const heroImage = '/images/hor-lounge.webp';
   />
 
   <PromoBanner promotions={promotions} />
+
+  <script
+    is:inline
+    id="shop-product-measurement"
+    type="application/json"
+    set:html={JSON.stringify(measurementItems)}
+  ></script>
 
   <TopSellers products={products} />
 
@@ -137,4 +158,32 @@ const heroImage = '/images/hor-lounge.webp';
       </div>
     </div>
   </section>
+
+  <script>
+    import { dispatchMeasurement, type RetailItem } from '@/lib/measurement';
+
+    const measureProductList = (): void => {
+      const data = document.getElementById('shop-product-measurement');
+      if (!data || data.dataset.measured === 'true') return;
+      data.dataset.measured = 'true';
+      try {
+        const items = JSON.parse(data.textContent ?? '[]') as RetailItem[];
+        dispatchMeasurement({
+          event: 'view_item_list',
+          ecommerce: {
+            currency: 'USD',
+            value: items.reduce(
+              (sum, item) => sum + (item.price ?? 0) * (item.quantity ?? 1),
+              0,
+            ),
+            items,
+          },
+        });
+      } catch {
+        // Invalid embedded product data should not affect the shop experience.
+      }
+    };
+
+    measureProductList();
+  </script>
 </BaseLayout>
