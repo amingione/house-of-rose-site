@@ -21,6 +21,7 @@ interface Props {
   preloadImage?: string;
   noindex?: boolean;
   nofollow?: boolean;
+  chrome?: 'site' | 'landing';
 }
 
 const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
@@ -35,6 +36,7 @@ const {
   preloadImage,
   noindex = false,
   nofollow = false,
+  chrome = 'site',
 } = Astro.props;
 
 const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? 'G-QBDHB89WTR';
@@ -129,17 +131,17 @@ const entityGraph = siteEntityGraph(
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
-    <Header currentPath={Astro.url.pathname} />
+    {chrome === 'site' && <Header currentPath={Astro.url.pathname} />}
 
     <!-- Page content -->
-    <main id="main-content" class="transition-fade">
+    <main id="main-content" class={chrome === 'site' ? 'transition-fade' : undefined}>
       <slot />
     </main>
 
-    <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />
+    {chrome === 'site' && <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />}
 
     <!-- Rendered once, outside <main>, so the cart survives swup navigation -->
-    <CartDrawer />
+    {chrome === 'site' && <CartDrawer />}
 
     <!-- Scroll-reveal init — zero JS shipped unless data-reveal attributes are present on the page -->
     <script>

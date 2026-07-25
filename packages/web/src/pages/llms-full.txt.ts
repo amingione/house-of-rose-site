@@ -75,6 +75,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `- **Home** (${base}/): Overview of services, brand philosophy, and booking`,
     `- **Services** (${base}/services/): Full menu of treatments across regenerative aesthetics, injectables, skin health, and wellness`,
+    `- **Consultation** (${base}/consultation/): An overview of regenerative skin renewal, targeted face and body modalities, skin maintenance, IV hydration, and provider-guided weight support`,
     `- **AI Skin Analysis** (${base}/skin-analysis/): In-studio AI-assisted imaging for pigmentation, texture, pores, fine lines, hydration cues, sun damage, and evidence-led treatment planning`,
     `- **Signature Packages** (${base}/packages/): Curated treatment packages and pathways`,
     `- **Experience** (${base}/experience/): What clients can expect — focused, unhurried appointments, personalized recommendations, and clear guidance on results`,
