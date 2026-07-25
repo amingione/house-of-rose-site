@@ -99,6 +99,31 @@ export interface TreatmentArea {
   focus: string;
 }
 
+export type EvidenceMediaKind = 'device' | 'before-after';
+
+export interface EvidenceMedia {
+  _key: string;
+  kind: EvidenceMediaKind;
+  image: SanityImage;
+  title: string;
+  caption: string;
+  sourceCredit: string;
+  sourceUrl?: string;
+  usageApproved: boolean;
+  consentConfirmed?: boolean;
+}
+
+export interface ResearchReference {
+  _key: string;
+  title: string;
+  journal: string;
+  year: number;
+  studyType: string;
+  summary: string;
+  limitations: string;
+  url: string;
+}
+
 export interface ServiceConcern {
   _id: string;
   title: string;
@@ -126,6 +151,8 @@ export interface Service {
   faqs?: FAQ[];
   image?: SanityImage;
   gallery?: SanityImage[];
+  evidenceMedia?: EvidenceMedia[];
+  researchReferences?: ResearchReference[];
   collection?: { title: string; slug: string };
   relatedServices?: Service[];
   comparisons?: ServiceComparison[];
@@ -363,6 +390,33 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
+    "evidenceMedia": evidenceMedia[
+      usageApproved == true &&
+      (kind != "before-after" || consentConfirmed == true)
+    ] {
+      _key,
+      kind,
+      "image": image {
+        asset->{ url, metadata { dimensions } },
+        alt
+      },
+      title,
+      caption,
+      sourceCredit,
+      sourceUrl,
+      usageApproved,
+      consentConfirmed
+    },
+    researchReferences[] {
+      _key,
+      title,
+      journal,
+      year,
+      studyType,
+      summary,
+      limitations,
+      url
+    },
     collection->{ title, "slug": slug.current },
     "relatedServices": relatedServices[@->status in ["live", "actual-menu"]]->{
       _id,

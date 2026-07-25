@@ -318,7 +318,7 @@ const services = [
       ),
       faq(
         'What areas can be treated with Forma at House of Rose?',
-        'House of Rose offers Forma for the face, cheeks, jawline, and neck. Body Forma is not part of this service.',
+        'House of Rose offers Forma for the face, cheeks, jawline, and neck. Your consultation confirms which facial areas fit your goals and candidacy.',
         'areas',
       ),
       faq(

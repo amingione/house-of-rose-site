@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
@@ -264,6 +265,12 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       </div>
     </section>
   )}
+
+  <TreatmentEvidence
+    serviceTitle={service.title}
+    media={service.evidenceMedia}
+    research={service.researchReferences}
+  />
 
   <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
   {galleryImages.length > 0 && (

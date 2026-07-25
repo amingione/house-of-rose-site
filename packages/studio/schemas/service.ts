@@ -190,6 +190,177 @@ export const service = defineType({
       ],
     }),
     defineField({
+      name: 'evidenceMedia',
+      title: 'Treatment Evidence Media',
+      type: 'array',
+      description:
+        'Approved device and manufacturer-supplied before/after imagery. Public before/after media is hidden unless usage approval and subject publication consent are both confirmed.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'kind',
+              title: 'Media Type',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Device', value: 'device' },
+                  { title: 'Before & After', value: 'before-after' },
+                ],
+                layout: 'radio',
+              },
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: false },
+              fields: [
+                defineField({
+                  name: 'alt',
+                  title: 'Alt Text',
+                  type: 'string',
+                  validation: (R) => R.required(),
+                }),
+              ],
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'title',
+              title: 'Client-Facing Title',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'caption',
+              title: 'Client-Facing Caption',
+              type: 'text',
+              rows: 3,
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'sourceCredit',
+              title: 'Source Credit',
+              type: 'string',
+              description:
+                'Use a manufacturer or publication credit. Do not enter House of Rose provider names.',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'sourceUrl',
+              title: 'Source URL',
+              type: 'url',
+            }),
+            defineField({
+              name: 'usageApproved',
+              title: 'Public Usage Approved',
+              type: 'boolean',
+              initialValue: false,
+              description:
+                'Confirm that House of Rose has permission to publish this asset.',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'consentConfirmed',
+              title: 'Before/After Publication Consent Confirmed',
+              type: 'boolean',
+              initialValue: false,
+              hidden: ({ parent }) => parent?.kind !== 'before-after',
+              description:
+                'For before/after media only: confirm the source supplied the image for marketing use and subject publication consent is documented.',
+              validation: (R) =>
+                R.custom((value, context) =>
+                  context.parent && (context.parent as { kind?: string }).kind === 'before-after' && value !== true
+                    ? 'Before/after media requires confirmed publication consent.'
+                    : true,
+                ),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'sourceCredit',
+              media: 'image',
+            },
+          },
+        },
+      ],
+      validation: (R) => R.max(8),
+    }),
+    defineField({
+      name: 'researchReferences',
+      title: 'Published Research',
+      type: 'array',
+      description:
+        'Plain-language summaries of applicable cosmetic-use studies. State the study design and limitations; never describe a study as proof or a guarantee.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Study Title',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'journal',
+              title: 'Journal',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'year',
+              title: 'Publication Year',
+              type: 'number',
+              validation: (R) => R.required().integer().min(2000).max(2100),
+            }),
+            defineField({
+              name: 'studyType',
+              title: 'Study Type',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'summary',
+              title: 'What It Suggests',
+              type: 'text',
+              rows: 3,
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'limitations',
+              title: 'Important Limitations',
+              type: 'text',
+              rows: 3,
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'url',
+              title: 'Published Source URL',
+              type: 'url',
+              validation: (R) =>
+                R.required().uri({ scheme: ['https'] }),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              journal: 'journal',
+              year: 'year',
+            },
+            prepare: ({ title, journal, year }) => ({
+              title,
+              subtitle: [journal, year].filter(Boolean).join(' · '),
+            }),
+          },
+        },
+      ],
+      validation: (R) => R.max(6),
+    }),
+    defineField({
       name: 'orderRank',
       title: 'Order',
       type: 'number',
