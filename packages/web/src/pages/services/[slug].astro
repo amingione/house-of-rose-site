@@ -156,6 +156,12 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </div>
   </section>
 
+  <TreatmentEvidence
+    serviceTitle={service.title}
+    media={service.evidenceMedia}
+    research={service.researchReferences}
+  />
+
   <!-- Concern-to-treatment paths -->
   {service.concerns && service.concerns.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
@@ -265,12 +271,6 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       </div>
     </section>
   )}
-
-  <TreatmentEvidence
-    serviceTitle={service.title}
-    media={service.evidenceMedia}
-    research={service.researchReferences}
-  />
 
   <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
   {galleryImages.length > 0 && (

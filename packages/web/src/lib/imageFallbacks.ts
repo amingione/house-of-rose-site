@@ -3,6 +3,27 @@ const INJECTABLES_EDITORIAL_IMAGE = '/images/editorial/home/injectables-consulta
 const SKIN_HEALTH_EDITORIAL_IMAGE = '/images/editorial/home/skin-health-analysis.webp';
 const WELLNESS_EDITORIAL_IMAGE = '/images/editorial/home/wellness-iv-hydration.webp';
 const MICROCHANNELING_BANNER_IMAGE = '/images/banner/microchanneling/new-microchanneling.webp';
+const INMODE_DEVICE_IMAGES: Record<string, string> = {
+  morpheus8: '/images/inmode/Morpheus8-Burst.png',
+  'lumecca-peak-ipl': '/images/inmode/Lumecca-Peak.png',
+  'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
+};
+
+const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
+  'morpheus8-device': '/images/inmode/Morpheus8-Burst.png',
+  'morpheus8-face-example':
+    '/images/inmode/EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
+  'morpheus8-abdomen-example':
+    '/images/inmode/NB_M8B_BeforeAfter_24Weeks_Abd_Zoomed-TM.jpg',
+  'morpheus8-buttocks-example':
+    '/images/inmode/Morpheus8-Burst-Deep-Before-and-After-Buttocks.png',
+  'lumecca-device': '/images/inmode/Lumecca-Peak.png',
+  'lumecca-face-example':
+    '/images/inmode/Lumecca-Peak-Before-and-After.png',
+  'forma-device': '/images/inmode/Forma-handpiece-space.png',
+  'forma-profile-example': '/images/inmode/HO1_Forma_Website.jpg',
+  'forma-front-example': '/images/inmode/HO2_Forma_Website.jpg',
+};
 
 // Face Reality brand assets (from docs/Face Reality — Branded Assets 2026).
 // Amber is a Face Reality Certified Acne Specialist, so the acne-program pages
@@ -43,9 +64,9 @@ const SERVICE_IMAGES: Record<string, string> = {
   'microneedling-body': REGENERATIVE_EDITORIAL_IMAGE,
   'prf-body-treatments': REGENERATIVE_EDITORIAL_IMAGE,
   'procell-microchanneling-body': REGENERATIVE_EDITORIAL_IMAGE,
-  morpheus8: REGENERATIVE_EDITORIAL_IMAGE,
-  'lumecca-peak-ipl': SKIN_HEALTH_EDITORIAL_IMAGE,
-  'forma-rf-facial': SKIN_HEALTH_EDITORIAL_IMAGE,
+  morpheus8: INMODE_DEVICE_IMAGES.morpheus8,
+  'lumecca-peak-ipl': INMODE_DEVICE_IMAGES['lumecca-peak-ipl'],
+  'forma-rf-facial': INMODE_DEVICE_IMAGES['forma-rf-facial'],
   biorepeel: REGENERATIVE_EDITORIAL_IMAGE,
   'biorepeel-body': REGENERATIVE_EDITORIAL_IMAGE,
   'biorepeel-advanced-acne-scarring': REGENERATIVE_EDITORIAL_IMAGE,
@@ -56,6 +77,12 @@ const SERVICE_IMAGES: Record<string, string> = {
 
 export const getServiceFallbackImage = (slug: string): string =>
   SERVICE_IMAGES[slug] ?? DEFAULT_SERVICE_IMAGE;
+
+export const getInModeDeviceImage = (slug: string): string | undefined =>
+  INMODE_DEVICE_IMAGES[slug];
+
+export const getInModeEvidenceImage = (key: string): string | undefined =>
+  INMODE_EVIDENCE_IMAGES[key];
 
 export const getCollectionFallbackImage = (slug: string): string => {
   const value = slug.toLowerCase();

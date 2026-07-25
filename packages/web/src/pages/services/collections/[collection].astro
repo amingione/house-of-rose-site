@@ -9,7 +9,11 @@ import {
   COLLECTION_BY_SLUG_QUERY,
   type ServiceCollection,
 } from '@/lib/queries';
-import { getCollectionFallbackImage, getServiceFallbackImage } from '@/lib/imageFallbacks';
+import {
+  getCollectionFallbackImage,
+  getInModeDeviceImage,
+  getServiceFallbackImage,
+} from '@/lib/imageFallbacks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COLLECTION_SLUGS_QUERY);
@@ -27,6 +31,15 @@ if (!collection) {
 const collectionImage = collection.image
   ? urlFor(collection.image).width(1600).height(685).fit('crop').url()
   : getCollectionFallbackImage(collection.slug);
+const isRfIplCollection = collection.slug === 'rf-ipl-skin-treatments';
+const inModeDevices = isRfIplCollection
+  ? collection.services
+      .map((service) => ({
+        title: service.title,
+        src: getInModeDeviceImage(service.slug),
+      }))
+      .filter((device): device is { title: string; src: string } => Boolean(device.src))
+  : [];
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -63,7 +76,27 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
       </a>
     </div>
 
-    <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
+    {inModeDevices.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+        {inModeDevices.map((device) => (
+          <figure class="bg-[#f3efe8] border border-gold-metal/15 p-6 sm:p-8">
+            <div class="h-[280px] sm:h-[340px] flex items-center justify-center">
+              <img
+                src={device.src}
+                alt={`${device.title} treatment device`}
+                width={628}
+                height={1000}
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <figcaption class="font-serif text-center text-lg text-ink mt-4">
+              {device.title}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    ) : (
+      <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
         <img
           src={collectionImage}
           alt={collection.image?.alt ?? collection.title}
@@ -72,6 +105,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
           class="w-full h-full object-cover"
         />
       </div>
+    )}
 
     <div class="max-w-2xl mb-16">
       <h1 class="font-serif text-5xl text-ink mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
@@ -84,15 +118,23 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
       <p class="text-muted">Services coming soon.</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {collection.services.map((svc) => (
+        {collection.services.map((svc) => {
+          const inModeDeviceImage = getInModeDeviceImage(svc.slug);
+          return (
           <a href={`/services/${svc.slug}/`} class="group bg-breath overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
-            <div class="aspect-[3/2] overflow-hidden bg-charcoal-lighter">
+            <div class:list={[
+              'aspect-[3/2] overflow-hidden',
+              inModeDeviceImage ? 'bg-[#f3efe8] p-6' : 'bg-charcoal-lighter',
+            ]}>
                 <img
-                  src={svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug)}
+                  src={inModeDeviceImage ?? (svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug))}
                   alt={svc.image?.alt ?? svc.title}
                   width={600}
                   height={400}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  class:list={[
+                    'w-full h-full group-hover:scale-105 transition-transform duration-500',
+                    inModeDeviceImage ? 'object-contain' : 'object-cover',
+                  ]}
                 />
               </div>
             <div class="p-6">
@@ -104,7 +146,8 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
               </div>
             </div>
           </a>
-        ))}
+          );
+        })}
       </div>
     )}
   </section>
