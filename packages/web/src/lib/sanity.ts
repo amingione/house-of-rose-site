@@ -36,6 +36,11 @@ export const sanityClient = createClient({
   dataset: import.meta.env.PUBLIC_SANITY_DATASET,
   apiVersion: import.meta.env.PUBLIC_SANITY_API_VERSION,
   useCdn,
+  // Authenticated build reads: the public (token-less) read path did not return
+  // some freshly published docs (e.g. comparison pages with custom IDs). Using the
+  // server-only read token guarantees the build sees all published content.
+  token: import.meta.env.SANITY_API_READ_TOKEN ?? process.env.SANITY_API_READ_TOKEN,
+  perspective: 'published',
 });
 
 const builder = imageUrlBuilder(sanityClient);
