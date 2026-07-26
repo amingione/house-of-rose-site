@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
-import { getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
+import { getServiceFallbackImage, getServiceResultImages, getServiceResultMeta } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
@@ -54,6 +54,7 @@ const galleryImages = [
 
 // Face Reality clinical before/after proof — only populated for the acne-program pages.
 const resultImages = slug ? getServiceResultImages(slug) : [];
+const resultMeta = slug ? getServiceResultMeta(slug) : undefined;
 
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
@@ -302,13 +303,13 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       <div class="max-w-[1280px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">Clinical Results</span>
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mb-3">
-          The Face Reality Clear Skin Method
+          {resultMeta?.heading ?? 'Clinical Results'}
         </h2>
-        <p class="text-muted text-[14px] leading-relaxed max-w-[680px] mb-10">
-          Unretouched Week&nbsp;1 to Week&nbsp;16 results from the Face Reality clinical
-          study — the same customized professional and home-care method used in-studio.
-          Individual results vary with adherence to protocol.
-        </p>
+        {resultMeta?.intro && (
+          <p class="text-muted text-[14px] leading-relaxed max-w-[680px] mb-10">
+            {resultMeta.intro}
+          </p>
+        )}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {resultImages.map((img) => (
             <figure class="bg-ivory border border-gold-metal/20 overflow-hidden">
@@ -324,9 +325,11 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
             </figure>
           ))}
         </div>
-        <p class="text-muted/70 text-[11px] tracking-[0.14em] uppercase mt-6">
-          Images © Face Reality Skincare · Clear Skin Method™ clinical study
-        </p>
+        {resultMeta?.credit && (
+          <p class="text-muted/70 text-[11px] tracking-[0.14em] uppercase mt-6">
+            {resultMeta.credit}
+          </p>
+        )}
       </div>
     </section>
   )}
