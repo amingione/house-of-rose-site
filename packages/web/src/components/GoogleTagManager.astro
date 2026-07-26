@@ -1,15 +1,17 @@
 ---
 interface Props {
   containerId?: string;
+  measurementPath?: string;
 }
 
-const { containerId } = Astro.props;
-const validContainerId = containerId?.startsWith('GTM-') ? containerId : undefined;
+const { containerId, measurementPath = '/metrics/' } = Astro.props;
+const validContainerId = containerId && /^GTM-[A-Z0-9]+$/.test(containerId) ? containerId : undefined;
+const validMeasurementPath = /^\/[A-Za-z0-9_-]+\/$/.test(measurementPath) ? measurementPath : undefined;
 ---
 
-{validContainerId && (
+{validContainerId && validMeasurementPath && (
   <script
     is:inline
-    set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${validContainerId}');`}
+    set:html={`(function(w,d,s,l,i,p){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=p+'?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${validContainerId}','${validMeasurementPath}');`}
   ></script>
 )}

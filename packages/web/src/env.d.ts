@@ -21,6 +21,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_SITE_URL: string;
   readonly PUBLIC_BOOKING_EMAIL: string;
   readonly PUBLIC_GA4_ID?: string;
+  readonly PUBLIC_GTM_ID?: string;
   readonly PUBLIC_GSC_VERIFY?: string;
   readonly PUBLIC_COMING_SOON?: string;
   readonly SANITY_API_WRITE_TOKEN?: string;
