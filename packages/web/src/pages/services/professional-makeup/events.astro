@@ -15,7 +15,6 @@ import { service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structu
 
 const PHONE_DISPLAY = '(844) 941-7673';
 const PHONE_TEL = 'tel:+18449417673';
-const SMS_HREF = 'sms:+18449417673';
 
 const data =
   (await sanityFetch<MakeupEventsPage | null>(MAKEUP_EVENTS_PAGE_QUERY)) ??
@@ -228,11 +227,11 @@ const faqLd = faqPage(faqs);
         </h2>
         <p class="text-muted text-[15px] max-w-[500px] mx-auto mb-8 leading-[1.8]" {...sbFieldPath('bookingBody')}>
           {data.bookingBody ??
-            'Call or text with your date and party size and we’ll walk you through the options, timing, and everything included.'}
+            'Call or book online with your date and party size and we’ll walk you through the options, timing, and everything included.'}
         </p>
         <div class="flex gap-3 justify-center flex-wrap mb-10">
-          <a href={PHONE_TEL} class="btn-gold">{PHONE_DISPLAY}</a>
-          <a href={SMS_HREF} class="btn-outline-gold">Text Us</a>
+          <a href={PHONE_TEL} class="btn-outline-gold">{PHONE_DISPLAY}</a>
+          <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/15 text-left">
           {relatedLinks.map((l, i) => (
