@@ -6,7 +6,6 @@ import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Servic
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CartDrawer from '@/components/shop/CartDrawer.astro';
-import ComingSoon from '@/components/ComingSoon.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import LeadAnalytics from '@/components/LeadAnalytics.astro';
 import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
@@ -43,10 +42,10 @@ const {
 } = Astro.props;
 
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const gtmMeasurementPath = '/metrics/';
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
 // Never fire on `astro dev` — keeps local testing out of live Events Manager data.
 const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
-const comingSoon = import.meta.env.PUBLIC_COMING_SOON === 'true';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
@@ -106,7 +105,7 @@ const entityGraph = siteEntityGraph(
       is:inline
       set:html={`window.__horMeasurementConfig={ahrefsKey:'XdzOvGXmUENnBpyYIDhXOQ',metaPixelId:${JSON.stringify(metaPixelId ?? '')}};`}
     ></script>
-    <GoogleTagManager containerId={gtmId} />
+    <GoogleTagManager containerId={gtmId} measurementPath={gtmMeasurementPath} />
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/logos/hr-monogram-2026/favicon-16.png" />
@@ -118,7 +117,6 @@ const entityGraph = siteEntityGraph(
     <slot name="head" />
   </head>
   <body>
-    {comingSoon && <ComingSoon />}
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
