@@ -228,7 +228,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 - `PUBLIC_SANITY_API_VERSION` = `2025-04-26`
 - `SANITY_API_WRITE_TOKEN` = (secret — server-side lead submission writes, do not commit)
 - `PUBLIC_SITE_URL` = `https://houseofrosefl.com`
-- `PUBLIC_BOOKING_EMAIL` = `info@houseofrosefl.com`
+- `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com`
 - `PUBLIC_GTM_ID` = `GTM-NSDKJFP9` (browser-safe; builds + functions; served through `/metrics/`)
 - `PUBLIC_MAPBOX_ACCESS_TOKEN` = browser-safe public token (production value is URL-restricted to `houseofrosefl.com`)
 
