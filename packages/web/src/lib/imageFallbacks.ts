@@ -111,102 +111,12 @@ const FACE_REALITY_CLINICAL_RESULTS: ClinicalResultImage[] = [1, 2, 3, 4, 5].map
   alt: `Face Reality Clear Skin Method clinical results — acne before (Week 1) and after (Week 16), case ${n}`,
 }));
 
-// InMode clinical before/after imagery. These are manufacturer / InMode-network
-// examples (watermarked to the treating provider), NOT House of Rose clients — so
-// they are ALWAYS shown with the illustrative credit below and never implied to be
-// our own results. Swap in genuine consented House of Rose photos when available.
-const INMODE_ILLUSTRATIVE_CREDIT =
-  'Clinical images courtesy of InMode — illustrative of typical treatment goals, not House of Rose clients. Individual results vary.';
-
-const MORPHEUS8_FACE_RESULTS: ClinicalResultImage[] = [
-  {
-    src: '/images/inmode/EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
-    alt: 'Morpheus8 RF microneedling before and after over four treatments — illustrative clinical result',
-  },
-];
-
-const MORPHEUS8_BODY_RESULTS: ClinicalResultImage[] = [
-  {
-    src: '/images/inmode/NB_M8B_BeforeAfter_24Weeks_Abd_Zoomed-TM.jpg',
-    alt: 'Morpheus8 Body before and after on the abdomen at 24 weeks — illustrative clinical result',
-  },
-  {
-    src: '/images/inmode/Morpheus8-Burst-Deep-Before-and-After-Buttocks.png',
-    alt: 'Morpheus8 Body Burst Deep before and after on the buttocks — illustrative clinical result',
-  },
-];
-
-const FORMA_RESULTS: ClinicalResultImage[] = [
-  {
-    src: '/images/inmode/Forma-Before-and-After.png',
-    alt: 'Forma RF skin tightening before and after on the jawline and neck — illustrative clinical result',
-  },
-];
-
-const LUMECCA_RESULTS: ClinicalResultImage[] = [
-  {
-    src: '/images/inmode/Lumecca-Peak-Before-and-After.png',
-    alt: 'Lumecca Peak IPL photofacial before and after clearing sun spots and pigmentation — illustrative clinical result',
-  },
-];
-
 const SERVICE_RESULTS: Record<string, ClinicalResultImage[]> = {
   'acne-bootcamp': FACE_REALITY_CLINICAL_RESULTS,
   'face-reality-acne-program': FACE_REALITY_CLINICAL_RESULTS,
   'face-reality-acne-treatment': FACE_REALITY_CLINICAL_RESULTS,
-  morpheus8: MORPHEUS8_FACE_RESULTS,
-  'morpheus8-body': MORPHEUS8_BODY_RESULTS,
-  'forma-rf-facial': FORMA_RESULTS,
-  'lumecca-peak-ipl': LUMECCA_RESULTS,
-};
-
-export interface ServiceResultMeta {
-  heading: string;
-  intro: string;
-  credit: string;
-}
-
-const FACE_REALITY_RESULT_META: ServiceResultMeta = {
-  heading: 'The Face Reality Clear Skin Method',
-  intro:
-    'Unretouched Week 1 to Week 16 results from the Face Reality clinical study — the same customized professional and home-care method used in-studio. Individual results vary with adherence to protocol.',
-  credit: 'Images © Face Reality Skincare · Clear Skin Method™ clinical study',
-};
-
-const SERVICE_RESULT_META: Record<string, ServiceResultMeta> = {
-  'acne-bootcamp': FACE_REALITY_RESULT_META,
-  'face-reality-acne-program': FACE_REALITY_RESULT_META,
-  'face-reality-acne-treatment': FACE_REALITY_RESULT_META,
-  morpheus8: {
-    heading: 'What Morpheus8 Can Do',
-    intro:
-      'Illustrative Morpheus8 RF microneedling results — tighter, smoother, more refined skin built over a treatment series. Your own plan and candidacy are confirmed at consultation.',
-    credit: INMODE_ILLUSTRATIVE_CREDIT,
-  },
-  'morpheus8-body': {
-    heading: 'What Morpheus8 Body Can Do',
-    intro:
-      'Illustrative Morpheus8 Body results — firmer, tighter skin on the abdomen and body, a popular non-surgical option after major weight loss. Individual results vary.',
-    credit: INMODE_ILLUSTRATIVE_CREDIT,
-  },
-  'forma-rf-facial': {
-    heading: 'What Forma Can Do',
-    intro:
-      'Illustrative Forma RF results — a firmer, more lifted jawline and neck with no downtime. Your own plan is confirmed at consultation.',
-    credit: INMODE_ILLUSTRATIVE_CREDIT,
-  },
-  'lumecca-peak-ipl': {
-    heading: 'What Lumecca IPL Can Do',
-    intro:
-      'Illustrative Lumecca Peak IPL results — clearer, more even tone with sun spots and pigmentation visibly reduced, often in just a few sessions. Individual results vary.',
-    credit: INMODE_ILLUSTRATIVE_CREDIT,
-  },
 };
 
 /** Clinical before/after proof gallery for a service, or [] when none applies. */
 export const getServiceResultImages = (slug: string): ClinicalResultImage[] =>
   SERVICE_RESULTS[slug] ?? [];
-
-/** Heading/intro/credit for the results band, or undefined when the service has none. */
-export const getServiceResultMeta = (slug: string): ServiceResultMeta | undefined =>
-  SERVICE_RESULT_META[slug];
