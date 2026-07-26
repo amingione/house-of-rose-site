@@ -378,6 +378,28 @@ export const attachAttributionToLeadForms = (): void => {
       }
       input.value = value;
     }
+
+    // Mirror this submission into Netlify Forms so it also appears in the Netlify
+    // dashboard. Additive only — the native POST to lead-submit (Sanity CRM, owner
+    // + client emails, conversion receipt, thank-you redirect) is untouched. The
+    // keepalive fetch completes even as the page navigates away.
+    if (!form.dataset.netlifyMirror) {
+      form.dataset.netlifyMirror = '1';
+      form.addEventListener('submit', () => {
+        try {
+          const entries: string[][] = [];
+          for (const [key, val] of new FormData(form)) entries.push([key, String(val)]);
+          void fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(entries).toString(),
+            keepalive: true,
+          }).catch(() => {});
+        } catch {
+          /* best-effort mirror; never blocks the native submission */
+        }
+      });
+    }
   }
 };
 
