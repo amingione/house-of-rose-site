@@ -144,3 +144,16 @@ Brandy's basic lane (enzyme / hydrodermabrasion / light peels) · Brazilian wax 
 **⛔ HOLD:** GlowTox (clinical/RN approval first).
 
 **Sanity-only fixes (not GG):** filler From $700→$650 · PRF injections $599→$495/$595 · GLP-1 $349→$225/$325 · IV $129→$100 · dermaplaning GBP $95→$135 · permanent jewelry $45→$65 · remove phantom "Dysport"/"Restylane" · invisiClear $125 (likely error, ~$12) · Skin Script 41 null prices. _(Retail products are sold via Stripe/Sanity, not GlossGenius — GG can't sell products online.)_
+
+---
+
+## ✅ GG menu finalization executed — 2026-07-26
+
+Live GlossGenius menu cleanup completed (browser, system-of-record):
+- **Removed** leftover `Wrinkle Relaxers` bundle ($14) and `Facial Fillers` ($0 placeholder) from Dermal Fillers — real Botox/Daxxify + individual fillers already listed. (Dermal Fillers 9 → 7.)
+- **Categorized** the two uncategorized orphans → **Skin Services**: `Consultation + AI Skin Analysis` ($65) and `Acne Bootcamp (12-Week Program)` ($899). (Skin Services 18 → 20.)
+- **Kept** `Acne Bootcamp Consultation` ($99) per Amber (2026-07-26).
+- **Deleted** 3 empty (0-service) categories: Microneedling, Permanent Jewelry, Skin Renewal.
+- Procell confirmed live at **Pro $300 / MD $400** (Amber decision, this session — supersedes the $299/$349 draft above).
+
+Final categories: Beauty & Salon (4) · Chemical Peels (1) · Dermal Fillers (7) · Lash Services (1) · Neuromodulators (2) · Skin Services (20) · Waxing (2) · Wellness & IV (8). No empty categories, no $0/uncategorized services.

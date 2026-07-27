@@ -8,6 +8,8 @@ import {
 } from './_lib/measurement-receipt';
 
 const THANK_YOU_PATH = '/thank-you/';
+const SMS_DISCLOSURE_VERSION = 'grasshopper-toll-free-2026-07-26';
+const SMS_TERMS_URL = 'https://houseofrosefl.com/privacy-policy/';
 
 type SubmissionType = 'contact' | 'consultation' | 'suiteRental' | 'skinAnalysis';
 
@@ -27,6 +29,10 @@ interface LeadSubmissionDocument {
     informational: boolean;
     marketing: boolean;
     declined: boolean;
+    recordedAt: string;
+    disclosureVersion: string;
+    method: 'website-form';
+    termsUrl: string;
   };
   suiteRental?: {
     specialty?: string;
@@ -132,10 +138,11 @@ const buildDocument = (
   submissionType: SubmissionType,
   formName: string,
 ): LeadSubmissionDocument => {
+  const submittedAt = new Date().toISOString();
   const document: LeadSubmissionDocument = {
     _id: `lead-${randomUUID()}`,
     _type: 'leadSubmission',
-    submittedAt: new Date().toISOString(),
+    submittedAt,
     submissionType,
     status: 'new',
     followUpDueAt: getFollowUpDueAt(new Date()),
@@ -169,6 +176,10 @@ const buildDocument = (
       informational: getChecked(formData, 'consent-informational'),
       marketing: getChecked(formData, 'consent-marketing'),
       declined: getChecked(formData, 'consent-none'),
+      recordedAt: submittedAt,
+      disclosureVersion: SMS_DISCLOSURE_VERSION,
+      method: 'website-form',
+      termsUrl: SMS_TERMS_URL,
     };
   }
 
@@ -243,6 +254,17 @@ export default async (request: Request): Promise<Response> => {
     return renderResponse('Phone is required.', 400);
   }
 
+  if (submissionType === 'contact') {
+    const smsConsent = document.smsConsent;
+    const hasPositiveConsent = Boolean(smsConsent?.informational || smsConsent?.marketing);
+    if (!smsConsent || (!hasPositiveConsent && !smsConsent.declined)) {
+      return renderResponse('Choose at least one text-message consent option, including “No” if you decline.', 400);
+    }
+    if (hasPositiveConsent && smsConsent.declined) {
+      return renderResponse('Text-message consent choices conflict. Choose consent or decline.', 400);
+    }
+  }
+
   if (submissionType === 'suiteRental' && (!document.phone || !document.message || !document.suiteRental?.specialty || !document.suiteRental.yearsExperience || !document.suiteRental.insuranceAcknowledgement)) {
     return renderResponse('Required suite application fields are missing.', 400);
   }
@@ -269,6 +291,13 @@ export default async (request: Request): Promise<Response> => {
       utmSource: document.attribution?.utmSource,
       utmMedium: document.attribution?.utmMedium,
       utmCampaign: document.attribution?.utmCampaign,
+      smsConsent: document.smsConsent
+        ? [
+            document.smsConsent.informational ? 'Informational' : '',
+            document.smsConsent.marketing ? 'Marketing' : '',
+            document.smsConsent.declined ? 'Declined all SMS' : '',
+          ].filter(Boolean).join(' + ')
+        : undefined,
     };
 
     const [internalNotificationSent, acknowledgementSent] = await Promise.all([

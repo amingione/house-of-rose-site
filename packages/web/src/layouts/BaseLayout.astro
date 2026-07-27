@@ -44,7 +44,9 @@ const {
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const gtmMeasurementPath = '/metrics/';
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
-// Never fire on `astro dev` — keeps local testing out of live Events Manager data.
+// Never fire third-party measurement on `astro dev` — keeps local testing out
+// of vendor consoles and avoids Ahrefs' expected "Ignoring Event: localhost" noise.
+const ahrefsKey = import.meta.env.DEV ? undefined : 'XdzOvGXmUENnBpyYIDhXOQ';
 const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
@@ -103,7 +105,7 @@ const entityGraph = siteEntityGraph(
     <ConsentBootstrap />
     <script
       is:inline
-      set:html={`window.__horMeasurementConfig={ahrefsKey:'XdzOvGXmUENnBpyYIDhXOQ',metaPixelId:${JSON.stringify(metaPixelId ?? '')}};`}
+      set:html={`window.__horMeasurementConfig={ahrefsKey:${JSON.stringify(ahrefsKey ?? '')},metaPixelId:${JSON.stringify(metaPixelId ?? '')}};`}
     ></script>
     <GoogleTagManager containerId={gtmId} measurementPath={gtmMeasurementPath} />
     <!-- Favicons — generated from 512px transparent source -->
