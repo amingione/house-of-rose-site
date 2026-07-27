@@ -242,7 +242,14 @@ And the lawful path is in the adjacent section. ✅ **VERBATIM** —
 with authorized APRN functions performed "within the framework of an established protocol … unless the
 advanced practice registered nurse is registered and practicing under s. 464.0123."
 
-**The audit missed this entirely, and it is the most consequential item in the file.** Aesthetic
+⚠️ **Applicability note added 2026-07-26.** This subsection was written when the owner was believed to
+be an APRN. **Diana Morrison is a plain RN**, so § 464.0123 — which governs *autonomous APRN practice* —
+**does not apply to her.** The subsection is retained because it is correct law and would govern if an
+APRN is ever added to the practice. **The operative question for an RN performing injectables is
+physician delegation and supervision, a different framework**, and one counsel must address alongside
+the licensure question at §3 item 3.
+
+**The audit missed this entirely, and it remains consequential.** Aesthetic
 medicine is not primary care, and Board of Nursing rule 64B9-4.001 defines primary care in
 disease-and-health terms that do not reach elective cosmetic enhancement. So:
 
@@ -275,17 +282,46 @@ of what the small print says.
 
 ## 2. House of Rose's actual structure, as it bears on all of this
 
-Stated by Amber, 2026-07-26: **owned by a registered nurse practitioner**; **medical director assigned
-through Guardian**; the medical director is the named responsible provider for advertising attribution.
+**Verified 2026-07-26 against public record.** Florida Division of Corporations, entity
+**HOUSE OF ROSE AESTHETICS LLC**, document **L26000204660**, filed 04/10/2026, status ACTIVE, last event
+LC Amendment 05/06/2026. Authorized Person(s):
+
+| Name | Sunbiz title | Licence held | Qualifying owner under § 400.9905(4)(g)? |
+|---|---|---|---|
+| MINGIONE, AMBER | AMBR (authorized member) | Licensed esthetician — **ch. 477** | ❌ **No.** Chapter 477 is absent from (4)(g)'s closed list, and an esthetician is not a "health care practitioner" under § 456.001(4) either |
+| MORRISON, DIANA | AMBR (authorized member) | **RN** — confirmed by Amber 2026-07-26; matches `CLAUDE.md` line 151 and `/diana` | ❌ **No.** (4)(g) reaches nursing **only through `s. 464.012`** — the APRN section. A plain RN is not enumerated |
+
+Medical director **Joshua Shaw, MD** is assigned through Guardian Medical Direction. **He is a contracted
+supervising physician, not a member of the LLC** — so paragraph (4)(f), the physician-ownership
+exemption, is not available either.
+
+⚠️ Sunbiz lists *authorized persons*, not membership percentages. The **operating agreement** is the
+authority on who actually holds membership interests — produce it for counsel.
 
 | Question | Reading | Confidence |
 |---|---|---|
-| Is the APRN owner a qualifying owner under § 400.9905(4)(g)? | **Yes** — (4)(g) enumerates `s. 464.012`, the APRN section. **Cite s. 464.012, not § 456.001(4) and not "chapter 464"** — a plain RN or LPN owner would **not** qualify | High |
-| Is an **esthetician** a qualifying owner under (4)(g)? | **No.** Chapter 477 is absent from (4)(g)'s closed list, and an esthetician is not a "health care practitioner" under § 456.001(4) either | High |
-| Does (g) exempt the practice from clinic licensure? | Yes **if** wholly owned by qualifying licensee(s), a licensee-owner supervises business activities and is legally responsible for compliance, and no non-qualifying owner (including an esthetician) holds equity | Medium — fact-dependent, and turns on who actually holds equity |
-| Does § 400.9935(4)(a)2 felony exposure attach? | Not if (g) holds — services then don't require clinic licensure. But (g) is an affirmative, fact-dependent position | Medium |
-| Can the APRN practice aesthetics autonomously? | **No.** § 464.0123 limits autonomous practice to primary care | High |
-| What makes the aesthetic practice lawful, then? | A current written supervising-physician protocol under § 464.012 — the Guardian medical director | High |
+| Does **(4)(g)** exempt this entity from clinic licensure? | **No — as the record stands.** (g) requires the entity be **wholly owned** by practitioners on its closed list. Neither member is on that list: an esthetician (ch. 477) is absent entirely, and nursing is reached only through `s. 464.012` (APRN), which a plain RN is not | High, on the verified facts |
+| Does **(4)(f)**, the physician-ownership exemption, apply? | **No.** It requires the entity be wholly owned by physician(s) or a physician with a family member. Dr. Shaw is a contracted medical director, not a member | High |
+| Any other subsection (4) paragraph? | **None appears to fit.** (a)–(e), (h)–(q) cover licensed facilities, 501(c)(3)s, medical/chiropractic schools, hospital staffing, publicly traded corporations, ≥$250M corporates, ≥50-physician groups, insurers, multi-state behavioural providers, Medicaid providers | Medium-high — counsel should confirm the full list |
+| Does § 400.9935(4)(a)2 exposure attach? | **Potentially yes** — it is a third-degree felony to *offer or advertise* services requiring clinic licensure without one, each day a separate offence. **This turns on the two counterarguments below, and it is counsel's call, not mine** | 🔴 Unresolved — the reason this blocks |
+| Is Diana an APRN? | **No — plain RN.** So the § 464.0123 autonomous-practice analysis in §1.5 **does not apply to her at all.** The operative question is physician **delegation and supervision of an RN**, which is a different framework | High |
+| Who carries advertising risk under 64B8-11.001(5)? | **Joshua Shaw, MD** — FL **ME136232** | High |
+| Is he a dermatologist? | **No.** NPI primary taxonomy is **Surgery** (208600000X). Nothing may imply dermatology | High |
+
+**Two counterarguments that could still carry this — both genuinely open, neither mine to decide.**
+
+1. **"Tenders charges for reimbursement."** The § 400.9905(4) definition of *clinic* requires an entity
+   that provides health care services **and which tenders charges for reimbursement for such services.**
+   A cash-pay practice that never bills insurance has a real argument it falls outside the definition
+   altogether — this is the position many Florida med spas take. I could not resolve AHCA's reading of
+   "reimbursement" against a primary source, so it is flagged, not relied on.
+2. **Which services are "health care services."** Facials, waxing, lashes and makeup are plausibly not.
+   Neurotoxin, dermal filler, PRF injections, IV hydration and the **GLP-1 programme** plainly are the
+   harder end of the argument.
+
+**What this is not.** It is not a marketing problem and it did not arrive with the campaign. The entity
+has been filed and operating since April 2026. Pausing the campaign does not resolve it; it only stops
+adding to it.
 | Who carries advertising risk under 64B8-11.001(5)? | **Joshua Shaw, MD** — FL license **ME136232**, assigned through Guardian Medical Direction | High — identity verified, see §5.4 |
 | Is he a dermatologist? | **No.** His NPI primary taxonomy is **Surgery** (208600000X). Nothing in the campaign may imply dermatology | High |
 
@@ -327,55 +363,104 @@ The attribution line is now fillable and appears at §5.2.
    likely already grants it. Read that clause before asking Dr. Shaw for anything. Only if it is silent
    does this need a separate written consent. What does still matter independently is gate G16 — his
    review of the *clinical claims* in the copy, since R. 64B8-11.001(5) puts that risk on him.
-2. Whether **Diana** holds RN or APRN, and which licenses **Amber** holds — each drives the license type
-   under § 456.072(1)(t) wherever they are named, and Amber's licensure also drives the § 400.9905(4)(g)
-   equity question at item 3.
+2. ~~Whether Diana holds RN or APRN~~ — **resolved 2026-07-26: Diana Morrison, RN.** Her advertising
+   credential under § 456.072(1)(t) is **"Diana Morrison, RN"** — never "Aesthetic Injector," and never
+   "APRN." Amber is a licensed esthetician (ch. 477, DBPR), which is not a ch. 456 health care
+   practitioner credential; if she is named in a health care advertisement, confirm which licence she is
+   being named in the capacity of before stating a credential. Both facts feed item 3.
 
-### Item 3 — AHCA clinic licensure · 🟢 LIKELY EXEMPT, TWO REAL CATCHES
+### Item 3 — AHCA clinic licensure · 🟡 THRESHOLD QUESTION — LIKELY OUTSIDE THE ACT, GET IT IN WRITING
 
-Analysis: §2. This item is in much better shape than the audit assumed — an APRN owner very likely lands
-inside the § 400.9905(4)(g) exemption, which means the § 400.9935(4)(a)2 felony framing, while correctly
-stated, probably does not bite. **Do not treat that as closed, for two reasons.**
+**This item must be worked in two steps, and an earlier draft of this file got the order wrong.**
+It analysed *exemptions* before establishing whether the Health Care Clinic Act reaches this business at
+all. The exemption analysis only matters if step 1 resolves against the practice — and it probably does
+not. Corrected ordering below.
 
-**Catch 1 — 🔴 who actually holds equity? An esthetician owner defeats the exemption.**
-This is the real open question and it was not in the audit. § 400.9905(4)(g)'s list of qualifying owners
-**omits chapter 477**, where estheticians and facial specialists are licensed. It reaches nursing only
-through `s. 464.012` (APRN) — so an APRN owner qualifies and a plain RN owner does not. The exemption
-requires the entity be **wholly owned** by qualifying licensees (plus the named relatives).
+#### Step 1 — Does the Health Care Clinic Act apply at all? (the question that actually decides it)
 
-Per `CLAUDE.md`, Amber is an **esthetician + RN assistant**. Amber states the business is **owned by a
-registered nurse practitioner**. Those two facts need reconciling on paper before anyone relies on (g):
+§ 400.9905(4): *"'Clinic' means an entity where health care services are provided to individuals **and
+which tenders charges for reimbursement for such services**…"*
 
-- The registering legal entity is **House of Rose LLC** (per `docs/compliance/grasshopper-toll-free-guidelines.md`). For an LLC the question is **membership interests** — who are the members, and in what percentages?
-- Does any esthetician-only or RN-only licensee hold **any** equity, including a minority or silent interest?
-- Is the APRN owner the one supervising business activities and legally responsible for compliance?
-- Do any owners fall inside the spouse/parent/child/sibling allowance rather than qualifying directly?
+**The practice's position — and it is the mainstream one — is that it does not apply.** House of Rose is
+a cash-pay aesthetic practice operating under physician medical direction. It does not bill third-party
+payers, so it arguably never "tenders charges for reimbursement," and most of what it sells is elective
+cosmetic service rather than health care. This is the standard structure for a Florida med spa and the
+standard reading. **It is very likely correct.**
 
-If an esthetician holds equity, (g) is unavailable and the § 400.9935(4)(a)2 advertising-felony analysis
-comes back into play. **Do not assume this is fine because an APRN is involved.** Resolve it with counsel
-and the cap table, in writing, before spend.
+Textual support: § 400.9905(4) closes with *"Notwithstanding this subsection, an entity shall be deemed a
+clinic and must be licensed under this part in order to receive reimbursement under the Florida Motor
+Vehicle No-Fault Law…"* — the Act's machinery is plainly oriented toward third-party reimbursement.
 
-**Catch 2 — the exemption is a position you must be able to defend in writing, before you spend.**
-Document the basis: equity composition per Catch 1; licensee-owner supervision and legal responsibility;
-services rendered by licensed practitioners within scope (noting (4)(g)'s own limiter — "a health care
-practitioner may not supervise services beyond the scope of the practitioner's license"). Get counsel's
-written opinion and keep it with this file. An undocumented exemption is not a defense, it is a hope.
+**Two honest caveats, so this is not recorded as settled when it is not.**
 
-**Catch 3 — the certificate of exemption requires a 15-square-foot price list in your reception area.**
+- § 400.990(2) states the legislative purpose as *"The regulation of health care clinics must be
+  strengthened to prevent significant cost and harm to consumers"* — **consumer protection and cost, not
+  solely insurance fraud.** That is broader than the "it's a PIP statute, we're cash-pay" shorthand, so
+  the intent section does not hand the practice the answer.
+- I could not resolve AHCA's own reading of "reimbursement" against a primary source. Absent that, this
+  is a well-supported position rather than a verified one.
+
+**What would change the answer:** any billing to insurance, Medicare, HSA/FSA, or any third-party payer —
+for anything, but watch the **GLP-1 programme** in particular, which is the service most likely to touch
+a payer.
+
+#### Step 2 — Only if step 1 resolves against the practice: is an exemption available?
+
+On the verified record, **no**. Sunbiz shows the members are an **esthetician** (ch. 477, absent from
+§ 400.9905(4)(g)'s closed list) and a **plain RN** (nursing is reached only through `s. 464.012`, the
+APRN section). (4)(f) requires a physician *owner*; Dr. Shaw is a contracted medical director, not a
+member. No other paragraph in subsection (4) appears to fit.
+
+This is why step 1 carries the weight: there is no fallback behind it.
+
+#### Recommended posture — proportionate, not alarmed
+
+This is **one written question to a Florida healthcare attorney**, not a shutdown. Ask it, get the answer
+on letterhead, keep it with this file, and the item closes. The reason to paper it rather than assume it
+is that the downside is asymmetric — § 400.9935(4)(a)2 makes it a third-degree felony to offer or
+advertise services requiring clinic licensure without one, each day a separate offence — and a written
+opinion converts an assumption into a documented, defensible position.
+
+**This is not a campaign blocker in itself,** and it does not reflect on the licensing the practice has
+already obtained. See §4.6 on what those licences do and do not cover. **I am not a lawyer and none of
+this is legal advice.**
+
+**The question to put to counsel — short version, suitable to send as-is.**
+
+> House of Rose Aesthetics LLC is a cash-pay aesthetic practice in Punta Gorda operating under a
+> contracted medical director (Joshua Shaw, MD, ME136232) who provides oversight for neurotoxin, dermal
+> filler and energy-device treatments. We do not bill insurance or any third-party payer. Members are a
+> licensed esthetician and a registered nurse. Please confirm in writing whether we fall outside the
+> definition of "clinic" in Fla. Stat. § 400.9905(4), such that no AHCA health care clinic licence is
+> required. If we do not fall outside it, please advise on the exemption position and remediation, noting
+> that § 400.9905(4)(g) reaches nursing only through s. 464.012 and does not list chapter 477.
+
+**Two related questions worth asking in the same conversation, since counsel is already engaged:**
+
+1. **RN scope and delegation.** Diana is an RN, not an APRN, so the § 464.0123 autonomous framework does
+   not apply. What is the documented basis for an RN performing the advertised injectable services under
+   Dr. Shaw's supervision, and does it cover each advertised service?
+2. **The § 456.062 disclosure and the fee policy** — items 1 and 4 of this framework, already drafted.
+
+**Evidence to assemble before that meeting:** the Sunbiz detail (L26000204660), the LLC operating
+agreement, the Guardian medical director agreement and any supervision protocol, the full service menu,
+and the payment model.
+
+**One thing to decide only after the above.** The voluntary certificate of exemption at § 400.9935(6)
+requires a 15-square-foot price list in your reception area.
 This one is sharper than it first appears, and it collides head-on with your competitive-confidentiality
 decision to strip published pricing. Per § 400.9935(6), **as a condition precedent** to the certificate,
 the applicant must publish and maintain a schedule of charges including **uninsured cash/check/card
 prices**, covering at least the **50 most frequently provided services**, posted conspicuously in the
 reception area on a sign of **at least 15 square feet** (~4 ft × 4 ft).
 
-So the trade is concrete: the certificate buys documented proof of exempt status; the price of it is a
-four-foot price board facing every client and every competitor who walks in. **The exemption does not
-depend on holding the certificate** — the certificate is evidence of the exemption, not its source. That
-makes this a deliberate business call: take the documentation benefit and post the board, or rely on a
-well-documented counsel opinion instead. Decide it on purpose; do not let it be decided by whoever fills
-in the form.
+The trade is concrete — the certificate buys documented proof of exempt status, and the price is a
+four-foot price board facing every client and every competitor who walks in, which collides with the
+pricing-confidentiality decision. **But note the certificate is only available to an entity that "is not
+a clinic, as defined under s. 400.9905."** On the current record that premise is exactly what is in
+question, so this decision waits until item 1 above is answered.
 
-🔴 **OPEN:** equity composition (Catch 1); counsel opinion on (g) applicability; certificate decision.
+🔴 **OPEN — blocking:** counsel's determination on the clinic definition and exemption availability.
 
 ### Item 4 — Refund and fee policy in writing · 🟢 DRAFTED
 
@@ -525,6 +610,31 @@ header, never alongside shipping copy.
 
 ---
 
+### 4.6 What the practice's existing licensing does and does not cover
+
+House of Rose holds the state and county licensing required to open, and has passed its inspections.
+That is real and it is not in question. It is worth recording precisely what those licences answer,
+because they sit with **different regulators** than the one item 3 concerns — which is why passing them
+does not resolve item 3 either way.
+
+| Licence / approval | Regulator | What it establishes |
+|---|---|---|
+| Cosmetology / specialty salon licence (ch. 477) | **DBPR** | The premises may lawfully provide skin-care and related services by licensed cosmetologists / facial specialists |
+| Local business tax receipt, zoning, county approvals | **City / Charlotte County** | The business may lawfully operate at this location |
+| Health / premises inspection | **County or DBPR inspector** | Sanitation and premises standards are met |
+| Nursing licence (Diana, RN) | **DOH / Board of Nursing** | She may practise nursing within her scope |
+| Medical direction agreement (Joshua Shaw, MD) | Private contract + Board of Medicine | Physician oversight for neurotoxin, filler and energy-device treatments |
+| **AHCA health care clinic licence — or a determination it is not required** | **AHCA** | **Not addressed by any of the above.** Nobody at a salon or county inspection is asked, or empowered to decide, whether the Health Care Clinic Act applies |
+
+**This is the whole point of item 3, and it is a narrow one.** The medical-director structure is the
+correct and standard way to offer neurotoxin, filler and energy-device treatments in Florida — that is
+not in doubt. AHCA licensure is a separate statutory question about the *entity*, not about clinical
+authority or premises standards, and it is answered by a lawyer reading § 400.9905(4), not by an
+inspector. The practice's position — that it is an aesthetic practice and not a "clinic" as that term is
+defined — is very likely right. §3 item 3 recommends getting exactly that in writing, once, and moving on.
+
+---
+
 ## 5. Required text and placement
 
 ### 5.1 The § 456.062 disclosure block — verbatim, do not edit
@@ -656,7 +766,7 @@ confirm the licence status is clear and unencumbered — the NPI registry does n
 |---|---|---|---|
 | 1 | § 456.062 disclosure | 🟡 Text ready; **not deployed** | Amber (build), counsel (trigger + adequacy) |
 | 2 | Provider identification | 🟡 Identity verified (Joshua Shaw, MD · ME136232) | **Dr. Shaw's written consent to be named**; Diana's and Amber's license types |
-| 3 | AHCA clinic licensure | 🟡 Exemption available **only if** no esthetician/RN-only owner holds equity | **Equity composition**; counsel opinion; certificate decision |
+| 3 | AHCA clinic licensure | 🟡 **Likely outside the Act** (cash-pay, no third-party billing) — but no exemption sits behind that position, so paper it | One written counsel opinion |
 | 4 | Refund / fee policy | 🟢 Drafted | Amber's figures; two countersignatures |
 | 5 | "AI" claim | 🟢 Substantiated | — (claim limits binding) |
 | 6 | Platform automation lockdown | 🟢 Specified | Execution at launch |
@@ -669,14 +779,16 @@ confirm the licence status is clear and unencumbered — the NPI registry does n
 1. **The item recorded as already handled is the one actually exposed.** Item 1's disclosure is absent
    from a live page advertising a complimentary consultation. Fix it first; it does not depend on any
    campaign.
-2. **The item called "the gate" is narrower than the audit framed it, and narrower than it first looked
-   to me.** An APRN owner qualifies under § 400.9905(4)(g) — but the paragraph's list is closed, omits
-   chapter 477, and reaches nursing only through `s. 464.012`. **If an esthetician holds any equity, the
-   exemption is unavailable.** That is now the single unresolved licensure question.
-3. **The thing holding the clinical practice up is a document nobody advertised.** § 464.0123 confines
-   autonomous APRN practice to primary care, so aesthetics runs on the § 464.012 physician protocol.
-   Confirm it covers each advertised service (runbook gate G6) — the service menu changes faster than
-   protocols get re-signed.
+2. **Item 3 is a two-step question and only step 1 matters much.** Step 1: does the Health Care Clinic
+   Act reach a cash-pay aesthetic practice at all? Probably not — that is the mainstream position and it
+   is well supported. Step 2, which only matters if step 1 fails: no exemption is available, because
+   Sunbiz shows the members are an esthetician (ch. 477, absent from (4)(g)) and a plain RN (nursing
+   reaches (4)(g) only through `s. 464.012`). Because nothing sits behind step 1, get step 1 in writing.
+   One counsel letter closes it.
+3. **The clinical-supervision question changed shape with it.** § 464.0123 governs *autonomous APRN*
+   practice and does not reach a plain RN. So the live question is what authorises an **RN** to perform
+   the advertised injectables under Dr. Shaw's supervision, and whether that delegation is documented
+   and covers each advertised service (runbook gate G6).
 
 ---
 
@@ -684,6 +796,7 @@ confirm the licence status is clear and unencumbered — the NPI registry does n
 
 | Date | Change |
 |---|---|
+| 2026-07-26 | **Ownership verified — item 3 reopened as blocking.** Corrected a material factual error I carried through two drafts: the owner is **not** an APRN. Florida Division of Corporations record for **HOUSE OF ROSE AESTHETICS LLC (L26000204660)** lists two authorized members — **MINGIONE, AMBER** (licensed esthetician, ch. 477) and **MORRISON, DIANA** (RN, confirmed by Amber and matching `CLAUDE.md`). Neither is a qualifying owner under § 400.9905(4)(g): ch. 477 is absent from its closed list, and nursing is reached only through `s. 464.012` (APRN). (4)(f) requires a physician *owner*; Dr. Shaw is a contracted medical director, not a member. No other subsection (4) paragraph appears to fit. Item 3 moved 🟢 → 🔴 blocking, with the threshold "tenders charges for reimbursement" and "health care services" counterarguments recorded as the open questions for counsel. Also corrected §1.5: the § 464.0123 autonomous-practice analysis does not apply to a plain RN, so RN delegation and supervision is the operative framework. |
 | 2026-07-26 | **Provider identity resolved.** Medical director recorded as Joshua Shaw, MD, FL ME136232 (Guardian Medical Direction); name, credential and licence number independently verified against the CMS NPI Registry, and the `ME` prefix confirms allopathic (MD, not DO). Attribution line at §5.2 filled with live values; provider register added at §5.4. **DEA number deliberately excluded from all files** — no advertising purpose and a fraud vector if circulated. Flagged two implication traps: his NPI taxonomy is Surgery, so nothing may imply dermatology (R. 64B8-11.001(2)(k) is violated by implication alone), and nothing may imply he performs treatments or is on site (R. 64B8-11.001(2)(a)). Licence expiry 2028-01-31 added to the runbook cadence. |
 | 2026-07-26 | **Correction pass** after independent adversarial verification. (a) Fixed a citation error: § 400.9905(4)(g) reaches nursing only through `s. 464.012` (APRN) — the earlier draft reasoned from § 456.001(4)'s general "health care practitioner" definition, which over-includes and would have produced a false exemption conclusion for an RN-owned entity. § 400.9905 never cites § 456.001. (b) Surfaced a missed exposure: **chapter 477 is absent from (4)(g)'s closed list, so an esthetician owner defeats the exemption** — now the leading open question at item 3, Catch 1. (c) Upgraded § 400.9935(6) to verbatim and added the elements previously missing — the $100-or-actual-cost fee, the 50-most-frequent-services floor, and the **15-square-foot** posting minimum, which materially sharpens the collision with the pricing-confidentiality decision. (d) Narrowed the § 464.0123 phrasing: autonomous registration does not authorise aesthetics, but an APRN *may* perform aesthetics under a § 464.012(3) physician protocol — added that verbatim. (e) Noted that § 456.062 imposes no point-size or boldface requirement, and that chapter 477 is absent from its list too. |
 | 2026-07-26 | Created. Seven audit items resolved against verified primary sources. Established APRN-owner exemption analysis under § 400.9905(4)(g); surfaced § 464.0123 primary-care limit on autonomous practice and the resulting dependence on the § 464.012 physician protocol (missed by the audit); found the § 456.062 disclosure absent from the live landing page (audit recorded it as present); resolved the "AI" claim as substantiated by the M17 device name and its software analysis, with claim limits; extended the item-6 lockdown to Meta; corrected three drift bugs in `docs/staff/COMPLIANCE-COPY-RULES.md`. |

@@ -153,7 +153,8 @@ This policy is not in force until all three signatures are present.
 
 | Role | Name | Signature | Date |
 |---|---|---|---|
-| Owner | Amber Mingione | | |
+| Member / operations | Amber Mingione | | |
+| Member / RN | Diana Morrison, RN | | |
 | Medical director | `[NAME, MD/DO]` | | |
 | Florida healthcare attorney | `[NAME, FIRM]` | | |
 

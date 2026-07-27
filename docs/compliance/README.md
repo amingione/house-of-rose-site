@@ -36,9 +36,12 @@ campaign launching.
 
 **Open and blocking spend:**
 
-1. **Who holds equity?** The clinic-licensure exemption under § 400.9905(4)(g) has a *closed* list of
-   qualifying owners. An APRN qualifies; **an esthetician does not, and a plain RN does not.** If an
-   esthetician holds any equity the exemption is unavailable. Item 3, Catch 1.
+1. 🟡 **AHCA — one written counsel opinion.** House of Rose is a cash-pay aesthetic practice under
+   physician medical direction and almost certainly falls **outside** the § 400.9905(4) definition of
+   "clinic," which is the mainstream position. Worth papering rather than assuming, because no exemption
+   sits behind that position if it ever failed. **This is not about the licensing the practice already
+   holds** — AHCA is a different regulator from DBPR and the county. Item 3 has the question drafted
+   ready to send.
 2. **Dr. Shaw's review of the clinical claims** in the copy — R. 64B8-11.001(5) puts that risk on him.
    Identity is verified: **Joshua Shaw, MD · FL Lic. ME136232**. Naming rights are almost certainly
    already in the Guardian agreement; check that clause rather than chasing a separate consent. Item 2.

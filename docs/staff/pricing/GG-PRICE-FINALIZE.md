@@ -157,3 +157,21 @@ Live GlossGenius menu cleanup completed (browser, system-of-record):
 - Procell confirmed live at **Pro $300 / MD $400** (Amber decision, this session — supersedes the $299/$349 draft above).
 
 Final categories: Beauty & Salon (4) · Chemical Peels (1) · Dermal Fillers (7) · Lash Services (1) · Neuromodulators (2) · Skin Services (20) · Waxing (2) · Wellness & IV (8). No empty categories, no $0/uncategorized services.
+
+### Corrections — 2026-07-26 (Amber)
+- **Brazilian wax → NOT OFFERED.** House of Rose does not do Brazilian waxing. Remove from the CONFIRM list; do not add to GG. (Waxing menu stays: Body Waxing + Facial Waxing only.)
+- **"Carboxy facial" = the CO2 Lift Carboxy Gel Mask** (CO2 Lift branded carboxy-therapy gel mask treatment) — this resolves the identity, not the price. Still needs a price + standalone-vs-add-on decision from Amber before it can list in GG.
+
+### Round 2 executed — 2026-07-26 (Amber directives)
+Live GlossGenius changes:
+- **Permanent Jewelry → $65 flat, Fixed/visible** (was $60 + Price Hidden). No metal tiers — single price per Amber.
+- **Everyday Makeup → $85** (comp rate; was $90). Description cleaned (removed embedded "$90" price, now benefit-only).
+- **Full Glam/Bridal Makeup → $175** (comp/build-plan; was $185). Description cleaned (removed embedded "$185"). ⚠️ Flag for Aundrea: current blurb implies a bride trial is *included* — the makeup rate card treats trial as a **separate paid** session. Confirm inclusions.
+- **EZ Gel Bio-Filler → ADDED $650** (Dermal Fillers · Diana · 45 min · Fixed). Best-match to our own filler floor (= RHA 1) and just above PRF Facial ($595); market-appropriate for autologous bio-filler. ⚠️ Diana to confirm/adjust to her private set price.
+- **CO2 Lift Carboxy → ADDED, structured both ways:**
+  - Standalone **CO2 Lift Carboxy Facial $175** (Skin Services · Amber + Brandy · 45 min · bookable online). Zero-downtime event glow. Comp: add-on market $100–110, standalone $175–250 → $175 is competitive-not-cheapest, high margin (mask cost ~$30–100).
+  - **CO2 Lift Carboxy (Add-On) $100** (Skin Services · Amber + Brandy · 30 min · **book-online OFF** = staff-added upsell only, so it doesn't undercut the $175 standalone online). Layer onto microneedling / peel / facial. _If a native online add-on attachment is wanted, that's GG's add-on feature — can set up separately._
+- **Rose PRF Fibrin Veil → SHELVED / not listed.** Per Amber: overpriced for a 30-min add-on and the visible veil + 2-week no-touch fights the no-downtime-glow positioning. PRF benefit already covered by Topical PRF and Glo2Facial + PRF. Restructure later if desired.
+
+**Still provider-confirm (unchanged):** permanent-jewelry metal tiers → CONFIRMED NOT wanted (flat $65). EZ-Gel price pending Diana's private number. Everyday/Event makeup live at comp.
+**Systemic note:** several GG service descriptions were AI-generated with embedded prices/durations (e.g., "priced at $90"). Everyday + Bridal fixed this round. Recommend a sweep of remaining descriptions to strip embedded prices (violates the no-price-in-booking-descriptions rule).

@@ -107,8 +107,9 @@ provider name, or paid ad. The four rules that get broken most:
   Meta creative enhancements + text variations. An optimiser that rewrites a paragraph can delete a
   statutory disclosure, and "the platform generated it" is not a defence (R. 64B8-11.001(5)).
 
-**Structure (verified 2026-07-26):** APRN owner + medical director assigned through Guardian Medical
-Direction — **Joshua Shaw, MD · FL Lic. ME136232** (verified against the CMS NPI Registry). He is the
+**Structure (verified 2026-07-26 against Sunbiz + Amber):** **HOUSE OF ROSE AESTHETICS LLC**, doc
+**L26000204660**. Authorized members: **Amber Mingione** (licensed esthetician) and **Diana Morrison,
+RN**. Medical director assigned through Guardian Medical Direction — **Joshua Shaw, MD · FL Lic. ME136232** (verified against the CMS NPI Registry). He is the
 named responsible provider for ad attribution and carries the R. 64B8-11.001(5) risk. **Canonical
 attribution line: `Medical Director: Joshua Shaw, MD · FL Lic. ME136232`.**
 
@@ -121,13 +122,21 @@ not primary care — so aesthetics runs on a **§ 464.012(3) written physician p
 perform aesthetics under that protocol; she may not do it autonomously. **Confirm the protocol covers a
 service before advertising it.**
 
-⚠️ **Open licensure question — do not assume it's settled.** The AHCA clinic-licensure exemption at
-§ 400.9905(4)(g) has a **closed list of qualifying owners**: it reaches nursing only through `s. 464.012`
-(APRN), and **chapter 477 — estheticians — is not on it.** So an APRN owner qualifies, a plain RN owner
-does not, and **an esthetician holding any equity defeats the exemption**, which puts the
-§ 400.9935(4)(a)2 advertising-felony analysis back in play. Do not reason from § 456.001(4)'s general
-"health care practitioner" definition — § 400.9905 never cites it and it over-includes. Resolve against
-the actual cap table with counsel before any paid advertising.
+🟡 **AHCA clinic licensure — open, but narrow.** House of Rose is a **cash-pay aesthetic practice** under
+physician medical direction and almost certainly falls **outside** the § 400.9905(4) definition of
+"clinic," which requires an entity that "tenders charges for reimbursement." That is the mainstream
+position and very likely correct. It is worth one written counsel opinion rather than an assumption,
+because **no exemption sits behind it**: (4)(g)'s closed list omits ch. 477 (esthetician) entirely and
+reaches nursing only through `s. 464.012` (**APRN** — Diana is a plain RN), and (4)(f) needs a physician
+*owner*, which a contracted medical director is not. **This is unrelated to the DBPR salon licence,
+county approvals and inspections the practice already holds — AHCA is a different regulator.** Anything
+billed to insurance or a third-party payer would change the analysis; watch GLP-1. Do not reason from
+§ 456.001(4)'s general definition; § 400.9905 never cites it. Full analysis and the drafted question:
+`docs/compliance/FL-ADVERTISING-LAW.md` §3 item 3 and §4.6.
+
+⚠️ **Diana is an RN, not an APRN.** § 464.0123 autonomous practice does not apply to her — the operative
+question for RN-performed injectables is **physician delegation and supervision**. Her advertising
+credential is **"Diana Morrison, RN"** (§ 456.072(1)(t)).
 
 ⚠️ **The certificate of exemption is voluntary and expensive in a non-obvious way:** § 400.9935(6) makes
 publishing a fee schedule a **condition precedent** — uninsured cash prices for the 50 most-frequent
