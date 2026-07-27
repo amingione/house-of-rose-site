@@ -175,3 +175,6 @@ Live GlossGenius changes:
 
 **Still provider-confirm (unchanged):** permanent-jewelry metal tiers → CONFIRMED NOT wanted (flat $65). EZ-Gel price pending Diana's private number. Everyday/Event makeup live at comp.
 **Systemic note:** several GG service descriptions were AI-generated with embedded prices/durations (e.g., "priced at $90"). Everyday + Bridal fixed this round. Recommend a sweep of remaining descriptions to strip embedded prices (violates the no-price-in-booking-descriptions rule).
+
+### Correction — 2026-07-26 (Amber): Bridal trial
+- **Bridal trial run is SEPARATE and NOT included** in Full Glam/Bridal Makeup. GG description updated to: "…A trial run beforehand is recommended and booked separately." (Matches the makeup rate card — trial = separate paid session ≈ event rate.)

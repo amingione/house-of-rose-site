@@ -1,0 +1,529 @@
+Facial Surgery
+
+                                                                                                            Aesthetic Surgery Journal
+                                                                                                            2021, Vol 41(7) 747–758
+The Effect of Platelet-Rich Fibrin Matrix on                                                                © The Author(s) 2020. Published
+                                                                                                            by Oxford University Press on behalf
+Skin Rejuvenation: A Split-Face Comparison                                                                  of The Aesthetic Society. All rights re-
+                                                                                                            served. For permissions, please e-mail:
+                                                                                                            journals.permissions@oup.com
+                                                                                                            DOI: 10.1093/asj/sjaa244
+                                                                                                            www.aestheticsurgeryjournal.com
+
+Shirley Hu, MD; Michael Bassiri-Tehrani, MD; and
+
+
+
+
+                                                                                                                                                       Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+Manoj T. Abraham, MD, FACS
+
+
+
+Abstract
+Background: Despite the increasingly popular use of platelet-rich fibrin matrix (PRFM) for facial rejuvenation, no studies
+have evaluated its effects on skin.
+Objectives: The aim of this study was to determine the effect of PRFM on skin quality as measured by the Canfield VISIA
+Complexion Analysis System.
+Methods: This was a 12-week randomized, placebo-controlled trial conducted at a single center comparing 2 groups.
+Thirty patients received a PRFM injection in the mid-cheek region and nasolabial fold on one side of the face and saline on
+the contralateral side. The primary outcome measure was the difference between pre- and posttreatment total VISIA skin
+scores for each group at 6 and 12 weeks. The change in subscores for each skin parameter was also calculated.
+Results: There were 30 participants, with a mean [standard deviation] age of 49.9 [13.9] years. At 6 weeks, the median
+change in total VISIA score (interquartile range) was –1.77 (2.36) in the PRFM group and –0.73 (2.09) in the saline group
+(P = 0.003). The only skin parameter that had a significantly different change in score between the groups was texture
+(P = 0.004). At 12 weeks, the change in median score was –1.31 (3.26) in the PRFM cohort and –0.76 (2.21) in the saline co-
+hort (P = 0.34). There was no statistical significance in the change in score for any of the individual skin parameters.
+Conclusions: PRFM can objectively improve skin quality compared with placebo. Texture was the only skin parameter
+that significantly improved, which is consistent with PRFM’s role as a filler agent. The results appear to persist for at least
+6 weeks.
+
+
+Level of Evidence: 1
+
+
+
+Editorial Decision date: August 3, 2020; online publish-ahead-of-print August 20, 2020.                                         Therapeutic
+
+
+
+
+In recent years, growth factors (GFs), such as those re-
+                                                                    Dr Hu is a resident and Dr Bassiri-Tehrani is an attending faculty
+leased by platelets in platelet-rich plasma (PRP), have been
+                                                                    member, Department of Otolaryngology-Head and Neck Surgery,
+studied for their role in facial rejuvenation. PRP has the ad-      Division of Facial Plastic Surgery, Icahn School of Medicine at Mount
+vantage of being autologous and having the potential to             Sinai, New York, NY, USA. Dr Abraham is an assistant clinical professor,
+harness the body’s natural capacity for wound repair and            Department of Otolaryngology-Head and Neck Surgery, Division of
+collagen generation.1 Although the majority of studies in fa-       Facial Plastic Surgery, Westchester Medical Center, New York, NY, USA.
+cial plastic surgery report positive results, few are blinded       Corresponding Author:
+or controlled, results are difficult to objectively quantify, and   Dr Shirley Hu, 1 Gustave L. Levy Place, New York, NY 10029, USA.
+significant variations in preparation and application exist.1-3     E-mail: shu@nyee.edu; Instagram: @Shu55
+748                                                                                            Aesthetic Surgery Journal 41(7)
+
+
+Additionally, PRP systems generally require large volumes        by the institutional review board of New York Medical
+of blood that yield only small volumes of product, and no        College (12698). All patients were provided with written
+system has been shown to produce sustained GF release.4          informed consent prior to participation. We followed the
+    Platelet-rich fibrin matrix (PRFM) (Factor Medical LLC,      Consolidated Standards of Reporting Trials (CONSORT) re-
+Langhorne, PA), on the other hand, is a distinct entity that     porting guidelines.
+can be made with as little as 9 mL of peripheral blood.
+Blood is centrifuged at a low speed in a separator gel
+without anticoagulants to create 3 layers—a layer beneath
+                                                                 Participants
+the gel with red and white blood cells, a buffy coat of plate-   All patients who presented to the primary author’s out-
+lets on the upper surface of the gel, and a platelet-poor        patient facial plastics practice and met the inclusion cri-
+plasma supernatant layer with fibrinogen. The platelets          teria were offered the opportunity to participate. Inclusion
+and plasma are then extracted and utilized together. The         criteria were adults 18 years of age and older who had a
+
+
+
+
+                                                                                                                                   Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+addition of calcium leads to the conversion of fibrinogen to     dermatologic concern, specifically, conspicuous spots,
+a polymerized fibrin, platelet degranulation, and release of     pores, rhytids, or uneven texture, and a VISIA complexion
+GFs from α granules.5                                            analysis score >10. Subjects taking contraceptive hormonal
+    In lieu of a high concentration of platelets, the con-       therapy for ≥3 months continued their use throughout the
+tent of PRFM parallels more closely the body’s innate            study and those not receiving such therapy did not ini-
+wound response, forming a cross-linked fibrin matrix             tiate use during the study. Subjects were not allowed to
+that serves as a binding site for both cells and GFs. This       undergo any facial procedures or treatments, including
+scaffolding allows for increased concentration of GFs at         injections and fillers, lasers, peels, and topical therapies,
+the targeted site to guide collagen deposition.4 In vitro        for the duration of the study. Subjects adhered to a stand-
+studies have shown that the platelets in PRFM continue           ardized skin-care regimen consisting of the use of a single
+to synthesize and release bioactive GFs over the first           cleanser and moisturizer twice a day. Subjects refrained
+7 days, and maturing collagen fibers can persist for as          from excessive sun exposure/tanning. Subjects were given
+long as 10 weeks.6                                               the option to withdraw from the study and have the contra-
+    In facial plastics, dermatologic, and aesthetic prac-        lateral side treated if one of the following criteria were ful-
+tices, PRFM injections are currently being performed for         filled: (1) An obvious improvement in skin quality observed
+a variety of indications, such as skin rejuvenation, deep        by the treating physician or the patient at subsequent
+nasolabial folds (NLFs), acne scars, crow’s feet wrinkles,       follow-up visits; and (2) a decrease in the total VISIA com-
+suborbital hollows, malar augmentation, and healing              plexion analysis score of ≥10.
+after rhytidectomy.7 Although NLFs have been shown                    Exclusion criteria for the study were patients who had
+to be both objectively and subjectively improved with            a history of skin/connective tissue disorders, immunosup-
+PRFM,8,9 there is a striking paucity of evidence for the         pressive therapy, or radiotherapy; patients who had partici-
+utility of this material in the other applications. In par-      pated in facial procedures, such as injections, lasers, peels,
+ticular, despite widespread marketing of PRFM for skin           and dermabrasion, in the last 6 months, or used topical/
+rejuvenation, no studies to date have evaluated its effect       prescription acne medications in the last 3 months; and
+on skin. Duration has also not been explored, although           current smokers or prior smokers who quit <10 years ago.
+the aforementioned studies have claimed that subjec-
+tive improvement can persist for as long as 1 year. The
+purpose of this study was thus to determine the effect of
+                                                                 Intervention
+PRFM on skin quality. It should be noted that PRFM is not        Each patient had one side of the face injected with PRFM
+currently approved by the Food and Drug Administration           and the contralateral side with saline. PRFM was produced
+for facial rejuvenation.                                         from 9 mL of blood (Healeon Medical, Inc, Newbury Park,
+                                                                 CA). With a 27-gauge microcannula, a total of 4 mL of
+                                                                 PRFM was injected intradermally by a fanning technique
+                                                                 into the mid-cheek and NLF (2 mL for each site) on one
+METHODS                                                          side of the face; 4 mL of saline was injected into the cor-
+                                                                 responding areas on the contralateral side. Injections were
+Study Design
+                                                                 performed by the 2 senior authors (M.T.A. and M.T.B.), who
+This was a 12-week, randomized, placebo-controlled,              are board-certified facial plastic and reconstructive sur-
+double-blind, split-face clinical trial conducted at a           geons. At the conclusion of the study, patients with a posi-
+single study center in the United States from September          tive response, determined objectively and/or subjectively,
+12, 2018 to May 28, 2019. The protocol was approved              had the saline-treated hemiface injected with PRFM.
+Hu et al749
+
+
+Outcome Measures                                             Sample Size
+The primary outcome was the difference between               It was determined before the initiation of the study that a
+pre- and posttreatment skin analysis scores derived          sample size of 34 in each group would have 80% power
+from the Canfield VISIA Complexion Analysis System           to detect a 0.70 probability that an improvement in VISIA
+(Canfield Imaging Systems, Fairfield, NJ) at 6 and 12        score in the PRFM-treated group would be greater than
+weeks for each group. High-resolution images of both         that in the placebo group. Unfortunately, there were no
+sides of the face at rest were captured with standard,       prior studies utilizing VISIA to evaluate the effect of PRFM
+cross-polarized, and ultraviolet light. After mapping of     on skin quality. A larger effect size was thus selected
+the mid-cheek region, the software automatically cal-        based on the authors’ positive experience with PRFM for
+culated various skin scores by quantifying the pres-         skin rejuvenation and the high likelihood that a smaller
+ence of 8 photoaging parameters—spots, rhytids,              effect would be clinically irrelevant.
+
+
+
+
+                                                                                                                               Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+pores, texture, UV spots, porphyrins, brown spots, and
+erythema. Skin analysis was interpreted by the system
+in 3 ways: a score, which provided a comprehensive
+                                                             Randomization and Blinding
+measurement of the impact of each photoaging feature         Prior to participation, all eligible participants were randomly
+on complexion and incorporated the total size, area,         assigned to the treatment group (PRFM) or the placebo group
+and intensity of the factor being analyzed; a percentile,    (saline) according to a Gaussian random number generator
+which compared the subject’s skin to others of the           (https://www.google.com/search?q=random+number). The
+same age and skin type according to a global skin fea-       key that identified subjects and group allocation was kept
+ture database; and a feature count, which represented        by a separate party (S.H.). This third party prepared and
+the absolute number of the features being analyzed.          delivered solutions in 2 identical containers labeled “left”
+Skin with a lower score was considered to be more            and “right,” corresponding to each hemiface. The subject,
+youthful in appearance (range, 0-100). 10 Subscores          the physician administering the product, and the evaluator
+for surface (spots, rhytids, pores, texture) skin compo-     were all blinded to treatment assignment.
+nents were measured and compared between groups
+at both time points. The relation between presenting
+skin score and subsequent response to PRFM was also
+                                                             Statistical Analysis
+evaluated.                                                   Statistical analysis for VISIA scores was performed with
+    Three secondary outcome measures were utilized.          the Mann-Whitney U test/Wilcoxon rank-sum test (P < 0.05,
+The first was the Wrinkle Severity Rating Scale (WSRS)       2-sided). Statistical analysis for the comparison of the
+(Appendix A), a validated clinical outcome instrument for    change in WSRS, SROE, and VISIA outcomes scores was
+the quantitative assessment of facial skin folds, particu-   performed with Student’s t test for independent means
+larly NLFs.11 Grading was determined after direct visual     (P < 0.05, 2-sided). Pearson’s correlation coefficient was
+and manual evaluation of the NLF by the senior author        used to measure the relation between presenting VISIA
+(M.T.A.). Two surveys, the SROE (Appendix B), a patient-     score and subsequent change in score and the relation
+reported outcome measure validated for skin resurfacing      between VISIA outcomes scores and objective VISIA
+techniques,12 and the VISIA Outcomes Questionnaire           scores.
+(Appendix C), an evaluation targeted specifically at
+identifying changes in the skin parameters analyzed by
+VISIA, were also completed at each visit before the VISIA
+                                                             RESULTS
+analysis. Surveys were distributed by paper, collected,      Study Population
+and input into a deidentified database by a single staff
+member uninvolved in the treatment and data analysis.        A total of 38 participants were eligible for the study; 30 pa-
+They were not anonymous. Each item on the SROE and           tients completed the study. Eight patients were excluded
+VISIA outcomes questionnaire was rated on a scale of 0       for the following reasons: recent cosmetic procedure
+to 4. The final score was computed by dividing the total     (n = 4), participation refusal (n = 3), and current smoker
+score for the instrument by 24 and multiplying by 100,       (n = 1) (Figure 1). Follow-up time ranged from 11.9 to 12.3
+giving a range of 0 to 100.13 The difference between pre-    weeks, with a mean of 12 weeks.
+and posttreatment WSRS and SROE scores at 6 and 12
+weeks for each cohort was calculated. VISIA outcome
+                                                             Outcomes
+scores were similarly compared between the 2 groups.
+All data were entered into a deidentified database by the    All participants were female, aged 26 to 68 years with a
+first author (S.H.).                                         mean [standard deviation] age of 49.9 [13.9] years. The
+750                                                                                           Aesthetic Surgery Journal 41(7)
+
+
+
+
+                                                                                                                                 Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+Figure 1. CONSORT 2017 flow diagram.
+
+
+
+distribution of Fitzpatrick skin types was II (26.7%), III       97 (120) and 16 (94) (P = 0.009), and percentile increased
+(53.3%), and IV (23.3%).                                         by 4.5% (4.5) and 1.5% (6.6) (P = 0.01). Figure 3A-D depicts
+                                                                 the VISIA analysis for each surface parameter in a subject
+                                                                 whose right hemiface was injected with PRFM.
+VISIA Analysis
+                                                                     The results of the VISIA analysis at 12 weeks are de-
+The results of the VISIA analysis at 6 weeks are depicted        picted in Figure 4. The median change in VISIA score was
+in Figure 2. The median change in total VISIA score (inter-      –1.31 (3.26) in the PRFM cohort and –0.76 (2.21) in the sa-
+quartile range, IQR) for skin surface parameters was –1.77       line cohort (P = 0.34). Subscores were –0.21 (0.59), –0.28
+(2.36) in the PRFM group and –0.73 (2.09) in the saline          (2.16), –0.37 (0.76), and –0.35 (0.64) in the PRFM arm and
+group (P = 0.003). The change in median score for the skin       –0.14 (0.70), –0.20 (1.85), –0.21 (0.72), and –0.03 (0.51) in
+parameters of spots, wrinkles, texture, and pores was –0.30      the control arm. None of these parameters were statis-
+(0.60), –0.78 (2.42), –0.57 (0.68), and –0.14 (0.44), respect-   tically significant. Total feature count decreased by 136
+ively, in the PRFM group, compared with –0.15 (0.78), –0.26      (202) and 20 (112) (P = 0.03), whereas percentile increased
+(1.87), –0.13 (0.87), and 0.02 (0.55) in the control arm. The    by 3.1% (4.6) and 1.2% (6.2).
+difference reached statistical significance for the parameter        Pearson’s correlation coefficient was small (r = 0.254
+of texture only (P = 0.004). Total feature count decreased by    and 0.036, respectively) when evaluating the relation
+Hu et al751
+
+
+
+
+                                                                                                                                   Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+Figure 2. Box-and-whisker plot depicting the change in VISIA score for each group at 6 weeks. The ends of the box represent
+the upper and lower quartiles, the horizontal line inside the box represents the median, and the whiskers represent the upper
+and lower limits. PRFM, platelet-rich fibrin matrix. *Statistically significant.
+
+
+between initial score and change in score and initial fea-       DISCUSSION
+ture count and change in feature count. This analysis was
+exploratory.                                                     In comparison to PRP, PRFM is a newer preparation that is
+                                                                 larger in volume, harbors a lower platelet concentration,
+                                                                 and incorporates fibrin that forms into a polymerized ma-
+Clinical Grading and Patient-Related                             trix to bind GFs and cells.7 PRFM, once fully polymerized,
+Outcome Measures                                                 is significantly more resistant than PRP, representing a stiff-
+                                                                 ness about half that of intact human skin.14,15 These mech-
+Table 1 shows the average change in secondary outcome            anical properties may translate into longer persistence of
+measures. At 6 weeks, the grade of NLF depth improved            the product and its effects. PRFM is being used for a variety
+by an average of 1.03 [0.56] for the hemiface injected with      of facial rejuvenation indications, but objective evidence
+PRFM and 0.067 [0.25] for the side injected with saline          behind these treatments is lacking, with only small case
+(P < 0.001). At 12 weeks, the grade improved by 0.32 [0.48]      series, pilot studies, and retrospective reviews showing im-
+for the PRFM group and 0.07 [0.26] for the control group         provement in mostly NLF prominence.8,9 In addition, des-
+(P = 0.02).                                                      pite widespread marketing of PRFM for skin rejuvenation,
+    At 6 weeks, SROE scores increased by an average of           no studies to date have evaluated its outcomes on global
+4.6 [9.6] in the treatment group and decreased by 0.85           skin quality.
+[12.5] in the saline group (P = 0.02). VISIA outcome scores          Exactly how PRFM affects skin is not well defined. We
+averaged 15 [9.6] in the PRFM group, compared with 5.1           selected the VISIA Complexion Analysis System to provide
+[8.0] in the control group (P < 0.001). At 12 weeks, SROE        our objective outcome measures, because it assesses skin
+scores improved by 5.0 [12.6] in the PRFM cohort and 0.9         comprehensively based on a range of parameters. VISIA
+[13.1] in the saline cohort (P = 0.03), whereas VISIA out-       is an imaging analysis software whose measurements
+comes scores were 12.0 [10.0] and 4.0 [6.4], respectively        have been found to correlate well with both age and re-
+(P < 0.001). The difference in the score for texture was the     sults from other commercially available imaging analysis
+most prominent between the 2 groups at both time points.         systems.16 The tool evaluates 8 photoaging parameters—4
+    When the relation between the change in subjective           surface and 4 subsurface parameters. We focused on the
+VISIA outcome score and the change in VISIA analysis             surface markers of spots, wrinkles, texture, and pores, be-
+score was evaluated by linear regression for exploratory         cause we theorized that subsurface features were unlikely
+analysis, Pearson’s correlation coefficient was –0.389           to be affected by intradermal injection of PRFM.
+for the PRFM-treated group (P = 0.03) and –0.412 for the             The VISIA analysis results show that PRFM can objec-
+saline-treated control (P = 0.02).                               tively improve skin quality. Although there was a greater
+752                                                                                                Aesthetic Surgery Journal 41(7)
+
+
+
+ A                                                                   B
+
+
+
+
+                                                                                                                                      Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+ C                                                                   D
+
+
+
+
+Figure 3. VISIA analysis of various skin parameters in a 38-year-old female patient. (A) VISIA analysis of spots before
+treatment. (B) VISIA analysis of spots at 6 weeks after treatment with saline. (C) VISIA analysis of spots before treatment. (D)
+VISIA analysis of spots at 6 weeks following treatment with PRFM. (E) VISIA analysis of wrinkles before treatment. (F) VISIA
+analysis of wrinkles at 6 weeks after treatment with saline. (G) VISIA analysis of wrinkles before treatment. (H) VISIA analysis of
+wrinkles at 6 weeks following treatment with PRFM. (I) VISIA analysis of texture before treatment. (J) VISIA analysis of texture
+at 6 weeks after treatment with saline. (K) VISIA analysis of texture before treatment. (L) VISIA analysis of texture at 6 weeks
+following treatment with PRFM. (M) VISIA analysis of pores before treatment. (N) VISIA analysis of pores at 6 weeks after
+treatment with saline. (O) VISIA analysis of pores before treatment. (P) VISIA analysis of pores at 6 weeks following treatment
+with PRFM.
+
+median improvement in all 4 skin parameters in the PRFM             hemiface was treated with PRFM, increases in volume,
+arm than in the control arm, change in texture was the              smoothness, brightness, and/or evenness in skin tone
+only statistically significant finding. Interestingly, when         were frequently described. Texture, defined by VISIA as
+asked what factors led subjects to identify correctly which         an indicator of collagen and elastin and a measure of
+Hu et al753
+
+
+
+ E                                                                 F
+
+
+
+
+                                                                                                                                  Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+ G                                                                 H
+
+
+
+
+Figure 3. Continued.
+
+dry, rough, and uneven skin, is perhaps the feature that          treatments from localized collagen production and regen-
+correlates best with the descriptors used by subjects.            erative activity.18
+PRFM’s specific properties of tissue volumization and col-           A number of studies have utilized the VISIA system to
+lagen production align with these findings. Through high          evaluate the effects of various dermatologic products and
+concentrations and prolonged release of GFs, PRFM is              resurfacing techniques on skin quality. Given the subtlety
+thought to stimulate fibroblast formation and subsequently        of our clinical results, these investigations offer a context
+increase collagen and hyaluronic acid content. The scaf-          through which the relative efficacy of PRFM can be better
+folding produced by PRFM also allows enmeshment of hy-            appreciated. One consideration is that whereas most of
+aluronic acid, sustaining it where injected.17 As it forms into   these studies exhibited an improvement in absolute num-
+a gel, PRFM generates an immediate volumization effect.           bers, outcomes often did not reach statistical significance.
+The duration of this volumization is short lived, but some        This is similar to our study and may be secondary to wide
+authors have reported long-term effects with repeated             standard deviations.
+754                                                                                             Aesthetic Surgery Journal 41(7)
+
+
+
+  I                                                                  J
+
+
+
+
+                                                                                                                                   Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+ K                                                                   L
+
+
+
+
+Figure 3. Continued.
+
+
+
+    Two studies involving the use of fractional radiofrequency      demonstrating varied improvements and inconsistent re-
+for skin rejuvenation showed a statistically significant improve-   porting of VISIA analytic parameters. Texture improved by
+ment in wrinkle percentile by 20.2% and 30% at 12 weeks             6.3% and wrinkles by 4.4% in a study of 40 Chilean women
+following fractional radiofrequency.19,20 In another study          utilizing adapalene 0.3% gel at 12 weeks.22 Another study
+involving 5 weekly facial injections of hyaluronic acid, feature    evaluating 0.1% kinetin cream found an improvement of
+counts for spots, wrinkles, texture, and pores improved by          4.5% and 0.1% in wrinkles and texture after 12 weeks of use,
+27.3, 6.5, 35.6, and 61.8 at 3 months following treatment, of       but these changes were not statistically significant.23 An
+which only wrinkles and pores reached significance.21               investigation on topical fullerene for the treatment of con-
+    Topical treatments for skin rejuvenation have                   spicuous pores concluded that it significantly decreased
+been investigated widely as well, with VISIA analyses               conspicuous pores by 17.6% after 8 weeks of treatment.24
+Hu et al755
+
+
+
+ M                                                               N
+
+
+
+
+                                                                                                                               Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+ O                                                               P
+
+
+
+
+Figure 3. Continued.
+
+
+
+A double-blind prospective study assessing the efficacy         any of the other skin parameters. Finally, topically applied
+of hydrolyzed roe versus glycolic acid, and glycolic acid       sodium copper chlorophyllin complex in subjects with mild
+with citric acid showed a significant reduction of 46 in spot   to moderate acne and large, visible pores over a course
+feature count with 8 weeks of hydrolyzed roe treatment.         of 3 weeks reduced feature counts for spots and pores
+There was also a slight decrease in wrinkle, texture, and       by 1 and 30, but these were not statistically significant.25
+pore counts, but these were not statistically significant.      In comparison, VISIA feature counts at 6 weeks for spots,
+For the glycolic acid and glycolic acid with citric acid co-    wrinkles, texture, and pores for our study reduced by 3,
+horts, texture count decreased by 22 and 74, but these          1, 82, and 11, while percentile score increased by 3%, 4%,
+findings were insignificant. Neither glycolic acid nor gly-     8.5%, and 2.5%, of which only texture count and spot and
+colic with citric acid resulted in any significant change for   texture percentile were statistically significant.
+756                                                                                                                  Aesthetic Surgery Journal 41(7)
+
+
+
+
+                                                                                                                                                        Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+Figure 4. Box-and-whisker plot depicting the change in VISIA score for each group at 12 weeks. The ends of the box represent
+the upper and lower quartiles, the horizontal line inside the box represents the median, and the whiskers represent the upper
+and lower limits. PRFM, platelet-rich fibrin matrix.
+
+
+Table 1. Mean Change in Score for Subjective Outcomes for Each Group at 6 and 12 Weeks
+
+  Outcome                                                    Mean change [SD] at 6 weeks        P value       Mean change [SD] at 12 weeks    P value
+
+                                                               PRFM             Control                         PRFM             Control
+
+  Wrinkle Severity Rating Scale                              1.03 [0.56]     0.067 [0.25]        <0.001       0.32 [0.48]       0.07 [0.26]    0.02
+
+  Subjective Rejuvenation Outcomes Evaluation                 4.6 [9.6]       –0.85 [12.5]        0.02        5.0 [12.6]         0.9 [13.1]    0.03
+
+  VISIA Outcomes Questionnaire                                15 [9.6]          5.1 [8.0]        <0.001       12.0 [10.0]        4.0 [6.4]    <0.001
+
+PRFM, platelet-rich fibrin matrix; SD, standard deviation.
+
+
+
+    In lieu of this, the utility of alternate skin rejuvenation                       lighting changes, and variations may affect the mapped
+therapies should not be overlooked. Topical retinoids, in                             area used for quantitative analysis. These changes were
+particular, can significantly improve the clinical signs of                           minimized by standardizing the subject’s positioning for
+photoaging, although no studies involving VISIA analysis                              image capture and maintaining consistent lighting in the
+exist. One disadvantage of topical therapies is that benefi-                          room. The mapped area included the lower eyelid to ac-
+cial effects are often seen slowly and over a long period of                          count for any diffusion effect. Because the lower eyelid
+time, frequently leading to a discontinuation of therapy. In                          often harbors many fine rhytids, positional change may
+addition, adverse effects of products may include irritation,                         have contributed to the wide IQRs, particularly for this fea-
+erythema, and dermatitis.26 The main advantage of PRFM                                ture, as well as any improvement seen in the control group.
+is its ability to synthesize native collagen over an extended                         However, given the standardized nature of the analysis, we
+period of time, allowing a prompt volumizing effect that                              expected that such nuances would affect each hemiface
+leads to a smoother, more even complexion.                                            similarly at any given time point.
+    There were multiple limitations to this study. First, the                            The role of edema in texture improvement should not
+VISIA system is sensitive to positional and environmental                             be underestimated, particularly because no comparison
+Hu et al757
+
+
+of skin analysis immediately following injection was made.       life is of primary importance because procedures are com-
+No obvious subjective difference between the 2 sides was         monly performed to improve either appearance or func-
+noted by the patient or treating physician following treat-      tion. However, the lack of an objective measure interferes
+ment with either PRFM or saline. Mild fullness was observed      with the ability to define or standardize what success is.
+in the areas where product was injected. Subjects gener-         Given the increasing prevalence of marketing and use of
+ally reported that the correction seen immediately after         PRFM in skin rejuvenation and the scarcity of objective
+treatment receded partially over the first 24 to 72 hours        data, the results of this study are worth considering.
+for the PRFM side and completely for the saline-treated
+side. Most patients observed perceptible improvement
+in the treated areas by 1 week after treatment and noted
+                                                                 CONCLUSIONS
+continued improvement until 2 to 4 weeks after treatment.        This is the first study to date to show that PRFM can object-
+By 6 weeks, any initial edema in response to PRFM would          ively improve skin quality compared with placebo. Texture
+
+
+
+
+                                                                                                                                       Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+have been expected to resolve and the improvement in             was the only skin parameter that significantly improved,
+texture be secondary to PRFM’s filler qualities.                 which is consistent with PRFM’s role as a filler and collagen-
+    As with any dermatologic study, controlling for various      promoting agent. The impact on spots, fine rhytids, and pores
+confounding variables is a limitation. These include sun and     remains unclear. Persistence of effects beyond 6 weeks is
+other environmental exposures. All patients were instructed      inconclusive. Subjective outcome measures correlated well
+to apply sunscreen while outdoors and to avoid sun expo-         with objective findings, with a significant improvement at both
+sure for the purpose of tanning. Most patients were recruited    initial and subsequent follow-up. Importantly, when under-
+in the winter, although a few were enrolled in the spring.       taking skin rejuvenation with PRFM, providers should set ex-
+Changes in diet, medications, and skin (eg, acne) are addi-      pectations with patients on the specific aspect of skin quality
+tional factors that may have contributed to the wide IQRs.       that may be affected as well as the duration of its effects.
+    Regimens for PRFM application also vary widely. Some
+experts recommend a series of 3 initial treatments per-          Disclosures
+formed 4 to 6 weeks apart followed by biannual or yearly
+                                                                 The authors declared no potential conflicts of interest with
+refresher injections. We overinjected a significant amount       respect to the research, authorship, and publication of this
+of product at the initial visit, accounting for presumed re-     article.
+sorption, but did not opt to inject any additional PRFM in
+order to determine the absolute duration of its effects.
+We cannot conclude from this study that results persist
+                                                                 Funding
+beyond 6 weeks with a single injection. An important             The authors received no financial support for the research,
+consideration is that more frequent injections at shorter        authorship, and publication of this article.
+intervals may result in greater or sustained improvement
+in other parameters of skin quality, such as spots, rhytids,     REFERENCES
+and pores. Indeed, some facial plastic surgeons have even
+touted PRFM as part of a nonsurgical facelift in selected         1. Papanas N, Maltezos E. Benefit-risk assessment of
+                                                                     becaplermin in the treatment of diabetic foot ulcers. Drug
+candidates. However, one must also consider the disad-
+                                                                     Saf. 2010;33(6):455-461.
+vantages of discomfort, cost, and inconvenience of re-
+                                                                  2. Kenworthy W, Langridge B, Patel N, Waterhouse N.
+peat injections. Commercial costs for PRFM have not been             Use of platelet preparations in facial rejuvenation and
+published widely, but aesthetic practices advertise prices           wound healing remains unproven. Aesthetic Plast Surg.
+from $500 to $1000 per area—this may be combined with                2016;40(2):329-330.
+microneedling, lasers, autologous fillers, or other ther-         3. Sclafani AP, Azzi J. Platelet preparations for use in facial
+apies, which increase the cost. It is difficult at the present       rejuvenation and wound healing: a critical review of cur-
+time to ascertain exactly how often the procedure would              rent literature. Aesthetic Plast Surg. 2015;39(4):495-505.
+need to be performed to achieve optimal and long-lasting          4. Motosko CC, Khouri KS, Poudrier G, Sinno S, Hazen A.
+results because no other objective study on PRFM for fa-             Evaluating platelet-rich therapy for facial aesthetics and
+cial rejuvenation exists. Preparations of the PRFM also              alopecia: a critical review of the literature. Plast Reconstr
+                                                                     Surg. 2018;141(5):1115-1123.
+differ, with multiple commercially available platelet prepa-
+                                                                  5. Lin J, Sclafani AP. Platelet-rich plasma for skin rejuven-
+ration systems. We must be cautious, therefore, in applying
+                                                                     ation and tissue fill. Facial Plast Surg Clin North Am.
+the findings of this study to all types of PRFM preparations.        2018;26(4):439-446.
+    It is essential to explore both objective and subjective      6. Sclafani AP. Safety, efficacy, and utility of platelet-rich fi-
+outcomes in plastic surgery. Understanding patient per-              brin matrix in facial plastic surgery. Arch Facial Plast Surg.
+ceptions of surgical results and their effects on quality of         2011;13(4):247-251.
+758                                                                                                   Aesthetic Surgery Journal 41(7)
+
+
+  7. Sclafani AP, Saman M. Platelet-rich fibrin matrix for fa-          18. Karimi K, Rockwell H. The benefits of platelet-rich fibrin.
+     cial plastic surgery. Facial Plast Surg Clin North Am.                 Facial Plast Surg Clin North Am. 2019;27(3):331-340.
+     2012;20(2):177-86, vi.                                             19. Sun Y, Luo YJ, Li Z, Yu AJ, Gong L, Li YH. Application of a
+  8. Sclafani AP. Platelet-rich fibrin matrix for improvement of            new fractional radiofrequency device in the treatment of
+     deep nasolabial folds. J Cosmet Dermatol. 2010;9(1):66-71.             photoaging skin in Chinese patients. J Cosmet Laser Ther.
+  9. Ardakani MR, Moein HP, Beiraghdar M. Tangibility of                    2018;20(6):351-356.
+     platelet-rich fibrin matrix for nasolabial folds. Adv Biomed       20. Kulick MI, Gajjar NA. Analysis of histologic and clinical
+     Res. 2016;5:197.                                                       changes associated with Polaris WR treatment of facial
+10. Goldsberry A, Hanke CW, Hanke KE. VISIA system: a                       wrinkles. Aesthet Surg J. 2007;27(1):32-46.
+     possible tool in the cosmetic practice. J Drugs Dermatol.          21. Cheng HY, Chen YX, Wang MF, Zhao JY, Li LF. Evaluation
+     2014;13(11):1312-1314.                                                 of changes in skin biophysical parameters and ap-
+ 11. Day DJ, Littler CM, Swift RW, Gottlieb S. The wrinkle se-              pearance after pneumatic injections of non-cross-
+     verity rating scale: a validation study. Am J Clin Dermatol.           linked hyaluronic acid in the face. J Cosmet Laser Ther.
+
+
+
+
+                                                                                                                                           Downloaded from https://academic.oup.com/asj/article/41/7/747/5894901 by guest on 30 November 2024
+     2004;5(1):49-52.                                                       2018;20(7-8):454-461.
+12. Alsarraf R, Larrabee WF Jr, Anderson S, Murakami CS,                22. Herane MI, Orlandi C, Zegpi E, Valdés P, Ancić X. Clinical
+     Johnson CM Jr. Measuring cosmetic facial plastic surgery out-          efficacy of adapalene (differin(®)) 0.3% gel in Chilean
+     comes: a pilot study. Arch Facial Plast Surg. 2001;3(3):198-201.       women with cutaneous photoaging. J Dermatolog Treat.
+13. Alsarraf R. Outcomes research in facial plastic sur-                    2012;23(1):57-64.
+     gery: a review and new directions. Aesthetic Plast Surg.           23. Wanitphakdeedecha R, Meeprathom W, Manuskiatti W.
+     2000;24(3):192-197.                                                    Efficacy and safety of 0.1% kinetin cream in the treatment
+14. Lucarelli E, Beretta R, Dozza B, et al. A recently devel-               of photoaging skin. Indian J Dermatol Venereol Leprol.
+     oped bifacial platelet-rich fibrin matrix. Eur Cell Mater.             2015;81(5):547.
+     2010;20:13-23.                                                     24. Inui S, Mori A, Ito M, Hyodo S, Itami S. Reduction of con-
+15. Zhang GA, Ning FG, Zhao NM. Biomechanical prop-                         spicuous facial pores by topical fullerene: possible role
+     erties of four dermal substitutes. Chin Med J (Engl).                  in the suppression of PGE2 production in the skin. J
+     2007;120(16):1454-1455.                                                Nanobiotechnology. 2014;12:6.
+16. Wang X, Shu X, Li Z, et al. Comparison of two kinds of skin im-     25. Stephens TJ, McCook JP, Herndon JH Jr. Pilot study
+     aging analysis software: VISIA® from Canfield and IPP® from            of topical copper chlorophyllin complex in subjects
+     Media Cybernetics. Skin Res Technol. 2018;24(3):379-385.               with facial acne and large pores. J Drugs Dermatol.
+ 17. Dohan DM, Choukroun J, Diss A, et al. Platelet-rich fibrin             2015;14(6):589-592.
+     (PRF): a second-generation platelet concentrate. Part III:         26. Mukherjee S, Date A, Patravale V, Korting HC, Roeder A,
+     leucocyte activation: a new feature for platelet concen-               Weindl G. Retinoids in the treatment of skin aging: an
+     trates? Oral Surg Oral Med Oral Pathol Oral Radiol Endod.              overview of clinical efficacy and safety. Clin Interv Aging.
+     2006;101(3):e51-e55.                                                   2006;1(4):327-348.
+
