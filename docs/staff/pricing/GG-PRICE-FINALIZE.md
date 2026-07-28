@@ -178,3 +178,6 @@ Live GlossGenius changes:
 
 ### Correction — 2026-07-26 (Amber): Bridal trial
 - **Bridal trial run is SEPARATE and NOT included** in Full Glam/Bridal Makeup. GG description updated to: "…A trial run beforehand is recommended and booked separately." (Matches the makeup rate card — trial = separate paid session ≈ event rate.)
+
+### Added — 2026-07-26: Microneedling – Face (was missing)
+- **Microneedling - Face → ADDED $295** (Skin Services · Amber · 1 hr · Fixed · bookable). The plain/corrective SkinPen-style face microneedling was missing — only Procell Pro/MD (growth-factor) and Microneedling-Body existed. Priced just under Procell Pro ($300) since Procell adds the growth-factor serum on top of channeling; above the local bare-microneedling floor ($195–265). Matches the finalize sheet's "Microneedling — Corrective (Face) $295." (Comp sheet had listed $325, but that predated the Procell $300 decision and would sit illogically above Procell Pro — $295 corrected.)
