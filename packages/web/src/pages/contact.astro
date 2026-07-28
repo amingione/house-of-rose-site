@@ -222,6 +222,74 @@ const oid = data._id ? sbObjectId(data._id) : {};
           ></textarea>
         </div>
 
+        <!-- Grasshopper toll-free SMS consent — required carrier disclosure.
+             Keep this copy static and aligned with the privacy-policy terms. -->
+        <fieldset
+          id="sms-consent"
+          class="border border-ink/10 bg-charcoal px-5 py-5"
+          aria-describedby="sms-consent-disclosure sms-consent-error"
+        >
+          <legend class="px-2 text-gold text-[11px] tracking-[0.3em] uppercase">
+            Text Message Consent *
+          </legend>
+
+          <div id="sms-consent-disclosure" class="space-y-3 text-muted text-[13px] leading-relaxed">
+            <p>
+              House of Rose LLC would like your consent to send informational and/or marketing text message
+              communications from +18449417673 to your mobile number listed above. Informational messages may
+              include responses to messages you send us, as well as information relevant to your relationship
+              with us. Marketing messages may include discount codes, special deals or texts promoting our
+              products/services.
+            </p>
+            <p>
+              Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply.
+              Reply 'STOP' to unsubscribe at any time. Reply 'HELP' for assistance or more information.
+            </p>
+            <p>
+              We do not share your mobile opt-in information with anyone. Our
+              privacy policy and messaging terms and conditions are available at
+              <a href="/privacy-policy/" class="text-gold hover:underline">https://houseofrosefl.com/privacy-policy/</a>
+              for more information.
+            </p>
+          </div>
+
+          <div class="mt-5 space-y-3">
+            <label class="flex items-start gap-3 text-ink text-[14px] leading-relaxed">
+              <input
+                type="checkbox"
+                name="consent-informational"
+                value="yes"
+                data-sms-consent
+                class="mt-0.5 h-5 w-5 shrink-0 accent-gold"
+              />
+              <span>Yes, I consent to receive informational messages from House of Rose LLC.</span>
+            </label>
+            <label class="flex items-start gap-3 text-ink text-[14px] leading-relaxed">
+              <input
+                type="checkbox"
+                name="consent-marketing"
+                value="yes"
+                data-sms-consent
+                class="mt-0.5 h-5 w-5 shrink-0 accent-gold"
+              />
+              <span>Yes, I consent to receive marketing text messages from House of Rose LLC.</span>
+            </label>
+            <label class="flex items-start gap-3 text-ink text-[14px] leading-relaxed">
+              <input
+                type="checkbox"
+                name="consent-none"
+                value="yes"
+                data-sms-consent
+                data-sms-decline
+                class="mt-0.5 h-5 w-5 shrink-0 accent-gold"
+              />
+              <span>No, I do not want to receive any text messages from House of Rose LLC.</span>
+            </label>
+          </div>
+
+          <p id="sms-consent-error" class="mt-3 text-[12px] text-red-700" aria-live="polite"></p>
+        </fieldset>
+
         <!-- Submit Button -->
         <div class="pt-6">
           <button
@@ -272,3 +340,48 @@ const oid = data._id ? sbObjectId(data._id) : {};
     outline-offset: 2px;
   }
 </style>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>('form[name="contact"]');
+  const smsChoices = Array.from(
+    document.querySelectorAll<HTMLInputElement>('[data-sms-consent]'),
+  );
+  const smsDecline = document.querySelector<HTMLInputElement>('[data-sms-decline]');
+  const smsError = document.getElementById('sms-consent-error');
+
+  const validateSmsChoice = (): boolean => {
+    const selected = smsChoices.filter((choice) => choice.checked);
+    const hasPositiveChoice = selected.some((choice) => choice !== smsDecline);
+    const isConflicting = Boolean(smsDecline?.checked && hasPositiveChoice);
+    const isValid = selected.length > 0 && !isConflicting;
+    const message = selected.length === 0
+      ? 'Choose at least one text-message option. You may select “No” and still submit this form.'
+      : isConflicting
+        ? 'Choose either one or both consent options, or choose “No”—not both.'
+        : '';
+
+    smsChoices[0]?.setCustomValidity(message);
+    if (smsError) smsError.textContent = message;
+    return isValid;
+  };
+
+  smsChoices.forEach((choice) => {
+    choice.addEventListener('change', () => {
+      if (choice === smsDecline && choice.checked) {
+        smsChoices.filter((item) => item !== smsDecline).forEach((item) => {
+          item.checked = false;
+        });
+      } else if (choice.checked && smsDecline) {
+        smsDecline.checked = false;
+      }
+      validateSmsChoice();
+    });
+  });
+
+  contactForm?.addEventListener('submit', (event) => {
+    if (!validateSmsChoice()) {
+      event.preventDefault();
+      smsChoices[0]?.reportValidity();
+    }
+  });
+</script>
