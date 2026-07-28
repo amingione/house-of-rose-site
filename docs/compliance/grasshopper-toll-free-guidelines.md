@@ -133,7 +133,7 @@ Data Sharing
 • Customer data is not shared with 3rd parties for promotional or marketing purposes.
 • Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.
 House of Rose LLC Messaging Terms and Conditions
-1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, promotional offers or discounts, any promotion of your products/services.
+1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, as well as promotional messages about our products/services when separately consented to.
 2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.
 3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.
 4. Carriers are not liable for delayed or undelivered messages.
@@ -157,7 +157,7 @@ Email: ___________________________________________
 Phone Number: ____________________________________
 Message: ____________________________________
 
-House of Rose LLC would like your consent to send informational and/or marketing text message communications from +18449417673 to your mobile number listed above. Informational messages may include responses to messages you send us, as well as information relevant to your relationship with us. Marketing messages may include discount codes, special deals or texts promoting our products/services.
+House of Rose LLC would like your consent to send informational and/or marketing text message communications from +18449417673 to your mobile number listed above. Informational messages may include responses to messages you send us, as well as information relevant to your relationship with us. Marketing messages may include announcements, event information, or texts promoting our products/services.
 
 Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply 'STOP' to unsubscribe at any time. Reply 'HELP' for assistance or more information.
 
@@ -173,7 +173,7 @@ Via a paper form
 Keyword text: Contacts text a keyword to my Grasshopper number
 Describe your opt-in process
 
-Contacts opt in on our website contact page at https://houseofrosefl.com/contact by checking a box to agree to receive informational, marketing messages from House of Rose LLC. Message types, frequency and rates, as well help and opt-out instructions are disclosed. We confirm that no mobile opt-in info is shared with 3rd parties, and provide a link to our combined privacy policy and messaging terms and conditions.
+Contacts opt in on our website contact page at https://houseofrosefl.com/contact/ by checking a box to agree to receive informational, marketing messages from House of Rose LLC. Message types, frequency and rates, as well help and opt-out instructions are disclosed. We confirm that no mobile opt-in info is shared with 3rd parties, and provide a link to our combined privacy policy and messaging terms and conditions.
 Describe how contacts can agree or decline to get texts, and share a link to the relevant web page
 
 Evidence
