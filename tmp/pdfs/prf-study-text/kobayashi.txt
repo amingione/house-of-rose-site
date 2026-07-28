@@ -1,0 +1,408 @@
+Clin Oral Invest
+DOI 10.1007/s00784-016-1719-1
+
+    ORIGINAL ARTICLE
+
+
+
+Comparative release of growth factors from PRP,
+PRF, and advanced-PRF
+Eizaburo Kobayashi 1,3 & Laura Flückiger 2 & Masako Fujioka-Kobayashi 1,4 &
+Kosaku Sawada 1,3 & Anton Sculean 2 & Benoit Schaller 1 & Richard J. Miron 2,5
+
+
+
+
+Received: 18 September 2015 / Accepted: 11 January 2016
+# Springer-Verlag Berlin Heidelberg 2016
+
+Abstract                                                                  points up to 10 days, it was routinely found that A-PRF re-
+Objectives The use of platelet concentrates has gained in-                leased the highest total growth factors. Furthermore, A-PRF
+creasing awareness in recent years for regenerative procedures            released significantly higher total protein accumulated over a
+in modern dentistry. The aim of the present study was to com-             10-day period when compared to PRP or PRF.
+pare growth factor release over time from platelet-rich plasma            Conclusion The results from the present study indicate
+(PRP), platelet-rich fibrin (PRF), and a modernized protocol              that the various platelet concentrates have quite different
+for PRF, advanced-PRF (A-PRF).                                            release kinetics. The advantage of PRP is the release of
+Materials and methods Eighteen blood samples were collect-                significantly higher proteins at earlier time points where-
+ed from six donors (3 samples each for PRP, PRF, and A-                   as PRF displayed a continual and steady release of
+PRF). Following preparation, samples were incubated in a                  growth factors over a 10-day period. Furthermore, in
+plate shaker and assessed for growth factor release at                    general, it was observed that the new formulation of
+15 min, 60 min, 8 h, 1 day, 3 days, and 10 days. Thereafter,              PRF (A-PRF) released significantly higher total quanti-
+growth factor release of PDGF-AA, PDGF-AB, PDGF-BB,                       ties of growth factors when compared to traditional PRF.
+TGFB1, VEGF, EGF, and IGF was quantified using ELISA.                     Clinical relevance Based on these findings, PRP can be rec-
+Results The highest reported growth factor released from                  ommended for fast delivery of growth factors whereas A-PRF
+platelet concentrates was PDGF-AA followed by PDGF-BB,                    is better-suited for long-term release.
+TGFB1, VEGF, and PDGF-AB. In general, following 15–
+60 min incubation, PRP released significantly higher growth               Keywords Platelet-rich plasma . Platelet-rich fibrin .
+factors when compared to PRF and A-PRF. At later time                     Choukroun’s PRF . Platelet concentrates . Growth factor
+                                                                          release
+
+
+* Richard J. Miron                                                        Introduction
+  richard.miron@zmk.unibe.ch
+
+                                                                          A number of techniques have been utilized in modern dentist-
+1
+     Department of Cranio-Maxillofacial Surgery, Bern University,         ry to speed the regeneration of either hard or soft tissues [1–4].
+     Bern, Switzerland                                                    While a great deal of effort in recent years has been focused on
+2
+     Department of Periodontology, Bern University, Bern, Switzerland     the use of biologics as key mediators of tissue regeneration,
+3
+     Department of Oral and Maxillofacial Surgery, School of Life
+                                                                          some of the disadvantages of utilizing recombinant growth
+     Dentistry at Niigata, The Nippon Dental University, Niigata, Japan   factors include high supra-physiological doses as well as high
+4
+     Department of Oral Surgery, Clinical Dentistry, Institute of
+                                                                          costs associated with their use [5–7]. Nevertheless, the use of
+     Biomedical Sciences, Tokushima University Graduate School,           growth factors such as recombinant platelet-derived growth
+     Tokushima, Japan                                                     factor (PDGF) has been shown to positively increase tissue
+5
+     Department of Oral Surgery and Stomatology, School of Dental         formation across a wide variety of clinical procedures in both
+     Medicine, University of Bern, Bern, Switzerland                      dentistry and medicine [8].
+                                                                                                                   Clin Oral Invest
+
+
+   While the use of recombinant growth factors have demon-         Materials and methods
+strated significant advantages, the use of autologous platelet
+concentrates has also been shown to support tissue regenera-       Platelet concentrations
+tion [9, 10]. Platelet-rich plasma (PRP) is an autologous con-
+centration of growth factors derived from patient whole blood      Three samples of blood were collected with the informed con-
+centrifuged to reach super-natural concentrations [9, 10]. In      sent of six volunteer donors (18 total samples) and the blood
+the 1970s, it was introduced as Bfibrin glue^ and has gained       was then processed for PRP, PRF, or A-PRF centrifugation.
+popularity in the medical and dental fields for the regeneration   All blood samples were obtained from members of our labo-
+of both hard and soft tissues [11–16]. Early experiments re-       ratory between the ages of 30 and 60. PRP platelet concentra-
+vealed the ability for several key growth factors found in the     tion was prepared via a protocol as previously described [38].
+blood (including PDGF) to significantly modulate tissue re-        Briefly, 10 mL of whole blood was centrifuged for 7 min at
+pair and wound healing events [11–16].                             1000 rpm (45 g) at room temperature without brake (centri-
+   The use of PRP has since been utilized by both oral sur-        fuge 5702; Eppendorf, Darmstadt, Germany). The plasma
+geons and periodontists alike demonstrating advantages asso-       rum was decanted up to the erythrocyte sediment and then
+ciated with its use for a variety of extensive dental regenera-    centrifuged again for 10 min at 3,000 rpm (400g) at room
+tive procedures [16–21]. Furthermore, reports have demon-          temperature. Finally, the PRP was decanted and the final
+strated that PRP may also successfully be combined with var-       PRP sediment was suspended in 6-well in vitro plastic culture
+ious biomaterials including collagen membranes and bone            dishes with 5 mL of culture media and processed as further
+grafting materials [22–27]. One of the reported drawbacks of       described.
+PRP is that it contains anticoagulants, an event that interferes      The PRF and A-PRF were also isolated as previously de-
+with the natural healing process despite containing a number       scribed [37]. Ten milliliters of whole blood without anticoag-
+of growth factors implicated in tissue repair [9, 10].             ulant was centrifuged at 2,700 rpm (325g) for 12 min whereas
+   Following numerous research utilizing PRP, further inves-       A-PRF was centrifuged at 1,500 (100g) for 14 min. The lack
+tigation found that a platelet concentrate made from whole         of anticoagulants in these samples allows for a fibrin clot
+blood without the use of coagulants could also be further          formation to form which can then be collected in the middle
+utilized to improve wound healing [28–32]. This protocol           of the tube between the red corpuscles at the bottom and
+has been termed platelet-rich fibrin (PRF, also more recently      acellular plasma at the top. Thereafter, PRP, PRF, and A-
+referred to as leukocyte-PRF or L-PRF) and involves the use        PRF clots were then transferred to 6-well in vitro plastic cul-
+of a fibrin clot which may be utilized as a membrane contain-      ture dishes with 5 mL and processed for further investigation.
+ing autologous growth factors hypothesized to slowly release
+growth factors to the surrounding environment during wound         Protein quantification with ELISA
+healing [21, 33–36].
+   Recently, these investigators have formulated a new             In order to determine the amount of released growth factors at
+protocol for PRF where centrifugation procedures have              15 min, 60 min, 8 h, 1 day, 3 days, and 10 days, samples were
+been altered to further improve tissue regeneration [37].          placed into a shaking incubator at 37 °C to allow for growth
+While standard PRF is centrifuged at 2700 rpm for                  factor release into the culture media. At each time point, the
+12 min, the advanced platelet-rich fibrin (A-PRF) is               5 mL of culture media was collected, frozen, and replaced
+centrifuged at slower speeds (1500 rpm, 14 min). This              with 5 mL of additional culture media. Protein quantification
+modification to centrifugation protocol has previously             was carried out using ELISA. At desired time points, PDGF-
+been shown to increase platelet cell numbers and                   AA (DY221, range = 15.60–1000 pg/mL), PDGF-AB
+monocytes/macrophages behavior [37]. Despite these                 (DY222, range = 15.60–1,000 pg/mL), PDGF-BB (DY220,
+findings, little is known about the release of growth              31.20–2,000 pg/mL_, TGFβ1 (DY240, range = 31.20–2,
+factors from the various platelet concentrates over time           000 pg/mL), VEGF (DY293B, range = 31.20–2,000 pg/
+with no data available to date on A-PRF. Therefore, the            mL), IGF (DY291, range = 31.20–2,000 pg/mL) and EGF
+aim of the present study was to compare growth factor              (DY236), range = 3.91–250 pg/mL) were quantified using
+release from PRP, PRF, and A-PRF over time and in-                 an ELISA assays (RND Systems, Minneapolis, MN, USA)
+vestigate the in vitro release of seven growth factors at          according to manufacturer’s protocol as previously described
+15 min, 60 min, 8 h, 1 day, 3 days, and 10 days post               [39]. Briefly, 100 μL of assay diluents and 100 μL of sample
+incubation. The growth factors investigated include                were incubated for 2 h at room temperature in antibody-
+PDGF-AA, PDGF-AB, PDGF-BB, transforming growth                     precoated 96-well plates. Wells were washed four times with
+factor beta 1 (TGFB1), vascular endothelial growth fac-            washing buffer, incubated for 2 h with peroxidase-conjugated
+tor (VEGF), epidermal growth factor (EGF), and                     antibody solution, washed again, followed by addition of
+insulin-like growth factor (IGF).                                  100 μL of substrate solution for 20 min and 50 μl of stopping
+Clin Oral Invest
+
+
+solution for 20 min. Absorbance was measured at 450 and           AB and PDGF-BB (Fig. 1c–f). Interestingly, however, the
+570 nm on an Infinite 200 microplate reader (Tecan Group          total protein content for growth factor PDGF-BB was signif-
+LTD, Männedorf, Switzerland) and subtracted at 570 nm from        icantly higher in PRP samples when compared to PRF and A-
+the readings at 450 nm. All samples were measured in tripli-      PRF at all time points (Fig. 1f).
+cate and three independent experiments were performed for
+each platelet concentrate. Statistical analysis was performed     TGFB1 and VEGF growth factor release from PRP, PRF,
+by two-way ANOVA with Bonferroni test.                            and A-PRF over time
+
+                                                                  Thereafter, the release of TGFB1 and VEGF were quantified
+Results                                                           over time (Fig. 2). Once again, it was observed that PRP
+                                                                  demonstrated significantly higher levels at early time points
+Total protein released from PRP, PRF, and A-PRF                   of 15 min and 8 h when compared to PRF and A-PRF (Fig. 2a,
+after 10 days                                                     c). Thereafter, PRP levels dropped to significantly lower
+                                                                  levels when compared to PRF or A-PRF with A-PRF demon-
+All proteins were quantified for both growth factor release at    strating the significantly highest levels at 1, 3, and 5 days for
+desired time points as well as the total accumulated protein      both TGFB1 and VEGF concentrations (Fig. 2a, c). Parallel to
+quantities (Figs. 1–3, Table 1). It was found that A-PRF re-      the results obtained with PDGF, total protein accumulation
+leased the highest total amount of growth factors when com-       was significantly highest at early time points for PRP and
+pared to either PRF or PRP (Table 1). Subsequently, release of    significantly dropped to lower levels by 10 days when com-
+PDGF-AA was found highest for all platelet concentrates           pared to PRF and A-PRF (Fig. 2b, d). Total protein release
+followed by TGF-beta1, PDGF-BB, PDGF-AB, VEGF,                    was significantly highest for A-PRF at 3 and 10 days for
+EGF, and IGF with slight differences observed between             TGFB1 and 1, 3, and 10 days for VEGF when compared to
+groups (Table 1). It was found that A-PRF released                PRP and PRF (Fig. 2b, d).
+11048.19 ng/mL of total protein after 10 days, significantly
+more than PRF 9261.89 ng/mL and PRP 6176.15 ng/mL.
+Interestingly, PDGF-AA was found released from all platelet       EGF and IGF growth factor release from PRP, PRF,
+concentrations at 6–10-fold higher concentrations when com-       and A-PRF over time
+pared to PDGF-AB and PDGF-BB. Furthermore, significant-
+ly lower levels of EGF and IGF were found when compared to        Different trends were observed for the release of EGF and IGF
+PDGF, TGF-beta1, and VEGF concentrations (Table 1).               (Fig. 3). Significantly highest levels for PRP were found only
+                                                                  at 15 days for PRP (Fig. 3a). Thereafter, significantly highest
+PDGF-AA, PDGF-AB, and PDGF-BB growth factor                       protein release was found on A-PRF for EGF at 60 min, 8 h,
+release from PRP, PRF, and A-PRF over time                        1 day, and 3 days (Fig. 3a). While no differences in PRF and
+                                                                  A-PRF could be observed for protein release of IGF at almost
+Analysis of growth factor release of PDGF-AA, PDGF-AB,            all time points, significantly lower levels were observed for
+and PDGF-BB at each time point as well as accumulated over        PRP at 15 min, 60 min, 8 h, and 1 day comparatively (Fig. 3c).
+time is displayed in Fig. 1. It was found that after 15 min,      Total protein accumulation demonstrated the highest total
+significantly higher levels of PDGF-AA was released from          growth factor of EGF for A-PRF with the lowest being PRP
+PRP when compared to PRF or A-PRF. Interestingly, signifi-        whereas slightly higher PRF results were observed for IGF
+cantly lower levels were observed at 60 min demonstrating         when compared to A-PRF (Fig. 3d).
+that PRP rapidly releases PDGF-AA between 0 and 15 min
+and thereafter significantly less release is observed compara-
+tively up to 10 days (Fig. 1a). No significant differences be-    Discussion
+tween A-PRF and PRF at times points ranging from 15 min to
+1 day; however, at 3 days, A-PRF showed significantly higher      The aim of the present study was to compare growth factor
+growth factor release of PDGF-AA when compared to either          release from three different platelet concentrates including
+PRP or PRF (Fig. 1a). The total PDGF-AA accumulated pro-          PRP, PRF, and a new protocol established termed advanced-
+teins over time (Fig. 1b) demonstrated that while PRP showed      PRF. While the advancements made in terms of platelet con-
+significantly higher levels at an early time point of 15 min,     centrates have been hypothesized to improve tissue regenera-
+thereafter significantly lower levels could be observed from      tion [37], no information is available to date regarding the
+8 h till 10 days. In contrast, significantly higher levels were   growth factors released from these three platelet concentrates
+found for A-PRF from 1 to 10 days when compared to PRP or         over time. Therefore, the aim of the present study was to
+PRF (Fig. 1b). Similar trends were also observed for PDGF-        investigate in detail five different growth factors including
+                                                                                                                                 Clin Oral Invest
+
+
+
+
+Fig. 1 ELISA protein quantification at each time point of a PDGF-AA, c   groups, **p < 0.05 signifies significantly higher than all other groups,
+                                                                         #
+PDGF-AB, and e PDGF-BB over a 10-day period. Total accumulated            p < 0.05 signifies significantly lower than all groups.) Assay performed
+growth factor released over a 10-day period for b PDGF-AA, d PDGF-       in triplicate from six different blood samples
+AB, and f PDGF-BB. (*p < 0.05 signifies significant difference between
+
+three isomers of PDGF (AA, AB, and BB) on protein release                amount of growth factors at early time points when compared
+over time from PRP, PRF, and A-PRF.                                      to either PRF or A-PRF. The fast action of released proteins
+   Three things stand out from the results in the current inves-         found in PRP concentrates may be hypothesized to speed the
+tigation. First, it was found that PRP released the highest              recruitment of incoming progenitor cells in defect locations
+
+
+Table 1 Final growth factor
+released over a 10-day period                                PRP                           PRF                              A-PRF
+from the various platelet
+concentrates including PRP, PRF,     PDGF-AA                 6176 (2812–9184)             9262 (2877–13839)                 11048 (5036–18817)
+and A-PRF                            PDGF-AB                 4131 (1837–5492)             4396 (862–7563)                   6007 (3455–10298)
+                                     PDGF-BB                 1155 (531–1371)              680 (220–1147)                    1010 (643–1803)
+                                     TGF-beta1               1105 (619–1453)              1110 (302–1714)                   1589 (1052–2315)
+                                     VEGF                    847 (693–1009)               732 (537–914)                     847 (814–1063)
+                                     EGF                     363 (210–497)                512 (146–715)                     659 (447–795)
+                                     IGF                     54 (44–67)                   166 (55–252)                      129 (81–179)
+
+                                     Data represents averages (pg/ml) with ranges (minimum to maximum values)
+Clin Oral Invest
+
+
+
+
+Fig. 2 ELISA protein quantification at each time point of a TGFB1 and c     higher than all other groups, #p < 0.05 signifies significantly lower than
+VEGF over a 10-day period. Total accumulated growth factor released         all groups.) Assay performed in triplicate from six different blood
+over a 10-day period for b TGFB1 and d VEGF. (*p < 0.05 signifies           samples
+significant difference between groups, **p < 0.05 signifies significantly
+
+and could prove a valuable means in medical and dental pro-                 their fibrin matrix. One of the hypothesized reasons for this is
+cedures requiring rapid incoming recruitment of regenerative                the fact that PRF and A-PRF have been shown to contain
+cells. Secondly, while the release of PRP had rapid release of              more living cells [37]. Therefore, these cells are likely the
+growth factors, it was interesting to note that over time, PRF              contributing difference between the results observed between
+not only had more growth factor released at later time points               PRF, A-PRF, and PRP. Lastly, one of the surprising findings
+but also contained more growth factors as a whole from within               from the present study was the significant increase in total
+
+
+
+
+Fig. 3 ELISA protein quantification at each time point of a EGF and c       difference between groups, **p < 0.05 signifies significantly higher than
+IGF over a 10-day period. Total accumulated growth factor released over     all other groups, #p < 0.05 signifies significantly lower than all groups.)
+a 10-day period for b EGF and d IGF. (*p < 0.05 signifies significant       Assay performed in triplicate from six different blood samples
+                                                                                                                              Clin Oral Invest
+
+
+protein released between PRF and A-PRF. While it has been               factor accumulation after a 10-day period. This hypothesis
+shown that A-PRF contains more living progenitor cells and              however requires further investigation.
+platelets when compared to PRF [37], the subsequent signif-                There remain several aspects of research necessary to
+icant increase in total protein release may therefore present           further compare the various platelet formulations inves-
+additional advantages for clinical use.                                 tigated in this study. First, it is unclear how the release
+    Although this is the first report to investigate release of         of the various platelet concentrates including PRP, PRF,
+growth factors from A-PRF, previous authors have investigat-            and A-PRF will affect cell behavior over time.
+ed protein release from either PRP or PRF and further inves-            Therefore, a comparative in vitro cell study further in-
+tigated its subsequent effect on cell activity. In a first study, El-   vestigating the use of PRP, PRF, and A-PRF on cell
+Sharkawy et al. demonstrated that PRP was able to promote               behavior of various cell types including osteoblasts, gin-
+increases in PDGF-AB, PDGF-BB, TGF-B1, VEGF, and                        gival fibroblasts, and periodontal ligament cells could
+EGF when compared to whole blood [40]. Furthermore, in                  further provide rationale for which treatment modalities
+another previous study it has been shown that PRF could                 stimulates a higher cell response. Furthermore, it is
+release various growth factors including PDGF-AB, TGF-                  known that platelet concentrates are often combined
+B1, VEGF, EGF, and IGF-1 [41]. The results from that study              with various biomaterials such as collagen membranes
+demonstrate an increase in growth factor over time from 5 to            and bone grafting materials. Therefore, it would also be
+300 min but did not look at later time points. Furthermore, the         worthwhile to compare growth factor release from a
+release of growth factors was not compared to a second plate-           variety of biomaterials following coating with either
+let concentrate making it difficult to investigate the potency of       PRP, PRF, or A-PRF. Future research comparing the
+PRF in comparison to either PRP or A-PRF [41].                          various platelet formulations in a clinical setting would
+    It has also previously been shown that PRP has high levels          also be valuable to compare which indications may
+of secreted PDGF and TGFB [42] which subsequently stimu-                serve better for various clinical scenarios.
+lates collagen synthesis in PDL cells and gingival fibroblasts
+[43, 44], induces cell proliferation [45] and mineralization
+potential in osteoblasts [46], and increases endothelial cell           Conclusion
+activity [47] in vitro. Gassling et al. showed that osteoblasts
+and fibroblasts that were cultured with PRP or PRF demon-               The results from the present study demonstrated that PRP,
+strated varying expression of various growth factors with               PRF, and A-PRF were able to release growth factors over time
+those cultured with PRP favoring significantly higher levels            from their respective platelet formulations. Interestingly, PRP
+of PDGF-AB and TGFB1 expression [38]. Furthermore, a                    demonstrated the ability to release significantly higher levels
+second report by this group compared PRF (as a membrane)                of growth factors at very early time points whereas PRF and
+to bovine-derived collagen membranes (BioGide) and tested               A-PRF had a more gradual release of growth factors up to a
+osteoblast response to the two biomaterials [48]. It was found          10-day period. The new formulation of PRF (called advanced-
+that cell growth was significantly higher on PRF when com-              PRF) stimulated significantly higher growth factor release
+pared to the bovine collagen membrane [48].                             over time when compared to standard PRF and may prove
+    Another aspect that needs to be considered when compar-             clinically beneficial for future regenerative procedures.
+ing in vivo work with in vitro studies is the variability in            Future investigations studying the effects of each platelet for-
+growth factor concentrations between donors. In the present             mulation on cell behavior as well as in vivo study would
+study, the patient age range was between 30 and 60. We found            further enhance our understanding for how A-PRF compares
+reported differences between minimum and maximum growth                 to previously utilized PRP and A-PRF.
+factor accumulation between donors as reported in Table 1.
+Furthermore, with an increasingly aging population continu-             Compliance with ethical standards
+ously requiring regenerative procedures, one can only expect
+that with advanced age (and the likelihood of increased sys-            Conflict of interest The authors declare that they have no competing
+temic diseases and medications), a much larger variability              interests.
+may also be expected. Therefore, ongoing research investigat-
+                                                                        Funding The project was funded by the Department of Cranio-
+ing the optimal concentrations may be required to further op-           Maxillofacial Surgery at the University of Bern.
+timize this avenue of research. It was also found in the present
+study that the slower spinning protocols of A-PRF released              Ethical approval Blood was drawn from patients (lab members) with
+more growth factor than the prototype PRF. As one previous              informed signed consent. An ethical approval was not required for this
+                                                                        purpose. No animals were used in this study.
+report demonstrated that A-PRF contains more platelets and
+neutrophilic granulocytes [37], it may be hypothesized that             Informed consent All blood was drawn from patients (lab members)
+these cells contributed to the slight increase in total growth          with informed signed consent.
+Clin Oral Invest
+
+
+References                                                                            surgery: a review. J West Soc of Periodontol Periodontal Abstr
+                                                                                      61:99–104
+                                                                               16.   Panda S, Doraiswamy J, Malaiappan S, Varghese SS and Del
+ 1.   Dohan Ehrenfest DM, Wang HL, Galindo-Moreno P, Bowler D,                       Fabbro M (2014) Additive effect of autologous platelet concen-
+      Dym H (2015) Bone morphogenic protein: application in implant                  trates in treatment of intrabony defects: a systematic review and
+      dentistry. BioMed Res Int 59:493–503. doi:10.1155/2015/                        meta-analysis. J Investig Clin Dent. doi: 10.1111/jicd.12117
+      34132710.1016/j.cden.2014.10.006                                         17.   Marx RE (2001) Platelet-rich plasma (PRP): what is PRP and what
+ 2.   Padial-Molina M, O’Valle F, Lanis A and Mesa F (2015) Clinical                 is not PRP? Implant Dent 10:225–228
+      application of mesenchymal stem cells and novel supportive thera-        18.   Marx RE (2004) Platelet-rich plasma: evidence to support its use. J
+      pies for oral bone regeneration. Biomed Res Int 2015:341327.                   Oral Maxillofac Surg Off J Am Assoc Oral Maxillofac Surg 62:
+      doi:10.1155/2015/341327                                                        489–496
+ 3.   Sanz-Sanchez I, Ortiz-Vigon A, Sanz-Martin I, Figuero E, Sanz M          19.   Marx RE, Carlson ER, Eichstaedt RM, Schimmele SR, Strauss JE,
+      (2015) Effectiveness of lateral bone augmentation on the alveolar              Georgeff KR (1998) Platelet-rich plasma: growth factor enhance-
+      crest dimension: a systematic review and meta-analysis. J Dent Res             ment for bone grafts. Oral Surg Oral Med Oral Pathol Oral Radiol
+      94:128s–142s. doi:10.1177/0022034515594780                                     Endod 85:638–646
+ 4.   Miron RJ, Zhang YF (2012) Osteoinduction: a review of old con-
+                                                                               20.   Kukreja BJ, Dodwad V, Kukreja P, Ahuja S, Mehra P (2014) A
+      cepts with new standards. J Dent Res 91:736–744. doi:10.1177/
+                                                                                     comparative evaluation of platelet-rich plasma in combination with
+      0022034511435260
+                                                                                     demineralized freeze-dried bone allograft and DFDBA alone in the
+ 5.   Anusaksathien O, Giannobile WV (2002) Growth factor delivery to
+                                                                                     treatment of periodontal intrabony defects: a clinicoradiographic
+      re-engineer periodontal tissues. Curr Pharm Biotechnol 3:129–139
+                                                                                     study. J Indian Soc of Periodontol 18:618–623. doi:10.4103/0972-
+ 6.   Carreira AC, Lojudice FH, Halcsik E, Navarro RD, Sogayar MC,
+                                                                                     124x.142457
+      Granjeiro JM (2014) Bone morphogenetic proteins: facts, chal-
+                                                                               21.   Pradeep AR, Rao NS, Agarwal E, Bajaj P, Kumari M, Naik SB
+      lenges, and future perspectives. J Dent Res 93:335–345. doi:10.
+                                                                                     (2012) Comparative evaluation of autologous platelet-rich fibrin
+      1177/0022034513518561
+                                                                                     and platelet-rich plasma in the treatment of 3-wall intrabony defects
+ 7.   Rocque BG, Kelly MP, Miller JH, Li Y, Anderson PA (2014) Bone
+                                                                                     in chronic periodontitis: a randomized controlled clinical trial. J
+      morphogenetic protein-associated complications in pediatric spinal
+                                                                                     Periodontol 83:1499–1507. doi:10.1902/jop.2012.110705
+      fusion in the early postoperative period: an analysis of 4658 patients
+      and review of the literature. J Neurosurg Pediatr 14:635–643. doi:       22.   Dori F, Arweiler N, Huszar T, Gera I, Miron RJ, Sculean A (2013)
+      10.3171/2014.8.peds13665                                                       Five-year results evaluating the effects of platelet-rich plasma on
+ 8.   Kaigler D, Avila G, Wisner-Lynch L, Nevins ML, Nevins M,                       the healing of intrabony defects treated with enamel matrix deriva-
+      Rasperini G, Lynch SE, Giannobile WV (2011) Platelet-derived                   tive and natural bone mineral. J Periodontol 84:1546–1555. doi:10.
+      growth factor applications in periodontal and peri-implant bone                1902/jop.2013.120501
+      regeneration. Expert Opin Biol Ther 11:375–385. doi:10.1517/             23.   Ozdemir B, Okte E (2012) Treatment of intrabony defects with
+      14712598.2011.554814                                                           beta-tricalciumphosphate alone and in combination with platelet-
+ 9.   Del Corso M, Vervelle A, Simonpieri A, Jimbo R, Inchingolo F,                  rich plasma. J Biomed Mater Res B, Appl Biomater 100:976–
+      Sammartino G, Dohan Ehrenfest DM (2012) Current knowledge                      983. doi:10.1002/jbm.b.32660
+      and perspectives for the use of platelet-rich plasma (PRP) and           24.   Yilmaz S, Kabadayi C, Ipci SD, Cakar G, Kuru B (2011) Treatment
+      platelet-rich fibrin (PRF) in oral and maxillofacial surgery part 1:           of intrabony periodontal defects with platelet-rich plasma versus
+      periodontal and dentoalveolar surgery. Curr Pharm Biotechnol 13:               platelet-poor plasma combined with a bovine-derived xenograft: a
+      1207–1230                                                                      controlled clinical trial. J Periodontol 82:837–844. doi:10.1902/jop.
+10.   Simonpieri A, Del Corso M, Vervelle A, Jimbo R, Inchingolo F,                  2010.100503
+      Sammartino G, Dohan Ehrenfest DM (2012) Current knowledge                25.   Camargo PM, Lekovic V, Weinlaender M, Divnic-Resnik T,
+      and perspectives for the use of platelet-rich plasma (PRP) and                 Pavlovic M, Kenney EB (2009) A surgical reentry study on the
+      platelet-rich fibrin (PRF) in oral and maxillofacial surgery part 2:           influence of platelet-rich plasma in enhancing the regenerative ef-
+      bone graft, implant and reconstructive surgery. Curr Pharm                     fects of bovine porous bone mineral and guided tissue regeneration
+      Biotechnol 13:1231–1256                                                        in the treatment of intrabony defects in humans. J Periodontol 80:
+11.   Medina-Porqueres I, Alvarez-Juarez P (2015) The efficacy of                    915–923. doi:10.1902/jop.2009.080600
+      platelet-rich plasma injection in the management of hip osteoarthri-     26.   Camargo PM, Lekovic V, Weinlaender M, Vasilic N, Madzarevic
+      tis: a systematic review protocol. Musculoskeletal Care. doi:10.               M, Kenney EB (2005) A reentry study on the use of bovine porous
+      1002/msc.1115                                                                  bone mineral, GTR, and platelet-rich plasma in the regenerative
+12.   Salamanna F, Veronesi F, Maglio M and Della Bella E (2015) New                 treatment of intrabony defects in humans. Int J Periodontics
+      and emerging strategies in platelet-rich plasma application in mus-            Restorative Dent 25:49–59
+      culoskeletal regenerative procedures: general overview on still open     27.   Yassibag-Berkman Z, Tuncer O, Subasioglu T, Kantarci A (2007)
+      questions and outlook. 2015:846045. doi: 10.1155/2015/846045                   Combined use of platelet-rich plasma and bone grafting with or
+13.   Albanese A, Licata ME, Polizzi B, Campisi G (2013) Platelet-rich               without guided tissue regeneration in the treatment of anterior in-
+      plasma (PRP) in dental and oral surgery: from the wound healing to             terproximal defects. J Periodontol 78:801–809. doi:10.1902/jop.
+      bone regeneration. Immun Ageing 10:23. doi:10.1186/1742-4933-                  2007.060318
+      10-23                                                                    28.   Choukroun J, Diss A, Simonpieri A, Girard MO, Schoeffler C,
+14.   Dohan Ehrenfest DM, Andia I, Zumstein MA, Zhang CQ, Pinto                      Dohan SL, Dohan AJ, Mouhyi J, Dohan DM (2006) Platelet-rich
+      NR, Bielecki T (2014) Classification of platelet concentrates (plate-          fibrin (PRF): a second-generation platelet concentrate. Part V: his-
+      let-rich plasma-PRP, platelet-rich fibrin-PRF) for topical and infil-          tologic evaluations of PRF effects on bone allograft maturation in
+      trative use in orthopedic and sports medicine: current consensus,              sinus lift. Oral Surg Oral Med Oral Pathol Oral Radiol Endod 101:
+      clinical implications and perspectives. Muscles, Ligament Tendons              299–303. doi:10.1016/j.tripleo.2005.07.012
+      J 4:3–9                                                                  29.   Dohan DM, Choukroun J, Diss A, Dohan SL, Dohan AJ, Mouhyi J,
+15.    Maney P, Amornporncharoen M, Palaiologou A (2013)                             Gogly B (2006) Platelet-rich fibrin (PRF): a second-generation
+       Applications of plasma rich in growth factors (PRGF) in dental                platelet concentrate. Part II: platelet-related biologic features. Oral
+                                                                                                                                      Clin Oral Invest
+
+    Surg Oral Med Oral Pathol Oral Radiol Endod 101:e45–e50. doi:                autografts. Clin Implant Dent Relat Res 15:481–489. doi:10.1111/
+    10.1016/j.tripleo.2005.07.009                                                j.1708-8208.2012.00440.x
+30. Dohan DM, Choukroun J, Diss A, Dohan SL, Dohan AJ, Mouhyi J,             40. El-Sharkawy H, Kantarci A, Deady J, Hasturk H, Liu H, Alshahat
+    Gogly B (2006) Platelet-rich fibrin (PRF): a second-generation               M, Van Dyke TE (2007) Platelet-rich plasma: growth factors and
+    platelet concentrate. Part I: technological concepts and evolution.          pro- and anti-inflammatory properties. J Periodontol 78:661–669.
+    Oral Surg Oral Med Oral Pathol Oral Radiol Endod 101:e37–e44.                doi:10.1902/jop.2007.060302
+    doi:10.1016/j.tripleo.2005.07.008                                        41. Su CY, Kuo YP, Tseng YH, Su CH, Burnouf T (2009) In vitro
+31. Sunitha Raja V, Munirathnam Naidu E (2008) Platelet-rich fibrin:             release of growth factors from platelet-rich fibrin (PRF): a proposal
+    evolution of a second-generation platelet concentrate. Indian J Dent         to optimize the clinical applications of PRF. Oral Surg Oral Med
+    Res Off Publ Indian Soc Dental Res 19:42–46                                  Oral Pathol Oral Radiol Endod 108:56–61. doi:10.1016/j.tripleo.
+32. Man D, Plosker H, Winland-Brown JE (2001) The use of autolo-                 2009.02.004
+    gous platelet-rich plasma (platelet gel) and autologous platelet-poor    42. Okuda K, Kawase T, Momose M, Murata M, Saito Y, Suzuki H,
+    plasma (fibrin glue) in cosmetic surgery. Plast Reconstr Surg 107:           Wolff LF, Yoshie H (2003) Platelet-rich plasma contains high levels
+    229–237 discussion 238-9                                                     of platelet-derived growth factor and transforming growth factor-
+33. Lekovic V, Milinkovic I, Aleksic Z, Jankovic S, Stankovic P,                 beta and modulates the proliferation of periodontally related cells in
+    Kenney EB, Camargo PM (2012) Platelet-rich fibrin and bovine                 vitro. J Periodontol 74:849–857. doi:10.1902/jop.2003.74.6.849
+    porous bone mineral vs. platelet-rich fibrin in the treatment of         43. Kawase T, Okuda K, Wolff LF, Yoshie H (2003) Platelet-rich plas-
+    intrabony periodontal defects. J Periodontal Res 47:409–417. doi:            ma-derived fibrin clot formation stimulates collagen synthesis in
+    10.1111/j.1600-0765.2011.01446.x                                             periodontal ligament and osteoblastic cells in vitro. J Periodontol
+34. Panda S, Jayakumar ND, Sankari M, Varghese SS, Kumar DS                      74:858–864. doi:10.1902/jop.2003.74.6.858
+    (2014) Platelet rich fibrin and xenograft in treatment of intrabony      44. Fan WJ, Yang M, Zhang C, Xue R, Zhang W, Qin HX (2013)
+    defect. Contemporary Clinical Dentistry 5:550–554. doi:10.4103/              Effects of Choukroun’s platelet-rich fibrin on human gingival fibro-
+    0976-237x.142830                                                             blasts proliferation, migration and type I collagen secretion.
+35. Sharma A, Pradeep AR (2011) Treatment of 3-wall intrabony de-                Zhonghua kou qiang yi xue za zhi = Zhonghua kouqiang yixue
+    fects in patients with chronic periodontitis with autologous platelet-       zazhi =. Chin J Stomatol 48:72–76
+    rich fibrin: a randomized controlled clinical trial. J Periodontol 82:   45. Dohan Ehrenfest DM, Doglioli P, de Peppo GM, Del Corso M,
+    1705–1712. doi:10.1902/jop.2011.110075                                       Charrier JB (2010) Choukroun’s platelet-rich fibrin (PRF) stimu-
+36. Kumar RV, Shubhashini N (2013) Platelet rich fibrin: a new para-             lates in vitro proliferation and differentiation of human oral bone
+    digm in periodontal regeneration. Cell Tissue Bank 14:453–463.               mesenchymal stem cell in a dose-dependent way. Arch Oral Biol
+    doi:10.1007/s10561-012-9349-6                                                55:185–194. doi:10.1016/j.archoralbio.2010.01.004
+37. Ghanaati S, Booms P, Orlowska A, Kubesch A, Lorenz J,                    46. Kawase T, Okuda K, Saito Y, Amizuka N, Suzuki H, Yoshie H
+    Rutkowski J, Landes C, Sader R, Kirkpatrick C, Choukroun J                   (2005) Platelet-rich plasma provides nucleus for mineralization in
+    (2014) Advanced platelet-rich fibrin: a new concept for cell-based           cultures of partially differentiated periodontal ligament cells.
+    tissue engineering by means of inflammatory cells. J Oral Implantol          In Vitro Cell Dev Biol Anim 41:171–176. doi:10.1290/0502013.1
+    40:679–689. doi:10.1563/aaid-joi-D-14-00138                              47. Kawase T, Tanaka T, Okuda K, Tsuchimochi M, Oda M, Hara T
+38. Gassling VL, Acil Y, Springer IN, Hubert N, Wiltfang J (2009)                (2015) Quantitative single-cell motility analysis of platelet-rich
+    Platelet-rich plasma and platelet-rich fibrin in human cell culture.         plasma-treated endothelial cells in vitro. Cytoskeleton (Hoboken,
+    Oral Surg Oral Med Oral Pathol Oral Radiol Endod 108:48–55. doi:             NJ) 72:246–255. doi:10.1002/cm.21221
+    10.1016/j.tripleo.2009.02.007                                            48. Gassling V, Hedderich J, Acil Y, Purcz N, Wiltfang J, Douglas T
+39. Miron RJ, Gruber R, Hedbom E, Saulacic N, Zhang Y, Sculean A,                (2013) Comparison of platelet rich fibrin and collagen as osteoblast-
+    Bosshardt DD, Buser D (2013) Impact of bone harvesting tech-                 seeded scaffolds for bone tissue engineering applications. Clin Oral
+    niques on cell viability and the release of growth factors of                Implants Res 24:320–328. doi:10.1111/j.1600-0501.2011.02333.x
+

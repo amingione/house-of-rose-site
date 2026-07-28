@@ -62,6 +62,7 @@ export interface LeadEmail {
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  smsConsent?: string;
 }
 
 const esc = (v: string): string =>
@@ -317,6 +318,7 @@ export async function sendLeadNotification(lead: LeadEmail): Promise<boolean> {
     ['UTM source', lead.utmSource],
     ['UTM medium', lead.utmMedium],
     ['UTM campaign', lead.utmCampaign],
+    ['SMS consent', lead.smsConsent],
     ['Message', lead.message],
   ].filter((row): row is [string, string] => Boolean(row[1]));
 

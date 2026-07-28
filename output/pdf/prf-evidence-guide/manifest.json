@@ -1,0 +1,23 @@
+{
+  "title": "House of Rose PRF Facial Aesthetics Evidence Guide",
+  "format": "US Letter landscape, two-sided tri-fold, 300 DPI",
+  "files": {
+    "pdf": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/output/pdf/prf-evidence-guide/House-of-Rose-PRF-Evidence-Guide-Tri-Fold.pdf",
+    "outside_png": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/output/pdf/prf-evidence-guide/House-of-Rose-PRF-Evidence-Guide-Outside.png",
+    "inside_png": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/output/pdf/prf-evidence-guide/House-of-Rose-PRF-Evidence-Guide-Inside.png",
+    "copy_and_sources": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/output/pdf/prf-evidence-guide/House-of-Rose-PRF-Evidence-Guide-Copy-and-Sources.md",
+    "canva_import_html": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/output/pdf/prf-evidence-guide/House-of-Rose-PRF-Evidence-Guide-Canva-Import.html"
+  },
+  "source_assets": {
+    "hero": "/Users/ambermingione/.codex/generated_images/019fa3de-cbd5-7370-984d-49bd48cd9e13/call_tuToslPetXfWrWTzBO7dmlcf.png",
+    "before_after": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/packages/web/public/images/before-after/PRF/prf-undereyes-ezgel.png",
+    "monogram": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/packages/web/public/logos/house-of-rose-monogram/hr-monogram-gold.png",
+    "treatment_room": "/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site/packages/web/src/assets/images/house-of-rose-treatment-room.png"
+  },
+  "production_notes": [
+    "Outside order: back panel, fold-in panel, front cover.",
+    "Inside order: benefits, treatment paths, evidence.",
+    "Exact copy and citations are preserved deterministically.",
+    "The Canva import is a two-page layout with each spread as a high-resolution image."
+  ]
+}

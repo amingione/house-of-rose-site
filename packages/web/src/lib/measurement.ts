@@ -113,6 +113,7 @@ interface MeasurementWindow extends Window {
     metaPixelId?: string;
   };
   __horLoadedScripts?: Set<string>;
+  __horAhrefsInitialized?: boolean;
   __horLastPageView?: string;
   __horLastMetaPageView?: string;
 }
@@ -133,6 +134,11 @@ const attributionKeys = [
 ] as const;
 
 const browser = (): MeasurementWindow => window as unknown as MeasurementWindow;
+
+const isLocalMeasurementHost = (): boolean => {
+  const hostname = location.hostname.toLowerCase();
+  return hostname === 'localhost' || hostname.endsWith('.localhost') || hostname === '127.0.0.1' || hostname === '::1';
+};
 
 const sanitize = (value: string | null | undefined): string | undefined => {
   const cleaned = value
@@ -224,17 +230,34 @@ const loadScript = (id: string, src: string): void => {
 };
 
 export const loadAhrefs = (consent: ConsentStateV1): void => {
-  const key = browser().__horMeasurementConfig?.ahrefsKey;
-  if (consent.analytics_storage === 'granted' && key) {
-    const id = 'hor-ahrefs-analytics';
-    if (document.getElementById(id)) return;
-    const script = document.createElement('script');
-    script.id = id;
-    script.src = 'https://analytics.ahrefs.com/analytics.js';
-    script.dataset.key = key;
-    script.async = true;
-    document.head.append(script);
+  const w = browser();
+  const key = w.__horMeasurementConfig?.ahrefsKey;
+  if (
+    isLocalMeasurementHost() ||
+    consent.analytics_storage !== 'granted' ||
+    !key ||
+    w.__horAhrefsInitialized
+  ) return;
+
+  const id = 'hor-ahrefs-analytics';
+  const existingScript =
+    document.getElementById(id) ??
+    document.querySelector<HTMLScriptElement>('script[src^="https://analytics.ahrefs.com/analytics.js"]');
+  if (existingScript) {
+    w.__horAhrefsInitialized = true;
+    return;
   }
+
+  // Swup and dev HMR can re-run component modules while the same Window (and
+  // Ahrefs runtime) survives. Mark the vendor initialized before insertion so
+  // concurrent/replayed lifecycle hooks cannot append analytics.js twice.
+  w.__horAhrefsInitialized = true;
+  const script = document.createElement('script');
+  script.id = id;
+  script.src = 'https://analytics.ahrefs.com/analytics.js';
+  script.dataset.key = key;
+  script.async = true;
+  document.head.append(script);
 };
 
 export const loadMeta = (consent: ConsentStateV1): void => {

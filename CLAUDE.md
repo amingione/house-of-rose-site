@@ -86,6 +86,65 @@ copy bug, not a business rule, unless Amber says otherwise.
 
 ---
 
+## Florida Advertising Law (binding — 2026-07-26) — `docs/compliance/`
+Marketing for this business is regulated. **`docs/compliance/` is the binding statutory layer** and is
+inherited by every copy, ad, offer, pricing, or credential task. `docs/staff/COMPLIANCE-COPY-RULES.md`
+covers voice and claims; `docs/compliance/` covers what the law requires. **Where they conflict,
+`docs/compliance/` wins.** Read `docs/compliance/README.md` before publishing any offer, price,
+provider name, or paid ad. The four rules that get broken most:
+
+- **§ 456.062 72-hour disclosure** — required, verbatim and in caps, on any surface advertising a
+  **free, discounted, or credited** service. "Complimentary" triggers it. Required **in the ad unit
+  itself**, not just the landing page — if a format can't carry the block, keep the offer out of that
+  format. Never paraphrase, shorten, sentence-case, or hide it behind a toggle. Exact text:
+  `docs/compliance/FL-ADVERTISING-LAW.md` §5.1.
+- **License type wherever a practitioner is named** — § 456.072(1)(t). **MD / DO / APRN / RN.**
+  "Aesthetic Injector," "Injector," "Provider," "Skin Specialist" are job titles and satisfy nothing.
+  Separate from the internal-lane rule above: legal attribution is required, lane commentary is not.
+- **Never write "dermatologist," "skin doctor," or "dermatology specialists" in copy** — implies a
+  specialty not held (R. 64B8-11.001(2)(k)). Bidding the keyword is fine; the word in copy is not.
+- **Disable anything that can rewrite published text** — Google DKI + automatically created assets,
+  Meta creative enhancements + text variations. An optimiser that rewrites a paragraph can delete a
+  statutory disclosure, and "the platform generated it" is not a defence (R. 64B8-11.001(5)).
+
+**Structure (verified 2026-07-26 against Sunbiz + Amber):** **HOUSE OF ROSE AESTHETICS LLC**, doc
+**L26000204660**. Authorized members: **Amber Mingione** (licensed esthetician) and **Diana Morrison,
+RN**. Medical director assigned through Guardian Medical Direction — **Joshua Shaw, MD · FL Lic. ME136232** (verified against the CMS NPI Registry). He is the
+named responsible provider for ad attribution and carries the R. 64B8-11.001(5) risk. **Canonical
+attribution line: `Medical Director: Joshua Shaw, MD · FL Lic. ME136232`.**
+
+⚠️ **Two things never to imply about him.** His NPI taxonomy is **Surgery** — so nothing may imply he
+is a dermatologist or any specialist (R. 64B8-11.001(2)(k) is violated by implication alone). And he
+provides **oversight and protocol supervision, not treatment** — nothing may imply he performs
+treatments or is on site (R. 64B8-11.001(2)(a)). If his photo is used, label the role explicitly.
+🚫 **Never record or transmit a DEA number** — no advertising purpose, and a fraud vector. § 464.0123 limits APRN **autonomous** practice to primary care — aesthetics is
+not primary care — so aesthetics runs on a **§ 464.012(3) written physician protocol**. An APRN *may*
+perform aesthetics under that protocol; she may not do it autonomously. **Confirm the protocol covers a
+service before advertising it.**
+
+🟡 **AHCA clinic licensure — open, but narrow.** House of Rose is a **cash-pay aesthetic practice** under
+physician medical direction and almost certainly falls **outside** the § 400.9905(4) definition of
+"clinic," which requires an entity that "tenders charges for reimbursement." That is the mainstream
+position and very likely correct. It is worth one written counsel opinion rather than an assumption,
+because **no exemption sits behind it**: (4)(g)'s closed list omits ch. 477 (esthetician) entirely and
+reaches nursing only through `s. 464.012` (**APRN** — Diana is a plain RN), and (4)(f) needs a physician
+*owner*, which a contracted medical director is not. **This is unrelated to the DBPR salon licence,
+county approvals and inspections the practice already holds — AHCA is a different regulator.** Anything
+billed to insurance or a third-party payer would change the analysis; watch GLP-1. Do not reason from
+§ 456.001(4)'s general definition; § 400.9905 never cites it. Full analysis and the drafted question:
+`docs/compliance/FL-ADVERTISING-LAW.md` §3 item 3 and §4.6.
+
+⚠️ **Diana is an RN, not an APRN.** § 464.0123 autonomous practice does not apply to her — the operative
+question for RN-performed injectables is **physician delegation and supervision**. Her advertising
+credential is **"Diana Morrison, RN"** (§ 456.072(1)(t)).
+
+⚠️ **The certificate of exemption is voluntary and expensive in a non-obvious way:** § 400.9935(6) makes
+publishing a fee schedule a **condition precedent** — uninsured cash prices for the 50 most-frequent
+services, posted in the reception area on a sign of **at least 15 square feet**. That collides directly
+with the pricing-confidentiality decision. See `docs/compliance/FL-ADVERTISING-LAW.md` §3 item 3.
+
+---
+
 ## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_

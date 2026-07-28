@@ -57,12 +57,12 @@ const FALLBACK_SECTIONS: PrivacySection[] = [
 	{
 		_key: "s3",
 		heading: "Data Sharing",
-		body: "We use service providers to operate the website, fulfill orders, process payments and shipping, communicate with customers, measure website activity, and—when advertising consent is granted—measure retail advertising results. These providers may process only the information needed for those purposes under their own terms and our instructions. Mobile opt-in and consent records are not sold or shared with third parties for their own promotional purposes. We do not send health-service lead names, email addresses, phone numbers, treatment interests, or message content to Google for advertising audiences or Customer Match.",
+		body: "• Customer data is not shared with 3rd parties for promotional or marketing purposes.\n• Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.",
 	},
 	{
 		_key: "s4",
 		heading: "House of Rose LLC Messaging Terms and Conditions",
-		body: "1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, along with invitations, announcements, and offers about our products and services.\n2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.\n3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.\n4. Carriers are not liable for delayed or undelivered messages.\n5. As always, message and data rates may apply for any messages sent to you from us and to us from you. Message frequency will vary based on communication needs. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.\n6. If you have any questions regarding privacy, please read our privacy policy contained in the rest of this document/page.",
+		body: "1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, promotional offers or discounts, any promotion of your products/services.\n2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.\n3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.\n4. Carriers are not liable for delayed or undelivered messages.\n5. As always, message and data rates may apply for any messages sent to you from us and to us from you. Message frequency will vary based on communication needs. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.\n6. If you have any questions regarding privacy, please read our privacy policy contained in the rest of this document/page.",
 	},
 	{
 		_key: "s5",
@@ -98,24 +98,33 @@ const reservedHeadings = new Set([
 	"your privacy choices",
 ]);
 const sections = [
-	...sourceSections.filter((section) => !reservedHeadings.has(section.heading.trim().toLowerCase())),
+	...sourceSections.filter((section) => {
+		const heading = section.heading.trim().toLowerCase();
+		return !reservedHeadings.has(heading) && !heading.endsWith("messaging terms and conditions");
+	}),
 	FALLBACK_SECTIONS[2],
+	FALLBACK_SECTIONS[3],
 	...REQUIRED_MEASUREMENT_SECTIONS,
 ].filter((section): section is PrivacySection => Boolean(section));
 
 const pageTitle = data.pageTitle ?? "Privacy Policy";
-const intro =
-	data.intro ??
-	"House of Rose LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging.";
+const lastUpdated = data.lastUpdated ?? "Effective July 26, 2026";
+const canonicalizeLegalName = (value: string): string =>
+	value.replaceAll("House of Rose Aesthetics LLC", "House of Rose LLC");
+const intro = canonicalizeLegalName(
+	(data.intro ??
+		"House of Rose LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging."),
+);
 
 const oid = data._id ? sbObjectId(data._id) : {};
 
 const site = Astro.site?.toString() ?? "https://houseofrosefl.com/";
 const canonical = new URL(Astro.url.pathname, site).toString();
 const pageMetaTitle = data.seoTitle ?? "Privacy Policy | House of Rose Aesthetics";
-const pageMetaDescription =
+const pageMetaDescription = canonicalizeLegalName(
 	data.seoDescription ??
-	"House of Rose LLC privacy policy, data sharing practices, and messaging terms and conditions.";
+	"House of Rose LLC privacy policy, data sharing practices, and messaging terms and conditions.",
+);
 const webPageSchema = webPage(
 	{ name: pageTitle, description: pageMetaDescription, url: canonical },
 	site,
@@ -135,9 +144,7 @@ const breadcrumb = breadcrumbList([
 				House of Rose LLC
 			</p>
 			<h1 class="font-serif text-5xl text-ink" {...sbFieldPath("pageTitle")}>{pageTitle}</h1>
-			{data.lastUpdated && (
-				<p class="mt-4 text-sm text-ink/75" {...sbFieldPath("lastUpdated")}>{data.lastUpdated}</p>
-			)}
+			<p class="mt-4 text-sm text-ink/75" {...sbFieldPath("lastUpdated")}>{lastUpdated}</p>
 		</div>
 
 		<div class="prose prose-lg max-w-none text-ink/80">
