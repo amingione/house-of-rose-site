@@ -220,7 +220,7 @@ Yes — typically pause retinols/vitamin A and NSAIDs/blood-thinning supplements
 - **A structured, comfortable protocol.** Fixed, controlled Procell settings, a new single-use cartridge every session, and a licensed esthetician (Amber) who confirms candidacy first — the predictable-recovery choice for sensitive skin and first-timers.
 - **A real journey, not a one-off.** Glo2Facial gateway → microchanneling (Pro/MD) → optional PRF/Glo2Facial finish, sold as an honest Single / Series of 3 / Series of 6 framework.
 - **No overclaiming.** Topical PRF is topical only; no "stem cell," no "erases," no guaranteed results — every surface names the provider, says not everyone is a candidate, and notes individual outcomes vary.
-- **Grounded in Punta Gorda, FL** (525 E Olympia Ave, Unit 9; Charlotte County / SW Florida), appointment-only, call/text-first booking.
+- **Grounded in Punta Gorda, FL** (525 E Olympia Ave, Unit 9; Charlotte County / SW Florida), with walk-ins welcome and call/text-ahead booking recommended to reserve a time.
 
 ---
 

@@ -15,6 +15,7 @@ import type { FAQ } from '@/lib/queries';
 export const LOCAL_BUSINESS = {
   name: 'House of Rose Aesthetics',
   legalName: 'House of Rose Aesthetics',
+  foundingDate: '2026-06-15',
   telephone: '+18449417673',
   streetAddress: '525 E Olympia Ave, Unit 9',
   addressLocality: 'Punta Gorda',
@@ -23,18 +24,35 @@ export const LOCAL_BUSINESS = {
   addressCountry: 'US',
   latitude: 26.9298,
   longitude: -82.0454,
-  geoRadiusMeters: 50000,
 } as const;
 
 export const BUSINESS_PROFILES = [
-  'https://www.instagram.com/houseofrosefl/',
-  'https://www.facebook.com/people/House-Of-Rose-Aesthetics/',
+  'https://www.instagram.com/house.of.rose.aesthetics/',
+  'https://www.facebook.com/profile.php?id=61590233534310',
 ] as const;
 
 export const BUSINESS_URLS = {
   booking: 'https://houseofrose.glossgenius.com/book',
+  services: 'https://houseofrose.glossgenius.com/services',
   map: 'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950',
 } as const;
+
+export const BUSINESS_SERVICE_AREAS = [
+  'Punta Gorda',
+  'Port Charlotte',
+  'Charlotte Harbor',
+  'Babcock Ranch',
+  'Burnt Store Marina',
+  'Punta Gorda Isles',
+] as const;
+
+export const BUSINESS_CATEGORIES = [
+  'Medical spa',
+  'Facial spa',
+  'Skin care clinic',
+  'Health and beauty shop',
+  'Vitamin & supplements store',
+] as const;
 
 export type JsonLd = Record<string, unknown>;
 
@@ -47,6 +65,8 @@ function providerNode(siteUrl: string): JsonLd {
     '@id': `${baseUrl}#business`,
     name: LOCAL_BUSINESS.name,
     alternateName: 'House of Rose',
+    foundingDate: LOCAL_BUSINESS.foundingDate,
+    keywords: BUSINESS_CATEGORIES.join(', '),
     url: baseUrl,
     telephone: LOCAL_BUSINESS.telephone,
     sameAs: [...BUSINESS_PROFILES],
@@ -69,21 +89,16 @@ function websiteNode(siteUrl: string): JsonLd {
     url: baseUrl,
     name: LOCAL_BUSINESS.name,
     alternateName: 'House of Rose',
+    description:
+      'Advanced aesthetics and wellness studio and medical spa in Punta Gorda, Florida, offering personalized face, body, skin, and wellness services.',
+    keywords: BUSINESS_CATEGORIES.join(', '),
     inLanguage: 'en-US',
     publisher: { '@id': `${baseUrl}#business` },
   };
 }
 
-function areaServedNode(): JsonLd {
-  return {
-    '@type': 'GeoCircle',
-    geoMidpoint: {
-      '@type': 'GeoCoordinates',
-      latitude: String(LOCAL_BUSINESS.latitude),
-      longitude: String(LOCAL_BUSINESS.longitude),
-    },
-    geoRadius: String(LOCAL_BUSINESS.geoRadiusMeters),
-  };
+function areaServedNodes(): JsonLd[] {
+  return BUSINESS_SERVICE_AREAS.map((name) => ({ '@type': 'Place', name }));
 }
 
 // ─── Builders ──────────────────────────────────────────────────────────────────
@@ -140,20 +155,10 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
       closes: '17:00',
     },
     priceRange: '$$',
-    areaServed: [
-      'Punta Gorda',
-      'Port Charlotte',
-      'Englewood',
-      'Venice',
-      'North Port',
-      'Sarasota',
-      'Cape Coral',
-      'Charlotte County',
-      'Southwest Florida',
-    ].map((name) => ({ '@type': 'Place', name })),
+    areaServed: BUSINESS_SERVICE_AREAS.map((name) => ({ '@type': 'Place', name })),
     hasMap: BUSINESS_URLS.map,
     currenciesAccepted: 'USD',
-    paymentAccepted: 'Cash, Credit Card',
+    paymentAccepted: 'American Express, Discover, Mastercard, Visa, Debit Card, Check',
     hasMerchantReturnPolicy: {
       '@type': 'MerchantReturnPolicy',
       applicableCountry: 'US',
@@ -355,7 +360,7 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
         })),
       },
     }),
-    areaServed: areaServedNode(),
+    areaServed: areaServedNodes(),
   };
 }
 
@@ -374,6 +379,10 @@ export function localBusiness(input: { url: string; areaName?: string; image?: s
     '@id': `${input.url}#localbusiness`,
     name: LOCAL_BUSINESS.name,
     alternateName: 'House of Rose',
+    foundingDate: LOCAL_BUSINESS.foundingDate,
+    description:
+      'Advanced aesthetics and wellness studio and medical spa in Punta Gorda, Florida, offering personalized face, body, skin, and wellness services.',
+    keywords: BUSINESS_CATEGORIES.join(', '),
     url: baseUrl,
     telephone: LOCAL_BUSINESS.telephone,
     sameAs: [...BUSINESS_PROFILES],
@@ -393,6 +402,8 @@ export function localBusiness(input: { url: string; areaName?: string; image?: s
     },
     areaServed: input.areaName ?? `${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion}`,
     hasMap: BUSINESS_URLS.map,
+    currenciesAccepted: 'USD',
+    paymentAccepted: 'American Express, Discover, Mastercard, Visa, Debit Card, Check',
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],

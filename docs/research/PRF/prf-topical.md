@@ -176,7 +176,7 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 - **The autologous, "your-own-biology" story is true and compliant.** Made from your own blood, no anticoagulant, no animal additives, no synthetics — a real differentiator that needs no overclaiming.
 - **A clean signature stack.** Topical PRF + Procell microchanneling pairs an autologous adjunct with a verified recombinant growth-factor system — a premium, compliant combination, with the Procell PRO/MD home systems for retention.
 - **Honesty as the brand.** An educated SW-Florida clientele responds to realistic expectation-setting: PRF is promising but early-evidence; results build gradually; not everyone is a candidate. Saying so builds trust and doubles as E-E-A-T SEO.
-- **Locally grounded.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida; appointment-only, call/text-first booking; opens July 9, 2026.
+- **Locally grounded.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida; walk-ins welcome and call/text-ahead booking recommended; open since June 15, 2026.
 
 ---
 

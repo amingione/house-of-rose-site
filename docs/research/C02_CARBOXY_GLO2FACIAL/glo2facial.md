@@ -210,7 +210,7 @@ Maps to these **existing** `/concerns/` slugs:
 - **The gateway, done right.** Glo2Facial is our deliberate entry point — a comfortable, no-downtime, luxurious first experience that opens the door to Amber's full advanced-skin lane (microchanneling, PRF-topical, corrective work). Most competitors sell it as a one-off; we build it into a real skin journey.
 - **The signature finish no one else pairs.** Layering the Glo2Facial Finish (+$95) onto microchanneling/microneedling is a House of Rose signature — clients leave glowing, not just flushed. Locally, no competitor pairs Procell growth-factor channeling or topical PRF with an oxygenating finish.
 - **Right treatment, honest lane.** We'll tell you when hydrodermabrasion with Brandy is the better everyday call, when dermaplaning is what you actually want, and when needling is the tool for real texture change — no upselling into the wrong thing.
-- **Local & event-ready.** Punta Gorda / Charlotte County / SW Florida clients book it before weddings, reunions, and photoshoots precisely because there's no recovery — a private, appointment-only studio (opens July 9, 2026) where the licensed provider tailors the pod and plan to your skin.
+- **Local & event-ready.** Punta Gorda / Charlotte County / SW Florida clients book it before weddings, reunions, and photoshoots precisely because there's no recovery — a private studio, open since June 15, 2026, where walk-ins are welcome and the licensed provider tailors the pod and plan to your skin.
 - **Grounded, never overclaimed.** We describe the real mechanism (exfoliate + infuse + oxygenate via the Bohr effect), cite the clinical study honestly, and keep results claims to "helps reveal," "for the appearance of," and "many clients notice."
 
 ---

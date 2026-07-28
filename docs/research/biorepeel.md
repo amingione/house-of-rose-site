@@ -134,7 +134,7 @@ All pricing is presented as "investment / from / starting at." Final pricing is 
 
 - **The no-downtime advantage, honestly framed.** BioRePeel gives Punta Gorda / Charlotte County clients real resurfacing without disappearing for a week — ideal for the SW Florida lifestyle (events, boating, snowbird season) where a peeling face isn't an option. We describe it accurately: minimal-to-light flaking, not a miracle.
 - **A true ladder, not one product.** From Brandy's gentle light peels → **Brandy's standalone BioRePeel** → **Amber's BioRePeel add-on on an advanced service** → the advanced acne-scarring protocol (peel + microneedling) → body and gold spot variants, the client is matched to the right depth for their concern by a licensed provider — no upselling into the wrong tool.
-- **Advanced, provider-led, appointment-only.** BioRePeel sits in a genuinely advanced regenerative/corrective menu (Procell, microchanneling, topical PRF, Glo2Facial) that local basic-facial menus don't offer, delivered by an esthetician + RN assistant in a private studio with skin analysis at every consult.
+- **Advanced, provider-led, and unhurried.** BioRePeel sits in a genuinely advanced regenerative/corrective menu (Procell, microchanneling, topical PRF, Glo2Facial) that local basic-facial menus don't offer, delivered by an esthetician + RN assistant in a private studio with skin analysis at every consult. Walk-ins are welcome; appointments are recommended to reserve a time.
 - **Locally grounded and compliant.** Punta Gorda pricing calibrated to the market, honest limits stated up front, and every surface carries provider-authority and individual-results language — trust as a differentiator, not fine print.
 
 ---

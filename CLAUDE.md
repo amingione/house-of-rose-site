@@ -151,9 +151,12 @@ with the pricing-confidentiality decision. See `docs/compliance/FL-ADVERTISING-L
 - **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
 - **Email:** info@houseofrosefl.com — _`book@…` was never a real address; do not use it anywhere_
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed
-- **Web/social:** https://houseofrosefl.com · IG `houseofrosefl` · FB `House-Of-Rose-Aesthetics` · opening July 9, 2026
+- **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB profile ID `61590233534310` · opened June 15, 2026
+- **Service area:** Punta Gorda · Port Charlotte · Charlotte Harbor · Babcock Ranch · Burnt Store Marina · Punta Gorda Isles
+- **GBP categories:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`, `Health and beauty shop`, `Vitamin & supplements store`.
+- **GBP services link:** https://houseofrose.glossgenius.com/services
 - **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** lead in prose with "advanced aesthetics & wellness," but "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). _(This reverses the earlier "never say med spa" rule.)_
-- **GBP CTA:** call/text (no online-booking button).
+- **GBP CTA:** call/text; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
 
 ## Providers & Team (memory — never re-ask)
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, Procell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service (microchanneling/microneedling) — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.

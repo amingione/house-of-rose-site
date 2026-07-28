@@ -5,7 +5,7 @@
 
 ## The pricing philosophy applied here
 
-House of Rose is a premium, appointment-only regenerative specialist in an affluent, older SW-Florida
+House of Rose is a premium, private regenerative specialist in an affluent, older SW-Florida
 market (Punta Gorda / Charlotte County). Pricing follows three rules:
 
 1. **Price to the real market, not to round numbers** — every figure below is checked against verified

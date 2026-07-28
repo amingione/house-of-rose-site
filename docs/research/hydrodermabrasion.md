@@ -199,7 +199,7 @@ What will move price once set (for structuring the eventual menu):
 - **Two glow tiers, one studio, chosen for you.** Clients get an honest choice between the **accessible maintenance glow (hydrodermabrasion, Brandy)** and the **advanced oxygenating signature (Glo2Facial, Amber)** — with a clear, non-pushy hand-off from maintenance to correction when the skin and goals call for it. That tiering is a genuine differentiator; most local menus blur "a facial" into one line.
 - **Sensitive-skin comfort by design.** The water-based, crystal-free approach is gentle and adjustable — a real fit for Punta Gorda / Charlotte County / SW Florida clients (an older, sun-exposed, value-conscious market) who want radiance without irritation or downtime.
 - **Event-ready with a real protocol.** Concrete, honest event-prep guidance (book ~3–5 days out; first-timers ~2 weeks out for a trial) — practical advice, not hype.
-- **Appointment-only, provider-led.** Every visit is read and dialed by a licensed provider; candidacy and settings are individualized, and we never overclaim what a surface facial can do.
+- **Provider-led and unhurried.** Walk-ins are welcome, appointments are recommended to reserve a time, and every visit is read and dialed by a licensed provider; candidacy and settings are individualized, and we never overclaim what a surface facial can do.
 
 *Not every client is a candidate for every service. "From" pricing (once set) is a starting point confirmed after consultation. Individual outcomes vary.*
 

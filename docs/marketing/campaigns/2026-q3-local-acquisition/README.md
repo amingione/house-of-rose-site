@@ -7,7 +7,7 @@ This package turns the 30-day acquisition plan into publish-ready campaign input
 - **Goal:** qualified consultation requests and booked appointments.
 - **Audience:** adults 35+ within 20 miles of 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
 - **Core message:** see the studio, understand the options, and begin with a clear plan.
-- **Luxury angle:** private, appointment-only care with hospitality-grade attention and restrained recommendations.
+- **Luxury angle:** private, unhurried care with hospitality-grade attention and restrained recommendations. Walk-ins are welcome; appointments are recommended to reserve a time.
 - **Primary CTA:** Begin with a complimentary skin consultation.
 - **Paid destinations:** `/skin-analysis/`, `/services/injectables/`, `/services/glo2facial/`, and `/services/microchanneling/`.
 

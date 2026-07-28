@@ -23,13 +23,13 @@ const faqs = [
     _key: 'ai-what-is-house-of-rose',
     _type: 'faq',
     question: 'What is House of Rose?',
-    answer: 'House of Rose Aesthetics is a private, appointment-only advanced aesthetics and wellness studio in Punta Gorda, Florida. The studio brings personalized skin, aesthetic, and wellness services together in a calm, unhurried setting for clients across Charlotte County and Southwest Florida.',
+    answer: 'House of Rose Aesthetics is an advanced aesthetics and wellness studio and medical spa in Punta Gorda, Florida. The studio brings personalized skin, aesthetic, and wellness services together in a calm, unhurried setting for clients across Charlotte County and Southwest Florida. Walk-ins are welcome, and appointments are recommended to reserve a time.',
   },
   {
     _key: 'ai-where-is-house-of-rose',
     _type: 'faq',
     question: 'Where is House of Rose located?',
-    answer: 'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The studio serves Punta Gorda, Port Charlotte, Englewood, Venice, North Port, Sarasota, Cape Coral, and surrounding Southwest Florida communities.',
+    answer: 'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The studio serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.',
   },
   {
     _key: 'ai-services-offered',
@@ -71,7 +71,7 @@ const faqs = [
     _key: 'ai-book-consultation',
     _type: 'faq',
     question: 'How do I book a consultation?',
-    answer: 'Book through the House of Rose online booking menu, or call or text (844) 941-7673 for guidance. Appointments are private and scheduled in advance; walk-ins are not offered.',
+    answer: 'Call or text (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
   },
   {
     _key: 'ai-house-of-rose-difference',
@@ -82,6 +82,7 @@ const faqs = [
 ];
 
 const content = {
+  instagramHandle: 'house.of.rose.aesthetics',
   aiSearchFaqHeading: 'The Essentials',
   aiSearchFaqIntro: 'Direct answers about House of Rose Aesthetics, our Punta Gorda studio, and what to expect before you book.',
   aiSearchFaqs: faqs,

@@ -1083,12 +1083,33 @@ export interface AiSearchFaqSection {
   faqs?: FAQ[];
 }
 
+const CANONICAL_AI_FAQ_ANSWERS = {
+  whatIsHouseOfRose:
+    'House of Rose Aesthetics is an advanced aesthetics and wellness studio and medical spa in Punta Gorda, Florida. The studio brings personalized skin, aesthetic, and wellness services together in a calm, unhurried setting for clients across Charlotte County and Southwest Florida. Walk-ins are welcome, and appointments are recommended to reserve a time.',
+  location:
+    'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The studio serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.',
+  booking:
+    'Call or text (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
+} as const;
+
+// These three answers contain canonical business facts. Keep the Sanity-authored
+// questions/order, but prevent a stale CMS value from republishing wrong visit,
+// location, or service-area information.
 export const AI_SEARCH_FAQ_QUERY = /* groq */ `
   *[_type == "siteSettings" && _id == "siteSettings"][0] {
     _id,
     "heading": aiSearchFaqHeading,
     "intro": aiSearchFaqIntro,
-    "faqs": aiSearchFaqs[]{ _key, question, answer }
+    "faqs": aiSearchFaqs[]{
+      _key,
+      question,
+      "answer": select(
+        _key == "ai-what-is-house-of-rose" => ${JSON.stringify(CANONICAL_AI_FAQ_ANSWERS.whatIsHouseOfRose)},
+        _key == "ai-where-is-house-of-rose" => ${JSON.stringify(CANONICAL_AI_FAQ_ANSWERS.location)},
+        _key == "ai-book-consultation" => ${JSON.stringify(CANONICAL_AI_FAQ_ANSWERS.booking)},
+        answer
+      )
+    }
   }
 `;
 

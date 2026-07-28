@@ -40,7 +40,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 ### Edit
 
 - 0–3s: exterior and sign; on-screen text: `PUNTA GORDA, MEET HOUSE OF ROSE`
-- 3–8s: door and welcome area; on-screen text: `PRIVATE · APPOINTMENT-ONLY`
+- 3–8s: door and welcome area; on-screen text: `PRIVATE · WALK-INS WELCOME`
 - 8–14s: speaker plus studio details; on-screen text: `BEGIN WITH A SKIN CONSULTATION`
 - End frame: logo, `(844) 941-7673`, `houseofrosefl.com/skin-analysis/`
 

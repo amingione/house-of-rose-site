@@ -182,7 +182,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 - **A genuinely gentle, needle-free option** inside a serious advanced-aesthetics practice — carboxy gives the "glow + awake under-eyes" result without downtime, and sits honestly next to our more corrective needling work rather than overpromising.
 - **Clean cross-lane handoffs:** Amber (topical carboxy facial) and, when structure is the real issue, our RN's injectable/filler options — clients get routed to the *right* fix, not upsold the wrong one.
 - **Part of a coherent skin-quality ladder:** Glo2Facial (gateway) → Procell/microneedling (correction) → carboxy & LED (support/finish) — a real plan, not a random menu.
-- **Local grounding:** private, appointment-only studio in **Punta Gorda** serving Charlotte County / SW Florida; honest pricing confirmed at consultation; candidacy assessed with a skin analysis. No overclaiming — outcomes are individual, and not every client is a candidate.
+- **Local grounding:** private studio in **Punta Gorda** serving Charlotte County / SW Florida, with walk-ins welcome and appointments recommended to reserve a time; honest pricing confirmed at consultation; candidacy assessed with a skin analysis. No overclaiming — outcomes are individual, and not every client is a candidate.
 
 ---
 

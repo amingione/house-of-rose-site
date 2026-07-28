@@ -16,8 +16,9 @@ hardest on **question-style queries**, and the sources they cite often differ fr
 "blue link" organic rankings. Translation: being keyword-optimized is no longer enough — pages
 must be **answer-led, entity-clear, locally grounded, and source-worthy**.
 
-House of Rose is a private, appointment-only aesthetics studio in **Punta Gorda, FL** serving
-Charlotte County and Southwest Florida. Our entire content strategy targets two jobs at once:
+House of Rose is a private advanced aesthetics and wellness studio in **Punta Gorda, FL** serving
+Charlotte County and Southwest Florida. Walk-ins are welcome, and appointments are recommended to
+reserve a time. Our entire content strategy targets two jobs at once:
 
 1. **AEO (Answer Engine Optimization)** — be the source an AI cites when someone asks
    *"How much does PRF microneedling cost?"* or *"What's the best facial before an event?"*

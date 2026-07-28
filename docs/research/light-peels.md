@@ -202,7 +202,7 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 - **Provider-matched formula selection.** The acid/enzyme, strength, and whether a peel is even the right tool are chosen by a licensed provider after AI skin analysis — not off a menu — which matters most for sensitive and melanin-rich skin.
 - **Retail continuity that actually extends results.** We carry the aligned professional home-care (Skin Script, GlyMed+) so the in-studio peel and the at-home routine reinforce each other — with daily SPF as the anchor.
 - **Locally grounded, honestly.** In Punta Gorda / Charlotte County / Southwest Florida's year-round sun, a light peel positioned as gentle maintenance + disciplined sun protection is an honest, relevant fit — never overclaimed as "treating" or "reversing" sun damage.
-- **Calm, unhurried, appointment-only.** A private studio experience where the light peel doubles as a genuinely relaxing maintenance facial — glow you can feel, delivered with restraint. Individual outcomes vary; not every client is a candidate for every service.
+- **Calm, private, and unhurried.** Walk-ins are welcome, appointments are recommended to reserve a time, and the light peel doubles as a genuinely relaxing maintenance facial — glow you can feel, delivered with restraint. Individual outcomes vary; not every client is a candidate for every service.
 
 ---
 

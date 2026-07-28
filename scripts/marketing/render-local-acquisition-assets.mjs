@@ -25,7 +25,7 @@ const concepts = [
     title: 'Local Proof',
     kicker: 'HOUSE OF ROSE · PUNTA GORDA',
     headline: ['YOU’VE PASSED IT.', 'NOW COME INSIDE.'],
-    subline: 'A private, appointment-only aesthetics and wellness studio.',
+    subline: 'A private aesthetics and wellness studio. Walk-ins welcome.',
     cta: 'BEGIN WITH A SKIN CONSULTATION',
     source: 'hofr-med-spa2026-07-20 10:55:39 +0000_1.webp',
     destination: '/skin-analysis/',

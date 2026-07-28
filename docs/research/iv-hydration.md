@@ -176,7 +176,7 @@ All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consol
 - **Integrated with your skin-health plan.** IV therapy here isn't a standalone gimmick — the Beauty Glow IV supports the same radiance goals as our advanced facials, so wellness and skin health live under one roof and one plan.
 - **Built for the SW Florida lifestyle.** Punta Gorda / Charlotte County heat, boating, beach days, and an active crowd make hydration and recovery a genuine, local, year-round need — not a coastal-city trend import.
 - **Honest by design.** We tell you when a glass of water is enough, we name who *shouldn't* get an IV, and we keep the claims modest. That candor is the brand.
-- **Private, appointment-only studio.** A calm, unhurried infusion in a private setting — not an assembly line.
+- **Private, unhurried studio.** Walk-ins are welcome when the schedule allows; appointments are recommended to reserve time for a calm infusion in a private setting.
 - Not every client is a candidate; individual outcomes vary; infusions support wellness and do not treat, cure, or prevent disease.
 
 ## 13. The case for routine IV hydration at House of Rose

@@ -264,7 +264,7 @@ const supportingDocuments = [
     slug: slug('port-charlotte'),
     city: 'Port Charlotte',
     region: 'Charlotte County, FL',
-    intro: 'House of Rose Aesthetics serves Port Charlotte clients from its appointment-only studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Clients visit for AI Skin Analysis, Procell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
+    intro: 'House of Rose Aesthetics serves Port Charlotte clients from its advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. Clients visit for AI Skin Analysis, Procell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
     whyLocal: 'House of Rose is located in downtown Punta Gorda, not in Port Charlotte. The studio serves clients from across Charlotte County with private appointments, provider-specific treatment lanes, and consultation-led recommendations.',
     servedServices: [
       ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'Procell'),

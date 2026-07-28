@@ -210,7 +210,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 - **No pressure, no commitment.** The analysis is framed as a genuine service to the client, not a sales funnel — sometimes the honest answer is home care or "keep doing what's working." That candor *is* the brand.
 - **One front door, three expert lanes.** The scan routes to the right provider — Amber's advanced facials, Diana's RN-led injectables/IV/GLP-1, or Brandy's maintenance facials — so clients land in the right hands instead of the loudest upsell.
 - **Measurable over time.** A standardized baseline means progress is compared consistently, which builds trust across a series rather than relying on "it looks better, right?"
-- **Locally grounded.** Advanced AI skin analysis in **Punta Gorda / Charlotte County / Southwest Florida** — a genuinely differentiated front-door offering in this market, delivered in a private, appointment-only studio.
+- **Locally grounded.** Advanced AI skin analysis in **Punta Gorda / Charlotte County / Southwest Florida** — a genuinely differentiated front-door offering in this market, delivered in a private studio where walk-ins are welcome and appointments are recommended to reserve a time.
 - **Refined, intentional, honest.** Copy stays squarely aesthetic and never overclaims: it *supports* personalized recommendations and *helps guide* your plan — it doesn't diagnose, cure, or guarantee.
 
 ---

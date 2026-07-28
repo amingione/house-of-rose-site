@@ -47,7 +47,7 @@ const overlay = `
   <rect x="108" y="845" width="362" height="72" rx="36" fill="#3F4D3A"/>
   <text x="289" y="890" text-anchor="middle" class="sans" font-size="18" font-weight="700" letter-spacing="2.2" fill="#F8F4EC">REQUEST YOUR CONSULT</text>
 
-  <text x="108" y="1127" class="sans" font-size="17" font-weight="700" letter-spacing="3.2" fill="#7A5C2A">PRIVATE · PERSONALIZED · BY APPOINTMENT</text>
+  <text x="108" y="1127" class="sans" font-size="16" font-weight="700" letter-spacing="2.6" fill="#7A5C2A">WALK-INS WELCOME · APPOINTMENTS RECOMMENDED</text>
   <text x="108" y="1180" class="sans" font-size="20" letter-spacing="1.4" fill="#14110F">PUNTA GORDA, FL</text>
   <text x="108" y="1220" class="sans" font-size="18" letter-spacing="0.7" fill="#5E5548">houseofrosefl.com  ·  (844) 941-7673</text>
 </svg>`;

@@ -1,6 +1,6 @@
 # Drift-Cleanup Checklist — House of Rose
 
-**Updated:** 2026-07-07 · **Source of truth:** `CLAUDE.md` (repo root) + Sanity `siteSettings`
+**Updated:** 2026-07-28 · **Source of truth:** `CLAUDE.md` (repo root) + Sanity `siteSettings`
 **Purpose:** eliminate outdated information and stop drift back to earlier versions of the brand.
 
 ## Current canon (enforce this)
@@ -8,6 +8,14 @@
 - **NAP:** House of Rose Aesthetics · 525 E Olympia Ave, **Unit 9**, Punta Gorda, FL **33950** ·
   **(844) 941-7673** / `+18449417673` · **info@houseofrosefl.com**.
   _Never:_ ZIP `33982`, phone `…7376`, `book@…`, "Ste/Suite".
+- **Hours / opening:** Mon–Fri **9:00 AM–5:00 PM** · Sat–Sun closed · opened **June 15, 2026**.
+- **Social:** Instagram `house.of.rose.aesthetics` · Facebook profile ID `61590233534310`.
+- **GBP service area:** Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch,
+  Burnt Store Marina, Punta Gorda Isles.
+- **GBP categories:** `Medical spa` primary; `Facial spa`, `Skin care clinic`,
+  `Health and beauty shop`, and `Vitamin & supplements store` secondary.
+- **Visit policy:** walk-ins welcome; appointments recommended to reserve a time. GBP planning attribute:
+  **Appointment not required**.
 - **Med spa — ON, "allow, don't lead":** lead in prose with "advanced aesthetics & wellness studio";
   "med spa / medical spa" is allowed in meta, GBP, SEO, and supporting copy; **never deny being a med
   spa**; only "day spa" is off-limits. → **Stale = any "we are NOT a med spa" denial.**
@@ -97,7 +105,8 @@ Auto-flag these **banned "current-offering" strings** (mirrors FAS drift discipl
 
 `33982` · `7376` · `book@` · `day spa` · `Gilded Lily` · `Porcelain Petal` · `Camellia Peel` ·
 `Lumière` · `Clarity Session` · `Collagen Bank` · `House Collective` · `membership` · `Rose Circle` ·
-`Rose Rewards` · `Rose Method` · `Rose Pass`
+`Rose Rewards` · `Rose Method` · `Rose Pass` · `appointment-only` · `walk-ins not offered` ·
+old IG `houseofrosefl` · old Facebook vanity URL · opening `July 9, 2026`
 
 > **"med spa" is NOT banned** (allowed, don't lead). **Deploy note:** the teardown + skin-analysis
 > changes are staged locally / in Sanity — they need a `git push` + Netlify rebuild to go live.

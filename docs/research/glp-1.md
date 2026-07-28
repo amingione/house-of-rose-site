@@ -355,7 +355,7 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 - `/services/iv-hydration-therapy/` — cross-link as complementary wellness (Diana's other wellness
   service).
 - `/faq/` — add GLP-1 candidacy/side-effect Q&As to the aggregated FAQ hub.
-- `/experience/` — where the supervised, appointment-only wellness experience is described.
+- `/experience/` — where the supervised, private wellness experience is described.
 
 **Where THIS page should link OUT (real slugs, trailing slashes):**
 - `/services/iv-hydration-therapy/` — sibling wellness service.
@@ -386,7 +386,7 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 - **Real medical oversight, locally.** A **licensed RN (Diana) under physician oversight** runs the
   program — candidacy screening, guided titration, and monthly in-person check-ins — in **Punta
   Gorda**, not a faceless online subscription. In the Charlotte County / SW Florida market, a
-  supervised GLP-1 program inside a private, appointment-only advanced-aesthetics & wellness studio
+  supervised GLP-1 program inside a private advanced-aesthetics & wellness studio where walk-ins are welcome when the schedule allows
   is a genuine differentiator.
 - **Two evidence-backed options, one provider.** Both semaglutide (single-agonist) and tirzepatide
   (dual GLP-1/GIP agonist) are offered, so the medication can be matched to the person by the

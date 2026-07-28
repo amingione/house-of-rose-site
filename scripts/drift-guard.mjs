@@ -17,6 +17,8 @@
  *   - Dead botanical names: Gilded Lily, Porcelain Petal, Camellia Peel, Lumière,
  *                           Clarity Session
  *   - Positioning:          "day spa"  (NOTE: "med spa" is allowed — not banned)
+ *   - Visit policy:         appointment-only / no-walk-ins claims
+ *   - GBP identity:         old social URLs and July 9 opening date
  *
  * Usage:  node scripts/drift-guard.mjs        (exit 1 on any hit)
  */
@@ -51,6 +53,10 @@ const RULES = [
   { label: 'Retired program name', re: /Rose Circle|Rose Rewards|Rose Method|Rose Pass|Collagen Bank|House Collective/i },
   { label: 'Dead botanical name', re: /Gilded Lily|Porcelain Petal|Camellia Peel|Lumi[eè]re|Clarity Session/i },
   { label: 'Banned positioning "day spa"', re: /day spa/i },
+  { label: 'Wrong visit policy (walk-ins are welcome)', re: /appointment[- ]only|walk-ins? (?:are )?not (?:offered|accepted)|no walk-ins?/i },
+  { label: 'Old Instagram profile', re: /instagram\.com\/houseofrosefl\/?|@houseofrosefl(?!\.com)\b/i },
+  { label: 'Old Facebook profile', re: /facebook\.com\/(?:people\/)?House-Of-Rose-Aesthetics/i },
+  { label: 'Wrong opening date (use June 15, 2026)', re: /July 9,? 2026/i },
 ];
 
 /** @type {{file:string, line:number, label:string, text:string}[]} */

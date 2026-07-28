@@ -171,7 +171,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 ## 12. Why House of Rose
 
 - **Performed by an advanced esthetician within a full corrective menu.** Dermaplaning at House of Rose isn't an isolated add-on — Amber can dermaplane as prep before a Glo2Facial, a BioRePeel, or needling, so the treatment does more than surface smoothing; it feeds a real skin-renewal pathway.
-- **Private, appointment-only studio in Punta Gorda.** One-on-one, unrushed, in a calm advanced-aesthetics & wellness setting at 525 E Olympia Ave, Unit 9 — serving Punta Gorda, Port Charlotte, and Charlotte County / SW Florida.
+- **Private, unhurried studio in Punta Gorda.** Walk-ins are welcome, and appointments are recommended to reserve a time in the calm advanced-aesthetics & wellness setting at 525 E Olympia Ave, Unit 9 — serving Punta Gorda, Port Charlotte, and Charlotte County / SW Florida.
 - **Event-ready expertise under one roof.** Dermaplaning pairs naturally with professional event makeup (Aundrea/Jane Iredale) for weddings, portraits, and milestones — House of Rose keeps that whole "camera-ready week" in-house.
 - **Honest, SW-Florida-grounded aftercare.** In a high-UV market, the studio leads with SPF and sensible post-care, and is upfront that dermaplaning is a smoothing/prep/maintenance treatment — not a corrective or "anti-aging" fix. No overclaiming; candidacy confirmed at consultation; individual outcomes vary.
 

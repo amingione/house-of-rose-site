@@ -218,7 +218,7 @@ Example combination from the menu: **Corrective microneedling + Topical PRF (fac
 - **The right tool, chosen — not a one-size protocol.** House of Rose treats microchanneling and microneedling as **two distinct tools**, and dials corrective needling's **depth and pattern** to the concern and area rather than running a single fixed setting. That distinction is the differentiator locally: per the master-menu note, no local competitor offers Procell growth-factor channeling *or* PRF channeling, and the local plain-microneedling anchor is basic (~$195) by comparison.
 - **Autologous topical PRF, done honestly.** The topical-PRF upgrade uses your own blood, applied on the surface — clearly scoped as topical-only, with injectable PRF kept in the RN's lane. No overclaiming, no "vampire facial" theatrics.
 - **Face *and* body, with a realistic plan.** Per-zone body work (stretch marks, scars, neck/décolleté, hands, back) with an honest longer series for thicker skin — not oversold as a single fix.
-- **Locally grounded & appointment-only.** Punta Gorda / Charlotte County / SW Florida, private studio at 525 E Olympia Ave, Unit 9. Consultation & skin analysis lead every plan; single-use cartridges every session; written aftercare; provider-confirmed candidacy.
+- **Locally grounded, private & unhurried.** Punta Gorda / Charlotte County / SW Florida, private studio at 525 E Olympia Ave, Unit 9. Walk-ins are welcome, and appointments are recommended to reserve a time. Consultation & skin analysis lead every plan; single-use cartridges every session; written aftercare; provider-confirmed candidacy.
 - **No overclaiming.** "Appearance of," "supports," "individual results vary," "not every client is a candidate" — built into the copy, not bolted on.
 
 ---

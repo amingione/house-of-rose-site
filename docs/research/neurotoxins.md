@@ -164,7 +164,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
     Both Botox and Daxxify are priced per unit at House of Rose. Your total depends on how many units your treatment areas need, which Diana determines based on your muscle strength and goals. We'll give you a clear estimate at consultation.
 
 15. **How do I book?**
-    Neurotoxin treatment starts with a consultation with Diana. Call or text (844) 941-7673 to schedule — we're an appointment-only studio in Punta Gorda.
+    Neurotoxin treatment starts with a consultation with Diana. Walk-ins are welcome when the schedule allows; call or text (844) 941-7673 to reserve a time at our Punta Gorda studio.
 
 ---
 
@@ -224,7 +224,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 - **A registered nurse injector under medical-director oversight.** Neurotoxins at House of Rose are placed by **Diana, RN**, with medical-director supervision — not a rushed retail counter. Candidacy and dosing are individualized at consultation.
 - **Two real options, honestly compared.** We offer both **Botox** (the proven standard) and **Daxxify** (longer-lasting, peptide-stabilized) and help you choose based on *your* schedule and goals rather than pushing one product — with the trade-offs laid out plainly.
 - **Natural, undetectable results.** Our stated aim is softened movement, not a frozen look — conservative, anatomy-led dosing.
-- **Appointment-only, unhurried studio** in Punta Gorda (525 E Olympia Ave, Unit 9), serving Port Charlotte, Charlotte County, and SW Florida. A ~20-minute neurotoxin visit fits real life for local professionals.
+- **Private, unhurried studio** in Punta Gorda (525 E Olympia Ave, Unit 9), serving Port Charlotte, Charlotte County, and SW Florida. Walk-ins are welcome when the schedule allows; appointments are recommended to reserve a time. A ~20-minute neurotoxin visit fits real life for local professionals.
 - **Consultation-first and honest about limits.** We tell you when a neurotoxin *isn't* the right tool (volume loss, static folds, texture, laxity) and point you to fillers, PRF, or resurfacing instead — the goal is the right result, not the extra sale.
 - **Part of a full injectables + regenerative menu** (fillers, PRF, EZ-Gel) so combination planning happens under one roof, with one provider who knows your face.
 

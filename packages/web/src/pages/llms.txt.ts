@@ -36,7 +36,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `> Where Beauty Blooms Within. House of Rose is an advanced aesthetics and wellness studio in Punta Gorda, Florida, offering PRF, Procell, microchanneling, injectables, advanced facials, IV hydration, provider-guided weight management, and professional home care. Walk-ins are welcome; appointments are recommended to reserve a time.`,
     ``,
-    `House of Rose is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Phone: (844) 941-7673. Email: info@houseofrosefl.com. Serving Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, Sarasota, and Cape Coral.`,
+    `House of Rose is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Phone: (844) 941-7673. Email: info@houseofrosefl.com. Serving Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.`,
     ``,
     `## Core Pages`,
     ``,
@@ -130,10 +130,12 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Phone:** (844) 941-7673`,
     `- **Email:** info@houseofrosefl.com`,
     `- **Booking:** https://houseofrose.glossgenius.com/book`,
+    `- **Services:** https://houseofrose.glossgenius.com/services`,
     `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
-    `- **Instagram:** @houseofrosefl`,
-    `- **Facebook:** House-Of-Rose-Aesthetics`,
-    `- **Service Area:** Punta Gorda, Port Charlotte, Englewood, Venice, North Port, Sarasota, Cape Coral — Charlotte County & Southwest Florida`,
+    `- **Opened:** June 15, 2026`,
+    `- **Instagram:** @house.of.rose.aesthetics`,
+    `- **Facebook:** https://www.facebook.com/profile.php?id=61590233534310`,
+    `- **Service Area:** Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, Punta Gorda Isles`,
   );
 
   return new Response(lines.join('\n'), {

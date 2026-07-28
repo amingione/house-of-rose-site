@@ -130,7 +130,7 @@ Stem Cells`, and similar. These are the products' real names (GlyMed+, Skin Scri
 accurate manufacturer names (standard retail practice) or add compliant display labels. Not changed
 unilaterally — renaming would misidentify the product for buyers.
 
-**Optional:** `localArea` Punta Gorda `intro` leads with "a private, appointment-only **med spa**".
+**Optional:** `localArea` Punta Gorda `intro` leads with "a private advanced aesthetics and wellness studio where walk-ins are welcome."
 Med-spa is permitted for local SEO/discovery, but the rule prefers leading with "advanced aesthetics
 & wellness studio." Soften only if desired — not a hard violation.
 
