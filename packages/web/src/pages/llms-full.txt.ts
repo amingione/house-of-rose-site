@@ -12,7 +12,7 @@ import {
 
 // Full service detail query for llms-full
 const SERVICES_FULL_QUERY = /* groq */ `
-  *[_type == "service"] | order(orderRank asc, title asc) {
+  *[_type == "service" && status == "live"] | order(orderRank asc, title asc) {
     title,
     "slug": slug.current,
     tagline,
@@ -56,7 +56,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `## About`,
     ``,
-    `House of Rose Aesthetics is a privately owned advanced aesthetics and wellness studio located at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. It was created for clients who want more than a quick appointment and a standard treatment menu — bringing together advanced aesthetics, wellness support, and thoughtfully selected skincare in one refined setting. The approach is tailored and intentional, built around long-term skin health, natural-looking results, and care that feels personal from the start.`,
+    `House of Rose Aesthetics is a privately owned advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. The studio brings advanced skin treatments, injectables, wellness support, and professional skincare together in one place. Clients can ask questions, compare options, and choose care with long-term skin health and natural-looking results in mind.`,
     ``,
     `House of Rose serves clients throughout Charlotte County and Southwest Florida including Port Charlotte, Englewood, Venice, North Port, Sarasota, and Cape Coral. Visits are private and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call or text (844) 941-7673 to book ahead.`,
     ``,
@@ -77,8 +77,8 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Services** (${base}/services/): Full menu of treatments across regenerative aesthetics, injectables, skin health, and wellness`,
     `- **Consultation** (${base}/consultation/): An overview of regenerative skin renewal, targeted face and body modalities, skin maintenance, IV hydration, and provider-guided weight support`,
     `- **AI Skin Analysis** (${base}/skin-analysis/): In-studio AI-assisted imaging for pigmentation, texture, pores, fine lines, hydration cues, sun damage, and evidence-led treatment planning`,
-    `- **Signature Packages** (${base}/packages/): Curated treatment packages and pathways`,
-    `- **Experience** (${base}/experience/): What clients can expect — focused, unhurried appointments, personalized recommendations, and clear guidance on results`,
+    `- **Treatment Series & Packages** (${base}/packages/): Verified treatment series and compatible service combinations`,
+    `- **Experience** (${base}/experience/): What clients can expect before, during, and after an unhurried visit`,
     `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
     `- **Rent a Suite** (${base}/rent-a-room/): Private treatment room rentals starting at $850/month for licensed aestheticians, massage therapists, and permanent makeup artists`,
     `- **Journal** (${base}/blog/): Articles on wellness, beauty, and living well in Southwest Florida`,
@@ -156,13 +156,13 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Brand Voice & Positioning`,
     ``,
-    `House of Rose speaks with calm confidence — warm but not casual, refined but never flashy, and never salesy. Copy is specific and honest, centered on long-term skin health and natural-looking results rather than hype. Lead with "advanced aesthetics & wellness studio"; "med spa" / "medical spa" is acceptable supporting terminology in meta, SEO, and discovery contexts (the Google Business Profile category is Medical spa) and House of Rose never denies being one — it simply isn't the lead brand descriptor. Avoid the "day-spa" label, and do not use "luxury" as a category or business label. Key phrases: "Where Beauty Blooms Within," "advanced aesthetics & wellness," "regenerative," "personalized," "unhurried," "curated home care."`,
+    `House of Rose speaks like a warm, knowledgeable professional: clear, calm, specific, and easy to understand. Copy should explain what a service is, why someone might consider it, and what to expect without hype or guarantees. Lead with "advanced aesthetics & wellness studio." "Med spa" and "medical spa" are acceptable supporting terms in meta, SEO, and discovery contexts because the Google Business Profile category is Medical spa, but they are not the lead brand description. Do not use "luxury" as a business category.`,
     ``,
     `Canonical brand: House of Rose Aesthetics. Category: Advanced Aesthetics & Wellness — Punta Gorda, FL. Tagline: Where Beauty Blooms Within.`,
     ``,
     `## Positioning`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida (Charlotte and Lee Counties) as an advanced aesthetics and wellness studio. The focus is regenerative, restorative, and highly personalized care — with PRF among its core services — delivered through consultation-built plans rather than one-size-fits-all recommendations. Walk-ins are welcome; appointments are recommended to reserve a time.`,
+    `House of Rose Aesthetics serves Punta Gorda and Southwest Florida, including Charlotte and Lee Counties. PRF is one of the studio's core services, alongside advanced skin treatments, injectables, facials, and wellness support. Walk-ins are welcome; appointments are recommended to reserve a time.`,
   );
 
   return new Response(lines.join('\n'), {

@@ -15,30 +15,30 @@ const SHOP_URL = "/shop/";
 const hp = (await sanityFetch<HomePage | null>(HOMEPAGE_QUERY)) ?? ({} as HomePage);
 const oid = hp._id ? sbObjectId(hp._id) : {};
 
-// Homepage service groups (curated 4-pillar model — not a treatment dump)
+// Homepage service groups (four clear starting points, not a treatment dump)
 const FALLBACK_SERVICE_GROUPS = [
 	{
 		name: "Regenerative Skin Treatments",
 		description:
-			"Procell microchanneling, PRF microneedling for face and body, BioRePeel, and advanced treatments selected to support healthier-looking texture and tone.",
+			"Procell microchanneling, topical PRF needling, BioRePeel, and other advanced options for the visible texture and tone concerns you want to address.",
 		imagePath: "/images/editorial/home/regenerative-skin-treatments.webp",
 	},
 	{
 		name: "Injectables & Structural Enhancements",
 		description:
-			"Neurotoxin injections, dermal fillers, PRF under-eye options, and EZ Gel bio-filler—chosen with a careful, balanced approach.",
+			"Neurotoxins, dermal fillers, PRF under-eye options, and EZ Gel bio-filler approached with balance and a natural-looking result in mind.",
 		imagePath: "/images/editorial/home/injectables-consultation.webp",
 	},
 	{
 		name: "Skin Health & Corrective Care",
 		description:
-			"Face Reality acne care, Glo2Facials, dermaplaning, LED therapy, and personalized skin guidance rooted in what your skin is showing today—not assumptions.",
+			"Face Reality acne care, Glo2Facials, dermaplaning, LED therapy, and straightforward guidance based on what your skin is showing today.",
 		imagePath: "/images/editorial/home/skin-health-analysis.webp",
 	},
 	{
 		name: "Wellness & Performance Support",
 		description:
-			"IV hydration, GLP-1 weight management, permanent jewelry, and select offerings that complement your aesthetic goals and overall care experience.",
+			"IV hydration, provider-guided weight management, permanent jewelry, and services that round out your care at House of Rose.",
 		imagePath: "/images/editorial/home/wellness-iv-hydration.webp",
 	},
 ];
@@ -66,7 +66,7 @@ const groupHref = (name: string): string =>
 
 <BaseLayout
 	title={hp.seoTitle ?? "House of Rose Aesthetics | Advanced Aesthetics & Wellness in Punta Gorda, FL"}
-	description={hp.seoDescription ?? "Personalized aesthetics, skin health, regenerative treatments, injectables, facials, wellness support, and curated skincare in Punta Gorda, Florida."}
+	description={hp.seoDescription ?? "Explore advanced aesthetics, injectables, facials, wellness services, and professional skincare at House of Rose in Punta Gorda, Florida."}
 	preloadImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 >
 	<div {...oid}>
@@ -75,7 +75,7 @@ const groupHref = (name: string): string =>
 		title={hp.heroTitle ?? "HOUSE OF ROSE\nAESTHETICS"}
 		subtitle={hp.heroSubtitle ?? "PUNTA GORDA, FL"}
 		kicker={hp.heroKicker ?? "Refined Aesthetics. Natural Results"}
-		description={hp.heroDescription ?? "Precision-driven treatments, regenerative techniques, and personalized care designed to enhance your natural features—not change them. Every treatment plan is intentional, every result is meant to look effortless, and every detail is built around long-term skin health."}
+		description={hp.heroDescription ?? "Thoughtful treatments for your skin, features, and overall wellness—chosen around your goals and what makes sense for you. We focus on natural-looking results and long-term skin health."}
 		size="full"
 		centerContent={true}
 		showCTA={true}
@@ -96,22 +96,22 @@ const groupHref = (name: string): string =>
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 				{...sbFieldPath("aboutHeading")}
 			>
-				{hp.aboutHeading ?? "A more considered approach to aesthetics."}
+				{hp.aboutHeading ?? "Care that starts with listening."}
 			</h2>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara1")}
 			>
-				{hp.aboutPara1 ?? "House of Rose Aesthetics was created for clients who expect more than a standard appointment or transactional treatment menu."}
+				{hp.aboutPara1 ?? "House of Rose is for people who want to understand their options, ask questions, and never feel rushed through a treatment."}
 			</p>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara2")}
 			>
-				{hp.aboutPara2 ?? "Our approach is intentional, results-focused, and built around long-term skin health. Every recommendation is made with precision—using AI-assisted skin analysis where it helps, then balancing advanced aesthetic treatments, regenerative techniques, and personalized care to deliver outcomes that feel refined, natural, and aligned with you."}
+				{hp.aboutPara2 ?? "We look at your goals, your skin, and your comfort level before recommending a next step. AI-assisted imaging can add useful detail, while a real conversation keeps the plan grounded in what matters to you."}
 			</p>
 			<p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
-				{hp.aboutPara3 ?? "Rather than focusing on isolated services, we design cohesive treatment plans that evolve with your skin, your goals, and the results you want to maintain over time."}
+				{hp.aboutPara3 ?? "That might mean one focused service or a plan that changes over time. Either way, you'll know what we're recommending and why."}
 			</p>
 		</div>
 		<div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -145,25 +145,25 @@ const groupHref = (name: string): string =>
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("approachHeading")}
 			>
-				{hp.approachHeading ?? "Where regenerative aesthetics meets precision care."}
+				{hp.approachHeading ?? "Advanced care, with a clear reason behind it."}
 			</h2>
 			<p
 				class="text-ivory text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-4"
 				{...sbFieldPath("approachPara1")}
 			>
-				{hp.approachPara1 ?? "Our approach is centered on supporting the skin intelligently—from regeneration and correction to maintenance and long-term results."}
+				{hp.approachPara1 ?? "Good treatment planning is less about chasing every new option and more about choosing the right service at the right time."}
 			</p>
 			<p
 				class="text-ivory text-[15px] leading-[1.8] max-w-[640px] mx-auto mb-7"
 				{...sbFieldPath("approachPara2")}
 			>
-				{hp.approachPara2 ?? "Signature treatments such as PRF are part of a broader philosophy: enhancing skin function, restoring balance, and creating visible improvements without overcorrection. Every treatment is selected with purpose, layered strategically, and tailored to how your skin responds over time."}
+				{hp.approachPara2 ?? "PRF, microchanneling, facials, injectables, and wellness services each have a place. We look at candidacy, recovery, and the result you want before deciding what belongs in your plan."}
 			</p>
 			<p
 				class="font-serif text-ivory text-[clamp(17px,2vw,22px)] leading-[1.5] max-w-[560px] mx-auto"
 				{...sbFieldPath("approachClosing")}
 			>
-				{hp.approachClosing ?? "This is not trend-driven aesthetics. This is structured, outcome-focused care designed to deliver results that feel effortless—and last."}
+				{hp.approachClosing ?? "You should leave feeling like yourself—just well cared for."}
 			</p>
 		</div>
 	</section>
@@ -177,10 +177,10 @@ const groupHref = (name: string): string =>
 					class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2 mb-5"
 					{...sbFieldPath("servicesHeading")}
 				>
-					{hp.servicesHeading ?? "A curated menu of advanced treatments."}
+					{hp.servicesHeading ?? "Start with what you want to improve."}
 				</h2>
 				<p class="text-muted text-[15px] leading-[1.75]" {...sbFieldPath("servicesIntro")}>
-					{hp.servicesIntro ?? "A curated selection of treatments designed to work together—not in isolation. Each service at House of Rose is carefully chosen to support real outcomes: improved skin quality, balanced features, and long-term maintenance through personalized treatment planning."}
+					{hp.servicesIntro ?? "You don't need to know the name of every treatment before you begin. Explore the four areas below, then we'll help you narrow the options around your goals, candidacy, and preferred recovery time."}
 				</p>
 			</div>
 
@@ -238,30 +238,30 @@ const groupHref = (name: string): string =>
 		<div
 			class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2"
 		>
-			<span class="kicker" {...sbFieldPath("scanKicker")}>{hp.scanKicker ?? "Complimentary AI Skin Analysis"}</span>
+			<span class="kicker" {...sbFieldPath("scanKicker")}>{hp.scanKicker ?? "AI-Assisted Skin Analysis"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 				{...sbFieldPath("scanHeading")}
 			>
-				{hp.scanHeading ?? "Get to know your skin—and get excited about what's possible."}
+				{hp.scanHeading ?? "See what your skin is showing us."}
 			</h2>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara1")}
 			>
-				{hp.scanPara1 ?? "Wondering what your skin actually needs? Your complimentary analysis gives you a closer look at texture, hydration, pores, pigmentation, fine lines, and sun exposure—all in one easy, non-invasive appointment."}
+				{hp.scanPara1 ?? "If you're not sure where to start, an AI-assisted skin analysis can give us a closer look at texture, hydration, pores, pigmentation, fine lines, and visible sun exposure."}
 			</p>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("scanPara2")}
 			>
-				{hp.scanPara2 ?? "We review everything with you in plain language, listen to what you want, and map out the options that fit your goals. You leave with answers, a personalized starting point, and no pressure to book a treatment."}
+				{hp.scanPara2 ?? "We'll review the images with you in plain language and connect what we see to the goals you share. You'll leave with a practical starting point and no pressure to book a treatment."}
 			</p>
 			<p
 				class="text-ink/90 text-[15px] italic leading-[1.75] max-w-[560px] mb-7"
 				{...sbFieldPath("scanQuote")}
 			>
-				{hp.scanQuote ?? "Come curious. Leave feeling clear, confident, and ready for what's next."}
+				{hp.scanQuote ?? "Bring your questions. We'll help you make sense of the options."}
 			</p>
 			<div class="flex gap-3 flex-wrap">
 				<a href={SKIN_ANALYSIS_URL} class="btn-gold inline-flex" {...sbFieldPath("scanCtaPrimaryText")}
@@ -271,7 +271,7 @@ const groupHref = (name: string): string =>
 					href={BOOKING_URL}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book My Complimentary Analysis"}</a
+					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book a Skin Analysis"}</a
 				>
 			</div>
 		</div>
@@ -292,24 +292,24 @@ const groupHref = (name: string): string =>
 		<div
 			class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center order-1 md:order-2"
 		>
-			<span class="kicker" {...sbFieldPath("careKicker")}>{hp.careKicker ?? "Curated Home Care"}</span>
+			<span class="kicker" {...sbFieldPath("careKicker")}>{hp.careKicker ?? "Home Care"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 				{...sbFieldPath("careHeading")}
 			>
-				{hp.careHeading ?? "Professional skincare, selected with purpose."}
+				{hp.careHeading ?? "Skincare that earns its place on your shelf."}
 			</h2>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("carePara1")}
 			>
-				{hp.carePara1 ?? "Every product we carry is selected to support treatment outcomes and simplify your routine at home. From post-treatment aftercare to acne support, mineral makeup, SPF, and corrective skincare, our selection is built to work with your plan, not compete with it."}
+				{hp.carePara1 ?? "The products you use between visits matter. We carry post-treatment aftercare, acne support, mineral makeup, SPF, and professional skincare that can fit into a realistic home routine."}
 			</p>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-7"
 				{...sbFieldPath("carePara2")}
 			>
-				{hp.carePara2 ?? "Rather than overwhelming you with options, we provide curated recommendations tailored to your skin, your treatments, and your long-term goals—so everything you use works together with intention."}
+				{hp.carePara2 ?? "We'll help you sort through the options and explain what each recommendation is for, so you can spend less time guessing and more time using what works for your plan."}
 			</p>
 			<div>
 				<a href={SHOP_URL} class="btn-outline-gold inline-flex" {...sbFieldPath("careCtaText")}
@@ -338,19 +338,19 @@ const groupHref = (name: string): string =>
 				class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-7"
 				{...sbFieldPath("expHeading")}
 			>
-				{hp.expHeading ?? "Calm, personal, and thoughtfully paced."}
+				{hp.expHeading ?? "Time to ask questions. Space to feel comfortable."}
 			</h2>
 			<p
 				class="text-ivory text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-4"
 				{...sbFieldPath("expPara1")}
 			>
-				{hp.expPara1 ?? "Appointments at House of Rose are designed to feel calm, focused, and entirely personalized. We take the time to understand your goals, evaluate your skin with precision, and recommend treatments that are aligned—not excessive, not rushed, and never driven by trends."}
+				{hp.expPara1 ?? "We want your visit to feel calm and unhurried. There's time to talk through your goals, look closely at your skin, and understand why a treatment may—or may not—make sense for you."}
 			</p>
 			<p
 				class="text-ivory text-[15px] leading-[1.8] max-w-[620px] mx-auto"
 				{...sbFieldPath("expPara2")}
 			>
-				{hp.expPara2 ?? "You'll leave with clarity—what was done, why it matters, and exactly how to maintain your results."}
+				{hp.expPara2 ?? "Before you leave, you'll know what we did, what to expect next, and how to care for your skin at home."}
 			</p>
 		</div>
 	</section>
@@ -363,19 +363,19 @@ const groupHref = (name: string): string =>
 				class="font-serif text-[clamp(26px,4vw,42px)] text-ink leading-tight mt-2 mb-7"
 				{...sbFieldPath("localHeading")}
 			>
-				{hp.localHeading ?? "A refined destination for aesthetics and wellness."}
+				{hp.localHeading ?? "Advanced aesthetics, right here in Punta Gorda."}
 			</h2>
 			<p
 				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-4"
 				{...sbFieldPath("localPara1")}
 			>
-				{hp.localPara1 ?? "House of Rose Aesthetics serves clients in Punta Gorda and across Southwest Florida who are looking for a more thoughtful way to approach skin, beauty, and self-care."}
+				{hp.localPara1 ?? "House of Rose welcomes clients from Punta Gorda, Charlotte County, and across Southwest Florida for advanced aesthetics, skin care, injectables, and wellness services."}
 			</p>
 			<p
 				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
 				{...sbFieldPath("localPara2")}
 			>
-				{hp.localPara2 ?? "If you already know what you're looking for, you can book online. If you'd rather begin with a conversation, we're here to help you find the right starting point."}
+				{hp.localPara2 ?? "Know what you want? Book your visit online. Still sorting through the options? Call or send us a message and we'll help you choose a sensible place to start."}
 			</p>
 			<div class="flex gap-3 justify-center flex-wrap">
 				<a
@@ -400,13 +400,13 @@ const groupHref = (name: string): string =>
 				class="font-serif text-[clamp(28px,5vw,46px)] text-ink leading-tight mb-5"
 				{...sbFieldPath("finalHeading")}
 			>
-				{hp.finalHeading ?? "Refined results begin with the right plan."}
+				{hp.finalHeading ?? "Ready to talk through your options?"}
 			</h2>
 			<p
 				class="text-muted text-[15px] max-w-[480px] mx-auto mb-9 leading-[1.8]"
 				{...sbFieldPath("finalPara")}
 			>
-				{hp.finalPara ?? "Advanced treatments, expert guidance, and a setting designed to feel elevated, calm, and intentional—so every step of your experience feels considered."}
+				{hp.finalPara ?? "Tell us what you're hoping to improve, and we'll help you find the next step that fits your goals."}
 			</p>
 			<a
 				href={BOOKING_URL}

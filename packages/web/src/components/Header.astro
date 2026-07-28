@@ -27,6 +27,8 @@ const isActive = (path: string) =>
 
 const linkBase =
 	"nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200";
+
+const BOOKING_URL = "https://houseofrose.glossgenius.com/book";
 ---
 
 <header
@@ -170,7 +172,9 @@ const linkBase =
 				Contact
 			</a>
 			<a
-				href="/contact/"
+				href={BOOKING_URL}
+				target="_blank"
+				rel="noopener noreferrer"
 				class="nav-cta text-[12px] font-medium tracking-[0.14em] uppercase px-5 py-2 border border-ivory text-ivory transition-all duration-300 hover:bg-gold-metal hover:border-gold-metal hover:text-ink"
 			>
 				Consultation
@@ -306,7 +310,9 @@ const linkBase =
 				Contact
 			</a>
 			<a
-				href="/contact/"
+				href={BOOKING_URL}
+				target="_blank"
+				rel="noopener noreferrer"
 				class="mobile-cta text-[12px] font-medium tracking-[0.14em] uppercase px-6 py-3 bg-green text-ivory mt-3 mx-6 min-h-[48px] inline-flex items-center justify-center"
 			>
 				Consultation

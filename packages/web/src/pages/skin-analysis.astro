@@ -92,18 +92,18 @@ const pageDescription =
 const FALLBACK_STEPS: SkinAnalysisStep[] = [
   {
     n: '01',
-    title: 'Capture',
-    body: 'We capture consistent in-studio images in controlled lighting, including advanced views that help reveal what is happening at and below the visible surface.',
+    title: 'Take the images',
+    body: 'We photograph your skin in consistent, controlled lighting, including views that can reveal patterns that are easy to miss in an ordinary mirror.',
   },
   {
     n: '02',
-    title: 'Analyze',
-    body: 'AI-assisted analysis helps quantify the markers that matter: pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure or aging.',
+    title: 'Review the details',
+    body: 'The AI-assisted analysis helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
   },
   {
     n: '03',
-    title: 'Plan',
-    body: 'We review the images together and build a personalized plan, sequenced sensibly around what your skin needs first and what can be tracked over time.',
+    title: 'Talk through a plan',
+    body: 'We review the images with you, answer your questions, and discuss which concerns make sense to address first.',
   },
 ];
 
@@ -128,7 +128,7 @@ const FALLBACK_CONCERN_LINKS: SkinAnalysisConcern[] = [
 const FALLBACK_FAQS: SkinAnalysisFaq[] = [
   {
     q: 'Do I need a skin analysis before treatment?',
-    a: 'It is not required for every appointment, but AI-assisted skin analysis gives your provider a clearer baseline. It helps House of Rose recommend treatments in the right order, so you are investing in what is most likely to support your skin goals.',
+    a: 'No. It is not required for every appointment. The analysis can be helpful when you are unsure where to begin or want a clearer baseline before choosing a skin treatment.',
   },
   {
     q: 'What does the AI skin scanner look for?',
@@ -140,7 +140,7 @@ const FALLBACK_FAQS: SkinAnalysisFaq[] = [
   },
   {
     q: 'How long does it take?',
-    a: 'The image capture takes only a few minutes. The valuable part is the conversation afterward, where we walk through what we see and outline a plan together.',
+    a: 'Taking the images only takes a few minutes. We spend the rest of the visit walking through what we see, answering your questions, and discussing possible next steps.',
   },
   {
     q: 'Is AI skin analysis uncomfortable?',
@@ -186,12 +186,12 @@ const serviceSchema = service(
   <div {...(data._id ? sbObjectId(data._id) : {})}>
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title={data.heroTitle ?? "AI skin analysis gives your treatment plan a clearer starting point."}
+    title={data.heroTitle ?? "AI skin analysis gives you a clearer place to start."}
     kicker={data.heroKicker ?? "AI Skin Analysis · Punta Gorda"}
-    description={data.heroDescription ?? "House of Rose uses in-studio AI-assisted imaging to evaluate skin patterns such as pigmentation, texture, pores, fine lines, hydration cues, and sun damage before building your personalized treatment plan."}
+    description={data.heroDescription ?? "In-studio imaging helps us take a closer look at pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure before you choose a skin treatment."}
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Begin With a Skin Consultation', href: '#consultation' }}
+    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Request a Skin Analysis', href: '#consultation' }}
     ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services/' }}
     backgroundImage="/images/hor-skin-studio.webp"
     titleField="heroTitle"
@@ -204,13 +204,13 @@ const serviceSchema = service(
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
       <span class="kicker" {...sbFieldPath('whatKicker')}>{data.whatKicker ?? "What It Is"}</span>
       <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath('whatHeading')}>
-        {data.whatHeading ?? "A smarter baseline for skin health."}
+        {data.whatHeading ?? "A closer look before you choose a treatment."}
       </h2>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4" {...sbFieldPath('whatPara1')}>
-        {data.whatPara1 ?? "Most treatment plans begin with a guess. Ours can begin with a closer look. AI-assisted skin analysis helps us assess the markers that matter, including pigmentation, texture, pores, hydration cues, and signs of sun exposure."}
+        {data.whatPara1 ?? "It can be hard to tell what your skin needs from the mirror alone. AI-assisted imaging gives us another way to look at pigmentation, texture, pores, hydration cues, and visible sun exposure."}
       </p>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath('whatPara2')}>
-        {data.whatPara2 ?? "It is a more precise starting point, a more personalized path forward, and a clearer way to decide what your skin needs first. The scan supports provider judgment; it does not replace a medical evaluation or guarantee a specific result."}
+        {data.whatPara2 ?? "We use those images to guide the conversation, not to make a diagnosis. The scan supports provider judgment and helps explain why one option may fit your goals better than another."}
       </p>
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -231,7 +231,7 @@ const serviceSchema = service(
       <div class="max-w-[640px] mb-12">
         <span class="kicker" {...sbFieldPath('howKicker')}>{data.howKicker ?? "How It Works"}</span>
         <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2" {...sbFieldPath('howHeading')}>
-          {data.howHeading ?? "Three steps, one evidence-led plan."}
+          {data.howHeading ?? "Here's how the visit works."}
         </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold-metal/10">
@@ -252,10 +252,10 @@ const serviceSchema = service(
       <div>
         <span class="kicker" {...sbFieldPath('lookKicker')}>{data.lookKicker ?? "What We Look At"}</span>
         <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('lookHeading')}>
-          {data.lookHeading ?? "Six markers that shape your plan."}
+          {data.lookHeading ?? "What the images can help us see."}
         </h2>
         <p class="text-muted text-[15px] leading-[1.75] max-w-[460px]" {...sbFieldPath('lookPara')}>
-          {data.lookPara ?? "Each marker is reviewed and explained in plain terms, so you understand not just what we recommend, but why that recommendation belongs in your sequence."}
+          {data.lookPara ?? "We'll explain each marker in plain language and connect it to the concerns you brought up. You can ask questions as we go."}
         </p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
@@ -283,10 +283,10 @@ const serviceSchema = service(
     <div class="relative z-10 max-w-[680px] mx-auto text-center">
       <span class="kicker text-gold" {...sbFieldPath('whyKicker')}>{data.whyKicker ?? "Why It Matters"}</span>
       <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6" {...sbFieldPath('whyHeading')}>
-        {data.whyHeading ?? "Personalized, measurable, and easier to trust."}
+        {data.whyHeading ?? "A clearer conversation about your skin."}
       </h2>
       <p class="text-ivory text-[15px] leading-[1.8] max-w-[600px] mx-auto" {...sbFieldPath('whyPara')}>
-        {data.whyPara ?? "When your plan is built around your skin's current condition, every appointment can work toward the same outcome. You focus on what matters first, skip what does not belong, and have a clearer way to compare progress over time."}
+        {data.whyPara ?? "A baseline makes it easier to focus on the concern that matters most to you and avoid treatments that do not belong in your plan. Future images can also help you and your provider discuss visible changes over time."}
       </p>
     </div>
   </section>
@@ -296,10 +296,10 @@ const serviceSchema = service(
     <div class="max-w-[960px] mx-auto text-center">
       <span class="kicker" {...sbFieldPath('planKicker')}>{data.planKicker ?? "From Analysis to Plan"}</span>
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5" {...sbFieldPath('planHeading')}>
-        {data.planHeading ?? "Your scan maps to a protocol."}
+        {data.planHeading ?? "Match what we see to a sensible next step."}
       </h2>
       <p class="text-muted text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10" {...sbFieldPath('planPara')}>
-        {data.planPara ?? "Whatever the analysis surfaces, there is a defined path for it. Explore the concerns we treat, or let your House of Rose consultation sequence the right starting point for you."}
+        {data.planPara ?? "Explore the concerns below to learn about common options, or bring your questions to the appointment and let us help you narrow the list."}
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         {concernLinks.map((c, i) => (
@@ -334,13 +334,13 @@ const serviceSchema = service(
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? "Begin Here"}</span>
       <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('ctaHeading')}>
-        {data.ctaHeading ?? "See your skin before you decide anything."}
+        {data.ctaHeading ?? "Want a closer look at your skin?"}
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]" {...sbFieldPath('ctaPara')}>
-        {data.ctaPara ?? "Leave your details and we'll reach out to schedule your AI skin analysis in Punta Gorda — the evidence-based first step before any treatment. No pressure, no commitment."}
+        {data.ctaPara ?? "Leave your details and we'll reach out to arrange an AI-assisted skin analysis in Punta Gorda. You can review the images, ask questions, and decide what—if anything—you want to do next."}
       </p>
       <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
-        Complimentary · By appointment · Punta Gorda
+        In studio · Punta Gorda
       </p>
       <form
         name="skin-analysis"
@@ -364,7 +364,7 @@ const serviceSchema = service(
         <input id="sa-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)"
           class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none transition-colors" />
         <input type="hidden" name="service-interest" value="AI Skin Analysis" />
-        <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Begin With a Skin Consultation"}</button>
+        <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Request a Skin Analysis"}</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
           Prefer to book instantly?
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">Book online</a>.

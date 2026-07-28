@@ -63,3 +63,9 @@ docs/Brand Development Engine
 docs/Face Reality/
 docs/marketing/Face Reality/
 docs/MEASUREMENT-ACCOUNT-CLEANUP.md
+
+# Secret-bearing backups and scratch (added 2026-07-28)
+.env.local.bak
+.env*.bak
+*.env.local.*
+_to_delete/

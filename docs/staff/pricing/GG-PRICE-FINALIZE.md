@@ -181,3 +181,7 @@ Live GlossGenius changes:
 
 ### Added — 2026-07-26: Microneedling – Face (was missing)
 - **Microneedling - Face → ADDED $295** (Skin Services · Amber · 1 hr · Fixed · bookable). The plain/corrective SkinPen-style face microneedling was missing — only Procell Pro/MD (growth-factor) and Microneedling-Body existed. Priced just under Procell Pro ($300) since Procell adds the growth-factor serum on top of channeling; above the local bare-microneedling floor ($195–265). Matches the finalize sheet's "Microneedling — Corrective (Face) $295." (Comp sheet had listed $325, but that predated the Procell $300 decision and would sit illogically above Procell Pro — $295 corrected.)
+
+### Correction — 2026-07-26: Microneedling → Morpheus8 (SkinPen dropped)
+- The "Microneedling – Face $295" I added was **relabeled by Amber to Morpheus8 Microneedling (Face + Body options)** in GlossGenius; Morpheus8 (RF microneedling) pricing/description set by Amber directly in GG.
+- **SkinPen microneedling is being dropped** as an offered service — from web copy and internal menus. Competitor "SkinPen" price references (e.g. Cape Coral $375) are market comps and stay.

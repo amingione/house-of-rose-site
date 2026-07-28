@@ -55,8 +55,8 @@ const oid = data._id ? sbObjectId(data._id) : {};
   <!-- Hero -->
   <Hero
     title={data.heroTitle ?? "Contact Us"}
-    kicker={data.heroKicker ?? "Get in Touch"}
-    description={data.heroDescription ?? "We're here to answer your questions and help you begin your wellness journey."}
+    kicker={data.heroKicker ?? "Questions Are Welcome"}
+    description={data.heroDescription ?? "Call, book online, or send us a message. We'll help you figure out who to see and what to book."}
     size="small"
     backgroundImage="/images/hor-exterior.webp"
     titleField="heroTitle"
@@ -78,7 +78,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 
       <!-- Book Online -->
       <div class="text-center">
-        <span class="kicker" {...sbFieldPath('bookLabel')}>{data.bookLabel ?? "Book Online"}</span>
+        <span class="kicker" {...sbFieldPath('bookLabel')}>{data.bookLabel ?? "Know What You Want?"}</span>
         <a
           href="https://houseofrose.glossgenius.com/book"
           target="_blank"
@@ -88,7 +88,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
         >
           {data.bookLinkText ?? "Schedule Now"}
         </a>
-        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>{data.bookNote ?? "24/7 Online Booking"}</p>
+        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>{data.bookNote ?? "Online booking is available anytime"}</p>
       </div>
 
       <!-- Location -->
@@ -113,12 +113,12 @@ const oid = data._id ? sbObjectId(data._id) : {};
   <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
     <div class="max-w-[840px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker" {...sbFieldPath('formKicker')}>{data.formKicker ?? "Send Us a Message"}</span>
+        <span class="kicker" {...sbFieldPath('formKicker')}>{data.formKicker ?? "Send a Message"}</span>
         <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-ink mt-2" {...sbFieldPath('formHeading')}>
-          {data.formHeading ?? "We'd Love to Hear From You"}
+          {data.formHeading ?? "How can we help?"}
         </h2>
         <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4" {...sbFieldPath('formIntro')}>
-          {data.formIntro ?? "Fill out the form below and we'll get back to you as soon as possible."}
+          {data.formIntro ?? "Tell us what you're considering or what you need help with. A member of the team will follow up."}
         </p>
       </div>
 

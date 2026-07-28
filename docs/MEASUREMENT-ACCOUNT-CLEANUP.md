@@ -1,142 +1,141 @@
 # Measurement Account Cleanup — House of Rose
 
-**Status:** diagnosis + runbook
-**Date:** 2026-07-28
-**Scope:** House of Rose Aesthetics only. FAS / Flores / Kirk's / Southern Smokers are named where they explain the mess, but their migration is deferred.
+**Status:** VERIFIED against live Google admin (read-only sweep, 2026-07-28)
+**Scope:** House of Rose Aesthetics. Other clients named only where they explain the mess.
+**Permanent owner identity (your choice):** `ambermingione@gmail.com`
 
 ---
 
-## 1. What actually happened
+## 1. Root cause
 
-One root cause, repeated five times: **you built Google properties from inside Google Ads onboarding wizards instead of building them in Analytics and Tag Manager first.**
+One mistake, made five times: **Google properties were created from inside Google Ads onboarding wizards** instead of in Analytics and Tag Manager first. Each wizard silently spawns an Analytics account named `Google Ads Account`, a GA4 property, a Google tag, and a Tag Manager account to administer that tag.
 
-Every time you complete a Google Ads signup flow, Google silently auto-creates four things and names them after itself:
+Compounding it: **two Google identities.** Verified — they see different worlds:
 
-1. an Analytics **account** literally named `Google Ads Account`
-2. a GA4 **property** inside it
-3. a **Google tag** (`G-…` for Analytics, `AW-…` for Ads)
-4. a Tag Manager **"account"** whose only job is to administer that Google tag
-
-That fingerprint is all over your screenshots. It is not five separate mistakes — it is one mistake made five times.
-
-A second factor compounds it: **you are working across two Google identities.** Your open tabs show `authuser=0` and `authuser=1` on the same GA property, plus an unresolved *"You've been invited to access a Google tag"* email sitting in `info@houseofrosefl.com`. Ownership is split, so nothing looks consistent from either login.
-
----
-
-## 2. Inventory — what each object really is
-
-### Organizations (3, should be 1)
-
-| Org | Verdict |
-|---|---|
-| House of Rose | Duplicate — retire |
-| House of Rose Aesthetics LLC | Duplicate — retire |
-| **LaunchWell Brands** | **Keep. This is the agency parent.** |
-
-### Analytics
-
-| Object | ID | Verdict |
+| | `info@houseofrosefl.com` (authuser=1) | `ambermingione@gmail.com` (authuser=0) |
 |---|---|---|
-| Account `Google Ads Acco…` | `203932451` | Auto-created junk name. Now holds **five unrelated clients**. Rename now, split later. |
-| Property `House of Rose Aesthetics` | `534881520` | ✅ **The live one.** Stream `14603824376`. |
-| Property `www.rozskin.com` | `373594780` | Unrelated + closed. **Trash it** (§4, Phase 3). |
-| Property `FAS Motorsports` | `508031598` | Wrong home — deferred |
-| Property `Flores Law Office` | `483342297` | Wrong home — deferred |
-| Property `Kirk's Mowing & Landscaping` | `482119139` | Wrong home — deferred |
-| Account `Southern Smokers LLC` | `349095409` | Separate and clean. Leave alone. |
+| Analytics accounts visible | `Google Ads Account` only | `Google Ads Account` + `Southern Smokers LLC` |
+| GMP orgs visible | `House of Rose Aesthetics LLC` only | all three orgs |
 
-### Tag Manager — the duplicate that's confusing you
-
-You have two Tag Manager accounts both named **House of Rose**. They are not duplicates of each other. They are two *different kinds of object* that Tag Manager displays in the same list:
-
-| Account | Container | What it actually is |
-|---|---|---|
-| House of Rose `6352389737` | `250813725` → `G-QBDHB89WTR` | **Not a GTM container.** This is the *Google tag admin surface* for your GA4 measurement ID. Tag Manager mirrors Google tags here so you can manage who administers them. Auto-created. |
-| House of Rose `6367955689` | `259351754` → `GTM-NSDKJFP9` | ✅ **The real container.** This is what's live on houseofrosefl.com. |
-| F.A.S. Motorsports Google Ads account `6318988858` | `232453478` → `AW-17641771829` | Same pattern, Ads flavor. Your Tag Assistant tab shows it has **open container issues**. Deferred. |
-
-**This is why deleting the "duplicate" felt dangerous — it isn't a duplicate container, and treating it like one can break your GA4 tag.** Handling in §4, Phase 2.
+Both are already **Administrator** on account `203932451` and on the Google tag, so no permission grants are needed to proceed.
 
 ---
 
-## 3. The code is not the problem
+## 2. What's actually working — verified, not assumed
 
-Verified against `house-of-rose-site`. The implementation is clean and consistent:
+I checked these against the live admin. All green:
 
-- `PUBLIC_GTM_ID=GTM-NSDKJFP9`, served **first-party** through the Netlify edge function `google-tag-gateway.ts` → `/metrics/` → `gtm-nsdkjfp9.fps.goog`. This is the right architecture and most people don't do it.
-- `packages/web/src/lib/measurement.ts` pins `ga4MeasurementId: 'G-QBDHB89WTR'` as a literal type — a single source of truth, enforced at compile time.
-- `ConsentBootstrap.astro` sets Consent Mode v2 defaults to **denied** before any tag loads, with a `wait_for_update` of 500ms. Correct.
-- **No stray hardcoded `gtag()` config anywhere in `src/`.** You are not double-tagging.
-
-Three small drift items to close (§5):
-
-| Item | Issue |
+| Check | Result |
 |---|---|
-| `PUBLIC_GA4_ID` | Set in both `.env.local` files, but only referenced by `env.d.ts` — nothing reads it. The real ID lives in `measurement.ts`. Dead variable. |
-| `CLAUDE.md` | Documents `PUBLIC_GTM_ID` (lines 291, 391) but not the GA4 measurement ID. |
-| `packages/web/.env.local.bak` | Stale backup holding tracking IDs. Remove. |
-| GTM container `259351754` | Your tab shows `containerDraftId=3` — **unpublished workspace changes pending.** Verify before anything else. |
+| Measurement ID on stream `14603824376` | **`G-QBDHB89WTR`** — matches `measurement.ts` exactly |
+| Stream URL | `https://www.houseofrosefl.com` |
+| Data collection | Active in past 48 hours; tag instructions show **Data flowing** |
+| Connected site tags | **0 connected** — you are not double-tagging |
+| GTM workspace changes | **0 pending** — nothing stuck in draft (my earlier concern was wrong) |
+| Container tag count | Exactly 3, all clean |
+
+Container `GTM-NSDKJFP9` contents:
+
+| Tag | Type | Trigger |
+|---|---|---|
+| GA4 - Google tag | Google Tag | Initialization - All Pages |
+| GA4 - Typed events | GA4 Event | DLV - Allowed measurement events |
+| Google Ads - Conversion Linker | Conversion Linker | All Pages |
+
+That allowlist trigger pairing with the typed `MeasurementEvent` union in `measurement.ts` is a genuinely good pattern. The implementation is not your problem.
+
+---
+
+## 3. What's actually broken — ranked
+
+### 🔴 P0 — Three service accounts can read (and one can edit) every client
+
+Account-level access on `203932451`, 20 rows. The humans are fine. These are not:
+
+| Principal | Role | Problem |
+|---|---|---|
+| `localstorm-seo-writer@gen-lang-client-0378241520.iam.gserviceaccount.com` | **Editor** | Can **modify settings** on all five clients' properties — House of Rose, FAS, Flores Law, Kirk's, rozskin |
+| `fas-n8n-seo@fas-motorsports-469804.iam.gserviceaccount.com` | Analyst | A **FAS Motorsports** automation pipeline can read a **medical aesthetics** client's analytics |
+| `grafana-analytics@fas-motorsports-469804.iam.gserviceaccount.com` | Analyst | Same — FAS dashboards can read House of Rose |
+
+These were almost certainly granted at account level because that was the easy click. For an agency this is the finding that actually matters: it's a client-confidentiality breach waiting to be noticed, and for a med spa it reads badly even though GA4 holds no PHI. **Regrant each of these at property level, scoped to the property it was meant for.**
+
+Also linked at account level: Google Ads accounts `230-991-0049`, `704-392-4923`, `803-936-8488` (5 permission rows each). Note your repo's `GOOGLE_ADS_CUSTOMER_ID=492-149-3013` matches **none** of them — worth reconciling before you enable offline conversion imports.
+
+### 🔴 P0 — The property-move sequencing is the opposite of what you'd guess
+
+Verified: selecting org **House of Rose Aesthetics LLC** returns *"You do not have access to any Analytics accounts in this organization."*
+
+**Account `203932451` belongs to no GMP organization at all.**
+
+This inverts the migration order. Google blocks a property move when the source account lacks org membership but the destination has it. So:
+
+```
+✅ CORRECT   create destination account with NO org
+             → move property 534881520
+             → then link the destination account to LaunchWell Brands
+
+❌ WRONG     create destination account inside LaunchWell Brands
+             → move is blocked outright
+```
+
+Get this backwards and you'll spend an afternoon convinced Google is broken.
+
+### 🟠 P1 — Container quality: **Urgent**
+
+Diagnostics flags *"Additional domains detected for configuration."* Google's own suggested fix is to modify the **Google Ads - Conversion Linker** tag.
+
+Translation: your tag is firing on domains the container doesn't know about, so link decoration isn't happening there and **conversion attribution is leaking**. Given your booking flow runs on GlossGenius, the likely missing domains are `app.glossgenius.com` and the apex/`www` pair. For a med spa where the booking *is* the conversion, this is the highest-value measurement fix on the list.
+
+### 🟠 P1 — Google tag gateway: **Incomplete**
+
+You built a first-party gateway at the Netlify edge (`/metrics/` → `gtm-nsdkjfp9.fps.goog`) — genuinely sophisticated work. But on Google's side, the Google tag's own gateway configuration reads **Incomplete**. The container-level gateway is serving (data is flowing), but the tag-level registration was never finished, so you may not be getting the durability benefit you built for.
+
+### 🟡 P2 — Smaller items
+
+| Item | Detail |
+|---|---|
+| No Ads conversion tag | Container has the Conversion Linker but **no Google Ads Conversion Tracking tag**. Conversions reach Ads only via GA4 import. |
+| URL query redaction off | Redact data: email **active**, URL query parameter keys **inactive**. With `gclid`/UTM traffic and consultation forms, turn query-key redaction on. |
+| Data sharing off | "Google products & services" unchecked — limits some Ads optimization features. Deliberate choice or accident? |
+| Account name | Still literally `Google Ads Account`, created 2021-08-02. |
+| `rozskin.com` | Property `373594780`, closed and unrelated, still sitting alongside client data. |
+| Second Ads signup in progress | `ocid=8429806518` with a PMax draft — completing it spawns another property + tag + GTM account. |
 
 ---
 
 ## 4. Runbook
 
-### Phase 0 — Freeze (5 min, do this first)
+### Phase 0 — Freeze
+- [ ] Do **not** complete the Google Ads onboarding at `ocid=8429806518`. Build that PMax campaign inside the existing Ads account instead.
 
-You have a **second Google Ads account signup in progress** — `ocid=8429806518`, with a Performance Max draft for House of Rose Aesthetics — separate from your existing `Amber MG` account (`ocid=7795571676`).
+### Phase 1 — Fix the leaks (highest value, lowest risk)
+- [ ] GTM → container diagnostics → **Configure your domains** → add `houseofrosefl.com`, `www.houseofrosefl.com`, and your GlossGenius booking domain to the Conversion Linker. Preview, then Submit.
+- [ ] Finish **Google tag gateway** setup on the Google tag (account `6352389737` → Admin → Google tag gateway).
+- [ ] GA4 → Data streams → Redact data → enable **URL query parameter keys**.
 
-- [ ] **Do not complete that onboarding flow.** Finishing it will auto-spawn another GA4 property, another Google tag, and another Tag Manager account — the exact mess you're trying to undo.
-- [ ] If you want that PMax campaign, build it *inside the existing Ads account* instead.
-- [ ] Decide the permanent owner identity. **Recommended:** a LaunchWell-owned Google account is Administrator on every asset; `info@houseofrosefl.com` is Administrator on House of Rose assets only. Client keeps real access, you keep continuity.
+### Phase 2 — Close the permission holes
+- [ ] Remove `localstorm-seo-writer@…` from **account-level Editor**. Regrant at property level, only where it's needed.
+- [ ] Remove both `…@fas-motorsports-469804…` service accounts from account level. Regrant on the FAS property (`508031598`) only.
+- [ ] Reconcile Ads customer IDs: repo says `492-149-3013`, linked accounts are `230-991-0049` / `704-392-4923` / `803-936-8488`.
 
-### Phase 1 — Establish truth (15 min)
+### Phase 3 — Naming (free, reversible, stops misclicks)
+- [ ] Account `203932451` → `LaunchWell — Legacy Shared (migrating)`
+- [ ] GTM `6352389737` → `⚠️ House of Rose — Google tag mirror (not a container)`
+- [ ] GTM `6367955689` → `House of Rose Aesthetics`; container → `houseofrosefl.com — web`
 
-- [ ] GA4 → Admin → Data streams → stream `14603824376` → confirm the Measurement ID reads **`G-QBDHB89WTR`**. If it does not, the site is reporting into the wrong property and that becomes P0.
-- [ ] Tag Manager account `6367955689` → container `259351754` → check the workspace. Publish or discard draft 3 deliberately.
-- [ ] Run Tag Assistant on `houseofrosefl.com`. You should see **exactly one** `GTM-NSDKJFP9` and **exactly one** `G-QBDHB89WTR`, loading through `/metrics/`. Two of either = double-counted sessions.
+### Phase 4 — Remove rozskin.com
+- [ ] GA4 → property `373594780` → Admin → Property settings → **Move to Trash Can**. 35-day undo window.
 
-### Phase 2 — Neutralize the fake duplicate (10 min)
+### Phase 5 — Migrate (respect the org sequencing from §3)
+- [ ] Create Analytics account `House of Rose Aesthetics` with **no organization**.
+- [ ] Move property `534881520` into it. Tracking ID does **not** change — no retagging, no data gap. Change history stays behind.
+- [ ] Then link the new account to **LaunchWell Brands**.
+- [ ] Repeat per client. Retire the empty `House of Rose` and `House of Rose Aesthetics LLC` orgs — GMP orgs can't be merged, only emptied and deleted.
 
-Do **not** start by deleting account `6352389737`.
-
-- [ ] GA4 → Admin → Data streams → your stream → **Configure tag settings** → **Admin** → add your permanent owner identity as an administrator of the Google tag. This moves control to where it belongs — with the property, not a phantom Tag Manager account.
-- [ ] Resolve the *"You've been invited to access a Google tag"* email in `info@houseofrosefl.com` — accept or decline it consciously, so the invite stops re-creating confusion.
-- [ ] Rename account `6352389737` to **`⚠️ House of Rose — Google tag mirror (do not use)`**. Renaming is free, reversible, and stops you clicking the wrong one.
-- [ ] Rename account `6367955689` → **`House of Rose Aesthetics`**, container `259351754` → **`houseofrosefl.com — web`**.
-- [ ] Only after Tag Assistant still shows a healthy `G-QBDHB89WTR` for 48 hours, consider removing yourself from `6352389737`. **Verify before deleting** — removing an account that mirrors a live Google tag is not something to do on faith.
-
-### Phase 3 — Remove rozskin.com (5 min)
-
-- [ ] GA4 → select property `www.rozskin.com` (`373594780`) → Admin → **Property settings** → **Move to trash**.
-- [ ] 35-day recovery window, so this is reversible. It self-deletes after that.
-- [ ] If the option is greyed out you lack **Administrator** on that property — grant yourself at account level `203932451` first, then retry.
-
-### Phase 4 — Untangle the shared account
-
-The real fix. Rename first, migrate second.
-
-- [ ] Rename account `203932451` from `Google Ads Account` → **`LaunchWell — Legacy Shared (migrating)`**. Instant clarity, zero risk.
-- [ ] **Check org membership before anything else:** GA4 → Admin → Account → confirm which Google Marketing Platform organization `203932451` belongs to. This determines everything below.
-- [ ] Create a new Analytics account **`House of Rose Aesthetics`** inside the **same organization** as `203932451`.
-- [ ] Move property `534881520`: Admin → Property settings → **Move property**.
-
-Google's rules for a property move, confirmed current:
-
-| | |
-|---|---|
-| **Permissions** | Administrator **and** Editor on *both* source and destination accounts |
-| **Organization** | Both accounts must be in the **same** GMP organization — a cross-org move is blocked outright |
-| **Tracking ID** | **Unchanged.** No retagging, no code deploy, no data gap. |
-| **Transfers with it** | All data streams, settings, reporting history, and links to Google Ads / BigQuery / Search Console / Firebase |
-| **Left behind** | Change history stays in the source account |
-| **Hard blockers** | An active Google Ad Manager link, in-flight unsampled reports, or a destination account already at 50 properties |
-
-- [ ] Consolidate organizations last. GMP organizations **cannot be merged** — you move accounts out of the strays and then delete the empty orgs. Keep **LaunchWell Brands**; retire `House of Rose` and `House of Rose Aesthetics LLC`.
-
-### Phase 5 — Make it not happen again
-
-- [ ] **Never create GA4 or GTM from inside a Google Ads wizard.** Create the property and container first, then link Ads to them.
-- [ ] Naming convention, applied to every client going forward:
+### Phase 6 — Standard going forward
+- [ ] Never create GA4/GTM from inside a Google Ads wizard. Create first, link second.
+- [ ] Grant service accounts at **property** level, never account level.
 
 ```
 Org:        LaunchWell Brands
@@ -147,23 +146,21 @@ GTM acct:   <Client Legal Name>
 Container:  <domain> — web
 ```
 
-- [ ] One Analytics account per client. One property per brand. One container per site. No exceptions — exceptions are how this started.
-
 ---
 
 ## 5. Repo follow-ups
 
 | # | Change | File |
 |---|---|---|
-| 1 | Drop the unused `PUBLIC_GA4_ID` var, or wire `measurement.ts` to read it — pick one source of truth | `.env.local`, `packages/web/.env.local`, `packages/web/src/env.d.ts` |
-| 2 | Document the GA4 measurement ID alongside `PUBLIC_GTM_ID` in the env table | `CLAUDE.md` (~line 391) |
-| 3 | Delete the stale backup holding tracking IDs | `packages/web/.env.local.bak` |
-| 4 | Record the final account IDs once Phase 4 lands | this file |
+| 1 | Drop unused `PUBLIC_GA4_ID` or wire `measurement.ts` to read it — one source of truth | `.env.local`, `packages/web/.env.local`, `packages/web/src/env.d.ts` |
+| 2 | Document the GA4 measurement ID beside `PUBLIC_GTM_ID` | `CLAUDE.md` ~line 391 |
+| 3 | Delete stale backup holding tracking IDs | `packages/web/.env.local.bak` |
+| 4 | Reconcile `GOOGLE_ADS_CUSTOMER_ID` against actually-linked Ads accounts | `.env.example` |
 
 ---
 
 ## 6. Reference
 
-- [\[GA4\] Move a property — Analytics Help](https://support.google.com/analytics/answer/9305872?hl=en)
-- [Find your way around Tag Manager — Tag Manager Help](https://support.google.com/tagmanager/answer/14842866?hl=en)
-- [Managing users and permissions — Tag Manager Help](https://support.google.com/tagmanager/answer/6107011?hl=en)
+- [\[GA4\] Move a property](https://support.google.com/analytics/answer/9305872?hl=en)
+- [Find your way around Tag Manager](https://support.google.com/tagmanager/answer/14842866?hl=en)
+- [Managing users and permissions](https://support.google.com/tagmanager/answer/6107011?hl=en)

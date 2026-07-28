@@ -11,13 +11,13 @@ import {
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const heroImage = '/images/hor-lounge.webp';
+const heroImage = '/images/welcome-house-of-rose.webp';
 const socialImage = new URL(heroImage, site).toString();
 const phoneDisplay = '(844) 941-7673';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
 const addressLine = `${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion} ${LOCAL_BUSINESS.postalCode}`;
 const pageDescription =
-  'Request a personalized aesthetics consultation at House of Rose in Punta Gorda. Explore skin, injectables and wellness options with clear guidance.';
+  'Talk through skin, injectable, and wellness options with House of Rose in Punta Gorda, then choose a next step that fits your goals.';
 
 const faqs: FAQ[] = [
   {
@@ -31,9 +31,9 @@ const faqs: FAQ[] = [
       'Your consultation begins with a conversation about your goals and priorities. We review the options that may fit, explain what each approach involves, and identify the next step. Final recommendations, treatment combinations, and candidacy are confirmed by the appropriate licensed provider.',
   },
   {
-    question: 'Is the AI skin analysis complimentary?',
+    question: 'What happens during an AI skin analysis?',
     answer:
-      'Yes. House of Rose offers a complimentary, non-invasive AI-assisted skin analysis that gives you a closer look at texture, hydration, pores, pigmentation, fine lines, and visible sun exposure. It is a helpful first step when your goals are skin-focused.',
+      'House of Rose uses non-invasive, AI-assisted imaging to give you a closer look at texture, hydration, pores, pigmentation, fine lines, and visible sun exposure. We review the images with you and explain how they may relate to your skin goals.',
   },
   {
     question: 'What can I ask about?',
@@ -51,7 +51,7 @@ const serviceSchema = serviceJsonLd(
   {
     name: 'Aesthetics Consultation in Punta Gorda',
     description:
-      'Personalized advanced aesthetics and wellness consultations at House of Rose Aesthetics in Punta Gorda, Florida.',
+      'Advanced aesthetics and wellness consultations at House of Rose Aesthetics in Punta Gorda, Florida.',
     url: canonicalURL.toString(),
     image: socialImage,
     serviceType: 'Advanced aesthetics and wellness consultation',
@@ -68,7 +68,7 @@ const faqSchema = faqPage(faqs);
 
 const startingPoints = [
   {
-    eyebrow: 'Complimentary first step',
+    eyebrow: 'A closer look at your skin',
     title: 'AI skin analysis',
     description:
       'See texture, hydration, pores, pigmentation, fine lines, and visible sun exposure more clearly before deciding what to book.',
@@ -124,7 +124,7 @@ const consultationSteps = [
   title="Aesthetics Consultation | Punta Gorda, FL"
   description={pageDescription}
   image={socialImage}
-  imageAlt="House of Rose Aesthetics studio lounge in Punta Gorda, Florida"
+  imageAlt="House of Rose Aesthetics welcome area in Punta Gorda, Florida"
   preloadImage={heroImage}
   chrome="landing"
 >
@@ -162,13 +162,12 @@ const consultationSteps = [
               Advanced aesthetics &amp; wellness · Punta Gorda
             </p>
             <h1 class="mt-5 font-display text-[clamp(48px,5.6vw,76px)] leading-[0.98] tracking-[-0.025em]">
-              See your options clearly. Leave with a plan.
+              Get clear on your options.
             </h1>
             <p class="mt-7 max-w-[560px] text-[17px] leading-[1.75] text-muted-strong sm:text-[18px]">
-              Not sure what to book? Start here. A House of Rose consultation
-              helps you understand the options that fit your goals, timing,
-              recovery preferences, and candidacy—without pressure to choose a
-              treatment first.
+              You do not need to arrive knowing which treatment to book. Tell us
+              what you want to improve, and we will talk through the options that
+              fit your goals, timing, recovery preferences, and candidacy.
             </p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
               <a href="#consultation" class="btn-gold sm:min-w-[250px]">
@@ -181,7 +180,7 @@ const consultationSteps = [
             <ul class="mt-8 grid gap-3 text-[13px] leading-relaxed text-muted-strong sm:grid-cols-3">
               <li class="flex items-start gap-2">
                 <span class="mt-1 text-gold" aria-hidden="true">◆</span>
-                Personalized guidance
+                Clear guidance
               </li>
               <li class="flex items-start gap-2">
                 <span class="mt-1 text-gold" aria-hidden="true">◆</span>
@@ -215,10 +214,10 @@ const consultationSteps = [
           />
           <div class="absolute bottom-5 left-5 right-5 border border-ivory/35 bg-walnut/80 px-5 py-4 text-ivory backdrop-blur-sm sm:bottom-8 sm:left-8 sm:right-auto sm:max-w-[360px] sm:px-6">
             <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
-              A clear skin-first option
+              Not sure where to start?
             </p>
             <p class="mt-2 font-serif text-[20px] leading-snug">
-              Complimentary AI-assisted skin analysis is available for skin-focused goals.
+              AI-assisted skin analysis can help you understand what your skin is showing.
             </p>
           </div>
         </div>
@@ -313,7 +312,7 @@ const consultationSteps = [
               </label>
               <select id="consultation-service" name="service-interest" required class="landing-input">
                 <option value="Help me choose the right starting point">Help me choose</option>
-                <option value="Complimentary AI skin analysis">Complimentary AI Skin Analysis</option>
+                <option value="AI skin analysis">AI Skin Analysis</option>
                 <option value="Botox, Daxxify, fillers, or injectable PRF">Botox, Daxxify, Fillers, or PRF</option>
                 <option value="PRF, Procell, or microneedling">PRF, Procell, or Microneedling</option>
                 <option value="Morpheus8, Forma, or Lumecca Peak">Morpheus8, Forma, or Lumecca Peak</option>
@@ -347,7 +346,7 @@ const consultationSteps = [
             What happens next
           </p>
           <h2 class="mt-4 font-display text-[clamp(38px,5vw,58px)] leading-[1.04]">
-            A thoughtful plan starts with the right questions
+            The right questions make the options easier to understand
           </h2>
         </div>
         <ol class="mt-12 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-gold-metal/40">
@@ -373,13 +372,12 @@ const consultationSteps = [
             Choose a starting point—or let us help
           </p>
           <h2 class="mt-4 font-display text-[clamp(38px,5vw,60px)] leading-[1.04]">
-            Your consultation can begin with the goal, not the treatment
+            Start with your goal. We can help with the treatment name.
           </h2>
           <p class="mt-6 text-[16px] leading-[1.8] text-muted-strong">
-            House of Rose brings advanced skin, injectable, and wellness
-            options together in one Punta Gorda studio. The purpose of the
-            consultation is to make the choice clearer—not to recommend every
-            service.
+            House of Rose offers advanced skin, injectable, and wellness
+            services in one Punta Gorda studio. The consultation helps you sort
+            through those choices and focus on what is relevant to you.
           </p>
         </div>
 
@@ -430,21 +428,21 @@ const consultationSteps = [
             The House of Rose approach
           </p>
           <h2 class="mt-4 font-display text-[clamp(40px,5vw,60px)] leading-[1.04]">
-            Considered care, never a rushed recommendation
+            A real conversation before any recommendation
           </h2>
           <div class="my-7 h-px w-32 bg-gold-metal"></div>
           <ul class="space-y-5 text-[15px] leading-[1.75] text-muted-strong">
             <li class="flex gap-3">
               <span class="text-gold" aria-hidden="true">◆</span>
-              A plan shaped around your priorities, timing, and comfort with recovery.
+              Recommendations that account for your priorities, timing, and comfort with recovery.
             </li>
             <li class="flex gap-3">
               <span class="text-gold" aria-hidden="true">◆</span>
-              Multiple treatment options considered without forcing one device or trend.
+              An honest comparison when more than one treatment could fit.
             </li>
             <li class="flex gap-3">
               <span class="text-gold" aria-hidden="true">◆</span>
-              Natural-looking goals, clear expectations, and a practical next step.
+              Clear expectations and a practical next step.
             </li>
           </ul>
           <a href="#consultation" class="btn-gold mt-8">Request a consultation</a>
@@ -488,11 +486,11 @@ const consultationSteps = [
           Ready when you are
         </p>
         <h2 class="mt-4 font-display text-[clamp(40px,5vw,62px)] leading-[1.03] text-ivory">
-          Begin with clarity
+          Tell us what you are considering
         </h2>
         <p class="mx-auto mt-5 max-w-[620px] text-[15px] leading-[1.8] text-muted">
-          Tell us what you would like to explore. We will help you choose the
-          most useful next step and coordinate a time.
+          Share what you would like to explore. We will help you narrow the
+          options and coordinate a time.
         </p>
         <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a href="#consultation" class="btn-gold sm:min-w-[250px]">

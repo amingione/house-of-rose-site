@@ -397,6 +397,7 @@ export const service = defineType({
       name: 'status',
       title: 'Status',
       type: 'string',
+      initialValue: 'proposed',
       options: {
         list: [
           { title: 'Live', value: 'live' },
@@ -406,6 +407,7 @@ export const service = defineType({
           { title: 'Duplicate', value: 'duplicate' },
         ],
       },
+      validation: (R) => R.required(),
     }),
     defineField({
       name: 'pricingModel',

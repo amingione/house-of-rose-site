@@ -157,7 +157,7 @@ const FALLBACK_CANDIDATES: RentARoomCandidate[] = [
     number: '01',
     title: 'Aestheticians',
     description:
-      'Licensed facial specialists, skin care therapists, and estheticians looking for a private suite to serve clients in an elevated, private setting.',
+      'Licensed facial specialists, skin care therapists, and estheticians who want a private room for seeing their own clients.',
   },
   {
     _key: 'c2',
@@ -182,14 +182,14 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
 
 <BaseLayout
   title={data.seoTitle ?? 'Rent a Private Suite | House of Rose — Punta Gorda FL'}
-  description={data.seoDescription ?? 'Suite rentals for aestheticians, massage therapists & PMU artists in Punta Gorda, FL. Private rooms in an elevated, advanced-aesthetics studio. Starting at $850/mo, utilities included. Apply today.'}
+  description={data.seoDescription ?? 'Private suite rentals for aestheticians, massage therapists, and PMU artists in Punta Gorda, FL. Starting at $850 per month with utilities included.'}
 >
   <div {...oid}>
   <!-- ── Hero ──────────────────────────────────────────────────── -->
   <Hero
     title={data.heroTitle ?? 'Grow Your Practice Here'}
     kicker={data.heroKicker ?? 'Suite Rentals'}
-    description={data.heroDescription ?? 'Private, fully-equipped rooms in an elevated studio environment — where independent professionals thrive.'}
+    description={data.heroDescription ?? 'Private, equipped rooms for independent beauty and wellness professionals who want to grow their own practice in Punta Gorda.'}
     size="small"
     backgroundImage="/images/hor-skin-studio.webp"
     showCTA={true}
@@ -206,10 +206,10 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
       <div class="text-center mb-16">
         <span class="kicker" {...sbFieldPath('perksKicker')}>{data.perksKicker ?? "What's Included"}</span>
         <h2 class="font-serif text-[clamp(30px,4vw,46px)] text-ink mt-2" {...sbFieldPath('perksHeading')}>
-          {data.perksHeading ?? 'Everything You Need to Succeed'}
+          {data.perksHeading ?? 'The practical details are already handled'}
         </h2>
         <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('perksIntro')}>
-          {data.perksIntro ?? 'We handle the business infrastructure. You focus on your clients.'}
+          {data.perksIntro ?? 'Utilities and shared studio essentials are included, so you can focus on your clients and your own business.'}
         </p>
       </div>
 
@@ -257,11 +257,11 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
           <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? 'Ready to Apply?'}</span>
           <h3
             class="font-serif text-[clamp(22px,3vw,30px)] text-ink mb-4 leading-snug"
-            set:html={(data.ctaHeading ?? 'Space Is Limited.\nReserve Yours.').replace(/\n/g, '<br />')}
+            set:html={(data.ctaHeading ?? 'Interested in a Room?\nTell Us About Your Practice.').replace(/\n/g, '<br />')}
             {...sbFieldPath('ctaHeading')}
           />
           <p class="text-muted text-[14px] leading-relaxed mb-8" {...sbFieldPath('ctaBody')}>
-            {data.ctaBody ?? "We keep our suite count intentionally small to protect the no-competing-services policy. When a specialty slot fills, it's closed until it opens again."}
+            {data.ctaBody ?? "We limit the number of suites and do not place competing specialties in the studio. Once a specialty is represented, that opening closes until the room becomes available again."}
           </p>
           <a href="#apply" class="btn-gold" {...sbFieldPath('ctaButtonText')}>
             {data.ctaButtonText ?? 'Submit Your Application'}
@@ -280,7 +280,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
           {data.candidatesHeading ?? "Who We're Looking For"}
         </h2>
         <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('candidatesIntro')}>
-          {data.candidatesIntro ?? 'We partner with licensed, passionate professionals who are ready to grow their independent practice in a premium environment.'}
+          {data.candidatesIntro ?? 'We are looking for licensed professionals who care about their clients and are ready to run an independent practice.'}
         </p>
       </div>
 

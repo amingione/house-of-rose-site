@@ -10,8 +10,8 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
 
 <BaseLayout
   title="The House of Rose Experience | Advanced Aesthetics, Punta Gorda FL"
-  description={experienceContent?.heroSubtitle ?? "A private, unhurried experience for every visit. See what to expect at House of Rose — Punta Gorda's advanced aesthetics destination."}
-  preloadImage="/images/hor-lounge.webp"
+  description={experienceContent?.heroSubtitle ?? "See what to expect before, during, and after a visit to House of Rose Aesthetics in Punta Gorda."}
+  preloadImage="/images/welcome-house-of-rose.webp"
 >
   <!-- Hero -->
   <Hero
@@ -19,7 +19,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     kicker="What to Expect"
     description={experienceContent?.heroSubtitle}
     size="small"
-    backgroundImage="/images/hor-lounge.webp"
+    backgroundImage="/images/welcome-house-of-rose.webp"
   />
 
   {experienceContent && (
@@ -79,13 +79,13 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     </section>
   )}
 
-  <!-- Your Guest Journey Timeline -->
+  <!-- Visit timeline -->
   {experienceContent?.journeySteps && experienceContent.journeySteps.length > 0 && (
     <section class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6">
       <div class="max-w-[960px] mx-auto text-center mb-16">
         <span class="kicker">Step by Step</span>
         <h2 class="font-serif text-[32px] text-ink mt-2">
-          Your Guest Journey
+          What Your Visit Looks Like
         </h2>
       </div>
 
@@ -132,12 +132,12 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
   <!-- Contact CTA -->
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Reserve Your Experience</span>
+      <span class="kicker">Plan Your Visit</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Begin Your Transformation
+        Have questions before you book?
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Every treatment begins with a private consultation. Reach out to schedule yours.
+        Call us to talk through your options, or book online if you already know which service you want.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">

@@ -184,7 +184,14 @@ export default async (request: Request): Promise<Response> => {
     return json({ error: 'Offline conversion goal is not configured.' }, 503);
   }
 
-  const customerId = (process.env.GOOGLE_ADS_CUSTOMER_ID ?? '492-149-3013').replaceAll('-', '');
+  // No hardcoded fallback: an unset customer ID must fail closed rather than
+  // silently upload conversions into whatever account the default happens to name.
+  const configuredCustomerId = process.env.GOOGLE_ADS_CUSTOMER_ID;
+  if (!configuredCustomerId) {
+    await appendAttempt(client, lead, goal, 'rejected', 'GOOGLE_ADS_CUSTOMER_ID is not configured.');
+    return json({ error: 'Google Ads customer ID is not configured.' }, 503);
+  }
+  const customerId = configuredCustomerId.replaceAll('-', '');
   const loginCustomerId = (process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID ?? customerId).replaceAll('-', '');
   const validateOnly = process.env.GOOGLE_OFFLINE_IMPORTS_ENABLED !== 'true';
   const transactionId = `${lead._id}:${goal.key}`;

@@ -38,9 +38,9 @@ const CATEGORY_CTA_POOLS: Record<ProductCategory | 'default', string[]> = {
   default: ['Shop This', 'Add to Cart', 'Get Yours'],
 };
 
-const LEARN_MORE_POOL = ['Learn More', 'See Details', 'Read More', 'Discover More', 'Take a Closer Look'];
+const LEARN_MORE_POOL = ['Learn More', 'See Details', 'Read More', 'What to Know', 'Take a Closer Look'];
 
-const BRAND_CTA_POOL = ['Shop {brand}', 'Explore the Line', 'See the Collection', 'Browse {brand}', 'Discover {brand}'];
+const BRAND_CTA_POOL = ['Shop {brand}', 'Explore the Line', 'See the Collection', 'Browse {brand}', 'View {brand}'];
 
 /**
  * Purchase CTA for a product we DON'T sell ourselves — i.e. the button is a link

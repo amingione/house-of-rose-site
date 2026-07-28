@@ -29,14 +29,14 @@ const collectionsListSchema = collections.length
 
 <BaseLayout
   title="Service Collections | House of Rose Aesthetics, Punta Gorda FL"
-  description="Explore House of Rose's curated service collections — skin renewal, injectables & aesthetics, wellness, and beauty enhancements in Punta Gorda, FL."
+  description="Browse House of Rose services by category, including skin renewal, injectables, wellness, waxing, makeup, and advanced facials in Punta Gorda."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {collectionsListSchema && <SchemaMarkup item={collectionsListSchema} slot="head" />}
   <section class="py-24 max-w-6xl mx-auto px-6">
     <div class="text-center mb-16">
-      <p class="kicker mb-4">Curated Experiences</p>
-      <h1 class="font-serif text-5xl text-ink">Service Collections</h1>
+      <p class="kicker mb-4">Browse by Category</p>
+      <h1 class="font-serif text-5xl text-ink">Find the Right Place to Start</h1>
     </div>
 
     {collections.length === 0 ? (

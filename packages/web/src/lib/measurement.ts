@@ -96,8 +96,20 @@ export type MeasurementEvent =
     };
 
 export interface GoogleAccountTargets {
-  googleAdsCustomerId: '492-149-3013';
+  /**
+   * PENDING. House of Rose has no live Google Ads account — the onboarding flow
+   * was never completed. Verified accounts on ambermingione@gmail.com (2026-07-28):
+   *   230-991-0049  Amber MG            manager / MCC → GOOGLE_ADS_LOGIN_CUSTOMER_ID
+   *   803-936-8488  FAS Motorsports
+   *   704-392-4923  (cancelled)
+   * The previous literal '492-149-3013' matched none of these. Pin a literal here
+   * once the House of Rose account exists; until then offline imports fail closed
+   * on an unset GOOGLE_ADS_CUSTOMER_ID.
+   */
+  googleAdsCustomerId?: string;
+  /** Verified 2026-07-28 in account 203932451. */
   ga4PropertyId: '534881520';
+  /** Verified 2026-07-28 on data stream 14603824376 — data flowing. */
   ga4MeasurementId: 'G-QBDHB89WTR';
   gtmContainerId?: `GTM-${string}`;
   merchantCenterId?: string;
