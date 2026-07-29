@@ -9,6 +9,7 @@
  * NAP follows the canonical siteSettings source of truth (Unit 9, 33950, +18449417673).
  */
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
@@ -313,5 +314,6 @@ const personLd = personProfile({
         </div>
       </footer>
     </main>
+    <KlaviyoOnsite />
   </body>
 </html>

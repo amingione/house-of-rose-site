@@ -40,6 +40,7 @@
     "google:gbp:export": "node scripts/run-with-env.mjs node scripts/google/export-gbp-services.mjs",
     "google:offline:csv": "node scripts/run-with-env.mjs node scripts/google/export-offline-conversions.mjs",
     "google:test": "node --import tsx --test scripts/google/*.test.ts",
+    "openai-ads:test": "node --import tsx --test scripts/openai-ads/*.test.ts",
     "dev:functions": "node scripts/run-with-env.mjs netlify dev --filter @house-of-rose/web"
   },
   "engines": {

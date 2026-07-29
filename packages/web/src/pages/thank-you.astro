@@ -77,7 +77,7 @@ const data =
   </section>
 
   <script>
-    import { dispatchMeasurement, getConsent } from '@/lib/measurement';
+    import { dispatchMeasurement, getConsent, updateOpenAIAdsUser } from '@/lib/measurement';
 
     const params = new URLSearchParams(window.location.search);
     const receipt = params.get('receipt');
@@ -86,14 +86,20 @@ const data =
       // Remove the receipt before another same-origin request or navigation can
       // include it in a referrer. Verification keeps using the captured value.
       history.replaceState({}, '', '/thank-you/');
+      const sourceUrl = window.location.href;
       void fetch('/.netlify/functions/verify-lead-conversion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ receipt }),
+        body: JSON.stringify({ receipt, sourceUrl }),
       }).then(async (response) => {
         if (!response.ok) return;
-        const result = (await response.json()) as { event?: string; eventId?: string };
+        const result = (await response.json()) as {
+          event?: string;
+          eventId?: string;
+          emailSha256?: string;
+        };
         if (result.event === 'generate_lead' && result.eventId) {
+          await updateOpenAIAdsUser({ emailSha256: result.emailSha256 });
           dispatchMeasurement({ event: 'generate_lead', event_id: result.eventId });
           const consent = getConsent();
           if (

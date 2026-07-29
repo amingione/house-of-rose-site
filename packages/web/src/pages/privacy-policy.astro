@@ -75,12 +75,12 @@ const REQUIRED_MEASUREMENT_SECTIONS: PrivacySection[] = [
 	{
 		_key: "measurement",
 		heading: "Website Measurement and Advertising",
-		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 to understand consented website activity, and Google Ads to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Meta Pixel and Ahrefs Analytics do not load until the applicable analytics or advertising permission is granted.",
+		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 to understand consented website activity, and Google Ads, Meta Pixel, and OpenAI Ads measurement tools to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Meta Pixel, OpenAI Ads measurement, and Ahrefs Analytics do not activate until the applicable analytics or advertising permission is granted.",
 	},
 	{
 		_key: "attribution",
-		heading: "Click Identifiers, Retail Conversions, and Retention",
-		body: "We may capture Google click identifiers (gclid, gbraid, and wbraid), campaign parameters, landing page, referrer, and the consent setting in effect when you first arrive. Required attribution fields may be retained with a lead or order to prevent duplicate reporting and measure campaign results. For a completed retail purchase, we may send the order number, value, tax, shipping, currency, and SKU-based items to Google. If advertising and user-data consent are both granted, retail enhanced conversion processing may use normalized contact information in a dedicated one-time tag; that information is not placed in our ordinary website data layer. We retain consent choices for up to 180 days, and operational records for the period needed to fulfill transactions, meet legal obligations, resolve disputes, and protect the business.",
+		heading: "Click Identifiers, Conversions, and Retention",
+		body: "We may capture Google click identifiers (gclid, gbraid, and wbraid), OpenAI-provided privacy-preserving ad reference identifiers, campaign parameters, landing page, referrer, and the consent setting in effect when you first arrive. Required attribution fields may be retained with a lead or order to prevent duplicate reporting and measure campaign results. For a completed retail purchase, we may send the order reference, value, tax, shipping, currency, and SKU-based items to Google, and the order reference, total value, currency, and SKU-based items to OpenAI Ads. For a submitted inquiry, we may report that a lead was created, but we do not send the form message or service interest. If advertising and user-data consent are both granted, conversion matching may use a one-way hash of an email address and limited browser, IP, and approximate location information available during the verified conversion. This matching information is not placed in our ordinary website data layer. We retain consent choices for up to 180 days, and operational records for the period needed to fulfill transactions, meet legal obligations, resolve disputes, and protect the business.",
 	},
 	{
 		_key: "choices",
@@ -95,6 +95,7 @@ const reservedHeadings = new Set([
 	"data sharing",
 	"website measurement and advertising",
 	"click identifiers, retail conversions, and retention",
+	"click identifiers, conversions, and retention",
 	"your privacy choices",
 ]);
 const sections = [

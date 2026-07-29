@@ -1,5 +1,9 @@
 import Stripe from 'stripe';
 import { sanity, json } from './_lib/cart';
+import {
+  scheduleOpenAIAdsConversion,
+  type OpenAIAdsNetlifyContext,
+} from './_lib/server/openai-ads';
 
 interface VerifiedOrder {
   _id: string;
@@ -11,9 +15,11 @@ interface VerifiedOrder {
   shippingCost: number;
   tax: number;
   total: number;
+  inventoryDecrementedAt?: string;
   measurementConsent?: {
     ad_storage?: string;
     ad_user_data?: string;
+    ad_personalization?: string;
   };
   items: Array<{
     sku?: string;
@@ -32,14 +38,19 @@ interface VerifiedOrder {
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '');
 
-export default async function handler(request: Request): Promise<Response> {
+export default async function handler(
+  request: Request,
+  context: OpenAIAdsNetlifyContext,
+): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
   if (!process.env.STRIPE_SECRET_KEY) return json({ error: 'Purchase verification is unavailable.' }, 503);
 
   let clientSecret: string;
+  let sourceUrl: string | undefined;
   try {
-    const body = (await request.json()) as { clientSecret?: unknown };
+    const body = (await request.json()) as { clientSecret?: unknown; sourceUrl?: unknown };
     clientSecret = typeof body.clientSecret === 'string' ? body.clientSecret.trim() : '';
+    sourceUrl = typeof body.sourceUrl === 'string' ? body.sourceUrl : undefined;
   } catch {
     return json({ error: 'Invalid request.' }, 400);
   }
@@ -54,6 +65,7 @@ export default async function handler(request: Request): Promise<Response> {
     const order = await sanity.fetch<VerifiedOrder | null>(
       `*[_type == "order" && stripePaymentIntentId == $paymentIntentId][0]{
         _id, orderNumber, status, email, phone, subtotal, shippingCost, tax, total,
+        inventoryDecrementedAt,
         measurementConsent,
         items[]{
           sku, title, quantity, unitPrice,
@@ -82,6 +94,36 @@ export default async function handler(request: Request): Promise<Response> {
     const enhancedConversionsAllowed =
       order.measurementConsent?.ad_storage === 'granted' &&
       order.measurementConsent?.ad_user_data === 'granted';
+
+    scheduleOpenAIAdsConversion(context, () => ({
+      id: order.orderNumber,
+      type: 'order_created',
+      request,
+      sourceUrl,
+      fallbackPath: '/order-confirmed/',
+      email: order.email,
+      timestampMs: order.inventoryDecrementedAt
+        ? Date.parse(order.inventoryDecrementedAt)
+        : undefined,
+      consent: {
+        adStorage: order.measurementConsent?.ad_storage,
+        adUserData: order.measurementConsent?.ad_user_data,
+        adPersonalization: order.measurementConsent?.ad_personalization,
+      },
+      data: {
+        type: 'contents',
+        amount: order.total,
+        currency: 'USD',
+        contents: order.items.map((item) => ({
+          id: item.sku ?? item.product?.sku ?? item.product?._id ?? item.title,
+          name: item.title,
+          content_type: 'product',
+          quantity: item.quantity,
+          amount: item.unitPrice,
+          currency: 'USD',
+        })),
+      },
+    }));
 
     return json({
       paymentStatus: 'succeeded',

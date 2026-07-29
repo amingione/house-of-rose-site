@@ -119,15 +119,48 @@ interface MeasurementWindow extends Window {
   dataLayer: Array<Record<string, unknown> | IArguments>;
   gtag: (...args: unknown[]) => void;
   fbq?: (...args: unknown[]) => void;
+  oaiq?: ((...args: unknown[]) => void) & { q?: unknown[][] };
   _fbq?: unknown;
   __horMeasurementConfig?: {
     ahrefsKey?: string;
     metaPixelId?: string;
+    openAIAdsPixelId?: string;
   };
   __horLoadedScripts?: Set<string>;
   __horAhrefsInitialized?: boolean;
+  __horOpenAIAdsInitialized?: boolean;
   __horLastPageView?: string;
   __horLastMetaPageView?: string;
+}
+
+interface OpenAIAdsContent {
+  id?: string;
+  name?: string;
+  content_type?: 'page' | 'product';
+  quantity?: number;
+  amount?: number;
+  currency?: 'USD';
+}
+
+interface OpenAIAdsEvent {
+  name:
+    | 'page_viewed'
+    | 'contents_viewed'
+    | 'items_added'
+    | 'checkout_started'
+    | 'order_created'
+    | 'lead_created';
+  data:
+    | {
+        type: 'contents';
+        amount?: number;
+        currency?: 'USD';
+        contents?: OpenAIAdsContent[];
+      }
+    | {
+        type: 'customer_action';
+      };
+  eventId?: string;
 }
 
 const CONSENT_STORAGE_KEY = 'hor.consent.v1';
@@ -304,10 +337,189 @@ export const loadMeta = (consent: ConsentStateV1): void => {
   }
 };
 
+const loadOpenAIAds = (consent: ConsentStateV1): void => {
+  const w = browser();
+  const pixelId = w.__horMeasurementConfig?.openAIAdsPixelId;
+  if (consent.ad_storage !== 'granted' || !pixelId) {
+    w.oaiq?.('consent', false);
+    return;
+  }
+
+  if (!w.oaiq) {
+    const queue = ((...args: unknown[]) => {
+      queue.q?.push(args);
+    }) as NonNullable<MeasurementWindow['oaiq']>;
+    queue.q = [];
+    w.oaiq = queue;
+  }
+
+  w.oaiq('consent', true);
+  if (!w.__horOpenAIAdsInitialized) {
+    w.__horOpenAIAdsInitialized = true;
+    loadScript('hor-openai-ads-pixel', 'https://bzrcdn.openai.com/sdk/oaiq.min.js');
+    w.oaiq('init', { pixelId });
+  }
+};
+
+const toMinorUnits = (value: number | undefined): number | undefined =>
+  typeof value === 'number' && Number.isFinite(value)
+    ? Math.max(0, Math.round(value * 100))
+    : undefined;
+
+const toOpenAIAdsContents = (items: RetailItem[]): OpenAIAdsContent[] =>
+  items.map((item) => ({
+    id: item.item_id || undefined,
+    name: item.item_name || undefined,
+    content_type: 'product',
+    quantity:
+      typeof item.quantity === 'number' && Number.isFinite(item.quantity)
+        ? Math.max(1, Math.round(item.quantity))
+        : undefined,
+    amount: toMinorUnits(item.price),
+    currency: typeof item.price === 'number' ? 'USD' : undefined,
+  }));
+
+const toOpenAIAdsEvent = (event: MeasurementEvent): OpenAIAdsEvent | undefined => {
+  if (event.event === 'page_view') {
+    return {
+      name: 'page_viewed',
+      data: {
+        type: 'contents',
+        contents: [{
+          id: event.page_path.split('?')[0] || '/',
+          name: event.page_title,
+          content_type: 'page',
+        }],
+      },
+    };
+  }
+
+  if (event.event === 'view_item_list' || event.event === 'view_item') {
+    return {
+      name: 'contents_viewed',
+      data: {
+        type: 'contents',
+        amount: toMinorUnits(event.ecommerce.value),
+        ...(typeof event.ecommerce.value === 'number' ? { currency: 'USD' as const } : {}),
+        contents: toOpenAIAdsContents(event.ecommerce.items),
+      },
+    };
+  }
+
+  if (event.event === 'add_to_cart') {
+    return {
+      name: 'items_added',
+      data: {
+        type: 'contents',
+        amount: toMinorUnits(event.ecommerce.value),
+        ...(typeof event.ecommerce.value === 'number' ? { currency: 'USD' as const } : {}),
+        contents: toOpenAIAdsContents(event.ecommerce.items),
+      },
+    };
+  }
+
+  if (event.event === 'begin_checkout') {
+    return {
+      name: 'checkout_started',
+      data: {
+        type: 'contents',
+        amount: toMinorUnits(event.ecommerce.value),
+        ...(typeof event.ecommerce.value === 'number' ? { currency: 'USD' as const } : {}),
+        contents: toOpenAIAdsContents(event.ecommerce.items),
+      },
+    };
+  }
+
+  if (event.event === 'purchase') {
+    return {
+      name: 'order_created',
+      data: {
+        type: 'contents',
+        amount: toMinorUnits(event.ecommerce.value),
+        currency: 'USD',
+        contents: toOpenAIAdsContents(event.ecommerce.items),
+      },
+      eventId: event.ecommerce.transaction_id,
+    };
+  }
+
+  if (event.event === 'generate_lead') {
+    return {
+      name: 'lead_created',
+      data: { type: 'customer_action' },
+      eventId: event.event_id,
+    };
+  }
+
+  return undefined;
+};
+
+const dispatchOpenAIAdsMeasurement = (event: MeasurementEvent): void => {
+  try {
+    const consent = getConsent();
+    if (consent.ad_storage !== 'granted') return;
+    loadOpenAIAds(consent);
+    const measurement = toOpenAIAdsEvent(event);
+    const oaiq = browser().oaiq;
+    if (!measurement || !oaiq) return;
+
+    const options = {
+      ...(measurement.eventId ? { event_id: measurement.eventId } : {}),
+      ...(consent.ad_personalization === 'granted' ? {} : { opt_out: true }),
+    };
+    if (Object.keys(options).length) {
+      oaiq('measure', measurement.name, measurement.data, options);
+    } else {
+      oaiq('measure', measurement.name, measurement.data);
+    }
+  } catch {
+    // Measurement is best-effort and must never affect the user flow.
+  }
+};
+
+const trackCurrentOpenAIAdsPageView = (): void => {
+  dispatchOpenAIAdsMeasurement({
+    event: 'page_view',
+    page_path: `${location.pathname}${location.search}`,
+    page_location: location.href,
+    page_title: document.title,
+  });
+};
+
+export const updateOpenAIAdsUser = async (input: {
+  email?: string;
+  emailSha256?: string;
+}): Promise<void> => {
+  try {
+    const consent = getConsent();
+    if (consent.ad_storage !== 'granted' || consent.ad_user_data !== 'granted') return;
+    loadOpenAIAds(consent);
+
+    let emailSha256 = input.emailSha256?.trim().toLowerCase();
+    if (!/^[a-f0-9]{64}$/.test(emailSha256 ?? '')) {
+      const email = input.email?.trim().toLowerCase();
+      if (!email) return;
+      const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(email));
+      emailSha256 = Array.from(new Uint8Array(digest))
+        .map((byte) => byte.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    browser().oaiq?.('init', {
+      user: {
+        email_sha256: emailSha256,
+      },
+    });
+  } catch {
+    // User matching is optional and must never block the conversion.
+  }
+};
+
 export const dispatchMeasurement = (event: MeasurementEvent): void => {
   const w = browser();
   w.dataLayer ??= [];
   w.dataLayer.push(event);
+  dispatchOpenAIAdsMeasurement(event);
 };
 
 export const applyConsent = (
@@ -319,6 +531,7 @@ export const applyConsent = (
   const gpc = navigator.globalPrivacyControl === true;
   const consent = createConsentState(input, source, gpc, now);
   localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent));
+  attachAttributionToLeadForms();
   browser().gtag('consent', 'update', {
     analytics_storage: consent.analytics_storage,
     ad_storage: consent.ad_storage,
@@ -337,6 +550,10 @@ export const applyConsent = (
   });
   loadAhrefs(consent);
   loadMeta(consent);
+  loadOpenAIAds(consent);
+  if (previous.ad_storage !== 'granted' && consent.ad_storage === 'granted') {
+    trackCurrentOpenAIAdsPageView();
+  }
   window.dispatchEvent(new CustomEvent('hor:consent-updated', { detail: consent }));
   const revokedVendorConsent =
     (previous.analytics_storage === 'granted' && consent.analytics_storage === 'denied') ||
@@ -461,6 +678,7 @@ export const initializeConsentAwareVendors = (): void => {
   });
   loadAhrefs(consent);
   loadMeta(consent);
+  loadOpenAIAds(consent);
 };
 
 declare global {

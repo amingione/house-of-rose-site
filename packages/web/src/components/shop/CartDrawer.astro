@@ -182,8 +182,24 @@
 
       const current = cartItems.get().find((i) => i.productId === id)?.quantity ?? 1;
       const item = cartItems.get().find((candidate) => candidate.productId === id);
-      if (target.closest('.qty-up')) setQuantity(id, current + 1);
-      else if (target.closest('.qty-down')) {
+      if (target.closest('.qty-up')) {
+        setQuantity(id, current + 1);
+        if (item) {
+          dispatchMeasurement({
+            event: 'add_to_cart',
+            ecommerce: {
+              currency: 'USD',
+              value: item.unitPrice / 100,
+              items: [{
+                item_id: item.sku ?? item.productId,
+                item_name: item.title,
+                price: item.unitPrice / 100,
+                quantity: 1,
+              }],
+            },
+          });
+        }
+      } else if (target.closest('.qty-down')) {
         setQuantity(id, current - 1);
         if (item) {
           dispatchMeasurement({

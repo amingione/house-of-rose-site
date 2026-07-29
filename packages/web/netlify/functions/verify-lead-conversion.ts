@@ -4,10 +4,24 @@ import {
   hashMeasurementReceipt,
   verifyLeadMeasurementReceipt,
 } from './_lib/measurement-receipt';
+import {
+  hashOpenAIAdsEmail,
+  scheduleOpenAIAdsConversion,
+  type OpenAIAdsNetlifyContext,
+} from './_lib/server/openai-ads';
 
 interface LeadMeasurementRecord {
   _id: string;
   _rev: string;
+  submittedAt?: string;
+  email?: string;
+  attribution?: {
+    consentSnapshot?: {
+      adStorage?: string;
+      adUserData?: string;
+      adPersonalization?: string;
+    };
+  };
   measurementReceiptHash?: string;
   measurementReceiptExpiresAt?: string;
   measurementReceiptUsedAt?: string;
@@ -23,7 +37,10 @@ const json = (body: unknown, status = 200): Response =>
     },
   });
 
-export default async (request: Request): Promise<Response> => {
+export default async (
+  request: Request,
+  context: OpenAIAdsNetlifyContext,
+): Promise<Response> => {
   if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
 
   const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
@@ -36,9 +53,11 @@ export default async (request: Request): Promise<Response> => {
   }
 
   let receipt: string;
+  let sourceUrl: string | undefined;
   try {
-    const body = (await request.json()) as { receipt?: unknown };
+    const body = (await request.json()) as { receipt?: unknown; sourceUrl?: unknown };
     receipt = typeof body.receipt === 'string' ? body.receipt.trim() : '';
+    sourceUrl = typeof body.sourceUrl === 'string' ? body.sourceUrl : undefined;
   } catch {
     return json({ error: 'Invalid request.' }, 400);
   }
@@ -49,7 +68,8 @@ export default async (request: Request): Promise<Response> => {
   const client = createClient({ projectId, dataset, apiVersion, token, useCdn: false });
   const lead = await client.fetch<LeadMeasurementRecord | null>(
     `*[_type == "leadSubmission" && _id == $id][0]{
-      _id, _rev, measurementReceiptHash, measurementReceiptExpiresAt,
+      _id, _rev, submittedAt, email, attribution{ consentSnapshot },
+      measurementReceiptHash, measurementReceiptExpiresAt,
       measurementReceiptUsedAt, measurementEventId
     }`,
     { id: payload.leadId },
@@ -80,5 +100,28 @@ export default async (request: Request): Promise<Response> => {
     return json({ error: 'Receipt was already consumed.' }, 409);
   }
 
-  return json({ event: 'generate_lead', eventId });
+  const consent = lead.attribution?.consentSnapshot;
+  scheduleOpenAIAdsConversion(context, () => ({
+    id: eventId,
+    type: 'lead_created',
+    request,
+    sourceUrl,
+    fallbackPath: '/thank-you/',
+    email: lead.email,
+    timestampMs: lead.submittedAt ? Date.parse(lead.submittedAt) : undefined,
+    consent: {
+      adStorage: consent?.adStorage,
+      adUserData: consent?.adUserData,
+      adPersonalization: consent?.adPersonalization,
+    },
+    data: { type: 'customer_action' },
+  }));
+
+  return json({
+    event: 'generate_lead',
+    eventId,
+    ...(consent?.adUserData === 'granted'
+      ? { emailSha256: hashOpenAIAdsEmail(lead.email) }
+      : {}),
+  });
 };

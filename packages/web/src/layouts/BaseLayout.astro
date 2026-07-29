@@ -11,6 +11,7 @@ import LeadAnalytics from '@/components/LeadAnalytics.astro';
 import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
 import ConsentManager from '@/components/ConsentManager.astro';
 import GoogleTagManager from '@/components/GoogleTagManager.astro';
+import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph } from '@/lib/structuredData';
 import { formatSeoTitle } from '@/lib/seo';
@@ -48,6 +49,7 @@ const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
 // of vendor consoles and avoids Ahrefs' expected "Ignoring Event: localhost" noise.
 const ahrefsKey = import.meta.env.DEV ? undefined : 'XdzOvGXmUENnBpyYIDhXOQ';
 const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
+const openAIAdsPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID;
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
@@ -105,7 +107,7 @@ const entityGraph = siteEntityGraph(
     <ConsentBootstrap />
     <script
       is:inline
-      set:html={`window.__horMeasurementConfig={ahrefsKey:${JSON.stringify(ahrefsKey ?? '')},metaPixelId:${JSON.stringify(metaPixelId ?? '')}};`}
+      set:html={`window.__horMeasurementConfig={ahrefsKey:${JSON.stringify(ahrefsKey ?? '')},metaPixelId:${JSON.stringify(metaPixelId ?? '')},openAIAdsPixelId:${JSON.stringify(openAIAdsPixelId ?? '')}};`}
     ></script>
     <GoogleTagManager containerId={gtmId} measurementPath={gtmMeasurementPath} />
     <!-- Favicons — generated from 512px transparent source -->
@@ -140,5 +142,6 @@ const entityGraph = siteEntityGraph(
     </script>
     <LeadAnalytics />
     <ConsentManager />
+    <KlaviyoOnsite />
   </body>
 </html>
