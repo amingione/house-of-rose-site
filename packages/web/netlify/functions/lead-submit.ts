@@ -57,6 +57,10 @@ interface LeadSubmissionDocument {
     gclid?: string;
     gbraid?: string;
     wbraid?: string;
+    openAIAds?: {
+      oppref?: string;
+      obref?: string;
+    };
     consentSnapshot?: {
       schemaVersion: 1;
       policyVersion: string;
@@ -103,6 +107,20 @@ const getConsentSnapshot = (formData: FormData): MeasurementConsentSnapshot | un
   }
 };
 
+const getRawCookieValue = (request: Request, name: string): string | undefined => {
+  const cookieHeader = request.headers.get('cookie');
+  if (!cookieHeader) return undefined;
+
+  for (const segment of cookieHeader.split(';')) {
+    const separator = segment.indexOf('=');
+    if (separator < 0 || segment.slice(0, separator).trim() !== name) continue;
+    const value = segment.slice(separator + 1).trim();
+    return value && value.length <= 2048 ? value : undefined;
+  }
+
+  return undefined;
+};
+
 const redirect = (request: Request, path: string, status = 303): Response =>
   Response.redirect(new URL(path, request.url), status);
 
@@ -139,6 +157,16 @@ const buildDocument = (
   formName: string,
 ): LeadSubmissionDocument => {
   const submittedAt = new Date().toISOString();
+  const consentSnapshot = getConsentSnapshot(formData);
+  const openAIAds =
+    consentSnapshot?.adStorage === 'granted'
+      ? {
+          oppref: getRawCookieValue(request, '__oppref'),
+          ...(consentSnapshot.adUserData === 'granted'
+            ? { obref: getRawCookieValue(request, '__obref') }
+            : {}),
+        }
+      : undefined;
   const document: LeadSubmissionDocument = {
     _id: `lead-${randomUUID()}`,
     _type: 'leadSubmission',
@@ -167,7 +195,8 @@ const buildDocument = (
       gclid: getValue(formData, 'gclid', 300) || undefined,
       gbraid: getValue(formData, 'gbraid', 300) || undefined,
       wbraid: getValue(formData, 'wbraid', 300) || undefined,
-      consentSnapshot: getConsentSnapshot(formData),
+      ...(openAIAds && Object.values(openAIAds).some(Boolean) ? { openAIAds } : {}),
+      consentSnapshot,
     },
   };
 

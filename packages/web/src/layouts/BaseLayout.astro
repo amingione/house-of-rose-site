@@ -53,9 +53,11 @@ const openAIAdsPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLI
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
-const defaultOgImage = new URL('/logos/hr-monogram-2026/og.png', siteURL).toString();
+const defaultOgImage = new URL('/images/socialShareCover/HOUSE-OF-ROSE-FL.webp', siteURL).toString();
 const socialImage = image ? new URL(image, siteURL).toString() : defaultOgImage;
 const socialImageAlt = imageAlt ?? `${siteName} in Punta Gorda, Florida`;
+const socialImageWidth = image ? 1200 : 1942;
+const socialImageHeight = image ? 630 : 809;
 const pageTitle = formatSeoTitle(title, siteName);
 const entityGraph = siteEntityGraph(
   {
@@ -97,10 +99,17 @@ const entityGraph = siteEntityGraph(
           siteName,
         },
         image: {
-          width: 1200,
-          height: 630,
+          width: socialImageWidth,
+          height: socialImageHeight,
           alt: socialImageAlt,
         },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        title: pageTitle,
+        description,
+        image: socialImage,
+        imageAlt: socialImageAlt,
       }}
     />
     <SchemaMarkup item={entityGraph} />

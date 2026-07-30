@@ -2,7 +2,19 @@ import { createHash } from 'node:crypto';
 import { isIP } from 'node:net';
 
 // Server-only OpenAI Ads Conversions API transport for Netlify Functions.
-export type OpenAIAdsEventType = 'lead_created' | 'order_created';
+export type OpenAIAdsEventType =
+  | 'appointment_scheduled'
+  | 'lead_created'
+  | 'order_created';
+
+export type OpenAIAdsActionSource =
+  | 'web'
+  | 'mobile_app'
+  | 'offline'
+  | 'physical_store'
+  | 'phone_call'
+  | 'email'
+  | 'other';
 
 export interface OpenAIAdsContent {
   id: string;
@@ -51,8 +63,11 @@ export interface OpenAIAdsConversionInput {
   data: OpenAIAdsEventData;
   consent: OpenAIAdsMeasurementConsent;
   request: Request;
+  actionSource?: OpenAIAdsActionSource;
   sourceUrl?: string;
-  fallbackPath: `/${string}`;
+  fallbackPath?: `/${string}`;
+  oppref?: string;
+  obref?: string;
   email?: string;
   timestampMs?: number;
 }
@@ -72,8 +87,8 @@ interface OpenAIAdsApiEvent {
   type: OpenAIAdsEventType;
   timestamp_ms: number;
   oppref?: string;
-  source_url: string;
-  action_source: 'web';
+  source_url?: string;
+  action_source: OpenAIAdsActionSource;
   user?: OpenAIAdsUser;
   opt_out?: boolean;
   data: OpenAIAdsEventData;
@@ -145,7 +160,7 @@ const buildUser = (
 ): OpenAIAdsUser | undefined => {
   if (input.consent.adUserData !== 'granted') return undefined;
 
-  const obref = context.cookies?.get('__obref');
+  const obref = input.obref ?? context.cookies?.get('__obref');
   const country = nonBlank(context.geo?.country?.code, 2)?.toUpperCase();
   const ipAddress = context.ip && isIP(context.ip) ? context.ip : undefined;
   const user: OpenAIAdsUser = {
@@ -166,7 +181,8 @@ export const buildOpenAIAdsApiEvent = (
   context: OpenAIAdsNetlifyContext,
   currentTimeMs = Date.now(),
 ): OpenAIAdsApiEvent => {
-  const oppref = context.cookies?.get('__oppref');
+  const actionSource = input.actionSource ?? 'web';
+  const oppref = input.oppref ?? context.cookies?.get('__oppref');
   const user = buildUser(input, context);
   const minimumTimestamp = currentTimeMs - 7 * 24 * 60 * 60 * 1000;
   const maximumTimestamp = currentTimeMs + 10 * 60 * 1000;
@@ -183,12 +199,16 @@ export const buildOpenAIAdsApiEvent = (
     type: input.type,
     timestamp_ms: timestampMs,
     ...(oppref?.trim() ? { oppref } : {}),
-    source_url: sanitizeOpenAIAdsSourceUrl(
-      input.sourceUrl,
-      input.request.url,
-      input.fallbackPath,
-    ),
-    action_source: 'web',
+    ...(actionSource === 'web'
+      ? {
+          source_url: sanitizeOpenAIAdsSourceUrl(
+            input.sourceUrl,
+            input.request.url,
+            input.fallbackPath ?? '/',
+          ),
+        }
+      : {}),
+    action_source: actionSource,
     ...(user ? { user } : {}),
     ...(input.consent.adPersonalization === 'granted' ? {} : { opt_out: true }),
     data: input.data,

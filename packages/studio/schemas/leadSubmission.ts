@@ -167,6 +167,17 @@ export const leadSubmission = defineType({
         defineField({ name: 'gbraid', title: 'Google GBRAID', type: 'string', readOnly: true }),
         defineField({ name: 'wbraid', title: 'Google WBRAID', type: 'string', readOnly: true }),
         defineField({
+          name: 'openAIAds',
+          title: 'OpenAI Ads Attribution',
+          type: 'object',
+          readOnly: true,
+          hidden: true,
+          fields: [
+            defineField({ name: 'oppref', title: 'OpenAI Ad Reference', type: 'string' }),
+            defineField({ name: 'obref', title: 'OpenAI Browser Reference', type: 'string' }),
+          ],
+        }),
+        defineField({
           name: 'consentSnapshot',
           title: 'Measurement Consent Snapshot',
           type: 'object',

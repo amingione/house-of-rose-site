@@ -1,5 +1,9 @@
 import { createClient } from '@sanity/client';
 import { isValidSignature, SIGNATURE_HEADER_NAME } from '@sanity/webhook';
+import {
+  scheduleOpenAIAdsConversion,
+  type OpenAIAdsNetlifyContext,
+} from './_lib/server/openai-ads';
 
 type LeadStatus = 'qualified' | 'consultationBooked' | 'completed';
 type GoalKey = 'qualified_lead' | 'consultation_booked' | 'completed_booking';
@@ -8,6 +12,7 @@ interface OfflineLead {
   _id: string;
   _rev: string;
   status: LeadStatus;
+  email?: string;
   qualifiedAt?: string;
   bookedAt?: string;
   completedAt?: string;
@@ -15,7 +20,15 @@ interface OfflineLead {
     gclid?: string;
     gbraid?: string;
     wbraid?: string;
-    consentSnapshot?: { adUserData?: string; adPersonalization?: string };
+    openAIAds?: {
+      oppref?: string;
+      obref?: string;
+    };
+    consentSnapshot?: {
+      adStorage?: string;
+      adUserData?: string;
+      adPersonalization?: string;
+    };
   };
   offlineConversions?: {
     qualifiedUploadedAt?: string;
@@ -117,7 +130,10 @@ const appendAttempt = async (
     .commit();
 };
 
-export default async (request: Request): Promise<Response> => {
+export default async (
+  request: Request,
+  context: OpenAIAdsNetlifyContext,
+): Promise<Response> => {
   if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
   const rawBody = await request.text();
   const webhookSecret = process.env.SANITY_WEBHOOK_SECRET;
@@ -146,11 +162,15 @@ export default async (request: Request): Promise<Response> => {
   if (!leadId.startsWith('lead-')) return json({ error: 'Unsupported document.' }, 400);
 
   const client = createClient({ projectId, dataset, apiVersion, token, useCdn: false });
-  // Deliberately excludes name, email, phone, treatment interest, message, and notes.
+  // Deliberately excludes name, phone, treatment interest, message, and notes.
+  // Email is read only for consent-gated SHA-256 matching inside the CAPI helper.
   const lead = await client.fetch<OfflineLead | null>(
     `*[_type == "leadSubmission" && _id == $leadId][0]{
-      _id, _rev, status, qualifiedAt, bookedAt, completedAt,
-      attribution{ gclid, gbraid, wbraid, consentSnapshot{ adUserData, adPersonalization } },
+      _id, _rev, status, email, qualifiedAt, bookedAt, completedAt,
+      attribution{
+        gclid, gbraid, wbraid, openAIAds,
+        consentSnapshot{ adStorage, adUserData, adPersonalization }
+      },
       offlineConversions{
         qualifiedUploadedAt, consultationBookedUploadedAt, completedBookingUploadedAt
       }
@@ -161,6 +181,28 @@ export default async (request: Request): Promise<Response> => {
 
   const goal = statusGoal(lead);
   if (!goal) return json({ ignored: true, reason: 'Status is not an offline conversion goal.' }, 202);
+
+  const bookedAt = lead.bookedAt;
+  if (goal.key === 'consultation_booked' && bookedAt) {
+    const consent = lead.attribution?.consentSnapshot;
+    scheduleOpenAIAdsConversion(context, () => ({
+      id: `${lead._id}:appointment_scheduled`,
+      type: 'appointment_scheduled',
+      actionSource: 'other',
+      request,
+      oppref: lead.attribution?.openAIAds?.oppref,
+      obref: lead.attribution?.openAIAds?.obref,
+      email: lead.email,
+      timestampMs: Date.parse(bookedAt),
+      consent: {
+        adStorage: consent?.adStorage,
+        adUserData: consent?.adUserData,
+        adPersonalization: consent?.adPersonalization,
+      },
+      data: { type: 'customer_action' },
+    }));
+  }
+
   if (lead.offlineConversions?.[goal.uploadedField]) {
     await appendAttempt(client, lead, goal, 'deduplicated', 'Goal was already uploaded.');
     return json({ deduplicated: true });

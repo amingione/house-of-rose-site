@@ -96,3 +96,38 @@ test('CAPI events use documented fields, opaque attribution cookies, and hashed 
   assert.equal('event_source_url' in event, false);
   assert.equal('event_data' in event, false);
 });
+
+test('confirmed appointments use the supported event and persisted attribution', () => {
+  const context: OpenAIAdsNetlifyContext = {
+    cookies: { get: () => undefined },
+    waitUntil: () => {},
+  };
+  const event = buildOpenAIAdsApiEvent(
+    {
+      id: 'lead-123:appointment_scheduled',
+      type: 'appointment_scheduled',
+      actionSource: 'other',
+      request: new Request('https://houseofrosefl.com/.netlify/functions/google-offline-conversion'),
+      oppref: 'persisted-oppref',
+      obref: 'persisted-obref',
+      email: 'client@example.com',
+      timestampMs: 1_773_892_800_000,
+      consent: {
+        adStorage: 'granted',
+        adUserData: 'granted',
+        adPersonalization: 'granted',
+      },
+      data: { type: 'customer_action' },
+    },
+    context,
+    1_773_892_800_000,
+  );
+
+  assert.equal(event.type, 'appointment_scheduled');
+  assert.equal(event.action_source, 'other');
+  assert.equal('source_url' in event, false);
+  assert.equal(event.oppref, 'persisted-oppref');
+  assert.equal(event.user?.obref, 'persisted-obref');
+  assert.equal(event.user?.email_sha256, hashOpenAIAdsEmail('client@example.com'));
+  assert.equal(event.data.type, 'customer_action');
+});
