@@ -18,7 +18,7 @@ This assessment supports cosmetic consultation and treatment planning. It is not
 
 ## Headline
 
-Complimentary AI Skin Analysis
+AI Skin Analysis
 
 ## Description
 
