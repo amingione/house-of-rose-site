@@ -240,6 +240,44 @@ from   = "/services/skin-reset-facial/"
 to     = "/services/"
 status = 301
 
+# Advanced-facial variants are provider-selected customizations, not separate
+# public services. Preserve old URLs by consolidating them into the canonical
+# treatment hubs (owner direction, 2026-07-31).
+[[redirects]]
+from   = "/services/glo2facial-procell-md/"
+to     = "/services/glo2facial/"
+status = 301
+
+[[redirects]]
+from   = "/services/glo2facial-procell-pro/"
+to     = "/services/glo2facial/"
+status = 301
+
+[[redirects]]
+from   = "/services/glo2facial-prf/"
+to     = "/services/glo2facial/"
+status = 301
+
+[[redirects]]
+from   = "/services/glowtox-facial/"
+to     = "/services/injectables-bio-fillers/"
+status = 301
+
+[[redirects]]
+from   = "/services/biorepeel-advanced-acne-scarring/"
+to     = "/services/biorepeel/"
+status = 301
+
+[[redirects]]
+from   = "/services/biorepeel-gold-spot-treatment/"
+to     = "/services/biorepeel/"
+status = 301
+
+[[redirects]]
+from   = "/services/biorepeel-body/"
+to     = "/services/biorepeel/"
+status = 301
+
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]
   from   = "/*"

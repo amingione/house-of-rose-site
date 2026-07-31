@@ -34,6 +34,145 @@ export const serviceCollection = defineType({
       ],
     }),
     defineField({
+      name: 'presentation',
+      title: 'Page Presentation',
+      type: 'string',
+      initialValue: 'catalog',
+      options: {
+        list: [
+          { title: 'Catalog', value: 'catalog' },
+          { title: 'Editorial / Personalized', value: 'editorial' },
+        ],
+        layout: 'radio',
+      },
+      validation: (R) => R.required(),
+    }),
+    defineField({
+      name: 'headline',
+      title: 'Editorial Headline',
+      type: 'string',
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Editorial Introduction',
+      type: 'text',
+      rows: 4,
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+    }),
+    defineField({
+      name: 'featuredServices',
+      title: 'Featured Starting Treatments',
+      type: 'array',
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+      validation: (R) => R.max(3),
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'service',
+              title: 'Service',
+              type: 'reference',
+              to: [{ type: 'service' }],
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'image',
+              title: 'Editorial Image',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                defineField({
+                  name: 'alt',
+                  title: 'Alt Text',
+                  type: 'string',
+                  validation: (R) => R.required(),
+                }),
+              ],
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'summary',
+              title: 'Summary',
+              type: 'text',
+              rows: 3,
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'linkLabel',
+              title: 'Link Label',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'service.title',
+              subtitle: 'summary',
+              media: 'image',
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'customizationTitle',
+      title: 'Customization Section Title',
+      type: 'string',
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+    }),
+    defineField({
+      name: 'customizationIntro',
+      title: 'Customization Section Note',
+      type: 'text',
+      rows: 3,
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+    }),
+    defineField({
+      name: 'customizations',
+      title: 'Customization Options',
+      type: 'array',
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+      validation: (R) => R.max(6),
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (R) => R.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+              rows: 2,
+              validation: (R) => R.required(),
+            }),
+          ],
+          preview: {
+            select: { title: 'title', subtitle: 'description' },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'closingTitle',
+      title: 'Closing CTA Title',
+      type: 'string',
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+    }),
+    defineField({
+      name: 'closingBody',
+      title: 'Closing CTA Body',
+      type: 'text',
+      rows: 3,
+      hidden: ({ document }) => document?.presentation !== 'editorial',
+    }),
+    defineField({
       name: 'orderRank',
       title: 'Order',
       type: 'number',

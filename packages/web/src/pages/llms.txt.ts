@@ -34,7 +34,7 @@ export const GET: APIRoute = async ({ site }) => {
   const lines: string[] = [
     `# House of Rose Aesthetics`,
     ``,
-    `> Where Beauty Blooms Within. House of Rose is an advanced aesthetics and wellness studio in Punta Gorda, Florida, offering PRF, Procell, microchanneling, injectables, advanced facials, IV hydration, provider-guided weight management, and professional home care. Walk-ins are welcome; appointments are recommended to reserve a time.`,
+    `> Where Beauty Blooms Within. House of Rose is an advanced aesthetics and wellness studio in Punta Gorda, Florida, offering PRF, procell, microchanneling, injectables, advanced facials, IV hydration, provider-guided weight management, and professional home care. Walk-ins are welcome; appointments are recommended to reserve a time.`,
     ``,
     `House of Rose is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Phone: (844) 941-7673. Email: info@houseofrosefl.com. Serving Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.`,
     ``,

@@ -197,6 +197,25 @@ export interface ServiceCollection {
   slug: string;
   description?: string;
   image?: SanityImage;
+  presentation?: 'catalog' | 'editorial';
+  headline?: string;
+  intro?: string;
+  featuredServices?: {
+    _key: string;
+    service: Service;
+    image?: SanityImage;
+    summary?: string;
+    linkLabel?: string;
+  }[];
+  customizationTitle?: string;
+  customizationIntro?: string;
+  customizations?: {
+    _key: string;
+    title: string;
+    description: string;
+  }[];
+  closingTitle?: string;
+  closingBody?: string;
   services: Service[];
 }
 
@@ -477,7 +496,12 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
     "slug": slug.current,
     description,
     ${IMAGE_FIELDS},
-    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[
+      _type == "service" &&
+      status in ["live", "actual-menu"] &&
+      (kind != "treatment" || !defined(kind)) &&
+      references(^._id)
+    ] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -499,7 +523,12 @@ export const NAV_COLLECTIONS_QUERY = /* groq */ `
     _id,
     title,
     "slug": slug.current,
-    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[
+      _type == "service" &&
+      status in ["live", "actual-menu"] &&
+      (kind != "treatment" || !defined(kind)) &&
+      references(^._id)
+    ] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current
@@ -520,8 +549,42 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     description,
+    presentation,
+    headline,
+    intro,
+    featuredServices[] {
+      _key,
+      summary,
+      linkLabel,
+      "service": service->{
+        _id,
+        title,
+        "slug": slug.current,
+        tagline,
+        duration,
+        ${IMAGE_FIELDS}
+      },
+      "image": image {
+        asset->{ url, metadata { dimensions } },
+        alt
+      }
+    },
+    customizationTitle,
+    customizationIntro,
+    customizations[] {
+      _key,
+      title,
+      description
+    },
+    closingTitle,
+    closingBody,
     ${IMAGE_FIELDS},
-    "services": *[_type == "service" && status in ["live", "actual-menu"] && references(^._id)] | order(orderRank asc, title asc) {
+    "services": *[
+      _type == "service" &&
+      status in ["live", "actual-menu"] &&
+      (kind != "treatment" || !defined(kind)) &&
+      references(^._id)
+    ] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,

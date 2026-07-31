@@ -49,8 +49,6 @@ medical director, with Guardian-managed compliance. This is the locked stack:
 | **Primary** ⭐ | `Medical spa` | Captures the top "near me" packs; correct for injectables + regenerative under medical oversight |
 | Secondary | `Facial spa` | Facial-specific "near me" queries |
 | Secondary | `Skin care clinic` | Skin treatments, facials, and advanced modalities |
-| Secondary | `Health and beauty shop` | Onsite skincare and beauty retail |
-| Secondary | `Vitamin & supplements store` | Onsite vitamin and supplement retail |
 
 > **Removed (deliberately):**
 - ❌ `Wellness center` — too broad; Google maps it to rehab/holistic and auto-suggests off-fit items. IV +
@@ -86,10 +84,10 @@ stack above is authoritative as of July 28, 2026.
 | **Business name** | `House of Rose Aesthetics` |
 | **Address** | `525 E Olympia Ave, Unit 9` · `Punta Gorda, FL 33950` |
 | **Phone (primary)** | `(844) 941-7673` — spells **ROSE**. Keep digits in GBP; use `(844) 941-ROSE` in marketing/print. |
-| **Texting / chat** | `(844) 941-7673` (SMS enabled ✅) |
+| **Texting / chat** | `(844) 941-7673` (SMS enabled ✅) | # still trying to get this verified w/grasshopper
 | **Website** | `https://houseofrosefl.com/` |
 | **Instagram** | `https://www.instagram.com/house.of.rose.aesthetics/` ✅ |
-| **Facebook** | `https://www.facebook.com/profile.php?id=61590233534310` ✅ |
+| **Facebook** | `https://www.facebook.com/hofraesthetics` ✅ |
 | **Hours** | Mon–Fri `9:00 AM–5:00 PM` · Sat & Sun `Closed` ✅ |
 | **Opening date** | `June 15, 2026` ✅ |
 | **Menu / services link** | `https://houseofrose.glossgenius.com/services` ✅ |
@@ -113,7 +111,7 @@ Pickup hours are Mon–Fri `9:00 AM–5:00 PM`; Saturday and Sunday pickup hours
 
 **Service area (set ✅):** `Punta Gorda`, `Port Charlotte`, `Charlotte Harbor`, `Babcock Ranch`,
 `Burnt Store Marina`, `Punta Gorda Isles`. Keep the **physical address visible** (don't switch to
-service-area-only — you have a suite clients visit).
+service-area-only — you have a building clients visit).
 
 ---
 
@@ -123,7 +121,7 @@ The text below is the exact live Google Business Profile description as supplied
 verbatim when auditing directory consistency:
 
 ```
-House of Rose Aesthetics is a premier medical aesthetic practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We specialize in non-surgical face and body treatments designed to restore skin health and promote long-term vitality. By pairing our proprietary ColRegen and ReCell approaches with advanced modalities—including Morpheus8, radiofrequency, and laser therapy—every protocol is tailored using skin imaging analysis to support collagen renewal. We also offer comprehensive maintenance care, including dermal fillers, neurotoxins, wellness support, skincare, and customized facials for an all-inclusive experience.
+House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We specialize in personalized skin rejuvenation through advanced, non-surgical facial and body treatments designed to achieve natural-looking results. Every treatment begins with a comprehensive consultation and skin analysis, allowing us to develop an individualized treatment plan using regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, medical-grade skincare, and customized facial treatments. Our approach combines clinical expertise, evidence-based treatment protocols, and long-term planning to help patients maintain healthy, naturally rejuvenated skin.
 ```
 
 ---
@@ -158,13 +156,10 @@ Add each as a Service with its name + a description. Brand rules applied:
 
 ### Group B — Facials & skin
 
-**Osmosis Signature Facial** · _From $185_
+**Glo2Facial/Oxygenation Facial** · _From $225_
 > A personalized, result-driven facial that supports healthy skin without harsh actives. Calm, restorative,
 > and tailored to your skin that day.
 
-**Osmosis MD Restorative Facial** · _From $325_
-> An advanced infusion facial with LED, designed to support deep restoration and glow for special skin needs
-> or pre-event preparation.
 
 **Dermaplaning** · _From $95_
 > Gentle resurfacing that removes dead skin and fine vellus hair for an immediate smooth, luminous finish.
@@ -197,9 +192,6 @@ Add each as a Service with its name + a description. Brand rules applied:
 **IV Hydration Therapy** · _From $185_
 > Boutique IV hydration to support energy, recovery, and glow. Choose a signature blend or a tailored drip.
 
-**NAD+ IV Therapy** · _From $425_
-> NAD+ infusions that support cellular energy and recovery, delivered in a calm, private suite.
-
 **Vitamin Injections (B12 / Glutathione / Lipo)** · _From $35_
 > Quick, targeted boosters to support energy, metabolism, and skin radiance.
 
@@ -213,8 +205,8 @@ Add each as a Service with its name + a description. Brand rules applied:
 
 ### Group E — Waxing (live ✅ — you list it in your description)
 
-**Professional Waxing (Face & Body)** · _From $X_
-> Clean, comfortable professional waxing for face and body. Walk-ins welcome — appointments recommended for guaranteed timing. _(Add your real starting price.)_
+**Professional Waxing (Face & Body)** · _From $10_
+> Clean, comfortable professional waxing for face and body. Walk-ins welcome — appointments recommended for guaranteed timing.
 
 ---
 
@@ -242,10 +234,6 @@ strategy and validated against current 2026 market data.
 > are tailored at a consultation.
 > _Twin of your custom "Neuromodulator Treatment." Strategy note: consult-only is still the recommended
 > luxury play; only post the per-unit number if you want the transparency edge._
-
-**Dysport treatment** · _From $15/unit_ — _or "No price"_
-> A smooth, natural-looking option that spreads evenly across larger areas like the forehead. Your plan is
-> tailored at consultation.
 
 **JUVÉDERM treatments** · _From $795_ — _or "No price" for consult-only_
 > Natural-looking volume and contour with JUVÉDERM, placed with restraint by your provider. Candidacy and
