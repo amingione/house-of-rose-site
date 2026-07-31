@@ -5,25 +5,48 @@ import { readFileSync } from 'node:fs';
 import { createClient } from '@sanity/client';
 
 const ROOT = '/Users/ambermingione/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site';
-const env = Object.fromEntries(
-  readFileSync(`${ROOT}/.env.local`, 'utf8')
-    .split('\n')
-    .filter((l) => l && !l.startsWith('#') && l.includes('='))
-    .map((l) => {
-      const i = l.indexOf('=');
-      return [l.slice(0, i).trim(), l.slice(i + 1).trim().replace(/^["']|["']$/g, '')];
-    }),
-);
-const token = env.SANITY_API_WRITE_TOKEN;
-if (!token) throw new Error('SANITY_API_WRITE_TOKEN not found in .env.local');
+const parseEnv = (p) => {
+  try {
+    return Object.fromEntries(
+      readFileSync(p, 'utf8')
+        .split('\n')
+        .filter((l) => l && !l.startsWith('#') && l.includes('='))
+        .map((l) => {
+          const i = l.indexOf('=');
+          return [l.slice(0, i).trim(), l.slice(i + 1).trim().replace(/^["']|["']$/g, '')];
+        }),
+    );
+  } catch {
+    return {};
+  }
+};
+const webEnv = parseEnv(`${ROOT}/packages/web/.env.local`);
+const rootEnv = parseEnv(`${ROOT}/.env.local`);
+// Candidate write tokens (dedup, keep order: web first, then root)
+const candidates = [
+  ['web.SANITY_API_WRITE_TOKEN', webEnv.SANITY_API_WRITE_TOKEN],
+  ['root.SANITY_API_WRITE_TOKEN', rootEnv.SANITY_API_WRITE_TOKEN],
+  ['web.SANITY_ACCESS_TOKEN', webEnv.SANITY_ACCESS_TOKEN],
+  ['root.SANITY_ACCESS_TOKEN', rootEnv.SANITY_ACCESS_TOKEN],
+].filter(([, v], i, a) => v && a.findIndex(([, w]) => w === v) === i);
 
-const client = createClient({
-  projectId: '4e7axyi7',
-  dataset: 'production',
-  apiVersion: '2025-04-26',
-  token,
-  useCdn: false,
-});
+const mkClient = (token) =>
+  createClient({ projectId: '4e7axyi7', dataset: 'production', apiVersion: '2025-04-26', token, useCdn: false, perspective: 'raw' });
+
+let client = null;
+for (const [name, token] of candidates) {
+  try {
+    const c = mkClient(token);
+    await c.fetch('*[_type=="siteSettings"][0]._id'); // trivial authed read
+    // confirm write scope with a no-op transaction on a throwaway (dry check via mutate with returnDocuments won't write); skip — read auth is enough signal
+    client = c;
+    console.log(`Using token: ${name}`);
+    break;
+  } catch (e) {
+    console.log(`Token ${name}: FAILED (${e?.response?.body?.error || e.message})`);
+  }
+}
+if (!client) throw new Error('No working Sanity token found in either .env.local');
 
 const APPLY = process.env.APPLY === '1';
 
@@ -32,36 +55,39 @@ const APPLY = process.env.APPLY === '1';
 // capital-P match never reaches them.
 const fixString = (s) => s.replace(/Pro[Cc]ell( Therapies)?/g, (m, ther) => (ther ? m : 'procell'));
 
-let changedStrings = 0;
-const walk = (val) => {
+let diffs = [];
+const walk = (val, path) => {
   if (typeof val === 'string') {
     const next = fixString(val);
-    if (next !== val) changedStrings++;
+    if (next !== val) diffs.push({ path, before: val, after: next });
     return next;
   }
-  if (Array.isArray(val)) return val.map(walk);
+  if (Array.isArray(val)) return val.map((v, i) => walk(v, `${path}[${i}]`));
   if (val && typeof val === 'object') {
     const out = {};
-    for (const [k, v] of Object.entries(val)) out[k] = k.startsWith('_') || k === 'current' ? v : walk(v);
+    for (const [k, v] of Object.entries(val)) out[k] = k.startsWith('_') || k === 'current' ? v : walk(v, path ? `${path}.${k}` : k);
     return out;
   }
   return val;
 };
 
-const all = await client.fetch('*[!(_id in path("versions.**"))]');
-const targets = all.filter((d) => JSON.stringify(d).match(/Pro[Cc]ell/));
+// Exclude drafts-of-releases (versions.**) and ALL system docs (_.**, e.g. _.schemas.*)
+const all = await client.fetch('*[!(_id in path("versions.**")) && !(_id in path("_.**"))]');
+const targets = all
+  .filter((d) => !d._id.startsWith('_.') && d._type !== 'system.schema' && !d._type.startsWith('sanity.'))
+  .filter((d) => JSON.stringify(d).match(/Pro[Cc]ell/));
 console.log(`Scanned ${all.length} docs; ${targets.length} contain the brand word.\n`);
 
 const tx = client.transaction();
 let docsChanged = 0;
+const trunc = (s) => (s.length > 90 ? s.slice(0, 90) + '…' : s);
 for (const doc of targets) {
-  changedStrings = 0;
-  const fixed = walk(doc);
-  if (JSON.stringify(fixed) === JSON.stringify(doc)) continue; // only "Procell Therapies" -> unchanged
+  diffs = [];
+  const fixed = walk(doc, '');
+  if (!diffs.length) continue; // only "Procell Therapies" -> unchanged
   docsChanged++;
-  console.log(`• [${doc._type}] ${doc._id}`);
-  if (doc.title && fixed.title !== doc.title) console.log(`    title: "${doc.title}"  ->  "${fixed.title}"`);
-  console.log(`    (${changedStrings} string field(s) changed)`);
+  console.log(`• [${doc._type}] ${doc._id}  (${diffs.length} change(s))`);
+  for (const d of diffs) console.log(`    ${d.path}: "${trunc(d.before)}"  ->  "${trunc(d.after)}"`);
   tx.createOrReplace(fixed);
 }
 
