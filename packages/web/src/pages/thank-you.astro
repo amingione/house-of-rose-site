@@ -21,6 +21,12 @@ const data =
   (await sanityFetch<ThankYou | null>(
     `*[_type=="thankYou"][0]{ _id, kicker, heading, paragraph1, paragraph2, ctaPrimaryText, ctaSecondaryText, seoTitle, seoDescription }`,
   )) ?? ({} as ThankYou);
+const paragraph2 = (data.paragraph2 ?? "In the meantime, you're welcome to review our current services.")
+  .replace(/book directly online/gi, 'review our current services')
+  .replace(/review the services menu/gi, 'review our current services');
+const servicesCta = /book|schedule/i.test(data.ctaSecondaryText ?? '')
+  ? 'View Services'
+  : (data.ctaSecondaryText ?? 'View Services');
 ---
 
 <BaseLayout
@@ -53,7 +59,7 @@ const data =
       </p>
 
       <p class="text-muted text-[14px] leading-relaxed mb-12" {...sbFieldPath('paragraph2')}>
-        {data.paragraph2 ?? "In the meantime, you're welcome to browse our services or book directly online."}
+        {paragraph2}
       </p>
 
       <div class="flex gap-3 justify-center flex-wrap">
@@ -67,7 +73,7 @@ const data =
           class="btn-gold"
           {...sbFieldPath('ctaSecondaryText')}
         >
-          {data.ctaSecondaryText ?? 'View Services & Book'}
+          {servicesCta}
         </a>
       </div>
 

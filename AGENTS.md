@@ -14,7 +14,7 @@ document, read:
 
 - `docs/SEO-AEO-PLAYBOOK.md` — the strategy, the 7 page types, writing rules, the publish checklist.
 - `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc type → route → JSON-LD → GROQ query.
-- `docs/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
+- `docs/internal_only/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
   no reverse-aging / guarantees / stem-cell / cure-disease / Groupon / unsupported exosome-peptide claims).
 
 Hard rules (inherited by every task):
@@ -29,7 +29,7 @@ Hard rules (inherited by every task):
 7. **Compliance is non-negotiable** — "med spa / medical spa" is now **allowed (don't lead;** lead with
    "advanced aesthetics & wellness studio," never deny being one, avoid "day spa"); no guarantees,
    reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported exosome/peptide
-   claims. Follow `docs/COMPLIANCE-COPY-RULES.md` on every customer-facing surface.
+   claims. Follow `docs/internal_only/COMPLIANCE-COPY-RULES.md` on every customer-facing surface.
 
 ## Framework Rules
 - Pages are `.astro` files — use Astro component syntax

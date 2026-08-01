@@ -6,7 +6,14 @@
 ---
 **House of Rose Aesthetics · Punta Gorda, FL**
 _Status: **LIVE** — opened June 15, 2026. Primary category: **Medical spa**. This is the optimization source of truth._
-_Last revised: 2026-07-28 from the live Google Business Profile · Source of truth for NAP: Sanity `siteSettings` (project 4e7axyi7)._
+_Last revised: 2026-07-31 from the live Google Business Profile · Source of truth for NAP: Sanity `siteSettings` (project 4e7axyi7)._
+
+> **Voice note (2026-08-01):** the draft copy below (posts, Q&A, service descriptions) predates the
+> **House of Rose Creative System v1.0** (Notion, July 30, 2026) and has been swept for retired language
+> ("luxury play," "boutique," "guests," rose emoji, "beauty blooms within"). For any new copy, draft from
+> the Creative System's Brand Voice & Copy Standards, not from older examples in this file.
+> **Section 3's business description has not been reconciled** against the Creative System's approved GBP
+> description — confirm with Amber which text is actually live on Google before treating either as canon.
 
 > **Brand law.** In customer-facing **prose** (description, posts, review replies, Q&A) we **lead** as an
 > **advanced aesthetics & wellness studio** — voice confident, not loud; specific over superlative; honest;
@@ -49,6 +56,8 @@ medical director, with Guardian-managed compliance. This is the locked stack:
 | **Primary** ⭐ | `Medical spa` | Captures the top "near me" packs; correct for injectables + regenerative under medical oversight |
 | Secondary | `Facial spa` | Facial-specific "near me" queries |
 | Secondary | `Skin care clinic` | Skin treatments, facials, and advanced modalities |
+| Secondary | `Health and beauty shop` | Customer-facing professional skincare and retail products |
+| Secondary | `Vitamin & supplements store` | Vitamin injections, IV support, and the GLP-1 wellness service |
 
 > **Removed (deliberately):**
 - ❌ `Wellness center` — too broad; Google maps it to rehab/holistic and auto-suggests off-fit items. IV +
@@ -69,7 +78,7 @@ don't stuff — every category should map to a service you actually deliver and 
 extra verification, or tries to auto-shift them to "Medical clinic." Because you're fully licensed, that's
 fine — keep your medical director / license details handy if Google requests them, and re-check the primary
 category after any Google "we updated your info" email (they sometimes revert it). The live five-category
-stack above is authoritative as of July 28, 2026.
+stack above is authoritative as of July 31, 2026.
 
 > **Brand reconciliation:** the public *label* under your name will read "Medical spa." Everywhere you control
 > the words — name, description, posts, replies, services, website — you stay **"advanced aesthetics &
@@ -84,14 +93,14 @@ stack above is authoritative as of July 28, 2026.
 | **Business name** | `House of Rose Aesthetics` |
 | **Address** | `525 E Olympia Ave, Unit 9` · `Punta Gorda, FL 33950` |
 | **Phone (primary)** | `(844) 941-7673` — spells **ROSE**. Keep digits in GBP; use `(844) 941-ROSE` in marketing/print. |
-| **Texting / chat** | `(844) 941-7673` (SMS enabled ✅) | # still trying to get this verified w/grasshopper
+| **Phone SMS** | `(844) 941-7673` — not enabled; Grasshopper verification is pending ❌ |
 | **Website** | `https://houseofrosefl.com/` |
 | **Instagram** | `https://www.instagram.com/house.of.rose.aesthetics/` ✅ |
 | **Facebook** | `https://www.facebook.com/hofraesthetics` ✅ |
 | **Hours** | Mon–Fri `9:00 AM–5:00 PM` · Sat & Sun `Closed` ✅ |
 | **Opening date** | `June 15, 2026` ✅ |
 | **Menu / services link** | `https://houseofrose.glossgenius.com/services` ✅ |
-| **Google chat** | Not configured |
+| **Google chat / messaging** | Account created; connection to the profile is not configured ❌ |
 
 **Name policy — do not break this:** Google forbids descriptors/keywords in the name. Keep it **exactly**
 `House of Rose Aesthetics`. Never "House of Rose Aesthetics | Medical Spa Punta Gorda" — that risks suspension
@@ -102,8 +111,9 @@ services, and posts, where it's allowed and still indexed.
 `https://houseofrose.glossgenius.com/services`. This is the live booking-menu source and is intentionally
 different from the website's `/services/` content hub.
 
-**Texting is on — respond fast.** Google tracks message response time and can show "typically replies in a
-few minutes." Set an away message and check it daily, or the metric will work against you.
+**SMS is not an active customer channel.** Until Grasshopper verification and the profile connection are
+complete, use call, website contact form, walk-in, and the services menu as the public contact paths. Do not
+invite customers to text or promise an SMS response time.
 
 **Hours note:** the live planning attribute is **Appointment not required**. Keep the main hours above, add
 **Special hours** for holidays, and post a hurricane/closure note when Charlotte County is under a warning.
@@ -131,7 +141,7 @@ House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florid
 Google ranks profiles for the **specific services** listed, and these surface on "near me" service queries.
 Add each as a Service with its name + a description. Brand rules applied:
 - **Regenerative / skin / IV / wellness → show "From $"** (transparency is your premium, per positioning).
-- **Injectables → price reads "Shared at consultation"** (deliberate luxury consult-only play; avoids the
+- **Injectables → price reads "Shared at consultation"** (keeps a high-converting consult step and avoids the
   Sweet Spot/Tribe per-unit price war). No membership framing and no invented per-unit numbers.
 - Descriptions are ≤ ~300 chars, voice-compliant, no guarantees.
 
@@ -183,14 +193,14 @@ Add each as a Service with its name + a description. Brand rules applied:
 > Subtle, balanced lip refinement designed to look like you on your best day.
 
 > **Pricing flexibility (your call):** now that you're operating fully licensed, you *may* show "From $" on
-> injectables too (e.g. neuromodulators "From $15/unit"). The "shared at consultation" approach is still the
-> recommended luxury play — it keeps you out of the Sweet Spot/Tribe per-unit price war and forces the
-> high-converting consult. Keep consult-only unless you have a strategic reason to post a number.
+> injectables too (e.g. neuromodulators "From $15/unit"). The "shared at consultation" approach is still
+> recommended — it keeps you out of the Sweet Spot/Tribe per-unit price war and forces the high-converting
+> consult. Keep consult-only unless you have a strategic reason to post a number.
 
 ### Group D — Wellness
 
 **IV Hydration Therapy** · _From $185_
-> Boutique IV hydration to support energy, recovery, and glow. Choose a signature blend or a tailored drip.
+> IV hydration in a calm, private suite to support energy, recovery, and glow. Choose a signature blend or a tailored drip.
 
 **Vitamin Injections (B12 / Glutathione / Lipo)** · _From $35_
 > Quick, targeted boosters to support energy, metabolism, and skin radiance.
@@ -263,7 +273,7 @@ strategy and validated against current 2026 market data.
 > loved add-on to microchanneling or a peel.
 
 **IV therapy** · _From $185_
-> Boutique IV hydration and wellness drips to support energy, recovery, and glow — in a calm, private suite.
+> IV hydration and wellness drips in a calm, private suite to support energy, recovery, and glow.
 > Choose a signature blend or a tailored drip. NAD+ from $425.
 
 ### Facial spa (additional)
@@ -339,10 +349,10 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 > proud to offer in Charlotte County.
 
 **Q: Do you take walk-ins?**
-> A: Yes — walk-ins are welcome. Waxing and facials always take walk-ins, and we'll fit you in for other services, including injectables, whenever there's room on the schedule. For a guaranteed time, call or text (844) 941-7673 to book ahead.
+> A: Yes — walk-ins are welcome. Waxing and facials always take walk-ins, and we'll fit you in for other services, including injectables, whenever there's room on the schedule. For a guaranteed time, call (844) 941-7673 to book ahead.
 
 **Q: Do I have to commit to injectables to come here?**
-> A: Not at all. Many guests start with skin — a facial, BioRePeel, or microchanneling — and build a plan
+> A: Not at all. Many clients start with skin — a facial, BioRePeel, or microchanneling — and build a plan
 > from there. We meet you where you are.
 
 **Q: Where are you located and is there parking?**
@@ -357,8 +367,8 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 Post **weekly** minimum. Posts expire from prominence, so cadence matters. No hype, no "act now." Drafts:
 
 **Post 1 — Welcome (What's new)**
-> Welcome to House of Rose Aesthetics — Punta Gorda's private home for advanced, regenerative aesthetics.
-> Where beauty blooms within. Refreshed, never overdone. Call (844) 941-7673 to begin. 🌹
+> Welcome to House of Rose Aesthetics — Punta Gorda's home for advanced, regenerative aesthetics.
+> Individualized planning, refreshed and natural-looking results. Call (844) 941-7673 to begin.
 
 **Post 2 — Signature service (PRF)**
 > Meet PRF: regeneration from your own biology. Many clients choose it to soften under-eyes naturally — no
@@ -387,7 +397,7 @@ Post **weekly** minimum. Posts expire from prominence, so cadence matters. No hy
 ## 8. Photos (Google rewards quantity + freshness)
 
 Upload at launch, then a few fresh shots monthly. Use your brand photo style (warm, restrained, sensory — see
-`docs/IMAGE-SHOT-LIST.md` and the brand stylesheet). **Geo-name every file before upload**, e.g.
+`docs/marketing/PHOTOGRAPHY.md` and the brand stylesheet). **Geo-name every file before upload**, e.g.
 `house-of-rose-aesthetics-punta-gorda-prf-facial.jpg`.
 
 Minimum launch set:
@@ -443,17 +453,18 @@ Google cross-checks your name/address/phone across the web. Make all three **byt
 2. ✅ Name = `House of Rose Aesthetics` (no descriptors).
 3. ✅ Primary category `Medical spa` + secondaries `Facial spa`, `Skin care clinic`,
    `Health and beauty shop`, and `Vitamin & supplements store`.
-4. ✅ Address, phone `(844) 941-7673`, texting, website, hours (Mon–Fri 9–5), opening date, service areas.
+4. ✅ Address, phone `(844) 941-7673`, website, hours (Mon–Fri 9–5), opening date, service areas.
+   Phone SMS and Google chat/profile messaging remain pending.
 5. ✅ Description live (section 3).
 6. ✅ Menu/services link → `https://houseofrose.glossgenius.com/services`.
 7. ☐ Add all services with descriptions + pricing convention (section 4), incl. Waxing.
 8. ✅ Attributes set exactly as listed in section 5, including appointment not required and no NFC payments.
 9. ☐ 15–20 geo-named photos uploaded (logo, cover, exterior, interior, team, at-work).
-10. ☐ 7 Q&As posted from owner + marked helpful (section 6).
+10. ☐ 6 Q&As posted from owner + marked helpful (section 6).
 11. ☐ First 3 Google Posts published; rest scheduled weekly.
 12. ☐ Review link + QR generated; GlossGenius request flow live; in-person ask scripted.
 13. ☐ NAP citations matched across Apple, Bing, Yelp, Facebook, IG, Chamber.
-14. ☐ Set an SMS away-message and check texts daily (response-time metric).
+14. ☐ Complete Grasshopper SMS verification and connect Google chat/profile messaging before publishing any text-message CTA.
 
 ## 12. Ongoing cadence
 

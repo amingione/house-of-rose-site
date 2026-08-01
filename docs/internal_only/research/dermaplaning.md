@@ -180,10 +180,10 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 ## Sources
 
 **Local docs read:**
-- `docs/services/facials/dermaplaning.md` — **empty (0 bytes)** — flagged as a content gap.
-- `docs/services/pricing/advanced-facials-master-menu.md` — Dermaplane Prep +$45 add-on; package framework; compliance guardrails.
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
-- `docs/services/facials/packagesAdd-ons.md` — dermaplaning cadence (~monthly, 28–40 day turnover), package/add-on framing.
+- `docs/internal_only/services/facials/dermaplaning.md` — **empty (0 bytes)** — flagged as a content gap.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — Dermaplane Prep +$45 add-on; package framework; compliance guardrails.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — dermaplaning cadence (~monthly, 28–40 day turnover), package/add-on framing.
 - `docs/GOOGLE-BUSINESS-PROFILE.md` — GBP service catalog "Dermaplaning · From $95" (price conflict).
 
 **Sanity docs consulted (snapshot):**

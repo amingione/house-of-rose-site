@@ -5,6 +5,7 @@ import { sanityFetch } from '@/lib/sanity';
 import { SUPPORT_PAGE_QUERY, type FAQ, type SupportPage } from '@/lib/queries';
 import { breadcrumbList, faqPage } from '@/lib/structuredData';
 import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
 const data = (await sanityFetch<SupportPage | null>(SUPPORT_PAGE_QUERY)) ?? {};
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -12,13 +13,16 @@ const canonical = new URL('/support/', site).toString();
 const annotations = data._id ? sbObjectId(data._id) : {};
 
 const fallbackFaqs: FAQ[] = [
-  { question: 'How quickly will House of Rose respond?', answer: 'Messages received Monday through Friday are typically answered within one business day. For the fastest help during studio hours, call or text (844) 941-7673.' },
-  { question: 'How do I change or cancel an appointment?', answer: 'Call or text (844) 941-7673 as soon as your plans change. The House of Rose team can review your appointment and explain any timing or cancellation terms that apply.' },
+  { question: 'How quickly will House of Rose respond?', answer: 'Messages received Monday through Friday are typically answered within one business day. For the fastest help during studio hours, call (844) 941-7673.' },
+  { question: 'How do I change or cancel an appointment?', answer: 'Call (844) 941-7673 as soon as your plans change. The House of Rose team can review your appointment and explain any timing or cancellation terms that apply.' },
   { question: 'Where is House of Rose Aesthetics located?', answer: 'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Walk-ins are welcome, and appointments are recommended for guaranteed timing.' },
   { question: 'Can you help me choose which service to book?', answer: 'Yes. Start with a consultation or AI skin analysis when you are unsure which service fits your goals. Final recommendations and candidacy are confirmed by the appropriate provider.' },
   { question: 'What are the studio hours?', answer: 'House of Rose Aesthetics is open Monday through Friday from 9:00 AM to 5:00 PM and closed Saturday and Sunday.' },
 ];
-const faqs = data.faqs?.length ? data.faqs : fallbackFaqs;
+const faqs = (data.faqs?.length ? data.faqs : fallbackFaqs).map((faq) => ({
+  ...faq,
+  answer: alignPublicChannelCopy(faq.answer),
+}));
 const faqSchema = faqPage(faqs);
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -28,7 +32,7 @@ const breadcrumb = breadcrumbList([
 
 <BaseLayout
   title={data.seoTitle ?? 'Customer Support | House of Rose Aesthetics'}
-  description={data.seoDescription ?? 'Get appointment, booking, and visit support from House of Rose Aesthetics in Punta Gorda, FL. Call or text (844) 941-7673 or email info@houseofrosefl.com.'}
+  description={alignPublicChannelCopy(data.seoDescription ?? 'Get appointment, booking, and visit support from House of Rose Aesthetics in Punta Gorda, FL. Call (844) 941-7673 or email info@houseofrosefl.com.')}
 >
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   <SchemaMarkup item={breadcrumb} slot="head" />
@@ -53,8 +57,8 @@ const breadcrumb = breadcrumbList([
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 border-y border-gold-metal/20">
           <article class="min-w-0 py-9 md:pr-8 border-b md:border-b-0 md:border-r border-gold-metal/20">
-            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('callTitle')}>{data.callTitle ?? 'Call or text'}</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('callBody')}>{data.callBody ?? 'Best for appointment changes or questions that need a quick answer during studio hours.'}</p>
+            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('callTitle')}>{alignPublicChannelCopy(data.callTitle ?? 'Call')}</h3>
+            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('callBody')}>{alignPublicChannelCopy(data.callBody ?? 'Best for appointment changes or questions that need a quick answer during studio hours.')}</p>
             <a href="tel:+18449417673" class="learn-more" {...sbFieldPath('callCta')}>{data.callCta ?? '(844) 941-7673'}</a>
           </article>
           <article class="min-w-0 py-9 md:px-8 border-b md:border-b-0 md:border-r border-gold-metal/20">
@@ -63,9 +67,9 @@ const breadcrumb = breadcrumbList([
             <a href="mailto:info@houseofrosefl.com" class="learn-more break-all" {...sbFieldPath('emailCta')}>{data.emailCta ?? 'info@houseofrosefl.com'}</a>
           </article>
           <article class="min-w-0 py-9 md:pl-8">
-            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('bookingTitle')}>{data.bookingTitle ?? 'Book online'}</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('bookingBody')}>{data.bookingBody ?? 'Browse current services and request an appointment through our online booking page.'}</p>
-            <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="learn-more" {...sbFieldPath('bookingCta')}>{data.bookingCta ?? 'View booking options'}</a>
+            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('bookingTitle')}>Services menu</h3>
+            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('bookingBody')}>{alignPublicChannelCopy(data.bookingBody ?? 'Browse current services, then call if you would like help reserving a time.')}</p>
+            <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="learn-more" {...sbFieldPath('bookingCta')}>View services</a>
           </article>
         </div>
       </div>

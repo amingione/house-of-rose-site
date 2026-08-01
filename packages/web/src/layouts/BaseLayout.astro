@@ -42,11 +42,11 @@ const {
   chrome = 'site',
 } = Astro.props;
 
-const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const gtmId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_GTM_ID;
 const gtmMeasurementPath = '/metrics/';
 const gscVerify = import.meta.env.PUBLIC_GSC_VERIFY;
-// Never fire third-party measurement on `astro dev` — keeps local testing out
-// of vendor consoles and avoids Ahrefs' expected "Ignoring Event: localhost" noise.
+// Never fire measurement on `astro dev` — the Netlify edge gateway is not
+// available there, and local testing should stay out of vendor consoles.
 const ahrefsKey = import.meta.env.DEV ? undefined : 'XdzOvGXmUENnBpyYIDhXOQ';
 const metaPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_META_PIXEL_ID;
 const openAIAdsPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID;

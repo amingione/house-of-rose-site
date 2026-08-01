@@ -53,7 +53,7 @@ const faqs = [
     _key: 'ai-treatment-cost',
     _type: 'faq',
     question: 'How much do treatments cost?',
-    answer: 'Treatment investment varies by service, provider, treatment area, product, and whether a series is appropriate. Current options and starting prices are shown in the online booking menu; personalized recommendations may require a consultation before final pricing is confirmed.',
+    answer: 'Treatment investment varies by service, provider, treatment area, product, and whether a series is appropriate. Current options and starting prices are shown in the services menu; personalized recommendations may require a consultation before final pricing is confirmed.',
   },
   {
     _key: 'ai-treatment-plans',
@@ -71,7 +71,7 @@ const faqs = [
     _key: 'ai-book-consultation',
     _type: 'faq',
     question: 'How do I book a consultation?',
-    answer: 'Call or text (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
+    answer: 'Call (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
   },
   {
     _key: 'ai-house-of-rose-difference',

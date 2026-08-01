@@ -1,8 +1,8 @@
 # House of Rose — Advertising Compliance Runbook
 
-> Operational companion to `docs/compliance/FL-ADVERTISING-LAW.md`. That file establishes *what the law
-> requires*; this one is *what you do, in what order, before and after publishing.* Verified authority
-> and citations live there — this file does not restate them.
+> Operational pre-launch checklist. The former `FL-ADVERTISING-LAW.md` and
+> `CONSULTATION-FEE-POLICY.md` drafts were intentionally deleted on 2026-07-27. This runbook does not
+> replace current source verification or Florida healthcare counsel review.
 
 ---
 
@@ -22,7 +22,7 @@ line. Copy this table into the campaign folder at launch and date each sign-off.
 | G4 | License type stated for every named practitioner | Amber | Copy review checklist | ☐ |
 | G5 | § 400.9905(4)(g) exemption position documented; certificate decision made | Counsel | Written legal opinion on file | ☐ |
 | G6 | § 464.012 supervising-physician protocol current and covering **every advertised service** | Amber + medical director | Signed, dated protocol | ☐ |
-| G7 | Consultation fee policy signed by all three parties | Amber | Executed `CONSULTATION-FEE-POLICY.md` | ☐ |
+| G7 | Consultation fee and credit terms approved and retained outside this repository | Amber + counsel | Executed policy or counsel-approved terms | ☐ |
 | G8 | Google: DKI off, automatically created assets off | Amber | Settings screenshots (§2.1) | ☐ |
 | G9 | Meta: Advantage+ creative enhancements and text variations off | Amber | Settings screenshots (§2.2) | ☐ |
 | G10 | Every image cleared for sourcing — model labelled, or client consent + material-connection disclosure on file | Amber + counsel | Per-asset log (§3) | ☐ |
@@ -215,8 +215,10 @@ Campaign or framework version reviewed: `[VERSION / COMMIT]` · Date: `[DATE]`
 | `[NAME, FIRM]` | Florida healthcare attorney | § 400.9905(4)(g) position · § 456.062 trigger and placement · 64B8-11.001 · 16 CFR § 255 image and endorsement exposure · fee policy sufficiency | | |
 | Amber Mingione | Owner | Gates G1–G15 evidenced | | |
 
-**Reviewed files:** `docs/compliance/FL-ADVERTISING-LAW.md` · `docs/compliance/CONSULTATION-FEE-POLICY.md` ·
-`docs/compliance/AD-COMPLIANCE-RUNBOOK.md` · the shipping ad copy · the strategy document.
+**Reviewed files:** `docs/internal_only/compliance/README.md` ·
+`docs/internal_only/compliance/GOOGLE-ADS-COMPLIANCE.md` ·
+`docs/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` · the shipping ad copy · the strategy document ·
+the current external legal source packet supplied to the reviewers.
 
 ---
 

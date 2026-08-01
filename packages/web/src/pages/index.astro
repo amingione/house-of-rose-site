@@ -5,8 +5,8 @@ import { sanityFetch } from "@/lib/sanity";
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
 import { HOMEPAGE_QUERY, type HomePage } from "@/lib/queries";
 
-// Booking + internal links (single source of truth so they're easy to swap)
-const BOOKING_URL = "https://houseofrose.glossgenius.com/book";
+// Public contact + services links (the GlossGenius URL is a menu, not the primary booking CTA)
+const SERVICES_MENU_URL = "https://houseofrose.glossgenius.com/services";
 const SKIN_ANALYSIS_URL = "/skin-analysis/";
 const SHOP_URL = "/shop/";
 
@@ -61,6 +61,13 @@ const GROUP_ANCHORS: Record<string, string> = {
 };
 const groupHref = (name: string): string =>
 	GROUP_ANCHORS[name.trim().toLowerCase()] ?? "/services/";
+const alignPublicChannelCopy = (value: string): string =>
+	value
+		.replace(/call\s*(?:or|\/)\s*text/gi, "call")
+		.replace(/book (?:your visit )?online/gi, "review the current services menu");
+const servicesMenuCta = /book|schedule/i.test(hp.scanCtaSecondaryText ?? "")
+	? "View Services"
+	: (hp.scanCtaSecondaryText ?? "View Services");
 
 ---
 
@@ -268,10 +275,10 @@ const groupHref = (name: string): string =>
 					>{hp.scanCtaPrimaryText ?? "See What to Expect"}</a
 				>
 				<a
-					href={BOOKING_URL}
+					href={SERVICES_MENU_URL}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{hp.scanCtaSecondaryText ?? "Book a Skin Analysis"}</a
+					class="btn-outline-gold inline-flex" {...sbFieldPath("scanCtaSecondaryText")}>{servicesMenuCta}</a
 				>
 			</div>
 		</div>
@@ -375,14 +382,14 @@ const groupHref = (name: string): string =>
 				class="text-muted text-[15px] leading-[1.8] max-w-[600px] mx-auto mb-9"
 				{...sbFieldPath("localPara2")}
 			>
-				{hp.localPara2 ?? "Know what you want? Book your visit online. Still sorting through the options? Call or send us a message and we'll help you choose a sensible place to start."}
+				{alignPublicChannelCopy(hp.localPara2 ?? "Know what you want? Review the current services menu. Still sorting through the options? Call or send us a message and we'll help you choose a sensible place to start.")}
 			</p>
 			<div class="flex gap-3 justify-center flex-wrap">
 				<a
-					href={BOOKING_URL}
+					href={SERVICES_MENU_URL}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="btn-gold">Book Online</a
+					class="btn-gold">View Services</a
 				>
 				<a href="/contact/" class="btn-outline-gold">Contact Us</a>
 			</div>
@@ -409,9 +416,7 @@ const groupHref = (name: string): string =>
 				{hp.finalPara ?? "Tell us what you're hoping to improve, and we'll help you find the next step that fits your goals."}
 			</p>
 			<a
-				href={BOOKING_URL}
-				target="_blank"
-				rel="noopener noreferrer"
+				href="/consultation/"
 				class="btn-gold"
 				{...sbFieldPath("finalCtaText")}
 			>

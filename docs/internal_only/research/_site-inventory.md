@@ -21,14 +21,14 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 | 3 | `/services/[slug]/` | `services/[slug].astro` | `service` · `SERVICE_BY_SLUG_QUERY` + `ALL_SERVICE_SLUGS_QUERY` | **Inline hand-rolled** `Service`/`BreadcrumbList`/`FAQPage` ⚠️ | tel · "Book Online" → GG · card links | back-link → parent/`/services` ⚠️, hub treatments ⚠️, related ⚠️. `Astro.redirect('/services',307)` on miss ⚠️ |
 | 4 | `/services/collections/` | `services/collections/index.astro` | `serviceCollection` · `ALL_COLLECTIONS_QUERY` | none | "View Collection" ⚠️ | collection pages, `/services/{slug}` chips ⚠️ |
 | 5 | `/services/collections/[collection]/` | `services/collections/[collection].astro` | `serviceCollection` · `COLLECTION_BY_SLUG_QUERY` + `ALL_COLLECTION_SLUGS_QUERY` | none | service cards | "← All Collections" ⚠️, `/services/{slug}` ⚠️. `Astro.redirect` ⚠️ |
-| 6 | `/services/professional-makeup/` | `services/professional-makeup/index.astro` | `professionalMakeupPage` singleton · `PROFESSIONAL_MAKEUP_PAGE_QUERY` | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Call or Text to Book" → tel · sms · GG | jane-iredale/, events/ ✅ |
+| 6 | `/services/professional-makeup/` | `services/professional-makeup/index.astro` | `professionalMakeupPage` singleton · `PROFESSIONAL_MAKEUP_PAGE_QUERY` | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Call to Book" → tel · sms · GG | jane-iredale/, events/ ✅ |
 | 7 | `/services/professional-makeup/jane-iredale/` | `.../jane-iredale.astro` | `janeIredalePage` · `JANE_IREDALE_PAGE_QUERY` | `brand()`+`breadcrumbList()`+`faqPage()` ✅ | tel · "Makeup Services" | makeup/, events/ ✅ |
-| 8 | `/services/professional-makeup/events/` | `.../events.astro` | `makeupEventsPage` · `MAKEUP_EVENTS_PAGE_QUERY` | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Call or Text to Plan" → tel · sms | makeup/, jane-iredale/ ✅ |
+| 8 | `/services/professional-makeup/events/` | `.../events.astro` | `makeupEventsPage` · `MAKEUP_EVENTS_PAGE_QUERY` | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Call to Plan" → tel · sms | makeup/, jane-iredale/ ✅ |
 | 9 | `/experience/` | `experience.astro` | `experienceContent` · `EXPERIENCE_CONTENT_QUERY` | none | tel · GG | **No internal body links** ⚠️ |
 | 10 | `/faq/` | `faq.astro` | aggregates service/costGuide/comparison/localArea FAQs · `FAQ_AGGREGATE_QUERY` | `faqPage()`+`breadcrumbList()` ✅ | tel · "Book a Consult" → GG | "View page →" → services/cost/compare/areas — all ⚠️no-slash (`routeFor`) |
 | 11 | `/support/` | `support.astro` | `supportPage` · `SUPPORT_PAGE_QUERY` | `faqPage()`+`breadcrumbList()` ✅ | tel · mailto info@ · GG · "Contact House of Rose" → `/contact/` ✅ | `/contact/` |
 | 12 | `/contact/` | `contact.astro` | `contactPage` · **inline GROQ in page** ⚠️ | none | tel · "Schedule Now" → GG · maps · form · "Get Directions" | `/privacy-policy` ×2 ⚠️. ⚠️ **Maps URLs use `Ste+9`** — NAP drift |
-| 13 | `/skin-analysis/` | `skin-analysis.astro` | `skinAnalysis` · **inline GROQ in page** ⚠️ | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Book Your Scan" → GG · "View Services" ⚠️ · form · "Book online" → GG | `/services` ⚠️, concern chips `/concerns/{slug}` ×6 ⚠️ |
+| 13 | `/skin-analysis/` | `skin-analysis.astro` | `skinAnalysis` · **inline GROQ in page** ⚠️ | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Book Your Scan" → GG · "View Services" ⚠️ · form · "Review the services menu" → GG | `/services` ⚠️, concern chips `/concerns/{slug}` ×6 ⚠️ |
 | 14 | `/rent-a-room/` | `rent-a-room.astro` | `rentARoom` · **inline GROQ in page** ⚠️ | none | "Apply Now" → `#apply` · form · tel · "Email Us" → mailto | **No internal body links** (anchors only) ⚠️ |
 
 ### 1.2 Shop & checkout
@@ -56,7 +56,7 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 | 28 | `/blog/[slug]/` | `blog/[slug].astro` | `blogPost` · `BLOG_POST_BY_SLUG_QUERY` + `ALL_BLOG_POST_SLUGS_QUERY` | **Inline hand-rolled** `BlogPosting`+`BreadcrumbList` ⚠️ (`/blog` no-slash) | "Learn More" → `/services/{slug}` ⚠️ · GG | `/blog` ⚠️, `/services/{slug}` ⚠️. `Astro.redirect` ⚠️ |
 | 29 | `/packages/` | `packages/index.astro` | `treatmentPackage` · `ALL_TREATMENT_PACKAGES_QUERY` | none | tel · GG | package cards → `/packages/{slug}`. **ORPHAN cluster** ⚠️ |
 | 30 | `/packages/[slug]/` | `packages/[slug].astro` | `treatmentPackage` · `TREATMENT_PACKAGE_BY_SLUG_QUERY` + `ALL_TREATMENT_PACKAGE_SLUGS_QUERY` | **Inline hand-rolled** `Service`+`OfferCatalog`+`BreadcrumbList` ⚠️ | tel · GG | "← All Packages" ⚠️, included services ⚠️. `Astro.redirect` ⚠️ |
-| 31 | `/guides/microchanneling-prf/` | `guides/microchanneling-prf.astro` | **static/hardcoded** (from `docs/services/microchanneling/`) | `breadcrumbList()`+`article()`+`faqPage()` ✅ | tel · sms · GG · "Compare the two →" | Richest link page, all ✅ trailing-slash. ⚠️ Breadcrumb cites `/guides/` — no index |
+| 31 | `/guides/microchanneling-prf/` | `guides/microchanneling-prf.astro` | **static/hardcoded** (from `docs/internal_only/services/microchanneling/`) | `breadcrumbList()`+`article()`+`faqPage()` ✅ | tel · sms · GG · "Compare the two →" | Richest link page, all ✅ trailing-slash. ⚠️ Breadcrumb cites `/guides/` — no index |
 
 ### 1.4 Legal, cards & utilities
 

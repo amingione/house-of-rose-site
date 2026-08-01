@@ -2,7 +2,7 @@
 
 **Status:** Draft for Amber's review · **Provider lane:** Amber Mingione, Advanced Aesthetics Specialist (topical PRF = topical only, never injected)
 **Maps to:** `service` hub → `/services/microneedling/` (mature-skin lens) · `costGuide` → `/cost/microneedling-cost/` · `comparison` → `/compare/microneedling-vs-microchanneling/`
-**Booking model:** Book online or call/text (844) 941-7673.
+**Booking model:** Review the services menu or call (844) 941-7673.
 
 > **Wire-in note:** if a microneedling hub already exists in Sanity, *extend* it with this angle — do not create a second canonical hub for the same topic (AEO playbook §3.8). Publish-ready copy is above the notes.
 
@@ -76,7 +76,7 @@ A face treatment runs about **60–75 minutes**; adding PRF lengthens the visit 
 
 Series pricing brings the per-session cost down and is how most mature-skin plans are built. Amber sets the right combination at consultation.
 
-**Section CTA:** Ask about the PRF upgrade *(→ text (844) 941-7673)*
+**Section CTA:** Ask about the PRF upgrade *(→ call (844) 941-7673)*
 
 ### Questions people ask
 
@@ -138,7 +138,7 @@ Amber recommends the starting point at consultation — and it's genuinely a rec
 
 ## Review & build notes (not for the page)
 
-**Price citations (Rule #0):** primary source is `docs/staff/pricing/ALL-SERVICES-PRICING.MD` — the **live menu** (CLAUDE.md), anchor-corrected 2026-07-17, GlossGenius-aligned. It supersedes the older `advanced-facials-master-menu.md` (2026-07-10) where they differ:
+**Price citations (Rule #0):** primary source is `docs/internal_only/pricing/ALL-SERVICES-PRICING.MD` — the **live menu** (CLAUDE.md), anchor-corrected 2026-07-17, GlossGenius-aligned. It supersedes the older `advanced-facials-master-menu.md` (2026-07-10) where they differ:
 - Procell Pro (Face) **$299** · Procell MD (Face) **$349** (live in GG) — *corrected from the stale master-menu $250/$325*.
 - Corrective microneedling (face): single **$295** / series of 3 **$795** / series of 6 **$1,415** (consistent across both docs).
 - Topical PRF boost **+$175 face / +$200 body**.

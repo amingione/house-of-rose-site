@@ -1,6 +1,6 @@
 # PHASE 3 — CTA Differentiation & Journey Loops
 
-Prepend `00-MASTER-PROMPT.md`. Requires Phase 2 briefs (`docs/research/`). Goal: no two
+Prepend `00-MASTER-PROMPT.md`. Requires Phase 2 briefs (`docs/internal_only/research/`). Goal: no two
 pages feel the same, and every page loops the reader forward.
 
 ## The CTA doctrine

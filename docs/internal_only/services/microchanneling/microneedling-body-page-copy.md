@@ -7,8 +7,8 @@
 individual services. This file is the staged copy for whoever pushes the Sanity edit next
 (API quota was maxed at the time this was drafted).
 
-**Verified against:** `docs/staff/pricing/advanced-facials-master-menu.md:104` (name/price/duration),
-`docs/research/microneedling.md` (protocol, candidacy, series logic), `docs/research/_pricing-catalog.md:112`
+**Verified against:** `docs/internal_only/pricing/advanced-facials-master-menu.md:104` (name/price/duration),
+`docs/internal_only/research/MICRONEEDLING/microneedling.md` (protocol, candidacy, series logic), `docs/internal_only/research/_pricing-catalog.md:112`
 (price cross-check). Price and duration below match the live pricing docs — do not round or
 "clean up" the $325/60–90min figures without re-checking those sources first.
 

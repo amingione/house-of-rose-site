@@ -104,7 +104,7 @@ Maps cleanly to **existing** concern pages (all end in `/`):
 
 ## 8. Cost factors
 
-**⚠️ PENDING AMBER — NO LOCAL SOURCE.** There is **no carboxy pricing** in `docs/services/pricing/advanced-facials-master-menu.md` (the canonical advanced-facials pricing doc), no other local doc, and **no published Sanity `service`** for carboxy. **Do not invent or infer a price.**
+**⚠️ PENDING AMBER — NO LOCAL SOURCE.** There is **no carboxy pricing** in `docs/internal_only/pricing/advanced-facials-master-menu.md` (the canonical advanced-facials pricing doc), no other local doc, and **no published Sanity `service`** for carboxy. **Do not invent or infer a price.**
 
 What *will* move price once Amber sets it (for structuring the eventual menu, not for quoting):
 - **Standalone facial vs. add-on/finish** (an add-on like the Glo2Facial Finish would be a lower "+$" line; a standalone facial a full line).
@@ -168,7 +168,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 - `/services/Procell-microchanneling/` and any microneedling service (as stack/finish partners) — *confirm exact published slugs against the snapshot*
 - `/concerns/dark-circles/` (the concern it most serves)
 - `/shop/` brand/product pages for antioxidant/SPF home care
-- `/faq/` and booking (call/text — GlossGenius)
+- `/faq/` and booking (call — GlossGenius)
 
 **Proposed NEW pages (type + slug):**
 - **service** — `/services/carboxy-facial/` (the hub/treatment page). *Requires a new published Sanity `service` doc — does not exist yet.*
@@ -189,9 +189,9 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 ## Sources
 
 **Local docs read (repo paths):**
-- `docs/services/pricing/advanced-facials-master-menu.md` — canonical advanced-facials pricing/framework (Glo2Facial, Procell, microneedling, add-ons, package framework, compliance). **Contains NO carboxy entry.**
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (no carboxy).
-- `docs/services/facials/glo2facialxGeneo.md` — effectively empty (1 line); Glo2Facial detail lives in the master menu.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical advanced-facials pricing/framework (Glo2Facial, Procell, microneedling, add-ons, package framework, compliance). **Contains NO carboxy entry.**
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (no carboxy).
+- `docs/internal_only/services/facials/glo2facialxGeneo.md` — effectively empty (1 line); Glo2Facial detail lives in the master menu.
 - `CLAUDE.md` — provider lanes (carboxy listed under Amber's advanced facials).
 
 **Sanity content consulted:** published-services snapshot — **no carboxy `service` doc exists** (searched); Glo2Facial (`glo2facial`) present for comparison; concern slugs confirmed (`dark-circles`, `sun-damage`, `fine-lines-laxity`).

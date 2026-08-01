@@ -8,8 +8,8 @@ import { defineField, defineType } from 'sanity';
  * "Pre-Party Package"), and travel to your venue. Funnels back to the
  * Professional Makeup hub.
  *
- * Pricing renders as placeholders until confirmed. Booking is call/text (GBP
- * convention). See docs/COMPLIANCE-COPY-RULES.md — no discount language.
+ * Pricing renders as placeholders until confirmed. Booking is call (GBP
+ * convention). See docs/internal_only/COMPLIANCE-COPY-RULES.md — no discount language.
  */
 export const makeupEventsPage = defineType({
   name: 'makeupEventsPage',

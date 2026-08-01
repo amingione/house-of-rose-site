@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 import {
   ALL_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
@@ -63,14 +64,14 @@ export const GET: APIRoute = async ({ site }) => {
   if (aiSearchFaq?.faqs?.length) {
     lines.push(`## Frequently Asked Questions`, ``);
     for (const faq of aiSearchFaq.faqs) {
-      lines.push(`### ${faq.question}`, ``, faq.answer, ``);
+      lines.push(`### ${alignPublicChannelCopy(faq.question)}`, ``, alignPublicChannelCopy(faq.answer), ``);
     }
   }
 
   if (collections.length > 0) {
     lines.push(`## Service Collections`, ``);
     for (const col of collections) {
-      lines.push(`- [${col.title}](${base}/services/collections/${col.slug}/): ${col.description ?? col.title}`);
+      lines.push(`- [${col.title}](${base}/services/collections/${col.slug}/): ${alignPublicChannelCopy(col.description ?? col.title)}`);
     }
     lines.push(``);
   }
@@ -78,7 +79,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (services.length > 0) {
     lines.push(`## Services`, ``);
     for (const s of services) {
-      const desc = s.tagline ? ` — ${s.tagline.replace(/[.!?]+$/, '')}` : '';
+      const desc = s.tagline ? ` — ${alignPublicChannelCopy(s.tagline).replace(/[.!?]+$/, '')}` : '';
       // `service.price` is editor-authored free text (e.g. "From $45", "Consultation required")
       // — print it verbatim so we never emit a mangled "$From $45".
       const price = s.price ? ` ${s.price}.` : '';
@@ -107,7 +108,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (localAreas.length > 0) {
     lines.push(`## Areas Served`, ``);
     for (const a of localAreas) {
-      lines.push(`- [${a.title}](${base}/areas/${a.slug}/)${a.intro ? ` — ${a.intro}` : ''}`);
+      lines.push(`- [${a.title}](${base}/areas/${a.slug}/)${a.intro ? ` — ${alignPublicChannelCopy(a.intro)}` : ''}`);
     }
     lines.push(``);
   }
@@ -129,12 +130,11 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950`,
     `- **Phone:** (844) 941-7673`,
     `- **Email:** info@houseofrosefl.com`,
-    `- **Booking:** https://houseofrose.glossgenius.com/book`,
-    `- **Services:** https://houseofrose.glossgenius.com/services`,
+    `- **Services menu:** https://houseofrose.glossgenius.com/services`,
     `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
     `- **Opened:** June 15, 2026`,
     `- **Instagram:** @house.of.rose.aesthetics`,
-    `- **Facebook:** https://www.facebook.com/profile.php?id=61590233534310`,
+    `- **Facebook:** https://www.facebook.com/hofraesthetics`,
     `- **Service Area:** Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, Punta Gorda Isles`,
   );
 

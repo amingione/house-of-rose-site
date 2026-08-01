@@ -5,9 +5,10 @@ const root = process.cwd();
 const files = {
   contact: 'packages/web/src/pages/contact.astro',
   privacy: 'packages/web/src/pages/privacy-policy.astro',
+  publicCopy: 'packages/web/src/lib/publicCopy.ts',
   handler: 'packages/web/netlify/functions/lead-submit.ts',
   schema: 'packages/studio/schemas/leadSubmission.ts',
-  runbook: 'docs/compliance/grasshopper-toll-free-guidelines.md',
+  runbook: 'docs/internal_only/compliance/grasshopper-toll-free-guidelines.md',
 };
 
 const sources = Object.fromEntries(
@@ -29,10 +30,10 @@ const checks = [
   ['contact', 'https://houseofrosefl.com/privacy-policy/'],
   ['privacy', 'Customer data is not shared with 3rd parties for promotional or marketing purposes.'],
   ['privacy', 'Mobile opt-in and consent are never shared with anyone for any purpose.'],
-  ['privacy', 'House of Rose LLC Messaging Terms and Conditions'],
+  ['privacy', 'House of Rose Aesthetics LLC Messaging Terms and Conditions'],
   ['privacy', '!heading.endsWith("messaging terms and conditions")'],
-  ['privacy', 'canonicalizeLegalName'],
-  ['privacy', 'value.replaceAll("House of Rose Aesthetics LLC", "House of Rose LLC")'],
+  ['privacy', 'alignPublicChannelCopy'],
+  ['publicCopy', '.replaceAll("House of Rose LLC", "House of Rose Aesthetics LLC")'],
   ['privacy', "Just text 'STOP' to the phone number from which you received messages."],
   ['privacy', 'Carriers are not liable for delayed or undelivered messages.'],
   ['privacy', 'Message frequency will vary based on communication needs.'],

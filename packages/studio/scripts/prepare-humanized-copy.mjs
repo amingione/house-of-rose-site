@@ -167,9 +167,9 @@ const skinAnalysisPatch = {
 const contactPatch = {
   heroKicker: 'Questions Are Welcome',
   heroDescription:
-    "Call, book online, or send us a message. We'll help you figure out who to see and what to book.",
+    "Call, review the services menu, or send us a message. We'll help you figure out who to see and what to book.",
   bookLabel: 'Know What You Want?',
-  bookNote: 'Online booking is available anytime',
+  bookNote: 'Review current services anytime',
   formKicker: 'Send a Message',
   formHeading: 'How can we help?',
   formIntro:

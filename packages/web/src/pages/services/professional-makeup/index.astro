@@ -16,7 +16,7 @@ import { service as serviceSchema, breadcrumbList, faqPage } from '@/lib/structu
 
 const PHONE_DISPLAY = '(844) 941-7673';
 const PHONE_TEL = 'tel:+18449417673';
-const BOOKING_URL = 'https://houseofrose.glossgenius.com/book';
+const SERVICES_MENU_URL = 'https://houseofrose.glossgenius.com/services';
 
 const data =
   (await sanityFetch<ProfessionalMakeupPage | null>(PROFESSIONAL_MAKEUP_PAGE_QUERY)) ??
@@ -100,7 +100,7 @@ const FALLBACK_FAQS: FAQ[] = [
   {
     question: 'Where are you located?',
     answer:
-      'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. For makeup bookings, call or text (844) 941-7673.',
+      'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. For makeup bookings, call (844) 941-7673.',
   },
 ];
 
@@ -164,7 +164,7 @@ const faqLd = faqPage(faqs);
         'Camera-ready makeup for weddings, prom, photography, and every occasion in between — applied with skin-first Jane Iredale mineral makeup, in-studio in Punta Gorda or on location for your event.'}
       size="small"
       showCTA={true}
-      ctaPrimary={{ text: 'Call or Text to Book', href: PHONE_TEL }}
+      ctaPrimary={{ text: 'Call to Book', href: PHONE_TEL }}
       backgroundImage={pageImage}
       titleField="heroTitle"
       kickerField="heroKicker"
@@ -289,11 +289,11 @@ const faqLd = faqPage(faqs);
       <div class="max-w-[640px] mx-auto text-center">
         <h2 class="font-serif text-[clamp(24px,4.2vw,40px)] text-ink leading-tight mb-4">Ready to book your look?</h2>
         <p class="text-muted text-[15px] max-w-[500px] mx-auto mb-8 leading-[1.8]">
-          Call or book online to schedule your makeup application or event booking. We’ll confirm timing, coordinate your look, and answer any questions.
+          Call or review the services menu to schedule your makeup application or event booking. We’ll confirm timing, coordinate your look, and answer any questions.
         </p>
         <div class="flex gap-3 justify-center flex-wrap">
           <a href={PHONE_TEL} class="btn-outline-gold">{PHONE_DISPLAY}</a>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+          <a href={SERVICES_MENU_URL} target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
         </div>
       </div>
     </section>

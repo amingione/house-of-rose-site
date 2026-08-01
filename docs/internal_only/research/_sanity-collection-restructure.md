@@ -1,4 +1,4 @@
-> ⚠️ **PRICING IN THIS DOC IS SUPERSEDED (2026-07-23).** GlossGenius is commerce truth; the live menu is `docs/services/ALL-SERVICES-PRICING.MD`. Amber ruled: GLP-1 = GG $225/$325 · IVs = GG prices · GlowTox approved & live · memberships/Rose Circle deleted everywhere. Structure/taxonomy content below remains valid reference.
+> ⚠️ **PRICING IN THIS DOC IS SUPERSEDED (2026-07-23).** GlossGenius is commerce truth; the live menu is `docs/internal_only/services/ALL-SERVICES-PRICING.MD`. Amber ruled: GLP-1 = GG $225/$325 · IVs = GG prices · GlowTox approved & live · memberships/Rose Circle deleted everywhere. Structure/taxonomy content below remains valid reference.
 
 # Sanity `serviceCollection` Restructure — DRAFT for Amber
 
@@ -168,7 +168,7 @@ local doc, I'll flag it for you rather than invent it.
 Not a collection change — a page cluster. You want: **About Face Reality · Products & Prescription products ·
 Acne Bootcamp 12-week outline (how it works + what's included) · FAQ.** That's a hub + sub-pages (like the
 professional-makeup cluster). I'll scope it as its own build after the collection restructure is approved; the
-existing `docs/research/face-reality-acne-program.md` brief covers the clinical content (compliance-clean:
+existing `docs/internal_only/research/face-reality-acne-program.md` brief covers the clinical content (compliance-clean:
 "appearance of breakouts," never "treats acne").
 
 ---

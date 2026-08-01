@@ -8,7 +8,7 @@
  * terms as *retired / historical*.
  *
  * Banned = things that must never appear as CURRENT in shipping code:
- *   - Wrong NAP:            33982 (zip), 7376 (phone), book@houseof… (fake email)
+ *   - Wrong NAP:            33982 (zip), 7376 (phone)
  *   - Retired routes/ids:   /memberships, /rose-circle, /plans route, membershipsPage,
  *                           roseCirclePage, MembershipTiers, membershipGroup,
  *                           PUBLIC_MEMBERSHIPS/REGENERATIVE_PLANS queries
@@ -18,7 +18,8 @@
  *                           Clarity Session
  *   - Positioning:          "day spa"  (NOTE: "med spa" is allowed — not banned)
  *   - Visit policy:         appointment-only / no-walk-ins claims
- *   - GBP identity:         old social URLs and July 9 opening date
+ *   - GBP identity:         old social URLs, unavailable SMS CTAs, direct online-booking CTA,
+ *                           wrong legal name, and July 9 opening date
  *
  * Usage:  node scripts/drift-guard.mjs        (exit 1 on any hit)
  */
@@ -45,7 +46,7 @@ const TEXT_EXT = new Set([
 const RULES = [
   { label: 'Wrong ZIP (use 33950)', re: /33982/ },
   { label: 'Wrong phone fragment (use …7673)', re: /\b\d{3}[-.\s]?\d{3}[-.\s]?7376\b|\)\s?\d{3}[-.\s]?7376|7376\b(?=[^0-9])/ },
-  { label: 'Fake email (use info@houseofrosefl.com)', re: /book@houseof/i },
+  { label: 'Wrong legal name (use House of Rose Aesthetics LLC)', re: /House of Rose LLC(?!", "House of Rose Aesthetics LLC")/ },
   { label: 'Retired route /memberships', re: /\/memberships(\/|"|'|`|\b)/ },
   { label: 'Retired route /rose-circle', re: /\/rose-circle(\/|"|'|`|\b)/ },
   { label: 'Retired route /plans', re: /["'`]\/plans\/?["'`]|href=["'`]\/plans/ },
@@ -54,8 +55,11 @@ const RULES = [
   { label: 'Dead botanical name', re: /Gilded Lily|Porcelain Petal|Camellia Peel|Lumi[eè]re|Clarity Session/i },
   { label: 'Banned positioning "day spa"', re: /day spa/i },
   { label: 'Wrong visit policy (walk-ins are welcome)', re: /appointment[- ]only|walk-ins? (?:are )?not (?:offered|accepted)|no walk-ins?/i },
+  { label: 'Unavailable SMS CTA (SMS verification is pending)', re: /call\s*(?:or|\/)\s*text|sms:\+?18449417673/i },
+  { label: 'Direct online-booking CTA (use consultation/contact or services menu)', re: /\bBook Online\b|houseofrose\.glossgenius\.com\/book/ },
   { label: 'Old Instagram profile', re: /instagram\.com\/houseofrosefl\/?|@houseofrosefl(?!\.com)\b/i },
   { label: 'Old Facebook profile', re: /facebook\.com\/(?:people\/)?House-Of-Rose-Aesthetics/i },
+  { label: 'Old Facebook profile-ID URL (use /hofraesthetics)', re: /facebook\.com\/profile\.php\?id=61590233534310/i },
   { label: 'Wrong opening date (use June 15, 2026)', re: /July 9,? 2026/i },
 ];
 

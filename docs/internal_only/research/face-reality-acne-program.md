@@ -168,7 +168,7 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 - → `/services/biorepeel/` and `/services/microneedling-corrective/` for the *appearance of* acne scarring (the "clear, then refine" path).
 - → the proposed `/concerns/acne-breakouts/` hub.
 - → `/shop/` Face Reality product pages for the home-care regimen (specialist-selected).
-- → `/skin-analysis/` and contact/booking (call/text-first, GlossGenius).
+- → `/skin-analysis/` and contact/booking (call-first, GlossGenius).
 
 **Proposed new pages (type + slug):**
 - **Concern page** — `/concerns/acne-breakouts/` ("Active Acne & Breakouts — the appearance of"). *Highest priority; the missing anchor.*
@@ -193,9 +193,9 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 ## Sources
 
 **Local docs read (paths):**
-- `docs/services/facials/faceRealityAcneProgram.md` — $899, 12-week, program-only; Amber = Face Reality Certified Acne Specialist.
-- `docs/services/pricing/advanced-facials-master-menu.md` — §6 Back Treatment (from $159 / $429 / $765), §7 Acne Program (Bootcamp $899, Back/Chest add-on +$95), §9 compliance guardrails.
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (confirmed superseded by master menu).
+- `docs/internal_only/services/facials/faceRealityAcneProgram.md` — $899, 12-week, program-only; Amber = Face Reality Certified Acne Specialist.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — §6 Back Treatment (from $159 / $429 / $765), §7 Acne Program (Bootcamp $899, Back/Chest add-on +$95), §9 compliance guardrails.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (confirmed superseded by master menu).
 
 **Sanity docs consulted (published snapshot):**
 - Services: `face-reality-acne-program` (hub, From $139), `acne-bootcamp` ($899 program, 12 weeks · biweekly), `acne-peel` (From $139), `back-treatment` (From $159), plus `biorepeel*` and `microneedling-corrective` for §5/§7.

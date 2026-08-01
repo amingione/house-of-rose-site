@@ -31,5 +31,5 @@ Phase 5 runs last, always.
 - Prompts reference the repo's **binding docs** (`SEO-AEO-PLAYBOOK.md`,
   `CONTENT-MODEL-MAP.md`, `COMPLIANCE-COPY-RULES.md`, `CLAUDE.md`). If a prompt and a
   binding doc conflict, the binding doc wins.
-- Research briefs land in `docs/research/` and are the single input for phases 3–4.
+- Research briefs land in `docs/internal_only/research/` and are the single input for phases 3–4.
 - All Sanity writes are made as **drafts** with a review checklist — Amber publishes.

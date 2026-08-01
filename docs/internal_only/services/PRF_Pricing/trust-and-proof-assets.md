@@ -85,13 +85,13 @@ Until we have consented before-and-afters to show, this page says so rather than
 > We're building this gallery the slow, honest way — with real clients' consented results and the exact protocols behind them. In the meantime, the fastest way to see what's realistic for *your* skin is a consultation. [CTA: Ask what's realistic for you]
 
 ### Consent gate (build note)
-Case studies render only when `caseStudy.consentGiven == true`. Photography/model-release forms already exist in `docs/staff/Consent Forms/`. JSON-LD: `ImageObject` (before + after) + `BreadcrumbList`.
+Case studies render only when `caseStudy.consentGiven == true`. Photography/model-release forms already exist in `docs/internal_only/Consent Forms/`. JSON-LD: `ImageObject` (before + after) + `BreadcrumbList`.
 
 ---
 
 ## Review & build notes (not for the page)
 
-**Credential sources:** provider cards `/amber/`, `/diana/`, `/aundrea/`; CLAUDE.md Providers & Team; `docs/research/face-reality-acne-program.md` (Amber = certified specialist). Display names are canonical: **Aundrea Pedigo** always (never "Brooke"/"Morrison"); Sanity ref stays `provider-brooke`.
+**Credential sources:** provider cards `/amber/`, `/diana/`, `/aundrea/`; CLAUDE.md Providers & Team; `docs/internal_only/research/face-reality-acne-program.md` (Amber = certified specialist). Display names are canonical: **Aundrea Pedigo** always (never "Brooke"/"Morrison"); Sanity ref stays `provider-brooke`.
 
 **Do-not-say (binding):** no "med spa" as the *lead* descriptor (allowed as support); no "day spa"; no membership/"member" framing; no discount language; no "cures/treats" + condition; PRF topical vs injectable lane never blurred; no guaranteed/universal before/after outcome.
 

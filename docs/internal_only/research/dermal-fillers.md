@@ -229,7 +229,7 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 
 **Where the dermal-fillers page should link *out*:**
 - `/services/injectables/` (neurotoxin comparison), `/services/ez-gel-bio-filler/` (bio-filler comparison), `/services/prf-injections/` (under-eye alternative).
-- `/skin-analysis/` (smart first step), `/faq/`, `/experience/`, and `/contact/` (call/text to book — Diana consultation).
+- `/skin-analysis/` (smart first step), `/faq/`, `/experience/`, and `/contact/` (call to book — Diana consultation).
 - Retail: `/shop/` brand anchors for GlyMed+ recovery/barrier and SPF.
 
 **Proposed new pages (type + slug):**
@@ -256,11 +256,11 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 ## Sources
 
 **Local docs (primary truth — pricing & lane):**
-- `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing (Juvéderm Ultra XC From $650, Voluma XC From $850, RHA 1 $650 / RHA 2 $700 / RHA 3 $800), durations, provider = Diana, memberships-excluded decision.
-- `docs/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — corroborates the same pricing/durations, no membership contamination.
-- `docs/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — same filler prices; **contains stale Rose/Rose Gold/Black Rose membership tiers with filler discounts (flagged as a gap)**.
-- `docs/services/filler/dermalfillers.md` — **empty (0 bytes); no content to draw from (gap)**.
-- `docs/COMPLIANCE-COPY-RULES.md` — binding avoid/say-instead vocabulary and guardrails.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing (Juvéderm Ultra XC From $650, Voluma XC From $850, RHA 1 $650 / RHA 2 $700 / RHA 3 $800), durations, provider = Diana, memberships-excluded decision.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — corroborates the same pricing/durations, no membership contamination.
+- `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — same filler prices; **contains stale Rose/Rose Gold/Black Rose membership tiers with filler discounts (flagged as a gap)**.
+- `docs/internal_only/services/Diana/filler/dermalfillers.md` — **empty (0 bytes); no content to draw from (gap)**.
+- `docs/internal_only/COMPLIANCE-COPY-RULES.md` — binding avoid/say-instead vocabulary and guardrails.
 - `CLAUDE.md` — provider lanes, no-memberships law, NAP, trailing-slash URL rule.
 
 **Sanity published content (consulted; snapshot + live query):**

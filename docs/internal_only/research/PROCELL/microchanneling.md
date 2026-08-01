@@ -220,21 +220,21 @@ Yes — typically pause retinols/vitamin A and NSAIDs/blood-thinning supplements
 - **A structured, comfortable protocol.** Fixed, controlled Procell settings, a new single-use cartridge every session, and a licensed esthetician (Amber) who confirms candidacy first — the predictable-recovery choice for sensitive skin and first-timers.
 - **A real journey, not a one-off.** Glo2Facial gateway → microchanneling (Pro/MD) → optional PRF/Glo2Facial finish, sold as an honest Single / Series of 3 / Series of 6 framework.
 - **No overclaiming.** Topical PRF is topical only; no "stem cell," no "erases," no guaranteed results — every surface names the provider, says not everyone is a candidate, and notes individual outcomes vary.
-- **Grounded in Punta Gorda, FL** (525 E Olympia Ave, Unit 9; Charlotte County / SW Florida), with walk-ins welcome and call/text-ahead booking recommended to reserve a time.
+- **Grounded in Punta Gorda, FL** (525 E Olympia Ave, Unit 9; Charlotte County / SW Florida), with walk-ins welcome and call-ahead booking recommended to reserve a time.
 
 ---
 
 ## Sources
 
 **Local docs (primary truth):**
-- `docs/services/pricing/advanced-facials-master-menu.md` — canonical pricing, the microchanneling-vs-microneedling core distinction, package framework, compliance guardrails, cadence.
-- `docs/services/pricing/advanced-facials-pricing.md` — **deprecated stub** (points to the master menu; do not use its prices).
-- `docs/services/microchanneling/Procell-prf-delivery-research-report.md` — web-sourced, compliance-cleared research report (FDA microneedling position, Procell framing, PRF evidence, candidacy/recovery, copy rules, FAQ).
-- `docs/services/microchanneling/PRF.md` — **empty (0 bytes)** → flagged as a gap.
-- `docs/services/Consent Forms/02-Microneedling-PRF-Consent-Release-Form.docx` — consent scope, procedure description ("topical application of PRF — no injections"), risks.
-- `docs/services/Consent Forms/05-Microneedling-PRF-Pre-Post-Care.docx` — pre/post-care, "what to expect" 3–10 days, series guidance.
-- `docs/services/Consent Forms/06-Needle-Depth-Speed-Clinical-Reference.docx` — provider depth/speed reference by region (internal clinical guidance, not client copy).
-- `docs/services/Consent Forms/04-Treatment-Record.docx` — treatment-record/visit-log structure (single-use tips, serum mL, photos, series tracking).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical pricing, the microchanneling-vs-microneedling core distinction, package framework, compliance guardrails, cadence.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — **deprecated stub** (points to the master menu; do not use its prices).
+- `docs/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — web-sourced, compliance-cleared research report (FDA microneedling position, Procell framing, PRF evidence, candidacy/recovery, copy rules, FAQ).
+- `docs/internal_only/services/microchanneling/PRF.md` — **empty (0 bytes)** → flagged as a gap.
+- `docs/internal_only/services/Consent Forms/02-Microneedling-PRF-Consent-Release-Form.docx` — consent scope, procedure description ("topical application of PRF — no injections"), risks.
+- `docs/internal_only/services/Consent Forms/05-Microneedling-PRF-Pre-Post-Care.docx` — pre/post-care, "what to expect" 3–10 days, series guidance.
+- `docs/internal_only/services/Consent Forms/06-Needle-Depth-Speed-Clinical-Reference.docx` — provider depth/speed reference by region (internal clinical guidance, not client copy).
+- `docs/internal_only/services/Consent Forms/04-Treatment-Record.docx` — treatment-record/visit-log structure (single-use tips, serum mL, photos, series tracking).
 
 **Sanity published docs consulted (snapshot):** services `microchanneling`, `microchanneling-microneedling`, `Procell-microchanneling-body`, `microneedling-corrective`, `microneedling-body`, `prf`, `prf-microneedling`, `glo2facial`, `biorepeel`, `lightstim-led-therapy`; comparison `prf-microchanneling-vs-microneedling`; costGuide `prf-microneedling-cost-punta-gorda`; concerns `fine-lines-laxity`, `sun-damage`, `acne-scarring`, `stretch-marks`; collection `skin-renewal`; packages `Procell-microchanneling-series-of-4`, `prf-microchanneling-journey`; localArea `punta-gorda`.
 

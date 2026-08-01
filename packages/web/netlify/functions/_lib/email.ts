@@ -289,7 +289,7 @@ export async function sendLeadAcknowledgement(lead: LeadEmail): Promise<boolean>
     </p>
     ${lead.serviceInterest ? `<p style="margin:0 0 20px;font:400 14px/1.7 Arial,sans-serif;color:#5E5548;"><span style="color:#14110F;font-weight:700;">Interest</span><br />${esc(lead.serviceInterest)}</p>` : ''}
     <p style="margin:0;font:400 14px/1.7 Arial,sans-serif;color:#5E5548;">
-      If your plans change, reply to this email or call or text ${PHONE}.
+      If your plans change, reply to this email or call ${PHONE}.
     </p>`,
   );
 
@@ -297,7 +297,7 @@ export async function sendLeadAcknowledgement(lead: LeadEmail): Promise<boolean>
     `${firstName(lead.name)}, we received your ${label}.`,
     responseWindow,
     lead.serviceInterest ? `Interest: ${lead.serviceInterest}` : '',
-    `Questions or changes? Reply to this email or call or text ${PHONE}.`,
+    `Questions or changes? Reply to this email or call ${PHONE}.`,
     SITE,
   ].filter(Boolean).join('\n\n');
 

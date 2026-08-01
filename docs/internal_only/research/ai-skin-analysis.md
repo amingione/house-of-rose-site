@@ -218,9 +218,10 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 ## Sources
 
 **Local docs read (primary truth):**
-- `docs/services/features/multi-imaging-skinAnalysis.md` — M17 spec summary (10-spectrum, 20MP, 18 indicators, 3D mapping, predictive analysis, scalp/hair handpiece).
-- `docs/services/features/house_of_rose_m17_ai_skin_analyzer_20260701_025924.pdf` (pages 1–7) — researched, compliance-conscious page rewrite; authoritative for positioning, verified device facts, claims-to-avoid, and the recommended compliance line.
-- `docs/services/pricing/advanced-facials-master-menu.md` — confirms skin analysis is part of the consultation, no standalone price; treatment "from" prices.
+- The former local M17 specification summary and researched PDF are not present in the current
+  repository. Treat enumerated device specifications as unverified until they are checked against the
+  studio's manual or current manufacturer documentation.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — confirms skin analysis is part of the consultation, no standalone price; treatment "from" prices.
 
 **Sanity content consulted (published snapshot):**
 - Concerns: `acne-scarring`, `dark-circles`, `fine-lines-laxity`, `hair-thinning`, `stretch-marks`, `sun-damage`.

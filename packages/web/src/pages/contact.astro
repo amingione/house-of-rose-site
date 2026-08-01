@@ -4,6 +4,7 @@ import Hero from '@/components/Hero.astro';
 import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
 // ─── Contact content from Sanity (singleton) ───────────────────────────────────
 // Each field falls back to the original hardcoded copy, so there's no regression
@@ -45,18 +46,22 @@ const CONTACT_PAGE_QUERY = /* groq */ `*[_type == "contactPage"][0]{
 
 const data = (await sanityFetch<ContactPage | null>(CONTACT_PAGE_QUERY)) ?? ({} as ContactPage);
 const oid = data._id ? sbObjectId(data._id) : {};
+const alignedCopy = (value: string | undefined, fallback: string): string =>
+  alignPublicChannelCopy(value ?? fallback);
+const servicesLabel = 'Services Menu';
+const servicesLinkText = 'View Services';
 ---
 
 <BaseLayout
-  title={data.seoTitle ?? "Contact House of Rose | Advanced Aesthetics, Punta Gorda FL"}
-  description={data.seoDescription ?? "Book a consultation at House of Rose in Punta Gorda, FL. Call (844) 941-7673, book online, or stop by — 525 E Olympia Ave, Unit 9."}
+  title={alignedCopy(data.seoTitle, "Contact House of Rose | Advanced Aesthetics, Punta Gorda FL")}
+  description={alignedCopy(data.seoDescription, "Contact House of Rose in Punta Gorda, FL. Call (844) 941-7673, review the services menu, or stop by — 525 E Olympia Ave, Unit 9.")}
 >
   <div {...oid}>
   <!-- Hero -->
   <Hero
     title={data.heroTitle ?? "Contact Us"}
     kicker={data.heroKicker ?? "Questions Are Welcome"}
-    description={data.heroDescription ?? "Call, book online, or send us a message. We'll help you figure out who to see and what to book."}
+    description={alignedCopy(data.heroDescription, "Call, review the services menu, or send us a message. We'll help you figure out who to see and what to book.")}
     size="small"
     backgroundImage="/images/hor-exterior.webp"
     titleField="heroTitle"
@@ -76,19 +81,19 @@ const oid = data._id ? sbObjectId(data._id) : {};
         <p class="text-muted text-[13px] mt-2" {...sbFieldPath('phoneHours')}>{data.phoneHours ?? "Mon–Fri, 9AM–5PM ET"}</p>
       </div>
 
-      <!-- Book Online -->
+      <!-- View Services -->
       <div class="text-center">
-        <span class="kicker" {...sbFieldPath('bookLabel')}>{data.bookLabel ?? "Know What You Want?"}</span>
+        <span class="kicker" {...sbFieldPath('bookLabel')}>{servicesLabel}</span>
         <a
-          href="https://houseofrose.glossgenius.com/book"
+          href="https://houseofrose.glossgenius.com/services"
           target="_blank"
           rel="noopener noreferrer"
           class="block text-ink text-[20px] hover:text-gold transition-colors mt-3"
           {...sbFieldPath('bookLinkText')}
         >
-          {data.bookLinkText ?? "Schedule Now"}
+          {servicesLinkText}
         </a>
-        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>{data.bookNote ?? "Online booking is available anytime"}</p>
+        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>Review current services anytime</p>
       </div>
 
       <!-- Location -->
@@ -235,7 +240,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
 
           <div id="sms-consent-disclosure" class="space-y-3 text-muted text-[13px] leading-relaxed">
             <p>
-              House of Rose LLC would like your consent to send informational and/or marketing text message
+              House of Rose Aesthetics LLC would like your consent to send informational and/or marketing text message
               communications from +18449417673 to your mobile number listed above. Informational messages may
               include responses to messages you send us, as well as information relevant to your relationship
               with us. Marketing messages may include announcements, event information, or texts promoting
@@ -262,7 +267,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
                 data-sms-consent
                 class="mt-0.5 h-5 w-5 shrink-0 accent-gold"
               />
-              <span>Yes, I consent to receive informational messages from House of Rose LLC.</span>
+              <span>Yes, I consent to receive informational messages from House of Rose Aesthetics LLC.</span>
             </label>
             <label class="flex items-start gap-3 text-ink text-[14px] leading-relaxed">
               <input
@@ -272,7 +277,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
                 data-sms-consent
                 class="mt-0.5 h-5 w-5 shrink-0 accent-gold"
               />
-              <span>Yes, I consent to receive marketing text messages from House of Rose LLC.</span>
+              <span>Yes, I consent to receive marketing text messages from House of Rose Aesthetics LLC.</span>
             </label>
             <label class="flex items-start gap-3 text-ink text-[14px] leading-relaxed">
               <input
@@ -283,7 +288,7 @@ const oid = data._id ? sbObjectId(data._id) : {};
                 data-sms-decline
                 class="mt-0.5 h-5 w-5 shrink-0 accent-gold"
               />
-              <span>No, I do not want to receive any text messages from House of Rose LLC.</span>
+              <span>No, I do not want to receive any text messages from House of Rose Aesthetics LLC.</span>
             </label>
           </div>
 

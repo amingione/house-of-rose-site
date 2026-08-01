@@ -91,7 +91,7 @@ You'll be treated by a named provider working within a defined specialty — Dia
 **Body:**
 Book a skin analysis, ask us a question, or come in for a consultation. No pressure, no upsell you didn't ask for — just a clear read on what your skin needs and a plan that respects it.
 **Primary CTA:** Begin with a skin analysis *(→ /skin-analysis/)*
-**Secondary CTA:** Call or text (844) 941-7673 *(→ tel/sms)*
+**Secondary CTA:** Call (844) 941-7673 *(→ tel)*
 
 ---
 

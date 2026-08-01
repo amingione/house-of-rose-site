@@ -1,20 +1,21 @@
 # H of R - Grasshopper Toll Free Registration
 ---
-Date: Jul 26, 2026
+Date: Aug 1, 2026
 Category: Grasshopper
 ---
 
 ## Registration-ready implementation
 
-Status as of July 26, 2026: the website implementation is ready for Grasshopper toll-free
-verification once the changes are deployed and the live URLs below are checked. This is a carrier
-registration package, not a substitute for TCPA or Florida counsel.
+Status as of August 1, 2026: phone SMS is **not enabled** and Grasshopper verification remains pending.
+The website implementation is retained for carrier review, but no customer-facing text-message CTA may
+be published until activation is confirmed. This is a carrier registration package, not a substitute
+for TCPA or Florida counsel.
 
 ### Canonical registration facts
 
 | Field | Registration value |
 |---|---|
-| Messaging brand / legal entity | House of Rose LLC |
+| Messaging brand / legal entity | House of Rose Aesthetics LLC |
 | Customer-facing brand | House of Rose Aesthetics |
 | Toll-free number | +18449417673 |
 | Website | https://houseofrosefl.com/ |
@@ -40,7 +41,7 @@ URL: `https://houseofrosefl.com/contact/`
 
 > Contacts opt in on our website contact page at https://houseofrosefl.com/contact/ by entering
 > their mobile number and affirmatively selecting an unchecked box for informational messages,
-> marketing messages, or both. The form identifies House of Rose LLC and +18449417673, describes
+> marketing messages, or both. The form identifies House of Rose Aesthetics LLC and +18449417673, describes
 > each message category, states that consent is not a condition of purchase, discloses variable
 > message frequency and message/data rates, provides STOP and HELP instructions, states that
 > mobile opt-in information is not shared, and links to our privacy policy and messaging terms.
@@ -48,7 +49,7 @@ URL: `https://houseofrosefl.com/contact/`
 
 **Opt-in confirmation message**
 
-> Thank you for opting in to receive messages from House of Rose LLC. Msg frequency varies. Msg &
+> Thank you for opting in to receive messages from House of Rose Aesthetics LLC. Msg frequency varies. Msg &
 > data rates may apply. Reply HELP for help. Reply STOP to opt out.
 
 ### Evidence package
@@ -65,7 +66,7 @@ After the site is deployed:
    privacy-policy URL, and submit button in one continuous image.
 3. Keep the PNG under 5 MB and upload it in Grasshopper's **Evidence** field.
 4. Open `https://houseofrosefl.com/privacy-policy/` and confirm the **Data Sharing** and
-   **House of Rose LLC Messaging Terms and Conditions** sections are visible without login.
+   **House of Rose Aesthetics LLC Messaging Terms and Conditions** sections are visible without login.
 5. Submit a test contact lead with informational consent only. In Sanity, confirm the lead records:
    `informational: true`, `marketing: false`, `declined: false`, `recordedAt`,
    `disclosureVersion: grasshopper-toll-free-2026-07-26`, `method: website-form`, and the terms URL.
@@ -83,13 +84,13 @@ page and match the URL entered in the application.
 - Honor STOP, CANCEL, END, QUIT, UNSUBSCRIBE, and any plain-language opt-out received by text,
   phone, or email. Remove the number from every associated messaging list; do not attempt another
   message unless the person opts in again.
-- Respond to HELP with House of Rose LLC identification, `info@houseofrosefl.com`, and
+- Respond to HELP with House of Rose Aesthetics LLC identification, `info@houseofrosefl.com`, and
   `(844) 941-7673`.
 - Never buy, sell, rent, share, or import consent from another list or unrelated business purpose.
 - Keep the displayed opt-in wording, application description, and actual messaging use aligned.
 - Do not send a free, discounted, or credited health-service offer by SMS unless the exact Florida
   § 456.062 disclosure is included in that same message and the content has passed the
-  `docs/compliance/` review gate. House of Rose's default is not to send discount messaging.
+  `docs/internal_only/compliance/` review gate. House of Rose's default is not to send discount messaging.
 
 ### Final submission gate
 
@@ -132,7 +133,7 @@ I acknowledge that the data sharing disclosures and messaging terms and conditio
 Data Sharing
 • Customer data is not shared with 3rd parties for promotional or marketing purposes.
 • Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.
-House of Rose LLC Messaging Terms and Conditions
+House of Rose Aesthetics LLC Messaging Terms and Conditions
 1. The messaging program consists of general conversational messaging to answer questions and provide support to customers, as well as promotional messages about our products/services when separately consented to.
 2. You can cancel the SMS service at any time. Just text 'STOP' to the phone number from which you received messages. After you send the SMS message 'STOP' to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.
 3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at info@houseofrosefl.com.
@@ -157,15 +158,15 @@ Email: ___________________________________________
 Phone Number: ____________________________________
 Message: ____________________________________
 
-House of Rose LLC would like your consent to send informational and/or marketing text message communications from +18449417673 to your mobile number listed above. Informational messages may include responses to messages you send us, as well as information relevant to your relationship with us. Marketing messages may include announcements, event information, or texts promoting our products/services.
+House of Rose Aesthetics LLC would like your consent to send informational and/or marketing text message communications from +18449417673 to your mobile number listed above. Informational messages may include responses to messages you send us, as well as information relevant to your relationship with us. Marketing messages may include announcements, event information, or texts promoting our products/services.
 
 Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply 'STOP' to unsubscribe at any time. Reply 'HELP' for assistance or more information.
 
 We do not share your mobile opt-in information with anyone. Our privacy policy and messaging terms and conditions are available at https://houseofrosefl.com/privacy-policy/ for more information.
 
-☐ Yes, I consent to receive informational messages from House of Rose LLC
-☐ Yes, I consent to receive marketing text messages from House of Rose LLC
-☐ No, I do not want to receive any text messages from House of Rose LLC
+☐ Yes, I consent to receive informational messages from House of Rose Aesthetics LLC
+☐ Yes, I consent to receive marketing text messages from House of Rose Aesthetics LLC
+☐ No, I do not want to receive any text messages from House of Rose Aesthetics LLC
 
 
 Via a paper form
@@ -173,7 +174,7 @@ Via a paper form
 Keyword text: Contacts text a keyword to my Grasshopper number
 Describe your opt-in process
 
-Contacts opt in on our website contact page at https://houseofrosefl.com/contact/ by checking a box to agree to receive informational, marketing messages from House of Rose LLC. Message types, frequency and rates, as well help and opt-out instructions are disclosed. We confirm that no mobile opt-in info is shared with 3rd parties, and provide a link to our combined privacy policy and messaging terms and conditions.
+Contacts opt in on our website contact page at https://houseofrosefl.com/contact/ by checking a box to agree to receive informational, marketing messages from House of Rose Aesthetics LLC. Message types, frequency and rates, as well help and opt-out instructions are disclosed. We confirm that no mobile opt-in info is shared with 3rd parties, and provide a link to our combined privacy policy and messaging terms and conditions.
 Describe how contacts can agree or decline to get texts, and share a link to the relevant web page
 
 Evidence
@@ -186,7 +187,7 @@ Upload evidence of your opt-in process (required for all opt-in methods), and yo
 Confirmation Messages
 Opt In Messaging
 
-Thank you for opting in to receive messages from House of Rose LLC. Msg frequency varies. Msg & data rates may apply. Reply HELP for help. Reply STOP to opt - out.
+Thank you for opting in to receive messages from House of Rose Aesthetics LLC. Msg frequency varies. Msg & data rates may apply. Reply HELP for help. Reply STOP to opt - out.
 Confirmation message your contacts will receive after opting in
 Review Application
 

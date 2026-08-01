@@ -62,9 +62,9 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'bookingEmail',
-      title: 'Booking Email',
+      title: 'Contact Email for Inquiries',
       type: 'string',
-      description: 'Used as the mailto: link on Book Now buttons',
+      description: 'Used for room-rental and other email inquiry links',
     }),
     defineField({
       name: 'aiSearchFaqHeading',

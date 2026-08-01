@@ -11,7 +11,7 @@
 > - [ ] **Amber Mingione** — posted in both treatment rooms · date: ________
 >
 > Source of truth for `packages/web/public/staff/protocols.html` → **Timing & Pregnancy** tab, and for
-> the laminated wall cards in `docs/staff/`.
+> the laminated wall cards in `docs/internal_only/`.
 
 ---
 

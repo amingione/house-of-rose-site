@@ -14,7 +14,7 @@ import type { FAQ } from '@/lib/queries';
 
 export const LOCAL_BUSINESS = {
   name: 'House of Rose Aesthetics',
-  legalName: 'House of Rose Aesthetics',
+  legalName: 'HOUSE OF ROSE AESTHETICS LLC',
   foundingDate: '2026-06-15',
   telephone: '+18449417673',
   streetAddress: '525 E Olympia Ave, Unit 9',
@@ -28,11 +28,10 @@ export const LOCAL_BUSINESS = {
 
 export const BUSINESS_PROFILES = [
   'https://www.instagram.com/house.of.rose.aesthetics/',
-  'https://www.facebook.com/profile.php?id=61590233534310',
+  'https://www.facebook.com/hofraesthetics',
 ] as const;
 
 export const BUSINESS_URLS = {
-  booking: 'https://houseofrose.glossgenius.com/book',
   services: 'https://houseofrose.glossgenius.com/services',
   map: 'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950',
 } as const;
@@ -169,18 +168,6 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
       customerRemorseReturnFees: 'https://schema.org/ReturnShippingFees',
       returnPolicyCountry: 'US',
       merchantReturnLink: new URL('/return-policy/', baseUrl).toString(),
-    },
-    potentialAction: {
-      '@type': 'ReserveAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: BUSINESS_URLS.booking,
-        actionPlatform: [
-          'https://schema.org/DesktopWebPlatform',
-          'https://schema.org/MobileWebPlatform',
-        ],
-      },
-      result: { '@type': 'Reservation', name: 'Aesthetics consultation or appointment' },
     },
   };
 

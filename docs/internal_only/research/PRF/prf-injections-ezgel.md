@@ -76,7 +76,7 @@ Injectable PRF (platelet-rich fibrin) at House of Rose uses a small sample of **
 | **PRF Under-Eye Rejuvenation** | **$495** | **$1,350** | 45 min |
 | **PRF Facial Rejuvenation (1 area)** | **$595** | **$1,650** | 60 min |
 
-Source: `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` (and the matching PDFs). This is the pricing truth — always present as **"investment," "from," "starting at."**
+Source: `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` (and the matching PDFs). This is the pricing truth — always present as **"investment," "from," "starting at."**
 
 **What moves price:** number of areas treated (facial PRF is per-area), single session vs prepaid series (the series carries a lower effective per-session investment), and whether EZ-Gel bio-filler is used (extra processing/product) vs standard i-PRF injection.
 
@@ -156,13 +156,13 @@ Source: `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` 
 ## Sources
 
 **Local docs read (paths under repo root):**
-- `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing ($495/$595; series $1,350/$1,650); confirms Hair Restoration removed, Memberships excluded.
-- `docs/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — mirrors the menu; confirms Amber owns microchanneling+PRF.
-- `docs/services/Diana/House_of_Rose_Injectable_PRF_Pricing.pdf`, `PRF_Pricing_House_of_Rose.pdf`, `PRF_Treatment_Guide_House_of_Rose.pdf`, `PRF_Brochure_House_of_Rose.pdf` — brand PRF education/pricing; **note: these PDFs still list Hair Restoration and do NOT mention EZ-Gel** (stale vs the consolidated menu / Sanity).
-- `docs/services/PRF/compass_artifact_wf-116088fa-…_text_markdown.md` — prior compliance-vetted PRF research package (mechanism, EZ-Gel, timelines, competitive landscape, Florida regulatory).
-- `docs/COMPLIANCE-COPY-RULES.md`, `docs/research/_prf-source-library.md` — binding compliance + curated PRF source manifest.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing ($495/$595; series $1,350/$1,650); confirms Hair Restoration removed, Memberships excluded.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — mirrors the menu; confirms Amber owns microchanneling+PRF.
+- `docs/internal_only/services/Diana/House_of_Rose_Injectable_PRF_Pricing.pdf`, `PRF_Pricing_House_of_Rose.pdf`, `PRF_Treatment_Guide_House_of_Rose.pdf`, `PRF_Brochure_House_of_Rose.pdf` — brand PRF education/pricing; **note: these PDFs still list Hair Restoration and do NOT mention EZ-Gel** (stale vs the consolidated menu / Sanity).
+- `docs/internal_only/services/PRF/compass_artifact_wf-116088fa-…_text_markdown.md` — prior compliance-vetted PRF research package (mechanism, EZ-Gel, timelines, competitive landscape, Florida regulatory).
+- `docs/internal_only/COMPLIANCE-COPY-RULES.md`, `docs/internal_only/research/_prf-source-library.md` — binding compliance + curated PRF source manifest.
 - `packages/web/src/pages/guides/microchanneling-prf.astro` — the model for the topical-vs-injectable framing.
-- `docs/services/filler/PRF_ez-gel.md` — **EMPTY (0 bytes)** — the assigned EZ-Gel primary doc has no content (flagged).
+- `docs/internal_only/services/Diana/filler/PRF_ez-gel.md` — **EMPTY (0 bytes)** — the assigned EZ-Gel primary doc has no content (flagged).
 
 **Sanity docs consulted (published snapshot):** `prf-injections` (From $599 — conflicts), `ez-gel-bio-filler` (From $699 — unanchored), `prf`, `prf-microneedling`, `prf-body-treatments`, `dermal-fillers`, `injectables`; concerns `dark-circles`, `fine-lines-laxity`, `acne-scarring`, `hair-thinning`; comparison `prf-microchanneling-vs-microneedling`; cost guide `prf-microneedling-cost-punta-gorda`; packages `prf-under-eye-series-of-3`.
 

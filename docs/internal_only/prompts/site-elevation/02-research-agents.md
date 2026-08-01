@@ -6,17 +6,17 @@ input for Phases 3–4.
 
 ## Source hierarchy (strict)
 
-1. **Local docs first** — `docs/services/**` is primary truth. Notably:
-   - PRF: `docs/services/PRF/`, `docs/services/Diana/PRF_Treatment_Guide_House_of_Rose.pdf`,
+1. **Local docs first** — `docs/internal_only/services/**` is primary truth. Notably:
+   - PRF: `docs/internal_only/services/PRF/`, `docs/internal_only/services/Diana/PRF_Treatment_Guide_House_of_Rose.pdf`,
      `PRF_Brochure_House_of_Rose.pdf`, `PRF_Pricing_House_of_Rose.pdf`,
-     `House_of_Rose_Injectable_PRF_Pricing.pdf`, `docs/services/filler/PRF_ez-gel.md`,
-     `docs/services/microchanneling/PRF.md` + `Procell-prf-delivery-research-report.md`
-   - Facials: `docs/services/facials/*` (Glo2Facial, BioRePeel, dermaplaning,
+     `House_of_Rose_Injectable_PRF_Pricing.pdf`, `docs/internal_only/services/Diana/filler/PRF_ez-gel.md`,
+     `docs/internal_only/services/microchanneling/PRF.md` + `Procell-prf-delivery-research-report.md`
+   - Facials: `docs/internal_only/services/facials/*` (Glo2Facial, BioRePeel, dermaplaning,
      hydrodermabrasion, Face Reality acne program, packages/add-ons)
-   - Injectables: `docs/services/tox/daxxify.md`, `docs/services/filler/dermalfillers.md`,
-     `docs/services/Diana/**` (treatment menu, pricing CSV/MD)
-   - Pricing: `docs/services/pricing/*` · Makeup: `docs/services/makeup/*` ·
-     Waxing: `docs/services/waxing/*` · Skin analysis: `docs/services/features/*`
+   - Injectables: `docs/internal_only/services/Diana/tox/daxxify.md`, `docs/internal_only/services/Diana/filler/dermalfillers.md`,
+     `docs/internal_only/services/Diana/**` (treatment menu, pricing CSV/MD)
+   - Pricing: `docs/internal_only/pricing/*` · Makeup: `docs/internal_only/services/makeup/*` ·
+     Waxing: `docs/internal_only/services/waxing/*` · Skin analysis: `docs/internal_only/services/features/*`
 2. **Existing Sanity content** — query current `service`, `costGuide`, `comparison`,
    `concern`, `treatmentPackage` docs; don't contradict published truth without flagging it.
 3. **Web research** — mechanism-of-action, candidacy, evidence, aftercare, comparison
@@ -39,7 +39,7 @@ facial waxing
 program · product lines (Procell, GlyMed+, Skin Script, Face Reality, Jane Iredale,
 House of Rose retail)
 
-## Brief template — each agent writes `docs/research/<topic>.md`
+## Brief template — each agent writes `docs/internal_only/research/<topic>.md`
 
 1. **The 3-sentence answer** (what it is — becomes the answer-first opener)
 2. **How it works** (mechanism, plain English + one level deeper for the curious)
@@ -62,7 +62,7 @@ oversight, integration with skin-health plan) — persuasive but compliance-clea
 
 ## Deliverables
 
-- One brief per topic in `docs/research/` + `docs/research/_index.md` (topic → brief →
+- One brief per topic in `docs/internal_only/research/` + `docs/internal_only/research/_index.md` (topic → brief →
   target pages matrix)
-- `docs/research/_gaps.md` — contradictions found between local docs, Sanity, and the live
+- `docs/internal_only/research/_gaps.md` — contradictions found between local docs, Sanity, and the live
   site (pricing drift, lane mix-ups) for Amber to resolve

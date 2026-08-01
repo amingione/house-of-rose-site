@@ -6,7 +6,7 @@ import { breadcrumbList, faqPage, service } from '@/lib/structuredData';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 
-const BOOKING_URL = 'https://houseofrose.glossgenius.com/book';
+const SERVICES_MENU_URL = 'https://houseofrose.glossgenius.com/services';
 const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -367,7 +367,7 @@ const serviceSchema = service(
         <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Request a Skin Analysis"}</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
           Prefer to book instantly?
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">Book online</a>.
+          <a href={SERVICES_MENU_URL} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">View services</a>.
           We'll only use your details to arrange your analysis.
         </p>
       </form>

@@ -2,7 +2,7 @@
 
 **Status:** Draft for Amber's review · **Provider lane:** Amber Mingione, Face Reality Certified Acne Specialist (Advanced Facials)
 **Maps to:** `service` hub → `/services/face-reality-acne/` · `costGuide` → `/cost/acne-program-cost/` · `comparison` → `/compare/acne-facial-vs-acne-program/`
-**Booking model:** Start with a consultation — book online or call/text (844) 941-7673.
+**Booking model:** Start with a consultation — review the services menu or call (844) 941-7673.
 
 > Publish-ready client copy above the line. Acne is medical-adjacent, so the compliance bar is high: no "cures/clears/treats acne," and we never borrow Face Reality's own "90% success / clinically proven" claims as ours. Notes and citations at the end.
 
@@ -138,7 +138,7 @@ Amber helps you pick honestly — and a single session can always be your on-ram
 ## Review & build notes (not for the page)
 
 **Price citations (Rule #0):**
-- Acne Bootcamp **$899** (program-only) — `docs/staff/pricing/ALL-SERVICES-PRICING.MD` ("Package: Acne Bootcamp"), `_pricing-catalog.md` §8; Sanity `acne-bootcamp` agrees. Strong anchor.
+- Acne Bootcamp **$899** (program-only) — `docs/internal_only/pricing/ALL-SERVICES-PRICING.MD` ("Package: Acne Bootcamp"), `_pricing-catalog.md` §8; Sanity `acne-bootcamp` agrees. Strong anchor.
 - Back/Chest add-on **+$95** — master menu §7 (local-only; **no Sanity doc** — create on wire-in).
 - Acne Peel **from $139** — Sanity `acne-peel`; **not in master menu** (documented gap) — treat as provisional, add to master menu/GG.
 - Back Treatment **from $159** / series 3 **$429** / series 6 **$765** — master menu §6 + Sanity `back-treatment`. Strong anchor.

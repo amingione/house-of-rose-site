@@ -2,7 +2,7 @@
 
 Date: 2026-07-13 · Provider lane: **Brandy** (Basic / relaxing-maintenance facials — rents a room; also offers facial waxing) · Status: draft for Phase 3/4 consumption · Sources listed at end.
 
-> **⚠️ SCOPE & BUILD-STATUS FLAG (read first).** As of the 2026-07-12 repository snapshot there is **no published Sanity `service`** for an enzyme exfoliation facial (or for any generic Brandy basic/maintenance facial), and **no local pricing document** for it. Brandy's entire lane — *Classic Facial, Hydrodermabrasion, Facial+Peel, Mommy & Me* — is **Parked (not on the live site).** The only place "enzyme" appears in the services docs is as an optional **+add-on upgrade** to dermaplaning (`docs/services/facials/packagesAdd-ons.md`). This brief therefore assembles the treatment factually so it is *ready to build* if Amber decides to launch Brandy's basic-facial menu — but **every cost figure is "pending Brandy — no local source," and no price may be invented.** This is Brandy's lane, not Amber's advanced/corrective lane. Do not cross the lanes.
+> **⚠️ SCOPE & BUILD-STATUS FLAG (read first).** As of the 2026-07-12 repository snapshot there is **no published Sanity `service`** for an enzyme exfoliation facial (or for any generic Brandy basic/maintenance facial), and **no local pricing document** for it. Brandy's entire lane — *Classic Facial, Hydrodermabrasion, Facial+Peel, Mommy & Me* — is **Parked (not on the live site).** The only place "enzyme" appears in the services docs is as an optional **+add-on upgrade** to dermaplaning (`docs/internal_only/services/facials/packagesAdd-ons.md`). This brief therefore assembles the treatment factually so it is *ready to build* if Amber decides to launch Brandy's basic-facial menu — but **every cost figure is "pending Brandy — no local source," and no price may be invented.** This is Brandy's lane, not Amber's advanced/corrective lane. Do not cross the lanes.
 
 ---
 
@@ -96,7 +96,7 @@ No existing concern page is a strong native fit, which reinforces that this is a
 **Try first / on-ramp.** The enzyme facial is itself the "start here" step for sensitive skin or exfoliation beginners, and a natural first booking before escalating.
 
 **Stacks well with (in-visit or as a plan):**
-- **+ Dermaplaning** — enzyme softens the surface, dermaplaning finishes with a mechanical polish and peach-fuzz removal (already recognized as a dermaplaning add-on in `docs/services/facials/packagesAdd-ons.md`).
+- **+ Dermaplaning** — enzyme softens the surface, dermaplaning finishes with a mechanical polish and peach-fuzz removal (already recognized as a dermaplaning add-on in `docs/internal_only/services/facials/packagesAdd-ons.md`).
 - **+ LED (LightStim)** — calming light to finish a relaxing facial (`/services/lightstim-led-therapy/`, from $65).
 - **+ Hydrating mask / facial massage** — the relaxing-maintenance experience.
 - **Gateway toward Amber's lane** — a client whose goals outgrow maintenance (real texture, scarring, laxity) is warmly handed off to **Glo2Facial** (`/services/glo2facial/`, the studio's entry point at $185) and then corrective work. Keep the lane handoff explicit and provider-led.
@@ -184,11 +184,11 @@ Factors that *would* move price once set (for planning only, not for publication
 ## Sources
 
 **Local docs read:**
-- `docs/services/facials/packagesAdd-ons.md` — only in-repo services mention of "enzyme" (as a dermaplaning add-on upgrade).
-- `docs/services/pricing/advanced-facials-master-menu.md` — confirms Amber's lane scope and that "relaxing/maintenance facials are Brandy's lane" (out of scope there); reference pricing for adjacent treatments.
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (no basic-facial pricing).
-- `docs/COMPLIANCE-COPY-RULES.md` — binding never-say / say-instead vocabulary and required guardrails.
-- Empty stubs confirmed: `docs/services/facials/dermaplaning.md`, `hydrodermabrasion.md`, `glo2facialxGeneo.md` (0 bytes — no content).
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — only in-repo services mention of "enzyme" (as a dermaplaning add-on upgrade).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — confirms Amber's lane scope and that "relaxing/maintenance facials are Brandy's lane" (out of scope there); reference pricing for adjacent treatments.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (no basic-facial pricing).
+- `docs/internal_only/COMPLIANCE-COPY-RULES.md` — binding never-say / say-instead vocabulary and required guardrails.
+- Empty stubs confirmed: `docs/internal_only/services/facials/dermaplaning.md`, `hydrodermabrasion.md`, `glo2facialxGeneo.md` (0 bytes — no content).
 
 **Sanity docs consulted (published snapshot):**
 - Full published-snapshot (`sanity-published-snapshot.json`) — **no `service` for an enzyme/basic facial** (confirmed gap). Adjacent published services used for journey links: `dermaplaning`, `glo2facial`, `biorepeel`, `microchanneling`, `lightstim-led-therapy`. Retail enzyme products (Skin Script `coconut-papaya-enzyme`, `blueberry-enzyme`, `cherry-enzyme`, etc.; GlyMed+ `hydrating-masque-with-enzymes`, `chocolate-masque-with-enzymes`) and HoR `smooth-ritual-polish`, `shield-ritual-spf`.

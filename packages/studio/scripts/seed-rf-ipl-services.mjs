@@ -164,7 +164,7 @@ const services = [
     seo: {
       metaTitle: 'Morpheus8 RF Microneedling Punta Gorda | House of Rose',
       metaDescription:
-        'Explore Morpheus8 RF microneedling for face and selected body areas at House of Rose Aesthetics in Punta Gorda. Call or text to consult.',
+        'Explore Morpheus8 RF microneedling for face and selected body areas at House of Rose Aesthetics in Punta Gorda. Call to consult.',
     },
   },
   {
@@ -371,6 +371,7 @@ const forbiddenPhrases = [
   /\bGroupon\b/i,
   /\bdiscount\b/i,
   /\bBook Online\b/i,
+  /\bSchedule Now\b/i,
   /\bAmber\b|\bDiana\b|\bAundrea\b|\bBrandy\b/i,
 ];
 

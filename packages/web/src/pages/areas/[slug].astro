@@ -10,6 +10,7 @@ import {
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
 import { DEFAULT_AREA_IMAGE } from '@/lib/imageFallbacks';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -17,10 +18,21 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const area = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
+const areaData = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
-if (!area) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
+if (!areaData) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
+
+const area: LocalArea = {
+  ...areaData,
+  intro: alignPublicChannelCopy(areaData.intro),
+  whyLocal: areaData.whyLocal ? alignPublicChannelCopy(areaData.whyLocal) : undefined,
+  faqs: areaData.faqs?.map((item) => ({
+    ...item,
+    question: alignPublicChannelCopy(item.question),
+    answer: alignPublicChannelCopy(item.answer),
+  })),
+};
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -114,7 +126,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
       <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
       </div>
     </div>
   </section>

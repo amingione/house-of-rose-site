@@ -1,6 +1,6 @@
 # AI Image Prompts — House of Rose Aesthetics
 
-Reference-grounded DALL·E / GPT Image prompts for generating supplemental photography that matches the real Punta Gorda studio (see `docs/PHOTOGRAPHY.md` for the source library and grade this extends) and the actual service menu in `CLAUDE.md`. Use these where real photography doesn't exist yet — treatment-in-progress shots, the storefront exterior replacement, and service-specific hero art — never to fabricate a "different" studio.
+Reference-grounded DALL·E / GPT Image prompts for generating supplemental photography that matches the real Punta Gorda studio (see `docs/marketing/PHOTOGRAPHY.md` for the source library and grade this extends) and the actual service menu in `CLAUDE.md`. Use these where real photography doesn't exist yet — treatment-in-progress shots, the storefront exterior replacement, and service-specific hero art — never to fabricate a "different" studio.
 
 ## Brand photography DNA (bake into every prompt)
 
@@ -150,6 +150,6 @@ Dimensions follow the site's existing ratio system so exports drop straight into
 ## Usage notes
 
 - Paste the **Prompt** paragraph as-is into GPT Image / DALL·E 3. The spec table beneath each is for your own QC pass (cropping, placement, file naming) — it isn't part of the prompt itself.
-- Generate at the largest supported size, then crop down to the exact pixel dimensions above during export — matches the existing pre-crop discipline described in `docs/PHOTOGRAPHY.md`.
+- Generate at the largest supported size, then crop down to the exact pixel dimensions above during export — matches the existing pre-crop discipline described in `docs/marketing/PHOTOGRAPHY.md`.
 - Run every output through the same grading pass (`hor_grade.py`) if you want it to sit invisibly next to the real photography — the split-tone (ivory `#F4ECDC` highlight / cool neutral shadow) is what makes graded and generated images match.
 - Avoid generating identifiable faces for any treatment-in-progress shot — stay on hands, tools, and environment, consistent with the no-overclaiming rule in `docs/SEO-AEO-PLAYBOOK.md` and general medical-spa compliance practice.

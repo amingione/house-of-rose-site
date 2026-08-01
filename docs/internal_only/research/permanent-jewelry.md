@@ -192,7 +192,7 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
 - `/services/professional-makeup/events/` (group/party crossover — bridal parties).
 - `/services/waxing/` and `/services/professional-makeup/` (Aundrea's other lanes — "meet your provider").
 - `/faq/` (aggregated FAQ hub — feed the jewelry FAQ items in).
-- `/contact/` or the call/text CTA `(844) 941-7673` for group-event enquiries.
+- `/contact/` or the call CTA `(844) 941-7673` for group-event enquiries.
 
 **Proposed new pages (type + suggested slug):**
 - **(Optional) Occasion/event page** — type: service-adjacent landing — `/services/permanent-jewelry/events/` (mirrors the makeup `events` pattern; bridal parties, bachelorettes, girls' days, mother-daughter, corporate gifting). Only build once group-event terms are confirmed with Aundrea.
@@ -208,18 +208,19 @@ Instead, map it to **intent / occasion** buckets (these are the "concerns" a jew
 - **A real experience, not a kiosk.** It's welded by **Aundrea**, a named provider who also does your waxing and makeup — so a bracelet can be the finishing touch on a real spa visit, not a mall pop-up transaction.
 - **The gifting / gathering draw.** Permanent jewelry is one of the few offerings that turns a booking into a *shared moment* — bridal parties, bachelorettes, girls' days, mother-daughter — with a lasting, personal keepsake everyone leaves wearing. That makes it a natural word-of-mouth and referral engine for the 525 E Olympia Ave space, open since June 15, 2026.
 - **Honest by design.** We tell clients the truth: it's clasp-free (not un-removable), it snips off anytime, gold-filled looks like solid gold but isn't literally forever, and we'll match the metal to your skin and budget. No overclaiming, no discount theater — just a beautiful, low-maintenance piece made to fit you.
-- **Locally grounded, walk-ins welcome.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida — walk in, or call or text **(844) 941-7673** (spells ROSE) to book ahead or arrange a group event.
+- **Locally grounded, walk-ins welcome.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida — walk in, or call **(844) 941-7673** (spells ROSE) to book ahead or arrange a group event.
 
 ---
 
 ## Sources
 
 **Local docs read (paths):**
-- `docs/services/pricing/advanced-facials-master-menu.md` — confirms permanent jewelry is Aundrea's separate lane, explicitly out of scope for the facials menu (no jewelry pricing there).
-- `docs/services/waxing/body.md`, `docs/services/waxing/face.md` — Aundrea's waxing lane context (no jewelry content).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — confirms permanent jewelry is Aundrea's separate lane, explicitly out of scope for the facials menu (no jewelry pricing there).
+- `docs/internal_only/services/waxing/body.md`, `docs/internal_only/services/waxing/face.md` — Aundrea's waxing lane context (no jewelry content).
 - Permanent-jewelry metal-tier pricing has **no confirmed local source** — pending Aundrea. Sanity "From $45" is the only confirmed number.
-- `docs/competitor_analysis/Punta-Gordas-regenerative-aesthetics-studio.md` — positioning guidance (keep jewelry as event/referral draw, not first-screen medical headline).
-- `docs/prompts/site-elevation/02-research-agents.md`, `00-MASTER-PROMPT.md` — provider-lane assignment (Aundrea: waxing / permanent jewelry / makeup).
+- The former competitor-analysis source for the event/referral positioning is no longer present in the
+  repository; re-verify that conclusion before reuse.
+- `docs/internal_only/prompts/site-elevation/02-research-agents.md`, `00-MASTER-PROMPT.md` — provider-lane assignment (Aundrea: waxing / permanent jewelry / makeup).
 
 **Sanity docs consulted (from published snapshot):**
 - Service `permanent-jewelry` — **From $45**, 15–30 min, collection **Beauty & Enhancements**, tagline "Welded to fit, made to stay," FAQ questions ["Can permanent jewelry be removed?", "Is the welding process safe?"]. **This is the price source of truth.**

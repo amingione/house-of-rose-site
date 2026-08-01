@@ -74,7 +74,7 @@ Waxing is a **grooming / hair-removal & smoothness** service, not a skin "concer
 
 ## 8. Cost factors
 
-All prices from the **local pricing docs** (`docs/services/waxing/face.md`, `docs/services/waxing/body.md`) — primary truth. Sanity currently carries only the "From $15 / From $28" summaries (no per-zone rack), so the docs are the detailed source.
+All prices from the **local pricing docs** (`docs/internal_only/services/waxing/face.md`, `docs/internal_only/services/waxing/body.md`) — primary truth. Sanity currently carries only the "From $15 / From $28" summaries (no per-zone rack), so the docs are the detailed source.
 
 **What moves price:** the *zone* (size + sensitivity), whether it's a *combo* (brows+lip; multi-area bundles), and *frequency* (consistent 4–6 wk clients regrow finer, so sessions get quicker over time).
 
@@ -178,15 +178,15 @@ All prices from the **local pricing docs** (`docs/services/waxing/face.md`, `doc
 - **Real expertise, matched to you.** Facial waxing from Aundrea *or* Brandy; body, bikini, and Brazilian from Aundrea — you're matched to the right provider, not a rotating chair.
 - **One studio, one grooming ecosystem.** Brows can flow straight into Jane Iredale makeup; body waxing sits alongside permanent jewelry and advanced/basic facials — all under one Punta Gorda roof (525 E Olympia Ave, Unit 9).
 - **Honest cadence, honest results.** We tell you the truth: waxing isn't permanent, but consistency at 4–6 weeks brings finer, sparser regrowth many clients love — and we give you the between-visit exfoliation plan to keep ingrowns away.
-- **Local, walk-ins welcome, private.** Serving Punta Gorda, Port Charlotte, and Charlotte County / Southwest Florida — walk in anytime for waxing, or call/text ahead to book a time — a calm, private wax, not a high-volume chain.
+- **Local, walk-ins welcome, private.** Serving Punta Gorda, Port Charlotte, and Charlotte County / Southwest Florida — walk in anytime for waxing, or call ahead to book a time — a calm, private wax, not a high-volume chain.
 
 ---
 
 ## Sources
 
 **Local docs (primary truth — pricing):**
-- `docs/services/waxing/face.md` — facial waxing menu, hard wax, per-zone rack pricing, providers (Aundrea + Brandy).
-- `docs/services/waxing/body.md` — body waxing menu, hard wax, per-zone rack + combo pricing, 4–6 wk rebook guidance, provider (Aundrea).
+- `docs/internal_only/services/waxing/face.md` — facial waxing menu, hard wax, per-zone rack pricing, providers (Aundrea + Brandy).
+- `docs/internal_only/services/waxing/body.md` — body waxing menu, hard wax, per-zone rack + combo pricing, 4–6 wk rebook guidance, provider (Aundrea).
 
 **Sanity published snapshot (slugs consulted):**
 - Services: `facial-waxing` (From $15, 5–30 min by zone), `body-waxing` (From $28, 10–45 min by zone — tagline references a "Rose´ wax" not in local docs), `dermaplaning` (From $135, 50 min, Skin Renewal).

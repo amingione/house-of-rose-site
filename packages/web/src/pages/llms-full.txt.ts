@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 import {
   ALL_COLLECTIONS_QUERY,
   ALL_BLOG_POSTS_QUERY,
@@ -58,18 +59,17 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `House of Rose Aesthetics is a privately owned advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. The studio brings advanced skin treatments, injectables, wellness support, and professional skincare together in one place. Clients can ask questions, compare options, and choose care with long-term skin health and natural-looking results in mind.`,
     ``,
-    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Visits are private and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call or text (844) 941-7673 to book ahead.`,
+    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Visits are private and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call (844) 941-7673 to book ahead.`,
     ``,
     `**Contact:**`,
     `- Phone: (844) 941-7673`,
     `- Email: info@houseofrosefl.com`,
-    `- Booking: https://houseofrose.glossgenius.com/book`,
-    `- Services: https://houseofrose.glossgenius.com/services`,
+    `- Services menu: https://houseofrose.glossgenius.com/services`,
     `- Address: 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950`,
     `- Hours: Monday–Friday 9:00 AM–5:00 PM`,
     `- Opened: June 15, 2026`,
     `- Instagram: https://www.instagram.com/house.of.rose.aesthetics/`,
-    `- Facebook: https://www.facebook.com/profile.php?id=61590233534310`,
+    `- Facebook: https://www.facebook.com/hofraesthetics`,
     ``,
     `---`,
     ``,
@@ -94,9 +94,9 @@ export const GET: APIRoute = async ({ site }) => {
 
   if (aiSearchFaq?.faqs?.length) {
     lines.push(`## Frequently Asked Questions`, ``);
-    if (aiSearchFaq.intro) lines.push(aiSearchFaq.intro, ``);
+    if (aiSearchFaq.intro) lines.push(alignPublicChannelCopy(aiSearchFaq.intro), ``);
     for (const faq of aiSearchFaq.faqs) {
-      lines.push(`### ${faq.question}`, ``, faq.answer, ``);
+      lines.push(`### ${alignPublicChannelCopy(faq.question)}`, ``, alignPublicChannelCopy(faq.answer), ``);
     }
     lines.push(`---`, ``);
   }
@@ -106,7 +106,7 @@ export const GET: APIRoute = async ({ site }) => {
     for (const col of collections) {
       lines.push(`### ${col.title}`);
       lines.push(`URL: ${base}/services/collections/${col.slug}/`);
-      if (col.description) lines.push(col.description);
+      if (col.description) lines.push(alignPublicChannelCopy(col.description));
       if (col.services?.length > 0) {
         lines.push(`Services in this collection: ${col.services.map(s => s.title).join(', ')}`);
       }
@@ -121,20 +121,20 @@ export const GET: APIRoute = async ({ site }) => {
       lines.push(`### ${s.title}`);
       lines.push(`URL: ${base}/services/${s.slug}/`);
       if (s.collection) lines.push(`Collection: ${s.collection.title}`);
-      if (s.tagline) lines.push(`Tagline: ${s.tagline}`);
+      if (s.tagline) lines.push(`Tagline: ${alignPublicChannelCopy(s.tagline)}`);
       if (s.price) lines.push(`Price: ${s.price}`);
       if (s.duration) lines.push(`Duration: ${s.duration}`);
-      if (s.description) lines.push(``, s.description);
-      if (s.whoItsFor) lines.push(``, `**Who it's for:** ${s.whoItsFor}`);
+      if (s.description) lines.push(``, alignPublicChannelCopy(s.description));
+      if (s.whoItsFor) lines.push(``, `**Who it's for:** ${alignPublicChannelCopy(s.whoItsFor)}`);
       if (s.process?.length) {
         lines.push(``, `**The Process:**`);
-        s.process.forEach((step, i) => lines.push(`${i + 1}. ${step}`));
+        s.process.forEach((step, i) => lines.push(`${i + 1}. ${alignPublicChannelCopy(step)}`));
       }
       if (s.faqs?.length) {
         lines.push(``, `**FAQs:**`);
         for (const faq of s.faqs) {
-          lines.push(``, `Q: ${faq.question}`);
-          lines.push(`A: ${faq.answer}`);
+          lines.push(``, `Q: ${alignPublicChannelCopy(faq.question)}`);
+          lines.push(`A: ${alignPublicChannelCopy(faq.answer)}`);
         }
       }
       lines.push(``);

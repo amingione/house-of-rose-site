@@ -4,7 +4,7 @@ import { defineField, defineType } from 'sanity';
  * Singleton for the Thank You page (/thank-you) — migrated from hardcoded
  * thank-you.astro so all copy is editable in the Studio + Netlify Visual
  * Editor. Utility/confirmation page shown after a lead is submitted; it stays
- * noindex in the template. The two CTA links (Back to Home / Book Online) keep
+ * noindex in the template. The two CTA links (Back to Home / View Services) keep
  * their hardcoded hrefs — only the button labels are editable here.
  */
 export const thankYou = defineType({
@@ -30,7 +30,7 @@ export const thankYou = defineType({
 
     // ── Buttons ──
     defineField({ name: 'ctaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'cta', description: 'Back to Home button label.' }),
-    defineField({ name: 'ctaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'cta', description: 'Book Online button label.' }),
+    defineField({ name: 'ctaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'cta', description: 'View Services button label.' }),
   ],
   preview: { prepare: () => ({ title: 'Thank You Page Content' }) },
 });

@@ -164,7 +164,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
     Both Botox and Daxxify are priced per unit at House of Rose. Your total depends on how many units your treatment areas need, which Diana determines based on your muscle strength and goals. We'll give you a clear estimate at consultation.
 
 15. **How do I book?**
-    Neurotoxin treatment starts with a consultation with Diana. Walk-ins are welcome when the schedule allows; call or text (844) 941-7673 to reserve a time at our Punta Gorda studio.
+    Neurotoxin treatment starts with a consultation with Diana. Walk-ins are welcome when the schedule allows; call (844) 941-7673 to reserve a time at our Punta Gorda studio.
 
 ---
 
@@ -186,7 +186,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 - Any **membership / per-unit member pricing** ("$13.50/unit," "$13/unit," "$12.50/unit," Rose / Rose Gold / Black Rose) — these appear in the stale v2 PDF and are **permanently removed**. Never surface them.
 - Discount/sale language ("deal," "% off").
 
-**Required guardrails on every neurotoxin surface:** provider authority (candidacy, dosing, and area combinations determined by Diana, RN, under medical-director oversight, at consultation) · "not every client is a candidate" · "individual outcomes vary" · explicit pregnancy/breastfeeding and neuromuscular-condition contraindication callouts · consultation-first CTA (call/text, no online booking of injectables).
+**Required guardrails on every neurotoxin surface:** provider authority (candidacy, dosing, and area combinations determined by Diana, RN, under medical-director oversight, at consultation) · "not every client is a candidate" · "individual outcomes vary" · explicit pregnancy/breastfeeding and neuromuscular-condition contraindication callouts · consultation-first CTA (call, no online booking of injectables).
 
 ---
 
@@ -235,10 +235,10 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 ## Sources
 
 **Local docs (primary truth — pricing):**
-- `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing: Botox $14/unit, Daxxify $14/unit, 20 min each; memberships explicitly excluded.
-- `docs/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` (2 pp, ASCII85+Flate decoded) — corroborates Botox/Daxxify $14/unit; **contains STALE membership tiers (Rose/Rose Gold/Black Rose) with per-unit member pricing — DEAD, must not be used.**
-- `docs/services/Diana/House_of_Rose_Injectable_PRF_Pricing.pdf` — PRF pricing context (Diana's injectable PRF lane); not neurotoxin pricing.
-- `docs/services/tox/daxxify.md` — near-empty stub (headers only, no content) — flagged as a gap.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing: Botox $14/unit, Daxxify $14/unit, 20 min each; memberships explicitly excluded.
+- `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` (2 pp, ASCII85+Flate decoded) — corroborates Botox/Daxxify $14/unit; **contains STALE membership tiers (Rose/Rose Gold/Black Rose) with per-unit member pricing — DEAD, must not be used.**
+- `docs/internal_only/services/Diana/House_of_Rose_Injectable_PRF_Pricing.pdf` — PRF pricing context (Diana's injectable PRF lane); not neurotoxin pricing.
+- `docs/internal_only/services/Diana/tox/daxxify.md` — near-empty stub (headers only, no content) — flagged as a gap.
 
 **Sanity published snapshot (consulted):**
 - `injectables` — "Botox & Neurotoxins" treatment (parent `injectables-bio-fillers`), **price: null**, tagline "Botox, Dysport & Daxxify," FAQ "How long do results last? / Will I look frozen?" — see GAPS (price missing; mentions Dysport, which is NOT in Diana's local menu).

@@ -729,9 +729,9 @@ Before treatment, the practice will review [preparation requirements]. The proce
 
 We are writing to clarify [topic]. The information below explains [what the patient needs to know], including [preparation, timing, aftercare, or next step].
 
-### SMS
+### SMS (inactive until verification is complete)
 
-House of Rose: [clear action or reminder]. [Date/time or instruction]. Reply or call [number] with questions. Follow the written pre/post-care instructions provided by the practice.
+Do not use SMS as a customer contact path until Grasshopper verification is complete and the channel has been tested. For now, direct customers to call, use the website contact form, walk in, or review the services menu.
 
 ## 10. Before and after: copy examples
 
@@ -860,7 +860,7 @@ Use this checklist when editing copy:
 **Website:** https://houseofrosefl.com/  
 **Services / booking:** https://houseofrose.glossgenius.com/services  
 **Instagram:** https://www.instagram.com/house.of.rose.aesthetics/  
-**Facebook:** https://www.facebook.com/profile.php?id=61590233534310
+**Facebook:** https://www.facebook.com/hofraesthetics
 
 ### Regular hours
 
@@ -912,16 +912,15 @@ House of Rose is designed for patients who value natural-looking results, clear 
 
 ### Approved description
 
-**Character count: 657 of 750**
+**Character count: 730 of 750**
 
-House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We provide individualized, non-surgical facial and body treatments designed to improve skin quality and support natural-looking results. Care is planned through consultation, skin analysis when relevant, and appropriate medical screening. Services include regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, IV hydration, medical-grade skincare, and customized facial treatments. Our approach combines clinical judgment, treatment protocols, preparation, aftercare, and long-term planning.
+House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We specialize in personalized skin rejuvenation through advanced, non-surgical facial and body treatments designed to achieve natural-looking results. Every treatment begins with a comprehensive consultation and skin analysis, allowing us to develop an individualized treatment plan using regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, medical-grade skincare, and customized facial treatments. Our approach combines clinical expertise, evidence-based treatment protocols, and long-term planning to help patients maintain healthy, naturally rejuvenated skin.
 
 ### Profile settings
 
-- Keep **Medical spa** as the primary Google category while it remains the closest accurate platform category.
-- Keep **Facial spa** and **Skin care clinic** only while they accurately represent meaningful services.
-- Keep **Health and beauty shop** while retail skincare is a meaningful, customer-facing part of the business.
-- Keep **Vitamin & supplements store** only while customers can meaningfully shop that inventory from the practice.
+- Keep **Medical spa** as the primary Google category.
+- Keep the four live secondary categories: **Facial spa**, **Skin care clinic**, **Health and beauty shop**, and **Vitamin & supplements store**.
+- Treat this five-category stack as authoritative; change it only when the live Google Business Profile source of truth is revised.
 - Keep **Appointment not required** while walk-ins are accepted.
 - Keep **Pickup** while customers can order online for local pickup or purchase in the practice.
 - Keep ownership, accessibility, payment, parking, and inclusivity attributes accurate.
@@ -2504,15 +2503,14 @@ Both can coexist. Do not rename the business “House of Rose Medical Aesthetics
 
 ### Approved description
 
-House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We provide individualized, non-surgical facial and body treatments designed to improve skin quality and support natural-looking results. Care is planned through consultation, skin analysis when relevant, and appropriate medical screening. Services include regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, IV hydration, medical-grade skincare, and customized facial treatments. Our approach combines clinical judgment, treatment protocols, preparation, aftercare, and long-term planning.
+House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We specialize in personalized skin rejuvenation through advanced, non-surgical facial and body treatments designed to achieve natural-looking results. Every treatment begins with a comprehensive consultation and skin analysis, allowing us to develop an individualized treatment plan using regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, medical-grade skincare, and customized facial treatments. Our approach combines clinical expertise, evidence-based treatment protocols, and long-term planning to help patients maintain healthy, naturally rejuvenated skin.
 
 ### Profile settings based on current operations
 
 - Keep **Appointment not required** while walk-ins are accepted.
 - Keep **Pickup** while online ordering and local product pickup are offered.
-- Use a few accurate categories, not one category for every service.
-- Keep **Health and beauty shop** while retail is a meaningful public offering.
-- Keep **Vitamin & supplements store** only while it describes a meaningful public retail function.
+- Keep the authoritative category stack: **Medical spa** (primary), plus **Facial spa**, **Skin care clinic**, **Health and beauty shop**, and **Vitamin & supplements store**.
+- Do not add or remove categories unless the live Google Business Profile source of truth is revised.
 - Keep hours, special hours, payment types, accessibility, parking, and ownership attributes accurate.
 - Fully populate services with useful descriptions, but do not keyword-stuff.
 - Use real exterior, interior, staff, procedure, and product photos.

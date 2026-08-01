@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-13
 
-**Purpose.** These research briefs in `docs/research/` are the **sole content input for Phases 3–4** of the site-elevation program. Every treatment fact, price band, concern mapping, comparison, cost guide, and journey link that Phases 3–4 will publish must trace back to one of these briefs. Local service documents and the published Sanity snapshot remain the pricing sources; current FDA, manufacturer-label, and Florida-regulatory sources are the limited exception for safety and scope guardrails. This index is the routing map: which brief feeds which existing Sanity route, and what new pages each brief proposes. The consolidated contradiction/gap log lives in the sibling `_gaps.md`. All URLs use the required trailing slash.
+**Purpose.** These research briefs in `docs/internal_only/research/` are the **sole content input for Phases 3–4** of the site-elevation program. Every treatment fact, price band, concern mapping, comparison, cost guide, and journey link that Phases 3–4 will publish must trace back to one of these briefs. Local service documents and the published Sanity snapshot remain the pricing sources; current FDA, manufacturer-label, and Florida-regulatory sources are the limited exception for safety and scope guardrails. This index is the routing map: which brief feeds which existing Sanity route, and what new pages each brief proposes. The consolidated contradiction/gap log lives in the sibling `_gaps.md`. All URLs use the required trailing slash.
 
 ---
 

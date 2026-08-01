@@ -2,7 +2,7 @@
 
 > **Status:** Plan for review. No repo files touched yet.
 > **Owner:** Amber · **Provider:** Aundrea Pedigo (makeup) · **Also referenced:** Amber (makeup by x amber)
-> **Binding docs inherited:** `docs/SEO-AEO-PLAYBOOK.md`, `docs/CONTENT-MODEL-MAP.md`, `docs/COMPLIANCE-COPY-RULES.md`, root `CLAUDE.md`.
+> **Binding docs inherited:** `docs/SEO-AEO-PLAYBOOK.md`, `docs/CONTENT-MODEL-MAP.md`, `docs/internal_only/COMPLIANCE-COPY-RULES.md`, root `CLAUDE.md`.
 > **Decisions locked (from you):** ① Nested routes + new Sanity schemas · ② Plan-first, then build · ③ Placeholder pricing (no fake numbers ship).
 
 ---
@@ -78,7 +78,7 @@ Registered in `packages/studio/schemas/index.ts` under the **Singletons** block 
   2. **In-House — Spa Rental (The Pre-Party Package)** — whole party rents the spa as a private hosted event; includes Hors d'oeuvres/pastries & mimosas **+ a complimentary "Party Planner Infusion" IV Hydration Therapy session per attendee getting makeup**.
   3. **Travel** — House of Rose travels to your venue and works on your schedule.
 - **Trial-run module:** `trialRunHeading`, `trialRunBody`
-- **How to book:** `bookingCtaHeading`, `bookingCtaBody` (call/text CTA — GBP convention)
+- **How to book:** `bookingCtaHeading`, `bookingCtaBody` (call CTA — GBP convention)
 - **FAQs:** `faqs[]` → `FAQPage`
 - **Hero image:** `image`
 
@@ -191,5 +191,5 @@ Hub links out to feature, events, and proof; every sub-page links back to the hu
 2. **IV Hydration link target** — the "Party Planner Infusion" perk: which existing IV/wellness page should it link to? (Or create a stub?)
 3. **Consent** — signed model/consent releases on file for Stephanie and Jaclyn/Kiara before/afters?
 4. **Jane Iredale brand angle** — manage centrally via a `brandProfile` doc, or keep all copy inside the `janeIredalePage` singleton? (Recommend the singleton for page copy, optionally referencing a `brandProfile` for reusable brand voice.)
-5. **Booking mechanism** — GBP convention is call/text (no online booking button). `rose-circle.astro` references a GlossGenius URL. For makeup/events, call/text CTA only, or include the GlossGenius link too?
+5. **Booking mechanism** — GBP convention is call (no online booking button). `rose-circle.astro` references a GlossGenius URL. For makeup/events, call CTA only, or include the GlossGenius link too?
 6. **Travel fee model** — flat fee, mileage, or "quoted at booking"? (affects the `priceLabel` wording.)

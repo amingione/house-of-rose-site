@@ -6,7 +6,7 @@ shapes. If content doesn't fit a type, extend the type's schema.
 
 ## Step 1 — Gap matrix
 
-From `docs/research/_index.md` + `_site-inventory.md`, build the coverage matrix: for each
+From `docs/internal_only/research/_index.md` + `_site-inventory.md`, build the coverage matrix: for each
 topic × page type (service, cost, comparison, local, results, concern, guide), mark
 exists / thin / missing. Prioritize by decision value:
 
@@ -43,13 +43,13 @@ exists / thin / missing. Prioritize by decision value:
   deterministic `_id`s, re-runnable without duplication.
 - Every new page: `data-sb-*` annotations, JSON-LD via builders, trailing-slash links,
   registered journey edges (no orphans — at least two inbound edges each).
-- Emit `docs/research/_publish-checklist.md`: each draft with its route, a one-line summary,
+- Emit `docs/internal_only/research/_publish-checklist.md`: each draft with its route, a one-line summary,
   and anything Amber must verify (especially prices and provider attribution) before
   publishing.
 
 ## Deliverables
 
-- Coverage matrix (`docs/research/_coverage-matrix.md`)
+- Coverage matrix (`docs/internal_only/research/_coverage-matrix.md`)
 - New/extended schemas deployed; routes live with fallback rendering for unpublished drafts
   handled gracefully (page builds even if draft unpublished — hide, don't crash)
 - Seed script + drafts in Sanity + publish checklist

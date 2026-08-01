@@ -82,8 +82,9 @@ open. If per-visit parity ever becomes a goal, that's Diana's SOP call, not a ma
 
 ## Sources (July 2026 market verification)
 
-Internal comps: `docs/research/_pricing-catalog.md`, `docs/staff/pricing/ALL-SERVICES-PRICING.MD`,
-`docs/competitor_analysis/Punta-Gordas-regenerative-aesthetics-studio.md`.
+Internal comps: `docs/internal_only/research/_pricing-catalog.md`, `docs/internal_only/pricing/ALL-SERVICES-PRICING.MD`,
+The former competitor-analysis source cited here is no longer present in the repository; re-verify any
+market-positioning conclusion before reuse.
 
 Live web (July 2026):
 - Botox FL/unit — [Aurelia Med Spa 2026 FL guide](https://aureliamed.com/blog/how-much-does-botox-cost-in-florida/), [Skin Secrets](https://skinsecrets.com/average-cost-of-botox-in-fl/), [Kent V. Hasen MD, Naples](https://www.drhasen.com/blog/how-much-does-botox-cost-in-naples-fl/)

@@ -200,9 +200,9 @@ All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consol
 ## Sources
 
 **Local docs (primary truth — pricing authoritative):**
-- `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — canonical IV menu + add-on pricing, durations, provider lane (Diana), memberships-excluded note.
-- `docs/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — mirror of the pricing table; adds the operational note that add-ons "attach to a base IV session; not a standalone bookable service."
-- `docs/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — rendered ReportLab treatment menu; content duplicates the consolidated MD/CSV pricing (binary render not needed for pricing truth).
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — canonical IV menu + add-on pricing, durations, provider lane (Diana), memberships-excluded note.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — mirror of the pricing table; adds the operational note that add-ons "attach to a base IV session; not a standalone bookable service."
+- `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — rendered ReportLab treatment menu; content duplicates the consolidated MD/CSV pricing (binary render not needed for pricing truth).
 - `CLAUDE.md` / Phase-2 CHARTER — provider lanes, NAP, compliance rules, no-memberships law.
 
 **Sanity published snapshot (consulted; contradictions flagged, not silently adopted):**

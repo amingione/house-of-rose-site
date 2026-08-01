@@ -251,10 +251,10 @@ No — not every client is a candidate for every service. Active skin infection,
 ## Sources
 
 **Local docs read (paths):**
-- `docs/services/microchanneling/Procell-prf-delivery-research-report.md` — client-education report; compliance framing, MD-vs-Pro verification cautions, PRF-topical-only rule, FDA delivery limitation.
-- `docs/services/pricing/advanced-facials-master-menu.md` — **canonical pricing & framework**; Pro/MD serum tiers, MD = 2× growth factors / 40+ (confirmed), recombinant/no-cells-DNA-blood note, upgrade pricing, series framework, compliance §9.
-- `docs/services/pricing/advanced-facials-pricing.md` — **deprecated** stub (redirects to master menu; no prices used from it).
-- `docs/services/microchanneling/PRF.md` — **empty (0 bytes)** — see GAPS.
+- `docs/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education report; compliance framing, MD-vs-Pro verification cautions, PRF-topical-only rule, FDA delivery limitation.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — **canonical pricing & framework**; Pro/MD serum tiers, MD = 2× growth factors / 40+ (confirmed), recombinant/no-cells-DNA-blood note, upgrade pricing, series framework, compliance §9.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — **deprecated** stub (redirects to master menu; no prices used from it).
+- `docs/internal_only/services/microchanneling/PRF.md` — **empty (0 bytes)** — see GAPS.
 
 **Sanity docs consulted (published snapshot):**
 - Services: `microchanneling` (From $250), `Procell-microchanneling-body` (From $349/zone), `microchanneling-microneedling` (hub), `microneedling-corrective`, `microneedling-body`, `prf-microneedling`, `prf`.

@@ -109,7 +109,7 @@
 
 ### 📊 Competitor pricing — microchanneling / skin-needling (Punta Gorda · Charlotte County · SW FL)
 
-> Sources: `docs/services/PRF/` comp note (ÉLAN, PRF-needling band) + regional Procell pricing web-verified 2026-07 + local Skin Sanctuary/C's. The Notion "$500 unnamed rival" figure was **discarded as unverified** (see last row).
+> Sources: `docs/internal_only/services/PRF/` comp note (ÉLAN, PRF-needling band) + regional Procell pricing web-verified 2026-07 + local Skin Sanctuary/C's. The Notion "$500 unnamed rival" figure was **discarded as unverified** (see last row).
 
 | Competitor | Location | Service | Price | Note |
 |---|---|---|---|---|
@@ -127,7 +127,7 @@
 > - **Pro Face $299:** entry tier, sits right at the Procell market floor (~$300) — the value option, above bare microneedling ($175–$195).
 > - **MD Face $349:** live in GlossGenius; mid-market (≈ ÉLAN $375 / 90-min Procell $350).
 > - **Face + Neck + Décolleté $449:** extended plane, priced above the single-face tiers.
-> - **Series of 4 $1,099:** the count is **4 = Procell protocol** (min 4 tx, 6+ scarring; `docs/services/PRF/`); the price sits inside the real 4-pack band ($1,050–$1,225), ~21% off 4× $349. Not the house 3/6 retail framework.
+> - **Series of 4 $1,099:** the count is **4 = Procell protocol** (min 4 tx, 6+ scarring; `docs/internal_only/services/PRF/`); the price sits inside the real 4-pack band ($1,050–$1,225), ~21% off 4× $349. Not the house 3/6 retail framework.
 >
 > **↳ Series length is per-treatment, not house-wide.** Procell = 4 (protocol). Glo2Facial = 3/6. Microneedling corrective = 3–6 (scarring 5–8). PRF Skin Renewal = 3 or 4. Do not normalize these to one pattern.
 

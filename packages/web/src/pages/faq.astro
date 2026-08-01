@@ -11,11 +11,31 @@ import {
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage } from '@/lib/structuredData';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
-const [aiSearchFaq, groups] = await Promise.all([
+const [aiSearchFaqData, groupData] = await Promise.all([
   sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
   sanityFetch<FaqGroup[]>(FAQ_AGGREGATE_QUERY),
 ]);
+const aiSearchFaq = aiSearchFaqData
+  ? {
+      ...aiSearchFaqData,
+      intro: aiSearchFaqData.intro ? alignPublicChannelCopy(aiSearchFaqData.intro) : undefined,
+      faqs: aiSearchFaqData.faqs?.map((item) => ({
+        ...item,
+        question: alignPublicChannelCopy(item.question),
+        answer: alignPublicChannelCopy(item.answer),
+      })),
+    }
+  : null;
+const groups: FaqGroup[] = groupData.map((group) => ({
+  ...group,
+  faqs: group.faqs.map((item) => ({
+    ...item,
+    question: alignPublicChannelCopy(item.question),
+    answer: alignPublicChannelCopy(item.answer),
+  })),
+}));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -105,7 +125,7 @@ const routeFor = (g: FaqGroup): string => {
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Still have a question?</h2>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">Book a Consult</a>
+        <a href="/consultation/" class="btn-gold">Request a Consultation</a>
       </div>
     </div>
   </section>

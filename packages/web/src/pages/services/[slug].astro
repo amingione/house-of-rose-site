@@ -11,6 +11,7 @@ import {
   type Service,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
@@ -18,15 +19,52 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const service = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, { slug });
+const serviceData = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, { slug });
 
 // Slugs come from getStaticPaths (Sanity), so a miss is a data-integrity bug, not a
 // runtime 404. Fail the build loudly — never `return Astro.redirect()` from a prerendered
 // route: returning a Response in `output: 'static'` stops Astro emitting the sibling index
 // chunk and breaks the build (see shop/[slug].astro).
-if (!service) {
+if (!serviceData) {
   throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
 }
+
+const service: Service = {
+  ...serviceData,
+  tagline: serviceData.tagline ? alignPublicChannelCopy(serviceData.tagline) : undefined,
+  description: serviceData.description ? alignPublicChannelCopy(serviceData.description) : undefined,
+  whoItsFor: serviceData.whoItsFor ? alignPublicChannelCopy(serviceData.whoItsFor) : undefined,
+  benefits: serviceData.benefits?.map(alignPublicChannelCopy),
+  process: serviceData.process?.map(alignPublicChannelCopy),
+  treatmentAreas: serviceData.treatmentAreas?.map((item) => ({
+    ...item,
+    area: alignPublicChannelCopy(item.area),
+    focus: alignPublicChannelCopy(item.focus),
+  })),
+  faqs: serviceData.faqs?.map((item) => ({
+    ...item,
+    question: alignPublicChannelCopy(item.question),
+    answer: alignPublicChannelCopy(item.answer),
+  })),
+  concerns: serviceData.concerns?.map((item) => ({
+    ...item,
+    intro: item.intro ? alignPublicChannelCopy(item.intro) : undefined,
+  })),
+  comparisons: serviceData.comparisons?.map((item) => ({
+    ...item,
+    intro: alignPublicChannelCopy(item.intro),
+  })),
+  seo: serviceData.seo
+    ? {
+        metaTitle: serviceData.seo.metaTitle
+          ? alignPublicChannelCopy(serviceData.seo.metaTitle)
+          : undefined,
+        metaDescription: serviceData.seo.metaDescription
+          ? alignPublicChannelCopy(serviceData.seo.metaDescription)
+          : undefined,
+      }
+    : undefined,
+};
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -138,7 +176,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       )}
       <div class="flex flex-wrap gap-3 mt-7">
         <a href="tel:+18449417673" class="btn-outline-gold">Call to Consult</a>
-        <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
       </div>
     </div>
   </section>
@@ -447,14 +485,14 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         Is {service.title} the right next step?
       </h2>
       <p class="text-muted text-[15px] max-w-[560px] mx-auto mb-10 leading-relaxed">
-        Call or book online to discuss your goals and arrange a consultation. Walk-ins are welcome when the schedule allows; an appointment is recommended to reserve a time.
+        Call to discuss your goals and arrange a consultation, or review the current services menu. Walk-ins are welcome when the schedule allows; an appointment is recommended to reserve a time.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
           Call (844) 941-7673
         </a>
-        <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          Book Online
+        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
+          View Services
         </a>
         <a href="/consultation/" class="btn-outline-gold">
           Talk Through My Options

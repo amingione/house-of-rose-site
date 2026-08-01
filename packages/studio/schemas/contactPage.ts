@@ -35,9 +35,9 @@ export const contactPage = defineType({
     defineField({ name: 'phoneNumber', title: 'Phone — Display Number', type: 'string', group: 'contactInfo', description: 'Presentational text only — the tel: link target is set in the template.' }),
     defineField({ name: 'phoneHours', title: 'Phone — Hours Line', type: 'string', group: 'contactInfo' }),
 
-    defineField({ name: 'bookLabel', title: 'Book Online — Label', type: 'string', group: 'contactInfo' }),
-    defineField({ name: 'bookLinkText', title: 'Book Online — Link Text', type: 'string', group: 'contactInfo' }),
-    defineField({ name: 'bookNote', title: 'Book Online — Note Line', type: 'string', group: 'contactInfo' }),
+    defineField({ name: 'bookLabel', title: 'View Services — Label', type: 'string', group: 'contactInfo' }),
+    defineField({ name: 'bookLinkText', title: 'View Services — Link Text', type: 'string', group: 'contactInfo' }),
+    defineField({ name: 'bookNote', title: 'View Services — Note Line', type: 'string', group: 'contactInfo' }),
 
     defineField({ name: 'visitLabel', title: 'Visit — Label', type: 'string', group: 'contactInfo' }),
     defineField({ name: 'addressLine1', title: 'Visit — Address Line 1', type: 'string', group: 'contactInfo' }),

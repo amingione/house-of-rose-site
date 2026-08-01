@@ -3,9 +3,9 @@
  *
  * Sources checked 2026-07-20:
  * - CLAUDE.md provider lanes and permanent retirements
- * - docs/staff/pricing/ALL-SERVICES-PRICING.MD
- * - docs/staff/pricing/advanced-facials-master-menu.md
- * - docs/staff/COMPLIANCE-COPY-RULES.md
+ * - docs/internal_only/pricing/ALL-SERVICES-PRICING.MD
+ * - docs/internal_only/pricing/advanced-facials-master-menu.md
+ * - docs/internal_only/COMPLIANCE-COPY-RULES.md
  * - published Sanity catalog (read before this script was authored)
  *
  * Dry run:
@@ -265,7 +265,7 @@ const supportingDocuments = [
     city: 'Port Charlotte',
     region: 'Charlotte County, FL',
     intro: 'House of Rose Aesthetics serves Port Charlotte clients from its advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. Clients visit for AI Skin Analysis, Procell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
-    whyLocal: 'House of Rose is located in downtown Punta Gorda, not in Port Charlotte. The studio serves clients from across Charlotte County with private appointments, provider-specific treatment lanes, and consultation-led recommendations.',
+    whyLocal: 'House of Rose is located in downtown Punta Gorda, not in Port Charlotte. The studio serves clients from across Charlotte County with thoughtful consultations, individualized treatment planning, and clear preparation and aftercare guidance.',
     servedServices: [
       ref('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'Procell'),
       ref('818469ff-9dee-4939-ad55-54fb1ca4e184', 'topical-prf'),
@@ -276,7 +276,7 @@ const supportingDocuments = [
     faqs: [
       faq('location', 'Is House of Rose located in Port Charlotte?', 'No. House of Rose is located at 525 E Olympia Ave, Unit 9 in Punta Gorda and serves clients who travel from Port Charlotte and surrounding Charlotte County communities.'),
       faq('start', 'Where should a Port Charlotte client start?', 'If you are unsure which skin service fits, begin with AI Skin Analysis and a provider-reviewed consultation at the Punta Gorda studio.'),
-      faq('book', 'How do I schedule from Port Charlotte?', 'Use the current online booking menu or call or text (844) 941-7673. The team can help route you to the appropriate provider and service lane.'),
+      faq('book', 'How do I schedule from Port Charlotte?', 'Review the current services menu or call (844) 941-7673. The team can help you choose an appropriate consultation or service.'),
     ],
     seo: {
       _type: 'seo',

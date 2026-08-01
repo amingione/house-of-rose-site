@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-13 · **Provider lane:** Brandy (basic / maintenance facials) · **Status:** draft for Phase 3/4 consumption
 
-> **Source note (KNOWN GAP):** There is **no hydrodermabrasion `service` in the published Sanity snapshot**, and the local doc `docs/services/facials/hydrodermabrasion.md` is a **0-byte empty file**. No House of Rose pricing source for hydrodermabrasion exists anywhere in `docs/services/**` (the advanced-facials master menu is explicitly Amber's lane only and states "relaxing/maintenance facials are Brandy's lane… none included here"). **All cost figures in this brief are marked "pending" — none are invented.** Brandy's entire basic-facials lane (enzyme exfoliation, hydrodermabrasion, light peels) appears **unbuilt in Sanity** as of this snapshot. Flag to Amber for a pricing + Sanity-build decision before any hydrodermabrasion page goes live.
+> **Source note (KNOWN GAP):** There is **no hydrodermabrasion `service` in the published Sanity snapshot**, and the local doc `docs/internal_only/services/facials/hydrodermabrasion.md` is a **0-byte empty file**. No House of Rose pricing source for hydrodermabrasion exists anywhere in `docs/internal_only/services/**` (the advanced-facials master menu is explicitly Amber's lane only and states "relaxing/maintenance facials are Brandy's lane… none included here"). **All cost figures in this brief are marked "pending" — none are invented.** Brandy's entire basic-facials lane (enzyme exfoliation, hydrodermabrasion, light peels) appears **unbuilt in Sanity** as of this snapshot. Flag to Amber for a pricing + Sanity-build decision before any hydrodermabrasion page goes live.
 
 ---
 
@@ -183,7 +183,7 @@ What will move price once set (for structuring the eventual menu):
 - `/services/collections/skin-renewal/`
 - Corrective step-up references: `/services/microchanneling/` (Procell), `/services/microneedling-corrective/`, `/services/biorepeel/`
 - `/shop/` (retail hydration + SPF follow-through)
-- `/faq/`, `/contact/`, booking (call/text-first, GlossGenius)
+- `/faq/`, `/contact/`, booking (call-first, GlossGenius)
 
 **Proposed new pages (type + slug):**
 - **service/treatment page** — `/services/hydrodermabrasion/` (needs a Sanity `service` doc + price first).
@@ -208,11 +208,11 @@ What will move price once set (for structuring the eventual menu):
 ## Sources
 
 **Local docs read (paths):**
-- `docs/services/facials/hydrodermabrasion.md` — **empty (0 bytes)**; no content.
-- `docs/services/facials/packagesAdd-ons.md` — package/add-on framing (note: contains a stale "monthly membership" reference for dermaplaning — memberships removed 2026-07-07).
-- `docs/services/facials/biorepeel.md`, `docs/services/facials/dermaplaning.md` (empty), `docs/services/facials/glo2facialxGeneo.md` (empty) — checked for adjacent content; mostly stubs.
-- `docs/services/pricing/advanced-facials-master-menu.md` — canonical Amber-lane menu (confirms Glo2Facial From $185; explicitly excludes Brandy's maintenance lane; no hydrodermabrasion price).
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub.
+- `docs/internal_only/services/facials/hydrodermabrasion.md` — **empty (0 bytes)**; no content.
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — package/add-on framing (note: contains a stale "monthly membership" reference for dermaplaning — memberships removed 2026-07-07).
+- `docs/internal_only/services/facials/biorepeel.md`, `docs/internal_only/services/facials/dermaplaning.md` (empty), `docs/internal_only/services/facials/glo2facialxGeneo.md` (empty) — checked for adjacent content; mostly stubs.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical Amber-lane menu (confirms Glo2Facial From $185; explicitly excludes Brandy's maintenance lane; no hydrodermabrasion price).
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub.
 
 **Sanity docs consulted (snapshot):**
 - Services present and used for comparison/pricing: `glo2facial` (From $185, 60 min, Skin Renewal, "Oxygenating facial treatment"), `dermaplaning` (From $135, 50 min), `lightstim-led-therapy` (From $65). Collections: `skin-renewal`. Concerns: `sun-damage` (+ full concern list). **No `hydrodermabrasion` service, no enzyme-exfoliation service, no basic-facials collection, no `shopBrand` records in snapshot** — Brandy's basic lane is unbuilt.

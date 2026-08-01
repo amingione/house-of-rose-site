@@ -94,7 +94,7 @@ If a genuinely new type is needed, keep the contract intact:
 Authoritative values live in Sanity `siteSettings` and are mirrored in
 `src/lib/structuredData.ts` (`LOCAL_BUSINESS`). Never hardcode divergent values.
 
-- **Name:** House of Rose Aesthetics (House of Rose Luxury Spa & Wellness)
+- **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
 - **Phone:** (844) 941-7673 · **Geo:** 26.9298, −82.0454
 - **Booking:** https://houseofrose.glossgenius.com/services

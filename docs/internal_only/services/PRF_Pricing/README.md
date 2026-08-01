@@ -6,7 +6,7 @@ and wire into the Astro routes. Nothing is live until Amber approves and it's wi
 
 Every fact is verified against local source-of-truth docs per **CLAUDE.md Rule #0**, and every page
 follows `docs/SEO-AEO-PLAYBOOK.md` (answer-first, entity-clear, locally grounded) and
-`docs/staff/COMPLIANCE-COPY-RULES.md`.
+`docs/internal_only/COMPLIANCE-COPY-RULES.md`.
 
 ## What's here
 
@@ -48,7 +48,7 @@ and none were echoed in softened form:
 
 Every callout across all decks uses a **different** CTA — no repeated "Book Now." Each deck's
 "Review & build notes" lists its CTAs; the full set (34, all unique) was swept for duplicates. Rule of
-thumb kept while writing: injectables/PRF = call-or-text (consultation-first, no online booking);
+thumb kept while writing: injectables/PRF = call (consultation-first, no online booking);
 esthetics = book-or-call; trust/homepage get their own bank ("See your skin first," "Meet the team," etc.).
 
 ## Compliance guardrails baked into every page

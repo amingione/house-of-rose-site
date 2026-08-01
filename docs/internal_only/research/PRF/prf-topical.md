@@ -98,7 +98,7 @@ No new concern pages required — the existing six cover the topical-PRF surface
 
 **What moves the price:** the tool selected (microchanneling vs corrective microneedling), face vs body zone, area size, single visit vs series, and whether topical PRF is added as an upgrade.
 
-**Local-doc pricing (canonical source: `docs/services/pricing/advanced-facials-master-menu.md`, updated 2026-07-10):**
+**Local-doc pricing (canonical source: `docs/internal_only/pricing/advanced-facials-master-menu.md`, updated 2026-07-10):**
 - **Topical PRF — face upgrade: +$175** (added to any needling treatment).
 - **Topical PRF — body upgrade: +$200** (per zone).
 - Base needling it layers onto: Procell Microchanneling Pro **$250** (single) / MD **$325**; Corrective Microneedling **$295**. Example given in the master menu: *Microneedling — Corrective + Topical PRF = $470.*
@@ -176,22 +176,22 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 - **The autologous, "your-own-biology" story is true and compliant.** Made from your own blood, no anticoagulant, no animal additives, no synthetics — a real differentiator that needs no overclaiming.
 - **A clean signature stack.** Topical PRF + Procell microchanneling pairs an autologous adjunct with a verified recombinant growth-factor system — a premium, compliant combination, with the Procell PRO/MD home systems for retention.
 - **Honesty as the brand.** An educated SW-Florida clientele responds to realistic expectation-setting: PRF is promising but early-evidence; results build gradually; not everyone is a candidate. Saying so builds trust and doubles as E-E-A-T SEO.
-- **Locally grounded.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida; walk-ins welcome and call/text-ahead booking recommended; open since June 15, 2026.
+- **Locally grounded.** Punta Gorda / Port Charlotte / Charlotte County / Southwest Florida; walk-ins welcome and call-ahead booking recommended; open since June 15, 2026.
 
 ---
 
 ## Sources
 
 **Local docs read (paths under repo root):**
-- `docs/services/microchanneling/Procell-prf-delivery-research-report.md` — client-education research report; the primary compliance + topical-vs-injectable framing.
-- `docs/services/PRF/compass_artifact_wf-116088fa-2d44-4fdf-a81e-8886533f95e6_text_markdown.md` — PRF science/strategy package (mechanism, evidence citations, competitive landscape, compliance).
-- `docs/services/pricing/advanced-facials-master-menu.md` — **canonical pricing** (Topical PRF +$175 face / +$200 body; needling bases; series framework; compliance guardrails).
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (points to the master menu; prices not used).
-- `docs/services/microchanneling/PRF.md` — **empty file (0 bytes)** — flagged as a gap.
-- `docs/services/Diana/PRF_Treatment_Guide_House_of_Rose.pdf` — House PRF guide; injectable-vs-microchanneling contrast, "~24 hours of redness."
-- `docs/services/Diana/PRF_Brochure_House_of_Rose.pdf` — House PRF brochure; benefits, treatment areas, "series of 3–4, 4–6 weeks apart."
-- `docs/services/Diana/PRF_Pricing_House_of_Rose.pdf` — House PRF pricing PDF (bundled prices — conflicts with master menu; flagged).
-- `docs/research/_prf-source-library.md` — curated manifest of Amber's facial-PRF literature (referenced, not copied); anchors: `~/Documents/PRF EDU/part 3 - indications for prf/Facial esthetics/0. 2024 Davies Miron Facial Esthetics SR.pdf` and `~/Documents/PRF EDU/00 The evolution of Platelet Rich Fibrin.pdf` (mechanism/evidence literacy).
+- `docs/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education research report; the primary compliance + topical-vs-injectable framing.
+- `docs/internal_only/research/compass_artifact_wf-116088fa-2d44-4fdf-a81e-8886533f95e6_text_markdown.md` — PRF science/strategy package (mechanism, evidence citations, competitive landscape, compliance).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — **canonical pricing** (Topical PRF +$175 face / +$200 body; needling bases; series framework; compliance guardrails).
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (points to the master menu; prices not used).
+- `docs/internal_only/services/microchanneling/PRF.md` — **empty file (0 bytes)** — flagged as a gap.
+- `docs/internal_only/services/Diana/PRF_Treatment_Guide_House_of_Rose.pdf` — House PRF guide; injectable-vs-microchanneling contrast, "~24 hours of redness."
+- `docs/internal_only/services/Diana/PRF_Brochure_House_of_Rose.pdf` — House PRF brochure; benefits, treatment areas, "series of 3–4, 4–6 weeks apart."
+- `docs/internal_only/services/Diana/PRF_Pricing_House_of_Rose.pdf` — House PRF pricing PDF (bundled prices — conflicts with master menu; flagged).
+- `docs/internal_only/research/_prf-source-library.md` — curated manifest of Amber's facial-PRF literature (referenced, not copied); anchors: `~/Documents/PRF EDU/part 3 - indications for prf/Facial esthetics/0. 2024 Davies Miron Facial Esthetics SR.pdf` and `~/Documents/PRF EDU/00 The evolution of Platelet Rich Fibrin.pdf` (mechanism/evidence literacy).
 
 **Sanity docs consulted (published snapshot):** services `prf` (hub), `prf-microneedling`, `prf-body-treatments`, `prf-injections`, `ez-gel-bio-filler`, `microchanneling`, `microneedling-corrective`, `microchanneling-microneedling` (hub); comparison `prf-microchanneling-vs-microneedling`; cost guide `prf-microneedling-cost-punta-gorda`; concerns `fine-lines-laxity`, `acne-scarring`, `stretch-marks`, `sun-damage`, `dark-circles`, `hair-thinning`; packages `prf-microchanneling-journey`, `prf-microneedling-series-of-4`, `prf-under-eye-series-of-3`, `Procell-microchanneling-series-of-4`.
 

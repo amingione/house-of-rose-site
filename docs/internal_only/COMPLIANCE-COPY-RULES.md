@@ -7,11 +7,10 @@
 > content task. The voice notes in `marketing/regeneration-plans.md` §8 are the same spirit — this
 > file is the enforceable, structured version: **what we never say, what we say instead, and why.**
 >
-> **Florida legal layer — `docs/compliance/`.** This file governs *voice and claims* ("am I allowed to
-> say this?"). `docs/compliance/FL-ADVERTISING-LAW.md` governs *statutes and rules* ("what does Florida
-> law require me to include, hold, or hold back?") — the § 456.062 72-hour disclosure, provider
-> identification and license type, clinic-licensure posture, and record retention. **Where the two
-> conflict, `docs/compliance/` wins.** Read it before publishing any offer, price, credential, or paid ad.
+> **Operational compliance — `docs/internal_only/compliance/`.** This file governs voice and claims.
+> The compliance directory contains the remaining paid-ad and toll-free-messaging controls. The former
+> legal-analysis and consultation-fee drafts were intentionally removed on 2026-07-27; do not cite or
+> reconstruct them. Obtain approved disclosure copy and counsel review before publishing an offer.
 
 ---
 
@@ -57,7 +56,7 @@ Each row is a hard avoid. The "Say instead" column is the approved, compliance-s
 | "stem cell" / "stem-cell therapy" (as a treatment we provide or a claim) | Unapproved/overstated regenerative claim; regulatory minefield | Name the actual service (e.g. "PRF," "Procell microchanneling") and describe it factually |
 | "exosome" / "peptide" therapeutic claims that aren't substantiated | Unsupported efficacy claims on emerging actives | Describe the product/ingredient neutrally; make no healing/efficacy promise |
 | "treats," "cures," "heals," "fixes" + a condition (acne, rosacea, eczema, scarring, hair loss, disease) | Medical-treatment / disease claim; we are not a medical practice in our copy | "for the appearance of," "helps improve the look of," "supports the skin's…," "may help with the visible signs of" |
-| "Groupon," "deal," "discount," "% off," "sale," "coupon," "lowest price," "cheap" | Off-brand and erodes premium positioning; the brand is "a destination, never a deal" | "investment," "from," "starting at," "curated" — **never** "member rate" / "founding-member" / "member access" (memberships are not offered) |
+| "Groupon," "deal," "discount," "% off," "sale," "coupon," "lowest price," "cheap" | Off-brand and undercuts the practice's positioning as a considered medical aesthetics practice, not a deal-driven business | "investment," "from," "starting at," "curated" — **never** "member rate" / "founding-member" / "member access" (memberships are not offered) |
 | "FDA-approved" / "clinically proven" (unless citing a specific, verifiable clearance/study) | Unverifiable or misattributed authority claim | State what the treatment *is* and *does* in plain terms; cite only what's real |
 | Uniform before/after promises ("you will look like…") | Implies a guaranteed, universal outcome | "individual results vary," show consented, honest case studies only |
 
@@ -116,7 +115,7 @@ Before publishing or editing any customer-facing copy, confirm:
 - [ ] Provider-authority + candidacy + individual-outcomes language is present where a plan/treatment is sold.
 - [ ] Before/after only with written consent (`caseStudy.consentGiven == true`).
 - [ ] Claims of authority ("FDA-approved," "clinically proven") are removed unless specifically verifiable.
-- [ ] **§ 456.062 72-hour disclosure present** (verbatim, caps) on any surface advertising a free, discounted or credited service — including the ad unit itself. See `docs/compliance/FL-ADVERTISING-LAW.md` §5.1.
+- [ ] Any free, discounted, or credited healthcare-service offer has current approved disclosure copy in every required placement and documented counsel review; no statutory text was improvised.
 - [ ] **Provider named with license type** (MD / DO / APRN / RN — never a job title like "Aesthetic Injector") wherever a practitioner is named. § 456.072(1)(t).
 - [ ] **No "dermatologist," "skin doctor," or "dermatology specialists" in copy** — implies a specialty not held. R. 64B8-11.001(2)(k).
 - [ ] No membership, tier, or "member rate" framing anywhere.
@@ -128,10 +127,10 @@ copy polish, every time.
 
 ## 6. Related
 
-- **`docs/compliance/README.md` — the binding Florida statutory layer. Start there for any offer, price, credential, or paid ad.**
-- `docs/compliance/FL-ADVERTISING-LAW.md` — § 456.062 disclosure, provider identification, clinic licensure, retention.
-- `docs/compliance/CONSULTATION-FEE-POLICY.md` — consultation fee, credit, refund and cancellation terms.
-- `docs/compliance/AD-COMPLIANCE-RUNBOOK.md` — pre-launch gate, platform lockdown, ad archive, review policy.
+- **`docs/internal_only/compliance/README.md` — current compliance status and file map.**
+- `docs/internal_only/compliance/GOOGLE-ADS-COMPLIANCE.md` — Google Ads controls and copy requirements.
+- `docs/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` — pre-launch gate, platform lockdown, ad archive, review policy.
+- `docs/internal_only/compliance/grasshopper-toll-free-guidelines.md` — pending toll-free SMS verification package.
 - `docs/SEO-AEO-PLAYBOOK.md` — content strategy, the 7 page types, the publish checklist.
 - `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc → route → JSON-LD → GROQ.
 - Schemas that encode these guardrails: `treatmentPackage` (`candidacyNote`, `outcome`),

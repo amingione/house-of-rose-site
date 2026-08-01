@@ -1,7 +1,7 @@
 # Changelog
 
 All notable site-elevation work is logged here, newest first. See
-`docs/prompts/site-elevation/` for the phased program and `docs/research/` for audit artifacts.
+`docs/internal_only/prompts/site-elevation/` for the phased program and `docs/internal_only/research/` for audit artifacts.
 
 ## 2026-07-14 — Procell/PRF coverage review (items 1–3)
 
@@ -74,7 +74,7 @@ Published directly to Sanity (buffered from the live static site until this rebu
 - **Added `AI Skin Analysis` service** (the evidence-based first step) — full content, Complimentary, in Advanced
   Facials (Amber); compliance-clean (guides a plan, does not diagnose). Coexists with the `/skin-analysis/` singleton page.
 - **Removed** standalone Acne Peel + Back Treatment (Face Reality is the $899 program only; unpublished).
-- Working files: `docs/research/sanity-services.csv`, `sanity-collections.csv`, `_sanity-collection-restructure.md`.
+- Working files: `docs/internal_only/research/sanity-services.csv`, `sanity-collections.csv`, `_sanity-collection-restructure.md`.
 
 Still open: the advanced-facial combos + GlowTox (Diana/med-director review) not yet added; makeup `service`
 docs coexist with the professional-makeup singleton pages (consolidate later); 3/6-session + acne packages → `treatmentPackage`.
@@ -115,15 +115,15 @@ banned-phrase sweep clean (reworded a negated "discount" mention).
 - **Redirects (`netlify.toml`):** removed `/memberships/*→/`; `/rose-circle/*` + `/plans/*`
   now 301 → `/memberships/`.
 - **Docs:** `CLAUDE.md` membership section flipped (REMOVED → REINSTATED, status + pending items);
-  `docs/COMPLIANCE-COPY-RULES.md` gained the binding membership-framing rule;
+  `docs/internal_only/COMPLIANCE-COPY-RULES.md` gained the binding membership-framing rule;
   `docs/research/memberships.md` = reinstatement brief + owner decision checklist.
 - **Pending Amber:** final tier names/prices/perks, single-vs-per-lane, revive "Rose Circle/Rose
   Pass" names?, recurring-billing rail (Stripe subscriptions vs GlossGenius). Sanity draft-seed of
   the 3 tiers was blocked by the write-permission classifier — Amber to authorize/seed, or publish
   from the page fallbacks.
 - **GlossGenius reconciliation (2026-07-13):** Amber provided the live GG catalog
-  (`docs/glossgenius_catalog.csv`) — the true system of record. It diverges heavily from local docs + Sanity.
-  Added §0 (GG truth + divergence log) to `docs/research/_pricing-catalog.md` and rebuilt
+  (`docs/internal_only/services/glossgenius_catalog.csv`) — the true system of record. It diverges heavily from local docs + Sanity.
+  Added §0 (GG truth + divergence log) to `docs/internal_only/research/_pricing-catalog.md` and rebuilt
   `memberships-pricing.md` on GG anchors: **basic-facials blocker RESOLVED** (GG prices a 9-facial ladder
   $80–$200); Glo2Facial is **$195** (not $185); **no Brazilian / no series / no memberships** in GG (retired
   those anchors). Recommended **"Facial of the Month"** tiers = real GG prices (Essential $80–$100 · Signature
@@ -132,7 +132,7 @@ banned-phrase sweep clean (reworded a negated "discount" mention).
   bookable in GlossGenius** — GG-vs-website menu reconciliation is a catalog-wide decision. Memory saved:
   GlossGenius = source of truth, Sanity = display middle-man.
 - **Canonical service taxonomy (2026-07-13):** Amber provided her intended categorization
-  (`Obsidian/…/05-SERVICES/Services.md`) → captured as `docs/research/_service-taxonomy.md`: 12 categories by
+  (`Obsidian/…/05-SERVICES/Services.md`) → captured as `docs/internal_only/research/_service-taxonomy.md`: 12 categories by
   provider (Tox · Dermal Filler · IV Hydration · Wellness & Restoration · Weight Management [Diana]; Advanced
   Facials [Amber, modular microneedling/microchanneling + prep add-ons]; Waxing · Lashes · Permanent Jewelry ·
   Professional Makeup [Aundrea]; Basic Facials [Brandy + Aundrea]), each priced against GG with gaps flagged.
@@ -152,14 +152,14 @@ banned-phrase sweep clean (reworded a negated "discount" mention).
   `_service-taxonomy.md`, `_sanity-collection-restructure.md`, `memberships-pricing.md`.
 - **Collection restructure draft + provider data (2026-07-13):** parsed `glossgenius_catalog.numbers` (via
   `numbers-parser`) for the authoritative **provider column** — Aundrea = the 3 "Rose" facials, Brandy = the
-  other 6; facial waxing = Aundrea+Brandy, body waxing = Aundrea. Wrote `docs/research/_sanity-collection-restructure.md`:
+  other 6; facial waxing = Aundrea+Brandy, body waxing = Aundrea. Wrote `docs/internal_only/research/_sanity-collection-restructure.md`:
   target collections mirror the live GG categories, a full migration table for the current 31 services (incl.
   **remove `acne-peel`/`back-treatment`** — Face Reality is a $899 program only; **reprice Sanity to GG**;
   Glo2/GlowTox/combos confirmed as Amber's advanced facials), the one open decision (Diana's lane = 2 GG groups
   vs 5 Obsidian splits), add-on categorization, and the Face Reality page-cluster scope. No Sanity docs changed
   (writes gated) — applies as drafts on approval.
 - **Membership pricing research (2026-07-13, extensive):** two parallel agents →
-  `docs/research/_pricing-catalog.md` (authoritative per-lane service prices, local-docs = truth,
+  `docs/internal_only/research/_pricing-catalog.md` (authoritative per-lane service prices, local-docs = truth,
   drift reconciled) + `docs/research/memberships-economics.md` (banked-credit model, FL Stat. § 501.95
   no-expiry-on-paid-credit constraint, billing-rail options — structure only, no invented prices) →
   synthesized `docs/research/memberships-pricing.md`: **every recommended fee derived from a real menu
@@ -191,8 +191,8 @@ older docs are reframed as **rebuild assets**, not deletions (per the reinstatem
 ## 2026-07-12 — Phase 1: Audit & Perfect
 
 Full read-only audit (6 parallel agents) + fixes across content, compliance, CTAs/linking,
-technical, and structured data. Artifacts: `docs/research/_site-inventory.md`,
-`docs/research/_audit-report.md`, `docs/research/_prf-source-library.md`.
+technical, and structured data. Artifacts: `docs/internal_only/research/_site-inventory.md`,
+`docs/internal_only/research/_audit-report.md`, `docs/internal_only/research/_prf-source-library.md`.
 
 **Gates:** `astro check` 0/0/0 · `npm run build` 252 pages (web + studio green) ·
 `ve:check` 0 missing · `dist/**` trailing-slash sweep clean · banned-phrase sweep clean in code.
@@ -221,7 +221,7 @@ technical, and structured data. Artifacts: `docs/research/_site-inventory.md`,
   the cost/compare page types reachable; wired into Footer + `sitemap.xml`.
 - `sitemap.xml`: professional-makeup trio + all shop product pages + the two new hubs.
 
-### Follow-ups for Amber (see `docs/research/_audit-report.md` §C)
+### Follow-ups for Amber (see `docs/internal_only/research/_audit-report.md` §C)
 - Publish 5 Sanity content fixes (rentARoom ×3, privacyPolicy, punta-gorda area FAQ) — banned
   "guaranteed"/"discount" wording + "Ste 9"→"Unit 9" NAP drift in published content.
 - Decide on retail product names carrying §2 terms (manufacturer names: Age-Defying / Anti-Aging /

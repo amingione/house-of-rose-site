@@ -1,21 +1,26 @@
 # Drift-Cleanup Checklist — House of Rose
 
-**Updated:** 2026-07-28 · **Source of truth:** `CLAUDE.md` (repo root) + Sanity `siteSettings`
+**Updated:** 2026-08-01 · **Source of truth:** `CLAUDE.md` (repo root) + Sanity `siteSettings` + `docs/GOOGLE-BUSINESS-PROFILE.md`
 **Purpose:** eliminate outdated information and stop drift back to earlier versions of the brand.
 
 ## Current canon (enforce this)
 
 - **NAP:** House of Rose Aesthetics · 525 E Olympia Ave, **Unit 9**, Punta Gorda, FL **33950** ·
   **(844) 941-7673** / `+18449417673` · **info@houseofrosefl.com**.
-  _Never:_ ZIP `33982`, phone `…7376`, `book@…`, "Ste/Suite".
+  _Never:_ ZIP `33982`, phone `…7376`, "Ste/Suite". `book@houseofrosefl.com` is a confirmed live
+  alias, but use it only for rental/booking `mailto:` links—not public NAP.
 - **Hours / opening:** Mon–Fri **9:00 AM–5:00 PM** · Sat–Sun closed · opened **June 15, 2026**.
-- **Social:** Instagram `house.of.rose.aesthetics` · Facebook profile ID `61590233534310`.
+- **Social:** Instagram `house.of.rose.aesthetics` · Facebook `https://www.facebook.com/hofraesthetics`.
 - **GBP service area:** Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch,
   Burnt Store Marina, Punta Gorda Isles.
 - **GBP categories:** `Medical spa` primary; `Facial spa`, `Skin care clinic`,
   `Health and beauty shop`, and `Vitamin & supplements store` secondary.
 - **Visit policy:** walk-ins welcome; appointments recommended to reserve a time. GBP planning attribute:
   **Appointment not required**.
+- **Phone SMS:** not enabled while Grasshopper verification is pending. Use call, email, contact-form,
+  walk-in, and services-menu CTAs; do not advertise texting as an active channel.
+- **GlossGenius:** `https://houseofrose.glossgenius.com/services` is the services/menu link, not a primary
+  online-booking-button CTA.
 - **Med spa — ON, "allow, don't lead":** lead in prose with "advanced aesthetics & wellness studio";
   "med spa / medical spa" is allowed in meta, GBP, SEO, and supporting copy; **never deny being a med
   spa**; only "day spa" is off-limits. → **Stale = any "we are NOT a med spa" denial.**
@@ -76,7 +81,7 @@
   (retired). "House of Rose HQ" and "The Rose Method™" pages need updating too.
 
 ### P1 · Secondary docs still describing the membership model
-- [ ] `docs/COMPLIANCE-COPY-RULES.md` §1, `docs/VISUAL-EDITING.md`, `docs/GOOGLE-BUSINESS-PROFILE.md` — remove Rose Circle / membership /
+- [ ] `docs/internal_only/COMPLIANCE-COPY-RULES.md` §1, `docs/VISUAL-EDITING.md`, `docs/GOOGLE-BUSINESS-PROFILE.md` — remove Rose Circle / membership /
   Rose Method framing (they don't affect the build, but they're drift bait).
 
 ### P2 · Archive / quarantine (low risk if isolated)
@@ -84,7 +89,8 @@
 - [ ] `08-Memberships…/_Membership Options — Master Overview.md` & `_Sanity Migration Plan.md` —
   archive (memberships gone; kept only as history).
 - [ ] Move `House of Rose/Artifacts/Brand Development Engine/` out of the searchable tree — carries
-  wrong NAP (`7376` / `33982` / `book@`) and botanical names.
+  wrong NAP (`7376` / `33982`) and botanical names. Review any `book@` reference by context; the alias
+  itself is valid, but it is not the public NAP email.
 
 ---
 
@@ -103,10 +109,11 @@
 
 Auto-flag these **banned "current-offering" strings** (mirrors FAS drift discipline):
 
-`33982` · `7376` · `book@` · `day spa` · `Gilded Lily` · `Porcelain Petal` · `Camellia Peel` ·
+`33982` · `7376` · public-NAP use of `book@` · `day spa` · `Gilded Lily` · `Porcelain Petal` · `Camellia Peel` ·
 `Lumière` · `Clarity Session` · `Collagen Bank` · `House Collective` · `membership` · `Rose Circle` ·
 `Rose Rewards` · `Rose Method` · `Rose Pass` · `appointment-only` · `walk-ins not offered` ·
 old IG `houseofrosefl` · old Facebook vanity URL · opening `July 9, 2026`
 
-> **"med spa" is NOT banned** (allowed, don't lead). **Deploy note:** the teardown + skin-analysis
+> **"med spa" is NOT banned** (allowed, don't lead). **`book@houseofrosefl.com` is also not banned;**
+> it is a live alias restricted to rental/booking `mailto:` links. **Deploy note:** the teardown + skin-analysis
 > changes are staged locally / in Sanity — they need a `git push` + Netlify rebuild to go live.

@@ -224,7 +224,7 @@ const collectionPatch = {
   ],
   closingTitle: 'Not sure where to start?',
   closingBody:
-    'Call or text House of Rose and tell us what you want to improve. We will help you choose a sensible next step.',
+    'Call House of Rose and tell us what you want to improve. We will help you choose a sensible next step.',
 };
 
 let transaction = client.transaction().patch(collectionId, { set: collectionPatch });

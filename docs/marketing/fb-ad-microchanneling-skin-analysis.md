@@ -4,7 +4,7 @@
 **Provider:** Amber (esthetician + RN assistant) — Advanced Facials lane
 **Objective:** Leads (not traffic). Conversion event = skin-analysis form submit on `/skin-analysis/`
 **Landing page:** `https://houseofrosefl.com/skin-analysis/` (already has the lead form + FAQ + JSON‑LD)
-**Secondary CTA:** call/text (844) 941‑7673 · booking: houseofrose.glossgenius.com
+**Secondary CTA:** call (844) 941‑7673 · booking: houseofrose.glossgenius.com
 
 ---
 
@@ -170,13 +170,13 @@ Aesthetics ads get rejected constantly. These are the trip-wires:
 | **5. Retention (the real money)** | Procell Series of 4 | **$1,099** (~21% off) |
 | **6. Add-ons** | Dermaplane prep +$45 · LED +$35 · Topical PRF (face) +$175 · Glo2 finish +$95 | |
 
-> **Prices are comp-anchored, not arbitrary.** Verified regional Procell singles run **$300–$375** (ÉLAN $375; Procell 60m $300 / 90m $350) and 4-packs **$1,050–$1,225**. House of Rose sits competitively in that band (Pro $299 floor, MD $349 mid, series-4 $1,099), above commodity microneedling ($175–$195). Full table + derivation: `docs/research/_pricing-catalog.md` §10b.
+> **Prices are comp-anchored, not arbitrary.** Verified regional Procell singles run **$300–$375** (ÉLAN $375; Procell 60m $300 / 90m $350) and 4-packs **$1,050–$1,225**. House of Rose sits competitively in that band (Pro $299 floor, MD $349 mid, series-4 $1,099), above commodity microneedling ($175–$195). Full table + derivation: `docs/internal_only/research/_pricing-catalog.md` §10b.
 
 > **Free vs. $50-credited:** Free maximizes lead volume; $50-credited maximizes *show* rate and screens out tire-kickers. In a high-income, low-urgency retiree market, **run Free first** — the barrier here is trust, not money. If no-shows exceed ~30%, switch to $50-credited.
 
 **The number that matters is not cost-per-lead — it's cost-per-*series*.** One 6-series microchanneling client ≈ $1,200–$1,675. At even a $40 CPL and a 20% analysis→series conversion, acquisition cost is ~$200 against a four-figure client. That math is why the free scan is the right call.
 
-> **✅ Pricing local-competitive (2026-07-17):** Procell anchored to the verified regional Procell market — singles $300–$375, 4-packs $1,050–$1,225. Each service has one price. **MD $349 = live in GlossGenius**, mid-market. Pro **$299** at the market floor. (The earlier '$500 rival' figure was discarded as unverified — a PRF-needling/package price, not a bare Procell single.) Full derivation in `docs/research/_pricing-catalog.md` §10b. *(Ad copy still names no prices — the scan sells the price in person.)*
+> **✅ Pricing local-competitive (2026-07-17):** Procell anchored to the verified regional Procell market — singles $300–$375, 4-packs $1,050–$1,225. Each service has one price. **MD $349 = live in GlossGenius**, mid-market. Pro **$299** at the market floor. (The earlier '$500 rival' figure was discarded as unverified — a PRF-needling/package price, not a bare Procell single.) Full derivation in `docs/internal_only/research/_pricing-catalog.md` §10b. *(Ad copy still names no prices — the scan sells the price in person.)*
 > **Open action:** add Pro $299, F+N+D $449, and Series-of-4 $1,099 to GlossGenius; MD $349 is already live.
 
 ---

@@ -1,18 +1,18 @@
-> ⚠️ **PRICING IN THIS DOC IS SUPERSEDED (2026-07-23).** GlossGenius is commerce truth; the live menu is `docs/services/ALL-SERVICES-PRICING.MD`. Amber ruled: GLP-1 = GG $225/$325 · IVs = GG prices · GlowTox approved & live · memberships/Rose Circle deleted everywhere. Structure/taxonomy content below remains valid reference.
+> ⚠️ **PRICING IN THIS DOC IS SUPERSEDED (2026-07-23).** GlossGenius is commerce truth; the live menu is `docs/internal_only/services/ALL-SERVICES-PRICING.MD`. Amber ruled: GLP-1 = GG $225/$325 · IVs = GG prices · GlowTox approved & live · memberships/Rose Circle deleted everywhere. Structure/taxonomy content below remains valid reference.
 
 # House of Rose — Authoritative Service-Price Catalog
 
 **Date:** 2026-07-13
 **Purpose:** The authoritative price input for Phase-4 Sanity price reconciliation.
-**Truth rule (corrected by owner 2026-07-13):** **GlossGenius is the true system of record** for services + pricing — that's where House of Rose services are actually sold and paid for. The local docs (`docs/services/**`, incl. the `*_GlossGenius_Import.csv`) are the **staging/import source** for GlossGenius, and **Sanity is a display/content middle-man** that feeds service collections + briefs to the marketing website — Sanity is **not** the commerce truth. So the figures below (local docs, with the Sanity snapshot as a proxy) are working truth for derivation, but **every price must ultimately be confirmed against the live GlossGenius menu.** Never the web, never invented. Where local and Sanity disagree, local (the GlossGenius import) wins and the drift is flagged; Sanity-only figures are unsourced until confirmed in GlossGenius.
+**Truth rule (corrected by owner 2026-07-13):** **GlossGenius is the true system of record** for services + pricing — that's where House of Rose services are actually sold and paid for. The local docs (`docs/internal_only/services/**`, incl. the `*_GlossGenius_Import.csv`) are the **staging/import source** for GlossGenius, and **Sanity is a display/content middle-man** that feeds service collections + briefs to the marketing website — Sanity is **not** the commerce truth. So the figures below (local docs, with the Sanity snapshot as a proxy) are working truth for derivation, but **every price must ultimately be confirmed against the live GlossGenius menu.** Never the web, never invented. Where local and Sanity disagree, local (the GlossGenius import) wins and the drift is flagged; Sanity-only figures are unsourced until confirmed in GlossGenius.
 
 **Sources used**
-- `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` (+ its `Diana_Pricing_GlossGenius_Import.csv`, identical figures) — injectables, PRF injections, IV menu + add-ons, GLP-1.
-- `docs/services/pricing/advanced-facials-master-menu.md` (dated 2026-07-10) — Amber's advanced facials, series framework, add-ons. `advanced-facials-pricing.md` is **DEPRECATED** (do not use).
-- `docs/services/waxing/face.md` · `docs/services/waxing/body.md` — per-zone wax + combos.
-- `docs/services/pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md` — makeup rate card.
-- `docs/services/facials/faceRealityAcneProgram.md` + master-menu acne rows — Face Reality program, acne peel, back treatment.
-- `docs/research/permanent-jewelry.md` — permanent jewelry ("From $45"; metal tiers pending).
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` (+ its `Diana_Pricing_GlossGenius_Import.csv`, identical figures) — injectables, PRF injections, IV menu + add-ons, GLP-1.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` (dated 2026-07-10) — Amber's advanced facials, series framework, add-ons. `advanced-facials-pricing.md` is **DEPRECATED** (do not use).
+- `docs/internal_only/services/waxing/face.md` · `docs/internal_only/services/waxing/body.md` — per-zone wax + combos.
+- `docs/internal_only/pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md` — makeup rate card.
+- `docs/internal_only/services/facials/faceRealityAcneProgram.md` + master-menu acne rows — Face Reality program, acne peel, back treatment.
+- `docs/internal_only/research/permanent-jewelry.md` — permanent jewelry ("From $45"; metal tiers pending).
 - Sanity published snapshot: `scratchpad/phase2/sanity-published-snapshot.json`.
 - `docs/GOOGLE-BUSINESS-PROFILE.md` — treated as a **stale/aspirational draft only** (uses removed membership language, Osmosis/Sculptra/BHRT, GLP-1 $499); referenced **only** for the noted dermaplaning $95 conflict.
 
@@ -22,7 +22,7 @@
 
 ## 0. GlossGenius LIVE CATALOG — SOURCE OF TRUTH (added 2026-07-13)
 
-`docs/glossgenius_catalog.csv` (owner-provided). **This supersedes the local-doc / Sanity tables in
+`docs/internal_only/services/glossgenius_catalog.csv` (owner-provided). **This supersedes the local-doc / Sanity tables in
 §1–§11 wherever they differ** — and they differ a lot. GlossGenius is where services are actually sold.
 
 ### 0.1 Full live GG price list
@@ -135,8 +135,8 @@
 
 | Service | Authoritative price | Unit | Duration | Sanity | Drift? | Source |
 |---|---|---|---|---|---|---|
-| Enzyme exfoliation / basic facial | **NONE** | — | ~30–60 min (pending) | — none | 🟥 no local price, no Sanity service | `docs/research/hydrodermabrasion.md` §pending |
-| Hydrodermabrasion | **NONE** | — | ~30–60 min (pending) | — none | 🟥 explicitly "no HoR price source exists"; do not borrow Glo2Facial/dermaplaning | `docs/research/hydrodermabrasion.md` |
+| Enzyme exfoliation / basic facial | **NONE** | — | ~30–60 min (pending) | — none | 🟥 no local price, no Sanity service | `docs/internal_only/research/hydrodermabrasion.md` §pending |
+| Hydrodermabrasion | **NONE** | — | ~30–60 min (pending) | — none | 🟥 explicitly "no HoR price source exists"; do not borrow Glo2Facial/dermaplaning | `docs/internal_only/research/hydrodermabrasion.md` |
 | Light peels (maintenance) | **NONE** | — | — | — none | 🟥 unbuilt lane | — |
 | Facial waxing (Brandy also offers) | see §3 (Aundrea's rate card) | per zone | — | see §3 | — | waxing/face.md |
 
@@ -146,7 +146,7 @@
 
 ## 3. Aundrea — Waxing (per zone)
 
-**Face** — `docs/services/waxing/face.md` · **Body** — `docs/services/waxing/body.md`. Sanity carries only two rolled-up hub prices: `facial-waxing` "From $15" and `body-waxing` "From $28".
+**Face** — `docs/internal_only/services/waxing/face.md` · **Body** — `docs/internal_only/services/waxing/body.md`. Sanity carries only two rolled-up hub prices: `facial-waxing` "From $15" and `body-waxing` "From $28".
 
 | Zone | Authoritative price (local) | Unit | Sanity | Drift? | Source |
 |---|---|---|---|---|---|
@@ -179,7 +179,7 @@
 
 ## 4. Aundrea — Permanent Jewelry & Makeup
 
-**Permanent Jewelry** — `docs/research/permanent-jewelry.md`:
+**Permanent Jewelry** — `docs/internal_only/research/permanent-jewelry.md`:
 
 | Service | Authoritative price | Unit | Duration | Sanity | Drift? | Source |
 |---|---|---|---|---|---|---|
@@ -358,7 +358,7 @@ collisions that generated the drift in the first place.
 **Actions**
 - [ ] **GlossGenius:** MD $349 is already correct — no change. **Add Procell Microchanneling — Pro (face) $250.**
 - [ ] **Sanity:** keep `microchanneling` hub at "From $250"; publish the **MD $349** tier as its own line.
-- [ ] **`docs/services/ALL-SERVICES-PRICING.MD`:** updated 2026-07-14 (MD $349 | $940 | $1,675).
+- [ ] **`docs/internal_only/services/ALL-SERVICES-PRICING.MD`:** updated 2026-07-14 (MD $349 | $940 | $1,675).
 
 
 ---
@@ -388,12 +388,12 @@ GlossGenius holds a single price per service. **Pro / MD** are serum tiers.
 | Procell Pro — Face | **$299** | Entry tier at the Procell market floor (~$300); the value option, above bare microneedling ($175–$195). |
 | Procell MD — Face | **$349** | Live GG price; mid-market (≈ ÉLAN $375 / 90-min Procell $350). |
 | Procell MD — Face+Neck+Décolleté | **$449** | Extended plane; above the single-face tiers. |
-| Procell — Series of 4 | **$1,099** | **4 = Procell protocol** (min 4 tx, ~4 wks apart; 6+ scarring — `docs/services/PRF/`). Sits inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
+| Procell — Series of 4 | **$1,099** | **4 = Procell protocol** (min 4 tx, ~4 wks apart; 6+ scarring — `docs/internal_only/services/PRF/`). Sits inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
 | Microneedling — Corrective (Face) | **$295** | Above local microneedling $175–$195; the non-Procell corrective tier. |
 
 **What changed vs §10a:** Pro Face **$250 → $299** — $250 sat almost on top of local microneedling ($195), undervaluing a superior modality; $299 sits at the real Procell market floor (~$300). MD **stays $349** (= live GG). **Body** Procell has **no local comp** → consult-based at the current figure until one is found.
 
-**On the series count — do NOT normalize.** Procell is a **series of 4** because that is the **Procell manufacturer protocol** (minimum 4 treatments ~4 weeks apart, 6+ for scarring — `docs/services/PRF/compass_artifact…`, `m17-skin-analysis-cheat-sheet.md`, and the GlossGenius import CSV which prices PRF Skin Renewal at series-of-3 $1,200 / series-of-4 $1,550). This is **treatment-specific and correct**; it is not the house 3/6 "Renewal/Full Correction" retail framework and must not be flattened into it. Other treatments keep their own cadence: Glo2Facial **3/6**, Microneedling corrective **3–6** (scarring 5–8), BioRePeel **unsettled** (see `biorepeel.md` §82 — flag, don't force). `_gaps.md` §87 asked to "pick ONE cadence" — the answer is **no**: different modalities have different clinically-correct series, and forcing a single count would misrepresent the protocol.
+**On the series count — do NOT normalize.** Procell is a **series of 4** because that is the **Procell manufacturer protocol** (minimum 4 treatments ~4 weeks apart, 6+ for scarring — `docs/internal_only/research/compass_artifact…`, `m17-skin-analysis-cheat-sheet.md`, and the GlossGenius import CSV which prices PRF Skin Renewal at series-of-3 $1,200 / series-of-4 $1,550). This is **treatment-specific and correct**; it is not the house 3/6 "Renewal/Full Correction" retail framework and must not be flattened into it. Other treatments keep their own cadence: Glo2Facial **3/6**, Microneedling corrective **3–6** (scarring 5–8), BioRePeel **unsettled** (see `biorepeel.md` §82 — flag, don't force). `_gaps.md` §87 asked to "pick ONE cadence" — the answer is **no**: different modalities have different clinically-correct series, and forcing a single count would misrepresent the protocol.
 
 ### Actions
 - [ ] **GlossGenius:** MD $349 already live. Add **Pro $299**, **F+N+D $449**, **Series of 4 $1,099** as single-price services.

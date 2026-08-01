@@ -226,13 +226,13 @@ Example combination from the menu: **Corrective microneedling + Topical PRF (fac
 ## Sources
 
 **Local docs (primary truth):**
-- `docs/services/pricing/advanced-facials-master-menu.md` — canonical pricing, the microchanneling-vs-microneedling distinction, package framework, compliance guardrails.
-- `docs/services/pricing/advanced-facials-pricing.md` — DEPRECATED stub (points to the master menu).
-- `docs/services/microchanneling/Procell-prf-delivery-research-report.md` — client-education research, FDA positions, evidence quality, compliance copy rules.
-- `docs/services/microchanneling/PRF.md` — **empty file (0 bytes)** — flagged in GAPS.
-- `docs/services/Consent Forms/06-Needle-Depth-Speed-Clinical-Reference.docx` — House needle-depth & speed by region + needle-length-by-indication guide.
-- `docs/services/Consent Forms/02-Microneedling-PRF-Consent-Release-Form.docx` — consent, "topical only, no injections," risk list.
-- `docs/services/Consent Forms/05-Microneedling-PRF-Pre-Post-Care.docx` — pre/post-care, series planning (acne scars 5–8 tx; stretch/surgical/keloid 6–8 tx), NAP.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical pricing, the microchanneling-vs-microneedling distinction, package framework, compliance guardrails.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — DEPRECATED stub (points to the master menu).
+- `docs/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education research, FDA positions, evidence quality, compliance copy rules.
+- `docs/internal_only/services/microchanneling/PRF.md` — **empty file (0 bytes)** — flagged in GAPS.
+- `docs/internal_only/services/Consent Forms/06-Needle-Depth-Speed-Clinical-Reference.docx` — House needle-depth & speed by region + needle-length-by-indication guide.
+- `docs/internal_only/services/Consent Forms/02-Microneedling-PRF-Consent-Release-Form.docx` — consent, "topical only, no injections," risk list.
+- `docs/internal_only/services/Consent Forms/05-Microneedling-PRF-Pre-Post-Care.docx` — pre/post-care, series planning (acne scars 5–8 tx; stretch/surgical/keloid 6–8 tx), NAP.
 
 **Sanity published content consulted (slugs):** services `microneedling-corrective`, `microneedling-body`, `prf-microneedling`, `microchanneling-microneedling` (hub), `microchanneling`, `prf`, `biorepeel`, `biorepeel-advanced-acne-scarring`, `biorepeel-body`, `prf-body-treatments`; cost guide `prf-microneedling-cost-punta-gorda`; comparison `prf-microchanneling-vs-microneedling`; concerns `acne-scarring`, `stretch-marks`, `fine-lines-laxity`, `sun-damage`; packages `prf-microneedling-series-of-4`, `Procell-microchanneling-series-of-4`, `prf-microchanneling-journey`, `the-revival-series`; local area `punta-gorda`; collection `skin-renewal`.
 

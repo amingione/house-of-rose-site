@@ -11,7 +11,7 @@ import { defineField, defineType } from 'sanity';
  * neutrally. Never say "treats/cures acne" (use "breakout-prone / problem skin"),
  * never "FDA-approved" or "clinically proven". Supplements are the Advanced
  * Nutrition Programme distributed by Jane Iredale — if referenced, carry the
- * dietary-supplement disclaimer. See docs/COMPLIANCE-COPY-RULES.md.
+ * dietary-supplement disclaimer. See docs/internal_only/COMPLIANCE-COPY-RULES.md.
  */
 export const janeIredalePage = defineType({
   name: 'janeIredalePage',

@@ -13,7 +13,7 @@ genuine **WOW** on entry.
 1. `CLAUDE.md` — architecture laws, NAP facts, provider lanes, membership teardown, URL rules
 2. `docs/SEO-AEO-PLAYBOOK.md` — the 7 page types; answer-led, entity-clear, locally grounded
 3. `docs/CONTENT-MODEL-MAP.md` — page type ↔ Sanity doc ↔ route ↔ JSON-LD contracts
-4. `docs/COMPLIANCE-COPY-RULES.md` — banned phrases and approved alternatives
+4. `docs/internal_only/COMPLIANCE-COPY-RULES.md` — banned phrases and approved alternatives
 5. The phase prompt you were given
 
 If anything in this prompt conflicts with those docs, **the docs win**.
@@ -35,7 +35,7 @@ If anything in this prompt conflicts with those docs, **the docs win**.
 - **Positioning**: lead with "advanced aesthetics & wellness"; "med spa" allowed in
   meta/SEO/supporting copy, never denied, never the lead. Never "day spa". No medical
   claims — copy never diagnoses, treats, or cures.
-- **Pricing truth**: prices come only from `docs/services/**` and Sanity — never from web
+- **Pricing truth**: prices come only from `docs/internal_only/services/**` and Sanity — never from web
   research, never invented.
 - **Visual editing**: every Sanity-backed page/component keeps `data-sb-*` annotations
   (`src/lib/visualEditing.ts`); scaffold new pages with `npm run ve:new`; `npm run ve:check`

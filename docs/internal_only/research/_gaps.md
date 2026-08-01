@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-13
 
-**Purpose.** The single reconciliation checklist for Amber, aggregated from the research briefs and every "GAP"/"flag" callout. Each conflict has a recommended source-of-truth. Governing rule from the briefs: **local docs (`docs/services/**`, canonical master menus) are pricing truth; Sanity is corrected to match; web research is never a price source.** All URLs use trailing slashes.
+**Purpose.** The single reconciliation checklist for Amber, aggregated from the research briefs and every "GAP"/"flag" callout. Each conflict has a recommended source-of-truth. Governing rule from the briefs: **local docs (`docs/internal_only/services/**`, canonical master menus) are pricing truth; Sanity is corrected to match; web research is never a price source.** All URLs use trailing slashes.
 
 > **Memberships: not offered. None exist and none are planned. Do not add membership content, tiers, or "member rate" framing anywhere.**
 
@@ -39,16 +39,16 @@ These files are named as the primary/assigned source doc for a topic but are 0-b
 
 | File | Topic it was assigned to | State |
 |---|---|---|
-| `docs/services/microchanneling/PRF.md` | Topical PRF / microchanneling / microneedling / Procell | **0 bytes (empty)** — flagged by prf-topical, microneedling, microchanneling, Procell briefs |
-| `docs/services/facials/biorepeel.md` | BioRePeel | **Research-prompt stub, no pricing** |
-| `docs/services/facials/dermaplaning.md` | Dermaplaning | **0 bytes (empty)** |
-| `docs/services/facials/glo2facialxGeneo.md` | Glo2Facial | **0 bytes (empty)** |
-| `docs/services/facials/hydrodermabrasion.md` | Hydrodermabrasion | **0 bytes (empty)** |
-| `docs/services/tox/daxxify.md` | Neurotoxins (Daxxify) | **Empty stub — headers only, no content** |
-| `docs/services/filler/dermalfillers.md` | Dermal fillers | **0 bytes (empty)** |
-| `docs/services/filler/PRF_ez-gel.md` | EZ-Gel bio-filler | **0 bytes (empty)** |
+| `docs/internal_only/services/microchanneling/PRF.md` | Topical PRF / microchanneling / microneedling / Procell | **0 bytes (empty)** — flagged by prf-topical, microneedling, microchanneling, Procell briefs |
+| `docs/internal_only/services/facials/biorepeel.md` | BioRePeel | **Research-prompt stub, no pricing** |
+| `docs/internal_only/services/facials/dermaplaning.md` | Dermaplaning | **0 bytes (empty)** |
+| `docs/internal_only/services/facials/glo2facialxGeneo.md` | Glo2Facial | **0 bytes (empty)** |
+| `docs/internal_only/services/facials/hydrodermabrasion.md` | Hydrodermabrasion | **0 bytes (empty)** |
+| `docs/internal_only/services/Diana/tox/daxxify.md` | Neurotoxins (Daxxify) | **Empty stub — headers only, no content** |
+| `docs/internal_only/services/Diana/filler/dermalfillers.md` | Dermal fillers | **0 bytes (empty)** |
+| `docs/internal_only/services/Diana/filler/PRF_ez-gel.md` | EZ-Gel bio-filler | **0 bytes (empty)** |
 
-_(Deprecated-but-intentional, not a gap: `docs/services/pricing/advanced-facials-pricing.md` is a stub that correctly redirects to the master menu.)_
+_(Deprecated-but-intentional, not a gap: `docs/internal_only/pricing/advanced-facials-pricing.md` is a stub that correctly redirects to the master menu.)_
 
 ---
 
@@ -86,7 +86,7 @@ The master menu and Sanity use **different series cadences and names** — must 
 
 **Corrected fix (2026-07-17) — do NOT pick ONE cadence.** The earlier advice ("pick ONE cadence, 3/6 is canonical, series-of-4 is off-framework") was **wrong** — it flattened distinct clinical protocols into one retail pattern. Series length is **per-treatment, per manufacturer protocol**:
 
-- **Procell microchanneling → Series of 4** (min 4 tx ~4 wks apart, 6+ scarring — Procell protocol; `docs/services/PRF/`).
+- **Procell microchanneling → Series of 4** (min 4 tx ~4 wks apart, 6+ scarring — Procell protocol; `docs/internal_only/services/PRF/`).
 - **BioRePeel → Series of 4** (manufacturer: 4–6 sessions every 7–10 days, maintenance q2–3mo — [BioRePeelCl3 protocol](https://biorepeelcl3spain.com/wp-content/uploads/2019/12/Protocol-of-use-BioRePeelCl3.pdf); confirmed 2026-07-17). Notion Live page + master menu already price series-of-4 ($1,050).
 - **PRF Skin Renewal → Series of 3 or 4** ($1,200 / $1,550 — GlossGenius import CSV, PRF PDF).
 - **Glo2Facial → Series of 3 / 6** (OxyGeneo study ran 6 weekly; $499 / $885).

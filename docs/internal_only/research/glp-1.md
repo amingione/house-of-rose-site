@@ -364,7 +364,7 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
   (Diana) for clients noticing facial volume change.
 - `/services/prf/` (and PRF/microchanneling skin-renewal pages) — skin-quality/collagen support
   (Amber).
-- `/contact/` (or the call/text booking path) — consultation is the required first step.
+- `/contact/` (or the call booking path) — consultation is the required first step.
 
 **Proposed NEW pages (type + suggested slug):**
 - **Service / treatment hub:** `/services/glp-1-weight-management/` — the canonical program page
@@ -403,11 +403,11 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 ## Sources
 
 **Local docs read (pricing truth):**
-- `docs/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing:
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing:
   Semaglutide from $225/mo, Tirzepatide from $325/mo; provider = Diana; Wellness & Restoration lane.
-- `docs/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — same figures, GLP-1
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — same figures, GLP-1
   Program sub-category, ~15-min monthly visit.
-- `docs/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — Flate-compressed 2-page
+- `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — Flate-compressed 2-page
   ReportLab PDF; text not extractable via textutil and superseded by the consolidated MD (which
   states it replaces the original source docs). No unique GLP-1 pricing available from it.
 

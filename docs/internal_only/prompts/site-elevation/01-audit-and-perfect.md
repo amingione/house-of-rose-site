@@ -8,7 +8,7 @@ anything new is added.
 The routes table in `CLAUDE.md` is stale. Walk `packages/web/src/pages/**` and
 `packages/studio/schemas/**` and build the real inventory — it includes at least: `blog/`,
 `concerns/[slug]`, `guides/`, `packages/` (`treatmentPackage`), `checkout`, `skin-analysis`,
-plus everything in the CLAUDE.md table. Emit `docs/research/_site-inventory.md`: every
+plus everything in the CLAUDE.md table. Emit `docs/internal_only/research/_site-inventory.md`: every
 route, its data source (Sanity doc type or static), its JSON-LD, its CTAs, and its outbound
 internal links.
 
@@ -20,7 +20,7 @@ Launch subagents in parallel, one per area, each returning findings as
 1. **Content quality** — every page vs the AEO rules: answer-first opening? entity-clear?
    locally grounded? honest pricing? thin sections? placeholder/fallback copy still live?
 2. **Compliance** — grep every page + Sanity-seeded copy against
-   `docs/COMPLIANCE-COPY-RULES.md` §2 banned phrases; flag membership/retired-brand-term
+   `docs/internal_only/COMPLIANCE-COPY-RULES.md` §2 banned phrases; flag membership/retired-brand-term
    ("Rose Pass", "Rose Circle", "Rose Rewards", "Rose Method") and botanical-name leakage;
    verify NAP everywhere (phone digits, Unit 9, 33950, info@).
 3. **CTA & linking** — count CTA label reuse across pages; list pages that dead-end (no
@@ -40,6 +40,6 @@ rewrites for Phase 3 unless broken). Batch P3 into a final polish commit.
 
 ## Deliverables
 
-- `docs/research/_site-inventory.md`
-- `docs/research/_audit-report.md` (findings + what was fixed vs deferred-to-phase)
+- `docs/internal_only/research/_site-inventory.md`
+- `docs/internal_only/research/_audit-report.md` (findings + what was fixed vs deferred-to-phase)
 - All fixes committed; definition-of-done checks pass.

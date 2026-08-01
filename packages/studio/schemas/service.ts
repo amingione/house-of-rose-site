@@ -69,9 +69,9 @@ export const service = defineType({
     }),
     defineField({
       name: 'bookingUrl',
-      title: 'GlossGenius Booking Link',
+      title: 'Legacy GlossGenius Booking Link',
       type: 'url',
-      description: 'Per-service booking link from GlossGenius (Settings → Booking Links). Site falls back to houseofrose.glossgenius.com/book when empty.',
+      description: 'Retained for existing content only. The public site uses the services menu and call/contact consultation paths instead of direct booking buttons.',
     }),
     defineField({
       name: 'duration',

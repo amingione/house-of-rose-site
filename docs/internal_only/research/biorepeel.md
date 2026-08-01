@@ -142,9 +142,9 @@ All pricing is presented as "investment / from / starting at." Final pricing is 
 ## Sources
 
 **Local docs (primary truth, read fully):**
-- `docs/services/facials/biorepeel.md` — research-prompt stub (no pricing; flagged as a gap).
-- `docs/services/pricing/advanced-facials-master-menu.md` — canonical pricing & package framework (BioRePeel Body $325/875/1,560; BioRePeel face as +$65 add-on; Series of 3/6 framework; compliance guardrails).
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
+- `docs/internal_only/services/facials/biorepeel.md` — research-prompt stub (no pricing; flagged as a gap).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical pricing & package framework (BioRePeel Body $325/875/1,560; BioRePeel face as +$65 add-on; Series of 3/6 framework; compliance guardrails).
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
 
 **Sanity published content (snapshot consulted):**
 - Services: `biorepeel` (From $295, 45 min), `biorepeel-advanced-acne-scarring` (From $450, 75 min), `biorepeel-body` (From $325/zone, 75 min), `biorepeel-gold-spot-treatment` (From $395, 60 min); plus `microneedling-corrective`, `microchanneling`, `dermaplaning`, `glo2facial`, `acne-bootcamp`, `lightstim-led-therapy`.

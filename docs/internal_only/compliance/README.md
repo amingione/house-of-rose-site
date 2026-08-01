@@ -1,25 +1,26 @@
-# docs/compliance — Florida legal layer (binding)
+# docs/internal_only/compliance — Advertising and messaging compliance
 
 The statutory and regulatory layer for House of Rose advertising. **Binding on every agent and person
 who writes, edits, builds or publishes customer-facing copy or ad creative.**
 
-This directory answers *"what does the law require me to include, hold, or hold back?"*
-`docs/staff/COMPLIANCE-COPY-RULES.md` answers *"am I allowed to say this?"* Two different instruments —
-do not merge them, do not duplicate content between them. **Where they conflict, this directory wins:**
-a copy rule broken costs a customer; a rule here broken costs a license.
+`docs/internal_only/COMPLIANCE-COPY-RULES.md` governs public voice and claims. This directory contains
+the remaining operational controls for paid advertising and toll-free messaging.
+
+The draft files `FL-ADVERTISING-LAW.md` and `CONSULTATION-FEE-POLICY.md` were intentionally deleted on
+July 27, 2026 (commit `3d18582`). Do not cite them, claim to have reviewed them, or reconstruct their
+legal conclusions from memory. Obtain current approved disclosure language and Florida healthcare
+counsel review before publishing a free, discounted, or credited healthcare-service offer.
 
 | File | Read it when |
 |---|---|
-| [`FL-ADVERTISING-LAW.md`](FL-ADVERTISING-LAW.md) | Always, first. Verified statutes and rules, the seven resolved audit items, the required disclosure text, the provider attribution standard, the placement matrix, and current live findings. |
-| [`CONSULTATION-FEE-POLICY.md`](CONSULTATION-FEE-POLICY.md) | Anything touches the consultation fee, the treatment credit, refunds, or cancellation terms. |
+| [`GOOGLE-ADS-COMPLIANCE.md`](GOOGLE-ADS-COMPLIANCE.md) | Google Ads healthcare copy, targeting, attribution, and platform settings. |
 | [`AD-COMPLIANCE-RUNBOOK.md`](AD-COMPLIANCE-RUNBOOK.md) | Before launching, while running, or when auditing anything paid. Pre-launch gate, platform lockdown, retention, reviews. |
-| [`grasshopper-toll-free-guidelines.md`](grasshopper-toll-free-guidelines.md) | Toll-free SMS carrier registration (TCPA / 10DLC surface). Separate regime from the Florida advertising rules above — neither file covers the other. |
+| [`grasshopper-toll-free-guidelines.md`](grasshopper-toll-free-guidelines.md) | Toll-free SMS carrier registration. SMS is not enabled while Grasshopper verification is pending. |
 
 ## The four things most likely to be got wrong
 
-1. **The § 456.062 72-hour disclosure is verbatim statutory text.** Never paraphrase, shorten,
-   sentence-case, or hide it behind a toggle. It is required wherever a free, discounted or credited
-   service is advertised — **including in the ad unit itself**, not only on the landing page.
+1. **Do not publish a free, discounted, or credited healthcare-service offer without current approved
+   disclosure language and counsel review.** Never improvise or reconstruct statutory wording.
 2. **"Aesthetic Injector" is a job title, not a credential.** § 456.072(1)(t) requires the license type —
    MD, DO, APRN, RN — wherever a practitioner is named in a health care advertisement.
 3. **Never write "dermatologist" in copy.** Bidding the keyword is defensible; the word in an ad or on a
@@ -30,22 +31,19 @@ a copy rule broken costs a customer; a rule here broken costs a license.
 
 ## Current status
 
-**Exposed right now:** the § 456.062 disclosure is absent from a landing page that advertises a
-complimentary consultation (`FL-ADVERTISING-LAW.md` §4.1). Fix that first — it does not depend on any
-campaign launching.
+**Paid healthcare advertising remains blocked** until the runbook gates are supported by current source
+documents and reviewer sign-off. **Phone SMS is also unavailable** while Grasshopper verification is pending.
 
-**Open and blocking spend:**
+Open items include:
 
 1. 🟡 **AHCA — one written counsel opinion.** House of Rose is a cash-pay aesthetic practice under
    physician medical direction and almost certainly falls **outside** the § 400.9905(4) definition of
    "clinic," which is the mainstream position. Worth papering rather than assuming, because no exemption
    sits behind that position if it ever failed. **This is not about the licensing the practice already
-   holds** — AHCA is a different regulator from DBPR and the county. Item 3 has the question drafted
-   ready to send.
-2. **Dr. Shaw's review of the clinical claims** in the copy — R. 64B8-11.001(5) puts that risk on him.
-   Identity is verified: **Joshua Shaw, MD · FL Lic. ME136232**. Naming rights are almost certainly
-   already in the Guardian agreement; check that clause rather than chasing a separate consent. Item 2.
-3. **Medical director and Florida healthcare attorney review.** Item 7.
+   holds** — AHCA is a different regulator from DBPR and the county.
+2. **Dr. Shaw's review of the clinical claims** in the copy. Identity is verified:
+   **Joshua Shaw, MD · FL Lic. ME136232**. Check the Guardian agreement's naming-rights clause.
+3. **Medical director and Florida healthcare attorney review** of any paid healthcare campaign.
 
 🚫 **Never publish or circulate a DEA number.** No advertising purpose; a fraud vector. Name,
 credential and state licence number only.

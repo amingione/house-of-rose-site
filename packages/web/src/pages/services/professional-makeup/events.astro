@@ -61,12 +61,12 @@ const FALLBACK_FAQS: FAQ[] = [
   {
     question: 'How do I book makeup for a wedding or group event?',
     answer:
-      'Call or text (844) 941-7673 to start. Tell us your date, how many people need makeup, and whether you’d like block times in-studio, our private spa rental package, or on-location travel — and we’ll build the plan with you.',
+      'Call (844) 941-7673 to start. Tell us your date, how many people need makeup, and whether you’d like block times in-studio, our private spa rental package, or on-location travel — and we’ll build the plan with you.',
   },
   {
     question: 'What is included in the Spa Rental (Pre-Party Package)?',
     answer:
-      'Your party has the studio to itself for the event. The package includes professional makeup application with Jane Iredale products, plus hors d’oeuvres or pastries and mimosas. Call or text us for the current package details.',
+      'Your party has the studio to itself for the event. The package includes professional makeup application with Jane Iredale products, plus hors d’oeuvres or pastries and mimosas. Call us for the current package details.',
   },
   {
     question: 'Do you travel to venues?',
@@ -133,7 +133,7 @@ const faqLd = faqPage(faqs);
         'For weddings and celebrations where the whole party is getting ready together — book block times in-studio, rent the spa for a private pre-party, or have us travel to your venue.'}
       size="small"
       showCTA={true}
-      ctaPrimary={{ text: 'Call or Text to Plan', href: PHONE_TEL }}
+      ctaPrimary={{ text: 'Call to Plan', href: PHONE_TEL }}
       backgroundImage={pageImage}
       titleField="heroTitle"
       kickerField="heroKicker"
@@ -226,11 +226,11 @@ const faqLd = faqPage(faqs);
         </h2>
         <p class="text-muted text-[15px] max-w-[500px] mx-auto mb-8 leading-[1.8]" {...sbFieldPath('bookingBody')}>
           {data.bookingBody ??
-            'Call or book online with your date and party size and we’ll walk you through the options, timing, and everything included.'}
+            'Call or review the services menu with your date and party size and we’ll walk you through the options, timing, and everything included.'}
         </p>
         <div class="flex gap-3 justify-center flex-wrap mb-10">
           <a href={PHONE_TEL} class="btn-outline-gold">{PHONE_DISPLAY}</a>
-          <a href="https://houseofrose.glossgenius.com/book" target="_blank" rel="noopener noreferrer" class="btn-gold">Book Online</a>
+          <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/15 text-left">
           {relatedLinks.map((l, i) => (

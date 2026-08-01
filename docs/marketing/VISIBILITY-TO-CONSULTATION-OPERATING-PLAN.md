@@ -79,7 +79,7 @@
 ### Status definitions
 
 - **New:** saved, notification delivered, no personal reply yet.
-- **Contacted:** a team member sent the first personal reply or completed a call/text attempt.
+- **Contacted:** a team member sent the first personal reply or completed a call attempt.
 - **Qualified:** the request fits a current provider lane and a reasonable next step is established.
 - **Consultation Booked:** a matching appointment exists in GlossGenius.
 - **Completed Booking:** the matched first appointment was completed.
@@ -177,7 +177,7 @@ Test the same prompts in Google AI Mode, ChatGPT, and Perplexity until Ahrefs Br
 
 - Search Console impressions, clicks, CTR, and query/page movement.
 - Ahrefs rankings and site-audit errors.
-- GA4 consultation leads and booking/call/text clicks by landing page.
+- GA4 consultation leads and booking/call clicks by landing page.
 - Lead-to-qualified, qualified-to-booked, and booked-to-completed rates.
 - Paid qualified cost per lead and booked consultation cost.
 - Review count and consented proof assets added.

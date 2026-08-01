@@ -7,7 +7,7 @@ This package turns the 30-day acquisition plan into publish-ready campaign input
 - **Goal:** qualified consultation requests and booked appointments.
 - **Audience:** adults 35+ within 20 miles of 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
 - **Core message:** see the studio, understand the options, and begin with a clear plan.
-- **Luxury angle:** private, unhurried care with hospitality-grade attention and restrained recommendations. Walk-ins are welcome; appointments are recommended to reserve a time.
+- **Positioning angle:** private, unhurried, individualized care with restrained, provider-led recommendations. Walk-ins are welcome; appointments are recommended to reserve a time.
 - **Primary CTA:** Begin with a complimentary skin consultation.
 - **Paid destinations:** `/skin-analysis/`, `/services/injectables/`, `/services/glo2facial/`, and `/services/microchanneling/`.
 
@@ -50,7 +50,7 @@ This package turns the 30-day acquisition plan into publish-ready campaign input
 - **Hours:** Monday–Friday, 9:00 AM–5:00 PM; weekends closed
 - **Phase-one services:** AI-assisted skin consultation, Glo2Facial, Procell microchanneling, Botox, Daxxify, and dermal fillers.
 
-Business facts and current service names were checked against `CLAUDE.md`, `docs/research/_pricing-catalog.md`, and the current service routes. Prices are intentionally omitted from the ads because display and commerce sources still contain differences that must not be flattened.
+Business facts and current service names were checked against `CLAUDE.md`, `docs/internal_only/research/_pricing-catalog.md`, and the current service routes. Prices are intentionally omitted from the ads because display and commerce sources still contain differences that must not be flattened.
 
 ## Publishing boundary
 

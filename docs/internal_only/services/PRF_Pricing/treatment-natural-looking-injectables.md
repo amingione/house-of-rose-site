@@ -2,7 +2,7 @@
 
 **Status:** Draft for Amber's review · **Provider lane:** Diana Morrison, RN — Aesthetic Nurse Injector, under medical-director oversight
 **Maps to:** `service` hub → `/services/injectables/` (natural-results lens) · `costGuide` → `/cost/injectables-cost/` · `comparison` → `/compare/botox-vs-daxxify/`
-**Booking model:** Consultation-first — call or text (844) 941-7673. Injectables are not online-booked.
+**Booking model:** Consultation-first — call (844) 941-7673. Injectables are not online-booked.
 
 > Publish-ready copy above the line; price citations and the do-not-say list in the notes. **Do not name Dysport or Restylane anywhere** — House of Rose doesn't carry them.
 
@@ -22,8 +22,8 @@
 **Lead (answer-first):**
 Good injectable work shouldn't announce itself. The aim at House of Rose is simple, and a little contrarian for this industry: you should look like a well-rested version of yourself, not like you've "had something done." Diana Morrison, RN gets there by doing less on purpose — conservative dosing, products chosen to move with your face, and a plan built up over time rather than all at once. The people who notice will think you slept well or came back from vacation. They won't be able to say why.
 
-**Primary CTA:** Sit down with Diana, RN *(→ call/text)*
-**Secondary CTA:** Ask what "natural" takes for you *(→ text (844) 941-7673)*
+**Primary CTA:** Sit down with Diana, RN *(→ call)*
+**Secondary CTA:** Ask what "natural" takes for you *(→ call (844) 941-7673)*
 
 ---
 
@@ -75,7 +75,7 @@ Diana confirms candidacy, product, and dose at consultation. Not every client is
 
 Diana estimates your plan at consultation — units, syringes, and whether a phased approach serves you better than doing everything in one sitting.
 
-**Section CTA:** Get your units estimated at consult *(→ call/text)*
+**Section CTA:** Get your units estimated at consult *(→ call)*
 
 ### Questions people ask
 
@@ -91,7 +91,7 @@ Because faces aren't uniform. Neurotoxin is per unit and filler is per syringe s
 **Is under-eye filler an option here?**
 Sometimes — but under the thin under-eye skin, Diana often prefers PRF, which improves the skin without the puffiness heavier filler can cause there. She'll tell you which fits.
 
-**Closing CTA:** Plan a conservative first visit *(→ call/text)*
+**Closing CTA:** Plan a conservative first visit *(→ call)*
 
 ---
 
@@ -111,7 +111,7 @@ At House of Rose in Punta Gorda, neurotoxin (Botox or Daxxify) is **$14 per unit
 
 **Why here:** it's an RN injector, unhurried, under medical-director oversight — not a volume counter. You're paying for the judgment behind the needle.
 
-**Cost-guide CTA:** Ask Diana for a plan estimate *(→ call/text)*
+**Cost-guide CTA:** Ask Diana for a plan estimate *(→ call)*
 
 ---
 
@@ -133,13 +133,13 @@ Both relax the same expression lines and both cost **$14 per unit** here — the
 
 Diana matches the choice to your muscles, schedule, and history — and doses either one conservatively.
 
-**Comparison CTA:** Weigh both with Diana, RN *(→ call/text)*
+**Comparison CTA:** Weigh both with Diana, RN *(→ call)*
 
 ---
 
 ## Review & build notes (not for the page)
 
-**Price citations (Rule #0):** all three local sources agree — `docs/research/neurotoxins.md` §8, `docs/research/dermal-fillers.md` §8, `docs/staff/pricing/ALL-SERVICES-PRICING.MD`, cross-checked `_pricing-catalog.md` §0.1/§5:
+**Price citations (Rule #0):** all three local sources agree — `docs/internal_only/research/neurotoxins.md` §8, `docs/internal_only/research/dermal-fillers.md` §8, `docs/internal_only/pricing/ALL-SERVICES-PRICING.MD`, cross-checked `_pricing-catalog.md` §0.1/§5:
 - Botox **$14/unit**, Daxxify **$14/unit** (per unit, not per area).
 - Juvéderm Ultra XC **from $650**, Voluma XC **from $850**; RHA 1 **$650** / RHA 2 **$700** / RHA 3 **$800** per syringe.
 - ⚠️ **Sanity drift to fix on wire-in:** `dermal-fillers` shows "From $700" (should be **$650**); `injectables` price is null (publish **$14/unit**).

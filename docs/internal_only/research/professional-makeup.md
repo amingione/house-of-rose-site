@@ -113,8 +113,8 @@ Ranges are **premium-positioned at bridal-median / upper-event**, below the Napl
 10. **Can I buy the products you use on me?** Yes — we can match you to the Jane Iredale products used in your look so you can recreate it at home. Ask us on your visit or during a lesson. *(Note: retail availability being wired up — see GAPS.)*
 11. **Can I switch my everyday routine to Jane Iredale?** Yes — most steps in a conventional routine have a Jane Iredale equivalent, from primer and foundation to blush, brows, and lip. Our "this-for-that" swap guide maps the common products to their Jane Iredale counterpart.
 12. **Do you offer makeup lessons?** Yes — a private one-on-one lesson (from $175) where we teach you how to recreate your look, which products suit your skin, and the order to apply them.
-13. **How far in advance should I book for a wedding?** As early as you can — dates fill, and for weddings we recommend a trial run for the guest of honor ahead of the day. Call or text (844) 941-7673 with your date and party size to plan.
-14. **Where are you located and how do I book?** House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. For makeup bookings, call or text (844) 941-7673.
+13. **How far in advance should I book for a wedding?** As early as you can — dates fill, and for weddings we recommend a trial run for the guest of honor ahead of the day. Call (844) 941-7673 with your date and party size to plan.
+14. **Where are you located and how do I book?** House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. For makeup bookings, call (844) 941-7673.
 15. **Is the Jane Iredale supplement line something you make health claims about?** No — the supplements are a "beauty from within" range; we describe them neutrally and carry the required FDA/FTC disclaimer. They are not intended to diagnose, treat, cure, or prevent any disease.
 
 ## 10. Provider + compliance notes
@@ -167,8 +167,8 @@ Ranges are **premium-positioned at bridal-median / upper-event**, below the Napl
 ## Sources
 
 **Local docs (primary truth, read in full):**
-- `docs/services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md` — page map, schemas, §7 before/after (Stephanie & Jaclyn), §8 compliance/voice, §9 pricing, §12 open questions.
-- `docs/services/pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md` — SW FL pricing comp + House of Rose rate card (pricing truth).
+- `docs/internal_only/services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md` — page map, schemas, §7 before/after (Stephanie & Jaclyn), §8 compliance/voice, §9 pricing, §12 open questions.
+- `docs/internal_only/pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md` — SW FL pricing comp + House of Rose rate card (pricing truth).
 - Live route files (current source of on-page copy, since Sanity singletons are empty — they render from these fallbacks): `packages/web/src/pages/services/professional-makeup/index.astro`, `.../jane-iredale.astro`, `.../events.astro`.
 - `packages/web/src/lib/queries.ts` (makeup singleton queries/interfaces, lines ~980+).
 - `packages/web/public/aundrea.vcf` and `packages/web/src/pages/aundrea.astro` (provider card).

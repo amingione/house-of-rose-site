@@ -5,13 +5,56 @@ Anything that has to be **factually correct** — pricing, series counts, servic
 provider lanes, hours, NAP, protocols — must be **checked against the real sources before I state or
 change it**, and I do not invent, round, or "make it consistent" from memory.
 
+> You are producing work for House of Rose Aesthetics, a Medical Aesthetics Practice in Punta Gorda, Florida.
+>
+>
+> Brand position:
+>
+> - House of Rose is a medical aesthetics practice, not a luxury spa, beauty bar, salon, or influencer brand.
+>
+> - The brand earns trust by explaining how the practice operates: consultation, assessment, individualized treatment planning, clinical judgment, preparation, downtime, aftercare, reassessment, and maintenance.
+>
+> - The physical environment is architectural, collected, tactile, and quietly refined. Public copy should not lead with warm, welcoming, pampering, indulgent, or luxury language.
+>
+> - The desired outcome language is healthy-looking, balanced, refreshed, and natural-looking. Never promise perfection, youth, transformation, or guaranteed results.
+>
+> - Use “skin rejuvenation” sparingly. Vary with skin quality, skin renewal, corrective care, healthy-looking skin, facial aesthetics, and maintenance.
+>
+> - Use “evidence-based,” “advanced,” “personalized,” and “customized” only when they add specific meaning. Do not repeat them.
+>
+> Visual direction:
+>
+> - Use the real House of Rose environment whenever possible.
+>
+> - Architectural editorial photography; straight vertical lines; walnut, limestone, bone, olive, antique brass, linen, glass, and matte ceramic.
+>
+> - Real skin texture, real hands, accurate equipment, directional light, true skin tones, and restrained composition.
+>
+> - No perfect AI models, smiling stock poses, flowers as spa shorthand, water splashes, glitter, gold foil, pink gradients, floating products, soft-focus glamour, blue LED rooms, cursive, or random Canva aesthetics.
+>
+> Clinical guardrails:
+>
+> - Do not invent, RESEARCH if unknown or review `/docs` for services, devices, formulations, ingredients, credentials, protocols, candidacy, contraindications, benefits, downtime, aftercare, or results.
+>
+> - Flag every clinical claim for verification.
+>
+> - Never create fake patient results, reviews, testimonials, or staff.
+>
+> - State uncertainty and ask for source material when facts are missing.
+>
+> - Write in plain language and do not diagnose the reader.
+>
+
 **Verification order (do all that apply, in this order):**
-1. **Existing local docs** — `docs/services/**` (incl. GlossGenius import CSVs), `docs/research/**`
+1. **Existing local docs** — `docs/internal_only/services/**` (incl. GlossGenius import CSVs), `docs/internal_only/research/**`
    (treatment briefs + `_pricing-catalog.md`, `_gaps.md`), `docs/competitor_analysis/**`.
 2. **Notion** — the House of Rose HQ workspace (service pages carry `Competitor Pricing`, `Pricing
    Notes`, protocol, and provider fields). Search + fetch the specific page.
 3. **Confirm with research** — the clinical/manufacturer/market fact (protocol, comp price, label
    claim). If no comp/source exists locally or in Notion, **research the web for our area** and cite it.
+4. **Notion** HRA Brand has all of House of Rose Aesthetics Branding Creative Work - CHECK IT to insure you stay compliant before creating anything.
+6. **Stylesheet**
+7.
 
 **Then:**
 - **Cite the source** for any number/claim I set (which doc/Notion page/URL it came from).
@@ -31,7 +74,7 @@ change it**, and I do not invent, round, or "make it consistent" from memory.
   and **invented/flowery "signature" service names** (use plain technical names only). Also dead: any
   "special/discount" framing. If I find any of these in a doc, **delete it — don't annotate it**, because
   a note that names the dead thing just gets referenced and reintroduced. Historical artifacts are not
-  the menu; the live menu is `docs/services/ALL-SERVICES-PRICING.MD` + GlossGenius + Notion.
+  the menu; the live menu is `docs/internal_only/services/ALL-SERVICES-PRICING.MD` + GlossGenius + Notion.
 - **When I find something actually incorrect** (drift, a stale price, a wrong name, a dead concept treated
   as live, a provider-lane error), **clean it up** — correct it, cite the fix, flag the conflict — rather
   than leaving it or silently overwriting the reason it existed.
@@ -47,7 +90,7 @@ provider / protocol / platform differences stand.** Don't repeat this._
 ---
 
 ## Business
-House of Rose is a luxury spa & wellness brand.
+House of Rose is a medical aesthetics practice with an advanced aesthetics and wellness brand position.
 This is a **completely separate business from FAS Motorsports** — no shared infrastructure, no Medusa, no Vendure.
 
 ---
@@ -60,12 +103,12 @@ copy bug, not a business rule, unless Amber says otherwise.
 - **Everything else (including Botox/injectables, IV, body treatments, etc.):** walk-ins accepted
   **whenever there's time on the schedule** — "time-permitting," not "never." House of Rose has walked in
   Botox before; don't write copy that forecloses that.
-- Appointments are still the recommended/primary path (call/text to book ahead, no online-booking button —
+- Appointments are still the recommended/primary path (call to book ahead, no online-booking button —
   that part stands), but **never claim "by appointment only," "no walk-ins," or "not a walk-in mill/clinic"
   anywhere** — customer-facing pages, GBP, ad copy, FAQs, llms-full.txt, everywhere. If a doc says that,
   it's wrong; fix it, don't preserve it as "the vibe."
 - Correct phrasing pattern: *"Walk-ins welcome — appointments recommended for [service]."* or *"We take
-  walk-ins when the schedule allows; call/text (844) 941-7673 to guarantee a time."*
+  walk-ins when the schedule allows; call (844) 941-7673 to reserve a time."*
 
 ---
 
@@ -86,18 +129,18 @@ copy bug, not a business rule, unless Amber says otherwise.
 
 ---
 
-## Florida Advertising Law (binding — 2026-07-26) — `docs/compliance/`
-Marketing for this business is regulated. **`docs/compliance/` is the binding statutory layer** and is
-inherited by every copy, ad, offer, pricing, or credential task. `docs/staff/COMPLIANCE-COPY-RULES.md`
-covers voice and claims; `docs/compliance/` covers what the law requires. **Where they conflict,
-`docs/compliance/` wins.** Read `docs/compliance/README.md` before publishing any offer, price,
+## Florida Advertising Law (binding — 2026-07-26) — `docs/internal_only/compliance/`
+Marketing for this business is regulated. **`docs/internal_only/compliance/` is the binding statutory layer** and is
+inherited by every copy, ad, offer, pricing, or credential task. `docs/internal_only/COMPLIANCE-COPY-RULES.md`
+covers voice and claims; `docs/internal_only/compliance/` covers what the law requires. **Where they conflict,
+`docs/internal_only/compliance/` wins.** Read `docs/internal_only/compliance/README.md` before publishing any offer, price,
 provider name, or paid ad. The four rules that get broken most:
 
 - **§ 456.062 72-hour disclosure** — required, verbatim and in caps, on any surface advertising a
   **free, discounted, or credited** service. "Complimentary" triggers it. Required **in the ad unit
   itself**, not just the landing page — if a format can't carry the block, keep the offer out of that
-  format. Never paraphrase, shorten, sentence-case, or hide it behind a toggle. Exact text:
-  `docs/compliance/FL-ADVERTISING-LAW.md` §5.1.
+  format. Never paraphrase, shorten, sentence-case, or hide it behind a toggle. The former legal-analysis
+  draft was intentionally removed on 2026-07-27; obtain approved exact disclosure copy before publishing.
 - **License type wherever a practitioner is named** — § 456.072(1)(t). **MD / DO / APRN / RN.**
   "Aesthetic Injector," "Injector," "Provider," "Skin Specialist" are job titles and satisfy nothing.
   Separate from the internal-lane rule above: legal attribution is required, lane commentary is not.
@@ -131,8 +174,8 @@ reaches nursing only through `s. 464.012` (**APRN** — Diana is a plain RN), an
 *owner*, which a contracted medical director is not. **This is unrelated to the DBPR salon licence,
 county approvals and inspections the practice already holds — AHCA is a different regulator.** Anything
 billed to insurance or a third-party payer would change the analysis; watch GLP-1. Do not reason from
-§ 456.001(4)'s general definition; § 400.9905 never cites it. Full analysis and the drafted question:
-`docs/compliance/FL-ADVERTISING-LAW.md` §3 item 3 and §4.6.
+§ 456.001(4)'s general definition; § 400.9905 never cites it. The supporting legal-analysis draft was
+intentionally removed on 2026-07-27; confirm this posture with Florida healthcare counsel.
 
 ⚠️ **Diana is an RN, not an APRN.** § 464.0123 autonomous practice does not apply to her — the operative
 question for RN-performed injectables is **physician delegation and supervision**. Her advertising
@@ -141,7 +184,7 @@ credential is **"Diana Morrison, RN"** (§ 456.072(1)(t)).
 ⚠️ **The certificate of exemption is voluntary and expensive in a non-obvious way:** § 400.9935(6) makes
 publishing a fee schedule a **condition precedent** — uninsured cash prices for the 50 most-frequent
 services, posted in the reception area on a sign of **at least 15 square feet**. That collides directly
-with the pricing-confidentiality decision. See `docs/compliance/FL-ADVERTISING-LAW.md` §3 item 3.
+with the pricing-confidentiality decision. Confirm the current requirement with Florida healthcare counsel.
 
 ---
 
@@ -149,14 +192,15 @@ with the pricing-confidentiality decision. See `docs/compliance/FL-ADVERTISING-L
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
 - **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
-- **Email:** info@houseofrosefl.com — _`book@…` was never a real address; do not use it anywhere_
+- **Email:** info@houseofrosefl.com (primary) · book@houseofrosefl.com (**live alias** → routes to primary; confirmed with Amber 2026-08-01) — _use `info@` in public NAP, GBP, schema, and footer; `book@` is valid only as the booking/`mailto:` destination (`PUBLIC_BOOKING_EMAIL`). Supersedes the earlier "`book@` was never a real address" rule — that is now **false**, do not act on it or re-remove `book@` from env files or booking links._
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed
-- **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB profile ID `61590233534310` · opened June 15, 2026
+- **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · opened June 15, 2026
 - **Service area:** Punta Gorda · Port Charlotte · Charlotte Harbor · Babcock Ranch · Burnt Store Marina · Punta Gorda Isles
 - **GBP categories:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`, `Health and beauty shop`, `Vitamin & supplements store`.
 - **GBP services link:** https://houseofrose.glossgenius.com/services
 - **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** lead in prose with "advanced aesthetics & wellness," but "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). _(This reverses the earlier "never say med spa" rule.)_
-- **GBP CTA:** call/text; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
+- **Phone SMS:** not enabled while Grasshopper verification is pending. Do not invite customers to text until activation is confirmed.
+- **GBP CTA:** call; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
 
 ## Providers & Team (memory — never re-ask)
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, Procell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service (microchanneling/microneedling) — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
@@ -290,7 +334,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 - `PUBLIC_SANITY_API_VERSION` = `2025-04-26`
 - `SANITY_API_WRITE_TOKEN` = (secret — server-side lead submission writes, do not commit)
 - `PUBLIC_SITE_URL` = `https://houseofrosefl.com/`
-- `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com`
+- `PUBLIC_BOOKING_EMAIL` = `book@houseofrosefl.com` (live alias; rental/booking `mailto:` only)
 - `PUBLIC_GTM_ID` = `GTM-NSDKJFP9` (browser-safe; builds + functions; served through `/metrics/`)
 - `PUBLIC_MAPBOX_ACCESS_TOKEN` = browser-safe public token (production value is URL-restricted to `houseofrosefl.com`)
 
@@ -354,11 +398,11 @@ local authority — see `docs/SEO-AEO-PLAYBOOK.md` and `docs/CONTENT-MODEL-MAP.m
   objects). Canonical NAP lives in `siteSettings`, mirrored in `structuredData.ts` (`LOCAL_BUSINESS`).
 
 ### Site Elevation Prompt Pack
-`docs/prompts/site-elevation/` — phased Claude Code prompts (Fable 5, high effort) for the
+`docs/internal_only/prompts/site-elevation/` — phased Claude Code prompts (Fable 5, high effort) for the
 full-site elevation program: audit/perfect → parallel treatment research → CTA
 differentiation + journey loops → new pages + Sanity draft seeding → QA gates. Start every
 phase session with `00-MASTER-PROMPT.md`; see the pack's `README.md`. Research briefs live
-in `docs/research/`; source-of-truth for treatment facts/pricing is `docs/services/**`.
+in `docs/internal_only/research/`; source-of-truth for treatment facts/pricing is `docs/internal_only/services/**`.
 
 ---
 
@@ -390,7 +434,7 @@ Production: set in Netlify dashboard
 | `PUBLIC_SANITY_API_VERSION` | web | `2025-04-26` |
 | `SANITY_API_WRITE_TOKEN` | web functions | Server-only — creates lead submissions, never expose to browser |
 | `PUBLIC_SITE_URL` | web | Canonical URL for meta/og |
-| `PUBLIC_BOOKING_EMAIL` | web | Used on Book Now `mailto:` links |
+| `PUBLIC_BOOKING_EMAIL` | web | Live `book@houseofrosefl.com` alias used only on rental/booking `mailto:` links |
 | `PUBLIC_GTM_ID` | web + edge | `GTM-NSDKJFP9`; browser-safe container ID served through the first-party `/metrics/` gateway |
 | `PUBLIC_MAPBOX_ACCESS_TOKEN` | web | Browser-safe `pk.` token for the contact map, address search, and directions; production token is URL-restricted |
 

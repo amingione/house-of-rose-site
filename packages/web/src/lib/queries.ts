@@ -10,6 +10,17 @@ const IMAGE_FIELDS = /* groq */ `
   )
 `;
 
+const RETIRED_COMPARISON_SLUGS = [
+  'prf-microchanneling-vs-microneedling',
+  'prf-injections-vs-ez-gel',
+  'Procell-serum-vs-prf',
+  'Procell-vs-topical-prf',
+  'procell-serum-vs-prf',
+  'procell-vs-topical-prf',
+  'topical-prf-vs-prf-injections',
+] as const;
+const RETIRED_COMPARISON_SLUGS_GROQ = JSON.stringify(RETIRED_COMPARISON_SLUGS);
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface SanityImage {
@@ -478,7 +489,9 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     },
     "comparisons": *[
       _type == "comparison" &&
+      status == "live" &&
       defined(slug.current) &&
+      !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
       (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
     ] | order(orderRank asc, title asc) {
       _id,
@@ -1067,7 +1080,7 @@ const COMPARISON_OPTION_FIELDS = /* groq */ `
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live"] | order(orderRank asc, title asc) {
+  *[_type == "comparison" && status == "live" && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, intro, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -1076,7 +1089,7 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
 `;
 
 export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && slug.current == $slug][0] {
+  *[_type == "comparison" && status == "live" && slug.current == $slug && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})][0] {
     _id, title, "slug": slug.current, intro, verdict, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -1087,12 +1100,22 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "comparison" && status == "live" && defined(slug.current) && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})]{ "slug": slug.current }
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────
+const CANONICAL_LOCAL_AREA_SLUGS = [
+  'punta-gorda',
+  'port-charlotte',
+  'charlotte-harbor',
+  'babcock-ranch',
+  'burnt-store-marina',
+  'punta-gorda-isles',
+] as const;
+const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(CANONICAL_LOCAL_AREA_SLUGS);
+
 export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
-  *[_type == "localArea"] | order(orderRank asc, title asc) {
+  *[_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, city, region, intro, _updatedAt,
     ${IMAGE_FIELDS},
     "seo": seo { metaTitle, metaDescription }
@@ -1100,7 +1123,7 @@ export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
 `;
 
 export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "localArea" && slug.current == $slug][0] {
+  *[_type == "localArea" && slug.current == $slug && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}][0] {
     _id, title, "slug": slug.current, city, region, intro, whyLocal, neighborhoods, _updatedAt,
     "servedServices": servedServices[]->{ ${SERVICE_REF_FIELDS} },
     faqs[]{ _key, question, answer },
@@ -1110,7 +1133,7 @@ export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_LOCAL_AREA_SLUGS_QUERY = /* groq */ `
-  *[_type == "localArea" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "localArea" && defined(slug.current) && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}]{ "slug": slug.current }
 `;
 
 // ── Case studies (consent-gated) ─────────────────────────────────────────────
@@ -1152,7 +1175,7 @@ const CANONICAL_AI_FAQ_ANSWERS = {
   location:
     'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The studio serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.',
   booking:
-    'Call or text (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
+    'Call (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
 } as const;
 
 // These three answers contain canonical business facts. Keep the Sanity-authored
@@ -1185,7 +1208,15 @@ export interface FaqGroup {
 }
 
 export const FAQ_AGGREGATE_QUERY = /* groq */ `
-  *[_type in ["service", "costGuide", "comparison", "localArea"] && count(faqs) > 0]
+  *[
+    (
+      (_type == "service" && status in ["live", "actual-menu"]) ||
+      _type == "costGuide" ||
+      (_type == "comparison" && status == "live" && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})) ||
+      (_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ})
+    ) &&
+    count(faqs) > 0
+  ]
     | order(_type asc, title asc) {
       _id,
       "source": title,
@@ -1273,7 +1304,7 @@ export const HOMEPAGE_QUERY = /* groq */ `
 `;
 
 // ── Professional Makeup (nested singletons) — /services/professional-makeup/* ──
-// See docs/services/PROFESSIONAL-MAKEUP-BUILD-PLAN.md. Provider: Aundrea Pedigo.
+// See docs/internal_only/services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md. Provider: Aundrea Pedigo.
 
 export interface LinkRef {
   _key?: string;

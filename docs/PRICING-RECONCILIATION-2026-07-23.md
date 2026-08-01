@@ -10,7 +10,7 @@ The truth chain was already defined (CLAUDE.md Rule #0) — the problem is the a
 | Layer | Role | State found today |
 |---|---|---|
 | **GlossGenius** | Commerce truth — what's bookable & at what price | ✅ Live, 59 services / 14 categories. Fresh CSV export in repo (7/22) matches the live site. |
-| **`docs/services/ALL-SERVICES-PRICING.MD`** | Staging mirror of GG | 🟥 **DID NOT EXIST.** Referenced as "the live menu" by CLAUDE.md and by `_service-taxonomy.md` / `_sanity-collection-restructure.md`, but the file is nowhere in the repo, Obsidian, or HoR-ops. **Created today** from the verified GG catalog. |
+| **`docs/internal_only/services/ALL-SERVICES-PRICING.MD`** | Staging mirror of GG | 🟥 **DID NOT EXIST.** Referenced as "the live menu" by CLAUDE.md and by `_service-taxonomy.md` / `_sanity-collection-restructure.md`, but the file is nowhere in the repo, Obsidian, or HoR-ops. **Created today** from the verified GG catalog. |
 | **Sanity** | Display | Mostly aligned with GG on priced services; carries extra not-in-GG services + 3 conflicts (below). |
 | **Notion HQ → Services DB** | Strategy: competitor pricing, status, pricing notes | Healthy structure (26 rows, Status legend), but several `Pricing Notes` are stale *proposals* that read like truth. |
 
@@ -56,16 +56,16 @@ Two separate taxonomies exist and neither is wired to the other:
 
 | Keep (canonical) | Kill / archive (duplicate or stale) |
 |---|---|
-| `docs/services/ALL-SERVICES-PRICING.MD` *(created today)* | Obsidian `05-SERVICES/advanced-facials-master-menu.md`, `Services.md`, `services_detailed.md`, `advanced-facials-price-list.pdf`, `glossgenius_catalog.pdf` · HoR-ops `library/treatment-menu.html` |
-| `docs/services/glossgenius_catalog.csv` (GG export) | — refresh on every GG change |
-| `docs/services/PRF_Pricing/` (repo) | Obsidian `prf pricing/` — byte-for-byte overlap (FINAL-PRICING.md, README, 4 treatment briefs, trust-and-proof) |
-| `docs/services/Diana/` (repo) | Obsidian `Diana_services/` duplicates (Treatment_Menu_v2, Injectable_PRF_Pricing) |
+| `docs/internal_only/services/ALL-SERVICES-PRICING.MD` *(created today)* | Obsidian `05-SERVICES/advanced-facials-master-menu.md`, `Services.md`, `services_detailed.md`, `advanced-facials-price-list.pdf`, `glossgenius_catalog.pdf` · HoR-ops `library/treatment-menu.html` |
+| `docs/internal_only/services/glossgenius_catalog.csv` (GG export) | — refresh on every GG change |
+| `docs/internal_only/services/PRF_Pricing/` (repo) | Obsidian `prf pricing/` — byte-for-byte overlap (FINAL-PRICING.md, README, 4 treatment briefs, trust-and-proof) |
+| `docs/internal_only/services/Diana/` (repo) | Obsidian `Diana_services/` duplicates (Treatment_Menu_v2, Injectable_PRF_Pricing) |
 | Notion Services DB (strategy layer) | Notion stale twins: 2× CONTENT_CHECKLIST · 2× BUSINESS-PROFILE-GBP · 2× BRAND_VOICE · 2× README (June 5/7 pairs) — keep the newer of each |
-| `docs/research/_pricing-catalog.md` (competitor research) | Obsidian `Artifacts/Punta Gorda Luxury Pricing & Service Strategy.md`, `01_INBOX/competitor_analysis/*` → archive after cross-check |
+| `docs/internal_only/research/_pricing-catalog.md` (competitor research) | Obsidian `Artifacts/Punta Gorda Luxury Pricing & Service Strategy.md`, `01_INBOX/competitor_analysis/*` → archive after cross-check |
 
 ## 6. The unfinished July 13 restructure
 
-`docs/research/_sanity-collection-restructure.md` + `_service-taxonomy.md` (2026-07-13) already contain the approved-pending plan: 12 canonical collections, migration table for every service, Diana's 6-way split, add-on policy, Face Reality page cluster. The collections themselves were created in Sanity ✅ — but the remaining steps never ran: remove `acne-peel`/`back-treatment` (C8), the BioRePeel lane fix (C3), homepage wiring (F1), GG IV reprice (C2), GLP-1 decision (C1). **Nothing new needs inventing — finish that plan.**
+`docs/internal_only/research/_sanity-collection-restructure.md` + `_service-taxonomy.md` (2026-07-13) already contain the approved-pending plan: 12 canonical collections, migration table for every service, Diana's 6-way split, add-on policy, Face Reality page cluster. The collections themselves were created in Sanity ✅ — but the remaining steps never ran: remove `acne-peel`/`back-treatment` (C8), the BioRePeel lane fix (C3), homepage wiring (F1), GG IV reprice (C2), GLP-1 decision (C1). **Nothing new needs inventing — finish that plan.**
 
 ---
 
@@ -91,6 +91,6 @@ Two separate taxonomies exist and neither is wired to the other:
 | C6 Jewelry | $65 | Published "From $65" ✅ |
 | C8 Acne standalones | Delete | `acne-peel` + `back-treatment` unpublished AND drafts discarded ✅ |
 | Rose Circle / Rose Method / memberships | **Delete everything** | All 6 circle* fields removed from Sanity homepage (published + draft); no schema/frontend/package references found; Obsidian membership archive moved to `_to_delete/` ✅ |
-| Contradicting pricing docs | Delete | Moved to `_to_delete/` in Obsidian (prf pricing/, Diana_services/, 05-SERVICES stale menus, Punta Gorda pricing strategy) and HoR-ops (treatment-menu.html, back-to-school-special.html). Superseded banners added to `docs/research/_service-taxonomy.md`, `_sanity-collection-restructure.md`, `_pricing-catalog.md` ✅ |
+| Contradicting pricing docs | Delete | Moved to `_to_delete/` in Obsidian (prf pricing/, Diana_services/, 05-SERVICES stale menus, Punta Gorda pricing strategy) and HoR-ops (treatment-menu.html, back-to-school-special.html). Superseded banners added to `docs/internal_only/research/_service-taxonomy.md`, `_sanity-collection-restructure.md`, `_pricing-catalog.md` ✅ |
 | GG ↔ Sanity parity | Must always match | Full pass done — every service present in both now shows the same price ✅ |
 | Book Now buttons | Must reach the right GG target | All site booking CTAs unified `…/services` → `…/book` (GG's actual booking flow); NEW per-service `bookingUrl` field added to the service schema + `[slug].astro` + query. GG does not expose public per-service URLs — Amber pastes each service's Booking Link (GG Dashboard → Settings → Booking Links) into Sanity Studio and the site uses it automatically ✅ |

@@ -2,7 +2,7 @@
 
 **Status:** Draft for Amber's review · **Provider lane:** Diana Morrison, RN (injectable PRF, under medical-director oversight)
 **Maps to:** `service` hub → `/services/prf-under-eye/` · supporting `costGuide` → `/cost/prf-under-eye-cost/` · `comparison` → `/compare/prf-under-eye-vs-filler/`
-**Booking model:** Call or text (844) 941-7673 — injectables are consultation-first, not online-booked.
+**Booking model:** Call (844) 941-7673 — injectables are consultation-first, not online-booked.
 
 > Everything below the line is publish-ready client copy. The **Review & build notes** at the end carry the price citations, the do-not-say list, and the JSON-LD/route wiring for when this moves into Sanity.
 
@@ -69,7 +69,7 @@ Light, compared with more aggressive procedures. Expect some redness, mild swell
 
 PRF Under-Eye Rejuvenation is **$550 per session**, or **$1,485 for a series of three**. You'll get a clear plan at consultation — what your under-eye needs, how many sessions, and whether pairing it with anything else actually earns its place.
 
-**Section CTA:** Text us to price your plan *(→ text (844) 941-7673)*
+**Section CTA:** Call us to price your plan *(→ call (844) 941-7673)*
 
 ### Questions people ask
 
@@ -85,7 +85,7 @@ It depends on whether your issue is skin quality and shadowing (PRF's strength) 
 **Can I do this with my other treatments?**
 Often, yes. Because House of Rose also offers topical PRF microchanneling with Amber for surface glow, your under-eye plan can sit inside a broader regenerative sequence — Diana coordinates it so the pieces don't fight each other.
 
-**Closing CTA:** Book your under-eye consult with Diana *(→ call/text)*
+**Closing CTA:** Book your under-eye consult with Diana *(→ call)*
 
 ---
 
@@ -106,7 +106,7 @@ At House of Rose in Punta Gorda, PRF under-eye rejuvenation is **$550 for a sing
 
 **Why it's worth it here:** it's placed by Diana Morrison, RN, under medical-director oversight, in an unhurried, private studio — not rushed through on a high-volume schedule. You're paying for the judgment as much as the treatment.
 
-**Cost-guide CTA:** Get your under-eye plan priced *(→ call/text)*
+**Cost-guide CTA:** Get your under-eye plan priced *(→ call)*
 
 ---
 
@@ -129,7 +129,7 @@ For most tired, shadowed, or crepey under-eyes, PRF is the gentler first move be
 
 Diana walks you through which fits — and says so plainly when the answer is "a little of both."
 
-**Comparison CTA:** Talk it through with a nurse *(→ call/text)*
+**Comparison CTA:** Talk it through with a nurse *(→ call)*
 
 ---
 
@@ -152,6 +152,6 @@ Diana walks you through which fits — and says so plainly when the answer is "a
 
 **JSON-LD:** Service + BreadcrumbList + FAQPage (hub); FAQPage + BreadcrumbList (cost, comparison) — via `src/lib/structuredData.ts`.
 
-**CTAs used on this page (all distinct):** "Ask Diana if this is your fix" · "See your under-eye up close" · "Text us to price your plan" · "Book your under-eye consult with Diana" · "Get your under-eye plan priced" · "Talk it through with a nurse."
+**CTAs used on this page (all distinct):** "Ask Diana if this is your fix" · "See your under-eye up close" · "Call us to price your plan" · "Book your under-eye consult with Diana" · "Get your under-eye plan priced" · "Talk it through with a nurse."
 
 **Copy is clean** — no placeholders; proofread in the QA pass.

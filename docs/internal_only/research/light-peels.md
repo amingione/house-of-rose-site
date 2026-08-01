@@ -209,12 +209,12 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 ## Sources
 
 **Local docs read:**
-- `docs/services/pricing/advanced-facials-master-menu.md` — Amber's lane menu/pricing; explicitly excludes Brandy's relaxing/maintenance facials; BioRePeel add-on (+$65) and body ($325) reference.
-- `docs/services/pricing/advanced-facials-pricing.md` — deprecated stub (confirms master menu is canonical).
-- `docs/services/facials/packagesAdd-ons.md` — enzyme peel referenced only as a dermaplaning add-on; no light-peel service.
-- `docs/services/facials/biorepeel.md`, `faceRealityAcneProgram.md` — confirm BioRePeel (Amber, $899 acne program) as separate corrective peels.
-- `docs/services/facials/dermaplaning.md`, `glo2facialxGeneo.md`, `hydrodermabrasion.md` — **all empty (0 bytes)** — Brandy-lane basic-facial docs are unwritten.
-- `docs/COMPLIANCE-COPY-RULES.md` — binding avoid/say-instead list applied throughout.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — Amber's lane menu/pricing; explicitly excludes Brandy's relaxing/maintenance facials; BioRePeel add-on (+$65) and body ($325) reference.
+- `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (confirms master menu is canonical).
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — enzyme peel referenced only as a dermaplaning add-on; no light-peel service.
+- `docs/internal_only/services/facials/biorepeel.md`, `faceRealityAcneProgram.md` — confirm BioRePeel (Amber, $899 acne program) as separate corrective peels.
+- `docs/internal_only/services/facials/dermaplaning.md`, `glo2facialxGeneo.md`, `hydrodermabrasion.md` — **all empty (0 bytes)** — Brandy-lane basic-facial docs are unwritten.
+- `docs/internal_only/COMPLIANCE-COPY-RULES.md` — binding avoid/say-instead list applied throughout.
 
 **Sanity docs consulted (published snapshot 2026-07-13):** services `biorepeel`, `biorepeel-advanced-acne-scarring`, `biorepeel-body`, `biorepeel-gold-spot-treatment`, `acne-peel`, `face-reality-acne-program`, `acne-bootcamp`, `dermaplaning`, `glo2facial`, `lightstim-led-therapy`; collection `skin-renewal`; concerns `sun-damage`, `fine-lines-laxity`; products across `skin-script` (52) and `glymed` (75) incl. enzyme/glycolic/mandelic/salicylic lines and `cranberry-turnover-peel`. **No light-peel/basic-facial/enzyme-facial service found.**
 
