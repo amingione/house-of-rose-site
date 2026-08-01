@@ -278,6 +278,59 @@ from   = "/services/biorepeel-body/"
 to     = "/services/biorepeel/"
 status = 301
 
+# Nav restructure to 6 top-level categories — InMode / Facials / Injectables /
+# IV Hydration Therapy / Makeup & Lashes / Waxing (owner direction, 2026-08-01).
+# Old collection pages retired or renamed; redirect to their new home.
+[[redirects]]
+from   = "/services/collections/rf-ipl-skin-treatments/"
+to     = "/services/collections/inmode/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/makeup/"
+to     = "/services/collections/makeup-lashes/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/lash-services/"
+to     = "/services/collections/makeup-lashes/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/advanced-facials/"
+to     = "/services/collections/facials/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/microchanneling-microneedling/"
+to     = "/services/collections/facials/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/skin-renewal/"
+to     = "/services/collections/facials/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/enhancements-add-ons/"
+to     = "/services/collections/facials/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/acne-bootcamp/"
+to     = "/services/collections/facials/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/wellness-restoration/"
+to     = "/services/collections/injectables-bio-fillers/"
+status = 301
+
+[[redirects]]
+from   = "/services/collections/permanent-jewelry/"
+to     = "/services/permanent-jewelry/"
+status = 301
+
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]
   from   = "/*"

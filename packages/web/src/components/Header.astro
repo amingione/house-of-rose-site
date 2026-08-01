@@ -322,6 +322,18 @@ const BOOKING_URL = "https://houseofrose.glossgenius.com/book";
 </header>
 
 <script>
+	// @swup/astro re-runs every page <script> on each client-side transition
+	// (`reloadScripts` defaults to true — see CategoryNav.astro for the same
+	// gotcha hit elsewhere). Header itself sits outside swup's `main` container
+	// and is never removed, so re-running this block re-attaches a SECOND set
+	// of listeners to the same persistent hamburger button: two click handlers
+	// firing on one click toggle the state twice and cancel out, so the menu
+	// silently stops responding after the first in-app navigation. Guard on
+	// `window` (which — unlike this module's own scope — survives the re-run)
+	// so init only happens once per real page load.
+	if (!(window as unknown as { __hrHeaderInit?: boolean }).__hrHeaderInit) {
+	(window as unknown as { __hrHeaderInit?: boolean }).__hrHeaderInit = true;
+
 	// Sticky header behavior
 	const header = document.getElementById("header");
 	const mobileMenuBtn = document.getElementById("mobile-menu-btn");
@@ -415,26 +427,44 @@ const BOOKING_URL = "https://houseofrose.glossgenius.com/book";
 	}
 
 	// Mobile menu toggle
+	const closeMobileMenu = () => {
+		mobileDrawer?.classList.remove("open");
+		mobileDrawer?.classList.add("hidden");
+		mobileMenuBtn?.classList.remove("open");
+		mobileMenuBtn?.setAttribute("aria-expanded", "false");
+		header?.classList.remove("menu-open");
+		// only restore the transparent/dark treatment if a dark hero is behind us
+		if (window.pageYOffset <= 60) applyBackdrop();
+	};
+
+	const openMobileMenu = () => {
+		mobileDrawer?.classList.remove("hidden");
+		mobileDrawer?.classList.add("open");
+		mobileMenuBtn?.classList.add("open");
+		mobileMenuBtn?.setAttribute("aria-expanded", "true");
+		// opaque bar + dark-on-light nav while the drawer is open
+		header?.classList.add("menu-open");
+		header?.classList.remove("on-dark");
+	};
+
 	mobileMenuBtn?.addEventListener("click", () => {
 		const isOpen = mobileDrawer?.classList.contains("open");
 		if (isOpen) {
-			mobileDrawer?.classList.remove("open");
-			mobileDrawer?.classList.add("hidden");
-			mobileMenuBtn?.classList.remove("open");
-			mobileMenuBtn?.setAttribute("aria-expanded", "false");
-			header?.classList.remove("menu-open");
-			// only restore the transparent/dark treatment if a dark hero is behind us
-			if (window.pageYOffset <= 60) applyBackdrop();
+			closeMobileMenu();
 		} else {
-			mobileDrawer?.classList.remove("hidden");
-			mobileDrawer?.classList.add("open");
-			mobileMenuBtn?.classList.add("open");
-			mobileMenuBtn?.setAttribute("aria-expanded", "true");
-			// opaque bar + dark-on-light nav while the drawer is open
-			header?.classList.add("menu-open");
-			header?.classList.remove("on-dark");
+			openMobileMenu();
 		}
 	});
+
+	// Picking any nav item inside the drawer (including nested service/collection
+	// links) should close it — swup swaps the page content but never touches the
+	// header, so without this the drawer stayed open on top of the new page.
+	mobileDrawer?.addEventListener("click", (e) => {
+		if ((e.target as HTMLElement)?.closest("a")) {
+			closeMobileMenu();
+		}
+	});
+	} // end __hrHeaderInit guard
 </script>
 
 <style>
