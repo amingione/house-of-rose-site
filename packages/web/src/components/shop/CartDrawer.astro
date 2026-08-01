@@ -288,6 +288,9 @@
   }
 
   init();
-  document.addEventListener('swup:enable', init);
-  document.addEventListener('swup:contentReplaced', init);
+  // `astro:page-load` is what @swup/astro actually dispatches on the `page:view` hook
+  // (see node_modules/@swup/astro/dist/script.js) — `swup:enable` / `swup:contentReplaced`
+  // are not real events from this integration and never fired, so buttons rendered by a
+  // client-side nav never got bound. This is the fix for "Add to Cart doesn't work."
+  document.addEventListener('astro:page-load', init);
 </script>

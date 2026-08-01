@@ -65,6 +65,8 @@ const categories = [...new Set(products.map((p) => p.category).filter(Boolean))]
     });
   }
 
+  // No `astro:page-load` listener needed: reloadScripts re-executes this whole
+  // script (and this call) on every swup nav. `swup:enable` never fired here —
+  // see CartDrawer.astro for why.
   initCategoryFilter();
-  document.addEventListener('swup:enable', initCategoryFilter);
 </script>
