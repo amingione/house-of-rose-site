@@ -63,25 +63,52 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
 
 ## Open — the real remaining drift
 
-### P0 · Lead-descriptor sweep — governing docs updated 2026-08-01, published copy NOT swept
+### ✅ DONE 2026-08-01 · Lead-descriptor sweep — `Medical Aesthetics Practice`
 The Creative System (v1.0, 2026-07-30) makes **`Medical Aesthetics Practice`** the lead public descriptor.
-`CLAUDE.md`, `AGENTS.md`, `COMPLIANCE-COPY-RULES.md`, `SEO-AEO-PLAYBOOK.md`, and this file now say so.
-**Everything below still says "advanced aesthetics & wellness studio" and needs Amber's go-ahead before
-being changed — these are published/outward-facing surfaces, not internal notes.**
+Swept across governing docs, shipping source, campaign copy, and internal briefs. Verified: **zero
+occurrences remain** outside deliberate "this is retired" annotations and the grep-guard list.
 
-- [ ] **`packages/web/src/pages/llms-full.txt.ts:161`** — ⚠️ **do this one first.** It literally instructs
-  external AI to *"Lead with 'advanced aesthetics & wellness studio'"*. Wrong instruction, shipped.
-- [ ] `packages/web/src/pages/llms.txt.ts:38` · `packages/web/src/lib/queries.ts:1174` — fallback
-  business descriptions.
-- [ ] Sanity `siteSettings` + any `localArea` intro carrying the old descriptor (see
-  `docs/internal_only/research/_audit-report.md:133`).
-- [ ] `docs/GOOGLE-BUSINESS-PROFILE.md` (lines ~19, ~107, ~337) — also holds the §3-vs-Creative-System
-  GBP description conflict; confirm what is actually live on Google before editing either.
-- [ ] Campaign copy: `docs/marketing/campaigns/2026-q3-local-acquisition/copy/{meta-ad-copy,organic-captions}.md`.
-- [ ] Internal briefs that instruct the old lead: `research/{professional-makeup,hydrodermabrasion,waxing}.md`,
-  `services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md`, `services/PRF_Pricing/{README,homepage-regenerative-repositioning}.md`.
-- [ ] `docs/internal_only/pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md:6` — says **"premium** advanced
-  aesthetics & wellness studio"; "premium" is retired language on top of the descriptor issue.
+- [x] `llms-full.txt.ts`, `llms.txt.ts`, `queries.ts` — shipping source (committed in `dd3f291`).
+- [x] Sanity — **verified clean**; the descriptor does not appear in any published document.
+- [x] `docs/GOOGLE-BUSINESS-PROFILE.md` — brand-law line + Q&A seed.
+- [x] Campaign kit — `meta-ad-copy.md`, `organic-captions.md`, `google-search-ads.csv`,
+  `on-site-video-shot-list.md`, `README.md`. **"Private" removed too** — it contradicts the walk-in policy.
+- [x] Internal briefs — `research/{professional-makeup,hydrodermabrasion,waxing,_audit-report}.md`,
+  `services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md`, `services/PRF_Pricing/{README,homepage-regenerative-repositioning}.md`,
+  `pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md`.
+- [x] Studio schema field examples + site copy that taught retired language.
+
+### 🛑 P0 · § 456.062 — the Q3 campaign kit cannot publish as written
+Every ad unit in `docs/marketing/campaigns/2026-q3-local-acquisition/` advertised a **"complimentary"**
+consultation with **no 72-hour disclosure in the ad unit**. `copy/google-search-ads.csv` was formatted for
+direct upload with "Complimentary Consultation" as a headline.
+
+- [x] `google-search-ads.csv` — the word removed (RSA headlines can't carry the block); now advertises the
+  consultation with no price claim, which takes it outside § 456.062.
+- [x] `on-site-video-shot-list.md` — same fix.
+- [ ] **`meta-ad-copy.md` (4 units), `organic-captions.md` (5 units), `README.md` CTA still say
+  "complimentary."** Amber must either obtain the approved disclosure copy + counsel sign-off, or drop
+  the word. **Statutory text must not be improvised** — see `CLAUDE.md`.
+- [ ] `/skin-analysis/` on the live site has the same exposure wherever it says "complimentary."
+
+### 🟡 P1 · Retired vocabulary + illegal service names in PUBLISHED Sanity copy — NEEDS AMBER
+Audited 2026-08-01 across 61 published docs: **23 service documents carry 68 retired-term instances**
+(`glow`×36, `radiance/radiant`×8, `luxury`×4, `no downtime`×9, `indulge`×3, `premium`×2, `flawless`×1).
+This is the site's core sales copy — **not swept, because it needs judgment per service, not find-replace.**
+
+Three separate problems, in order of cost to fix:
+
+1. **Service NAMES break the naming law** (`CLAUDE.md`: plain, technical, searchable only — no invented,
+   flowery, or "signature" names): `Luxury Facial`, `Royal Rose Facial`, `Luxe Rose Facial`,
+   `Signature Rose Facial`, `Signature Facial`, `Lunch Time Glow`, `Glowtox Facial`.
+2. **The slugs contain the retired words** — `/services/luxury-facial/`, `/services/lunch-time-glow/`,
+   `/services/glowtox-facial/`. Renaming changes URLs → needs 301s in `netlify.toml`, and costs whatever
+   ranking those pages hold. **Do not rename without deciding the redirect plan.**
+3. **Body copy** — "lit-from-within glow" (the exact retired phrase), "walk out glowing," etc.
+
+⚠️ **The 9 `no downtime` instances need clinical review, not a copy edit.** The Creative System permits
+the phrase when it is true for that exact procedure and reviewed. It is plausibly accurate for Glo2Facial
+and lash tint, and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
 
 ### P0 · Wrong NAP (always drift)
 - [x] **DONE (2026-07-07)** `03_PLANS/HofR Mockups/…/SETUP-INSTRUCTIONS.md:125` — fixed to

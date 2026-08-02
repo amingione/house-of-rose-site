@@ -23,7 +23,7 @@ export const promotion = defineType({
       name: 'headline',
       title: 'Headline',
       type: 'string',
-      description: 'The on-page headline, e.g. "Summer Glow Sale" or "New: Face Reality Restock".',
+      description: 'The on-page headline, e.g. "New: Face Reality Restock" or "Procell Home Care, Back in Stock".',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -37,7 +37,7 @@ export const promotion = defineType({
       name: 'ctaLabel',
       title: 'CTA Button Text',
       type: 'string',
-      description: 'Free text — e.g. "Shop the Sale", "See What\'s Glowing", "Get the Set". No platform names.',
+      description: 'Free text — e.g. "Shop the Restock", "See What\'s New", "Get the Set". No platform names.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -58,7 +58,7 @@ export const promotion = defineType({
       name: 'internalPath',
       title: 'Internal Path',
       type: 'string',
-      description: 'e.g. "/shop/glow-serum" or "/shop#Procell". Only used when Link Type is Internal.',
+      description: 'e.g. "/shop/vitamin-c-serum" or "/shop#Procell". Only used when Link Type is Internal.',
       hidden: ({ parent }) => parent?.linkType !== 'internal',
     }),
     defineField({

@@ -3,8 +3,10 @@
 > Competitive scan of Southwest Florida makeup pricing (2025–2026) and the resulting House of Rose
 > price decisions. Sources are first-party artist/salon menus and vendor-entered
 > WeddingWire/Zola/GlossGenius listings — national aggregator "averages" excluded from the math.
-> Positioning: House of Rose is a **premium advanced aesthetics & wellness studio** — "a destination,
-> never a deal." Price at the upper-middle of the corridor, below the Naples $250+ ceiling.
+> Positioning: House of Rose is a **Medical Aesthetics Practice** — "a destination, never a deal."
+> Price at the upper-middle of the corridor, below the Naples $250+ ceiling.
+> _("Premium" as self-description is retired language — Creative System Book 1 §12. The pricing
+> strategy is unchanged; only the way it is described is.)_
 
 ## The market at a glance (SW FL corridor)
 

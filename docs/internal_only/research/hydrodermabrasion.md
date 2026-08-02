@@ -155,7 +155,7 @@ What will move price once set (for structuring the eventual menu):
 **Lane:** **Brandy — basic / maintenance facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Brandy rents a room and offers **facial** waxing. This is a **compliance line**: do **not** attribute hydrodermabrasion to Amber (advanced/corrective), Diana (injectables/IV/GLP-1), or Aundrea (waxing/jewelry/makeup). Do not lump it into Amber's advanced-facials menu.
 
 **Phrases to avoid for this topic specifically:**
-- No "day spa" positioning (undersells — even though this is a relaxing facial, keep the "advanced aesthetics & wellness studio" umbrella).
+- No "day spa" positioning (undersells — even though this is a relaxing facial, keep the "Medical Aesthetics Practice" umbrella).
 - No **cure/treat/eliminate/erase/permanent/anti-aging** language — this is a surface maintenance treatment. Use "for the appearance of," "helps reveal," "supports," "many clients notice."
 - Do **not** claim it treats acne, rosacea, or scarring, or that it removes/reverses anything. "For the appearance of dullness and congestion" is the safe framing.
 - Do **not** name/imply a branded **HydraFacial** device unless the specific device is confirmed; use generic "hydrodermabrasion."

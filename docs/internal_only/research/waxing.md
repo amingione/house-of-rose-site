@@ -145,7 +145,7 @@ All prices from the **local pricing docs** (`docs/internal_only/services/waxing/
 - Never frame the Brazilian series as a **"pass," "membership," "rewards," or "Rose Pass"** — it's a **prepaid series/pack** only. Avoid "Rose Pass," "Rose Circle," "Rose Rewards," "Rose Method" entirely (all retired).
 - No medical/cure claims about ingrowns, folliculitis, or PCOS-related hair — we *help manage* ingrowns via exfoliation; we don't "treat/cure" a condition.
 - No discount language ("deal," "% off," "sale," "cheap"). Bundle savings are stated as "save vs. à la carte," and prices are "from" / "investment."
-- No "day spa." Lead is "advanced aesthetics & wellness studio."
+- No "day spa." Lead is "Medical Aesthetics Practice."
 
 **Required guardrails on the surface:** final candidacy, provider selection, and any area/medication combination are confirmed by the licensed provider at the appointment · "not every client is a candidate" · "individual outcomes vary."
 

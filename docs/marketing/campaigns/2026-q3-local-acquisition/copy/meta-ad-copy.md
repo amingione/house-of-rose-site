@@ -8,7 +8,7 @@ Every destination below includes the required trailing slash before its query st
 
 ### 01A — Passed it
 
-- **Primary text:** You may have passed our blue-and-gold entrance on E Olympia Avenue. Inside is House of Rose Aesthetics—a private advanced aesthetics and wellness studio in Punta Gorda where walk-ins are welcome and appointments are recommended. Begin with a complimentary skin consultation and a clear conversation about what fits.
+- **Primary text:** You may have passed our blue-and-gold entrance on E Olympia Avenue. Inside is House of Rose Aesthetics—a medical aesthetics practice in Punta Gorda where walk-ins are welcome and appointments are recommended. Begin with a complimentary skin consultation and a clear conversation about what fits.
 - **Headline:** A More Considered First Visit
 - **Description:** Private appointments in Punta Gorda.
 - **CTA:** Learn More

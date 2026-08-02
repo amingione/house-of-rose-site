@@ -1,13 +1,29 @@
 # House of Rose — Q3 Local Client Acquisition Kit
 
-This package turns the 30-day acquisition plan into publish-ready campaign inputs for House of Rose Aesthetics in Punta Gorda, Florida. It is built for a new local audience and leads with the real studio, a consultation-first experience, and provider judgment rather than discounts or exaggerated outcomes.
+> 🛑 **DO NOT PUBLISH — § 456.062 blocker (flagged 2026-08-01).** Every ad unit in this kit advertises a
+> **"complimentary" skin consultation**, which is a free service under Fla. Stat. § 456.062. That statute
+> requires the **72-hour cancellation disclosure, verbatim and in capital letters, inside the ad unit
+> itself** — not merely on the landing page. **No ad file in this kit currently carries it.** That
+> includes `copy/google-search-ads.csv`, which is formatted for direct upload to Google Ads and leads
+> with the headline "Complimentary Consultation."
+>
+> This cannot be fixed by drafting: `CLAUDE.md` forbids improvising statutory text, and the approved
+> disclosure copy was intentionally removed from the repo on 2026-07-27. **Amber must obtain the approved
+> exact disclosure wording and counsel sign-off before any of this runs.** Two options per format:
+> carry the full block, or **remove the word "complimentary"** and advertise the consultation without a
+> price claim — which takes the offer outside § 456.062 entirely and is the simpler path for
+> character-limited formats like RSA headlines.
+>
+> _Note: `/skin-analysis/` on the live site has the same exposure wherever it says "complimentary."_
+
+This package turns the 30-day acquisition plan into publish-ready campaign inputs for House of Rose Aesthetics in Punta Gorda, Florida. It is built for a new local audience and leads with the real practice, a consultation-first experience, and provider judgment rather than discounts or exaggerated outcomes.
 
 ## Campaign anchor
 
 - **Goal:** qualified consultation requests and booked appointments.
 - **Audience:** adults 35+ within 20 miles of 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
-- **Core message:** see the studio, understand the options, and begin with a clear plan.
-- **Positioning angle:** private, unhurried, individualized care with restrained, provider-led recommendations. Walk-ins are welcome; appointments are recommended to reserve a time.
+- **Core message:** see the practice, understand the options, and begin with a clear plan.
+- **Positioning angle:** unhurried, individualized care with restrained, provider-led recommendations. Walk-ins are welcome; appointments are recommended to reserve a time. _(Lead descriptor is **Medical Aesthetics Practice** — "private" is retired here because it contradicts the walk-in policy.)_
 - **Primary CTA:** Begin with a complimentary skin consultation.
 - **Paid destinations:** `/skin-analysis/`, `/services/injectables/`, `/services/glo2facial/`, and `/services/microchanneling/`.
 

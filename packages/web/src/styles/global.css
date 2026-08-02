@@ -198,7 +198,7 @@ body:not(:has(.hero-dark)) #header:not(.stuck) .menu-line,
 /* ── Swup page transition ─────────────────────────────────────────
    theme: false in astro.config.ts — this replaces swup's built-in 'fade'
    theme with a slower, quieter fade + lift that matches the site's
-   luxury-spa pace instead of a generic SPA snap. Respects reduced motion. */
+   calm, unhurried pace instead of a generic SPA snap. Respects reduced motion. */
 .transition-fade {
   transition: opacity 0.4s ease, transform 0.4s ease;
   opacity: 1;

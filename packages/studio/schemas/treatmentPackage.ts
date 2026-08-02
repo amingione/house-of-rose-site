@@ -94,7 +94,7 @@ export const treatmentPackage = defineType({
     }),
     defineField({
       name: 'positioning',
-      title: 'Premium Positioning Angle (website)',
+      title: 'Positioning Angle (website)',
       type: 'text',
       rows: 2,
     }),

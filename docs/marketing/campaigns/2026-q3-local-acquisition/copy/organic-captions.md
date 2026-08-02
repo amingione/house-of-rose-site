@@ -4,7 +4,7 @@
 
 ### Local proof
 
-House of Rose Aesthetics is a private, advanced aesthetics and wellness studio in Punta Gorda. Begin with a skin consultation, ask questions, and understand the options before deciding what fits.
+House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda. Begin with a skin consultation, ask questions, and understand the options before deciding what fits.
 
 ### Consultation
 
@@ -24,7 +24,7 @@ Injectables, with restraint. Diana, RN, provides consultations for Botox, Daxxif
 
 You’ve passed it. Now come inside.
 
-House of Rose is a private advanced aesthetics and wellness studio in Punta Gorda—created for thoughtful conversations, restrained recommendations, and care that never feels rushed. Walk-ins are welcome, and appointments are recommended to reserve a time.
+House of Rose is a medical aesthetics practice in Punta Gorda—built for thoughtful conversations, restrained recommendations, and care that never feels rushed. Walk-ins are welcome, and appointments are recommended to reserve a time.
 
 Begin with a complimentary skin consultation. Link in bio or call (844) 941-7673.
 
@@ -82,14 +82,14 @@ Request a private consultation in Punta Gorda.
 
 ## Nextdoor
 
-Hello, neighbors. House of Rose Aesthetics is a private advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9, in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. We offer complimentary skin consultations, advanced skin services, and provider-led injectable consultations in a calm, unhurried setting. Call (844) 941-7673 to begin.
+Hello, neighbors. House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. We offer complimentary skin consultations, advanced skin services, and provider-led injectable consultations in a calm, unhurried setting. Call (844) 941-7673 to begin.
 
 ## YouTube Shorts
 
 ### Local studio
 
 - **Title:** Inside House of Rose Aesthetics in Punta Gorda
-- **Description:** A look inside House of Rose, a private advanced aesthetics and wellness studio in Punta Gorda, Florida. Begin with a complimentary skin consultation at houseofrosefl.com/skin-analysis/.
+- **Description:** A look inside House of Rose, a medical aesthetics practice in Punta Gorda, Florida. Begin with a complimentary skin consultation at houseofrosefl.com/skin-analysis/.
 
 ### Consultation
 

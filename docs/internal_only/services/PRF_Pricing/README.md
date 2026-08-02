@@ -53,7 +53,7 @@ esthetics = book-or-call; trust/homepage get their own bank ("See your skin firs
 
 ## Compliance guardrails baked into every page
 
-- Lead descriptor "advanced aesthetics & wellness studio"; "med spa" only in meta/SEO (allow, don't lead).
+- Lead descriptor "Medical Aesthetics Practice"; "med spa" only in meta/SEO (allow, don't lead).
 - No "cures/treats/heals + condition," no "reverse aging/anti-aging/permanent/guaranteed."
 - Provider authority + real candidacy + individual-outcomes language present wherever a treatment is sold.
 - Topical PRF (Amber) vs injectable PRF (Diana, RN) never blurred.

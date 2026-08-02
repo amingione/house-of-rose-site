@@ -35,7 +35,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 
 ### Spoken script
 
-> If you’ve passed our blue-and-gold entrance on E Olympia Avenue, this is what’s inside. House of Rose is a private aesthetics and wellness studio built around thoughtful consultations and unhurried care. Begin with a complimentary skin consultation.
+> If you’ve passed our blue-and-gold entrance on E Olympia Avenue, this is what’s inside. House of Rose is a medical aesthetics practice built around thoughtful consultations and unhurried care. Begin with a skin consultation.
 
 ### Edit
 
@@ -52,7 +52,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 
 ### Spoken script
 
-> Before we recommend a treatment, we look at what your skin is showing. AI-assisted imaging gives us a clearer baseline, and the consultation gives you space to ask questions. It’s complimentary, private, and pressure-free.
+> Before we recommend a treatment, we look at what your skin is showing. AI-assisted imaging gives us a clearer baseline, and the consultation gives you space to ask questions. There’s no pressure and no commitment.
 
 ### Edit
 

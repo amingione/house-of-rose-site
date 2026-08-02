@@ -15,8 +15,8 @@ _Last revised: 2026-07-31 from the live Google Business Profile · Source of tru
 > **Section 3's business description has not been reconciled** against the Creative System's approved GBP
 > description — confirm with Amber which text is actually live on Google before treating either as canon.
 
-> **Brand law.** In customer-facing **prose** (description, posts, review replies, Q&A) we **lead** as an
-> **advanced aesthetics & wellness studio** — voice confident, not loud; specific over superlative; honest;
+> **Brand law.** In customer-facing **prose** (description, posts, review replies, Q&A) we **lead** as a
+> **Medical Aesthetics Practice** — voice confident, not loud; specific over superlative; honest;
 > pricing reads **"From $X"**; no guarantees ("designed to," "supports," "many clients see"). The GBP
 > **category** field is a separate, Google-controlled ranking taxonomy: **"Medical spa" is the primary
 > category** — chosen deliberately for reach, fully defensible because House of Rose operates licensed, with a
@@ -360,10 +360,10 @@ Google already auto-groups GLP-1 and B-12 into this category, so we lean into it
 You can ask **and** answer your own questions (post from the owner account, then mark helpful). This pre-empts
 competitors' planted questions and front-loads brand language + keywords. Paste these:
 
-**Q: What is an advanced aesthetics studio — how is House of Rose different?**
-> A: We're a private advanced aesthetics and wellness studio in Punta Gorda focused on thoughtful,
-> personalized care. Walk-ins are welcome, and appointments are recommended when you want to reserve a
-> specific time.
+**Q: What is a medical aesthetics practice — how is House of Rose different?**
+> A: We're a medical aesthetics practice in Punta Gorda. Care starts with a consultation and skin
+> assessment, so the plan is built around your skin and goals rather than a set menu. Walk-ins are
+> welcome, and appointments are recommended when you want to reserve a specific time.
 
 **Q: What's the difference between microchanneling and microneedling?**
 > A: Microchanneling is a more refined, controlled technique that pairs with growth-factor serums to support

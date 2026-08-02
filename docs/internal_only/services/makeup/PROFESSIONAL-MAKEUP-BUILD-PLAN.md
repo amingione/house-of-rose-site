@@ -138,7 +138,10 @@ Both source notes are full product-swap breakdowns with images referenced in the
 ## 8. Compliance & voice guardrails (from `COMPLIANCE-COPY-RULES.md`)
 
 Makeup is lower-risk than clinical copy, but rules still apply:
-- **Never** call House of Rose a "med spa" — use "advanced aesthetics & wellness studio."
+- **Lead descriptor is "Medical Aesthetics Practice."** _(This line previously read "**Never** call House
+  of Rose a 'med spa'" — that rule is **dead twice over**: "med spa" is now allowed as supporting/SEO
+  language and is the GBP primary category, and the studio descriptor it recommended has itself been
+  superseded. Allow "med spa," never lead with it, never deny it.)_
 - Jane Iredale skincare/supplements: describe ingredients/benefits **neutrally**; no "treats/cures acne/rosacea," no "clinically proven" unless citing a real clearance. Use "helps improve the look of," "supports," "designed to."
 - Before/afters: "individual results vary"; consent-backed only.
 - Pricing language: "investment / from / starting at" — never "deal/discount/% off."

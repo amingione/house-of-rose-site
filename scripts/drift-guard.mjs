@@ -90,7 +90,19 @@ const WARN_EXEMPT = [
   /^\s*(?:\/\/|\/\*|\*(?!\/)|<!--)/,
   // Real vendor product names we resell. "Glow Time" is Jane Iredale's SKU, not our voice.
   /Glow Time|Radiance-Boosting|Skintuition/i,
+  // Cosmetic *finish* vocabulary. "Radiant coverage" is a foundation finish type (the
+  // opposite of matte) and is Jane Iredale's own term — technical product language, not a
+  // brand pillar. Bare "radiance"/"radiant" in brand copy is still flagged.
+  /radiant (?:coverage|foundation|finish)/i,
 ];
+
+/**
+ * Reviewed, documented exception. Put `drift-guard-ok: <reason>` on the offending line or the
+ * line immediately above it (eslint-disable-next-line style) when a retired phrase is factually
+ * correct for that exact procedure — the Creative System permits "no downtime" and similar when
+ * true AND reviewed (Book 1 §12). The reason is required: a bare marker exempts nothing.
+ */
+const REVIEWED_EXCEPTION = /drift-guard-ok:\s*\S+/;
 
 // Historical membership URLs must be hard-not-found responses. A homepage
 // redirect keeps the retired URLs alive in GSC as redirecting pages.
@@ -135,7 +147,8 @@ function scanFile(file) {
         hits.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });
       }
     }
-    if (!WARN_EXEMPT.some((re) => re.test(text))) {
+    const reviewed = REVIEWED_EXCEPTION.test(text) || REVIEWED_EXCEPTION.test(lines[i - 1] ?? '');
+    if (!reviewed && !WARN_EXEMPT.some((re) => re.test(text))) {
       for (const { label, re } of WARN_RULES) {
         if (re.test(text)) {
           warnings.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });

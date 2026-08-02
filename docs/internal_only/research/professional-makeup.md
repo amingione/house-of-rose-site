@@ -121,7 +121,7 @@ Ranges are **premium-positioned at bridal-median / upper-event**, below the Napl
 
 **Lane.** Professional makeup is **Aundrea Pedigo's** lane (Sanity ref `provider-brooke`; display name always "Aundrea"; also waxing face+body and permanent jewelry). The build plan also references a Jane Iredale before/after applied *by Amber* (the "Stephanie" case) — if that case study ships, credit Amber for that specific look, but the **makeup service and pages are attributed to Aundrea**. Never surface the "Brooke"/"Morrison" names on the site.
 
-**Positioning.** Lead with "advanced aesthetics & wellness studio." Makeup is lower-clinical-risk copy, but the med-spa positioning and naming law still apply. Never "day spa." No botanical/flowery service names.
+**Positioning.** Lead with "Medical Aesthetics Practice." Makeup is lower-clinical-risk copy, but the med-spa positioning and naming law still apply. Never "day spa." No botanical/flowery service names.
 
 **Phrases to avoid for THIS topic:**
 - No "treats/cures/heals acne/rosacea/eczema," no "clinically proven," no "dermatologist-recommended" as a House of Rose claim (you may say the brand is *dermatologist-trusted* only as a neutral, sourced brand descriptor — safest to say "chosen by professional artists / used in the aesthetics world").
@@ -156,7 +156,7 @@ Ranges are **premium-positioned at bridal-median / upper-event**, below the Napl
 ## 12. Why House of Rose
 
 - **One skin-first line, done right.** House of Rose standardized on **Jane Iredale mineral makeup** across every service — event, everyday, and post-treatment — so the finish is consistent, breathable, and photographs cleanly. No airbrush, no upcharge, no "mask."
-- **Makeup that fits a real treatment journey.** As an advanced aesthetics & wellness studio, House of Rose can sequence dermaplaning/Glo2Facial/bridal prep *into* the makeup day and pick the skin-safe product for post-treatment skin — with the provider confirming timing. A standalone makeup artist can't offer that continuity.
+- **Makeup that fits a real treatment journey.** As a medical aesthetics practice, House of Rose can sequence dermaplaning/Glo2Facial/bridal prep *into* the makeup day and pick the skin-safe product for post-treatment skin — with the provider confirming timing. A standalone makeup artist can't offer that continuity.
 - **A published, itemized price in a "call-for-quote" market.** Punta Gorda / Charlotte County is a published-pricing desert for makeup; putting clear "from" pricing on the page is itself a local differentiator (per the pricing-comp doc).
 - **Group experiences, not just chairs.** The in-studio Spa Rental "Pre-Party Package" turns bridal-party prep into a hosted event (hors d'oeuvres, mimosas, a complimentary Party Planner Infusion IV per person getting makeup) — plus travel and individual block-time options.
 - **Locally grounded, one artist, one lane.** Aundrea Pedigo owns makeup, waxing, and permanent jewelry, so a bridal party can get ready together across services in one place in Punta Gorda / SW Florida.

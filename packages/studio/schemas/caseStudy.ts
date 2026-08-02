@@ -14,7 +14,7 @@ export const caseStudy = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'e.g. "PRF Microneedling — Texture & Glow, 3 Sessions".',
+      description: 'e.g. "PRF Microneedling — Texture & Skin Quality, 3 Sessions".',
       validation: (R) => R.required(),
     }),
     defineField({

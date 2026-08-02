@@ -3,7 +3,7 @@
 **Status:** Draft for Amber's review · **Target:** `homepage` singleton (Sanity) rendered by `packages/web/src/pages/index.astro`
 **The move:** the competitive review's core finding is that "natural results" and "personalized" aren't yet ownable — every med spa says them. What House of Rose can own is a **method**: measured skin analysis → regenerative treatments → conservative, natural-looking work. This deck pulls that method to the front of the homepage. The full menu (injectables, facials, wellness, waxing, jewelry, shop) stays — it just stops sharing top billing with the thing that actually differentiates.
 
-> "Allow, don't lead" on med spa stays intact: lead prose = "advanced aesthetics & wellness studio"; "med spa" lives in meta/SEO. No membership, no flowery/"signature" names, no discount language. NAP is canonical.
+> "Allow, don't lead" on med spa stays intact: lead prose = "Medical Aesthetics Practice"; "med spa" lives in meta/SEO. No membership, no flowery/"signature" names, no discount language. NAP is canonical.
 
 ---
 
@@ -99,7 +99,7 @@ Book a skin analysis, ask us a question, or come in for a consultation. No press
 
 **Field mapping (homepage singleton):** `heroKicker`, `heroTitle`, `heroSubtitle`, `heroDescription`, plus the section kickers/H2s (`scanKicker`, `servicesKicker`, `aboutKicker`, `localKicker`, `careKicker`). The re-order is a section-sequence change in `index.astro` + the singleton — coordinate with the Visual Editing annotations (`data-sb-*`) so click-to-edit still maps.
 
-**Compliance:** "advanced aesthetics & wellness studio" leads; "med spa" only in meta/SEO. "regenerative," "skin longevity," "natural-looking results," "a plan, not a punch card" are all on the approved palette. Avoided: "reverse aging," "anti-aging," "guaranteed," membership/"member," discount, "day spa."
+**Compliance:** "Medical Aesthetics Practice" leads; "med spa" only in meta/SEO. "regenerative," "skin longevity," "natural-looking results," "a plan, not a punch card" are all on the approved palette. Avoided: "reverse aging," "anti-aging," "guaranteed," membership/"member," discount, "day spa."
 
 **Distinct CTAs introduced (differ from all treatment/trust decks):** "See your skin first" · "Explore regenerative care" · "Read your skin, then plan" · "Meet your providers" · "Book your skin analysis" · "How the method works" · "Browse all services" · "Meet the team" · "Begin with a skin analysis." (Note: "Start with a skin analysis" already exists in the live nav — the homepage variants above are intentionally worded differently to avoid duplication.)
 

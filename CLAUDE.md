@@ -165,18 +165,28 @@ against the Creative System first.
   categories — no conflict except the opening date, below.)_
 - Architecture, repo layout, and checkout law further down this file.
 
-**Open conflicts — Amber's call, do not silently pick one:**
-1. **Lead-descriptor sweep not done.** Site copy, Sanity content, GBP, and ad copy still lead with
-   "advanced aesthetics & wellness studio." The governing docs now say "Medical Aesthetics Practice."
-   The published surfaces have not been changed.
-2. **`llms-full.txt.ts` instructs external AI on brand voice** and still says *"Lead with 'advanced
-   aesthetics & wellness studio'"* — it is a published AI-governing surface, so it should be the
-   **first** file in the descriptor sweep, not the last.
-3. **GBP is missing two categories.** Live profile has **3** (`Medical spa` primary, `Facial spa`,
+**Open items — Amber's call, do not silently pick one:**
+1. 🛑 **§ 456.062 — the Q3 campaign kit can't publish as written.** Its ad units advertise a
+   **"complimentary"** consultation with no 72-hour disclosure *in the ad unit*. The Google RSA CSV and
+   video script were fixed by dropping the word (which takes them outside the statute); `meta-ad-copy.md`,
+   `organic-captions.md`, and the live `/skin-analysis/` page still say it. Either obtain the approved
+   disclosure copy **plus counsel sign-off**, or drop the word. **Never improvise the statutory text.**
+2. **GBP is missing two categories.** Live profile has **3** (`Medical spa` primary, `Facial spa`,
    `Skin care clinic`); every doc claimed **5**. `Health and beauty shop` and `Vitamin & supplements
    store` are absent — and `docs/GOOGLE-BUSINESS-PROFILE.md` §4B files GLP-1 / B-12 / IV service items
    under the missing `Vitamin & supplements store`, so that section can't be executed as written.
-   Adding both costs nothing (2 of 9 secondary slots used). Amber's call.
+   Adding both costs nothing (2 of 9 secondary slots used).
+3. **Published Sanity copy carries 68 retired-term instances across 23 service docs**, and seven service
+   **names break the naming law** (`Luxury Facial`, `Royal Rose Facial`, `Luxe Rose Facial`,
+   `Signature Rose Facial`, `Signature Facial`, `Lunch Time Glow`, `Glowtox Facial`). Three of those
+   **slugs are URLs** (`/services/luxury-facial/`, `/lunch-time-glow/`, `/glowtox-facial/`) — renaming
+   needs a 301 plan and costs existing ranking. The 9 `no downtime` instances need **clinical review per
+   service**, not a copy edit. Sized and itemized in `docs/DRIFT-CLEANUP-CHECKLIST.md` (P1).
+
+**Closed 2026-08-01 — verified, do not re-open:**
+- ~~Lead-descriptor sweep~~ — **done.** Governing docs, shipping source, campaign kit, and internal briefs
+  all lead with `Medical Aesthetics Practice`. Sanity verified clean (descriptor never present there).
+  "Private" was removed alongside it — it contradicts the walk-in policy.
 
 **Closed 2026-08-01 — verified against the live Google Business Profile, do not re-open:**
 - ~~GBP description conflict~~ — **false alarm.** `docs/GOOGLE-BUSINESS-PROFILE.md` §3, Creative System
