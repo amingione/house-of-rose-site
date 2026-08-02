@@ -51,15 +51,15 @@ export const GET: APIRoute = async ({ site }) => {
   ]);
 
   const lines: string[] = [
-    `# House of Rose Aesthetics — Advanced Aesthetics & Wellness — Full Content Index`,
+    `# House of Rose Aesthetics — Medical Aesthetics Practice — Full Content Index`,
     ``,
-    `> Where Beauty Blooms Within.`,
+    `> Medical Aesthetics. Thoughtfully Practiced.`,
     ``,
     `## About`,
     ``,
-    `House of Rose Aesthetics is a privately owned advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. The studio brings advanced skin treatments, injectables, wellness support, and professional skincare together in one place. Clients can ask questions, compare options, and choose care with long-term skin health and natural-looking results in mind.`,
+    `House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. The practice provides individualized facial, body, skin, injectable, wellness, and maintenance care through consultation, assessment, and treatment planning. Patients can ask questions, compare appropriate options, and choose care with preparation, aftercare, and natural-looking goals in mind.`,
     ``,
-    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Visits are private and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call (844) 941-7673 to book ahead.`,
+    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Visits are focused and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call (844) 941-7673 to book ahead.`,
     ``,
     `**Contact:**`,
     `- Phone: (844) 941-7673`,
@@ -158,13 +158,13 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Brand Voice & Positioning`,
     ``,
-    `House of Rose speaks like a warm, knowledgeable professional: clear, calm, specific, and easy to understand. Copy should explain what a service is, why someone might consider it, and what to expect without hype or guarantees. Lead with "advanced aesthetics & wellness studio." "Med spa" and "medical spa" are acceptable supporting terms in meta, SEO, and discovery contexts because the Google Business Profile category is Medical spa, but they are not the lead brand description. Do not use "luxury" as a business category.`,
+    `House of Rose speaks like a capable medical aesthetics practice with time to explain its reasoning: clear, restrained, specific, and human. Copy should explain what a service is, how candidacy is evaluated, and what preparation, recovery, aftercare, or maintenance may involve without hype or guarantees. Lead with "Medical Aesthetics Practice." "Med spa" and "medical spa" are acceptable supporting terms in metadata, SEO, and discovery contexts because the Google Business Profile category is Medical spa, but they are not the lead brand description.`,
     ``,
-    `Canonical brand: House of Rose Aesthetics. Category: Advanced Aesthetics & Wellness — Punta Gorda, FL. Tagline: Where Beauty Blooms Within.`,
+    `Canonical brand: House of Rose Aesthetics. Common brand variants: House of Rose and Rose Aesthetics. Category: Medical Aesthetics Practice. Signature line: Medical Aesthetics. Thoughtfully Practiced.`,
     ``,
     `## Positioning`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. PRF is one of the studio's core services, alongside advanced skin treatments, injectables, facials, and wellness support. Walk-ins are welcome; appointments are recommended to reserve a time.`,
+    `House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. PRF is one of the practice's core services, alongside skin procedures, injectables, facials, and wellness support. Walk-ins are welcome; appointments are recommended to reserve a time.`,
   );
 
   return new Response(lines.join('\n'), {

@@ -63,8 +63,49 @@ const RULES = [
   { label: 'Wrong opening date (use June 15, 2026)', re: /July 9,? 2026/i },
 ];
 
+/**
+ * WARN-ONLY tier — retired brand language per the House of Rose Creative System v1.0
+ * (`docs/House_of_Rose_Creative_System/`, Book 1 §12 "Retired language").
+ *
+ * These are reported but do NOT fail the build, on purpose: the lead-descriptor sweep is
+ * still open (P0 in docs/DRIFT-CLEANUP-CHECKLIST.md), so shipping source legitimately still
+ * contains some of these today. Promote a rule into RULES above once its sweep is done.
+ */
+const WARN_RULES = [
+  { label: 'Retired positioning (luxury/luxe/premium/boutique as self-description)', re: /\b(luxury|luxe|premium|boutique)\b/i },
+  { label: 'Retired beauty language (glow/radiance/flawless/ageless/timeless beauty)', re: /\b(glow|glowing|radiance|radiant|flawless|ageless)\b|timeless beauty/i },
+  { label: 'Retired spa language (pamper/indulge/treat yourself)', re: /\b(pamper(ing|ed)?|indulge|indulgent)\b|treat yourself/i },
+  { label: 'Retired outcome language (transformation/turn back time/best version)', re: /instant transformation|turn back (?:the )?(?:time|clock)|best version of yourself|reveal your beauty/i },
+  { label: 'Unqualified claim (pain-free / blanket "no downtime" / guaranteed results)', re: /\bpain[- ]free\b|\bno downtime\b|guaranteed results/i },
+  { label: 'Superseded lead descriptor (lead is "Medical Aesthetics Practice")', re: /lead with ["'“]?advanced aesthetics/i },
+];
+
+/**
+ * Lines exempt from WARN_RULES only (never from RULES). The retired-language rules target
+ * *brand copy*; these are not brand copy, and leaving them in makes the warn tier noisy
+ * enough to be ignored — which defeats the point.
+ */
+const WARN_EXEMPT = [
+  // Code/CSS/markup comments — implementation notes, not customer-facing words.
+  /^\s*(?:\/\/|\/\*|\*(?!\/)|<!--)/,
+  // Real vendor product names we resell. "Glow Time" is Jane Iredale's SKU, not our voice.
+  /Glow Time|Radiance-Boosting|Skintuition/i,
+];
+
+// Historical membership URLs must be hard-not-found responses. A homepage
+// redirect keeps the retired URLs alive in GSC as redirecting pages.
+const RETIRED_ROUTE_CONFIGS = [
+  '/memberships/*',
+  '/rose-circle/*',
+  '/plans/*',
+];
+
 /** @type {{file:string, line:number, label:string, text:string}[]} */
 const hits = [];
+
+/** Same shape as `hits`, but never affects the exit code. */
+/** @type {{file:string, line:number, label:string, text:string}[]} */
+const warnings = [];
 
 function walk(dir) {
   let entries;
@@ -94,13 +135,55 @@ function scanFile(file) {
         hits.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });
       }
     }
+    if (!WARN_EXEMPT.some((re) => re.test(text))) {
+      for (const { label, re } of WARN_RULES) {
+        if (re.test(text)) {
+          warnings.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });
+        }
+      }
+    }
   });
 }
 
 for (const d of SCAN_DIRS) walk(path.join(ROOT, d));
 
+const netlifyConfig = readFileSync(path.join(ROOT, 'packages/web/netlify.toml'), 'utf8');
+for (const route of RETIRED_ROUTE_CONFIGS) {
+  const escapedRoute = route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const routeBlock = netlifyConfig.match(
+    new RegExp(`\\[\\[redirects\\]\\][\\s\\S]*?from\\s*=\\s*["']${escapedRoute}["'][\\s\\S]*?(?=\\n\\[\\[redirects\\]\\]|$)`),
+  )?.[0];
+
+  if (!routeBlock || !/to\s*=\s*["']\/404\.html["']/.test(routeBlock) || !/status\s*=\s*404\b/.test(routeBlock) || !/force\s*=\s*true\b/.test(routeBlock)) {
+    hits.push({
+      file: 'packages/web/netlify.toml',
+      line: 1,
+      label: 'Retired membership route must return a forced 404',
+      text: route,
+    });
+  }
+}
+
+function reportWarnings() {
+  if (warnings.length === 0) return;
+  console.warn(
+    `\n⚠️  drift-guard: ${warnings.length} retired brand-language warning(s) ` +
+    '(Creative System Book 1 §12 — does NOT fail the build):\n',
+  );
+  for (const w of warnings) {
+    console.warn(`  ${w.file}:${w.line}  [${w.label}]`);
+    console.warn(`      ${w.text}`);
+  }
+  console.warn(
+    '\nThese are retired per docs/House_of_Rose_Creative_System/. Some are expected until the' +
+    '\nlead-descriptor sweep lands (P0 in docs/DRIFT-CLEANUP-CHECKLIST.md). Rewrite them in' +
+    '\nCreative System voice, or narrow the rule in scripts/drift-guard.mjs if it is a false positive.\n',
+  );
+}
+
 if (hits.length === 0) {
   console.log('✅ drift-guard: clean — no retired/wrong-fact strings in shipping source.');
+  reportWarnings();
   process.exit(0);
 }
 
@@ -114,4 +197,5 @@ console.error(
   '\nintentional exception — narrow the rule in scripts/drift-guard.mjs.' +
   '\n(Reminder: "med spa" is allowed; only "day spa" is banned.)\n'
 );
+reportWarnings();
 process.exit(1);

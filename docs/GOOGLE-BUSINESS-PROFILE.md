@@ -51,13 +51,22 @@ Primary category is the **#1 local ranking factor in 2026 — above proximity.**
 (`botox near me` 83K, `med spa near me` 30K), and it's fully defensible — you operate licensed, under a
 medical director, with Guardian-managed compliance. This is the locked stack:
 
-| Slot | Category | Why |
-|---|---|---|
-| **Primary** ⭐ | `Medical spa` | Captures the top "near me" packs; correct for injectables + regenerative under medical oversight |
-| Secondary | `Facial spa` | Facial-specific "near me" queries |
-| Secondary | `Skin care clinic` | Skin treatments, facials, and advanced modalities |
-| Secondary | `Health and beauty shop` | Customer-facing professional skincare and retail products |
-| Secondary | `Vitamin & supplements store` | Vitamin injections, IV support, and the GLP-1 wellness service |
+⚠️ **Live vs. planned — verified against the profile 2026-08-01. Only THREE categories are actually on
+the profile.** This table previously listed all five as live; that was wrong.
+
+| Slot | Category | Status | Why |
+|---|---|---|---|
+| **Primary** ⭐ | `Medical spa` | ✅ **LIVE** | Captures the top "near me" packs; correct for injectables + regenerative under medical oversight |
+| Secondary | `Facial spa` | ✅ **LIVE** | Facial-specific "near me" queries |
+| Secondary | `Skin care clinic` | ✅ **LIVE** | Skin treatments, facials, and advanced modalities |
+| Secondary | `Health and beauty shop` | ❌ **NOT ON PROFILE** | Customer-facing professional skincare and retail products |
+| Secondary | `Vitamin & supplements store` | ❌ **NOT ON PROFILE** | Vitamin injections, IV support, and the GLP-1 wellness service |
+
+> **The two missing categories are load-bearing, not decorative.** §4B below files structured service
+> items under `Vitamin & supplements store` (GLP-1, B-12, IV) — **those items cannot exist while the
+> category is off the profile**, so that section is currently un-actionable. `Health and beauty shop`
+> is the only category carrying retail/skincare product discovery. Adding both is free (you have up to
+> 9 secondaries and are using 2). **Amber's call — see the open question at the top of this file.**
 
 > **Removed (deliberately):**
 - ❌ `Wellness center` — too broad; Google maps it to rehab/holistic and auto-suggests off-fit items. IV +
@@ -77,12 +86,15 @@ don't stuff — every category should map to a service you actually deliver and 
 **One heads-up on medical categories:** Google occasionally asks medical/clinic-categorized profiles for
 extra verification, or tries to auto-shift them to "Medical clinic." Because you're fully licensed, that's
 fine — keep your medical director / license details handy if Google requests them, and re-check the primary
-category after any Google "we updated your info" email (they sometimes revert it). The live five-category
-stack above is authoritative as of July 31, 2026.
+category after any Google "we updated your info" email (they sometimes revert it). **The live stack is
+three categories, verified 2026-08-01** — if `Health and beauty shop` / `Vitamin & supplements store`
+were added before and are now gone, Google may have reverted them, which is worth watching.
 
 > **Brand reconciliation:** the public *label* under your name will read "Medical spa." Everywhere you control
-> the words — name, description, posts, replies, services, website — you stay **"advanced aesthetics &
-> wellness studio."** The category earns the reach; the prose carries the brand.
+> the words — name, description, posts, replies, services, website — you lead with **"Medical Aesthetics
+> Practice"** (Creative System Book 1 §2). The category earns the reach; the prose carries the brand.
+> _("Advanced aesthetics & wellness studio" was the lead descriptor here until 2026-08-01; it is now
+> supporting/SEO phrasing only.)_
 
 ---
 
@@ -100,12 +112,21 @@ stack above is authoritative as of July 31, 2026.
 | **Hours** | Mon–Fri `9:00 AM–5:00 PM` · Sat & Sun `Closed` ✅ |
 | **Opening date** | `June 15, 2026` ✅ |
 | **Menu / services link** | `https://houseofrose.glossgenius.com/services` ✅ |
-| **Google chat / messaging** | Account created; connection to the profile is not configured ❌ |
+| **Google chat / messaging** | 🚫 **Not connectable — Google retired the feature.** Not a config gap. |
 
 **Name policy — do not break this:** Google forbids descriptors/keywords in the name. Keep it **exactly**
 `House of Rose Aesthetics`. Never "House of Rose Aesthetics | Medical Spa Punta Gorda" — that risks suspension
-and a painful reinstatement. The "advanced aesthetics & wellness studio" language lives in the description,
-services, and posts, where it's allowed and still indexed.
+and a painful reinstatement. Brand descriptor language lives in the description, services, and posts, where
+it's allowed and still indexed — leading with **"Medical Aesthetics Practice"** per the Creative System.
+
+**Google chat/messaging cannot be connected — stop trying.** Google **discontinued** Business Profile chat
+and call history: new conversations stopped **July 15, 2024** and the feature shut off entirely on
+**July 31, 2024**. There is no setting to enable, no integration to connect, and no third-party tool that
+restores the native "Chat" button — whatever chat account exists elsewhere simply has nowhere to attach.
+Google's own guidance points customers to the website, phone, and (for eligible accounts) SMS or WhatsApp
+instead. **For House of Rose that means: call + website contact form + walk-in are the contact paths, and
+SMS is still blocked by the pending Grasshopper verification** — so do not advertise chat or text anywhere
+until that clears. If live chat is genuinely wanted, it belongs on `houseofrosefl.com`, not on Google.
 
 **Menu / services link:** keep
 `https://houseofrose.glossgenius.com/services`. This is the live booking-menu source and is intentionally
@@ -125,10 +146,16 @@ service-area-only — you have a building clients visit).
 
 ---
 
-## 3. Business description (live)
+## 3. Business description (live) — ✅ VERIFIED
 
-The text below is the exact live Google Business Profile description as supplied July 28, 2026. Keep this
-verbatim when auditing directory consistency:
+The text below is the exact live Google Business Profile description. **Re-verified 2026-08-01: it is
+byte-for-byte identical (731 chars) to the Creative System's approved description (Book 3 §3) and to
+what is live on Google.** All three agree — there is nothing to reconcile here.
+
+_(An earlier note claimed this section conflicted with the Creative System. That was wrong; the two were
+never compared. Do not re-open it.)_
+
+Keep this verbatim when auditing directory consistency:
 
 ```
 House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We specialize in personalized skin rejuvenation through advanced, non-surgical facial and body treatments designed to achieve natural-looking results. Every treatment begins with a comprehensive consultation and skin analysis, allowing us to develop an individualized treatment plan using regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, medical-grade skincare, and customized facial treatments. Our approach combines clinical expertise, evidence-based treatment protocols, and long-term planning to help patients maintain healthy, naturally rejuvenated skin.

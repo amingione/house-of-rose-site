@@ -25,7 +25,20 @@ const truncateAtWord = (value: string, maxLength: number): string => {
 
 /** Produces one readable, non-duplicated title within the SERP target. */
 export const formatSeoTitle = (title: string, siteName = LONG_BRAND): string => {
-  const cleaned = cleanSeparators(title || siteName);
+  const suppliedTitle = (title || siteName).trim();
+
+  // The homepage intentionally leads with the full business name so close brand
+  // variants such as "rose aesthetics" resolve to the same local entity. Keep a
+  // concise, already-complete brand-first title verbatim instead of moving the
+  // brand to the end with the general inner-page formatter below.
+  if (
+    suppliedTitle.length <= TITLE_LIMIT
+    && /^house of rose aesthetics\s*[|—–-]/i.test(suppliedTitle)
+  ) {
+    return suppliedTitle;
+  }
+
+  const cleaned = cleanSeparators(suppliedTitle);
   const normalizedSiteName = siteName.trim() || LONG_BRAND;
 
   if (

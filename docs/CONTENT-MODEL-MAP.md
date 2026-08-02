@@ -5,6 +5,10 @@
 > When an agent is asked to "add a cost page", "add a comparison", "add a city page", or "add a
 > before/after", this file is the single source of truth for *where everything goes*. Follow it
 > exactly — do not inline GROQ in pages, do not hand-roll JSON-LD, do not invent routes.
+>
+> **This file covers wiring only — not words.** What actually goes *into* those fields is governed by
+> `docs/House_of_Rose_Creative_System/` (voice, vocabulary, approved copy, claim discipline). Read
+> Book 2 before filling a `description`, `tagline`, `metaTitle`, or `faq.answer`.
 
 ## File responsibilities (recap of AGENTS.md)
 

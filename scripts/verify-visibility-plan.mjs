@@ -43,6 +43,11 @@ const redirectedCanonicals = new Set([
   '/compare/Procell-vs-topical-prf/',
   '/compare/topical-prf-vs-prf-injections/',
 ]);
+const retiredMembershipRoutes = [
+  /\/memberships(?:\/|["'?])/i,
+  /\/rose-circle(?:\/|["'?])/i,
+  /\/plans(?:\/|["'?])/i,
+];
 
 for (const file of htmlFiles) {
   const relative = path.relative(DIST, file);
@@ -55,6 +60,10 @@ for (const file of htmlFiles) {
 
   for (const [label, pattern] of banned) {
     if (pattern.test(visibleText)) failures.push(`${relative}: ${label}`);
+  }
+
+  for (const pattern of retiredMembershipRoutes) {
+    if (pattern.test(html)) failures.push(`${relative}: links to a retired membership route`);
   }
 
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.replace(/&amp;/g, '&').trim();
@@ -82,6 +91,22 @@ for (const file of htmlFiles) {
   const imageTags = html.match(/<img\b[^>]*>/gi) ?? [];
   for (const tag of imageTags) {
     if (!/\salt=("[^"]*"|'[^']*')/i.test(tag)) failures.push(`${relative}: image missing alt attribute`);
+  }
+}
+
+for (const relative of ['sitemap.xml', 'llms.txt', 'llms-full.txt']) {
+  const file = path.join(DIST, relative);
+  if (!existsSync(file)) {
+    failures.push(`${relative}: missing crawler-facing output`);
+    continue;
+  }
+
+  const content = readFileSync(file, 'utf8');
+  for (const [label, pattern] of banned) {
+    if (pattern.test(content)) failures.push(`${relative}: ${label}`);
+  }
+  for (const pattern of retiredMembershipRoutes) {
+    if (pattern.test(content)) failures.push(`${relative}: contains a retired membership route`);
   }
 }
 

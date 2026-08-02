@@ -97,7 +97,7 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 
 ## 5. `packages/web/netlify.toml` — redirects
 
-5 renamed package slugs → new slugs (301); `/memberships/*`,`/rose-circle/*`,`/plans/*` → `/` (301, teardown); `/* → /404.html` (404). Headers: security + immutable `/_astro/*` + vcards inline. `PUBLIC_COMING_SOON=true` prod only.
+5 renamed package slugs → new slugs (301); `/memberships/*`, `/rose-circle/*`, and `/plans/*` → `/404.html` (forced 404, permanent teardown); `/* → /404.html` (404). Headers: security + immutable `/_astro/*` + vcards inline. `PUBLIC_COMING_SOON=true` prod only.
 
 ---
 

@@ -107,21 +107,25 @@
   to     = "/packages/prf-microchanneling-journey/"
   status = 301
 
-# Retired — memberships, Rose Circle, and Rose Method plans (business dropped memberships)
+# Permanently retired program URLs. Return a hard 404 instead of redirecting
+# to the homepage so search engines remove the historical URLs from their index.
 [[redirects]]
   from   = "/memberships/*"
-  to     = "/"
-  status = 301
+  to     = "/404.html"
+  status = 404
+  force  = true
 
 [[redirects]]
   from   = "/rose-circle/*"
-  to     = "/"
-  status = 301
+  to     = "/404.html"
+  status = 404
+  force  = true
 
 [[redirects]]
   from   = "/plans/*"
-  to     = "/"
-  status = 301
+  to     = "/404.html"
+  status = 404
+  force  = true
 
 # Retired static guide → canonical Sanity-backed needling hub.
 [[redirects]]

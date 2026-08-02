@@ -5,6 +5,9 @@ Anything that has to be **factually correct** — pricing, series counts, servic
 provider lanes, hours, NAP, protocols — must be **checked against the real sources before I state or
 change it**, and I do not invent, round, or "make it consistent" from memory.
 
+_The block below is the **Permanent Context Block** — Creative System Book 5 §1 (`docs/House_of_Rose_Creative_System/`).
+It is an excerpt, not the whole standard. See the Creative System section below for the rest._
+
 > You are producing work for House of Rose Aesthetics, a Medical Aesthetics Practice in Punta Gorda, Florida.
 >
 >
@@ -46,15 +49,22 @@ change it**, and I do not invent, round, or "make it consistent" from memory.
 >
 
 **Verification order (do all that apply, in this order):**
-1. **Existing local docs** — `docs/internal_only/services/**` (incl. GlossGenius import CSVs), `docs/internal_only/research/**`
+1. **Creative System** — `docs/House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md`.
+   **Mandatory first stop for anything a customer ever sees** — voice, positioning, vocabulary, approved
+   bios/descriptions, visual direction, ad copy, image/video prompts. Mirrored in Notion (House of Rose
+   HQ → 7 pages). See the Creative System section below for the book-by-book map.
+2. **Existing local docs** — `docs/internal_only/services/**` (incl. GlossGenius import CSVs), `docs/internal_only/research/**`
    (treatment briefs + `_pricing-catalog.md`, `_gaps.md`), `docs/competitor_analysis/**`.
-2. **Notion** — the House of Rose HQ workspace (service pages carry `Competitor Pricing`, `Pricing
+   `docs/internal_only/START-HERE.md` is the "which folder has the real answer" map — start there if unsure.
+3. **Compliance** — `docs/internal_only/compliance/` (statute) + `docs/internal_only/COMPLIANCE-COPY-RULES.md`
+   (claims). Statute wins over voice everywhere they touch.
+4. **Notion** — the House of Rose HQ workspace (service pages carry `Competitor Pricing`, `Pricing
    Notes`, protocol, and provider fields). Search + fetch the specific page.
-3. **Confirm with research** — the clinical/manufacturer/market fact (protocol, comp price, label
+5. **Confirm with research** — the clinical/manufacturer/market fact (protocol, comp price, label
    claim). If no comp/source exists locally or in Notion, **research the web for our area** and cite it.
-4. **Notion** HRA Brand has all of House of Rose Aesthetics Branding Creative Work - CHECK IT to insure you stay compliant before creating anything.
-6. **Stylesheet**
-7.
+6. **Stylesheet / visual system** — Creative System **Book 4 (Visual Standards)** for palette,
+   typography, logo treatment, photography and the visual blacklist; `packages/web/src/styles/global.css`
+   + `tailwind.config` for how that is actually implemented in the site.
 
 **Then:**
 - **Cite the source** for any number/claim I set (which doc/Notion page/URL it came from).
@@ -89,6 +99,96 @@ provider / protocol / platform differences stand.** Don't repeat this._
 
 ---
 
+## 📕 Creative System — SOURCE OF TRUTH for brand, marketing & client-facing content (binding — 2026-08-01)
+
+**`docs/House_of_Rose_Creative_System/`** — House of Rose Creative System **v1.0, issued 2026-07-30**.
+Read **`House_of_Rose_Creative_System_MASTER.md`** — all seven books in one file, and the one to quote
+and paste from. The seven `.docx` files and the `.pdf` next to it are the *same content* styled for
+Notion import and print; they are not a second version. Mirrored in Notion → House of Rose HQ (7 pages
++ `00_README`). Version discipline: `1.1` = wording/service/platform updates, `2.0` = repositioning or
+major clinical-scope change.
+
+**Precedence — for anything a customer, patient, platform, or lead will ever see, the Creative System
+wins over any older brand guidance in this repo, in Notion, or in the Obsidian vault.** Its own README
+states it "replaces earlier House of Rose guidance that framed the practice as a luxury med spa,
+boutique spa, beauty destination, or feel-good facial business." Before writing or editing **any**
+public copy, ad, caption, bio, meta description, image prompt, or visual — read the relevant book.
+Do not draft from memory, and do not draft from a doc that predates 2026-07-30 without checking it
+against the Creative System first.
+
+| What I need | Book (headings in `MASTER.md`) |
+|---|---|
+| Positioning, promise, audiences, vocabulary, retired language, decision filter | **1 — Creative Bible / Brand Foundation** |
+| Voice profile, writing rules, claim tiers, house style, CTAs, copy templates, before/after copy examples | **2 — Brand Voice & Copy Standards** |
+| Canonical business info, approved bios (25/50/100/full), GBP + Facebook + Instagram + directory copy, **website homepage/About/footer copy** | **3 — Social & Profile Bios** |
+| Photography, video, color palette, typography, logo, before/after documentation, **visual blacklist** | **4 — Visual Standards** |
+| Permanent context block, task-brief block, AI may / may-not, image + video + writing + editing prompt library | **5 — AI Creative Rules & Prompt Library** |
+| Meta, Google Ads, GBP, SEO architecture, landing pages, measurement, first-30-days sequence | **6 — Marketing System** |
+| Fast preflight + full clinical/brand/visual/platform review before publishing | **7 — Content Approval Checklist** |
+
+**The non-negotiables lifted out of it (these are the ones that get broken):**
+- **Category language = "Medical Aesthetics Practice."** This is the lead public descriptor — website,
+  bios, ads, staff language, and AI instructions. `Medical spa` stays the **GBP platform category** and
+  is fine in meta/SEO/supporting copy; we never deny being one, we just never lead with it.
+  ⚠️ _This supersedes the earlier "lead with advanced aesthetics & wellness studio" rule — that phrase is
+  now supporting/SEO language only. **Published site, Sanity, and GBP copy have NOT been swept yet** —
+  see Open Conflicts below._
+- **Signature line: "Medical Aesthetics. Thoughtfully Practiced."** — used *selectively* on brand
+  introductions and campaign covers. Not under every logo, not at the end of every post.
+- **Retired language** (Book 1 §12) — never as pillars, hooks, or default AI language: luxury / luxe /
+  premium as self-description, **boutique** as category language, **glow / glowing / glow from within**,
+  **radiance / radiant**, timeless beauty, flawless, ageless, **pamper**, **indulge**, treat yourself,
+  reveal your beauty, best version of yourself, anti-aging miracle, turn back time, instant
+  transformation, **pain-free**, **"no downtime"** (unless factually true for that exact procedure *and*
+  clinically reviewed), **guaranteed results**.
+- **Controlled-use language** — only when accurate, necessary, and not repeated: skin rejuvenation,
+  evidence-based, advanced, personalized, customized, restore/restorative, confidence.
+- **AI may not** (Book 5 §3): decide clinical appropriateness · infer provider scope · invent a protocol ·
+  fill a gap with a "typical" assumption · write a guarantee · fabricate before/after imagery, reviews,
+  or credentials · use an AI-generated person as a patient or staff member · state "FDA approved,"
+  "clinically proven," "pain-free," or "no downtime" without approved support.
+- **Label every client-facing deliverable** (Book 5 §3): **Draft** / **Facts that require verification** /
+  **Claims that require clinical approval** / **Assets still needed.**
+- **Run the Fast Preflight (Book 7 §1) before anything publishes.**
+- **Decision filter (Book 1 §17)** — if any of its 8 questions answers *no*, revise or reject the asset.
+
+**What the Creative System does NOT override:**
+- **Statute.** `docs/internal_only/compliance/` wins wherever they touch (§ 456.062 disclosure, license
+  type beside a practitioner's name, DKI / creative-enhancement bans). The Creative System says so
+  itself: it "is not legal, regulatory, medical, or licensing advice… apply the most restrictive
+  applicable law, professional rule, device labeling, manufacturer instruction, and platform policy."
+- **Operational fact.** Pricing, series counts, provider lanes, service names → `docs/internal_only/**`
+  + GlossGenius + Notion, per the Verification order above. The Creative System sets *how we say it*,
+  not *what the menu is*.
+- **Runtime NAP.** Sanity `siteSettings` remains the build-time source. _(Verified 2026-08-01: Book 3 §1
+  agrees with CLAUDE.md on address, phone, hours 9–5 Mon–Fri, service areas, and the five GBP
+  categories — no conflict except the opening date, below.)_
+- Architecture, repo layout, and checkout law further down this file.
+
+**Open conflicts — Amber's call, do not silently pick one:**
+1. **Lead-descriptor sweep not done.** Site copy, Sanity content, GBP, and ad copy still lead with
+   "advanced aesthetics & wellness studio." The governing docs now say "Medical Aesthetics Practice."
+   The published surfaces have not been changed.
+2. **`llms-full.txt.ts` instructs external AI on brand voice** and still says *"Lead with 'advanced
+   aesthetics & wellness studio'"* — it is a published AI-governing surface, so it should be the
+   **first** file in the descriptor sweep, not the last.
+3. **GBP is missing two categories.** Live profile has **3** (`Medical spa` primary, `Facial spa`,
+   `Skin care clinic`); every doc claimed **5**. `Health and beauty shop` and `Vitamin & supplements
+   store` are absent — and `docs/GOOGLE-BUSINESS-PROFILE.md` §4B files GLP-1 / B-12 / IV service items
+   under the missing `Vitamin & supplements store`, so that section can't be executed as written.
+   Adding both costs nothing (2 of 9 secondary slots used). Amber's call.
+
+**Closed 2026-08-01 — verified against the live Google Business Profile, do not re-open:**
+- ~~GBP description conflict~~ — **false alarm.** `docs/GOOGLE-BUSINESS-PROFILE.md` §3, Creative System
+  Book 3 §3, and the live Google description are **byte-identical (731 chars)**. An earlier note claimed
+  they disagreed; the two had never actually been compared.
+- ~~Opening date June 15 vs July 9~~ — **settled: June 15, 2026**, which is what Google shows live.
+  Any "July 9, 2026" reference is dead drift (already grep-banned in the drift checklist).
+- ~~Google chat not configured~~ — **not a config gap.** Google discontinued Business Profile chat
+  entirely on 2024-07-31; there is nothing to connect. See `docs/GOOGLE-BUSINESS-PROFILE.md` §2.
+
+---
+
 ## Business
 House of Rose is a medical aesthetics practice with an advanced aesthetics and wellness brand position.
 This is a **completely separate business from FAS Motorsports** — no shared infrastructure, no Medusa, no Vendure.
@@ -110,9 +210,19 @@ copy bug, not a business rule, unless Amber says otherwise.
 - Correct phrasing pattern: *"Walk-ins welcome — appointments recommended for [service]."* or *"We take
   walk-ins when the schedule allows; call (844) 941-7673 to reserve a time."*
 
+🔭 **Known future reversal — change these together, never one at a time.** Amber has flagged that the
+walk-in posture **will tighten once the client base is consistent** (noted 2026-08-01). When that happens
+it is a coordinated change across four surfaces, and doing one without the others recreates exactly the
+contradiction this section exists to fix: (1) the GBP **Planning** attribute `Appointment not required`,
+(2) this policy block, (3) every "walk-ins welcome" line in site/Sanity copy, (4) `drift-guard.mjs`'s
+`Wrong visit policy` rule, which currently **fails the build** on "appointment-only" phrasing and would
+need inverting. Until Amber says the date has come, walk-ins-welcome remains binding.
+
 ---
 
 ## Public-Facing Copy Law (binding — 2026-07-24)
+_Repo-specific additions to Creative System **Book 2**. Book 2 is the general voice standard; the two
+rules below are House-of-Rose-specific failure modes it doesn't cover. Read Book 2 first._
 - **Provider lanes are internal-only.** The Amber/Diana/Brandy/Aundrea lane split exists so the right
   provider gets credited/paid in the booking system — it is **never** customer-facing framing. Do not
   write "Amber's version of X" / "this is in [provider]'s lane" / category copy that explains lane
@@ -193,12 +303,13 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
 - **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
 - **Email:** info@houseofrosefl.com (primary) · book@houseofrosefl.com (**live alias** → routes to primary; confirmed with Amber 2026-08-01) — _use `info@` in public NAP, GBP, schema, and footer; `book@` is valid only as the booking/`mailto:` destination (`PUBLIC_BOOKING_EMAIL`). Supersedes the earlier "`book@` was never a real address" rule — that is now **false**, do not act on it or re-remove `book@` from env files or booking links._
-- **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed
-- **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · opened June 15, 2026
+- **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed. **Pickup hours are the same** (Mon–Fri 9–5); Sat/Sun pickup not set.
+- **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · **opened June 15, 2026** _(confirmed 2026-08-01 against the live Google Business Profile — this settles the June 15 vs July 9 question; **June 15 is correct**, July 9 is dead.)_
+- **Ownership attributes (live on GBP):** Women-owned · Latino-owned. Full attribute inventory (accessibility, amenities, crowd, parking, payments) lives in `docs/GOOGLE-BUSINESS-PROFILE.md` §5 — verified accurate 2026-08-01.
 - **Service area:** Punta Gorda · Port Charlotte · Charlotte Harbor · Babcock Ranch · Burnt Store Marina · Punta Gorda Isles
-- **GBP categories:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`, `Health and beauty shop`, `Vitamin & supplements store`.
+- **GBP categories — 3 live, verified 2026-08-01:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`. ⚠️ `Health and beauty shop` and `Vitamin & supplements store` are **NOT on the profile** despite older docs listing them as live — see `docs/GOOGLE-BUSINESS-PROFILE.md` §1. Don't cite a five-category stack.
 - **GBP services link:** https://houseofrose.glossgenius.com/services
-- **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** lead in prose with "advanced aesthetics & wellness," but "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). _(This reverses the earlier "never say med spa" rule.)_
+- **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). **The lead prose descriptor is `Medical Aesthetics Practice`** (Creative System Book 1 §2 / Book 3 §1) — _not_ "advanced aesthetics & wellness studio", which is now supporting/SEO language only. _(Two supersessions stacked here: the Creative System replaced the "advanced aesthetics & wellness studio" lead on 2026-07-30; that in turn had already reversed an even earlier "never say med spa" rule.)_
 - **Phone SMS:** not enabled while Grasshopper verification is pending. Do not invite customers to text until activation is confirmed.
 - **GBP CTA:** call; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
 
@@ -210,7 +321,8 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 
 ## Memberships — NOT OFFERED
 House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are
-planned. `/memberships/*`, `/rose-circle/*`, `/plans/*` all 301 → `/`. **Never add membership UI,
+planned. `/memberships/*`, `/rose-circle/*`, and `/plans/*` all return forced `404` responses so
+search engines remove the historical URLs. **Never add membership UI,
 schema, tiers, or "member rate" framing anywhere.** (GLP-1 is a normal **service** — Diana — not a
 membership.)
 
@@ -390,6 +502,13 @@ This site is engineered for **Answer Engine Optimization** (AI Overviews, ChatGP
 local authority — see `docs/SEO-AEO-PLAYBOOK.md` and `docs/CONTENT-MODEL-MAP.md`. These are
 **binding** and inherited by every content task (also referenced from `AGENTS.md`).
 
+**Layering — three docs, three jobs, no overlap:** the **Creative System Book 6 (Marketing System)** owns
+the *marketing strategy* (funnel, Meta + Google Ads structure, GBP, SEO principles, landing-page rules,
+measurement, launch sequence) and **Book 2** owns *how the words sound*. `SEO-AEO-PLAYBOOK.md` owns the
+*page-type framework and publish checklist* for this site specifically. `CONTENT-MODEL-MAP.md` owns the
+*wiring* (doc type → route → JSON-LD → GROQ). Where Book 6 and the playbook overlap on strategy,
+**Book 6 wins**; where they overlap on this repo's page types and structured data, **the playbook wins.**
+
 - **7 canonical page types**: Service, Cost guide, FAQ, Comparison, Local area, Before/after, Process.
 - **Every content page ships JSON-LD** via `src/lib/structuredData.ts` (typed builders — never inline).
 - **AEO content rules**: answer-first, entity-clear, locally grounded (Punta Gorda / Charlotte
@@ -460,6 +579,9 @@ cd ~/LocalStorm/Workspace/DevProjects/house_of_rose/house-of-rose-site && git pu
 
 ## Two-Menu Content Architecture (binding — 2026-07-24)
 There are TWO separate service menus with DIFFERENT copy. Never write one voice for both, and never sync them.
+**Both menus are written in Creative System voice** — Book 2 (Brand Voice & Copy Standards) for the rules
+and claim tiers, Book 2 §9 for the service-page opening and "what to expect" templates, Book 3 §7 for the
+GlossGenius/booking-profile description pattern. Length and depth differ per menu; the voice does not.
 
 **Sanity = the customer-facing WEBSITE menu (houseofrosefl.com).**
 - Long, informative, persuasive, HIGHLY SEO-optimized — this is the copy that talks people into booking.

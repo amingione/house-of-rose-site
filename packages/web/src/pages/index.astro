@@ -72,8 +72,8 @@ const servicesMenuCta = /book|schedule/i.test(hp.scanCtaSecondaryText ?? "")
 ---
 
 <BaseLayout
-	title={hp.seoTitle ?? "House of Rose Aesthetics | Advanced Aesthetics & Wellness in Punta Gorda, FL"}
-	description={hp.seoDescription ?? "Explore advanced aesthetics, injectables, facials, wellness services, and professional skincare at House of Rose in Punta Gorda, Florida."}
+	title={hp.seoTitle ?? "House of Rose Aesthetics | Medical Aesthetics Punta Gorda"}
+	description={hp.seoDescription ?? "House of Rose Aesthetics is a Punta Gorda medical aesthetics practice offering individualized skin, injectable, facial, IV hydration, and wellness care."}
 	preloadImage="/images/banner/HOR-where-beauty-blooms-within.webp"
 >
 	<div {...oid}>
@@ -81,8 +81,8 @@ const servicesMenuCta = /book|schedule/i.test(hp.scanCtaSecondaryText ?? "")
 	<Hero
 		title={hp.heroTitle ?? "HOUSE OF ROSE\nAESTHETICS"}
 		subtitle={hp.heroSubtitle ?? "PUNTA GORDA, FL"}
-		kicker={hp.heroKicker ?? "Refined Aesthetics. Natural Results"}
-		description={hp.heroDescription ?? "Thoughtful treatments for your skin, features, and overall wellness—chosen around your goals and what makes sense for you. We focus on natural-looking results and long-term skin health."}
+		kicker={hp.heroKicker ?? "Medical Aesthetics Practice"}
+		description={hp.heroDescription ?? "Individualized facial, body, skin, injectable, and wellness care planned through consultation, assessment, clinical judgment, and long-term follow-through."}
 		size="full"
 		centerContent={true}
 		showCTA={true}
@@ -98,27 +98,27 @@ const servicesMenuCta = /book|schedule/i.test(hp.scanCtaSecondaryText ?? "")
 	<!-- ── SECTION 2 · INTRO / BRAND POSITIONING ───────────────────── -->
 	<section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
 		<div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-			<span class="kicker" {...sbFieldPath("aboutKicker")}>{hp.aboutKicker ?? "About House of Rose"}</span>
+			<span class="kicker" {...sbFieldPath("aboutKicker")}>{hp.aboutKicker ?? "About House of Rose Aesthetics"}</span>
 			<h2
 				class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6"
 				{...sbFieldPath("aboutHeading")}
 			>
-				{hp.aboutHeading ?? "Care that starts with listening."}
+				{hp.aboutHeading ?? "Medical aesthetics, thoughtfully practiced."}
 			</h2>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara1")}
 			>
-				{hp.aboutPara1 ?? "House of Rose is for people who want to understand their options, ask questions, and never feel rushed through a treatment."}
+				{hp.aboutPara1 ?? "House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, built around individualized treatment planning and long-term care."}
 			</p>
 			<p
 				class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4"
 				{...sbFieldPath("aboutPara2")}
 			>
-				{hp.aboutPara2 ?? "We look at your goals, your skin, and your comfort level before recommending a next step. AI-assisted imaging can add useful detail, while a real conversation keeps the plan grounded in what matters to you."}
+				{hp.aboutPara2 ?? "Medical aesthetics is not one-size-fits-all. Consultation and assessment guide the service, preparation, recovery, aftercare, and maintenance recommendations that belong in your plan."}
 			</p>
 			<p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath("aboutPara3")}>
-				{hp.aboutPara3 ?? "That might mean one focused service or a plan that changes over time. Either way, you'll know what we're recommending and why."}
+				{hp.aboutPara3 ?? "Located in Punta Gorda, House of Rose serves Charlotte County and Southwest Florida."}
 			</p>
 		</div>
 		<div class="relative min-h-[340px] bg-charcoal-lighter">

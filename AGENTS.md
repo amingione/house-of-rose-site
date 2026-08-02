@@ -6,16 +6,56 @@ NOT Next.js. NOT React. NOT Medusa. NOT Vendure.
 
 Read `CLAUDE.md` before any work.
 
+## 📕 Brand, marketing & client-facing content — the Creative System is the source of truth
+
+**`docs/House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md`** — House of Rose
+Creative System **v1.0 (issued 2026-07-30)**. Seven books in one file: Creative Bible, Brand Voice &
+Copy Standards, Social & Profile Bios, Visual Standards, AI Creative Rules & Prompt Library, Marketing
+System, Content Approval Checklist. The `.docx`/`.pdf` siblings are the same content styled for Notion
+and print — not a second version.
+
+**Read the relevant book BEFORE writing or editing anything a customer will see** — website copy, Sanity
+content, service descriptions, meta titles/descriptions, ads, captions, bios, email, image or video
+prompts. **It outranks every older brand doc in this repo, in Notion, and in the Obsidian vault** — it
+explicitly replaces the earlier "luxury med spa / boutique spa / beauty destination" framing. It does
+**not** outrank statute (`docs/internal_only/compliance/`) or operational fact (pricing, provider lanes,
+service names — see `CLAUDE.md` Rule #0).
+
+Enforced on every content task:
+
+1. **Category language is "Medical Aesthetics Practice"** — the lead public descriptor. `Medical spa`
+   stays the GBP platform category and is fine in meta/SEO/supporting copy; never denied, never the lead.
+   "Advanced aesthetics & wellness studio" is now supporting language only, not the lead.
+2. **Retired language is banned** (Book 1 §12) — luxury/luxe/premium as self-description, boutique as
+   category, glow, radiance, timeless beauty, flawless, ageless, pamper, indulge, treat yourself,
+   best version of yourself, turn back time, instant transformation, pain-free, "no downtime" (unless
+   true for that exact procedure and reviewed), guaranteed results.
+3. **Controlled-use words are rationed** — skin rejuvenation, evidence-based, advanced, personalized,
+   customized, restore, confidence. Accurate, necessary, and never repeated across a page.
+4. **AI may not** invent a protocol, infer provider scope, fill a gap with a "typical" assumption, write
+   a guarantee, fabricate before/after imagery, reviews or credentials, or claim "FDA approved,"
+   "clinically proven," "pain-free," or "no downtime" without approved support (Book 5 §3).
+5. **Label output** as Draft / Facts requiring verification / Claims requiring clinical approval /
+   Assets still needed (Book 5 §3), and **run the Book 7 §1 Fast Preflight before anything publishes.**
+6. **Visuals follow Book 4** — real House of Rose environment, real skin and hands, accurate equipment.
+   The visual blacklist (no perfect AI models, flowers as spa shorthand, splashes, glitter, gold foil,
+   pink gradients, soft-focus glamour, blue LED rooms, cursive) is binding on generated imagery too.
+
 ## Marketing / SEO / AEO — MANDATORY when touching customer-facing content
 
 This site is built for **Answer Engine Optimization** (AI Overviews, ChatGPT/Perplexity) +
 local authority, not just keyword SEO. Before creating or editing any public page or content
 document, read:
 
-- `docs/SEO-AEO-PLAYBOOK.md` — the strategy, the 7 page types, writing rules, the publish checklist.
+- **Creative System Book 6 (Marketing System)** — marketing strategy, funnel, Meta + Google Ads
+  structure, GBP, SEO principles, landing-page rules, measurement. **Wins on strategy.**
+- `docs/SEO-AEO-PLAYBOOK.md` — the 7 page types, writing rules, the publish checklist. **Wins on this
+  repo's page types and structured data.**
 - `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc type → route → JSON-LD → GROQ query.
 - `docs/internal_only/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
   no reverse-aging / guarantees / stem-cell / cure-disease / Groupon / unsupported exosome-peptide claims).
+- `docs/internal_only/compliance/` — the statutory layer. **Wins over all of the above where they touch.**
+- `docs/internal_only/START-HERE.md` — the "which folder holds the real answer" map.
 
 Hard rules (inherited by every task):
 1. Every content page is one of the **7 canonical page types** — never invent ad-hoc page shapes.
@@ -26,10 +66,11 @@ Hard rules (inherited by every task):
 5. No orphan pages: wire internal links + `sitemap.xml.ts` + `llms.txt.ts`.
 6. New page-type doc types: shared `seo` + `faq` objects, registered in `schemas/index.ts`,
    listed under the Marketing / SEO group in `structure.ts`.
-7. **Compliance is non-negotiable** — "med spa / medical spa" is now **allowed (don't lead;** lead with
-   "advanced aesthetics & wellness studio," never deny being one, avoid "day spa"); no guarantees,
-   reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported exosome/peptide
-   claims. Follow `docs/internal_only/COMPLIANCE-COPY-RULES.md` on every customer-facing surface.
+7. **Compliance is non-negotiable** — "med spa / medical spa" is **allowed but never leads** (never deny
+   being one, avoid "day spa"); the lead descriptor is **"Medical Aesthetics Practice"** per the Creative
+   System. No guarantees, reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported
+   exosome/peptide claims. Follow `docs/internal_only/COMPLIANCE-COPY-RULES.md` on every customer-facing
+   surface, and `docs/internal_only/compliance/` wherever statute applies.
 
 ## Framework Rules
 - Pages are `.astro` files — use Astro component syntax
@@ -74,3 +115,8 @@ packages/studio/
 - Use `any` types
 - Add React state/effects to pages (add a component island only if interactivity is required)
 - Commit `.env.local` or `.env`
+- Draft brand copy, ad copy, or an image prompt from a doc that predates **2026-07-30** without checking
+  it against the Creative System first — most of the older material carries the retired luxury/boutique
+  positioning. Anything in Notion prefixed `ARCHIVED - DO NOT USE` is off-limits entirely.
+- Invent a service, device, ingredient, protocol, credential, downtime figure, review, or testimonial —
+  ask for source material instead (Creative System Book 5 §3).

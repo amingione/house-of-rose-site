@@ -1,10 +1,1 @@
-> Basic Information:
-> $899.00
-> 12-week program
-> Sold as a program **ONLY**
-
-# Face Reality -- Acne Bootcamp Acne Program
- - **Facial Reality Certified Acne Specialist: _Amber Mingione_**
-
----
-
+> See `docs/internal_only/research/face-reality-acne-program.md` for the full program brief (candidacy, protocol, the $899/12-week program-only pricing, FAQs, compliance language). This file was a scratch-note stub — consolidated 2026-08-01 cleanup; content lives in research/.

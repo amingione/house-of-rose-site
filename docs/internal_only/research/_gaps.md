@@ -141,7 +141,7 @@ Retail products keep their **accurate manufacturer names** (buyers must identify
 
 ## 8. Memberships — not offered
 
-House of Rose does **not** offer memberships. None exist, none are in the site or Studio, and none are planned. `/memberships/`, `/rose-circle/`, and `/plans/` all 301 → `/`. Do not add membership tiers, "member rate" pricing, or membership framing to any brief, page, or schema. If a brief or Sanity doc still references a membership cost-factor or tier, **remove it** (e.g., the stale "Membership" factor in the PRF cost guide, and any "monthly membership" line in `packagesAdd-ons.md`).
+House of Rose does **not** offer memberships. None exist, none are in the site or Studio, and none are planned. `/memberships/`, `/rose-circle/`, and `/plans/` all return forced `404` responses so search engines remove the historical URLs. Do not add membership tiers, "member rate" pricing, or membership framing to any brief, page, or schema. If a brief or Sanity doc still references a membership cost-factor or tier, **remove it** (e.g., the stale "Membership" factor in the PRF cost guide, and any "monthly membership" line in `packagesAdd-ons.md`).
 
 ---
 

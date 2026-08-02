@@ -1,3 +1,1 @@
-> Research Basic Information for body treatments & Face treatments
-> Advanced usage with microneedling/microchanneling
-> Combine research about _BioRePeel_, _microchanneling_, and _microneedling_ and decide what methods are best to be used when and for what targeted treatment
+> See `docs/internal_only/research/biorepeel.md` for the full treatment brief (provider split: Brandy standalone / Amber +$65 add-on, protocol, pricing context, FAQs, compliance language). This file was a scratch-note stub — consolidated 2026-08-01 cleanup; content lives in research/.

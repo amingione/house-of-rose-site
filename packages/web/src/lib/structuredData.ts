@@ -26,6 +26,11 @@ export const LOCAL_BUSINESS = {
   longitude: -82.0454,
 } as const;
 
+export const BUSINESS_ALTERNATE_NAMES = [
+  'House of Rose',
+  'Rose Aesthetics',
+] as const;
+
 export const BUSINESS_PROFILES = [
   'https://www.instagram.com/house.of.rose.aesthetics/',
   'https://www.facebook.com/hofraesthetics',
@@ -45,6 +50,16 @@ export const BUSINESS_SERVICE_AREAS = [
   'Punta Gorda Isles',
 ] as const;
 
+/**
+ * Topical `keywords` for the LocalBusiness/MedicalBusiness JSON-LD — NOT a mirror of the live
+ * Google Business Profile category stack, despite the overlapping vocabulary.
+ *
+ * The live GBP stack is only THREE categories (`Medical spa` primary, `Facial spa`, `Skin care
+ * clinic`) as of 2026-08-01. The last two entries here describe real offerings — retail skincare,
+ * and the B-12 / IV / GLP-1 wellness lane — so they are accurate as keywords even while absent
+ * from GBP. **This divergence is intentional; do not "sync" the two.** If Amber adds those two
+ * categories to GBP (open question in CLAUDE.md), they converge on their own.
+ */
 export const BUSINESS_CATEGORIES = [
   'Medical spa',
   'Facial spa',
@@ -63,7 +78,7 @@ function providerNode(siteUrl: string): JsonLd {
     '@type': 'HealthAndBeautyBusiness',
     '@id': `${baseUrl}#business`,
     name: LOCAL_BUSINESS.name,
-    alternateName: 'House of Rose',
+    alternateName: [...BUSINESS_ALTERNATE_NAMES],
     foundingDate: LOCAL_BUSINESS.foundingDate,
     keywords: BUSINESS_CATEGORIES.join(', '),
     url: baseUrl,
@@ -87,9 +102,9 @@ function websiteNode(siteUrl: string): JsonLd {
     '@id': `${baseUrl}#website`,
     url: baseUrl,
     name: LOCAL_BUSINESS.name,
-    alternateName: 'House of Rose',
+    alternateName: [...BUSINESS_ALTERNATE_NAMES],
     description:
-      'Advanced aesthetics and wellness studio and medical spa in Punta Gorda, Florida, offering personalized face, body, skin, and wellness services.',
+      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
     keywords: BUSINESS_CATEGORIES.join(', '),
     inLanguage: 'en-US',
     publisher: { '@id': `${baseUrl}#business` },
@@ -128,7 +143,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
   const business = {
     ...providerNode(baseUrl),
     description:
-      'Advanced aesthetics and wellness studio in Punta Gorda, Florida. Walk-ins welcome; appointments recommended to reserve a time.',
+      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida. Walk-ins welcome; appointments recommended to reserve a time.',
     ...(input.email && { email: input.email }),
     // Google wants an actual logo here, not a social card. `og.png` is the
     // 1200x630 share image; the square monogram is the real mark.
@@ -365,10 +380,10 @@ export function localBusiness(input: { url: string; areaName?: string; image?: s
     '@type': 'HealthAndBeautyBusiness',
     '@id': `${input.url}#localbusiness`,
     name: LOCAL_BUSINESS.name,
-    alternateName: 'House of Rose',
+    alternateName: [...BUSINESS_ALTERNATE_NAMES],
     foundingDate: LOCAL_BUSINESS.foundingDate,
     description:
-      'Advanced aesthetics and wellness studio and medical spa in Punta Gorda, Florida, offering personalized face, body, skin, and wellness services.',
+      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
     keywords: BUSINESS_CATEGORIES.join(', '),
     url: baseUrl,
     telephone: LOCAL_BUSINESS.telephone,

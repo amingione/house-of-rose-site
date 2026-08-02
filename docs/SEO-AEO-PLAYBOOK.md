@@ -5,6 +5,13 @@
 > `CLAUDE.md` so it is inherited automatically by any task. When you add information to the
 > site, you are not "writing a page" — you are populating a **page type** that already has a
 > defined content model, route, and structured-data contract (see `docs/CONTENT-MODEL-MAP.md`).
+>
+> **Voice and marketing strategy live elsewhere — `docs/House_of_Rose_Creative_System/`** (Creative
+> System v1.0, 2026-07-30). **Book 2** is how the copy sounds, **Book 3** holds the approved bios and
+> profile descriptions, **Book 6** is the marketing system (funnel, Meta, Google Ads, GBP, landing
+> pages, measurement). **This playbook owns the page-type framework and structured-data contract for
+> this repo; Book 6 owns strategy.** Where they overlap, Book 6 wins on strategy and this file wins on
+> page types and schema. Read Book 2 before writing a word of page copy.
 
 ---
 
@@ -16,7 +23,7 @@ hardest on **question-style queries**, and the sources they cite often differ fr
 "blue link" organic rankings. Translation: being keyword-optimized is no longer enough — pages
 must be **answer-led, entity-clear, locally grounded, and source-worthy**.
 
-House of Rose is a private advanced aesthetics and wellness studio in **Punta Gorda, FL** serving
+House of Rose is a **Medical Aesthetics Practice** in **Punta Gorda, FL** serving
 Charlotte County and Southwest Florida. Walk-ins are welcome, and appointments are recommended to
 reserve a time. Our entire content strategy targets two jobs at once:
 

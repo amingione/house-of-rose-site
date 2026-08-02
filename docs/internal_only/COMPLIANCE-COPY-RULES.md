@@ -7,6 +7,14 @@
 > content task. The voice notes in `marketing/regeneration-plans.md` §8 are the same spirit — this
 > file is the enforceable, structured version: **what we never say, what we say instead, and why.**
 >
+> **Brand voice — `docs/House_of_Rose_Creative_System/` (Creative System v1.0, 2026-07-30).** That is the
+> source of truth for *how House of Rose sounds and what it calls itself*: positioning, vocabulary,
+> retired language, approved bios and descriptions, claim tiers, visual direction. **This file is the
+> legal-risk filter that sits on top of it** — what we never say and why, in Florida med-spa context.
+> Where the two touch, the Creative System sets the wording and this file sets the ceiling; the stricter
+> of the two always wins. Read Creative System Book 1 §12 (vocabulary), Book 2 §4–6 (word choice + claim
+> discipline), and Book 7 (approval checklist) alongside this file.
+>
 > **Operational compliance — `docs/internal_only/compliance/`.** This file governs voice and claims.
 > The compliance directory contains the remaining paid-ad and toll-free-messaging controls. The former
 > legal-analysis and consultation-fee drafts were intentionally removed on 2026-07-27; do not cite or
@@ -25,13 +33,16 @@ Productizing aesthetics raises the compliance stakes: the more we describe outco
 "transformation," the easier it is to drift into language Florida regulators, the FTC, and the
 brand itself prohibit.
 
-House of Rose leads publicly as a **private advanced aesthetics & wellness studio in Punta Gorda, FL**
-that **takes walk-ins** — appointments recommended for guaranteed timing (see `CLAUDE.md`'s binding
-Walk-In Policy). _(This sentence previously read "appointment-only," which §2 below bans outright. Fixed
-2026-07-26; do not reintroduce it.)_ **"Med spa" / "medical spa" positioning is now ON — "allow, don't lead":** the
+House of Rose leads publicly as a **Medical Aesthetics Practice in Punta Gorda, FL** that **takes
+walk-ins** — appointments recommended for guaranteed timing (see `CLAUDE.md`'s binding Walk-In Policy).
+_(Two prior fixes to this sentence, do not reintroduce either: it once read "appointment-only," which §2
+below bans outright — fixed 2026-07-26; and it once led with "private advanced aesthetics & wellness
+studio," superseded by the Creative System's category language on 2026-08-01. "Advanced aesthetics &
+wellness" survives as supporting/SEO phrasing, not as the lead. "Private" is dead — it contradicts the
+walk-in policy.)_ **"Med spa" / "medical spa" positioning is ON — "allow, don't lead":** the
 GBP primary category is `Medical spa`, and the term is permitted in meta, SEO, and supporting copy
 where it aids discovery; **we never deny being a med spa.** Just don't make it the lead brand
-descriptor (lead with "advanced aesthetics & wellness studio"), and still avoid "day spa" (undersells).
+descriptor, and still avoid "day spa" (undersells).
 Regardless of label, copy must **never imply House of Rose diagnoses, treats, or cures any medical
 condition.** Advanced/clinical treatments are delivered under the appropriate licensed provider and
 medical-director oversight — that authority lives with the *provider*, never with the marketing
@@ -48,9 +59,12 @@ Each row is a hard avoid. The "Say instead" column is the approved, compliance-s
 
 | ❌ Never say | Why it's a problem | ✅ Say instead |
 | --- | --- | --- |
-| "day spa" (describing House of Rose) | Undersells; implies non-medical relaxation spa | "advanced aesthetics & wellness studio," "private studio" |
+| "day spa" (describing House of Rose) | Undersells; implies non-medical relaxation spa | **"Medical Aesthetics Practice"** (the lead descriptor); "advanced aesthetics & wellness" as supporting phrasing |
 | "by appointment only," "no walk-ins," "not a walk-in mill/clinic" (any framing that denies walk-ins) | Factually wrong — House of Rose takes walk-ins (waxing/facials always; other services, including injectables, whenever the schedule allows) | "walk-ins welcome," "walk-ins welcome — appointments recommended for guaranteed timing" |
-| _"med spa" / "medical spa"_ — **allowed, don't lead** | Permitted in meta/GBP/SEO and supporting copy; the GBP category is `Medical spa`. Just don't make it the lead brand descriptor, and never deny being one. | Lead with "advanced aesthetics & wellness studio"; use "med spa" where it aids discovery |
+| _"med spa" / "medical spa"_ — **allowed, don't lead** | Permitted in meta/GBP/SEO and supporting copy; the GBP category is `Medical spa`. Just don't make it the lead brand descriptor, and never deny being one. | Lead with **"Medical Aesthetics Practice"** (Creative System Book 1 §2); use "med spa" where it aids discovery |
+| "luxury," "luxe," "premium," "boutique" (describing House of Rose) | Retired positioning — the Creative System explicitly replaced the luxury/boutique med-spa framing (Book 1 §12, §16) | Show the method instead: "individualized," "protocol-led," "independent," "assessed before recommended" |
+| "glow," "radiance," "flawless," "ageless," "timeless beauty," "pamper," "indulge," "treat yourself," "best version of yourself" | Retired brand language — generic beauty vocabulary the Creative System removed (Book 1 §12) | "healthy-looking skin," "skin quality," "skin renewal," "natural-looking results," "corrective care" |
+| "pain-free," "no downtime" (as a blanket statement) | Only usable when factually true for that exact procedure **and** clinically reviewed (Book 1 §12) | State the real recovery: "expect X days of redness," "most people return to normal activity the same day" |
 | "reverse aging," "anti-aging," "turn back the clock," "age-defying" | Implies a result skin biology can't deliver; unprovable claim | "supports skin longevity," "helps reveal healthier-looking skin," "age-*affirming* / regenerative care" |
 | "guaranteed," "guaranteed results," "permanent," "will eliminate / erase / cure" | Outcome guarantee; individual results vary and are never assured | "designed to," "supports," "helps," "many clients notice," "intended to" |
 | "stem cell" / "stem-cell therapy" (as a treatment we provide or a claim) | Unapproved/overstated regenerative claim; regulatory minefield | Name the actual service (e.g. "PRF," "Procell microchanneling") and describe it factually |
@@ -107,7 +121,10 @@ Brand voice in one line: *confident, not loud; specific over superlative; sensor
 
 Before publishing or editing any customer-facing copy, confirm:
 
-- [ ] "Med spa" is used as support, not the lead descriptor (lead = "advanced aesthetics & wellness studio"); no "day spa"; never deny being a med spa.
+- [ ] **Creative System Book 7 §1 Fast Preflight has been run** — it is the brand/clinical gate that sits in front of this legal gate.
+- [ ] "Med spa" is used as support, not the lead descriptor (lead = **"Medical Aesthetics Practice"**); no "day spa"; never deny being a med spa.
+- [ ] No retired language (luxury/luxe/premium/boutique, glow, radiance, flawless, ageless, pamper, indulge, transformation) — Creative System Book 1 §12.
+- [ ] Controlled-use words (skin rejuvenation, evidence-based, advanced, personalized, customized) appear only where they add meaning, and are not repeated.
 - [ ] No guarantees, no "permanent," no "reverse aging" / "anti-aging."
 - [ ] No "treats / cures / heals" + a medical condition.
 - [ ] No stem-cell / unsupported exosome / unsupported peptide efficacy claims.
