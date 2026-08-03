@@ -1,10 +1,10 @@
 # Facebook / Instagram Ad Campaign — Microchanneling → AI Skin Analysis
 
 **Business:** House of Rose Aesthetics · 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 · (844) 941‑7673
-**Provider:** Amber (esthetician + RN assistant) — Advanced Facials lane
+**Provider:** Amber (Aesthetician + RN assistant) — Advanced Facials lane
 **Objective:** Leads (not traffic). Conversion event = skin-analysis form submit on `/skin-analysis/`
 **Landing page:** `https://houseofrosefl.com/skin-analysis/` (already has the lead form + FAQ + JSON‑LD)
-**Secondary CTA:** call (844) 941‑7673 · booking: houseofrose.glossgenius.com
+**Secondary CTA:** call (844) 941‑7673 · booking: houseofrose.glossgenius.com/services
 
 ---
 
