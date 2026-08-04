@@ -20,6 +20,7 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
     description={experienceContent?.heroSubtitle}
     size="small"
     backgroundImage="/images/welcome-house-of-rose.webp"
+    imageAlt="The House of Rose Aesthetics reception and waiting area"
   />
 
   {experienceContent && (
@@ -143,8 +144,8 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          View Services
+        <a href="/services/" class="btn-gold">
+          Explore Services
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

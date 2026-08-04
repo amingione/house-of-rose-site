@@ -1,0 +1,35 @@
+---
+import {
+  resolveServiceBooking,
+  type BookingMode,
+} from '@/lib/booking';
+
+interface Props {
+  slug: string;
+  bookingMode?: BookingMode;
+  bookingUrl?: string;
+  location: string;
+  class?: string;
+  label?: string;
+}
+
+const {
+  slug,
+  bookingMode,
+  bookingUrl,
+  location,
+  class: className = 'btn-gold',
+  label,
+} = Astro.props;
+const action = resolveServiceBooking({ slug, bookingMode, bookingUrl }, location);
+---
+
+<a
+  href={action.href}
+  class={className}
+  target={action.target}
+  rel={action.rel}
+  {...action.analytics}
+>
+  {label ?? action.label}
+</a>

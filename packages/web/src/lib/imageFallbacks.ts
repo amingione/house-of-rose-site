@@ -3,9 +3,10 @@ const INJECTABLES_EDITORIAL_IMAGE = '/images/editorial/home/injectables-consulta
 const SKIN_HEALTH_EDITORIAL_IMAGE = '/images/editorial/home/skin-health-analysis.webp';
 const WELLNESS_EDITORIAL_IMAGE = '/images/editorial/home/wellness-iv-hydration.webp';
 const MICROCHANNELING_BANNER_IMAGE = '/images/banner/microchanneling/new-microchanneling.webp';
+const BIOREPEEL_TREATMENT_IMAGE = '/images/editorial/advanced-facials/biorepeel-treatment.webp';
 const INMODE_DEVICE_IMAGES: Record<string, string> = {
-  morpheus8: '/images/inmode/Morpheus8-Burst.png',
-  'lumecca-peak-ipl': '/images/inmode/Lumecca-Peak.png',
+  morpheus8: '/images/optimized/morpheus8-device-800.webp',
+  'lumecca-peak-ipl': '/images/optimized/lumecca-device-800.webp',
   'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
 };
 
@@ -31,8 +32,8 @@ const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
 const FACE_REALITY_SYSTEM_IMAGE = '/images/face-reality/clear-skin-system.webp';
 
 export const DEFAULT_SERVICE_IMAGE = SKIN_HEALTH_EDITORIAL_IMAGE;
-export const DEFAULT_COLLECTION_IMAGE = '/images/hor-skin-studio.webp';
-export const DEFAULT_PACKAGE_IMAGE = '/images/hor-lobby.webp';
+export const DEFAULT_COLLECTION_IMAGE = '/images/optimized/hor-skin-studio-800.webp';
+export const DEFAULT_PACKAGE_IMAGE = '/images/optimized/hor-lobby-800.webp';
 export const DEFAULT_PRODUCT_IMAGE = '/images/banner/background/background-rose.webp';
 export const DEFAULT_JOURNAL_IMAGE = '/images/banner/background/background-rose.webp';
 export const DEFAULT_AREA_IMAGE = '/images/hor-exterior.webp';
@@ -67,16 +68,19 @@ const SERVICE_IMAGES: Record<string, string> = {
   morpheus8: INMODE_DEVICE_IMAGES.morpheus8,
   'lumecca-peak-ipl': INMODE_DEVICE_IMAGES['lumecca-peak-ipl'],
   'forma-rf-facial': INMODE_DEVICE_IMAGES['forma-rf-facial'],
-  biorepeel: REGENERATIVE_EDITORIAL_IMAGE,
-  'biorepeel-body': REGENERATIVE_EDITORIAL_IMAGE,
-  'biorepeel-advanced-acne-scarring': REGENERATIVE_EDITORIAL_IMAGE,
-  'biorepeel-gold-spot-treatment': REGENERATIVE_EDITORIAL_IMAGE,
-  'neck-decollete-extension': '/images/hor-skin-studio.webp',
-  'permanent-jewelry': '/images/banner/background/background-rose.webp',
+  biorepeel: BIOREPEEL_TREATMENT_IMAGE,
+  'biorepeel-body': BIOREPEEL_TREATMENT_IMAGE,
+  'biorepeel-advanced-acne-scarring': BIOREPEEL_TREATMENT_IMAGE,
+  'biorepeel-gold-spot-treatment': BIOREPEEL_TREATMENT_IMAGE,
+  'neck-decollete-extension': '/images/optimized/hor-skin-studio-800.webp',
 };
 
 export const getServiceFallbackImage = (slug: string): string =>
   SERVICE_IMAGES[slug] ?? DEFAULT_SERVICE_IMAGE;
+
+/** A deliberately selected real-practice, treatment, or accurate device image. */
+export const getCuratedServiceImage = (slug: string): string | undefined =>
+  SERVICE_IMAGES[slug];
 
 export const getInModeDeviceImage = (slug: string): string | undefined =>
   INMODE_DEVICE_IMAGES[slug];

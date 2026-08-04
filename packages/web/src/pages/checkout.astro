@@ -465,8 +465,5 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     setText('submit-label', busy ? 'Processing…' : 'Pay');
   }
 
-  // No `astro:page-load` listener needed: reloadScripts re-executes this whole
-  // script (and this call) on every swup nav. `swup:contentReplaced` never
-  // fired here — see CartDrawer.astro for why.
   void init();
 </script>

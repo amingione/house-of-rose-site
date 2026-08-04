@@ -13,6 +13,9 @@ interface Props {
 	description?: string;
 	backgroundClass?: string;
 	backgroundImage?: string;
+	backgroundSrcset?: string;
+	backgroundSizes?: string;
+	imageAlt?: string;
 	size?: "full" | "small";
 	centerContent?: boolean;
 	showCTA?: boolean;
@@ -36,6 +39,9 @@ const {
 	description,
 	backgroundClass = "bg-charcoal",
 	backgroundImage,
+	backgroundSrcset,
+	backgroundSizes,
+	imageAlt = "",
 	size = "full",
 	centerContent = false,
 	showCTA = false,
@@ -50,7 +56,7 @@ const {
 const sbAttr = (field?: string) => (field ? sbFieldPath(field) : {});
 
 const sizeClasses =
-	size === "full" ? "min-h-screen" : "min-h-[60vh] min-h-[400px]";
+	size === "full" ? "min-h-[min(780px,100svh)]" : "min-h-[460px]";
 
 const titleLines = title.split("\n");
 ---
@@ -63,17 +69,22 @@ const titleLines = title.split("\n");
 			<div class="absolute inset-0">
 				<img
 					src={backgroundImage}
-					alt=""
-					role="presentation"
+					alt={imageAlt}
+					srcset={backgroundSrcset}
+					sizes={backgroundSizes}
 					class="w-full h-full object-cover"
 					loading="eager"
+					fetchpriority="high"
+					decoding="sync"
+					width="1920"
+					height="1280"
 				/>
 			</div>
 		)
 	}
-	<!-- Premium gradient overlay -->
+	<!-- Walnut scrim keeps copy readable while the real environment stays visible. -->
 	<div
-		class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(10,8,6,0.88)] via-[rgba(10,8,6,0.62)] to-[rgba(10,8,6,0.74)]"
+		class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(43,33,28,0.9)] via-[rgba(43,33,28,0.58)] to-[rgba(43,33,28,0.5)]"
 	>
 	</div>
 
@@ -86,32 +97,25 @@ const titleLines = title.split("\n");
 	>
 		{
 			kicker && (
-				<span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-2" {...sbAttr(kickerField)}>
+				<span class="block text-[12px] font-semibold tracking-[0.12em] uppercase text-gold mb-3" {...sbAttr(kickerField)}>
 					{kicker}
 				</span>
 			)
 		}
 		{
 			subtitle && (
-				<span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-4" {...sbAttr(subtitleField)}>
+				<span class="block text-[12px] font-semibold tracking-[0.1em] uppercase text-gold mb-4" {...sbAttr(subtitleField)}>
 					{subtitle}
 				</span>
 			)
 		}
 		<h1
-			class="font-serif text-[clamp(36px,8vw,84px)] leading-tight font-normal text-ivory mb-4"
+		class="font-serif text-[clamp(42px,7vw,80px)] leading-[1.02] font-normal text-ivory mb-5"
 			{...sbAttr(titleField)}
 		>
 			{
-				titleLines.map((line, index) => (
-					<span
-						class={index === 0 ? "block font-display" : "block"}
-						style={
-							index === 1
-								? "font-family: Arial, sans-serif; font-size: 0.42em; letter-spacing: 0.55em;"
-								: undefined
-						}
-					>
+				titleLines.map((line) => (
+					<span class="block">
 						{line}
 					</span>
 				))
@@ -120,7 +124,7 @@ const titleLines = title.split("\n");
 		{
 			description && (
 				<p
-					class={`text-muted-strong text-base max-w-[430px] leading-relaxed mb-9 ${centerContent ? "mx-auto" : ""}`}
+					class={`text-muted-strong text-[clamp(16px,2vw,19px)] max-w-[620px] leading-[1.65] mb-9 ${centerContent ? "mx-auto" : ""}`}
 					{...sbAttr(descriptionField)}
 				>
 					{description}

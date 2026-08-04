@@ -8,9 +8,10 @@ import {
   type LocalArea,
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
 import { DEFAULT_AREA_IMAGE } from '@/lib/imageFallbacks';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -23,16 +24,7 @@ const areaData = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug }
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!areaData) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
 
-const area: LocalArea = {
-  ...areaData,
-  intro: alignPublicChannelCopy(areaData.intro),
-  whyLocal: areaData.whyLocal ? alignPublicChannelCopy(areaData.whyLocal) : undefined,
-  faqs: areaData.faqs?.map((item) => ({
-    ...item,
-    question: alignPublicChannelCopy(item.question),
-    answer: alignPublicChannelCopy(item.answer),
-  })),
-};
+const area: LocalArea = alignPublicContent(areaData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -83,12 +75,21 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Popular in {area.city}</span>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {area.servedServices.map((s) => (
-            <a href={`/services/${s.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
+            <article class="bg-charcoal p-7 group transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
               <h2 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{s.title}</h2>
               {s.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
               {s.price && <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase" {...sbFieldPath('price')}>{s.price}</p>}
-              <span class="learn-more group-hover:text-gold mt-3 inline-block">Learn More</span>
-            </a>
+              <div class="mt-5 flex flex-wrap items-center gap-4">
+                <a href={`/services/${s.slug}/`} class="learn-more group-hover:text-gold">Learn about {s.title}</a>
+                <BookingLink
+                  slug={s.slug}
+                  bookingMode={s.bookingMode}
+                  bookingUrl={s.bookingUrl}
+                  location="area_service_card"
+                  class="service-booking-link"
+                />
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -126,7 +127,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
       <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
+        <a href="/services/" class="btn-gold">Explore Services</a>
       </div>
     </div>
   </section>

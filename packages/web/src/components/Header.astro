@@ -1,581 +1,288 @@
 ---
-/**
- * Header component with sticky navigation
- * Matches the mockup's design with transparent-to-solid transition on scroll.
- *
- * "Services" is a two-level mega-menu: a column of service collections, each of
- * which reveals a flyout submenu of its individual services. Collections and
- * services are pulled from Sanity at build time, so the menu always mirrors the
- * live /services/collections/[slug]/ and /services/[slug]/ pages.
- */
-
-import { sanityFetch } from "@/lib/sanity";
-import { NAV_COLLECTIONS_QUERY, type NavCollection } from "@/lib/queries";
-import { sbFieldPath, sbObjectId } from "@/lib/visualEditing";
+import { sanityFetch } from '@/lib/sanity';
+import { NAV_COLLECTIONS_QUERY, type NavCollection } from '@/lib/queries';
+import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 
 interface Props {
-	currentPath?: string;
+  currentPath?: string;
 }
 
-const { currentPath = "/" } = Astro.props;
-
+const { currentPath = '/' } = Astro.props;
 const collections = (await sanityFetch<NavCollection[]>(NAV_COLLECTIONS_QUERY)) ?? [];
-const navCollections = collections.filter((c) => c?.slug);
-
+const navCollections = collections.filter((collection) => collection?.slug);
 const isActive = (path: string) =>
-	currentPath === path || currentPath.startsWith(path + "/");
-
-const linkBase =
-	"nav-link text-[12px] font-medium tracking-[0.14em] uppercase transition-colors duration-200";
-
+  path === '/' ? currentPath === '/' : currentPath === path || currentPath.startsWith(`${path}/`);
+const linkClass = (path: string) =>
+  `nav-link ${isActive(path) ? 'nav-link-active' : ''}`;
 ---
 
-<header
-	id="header"
-	class="on-dark fixed top-0 left-0 right-0 z-50 transition-all duration-300"
->
-	<div
-		class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between"
-	>
-		<!-- Brand Logo -->
-		<a href="/" class="brand-link flex items-center">
-			<img
-				src="/logos/house-of-rose-monogram/hr-logo-gold.webp"
-				alt="House of Rose"
-				class="h-14 md:h-16 w-auto transition-all duration-300"
-				width="512"
-				height="520"
-			/>
-		</a>
+<header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-walnut/10 bg-bone/95 backdrop-blur-md">
+  <div class="mx-auto flex h-20 max-w-[1440px] items-center gap-5 px-5 sm:px-8">
+    <a href="/" class="brand-link shrink-0" aria-label="House of Rose Aesthetics home">
+      <img
+        src="/logos/house-of-rose-monogram/hr-logo-gold.webp"
+        alt=""
+        width="512"
+        height="520"
+        class="h-12 w-auto"
+      />
+    </a>
 
-		<!-- Desktop Navigation -->
-		<nav class="desktop-nav hidden lg:flex items-center gap-6">
-			<a
-				href="/"
-				class={`${linkBase} ${isActive("/") ? "text-gold" : "text-ivory hover:text-gold"}`}
-			>
-				Home
-			</a>
+    <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+      <a href="/" class={linkClass('/')}>Home</a>
 
-			<!-- Services mega-menu -->
-			<div class="nav-dropdown group/services relative">
-				<a
-					href="/services/"
-					id="services-trigger"
-					aria-haspopup="true"
-					aria-expanded="false"
-					class={`${linkBase} inline-flex items-center gap-1 ${
-						isActive("/services") ? "text-gold" : "text-ivory hover:text-gold"
-					}`}
-				>
-					Services
-					<svg
-						class="dd-caret w-2.5 h-2.5 transition-transform duration-200"
-						viewBox="0 0 10 6"
-						fill="none"
-						aria-hidden="true"
-					>
-						<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-					</svg>
-				</a>
+      <details class="services-menu relative">
+        <summary class:list={['nav-link cursor-pointer list-none', isActive('/services') && 'nav-link-active']}>
+          Services
+          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="services-panel absolute right-0 top-[calc(100%+14px)] w-[min(920px,calc(100vw-48px))] border border-walnut/15 bg-bone p-7 shadow-[0_24px_70px_rgba(58,43,36,0.18)]">
+          <div class="mb-6 flex items-end justify-between gap-6 border-b border-walnut/10 pb-5">
+            <div>
+              <p class="kicker mb-2">Explore care</p>
+              <p class="font-serif text-[26px] text-ink">Start with the service or concern you recognize.</p>
+            </div>
+            <a href="/services/" class="learn-more mt-0 whitespace-nowrap">View all services</a>
+          </div>
+          <div class="grid max-h-[62vh] grid-cols-2 gap-x-8 gap-y-7 overflow-y-auto pr-2 xl:grid-cols-3">
+            {navCollections.map((collection) => (
+              <section {...sbObjectId(collection._id)}>
+                <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
+                  <a href={`/services/collections/${collection.slug}/`} class="hover:text-gold">
+                    {collection.title}
+                  </a>
+                </h2>
+                {collection.services.length > 0 && (
+                  <ul class="mt-3 space-y-2">
+                    {collection.services.slice(0, 6).map((service) => (
+                      <li {...sbObjectId(service._id)}>
+                        <a
+                          href={`/services/${service.slug}/`}
+                          class="text-[13px] leading-snug text-muted hover:text-ink"
+                          {...sbFieldPath('title')}
+                        >
+                          {service.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </div>
+        </div>
+      </details>
 
-				<!-- Level 1: collections column -->
-				<div
-					class="dd-panel invisible opacity-0 group-hover/services:visible group-hover/services:opacity-100 group-focus-within/services:visible group-focus-within/services:opacity-100 absolute left-0 top-full pt-3 transition-opacity duration-200 z-50"
-				>
-					<ul
-						class="min-w-[280px] bg-ivory border border-gold-metal/40 shadow-xl py-2"
-						role="menu"
-					>
-						{
-							navCollections.map((col) => (
-								<li class="group/col relative" role="none" {...sbObjectId(col._id)}>
-									<a
-										href={`/services/collections/${col.slug}/`}
-										role="menuitem"
-										class="flex items-center justify-between gap-4 px-5 py-2.5 text-[12px] font-medium tracking-[0.12em] uppercase text-ink group-hover/col:text-gold-200 group-hover/col:bg-walnut group-focus-within/col:text-gold-200 group-focus-within/col:bg-walnut transition-colors duration-150"
-									>
-										<span {...sbFieldPath("title")}>{col.title}</span>
-										{col.services.length > 0 && (
-											<svg
-												class="w-2.5 h-2.5 shrink-0 opacity-60"
-												viewBox="0 0 6 10"
-												fill="none"
-												aria-hidden="true"
-											>
-												<path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-											</svg>
-										)}
-									</a>
+      <a href="/skin-analysis/" class={linkClass('/skin-analysis')}>Skin analysis</a>
+      <a href="/shop/" class={linkClass('/shop')}>Shop</a>
+      <a href="/experience/" class={linkClass('/experience')}>Experience</a>
+      <a href="/contact/" class={linkClass('/contact')}>Contact</a>
+      <a
+        href={GLOSSGENIUS_SERVICES_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-book"
+        data-global-booking
+        data-cta-location="header-global"
+      >
+        Book
+      </a>
+      <button data-open-cart class="cart-button" aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="8" cy="17" r="1.2" fill="currentColor" />
+          <circle cx="14" cy="17" r="1.2" fill="currentColor" />
+        </svg>
+        <span data-cart-count class="cart-count hidden">0</span>
+      </button>
+    </nav>
 
-									{col.services.length > 0 && (
-										<div class="dd-flyout invisible opacity-0 group-hover/col:visible group-hover/col:opacity-100 group-focus-within/col:visible group-focus-within/col:opacity-100 absolute left-full top-0 pl-1 transition-opacity duration-200">
-											<ul
-												class="min-w-[300px] max-h-[70vh] overflow-y-auto bg-ivory border border-gold-metal/40 shadow-xl py-2"
-												role="menu"
-												aria-label={col.title}
-											>
-												{col.services.map((svc) => (
-													<li role="none" {...sbObjectId(svc._id)}>
-														<a
-															href={`/services/${svc.slug}/`}
-															role="menuitem"
-															class="block px-5 py-2 text-[12px] font-medium tracking-[0.06em] uppercase text-ink hover:text-gold-200 hover:bg-walnut focus-visible:text-gold-200 focus-visible:bg-walnut transition-colors duration-150"
-															{...sbFieldPath("title")}
-														>
-															{svc.title}
-														</a>
-													</li>
-												))}
-											</ul>
-										</div>
-									)}
-								</li>
-							))
-						}
-						<li role="none" class="border-t border-gold-metal/30 mt-2 pt-1">
-							<a
-								href="/services/"
-								role="menuitem"
-								class="block px-5 py-2.5 text-[12px] font-semibold tracking-[0.14em] uppercase text-gold hover:text-gold-200 hover:bg-walnut focus-visible:text-gold-200 focus-visible:bg-walnut transition-colors duration-150"
-							>
-								View All Services
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+    <div class="ml-auto flex items-center gap-1 lg:hidden">
+      <a
+        href={GLOSSGENIUS_SERVICES_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-book px-4"
+        data-global-booking
+        data-cta-location="header-mobile-global"
+      >
+        Book
+      </a>
+      <button data-open-cart class="cart-button" aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="8" cy="17" r="1.2" fill="currentColor" />
+          <circle cx="14" cy="17" r="1.2" fill="currentColor" />
+        </svg>
+        <span data-cart-count class="cart-count hidden">0</span>
+      </button>
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="menu-button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 
-			<a
-				href="/skin-analysis/"
-				class={`${linkBase} ${isActive("/skin-analysis") ? "text-gold" : "text-ivory hover:text-gold"}`}
-			>
-				Skin Analysis
-			</a>
-			<a
-				href="/shop/"
-				class={`${linkBase} ${isActive("/shop") ? "text-gold" : "text-ivory hover:text-gold"}`}
-			>
-				Shop
-			</a>
-			<a
-				href="/experience/"
-				class={`${linkBase} ${isActive("/experience") ? "text-gold" : "text-ivory hover:text-gold"}`}
-			>
-				Experience
-			</a>
-			<a
-				href="/contact/"
-				class={`${linkBase} ${isActive("/contact") ? "text-gold" : "text-ivory hover:text-gold"}`}
-			>
-				Contact
-			</a>
-			<a
-				href="/consultation/"
-				class="nav-cta text-[12px] font-medium tracking-[0.14em] uppercase px-5 py-2 border border-ivory text-ivory transition-all duration-300 hover:bg-gold-metal hover:border-gold-metal hover:text-ink"
-			>
-				Consultation
-			</a>
-			<button
-				data-open-cart
-				class="nav-link cart-btn relative min-w-[44px] min-h-[44px] flex items-center justify-center"
-				aria-label="Open cart"
-			>
-				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-					<path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-					<circle cx="8" cy="17" r="1.2" fill="currentColor" />
-					<circle cx="14" cy="17" r="1.2" fill="currentColor" />
-				</svg>
-				<span
-					data-cart-count
-					class="hidden absolute -top-0.5 -right-0.5 bg-gold-metal text-ink text-[10px] font-bold leading-none min-w-[16px] h-[16px] rounded-full items-center justify-center px-1"
-				>0</span>
-			</button>
-		</nav>
-
-		<!-- Mobile cart + menu -->
-		<button
-			data-open-cart
-			class="lg:hidden nav-link cart-btn relative min-w-[44px] min-h-[44px] flex items-center justify-center ml-auto mr-1"
-			aria-label="Open cart"
-		>
-			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-				<path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-				<circle cx="8" cy="17" r="1.2" fill="currentColor" />
-				<circle cx="14" cy="17" r="1.2" fill="currentColor" />
-			</svg>
-			<span
-				data-cart-count
-				class="hidden absolute -top-0.5 -right-0.5 bg-gold-metal text-ink text-[10px] font-bold leading-none min-w-[16px] h-[16px] rounded-full items-center justify-center px-1"
-			>0</span>
-		</button>
-
-		<!-- Mobile Menu Button -->
-		<button
-			id="mobile-menu-btn"
-			class="lg:hidden flex flex-col gap-1 p-1.5 min-w-[36px] min-h-[36px] items-center justify-center relative"
-			aria-label="Toggle menu"
-			aria-expanded="false"
-			aria-controls="mobile-drawer"
-		>
-			<span class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"></span>
-			<span class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"></span>
-			<span class="menu-line block w-5 h-0.5 bg-ivory transition-all duration-300"></span>
-		</button>
-	</div>
-
-	<!-- Mobile Drawer -->
-	<div
-		id="mobile-drawer"
-		class="hidden lg:hidden bg-ivory border-t border-gold-metal/40 py-4 shadow-xl max-h-[calc(100vh-5rem)] overflow-y-auto"
-	>
-		<nav class="flex flex-col">
-			<a
-				href="/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
-			>
-				Home
-			</a>
-
-			<!-- Services accordion -->
-			<details class="mobile-acc border-y border-gold-metal/20">
-				<summary
-					class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center justify-between cursor-pointer list-none"
-				>
-					<a href="/services/" class="hover:text-gold">Services</a>
-					<svg class="acc-caret w-3 h-3 transition-transform duration-200" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-						<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-					</svg>
-				</summary>
-				<div class="pb-2">
-					{
-						navCollections.map((col) => (
-							<details class="mobile-acc-sub" {...sbObjectId(col._id)}>
-								<summary class="text-[13px] font-medium tracking-[0.1em] uppercase text-ink/90 py-2.5 pl-8 pr-6 min-h-[44px] flex items-center justify-between cursor-pointer list-none">
-									<a href={`/services/collections/${col.slug}/`} class="hover:text-gold" {...sbFieldPath("title")}>
-										{col.title}
-									</a>
-									{col.services.length > 0 && (
-										<svg class="acc-caret w-2.5 h-2.5 transition-transform duration-200" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-											<path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-										</svg>
-									)}
-								</summary>
-								{col.services.length > 0 && (
-									<ul class="pb-1">
-										{col.services.map((svc) => (
-											<li {...sbObjectId(svc._id)}>
-												<a
-													href={`/services/${svc.slug}/`}
-													class="text-[12px] tracking-[0.06em] uppercase text-ink/75 hover:text-gold py-2 pl-12 pr-6 min-h-[40px] flex items-center"
-													{...sbFieldPath("title")}
-												>
-													{svc.title}
-												</a>
-											</li>
-										))}
-									</ul>
-								)}
-							</details>
-						))
-					}
-				</div>
-			</details>
-
-			<a
-				href="/skin-analysis/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
-			>
-				Skin Analysis
-			</a>
-			<a
-				href="/shop/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
-			>
-				Shop
-			</a>
-			<a
-				href="/experience/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
-			>
-				Experience
-			</a>
-			<a
-				href="/contact/"
-				class="mobile-nav-link text-[14px] font-medium tracking-[0.14em] uppercase text-ink py-3 px-6 min-h-[48px] flex items-center"
-			>
-				Contact
-			</a>
-			<a
-				href="/consultation/"
-				class="mobile-cta text-[12px] font-medium tracking-[0.14em] uppercase px-6 py-3 bg-green text-ivory mt-3 mx-6 min-h-[48px] inline-flex items-center justify-center"
-			>
-				Consultation
-			</a>
-		</nav>
-	</div>
+  <div id="mobile-navigation" class="mobile-navigation hidden border-t border-walnut/10 bg-bone lg:hidden">
+    <nav class="max-h-[calc(100dvh-80px)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
+      <a href="/" class="mobile-nav-link">Home</a>
+      <details class="mobile-services border-y border-walnut/10 py-1">
+        <summary class="mobile-nav-link cursor-pointer list-none">
+          Services
+          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <a href="/services/" class="mb-2 ml-4 flex min-h-11 items-center text-[13px] font-semibold text-gold">View all services</a>
+        <div class="grid gap-5 pb-5 pl-4 sm:grid-cols-2">
+          {navCollections.map((collection) => (
+            <section {...sbObjectId(collection._id)}>
+              <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
+                <a href={`/services/collections/${collection.slug}/`}>{collection.title}</a>
+              </h2>
+              <ul class="mt-2 space-y-2">
+                {collection.services.slice(0, 6).map((service) => (
+                  <li {...sbObjectId(service._id)}>
+                    <a href={`/services/${service.slug}/`} class="text-[13px] text-muted" {...sbFieldPath('title')}>
+                      {service.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </details>
+      <a href="/skin-analysis/" class="mobile-nav-link">Skin analysis</a>
+      <a href="/shop/" class="mobile-nav-link">Shop</a>
+      <a href="/experience/" class="mobile-nav-link">Experience</a>
+      <a href="/contact/" class="mobile-nav-link">Contact</a>
+      <a href="/consultation/" class="mobile-nav-link">Consultation</a>
+    </nav>
+  </div>
 </header>
 
 <script>
-	// @swup/astro re-runs every page <script> on each client-side transition
-	// (`reloadScripts` defaults to true — see CategoryNav.astro for the same
-	// gotcha hit elsewhere). Header itself sits outside swup's `main` container
-	// and is never removed, so re-running this block re-attaches a SECOND set
-	// of listeners to the same persistent hamburger button: two click handlers
-	// firing on one click toggle the state twice and cancel out, so the menu
-	// silently stops responding after the first in-app navigation. Guard on
-	// `window` (which — unlike this module's own scope — survives the re-run)
-	// so init only happens once per real page load.
-	if (!(window as unknown as { __hrHeaderInit?: boolean }).__hrHeaderInit) {
-	(window as unknown as { __hrHeaderInit?: boolean }).__hrHeaderInit = true;
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileNavigation = document.getElementById('mobile-navigation');
+  const servicesMenus = document.querySelectorAll<HTMLDetailsElement>('.services-menu');
 
-	// Sticky header behavior
-	const header = document.getElementById("header");
-	const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-	const mobileDrawer = document.getElementById("mobile-drawer");
+  const closeMobileNavigation = (): void => {
+    mobileNavigation?.classList.add('hidden');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    menuButton?.setAttribute('aria-label', 'Open navigation');
+    document.documentElement.classList.remove('menu-is-open');
+  };
 
-	/**
-	 * Does a DARK surface actually sit behind the header at the top of this page?
-	 *
-	 * The transparent header renders its nav in ivory, which only works over a
-	 * photo hero. Pages without one (/faq/, /areas/, /results/, /privacy-policy/,
-	 * /sitemap/, /thank-you/) put ivory text on the ivory page — a 1:1 contrast
-	 * ratio, i.e. invisible until the user scrolled far enough to trigger `.stuck`.
-	 *
-	 * Rather than hardcode a per-page flag, probe what's under the bar and ask
-	 * whether it lives inside an `.on-dark` region — the same marker that drives
-	 * the gold/muted colour channels. New pages inherit the correct behaviour for
-	 * free: no dark hero → solid bar.
-	 */
-	const hasDarkBackdrop = () => {
-		if (!header) return false;
-		const probe = document
-			.elementsFromPoint(Math.round(window.innerWidth / 2), 40)
-			.find((el) => !el.closest("#header"));
-		return Boolean(probe?.closest(".on-dark"));
-	};
+  menuButton?.addEventListener('click', () => {
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      closeMobileNavigation();
+      return;
+    }
+    mobileNavigation?.classList.remove('hidden');
+    menuButton.setAttribute('aria-expanded', 'true');
+    menuButton.setAttribute('aria-label', 'Close navigation');
+    document.documentElement.classList.add('menu-is-open');
+  });
 
-	const applyBackdrop = () => {
-		if (hasDarkBackdrop()) {
-			header?.classList.remove("solid");
-			if (!header?.classList.contains("stuck")) header?.classList.add("on-dark");
-		} else {
-			// Light page top → opaque ivory bar with ink nav, from the very first paint.
-			header?.classList.add("solid");
-			header?.classList.remove("on-dark");
-		}
-	};
+  mobileNavigation?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) closeMobileNavigation();
+  });
 
-	applyBackdrop();
-	window.addEventListener("resize", applyBackdrop);
+  document.addEventListener('click', (event) => {
+    for (const menu of servicesMenus) {
+      if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+    }
+  });
 
-	window.addEventListener("scroll", () => {
-		const currentScroll = window.pageYOffset;
-
-		if (currentScroll > 60) {
-			header?.classList.add("stuck");
-			header?.classList.remove("on-dark");
-		} else if (!header?.classList.contains("menu-open")) {
-			header?.classList.remove("stuck");
-			applyBackdrop(); // only go transparent again if there IS a dark hero
-		}
-	});
-
-	// Desktop "Services" dropdown — reflect open state for touch + keyboard users.
-	// Hover/focus visuals are pure CSS; this only syncs aria-expanded and lets a
-	// touch tap open the panel without navigating away on the first tap.
-	const servicesWrap = document.querySelector<HTMLElement>(".group\\/services");
-	const servicesTrigger = document.getElementById("services-trigger");
-	if (servicesWrap && servicesTrigger) {
-		const setExpanded = (open: boolean) =>
-			servicesTrigger.setAttribute("aria-expanded", open ? "true" : "false");
-		servicesWrap.addEventListener("mouseenter", () => setExpanded(true));
-		servicesWrap.addEventListener("mouseleave", () => setExpanded(false));
-		servicesWrap.addEventListener("focusin", () => setExpanded(true));
-		servicesWrap.addEventListener("focusout", (e) => {
-			if (!servicesWrap.contains(e.relatedTarget as Node)) setExpanded(false);
-		});
-		// First tap on a touch device opens the menu instead of following the link.
-		servicesTrigger.addEventListener("click", (e) => {
-			if (window.matchMedia("(hover: none)").matches) {
-				const isOpen = servicesTrigger.getAttribute("aria-expanded") === "true";
-				if (!isOpen) {
-					e.preventDefault();
-					setExpanded(true);
-					servicesWrap.classList.add("dd-touch-open");
-				}
-			}
-		});
-		document.addEventListener("click", (e) => {
-			if (!servicesWrap.contains(e.target as Node)) {
-				servicesWrap.classList.remove("dd-touch-open");
-				setExpanded(false);
-			}
-		});
-		document.addEventListener("keydown", (e) => {
-			if (e.key === "Escape") {
-				servicesWrap.classList.remove("dd-touch-open");
-				setExpanded(false);
-				(document.activeElement as HTMLElement)?.blur();
-			}
-		});
-	}
-
-	// Mobile menu toggle
-	const closeMobileMenu = () => {
-		mobileDrawer?.classList.remove("open");
-		mobileDrawer?.classList.add("hidden");
-		mobileMenuBtn?.classList.remove("open");
-		mobileMenuBtn?.setAttribute("aria-expanded", "false");
-		header?.classList.remove("menu-open");
-		// only restore the transparent/dark treatment if a dark hero is behind us
-		if (window.pageYOffset <= 60) applyBackdrop();
-	};
-
-	const openMobileMenu = () => {
-		mobileDrawer?.classList.remove("hidden");
-		mobileDrawer?.classList.add("open");
-		mobileMenuBtn?.classList.add("open");
-		mobileMenuBtn?.setAttribute("aria-expanded", "true");
-		// opaque bar + dark-on-light nav while the drawer is open
-		header?.classList.add("menu-open");
-		header?.classList.remove("on-dark");
-	};
-
-	mobileMenuBtn?.addEventListener("click", () => {
-		const isOpen = mobileDrawer?.classList.contains("open");
-		if (isOpen) {
-			closeMobileMenu();
-		} else {
-			openMobileMenu();
-		}
-	});
-
-	// Picking any nav item inside the drawer (including nested service/collection
-	// links) should close it — swup swaps the page content but never touches the
-	// header, so without this the drawer stayed open on top of the new page.
-	mobileDrawer?.addEventListener("click", (e) => {
-		if ((e.target as HTMLElement)?.closest("a")) {
-			closeMobileMenu();
-		}
-	});
-	} // end __hrHeaderInit guard
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    closeMobileNavigation();
+    for (const menu of servicesMenus) menu.open = false;
+  });
 </script>
 
 <style>
-	#header {
-		background: transparent;
-	}
-
-	#header.stuck,
-	#header.menu-open {
-		@apply bg-charcoal backdrop-blur-sm shadow-lg;
-	}
-
-	#header.stuck .brand-link img {
-		@apply h-16 md:h-24;
-	}
-
-	#header.stuck .nav-link,
-	#header.menu-open .nav-link {
-		@apply text-ink;
-		text-shadow: none;
-	}
-
-	#header.stuck .nav-link:hover,
-	#header.menu-open .nav-link:hover {
-		@apply text-gold;
-	}
-
-	/* Hamburger must be visible on BOTH surfaces: ivory over the photo hero,
-	   ink once the bar goes solid (this is why it vanished on scroll). */
-	#header.stuck .menu-line,
-	#header.menu-open .menu-line {
-		@apply bg-ink;
-	}
-
-	#header.stuck .nav-cta,
-	#header.menu-open .nav-cta {
-		@apply border-gold text-gold;
-		text-shadow: none;
-	}
-
-	#header.stuck .nav-cta:hover,
-	#header.menu-open .nav-cta:hover {
-		@apply bg-gold-metal border-gold-metal text-ink;
-	}
-
-	/* Legibility scrim for nav sitting over a photo hero. Removed once the
-	   bar is solid (see .stuck / .menu-open rules above). */
-	.nav-link {
-		text-shadow: 0 1px 10px rgba(0, 0, 0, 0.8);
-	}
-
-	.nav-cta {
-		text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-	}
-
-	/* Dropdown caret flips when the Services menu is open (hover/focus/touch). */
-	.group\/services:hover .dd-caret,
-	.group\/services:focus-within .dd-caret,
-	.dd-touch-open .dd-caret {
-		transform: rotate(180deg);
-	}
-
-	/* Touch: keep the panel visible once tapped open (no hover on touch). */
-	.dd-touch-open .dd-panel {
-		visibility: visible;
-		opacity: 1;
-	}
-
-	/* Panel text never needs the photo scrim — it sits on an ivory card. */
-	.dd-panel a,
-	.dd-flyout a {
-		text-shadow: none;
-	}
-
-	/* The dropdown is an ivory card even while the header is `.on-dark` over a
-	   photo hero. Without this re-scope it inherits the on-dark champagne gold
-	   (#E7D6A8), which is invisible on the light panel (~1:1). */
-	.dd-panel {
-		--hr-gold: 122 92 42;
-		--hr-muted: 94 85 72;
-		--hr-muted-strong: 45 40 34;
-	}
-
-	#mobile-drawer.open {
-		display: block;
-	}
-
-	/* Mobile accordion caret rotation */
-	.mobile-acc[open] > summary .acc-caret,
-	.mobile-acc-sub[open] > summary .acc-caret {
-		transform: rotate(180deg);
-	}
-
-	.mobile-acc summary::-webkit-details-marker,
-	.mobile-acc-sub summary::-webkit-details-marker {
-		display: none;
-	}
-
-	/* Hamburger → X animation */
-	#mobile-menu-btn {
-		position: relative;
-	}
-
-	#mobile-menu-btn .menu-line {
-		transform-origin: center;
-	}
-
-	#mobile-menu-btn.open .menu-line:nth-child(1) {
-		transform: translateY(5px) rotate(45deg);
-	}
-
-	#mobile-menu-btn.open .menu-line:nth-child(2) {
-		opacity: 0;
-	}
-
-	#mobile-menu-btn.open .menu-line:nth-child(3) {
-		transform: translateY(-5px) rotate(-45deg);
-	}
+  .nav-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 6px;
+    padding: 0 10px;
+    color: #3a2b24;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .nav-link:hover,
+  .nav-link-active {
+    color: #5f624d;
+  }
+  summary::-webkit-details-marker { display: none; }
+  details[open] > summary .menu-caret { transform: rotate(180deg); }
+  .menu-caret { transition: transform 160ms ease; }
+  .nav-book {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #5f624d;
+    background: #5f624d;
+    color: #f1ede5;
+    padding-inline: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .nav-book:hover { background: #4f5241; }
+  .cart-button,
+  .menu-button {
+    position: relative;
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    color: #3a2b24;
+  }
+  .cart-count {
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: 16px;
+    height: 16px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #8a6a43;
+    color: #f1ede5;
+    padding-inline: 4px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .menu-button { flex-direction: column; gap: 4px; }
+  .menu-button span { width: 20px; height: 1.5px; background: currentColor; }
+  .mobile-nav-link {
+    display: flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    color: #3a2b24;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  :global(html.menu-is-open) { overflow: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    .menu-caret { transition: none; }
+  }
 </style>

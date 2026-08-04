@@ -5,8 +5,9 @@ import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_BLOG_POSTS_QUERY, type BlogPost } from '@/lib/queries';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
+import { alignPublicContent } from '@/lib/publicCopy';
 
-const posts = await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY);
+const posts = alignPublicContent(await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY));
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -18,15 +19,16 @@ function formatDate(iso: string) {
 ---
 
 <BaseLayout
-  title="Wellness & Spa Blog | House of Rose Punta Gorda FL"
+  title="Medical Aesthetics Journal | House of Rose Punta Gorda FL"
   description="Expert insights on microchanneling, PRF, IV hydration, GLP-1, and skin health from House of Rose Aesthetics — Punta Gorda, FL."
 >
   <Hero
     title="The Rose Journal"
     kicker="Insights & Education"
-    description="Expert perspectives on wellness, beauty, and living well in Southwest Florida."
+    description="Plain-language guidance on treatment planning, skin health, wellness services, and what to ask before an appointment."
     size="small"
     backgroundImage="/images/welcome-house-of-rose.webp"
+    imageAlt="The reception area inside House of Rose Aesthetics"
   />
 
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">

@@ -64,6 +64,7 @@ const servicesLinkText = 'View Services';
     description={alignedCopy(data.heroDescription, "Call, review the services menu, or send us a message. We'll help you figure out who to see and what to book.")}
     size="small"
     backgroundImage="/images/hor-exterior.webp"
+    imageAlt="The entrance to House of Rose Aesthetics in Punta Gorda"
     titleField="heroTitle"
     kickerField="heroKicker"
     descriptionField="heroDescription"
@@ -85,13 +86,11 @@ const servicesLinkText = 'View Services';
       <div class="text-center">
         <span class="kicker" {...sbFieldPath('bookLabel')}>{servicesLabel}</span>
         <a
-          href="https://houseofrose.glossgenius.com/services"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/services/"
           class="block text-ink text-[20px] hover:text-gold transition-colors mt-3"
           {...sbFieldPath('bookLinkText')}
         >
-          {servicesLinkText}
+          {servicesLinkText.replace('View', 'Explore')}
         </a>
         <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>Review current services anytime</p>
       </div>

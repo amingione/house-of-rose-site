@@ -1,3 +1,5 @@
+import type { BookingMode } from './booking';
+
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
 const IMAGE_FIELDS = /* groq */ `
@@ -156,7 +158,9 @@ export interface Service {
   tagline?: string;
   duration?: string;
   price?: number | string;
+  bookingMode?: BookingMode;
   bookingUrl?: string;
+  bookingVerifiedAt?: string;
   description?: string;
   whoItsFor?: string;
   concerns?: ServiceConcern[];
@@ -335,7 +339,7 @@ export interface BlogPost {
   excerpt?: string;
   featuredImage?: SanityImage;
   body?: PortableTextBlock[];
-  relatedService?: { title: string; slug: string; tagline?: string };
+  relatedService?: ServiceRef;
   seo?: { metaTitle?: string; metaDescription?: string };
   estimatedReadingTime?: number;
 }
@@ -390,6 +394,9 @@ export const ALL_SERVICES_QUERY = /* groq */ `
     tagline,
     duration,
     price,
+    bookingMode,
+    bookingUrl,
+    bookingVerifiedAt,
     _updatedAt,
     ${IMAGE_FIELDS},
     collection->{ title, "slug": slug.current },
@@ -422,12 +429,17 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       tagline,
       price,
       duration,
+      bookingMode,
+      bookingUrl,
+      bookingVerifiedAt,
       ${IMAGE_FIELDS}
     },
     tagline,
     price,
     duration,
+    bookingMode,
     bookingUrl,
+    bookingVerifiedAt,
     description,
     whoItsFor,
     "concerns": concerns[]->{
@@ -485,6 +497,9 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       title,
       "slug": slug.current,
       tagline,
+      bookingMode,
+      bookingUrl,
+      bookingVerifiedAt,
       ${IMAGE_FIELDS}
     },
     "comparisons": *[
@@ -522,6 +537,9 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
       tagline,
       duration,
       price,
+      bookingMode,
+      bookingUrl,
+      bookingVerifiedAt,
       ${IMAGE_FIELDS}
     }
   }
@@ -575,6 +593,9 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
         "slug": slug.current,
         tagline,
         duration,
+        bookingMode,
+        bookingUrl,
+        bookingVerifiedAt,
         ${IMAGE_FIELDS}
       },
       "image": image {
@@ -604,6 +625,9 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
       tagline,
       duration,
       price,
+      bookingMode,
+      bookingUrl,
+      bookingVerifiedAt,
       ${IMAGE_FIELDS}
     }
   }
@@ -750,6 +774,9 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
       tagline,
       price,
       duration,
+      bookingMode,
+      bookingUrl,
+      bookingVerifiedAt,
       ${IMAGE_FIELDS}
     }
   }
@@ -801,7 +828,7 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
       alt
     },
     body,
-    "relatedService": relatedService->{ title, "slug": slug.current, tagline },
+    "relatedService": relatedService->{ title, "slug": slug.current, tagline, bookingMode, bookingUrl, bookingVerifiedAt },
     "seo": seo { metaTitle, metaDescription },
     "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
   }
@@ -957,6 +984,9 @@ export interface ServiceRef {
   tagline?: string;
   price?: number | string;
   duration?: string;
+  bookingMode?: BookingMode;
+  bookingUrl?: string;
+  bookingVerifiedAt?: string;
 }
 
 // 2. Cost guide — /cost/[slug]
@@ -1048,7 +1078,7 @@ export interface CaseStudy {
 }
 
 const SERVICE_REF_FIELDS = /* groq */ `
-  _id, title, "slug": slug.current, tagline, price, duration
+  _id, title, "slug": slug.current, tagline, price, duration, bookingMode, bookingUrl, bookingVerifiedAt
 `;
 
 // ── Cost guides ──────────────────────────────────────────────────────────────
@@ -1175,7 +1205,7 @@ const CANONICAL_AI_FAQ_ANSWERS = {
   location:
     'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The practice serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.',
   booking:
-    'Call (844) 941-7673 to reserve a time, or review the service menu at https://houseofrose.glossgenius.com/services. Walk-ins are welcome; appointments are recommended for guaranteed timing.',
+    'Call (844) 941-7673 for help choosing an appointment, or review services at https://houseofrosefl.com/services/. Walk-ins are welcome; appointments are recommended to reserve a time.',
 } as const;
 
 // These three answers contain canonical business facts. Keep the Sanity-authored

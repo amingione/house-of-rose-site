@@ -86,6 +86,9 @@ export type MeasurementEvent =
   | {
       event: 'phone_click' | 'sms_click' | 'booking_click';
       link_location: string;
+      service_slug?: string;
+      booking_mode?: 'direct' | 'consultation' | 'phone';
+      cta_location?: string;
     }
   | {
       event: 'consent_update';
@@ -125,12 +128,15 @@ interface MeasurementWindow extends Window {
     ahrefsKey?: string;
     metaPixelId?: string;
     openAIAdsPixelId?: string;
+    gtmContainerId?: string;
+    gtmMeasurementPath?: string;
   };
   __horLoadedScripts?: Set<string>;
   __horAhrefsInitialized?: boolean;
   __horOpenAIAdsInitialized?: boolean;
   __horLastPageView?: string;
   __horLastMetaPageView?: string;
+  __horGtmInitialized?: boolean;
 }
 
 interface OpenAIAdsContent {
@@ -274,6 +280,28 @@ const loadScript = (id: string, src: string): void => {
   w.__horLoadedScripts.add(id);
 };
 
+const loadGoogleTagManager = (consent: ConsentStateV1): void => {
+  const w = browser();
+  const containerId = w.__horMeasurementConfig?.gtmContainerId;
+  const measurementPath = w.__horMeasurementConfig?.gtmMeasurementPath;
+  const hasMeasurementConsent =
+    consent.analytics_storage === 'granted' || consent.ad_storage === 'granted';
+  if (
+    isLocalMeasurementHost() ||
+    !hasMeasurementConsent ||
+    w.__horGtmInitialized ||
+    !containerId ||
+    !/^GTM-[A-Z0-9]+$/.test(containerId) ||
+    !measurementPath ||
+    !/^\/[A-Za-z0-9_-]+\/$/.test(measurementPath)
+  ) return;
+
+  w.__horGtmInitialized = true;
+  w.dataLayer ??= [];
+  w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+  loadScript('hor-google-tag-manager', `${measurementPath}?id=${encodeURIComponent(containerId)}`);
+};
+
 export const loadAhrefs = (consent: ConsentStateV1): void => {
   const w = browser();
   const key = w.__horMeasurementConfig?.ahrefsKey;
@@ -293,8 +321,8 @@ export const loadAhrefs = (consent: ConsentStateV1): void => {
     return;
   }
 
-  // Swup and dev HMR can re-run component modules while the same Window (and
-  // Ahrefs runtime) survives. Mark the vendor initialized before insertion so
+  // Dev HMR can re-run component modules while the same Window (and Ahrefs
+  // runtime) survives. Mark the vendor initialized before insertion so
   // concurrent/replayed lifecycle hooks cannot append analytics.js twice.
   w.__horAhrefsInitialized = true;
   const script = document.createElement('script');
@@ -549,6 +577,7 @@ export const applyConsent = (
     },
   });
   loadAhrefs(consent);
+  loadGoogleTagManager(consent);
   loadMeta(consent);
   loadOpenAIAds(consent);
   if (previous.ad_storage !== 'granted' && consent.ad_storage === 'granted') {
@@ -677,6 +706,7 @@ export const initializeConsentAwareVendors = (): void => {
     ad_personalization: consent.ad_personalization,
   });
   loadAhrefs(consent);
+  loadGoogleTagManager(consent);
   loadMeta(consent);
   loadOpenAIAds(consent);
 };

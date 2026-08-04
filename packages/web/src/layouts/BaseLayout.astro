@@ -1,6 +1,5 @@
 ---
 import '@/styles/global.css';
-import '@polgubau/astro-reveal/styles';
 import { sanityFetch } from '@/lib/sanity';
 import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
 import Header from '@/components/Header.astro';
@@ -10,7 +9,6 @@ import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import LeadAnalytics from '@/components/LeadAnalytics.astro';
 import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
 import ConsentManager from '@/components/ConsentManager.astro';
-import GoogleTagManager from '@/components/GoogleTagManager.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph } from '@/lib/structuredData';
@@ -22,6 +20,8 @@ interface Props {
   image?: string;
   imageAlt?: string;
   preloadImage?: string;
+  preloadImageSrcset?: string;
+  preloadImageSizes?: string;
   noindex?: boolean;
   nofollow?: boolean;
   chrome?: 'site' | 'landing';
@@ -37,6 +37,8 @@ const {
   image,
   imageAlt,
   preloadImage,
+  preloadImageSrcset,
+  preloadImageSizes,
   noindex = false,
   nofollow = false,
   chrome = 'site',
@@ -78,7 +80,16 @@ const entityGraph = siteEntityGraph(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {gscVerify && <meta name="google-site-verification" content={gscVerify} />}
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage}
+        imagesrcset={preloadImageSrcset}
+        imagesizes={preloadImageSizes}
+        fetchpriority="high"
+      />
+    )}
     <SEO
       title={pageTitle}
       description={description}
@@ -116,9 +127,8 @@ const entityGraph = siteEntityGraph(
     <ConsentBootstrap />
     <script
       is:inline
-      set:html={`window.__horMeasurementConfig={ahrefsKey:${JSON.stringify(ahrefsKey ?? '')},metaPixelId:${JSON.stringify(metaPixelId ?? '')},openAIAdsPixelId:${JSON.stringify(openAIAdsPixelId ?? '')}};`}
+      set:html={`window.__horMeasurementConfig={ahrefsKey:${JSON.stringify(ahrefsKey ?? '')},metaPixelId:${JSON.stringify(metaPixelId ?? '')},openAIAdsPixelId:${JSON.stringify(openAIAdsPixelId ?? '')},gtmContainerId:${JSON.stringify(gtmId ?? '')},gtmMeasurementPath:${JSON.stringify(gtmMeasurementPath)}};`}
     ></script>
-    <GoogleTagManager containerId={gtmId} measurementPath={gtmMeasurementPath} />
     <!-- Favicons — generated from 512px transparent source -->
     <link rel="icon" type="image/x-icon" href="/logos/hr-monogram-2026/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/logos/hr-monogram-2026/favicon-16.png" />
@@ -136,19 +146,15 @@ const entityGraph = siteEntityGraph(
     {chrome === 'site' && <Header currentPath={Astro.url.pathname} />}
 
     <!-- Page content -->
-    <main id="main-content" class={chrome === 'site' ? 'transition-fade' : undefined}>
+    <main id="main-content">
       <slot />
     </main>
 
     {chrome === 'site' && <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />}
 
-    <!-- Rendered once, outside <main>, so the cart survives swup navigation -->
+    <!-- Cart UI remains outside main so it does not interfere with page landmarks. -->
     {chrome === 'site' && <CartDrawer />}
 
-    <!-- Scroll-reveal init — zero JS shipped unless data-reveal attributes are present on the page -->
-    <script>
-      import '@polgubau/astro-reveal';
-    </script>
     <LeadAnalytics />
     <ConsentManager />
     <KlaviyoOnsite />

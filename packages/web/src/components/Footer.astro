@@ -1,179 +1,122 @@
 ---
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+
 interface Props {
-	services?: Array<{ title: string; slug: string }>;
+  services?: Array<{ title: string; slug: string }>;
 }
 
 const { services = [] } = Astro.props;
-
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="on-dark bg-walnut border-t border-gold-metal/20 py-11 px-6">
-	<div class="max-w-[1280px] mx-auto">
-		<!-- Top section -->
-		<div class="flex justify-between flex-wrap gap-8 mb-8">
-			<!-- Brand -->
-			<div>
-				<p
-					class="font-serif text-gold tracking-[0.3em] text-[13px] uppercase"
-				>
-					House of Rose Aesthetics
-				</p>
-				<p
-					class="text-muted text-[11px] font-medium tracking-[0.26em] uppercase mt-1"
-				>
-					Punta Gorda, FL
-				</p>
-			</div>
+<footer class="on-dark border-t border-ivory/10 bg-walnut px-6 pb-8 pt-[clamp(56px,8vw,88px)]">
+  <div class="mx-auto max-w-[1280px]">
+    <div class="grid gap-12 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1fr] lg:gap-10">
+      <div>
+        <p class="font-serif text-[30px] leading-tight text-ivory">House of Rose Aesthetics</p>
+        <p class="mt-3 text-[12px] font-semibold tracking-[0.1em] uppercase text-gold">Medical Aesthetics Practice</p>
+        <p class="mt-6 max-w-[360px] text-[14px] leading-[1.75] text-muted">
+          Consultation-led skin, injectable, facial, body, IV hydration, and wellness care in Punta Gorda, Florida.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a
+            href={GLOSSGENIUS_SERVICES_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-gold"
+            data-global-booking
+            data-cta-location="footer-global"
+          >
+            Book
+          </a>
+          <a href="/consultation/" class="btn-outline-white">Consultation</a>
+        </div>
+      </div>
 
-			<!-- Links -->
-			<div class="grid w-full grid-cols-2 gap-x-6 text-[11px] sm:w-auto sm:grid-cols-3 sm:gap-x-8 lg:gap-x-10">
-				<!-- Main Navigation -->
-				<div class="flex flex-col gap-0.5">
-					<a
-						href="/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Home
-					</a>
-					<a
-						href="/services/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Services
-					</a>
-					<a
-						href="/experience/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Experience
-					</a>
-					<a
-						href="/shop/jane-iredale/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Jane Iredale
-					</a>
-					<a
-						href="/packages/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Packages
-					</a>
-					<a
-						href="/shop/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Shop
-					</a>
-					<a
-						href="/blog/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Journal
-					</a>
-					<a
-						href="/contact/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Contact
-					</a>
-					<a
-						href="/rent-a-room/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Rent a Suite
-					</a>
-					<a
-						href="/privacy-policy/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Privacy Policy
-					</a>
-					<a
-						href="/terms-of-service/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Terms of Service
-					</a>
-					<a
-						href="/shipping-policy/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Shipping Policy
-					</a>
-					<a
-						href="/return-policy/"
-						class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Return Policy
-					</a>
-					<button
-						id="privacy-choices"
-						type="button"
-						class="footer-link text-left text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-					>
-						Privacy choices
-					</button>
-				</div>
+      <nav aria-label="Practice">
+        <h2 class="footer-heading">Practice</h2>
+        <ul class="footer-list">
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/experience/">Experience</a></li>
+          <li><a href="/results/">Results</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/rent-a-room/">Rent a suite</a></li>
+        </ul>
+      </nav>
 
-					<!-- Resources / AEO hubs -->
-					<div class="flex flex-col gap-0.5">
-						<a href="/faq/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">FAQ</a>
-						<a href="/support/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Support</a>
-						<a href="/services/microneedling/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Needling Guide</a>
-						<a href="/skin-analysis/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">AI Skin Analysis</a>
-						<a href="/cost/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Pricing Guides</a>
-						<a href="/compare/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Compare Treatments</a>
-						<a href="/services/collections/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Collections</a>
-						<a href="/areas/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Areas We Serve</a>
-						<a href="/results/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Results</a>
-						<a href="/sitemap/" class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold">Sitemap</a>
-					</div>
+      <nav aria-label="Explore">
+        <h2 class="footer-heading">Explore</h2>
+        <ul class="footer-list">
+          <li><a href="/skin-analysis/">Skin analysis</a></li>
+          <li><a href="/concerns/">Concerns</a></li>
+          <li><a href="/compare/">Compare treatments</a></li>
+          <li><a href="/cost/">Cost guides</a></li>
+          <li><a href="/areas/">Areas we serve</a></li>
+          <li><a href="/blog/">Journal</a></li>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/shop/jane-iredale/">Jane Iredale</a></li>
+        </ul>
+      </nav>
 
-					<!-- Service Links -->
-				{
-					services.length > 0 && (
-						<div class="flex flex-col gap-0.5">
-							{services.slice(0, 5).map((service) => (
-								<a
-									href={`/services/${service.slug}/`}
-									class="footer-link text-muted tracking-[0.16em] uppercase py-2 min-h-[44px] flex items-center transition-colors duration-200 hover:text-gold"
-								>
-									{service.title}
-								</a>
-							))}
-						</div>
-					)
-				}
-			</div>
-		</div>
+      <div>
+        <h2 class="footer-heading">Visit</h2>
+        <address class="text-[14px] not-italic leading-[1.8] text-muted">
+          525 E Olympia Ave, Unit 9<br />
+          Punta Gorda, FL 33950<br />
+          <a href="tel:+18449417673" class="text-ivory hover:text-gold">(844) 941-7673</a>
+        </address>
+        <p class="mt-5 text-[13px] leading-[1.7] text-muted">
+          Walk-ins are welcome when the schedule allows. Appointments are recommended to reserve a time.
+        </p>
+        {services.length > 0 && (
+          <div class="mt-7 border-t border-ivory/10 pt-6">
+            <h2 class="footer-heading">Popular services</h2>
+            <ul class="space-y-2">
+              {services.slice(0, 5).map((service) => (
+                <li><a href={`/services/${service.slug}/`} class="text-[13px] text-muted hover:text-ivory">{service.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
 
-		<!-- Bottom section -->
-		<div
-			class="border-t border-ivory/10 pt-5 flex justify-between flex-wrap gap-1.5"
-		>
-			<p class="text-muted text-[11px] tracking-[0.16em]">
-				© {currentYear} House of Rose Aesthetics LLC. All rights reserved.
-			</p>
-			<address
-				class="not-italic text-muted text-[11px] tracking-[0.16em] text-right"
-			>
-				<span
-					>525 E Olympia Ave, Unit 9 &mdash; Punta Gorda, FL 33950</span
-				>
-				<span class="mx-1.5 opacity-40">|</span>
-				<a
-					href="tel:+18449417673"
-					class="hover:text-gold transition-colors">(844) 941-7673</a
-				>
-			</address>
-		</div>
-	</div>
+    <div class="mt-14 flex flex-col gap-5 border-t border-ivory/10 pt-7 text-[12px] text-muted lg:flex-row lg:items-center lg:justify-between">
+      <p>© {currentYear} House of Rose Aesthetics LLC. All rights reserved.</p>
+      <nav aria-label="Legal" class="flex flex-wrap gap-x-5 gap-y-3">
+        <a href="/privacy-policy/" class="hover:text-ivory">Privacy</a>
+        <button id="privacy-choices" type="button" class="hover:text-ivory">Privacy choices</button>
+        <a href="/terms-of-service/" class="hover:text-ivory">Terms</a>
+        <a href="/shipping-policy/" class="hover:text-ivory">Shipping</a>
+        <a href="/return-policy/" class="hover:text-ivory">Returns</a>
+        <a href="/sitemap/" class="hover:text-ivory">Sitemap</a>
+      </nav>
+    </div>
+  </div>
 </footer>
 
 <script>
-	document.getElementById('privacy-choices')?.addEventListener('click', () => {
-		window.dispatchEvent(new CustomEvent('hor:open-consent'));
-	});
+  document.getElementById('privacy-choices')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('hor:open-consent'));
+  });
 </script>
+
+<style>
+  .footer-heading {
+    margin-bottom: 18px;
+    color: #f1ede5;
+    font-family: "Avenir Next", Avenir, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .footer-list { display: grid; gap: 11px; }
+  .footer-list a {
+    color: rgb(var(--hr-muted));
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .footer-list a:hover { color: #f1ede5; }
+</style>

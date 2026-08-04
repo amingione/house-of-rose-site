@@ -8,6 +8,7 @@ import {
   type CaseStudy,
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, imageObject } from '@/lib/structuredData';
 
 export async function getStaticPaths() {
@@ -99,7 +100,17 @@ const pageDescription = cs.seo?.metaDescription ?? cs.outcome ?? `${cs.title} be
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Ready for your own results?</h2>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="/consultation/" class="btn-gold">Request a Consultation</a>
+        {cs.treatment ? (
+          <BookingLink
+            slug={cs.treatment.slug}
+            bookingMode={cs.treatment.bookingMode}
+            bookingUrl={cs.treatment.bookingUrl}
+            location="result_final"
+            class="btn-gold"
+          />
+        ) : (
+          <a href="/consultation/" class="btn-gold">Request a Consultation</a>
+        )}
       </div>
     </div>
   </section>

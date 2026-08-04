@@ -2,7 +2,7 @@
 /**
  * /amber/ — Amber Mingione digital business card (tap-to-share contact page).
  *
- * Standalone, full-bleed luxury card matching the black-and-gold Canva business
+ * Standalone, full-bleed contact card matching the black-and-gold Canva business
  * card — intentionally rendered WITHOUT the site Header/Footer chrome so it reads
  * as a clean, distraction-free contact card for NFC taps, QR scans, and link shares.
  *
@@ -68,19 +68,6 @@ const personLd = personProfile({
     <SchemaMarkup item={personLd} />
 
     <style>
-      @font-face {
-        font-family: 'Cochin';
-        src: url('/fonts/Cochin-Regular.woff2') format('woff2'),
-             url('/fonts/Cochin-Regular.woff') format('woff');
-        font-weight: 400; font-style: normal; font-display: swap;
-      }
-      @font-face {
-        font-family: 'Cochin';
-        src: url('/fonts/Cochin-Bold.woff2') format('woff2'),
-             url('/fonts/Cochin-Bold.woff') format('woff');
-        font-weight: 700; font-style: normal; font-display: swap;
-      }
-
       :root {
         --gold: #c9a24b;
         --gold-soft: #e7d6a8;
@@ -89,7 +76,7 @@ const personLd = personProfile({
         --panel: #161514;
         --txt: #f4ecdc;
         --muted: #b9ad96;
-        --serif: 'Cochin', Georgia, 'Times New Roman', serif;
+        --serif: Baskerville, Georgia, 'Times New Roman', serif;
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }

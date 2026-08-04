@@ -11,31 +11,14 @@ import {
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage } from '@/lib/structuredData';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 const [aiSearchFaqData, groupData] = await Promise.all([
   sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
   sanityFetch<FaqGroup[]>(FAQ_AGGREGATE_QUERY),
 ]);
-const aiSearchFaq = aiSearchFaqData
-  ? {
-      ...aiSearchFaqData,
-      intro: aiSearchFaqData.intro ? alignPublicChannelCopy(aiSearchFaqData.intro) : undefined,
-      faqs: aiSearchFaqData.faqs?.map((item) => ({
-        ...item,
-        question: alignPublicChannelCopy(item.question),
-        answer: alignPublicChannelCopy(item.answer),
-      })),
-    }
-  : null;
-const groups: FaqGroup[] = groupData.map((group) => ({
-  ...group,
-  faqs: group.faqs.map((item) => ({
-    ...item,
-    question: alignPublicChannelCopy(item.question),
-    answer: alignPublicChannelCopy(item.answer),
-  })),
-}));
+const aiSearchFaq = aiSearchFaqData ? alignPublicContent(aiSearchFaqData) : null;
+const groups: FaqGroup[] = alignPublicContent(groupData);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 

@@ -56,7 +56,7 @@ const RULES = [
   { label: 'Banned positioning "day spa"', re: /day spa/i },
   { label: 'Wrong visit policy (walk-ins are welcome)', re: /appointment[- ]only|walk-ins? (?:are )?not (?:offered|accepted)|no walk-ins?/i },
   { label: 'Unavailable SMS CTA (SMS verification is pending)', re: /call\s*(?:or|\/)\s*text|sms:\+?18449417673/i },
-  { label: 'Direct online-booking CTA (use consultation/contact or services menu)', re: /\bBook Online\b|houseofrose\.glossgenius\.com\/book/ },
+  { label: 'Retired GlossGenius host (use houseofrose.glossgenius.com)', re: /houseofrosefl\.glossgenius\.com/i },
   { label: 'Old Instagram profile', re: /instagram\.com\/houseofrosefl\/?|@houseofrosefl(?!\.com)\b/i },
   { label: 'Old Facebook profile', re: /facebook\.com\/(?:people\/)?House-Of-Rose-Aesthetics/i },
   { label: 'Old Facebook profile-ID URL (use /hofraesthetics)', re: /facebook\.com\/profile\.php\?id=61590233534310/i },
@@ -89,6 +89,8 @@ const WARN_RULES = [
 const WARN_EXEMPT = [
   // Code/CSS/markup comments — implementation notes, not customer-facing words.
   /^\s*(?:\/\/|\/\*|\*(?!\/)|<!--)/,
+  // Sanitizer patterns name retired phrases only so public CMS copy can be rewritten at render time.
+  /\.replace\(\/.*(?:guaranteed results|treat yourself|best version of yourself|instant transformation)/i,
   // Real vendor product names we resell. "Glow Time" is Jane Iredale's SKU, not our voice.
   /Glow Time|Radiance-Boosting|Skintuition/i,
   // Cosmetic *finish* vocabulary. "Radiant coverage" is a foundation finish type (the
@@ -152,7 +154,8 @@ function scanFile(file) {
       }
     }
     const reviewed = REVIEWED_EXCEPTION.test(text) || REVIEWED_EXCEPTION.test(lines[i - 1] ?? '');
-    if (!reviewed && !WARN_EXEMPT.some((re) => re.test(text))) {
+    const sanitizerPattern = rel.endsWith('packages/web/src/lib/publicCopy.ts') && (/\.replace\(/.test(text) || /^\s*\//.test(text));
+    if (!reviewed && !sanitizerPattern && !WARN_EXEMPT.some((re) => re.test(text))) {
       for (const { label, re } of WARN_RULES) {
         if (re.test(text)) {
           warnings.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });

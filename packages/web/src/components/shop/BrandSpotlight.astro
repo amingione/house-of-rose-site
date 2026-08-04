@@ -19,7 +19,7 @@ const isRealDoc = !brand._id.startsWith('fallback-');
 {products.length > 0 && (
   <section class="bg-charcoal py-[clamp(40px,6vw,72px)] px-6 border-t border-gold-metal/5" id={brand.brandKey}>
     <div class="max-w-[1280px] mx-auto">
-      <div class="max-w-[700px] mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4" data-reveal="left" data-speed="fast" {...(isRealDoc ? sbObjectId(brand._id) : {})}>
+      <div class="max-w-[700px] mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4" {...(isRealDoc ? sbObjectId(brand._id) : {})}>
         <div>
           <span class="kicker" {...(isRealDoc ? sbFieldPath('title') : {})}>{brand.title}</span>
           {brand.story && <p class="text-muted text-[15px] leading-[1.75] mt-3" {...(isRealDoc ? sbFieldPath('story') : {})}>{brand.story}</p>}
@@ -30,9 +30,9 @@ const isRealDoc = !brand._id.startsWith('fallback-');
           </a>
         )}
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gold-metal/10" data-stagger="80">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gold-metal/10">
         {products.map((product) => (
-          <ProductCard product={product} reveal="bottom" />
+          <ProductCard product={product} />
         ))}
       </div>
     </div>

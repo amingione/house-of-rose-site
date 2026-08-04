@@ -1,20 +1,33 @@
 ---
-// Keep local development traffic out of Klaviyo while loading it on every
-// production page that includes this component.
 const enabled = !import.meta.env.DEV;
 ---
 
 {enabled && (
-  <>
-    <script
-      is:inline
-      async
-      type="text/javascript"
-      src="https://static.klaviyo.com/onsite/js/T7jqwt/klaviyo.js?company_id=T7jqwt"
-    ></script>
-    <script is:inline type="text/javascript">
-      // Initialize Klaviyo object on page load
-      !function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
-    </script>
-  </>
+  <script>
+    import { getConsent } from '@/lib/measurement';
+
+    interface KlaviyoWindow extends Window {
+      _klOnsite?: unknown[];
+      __horKlaviyoLoaded?: boolean;
+    }
+
+    const loadKlaviyo = (): void => {
+      const consent = getConsent();
+      if (consent.ad_personalization !== 'granted') return;
+
+      const browser = window as KlaviyoWindow;
+      if (browser.__horKlaviyoLoaded || document.getElementById('hor-klaviyo-onsite')) return;
+      browser.__horKlaviyoLoaded = true;
+      browser._klOnsite ??= [];
+
+      const script = document.createElement('script');
+      script.id = 'hor-klaviyo-onsite';
+      script.src = 'https://static.klaviyo.com/onsite/js/T7jqwt/klaviyo.js?company_id=T7jqwt';
+      script.async = true;
+      document.head.append(script);
+    };
+
+    window.addEventListener('hor:consent-updated', loadKlaviyo);
+    loadKlaviyo();
+  </script>
 )}

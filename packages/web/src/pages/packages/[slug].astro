@@ -10,6 +10,7 @@ import {
   type TreatmentPackage,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -17,13 +18,14 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const pkg = await sanityFetch<TreatmentPackage>(TREATMENT_PACKAGE_BY_SLUG_QUERY, { slug });
+const packageData = await sanityFetch<TreatmentPackage>(TREATMENT_PACKAGE_BY_SLUG_QUERY, { slug });
 
 // Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
 // Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
-if (!pkg) {
+if (!packageData) {
   throw new Error(`[packages/[slug]] No treatment package found in Sanity for slug "${slug}"`);
 }
+const pkg = alignPublicContent(packageData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
@@ -154,8 +156,8 @@ const pageDescription = summary;
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          View Services
+        <a href="/consultation/" class="btn-gold">
+          Request a Consultation
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

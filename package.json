@@ -28,6 +28,15 @@
     "content:humanize:verify": "npm exec --workspace packages/studio -- sanity exec scripts/prepare-humanized-copy.mjs --with-user-token -- --verify",
     "content:brand-search": "node scripts/run-with-env.mjs node packages/studio/scripts/reinforce-brand-search.mjs",
     "content:brand-search:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/reinforce-brand-search.mjs --apply",
+    "content:homepage-conversion": "node scripts/run-with-env.mjs node packages/studio/scripts/refresh-homepage-conversion-copy.mjs",
+    "content:homepage-conversion:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/refresh-homepage-conversion-copy.mjs --apply",
+    "booking:reconcile": "node scripts/run-with-env.mjs node packages/studio/scripts/reconcile-glossgenius-booking.mjs",
+    "booking:reconcile:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/reconcile-glossgenius-booking.mjs --apply",
+    "booking:test": "node --no-warnings --test scripts/booking/*.test.ts",
+    "booking:verify-build": "node scripts/booking/verify-built-booking.mjs",
+    "test:e2e": "npm run build:web && playwright test",
+    "test:e2e:built": "playwright test",
+    "visual:baselines": "node scripts/visual/capture-conversion-baselines.mjs",
     "dev:visual": "node scripts/visual-editing/dev-visual.mjs",
     "shopify:validate": "node scripts/validate-shopify-theme.mjs packages/shopify-theme",
     "shopify:check": "shopify theme check --path packages/shopify-theme",
@@ -49,6 +58,7 @@
     "node": ">=22.12"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@stackbit/cli": "^0.3.136",
     "@stackbit/cms-sanity": "^0.2.93",
     "@stackbit/types": "^2.1.15",

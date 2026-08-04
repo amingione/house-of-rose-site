@@ -5,8 +5,9 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COST_GUIDES_QUERY, type CostGuide } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
-const guides = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
+const guides = alignPublicContent(await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 

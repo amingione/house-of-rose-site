@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
@@ -11,6 +12,7 @@ import {
 import { toHTML } from '@portabletext/to-html';
 import { blogPosting, breadcrumbList } from '@/lib/structuredData';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_BLOG_POST_SLUGS_QUERY);
@@ -18,13 +20,14 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post = await sanityFetch<BlogPost>(BLOG_POST_BY_SLUG_QUERY, { slug });
+const postData = await sanityFetch<BlogPost>(BLOG_POST_BY_SLUG_QUERY, { slug });
 
 // Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
 // Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
-if (!post) {
+if (!postData) {
   throw new Error(`[blog/[slug]] No blog post found in Sanity for slug "${slug}"`);
 }
+const post = alignPublicContent(postData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
@@ -169,9 +172,13 @@ const breadcrumbSchema = breadcrumbList([
           <a href={`/services/${post.relatedService.slug}/`} class="btn-outline-gold">
             Learn More
           </a>
-          <a href="/consultation/" class="btn-gold">
-            Request a Consultation
-          </a>
+          <BookingLink
+            slug={post.relatedService.slug}
+            bookingMode={post.relatedService.bookingMode}
+            bookingUrl={post.relatedService.bookingUrl}
+            location="journal_related_service"
+            class="btn-gold"
+          />
         </div>
       </div>
     </section>
@@ -188,8 +195,8 @@ const breadcrumbSchema = breadcrumbList([
         <p class="text-muted text-[15px] mb-8">
           Call or request a consultation to talk through the options available in Punta Gorda.
         </p>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          View Services
+        <a href="/services/" class="btn-gold">
+          Explore Services
         </a>
       </div>
     </section>

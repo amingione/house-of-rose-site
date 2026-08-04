@@ -10,7 +10,7 @@ import { atom, computed } from 'nanostores';
  * tampered localStorage payload can change what the drawer *looks* like and
  * nothing else.
  *
- * Persisted to localStorage so the cart survives reloads and swup navigations.
+ * Persisted to localStorage so the cart survives page reloads.
  */
 
 export interface CartItem {

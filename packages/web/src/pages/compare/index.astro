@@ -5,8 +5,9 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COMPARISONS_QUERY, type Comparison } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
-const comparisons = await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY);
+const comparisons = alignPublicContent(await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 

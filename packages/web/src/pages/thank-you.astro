@@ -67,13 +67,11 @@ const servicesCta = /book|schedule/i.test(data.ctaSecondaryText ?? '')
           {data.ctaPrimaryText ?? 'Back to Home'}
         </a>
         <a
-          href="https://houseofrose.glossgenius.com/services"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/services/"
           class="btn-gold"
           {...sbFieldPath('ctaSecondaryText')}
         >
-          {servicesCta}
+          {servicesCta.replace('View', 'Explore')}
         </a>
       </div>
 

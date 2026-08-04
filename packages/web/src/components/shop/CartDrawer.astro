@@ -1,7 +1,6 @@
 ---
 /**
- * Slide-in cart. Rendered once in BaseLayout so it survives swup navigation and
- * every page can open it.
+ * Slide-in cart rendered once in BaseLayout so every page can open it.
  *
  * The markup is static; nanostores drives the contents. Prices shown here are the
  * display snapshot from the store — the server recomputes the real total at checkout
@@ -68,14 +67,7 @@
   } from '@/stores/cart';
   import { dispatchMeasurement } from '@/lib/measurement';
 
-  /**
-   * The drawer lives OUTSIDE <main>, so swup never replaces it — its listeners and
-   * store subscriptions must be attached exactly once. The add-to-cart buttons DO live
-   * inside <main> and are replaced on every navigation, so they rebind each time.
-   *
-   * Conflating the two is what made `qty-up` increment twice (two delegated click
-   * listeners on the same persistent <ul>).
-   */
+  /** Keep the persistent drawer listeners single-bound to avoid duplicate quantity changes. */
   let drawerBound = false;
 
   function bindDrawer(): void {
@@ -239,7 +231,7 @@
     drawerBound = true;
   }
 
-  /** Buttons live inside <main> — swup swaps them out, so rebind after every nav. */
+  /** Bind the controls rendered on the current page. */
   function bindButtons(): void {
     document.querySelectorAll<HTMLButtonElement>('[data-add-to-cart]').forEach((btn) => {
       if (btn.dataset.bound) return;
@@ -288,9 +280,4 @@
   }
 
   init();
-  // `astro:page-load` is what @swup/astro actually dispatches on the `page:view` hook
-  // (see node_modules/@swup/astro/dist/script.js) — `swup:enable` / `swup:contentReplaced`
-  // are not real events from this integration and never fired, so buttons rendered by a
-  // client-side nav never got bound. This is the fix for "Add to Cart doesn't work."
-  document.addEventListener('astro:page-load', init);
 </script>

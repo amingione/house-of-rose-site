@@ -16,7 +16,14 @@
 
       const rawHref = target.getAttribute('href') ?? '';
       if (rawHref.startsWith('tel:')) {
-        dispatchMeasurement({ event: 'phone_click', link_location: window.location.pathname });
+        const mode = target.dataset.bookingMode;
+        dispatchMeasurement({
+          event: 'phone_click',
+          link_location: window.location.pathname,
+          service_slug: target.dataset.bookingService || undefined,
+          booking_mode: mode === 'phone' ? mode : undefined,
+          cta_location: target.dataset.ctaLocation || undefined,
+        });
       } else if (rawHref.startsWith('sms:')) {
         dispatchMeasurement({ event: 'sms_click', link_location: window.location.pathname });
       } else {
@@ -42,7 +49,17 @@
             });
           }
           if (destination.hostname.endsWith('glossgenius.com')) {
-            dispatchMeasurement({ event: 'booking_click', link_location: window.location.pathname });
+            const mode = target.dataset.bookingMode;
+            dispatchMeasurement({
+              event: 'booking_click',
+              link_location: window.location.pathname,
+              service_slug: target.dataset.bookingService || undefined,
+              booking_mode:
+                mode === 'direct' || mode === 'consultation' || mode === 'phone'
+                  ? mode
+                  : undefined,
+              cta_location: target.dataset.ctaLocation || undefined,
+            });
           }
         } catch {
           // Ignore non-URL links.
@@ -58,6 +75,5 @@
     trackPageView();
   };
 
-  document.addEventListener('astro:page-load', initialize);
   initialize();
 </script>

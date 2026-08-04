@@ -68,10 +68,74 @@ export const service = defineType({
       description: 'Starting-at price shown on the site (e.g., "From $399"). Leave empty for consult-only services.',
     }),
     defineField({
+      name: 'bookingMode',
+      title: 'Booking Action',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Book this exact service', value: 'direct' },
+          { title: 'Schedule the matching consultation', value: 'consultation' },
+          { title: 'Call to discuss', value: 'phone' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'phone',
+      description:
+        'Controls the public call to action. Never point a service at a merely similar GlossGenius listing.',
+      validation: (R) =>
+        R.custom((value, context) => {
+          const document = context.document as { status?: string } | undefined;
+          return document?.status === 'live' || document?.status === 'actual-menu'
+            ? value || 'Live and actual-menu services require a booking action.'
+            : true;
+        }),
+    }),
+    defineField({
       name: 'bookingUrl',
-      title: 'Legacy GlossGenius Booking Link',
+      title: 'GlossGenius Direct Booking Link',
       type: 'url',
-      description: 'Retained for existing content only. The public site uses the services menu and call/contact consultation paths instead of direct booking buttons.',
+      description:
+        'For direct or consultation actions, use https://houseofrose.glossgenius.com/book?service_token=… Leave empty when the booking action is phone.',
+      validation: (R) =>
+        R.custom((value, context) => {
+          const document = context.document as {
+            bookingMode?: 'direct' | 'consultation' | 'phone';
+          } | undefined;
+          const mode = document?.bookingMode;
+
+          if (mode === 'phone') {
+            return value ? 'Phone actions must not include a GlossGenius URL.' : true;
+          }
+          if ((mode === 'direct' || mode === 'consultation') && !value) {
+            return 'Direct and consultation actions require a verified GlossGenius URL.';
+          }
+          if (!value) return true;
+
+          try {
+            const url = new URL(value);
+            return url.protocol === 'https:' &&
+              url.hostname === 'houseofrose.glossgenius.com' &&
+              url.pathname === '/book' &&
+              Boolean(url.searchParams.get('service_token')?.trim())
+              ? true
+              : 'Use the active House of Rose /book URL with a service_token.';
+          } catch {
+            return 'Enter a valid GlossGenius booking URL.';
+          }
+        }),
+    }),
+    defineField({
+      name: 'bookingVerifiedAt',
+      title: 'Booking Link Verified',
+      type: 'date',
+      description: 'Date this booking action was checked against the live GlossGenius catalog.',
+      validation: (R) =>
+        R.custom((value, context) => {
+          const document = context.document as { status?: string } | undefined;
+          return document?.status === 'live' || document?.status === 'actual-menu'
+            ? value || 'Verify the booking action before publishing this service.'
+            : true;
+        }),
     }),
     defineField({
       name: 'duration',

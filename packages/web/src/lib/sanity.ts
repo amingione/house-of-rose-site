@@ -57,5 +57,18 @@ export async function sanityFetch<T>(
   query: string,
   params: Record<string, unknown> = {},
 ): Promise<T> {
-  return sanityClient.fetch<T>(query, params);
+  const key = `${query}\u0000${JSON.stringify(params)}`;
+  const existing = buildFetchCache.get(key);
+  if (existing) return existing as Promise<T>;
+
+  const request = sanityClient.fetch<T>(query, params).catch((error: unknown) => {
+    buildFetchCache.delete(key);
+    throw error;
+  });
+  buildFetchCache.set(key, request as Promise<unknown>);
+  return request;
 }
+
+// Astro renders many static routes in one Node process. Identical settings,
+// navigation, and index queries should hit Sanity once per build, not once per page.
+const buildFetchCache = new Map<string, Promise<unknown>>();

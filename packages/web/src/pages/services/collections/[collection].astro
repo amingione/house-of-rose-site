@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
@@ -11,9 +12,11 @@ import {
 } from '@/lib/queries';
 import {
   getCollectionFallbackImage,
+  getCuratedServiceImage,
   getInModeDeviceImage,
   getServiceFallbackImage,
 } from '@/lib/imageFallbacks';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COLLECTION_SLUGS_QUERY);
@@ -21,13 +24,14 @@ export async function getStaticPaths() {
 }
 
 const { collection: slug } = Astro.params;
-const collection = await sanityFetch<ServiceCollection>(COLLECTION_BY_SLUG_QUERY, { slug });
+const collectionData = await sanityFetch<ServiceCollection>(COLLECTION_BY_SLUG_QUERY, { slug });
 
 // Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
 // Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
-if (!collection) {
+if (!collectionData) {
   throw new Error(`[collections/[collection]] No collection found in Sanity for slug "${slug}"`);
 }
+const collection = alignPublicContent(collectionData);
 const collectionImage = collection.image
   ? urlFor(collection.image).width(1600).height(685).fit('crop').url()
   : getCollectionFallbackImage(collection.slug);
@@ -196,6 +200,13 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
                     >
                       {item.linkLabel ?? `Explore ${item.service.title}`}
                     </a>
+                    <BookingLink
+                      slug={item.service.slug}
+                      bookingMode={item.service.bookingMode}
+                      bookingUrl={item.service.bookingUrl}
+                      location="collection-featured-service"
+                      class="service-booking-link"
+                    />
                   </div>
                 </article>
               );
@@ -307,32 +318,47 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {collection.services.map((svc) => {
           const inModeDeviceImage = getInModeDeviceImage(svc.slug);
+          const curatedImage = getCuratedServiceImage(svc.slug);
           return (
-          <a href={`/services/${svc.slug}/`} class="group bg-breath overflow-hidden hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
-            <div class:list={[
+          <article class="group bg-breath overflow-hidden border border-gold-metal/15" {...sbObjectId(svc._id)}>
+            <a href={`/services/${svc.slug}/`} class:list={[
               'aspect-[3/2] overflow-hidden',
               inModeDeviceImage ? 'bg-[#f3efe8] p-6' : 'bg-charcoal-lighter',
             ]}>
                 <img
-                  src={inModeDeviceImage ?? (svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug))}
-                  alt={svc.image?.alt ?? svc.title}
+                  src={inModeDeviceImage ?? curatedImage ?? (svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug))}
+                  alt={inModeDeviceImage || curatedImage ? svc.title : svc.image?.alt ?? svc.title}
                   width={600}
                   height={400}
+                  loading="lazy"
+                  decoding="async"
                   class:list={[
                     'w-full h-full group-hover:scale-105 transition-transform duration-500',
                     inModeDeviceImage ? 'object-contain' : 'object-cover',
                   ]}
                 />
-              </div>
+              </a>
             <div class="p-6">
-              <p class="font-serif text-xl text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
+              <h2 class="font-serif text-xl text-ink mb-2" {...sbFieldPath('title')}>
+                <a href={`/services/${svc.slug}/`} class="hover:text-gold transition-colors">{svc.title}</a>
+              </h2>
               {svc.tagline && <p class="text-sm text-muted leading-relaxed mb-4" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
               <div class="flex items-center justify-between">
                 {svc.duration && <span class="text-xs text-muted" {...sbFieldPath('duration')}>{svc.duration}</span>}
                 {svc.price && <span class="text-sm font-medium text-gold" {...sbFieldPath('price')}>{svc.price}</span>}
               </div>
+              <div class="mt-5 flex flex-wrap items-center gap-4">
+                <a href={`/services/${svc.slug}/`} class="learn-more inline-flex mt-0">Learn about {svc.title}</a>
+                <BookingLink
+                  slug={svc.slug}
+                  bookingMode={svc.bookingMode}
+                  bookingUrl={svc.bookingUrl}
+                  location="collection-service-card"
+                  class="service-booking-link"
+                />
+              </div>
             </div>
-          </a>
+          </article>
           );
         })}
       </div>
@@ -368,7 +394,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
 
   .editorial-hero h1 {
     max-width: 590px;
-    font-family: 'Cochin', Georgia, serif;
+    font-family: Baskerville, Georgia, 'Times New Roman', serif;
     font-size: clamp(44px, 4.8vw, 68px);
     line-height: 0.98;
     letter-spacing: -0.025em;
@@ -423,7 +449,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
   .editorial-starting h2,
   .editorial-customization h2,
   .editorial-closing h2 {
-    font-family: 'Cochin', Georgia, serif;
+    font-family: Baskerville, Georgia, 'Times New Roman', serif;
     font-size: clamp(36px, 4.4vw, 58px);
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -465,7 +491,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
   }
 
   .editorial-treatment__copy h3 {
-    font-family: 'Cochin', Georgia, serif;
+    font-family: Baskerville, Georgia, 'Times New Roman', serif;
     font-size: clamp(30px, 3vw, 43px);
     line-height: 1.05;
   }

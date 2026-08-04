@@ -5,6 +5,7 @@ import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
 import { sbObjectField } from '@/lib/visualEditing';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
 // The homepage's four pillars (serviceGroups) deep-link here via anchor ids.
@@ -24,8 +25,8 @@ interface GroupSection {
 const SERVICE_GROUP_SECTIONS: GroupSection[] = [
   {
     id: 'advanced-skin-treatments',
-    kicker: 'Advanced Aesthetics',
-    title: 'Advanced Skin Treatments',
+    kicker: 'Corrective Care',
+    title: 'Skin Renewal & Device Treatments',
     collectionSlugs: ['advanced-facials', 'microchanneling-microneedling', 'skin-renewal', 'rf-ipl-skin-treatments'],
   },
   {
@@ -44,17 +45,17 @@ const SERVICE_GROUP_SECTIONS: GroupSection[] = [
     id: 'wellness-performance-support',
     kicker: 'Wellness',
     title: 'Wellness & Performance Support',
-    collectionSlugs: ['wellness-restoration', 'permanent-jewelry'],
+    collectionSlugs: ['wellness-restoration'],
   },
   {
     id: 'beauty-grooming',
-    kicker: 'Beauty Studio',
-    title: 'Beauty & Grooming',
-    collectionSlugs: ['lash-services', 'makeup', 'waxing'],
+    kicker: 'Supporting Care',
+    title: 'Facial Waxing',
+    collectionSlugs: ['waxing'],
   },
 ];
 
-const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+const collections = alignPublicContent(await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY));
 const bySlug = new Map<string, ServiceCollection>(collections.map((c) => [c.slug, c]));
 
 /** Hub docs are landing pages, not bookable services — keep them out of the menu list. */
@@ -85,16 +86,22 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
 ---
 
 <BaseLayout
-  title="Advanced Aesthetic Services | House of Rose Punta Gorda, FL"
-  description="Browse all services at House of Rose — procell microchanneling, PRF, injectables, BioRePeel, IV hydration & GLP-1 programs in Punta Gorda, FL."
-  preloadImage="/images/hor-skin-studio.webp"
+  title="Medical Aesthetic Services | House of Rose Punta Gorda, FL"
+  description="Explore skin, injectable, facial, IV hydration, and wellness services at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida."
+  preloadImage="/images/optimized/skin-health-analysis-600.webp"
+  preloadImageSrcset="/images/optimized/skin-health-analysis-600.webp 600w, /images/optimized/skin-health-analysis-1200.webp 1200w, /images/editorial/home/skin-health-analysis.webp 1400w"
+  preloadImageSizes="100vw"
 >
   <!-- Hero -->
   <Hero
     title="Our Services"
-    kicker="What We Offer"
+    kicker="Medical Aesthetics. Thoughtfully Practiced."
+    description="Learn what each service is designed to address, then book the exact service or matching consultation when you are ready."
     size="small"
-    backgroundImage="/images/banner/hr-br-7.webp"
+    backgroundImage="/images/editorial/home/skin-health-analysis.webp"
+    backgroundSrcset="/images/optimized/skin-health-analysis-600.webp 600w, /images/optimized/skin-health-analysis-1200.webp 1200w, /images/editorial/home/skin-health-analysis.webp 1400w"
+    backgroundSizes="100vw"
+    imageAlt="A real House of Rose Aesthetics treatment space in Punta Gorda"
   />
 
   <!-- Group index (jump nav) -->
@@ -150,6 +157,8 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
                 slug={service.slug}
                 tagline={service.tagline}
                 image={service.image}
+                bookingMode={service.bookingMode}
+                bookingUrl={service.bookingUrl}
                 variant="row"
                 number={nextNumber()}
                 objectId={service._id}
@@ -184,6 +193,8 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
                 slug={service.slug}
                 tagline={service.tagline}
                 image={service.image}
+                bookingMode={service.bookingMode}
+                bookingUrl={service.bookingUrl}
                 variant="row"
                 number={nextNumber()}
                 objectId={service._id}
@@ -274,9 +285,7 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
         <a href="tel:+18449417673" class="btn-outline-gold">
           Call (844) 941-7673
         </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          View Services
-        </a>
+        <a href="/consultation/" class="btn-gold">Request a Consultation</a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950

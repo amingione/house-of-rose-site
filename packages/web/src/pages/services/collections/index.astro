@@ -6,8 +6,10 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection } from '@/lib/queries';
 import { getCollectionFallbackImage } from '@/lib/imageFallbacks';
+import ServiceCard from '@/components/ServiceCard.astro';
+import { alignPublicContent } from '@/lib/publicCopy';
 
-const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
+const collections = alignPublicContent(await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY));
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -29,7 +31,7 @@ const collectionsListSchema = collections.length
 
 <BaseLayout
   title="Service Collections | House of Rose Aesthetics, Punta Gorda FL"
-  description="Browse House of Rose services by category, including skin renewal, injectables, wellness, waxing, makeup, and advanced facials in Punta Gorda."
+  description="Browse House of Rose services by category, including skin renewal, injectables, wellness, facial waxing, and corrective facial care in Punta Gorda."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {collectionsListSchema && <SchemaMarkup item={collectionsListSchema} slot="head" />}
@@ -52,6 +54,8 @@ const collectionsListSchema = collections.length
                     alt={col.image?.alt ?? col.title}
                     width={800}
                     height={600}
+                    loading="lazy"
+                    decoding="async"
                     class="w-full h-full object-cover"
                   />
                 </div>
@@ -60,22 +64,23 @@ const collectionsListSchema = collections.length
                 {col.description && (
                   <p class="text-muted leading-relaxed mb-6" {...sbFieldPath('description')}>{col.description}</p>
                 )}
-                <a href={`/services/collections/${col.slug}/`} class="btn-outline">
-                  View Collection
+                <a href={`/services/collections/${col.slug}/`} class="btn-outline-gold">
+                  View collection
                 </a>
               </div>
             </div>
             {col.services.length > 0 && (
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {col.services.map((svc) => (
-                  <a href={`/services/${svc.slug}/`} class="group bg-breath p-5 hover:shadow-md transition-shadow duration-300" {...sbObjectId(svc._id)}>
-                    <p class="font-serif text-lg text-ink mb-1 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{svc.title}</p>
-                    {svc.tagline && <p class="text-sm text-muted mb-3" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
-                    <div class="flex items-center justify-between">
-                      {svc.duration && <span class="text-xs text-muted" {...sbFieldPath('duration')}>{svc.duration}</span>}
-                      {svc.price && <span class="text-sm text-gold" {...sbFieldPath('price')}>{svc.price}</span>}
-                    </div>
-                  </a>
+                  <ServiceCard
+                    title={svc.title}
+                    slug={svc.slug}
+                    tagline={svc.tagline}
+                    image={svc.image}
+                    bookingMode={svc.bookingMode}
+                    bookingUrl={svc.bookingUrl}
+                    objectId={svc._id}
+                  />
                 ))}
               </div>
             )}

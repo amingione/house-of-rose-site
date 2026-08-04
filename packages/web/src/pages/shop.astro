@@ -105,6 +105,7 @@ const measurementItems = products.map((product, index) => {
     size="small"
     showCTA={false}
     backgroundImage={heroImage}
+    imageAlt="Professional skincare products selected by House of Rose Aesthetics"
   />
 
   <PromoBanner promotions={promotions} />
@@ -143,7 +144,7 @@ const measurementItems = products.map((product, index) => {
 
   <!-- Face Reality — Face Reality 12-Week Program guidance -->
   <section class="bg-charcoal-light py-[clamp(28px,4vw,44px)] px-6">
-    <div class="max-w-[840px] mx-auto text-center" data-reveal="bottom">
+    <div class="max-w-[840px] mx-auto text-center">
       <p class="text-muted text-[14px] leading-[1.8] max-w-[640px] mx-auto">
         New to Face Reality? These are prescribed by acne type and adjusted as your skin responds — so if you're unsure where to start,
         <a href="/services/face-reality-acne-program/" class="text-gold hover:underline">begin with the Face Reality 12-Week Program</a> and we'll build your routine.
@@ -154,22 +155,22 @@ const measurementItems = products.map((product, index) => {
   <!-- Ordering -->
   <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[1120px] mx-auto">
-      <div class="text-center mb-12" data-reveal="bottom" data-speed="fast">
+      <div class="text-center mb-12">
         <span class="kicker">How to Order</span>
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2">
           Three ways, all of them easy.
         </h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12" data-stagger="100">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         {orderingOptions.map((opt, i) => (
-          <div class="text-center" data-reveal="bottom">
+          <div class="text-center">
             <p class="text-gold text-[40px] font-serif mb-3">{`0${i + 1}`}</p>
             <p class="text-ink text-[16px] font-medium mb-2 tracking-wide">{opt.title}</p>
             <p class="text-muted text-[14px] leading-relaxed max-w-[300px] mx-auto">{opt.body}</p>
           </div>
         ))}
       </div>
-      <div class="text-center" data-reveal="scale" data-speed="fast">
+      <div class="text-center">
         <a href="tel:+18449417673" class="btn-gold">Call to Order — (844) 941-7673</a>
         <p class="text-muted text-[12px] mt-5">Bundle clients receive preferred pricing on full-size products — mention it when you order.</p>
       </div>

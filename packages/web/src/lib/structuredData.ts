@@ -326,11 +326,14 @@ export interface ServiceInput {
   serviceType?: string;
   /** Minimum price in USD, if known. */
   minPrice?: number | null;
+  /** Verified, service-specific booking destination. */
+  offerUrl?: string;
   /** For packages: the included services, rendered as an OfferCatalog. */
   catalog?: { name: string; items: string[] };
 }
 
 export function service(input: ServiceInput, siteUrl: string): JsonLd {
+  const hasOffer = input.minPrice != null || Boolean(input.offerUrl);
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -341,15 +344,18 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
     url: input.url,
     ...(input.image && { image: input.image }),
     serviceType: input.serviceType ?? input.name,
-    ...(input.minPrice != null && {
+    ...(hasOffer && {
       offers: {
         '@type': 'Offer',
+        ...(input.offerUrl && { url: input.offerUrl }),
         priceCurrency: 'USD',
-        priceSpecification: {
-          '@type': 'PriceSpecification',
-          minPrice: input.minPrice,
-          priceCurrency: 'USD',
-        },
+        ...(input.minPrice != null && {
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            minPrice: input.minPrice,
+            priceCurrency: 'USD',
+          },
+        }),
       },
     }),
     ...(input.catalog && input.catalog.items.length > 0 && {

@@ -7,13 +7,18 @@
 import { urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { SanityImage } from '@/lib/queries';
-import { getServiceFallbackImage } from '@/lib/imageFallbacks';
+import { getCuratedServiceImage, getServiceFallbackImage } from '@/lib/imageFallbacks';
+import type { BookingMode } from '@/lib/booking';
+import BookingLink from '@/components/BookingLink.astro';
+import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
 interface Props {
   title: string;
   slug: string;
   tagline?: string;
   image?: SanityImage;
+  bookingMode?: BookingMode;
+  bookingUrl?: string;
   variant?: 'grid' | 'row';
   number?: string;
   /**
@@ -24,10 +29,12 @@ interface Props {
   objectId?: string;
 }
 
-const { title, slug, tagline, image, variant = 'grid', number, objectId } = Astro.props;
-const imageSrc = image
-  ? urlFor(image).width(640).height(480).fit('crop').url()
-  : getServiceFallbackImage(slug);
+const { title, slug, tagline, image, bookingMode, bookingUrl, variant = 'grid', number, objectId } = Astro.props;
+const curatedImage = getCuratedServiceImage(slug);
+const imageSrc = curatedImage ?? (image
+  ? urlFor(image).width(640).height(480).fit('crop').auto('format').quality(80).url()
+  : getServiceFallbackImage(slug));
+const displayTagline = tagline ? alignPublicChannelCopy(tagline) : undefined;
 // Always lead with the technical/industry-standard name — matches what people search for.
 const headline = title;
 // Visual Editor annotations — only emitted when an objectId is supplied.
@@ -38,36 +45,58 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
 ---
 
 {variant === 'grid' ? (
-  <a href={`/services/${slug}/`} class="service-card group block" {...objAttrs}>
+  <article class="service-card group" {...objAttrs}>
+    <a href={`/services/${slug}/`} class="block" aria-label={`Learn about ${title}`}>
     <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
         <img
           src={imageSrc}
-          alt={image?.alt ?? title}
+          alt={curatedImage ? title : image?.alt ?? title}
           width={400}
           height={400}
+          loading="lazy"
+          decoding="async"
           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>
     <span class="service-name" {...fp(headlinePath)}>{headline}</span>
-    {tagline && <p class="service-desc mt-1" {...fp(taglinePath)}>{tagline}</p>}
-    <span class="learn-more group-hover:text-gold">Learn More</span>
-  </a>
+    {displayTagline && <p class="service-desc mt-1" {...fp(taglinePath)}>{displayTagline}</p>}
+    <span class="learn-more group-hover:text-gold">Learn more</span>
+    </a>
+    <BookingLink
+      slug={slug}
+      bookingMode={bookingMode}
+      bookingUrl={bookingUrl}
+      location="service-card-grid"
+      class="service-booking-link"
+    />
+  </article>
 ) : (
-  <a href={`/services/${slug}/`} class="service-row group flex items-center gap-6 py-6 border-b border-ink/5 transition-all duration-300 hover:bg-charcoal-lighter px-6 -mx-6" {...objAttrs}>
-    <div class="w-28 h-28 flex-shrink-0 overflow-hidden bg-charcoal-lighter">
+  <article class="service-row group grid grid-cols-[84px_1fr] sm:grid-cols-[112px_1fr_auto] items-center gap-5 py-6 border-b border-ink/10 px-1" {...objAttrs}>
+    <a href={`/services/${slug}/`} class="block w-[84px] h-[84px] sm:w-28 sm:h-28 overflow-hidden bg-charcoal-lighter">
         <img
           src={imageSrc}
-          alt={image?.alt ?? title}
+          alt={curatedImage ? title : image?.alt ?? title}
           width={224}
           height={224}
+          loading="lazy"
+          decoding="async"
           class="w-full h-full object-cover"
         />
-      </div>
+      </a>
     <div class="flex-1">
       {number && <p class="text-muted text-xs mb-1">{number}</p>}
-      <h3 class="font-serif text-2xl text-ink mb-1" {...fp(headlinePath)}>{headline}</h3>
-      {tagline && <p class="text-muted text-sm leading-relaxed" {...fp(taglinePath)}>{tagline}</p>}
+      <h3 class="font-serif text-[clamp(20px,2.4vw,28px)] text-ink mb-1" {...fp(headlinePath)}>
+        <a href={`/services/${slug}/`} class="hover:text-gold transition-colors">{headline}</a>
+      </h3>
+      {displayTagline && <p class="text-muted text-sm leading-relaxed" {...fp(taglinePath)}>{displayTagline}</p>}
+      <a href={`/services/${slug}/`} class="learn-more inline-flex">Learn about {title}</a>
     </div>
-    <span class="text-gold text-2xl group-hover:translate-x-1 transition-transform duration-200">→</span>
-  </a>
+    <BookingLink
+      slug={slug}
+      bookingMode={bookingMode}
+      bookingUrl={bookingUrl}
+      location="service-card-row"
+      class="service-booking-link col-span-2 sm:col-span-1"
+    />
+  </article>
 )}

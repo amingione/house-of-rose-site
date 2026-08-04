@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import swup from '@swup/astro';
 import { loadEnv } from 'vite';
 
 const fallbackSiteUrl = 'https://houseofrosefl.com';
@@ -23,19 +22,7 @@ function getSiteUrl() {
 }
 
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    swup({
-      // Custom fade/lift transition defined in global.css (.transition-fade) —
-      // matches the site's charcoal/gold aesthetic better than swup's built-in themes.
-      theme: false,
-      animationClass: 'transition-',
-      containers: ['main'],
-      preload: { hover: true, visible: true },
-      accessibility: true,
-      smoothScrolling: true,
-    }),
-  ],
+  integrations: [tailwind()],
   output: 'static',
   site: getSiteUrl(),
   // Netlify Visual Editor proxies Vite's HMR websocket through this dedicated

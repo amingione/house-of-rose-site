@@ -5,8 +5,9 @@ import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, service } from '@/lib/structuredData';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import BookingLink from '@/components/BookingLink.astro';
+import { SKIN_ANALYSIS_BOOKING_URL } from '@/lib/booking';
 
-const SERVICES_MENU_URL = 'https://houseofrose.glossgenius.com/services';
 const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -173,6 +174,7 @@ const serviceSchema = service(
     url: canonicalURL.toString(),
     image: new URL('/images/editorial/home/skin-analysis-consultation.webp', siteUrl).toString(),
     serviceType: 'AI-assisted skin analysis and treatment planning',
+    offerUrl: SKIN_ANALYSIS_BOOKING_URL,
   },
   siteUrl,
 );
@@ -195,9 +197,10 @@ const serviceSchema = service(
     description={data.heroDescription ?? "In-studio imaging helps us take a closer look at pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure before you choose a skin treatment."}
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Request a Skin Analysis', href: '#consultation' }}
+    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Book a Skin Analysis', href: SKIN_ANALYSIS_BOOKING_URL }}
     ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services/' }}
     backgroundImage="/images/hor-skin-studio.webp"
+    imageAlt="The skin analysis and consultation space at House of Rose Aesthetics"
     titleField="heroTitle"
     kickerField="heroKicker"
     descriptionField="heroDescription"
@@ -370,8 +373,15 @@ const serviceSchema = service(
         <input type="hidden" name="service-interest" value="AI Skin Analysis" />
         <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Request a Skin Analysis"}</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
-          Prefer to book instantly?
-          <a href={SERVICES_MENU_URL} target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">View services</a>.
+          Prefer to reserve online?
+          <BookingLink
+            slug="skin-analysis"
+            bookingMode="direct"
+            bookingUrl={SKIN_ANALYSIS_BOOKING_URL}
+            location="skin_analysis_form"
+            class="text-gold hover:underline"
+            label="Book a skin analysis"
+          />.
           We'll only use your details to arrange your analysis.
         </p>
       </form>

@@ -2,8 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
-import { getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
+import { getCuratedServiceImage, getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
@@ -11,7 +12,8 @@ import {
   type Service,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
+import { alignPublicContent } from '@/lib/publicCopy';
+import { isVerifiedGlossGeniusBookingUrl } from '@/lib/booking';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
@@ -29,66 +31,24 @@ if (!serviceData) {
   throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
 }
 
-const service: Service = {
-  ...serviceData,
-  tagline: serviceData.tagline ? alignPublicChannelCopy(serviceData.tagline) : undefined,
-  description: serviceData.description ? alignPublicChannelCopy(serviceData.description) : undefined,
-  whoItsFor: serviceData.whoItsFor ? alignPublicChannelCopy(serviceData.whoItsFor) : undefined,
-  benefits: serviceData.benefits?.map(alignPublicChannelCopy),
-  process: serviceData.process?.map(alignPublicChannelCopy),
-  treatmentAreas: serviceData.treatmentAreas?.map((item) => ({
-    ...item,
-    area: alignPublicChannelCopy(item.area),
-    focus: alignPublicChannelCopy(item.focus),
-  })),
-  faqs: serviceData.faqs?.map((item) => ({
-    ...item,
-    question: alignPublicChannelCopy(item.question),
-    answer: alignPublicChannelCopy(item.answer),
-  })),
-  concerns: serviceData.concerns?.map((item) => ({
-    ...item,
-    intro: item.intro ? alignPublicChannelCopy(item.intro) : undefined,
-  })),
-  comparisons: serviceData.comparisons?.map((item) => ({
-    ...item,
-    intro: alignPublicChannelCopy(item.intro),
-  })),
-  seo: serviceData.seo
-    ? {
-        metaTitle: serviceData.seo.metaTitle
-          ? alignPublicChannelCopy(serviceData.seo.metaTitle)
-          : undefined,
-        metaDescription: serviceData.seo.metaDescription
-          ? alignPublicChannelCopy(serviceData.seo.metaDescription)
-          : undefined,
-      }
-    : undefined,
-};
+const service: Service = alignPublicContent(serviceData);
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
-const socialImage = service.image?.asset
-  ? urlFor(service.image).width(1200).height(630).fit('crop').url()
+const curatedImage = slug ? getCuratedServiceImage(slug) : undefined;
+const socialImage = curatedImage
+  ? new URL(curatedImage, site).toString()
+  : service.image?.asset
+  ? urlFor(service.image).width(1200).height(630).fit('crop').auto('format').quality(82).url()
   : fallbackImage
     ? new URL(fallbackImage, site).toString()
     : undefined;
-// Keep the shared service banner by default, with an approved treatment-specific
-// hero for the Microchanneling & Microneedling hub.
-const isMicrochannelingHub = slug === 'microchanneling';
-const heroImage = isMicrochannelingHub
-  ? '/images/banner/microchanneling/new-microchanneling.webp'
-  : '/images/banner/background/HR-background.webp';
-const heroImagePosition = isMicrochannelingHub ? '68% center' : 'center';
-const primaryGalleryImage = service.image?.asset ? service.image : undefined;
-const galleryImages = [
-  ...(primaryGalleryImage ? [primaryGalleryImage] : []),
-  ...(service.gallery?.filter(
-    (image) => image?.asset && image.asset.url !== primaryGalleryImage?.asset.url,
-  ) ?? []),
-];
+const heroImage = curatedImage ?? (service.image?.asset
+  ? urlFor(service.image).width(1600).height(1200).fit('crop').auto('format').url()
+  : fallbackImage ?? '/images/hor-lobby.webp');
+const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
 
 // Face Reality clinical before/after proof — only populated for the acne-program pages.
 const resultImages = slug ? getServiceResultImages(slug) : [];
@@ -104,6 +64,7 @@ const serviceSchema = serviceJsonLd(
     image: socialImage,
     serviceType: service.tagline ?? service.title,
     minPrice: priceNumber,
+    offerUrl: isVerifiedGlossGeniusBookingUrl(service.bookingUrl) ? service.bookingUrl : undefined,
   },
   site,
 );
@@ -151,33 +112,51 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   />
   {/* Visual Editor: all editable copy below belongs to this service document */}
   <div {...sbObjectId(service._id)}>
-  <!-- Hero -->
-  <section
-    class="on-dark hero-dark hero relative w-full h-[55vh] min-h-[360px] flex items-end bg-walnut"
-    style={heroImage ? `background-image: url(${heroImage}); background-size: cover; background-position: ${heroImagePosition};` : ''}
-  >
-    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
-    <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
-      <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
-        <span class="text-lg">←</span> {service.parentService ? service.parentService.title : 'All Services'}
-      </a>
-      {service.tagline && (
-        <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3" {...sbFieldPath('tagline')}>
-          {service.tagline}
-        </span>
-      )}
-      <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
-        {service.title}
-      </h1>
-      {(service.price || service.duration) && (
-        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase">
-          {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && service.duration && <span class="text-gold mx-2">·</span>}{service.duration && <span {...sbFieldPath('duration')}>{service.duration}</span>}
+  <!-- Answer-first service hero: the image is semantic and immediately discoverable for LCP. -->
+  <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
+    <div class="mx-auto grid max-w-[1440px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)]">
+      <div class="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
+        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-8 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline">
+          <span aria-hidden="true">←</span> {service.parentService ? service.parentService.title : 'All services'}
+        </a>
+        <span class="kicker">Medical Aesthetics Practice</span>
+        <h1 class="max-w-[720px] font-serif text-[clamp(38px,6vw,68px)] leading-[1.04] text-ink" {...sbFieldPath('title')}>
+          {service.title}
+        </h1>
+        {service.tagline && (
+          <p class="mt-6 max-w-[620px] text-[clamp(17px,2vw,20px)] leading-[1.65] text-muted-strong" {...sbFieldPath('tagline')}>
+            {service.tagline}
+          </p>
+        )}
+        {(service.price || service.duration) && (
+          <p class="mt-5 text-[13px] font-medium tracking-[0.08em] text-muted">
+            {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && service.duration && <span class="mx-2 text-gold">·</span>}{service.duration && <span {...sbFieldPath('duration')}>{service.duration}</span>}
+          </p>
+        )}
+        <div class="mt-8 flex flex-wrap gap-3">
+          <BookingLink
+            slug={service.slug}
+            bookingMode={service.bookingMode}
+            bookingUrl={service.bookingUrl}
+            location="service-hero"
+          />
+          <a href="/consultation/" class="btn-outline-gold">Talk through my options</a>
+        </div>
+        <p class="mt-5 max-w-[560px] text-[13px] leading-relaxed text-muted">
+          A consultation confirms candidacy, timing, and the treatment plan that fits your goals.
         </p>
-      )}
-      <div class="flex flex-wrap gap-3 mt-7">
-        <a href="tel:+18449417673" class="btn-outline-gold">Call to Consult</a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
       </div>
+      <figure class="relative min-h-[420px] overflow-hidden bg-limestone lg:min-h-full">
+        <img
+          src={heroImage}
+          alt={curatedImage ? `${service.title} at House of Rose Aesthetics` : service.image?.alt ?? `${service.title} at House of Rose Aesthetics`}
+          width="1600"
+          height="1200"
+          fetchpriority="high"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+      </figure>
     </div>
   </section>
 
@@ -319,7 +298,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           {galleryImages.map((img) => (
             <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
               <img
-                src={urlFor(img).width(900).height(1200).url()}
+                src={urlFor(img).width(900).height(1200).auto('format').quality(82).url()}
                 alt={img.alt ?? service.title}
                 width="900"
                 height="1200"
@@ -379,14 +358,25 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
-            <a href={`/services/${t.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
-              <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{t.title}</h3>
-              {t.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
-              <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
+            <article class="bg-charcoal p-7" {...sbObjectId(t._id)}>
+              <h3 class="font-serif text-[22px] text-ink mb-2" {...sbFieldPath('title')}>
+                <a href={`/services/${t.slug}/`} class="hover:text-gold transition-colors">{t.title}</a>
+              </h3>
+              {t.tagline && <p class="text-muted text-[14px] leading-[1.65] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
+              <p class="text-ink/70 text-[12px] tracking-[0.08em]">
                 {t.price}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration}
               </p>
-              <span class="learn-more group-hover:text-gold mt-3 inline-block">View Treatment</span>
-            </a>
+              <div class="mt-5 flex flex-wrap gap-4 items-center">
+                <a href={`/services/${t.slug}/`} class="learn-more inline-flex mt-0">Learn about {t.title}</a>
+                <BookingLink
+                  slug={t.slug}
+                  bookingMode={t.bookingMode}
+                  bookingUrl={t.bookingUrl}
+                  location="service-treatment-card"
+                  class="service-booking-link"
+                />
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -444,24 +434,33 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       </span>
       <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
         {service.relatedServices.filter(Boolean).map((related) => (
-          <div class="bg-charcoal">
-            <a href={`/services/${related.slug}/`} class="service-card group block" {...sbObjectId(related._id)}>
+          <article class="service-card group" {...sbObjectId(related._id)}>
+            <a href={`/services/${related.slug}/`} class="block" aria-label={`Learn about ${related.title}`}>
               {related.image?.asset && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
-                    src={urlFor(related.image).width(400).height(400).fit('crop').url()}
+                    src={urlFor(related.image).width(400).height(400).fit('crop').auto('format').quality(80).url()}
                     alt={related.image.alt ?? related.title}
                     width={400}
                     height={400}
+                    loading="lazy"
+                    decoding="async"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               )}
               <span class="service-name" {...sbFieldPath('title')}>{related.title}</span>
               {related.tagline && <p class="service-desc mt-1" {...sbFieldPath('tagline')}>{related.tagline}</p>}
-              <span class="learn-more group-hover:text-gold">Learn More</span>
+              <span class="learn-more group-hover:text-gold">Learn more</span>
             </a>
-          </div>
+            <BookingLink
+              slug={related.slug}
+              bookingMode={related.bookingMode}
+              bookingUrl={related.bookingUrl}
+              location="related-service-card"
+              class="service-booking-link"
+            />
+          </article>
         ))}
       </div>
     </section>
@@ -478,12 +477,12 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
         Call to discuss your goals and arrange a consultation, or review the current services menu. Walk-ins are welcome when the schedule allows; an appointment is recommended to reserve a time.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417673" class="btn-outline-gold">
-          Call (844) 941-7673
-        </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          View Services
-        </a>
+        <BookingLink
+          slug={service.slug}
+          bookingMode={service.bookingMode}
+          bookingUrl={service.bookingUrl}
+          location="service-final-cta"
+        />
         <a href="/consultation/" class="btn-outline-gold">
           Talk Through My Options
         </a>
@@ -494,5 +493,14 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       </p>
     </div>
   </section>
+  <div class="service-mobile-booking lg:hidden">
+    <BookingLink
+      slug={service.slug}
+      bookingMode={service.bookingMode}
+      bookingUrl={service.bookingUrl}
+      location="service-mobile-bar"
+      class="btn-gold w-full"
+    />
+  </div>
   </div>
 </BaseLayout>

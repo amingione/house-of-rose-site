@@ -5,8 +5,9 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_CONCERNS_QUERY, type Concern } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
-const concerns = await sanityFetch<Concern[]>(ALL_CONCERNS_QUERY);
+const concerns = alignPublicContent(await sanityFetch<Concern[]>(ALL_CONCERNS_QUERY));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -63,7 +64,7 @@ const concernsListSchema = concerns.length
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
+        <a href="/services/" class="btn-gold">Explore Services</a>
       </div>
     </div>
   </section>

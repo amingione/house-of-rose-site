@@ -2,27 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Cochin display face ──────────────────────────────────────────
-   Self-hosted from /public/fonts. Used for the hero wordmark.
-   `swap` keeps the title visible during font load (no FOIT). */
-@font-face {
-  font-family: 'Cochin';
-  src: url('/fonts/Cochin-Regular.woff2') format('woff2'),
-       url('/fonts/Cochin-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Cochin';
-  src: url('/fonts/Cochin-Bold.woff2') format('woff2'),
-       url('/fonts/Cochin-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @layer base {
   /* ── Context-aware accent channels (see tailwind.config.ts) ──────────
      Every `text-gold` / `border-gold` / `text-muted` on the site resolves
@@ -33,10 +12,10 @@
   :root {
     /* LIGHT surfaces — ivory #F4ECDC / breath #F8F4EC / taupe #EADBC2 */
     --hr-gold: 122 92 42;         /* #7A5C2A — 5.27:1 on ivory, 4.54:1 on taupe */
-    --hr-muted: 94 85 72;         /* #5E5548 — 6.23:1 on ivory */
-    --hr-muted-strong: 45 40 34;  /* #2D2822 — body copy, 12.6:1 */
+    --hr-muted: 86 78 70;
+    --hr-muted-strong: 47 42 38;
 
-    --color-bg: theme('colors.charcoal.DEFAULT');
+    --color-bg: theme('colors.bone');
     --color-text: theme('colors.ink');
     --color-accent: rgb(var(--hr-gold));
   }
@@ -44,17 +23,15 @@
   /* DARK surfaces — walnut #3E2C20, photo heroes under a near-black overlay.
      Apply to the section/wrapper; all gold + muted descendants invert. */
   .on-dark {
-    --hr-gold: 231 214 168;        /* #E7D6A8 — 9.19:1 on walnut, 13.9:1 on hero overlay */
-    --hr-muted: 216 207 192;       /* #D8CFC0 — 8.58:1 on walnut */
-    --hr-muted-strong: 244 236 220;/* ivory — 11.3:1 on walnut */
-  }
-
-  html {
-    @apply scroll-smooth;
+    --hr-gold: 226 211 178;
+    --hr-muted: 218 211 202;
+    --hr-muted-strong: 241 237 229;
   }
 
   body {
-    @apply bg-charcoal text-ink font-sans antialiased;
+    @apply bg-bone text-ink font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   /* Force high-quality smooth image rendering for photos */
@@ -66,30 +43,40 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: #c9c0b3;
+    color: #171614;
   }
 }
 
 @layer components {
   /* Button: primary (botanical green fill, ivory text — 7.66:1) */
   .btn-gold {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-green text-ivory font-sans text-[12px] font-medium tracking-[0.18em] uppercase min-h-[48px] transition-opacity duration-200 hover:opacity-90;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-olive text-ivory font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-200 hover:bg-green-deep;
   }
 
   /* Button: Outline on a DARK surface (photo hero). Hover fills with metallic
      gold + ink text (7.84:1) — never `text-gold` on a gold fill. */
   .btn-outline-white {
-    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ivory text-ivory font-sans text-[12px] font-medium tracking-[0.18em] uppercase min-h-[48px] transition-all duration-300 hover:bg-gold-metal hover:border-gold-metal hover:text-ink;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-transparent border border-ivory text-ivory font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-200 hover:bg-ivory hover:text-walnut;
   }
 
   /* Button: Outline gold — border + label track the context-aware channel. */
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-gold text-gold font-sans text-[12px] font-medium tracking-[0.18em] uppercase min-h-[48px] transition-all duration-300 hover:bg-gold-metal hover:border-gold-metal hover:text-ink;
+    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-walnut/40 text-walnut font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-200 hover:bg-walnut hover:border-walnut hover:text-ivory;
   }
 
   /* Label/Kicker — was 10px @ 0.4em tracking in 2:1 gold: the single worst
      offender. Now 11px, medium weight, tighter tracking, AA-compliant gold. */
   .kicker {
-    @apply block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3;
+    @apply block text-[12px] font-semibold tracking-[0.12em] uppercase text-gold mb-3;
   }
 
   /* Section heading */
@@ -99,7 +86,7 @@
 
   /* Service card */
   .service-card {
-    @apply bg-breath p-6 text-left border border-gold-metal/30 w-full min-h-[44px] transition-all duration-300 hover:border-gold-metal/60 hover:bg-charcoal-lighter;
+    @apply bg-breath p-5 text-left border border-walnut/10 w-full min-h-[44px] transition-colors duration-200 hover:border-walnut/25;
   }
 
   /* Service name in card */
@@ -114,7 +101,11 @@
 
   /* Learn more link — was gold @ 50% opacity (~1.4:1). Now full-strength. */
   .learn-more {
-    @apply text-gold text-[11px] font-medium tracking-[0.16em] uppercase mt-3 block transition-colors duration-200;
+    @apply text-gold text-[12px] font-semibold tracking-[0.02em] mt-3 block transition-colors duration-200 hover:text-walnut;
+  }
+
+  .service-booking-link {
+    @apply inline-flex min-h-[44px] items-center justify-center border border-olive bg-olive px-4 py-2.5 text-[12px] font-semibold tracking-[0.02em] text-ivory transition-colors duration-200 hover:bg-green-deep;
   }
 
   /* Focus-visible states for accessibility (WCAG 2.1 AA) */
@@ -122,12 +113,6 @@
   .btn-outline-gold:focus-visible,
   .btn-outline-white:focus-visible {
     @apply outline-2 outline-offset-2 outline-gold ring-2 ring-gold/30;
-  }
-
-  .btn-gold:active,
-  .btn-outline-gold:active,
-  .btn-outline-white:active {
-    @apply scale-95 transition-transform duration-100;
   }
 
   .service-card:focus-visible {
@@ -140,81 +125,23 @@
   }
 }
 
-/* ── Sticky header (scrolled state) ──────────────────────────────
-   The Header script toggles `.stuck` past 60px scroll; these styles
-   give the bar a solid surface and shrink the monogram so it never
-   floats over or clips against page content. */
-#header {
-  background: transparent;
+.service-mobile-booking {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  border-top: 1px solid rgb(58 43 36 / 0.14);
+  background: rgb(241 237 229 / 0.96);
+  padding: 12px 16px max(12px, env(safe-area-inset-bottom));
+  backdrop-filter: blur(12px);
 }
 
-/* ── Header backdrop safety ──────────────────────────────────────────
-   The transparent bar renders its nav in ivory, which is only legible over a
-   dark photo hero. Pages that don't open with one (/faq/, /areas/, /results/,
-   /privacy-policy/, /sitemap/, /thank-you/) were putting ivory text on the
-   ivory page — 1:1 contrast, invisible until `.stuck` fired on scroll.
-
-   `:has()` resolves this at first paint, before any JS runs: if the document
-   contains no `.hero-dark`, the bar is solid from the start. The Header script
-   adds `.solid` as a fallback for engines without :has(). Any new page inherits
-   the correct treatment automatically. */
-body:not(:has(.hero-dark)) #header:not(.stuck),
-#header.solid,
-#header.stuck,
-#header.menu-open {
-  background: rgb(244 236 220); /* fully opaque ivory — no see-through text */
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(201, 162, 75, 0.35);
-}
-
-/* Light bar ⇒ dark-on-light nav + an accent channel that reads on ivory.
-   Specificity (1,1,1) intentionally outranks `#header.on-dark` (1,1,0). */
-body:not(:has(.hero-dark)) #header:not(.stuck),
-#header.solid {
-  --hr-gold: 122 92 42;
-  --hr-muted: 94 85 72;
-  --hr-muted-strong: 45 40 34;
-}
-body:not(:has(.hero-dark)) #header:not(.stuck) .nav-link,
-#header.solid .nav-link {
-  @apply text-ink;
-  text-shadow: none;
-}
-body:not(:has(.hero-dark)) #header:not(.stuck) .nav-cta,
-#header.solid .nav-cta {
-  @apply border-gold text-gold;
-  text-shadow: none;
-}
-body:not(:has(.hero-dark)) #header:not(.stuck) .menu-line,
-#header.solid .menu-line {
-  @apply bg-ink;
-}
-
-#header.stuck .brand-link img {
-  height: 2.5rem; /* 40px — comfortably inside the 80px bar */
-}
-
-/* ── Swup page transition ─────────────────────────────────────────
-   theme: false in astro.config.ts — this replaces swup's built-in 'fade'
-   theme with a slower, quieter fade + lift that matches the site's
-   calm, unhurried pace instead of a generic SPA snap. Respects reduced motion. */
-.transition-fade {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  opacity: 1;
-  transform: translateY(0);
-}
-html.is-animating .transition-fade {
-  opacity: 0;
-  transform: translateY(10px);
-}
 @media (prefers-reduced-motion: reduce) {
-  .transition-fade {
-    transition: none !important;
-    transform: none !important;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
-
-/* Swup progress bar is disabled (config.progress: false) — no styles needed.
-   Reveal-on-scroll animations (data-reveal="...") are styled by
-   @polgubau/astro-reveal itself; see BaseLayout.astro for the import. */

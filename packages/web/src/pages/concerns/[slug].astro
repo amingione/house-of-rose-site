@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
+import ServiceCard from '@/components/ServiceCard.astro';
+import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import {
@@ -9,6 +10,7 @@ import {
   CONCERN_BY_SLUG_QUERY,
   type Concern,
 } from '@/lib/queries';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_CONCERN_SLUGS_QUERY);
@@ -16,13 +18,14 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const concern = await sanityFetch<Concern>(CONCERN_BY_SLUG_QUERY, { slug });
+const concernData = await sanityFetch<Concern>(CONCERN_BY_SLUG_QUERY, { slug });
 
 // Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
 // Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
-if (!concern) {
+if (!concernData) {
   throw new Error(`[concerns/[slug]] No concern found in Sanity for slug "${slug}"`);
 }
+const concern = alignPublicContent(concernData);
 
 const pageTitle = concern.seo?.metaTitle ?? `${concern.title} Treatments in Punta Gorda, FL | House of Rose`;
 const pageDescription = concern.seo?.metaDescription ?? concern.intro ?? '';
@@ -75,25 +78,15 @@ const treatmentList = concern.treatments?.length
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {concern.treatments.map((t) => (
-            <a href={`/services/${t.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(t._id)}>
-              {t.image?.asset && (
-                <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter mb-5">
-                  <img
-                    src={urlFor(t.image).width(560).height(420).fit('crop').url()}
-                    alt={t.image.alt ?? t.title}
-                    width={560}
-                    height={420}
-                    loading="lazy"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              )}
-              <h3 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{t.title}</h3>
-              {t.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
-              <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase">
-                {t.price && <span {...sbFieldPath('price')}>{t.price}</span>}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration && <span {...sbFieldPath('duration')}>{t.duration}</span>}
-              </p>
-            </a>
+            <ServiceCard
+              title={t.title}
+              slug={t.slug}
+              tagline={t.tagline}
+              image={t.image}
+              bookingMode={t.bookingMode}
+              bookingUrl={t.bookingUrl}
+              objectId={t._id}
+            />
           ))}
         </div>
       </div>
@@ -108,11 +101,11 @@ const treatmentList = concern.treatments?.length
         Start with a consultation.
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        Every concern has more than one path — we will map yours at a private consultation.
+        More than one service may be considered. A consultation can help narrow the options around your goals, timing, and candidacy.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
+        <a href="/consultation/" class="btn-gold">Start a consultation</a>
       </div>
     </div>
   </section>

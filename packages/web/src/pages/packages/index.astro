@@ -4,11 +4,12 @@ import Hero from '@/components/Hero.astro';
 import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 // Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
 // emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
 
-const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
+const packages = alignPublicContent(await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY));
 const heroImage = '/images/hor-lobby.webp';
 ---
 
@@ -22,6 +23,7 @@ const heroImage = '/images/hor-lobby.webp';
     kicker="Consultation-Led Planning"
     size="small"
     backgroundImage={heroImage}
+    imageAlt="A treatment room at House of Rose Aesthetics"
   />
 
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
@@ -62,8 +64,8 @@ const heroImage = '/images/hor-lobby.webp';
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">
-          View Services
+        <a href="/consultation/" class="btn-gold">
+          Request a Consultation
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

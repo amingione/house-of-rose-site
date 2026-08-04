@@ -6,7 +6,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ── House of Rose brand palette — v2.0 "warm, legible" ──
+        // ── House of Rose Creative System v1.0 ──
         //
         // CONTRAST LAW (WCAG 2.1 AA — 4.5:1 body, 3:1 large/UI):
         //   The palette was flipped dark → light, which left the metallic gold
@@ -27,7 +27,7 @@ export default {
         // Never write `text-gold-metal` — that reintroduces the 2:1 failure.
         gold: {
           DEFAULT: 'rgb(var(--hr-gold) / <alpha-value>)',
-          metal: '#C9A24B', // decorative fills/rules only — pair with text-ink
+          metal: '#8A6A43', // Antique Bronze — decorative fills/rules only
           50: '#FAF6EC',
           100: '#F3E9CF',
           200: '#E7D6A8', // on-dark accent
@@ -49,20 +49,24 @@ export default {
         // `charcoal.*` kept as token NAMES for compatibility, but remapped to WARM
         // LIGHT surfaces so existing `bg-charcoal*` classes render ivory/greige.
         charcoal: {
-          DEFAULT: '#F4ECDC', // ivory — primary page surface
-          light: '#EADBC2',   // taupe — accent bands (more pronounced)
-          lighter: '#EADFCB', // warm greige — hover/raised surfaces
+          DEFAULT: '#F1EDE5', // legacy surface alias → Bone
+          light: '#C9C0B3',   // legacy accent alias → Limestone
+          lighter: '#E4DED4', // raised surface
         },
         // Semantic brand tokens
-        ink: '#14110F',       // primary text (never pure black)
-        ivory: '#F4ECDC',
-        breath: '#F8F4EC',
-        greige: '#C7BBA9',
-        // Botanical green (the eucalyptus/greenery in the studio) — secondary accent + primary CTA
-        green: { DEFAULT: '#3F4D3A', deep: '#2F3A2B', sage: '#8C9A7D', soft: '#B9C2AB' },
+        bone: '#F1EDE5',
+        limestone: '#C9C0B3',
+        olive: '#5F624D',
+        bronze: '#8A6A43',
+        'soft-black': '#171614',
+        ink: '#171614',
+        ivory: '#F1EDE5',
+        breath: '#F7F4EE',
+        greige: '#C9C0B3',
+        green: { DEFAULT: '#5F624D', deep: '#4F5241', sage: '#8D907C', soft: '#C4C5B9' },
         // Warm neutral accents from the actual space (mocha wall, walnut wood)
         taupe: { DEFAULT: '#8A7259', soft: '#EDE2D0' },
-        walnut: { DEFAULT: '#3E2C20', deep: '#2C1F16' },
+        walnut: { DEFAULT: '#3A2B24', deep: '#2B211C' },
         // `cream.*` repurposed to INK tints so `text-cream*`/`border-cream*` read on light.
         cream: {
           DEFAULT: '#14110F',
@@ -72,15 +76,14 @@ export default {
         },
       },
       fontFamily: {
-        // Cochin display face — used for the hero wordmark
-        display: ['Cochin', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+        display: ['Baskerville', '"Libre Baskerville"', 'Georgia', 'serif'],
+        serif: ['Baskerville', '"Libre Baskerville"', 'Georgia', 'serif'],
         sans: [
-          'system-ui',
+          '"Avenir Next"',
+          'Avenir',
+          'Arial',
           '-apple-system',
           'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
           'sans-serif',
         ],
       },

@@ -1,24 +1,23 @@
 <div
   id="consent-banner"
-  class="fixed inset-x-4 bottom-4 z-[120] mx-auto hidden max-w-[760px] border border-gold-metal/40 bg-breath p-5 shadow-2xl sm:p-6"
+  class="fixed inset-x-3 bottom-3 z-[120] mx-auto hidden max-w-[920px] border border-walnut/15 bg-bone/95 p-4 shadow-[0_18px_60px_rgba(58,43,36,0.22)] backdrop-blur-md sm:p-5"
   role="region"
   aria-label="Privacy choices"
 >
-  <div class="grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+  <div class="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
     <div>
-      <h2 class="font-serif text-[22px] text-ink">Your privacy choices</h2>
-      <p class="mt-2 max-w-[560px] text-[13px] leading-relaxed text-muted">
-        We use optional analytics to understand site performance and optional advertising measurement
-        for purchases and submitted inquiries. Form messages and service interests are not sent to advertising platforms.
+      <h2 class="font-serif text-[20px] text-ink">Your privacy choices</h2>
+      <p class="mt-1 max-w-[600px] text-[13px] leading-relaxed text-muted">
+        Optional analytics help us improve the site. Advertising measurement stays off unless you allow it; form messages and service interests are not shared with advertising platforms.
       </p>
-      <a class="mt-2 inline-block text-[12px] text-gold underline underline-offset-4" href="/privacy-policy/">
+      <a class="mt-1 inline-block text-[12px] text-gold underline underline-offset-4" href="/privacy-policy/">
         Read the Privacy Policy
       </a>
     </div>
-    <div class="flex flex-wrap gap-2 md:max-w-[310px] md:justify-end">
-      <button id="consent-reject" type="button" class="btn-outline-gold min-h-[44px]">Reject nonessential</button>
-      <button id="consent-manage" type="button" class="btn-outline-gold min-h-[44px]">Manage preferences</button>
-      <button id="consent-accept" type="button" class="btn-gold min-h-[44px]">Accept all</button>
+    <div class="grid grid-cols-2 gap-2 sm:flex md:max-w-[390px] md:justify-end">
+      <button id="consent-reject" type="button" class="btn-outline-gold min-h-[44px] px-4">Reject optional</button>
+      <button id="consent-manage" type="button" class="btn-outline-gold min-h-[44px] px-4">Preferences</button>
+      <button id="consent-accept" type="button" class="btn-gold col-span-2 min-h-[44px] px-5">Accept optional</button>
     </div>
   </div>
 </div>

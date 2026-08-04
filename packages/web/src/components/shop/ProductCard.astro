@@ -8,10 +8,9 @@ import { toCanonicalProduct } from '@/lib/productContract';
 
 interface Props {
   product: Product;
-  reveal?: string;
 }
 
-const { product, reveal = 'bottom' } = Astro.props;
+const { product } = Astro.props;
 const canonicalProduct = toCanonicalProduct(product);
 
 const formatPrice = (cents?: number): string =>
@@ -34,8 +33,6 @@ const imageSrc = product.image
   class="bg-charcoal p-6 flex flex-col relative"
   data-category={product.category}
   data-brand={product.brand}
-  data-reveal={reveal}
-  data-speed="fast"
   {...sbObjectId(product._id)}
 >
   {product.badge && (

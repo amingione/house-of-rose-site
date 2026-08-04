@@ -8,7 +8,9 @@ import {
   type Comparison,
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COMPARISON_SLUGS_QUERY);
@@ -16,10 +18,11 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const cmp = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug });
+const cmpData = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug });
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
-if (!cmp) throw new Error(`[compare/[slug]] No comparison found in Sanity for slug "${slug}"`);
+if (!cmpData) throw new Error(`[compare/[slug]] No comparison found in Sanity for slug "${slug}"`);
+const cmp = alignPublicContent(cmpData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -66,7 +69,16 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
               <p class="text-muted text-[14px] leading-relaxed"><span class="text-ink/70">Best for:</span> <span {...sbFieldPath(`${key}.bestFor`)}>{opt!.bestFor}</span></p>
             )}
             {opt!.service && (
-              <a href={`/services/${opt!.service.slug}/`} class="learn-more group-hover:text-gold mt-4 inline-block">View {opt!.service.title}</a>
+              <div class="mt-5 flex flex-wrap items-center gap-4">
+                <a href={`/services/${opt!.service.slug}/`} class="learn-more">Learn about {opt!.service.title}</a>
+                <BookingLink
+                  slug={opt!.service.slug}
+                  bookingMode={opt!.service.bookingMode}
+                  bookingUrl={opt!.service.bookingUrl}
+                  location="comparison_option"
+                  class="service-booking-link"
+                />
+              </div>
             )}
           </div>
         ))}
@@ -127,7 +139,7 @@ const pageDescription = cmp.seo?.metaDescription ?? cmp.intro;
   <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Not sure which is right for you?</h2>
-      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">A consultation is the fastest way to a confident decision. We'll recommend the right protocol for your skin.</p>
+      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">A consultation gives you space to review your goals, ask questions, and understand which options may be appropriate.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="/consultation/" class="btn-gold">Request a Consultation</a>

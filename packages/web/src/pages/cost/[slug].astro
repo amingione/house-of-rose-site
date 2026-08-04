@@ -8,7 +8,9 @@ import {
   type CostGuide,
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COST_GUIDE_SLUGS_QUERY);
@@ -16,10 +18,11 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const guide = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug });
+const guideData = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug });
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
-if (!guide) throw new Error(`[cost/[slug]] No cost guide found in Sanity for slug "${slug}"`);
+if (!guideData) throw new Error(`[cost/[slug]] No cost guide found in Sanity for slug "${slug}"`);
+const guide = alignPublicContent(guideData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -117,7 +120,17 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
       <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">Pricing can change with the treatment area and plan. Call or request a consultation to confirm what applies to you.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="https://houseofrose.glossgenius.com/services" target="_blank" rel="noopener noreferrer" class="btn-gold">View Services</a>
+        {guide.treatment ? (
+          <BookingLink
+            slug={guide.treatment.slug}
+            bookingMode={guide.treatment.bookingMode}
+            bookingUrl={guide.treatment.bookingUrl}
+            location="cost_guide_final"
+            class="btn-gold"
+          />
+        ) : (
+          <a href="/consultation/" class="btn-gold">Request a Consultation</a>
+        )}
       </div>
     </div>
   </section>

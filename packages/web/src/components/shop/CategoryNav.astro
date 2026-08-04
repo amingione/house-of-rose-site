@@ -41,8 +41,6 @@ const categories = [...new Set(products.map((p) => p.category).filter(Boolean))]
 </style>
 
 <script>
-  // Re-runs on every swup page:view since reloadScripts defaults to true —
-  // needed because this filters DOM already present in the swapped #main-content.
   function initCategoryFilter() {
     const nav = document.querySelector('[data-shop-category-nav]');
     if (!nav) return;
@@ -65,8 +63,5 @@ const categories = [...new Set(products.map((p) => p.category).filter(Boolean))]
     });
   }
 
-  // No `astro:page-load` listener needed: reloadScripts re-executes this whole
-  // script (and this call) on every swup nav. `swup:enable` never fired here —
-  // see CartDrawer.astro for why.
   initCategoryFilter();
 </script>

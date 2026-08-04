@@ -5,8 +5,9 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_LOCAL_AREAS_QUERY, type LocalArea } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
+import { alignPublicContent } from '@/lib/publicCopy';
 
-const areas = await sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY);
+const areas = alignPublicContent(await sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 

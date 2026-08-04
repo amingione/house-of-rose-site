@@ -12,7 +12,7 @@ const { promotions } = Astro.props;
 
 {promotions.length > 0 && (
   <section class="bg-charcoal-light py-[clamp(32px,5vw,56px)] px-6 border-b border-gold-metal/10" aria-label="Current promotions">
-    <div class="max-w-[1280px] mx-auto" data-stagger="120">
+    <div class="max-w-[1280px] mx-auto">
       <div class={`grid gap-px bg-gold-metal/10 ${promotions.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
         {promotions.map((promo) => {
           const href = promo.linkType === 'external' ? promo.externalUrl : promo.internalPath;
@@ -22,8 +22,6 @@ const { promotions } = Astro.props;
             <a
               href={href}
               class="group bg-charcoal-light p-8 flex flex-col md:flex-row items-center gap-6 hover:bg-charcoal transition-colors duration-300"
-              data-reveal="scale"
-              data-speed="normal"
               {...sbObjectId(promo._id)}
               {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             >
