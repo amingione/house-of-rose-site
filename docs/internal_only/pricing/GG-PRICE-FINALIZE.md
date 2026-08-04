@@ -77,38 +77,20 @@ _GG wellness pricing is fully correct — the drift is Sanity-side only._
 
 ---
 
-## 5. Waxing — Aundrea
+## 5. Facial Waxing — Brandy
 
 | Service | FINALIZE | GG now | Action | Basis |
 |---|---|---|---|---|
 | Chin / Lip | **$10 each** | $10 | ✅ KEEP | GG live. |
 | Eyebrow Wax Only | **$15** | $15 | ✅ KEEP | GG live. |
-| Underarm / Brow Shape-Trim-Wax | **$20 each** | $20 | ✅ KEEP | GG live (cheaper than old local $28 — GG wins). |
-| Bikini Line | **$30** | $30 | ✅ KEEP | GG live. |
-| Full Arm / Chest / Back / Full Leg | **$35 / $40 / $50 / $65** | same | ✅ KEEP | GG live. |
-| **Brazilian** | **⏸️ CONFIRM** | — | ⏸️ CONFIRM/ADD | **Not in GG at all.** Local docs reference a Brazilian + "Buy 5 Get 1" series but no confirmed single price. Aundrea sets it, then add. |
+| Brow Shape-Trim-Wax | **$20** | $20 | ✅ KEEP | GG live. |
 
 ---
 
-## 6. Makeup & Lashes — Aundrea
+## 6. Enhancements and Face Reality
 
 | Service | FINALIZE | GG now | Action | Basis |
 |---|---|---|---|---|
-| Everyday Makeup | **⏸️ CONFIRM** | $30 | ⏸️ CONFIRM | Real divergence: GG **$30** vs makeup build-plan comp **$85**. Aundrea's call — $30 is live but far below the comp-set rate. Decide before finalizing. |
-| Soft Glam / Event Makeup | **⏸️ CONFIRM** | $80 | ⏸️ CONFIRM | GG **$80** vs build-plan **$150/face**. Same call. |
-| Full Glam / Bridal Makeup | **$175** | $175 | ✅ KEEP | GG live; matches build-plan bridal. |
-| Lash Tint / Lift / Lift+Tint Combo | **$25 / $65 / $85** | same | ✅ KEEP | GG live. |
-
-> Makeup is the one lane where GG-live and the local comp research **materially disagree** ($30 vs $85). Not a typo to "correct" — a pricing decision only Aundrea should make. Flagged, not overwritten.
-
----
-
-## 7. Permanent Jewelry, Enhancements, Face Reality
-
-| Service | FINALIZE | GG now | Action | Basis |
-|---|---|---|---|---|
-| Permanent Jewelry (base weld) | **$65** | $65 | ✅ KEEP | GG live. _(Sanity "From $45" → update Sanity to $65.)_ |
-| — metal tiers (sterling / 14k / solid gold) | **⏸️ CONFIRM** | — | ⏸️ CONFIRM | No confirmed local source (the $75/$95/$285–795 numbers were a removed proposal). Aundrea sets the tier table. |
 | Enhancements — Lip / Chin | **$7 each** | $7 | ✅ KEEP | GG live. |
 | Face Reality — Acne Bootcamp | **$899** | — (category empty) | ➕ ADD | Local + Sanity agree. GG "Acne Bootcamp" category has 0 services. |
 | Face Reality — Back Treatment | **$159** | — | ➕ ADD | Local + Sanity agree. |
@@ -143,7 +125,7 @@ Brandy's basic lane (enzyme / hydrodermabrasion / light peels) · Brazilian wax 
 
 **⛔ HOLD:** GlowTox (clinical/RN approval first).
 
-**Sanity-only fixes (not GG):** filler From $700→$650 · PRF injections $599→$495/$595 · GLP-1 $349→$225/$325 · IV $129→$100 · dermaplaning GBP $95→$135 · permanent jewelry $45→$65 · remove phantom "Dysport"/"Restylane" · invisiClear $125 (likely error, ~$12) · Skin Script 41 null prices. _(Retail products are sold via Stripe/Sanity, not GlossGenius — GG can't sell products online.)_
+**Sanity-only fixes (not GG):** filler From $700→$650 · PRF injections $599→$495/$595 · GLP-1 $349→$225/$325 · IV $129→$100 · dermaplaning GBP $95→$135 · remove phantom "Dysport"/"Restylane" · invisiClear $125 (likely error, ~$12) · Skin Script 41 null prices. _(Retail products are sold via Stripe/Sanity, not GlossGenius — GG can't sell products online.)_
 
 ---
 
@@ -153,20 +135,16 @@ Live GlossGenius menu cleanup completed (browser, system-of-record):
 - **Removed** leftover `Wrinkle Relaxers` bundle ($14) and `Facial Fillers` ($0 placeholder) from Dermal Fillers — real Botox/Daxxify + individual fillers already listed. (Dermal Fillers 9 → 7.)
 - **Categorized** the two uncategorized orphans → **Skin Services**: `Consultation + AI Skin Analysis` ($65) and `Acne Bootcamp (12-Week Program)` ($899). (Skin Services 18 → 20.)
 - **Kept** `Acne Bootcamp Consultation` ($99) per Amber (2026-07-26).
-- **Deleted** 3 empty (0-service) categories: Microneedling, Permanent Jewelry, Skin Renewal.
+- **Deleted** empty (0-service) categories during catalog cleanup.
 - Procell confirmed live at **Pro $300 / MD $400** (Amber decision, this session — supersedes the $299/$349 draft above).
 
 Final categories: Beauty & Salon (4) · Chemical Peels (1) · Dermal Fillers (7) · Lash Services (1) · Neuromodulators (2) · Skin Services (20) · Waxing (2) · Wellness & IV (8). No empty categories, no $0/uncategorized services.
 
 ### Corrections — 2026-07-26 (Amber)
-- **Brazilian wax → NOT OFFERED.** House of Rose does not do Brazilian waxing. Remove from the CONFIRM list; do not add to GG. (Waxing menu stays: Body Waxing + Facial Waxing only.)
 - **"Carboxy facial" = the CO2 Lift Carboxy Gel Mask** (CO2 Lift branded carboxy-therapy gel mask treatment) — this resolves the identity, not the price. Still needs a price + standalone-vs-add-on decision from Amber before it can list in GG.
 
 ### Round 2 executed — 2026-07-26 (Amber directives)
 Live GlossGenius changes:
-- **Permanent Jewelry → $65 flat, Fixed/visible** (was $60 + Price Hidden). No metal tiers — single price per Amber.
-- **Everyday Makeup → $85** (comp rate; was $90). Description cleaned (removed embedded "$90" price, now benefit-only).
-- **Full Glam/Bridal Makeup → $175** (comp/build-plan; was $185). Description cleaned (removed embedded "$185"). ⚠️ Flag for Aundrea: current blurb implies a bride trial is *included* — the makeup rate card treats trial as a **separate paid** session. Confirm inclusions.
 - **EZ Gel Bio-Filler → ADDED $650** (Dermal Fillers · Diana · 45 min · Fixed). Best-match to our own filler floor (= RHA 1) and just above PRF Facial ($595); market-appropriate for autologous bio-filler. ⚠️ Diana to confirm/adjust to her private set price.
 - **CO2 Lift Carboxy → ADDED, structured both ways:**
   - Standalone **CO2 Lift Carboxy Facial $175** (Skin Services · Amber + Brandy · 45 min · bookable online). Zero-downtime event glow. Comp: add-on market $100–110, standalone $175–250 → $175 is competitive-not-cheapest, high margin (mask cost ~$30–100).
@@ -175,9 +153,6 @@ Live GlossGenius changes:
 
 **Still provider-confirm (unchanged):** permanent-jewelry metal tiers → CONFIRMED NOT wanted (flat $65). EZ-Gel price pending Diana's private number. Everyday/Event makeup live at comp.
 **Systemic note:** several GG service descriptions were AI-generated with embedded prices/durations (e.g., "priced at $90"). Everyday + Bridal fixed this round. Recommend a sweep of remaining descriptions to strip embedded prices (violates the no-price-in-booking-descriptions rule).
-
-### Correction — 2026-07-26 (Amber): Bridal trial
-- **Bridal trial run is SEPARATE and NOT included** in Full Glam/Bridal Makeup. GG description updated to: "…A trial run beforehand is recommended and booked separately." (Matches the makeup rate card — trial = separate paid session ≈ event rate.)
 
 ### Added — 2026-07-26: Microneedling – Face (was missing)
 - **Microneedling - Face → ADDED $295** (Skin Services · Amber · 1 hr · Fixed · bookable). The plain/corrective SkinPen-style face microneedling was missing — only Procell Pro/MD (growth-factor) and Microneedling-Body existed. Priced just under Procell Pro ($300) since Procell adds the growth-factor serum on top of channeling; above the local bare-microneedling floor ($195–265). Matches the finalize sheet's "Microneedling — Corrective (Face) $295." (Comp sheet had listed $325, but that predated the Procell $300 decision and would sit illogically above Procell Pro — $295 corrected.)

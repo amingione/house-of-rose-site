@@ -29,8 +29,8 @@ If anything in this prompt conflicts with those docs, **the docs win**.
   dead. GLP-1 is a normal service (Diana's lane). No botanical/flowery names.
 - **Provider lanes (never mix up)**: Amber — advanced facials, **PRF topical only, no
   injections**; Diana (RN) — injectables (tox/filler/**PRF injections/EZ-Gel**), IV
-  hydration, GLP-1; Brandy — basic facials + facial waxing; Aundrea (ref `provider-brooke`,
-  display "Aundrea") — waxing, permanent jewelry, professional makeup.
+  hydration, GLP-1; Brandy — basic facials + facial waxing. Jane Iredale remains a retail product line,
+  not a makeup-application service.
 - **URLs**: every internal/absolute link to an inner page ends in `/`.
 - **Positioning**: lead with "advanced aesthetics & wellness"; "med spa" allowed in
   meta/SEO/supporting copy, never denied, never the lead. Never "day spa". No medical

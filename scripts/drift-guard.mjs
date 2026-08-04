@@ -61,6 +61,7 @@ const RULES = [
   { label: 'Old Facebook profile', re: /facebook\.com\/(?:people\/)?House-Of-Rose-Aesthetics/i },
   { label: 'Old Facebook profile-ID URL (use /hofraesthetics)', re: /facebook\.com\/profile\.php\?id=61590233534310/i },
   { label: 'Wrong opening date (use June 15, 2026)', re: /July 9,? 2026/i },
+  { label: 'Removed provider Aundrea', re: /\bAundrea\b|\bPedigo\b|provider-brooke/i },
 ];
 
 /**
@@ -110,6 +111,9 @@ const RETIRED_ROUTE_CONFIGS = [
   '/memberships/*',
   '/rose-circle/*',
   '/plans/*',
+  '/aundrea/*',
+  '/aundrea.vcf',
+  '/services/professional-makeup/*',
 ];
 
 /** @type {{file:string, line:number, label:string, text:string}[]} */

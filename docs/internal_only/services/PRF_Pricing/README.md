@@ -61,7 +61,7 @@ esthetics = book-or-call; trust/homepage get their own bank ("See your skin firs
 
 ## Open items for Amber (confirm before publishing)
 
-1. **Provider credential wording** — Amber's exact license/title; whether to name the medical director; Brandy's public name + whether her lane is launched; Aundrea's Lashes/Ear-Piercing (`_gaps.md` §5).
+1. **Provider credential wording** — Amber's exact license/title; whether to name the medical director; Brandy's public name + whether her lane is launched.
 2. **Procell series/price** — resolved to the live menu: Pro $299 / MD $349, **Series of 4 $1,099** (Procell protocol, not the house 3/6 wrapper). The older master menu's $250/$325 and 3/6 framing are stale. Confirm Sanity `microchanneling` + `*-series-of-4` packages carry $299/$349/$1,099 on wire-in.
 3. **Acne consult fee** — no documented paid-consult fee (only a $50 late/no-show policy fee); confirm intent.
 4. **Final pricing is set** — see `FINAL-PRICING.md` for every number, the market rationale, and the exact GlossGenius + Sanity updates required (the one real change is PRF: raise to $550/$1,485; all else confirmed at current values). Acne Peel $139 is now market-validated (single acne treatments run $85–$195), so the earlier "Sanity-only" flag is resolved.

@@ -1,6 +1,6 @@
 # Advanced Skin — Regenerative & Corrective · Master Treatment, Pricing & Description Guide
 
-**Provider lane:** Amber — Advanced Esthetics, **regenerative & corrective skin** (Procell microchanneling, corrective microneedling, topical PRF, BioRePeel, Glo2Facial, dermaplaning, acne — targeting tightening, scars, stretch marks, wrinkles and texture on **face and body**). *Relaxing/maintenance facials are Brandy's lane; injectables, IV, GLP-1 (Diana) and waxing / permanent jewelry (Aundrea) are separate lanes — none included here.*
+**Provider lane:** Amber — Advanced Esthetics, **regenerative & corrective skin** (Procell microchanneling, corrective microneedling, topical PRF, BioRePeel, Glo2Facial, dermaplaning, acne — targeting tightening, scars, stretch marks, wrinkles and texture on **face and body**). *Relaxing/maintenance facials and facial waxing are Brandy's lane; injectables, IV, and GLP-1 are Diana's — none included here.*
 **Location / market:** House of Rose Aesthetics · Punta Gorda, FL (Charlotte County / SW Florida)
 **Last updated:** 2026-07-10
 

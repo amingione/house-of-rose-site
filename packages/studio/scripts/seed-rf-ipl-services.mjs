@@ -372,7 +372,7 @@ const forbiddenPhrases = [
   /\bdiscount\b/i,
   /\bBook Online\b/i,
   /\bSchedule Now\b/i,
-  /\bAmber\b|\bDiana\b|\bAundrea\b|\bBrandy\b/i,
+  /\bAmber\b|\bDiana\b|\bBrandy\b/i,
 ];
 
 function assert(condition, message) {

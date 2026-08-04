@@ -3,21 +3,16 @@
 
 **Price status legend:** ✅ in GlossGenius · ⚠️ in GG but structured differently · 🟥 NOT in GG yet
 
-## BASIC FACIALS — The Ladder (Aundrea & Brandy)
+## BASIC FACIALS — Brandy
 
 | Service | Duration | Price | Provider |
 |---------|----------|-------|----------|
-| Signature Rose Facial | 30m | $80 ✅ | Aundrea |
 | Lunch Time Glow | 30m | $100 ✅ | Brandy |
-| Luxe Rose Facial | 1h | $120 ✅ | Aundrea |
 | Signature Facial | 45m | $120 ✅ | Brandy |
 | Skin Reset Facial | 50m | $140 ✅ | Brandy |
 | Mommy & Me Facial | 1h | $150 ✅ | Brandy |
-| Royal Rose Facial | 1h 30m | $170 ✅ | Aundrea |
 | Sculpt & Lift Facial | 1h | $180 ✅ | Brandy |
 | Luxury Facial | 1h 15m | $200 ✅ | Brandy |
-
-> **Provider split:** Aundrea owns the 3 **Rose** facials ($80/$120/$170). Brandy owns the other 6 ($100–$200).
 
 ---
 
@@ -188,50 +183,19 @@ The packages show approximately **10% savings on 3-series, 20% on 6-series**, c
 
 ---
 
-## Providers –– AUNDREA (& BRANDY)
+## Provider — Brandy
 
 ### 7. category: Waxing
 
-service: **Facial Waxing** (Aundrea & Brandy)
+service: **Facial Waxing** (Brandy)
 Options:
 - **Lip** — 10m | $10 ✅
 - **Chin** — 10m | $10 ✅
 - **Eyebrow Wax Only** — 10m | $15 ✅
 - **Eyebrow Shape, Trim & Wax** — 15m | $20 ✅
 
-service: **Body Waxing** (Aundrea only)
-Options:
-- **Underarm** — 15m | $20 ✅
-- **Bikini Line** — 20m | $30 ✅
-- **Chest** — 20m | $40 ✅
-- **Full Arm** — 30m | $35 ✅
-- **Back** — 30m | $50 ✅
-- **Full Leg** — 45m | $65 ✅
-
-### 8. service: Lashes (Aundrea)
-options:
-- **Lash Tint** — 20m | $25 ✅
-- **Lash Lift** — 40m | $65 ✅
-- **Lash Lift + Tint** — 1h | $85 ✅
-
-### 9. Permanent Jewelry (Aundrea)
-- **Permanent Jewelry** — 20m | $65 ✅
-
-| Type | Material | Price |
-|------|----------|-------|
-| **Bracelets** | Stainless Steel | $60 |
-| | Sterling Silver | $75 |
-| | 14k Gold Filled | $85 |
-| **Anklets** | Stainless Steel | $65 |
-| | Sterling Silver | $85 |
-| | 14k Gold Filled | $95 |
-
-> ⚠️ GG has one line ($65). Individual piece types (belly chain / necklace / anklet / bracelet + charm) not separated in GG yet — **Amber to clarify if these need GG SKUs or stay as one $65 base option**.
-
-### 10. Professional Makeup (Aundrea)
-- **Everyday Makeup** — 25m | $30 ✅
-- **Soft Glam / Event Makeup** — 45m | $80 ✅
-- **Full Glam / Bridal Makeup** — 2h | $175 ✅
+### Jane Iredale Products
+Retained product line. Product-level inventory and pricing must come from Sanity; makeup-application services are retired.
 
 ---
 
@@ -244,10 +208,3 @@ provider: amber
   - *Remove as a category; use dedicated program page*
 
 ---
-
-## Membership Tiers (see [[memberships-pricing.md]])
-- i removed the facials membership - not ready for it 
-
-
-- **IV Membership** — IV Hydration lane ($185 drip baseline)
-- **Weight Management** — GLP-1 (Semaglutide / Tirzepatide); already monthly program

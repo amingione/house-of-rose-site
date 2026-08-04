@@ -97,25 +97,25 @@ Dimensions follow the site's existing ratio system so exports drop straight into
 - **Lighting**: strong warm window backlight with soft sheer diffusion
 - **Mood**: restful, restorative, bright
 
-## 7. Basic Facials / Waxing room (Brandy & Aundrea's lane)
+## 7. Basic Facials / Facial Waxing room (Brandy's lane)
 
 **Prompt:**
-"Photorealistic photograph of a soft, botanical-accented treatment room: a crisp white-linened treatment bed with a folded sage green throw, faux eucalyptus garlands framing a small chalkboard sign and a mirror on the wall, a black rolling cart with neatly organized cotton pads, small ceramic bowls, and skincare bottles, warm ceiling sconce light, travertine-look tile floor with a woven gray runner rug. Shot on a full-frame DSLR, 35mm lens, three-quarter angle from the foot of the bed. Soft warm ambient light, gentle shadow falloff, no harsh highlights. Photorealistic spa-interior editorial photography."
+"Use a verified photograph of the real House of Rose facial room. Preserve the actual architecture, treatment bed, cart, product labels, equipment, and room layout. Frame from the foot of the bed at eye level with straight vertical lines, directional light, true material color, and no added decor or plants."
 
 - **Composition**: three-quarter angle from foot of the treatment bed
-- **Palette**: white linens, sage green accent, black cart, muted eucalyptus green, warm neutral walls
+- **Palette**: preserve the verified room colors and materials
 - **Style**: photorealistic interior editorial photography
 - **Dimensions**: `tile` 1400×875 or `card` 1200×900
 - **Lighting**: warm ambient ceiling sconce, soft and even
 - **Mood**: gentle, tidy, approachable — the "everyday maintenance" room, softer than the advanced suite
 
-## 8. Professional Makeup / Jane Iredale (Aundrea's lane)
+## 8. Jane Iredale Products
 
 **Prompt:**
-"Photorealistic overhead flatlay photograph of a professional makeup artist's kit laid out on a marble vanity surface: an open mineral makeup palette in soft neutral tones, two makeup brushes fanned beside it, a small gold hand mirror, a single blush pink rose stem laid diagonally across the frame, soft natural light from the upper left casting gentle brush-bristle shadows. Shot on a full-frame DSLR, 50mm lens, direct overhead flatlay, shallow depth of field with brush tips crisply in focus. Warm neutral palette with a single blush color pop. Photorealistic beauty/product still-life photography."
+"Photograph real Jane Iredale products inside the verified House of Rose retail environment. Keep every label, cap, shade, and package proportion accurate. Use a restrained grouping on a real walnut or limestone surface with directional window light, straight lines, and true product color. Do not add flowers, floating products, glitter, splashes, or decorative props."
 
-- **Composition**: overhead flatlay, diagonal rose stem for visual movement
-- **Palette**: marble white/gray surface, warm neutral makeup tones, gold mirror, blush rose accent
+- **Composition**: restrained product grouping inside the real retail environment
+- **Palette**: verified House of Rose materials and true package colors
 - **Style**: photorealistic beauty/product still-life photography
 - **Dimensions**: `square` 1200×1200
 - **Lighting**: soft directional natural light, upper-left key

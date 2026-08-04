@@ -9,10 +9,8 @@
 **Sources used**
 - `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` (+ its `Diana_Pricing_GlossGenius_Import.csv`, identical figures) — injectables, PRF injections, IV menu + add-ons, GLP-1.
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` (dated 2026-07-10) — Amber's advanced facials, series framework, add-ons. `advanced-facials-pricing.md` is **DEPRECATED** (do not use).
-- `docs/internal_only/services/waxing/face.md` · `docs/internal_only/services/waxing/body.md` — per-zone wax + combos.
-- `docs/internal_only/pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md` — makeup rate card.
+- `docs/internal_only/services/waxing/face.md` — retained facial-waxing zones and rack pricing.
 - `docs/internal_only/services/facials/faceRealityAcneProgram.md` + master-menu acne rows — Face Reality program, acne peel, back treatment.
-- `docs/internal_only/research/permanent-jewelry.md` — permanent jewelry ("From $45"; metal tiers pending).
 - Sanity published snapshot: `scratchpad/phase2/sanity-published-snapshot.json`.
 - `docs/GOOGLE-BUSINESS-PROFILE.md` — treated as a **stale/aspirational draft only** (uses removed membership language, Osmosis/Sculptra/BHRT, GLP-1 $499); referenced **only** for the noted dermaplaning $95 conflict.
 
@@ -29,13 +27,10 @@
 
 | GG Category | Service | Duration | GG price |
 |---|---|---|---|
-| **Facials** (Brandy) | Signature Rose Facial | 30m | $80 |
 | Facials | Lunch Time Glow | 30m | $100 |
-| Facials | Luxe Rose Facial | 1h | $120 |
 | Facials | Signature Facial | 45m | $120 |
 | Facials | Skin Reset Facial | 50m | $140 |
 | Facials | Mommy & Me Facial | 1h | $150 |
-| Facials | Royal Rose Facial | 1h30 | $170 |
 | Facials | Sculpt & Lift Facial | 1h | $180 |
 | Facials | Luxury Facial | 1h15 | $200 |
 | **Advanced Facials** (Amber) | Glo2Facial | 1h | **$195** |
@@ -58,19 +53,9 @@
 | Wellness | Add-ons: Vit C / B12 / Biotin / Magnesium | 10m | $25 each |
 | Wellness | Add-ons: Glutathione / NAD+ | 10m | $35 / $100 |
 | Wellness | Semaglutide / Tirzepatide | 15m | $225 / $325 per month |
-| **Waxing** (Aundrea) | Chin / Lip | 10m | $10 each |
+| **Facial Waxing** (Brandy) | Chin / Lip | 10m | $10 each |
 | Waxing | Eyebrow Wax Only | 10m | $15 |
-| Waxing | Underarm / Eyebrow Shape,Trim&Wax | 15m | $20 each |
-| Waxing | Bikini Line | 20m | $30 |
-| Waxing | Full Arm | 30m | $35 |
-| Waxing | Chest | 20m | $40 |
-| Waxing | Back | 30m | $50 |
-| Waxing | Full Leg | 45m | $65 |
-| **Makeup** (Aundrea) | Everyday Makeup | 25m | $30 |
-| Makeup | Soft Glam / Event Makeup | 45m | $80 |
-| Makeup | Full Glam / Bridal Makeup | 2h | $175 |
-| **Lash Services** (Aundrea) | Lash Tint / Lash Lift / Lift & Tint Combo | 20–60m | $25 / $65 / $85 |
-| **Permanent Jewelry** | Permanent Jewelry | 20m | $65 |
+| Facial Waxing | Eyebrow Shape, Trim & Wax | 15m | $20 |
 | **Enhancements & Add-ons** | Lip / Chin | 10m | $7 each |
 
 **Empty in GG:** Acne Bootcamp (0 services), Injections (0), Hormone Therapy (0). **Memberships: none created. Packages: none created.** Resource: "Injection Room."
@@ -81,12 +66,9 @@
   microneedling, microneedling/PRF **body** treatments, the Procell **Pro-vs-MD standalone tiers** ($250/$349),
   **carboxy** facial, **dermaplaning** (add-on only per Amber, not a GG service), and the **Face Reality Acne
   Bootcamp / acne-peel / back-treatment** ($899/$139/$159 — the GG "Acne Bootcamp" category has 0 services).
-- **In GlossGenius but thin/absent on the site:** the 9-service **basic-facial ladder** ($80–$200), **Lash
-  services** (tint/lift/combo — a whole lane the site doesn't cover), and the **combo advanced facials**
+- **In GlossGenius but thin/absent on the site:** the current **basic-facial ladder** and the **combo advanced facials**
   (Glo2 + Procell MD/Pro/PRF).
 - **Price corrections (GG wins over BOTH local docs and Sanity):** Glo2Facial **$195** (local said $185);
-  waxing is cheaper across the board (Underarm **$20** vs local $28; no **Brazilian** at all); makeup far cheaper
-  (Everyday **$30** vs local $85; Event **$80** vs local $150); permanent jewelry **$65** flat (not "From $45");
   Procell microchanneling is a single **$349** line — now RESOLVED as the **MD** tier; **Pro $250** must be added to GG as the entry tier (see §10a).
 - **Confirmed drifts where GG validates the LOCAL docs and proves SANITY wrong:** IV $100 (Sanity $129),
   fillers from $650 (Sanity $700), PRF injections $495/$595 (Sanity $599), GLP-1 $225/$325 (Sanity $349),
@@ -138,15 +120,15 @@
 | Enzyme exfoliation / basic facial | **NONE** | — | ~30–60 min (pending) | — none | 🟥 no local price, no Sanity service | `docs/internal_only/research/hydrodermabrasion.md` §pending |
 | Hydrodermabrasion | **NONE** | — | ~30–60 min (pending) | — none | 🟥 explicitly "no HoR price source exists"; do not borrow Glo2Facial/dermaplaning | `docs/internal_only/research/hydrodermabrasion.md` |
 | Light peels (maintenance) | **NONE** | — | — | — none | 🟥 unbuilt lane | — |
-| Facial waxing (Brandy also offers) | see §3 (Aundrea's rate card) | per zone | — | see §3 | — | waxing/face.md |
+| Facial waxing | see §3 (Brandy) | per zone | — | see §3 | — | waxing/face.md |
 
 > **BLOCKER:** Brandy's basic-facial & peel lane is entirely unpriced and unbuilt in Sanity. Nothing in that lane can publish until Brandy/Amber set enzyme, hydrodermabrasion, light-peel, and standalone-BioRePeel prices and they are entered in Sanity.
 
 ---
 
-## 3. Aundrea — Waxing (per zone)
+## 3. Brandy — Facial Waxing (per zone)
 
-**Face** — `docs/internal_only/services/waxing/face.md` · **Body** — `docs/internal_only/services/waxing/body.md`. Sanity carries only two rolled-up hub prices: `facial-waxing` "From $15" and `body-waxing` "From $28".
+Source: `docs/internal_only/services/waxing/face.md`. Sanity carries the rolled-up `facial-waxing` service.
 
 | Zone | Authoritative price (local) | Unit | Sanity | Drift? | Source |
 |---|---|---|---|---|---|
@@ -159,44 +141,9 @@
 | Ears | $18 | per zone | — | — | face.md |
 | Brow + Lip Combo | $35 | combo | — | — | face.md |
 | Full Face — 9 zones | $70 | combo | — | — | face.md |
-| **Body** | | | `body-waxing` From $28 | ✅ (from-price = underarms $28) | body.md |
-| Underarms | $28 | per zone | — | — | body.md |
-| Half Arms | $42 | per zone | — | — | body.md |
-| Full Arms | $50 | per zone | — | — | body.md |
-| Lower Legs | $48 | per zone | — | — | body.md |
-| Full Legs | $85 | per zone | — | — | body.md |
-| Stomach | $35 | per zone | — | — | body.md |
-| Back | $70 | per zone | — | — | body.md |
-| Chest | $60 | per zone | — | — | body.md |
-| Feet & Toes | $30 | per zone | — | — | body.md |
-| Bikini Line | $45 | per zone | — | — | body.md |
-| Bikini Full | $55 | per zone | — | — | body.md |
-| **Brazilian** | **$65** | per zone | — | — | body.md |
-| Bikini Full + Underarms (combo) | $85 | combo | pkg `bikini-underarms-combo` (unpriced) | ⚠️ Sanity package empty | body.md |
-| Full Legs + Brazilian + Underarms (combo) | $160 | combo | pkg `full-body-smooth-combo` (unpriced) | ⚠️ Sanity package empty | body.md |
+## 4. Jane Iredale Products
 
----
-
-## 4. Aundrea — Permanent Jewelry & Makeup
-
-**Permanent Jewelry** — `docs/internal_only/research/permanent-jewelry.md`:
-
-| Service | Authoritative price | Unit | Duration | Sanity | Drift? | Source |
-|---|---|---|---|---|---|---|
-| Permanent Jewelry (base) | From $45 | per piece | 15–30 min | `permanent-jewelry` From $45 | ✅ | permanent-jewelry.md §8 |
-| Metal tiers (sterling / 14k gold-filled / solid gold) | **PENDING AUNDREA** — no confirmed tier table | per piece | — | — | 🟥 competitor proposal ($75/$95/$285–795) is a retired-name draft that contradicts "From $45"; do NOT use | permanent-jewelry.md §8 |
-| Charms / connectors / re-weld | PENDING AUNDREA | add-on | — | — | 🟥 confirmed-at-booking | permanent-jewelry.md §8 |
-
-**Professional Makeup (Jane Iredale, no airbrush upcharge)** — `PROFESSIONAL-MAKEUP-PRICING-COMP.md`. Not published as Sanity `service` docs (makeup lives in singleton hub pages):
-
-| Service | Authoritative price | Unit | Sanity | Drift? | Source |
-|---|---|---|---|---|---|
-| Event Makeup (per face) | From $150 | per face | — (singleton page, no `service`) | — | makeup comp §rate card |
-| Trial Run | $150 (same as event) | per session | — | — | makeup comp §rate card |
-| Everyday / General Application | From $85 | per face | — | — | makeup comp §rate card |
-| Event — In-House Individual Block Time | From $150 | per person | — | — | makeup comp §rate card |
-| Event — Spa Rental (Pre-Party Package) | From $175 / person · 4-guest min | per person | — | — | makeup comp §rate card |
-| Event — Travel | From $150 / person + travel fee · 4-guest min | per person | — | — | makeup comp §rate card |
+The product line remains active under `/shop/jane-iredale/`. Individual inventory and prices are not yet represented by Sanity `product` documents and must be verified before checkout is enabled.
 
 ---
 
@@ -314,7 +261,6 @@ Services with **no authoritative local price** that must be resolved before publ
 | **Dermaplaning (standalone)** | ⚠️/🟥 Sanity $135 vs GBP draft $95; **no master-menu canonical single-session price** (only +$45 prep add-on). | Amber picks $135 or $95. |
 | **BioRePeel face (standalone)** | Sanity "From $295" = **Brandy's standalone** (facials & peels lane); the master-menu "+$65 add-on" = **Amber's** advanced-lane add-on. Both valid (provider split). | Confirm Brandy's $295 standalone price in GG. |
 | **Skin analysis** | ❓ Not priced; research frames it as part of a consult/Glo2Facial visit. **Likely complimentary — CONFIRM with Amber.** No Sanity `service`. | Amber confirms complimentary vs priced. |
-| **Permanent-jewelry metal tiers** | 🟥 Only "From $45" base confirmed; sterling/gold-filled/solid-gold tier table "pending Aundrea." | Aundrea sets the metal-tier table. |
 | **LED standalone vs add-on** | ⚠️ $35 (add-on, master menu) vs $65 (Sanity standalone `lightstim-led-therapy`) | Not a true conflict (different units) — use the right one per context. |
 
 ---

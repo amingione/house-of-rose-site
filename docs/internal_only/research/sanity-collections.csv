@@ -1,23 +1,19 @@
-Target GG Collection (12),Provider(s),GG Service Count,Currently a Sanity Collection?,Notes
-Facials,Brandy & Aundrea,9,No,CREATE — the basic-facial ladder ($80–$200)
+Target GG Collection (9),Provider(s),GG Service Count,Currently a Sanity Collection?,Notes
+Facials,Brandy,6,No,CREATE — the current basic-facial ladder ($100–$200)
 Advanced Facials,Amber,5 (+ Amber adding BioRePeel/body),Partly (in 'Skin Renewal'),Glo2 + combos + GlowTox; move Glo2/BioRePeel here
 Microchanneling & Microneedling,Amber,1 (+ Amber adding),Hub exists,Procell MD Microchanneling $349; body pending
 Skin Renewal,Amber,1,Yes (currently a catch-all — 19 svcs),Trim to just PRF Skin Renewal; redistribute the rest
 Injectables & Bio-Fillers,Diana,9,Yes ('Injectables & Aesthetics' → rename),Botox/Daxxify/fillers/PRF injections
 Wellness & Restoration,Diana,14,Yes,IVs + add-ons + GLP-1 (GG groups all as one)
-Waxing,Aundrea & Brandy,10,Yes,Assign facial-waxing (currently no collection)
-Lash Services,Aundrea,3,No,CREATE — new lane
-Makeup,Aundrea,3,No,CREATE (or wire the makeup singleton pages)
-Permanent Jewelry,Aundrea,1,No (in 'Beauty & Enhancements'),Move out of Beauty & Enhancements
+Waxing,Brandy,1,Yes,Keep facial-waxing under Brandy
 Enhancements & Add-ons,(cross),2,No,Lip/Chin $7 + treatment add-ons (Dermaplane/LED/prep)
 Acne Bootcamp,Amber,0 (→ 1 service),No (in 'Skin Renewal'),Face Reality $899 program; you said make it a service
 
 — CURRENT SANITY COLLECTIONS (5) —,,,,
 Injectables & Aesthetics,Diana,4 services,→ rename to 'Injectables & Bio-Fillers',
-Beauty & Enhancements,mixed,1 service,→ replace (jewelry→Permanent Jewelry),
 Wellness & Restoration,Diana,3 services,→ keep,
 Skin Renewal,Amber,19 services,→ split into Advanced Facials / Microchanneling / Skin Renewal / Acne Bootcamp,
-Waxing,Aundrea,1 service,→ keep,
+Waxing,Brandy,1 service,→ keep,
 
 — GG categories NOT built (empty/planned) —,,,,
 Injections,Diana,0,No,empty in GG — planned

@@ -13,7 +13,7 @@ export const provider = defineType({
       name: 'title',
       title: 'Provider',
       type: 'string',
-      description: 'Display name (e.g. Amber, Diana, Brooke, Brandy).',
+      description: 'Display name (e.g. Amber, Diana, Brandy).',
       validation: (R) => R.required(),
     }),
     defineField({

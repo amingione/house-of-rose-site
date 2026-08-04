@@ -170,7 +170,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 
 ## 10. Provider + compliance notes
 
-**Whose lane:** **Diana, RN** — injectables, including neurotoxins (Botox and Daxxify), under **medical-director oversight**. This is a compliance line: neurotoxins are prescription medical injectables and must **never** be attributed to Amber, Brandy, or Aundrea, and must never appear under a facial/esthetics lane. Amber does **PRF topical only, never injections** — do not blur that boundary anywhere near this content.
+**Whose lane:** **Diana, RN** — injectables, including neurotoxins (Botox and Daxxify), under **medical-director oversight**. This is a compliance line: neurotoxins are prescription medical injectables and must **never** be attributed to providers outside this lane or appear under a facial/esthetics lane. Amber does **PRF topical only, never injections** — do not blur that boundary anywhere near this content.
 
 **FDA language (you MAY cite precisely; do NOT overclaim):**
 - **Botox Cosmetic (onabotulinumtoxinA)** — FDA-approved for the temporary improvement of moderate to severe **glabellar (frown) lines, lateral canthal lines (crow's feet), and forehead lines** in adults.

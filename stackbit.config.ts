@@ -116,9 +116,7 @@ const SINGLETON_PAGE_ROUTES: Record<string, string> = {
   skinAnalysis: '/skin-analysis',
   thankYou: '/thank-you',
   experienceContent: '/experience',
-  professionalMakeupPage: '/services/professional-makeup',
-  janeIredalePage: '/services/professional-makeup/jane-iredale',
-  makeupEventsPage: '/services/professional-makeup/events',
+  janeIredalePage: '/shop/jane-iredale',
 };
 
 const SANITY_PROJECT_ID = requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']);

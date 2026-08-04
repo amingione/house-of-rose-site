@@ -33,7 +33,7 @@ PRF injections & PRF EZ-Gel · IV hydration therapy · GLP-1 program
 **Basic facials (Brandy):** enzyme exfoliation · hydrodermabrasion · light peels ·
 facial waxing
 
-**Aundrea:** waxing (face/body) · permanent jewelry · professional makeup + Jane Iredale
+**Retail:** Jane Iredale products (no makeup-application service)
 
 **Cross-cutting:** AI skin analysis (the evidence-based first step) · Face Reality acne
 program · product lines (Procell, GlyMed+, Skin Script, Face Reality, Jane Iredale,

@@ -1,6 +1,5 @@
 Title,Slug,Kind,Parent,Provider,Price,Duration,Current Collection,Current Category (enum),Status,Target GG Category,Action / Notes
-— CURRENT SANITY SERVICES (30) —,,,,,,,,,,,
-Permanent Jewelry,permanent-jewelry,standalone,,Aundrea,From $45,15–30 minutes,Beauty & Enhancements,,,Permanent Jewelry,Reprice $45→$65 (GG); add material tiers ($60–$95); set provider Aundrea
+— CURRENT SANITY SERVICES (28) —,,,,,,,,,,,
 Botox & Neurotoxins,injectables,treatment,injectables-bio-fillers,Diana,From $14/unit,30 minutes,Injectables & Aesthetics,,,Injectables & Bio-Fillers,Price fixed ✓; drop phantom 'Dysport' from copy; set provider Diana
 Dermal Fillers,dermal-fillers,treatment,injectables-bio-fillers,Diana,From $650,45–60 minutes,Injectables & Aesthetics,,,Injectables & Bio-Fillers,Price fixed ✓; drop phantom 'Restylane' from copy
 EZ Gel Bio-Filler,ez-gel-bio-filler,treatment,prf,Diana,From $699,75 minutes,Injectables & Aesthetics,,,Injectables & Bio-Fillers,NOT in GG; $699 unsourced — confirm price or drop
@@ -24,16 +23,12 @@ PRF Skin Texture & Tightening,prf-microneedling,treatment,prf,Amber,From $425,90
 PRF — Platelet-Rich Fibrin,prf,hub,,Amber,,,Skin Renewal,,,Skin Renewal,Hub (Amber topical PRF); keep injectable PRF under Diana
 Procell Microchanneling,microchanneling,treatment,microchanneling-microneedling,Amber,From $250,60–90 minutes,Skin Renewal,,,Microchanneling & Microneedling,GG = 'Procell MD Microchanneling' $349 — reconcile $250 (Pro) vs $349 (MD)
 Procell Microchanneling — Body,Procell-microchanneling-body,standalone,,Amber,From $349 per zone,60–75 minutes,Skin Renewal,skin-renewal,proposed,Microchanneling & Microneedling,NOT in GG — Amber adding (body)
-Body Waxing,body-waxing,standalone,,Aundrea,From $28,10–45 min by zone,Waxing,beauty-enhancements,live,Waxing,Reprice to GG per-zone (Underarm $20…Full Leg $65); fix 'Rosé wax' copy
 GLP-1 Weight Management,glp-1-weight-management,treatment,wellness,Diana,From $279/month,Ongoing program,Wellness & Restoration,,,Wellness & Restoration,Price fixed ✓ ($279; confirm vs COGS)
 IV Hydration Therapy,iv-hydration-therapy,treatment,wellness,Diana,From $125,45–60 minutes,Wellness & Restoration,,,Wellness & Restoration,Price fixed ✓; split into 6 IVs + add-ons
 Wellness,wellness,hub,,Diana,,,Wellness & Restoration,,,Wellness & Restoration,Hub → collection landing
-Facial Waxing,facial-waxing,standalone,,Aundrea & Brandy,From $15,5–30 min by zone,(none),beauty-enhancements,live,Waxing,No collection set! Assign Waxing; providers Aundrea+Brandy
+Facial Waxing,facial-waxing,standalone,,Brandy,From $15,5–30 min by zone,Waxing,beauty-enhancements,live,Waxing,Retained and assigned to Brandy 2026-08-04
 PRF Injections,prf-injections,treatment,prf,Diana,From $495,(unset),(none),injectables-bio-fillers,proposed,Injectables & Bio-Fillers,Price fixed ✓; no collection set — assign Injectables & Bio-Fillers
-— IN GLOSSGENIUS BUT MISSING FROM SANITY (22) —,,,,,,,,,,,
-Signature Rose Facial,,,,Aundrea,$80,30m,,,,Facials,CREATE — basic facial (Aundrea)
-Luxe Rose Facial,,,,Aundrea,$120,1h,,,,Facials,CREATE — basic facial (Aundrea)
-Royal Rose Facial,,,,Aundrea,$170,1h30,,,,Facials,CREATE — basic facial (Aundrea)
+— IN GLOSSGENIUS BUT MISSING FROM SANITY (13) —,,,,,,,,,,,
 Lunch Time Glow,,,,Brandy,$100,30m,,,,Facials,CREATE — basic facial (Brandy)
 Signature Facial,,,,Brandy,$120,45m,,,,Facials,CREATE — basic facial (Brandy)
 Skin Reset Facial,,,,Brandy,$140,50m,,,,Facials,CREATE — basic facial (Brandy)
@@ -45,11 +40,5 @@ Glo2Facial + Procell Pro,,,,Amber,$525,1h30,,,,Advanced Facials,CREATE — GG ad
 Glo2Facial + PRF,,,,Amber,$595,1h30,,,,Advanced Facials,CREATE — GG advanced combo
 GlowTox Facial,,,,Amber,$475,1h,,,,Advanced Facials,CREATE — GG (⚠ clinical review pending Diana/med-director)
 PRF Skin Renewal,,,,Amber,$450,1h,,,,Skin Renewal,CREATE/RECONCILE with prf-microneedling
-Lash Tint,,,,Aundrea,$25,20m,,,,Lash Services,CREATE — new lane
-Lash Lift,,,,Aundrea,$65,40m,,,,Lash Services,CREATE — new lane
-Lash Lift + Tint,,,,Aundrea,$85,1h,,,,Lash Services,CREATE — new lane
-Everyday Makeup,,,,Aundrea,$30,25m,,,,Makeup,CREATE (or link makeup singleton)
-Soft Glam / Event Makeup,,,,Aundrea,$80,45m,,,,Makeup,CREATE
-Full Glam / Bridal Makeup,,,,Aundrea,$175,2h,,,,Makeup,CREATE
 Enhancement — Lip,,,,,$7,10m,,,,Enhancements & Add-ons,CREATE — confirm what this is
 Enhancement — Chin,,,,,$7,10m,,,,Enhancements & Add-ons,CREATE — confirm what this is

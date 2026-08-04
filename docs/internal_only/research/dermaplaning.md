@@ -57,7 +57,7 @@ Dermaplaning is a manual exfoliation treatment in which a licensed esthetician u
 
 ## 5. Comparisons (honest — vs treatments we offer)
 
-**Dermaplaning vs. facial waxing (Aundrea's / Brandy's lane).** Different jobs. Dermaplaning removes fine **vellus** (peach-fuzz) hair *and* exfoliates dead skin — its main purpose is smoothing/brightening, with hair removal as a bonus. **Facial waxing** (hard wax) is purpose-built **hair removal** that pulls coarser hair from the **root**, so it lasts longer (weeks) but does not exfoliate the way dermaplaning does and is shaped for brows, lip, chin, and face-framing. Choose dermaplaning for glow + makeup-readiness + peach fuzz; choose waxing when the goal is durable removal of more defined facial hair. Note the lane line: **facial waxing is Aundrea's/Brandy's lane, not Amber's** — book accordingly.
+**Dermaplaning vs. facial waxing (Brandy's lane).** Different jobs. Dermaplaning removes fine **vellus** (peach-fuzz) hair *and* exfoliates dead skin — its main purpose is surface smoothing, with hair removal as a bonus. **Facial waxing** (hard wax) is purpose-built **hair removal** that pulls coarser hair from the **root**, so it lasts longer (weeks) but does not exfoliate the way dermaplaning does and is shaped for brows, lip, chin, and face-framing. Choose dermaplaning for surface smoothing and peach fuzz; choose waxing when the goal is durable removal of more defined facial hair. Facial waxing is Brandy's lane, not Amber's.
 
 **Dermaplaning vs. enzyme exfoliation (Brandy's basic-facial lane).** Both exfoliate the surface. Dermaplaning is **physical/mechanical** (a blade) and also removes vellus hair; **enzyme exfoliation** is **chemical/biological** (fruit/plant enzymes dissolve the "glue" between dead cells) and is often gentler for reactive skin but removes no hair. Dermaplaning gives a more immediately "shaved-smooth," makeup-ready finish; enzymes suit clients who prefer no blade or who have active/sensitive concerns. They can also be layered (enzyme within a facial, dermaplane as prep).
 
@@ -81,7 +81,6 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 - **Glo2Facial** — dermaplane first, then the oxygenating facial. House of Rose sells this as **Dermaplane Prep (+$45)** on a treatment, or as a **Glo2Facial Finish (+$95)** added to needling. (Note: master menu lists "Dermaplane Prep +$45" as the add-on to needling treatments.)
 - **Enzyme peel / BioRePeel** — dermaplane clears the way for more even peel penetration.
 - **LED / LightStim (+$35)** and a **hydrating mask** — soothing, glow-boosting finish.
-- **Professional event makeup** — a dermaplane the same week gives makeup a flawless canvas (makeup is Aundrea's lane; time it before the appointment).
 
 **Try first / sequencing.** For a client's first advanced visit, the entry point is typically the **Glo2Facial ($185)** gateway; dermaplaning is the natural quick add-on or standalone "event glow." For anyone booked for needling, a peel, or a Glo2Facial, dermaplaning as **prep** amplifies the result. Dermaplaning is not the corrective step — it feeds into the corrective pathway (needling / BioRePeel) by keeping the surface primed.
 
@@ -135,7 +134,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 
 ## 10. Provider + compliance notes
 
-**Lane.** Dermaplaning is **Amber's** lane (advanced facials/esthetics). It is **not** injectables (Diana) and **not** waxing/permanent jewelry (Aundrea). Note the honest hand-off: **facial waxing is Aundrea's/Brandy's lane** — if a client's real need is coarse-hair removal, refer to waxing, don't position dermaplaning as a waxing substitute.
+**Lane.** Dermaplaning is **Amber's** lane (advanced facials/esthetics). It is **not** injectables (Diana) or facial waxing (Brandy). If a client's real need is coarse-hair removal, refer to waxing; do not position dermaplaning as a waxing substitute.
 
 **Phrases to avoid for this topic:**
 - Don't say it "removes," "erases," or "gets rid of" wrinkles, scars, or acne — use "helps reveal," "improves the appearance of," "smooths the look of."
@@ -172,7 +171,6 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 
 - **Performed by an advanced esthetician within a full corrective menu.** Dermaplaning at House of Rose isn't an isolated add-on — Amber can dermaplane as prep before a Glo2Facial, a BioRePeel, or needling, so the treatment does more than surface smoothing; it feeds a real skin-renewal pathway.
 - **Private, unhurried studio in Punta Gorda.** Walk-ins are welcome, and appointments are recommended to reserve a time in the calm advanced-aesthetics & wellness setting at 525 E Olympia Ave, Unit 9 — serving Punta Gorda, Port Charlotte, and Charlotte County / SW Florida.
-- **Event-ready expertise under one roof.** Dermaplaning pairs naturally with professional event makeup (Aundrea/Jane Iredale) for weddings, portraits, and milestones — House of Rose keeps that whole "camera-ready week" in-house.
 - **Honest, SW-Florida-grounded aftercare.** In a high-UV market, the studio leads with SPF and sensible post-care, and is upfront that dermaplaning is a smoothing/prep/maintenance treatment — not a corrective or "anti-aging" fix. No overclaiming; candidacy confirmed at consultation; individual outcomes vary.
 
 ---

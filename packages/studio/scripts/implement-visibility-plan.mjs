@@ -30,13 +30,10 @@ const parkedServiceIds = [
   'service-ai-skin-analysis',
   'service-glowtox-facial',
   'service-lunch-time-glow',
-  'service-luxe-rose-facial',
   'service-luxury-facial',
   'service-mommy-and-me-facial',
-  'service-royal-rose-facial',
   'service-sculpt-and-lift-facial',
   'service-signature-facial',
-  'service-signature-rose-facial',
   'service-skin-reset-facial',
 ];
 
@@ -49,7 +46,6 @@ const verifiedLiveServiceIds = [
   '6e204a23-77a2-48a9-8381-878974cb92e4', // GLP-1
   '99566c9c-8033-4df6-b5a3-ac5de5d2d886', // IV hydration
   'e82404a8-a778-4359-9a6d-71377ab903d3', // Injectables hub
-  '50100023-c062-42a8-afc3-4a4beca2556b', // Permanent jewelry
   '59219510-249d-48e7-9c11-373e8d2c460b', // Wellness hub
 ];
 
@@ -57,7 +53,6 @@ const parkedPackageIds = [
   'package-biorepeel-body-series-3',
   'package-biorepeel-body-series-6',
   'package-camellia-series-4',
-  'package-brazilian-wax-pass',
   'package-bridal-bloom',
   'package-microneedling-corrective-series-3',
   'package-microneedling-corrective-series-6',
@@ -334,7 +329,7 @@ const truthSetPatches = [
         {
           _key: 'sg4',
           name: 'Wellness & Performance Support',
-          description: 'IV hydration, provider-guided weight management, permanent jewelry, and select services that complement your aesthetic goals and overall care experience.',
+          description: 'IV hydration, provider-guided weight management, and select services that complement your aesthetic goals and overall care experience.',
           imagePath: '/images/new-wellness.webp',
         },
       ],

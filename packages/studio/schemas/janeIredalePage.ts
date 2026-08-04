@@ -2,10 +2,10 @@ import { defineField, defineType } from 'sanity';
 
 /**
  * Singleton for the Jane Iredale brand feature page
- * (/services/professional-makeup/jane-iredale). Introduces the brand (makeup,
+ * (/shop/jane-iredale). Introduces the brand (makeup,
  * skincare, supplements), why House of Rose uses it — including post-treatment
- * suitability and event-grade performance — and a "this-for-that" daily-routine
- * swap guide. Funnels into the Professional Makeup hub and Events pages.
+ * suitability — and a "this-for-that" daily-routine swap guide. This is product
+ * education and retail content, not a makeup-service landing page.
  *
  * COMPLIANCE: Jane Iredale is "THE SKINCARE MAKEUP" (mineral). Describe benefits
  * neutrally. Never say "treats/cures acne" (use "breakout-prone / problem skin"),
@@ -80,7 +80,7 @@ export const janeIredalePage = defineType({
     // Why we use it
     defineField({ name: 'whyUsKicker', title: 'Kicker', type: 'string', group: 'whyUs' }),
     defineField({ name: 'whyUsHeading', title: 'Heading', type: 'text', rows: 2, group: 'whyUs' }),
-    defineField({ name: 'whyUsBody', title: 'Body', type: 'text', rows: 6, group: 'whyUs', description: 'Post-treatment suitability (non-comedogenic, mineral SPF), event-grade performance, artist-chosen.' }),
+    defineField({ name: 'whyUsBody', title: 'Body', type: 'text', rows: 6, group: 'whyUs', description: 'Post-treatment suitability, product selection, and provider-confirmed timing.' }),
 
     // This-for-that swaps
     defineField({ name: 'swapsKicker', title: 'Kicker', type: 'string', group: 'swaps' }),

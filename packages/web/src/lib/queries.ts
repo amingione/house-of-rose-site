@@ -1303,8 +1303,7 @@ export const HOMEPAGE_QUERY = /* groq */ `
   }
 `;
 
-// ── Professional Makeup (nested singletons) — /services/professional-makeup/* ──
-// See docs/internal_only/services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md. Provider: Aundrea Pedigo.
+// ── Jane Iredale product education — /shop/jane-iredale/ ─────────────────────
 
 export interface LinkRef {
   _key?: string;
@@ -1312,66 +1311,6 @@ export interface LinkRef {
   description?: string;
   href: string;
 }
-
-export interface MakeupServiceType {
-  _key?: string;
-  name: string;
-  blurb?: string;
-  bestFor?: string;
-  priceLabel?: string;
-}
-
-export interface MakeupUseCase {
-  _key?: string;
-  title: string;
-  body?: string;
-}
-
-export interface ProfessionalMakeupPage {
-  _id: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  heroKicker?: string;
-  heroTitle?: string;
-  heroDescription?: string;
-  image?: SanityImage;
-  philosophyKicker?: string;
-  philosophyHeading?: string;
-  philosophyBody?: string;
-  servicesKicker?: string;
-  servicesHeading?: string;
-  servicesIntro?: string;
-  services?: MakeupServiceType[];
-  useCasesKicker?: string;
-  useCasesHeading?: string;
-  useCases?: MakeupUseCase[];
-  trialRunHeading?: string;
-  trialRunBody?: string;
-  providerKicker?: string;
-  providerHeading?: string;
-  providerBody?: string;
-  provider?: { title: string; roleCredential?: string };
-  relatedLinks?: LinkRef[];
-  faqs?: FAQ[];
-}
-
-export const PROFESSIONAL_MAKEUP_PAGE_QUERY = /* groq */ `
-  *[_type == "professionalMakeupPage"][0]{
-    _id, seoTitle, seoDescription,
-    heroKicker, heroTitle, heroDescription,
-    ${IMAGE_FIELDS},
-    philosophyKicker, philosophyHeading, philosophyBody,
-    servicesKicker, servicesHeading, servicesIntro,
-    services[]{ _key, name, blurb, bestFor, priceLabel },
-    useCasesKicker, useCasesHeading,
-    useCases[]{ _key, title, body },
-    trialRunHeading, trialRunBody,
-    providerKicker, providerHeading, providerBody,
-    "provider": provider->{ title, roleCredential },
-    relatedLinks[]{ _key, label, description, href },
-    faqs[]{ _key, question, answer }
-  }
-`;
 
 export interface JaneIredalePillar {
   _key?: string;
@@ -1452,52 +1391,6 @@ export const JANE_IREDALE_PAGE_QUERY = /* groq */ `
     ctaHeading, ctaBody,
     relatedLinks[]{ _key, label, description, href },
     supplementDisclaimer,
-    faqs[]{ _key, question, answer }
-  }
-`;
-
-export interface MakeupBookingOption {
-  _key?: string;
-  name: string;
-  summary?: string;
-  includes?: string[];
-  bestFor?: string;
-  priceLabel?: string;
-}
-
-export interface MakeupEventsPage {
-  _id: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  heroKicker?: string;
-  heroTitle?: string;
-  heroDescription?: string;
-  image?: SanityImage;
-  introKicker?: string;
-  introHeading?: string;
-  introBody?: string;
-  optionsKicker?: string;
-  optionsHeading?: string;
-  bookingOptions?: MakeupBookingOption[];
-  trialRunHeading?: string;
-  trialRunBody?: string;
-  bookingHeading?: string;
-  bookingBody?: string;
-  relatedLinks?: LinkRef[];
-  faqs?: FAQ[];
-}
-
-export const MAKEUP_EVENTS_PAGE_QUERY = /* groq */ `
-  *[_type == "makeupEventsPage"][0]{
-    _id, seoTitle, seoDescription,
-    heroKicker, heroTitle, heroDescription,
-    ${IMAGE_FIELDS},
-    introKicker, introHeading, introBody,
-    optionsKicker, optionsHeading,
-    bookingOptions[]{ _key, name, summary, includes, bestFor, priceLabel },
-    trialRunHeading, trialRunBody,
-    bookingHeading, bookingBody,
-    relatedLinks[]{ _key, label, description, href },
     faqs[]{ _key, question, answer }
   }
 `;

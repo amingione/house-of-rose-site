@@ -12,7 +12,7 @@ rooms, stop and extend this one instead.)
 ```
 images/house-of-rose/
   card/  hero/  og/  port/  space/  square/  tile/  wide/
-images/providers/        Amber, Diana, Brandy, Aundrea
+images/providers/        Amber, Diana, Brandy
 images/before-after/     treatment proof
 ```
 

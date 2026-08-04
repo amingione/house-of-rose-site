@@ -233,12 +233,12 @@ need inverting. Until Amber says the date has come, walk-ins-welcome remains bin
 ## Public-Facing Copy Law (binding — 2026-07-24)
 _Repo-specific additions to Creative System **Book 2**. Book 2 is the general voice standard; the two
 rules below are House-of-Rose-specific failure modes it doesn't cover. Read Book 2 first._
-- **Provider lanes are internal-only.** The Amber/Diana/Brandy/Aundrea lane split exists so the right
+- **Provider lanes are internal-only.** The Amber/Diana/Brandy lane split exists so the right
   provider gets credited/paid in the booking system — it is **never** customer-facing framing. Do not
   write "Amber's version of X" / "this is in [provider]'s lane" / category copy that explains lane
   structure to the customer. Customers picked the category already; they don't need the internal reason
   it's organized that way. Provider names stay on: booking/scheduling UI, GlossGenius, Sanity `provider`
-  refs, individual tap-to-share bio pages (`/amber`, `/diana`, `/aundrea`), and bios/testimonial
+  refs, individual tap-to-share bio pages (`/amber`, `/diana`, `/brandy`), and bios/testimonial
   attribution — not stitched into service/category sales copy.
 - **Service descriptions must sell, not hedge.** No "may possibly," "could potentially," "results may
   vary" filler stacked sentence after sentence — that's not clinical caution, it's copy that talks itself
@@ -326,8 +326,7 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 ## Providers & Team (memory — never re-ask)
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (microchanneling, microneedling, Glo2Facial, PRF topical, Procell MD/Pro, BioRePeel, dermaplaning, carboxy). PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service (microchanneling/microneedling) — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
-- **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Rents a room; **offers facial waxing** (general/body waxing is Aundrea's lane). **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
-- **Brooke = Aundrea Pedigo** — _same person_ (also uses the last name "Morrison"). Lane: **Waxing** + permanent jewelry. Sanity ref is `provider-brooke`; **display name = Aundrea**.
+- **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels) plus **facial waxing**. Rents a room. **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
 
 ## Memberships — NOT OFFERED
 House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are
@@ -487,9 +486,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/services/[slug]` | `services/[slug].astro` | Single service by slug |
 | `/services/collections` | `services/collections/index.astro` | All collections |
 | `/services/collections/[collection]` | `services/collections/[collection].astro` | Single collection |
-| `/services/professional-makeup` | `services/professional-makeup/index.astro` | Professional Makeup hub singleton (`professionalMakeupPage`) — landing for makeup services; provider Aundrea Pedigo. NOT a `service` doc (avoids slug collision with `/services/[slug]`). |
-| `/services/professional-makeup/jane-iredale` | `services/professional-makeup/jane-iredale.astro` | Jane Iredale brand feature singleton (`janeIredalePage`) — makeup/skincare/supplements, benefits, post-treatment use, this-for-that swap guide, Get-the-Look. |
-| `/services/professional-makeup/events` | `services/professional-makeup/events.astro` | Makeup group/event bookings singleton (`makeupEventsPage`) — in-house block times, spa rental "Pre-Party Package", travel. |
+| `/shop/jane-iredale` | `shop/jane-iredale.astro` | Jane Iredale product feature singleton (`janeIredalePage`) — makeup/skincare/supplements, benefits, post-treatment use, this-for-that swap guide, Get-the-Look. |
 | `/experience` | `experience.astro` | Static |
 | `/cost/[slug]` | `cost/[slug].astro` | Cost guide by slug (`costGuide`) |
 | `/compare/[slug]` | `compare/[slug].astro` | Comparison by slug (`comparison`) |
@@ -502,7 +499,7 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/shop/[slug]` | `shop/[slug].astro` | Single product detail page (`product`) — checkout CTA when `purchaseUrl` is set, related products from the same brand. `Product` JSON-LD. |
 | `/amber` | `amber.astro` | Static — Amber's tap-to-share digital business card (self-contained black/gold card, no Header/Footer, `Person` JSON-LD; downloads `public/amber.vcf`) |
 | `/diana` | `diana.astro` | Static — Diana Morrison, RN tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/diana.vcf`) |
-| `/aundrea` | `aundrea.astro` | Static — Aundrea Pedigo tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/aundrea.vcf`) |
+| `/brandy` | `brandy.astro` | Static — Brandy's tap-to-share card (mirrors `/amber/`; `Person` JSON-LD; downloads `public/brandy.vcf`) |
 
 ---
 

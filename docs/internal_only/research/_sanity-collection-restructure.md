@@ -40,14 +40,11 @@ taxonomy which treats advanced facials as the microneedling/microchanneling lane
 
 *Modular add-ons (see §5): Dermaplane prep, Glo2Facial prep, LED — attach to any of the above.*
 
-### B. Facials — *Brandy & Aundrea* (`facials`)
-The 9-facial basic ladder, **provider now confirmed from your sheet:**
+### B. Facials — *Brandy* (`facials`)
+The current basic-facial ladder:
 
 | Facial | Provider | GG price | kind |
 |---|---|---|---|
-| Signature Rose Facial | Aundrea | $80 | treatment |
-| Luxe Rose Facial | Aundrea | $120 | treatment |
-| Royal Rose Facial | Aundrea | $170 | treatment |
 | Lunch Time Glow | Brandy | $100 | treatment |
 | Signature Facial | Brandy | $120 | treatment |
 | Skin Reset Facial | Brandy | $140 | treatment |
@@ -83,19 +80,11 @@ Plus **NAD+ IV Therapy** (dedicated, new): 250mg $325 · 500mg $550 — pending 
 ### D6. Weight Management — *Diana* (`weight-management`)
 Semaglutide **$279/mo** · Tirzepatide **$379/mo** (confirm vs supplier COGS).
 
-### F. Waxing — *Aundrea & Brandy* (`waxing`)
-Facial waxes (Chin $10 · Lip $10 · Eyebrow Wax $15 · Eyebrow Shape/Trim/Wax $20) = **Aundrea & Brandy**.
-Body waxes (Underarm $20 · Bikini Line $30 · Full Arm $35 · Chest $40 · Back $50 · Full Leg $65) = **Aundrea**.
+### F. Facial Waxing — *Brandy* (`waxing`)
+Facial waxes: Chin $10 · Lip $10 · Eyebrow Wax $15 · Eyebrow Shape/Trim/Wax $20.
 
-### G. Lash Services — *Aundrea* (`lash-services`) — **NEW lane, not on site yet**
-Lash Tint $25 · Lash Lift $65 · Lash Lift & Tint $85.
-
-### H. Makeup — *Aundrea* (`makeup`)
-Everyday $30 · Soft Glam/Event $80 · Full Glam/Bridal $175. *(Today lives in singleton pages; GG has them as services.)*
-
-### I. Permanent Jewelry — *Aundrea* (`permanent-jewelry`)
-Permanent Jewelry $65 (one line today; per-piece types — belly chain/necklace/anklet/bracelet + charm —
-**pending your research; leave as one line for now**).
+### G. Jane Iredale Products — retail
+The product-education page lives at `/shop/jane-iredale/`; create verified Sanity `product` documents before enabling checkout.
 
 ### J. Enhancements & Add-ons (`enhancements-add-ons`)
 GG "Enhancements & Add-ons": Lip $7 · Chin $7 (confirm what these are — filler top-off? small wax?), plus the
@@ -127,11 +116,8 @@ treatment prep add-ons in §5.
 | `iv-hydration-therapy` | split into 6 IVs; reprice to **final** ($125/$185/$195/$199/$195/$199) | **IV Hydration Therapy** | reconciled UP from GG; + Vitamin C |
 | `wellness` | becomes the add-ons collection | **Wellness & Restoration Add-Ons** | + NAD+ IV 250/500mg (new) |
 | `glp-1-weight-management` | keep; reprice → **$279/$379** | **Weight Management** | confirm vs supplier COGS |
-| `facial-waxing` / `body-waxing` | expand to per-zone; fix "Rosé wax" copy | Waxing | GG per-zone prices |
-| `permanent-jewelry` | keep $65; piece types pending | Permanent Jewelry | |
-| **(none exist)** the 9 basic facials | **CREATE NEW** | Facials | Brandy/Aundrea per §2B |
-| **(none exist)** Lash Tint/Lift/Combo | **CREATE NEW** | Lash Services | |
-| **(none exist)** 3 makeup services | **CREATE NEW** (or link singletons) | Makeup | |
+| `facial-waxing` | keep under Brandy | Waxing | GG per-zone prices |
+| **(none exist)** the current basic facials | **CREATE NEW** | Facials | Brandy per §2B |
 
 ---
 
@@ -139,8 +125,8 @@ treatment prep add-ons in §5.
 
 Settled by `ALL-SERVICES-PRICING.MD`: Diana is **6 collections** — Tox · Dermal Filler · **PRF Treatments** ·
 IV Hydration Therapy · Wellness & Restoration Add-Ons · Weight Management (see §2 D1–D6). That makes the full
-count **12 canonical collections** (Basic Facials · Advanced Facials · the 6 Diana · Waxing · Lashes · Permanent
-Jewelry · Professional Makeup), plus **Face Reality Acne Program** as a standalone program page (not a booking
+count **9 canonical collections** (Basic Facials · Advanced Facials · the 6 Diana · Facial Waxing), plus
+**Face Reality Acne Program** as a standalone program page (not a booking
 category) and add-ons homed on their parent services. GlossGenius itself groups Diana as 2 categories, so **GG
 will need to be re-grouped to these 6** (or keep GG's 2 for booking while the site shows 6 — Amber's call, but
 the site/collections follow the canonical 6).

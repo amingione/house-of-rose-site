@@ -1,7 +1,9 @@
 # House of Rose — ALL SERVICES PRICING (Canonical Live Menu)
 
 **This is the single source of truth for the live menu.** It mirrors **GlossGenius (commerce truth)** —
-verified against `houseofrose.glossgenius.com` on **2026-07-23**. Anything not in this file is not bookable,
+verified against `houseofrose.glossgenius.com` on **2026-07-23**. The website menu was updated by owner
+direction on **2026-08-04**; GlossGenius still requires the same manual removals because no API is available.
+Anything not in this file is not bookable,
 and no other document may state a different price. **Amber's ruling 2026-07-23: where sources disagreed,
 GlossGenius won. Sanity now matches GlossGenius exactly.**
 
@@ -56,31 +58,21 @@ PRF Under-Eye Rejuvenation (2 options) — 45+ min — **$495+** · PRF Facial R
 ## Diana — Weight Management *(FINAL — Amber ruled GG prices stand, 2026-07-23)*
 Semaglutide — **$225+/mo** · Tirzepatide — **$325+/mo**
 
-## Facials (Aundrea = the 3 Rose facials · Brandy = the other 6, room-rental, prices her own)
+## Brandy — Facials (room-rental, prices her own)
 | Service | Duration | Price | Provider |
 |---|---|---|---|
-| Signature Rose Facial | 30 min | $80 | Aundrea |
 | Lunch Time Glow | 30 min | $100 | Brandy |
-| Luxe Rose Facial | 60 min | $120 | Aundrea |
 | Signature Facial | 45 min | $120 | Brandy |
 | Skin Reset Facial | 50 min | $140 | Brandy |
 | Mommy & Me Facial | 60 min | $150 | Brandy |
-| Royal Rose Facial | 90 min | $170 | Aundrea |
 | Sculpt & Lift Facial | 60 min | $180 | Brandy |
 | Luxury Facial | 75 min | $200 | Brandy |
 
-## Aundrea — Lashes
-Lash Tint $25 (20 min) · Lash Lift $65 (40 min) · Lash Lift & Tint $85 (60 min)
+## Brandy — Facial Waxing
+Chin $10 · Lip $10 · Eyebrow Wax $15 · Eyebrow Shape/Trim/Wax $20 · add-on Lip/Chin $7 each
 
-## Aundrea — Makeup
-Everyday $30 (25 min) · Soft Glam/Event $80 (45 min) · Full Glam/Bridal $175 (2 hr)
-
-## Waxing (facial = Aundrea & Brandy · body = Aundrea)
-Chin $10 · Lip $10 · Eyebrow Wax $15 · Eyebrow Shape/Trim/Wax $20 · Underarm $20 · Bikini Line $30 ·
-Full Arm $35 · Chest $40 · Back $50 · Full Leg $65 · add-on Lip/Chin $7 each
-
-## Aundrea — Permanent Jewelry
-Permanent Jewelry — 20 min — **From $65**
+## Jane Iredale — Products
+Retained product line. Product-level inventory and pricing must come from Sanity; do not recreate makeup-application services around it.
 
 ---
 
@@ -91,4 +83,4 @@ Permanent Jewelry — 20 min — **From $65**
 
 ---
 
-*Maintained by hand against GlossGenius. When GG changes, update this file and Sanity in the same commit. Last verified + fully reconciled: 2026-07-23.*
+*Maintained by hand against GlossGenius. Website/Sanity removal verified 2026-08-04; GlossGenius reconciliation remains manual.*

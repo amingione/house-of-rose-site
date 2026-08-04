@@ -25,9 +25,8 @@ Source-of-truth default = **local master menu / local pricing docs**; correct Sa
 | Neurotoxins | **$14/unit** (Botox and Daxxify); per-unit, not per-area | `injectables` = **price null**; copy names phantom **"Dysport"** | **Local.** Publish **$14/unit** on `injectables` (or split Botox/Daxxify). Remove "Dysport" (not on Diana's menu) — see §6. Keep per-unit (no per-area ranges, to preserve anatomy-dependency). |
 | GlowTox / Micro-Tox | GlossGenius listing **$475**; legacy master menu **$425** plus a series | No Sanity service, but Amber's prior public card attributed it to an esthetics lane | **Clinical hold.** Do not market as microchanneling with topical Daxxify or as a PRF/needling package. Diana, RN and the medical director must approve a separate injectable SOP, consent, scope/workflow, and one price before a draft service is created. |
 | Face Reality acne peel | **Absent from master menu §9** (not listed) | `acne-peel` = **From $139** | **Reconcile.** $139 lives in Sanity but has no local anchor — add it to the master menu or confirm/adjust. (Bootcamp **$899** and Back Treatment **From $159** are consistent local+Sanity.) |
-| Permanent jewelry | Sanity is source of truth: **From $45**; competitor doc lists **14k gold-filled bracelet $95**, sterling $75, solid-gold tiers $285–$795+ | `permanent-jewelry` = **From $45** | **Sanity "From $45"** leads. The **$95+** competitor metal-tier numbers are an unconfirmed (now-removed) strategic proposal — mark all per-metal/tier/charm/event pricing **pending Aundrea**; do not present as live. |
-| Jane Iredale / professional makeup | **Local-only** (build-plan + pricing comp): Everyday **From $85**, Event **From $150/face**, Trial $150, Private lesson **From $175**, In-house block $150/pp, Spa Rental $175/pp (4-guest min), Travel $150/pp + travel fee (4-guest min) | **No Sanity price docs for makeup** | **Local.** Publish from local build-plan. **Note: private lesson is deliberately set at $175** (regional comps $350–$400) — flagged so it is NOT "corrected" upward. |
-| Waxing | Full local rack (face $15–$70; body $28–$85; combos to $160); **Brazilian series "Buy 5, Get 1"** | `facial-waxing` From $15, `body-waxing` From $28 | **Local.** Brazilian series price **not set in Sanity — needs confirmation**. (See §6 for "Rosé wax" naming and §3 for missing collection.) |
+| Jane Iredale products | Product line retained; individual inventory and pricing not yet represented by Sanity `product` docs | `/shop/jane-iredale/` is product education only | Backfill verified inventory and pricing in Sanity before enabling checkout. |
+| Facial waxing | Local face rack in `services/waxing/face.md` | `facial-waxing` | Retained under Brandy; all departed-provider records were removed 2026-08-04. |
 | invisiClear Spot Patches (retail) | ~$12 typical for hydrocolloid patches | Sanity = **$125** | **Likely data error** — verify; $125 is implausible for spot patches. |
 | Skin Script retail | — | **41 of 52 products have `price: null`** | Backfill prices or mark back-bar-only. Null-price products cannot be sold via native cart and won't render a valid `Product` JSON-LD offer. |
 
@@ -100,14 +99,10 @@ The "Series of 3 / 6 (Renewal / Full Correction)" labels are a **generic retail 
 
 | Item | Drift | Recommended fix |
 |---|---|---|
-| `provider-brooke` roleCredential | Omits **makeup** and **waxing** — Aundrea's actual lanes | Add makeup + waxing (and permanent jewelry) to the credential. Display name is **Aundrea Pedigo** always (never "Brooke"/"Morrison"); Sanity ref stays `provider-brooke`. |
-| `aundrea.vcf` | Adds **Lashes** and **Ear-Piercing** services + an **individual email** not in her documented lane/NAP | Confirm with Aundrea whether Lashes / Ear-Piercing are offered; only `info@houseofrosefl.com` is canonical — verify any individual mailbox before it ships. |
 | "PRF Skin Renewal" provider | Confirmed **Amber** (topical, during microchanneling/microneedling) | Keep attributed to Amber; keep topical-only language. |
 | Topical vs injectable PRF blur | Recurring risk across PRF surfaces | Hard line: **Amber = topical PRF only, never injected** (advanced facials); **Diana, RN = injectable PRF / EZ-Gel / PRF scalp**. Never let a device "inject/deliver PRF into skin"; never present topical as delivering an injectable study's outcome. |
 | PRF-for-hair | prf-injections brief flags **do not present PRF-for-hair as a bookable HoR service** (hair restoration removed from consolidated menu); stale PDFs still list it | Do not list PRF hair restoration on `/concerns/hair-thinning/` as bookable. |
 | Micro-Tox / GlowTox | Legacy material incorrectly combines needling with Daxxify | **Clinical hold.** Keep it out of Amber's lane and out of needling/PRF packages. A separate Diana, RN injectable workflow requires medical-director approval and pricing reconciliation before it is surfaced. |
-| Brandy facial waxing vs Aundrea body waxing | Brandy offers **facial** waxing only; body/general waxing stays Aundrea's | Keep lane split explicit on waxing pages. |
-| "Party Planner Infusion IV" (makeup Spa Rental) | Hosted-event-only perk — never à la carte | Never sell/link as a standalone IV; no standalone price. |
 
 ---
 

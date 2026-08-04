@@ -74,7 +74,7 @@ added an always-on closing "explore" band (guide + comparison hub). No longer a 
 - `llms-full.txt.ts`: removed the **med-spa denial** served to answer engines ("Do not describe the
   business as a med spa…") → allow-don't-lead wording; never-deny.
 - `llms.txt.ts` + `llms-full.txt.ts`: fixed mangled price output (`$From $45` → `From $45`).
-- Provider cards + vCards (`amber/diana/aundrea`): `www.houseofrosefl.com` → non-www canonical.
+- Provider cards + vCards (`amber/diana/brandy`): `www.houseofrosefl.com` → non-www canonical.
 
 ### A9 · Feed coverage
 `sitemap.xml.ts`: added the professional-makeup trio, **all shop product pages**
@@ -100,7 +100,7 @@ visible placeholder in the flagship answer-first slot).
 - **Resolved provider-lane correction — "Glass Skin Micro-Tox" was removed from Amber's card/vCard.**
   Any future Micro-Tox service belongs to Diana, RN's injectable lane and remains on clinical hold until
   medical-director approval, scope confirmation, and a separate SOP are complete.
-- **Provider emails** `amber@ / diana@ / aundrea@houseofrosefl.com` — confirm these mailboxes exist
+- **Provider emails** `amber@ / diana@houseofrosefl.com` — confirm these mailboxes exist
   (only `info@` is canonical). Non-blocking.
 - **CartDrawer focus trap / CategoryNav `aria-pressed`** — deeper a11y; deferred (not blockers).
 - **Blog empty-body placeholder** ("Content coming soon.") — filter body-less posts from

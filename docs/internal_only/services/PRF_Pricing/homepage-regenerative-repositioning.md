@@ -76,14 +76,14 @@ Regenerative care means prompting your skin to do its own repair rather than mas
 **Kicker:** Services
 **H2:** Everything your skin might need, under one roof
 **Body:**
-Beyond the regenerative core, House of Rose offers the full range — neurotoxin and filler with a registered nurse, advanced and maintenance facials, IV hydration and wellness support, waxing, permanent jewelry, and curated skincare. Whatever you start with, it's planned by a provider who'll tell you what you *don't* need too.
+Beyond the regenerative core, House of Rose offers neurotoxin and filler with a registered nurse, advanced and maintenance facials, IV hydration and wellness support, facial waxing, and professional home care. Whatever you start with, it's planned by a provider who'll tell you what you *don't* need too.
 **CTA:** Browse all services *(→ /services/)*
 
 ### 5 · Your providers (trust asset — new on homepage)
 **Kicker:** Who Treats You
 **H2:** A small team, each in their lane
 **Body:**
-You'll be treated by a named provider working within a defined specialty — Diana Morrison, RN for injectables and injectable PRF; Amber for advanced facials, topical PRF, and the Face Reality acne program; Brandy for facials and peels; Aundrea for waxing and permanent jewelry. Advanced and injectable work is done under medical-director oversight. It's care with a face on it, not a rotating counter.
+You'll be treated by a named provider working within a defined specialty — Diana Morrison, RN for injectables and injectable PRF; Amber for advanced facials, topical PRF, and the Face Reality acne program; Brandy for facials, peels, and facial waxing. Advanced and injectable work is done under medical-director oversight. It's care with a face on it, not a rotating counter.
 **CTA:** Meet the team *(→ /experience/)*
 
 ### 8 · Final CTA (refresh)

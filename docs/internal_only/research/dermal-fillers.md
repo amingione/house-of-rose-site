@@ -197,7 +197,7 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 
 ## 10. Provider + compliance notes
 
-**Whose lane.** Dermal fillers are **Diana, RN only**, under medical-director oversight. Never attribute injectables to Amber (esthetician + RN assistant — advanced facials, **PRF topical only, never injections**), Brandy, or Aundrea. Every filler surface must carry provider-authority, real-candidacy, and individual-outcomes language.
+**Whose lane.** Dermal fillers are **Diana, RN only**, under medical-director oversight. Never attribute injectables to providers outside this lane; Amber remains **PRF topical only, never injections**. Every filler surface must carry provider-authority, real-candidacy, and individual-outcomes language.
 
 **Phrases to avoid for THIS topic specifically:**
 - "permanent," "erase," "eliminate," "get rid of forever" — fillers are temporary and reversible; never imply permanence.

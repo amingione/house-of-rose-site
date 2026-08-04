@@ -28,11 +28,6 @@ Brandy handles the relaxing and maintenance side of skin health — enzyme exfol
 
 **Card line:** Facials & Peels Specialist
 
-### Aundrea Pedigo — Waxing & Permanent Jewelry
-Aundrea covers body and general waxing and permanent jewelry. Precise, unhurried, and exactly as low-drama as those services should be.
-
-**Card line:** Waxing & Permanent Jewelry
-
 ### The oversight line (use wherever advanced/injectable services are sold)
 Advanced and injectable treatments at House of Rose are performed by the appropriate licensed provider under medical-director oversight. Candidacy, dosing, intervals, and treatment combinations are confirmed by your provider — never promised in advance.
 
@@ -91,7 +86,7 @@ Case studies render only when `caseStudy.consentGiven == true`. Photography/mode
 
 ## Review & build notes (not for the page)
 
-**Credential sources:** provider cards `/amber/`, `/diana/`, `/aundrea/`; CLAUDE.md Providers & Team; `docs/internal_only/research/face-reality-acne-program.md` (Amber = certified specialist). Display names are canonical: **Aundrea Pedigo** always (never "Brooke"/"Morrison"); Sanity ref stays `provider-brooke`.
+**Credential sources:** provider cards `/amber/`, `/diana/`, `/brandy/`; CLAUDE.md Providers & Team; `docs/internal_only/research/face-reality-acne-program.md` (Amber = certified specialist).
 
 **Do-not-say (binding):** no "med spa" as the *lead* descriptor (allowed as support); no "day spa"; no membership/"member" framing; no discount language; no "cures/treats" + condition; PRF topical vs injectable lane never blurred; no guaranteed/universal before/after outcome.
 
@@ -101,4 +96,3 @@ Case studies render only when `caseStudy.consentGiven == true`. Photography/mode
 - Amber's exact license/title wording (esthetician license #, "RN-assistant" phrasing) — confirm how she wants it stated.
 - Diana's medical-director name/relationship, if it should be named.
 - Brandy's preferred public first-name/last-initial and whether her lane is launched (CLAUDE.md notes the basic-facial lane is "parked" until a launch decision).
-- Aundrea: whether Lashes/Ear-Piercing are offered (flagged in `_gaps.md` §5) before listing them.

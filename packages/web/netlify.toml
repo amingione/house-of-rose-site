@@ -67,13 +67,6 @@
     Content-Type        = "text/vcard; charset=utf-8"
     Content-Disposition = "inline; filename=\"DianaMorrison.vcf\""
 
-# vCard — same inline behavior for Aundrea's card (/aundrea/).
-[[headers]]
-  for = "/aundrea.vcf"
-  [headers.values]
-    Content-Type        = "text/vcard; charset=utf-8"
-    Content-Disposition = "inline; filename=\"AundreaPedigo.vcf\""
-
 # vCard — same inline behavior for Brandy's card (/brandy/).
 [[headers]]
   for = "/brandy.vcf"
@@ -106,6 +99,31 @@
   from   = "/packages/the-gilded-lily-journey/"
   to     = "/packages/prf-microchanneling-journey/"
   status = 301
+
+# Jane Iredale remains as a product line under the shop. Preserve the former
+# product-education URL while retiring the surrounding makeup-service routes.
+[[redirects]]
+  from   = "/services/professional-makeup/jane-iredale/"
+  to     = "/shop/jane-iredale/"
+  status = 301
+
+[[redirects]]
+  from   = "/aundrea/*"
+  to     = "/404.html"
+  status = 404
+  force  = true
+
+[[redirects]]
+  from   = "/aundrea.vcf"
+  to     = "/404.html"
+  status = 404
+  force  = true
+
+[[redirects]]
+  from   = "/services/professional-makeup/*"
+  to     = "/404.html"
+  status = 404
+  force  = true
 
 # Permanently retired program URLs. Return a hard 404 instead of redirecting
 # to the homepage so search engines remove the historical URLs from their index.

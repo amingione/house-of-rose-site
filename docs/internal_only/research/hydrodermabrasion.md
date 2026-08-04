@@ -152,7 +152,7 @@ What will move price once set (for structuring the eventual menu):
 
 ## 10. Provider + compliance notes
 
-**Lane:** **Brandy — basic / maintenance facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Brandy rents a room and offers **facial** waxing. This is a **compliance line**: do **not** attribute hydrodermabrasion to Amber (advanced/corrective), Diana (injectables/IV/GLP-1), or Aundrea (waxing/jewelry/makeup). Do not lump it into Amber's advanced-facials menu.
+**Lane:** **Brandy — basic / maintenance facials** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels). Brandy rents a room and offers **facial** waxing. This is a **compliance line**: do **not** attribute hydrodermabrasion to providers outside this lane or lump it into Amber's advanced-facials menu.
 
 **Phrases to avoid for this topic specifically:**
 - No "day spa" positioning (undersells — even though this is a relaxing facial, keep the "Medical Aesthetics Practice" umbrella).

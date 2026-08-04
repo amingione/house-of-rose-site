@@ -17,8 +17,8 @@
 
 # §1 — Post-Injectable Timing Windows
 
-**The problem this solves.** Brandy's Sculpt & Lift is a massage-forward service. Aundrea's Royal
-Rose has 90 minutes of it. Amber needles. Diana injects. **Nobody had a number.** A client who gets
+**The problem this solves.** Brandy's Sculpt & Lift is a massage-forward service. Amber needles.
+Diana injects. **Nobody had a number.** A client who gets
 tox on Tuesday and a lymphatic massage on Thursday can walk out with a drooping eyelid for three
 months — and it happened in *our* room, on *our* table, because two of our own services collided.
 
@@ -104,8 +104,6 @@ Document the answer.
 - **Dermaplaning** — permitted; skin is more sensitive, go lighter
 - Facial massage · lymphatic drainage — **with positioning (see 2.5)**
 - **Waxing** — permitted; skin is more sensitive and more vascular, expect more redness and bruising
-- **Makeup** — permitted (Jane Iredale mineral)
-- **Permanent jewelry** — ⚠️ **defer.** Err conservative; it can wait.
 
 ## 2.4 — The product tray
 

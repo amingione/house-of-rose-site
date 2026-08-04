@@ -1,10 +1,10 @@
 # Retail Product Lines — Research Brief
 
-Date: 2026-07-13 · Provider lane: **Cross-cutting retail** (sold via `/shop/`; ties to Amber — Procell/GlyMed+/Skin Script/Face Reality; Aundrea — Jane Iredale; and post-treatment aftercare across every lane) · Status: draft for Phase 3/4 consumption · Sources listed at end.
+Date: 2026-07-13 · Updated 2026-08-04 · Provider lane: **Cross-cutting retail** (sold via `/shop/`; ties to professional home care and post-treatment aftercare across every active lane) · Status: draft for Phase 3/4 consumption · Sources listed at end.
 
 > **Scope.** This brief is the connective tissue between what House of Rose *does* in the chair and what a client *takes home*. It gives each carried brand a positioning capsule — who it's for, its hero categories, the in-studio treatments it supports as aftercare, and the honest compliance framing for the brand's real (and occasionally non-compliant) product names. It is a **retail-follow-through** brief, not a per-product catalog. All prices come from Sanity (the price source of truth); no price is ever taken from the web.
 >
-> **Retail truth = Sanity.** The shop groups products by `brand`. Published counts (queried live, `perspective: published`, 2026-07-13): **GlyMed+ 75 · Skin Script 52 · Face Reality 30 · Procell 6 · House of Rose 3 = 166 total.** Distinct brands in the dataset: `face-reality`, `glymed`, `house-of-rose`, `Procell`, `skin-script`. **Jane Iredale has 0 `product` docs** — it is a *makeup service* line (Aundrea's lane), not yet stocked as retail. **`shopBrand` storefront docs = 0** (the shop runs on hardcoded `FALLBACK_BRAND_COPY`). See GAPS.
+> **Retail truth = Sanity.** The shop groups products by `brand`. Published counts (queried live, `perspective: published`, 2026-07-13): **GlyMed+ 75 · Skin Script 52 · Face Reality 30 · Procell 6 · House of Rose 3 = 166 total.** Distinct brands in the dataset: `face-reality`, `glymed`, `house-of-rose`, `Procell`, `skin-script`. **Jane Iredale is a retained product line but still has 0 individual `product` docs**; `/shop/jane-iredale/` is product education until verified inventory and pricing are added. **`shopBrand` storefront docs = 0** (the shop runs on hardcoded `FALLBACK_BRAND_COPY`). See GAPS.
 
 ---
 
@@ -78,8 +78,8 @@ Organized per brand (the charter's §1–§4 collapsed into one per-brand capsul
 
 ### 3.6 Jane Iredale (`jane-iredale`) — 0 retail products, a *service* line
 
-- **1-line positioning:** Skin-loving mineral makeup used *as* post-treatment cover and for events — Aundrea's professional-makeup lane, not (yet) a stocked retail brand.
-- **Who it's for:** Post-treatment clients who want same-day, non-irritating coverage; event/bridal makeup clients; anyone wanting mineral makeup that "cares for the skin."
+- **1-line positioning:** Mineral makeup and home care considered for everyday and post-treatment use, with timing confirmed by the treating provider; retained as a product line while catalog records are backfilled.
+- **Who it's for:** Clients considering mineral makeup for everyday or provider-confirmed post-treatment wear.
 - **Hero categories:** mineral **foundations/complexion**, **color/finishing**, plus Jane Iredale **skincare & supplements** (the brand's three pillars: makeup / skincare / supplements).
 - **Treatments it supports as aftercare:** **post-facial / post-microchanneling / post-PRF mineral cover** (breathable, non-comedogenic — safe over freshly treated skin), and **professional/event makeup** (`/services/professional-makeup/`, `/services/professional-makeup/jane-iredale/`, `/services/professional-makeup/events/`).
 - **Retail status:** **0 `product` docs in Sanity.** Jane Iredale currently lives on the makeup *service* pages, not `/shop/`. If it's ever stocked as retail, it becomes the sixth `brand` and needs its own `shopBrand` doc. See GAPS.
@@ -241,7 +241,7 @@ We speak in terms of investment and value rather than discounts. Ask about kits 
 
 **Lanes.**
 - **Amber** (advanced esthetician + RN assistant, **Face Reality Certified Acne Specialist**) — selects/dispenses **Procell, GlyMed+, Skin Script, and Face Reality** as treatment aftercare and daily regimens.
-- **Aundrea Pedigo** — **Jane Iredale** makeup (service lane, not retail).
+- **Jane Iredale** — retained retail product line; no makeup-application service.
 - **Brandy** — basic-facial clients naturally route to **Skin Script**-style daily care.
 - All retail sits under provider guidance; final regimen and candidacy are the provider's call at consultation.
 
@@ -312,7 +312,7 @@ Several **real manufacturer product names** contain banned terms. These are the 
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — treatment pricing, Procell/GlyMed+/Face Reality treatment context, §9 compliance guardrails.
 - `docs/internal_only/services/facials/faceRealityAcneProgram.md` — $899 12-week program, "sold as a program ONLY," Amber Mingione as Face Reality Certified Acne Specialist.
 - `docs/internal_only/services/facials/packagesAdd-ons.md` — after-care-kit framing per treatment (Procell aftercare serum + sunscreen; growth-factor serum kits).
-- `docs/internal_only/services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md` — Jane Iredale as a makeup *service* line (three pillars: makeup/skincare/supplements), Aundrea's lane, this-for-that swap guide, post-treatment mineral makeup.
+- `/shop/jane-iredale/` — current product-education page for makeup, skincare, supplements, routine swaps, and provider-confirmed post-treatment timing.
 - `memory/phase1-open-followups.md` — the logged open owner decision on non-compliant product names (keep accurate vs compliant display labels).
 
 **Sanity consulted (published, project 4e7axyi7 / dataset production):**

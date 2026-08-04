@@ -105,8 +105,8 @@ const FALLBACK_LOOKS: SignatureLook[] = [
 ];
 
 const FALLBACK_LINKS: LinkRef[] = [
-  { label: 'Professional Makeup', description: 'Our full makeup services and how to book.', href: '/services/professional-makeup/' },
-  { label: 'Group & Event Bookings', description: 'Weddings and parties — in-studio or on location.', href: '/services/professional-makeup/events/' },
+  { label: 'Shop All Products', description: 'Browse professional skincare and home care from House of Rose.', href: '/shop/' },
+  { label: 'Explore Services', description: 'Review the current facial, skin, injectable, and wellness services.', href: '/services/' },
 ];
 
 const FALLBACK_FAQS: FAQ[] = [
@@ -153,12 +153,11 @@ const pageImage = heroImg ?? fallbackHeroImage;
 const pageTitle = data.seoTitle ?? 'Jane Iredale Mineral Makeup | House of Rose Aesthetics, Punta Gorda FL';
 const pageDescription =
   data.seoDescription ??
-  'Jane Iredale — "The Skincare Makeup." Why House of Rose Aesthetics uses this professional mineral makeup for events and post-treatment wear, its benefits, and how to swap it into your daily routine.';
+  'Explore Jane Iredale mineral makeup, skincare, supplements, product benefits, post-treatment wear, and routine swaps at House of Rose Aesthetics in Punta Gorda.';
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
-  { name: 'Services', item: `${site}services/` },
-  { name: 'Professional Makeup', item: `${site}services/professional-makeup/` },
+  { name: 'Shop', item: `${site}shop/` },
   { name: 'Jane Iredale', item: canonical },
 ]);
 
@@ -249,11 +248,11 @@ const faqLd = faqPage(faqs);
       <div class="max-w-[860px] mx-auto text-center">
         <span class="kicker" {...sbFieldPath('whyUsKicker')}>{data.whyUsKicker ?? 'Why We Use It'}</span>
         <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ivory mt-2 mb-6" {...sbFieldPath('whyUsHeading')}>
-          {data.whyUsHeading ?? 'Safe after treatment. Chosen for events.'}
+          {data.whyUsHeading ?? 'Considered for post-treatment wear.'}
         </h2>
         <p class="text-ivory/75 text-[15px] leading-[1.85] max-w-[680px] mx-auto whitespace-pre-line" {...sbFieldPath('whyUsBody')}>
           {data.whyUsBody ??
-            'Because Jane Iredale is non-comedogenic, mineral-based, and often carries physical SPF, it is a natural choice for the skin after a facial or treatment — applied when your skin is ready and your provider gives the go-ahead. For weddings, prom, and photography, professional artists reach for it because it builds beautifully, wears comfortably for hours, and photographs cleanly with no harsh flashback. It is the rare line that performs for a camera and loves your skin at the same time.'}
+            'Jane Iredale mineral makeup may be considered after a facial or skin treatment when your provider confirms that your skin is ready. The line offers buildable coverage, mineral SPF options, and products for everyday routines. Product selection and post-treatment timing depend on your skin, the treatment performed, and your provider’s aftercare guidance.'}
         </p>
       </div>
     </section>
@@ -361,11 +360,11 @@ const faqLd = faqPage(faqs);
         </h2>
         <p class="text-muted text-[15px] max-w-[560px] mx-auto mb-8 leading-[1.8]" {...sbFieldPath('ctaBody')}>
           {data.ctaBody ??
-            'Book a makeup application or a lesson and we’ll match you to the right Jane Iredale products for your skin, or ask us about a color match on your next visit.'}
+            'Call House of Rose to ask about current Jane Iredale product availability or color matching, or browse the rest of our professional home-care shop.'}
         </p>
         <div class="flex gap-3 justify-center flex-wrap mb-10">
           <a href={PHONE_TEL} class="btn-gold">{PHONE_DISPLAY}</a>
-          <a href="/services/professional-makeup/" class="btn-outline-gold">Makeup Services</a>
+          <a href="/shop/" class="btn-outline-gold">Shop All Products</a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/15 text-left">
           {relatedLinks.map((l, i) => (

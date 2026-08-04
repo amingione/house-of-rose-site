@@ -117,69 +117,38 @@ Microchanneling $349 · PRF Skin Renewal $450. Glo2Facial is an **advanced facia
 
 ---
 
-## Aundrea (+ Brandy) — Beauty & Grooming
+## Brandy — Facial Waxing
 
 ### 7. Waxing
 | Sub-service | Provider | Options (GG price) |
 |---|---|---|
-| Facial Waxing | Aundrea **&** Brandy | Lip $10 · Chin $10 · Eyebrow Wax Only $15 · Eyebrow Shape/Trim/Wax $20 ✅ |
-| Body Waxing | Aundrea | Full Leg $65 · Full Arm $35 · Back $50 · Chest $40 · Underarm $20 · Bikini Line $30 ✅ |
+| Facial Waxing | Brandy | Lip $10 · Chin $10 · Eyebrow Wax Only $15 · Eyebrow Shape/Trim/Wax $20 ✅ |
 
-### 8. Lashes — Aundrea
-| Service | GG price |
-|---|---|
-| Lash Lift | $65 ✅ |
-| Lash Tint | $25 ✅ |
-| Lash Lift + Tint | $85 ✅ |
-
-### 9. Permanent Jewelry — Aundrea (from $65; material tiers per ALL-SERVICES-PRICING.MD)
-| Piece | Material | Price |
-|---|---|---|
-| Bracelet | Stainless Steel · Sterling Silver · 14k Gold Filled | $60 · $75 · $85 |
-| Anklet | Stainless Steel · Sterling Silver · 14k Gold Filled | $65 · $85 · $95 |
-> GG currently has one "$65" line; the tier table above is the intended structure — Amber to confirm whether
-> these become separate GG SKUs or stay one $65 base + material upcharge. (Necklace/belly-chain/charm still pending.)
-
-### 12. Professional Makeup — Aundrea
-| Service | GG price |
-|---|---|
-| Everyday Makeup | $30 ✅ |
-| Soft Glam / Event Makeup | $80 ✅ |
-| Full Glam / Bridal Makeup | $175 ✅ |
+### Jane Iredale Products
+The product line remains under `/shop/jane-iredale/`. Individual inventory and pricing must be created as verified Sanity `product` documents before checkout is enabled.
 
 ---
 
-## Basic Facials — "Facials" ladder (provider split CONFIRMED from glossgenius_catalog.numbers)
+## Basic Facials — Brandy
 
 | Facial | Duration | GG price | Provider |
 |---|---|---|---|
-| Signature Rose Facial | 30m | $80 | **Aundrea** |
 | Lunch Time Glow | 30m | $100 | **Brandy** |
-| Luxe Rose Facial | 1h | $120 | **Aundrea** |
 | Signature Facial | 45m | $120 | **Brandy** |
 | Skin Reset Facial | 50m | $140 | **Brandy** |
 | Mommy & Me Facial | 1h | $150 | **Brandy** |
-| Royal Rose Facial | 1h30 | $170 | **Aundrea** |
 | Sculpt & Lift Facial | 1h | $180 | **Brandy** |
 | Luxury Facial | 1h15 | $200 | **Brandy** |
-
-→ **Aundrea: the 3 "Rose" facials** ($80/$120/$170) · **Brandy: the other 6** ($100–$200).
 
 ---
 
 ## Open decisions for Amber (from this taxonomy)
 
-1. ✅ **Facial provider split — RESOLVED** (from the Numbers sheet): Aundrea = the 3 Rose facials; Brandy = the other 6.
-2. **Add Amber's missing advanced-facial services to GlossGenius** (BioRePeel face+body, Procell PRO/MD body,
+1. **Add Amber's missing advanced-facial services to GlossGenius** (BioRePeel face+body, Procell PRO/MD body,
    PRF Topical face+body, standalone Procell PRO) with prices — **Amber confirmed she will add these.**
-3. **Add-on pricing** — Dermaplane prep (+$45), Glo2Facial prep (+$95), LED (+$35) exist in local docs; recategorize
+2. **Add-on pricing** — Dermaplane prep (+$45), Glo2Facial prep (+$95), LED (+$35) exist in local docs; recategorize
    as add-ons in GG (see `_sanity-collection-restructure.md` §5).
-4. ✅ **Vitamin C IV add-on ($25) — INCLUDE** (confirmed) in Wellness & Restoration.
+3. ✅ **Vitamin C IV add-on ($25) — INCLUDE** (confirmed) in Wellness & Restoration.
    **Face Reality:** Acne Bootcamp is a **$899 12-week SERVICE** (not a category, not sold as single facials/peels);
    remove `acne-peel` + `back-treatment`; build its page cluster (see `_sanity-collection-restructure.md` §6).
-5. **Permanent jewelry** — GG has one $65 line; do you want per-piece types (belly chain / necklace / etc.) as
-   separate GG services, or keep one line "from $65" + charm add-on?
-6. **Naming:** GG facial names use "Rose" (Signature Rose / Luxe Rose / Royal Rose) — these are your live GG
-   names; the naming law killed *botanical* names, "Rose" is the brand. Keep as-is unless you want to rename in GG.
-7. **Phase 4:** rebuild Sanity `serviceCollection`s to these 12 categories (current 4 don't match).
-
+4. **Phase 4:** rebuild Sanity `serviceCollection`s around the current provider and service roster.

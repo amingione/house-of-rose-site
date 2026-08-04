@@ -1,7 +1,6 @@
 # Facial Waxing
 ---
 Providers:
- [Aundrea Morrison]() 
  [Brandy Case]()
 Wax Type:
  - Hard Wax

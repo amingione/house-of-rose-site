@@ -314,7 +314,7 @@ Both are **"starting at" monthly program fees** — always phrase as "investment
 **Lane.** **Diana, RN** (Wellness & Restoration lane), under **medical-director / physician
 oversight**. This is the **most medically regulated topic** in the practice — treat it with the most
 compliance discipline. It is a **normal service, never tied to any membership or rewards program**.
-Do not attribute this program to Amber, Brandy, or Aundrea.
+Do not attribute this program to providers outside Diana's RN lane.
 
 **Required guardrails on every surface:**
 - "Medically supervised" / "physician-guided" — always foreground the oversight.

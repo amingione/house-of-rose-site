@@ -35,7 +35,7 @@ const faqs = [
     _key: 'ai-services-offered',
     _type: 'faq',
     question: 'What services does House of Rose offer?',
-    answer: 'House of Rose offers advanced facials and skin services, PRF, Procell microchanneling, microneedling, injectables, IV hydration, GLP-1 support, facial and body waxing, lash services, permanent jewelry, and professional makeup. Service availability and candidacy vary by provider.',
+    answer: 'House of Rose offers advanced facials and skin services, PRF, Procell microchanneling, microneedling, injectables, IV hydration, GLP-1 support, facial waxing, and Jane Iredale products. Service availability and candidacy vary by provider.',
   },
   {
     _key: 'ai-choose-treatment',

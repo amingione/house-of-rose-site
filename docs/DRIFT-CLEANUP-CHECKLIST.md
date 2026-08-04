@@ -56,7 +56,6 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
   verified (75 pages, exit 0). `CLAUDE.md` rewritten to reflect the removal.
 - **Med-spa rule reversed** in `CLAUDE.md`, `COMPLIANCE-COPY-RULES.md`, `GOOGLE-BUSINESS-PROFILE.md`,
   `AGENTS.md` ("allow, don't lead").
-- **Provider public name** `provider-brooke` "Brooke" → **"Aundrea"**.
 - **AI Skin Analysis** lead-capture form added + homepage scan-section copy strengthened.
 
 ---
@@ -99,8 +98,8 @@ This is the site's core sales copy — **not swept, because it needs judgment pe
 Three separate problems, in order of cost to fix:
 
 1. **Service NAMES break the naming law** (`CLAUDE.md`: plain, technical, searchable only — no invented,
-   flowery, or "signature" names): `Luxury Facial`, `Royal Rose Facial`, `Luxe Rose Facial`,
-   `Signature Rose Facial`, `Signature Facial`, `Lunch Time Glow`, `Glowtox Facial`.
+   flowery, or "signature" names): `Luxury Facial`, `Signature Facial`, `Lunch Time Glow`,
+   `Glowtox Facial`.
 2. **The slugs contain the retired words** — `/services/luxury-facial/`, `/services/lunch-time-glow/`,
    `/services/glowtox-facial/`. Renaming changes URLs → needs 301s in `netlify.toml`, and costs whatever
    ranking those pages hold. **Do not rename without deciding the redirect plan.**
@@ -108,7 +107,7 @@ Three separate problems, in order of cost to fix:
 
 ⚠️ **The 9 `no downtime` instances need clinical review, not a copy edit.** The Creative System permits
 the phrase when it is true for that exact procedure and reviewed. It is plausibly accurate for Glo2Facial
-and lash tint, and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
+and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
 
 ### P0 · Wrong NAP (always drift)
 - [x] **DONE (2026-07-07)** `03_PLANS/HofR Mockups/…/SETUP-INSTRUCTIONS.md:125` — fixed to

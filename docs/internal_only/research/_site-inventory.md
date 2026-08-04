@@ -4,7 +4,7 @@
 **Scope:** every file in `packages/web/src/pages/**`, every schema in `packages/studio/schemas/**`, sitemap/llms feeds, Netlify functions, and `packages/web/netlify.toml`.
 **Method:** every page file was read in full; data sources traced to `packages/web/src/lib/queries.ts`; JSON-LD traced to `packages/web/src/lib/structuredData.ts` / `SchemaMarkup.astro`.
 
-**Baseline:** `BaseLayout.astro` emits `siteEntityGraph()` (HealthAndBeautyBusiness + WebSite + WebPage + primary ImageObject `@graph`) on **every** page that uses it. "JSON-LD: none" below means *no page-level schema beyond that baseline*. The three digital-card pages (`/amber/`, `/diana/`, `/aundrea/`) do **not** use BaseLayout and get no entity graph.
+**Baseline:** `BaseLayout.astro` emits `siteEntityGraph()` (HealthAndBeautyBusiness + WebSite + WebPage + primary ImageObject `@graph`) on **every** page that uses it. "JSON-LD: none" below means *no page-level schema beyond that baseline*. The three digital-card pages (`/amber/`, `/diana/`, `/brandy/`) do **not** use BaseLayout and get no entity graph.
 
 ---
 
@@ -17,13 +17,11 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 | # | Route | Source file | Data source (doc type · query) | JSON-LD (page-level) | CTAs | Outbound internal body links |
 |---|-------|-------------|-------------------------------|----------------------|------|------------------------------|
 | 1 | `/` | `index.astro` | `homepage` singleton · `HOMEPAGE_QUERY` (+ hardcoded fallbacks) | none | "Book Your Skin Analysis" → `/skin-analysis` ⚠️no-slash · "Explore Services" → `/services` ⚠️ · "View All Services" → `/services` ⚠️ · "Learn About AI Skin Analysis" → `/skin-analysis` ⚠️ · "Book Your Scan" → GG · "Shop Skincare" → `/shop` ⚠️ · "Book Online" → GG · "Contact Us" → `/contact` ⚠️ · "Start Your Consultation" → GG | `/services`, `/skin-analysis`, `/shop`, `/contact` — **all without trailing slash** ⚠️ |
-| 2 | `/services/` | `services/index.astro` | `service` · `ALL_SERVICES_QUERY` | none | tel button · "Book Online" → GG · "Explore Makeup →" · "Read the Guide →" | `/services/[slug]` via `ServiceCard`, `/services/professional-makeup/` ✅, `/guides/microchanneling-prf/` ✅ |
+| 2 | `/services/` | `services/index.astro` | `service` · `ALL_SERVICES_QUERY` | none | tel button · "Book Online" → GG · "Read the Guide →" | `/services/[slug]` via `ServiceCard`, `/guides/microchanneling-prf/` ✅ |
 | 3 | `/services/[slug]/` | `services/[slug].astro` | `service` · `SERVICE_BY_SLUG_QUERY` + `ALL_SERVICE_SLUGS_QUERY` | **Inline hand-rolled** `Service`/`BreadcrumbList`/`FAQPage` ⚠️ | tel · "Book Online" → GG · card links | back-link → parent/`/services` ⚠️, hub treatments ⚠️, related ⚠️. `Astro.redirect('/services',307)` on miss ⚠️ |
 | 4 | `/services/collections/` | `services/collections/index.astro` | `serviceCollection` · `ALL_COLLECTIONS_QUERY` | none | "View Collection" ⚠️ | collection pages, `/services/{slug}` chips ⚠️ |
 | 5 | `/services/collections/[collection]/` | `services/collections/[collection].astro` | `serviceCollection` · `COLLECTION_BY_SLUG_QUERY` + `ALL_COLLECTION_SLUGS_QUERY` | none | service cards | "← All Collections" ⚠️, `/services/{slug}` ⚠️. `Astro.redirect` ⚠️ |
-| 6 | `/services/professional-makeup/` | `services/professional-makeup/index.astro` | `professionalMakeupPage` singleton · `PROFESSIONAL_MAKEUP_PAGE_QUERY` | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Call to Book" → tel · sms · GG | jane-iredale/, events/ ✅ |
-| 7 | `/services/professional-makeup/jane-iredale/` | `.../jane-iredale.astro` | `janeIredalePage` · `JANE_IREDALE_PAGE_QUERY` | `brand()`+`breadcrumbList()`+`faqPage()` ✅ | tel · "Makeup Services" | makeup/, events/ ✅ |
-| 8 | `/services/professional-makeup/events/` | `.../events.astro` | `makeupEventsPage` · `MAKEUP_EVENTS_PAGE_QUERY` | `service()`+`breadcrumbList()`+`faqPage()` ✅ | "Call to Plan" → tel · sms | makeup/, jane-iredale/ ✅ |
+| 6 | `/shop/jane-iredale/` | `shop/jane-iredale.astro` | `janeIredalePage` · `JANE_IREDALE_PAGE_QUERY` | `brand()`+`breadcrumbList()`+`faqPage()` ✅ | tel · "Shop All Products" | `/shop/`, `/services/` ✅ |
 | 9 | `/experience/` | `experience.astro` | `experienceContent` · `EXPERIENCE_CONTENT_QUERY` | none | tel · GG | **No internal body links** ⚠️ |
 | 10 | `/faq/` | `faq.astro` | aggregates service/costGuide/comparison/localArea FAQs · `FAQ_AGGREGATE_QUERY` | `faqPage()`+`breadcrumbList()` ✅ | tel · "Book a Consult" → GG | "View page →" → services/cost/compare/areas — all ⚠️no-slash (`routeFor`) |
 | 11 | `/support/` | `support.astro` | `supportPage` · `SUPPORT_PAGE_QUERY` | `faqPage()`+`breadcrumbList()` ✅ | tel · mailto info@ · GG · "Contact House of Rose" → `/contact/` ✅ | `/contact/` |
@@ -66,7 +64,7 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 | 33 | `/terms-of-service/` | `terms-of-service.astro` | `termsOfService` · `TERMS_OF_SERVICE_QUERY` | `webPage()`+`breadcrumbList()` ✅ | none | **No internal body links** ⚠️ |
 | 34 | `/amber/` | `amber.astro` | static (own head, no BaseLayout) | `personProfile()` ✅ | "+ Save My Contact" → `/amber.vcf` · tel · maps | none (card). Not in sitemap; **not noindexed** ⚠️ |
 | 35 | `/diana/` | `diana.astro` | static | `personProfile()` ✅ | vcf · tel | same ⚠️ |
-| 36 | `/aundrea/` | `aundrea.astro` | static | `personProfile()` ✅ | vcf · tel | same ⚠️ |
+| 36 | `/brandy/` | `brandy.astro` | static | `personProfile()` ✅ | vcf · tel | same ⚠️ |
 | 37 | `/sitemap/` | `sitemap.astro` | HTML sitemap — 9 doc-type queries | `breadcrumbList()` ✅ | n/a | Nearly every route, all ✅. ⚠️ Missing support/makeup-trio/guide/products |
 | 38 | `/sitemap.xml` | `sitemap.xml.ts` | see §3 | n/a | n/a | n/a |
 | 39 | `/llms.txt` · `/llms-full.txt` | `llms.txt.ts` · `llms-full.txt.ts` | see §3 | n/a | n/a | n/a |
@@ -75,13 +73,13 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 
 ## 2. Studio schema inventory (`packages/studio/schemas/`) — 31 types, all registered in `index.ts`
 
-`objects/seo`, `objects/faq` (shared) · `siteSettings` (BaseLayout→every page) · singletons: `homepage`,`thankYou`,`skinAnalysis`,`contactPage`,`supportPage`,`termsOfService`,`privacyPolicy`,`rentARoom`,`professionalMakeupPage`,`janeIredalePage`,`makeupEventsPage`,`experienceContent` · content types: `serviceCollection`,`service`,`concern`,`product`,`promotion`,`shopBrand`,`blogPost`,`treatmentPackage`,`costGuide`,`comparison`,`localArea`,`caseStudy` · operational (studio-only): `leadSubmission`,`order` · reference-only: `provider` · **dead code: `brandProfile`** (`BRAND_PROFILE_QUERY` defined, never imported by a page).
+`objects/seo`, `objects/faq` (shared) · `siteSettings` (BaseLayout→every page) · singletons: `homepage`,`thankYou`,`skinAnalysis`,`contactPage`,`supportPage`,`termsOfService`,`privacyPolicy`,`rentARoom`,`janeIredalePage`,`experienceContent` · content types: `serviceCollection`,`service`,`concern`,`product`,`promotion`,`shopBrand`,`blogPost`,`treatmentPackage`,`costGuide`,`comparison`,`localArea`,`caseStudy` · operational (studio-only): `leadSubmission`,`order` · reference-only: `provider` · **dead code: `brandProfile`** (`BRAND_PROFILE_QUERY` defined, never imported by a page).
 
 ---
 
 ## 3. Generated feeds — coverage
 
-**sitemap.xml** includes core + dynamic services/blog/collections/concerns/packages/cost/compare/areas/results (all trailing-slash). **Missing** ⚠️: professional-makeup trio, all `/shop/[slug]/` products, digital cards (undecided). Correctly excludes noindex checkout flow.
+**sitemap.xml** includes core + Jane Iredale products + dynamic services/blog/collections/concerns/packages/cost/compare/areas/results (all trailing-slash). Product detail pages and digital cards remain intentionally excluded. Correctly excludes noindex checkout flow.
 
 **llms.txt** ⚠️ missing: shop(+products), guide, makeup trio, concerns, individual packages/results, privacy; `ALL_SERVICES_QUERY` excludes `kind=="treatment"` so treatment pages absent.
 

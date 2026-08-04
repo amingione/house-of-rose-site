@@ -291,20 +291,14 @@ const collectionDescriptions = {
     'Professional facials for maintenance, hydration, surface texture, congestion, and a fresh, well-rested look.',
   '16b4ca79-a320-4bd8-be88-f69952169f17':
     'Explore neurotoxin injections, dermal fillers, PRF injections, and EZ Gel options with natural-looking goals and licensed-provider guidance.',
-  'collection-lash-services':
-    'Lash lifts and tints for more visible curl, color, and definition without extensions.',
-  'collection-makeup':
-    'Professional Jane Iredale makeup for everyday wear, photography, events, and bridal looks.',
   'collection-microchanneling':
     'Compare Procell microchanneling, microneedling, and eligible topical PRF options for face and body concerns.',
-  'eb25ca1e-0a89-4270-b33f-b5b4e597898b':
-    'Custom-fit, clasp-free permanent bracelets, anklets, necklaces, and rings welded in the studio.',
   'service-collection-rf-ipl-skin-treatments':
     'Compare Morpheus8, Lumecca Peak IPL, and Forma for visible texture, tone, firmness, and eligible face or body concerns.',
   '546e9841-b81f-413b-99b1-19b36e96451d':
     'Explore PRF, Procell, and other advanced skin-renewal options for visible texture, tone, and overall skin quality.',
   '5ae70d4c-c42e-4824-881e-b6bb4157de7f':
-    'Face and body waxing with hard wax, clear preparation guidance, and walk-in availability.',
+    'Facial waxing with hard wax, clear preparation guidance, and walk-in availability.',
   '8b6d323b-ad1e-48bd-abd8-d5a7bf9c8964':
     'Learn about IV hydration and provider-guided weight-management services, including screening and follow-up.',
 };
@@ -361,9 +355,6 @@ const textReplacements = [
   [/Diana Morrison, RN/gi, 'your licensed provider'],
   [/Diana, RN/gi, 'your licensed provider'],
   [/\bDiana\b/g, 'your licensed provider'],
-  [/Aundrea[’']s/gi, "your artist's"],
-  [/Aundrea Pedigo/gi, 'your artist'],
-  [/\bAundrea\b/g, 'your artist'],
   [/Brandy[’']s/gi, "your provider's"],
   [/\bBrandy\b/g, 'your provider'],
   [/Amber[’']s/gi, "your provider's"],
