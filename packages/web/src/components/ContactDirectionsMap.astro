@@ -72,6 +72,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
 </div>
 
 <script>
+  import type { Feature, LineString } from 'geojson';
   import type { GeoJSONSource, Marker } from 'mapbox-gl';
 
   const DESTINATION: [number, number] = [-82.0454, 26.9298];
@@ -84,7 +85,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
   interface DirectionsRoute {
     distance: number;
     duration: number;
-    geometry: GeoJSON.LineString;
+    geometry: LineString;
   }
 
   interface DirectionsResponse {
@@ -251,7 +252,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
 
         await mapReady;
 
-        const routeFeature: GeoJSON.Feature<GeoJSON.LineString> = {
+        const routeFeature: Feature<LineString> = {
           type: 'Feature',
           properties: {},
           geometry: route.geometry,
