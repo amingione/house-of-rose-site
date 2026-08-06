@@ -165,7 +165,7 @@ The product line remains active under `/shop/jane-iredale/`. Individual inventor
 | **EZ-Gel Bio-Filler** | **NONE** | per session | 75 min | `ez-gel-bio-filler` **From $699** | 🟥 Sanity-only $699 — **no local source anywhere**; Diana must confirm | Sanity snapshot |
 | PRF Body Treatments | (see Amber §1 topical / Diana lane) | per zone | 90 min | `prf-body-treatments` From $475 per zone | 🟥 Sanity $475 per zone has no matching local injectable-PRF body figure | Sanity snapshot |
 
-> Note: Sanity also has `prf-microneedling` "From $425" (hub) and `microchanneling` "From $250" (hub) — Amber's lane; see §1. The published `prf-injections` "From $599" from-price does not match any single local PRF figure ($495 or $595), so **local wins and $599 is drift**.
+> Note: Sanity has `prf-microneedling` "From $425" plus the canonical `microneedling` service. The former `microchanneling` record is a retired duplicate and its former $250 anchor must not be used to recreate a separate service. The published `prf-injections` "From $599" from-price does not match any single local PRF figure ($495 or $595), so **local wins and $599 is drift**.
 
 ---
 
@@ -320,27 +320,27 @@ GlossGenius holds a single price per service. **Pro / MD** are serum tiers.
 |---|---|---|---|
 | Regional Procell (web-verified 2026-07) | SW FL / FL | **Procell microchanneling** | **$300 (60m) · $350 (90m) · $375 (50m) single · 4-pack $1,050–$1,225** |
 | ÉLAN | Regional | Microneedling | $375 single · $1,050 / 3-pack |
-| PRF/PRP microneedling (needling **+ PRF**) | Regional | — | $350–$500 single _(= HoR PRF Skin Renewal $450 tier, not bare Procell)_ |
-| Skin Sanctuary | Punta Gorda | Microneedling / Nano Channeling | $195 / $185 _(bare needling, cheaper modality)_ |
+| PRF/PRP microneedling (needling **+ PRF**) | Regional | — | $350–$500 single _(= HoR PRF Skin Renewal $450 reference)_ |
+| Skin Sanctuary | Punta Gorda | Microneedling / Nano Channeling | $195 / $185 _(external competitor labels; not House of Rose taxonomy)_ |
 | C's Medi Spa | Port Charlotte | Microneedling | $175 |
-| ~~Unnamed PG "Procell $500 single / $1,200-of-3"~~ | — | — | **DISCARDED — unverified** (PRF-needling ceiling / 4-pack, not a bare Procell single) |
+| ~~Unnamed PG "Procell $500 single / $1,200-of-3"~~ | — | — | **DISCARDED — unverified** (possible PRF-needling or package price, not a verified Procell single) |
 
-**Read:** verified Procell singles run **$300–$375**, 4-packs **$1,050–$1,225**. Bare microneedling ($175–$195) is a cheaper, different modality. House of Rose prices Procell into the real Procell market.
+**Read:** verified external Procell-labeled singles run **$300–$375**, with 4-packs at **$1,050–$1,225**. House of Rose has one Microneedling service performed with the Procell Therapies device; competitor labels and price points do not create separate House of Rose modalities.
 
 ### Authoritative grid
 
 | Treatment | Price | Comp justification |
 |---|---|---|
-| Procell Pro — Face | **$299** | Entry tier at the Procell market floor (~$300); the value option, above bare microneedling ($175–$195). |
+| Microneedling — Procell Pro material plan (Face) | **$299** | Material-plan reference near the external Procell-labeled market floor; verify against the live booking catalog. |
 | Procell MD — Face | **$349** | Live GG price; mid-market (≈ ÉLAN $375 / 90-min Procell $350). |
 | Procell MD — Face+Neck+Décolleté | **$449** | Extended plane; above the single-face tiers. |
 | Procell — Series of 4 | **$1,099** | **4 = Procell protocol** (min 4 tx, ~4 wks apart; 6+ scarring — `docs/internal_only/services/PRF/`). Sits inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
-| Microneedling — Corrective (Face) | **$295** | Above local microneedling $175–$195; the non-Procell corrective tier. |
+| Microneedling — Face | **$295 reference** | Reconcile with Procell material-plan figures as a variation inside one service; this is not a non-Procell modality. |
 
-**What changed vs §10a:** Pro Face **$250 → $299** — $250 sat almost on top of local microneedling ($195), undervaluing a superior modality; $299 sits at the real Procell market floor (~$300). MD **stays $349** (= live GG). **Body** Procell has **no local comp** → consult-based at the current figure until one is found.
+**What changed vs §10a:** the Procell Pro material-plan reference moved **$250 → $299**; MD **stays $349** (= live GG). These are possible material-plan variations inside one Microneedling service, not separate devices or modalities. **Body** has no local comparison → keep consult-based until verified.
 
-**On the series count — do NOT normalize.** Procell is a **series of 4** because that is the **Procell manufacturer protocol** (minimum 4 treatments ~4 weeks apart, 6+ for scarring — `docs/internal_only/research/compass_artifact…`, `m17-skin-analysis-cheat-sheet.md`, and the GlossGenius import CSV which prices PRF Skin Renewal at series-of-3 $1,200 / series-of-4 $1,550). This is **treatment-specific and correct**; it is not the house 3/6 "Renewal/Full Correction" retail framework and must not be flattened into it. Other treatments keep their own cadence: Glo2Facial **3/6**, Microneedling corrective **3–6** (scarring 5–8), BioRePeel **unsettled** (see `biorepeel.md` §82 — flag, don't force). `_gaps.md` §87 asked to "pick ONE cadence" — the answer is **no**: different modalities have different clinically-correct series, and forcing a single count would misrepresent the protocol.
+**Series count requires provider verification.** Existing sources contain both Procell-branded series-of-4 references and Microneedling series-of-3/6 references. Reconcile these as service variations or packages inside one Microneedling taxonomy. Do not use different series counts to imply different needling modalities, and do not publish a universal cadence without provider approval.
 
 ### Actions
-- [ ] **GlossGenius:** MD $349 already live. Add **Pro $299**, **F+N+D $449**, **Series of 4 $1,099** as single-price services.
+- [ ] **GlossGenius:** reconcile MD $349, Pro $299, F+N+D $449, and Series of 4 $1,099 as variations or packages under one Microneedling service; do not add separate microchanneling and microneedling categories.
 - [ ] **Sanity:** publish Pro + MD as distinct tiers; keep the microchanneling hub from-price aligned to **Pro $299**.

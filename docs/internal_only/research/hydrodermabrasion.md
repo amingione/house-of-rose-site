@@ -40,7 +40,7 @@ Because it swaps abrasive crystals/diamond tips for water and adjustable suction
 **May not be the right fit (or needs provider sign-off first):**
 - **Active, inflamed, or infected skin** (open lesions, active cold sores, sunburn) — treat/heal first.
 - Certain **active inflammatory acne or rosacea flares**, some skin conditions, or recent resurfacing/peels — the provider decides suitability and settings.
-- Anyone seeking **structural correction** — the appearance of deeper acne scars, significant laxity, stretch marks, or wrinkle remodeling. Hydrodermabrasion is a surface glow-and-hydrate maintenance treatment, **not** a collagen-induction or corrective tool; those goals point to Amber's advanced lane (microchanneling/microneedling, PRF, BioRePeel).
+- Anyone seeking **structural correction** — the appearance of deeper acne scars, significant laxity, stretch marks, or wrinkle remodeling. Hydrodermabrasion is a surface maintenance treatment, **not** a collagen-induction or corrective tool; those goals point to Amber's advanced lane (Microneedling, eligible topical PRF, BioRePeel).
 - Pre-treatment prep matters: clients are generally asked to pause strong at-home actives (retinoids, chemical exfoliants, physical scrubs) for ~48 hours before to reduce sensitivity — confirmed at booking.
 
 **Honest limits (a feature, not a weakness):** results are immediate but **cumulative and temporary** — the glow supports the skin for roughly a week and is maintained with regular sessions, not a one-and-done fix. It won't remove deep scarring or resurface at the depth of needling or medium peels. Not every client is a candidate; final candidacy, serum choice, and settings are confirmed by the licensed provider at consultation, and individual outcomes vary.
@@ -111,7 +111,7 @@ Traditional **microdermabrasion** mechanically sands the surface with crystals o
 - **Hydrating mask finish** — reinforce hydration for event prep.
 - **Enzyme exfoliation** — as an alternative or complementary gentle exfoliation within the basic lane.
 
-**Pathways (step-up):** hydrodermabrasion (maintenance) → **Glo2Facial** (advanced signature glow, Amber) → **Procell Microchanneling / Microneedling / BioRePeel / PRF** for correction. Keep the lane hand-off explicit: Brandy for maintenance, Amber for advanced/corrective.
+**Pathways (step-up):** hydrodermabrasion (maintenance) → **Glo2Facial** (Amber) → **Microneedling / BioRePeel / PRF** for correction. Use **Procell Microchanneling** only when Procell is specifically in context. Keep the lane hand-off explicit: Brandy for maintenance, Amber for advanced/corrective.
 
 **Retail follow-through** (name real HoR shop brands once confirmed in Sanity shopBrands — snapshot did not include brand records, so treat as directional): support the glow at home with a **gentle cleanser, a hyaluronic-acid/hydrating serum, and daily SPF**. HoR retail brands referenced across the site include **Procell, GlyMed+, Skin Script, Face Reality, and House of Rose** — pick a hydrating serum + SPF from whichever the provider stocks for maintenance clients. (Confirm exact SKUs against live `product`/`shopBrand` docs before naming on a page.)
 
@@ -142,7 +142,7 @@ What will move price once set (for structuring the eventual menu):
 8. **Will it help with the appearance of clogged pores and dullness?** It's designed to help clear surface buildup and support a clearer, more radiant look through gentle exfoliation, extraction, and hydration. Many clients notice smoother, brighter-looking skin. Individual results vary.
 9. **How often should I get one?** Many clients maintain a glow with a session about every 4 weeks; some gentle protocols allow every 2 weeks. Your provider will recommend a cadence for your skin.
 10. **Is it good before an event or wedding?** Yes — it's a popular event-prep facial. We generally suggest booking about 3–5 days before your event for peak glow. If it's your first time before a big day, we recommend a trial session about two weeks ahead so your skin has time to respond.
-11. **Can it replace microneedling or a corrective treatment?** No — hydrodermabrasion is a surface glow-and-hydrate maintenance facial, not a collagen-induction or corrective treatment. For the appearance of scars, texture, or laxity, Amber's advanced lane (microchanneling, microneedling, PRF, BioRePeel) is the path.
+11. **Can it replace microneedling or a corrective treatment?** No — hydrodermabrasion is a surface maintenance facial, not a collagen-induction or corrective treatment. For the appearance of scars, texture, or laxity, Amber's advanced lane (microneedling, PRF, BioRePeel) is the path.
 12. **Can I combine it with dermaplaning?** Often, yes — dermaplaning first can clear peach fuzz and dead skin so the hydrodermabrasion serums work on freshly cleared skin. Your provider will confirm what's right for you.
 13. **How should I prep?** It helps to pause strong at-home actives (retinoids, chemical exfoliants, physical scrubs) for about 48 hours beforehand to reduce sensitivity. We'll confirm at booking.
 14. **How much does it cost?** Pricing is confirmed at booking. *(Placeholder — do not publish a figure until the service is priced and set in Sanity.)*

@@ -26,7 +26,7 @@ market (Punta Gorda / Charlotte County). Pricing follows three rules:
 | Filler — Juvéderm Ultra XC | **from $650** /syringe | $650 | FL $550–$950; RHA $700–$900 | HOLD |
 | Filler — Juvéderm Voluma XC | **from $850** /syringe | $850 | Structural/premium tier, in-band | HOLD |
 | Filler — RHA 1 / 2 / 3 | **$650 / $700 / $800** /syringe | same | RHA runs high end $700–$900 | HOLD |
-| Microneedling — Corrective (face) | **from $295** · series 3 $795 · series 6 $1,415 | $295 | Bare needling $175–$195 local; SkinPen $375 | HOLD |
+| Microneedling — Face (Procell Therapies device) | **from $295** · series 3 $795 · series 6 $1,415 | $295 | Competitor microneedling $175–$195 local; competitor SkinPen $375 | HOLD |
 | Procell Microchanneling — Pro (face) | **from $299** · series of 4 $1,099 | $299 | Verified Procell single $300–$375; 4-pack $1,050–$1,225 | HOLD |
 | Procell Microchanneling — MD (face) | **from $349** · series of 4 $1,099 | $349 | Mid-market (≈ ÉLAN $375 / 90-min Procell $350) | HOLD |
 | Topical PRF boost | **+$175** face · **+$200** body | same | With-PRF needling tier $350–$500 (our PRF Skin Renewal $450) | HOLD |

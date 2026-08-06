@@ -67,7 +67,7 @@ const concepts = [
     subline: 'Provider-selected advanced skin care, considered in context.',
     cta: 'EXPLORE MICROCHANNELING',
     source: 'Procell/ProcellTherapies-at-house-of-rose.webp',
-    destination: '/services/microchanneling/',
+    destination: '/services/microneedling/',
     campaign: 'hor_advanced_skin_q3',
     alignment: 'xMidYMid',
   },

@@ -30,8 +30,8 @@ consolidating). Follow-up: interlink the makeup hub ↔ spokes.
 ## 2026-07-14 — Treatment packages: Series of 3/6 built (task 2 of 3)
 
 Built the Series-of-3 and Series-of-6 packages (master-menu §9 pricing) as `treatmentPackage` docs, live:
-Glo2Facial ($499/$885), Procell Microchanneling ($675/$1,200), Corrective Microneedling ($795/$1,415), and
-the three body treatments (Procell/Microneedling/BioRePeel Body, $875–$1,675/zone) — 12 packages. Filled the
+Glo2Facial ($499/$885), Microneedling material-plan variations ($675–$1,415), and
+the body treatment variations (Microneedling/BioRePeel Body, $875–$1,675/zone) — 12 historical package records. Filled the
 **Acne Bootcamp** ($899 program), Dermaplaning Package of 4 ($340), and PRF Under-Eye Series of 3 ($1,350).
 Parked the duplicate Procell "Series of 4" (identical to The Revival Series). **Correction:** an earlier
 wrong-field query (`price`/`services` vs `rackPrice`/`servicesIncluded`) made me misread existing packages as

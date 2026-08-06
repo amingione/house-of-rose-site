@@ -1,36 +1,34 @@
 # Advanced Skin — Regenerative & Corrective · Master Treatment, Pricing & Description Guide
 
-**Provider lane:** Amber — Advanced Esthetics, **regenerative & corrective skin** (Procell microchanneling, corrective microneedling, topical PRF, BioRePeel, Glo2Facial, dermaplaning, acne — targeting tightening, scars, stretch marks, wrinkles and texture on **face and body**). *Relaxing/maintenance facials and facial waxing are Brandy's lane; injectables, IV, and GLP-1 are Diana's — none included here.*
+**Provider lane:** Amber — Advanced Esthetics, **regenerative & corrective skin** (microneedling with the Procell Therapies device, topical PRF, BioRePeel, Glo2Facial, dermaplaning, acne — targeting texture and overall skin quality on **face and approved body areas**). *Relaxing/maintenance facials and facial waxing are Brandy's lane; injectables, IV, and GLP-1 are Diana's — none included here.*
 **Location / market:** House of Rose Aesthetics · Punta Gorda, FL (Charlotte County / SW Florida)
-**Last updated:** 2026-07-10
+**Last updated:** 2026-08-06
 
 ---
 
-## Microchanneling vs. Microneedling — the core distinction
+## One microneedling service
 
-These are **two different tools for different jobs**, not gentle-vs-strong tiers of one thing. The provider chooses based on the concern, area, skin history, and downtime tolerance.
+House of Rose uses the **Procell Therapies device** for its **Microneedling** service. When the Procell brand or its materials are in context, call the treatment **Procell Microchanneling**. This is naming context inside one service—not a second modality or a client-facing either/or decision.
 
-- **Procell Microchanneling** — a *branded, structured stamping protocol* with fixed, controlled settings and the Procell growth-factor serum. It's the tool for overall **skin quality**: texture, fine lines, enlarged-looking pores, dullness, mild unevenness, glow, and maintenance — and it's the comfortable, predictable-recovery choice for sensitive skin and first-timers. Face + approved body areas.
-- **Microneedling (Corrective)** — the *broader, adjustable-depth* category (pen/stamp). The provider dials the depth and pattern to a **specific correction**: deeper or rolling acne-scar appearance, defined scar texture, and stretch-mark texture on the body.
+- **Generic service language:** Microneedling.
+- **Procell-specific context:** Procell Microchanneling.
+- **Provider decisions:** treatment area, settings, eligible topical plan, candidacy, and recovery guidance.
 
-**PRF and the Procell serums are the "what's delivered" layer, applied during either modality — not modalities themselves:**
+**PRF and the Procell serums are topical-plan considerations within an eligible microneedling appointment—not separate modalities:**
 
 - **Procell serum tiers** (used in Procell Microchanneling): **Pro** (professional growth-factor + cytokine serum — maintenance / preventative / under-40) and **MD** (2× the growth factors of Pro — the go-to for 40+ and age-related correction).
-- **Topical PRF** — an **autologous** adjunct made from *your own blood*, applied **topically** during a needling protocol. It can be added to microchanneling *or* microneedling. **It is topical only — never injected or "delivered into" the skin** (the FDA states microneedling devices are not authorized to deliver blood products into skin).
+- **Topical PRF** — an **autologous** adjunct made from *your own blood*, applied **topically** during an appropriate needling protocol. **It is topical only — never injected or "delivered into" the skin** (the FDA states microneedling devices are not authorized to deliver blood products into skin).
 
-### When to use which
+### How the naming is used
 
-| Concern / situation | Tool | Serum / upgrade to consider |
+| Context | Public wording | Topical plan to consider |
 |---|---|---|
-| Overall quality — texture, fine lines, pores, dullness, glow, maintenance | **Procell Microchanneling** | Pro (under-40 / preventative) · MD (40+) |
-| Sensitive skin, first-timer, wants predictable low downtime | **Procell Microchanneling** | Pro to start |
-| Age-related collagen loss, 40+, more correction wanted | **Procell Microchanneling** | **MD** (2× growth factors) |
-| Deeper / rolling acne-scar appearance, defined scar texture | **Microneedling (Corrective)** | ± Topical PRF |
-| Stretch marks / scar texture on the **body** | **Microneedling (Corrective)** — body | ± Topical PRF, longer series |
-| Wants an autologous "own-blood" boost | either modality | **+ Topical PRF** |
-| Event glow / add the facial layer | any needling | **+ Glo2Facial finish** |
+| Generic service, route, category, or treatment discussion | **Microneedling** | Provider-selected |
+| Procell brand, device system, Pro/MD materials, or manufacturer context | **Procell Microchanneling** | Pro or MD materials when appropriate |
+| Eligible autologous topical adjunct | **Microneedling + Topical PRF** | **+ Topical PRF** |
+| Eligible facial finishing step | **Microneedling + Glo2Facial finish** | **+ Glo2Facial finish** |
 
-*Final tool, depth, serum, and candidacy are the provider's decision at consultation & skin analysis.*
+*Final protocol, serum, treatment area, and candidacy are the provider's decision at consultation and skin analysis.*
 
 ---
 
@@ -40,7 +38,7 @@ These are **two different tools for different jobs**, not gentle-vs-strong tiers
 - **Series of 3 — "Renewal"** (~10% value) — most concerns show visible change by three sessions.
 - **Series of 6 — "Full Correction"** (~20% value) — the complete corrective course; the realistic standard for body work, scars, and stretch marks.
 
-**Client journey:** ① **Glo2Facial** — the gateway/entry ($185). ② **Procell Microchanneling** (Pro → MD) or **Microneedling** for correction. ③ **Upgrade** with Topical PRF or a Glo2Facial finish. *Sell the series, not the single visit. Calibrated for the local market (Punta Gorda median HH income ~$85,779; 53.6% aged 65+; affluent but value-conscious; local plain-microneedling anchor ~$195). No local competitor offers Procell growth-factor or PRF channeling.*
+**Client journey:** ① **Glo2Facial** — the gateway/entry ($185). ② **Microneedling** with the Procell Therapies device, when appropriate. ③ **Upgrade** with an eligible Procell topical plan, Topical PRF, or a Glo2Facial finish. *Sell the series, not the single visit. Calibrated for the local market (Punta Gorda median HH income ~$85,779; 53.6% aged 65+; affluent but value-conscious). No local competitor offers Procell growth-factor or PRF channeling.*
 
 ---
 
@@ -52,20 +50,19 @@ These are **two different tools for different jobs**, not gentle-vs-strong tiers
 
 ---
 
-## 2. Procell Microchanneling — Face *(skin quality: texture, fine lines, pores, glow)*
+## 2. Microneedling — Face *(Procell Therapies device)*
 
 | Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
 |---|---|---|---|---|---|
-| **Procell Microchanneling — Pro** *(channeling entry)* | Structured microchanneling with the professional-grade Procell growth-factor + cytokine serum — maintenance and prevention; the comfortable first step (preventative / under-40). | 60–75 min | $250 | $675 | $1,200 |
-| **Procell Microchanneling — MD** | Structured microchanneling with the Procell MD serum — **2× the growth factors of Pro**, the go-to for 40+ and age-related collagen support. | 60–75 min | $325 | $875 | $1,560 |
+| **Microneedling — Face** | Provider-selected microneedling with the Procell Therapies device, planned around the visible concern, treatment area, candidacy, and recovery needs. | 60–75 min | $295 | $795 | $1,415 |
+| **Procell Microchanneling — Pro context** | The same microneedling service with the professional-grade Procell Pro material plan. | 60–75 min | $250 | $675 | $1,200 |
+| **Procell Microchanneling — MD context** | The same microneedling service with the Procell MD material plan. | 60–75 min | $325 | $875 | $1,560 |
 
 ---
 
-## 3. Microneedling — Corrective — Face *(depth-adjustable: scars & defined texture)*
+## 3. Taxonomy Guardrail
 
-| Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
-|---|---|---|---|---|---|
-| **Microneedling — Corrective** | Adjustable-depth needling, dialed by the provider to the concern — the appearance of deeper or rolling acne scars, and defined textural correction. Often planned as a series. | 60–75 min | $295 | $795 | $1,415 |
+Do not recreate separate “microchanneling” and “microneedling” service categories, comparison pages, or device-choice language. The canonical service is **Microneedling**. **Procell Microchanneling** is used only when Procell is in context.
 
 ---
 
@@ -79,29 +76,29 @@ These are **two different tools for different jobs**, not gentle-vs-strong tiers
 
 ---
 
-## 5. Upgrades & Add-Ons *(add to any needling treatment)*
+## 5. Upgrades & Add-Ons *(add to an eligible needling treatment)*
 
 | Upgrade | Description | Price |
 |---|---|---|
 | **Topical PRF** | Autologous boost prepared from your own blood, applied **topically** during the protocol (adds a blood draw + prep + screening). Face. *Topical only — no injections.* | **+$175** |
 | **Topical PRF — Body** | Same, on a body zone (larger area / more product). | **+$200** |
-| **Glo2Facial Finish** | Add the oxygenating Glo2Facial to any needling treatment — the "signature" experience. | **+$95** |
+| **Glo2Facial Finish** | Add the oxygenating Glo2Facial to an eligible needling treatment. | **+$95** |
 | **LightStim LED Therapy** | LED to calm and support the skin after channeling. | +$35 |
 | **Dermaplane Prep** | Dermaplaning to remove peach fuzz and prep the skin. | +$45 |
 | **BioRePeel (face)** | Resurfacing peel layered to boost radiance and texture. | +$65 |
 
-*Example signature combinations: Procell MD + Glo2Facial Finish = $420; Microneedling — Corrective + Topical PRF = $470.*
+*Example combinations: Procell MD + Glo2Facial Finish = $420; Microneedling + Topical PRF = $470.*
 
 ---
 
 ## 6. Body & Corrective — Regenerative *(per zone)*
 
-Regenerative & corrective work on the body — tightening, scars, stretch marks, crepey skin — with Procell, microneedling, and BioRePeel. Not relaxing facial work. Body skin is thicker, so a longer series (often the Series of 6) is realistic. Priced **per zone** (neck & décolleté, hands, back, abdomen/stretch marks, individual scar areas). Add **Topical PRF +$200**.
+Regenerative and corrective work on approved body areas with microneedling using the Procell Therapies device, plus BioRePeel where appropriate. Use **Procell Microchanneling** only when the Procell brand or materials are in context; it is not a separate body modality. Not relaxing facial work. Body skin is thicker, so a longer series may be considered. Priced **per zone** (neck and décolleté, hands, back, abdomen, or another approved area). Add **Topical PRF +$200** when eligible.
 
 | Treatment | Description | Duration | Single | Series of 3 | Series of 6 |
 |---|---|---|---|---|---|
-| **Procell Microchanneling — Body** | Structured growth-factor channeling for crepey skin, hands, décolleté, and overall body-skin quality (serum tier — Pro/MD — selected in consult). | 60–75 min | $349 | $940 | $1,675 |
-| **Microneedling — Body** | Adjustable-depth needling for the appearance of stretch marks and scar texture, dialed to the zone. | 60–90 min | $325 | $875 | $1,560 |
+| **Microneedling — Body** | Provider-selected body microneedling with the Procell Therapies device, planned by treatment area and candidacy. | 60–90 min | $325 | $875 | $1,560 |
+| **Procell Microchanneling — Body context** | The same body microneedling service with the eligible Procell material plan selected in consultation. | 60–75 min | $349 | $940 | $1,675 |
 | **BioRePeel — Body** | TCA-based resurfacing peel (back, chest, hands, stretch marks) for tone, texture, and firmness with minimal downtime. | 45 min | $325 | $875 | $1,560 |
 | **Back Treatment — Acne & Texture** | Corrective back treatment for body-acne scarring, congestion, and texture. | 60 min | from $159 | $429 | $765 |
 

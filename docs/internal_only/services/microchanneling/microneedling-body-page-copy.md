@@ -12,6 +12,8 @@ individual services. This file is the staged copy for whoever pushes the Sanity 
 (price cross-check). Price and duration below match the live pricing docs — do not round or
 "clean up" the $325/60–90min figures without re-checking those sources first.
 
+**Device decision (2026-08-06):** regular body microneedling uses the **Procell Therapies device**.
+
 **Naming decision (2026-07-23):** Amber approved renaming this service from the prior
 "Microneedling — Body" convention (used by every other body treatment: Procell Microchanneling
 — Body, BioRePeel — Body) to a benefit-forward name. This is a deliberate exception, not a
@@ -43,7 +45,7 @@ Rose Aesthetics is a customized collagen-renewal treatment designed to soften th
 stretch marks, improve the look and feel of fully healed scars, and smooth uneven body texture
 over time.
 
-Using a professional precision device, we create controlled microchannels at a depth selected
+Using the Procell Therapies device, we create controlled microchannels at settings selected
 for your skin, treatment area, and goals. This activates the skin's natural renewal response and
 supports new collagen and elastin production. As the skin gradually remodels, treated areas can
 appear smoother, firmer, and more refined.
@@ -58,7 +60,7 @@ appear smoother, firmer, and more refined.
 
 Common treatment zones include the abdomen, hips, thighs, buttocks, arms, back, and other
 approved body areas. Every treatment begins with a private consultation to confirm candidacy and
-customize the treatment depth, pattern, and recommended series for your skin.
+customize the treatment settings, pattern, and recommended series for your skin.
 
 Because body skin is thicker and remodels more slowly than facial skin, a series of treatments
 is often recommended for meaningful visible improvement — the provider dials the exact count to
@@ -105,7 +107,7 @@ marks or scar, skin response, and desired outcome.
 
 ### What should I expect after treatment?
 Temporary redness, warmth, tightness, tenderness, dryness, or light flaking may occur. Recovery
-depends on the treatment area, selected depth, and individual skin response, and written
+depends on the treatment area, selected protocol, and individual skin response, and written
 aftercare will be provided.
 
 ### What body areas can be treated?

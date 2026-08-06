@@ -92,7 +92,7 @@ Maps cleanly to **existing** concern pages (all end in `/`):
 ## 7. Pairings & pathways
 
 **Stacks well with:**
-- **As a finish/add-on** after Procell Microchanneling, Microneedling, or BioRePeel — CO₂ gel is documented as a soothing post-procedure step (post-laser/post-microneedling/post-RF). This mirrors how House of Rose already sells the **Glo2Facial Finish (+$95)** and **LightStim LED (+$35)** add-ons. *(Decide whether carboxy is a standalone facial, an add-on, or both — see GAPS re: overlap with Glo2Facial Finish.)*
+- **As a finish/add-on** after Microneedling or BioRePeel — CO₂ gel is documented as a soothing post-procedure step (post-laser/post-microneedling/post-RF). Use **Procell Microchanneling** only when Procell is specifically in context. This mirrors how House of Rose already sells the **Glo2Facial Finish (+$95)** and **LightStim LED (+$35)** add-ons. *(Decide whether carboxy is a standalone facial, an add-on, or both — see GAPS re: overlap with Glo2Facial Finish.)*
 - **LED (LightStim)** — layer for a light + oxygenation calming finish.
 - **Dark-circle pathway:** carboxy facial as the **needle-free** entry for tired-looking under-eyes; if the concern is structural hollowing/pigment, the consult routes to the RN (filler) lane — a clean cross-lane handoff.
 
@@ -165,7 +165,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 
 **Where a carboxy page should link OUT:**
 - `/services/glo2facial/` (comparison / gateway alternative)
-- `/services/Procell-microchanneling/` and any microneedling service (as stack/finish partners) — *confirm exact published slugs against the snapshot*
+- `/services/microneedling/` (as a stack/finish partner)
 - `/concerns/dark-circles/` (the concern it most serves)
 - `/shop/` brand/product pages for antioxidant/SPF home care
 - `/faq/` and booking (call — GlossGenius)

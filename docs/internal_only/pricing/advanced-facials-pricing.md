@@ -6,7 +6,7 @@
 > **[`advanced-facials-master-menu.md`](./advanced-facials-master-menu.md)**
 >
 > That master menu supersedes this file with (2026-07-10):
-> - **Microchanneling and microneedling as distinct services** (not a lumped line), with when-to-use guidance.
+> - **Microneedling as one service category** using the Procell Therapies device; use **Procell Microchanneling** only when Procell is specifically in context.
 > - **Topical PRF as an autologous upgrade** (+$175 face / +$200 body), not a serum tier.
 > - **Local-market recalibrated pricing** (Glo2Facial entry $185; Procell Pro $250 / MD $325; Microneedling — Corrective $295; etc.).
 > - **One package framework: Single · Series of 3 (Renewal) · Series of 6 (Full Correction)** — the old "3 & 5 session" framing here is retired.

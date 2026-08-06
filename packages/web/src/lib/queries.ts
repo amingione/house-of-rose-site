@@ -13,6 +13,7 @@ const IMAGE_FIELDS = /* groq */ `
 `;
 
 const RETIRED_COMPARISON_SLUGS = [
+  'microchanneling-vs-microneedling',
   'prf-microchanneling-vs-microneedling',
   'prf-injections-vs-ez-gel',
   'Procell-serum-vs-prf',
@@ -22,6 +23,9 @@ const RETIRED_COMPARISON_SLUGS = [
   'topical-prf-vs-prf-injections',
 ] as const;
 const RETIRED_COMPARISON_SLUGS_GROQ = JSON.stringify(RETIRED_COMPARISON_SLUGS);
+
+const RETIRED_COST_GUIDE_SLUGS = ['procell-microchanneling-cost-punta-gorda'] as const;
+const RETIRED_COST_GUIDE_SLUGS_GROQ = JSON.stringify(RETIRED_COST_GUIDE_SLUGS);
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -1083,7 +1087,7 @@ const SERVICE_REF_FIELDS = /* groq */ `
 
 // ── Cost guides ──────────────────────────────────────────────────────────────
 export const ALL_COST_GUIDES_QUERY = /* groq */ `
-  *[_type == "costGuide"] | order(orderRank asc, title asc) {
+  *[_type == "costGuide" && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit, _updatedAt,
     "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
     "seo": seo { metaTitle, metaDescription }
@@ -1091,7 +1095,7 @@ export const ALL_COST_GUIDES_QUERY = /* groq */ `
 `;
 
 export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "costGuide" && slug.current == $slug][0] {
+  *[_type == "costGuide" && slug.current == $slug && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})][0] {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit,
     whatsIncluded, costFactors[]{ _key, factor, effect }, faqs[]{ _key, question, answer }, _updatedAt,
     "treatment": treatment->{ ${SERVICE_REF_FIELDS} },
@@ -1101,7 +1105,7 @@ export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
-  *[_type == "costGuide" && defined(slug.current)]{ "slug": slug.current }
+  *[_type == "costGuide" && defined(slug.current) && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})]{ "slug": slug.current }
 `;
 
 // ── Comparisons ──────────────────────────────────────────────────────────────
@@ -1241,7 +1245,7 @@ export const FAQ_AGGREGATE_QUERY = /* groq */ `
   *[
     (
       (_type == "service" && status in ["live", "actual-menu"]) ||
-      _type == "costGuide" ||
+      (_type == "costGuide" && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})) ||
       (_type == "comparison" && status == "live" && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})) ||
       (_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ})
     ) &&

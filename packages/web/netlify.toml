@@ -148,7 +148,7 @@
 # Retired static guide → canonical Sanity-backed needling hub.
 [[redirects]]
 from   = "/guides/microchanneling-prf/"
-to     = "/services/microchanneling/"
+to     = "/services/microneedling/"
 status = 301
 
 # Visibility-to-consultation canonical cleanup (2026-07-20)
@@ -159,7 +159,7 @@ status = 301
 
 [[redirects]]
 from   = "/services/microchanneling-microneedling/"
-to     = "/services/microchanneling/"
+to     = "/services/microneedling/"
 status = 301
 
 [[redirects]]
@@ -174,7 +174,7 @@ status = 301
 
 [[redirects]]
 from   = "/compare/prf-microchanneling-vs-microneedling/"
-to     = "/compare/microchanneling-vs-microneedling/"
+to     = "/services/microneedling/"
 status = 301
 
 [[redirects]]
@@ -189,7 +189,35 @@ status = 301
 
 [[redirects]]
 from   = "/compare/Procell-vs-topical-prf/"
-to     = "/compare/microchanneling-vs-microneedling/"
+to     = "/services/prf/"
+status = 301
+
+# Microneedling and microchanneling are one service category. Procell
+# Microchanneling is the branded context for House of Rose's microneedling
+# service, not a separate modality (owner direction, 2026-08-06).
+[[redirects]]
+from   = "/services/microchanneling/"
+to     = "/services/microneedling/"
+status = 301
+
+[[redirects]]
+from   = "/services/microneedling-corrective/"
+to     = "/services/microneedling/"
+status = 301
+
+[[redirects]]
+from   = "/services/procell-microchanneling-body/"
+to     = "/services/microneedling-body/"
+status = 301
+
+[[redirects]]
+from   = "/compare/microchanneling-vs-microneedling/"
+to     = "/services/microneedling/"
+status = 301
+
+[[redirects]]
+from   = "/cost/procell-microchanneling-cost-punta-gorda/"
+to     = "/cost/microneedling-cost-punta-gorda/"
 status = 301
 
 [[redirects]]

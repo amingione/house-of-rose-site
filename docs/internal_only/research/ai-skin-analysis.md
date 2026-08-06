@@ -89,7 +89,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 
 | Concern (existing slug) | What the scan surfaces | Routes to → treatment | Provider lane |
 |---|---|---|---|
-| **Sun damage** → `/concerns/sun-damage/` | UV/pigment cues, brown spots, uneven tone, photoaging patterns | Peels (BioRePeel, acne peel), microchanneling/microneedling, corrective home care, SPF | Amber (advanced facials) · Brandy (light peels/maintenance) |
+| **Sun damage** → `/concerns/sun-damage/` | UV/pigment cues, brown spots, uneven tone, photoaging patterns | Peels (BioRePeel, acne peel), Microneedling, corrective home care, SPF | Amber (advanced facials) · Brandy (light peels/maintenance) |
 | **Fine lines & laxity** → `/concerns/fine-lines-laxity/` | Wrinkle/texture patterns, surface crepiness, early laxity | Microchanneling, PRF microneedling, Glo2Facial, LED; injectables where appropriate | Amber (facials/PRF **topical only**) · Diana (tox/filler) |
 | **Acne scarring** → `/concerns/acne-scarring/` | Texture depressions, pore/congestion patterns, porphyrin-related activity, PIH-style pigment | Microchanneling, PRF microneedling, BioRePeel (incl. advanced acne-scarring), Face Reality acne program | Amber · Face Reality protocol |
 | **Dark circles & under-eyes** → `/concerns/dark-circles/` | Under-eye pigment vs. vascular vs. texture cues (helps distinguish likely driver) | PRF under-eye series, EZ-Gel/injectables where indicated | Amber (PRF topical) · Diana (injectable PRF/EZ-Gel) |
@@ -105,7 +105,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 ## 7. Pairings & pathways
 
 **What it stacks with (it precedes everything):**
-- **Before a regenerative series** — PRF microchanneling/microneedling, Procell microchanneling: the scan sets the baseline the whole series is measured against. Natural pathway into `/packages/prf-microchanneling-journey/`, `/packages/prf-microneedling-series-of-4/`, `/packages/Procell-microchanneling-series-of-4/`.
+- **Before a Microneedling series** — the scan sets the baseline the series is measured against. The provider may select an eligible Procell material plan or topical PRF adjunct inside the same Microneedling service.
 - **Before a corrective skincare protocol** — Face Reality acne program, acne bootcamp, BioRePeel series: the scan documents the "before" and re-scans mark milestones. → `/packages/face-reality-12-week-program/`, `/packages/biorepeel-series-of-4/`.
 - **Before deciding facial vs. facial** — Glo2Facial vs. peel vs. maintenance facial: the scan sequences them.
 - **Alongside injectable consults** — the scan informs the aesthetic picture Diana works from (it does not diagnose or prescribe).
@@ -154,7 +154,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 
 13. **Can it tell me exactly what treatment I need?** It helps *guide* the decision, but the licensed provider confirms your candidacy, the right treatment, and the right sequence at consultation. Not every client is a candidate for every treatment, and individual outcomes vary.
 
-14. **Which treatments does it usually lead to?** It depends on what your skin shows. Common paths include microchanneling or PRF microneedling for texture and fine lines, peels or Glo2Facial for pigmentation and sun-related cues, corrective programs for acne, and — where appropriate — an injectable consult with our RN. The scan routes you to the right lane.
+14. **Which treatments does it usually lead to?** It depends on what your skin shows. Common paths include Microneedling for texture and fine lines, peels or Glo2Facial for pigmentation and sun-related cues, corrective programs for acne, and — where appropriate — an injectable consult with our RN. Topical PRF may be considered as an adjunct; the scan routes you to the right lane.
 
 15. **Is the M17 a medical imaging device?** No. It's an aesthetic skin-imaging system used to support cosmetic consultation and planning — not medical imaging, and not a substitute for evaluation by a licensed medical provider.
 
@@ -188,7 +188,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 - `/services/` and `/services/collections/skin-renewal/` — "not sure where to start? Begin with skin analysis."
 - Every concern page: `/concerns/acne-scarring/`, `/concerns/dark-circles/`, `/concerns/fine-lines-laxity/`, `/concerns/hair-thinning/`, `/concerns/stretch-marks/`, `/concerns/sun-damage/` — each should offer "See your skin first → skin analysis."
 - `/experience/`, `/faq/`, and `/guides/microchanneling-prf/` (as the recommended pre-series step).
-- High-consideration treatment pages: `/services/microchanneling/`, `/services/prf-microneedling/`, `/services/glo2facial/`, `/services/biorepeel/`, and the PRF/microchanneling packages.
+- High-consideration treatment pages: `/services/microneedling/`, `/services/prf-microneedling/`, `/services/glo2facial/`, and `/services/biorepeel/`.
 
 **Where `/skin-analysis/` should link *out* to (it's the router):**
 - All six concern pages (already implemented as the concern-chip grid — keep and expand to any new concern pages).
@@ -227,7 +227,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 - Concerns: `acne-scarring`, `dark-circles`, `fine-lines-laxity`, `hair-thinning`, `stretch-marks`, `sun-damage`.
 - Collections: `skin-renewal`, `injectables-aesthetics`, `wellness-restoration`, `beauty-enhancements`.
 - Services (routing targets): `microchanneling`, `prf-microneedling`, `glo2facial`, `biorepeel`, plus PRF/Procell body + injectable services.
-- Packages: `prf-microchanneling-journey`, `face-reality-12-week-program`, `biorepeel-series-of-4`, `Procell-microchanneling-series-of-4`, `prf-microneedling-series-of-4`.
+- Packages: `face-reality-12-week-program`, `biorepeel-series-of-4`, and Microneedling-series records. Any legacy package slug containing `microchanneling` is an internal identifier only and must not create a separate public service.
 - Live singleton: `skinAnalysis` (`/skin-analysis/`) — current hero/steps/looks-at/concern-chips/FAQ; no price; lead form + GlossGenius CTA.
 
 **Web sources (mechanism/framing only — no prices, no medical claims imported):**

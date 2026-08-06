@@ -34,7 +34,7 @@ const routes = [
     id: '03-advanced-skin',
     title: 'Advanced Skin',
     frames: ['04-advanced-skin', '03-studio-experience', '02-consultation'],
-    destination: '/services/microchanneling/',
+    destination: '/services/microneedling/',
     campaign: 'hor_advanced_skin_q3',
   },
 ];

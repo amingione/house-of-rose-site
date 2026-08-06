@@ -21,7 +21,7 @@ export const comparison = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'e.g. "PRF Microchanneling vs Microneedling: Which Is Right for You?"',
+      description: 'e.g. "Procell Pro vs MD: Which Material Plan Is Right for You?"',
       validation: (R) => R.required(),
     }),
     defineField({

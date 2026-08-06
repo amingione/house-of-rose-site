@@ -30,7 +30,7 @@ export const GLOSSGENIUS_BOOKING_MAP = [
   phone('99566c9c-8033-4df6-b5a3-ac5de5d2d886', 'iv-hydration-therapy', 'The website page represents several distinct IV listings.'),
   phone('e82404a8-a778-4359-9a6d-71377ab903d3', 'injectables-bio-fillers', 'The website page represents several distinct consultation paths.'),
   consultation('service-lumecca-peak-ipl', 'lumecca-peak-ipl', 'Lumecca Peak IPL | Consultation', '1000f-de667c29-dbef-47e6-9022-418389aefa71'),
-  phone('f5308b9c-73df-4812-8c0d-afcf4ee5839a', 'microneedling', 'The hub represents several distinct protocols.'),
+  consultation('f5308b9c-73df-4812-8c0d-afcf4ee5839a', 'microneedling', 'Procell Therapies | Consultation', '1000f-5b4391bb-3d43-40f3-910d-144cf0e46192'),
   consultation('service-morpheus8-body', 'morpheus8-body', 'Morpheous8 RF Body | Consultation', '1000f-bd506885-7ad3-4a15-ab5a-90a8bd082db4'),
   consultation('service-morpheus8', 'morpheus8', 'Morpheous8 RF | Consultation', '1000f-6156b30d-84a3-4d71-8d9d-6ee81fea44de'),
   phone('a4bc2059-2510-445b-ae7c-db9f4c3251e7', 'neck-decollete-extension', 'No exact live listing.'),
@@ -39,11 +39,8 @@ export const GLOSSGENIUS_BOOKING_MAP = [
   phone('hor.service.prf-fibrin-veil', 'prf-fibrin-veil', 'No exact live listing.'),
   phone('adf66d59-5dcd-4f95-8282-681dafc97d89', 'prf-injections', 'The website page represents multiple distinct PRF injection consultations.'),
   phone('c3ffc30e-e13c-436e-b0c0-6aaeaeed2d6b', 'prf', 'The hub represents several distinct PRF services.'),
-  phone('17e135ae-a153-46ac-89e1-34fa9899cbda', 'microneedling-corrective', 'No exact SkinPen listing.'),
-  phone('302fe86d-4b15-4caa-93e5-b21d70da595e', 'microneedling-body', 'No exact SkinPen body listing.'),
+  consultation('302fe86d-4b15-4caa-93e5-b21d70da595e', 'microneedling-body', 'Procell Therapies | Consultation', '1000f-5b4391bb-3d43-40f3-910d-144cf0e46192'),
   consultation('818469ff-9dee-4939-ad55-54fb1ca4e184', 'prf-microneedling', 'PRF Microneedling | Consultation', '1000f-ad1f8f2c-7475-4776-b6d9-c8d5e9bff604'),
-  consultation('2f050dfe-7ec7-459c-b3d6-f895a53805e8', 'microchanneling', 'Procell Therapies | Consultation', '1000f-5b4391bb-3d43-40f3-910d-144cf0e46192'),
-  consultation('4f55771d-f09c-4f31-a9ac-b4beaef27f73', 'procell-microchanneling-body', 'Procell Therapies | Consultation', '1000f-5b4391bb-3d43-40f3-910d-144cf0e46192'),
 ];
 
 export const bookingUrlFor = (entry) =>

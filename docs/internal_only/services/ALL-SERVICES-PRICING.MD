@@ -25,7 +25,7 @@ must always match; this file is updated in the same commit as any change to eith
 | PRF Skin Renewal (3 options) | 60+ min | $450+ |
 
 **Not in GlossGenius yet (intended, unbookable until Amber adds them to GG — no public prices until then):**
-BioRePeel face/body · Procell Pro/MD Body · PRF Topical Body · microneedling corrective · dermaplane/LED prep add-ons.
+BioRePeel face/body · Procell Pro/MD Body · PRF Topical Body · microneedling with the Procell Therapies device (face/body) · dermaplane/LED prep add-ons.
 
 ## Amber — Acne (Face Reality)
 | Service | Duration | Price |

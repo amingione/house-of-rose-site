@@ -99,7 +99,7 @@ The "Series of 3 / 6 (Renewal / Full Correction)" labels are a **generic retail 
 
 | Item | Drift | Recommended fix |
 |---|---|---|
-| "PRF Skin Renewal" provider | Confirmed **Amber** (topical, during microchanneling/microneedling) | Keep attributed to Amber; keep topical-only language. |
+| "PRF Skin Renewal" provider | Confirmed **Amber** (topical, during eligible Microneedling) | Keep attributed to Amber; keep topical-only language. |
 | Topical vs injectable PRF blur | Recurring risk across PRF surfaces | Hard line: **Amber = topical PRF only, never injected** (advanced facials); **Diana, RN = injectable PRF / EZ-Gel / PRF scalp**. Never let a device "inject/deliver PRF into skin"; never present topical as delivering an injectable study's outcome. |
 | PRF-for-hair | prf-injections brief flags **do not present PRF-for-hair as a bookable HoR service** (hair restoration removed from consolidated menu); stale PDFs still list it | Do not list PRF hair restoration on `/concerns/hair-thinning/` as bookable. |
 | Micro-Tox / GlowTox | Legacy material incorrectly combines needling with Daxxify | **Clinical hold.** Keep it out of Amber's lane and out of needling/PRF packages. A separate Diana, RN injectable workflow requires medical-director approval and pricing reconciliation before it is surfaced. |

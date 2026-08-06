@@ -365,10 +365,10 @@ competitors' planted questions and front-loads brand language + keywords. Paste 
 > assessment, so the plan is built around your skin and goals rather than a set menu. Walk-ins are
 > welcome, and appointments are recommended when you want to reserve a specific time.
 
-**Q: What's the difference between microchanneling and microneedling?**
-> A: Microchanneling is a more refined, controlled technique that pairs with growth-factor serums to support
-> texture and firmness. Our Procell Microchanneling is our signature skin-quality treatment. Ask us which fits
-> your skin.
+**Q: What does Procell Microchanneling mean?**
+> A: Procell Microchanneling is the branded Procell context for our Microneedling service, which we perform
+> with the Procell Therapies device. It is not a separate service category. Your provider confirms candidacy
+> and the treatment plan during consultation.
 
 **Q: What is a PRF facial?**
 > A: PRF (platelet-rich fibrin) uses your own blood to support collagen and natural rejuvenation — a

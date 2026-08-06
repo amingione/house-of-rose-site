@@ -45,7 +45,7 @@ export const service = defineType({
       title: 'Parent Service (hub — not the same as Collection)',
       type: 'reference',
       to: [{ type: 'service' }],
-      description: 'For treatments only: the specific hub SERVICE this protocol belongs under (e.g. "Microneedling — Corrective" under the "Microneedling" hub). This is a service-to-service link, separate from Collection above (which links to a serviceCollection grouping page).',
+      description: 'For treatments only: the specific hub SERVICE this treatment belongs under (e.g. "Microneedling — Body" under the "Microneedling" hub). This is a service-to-service link, separate from Collection above (which links to a serviceCollection grouping page).',
       hidden: ({ document }) => document?.kind !== 'treatment',
     }),
     defineField({

@@ -33,7 +33,7 @@ The reconciliation script checked 43 live service and option tokens on 2026-08-0
 | `iv-hydration-therapy` | — | phone | — | Website hub represents several distinct IV listings |
 | `injectables-bio-fillers` | — | phone | — | Website hub represents several consultation paths |
 | `lumecca-peak-ipl` | Lumecca Peak IPL \| Consultation | consultation | `1000f-de667c29-dbef-47e6-9022-418389aefa71` | Verified live 2026-08-04 |
-| `microneedling` | — | phone | — | Hub represents several protocols |
+| `microneedling` | Procell Therapies \| Consultation | consultation | `1000f-5b4391bb-3d43-40f3-910d-144cf0e46192` | Canonical Microneedling service; Procell Microchanneling is its branded Procell context |
 | `morpheus8-body` | Morpheous8 RF Body \| Consultation | consultation | `1000f-bd506885-7ad3-4a15-ab5a-90a8bd082db4` | Verified token; listing spelling needs correction |
 | `morpheus8` | Morpheous8 RF \| Consultation | consultation | `1000f-6156b30d-84a3-4d71-8d9d-6ee81fea44de` | Verified token; listing spelling needs correction |
 | `neck-decollete-extension` | — | phone | — | No exact live listing |
@@ -42,11 +42,8 @@ The reconciliation script checked 43 live service and option tokens on 2026-08-0
 | `prf-fibrin-veil` | — | phone | — | No exact live listing |
 | `prf-injections` | — | phone | — | Page represents multiple PRF consultation paths |
 | `prf` | — | phone | — | Hub represents several PRF services |
-| `microneedling-corrective` | — | phone | — | No exact SkinPen listing |
-| `microneedling-body` | — | phone | — | No exact SkinPen body listing |
+| `microneedling-body` | Procell Therapies \| Consultation | consultation | `1000f-5b4391bb-3d43-40f3-910d-144cf0e46192` | Same canonical consultation entry point |
 | `prf-microneedling` | PRF Microneedling \| Consultation | consultation | `1000f-ad1f8f2c-7475-4776-b6d9-c8d5e9bff604` | Verified live 2026-08-04 |
-| `microchanneling` | Procell Therapies \| Consultation | consultation | `1000f-5b4391bb-3d43-40f3-910d-144cf0e46192` | Verified live option token 2026-08-04 |
-| `procell-microchanneling-body` | Procell Therapies \| Consultation | consultation | `1000f-5b4391bb-3d43-40f3-910d-144cf0e46192` | Same consultation is the verified shared entry point |
 
 Skin Analysis & Consultation is also verified independently for `/skin-analysis/` with token `1000f-ad93f96c-64b0-4a51-959b-4301ca28039c`.
 
@@ -194,7 +191,7 @@ Option labels: `Chin`; `Upper Lip`; `Eyebrow Wax`; `Eyebrow Shape, Trim & Wax`.
 - Resolve whether PRF Under-Eye, PRF Bio-Filler, PRF Body, PRF Microneedling, and Morpheus8 consultation prices represent deposits or treatment totals.
 - Confirm the minimum age, consent process, and product protocol for the Parent & Child Facial.
 - Decide whether Forma RF should receive a new exact catalog listing. Until then, the website calls the practice.
-- Decide whether the BioRePeel body, acne-scarring, spot, Glo2 + PRF, Glo2 + ProCell, fibrin veil, SkinPen, and neck/décolleté pages should receive exact catalog entries. Until then, each calls the practice.
+- Decide whether the BioRePeel body, acne-scarring, spot, Glo2 + PRF, Glo2 + ProCell, fibrin veil, and neck/décolleté pages should receive exact catalog entries. The canonical Microneedling pages use the verified Procell Therapies consultation.
 
 ## Claims requiring clinical approval
 

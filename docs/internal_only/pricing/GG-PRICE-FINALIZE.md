@@ -16,7 +16,7 @@
 | Glo2Facial (single) | **$195** | $195 | ✅ KEEP | GG live. (Local said $185 — GG wins.) |
 | Glo2Facial — Series of 3 | **$499** | — | ➕ ADD | Local master menu (~10% value; derived off $185 — Amber confirm vs the $195 single). |
 | Glo2Facial — Series of 6 | **$885** | — | ➕ ADD | Local master menu (~20% value; same note). |
-| Procell Microchanneling — **Pro** (Face) | **$299** | — | ➕ ADD | Entry tier at the verified Procell market floor (~$300; regional singles $300–$375). Value option, above bare microneedling ($175–$195). |
+| Microneedling — Procell Pro material plan (Face) | **$299** | — | ➕ ADD | A material-plan variation inside the one Microneedling service; verify the active booking-catalog label before publishing. |
 | Procell Microchanneling — **MD** (Face) | **$349** | $349 | ✅ KEEP | GG live. Mid-market (≈ ÉLAN $375 / 90-min Procell $350). |
 | Procell MD — Face + Neck + Décolleté | **$449** | — | ➕ ADD | Extended plane; above the single-face tiers. |
 | Procell Microchanneling — **Series of 4** | **$1,099** | — | ➕ ADD | **4 = Procell protocol** (min 4 tx, 6+ scarring). Inside the real 4-pack band ($1,050–$1,225); ~21% off 4× $349. |
@@ -154,9 +154,8 @@ Live GlossGenius changes:
 **Still provider-confirm (unchanged):** permanent-jewelry metal tiers → CONFIRMED NOT wanted (flat $65). EZ-Gel price pending Diana's private number. Everyday/Event makeup live at comp.
 **Systemic note:** several GG service descriptions were AI-generated with embedded prices/durations (e.g., "priced at $90"). Everyday + Bridal fixed this round. Recommend a sweep of remaining descriptions to strip embedded prices (violates the no-price-in-booking-descriptions rule).
 
-### Added — 2026-07-26: Microneedling – Face (was missing)
-- **Microneedling - Face → ADDED $295** (Skin Services · Amber · 1 hr · Fixed · bookable). The plain/corrective SkinPen-style face microneedling was missing — only Procell Pro/MD (growth-factor) and Microneedling-Body existed. Priced just under Procell Pro ($300) since Procell adds the growth-factor serum on top of channeling; above the local bare-microneedling floor ($195–265). Matches the finalize sheet's "Microneedling — Corrective (Face) $295." (Comp sheet had listed $325, but that predated the Procell $300 decision and would sit illogically above Procell Pro — $295 corrected.)
-
-### Correction — 2026-07-26: Microneedling → Morpheus8 (SkinPen dropped)
-- The "Microneedling – Face $295" I added was **relabeled by Amber to Morpheus8 Microneedling (Face + Body options)** in GlossGenius; Morpheus8 (RF microneedling) pricing/description set by Amber directly in GG.
-- **SkinPen microneedling is being dropped** as an offered service — from web copy and internal menus. Competitor "SkinPen" price references (e.g. Cape Coral $375) are market comps and stay.
+### Updated — 2026-08-06: one Microneedling service
+- **Microneedling is the canonical service** and uses the **Procell Therapies device**. When Procell is in context, use **Procell Microchanneling**; do not maintain separate microchanneling and microneedling categories.
+- The verified **Procell Therapies | Consultation** is the shared booking entry point. The $295 face figure and Pro/MD material-plan pricing remain operational figures requiring final catalog reconciliation; they do not define separate modalities.
+- **Morpheus8 RF Microneedling remains a distinct face/body service.** Its pricing and description are maintained separately in GlossGenius.
+- Competitor SkinPen price references (for example, Cape Coral $375) are market comps only and do not describe a House of Rose service.

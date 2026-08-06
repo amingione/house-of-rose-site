@@ -2,13 +2,13 @@
 
 **Date:** 2026-07-13 · **Provider lane:** Amber (advanced facials) · **Status:** draft for Phase 3/4 consumption · Sources listed at the end.
 
-Topic scope: the **Glo2Facial by Geneo** — House of Rose's signature oxygenating, exfoliating, infusing facial. It is the studio's **entry point / gateway** into advanced skin care, the go-to **glow / event-ready facial**, and a premium **finish or add-on** layered onto microchanneling and microneedling. Amber's lane (advanced facials, no needling required for the standalone).
+Topic scope: the **Glo2Facial by Geneo** — an oxygenating, exfoliating, infusing facial and a finish or add-on layered onto eligible microneedling. Amber's lane (advanced facials, no needling required for the standalone). **Taxonomy note:** use Microneedling generically and Procell Microchanneling only when Procell is specifically in context.
 
 ---
 
 ## 1. The 3-sentence answer
 
-The Glo2Facial by Geneo is a non-invasive, no-downtime signature facial that does three things in one pass — gently exfoliates, floods the skin's surface with active infusions, and triggers the skin's own oxygenation from within — for an immediate, luminous "lit-from-within" glow. At House of Rose in Punta Gorda it's performed by Amber as our advanced-facial gateway (investment from $185), and it's the treatment most clients book before a wedding, reunion, photo session, or event because there's no peeling, redness, or recovery. It also works as a finishing layer added to microchanneling or microneedling to send you home glowing rather than flushed.
+The Glo2Facial by Geneo is a non-invasive signature facial that gently exfoliates, applies targeted infusions, and supports surface oxygenation in one visit. At House of Rose in Punta Gorda, Amber performs it as an advanced-facial entry point (investment from $185). It can also be used as a finishing layer after eligible microneedling.
 
 ---
 
@@ -29,11 +29,11 @@ The Glo2Facial by Geneo is a non-invasive, no-downtime signature facial that doe
 - **First-timers and sensitive skin.** No aggressive suction, no acids required, comfortable — a gentle on-ramp to House of Rose's advanced-skin lane.
 - **Dull, dry, tired, or dehydrated skin** wanting brightness, softness, and hydration.
 - Clients who want the **feel-good spa experience** (massage, glow) rather than corrective downtime.
-- As a **finish/add-on** after microchanneling or microneedling to calm and brighten.
+- As a **finish/add-on** after eligible microneedling.
 - A broad range of skin tones — the underlying OxyGeneo study included Fitzpatrick I–VI.
 
 **Honest limits — what it is not:**
-- It is **not a collagen-induction / corrective treatment.** For deeper acne-scar texture, defined scars, stretch marks, or significant laxity, needling (microchanneling/microneedling) is the right tool — Glo2Facial complements those, it doesn't replace them.
+- It is **not a collagen-induction / corrective treatment.** For deeper acne-scar texture, defined scars, stretch marks, or significant laxity, microneedling may be considered after consultation — Glo2Facial complements that service; it does not replace it.
 - Results are **cumulative and gradual on texture and tone**; the standalone "wow" is the glow and hydration, which is immediate but temporary. A series builds and sustains the skin-quality changes.
 - It does **not** replace medical treatment for any skin condition.
 
@@ -81,11 +81,11 @@ Both are gentle, exfoliating, no-downtime "glow" facials — the honest overlap 
 **Glo2Facial vs. dermaplaning.**
 Different jobs. Dermaplaning is manual exfoliation with a blade — it removes peach fuzz + dead surface cells for instant smoothness and flawless makeup application. Glo2Facial exfoliates *and* infuses *and* oxygenates for glow and hydration. **When dermaplaning wins:** removing vellus hair, prepping for flawless foundation, ultra-smooth texture. **When Glo2Facial wins:** hydration, brightness, oxygenated glow, and a full-service experience. They're **complementary** — dermaplaning is often done first (as a prep add-on, +$45) to help the Glo2Facial infusion absorb.
 
-**Glo2Facial vs. a needling treatment (microchanneling / microneedling).**
+**Glo2Facial vs. microneedling.**
 These are not the same category. Needling creates controlled micro-channels to trigger the skin's collagen-repair response — it's the **corrective, collagen-induction** tool for texture, fine lines, pore appearance, acne-scar and stretch-mark appearance, and it comes with some downtime (redness, later flaking). Glo2Facial is **surface-level**: glow, hydration, brightness, no channels, no downtime. **When needling wins:** you want to change the skin's structure/texture over a series. **When Glo2Facial wins:** you want a glow now with zero recovery, you're not ready for needling, or you want the between-needling maintenance facial. They pair beautifully (see §7).
 
-**Glo2Facial as an add-on/finish layered onto microchanneling.**
-This is a signature House of Rose combination. After a microchanneling or microneedling session, adding the **Glo2Facial Finish (+$95)** layers the oxygenating, infusing, calming step on top of the needling — clients leave glowing and soothed rather than only flushed, and the infusion supports comfort. It's the "signature experience" upsell and one of the strongest reasons to book at House of Rose over a plain-microneedling competitor.
+**Glo2Facial as an add-on/finish layered onto microneedling.**
+After an eligible microneedling session, a **Glo2Facial Finish (+$95)** may be considered. The provider confirms whether the combination and timing are appropriate.
 
 ---
 
@@ -114,7 +114,7 @@ Maps to these **existing** `/concerns/` slugs:
 
 **Try-first / journey:**
 1. **Start:** Glo2Facial (gateway, $185) — experience the studio, get a skin analysis.
-2. **Correct:** graduate into Procell Microchanneling (Pro → MD) or Microneedling — Corrective for texture/scars.
+2. **Correct:** graduate into Microneedling with the Procell Therapies device when appropriate; use Procell Microchanneling when Procell is specifically in context.
 3. **Upgrade/finish:** add Topical PRF (Amber, topical only) or a Glo2Facial Finish; maintain with LED and monthly facials.
 
 **Retail follow-through (name real HoR shop brands):** support the glow between visits with a gentle brightening/hydrating home routine — the studio carries **Skin Script**, **GlyMed+**, **Face Reality** (acne-prone), **Procell** aftercare, and the **House of Rose** line. Recommend a hydrating serum + daily SPF pairing; final product picks are the provider's at consultation. (Do not claim products "cure" or "treat" any condition.)
@@ -151,8 +151,8 @@ Maps to these **existing** `/concerns/` slugs:
 5. **Does it hurt?** No — most clients feel a light effervescent tingle and warmth during the pass, then a relaxing facial massage. Comfort is a hallmark of the treatment.
 6. **How is it different from a regular facial or hydrodermabrasion?** A basic hydrating facial cleanses and exfoliates; the Glo2Facial adds the CO₂/Bohr-effect oxygenation step and active-pod infusion for extra brightness and glow. Hydrodermabrasion (in our basic-facial lane with Brandy) is a great everyday option; Glo2Facial is the advanced glow and our gateway into corrective care.
 7. **How often should I get one?** Wonderful as a one-off or monthly glow. For visible texture and tone change, many clients do a series of 3–6 sessions about 4–6 weeks apart, then maintenance — the provider tailors this to your skin.
-8. **Will it help with fine lines?** It hydrates and plumps for the appearance of smoother, more supple skin. For structural change in fine lines and texture, we'd pair or graduate to microchanneling/microneedling; the provider maps the plan.
-9. **Can it be added to microneedling or microchanneling?** Yes — the Glo2Facial Finish (+$95) layers the oxygenating, infusing, calming step onto a needling session, so you leave glowing and soothed. It's one of our signature combinations.
+8. **Will it help with fine lines?** It hydrates and plumps for the appearance of smoother, more supple skin. For structural change in fine lines and texture, the provider may discuss microneedling.
+9. **Can it be added to microneedling?** It may be considered as a finish for an eligible microneedling appointment. The provider confirms whether the combination is appropriate.
 10. **Is it safe for sensitive skin?** It's designed to be gentle — no aggressive suction, no required acids — and is a comfortable first step for sensitive skin and first-timers. Candidacy is confirmed by the provider.
 11. **Can I get it if I'm pregnant or breastfeeding?** The manufacturer notes Glo2Facial hasn't been formally tested on pregnant persons and recommends checking with your doctor. Bring it up at consultation and we'll confirm candidacy and pod selection with you.
 12. **Does it work on all skin tones?** It's a gentle, non-ablative treatment used across a broad range of skin tones (the underlying clinical study included Fitzpatrick types I–VI). Your provider confirms suitability.
@@ -184,7 +184,7 @@ Maps to these **existing** `/concerns/` slugs:
 
 **Pages that should link TO the Glo2Facial page:**
 - `/services/` and `/services/collections/skin-renewal/` (it lives in Skin Renewal).
-- `/services/microchanneling-microneedling/` and `/services/microneedling-corrective/` — "finish with a Glo2Facial (+$95)."
+- `/services/microneedling/` — "ask whether a Glo2Facial finish is appropriate."
 - `/guides/microchanneling-prf/` — as the no-downtime glow alternative / finishing layer.
 - `/areas/punta-gorda/` — already serves `glo2facial` in Sanity `localAreas.served`.
 - `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/dark-circles/` — as a gentle, no-downtime option.
@@ -192,7 +192,7 @@ Maps to these **existing** `/concerns/` slugs:
 - `/services/dermaplaning/` — cross-link (dermaplane prep pairing).
 
 **Where the Glo2Facial page should link OUT to (real slugs, trailing slashes):**
-- `/services/microchanneling-microneedling/`, `/services/microneedling-corrective/` (graduate to correction).
+- `/services/microneedling/` (graduate to correction).
 - `/services/dermaplaning/`, `/services/lightstim-led-therapy/`, `/services/neck-decollete-extension/` (add-ons).
 - `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/dark-circles/`.
 - `/areas/punta-gorda/`, `/faq/`, `/shop/` (Skin Script / GlyMed+ / House of Rose home care).
@@ -208,7 +208,7 @@ Maps to these **existing** `/concerns/` slugs:
 ## 12. Why House of Rose
 
 - **The gateway, done right.** Glo2Facial is our deliberate entry point — a comfortable, no-downtime, luxurious first experience that opens the door to Amber's full advanced-skin lane (microchanneling, PRF-topical, corrective work). Most competitors sell it as a one-off; we build it into a real skin journey.
-- **The signature finish no one else pairs.** Layering the Glo2Facial Finish (+$95) onto microchanneling/microneedling is a House of Rose signature — clients leave glowing, not just flushed. Locally, no competitor pairs Procell growth-factor channeling or topical PRF with an oxygenating finish.
+- **A considered finishing option.** Layering the Glo2Facial Finish (+$95) onto eligible microneedling is a House of Rose pairing. The provider confirms whether the combination is appropriate.
 - **Right treatment, honest lane.** We'll tell you when hydrodermabrasion with Brandy is the better everyday call, when dermaplaning is what you actually want, and when needling is the tool for real texture change — no upselling into the wrong thing.
 - **Local & event-ready.** Punta Gorda / Charlotte County / SW Florida clients book it before weddings, reunions, and photoshoots precisely because there's no recovery — a private studio, open since June 15, 2026, where walk-ins are welcome and the licensed provider tailors the pod and plan to your skin.
 - **Grounded, never overclaimed.** We describe the real mechanism (exfoliate + infuse + oxygenate via the Bohr effect), cite the clinical study honestly, and keep results claims to "helps reveal," "for the appearance of," and "many clients notice."
@@ -225,7 +225,7 @@ Maps to these **existing** `/concerns/` slugs:
 
 **Sanity docs consulted (published snapshot):**
 - Service `glo2facial` — "Glo2Facial," Skin Renewal, 60 min, From $185, standalone, tagline "Oxygenating facial treatment for radiant, hydrated skin."
-- `neck-decollete-extension` (+$95), `lightstim-led-therapy` (From $65), `dermaplaning` (From $135), `microneedling-corrective` (From $295), `microchanneling-microneedling` (hub).
+- `neck-decollete-extension` (+$95), `lightstim-led-therapy` (From $65), `dermaplaning` (From $135), `microneedling` (canonical hub).
 - Concerns: `sun-damage`, `fine-lines-laxity`, `dark-circles` (also `acne-scarring`, `hair-thinning`, `stretch-marks`).
 - `localAreas.punta-gorda` — serves `glo2facial`.
 - Cost guide `prf-microneedling-cost-punta-gorda` (PRF-only; factors list still includes "Membership" — stale).

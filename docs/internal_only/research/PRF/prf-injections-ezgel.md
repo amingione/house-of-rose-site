@@ -164,7 +164,7 @@ Source: `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Con
 - `packages/web/src/pages/guides/microchanneling-prf.astro` — the model for the topical-vs-injectable framing.
 - `docs/internal_only/services/Diana/filler/PRF_ez-gel.md` — **EMPTY (0 bytes)** — the assigned EZ-Gel primary doc has no content (flagged).
 
-**Sanity docs consulted (published snapshot):** `prf-injections` (From $599 — conflicts), `ez-gel-bio-filler` (From $699 — unanchored), `prf`, `prf-microneedling`, `prf-body-treatments`, `dermal-fillers`, `injectables`; concerns `dark-circles`, `fine-lines-laxity`, `acne-scarring`, `hair-thinning`; comparison `prf-microchanneling-vs-microneedling`; cost guide `prf-microneedling-cost-punta-gorda`; packages `prf-under-eye-series-of-3`.
+**Sanity docs consulted (published snapshot):** `prf-injections` (From $599 — conflicts), `ez-gel-bio-filler` (From $699 — unanchored), `prf`, `prf-microneedling`, `prf-body-treatments`, `dermal-fillers`, `injectables`; concerns `dark-circles`, `fine-lines-laxity`, `acne-scarring`, `hair-thinning`; cost guide `prf-microneedling-cost-punta-gorda`; packages `prf-under-eye-series-of-3`. The former needling comparison is retired.
 
 **Web / literature sources (mechanism, candidacy, evidence — never pricing):**
 - **Davies C, Miron RJ. "Autologous platelet concentrates in esthetic medicine." *Periodontology 2000*, 2024** (DOI 10.1111/prd.12582; onlinelibrary.wiley.com/doi/10.1111/prd.12582) — flagship facial-esthetics systematic/narrative review; keywords include Alb-PRF & Bio-Filler; source of the albumin-gel (75 °C, ~4–6-month) mechanism, peri-orbital/tear-trough evidence, and the honest "promising but limited (small samples, few RCTs)" caveat. Read fully from Amber's library.

@@ -53,7 +53,7 @@ const copy = {
       _key: 'sg1',
       name: 'Skin Renewal & Device Treatments',
       description:
-        'Explore microneedling, microchanneling, PRF, BioRePeel, radiofrequency, and IPL options by concern and recovery preference.',
+        'Explore microneedling, PRF, BioRePeel, radiofrequency, and IPL options by concern and recovery preference.',
       imagePath: '/images/editorial/home/regenerative-skin-treatments.webp',
     },
     {

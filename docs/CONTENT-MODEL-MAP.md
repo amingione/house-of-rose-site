@@ -50,7 +50,7 @@
 
 ### 4. Comparison page — *A vs B*
 - **Doc type:** `comparison`
-- **Route:** `/compare/[slug]` (e.g. `prf-microchanneling-vs-microneedling`)
+- **Route:** `/compare/[slug]` (e.g. `procell-pro-vs-md`)
 - **Key fields:** `optionA`/`optionB` (label, summary, bestFor, service ref),
   `rows[]` (attribute, valueA, valueB), `verdict`, `faqs[]`, `seo`
 - **JSON-LD:** `FAQPage` + `BreadcrumbList` + `Article`

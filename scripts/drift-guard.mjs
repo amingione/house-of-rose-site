@@ -32,6 +32,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // Only scan shipping source. Docs/history are excluded on purpose.
 const SCAN_DIRS = [
   'packages/web/src',
+  'packages/web/public',
   'packages/studio/schemas',
   'packages/web/netlify',
 ];
@@ -39,7 +40,7 @@ const SCAN_DIRS = [
 const SKIP_DIRS = new Set(['node_modules', 'dist', '.astro', '.git', '.stackbit']);
 const TEXT_EXT = new Set([
   '.astro', '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs',
-  '.json', '.md', '.mdx', '.css', '.html', '.txt',
+  '.json', '.md', '.mdx', '.css', '.html', '.txt', '.vcf',
 ]);
 
 /** Each rule: human label + regex (case-insensitive unless it's a digit string). */
@@ -62,6 +63,8 @@ const RULES = [
   { label: 'Old Facebook profile-ID URL (use /hofraesthetics)', re: /facebook\.com\/profile\.php\?id=61590233534310/i },
   { label: 'Wrong opening date (use June 15, 2026)', re: /July 9,? 2026/i },
   { label: 'Removed provider Aundrea', re: /\bAundrea\b|\bPedigo\b|provider-brooke/i },
+  { label: 'Retired SkinPen service', re: /\bSkinPen\b/i },
+  { label: 'Retired microneedling/microchanneling service split', re: /\b(?:microchanneling\s*(?:\/|&|and|or|vs\.?|versus)\s*microneedling|microneedling\s*(?:\/|&|and|or|vs\.?|versus)\s*microchanneling|regular microneedling)\b/i },
 ];
 
 /**

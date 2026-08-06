@@ -52,7 +52,7 @@ const homepagePatch = {
   approachPara1:
     'Good treatment planning is less about chasing every new option and more about choosing the right service at the right time.',
   approachPara2:
-    'PRF, microchanneling, facials, injectables, and wellness services each have a place. We look at candidacy, recovery, and the result you want before deciding what belongs in your plan.',
+    'PRF, microneedling, facials, injectables, and wellness services each have a place. We look at candidacy, recovery, and the result you want before deciding what belongs in your plan.',
   approachClosing: 'You should leave feeling like yourself—just well cared for.',
   servicesHeading: 'Start with what you want to improve.',
   servicesIntro:
@@ -292,7 +292,7 @@ const collectionDescriptions = {
   '16b4ca79-a320-4bd8-be88-f69952169f17':
     'Explore neurotoxin injections, dermal fillers, PRF injections, and EZ Gel options with natural-looking goals and licensed-provider guidance.',
   'collection-microchanneling':
-    'Compare Procell microchanneling, microneedling, and eligible topical PRF options for face and body concerns.',
+    'Explore microneedling—including Procell Microchanneling—and eligible topical PRF options for face and body concerns.',
   'service-collection-rf-ipl-skin-treatments':
     'Compare Morpheus8, Lumecca Peak IPL, and Forma for visible texture, tone, firmness, and eligible face or body concerns.',
   '546e9841-b81f-413b-99b1-19b36e96451d':

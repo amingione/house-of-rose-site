@@ -58,7 +58,7 @@ type, extend the type's schema, don't bypass it.
 3. **FAQ page** — concentrated question→answer pairs.
    → aggregated at `/faq` (+ every service/cost/comparison page ships its own `faqs`).
 4. **Comparison page** — *"A vs B"* decisions framed neutrally and expertly.
-   → `comparison` doc, `/compare/[slug]`. E.g. *PRF Microneedling vs Microchanneling*.
+   → `comparison` doc, `/compare/[slug]`. E.g. *Procell Pro vs MD*.
 5. **Local authority page** — why we're the local expert for a city/area.
    → `localArea` doc, `/areas/[slug]`. E.g. *PRF Microneedling in Punta Gorda*.
 6. **Before/after / proof page** — real outcomes, protocol, timeframe (with consent).
@@ -72,7 +72,7 @@ These are the kinds of pages this framework is built to produce — slugs are il
 
 ```
 PRF Microneedling in Punta Gorda          → localArea  → /areas/prf-microneedling-punta-gorda
-PRF Microchanneling vs Microneedling      → comparison → /compare/prf-microchanneling-vs-microneedling
+Procell Pro vs MD                         → comparison → /compare/procell-pro-vs-md
 How Much Does PRF Treatment Cost?         → costGuide  → /cost/prf-treatment-cost
 Best Facial for Dull Skin Before an Event → blogPost / service hub (answer-led)
 Dermaplaning + Glo2Facial Package         → treatmentPackage → /packages/[slug]

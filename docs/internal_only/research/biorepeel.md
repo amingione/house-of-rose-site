@@ -8,7 +8,7 @@
 
 ## 1. The 3-sentence answer
 
-BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, texture, and radiance with little to no visible peeling and essentially no downtime — you can walk out and back into your day. Its two-phase (biphasic) formula pairs 35% trichloroacetic acid with salicylic and other acids, GABA, amino acids, and vitamins to exfoliate the surface while feeding the skin underneath. At House of Rose in Punta Gorda, BioRePeel is **provider-split**: **Brandy** (basic facials & peels lane) offers the **standalone** face peel and standalone series; **Amber** (advanced lane) offers it **only as a +$65 add-on onto an advanced service** (microchanneling/microneedling) and performs the advanced acne-scarring, body, and gold spot-treatment variants — with final candidacy confirmed by the provider at consultation, because not every client is a candidate and individual outcomes vary.
+BioRePeel is a TCA-based resurfacing peel. At House of Rose in Punta Gorda, BioRePeel is **provider-split**: **Brandy** (basic facials & peels lane) offers the **standalone** face peel and standalone series; **Amber** (advanced lane) offers it **only as a +$65 add-on onto an advanced service** such as Microneedling and performs the advanced acne-scarring, body, and gold spot-treatment variants — with final candidacy confirmed by the provider at consultation, because not every client is a candidate and individual outcomes vary.
 
 ## 2. How it works
 
@@ -46,7 +46,7 @@ BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, textu
 
 **BioRePeel vs light/superficial peels (Brandy's basic-facial lane — enzyme exfoliation, light glycolic/lactic peels).** Brandy's light peels and enzyme treatments are gentle, relaxing, maintenance-grade exfoliation — the right call for sensitive skin, a first-timer easing in, routine glow, or someone who wants a pampering facial with no active-acid intensity. BioRePeel is a **stronger, TCA-based corrective resurfacing** peel in Amber's advanced lane: it goes after texture, congestion, early photoaging, and the appearance of post-acne marks with more punch, while still keeping downtime minimal. **Light peel wins** when the goal is maintenance, calm, or the client isn't ready for TCA. **BioRePeel wins** when the client wants visible resurfacing/correction but can't accept the downtime of a traditional medium-depth peel.
 
-**BioRePeel vs corrective microneedling/microchanneling.** Different jobs. Microneedling/microchanneling create controlled micro-channels to remodel from within — the tool of choice for **structural** texture and the appearance of deeper/rolling acne scars and stretch marks (see the `microneedling-corrective` and `microchanneling` services). BioRePeel resurfaces from the **surface down** — tone, glow, congestion, superficial texture. **Microneedling wins** for defined scar texture and deeper correction. **BioRePeel wins** for radiance, surface texture, and no-downtime refresh. They combine: the **advanced acne-scarring protocol** deliberately pairs them so the peel's actives penetrate through needling channels — often the strongest single answer for stubborn scarring.
+**BioRePeel vs Microneedling.** These are different service categories. Microneedling may be considered for structural texture and the appearance of selected scars or stretch marks. BioRePeel focuses on surface exfoliation and visible tone or texture. The provider determines candidacy and whether an eligible combination is appropriate; do not describe the peel as penetrating through needling channels without approved protocol support.
 
 **BioRePeel vs dermaplaning.** Dermaplaning physically removes vellus hair ("peach fuzz") and dead surface cells with a blade — instant smoothness and makeup glide, no acids, no downtime. It does not resurface at depth or address pigment/congestion. **Dermaplaning wins** for hair removal, event-ready smoothness, and product penetration prep. **BioRePeel wins** for real resurfacing, tone, and texture. Dermaplaning is frequently used as **prep** before a peel (available as a "+$45 Dermaplane Prep" add-on) — not a substitute.
 
@@ -76,7 +76,7 @@ BioRePeel is a TCA-based "lunchtime" resurfacing peel that refreshes tone, textu
 - **Standalone BioRePeel (face):**
   - **Sanity (published) `biorepeel` hub:** **From $295**, 45 min.
   - **NOT a conflict — it's a PROVIDER SPLIT (confirmed by Amber 2026-07-17):**
-    - **Amber (advanced lane):** BioRePeel is **add-on only** — layered onto an *advanced* service (microchanneling/microneedling) at **+$65**. Amber does **not** offer it as a standalone facial.
+    - **Amber (advanced lane):** BioRePeel is **add-on only** — layered onto an eligible advanced service such as Microneedling at **+$65**. Amber does **not** offer it as a standalone facial.
     - **Brandy (basic facials & peels lane):** BioRePeel **standalone** face peel, and a **standalone series of 4** ($1,050 per master menu / Notion). Standalone BioRePeel lives in Brandy's lane because she does facials and peels.
     - So Sanity's "standalone From $295" = **Brandy's** offering; the master-menu "+$65 add-on" = **Amber's**. Both correct. Route by provider; do not collapse into one model.
 - **BioRePeel Advanced — Acne Scarring Protocol:** **Sanity: From $450**, 75 min. (Master menu has no explicit line for this combined price; it prices microneedling-corrective at $295 single and BioRePeel add-on at +$65 — a hand-built combo, not the published $450. **CONFLICT / gap.**)
@@ -117,7 +117,7 @@ All pricing is presented as "investment / from / starting at." Final pricing is 
 
 **Existing pages that should link INTO the BioRePeel hub (`/services/biorepeel/`):**
 - `/concerns/acne-scarring/`, `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/stretch-marks/` (body variant).
-- `/services/dermaplaning/` (dermaplane-as-prep), `/services/glo2facial/` (gateway step-up), `/services/microneedling-corrective/` and `/services/microchanneling/` (combination pathway).
+- `/services/dermaplaning/` (dermaplane-as-prep), `/services/glo2facial/` (gateway step-up), and `/services/microneedling/` (combination pathway).
 - `/services/collections/skin-renewal/` (its collection), `/faq/`, the acne journey from `/services/acne-bootcamp/`.
 
 **Where the BioRePeel pages should link OUT:**
@@ -147,7 +147,7 @@ All pricing is presented as "investment / from / starting at." Final pricing is 
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
 
 **Sanity published content (snapshot consulted):**
-- Services: `biorepeel` (From $295, 45 min), `biorepeel-advanced-acne-scarring` (From $450, 75 min), `biorepeel-body` (From $325/zone, 75 min), `biorepeel-gold-spot-treatment` (From $395, 60 min); plus `microneedling-corrective`, `microchanneling`, `dermaplaning`, `glo2facial`, `acne-bootcamp`, `lightstim-led-therapy`.
+- Services: `biorepeel` (From $295, 45 min), `biorepeel-advanced-acne-scarring` (From $450, 75 min), `biorepeel-body` (From $325/zone, 75 min), `biorepeel-gold-spot-treatment` (From $395, 60 min); plus the canonical `microneedling`, `dermaplaning`, `glo2facial`, `acne-bootcamp`, and `lightstim-led-therapy` records.
 - Package: `biorepeel-series-of-4` (empty — no price/services).
 - Concerns: `acne-scarring`, `sun-damage`, `fine-lines-laxity`, `stretch-marks`.
 

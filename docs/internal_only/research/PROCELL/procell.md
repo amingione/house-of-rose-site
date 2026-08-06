@@ -2,7 +2,7 @@
 
 Date: 2026-07-13 · Provider lane: **Amber** (Advanced Facials) · Status: draft for Phase 3/4 consumption · Sources listed at end.
 
-> **Scope note.** This brief covers the **Procell growth-factor / cytokine serum system** — the "what's delivered" layer applied *during* microchanneling — and the **MD vs Pro** tiers. It is **not** a brief on the microchanneling/microneedling *modality* itself (that lives in the microchanneling brief), and topical PRF is covered only where a client is choosing between a Procell serum and PRF during the same channel. All prices come from local docs; no price is ever taken from the web.
+> **Scope note.** This brief covers the **Procell growth-factor / cytokine serum system** used in the branded **Procell Microchanneling** context and the **MD vs Pro** material tiers. House of Rose has one Microneedling service performed with the Procell Therapies device; Procell Microchanneling is not a separate modality. Topical PRF is covered only as an eligible provider-selected adjunct. All prices come from local docs; no price is ever taken from the web.
 
 ---
 
@@ -43,7 +43,7 @@ The **MD vs Pro difference is concentration, not a different machine or a differ
 ## 4. The visit
 
 **Protocol (step-by-step).**
-1. **Consult & skin analysis** — Amber reviews concerns, skin history, medications, and candidacy, and selects the **modality (microchanneling vs corrective microneedling)**, the **serum tier (Pro or MD)**, the **area**, and any upgrades.
+1. **Consult & skin analysis** — Amber reviews concerns, skin history, medications, and candidacy, and selects the microneedling treatment plan, **serum tier (Pro or MD)**, area, and any eligible adjuncts.
 2. **Prep** — cleanse; optional dermaplane prep to remove peach fuzz; numbing per house policy.
 3. **Channeling** — a **new single-use cartridge** every session; the device creates controlled microchannels across the treatment area.
 4. **Serum delivery** — the selected Procell serum (Pro or MD) is applied so it flows into the channels as they're created.
@@ -84,8 +84,8 @@ Both are the "what's delivered" layer applied *topically* during a needling prot
 
 Topical PRF is a **+$175 (face) / +$200 (body)** upgrade that adds a blood draw, centrifugation/prep, time, and clinical screening. It is a different *ingredient*, not a different machine. **Compliance line:** never say the device injects or "delivers PRF into" the skin — the FDA states microneedling devices are not authorized to deliver blood products into skin. Injectable PRF is a separate service in **Diana's** (RN) lane.
 
-### Procell serum tier vs **skipping the serum / a generic microneedling elsewhere**
-The serum *is* the reason to choose Procell. A plain microneedling treatment (the broader category, no Procell serum) is a valid corrective tool the provider may select for deeper scar work — but for **overall skin quality** with a nourishing growth-factor finish, the Procell serum is the differentiator. Locally, no competitor offers Procell growth-factor channeling.
+### Selecting the Procell material plan
+House of Rose performs Microneedling with the Procell Therapies device. Procell Pro, Procell MD, and eligible topical PRF are material-plan decisions within that one service—not separate needling modalities. The provider selects the appropriate plan after consultation.
 
 ---
 
@@ -94,7 +94,7 @@ The serum *is* the reason to choose Procell. A plain microneedling treatment (th
 Maps to existing `/concerns/` pages:
 - **Fine Lines & Laxity** → `/concerns/fine-lines-laxity/` — the core skin-quality use case; MD tier for 40+.
 - **Sun Damage** → `/concerns/sun-damage/` — the April-2025 formula adds DNA-repair enzymes aimed at *the visible signs of* sun exposure (describe as "for the appearance of sun spots and uneven tone," never "reverses sun damage").
-- **Acne Scarring** → `/concerns/acne-scarring/` — for the *appearance* of shallow/rolling scars; deeper scar patterns may route to corrective microneedling ± PRF.
+- **Acne Scarring** → `/concerns/acne-scarring/` — for the *appearance* of selected scars; the provider determines whether microneedling and an eligible topical plan are appropriate.
 - **Stretch Marks** → `/concerns/stretch-marks/` — body channeling (Procell Microchanneling — Body) for the appearance of mature stretch marks.
 
 **Proposed new concern page:** `/concerns/dull-uneven-texture/` (concern type) — "dullness, enlarged-looking pores, and uneven texture" is Procell's strongest everyday use case and currently has no dedicated concern page.
@@ -141,7 +141,7 @@ All figures from **local docs** (`advanced-facials-master-menu.md`, 2026-07-10) 
 
 Upgrades: **Topical PRF +$175** (face) / **+$200** (body) · **Glo2Facial Finish +$95** · **LightStim LED +$35** · **Dermaplane Prep +$45** · **BioRePeel (face) +$65** · **Neck & Décolleté Extension +$95**. Example combo: Procell MD + Glo2Facial Finish = $420.
 
-**Sanity cross-check (no price conflict on Procell channeling):** `microchanneling` (Procell Microchanneling) publishes "From $250," matching Pro single; `Procell-microchanneling-body` publishes "From $349 per zone," matching body single. Sanity does not split Pro/MD as separate services — it lists one "Procell Microchanneling — From $250" entry (the Pro price as the "from" anchor). See GAPS re: MD not being a distinct Sanity service.
+**Sanity taxonomy rule:** the canonical records are `microneedling` and `microneedling-body`. The former `microchanneling`, `microneedling-corrective`, and `procell-microchanneling-body` records are retired duplicates. Procell Pro and MD remain material-plan context within the Microneedling service, not separate services. Exact public prices still require reconciliation against the active booking catalog.
 
 **Retail aftercare prices** (Sanity, cents → USD): Pro Step 1 $65, Pro Step 2 $80, Pro Trial Set $75; MD Step 1 $150, MD Step 2 $160, MD Trial Set $310. (Retail, not treatment pricing.)
 
@@ -185,8 +185,8 @@ The matched at-home line (Cellular Renewal Serum + Healing Accelerator, in Pro a
 **Can I get Procell on my body, not just my face?**
 Yes — Procell Microchanneling — Body treats areas like the neck, décolleté, hands, and crepey-looking skin, priced per zone. Body skin is thicker, so a longer series is often realistic.
 
-**Is Procell the same as regular microneedling?**
-Procell Microchanneling is a branded protocol within the broader microneedling category. The defining difference is the growth-factor serum delivered during the treatment; a plain microneedling treatment doesn't include it.
+**What does Procell Microchanneling mean?**
+Procell Microchanneling is the branded Procell name used when discussing the device system or Procell materials within House of Rose's Microneedling service. It is not a separate service category.
 
 **Who performs Procell at House of Rose?**
 Amber, our advanced esthetician (and RN assistant), performs all Procell Microchanneling and topical serum/PRF work. Injectable PRF and injectables are a separate service handled by Diana, our RN.
@@ -216,23 +216,21 @@ No — not every client is a candidate for every service. Active skin infection,
 ## 11. Journey links (real slugs, trailing slashes)
 
 **Pages that should link *into* the Procell serum content:**
-- `/services/microchanneling/` (Procell Microchanneling) — the primary parent; add a "Pro vs MD serum tiers" section or link.
-- `/services/Procell-microchanneling-body/` — body channeling shares the serum tiers.
-- `/services/microchanneling-microneedling/` (the hub) and `/guides/microchanneling-prf/` (the rich static guide).
-- `/compare/prf-microchanneling-vs-microneedling/` — the existing comparison (serum-vs-PRF framing lives near here).
-- `/cost/prf-microneedling-cost-punta-gorda/` — the only cost guide; Procell serum pricing belongs in its ecosystem.
+- `/services/microneedling/` — the canonical service page.
+- `/services/microneedling-body/` — the canonical body-area page.
+- `/cost/microneedling-cost-punta-gorda/` — the canonical cost guide.
 - Concern pages: `/concerns/fine-lines-laxity/`, `/concerns/sun-damage/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`.
 - Shop: the six Procell product pages under `/shop/` (brand `Procell`).
 
 **Where the Procell serum page should link *out* to:**
-- Up to `/services/microchanneling/` and `/services/microchanneling-microneedling/`.
+- Up to `/services/microneedling/`.
 - Across to `/services/prf-microneedling/` (Topical PRF upgrade) and `/services/glo2facial/` (finish + gateway).
 - To the six `/shop/Procell-*/` aftercare products.
 - To `/faq/`, `/skin-analysis/`, and `/areas/punta-gorda/`.
 
 **Proposed new pages (type + slug):**
 - **Comparison** — `/compare/Procell-pro-vs-md/` ("Procell Pro vs MD: Which Serum Tier Is Right for You?"). Highest-value new page; directly answers the topic's core question.
-- **Cost guide** — `/cost/Procell-microchanneling-cost-punta-gorda/` (honest ranges from local docs; Pro vs MD vs body).
+- **Cost guide:** use `/cost/microneedling-cost-punta-gorda/`; do not create a separate Procell cost guide.
 - **Concern** — `/concerns/dull-uneven-texture/` (Procell's everyday use case; no page exists).
 - **Case study** — `/results/Procell-microchanneling-texture/` once compliant before/after proof exists (`/results/` is currently empty).
 
@@ -257,9 +255,9 @@ No — not every client is a candidate for every service. Active skin infection,
 - `docs/internal_only/services/microchanneling/PRF.md` — **empty (0 bytes)** — see GAPS.
 
 **Sanity docs consulted (published snapshot):**
-- Services: `microchanneling` (From $250), `Procell-microchanneling-body` (From $349/zone), `microchanneling-microneedling` (hub), `microneedling-corrective`, `microneedling-body`, `prf-microneedling`, `prf`.
+- Canonical services: `microneedling`, `microneedling-body`, `prf-microneedling`, and `prf`. The former `microchanneling`, `microneedling-corrective`, and `procell-microchanneling-body` records are migration-history duplicates.
 - Products (brand `Procell`): `Procell-pro-step-1-cellular-renewal-serum`, `Procell-pro-step-2-healing-accelerator`, `Procell-pro-aftercare-trial-set`, `Procell-md-step-1-cellular-renewal-serum`, `Procell-md-step-2-healing-accelerator`, `Procell-md-aftercare-trial-set`.
-- Comparison `prf-microchanneling-vs-microneedling`; cost guide `prf-microneedling-cost-punta-gorda`; concerns `fine-lines-laxity`, `sun-damage`, `acne-scarring`, `stretch-marks`; packages `Procell-microchanneling-series-of-4`, `prf-microchanneling-journey`.
+- Canonical microneedling cost guide, concerns `fine-lines-laxity`, `sun-damage`, `acne-scarring`, and `stretch-marks`; any legacy package slug remains an internal identifier and must not recreate a second service category.
 
 **Web sources (mechanism/positioning only — never prices, never imported claims):**
 - https://Procelltherapies.com/blog/Procells-newly-formulated-growth-factor-serums-what-this-change-means-for-you-and-your-clients/ — **manufacturer**, primary; the April 1, 2025 reformulation to recombinant growth factors + DNA-repair enzymes (current formula, sourcing, no human/animal tissue). Their strong marketing verbs ("reverse," "literally reverse it") were deliberately NOT imported.

@@ -35,7 +35,7 @@ const faqs = [
     _key: 'ai-services-offered',
     _type: 'faq',
     question: 'What services does House of Rose offer?',
-    answer: 'House of Rose offers advanced facials and skin services, PRF, Procell microchanneling, microneedling, injectables, IV hydration, GLP-1 support, facial waxing, and Jane Iredale products. Service availability and candidacy vary by provider.',
+    answer: 'House of Rose offers advanced facials and skin services, PRF, microneedling—including Procell Microchanneling—injectables, IV hydration, GLP-1 support, facial waxing, and Jane Iredale products. Service availability and candidacy vary by provider.',
   },
   {
     _key: 'ai-choose-treatment',
@@ -47,7 +47,7 @@ const faqs = [
     _key: 'ai-regenerative-aesthetics',
     _type: 'faq',
     question: 'Does House of Rose offer regenerative aesthetics?',
-    answer: 'Yes. House of Rose offers regenerative aesthetics options that include PRF, Procell microchanneling, and microneedling services. The right approach depends on your goals and candidacy, and final recommendations are confirmed by the appropriate provider.',
+    answer: 'Yes. House of Rose offers PRF and microneedling services, including Procell Microchanneling. The right plan depends on your goals and candidacy, and final recommendations are confirmed by the appropriate provider.',
   },
   {
     _key: 'ai-treatment-cost',

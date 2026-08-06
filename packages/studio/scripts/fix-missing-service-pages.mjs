@@ -21,13 +21,13 @@ const services = [
     set: {
       status: 'live',
       description:
-        "The Neck & Décolleté Extension is an add-on, not a standalone facial — it carries the treatment you're already having (a Glo2Facial, a BioRePeel, or a microchanneling or microneedling session) down onto the neck and chest so the results don't stop at your jawline. It exists because the neck and décolleté are among the first areas to show the visible signs of aging and sun exposure — in SW Florida especially — yet they're often left out of facial treatments, which creates a mismatch between a refreshed face and untreated skin below it. When you add the extension, whatever your core treatment does for your face is continued over the neck and chest by the same provider in the same visit: with a Glo2Facial, the exfoliating, infusing, oxygenating pass and massage carry down; with a BioRePeel, the resurfacing peel is applied to the extended area; with needling, the microchanneling or microneedling is carried onto the neck and chest, and topical PRF — when part of your plan — is applied over those freshly treated areas, never injected. The sensation, downtime, and aftercare for the extended skin mirror your core treatment, so a no-downtime Glo2Facial extension stays no-downtime, while a peel or needling extension carries that treatment's light flaking or redness onto the neck and chest. Neck and chest skin is thinner and more delicate than the face, so the provider adjusts intensity for the area. Honest note: this is an add-on that extends an existing treatment — it is booked alongside a core service, not on its own.",
+        "The Neck & Décolleté Extension is an add-on, not a standalone facial — it carries the treatment you're already having (a Glo2Facial, a BioRePeel, or a microneedling session) down onto the neck and chest so the results don't stop at your jawline. It exists because the neck and décolleté are among the first areas to show the visible signs of aging and sun exposure — in SW Florida especially — yet they're often left out of facial treatments, which creates a mismatch between a refreshed face and untreated skin below it. When you add the extension, whatever your core treatment does for your face is continued over the neck and chest by the same provider in the same visit: with a Glo2Facial, the exfoliating, infusing, oxygenating pass and massage carry down; with a BioRePeel, the resurfacing peel is applied to the extended area; with microneedling, the treatment is carried onto the neck and chest, and topical PRF — when part of your plan — is applied over those freshly treated areas, never injected. The sensation, downtime, and aftercare for the extended skin mirror your core treatment, so a no-downtime Glo2Facial extension stays no-downtime, while a peel or needling extension carries that treatment's light flaking or redness onto the neck and chest. Neck and chest skin is thinner and more delicate than the face, so the provider adjusts intensity for the area. Honest note: this is an add-on that extends an existing treatment — it is booked alongside a core service, not on its own.",
       faqs: [
         {
           _key: 'faq0',
           question: 'Is this a standalone facial?',
           answer:
-            "No — it's an add-on that extends a treatment you're already having. It's booked alongside a Glo2Facial, BioRePeel, or a microchanneling/microneedling session to carry the results onto the neck and chest, not on its own.",
+            "No — it's an add-on that extends a treatment you're already having. It's booked alongside a Glo2Facial, BioRePeel, or microneedling session to carry the results onto the neck and chest, not on its own.",
         },
         {
           _key: 'faq1',
@@ -51,7 +51,7 @@ const services = [
           _key: 'faq4',
           question: 'Which treatments can I add this to?',
           answer:
-            "It pairs with a Glo2Facial for a glow that carries down, a BioRePeel to resurface the neck and chest, and microchanneling or microneedling to address texture below the jawline. Your provider confirms it's appropriate alongside your chosen treatment.",
+            "It pairs with a Glo2Facial, a BioRePeel, or microneedling to address the selected concern below the jawline. Your provider confirms it's appropriate alongside your chosen treatment.",
         },
         {
           _key: 'faq5',
@@ -64,7 +64,7 @@ const services = [
         _type: 'seo',
         metaTitle: 'Neck & Décolleté Treatment Extension | Punta Gorda',
         metaDescription:
-          'Extend an eligible facial, peel, microchanneling, or microneedling treatment to the neck and décolleté at House of Rose in Punta Gorda.',
+          'Extend an eligible facial, peel, or microneedling treatment to the neck and décolleté at House of Rose in Punta Gorda.',
       },
     },
   },
@@ -131,16 +131,16 @@ const services = [
       duration: '105–120 minutes',
       tagline: 'A two-phase topical PRF treatment with a naturally formed fibrin finishing veil.',
       description:
-        "The PRF Fibrin Veil is a two-phase topical PRF treatment that pairs provider-selected microneedling or approved microchanneling with liquid PRF during the treatment and a naturally formed fibrin gel as the finishing layer. PRF is prepared from a small sample of your own blood and applied to the skin's surface; it is never described as injected or delivered to a specific depth. The treatment is designed to support smoother-looking texture, refreshed luminosity, and the appearance of fine lines, enlarged-looking pores, and selected scar texture. Your licensed provider confirms blood-draw eligibility, device choice, and whether the protocol fits your skin. Individual response, downtime, and results vary.",
+        "The PRF Fibrin Veil is a two-phase topical PRF treatment that pairs provider-selected microneedling with liquid PRF during the treatment and a naturally formed fibrin gel as the finishing layer. PRF is prepared from a small sample of your own blood and applied to the skin's surface; it is never described as injected or delivered to a specific depth. The treatment is designed to support smoother-looking texture, refreshed luminosity, and the appearance of fine lines, enlarged-looking pores, and selected scar texture. Your licensed provider confirms blood-draw eligibility, device choice, and whether the protocol fits your skin. Individual response, downtime, and results vary.",
       whoItsFor:
-        'The PRF Fibrin Veil may be considered for clients who are comfortable with a small blood draw and are candidates for the selected microneedling or microchanneling protocol. Your licensed provider reviews skin status, health history, medications, recovery timing, and treatment goals before confirming candidacy.',
+        'The PRF Fibrin Veil may be considered for clients who are comfortable with a small blood draw and are candidates for microneedling. Your licensed provider reviews skin status, health history, medications, recovery timing, and treatment goals before confirming candidacy.',
       pricingModel: 'consult',
       pricingNotes:
         'Public website is consultation-first and price-free until the service is added to GlossGenius. Confirm current protocol and investment before booking.',
       process: [
         'Complete a consultation and candidacy review for the selected treatment area and needling pathway.',
         'Prepare PRF from a small blood sample using the provider-selected protocol.',
-        'Apply liquid PRF topically during the selected microneedling or approved microchanneling treatment.',
+        'Apply liquid PRF topically during the selected microneedling treatment.',
         'Allow a second PRF portion to naturally form the soft fibrin finishing veil.',
         'Apply the veil as the final surface layer and provide individualized written aftercare.',
       ],
@@ -155,7 +155,7 @@ const services = [
           _key: 'f1',
           question: 'What does the PRF Fibrin Veil treatment include?',
           answer:
-            'The treatment includes a candidacy review, PRF collection and preparation, provider-selected microneedling or approved microchanneling, topical liquid PRF, the naturally formed fibrin finishing veil, and personalized aftercare.',
+            'The treatment includes a candidacy review, PRF collection and preparation, provider-selected microneedling, topical liquid PRF, the naturally formed fibrin finishing veil, and personalized aftercare.',
         },
         {
           _key: 'f2',
@@ -173,14 +173,14 @@ const services = [
           _key: 'f4',
           question: 'What downtime should I expect?',
           answer:
-            'Downtime follows the selected microneedling or microchanneling protocol. Temporary redness, warmth, tightness, tenderness, dryness, or light flaking may occur, and your licensed provider will give you written aftercare.',
+            'Downtime follows the selected microneedling treatment. Temporary redness, warmth, tightness, tenderness, dryness, or light flaking may occur, and your licensed provider will give you written aftercare.',
         },
       ],
       seo: {
         _type: 'seo',
         metaTitle: 'PRF Fibrin Veil Treatment in Punta Gorda',
         metaDescription:
-          'Learn how the PRF Fibrin Veil pairs topical liquid PRF with microneedling or microchanneling and a naturally formed fibrin finish in Punta Gorda.',
+          'Learn how the PRF Fibrin Veil pairs topical liquid PRF with microneedling and a naturally formed fibrin finish in Punta Gorda.',
       },
     },
     unset: ['price'],

@@ -17,7 +17,7 @@
 
 The Rose PRF Fibrin Veil is a two-phase autologous PRF treatment combining:
 
-1. Provider-selected microneedling or approved microchanneling
+1. Provider-selected microneedling with the Procell Therapies device
 2. Fresh liquid PRF applied topically during the section-by-section treatment process
 3. A naturally polymerized PRF fibrin gel applied as a finishing veil or mask
 
@@ -54,8 +54,8 @@ The fibrin veil is included in the base service. It should not be sold as a smal
 - Follow the instructions for the selected PRF collection system.
 - Follow the selected needling device’s instructions for use.
 - Use a new, sterile, single-use cartridge for every treatment.
-- Do not combine microneedling and microchanneling devices during the same appointment.
-- Select one device pathway before beginning the treatment.
+- Use the Procell Therapies device for the microneedling portion of the appointment.
+- When Procell is named in documentation, call the treatment context Procell Microchanneling; do not treat it as a separate modality.
 - Do not claim that PRF is injected, infused or delivered to a specific skin depth.
 - Describe the PRF as being applied topically during and after the treatment.
 
@@ -99,7 +99,7 @@ Obtain consent for:
 
 1. Venipuncture
 2. Autologous PRF collection and preparation
-3. Medical microneedling or microchanneling
+3. Medical microneedling
 4. Topical application of PRF
 5. Practice-developed PRF fibrin veil
 6. Photography

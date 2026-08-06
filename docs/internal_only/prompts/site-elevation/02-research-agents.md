@@ -46,7 +46,7 @@ House of Rose retail)
 3. **Who it's for / not for** (candidacy, honest limits)
 4. **The visit** (protocol, sensation, downtime, aftercare, results timeline, cadence)
 5. **Comparisons** (vs each adjacent treatment we offer — e.g. PRF topical vs Procell
-   microchanneling vs microneedling; Glo2Facial vs hydrodermabrasion; Daxxify vs other tox;
+   microneedling with the Procell Therapies device; Glo2Facial vs hydrodermabrasion; Daxxify vs other tox;
    IV hydration vs oral — when each wins, honestly)
 6. **Concern mapping** (which client concerns this addresses → feeds `/concerns/`)
 7. **Pairings & pathways** (what it stacks with; what to try first; retail follow-through)

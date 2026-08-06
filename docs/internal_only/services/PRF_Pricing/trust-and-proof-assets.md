@@ -19,7 +19,7 @@ Diana is a registered nurse and House of Rose's injector. She leads all injectab
 **Card line:** Registered Nurse · Aesthetic Nurse Injector
 
 ### Amber Mingione — Advanced Aesthetics Specialist
-Amber leads the advanced facial lane: microchanneling, microneedling, Procell, topical PRF, dermaplaning, BioRePeel (as an add-on to her needling work), Glo2Facial, and carboxy. She's also a **Face Reality Certified Acne Specialist** who runs the full acne program. One boundary she keeps crisp: her PRF is **topical only — applied to the skin during treatment, never injected** (injectable PRF is Diana's lane). Amber holds an RN-assistant role alongside her esthetics license, which is part of why the clinical detail here runs deep.
+Amber leads the advanced facial lane: microneedling with the Procell Therapies device, topical PRF, dermaplaning, BioRePeel (as an add-on to her needling work), Glo2Facial, and carboxy. She's also a **Face Reality Certified Acne Specialist** who runs the full acne program. One boundary she keeps crisp: her PRF is **topical only — applied to the skin during treatment, never injected** (injectable PRF is Diana's lane). Amber holds an RN-assistant role alongside her esthetics license, which is part of why the clinical detail here runs deep.
 
 **Card line:** Advanced Aesthetics Specialist · Face Reality Certified Acne Expert
 
@@ -39,7 +39,7 @@ Advanced and injectable treatments at House of Rose are performed by the appropr
 Regenerative and advanced treatments are only as good as the standards behind them. None of this is glamorous, which is exactly why we put it in writing.
 
 - **Your own biology, prepared on-site.** PRF is drawn from you and spun down in-studio the same day, with nothing added — fully autologous. Injectable PRF is placed only by Diana, RN.
-- **One client, one cartridge.** Microneedling and microchanneling use a fresh, single-use cartridge every session. No exceptions.
+- **One client, one cartridge.** Microneedling uses a fresh, single-use cartridge every session. No exceptions.
 - **Screening before treatment.** Every advanced service starts with a candidacy and contraindication review — health history, medications, pregnancy or breastfeeding, skin condition on the day. If it's not safe or not right, we say so.
 - **Consent you actually read.** Advanced treatments carry written consent and pre- and post-care instructions, and injectable work is consultation-first — which is why injectables aren't booked online.
 - **Honest limits.** We don't diagnose, treat, or cure medical conditions, and we refer out — to a dermatologist or physician — when that's the responsible call.
