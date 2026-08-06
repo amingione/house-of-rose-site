@@ -1,0 +1,87 @@
+---
+import { sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { downtimeLabel, type TreatmentDowntime } from '@/lib/treatmentQueries';
+
+interface Props {
+  downtime: TreatmentDowntime;
+  treatmentName: string;
+}
+
+const { downtime, treatmentName } = Astro.props;
+
+const levelDotCount: Record<TreatmentDowntime['level'], number> = {
+  none: 0,
+  minimal: 1,
+  moderate: 2,
+  significant: 3,
+};
+
+const filled = levelDotCount[downtime.level];
+---
+
+<div>
+  <span class="kicker">Recovery</span>
+  <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-5">
+    What is the downtime after {treatmentName}?
+  </h2>
+
+  <div class="flex items-center gap-3 mb-6">
+    <div class="flex gap-1.5" role="img" aria-label={`Downtime level: ${downtimeLabel(downtime.level)}`}>
+      {[0, 1, 2].map((i) => (
+        <span
+          class={`block w-6 h-[3px] ${i < filled ? 'bg-gold' : 'bg-gold-metal/25'}`}
+          aria-hidden="true"
+        />
+      ))}
+    </div>
+    <span class="text-[11px] font-medium tracking-[0.22em] uppercase text-gold" {...sbFieldPath('downtime.level')}>
+      {downtimeLabel(downtime.level)}
+    </span>
+  </div>
+
+  <p class="text-muted text-[15px] leading-[1.8] mb-7" {...sbFieldPath('downtime.summary')}>
+    {downtime.summary}
+  </p>
+
+  {(downtime.returnToMakeup || downtime.returnToExercise) && (
+    <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mb-8">
+      {downtime.returnToMakeup && (
+        <div class="border-l border-gold-metal/40 pl-5 py-1">
+          <dt class="text-[11px] font-medium tracking-[0.2em] uppercase text-gold mb-1.5">Makeup</dt>
+          <dd class="text-ink text-[15px]" {...sbFieldPath('downtime.returnToMakeup')}>
+            {downtime.returnToMakeup}
+          </dd>
+        </div>
+      )}
+      {downtime.returnToExercise && (
+        <div class="border-l border-gold-metal/40 pl-5 py-1">
+          <dt class="text-[11px] font-medium tracking-[0.2em] uppercase text-gold mb-1.5">Exercise &amp; Heat</dt>
+          <dd class="text-ink text-[15px]" {...sbFieldPath('downtime.returnToExercise')}>
+            {downtime.returnToExercise}
+          </dd>
+        </div>
+      )}
+    </dl>
+  )}
+
+  {downtime.timeline && downtime.timeline.length > 0 && (
+    <ol class="space-y-5">
+      {downtime.timeline.map((step, i) => (
+        <li class="grid grid-cols-[110px_1fr] gap-4 items-start">
+          <span
+            class="text-[12px] font-medium tracking-[0.14em] uppercase text-gold pt-0.5"
+            {...sbFieldPathParts('downtime.timeline', i, 'window')}
+          >
+            {step.window}
+          </span>
+          <span
+            class="text-muted text-[14px] leading-relaxed border-l border-gold-metal/20 pl-4"
+            {...sbFieldPathParts('downtime.timeline', i, 'expectation')}
+          >
+            {step.expectation}
+          </span>
+        </li>
+      ))}
+    </ol>
+  )}
+</div>

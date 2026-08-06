@@ -18,6 +18,12 @@ import {
   type Service,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
+import DowntimeBlock from '@/components/treatment/DowntimeBlock.astro';
+import AftercareBlock from '@/components/treatment/AftercareBlock.astro';
+import ProviderScopeBlock from '@/components/treatment/ProviderScopeBlock.astro';
+import PriceRangeBlock from '@/components/treatment/PriceRangeBlock.astro';
+import WhyHouseOfRose from '@/components/treatment/WhyHouseOfRose.astro';
+import { medicalProcedure, treatmentOffer } from '@/lib/structuredData.treatment';
 import { alignPublicContent } from '@/lib/publicCopy';
 import { isVerifiedGlossGeniusBookingUrl } from '@/lib/booking';
 
@@ -95,6 +101,43 @@ const breadcrumbSchema = breadcrumbList([
 ]);
 
 const faqSchema = faqPage(service.faqs ?? []);
+// Treatment-specific structured data. Emitted alongside the generic Service node —
+// MedicalProcedure is what local health-intent surfaces actually read.
+
+const verifiedBookingUrl = isVerifiedGlossGeniusBookingUrl(service.bookingUrl)
+  ? service.bookingUrl
+  : undefined;
+
+const procedureSchema = service.providerScope
+  ? medicalProcedure(
+      {
+        name: service.title,
+        description: service.description ?? service.tagline ?? undefined,
+        url: canonicalURL.toString(),
+        image: socialImage,
+        procedureType: service.providerScope.medicalDirection
+          ? 'PercutaneousProcedure'
+          : 'NoninvasiveProcedure',
+        bodyLocation: service.treatmentAreas?.map((a) => a.area),
+        downtime: service.downtime,
+        aftercare: service.aftercare,
+        providerScope: service.providerScope,
+        priceRange: service.priceRange,
+        bookingUrl: verifiedBookingUrl,
+      },
+      site,
+    )
+  : null;
+
+const offerSchema = service.priceRange
+  ? treatmentOffer({
+      url: canonicalURL.toString(),
+      name: service.title,
+      priceRange: service.priceRange,
+      bookingUrl: verifiedBookingUrl,
+    })
+  : null;
+
 
 const pageTitle = service.seo?.metaTitle ?? `${service.title} in Punta Gorda, FL | House of Rose`;
 const pageDescription = service.seo?.metaDescription ?? service.tagline ?? service.description ?? '';
@@ -110,6 +153,9 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <SchemaMarkup item={serviceSchema} slot="head" />
   <SchemaMarkup item={breadcrumbSchema} slot="head" />
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
+  {procedureSchema && <SchemaMarkup item={procedureSchema} slot="head" />}
+  {offerSchema && <SchemaMarkup item={offerSchema} slot="head" />}
+
   <script
     slot="head"
     is:inline
@@ -303,6 +349,24 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
+  <!-- Downtime and investment -->
+  {(service.downtime || service.priceRange) && (
+    <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20">
+        {service.downtime && (
+          <DowntimeBlock downtime={service.downtime} treatmentName={service.title} />
+        )}
+        {service.priceRange && (
+          <PriceRangeBlock
+            priceRange={service.priceRange}
+            slug={service.slug}
+            bookingMode={service.bookingMode}
+            bookingUrl={service.bookingUrl}
+          />
+        )}
+      </div>
+    </section>
+  )}
   <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
   {galleryImages.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
@@ -427,6 +491,13 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
+  {service.whyQualified && service.whyQualified.length > 0 && (
+    <WhyHouseOfRose
+      whyQualified={service.whyQualified}
+      treatmentName={service.title}
+    />
+  )}
+
   <!-- FAQs -->
   {service.faqs && service.faqs.length > 0 && (
     <section class="bg-charcoal-light py-16 px-6">
@@ -442,6 +513,20 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Aftercare and provider qualifications -->
+  {(service.aftercare || service.providerScope) && (
+    <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20">
+        {service.aftercare && (
+          <AftercareBlock aftercare={service.aftercare} treatmentName={service.title} />
+        )}
+        {service.providerScope && (
+          <ProviderScopeBlock providerScope={service.providerScope} treatmentName={service.title} />
+        )}
       </div>
     </section>
   )}

@@ -1,0 +1,37 @@
+---
+import { sbFieldPathParts } from '@/lib/visualEditing';
+
+interface Props {
+  whyQualified: string[];
+  treatmentName: string;
+}
+
+const { whyQualified, treatmentName } = Astro.props;
+---
+
+<section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
+  <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-12 lg:gap-20">
+    <div>
+      <span class="kicker">Why Here</span>
+      <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-6 leading-tight">
+        Why choose House of Rose for {treatmentName}?
+      </h2>
+    </div>
+
+    <ul class="space-y-6">
+      {whyQualified.map((point, i) => (
+        <li class="grid grid-cols-[auto_1fr] gap-5 items-start">
+          <span class="font-serif text-gold text-[22px] leading-none pt-0.5 tabular-nums" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <span
+            class="text-ink text-[15px] leading-[1.75] border-l border-gold-metal/20 pl-5"
+            {...sbFieldPathParts('whyQualified', i)}
+          >
+            {point}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

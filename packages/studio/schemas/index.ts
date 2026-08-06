@@ -24,6 +24,8 @@ import { treatmentPackage } from './treatmentPackage';
 // Shared objects + AEO page types — see docs/SEO-AEO-PLAYBOOK.md
 import { seo } from './objects/seo';
 import { faq } from './objects/faq';
+// Treatment-page blocks (downtime, aftercare, provider scope, price range)
+import { treatmentObjectTypes } from './objects/treatmentBlocks';
 import { costGuide } from './costGuide';
 import { comparison } from './comparison';
 import { localArea } from './localArea';
@@ -33,6 +35,7 @@ export const schemaTypes = [
   // Shared objects
   seo,
   faq,
+  ...treatmentObjectTypes,
   // Singletons
   siteSettings,
   homepage,

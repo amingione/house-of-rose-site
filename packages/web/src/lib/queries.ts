@@ -1,4 +1,5 @@
 import type { BookingMode } from './booking';
+import { TREATMENT_PAGE_FIELDS, type TreatmentPageFields } from './treatmentQueries';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -152,7 +153,7 @@ export interface ServiceConcern {
   intro?: string;
 }
 
-export interface Service {
+export interface Service extends TreatmentPageFields {
   _id: string;
   title: string;
   slug: string;
@@ -517,7 +518,8 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       title,
       "slug": slug.current,
       intro
-    }
+    },
+    ${TREATMENT_PAGE_FIELDS}
   }
 `;
 

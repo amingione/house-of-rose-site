@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { treatmentPageFields } from './objects/treatmentPageFields';
 
 export const service = defineType({
   name: 'service',
@@ -435,6 +436,8 @@ export const service = defineType({
       title: 'SEO',
       type: 'seo',
     }),
+    // ─── Treatment page (downtime, aftercare, provider scope, price range) ────
+    ...treatmentPageFields,
     // ─── Catalog & pricing (mirrors Notion "HOUSE OF ROSE: Services") ─────────
     defineField({
       name: 'category',
