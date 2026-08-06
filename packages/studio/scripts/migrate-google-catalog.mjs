@@ -18,15 +18,26 @@ const apply = process.argv.includes('--apply');
 const writeLedger = process.argv.includes('--write-ledger');
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const ledgerPath = path.resolve(scriptDir, '../migrations/google-product-sku-ledger.json');
-const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
-const dataset = process.env.PUBLIC_SANITY_DATASET ?? 'production';
-const apiVersion = process.env.PUBLIC_SANITY_API_VERSION ?? '2025-04-26';
-const token = process.env.SANITY_API_WRITE_TOKEN;
+const projectId =
+  process.env.SANITY_STUDIO_PROJECT_ID ??
+  process.env.PUBLIC_SANITY_PROJECT_ID ??
+  '4e7axyi7';
+const dataset =
+  process.env.SANITY_STUDIO_DATASET ??
+  process.env.PUBLIC_SANITY_DATASET ??
+  'production';
+const apiVersion =
+  process.env.SANITY_API_VERSION ??
+  process.env.PUBLIC_SANITY_API_VERSION ??
+  '2025-04-26';
+const token =
+  process.env.SANITY_API_WRITE_TOKEN ??
+  process.env.SANITY_AUTH_TOKEN ??
+  process.env.SANITY_TOKEN;
 
-if (!projectId) throw new Error('PUBLIC_SANITY_PROJECT_ID is required.');
-if (apply && !token) throw new Error('SANITY_API_WRITE_TOKEN is required with --apply.');
-
-const client = createClient({ projectId, dataset, apiVersion, token, useCdn: false });
+const client = apply && !token
+  ? (await import('sanity/cli')).getCliClient({ apiVersion })
+  : createClient({ projectId, dataset, apiVersion, token, useCdn: false });
 let ledger = { version: 1, generatedAt: null, assignments: {} };
 try {
   ledger = JSON.parse(await readFile(ledgerPath, 'utf8'));
@@ -38,9 +49,11 @@ let brands;
 try {
   [products, brands] = await Promise.all([
     client.fetch(`*[_type == "product"] | order(_id asc){
-      _id, title, description, brand, sku, gtin, mpn, price, category, inStock,
+      _id, title, slug, description, brand, sku, gtin, mpn, identifierExists,
+      price, image, category, inStock, shippable, weightLb, condition,
       inventoryQuantity, availability, merchantStatus, policyClass,
-      brandRef, campaignTier, priceBand, replenishmentClass
+      merchantDestinations, productTypePath, googleProductCategoryId,
+      exclusionReason, brandRef, campaignTier, priceBand, replenishmentClass
     }`),
     client.fetch(`*[_type == "shopBrand"]{ _id, brandKey, title, manufacturerName }`),
   ]);
@@ -77,10 +90,30 @@ const classify = (product) => {
   const text = `${product.title ?? ''} ${product.description ?? ''}`.toLowerCase();
   if (/\bcbd\b|cannabidiol/.test(text)) return { merchantStatus: 'excluded', policyClass: 'cbd-prohibited', exclusionReason: 'CBD is excluded from Google Merchant.' };
   if (product.category === 'gift-cards') return { merchantStatus: 'excluded', policyClass: 'service-like', exclusionReason: 'Gift-card or service-like item is outside the physical retail launch.' };
+  if (product.merchantStatus === 'eligible') {
+    return {
+      merchantStatus: 'eligible',
+      policyClass: product.policyClass ?? 'standard-retail',
+      exclusionReason: undefined,
+    };
+  }
+  if (product.merchantStatus === 'excluded') {
+    return {
+      merchantStatus: 'excluded',
+      policyClass: product.policyClass ?? 'other-review',
+      exclusionReason: product.exclusionReason ?? 'Explicitly excluded from Google Merchant.',
+    };
+  }
   if (/spf|sunscreen/.test(text)) return { merchantStatus: 'reviewRequired', policyClass: 'spf-review', exclusionReason: 'SPF product requires Google policy and label review.' };
   if (/acne|benzoyl|salicylic|resorcinol|sulfur/.test(text)) return { merchantStatus: 'reviewRequired', policyClass: 'otc-review', exclusionReason: 'OTC/acne product requires Google policy and label review.' };
   return { merchantStatus: 'reviewRequired', policyClass: 'standard-retail', exclusionReason: 'Requires identifiers, inventory, images, authorization, and human approval.' };
 };
+const productTypePath = (category) => ({
+  skincare: 'Beauty & Personal Care > Cosmetics > Skin Care',
+  candles: 'Home & Garden > Decor > Home Fragrances > Candles',
+  accessories: 'Beauty & Personal Care > Cosmetics > Cosmetic Tools',
+  other: 'Beauty & Personal Care',
+}[category]);
 const priceBand = (cents) => {
   if (typeof cents !== 'number') return undefined;
   if (cents < 2500) return 'under-25';
@@ -100,13 +133,18 @@ const patches = products.map((product) => {
       ...(brand ? { brandRef: { _type: 'reference', _ref: brand._id } } : {}),
       brand: brandKey,
       availability: product.availability ?? (product.inStock === false ? 'out_of_stock' : 'in_stock'),
-      condition: 'new',
+      shippable: product.shippable ?? product.category !== 'gift-cards',
+      condition: product.condition ?? 'new',
+      merchantDestinations: product.merchantDestinations ?? ['free-listings', 'shopping-ads'],
+      ...(product.productTypePath || !productTypePath(product.category)
+        ? {}
+        : { productTypePath: productTypePath(product.category) }),
       campaignTier: product.campaignTier ?? 'long-tail',
       priceBand: product.priceBand ?? priceBand(product.price),
       replenishmentClass: product.replenishmentClass ?? 'replenishment',
       ...policy,
     },
-    unset: [],
+    unset: policy.merchantStatus === 'eligible' ? ['exclusionReason'] : [],
   };
 });
 
@@ -116,6 +154,32 @@ for (const patch of patches) {
 }
 const newAssignments = Object.fromEntries(patches.map((patch) => [patch.id, patch.set.sku]));
 const missingFromLedger = patches.filter((patch) => !ledger.assignments[patch.id]);
+
+const readiness = products.map((product) => {
+  const patch = patches.find((candidate) => candidate.id === product._id);
+  const merged = { ...product, ...patch?.set };
+  const missing = [];
+  if (!merged.title) missing.push('title');
+  if (!merged.slug?.current) missing.push('slug');
+  if (typeof merged.price !== 'number' || merged.price <= 0) missing.push('price');
+  if (!merged.image?.asset?._ref) missing.push('image');
+  if (!merged.brandRef?._ref && !merged.brand) missing.push('brand');
+  if (!merged.sku) missing.push('sku');
+  if (merged.shippable !== true) missing.push('shippable');
+  if (typeof merged.weightLb !== 'number' || merged.weightLb <= 0) missing.push('shipping_weight');
+  if (!merged.availability) missing.push('availability');
+  if (typeof merged.identifierExists !== 'boolean') missing.push('identifier_decision');
+  else if (merged.identifierExists && !merged.gtin && !merged.mpn) missing.push('gtin_or_mpn');
+  if (!Array.isArray(merged.merchantDestinations) || merged.merchantDestinations.length === 0) {
+    missing.push('merchant_destinations');
+  }
+  return { id: product._id, title: product.title, sku: merged.sku, missing };
+});
+const missingFieldCounts = Object.fromEntries(
+  [...new Set(readiness.flatMap((product) => product.missing))]
+    .sort()
+    .map((field) => [field, readiness.filter((product) => product.missing.includes(field)).length]),
+);
 
 if (apply && missingFromLedger.length) {
   throw new Error(
@@ -141,7 +205,9 @@ const summary = {
   brandsResolved: patches.filter((patch) => patch.set.brandRef).length,
   excluded: patches.filter((patch) => patch.set.merchantStatus === 'excluded').length,
   reviewRequired: patches.filter((patch) => patch.set.merchantStatus === 'reviewRequired').length,
-  eligible: 0,
+  eligible: patches.filter((patch) => patch.set.merchantStatus === 'eligible').length,
+  feedReadyAfterSafeMigration: readiness.filter((product) => product.missing.length === 0).length,
+  missingFieldCounts,
   ledgerPath,
   ledgerEntries: Object.keys(newAssignments).length,
   missingFromLedger: missingFromLedger.length,
@@ -151,7 +217,12 @@ const summary = {
 
 if (apply) {
   let transaction = client.transaction();
-  for (const patch of patches) transaction = transaction.patch(patch.id, { set: patch.set });
+  for (const patch of patches) {
+    transaction = transaction.patch(patch.id, {
+      set: patch.set,
+      ...(patch.unset.length > 0 ? { unset: patch.unset } : {}),
+    });
+  }
   await transaction.commit();
 }
 

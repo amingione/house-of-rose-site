@@ -1,5 +1,19 @@
 import { defineField, defineType } from 'sanity';
 
+const GTIN_LENGTHS = new Set([8, 12, 13, 14]);
+
+/** GS1 check-digit validation for GTIN-8/12/13/14. */
+const isValidGtin = (value: string): boolean => {
+  if (!/^\d+$/.test(value) || !GTIN_LENGTHS.has(value.length)) return false;
+  const digits = [...value].map(Number);
+  const checkDigit = digits.pop();
+  if (checkDigit === undefined) return false;
+  const sum = digits
+    .reverse()
+    .reduce((total, digit, index) => total + digit * (index % 2 === 0 ? 3 : 1), 0);
+  return (10 - (sum % 10)) % 10 === checkDigit;
+};
+
 /**
  * Retail product (skincare, candles, gift cards, etc.)
  * Sanity is the single source of truth — no Medusa, no external commerce.
@@ -51,9 +65,12 @@ export const product = defineType({
       to: [{ type: 'shopBrand' }],
       validation: (R) =>
         R.custom((value, context) => {
-          const document = context.document as { merchantStatus?: string } | undefined;
-          return document?.merchantStatus === 'eligible' && !value
-            ? 'Merchant-eligible products require a canonical brand reference.'
+          const document = context.document as {
+            merchantStatus?: string;
+            brand?: string;
+          } | undefined;
+          return document?.merchantStatus === 'eligible' && !value && !document.brand
+            ? 'Merchant-eligible products require a canonical brand reference or verified legacy brand.'
             : true;
         }),
     }),
@@ -79,7 +96,13 @@ export const product = defineType({
       title: 'GTIN / UPC',
       type: 'string',
       description: 'Verified manufacturer identifier only. Never invent.',
-      validation: (R) => R.regex(/^(?:\d{8}|\d{12,14})$/, { name: 'GTIN', invert: false }).warning(),
+      validation: (R) =>
+        R.custom((value, context) => {
+          if (!value) return true;
+          const document = context.document as { merchantStatus?: string } | undefined;
+          const message = 'GTIN must be a valid 8, 12, 13, or 14 digit GS1 number with a correct check digit.';
+          return isValidGtin(value) || document?.merchantStatus !== 'eligible' ? true : message;
+        }),
     }),
     defineField({
       name: 'mpn',
@@ -106,6 +129,9 @@ export const product = defineType({
           }
           if (value && !document.gtin && !document.mpn) {
             return 'Provide a verified GTIN or MPN, or confirm no manufacturer identifier exists.';
+          }
+          if (value === false && (document.gtin || document.mpn)) {
+            return 'Remove GTIN/MPN before declaring that no manufacturer identifier exists.';
           }
           return true;
         }),
@@ -216,9 +242,9 @@ export const product = defineType({
         R.integer().min(0).custom((value, context) => {
           const document = context.document as { merchantStatus?: string } | undefined;
           return document?.merchantStatus === 'eligible' && typeof value !== 'number'
-            ? 'Merchant-eligible products require an inventory quantity.'
+            ? 'Add inventory quantity so checkout stock can be reconciled; Google only requires availability.'
             : true;
-        }),
+        }).warning(),
     }),
     defineField({
       name: 'availability',
@@ -292,13 +318,12 @@ export const product = defineType({
     }),
     defineField({
       name: 'weightLb',
-      title: 'Shipping Weight (lb)',
+      title: 'Retail Item Shipping Weight (lb)',
       type: 'number',
       description:
-        'Packed weight in POUNDS, used to get live carrier rates at checkout. Include the bottle, ' +
-        'not just the contents — a 4 oz serum is about 0.35 lb packed. Decimals are fine (0.25, 1.5). ' +
-        'If left blank we assume 0.25 lb — set it properly on anything heavy (kits, sets) or the ' +
-        'shipping quote will under-charge us and the difference comes out of margin.',
+        'Verified retail-item weight in POUNDS, including its bottle/tube and retail packaging. ' +
+        'Checkout adds the outbound box and packing material separately. Use a physical measurement ' +
+        'or an exact manufacturer shipping-weight record; never convert net contents into a guess.',
       validation: (R) =>
         R.min(0.01).max(70).custom((value, context) => {
           const document = context.document as {
@@ -314,6 +339,106 @@ export const product = defineType({
             : true;
         }),
       hidden: ({ parent }) => parent?.shippable === false,
+    }),
+    defineField({
+      name: 'shippingWeightEvidence',
+      title: 'Shipping Weight Evidence',
+      type: 'object',
+      description:
+        'Audit trail for the retail-item shipping weight. Manufacturer commerce data and a physical ' +
+        'measurement are acceptable; net-content math is not.',
+      hidden: ({ parent }) => parent?.shippable === false || typeof parent?.weightLb !== 'number',
+      fields: [
+        defineField({
+          name: 'sourceType',
+          title: 'Source Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Physically measured retail item', value: 'measured-retail-item' },
+              {
+                title: 'Official manufacturer commerce data',
+                value: 'official-manufacturer-commerce-data',
+              },
+              {
+                title: 'Verified distributor specification',
+                value: 'verified-distributor-specification',
+              },
+            ],
+          },
+          validation: (R) => R.required(),
+        }),
+        defineField({
+          name: 'sourceUrl',
+          title: 'Human-Readable Source URL',
+          type: 'url',
+          validation: (R) => R.required(),
+        }),
+        defineField({
+          name: 'sourceDataUrl',
+          title: 'Source Data URL',
+          type: 'url',
+          description: 'API/feed URL used to verify the value, when different from the product page.',
+        }),
+        defineField({
+          name: 'manufacturerSku',
+          title: 'Matched Manufacturer SKU',
+          type: 'string',
+          description: 'Exact manufacturer-assigned SKU used to match this product and size.',
+        }),
+        defineField({
+          name: 'sourceValue',
+          title: 'Source Weight Value',
+          type: 'number',
+          validation: (R) => R.required().positive(),
+        }),
+        defineField({
+          name: 'sourceUnit',
+          title: 'Source Weight Unit',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Pounds', value: 'lb' },
+              { title: 'Grams', value: 'g' },
+              { title: 'Ounces', value: 'oz' },
+            ],
+          },
+          validation: (R) => R.required(),
+        }),
+        defineField({
+          name: 'verifiedAt',
+          title: 'Verified At',
+          type: 'datetime',
+          validation: (R) => R.required(),
+        }),
+        defineField({
+          name: 'matchBasis',
+          title: 'Match Basis',
+          type: 'string',
+        }),
+        defineField({
+          name: 'note',
+          title: 'Evidence Note',
+          type: 'text',
+          rows: 2,
+        }),
+      ],
+      validation: (R) =>
+        R.custom((value, context) => {
+          const document = context.document as {
+            merchantStatus?: string;
+            shippable?: boolean;
+            weightLb?: number;
+          } | undefined;
+          return (
+            document?.merchantStatus === 'eligible' &&
+            document.shippable !== false &&
+            typeof document.weightLb === 'number' &&
+            !value
+          )
+            ? 'Merchant-eligible products require shipping-weight evidence.'
+            : true;
+        }),
     }),
     defineField({
       name: 'stripeTaxCode',
@@ -404,6 +529,7 @@ export const product = defineType({
           { title: 'Shopping Ads', value: 'shopping-ads' },
         ],
       },
+      initialValue: ['free-listings', 'shopping-ads'],
       validation: (R) =>
         R.custom((value, context) => {
           const document = context.document as { merchantStatus?: string } | undefined;
@@ -421,9 +547,9 @@ export const product = defineType({
         R.custom((value, context) => {
           const document = context.document as { merchantStatus?: string } | undefined;
           return document?.merchantStatus === 'eligible' && !value
-            ? 'Merchant-eligible products require a product-type hierarchy.'
+            ? 'Recommended: add a product-type hierarchy for campaign reporting.'
             : true;
-        }),
+        }).warning(),
     }),
     defineField({
       name: 'googleProductCategoryId',
@@ -432,11 +558,12 @@ export const product = defineType({
       description: 'Reviewed numeric Google taxonomy ID.',
       validation: (R) =>
         R.custom((value, context) => {
+          if (value && !/^\d+$/.test(value)) return 'Use the numeric Google taxonomy ID only.';
           const document = context.document as { merchantStatus?: string } | undefined;
           return document?.merchantStatus === 'eligible' && !value
-            ? 'Merchant-eligible products require a reviewed Google product category.'
+            ? 'Recommended: add a reviewed Google product category ID.'
             : true;
-        }),
+        }).warning(),
     }),
     defineField({
       name: 'campaignTier',

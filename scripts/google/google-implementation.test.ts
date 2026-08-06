@@ -74,8 +74,12 @@ test('Merchant transformer preserves the canonical SKU and inventory availabilit
     price: 4200,
     inventoryQuantity: 0,
     availability: 'in_stock',
-    identifierExists: false,
+    identifierExists: true,
+    mpn: 'GLY-DAILY-CLEANSER',
     merchantStatus: 'eligible',
+    merchantDestinations: ['free-listings'],
+    shippable: true,
+    weightLb: 0.5,
     image: {
       asset: {
         url: 'https://cdn.sanity.io/images/example/product.jpg',
@@ -87,5 +91,59 @@ test('Merchant transformer preserves the canonical SKU and inventory availabilit
   const transformed = toGoogleProduct(product, 'https://houseofrosefl.com/');
   assert.equal(transformed.id, product.sku);
   assert.equal(transformed.link, 'https://houseofrosefl.com/shop/daily-cleanser/');
-  assert.equal(transformed.identifierExists, false);
+  assert.equal(transformed.identifierExists, true);
+  assert.equal(transformed.shippingWeight, '0.5 lb');
+  assert.deepEqual(transformed.excludedDestinations, ['Shopping_ads']);
+});
+
+test('Merchant transformer refuses eligible products without verified retail-item weight', () => {
+  const product: Product = {
+    _id: 'product-2',
+    title: 'Daily Moisturizer',
+    slug: 'daily-moisturizer',
+    brand: 'glymed',
+    sku: 'HOR-GLY-0002',
+    price: 5800,
+    identifierExists: true,
+    mpn: 'GLY-DAILY-MOISTURIZER',
+    merchantStatus: 'eligible',
+    merchantDestinations: ['free-listings', 'shopping-ads'],
+    shippable: true,
+    image: {
+      asset: {
+        url: 'https://cdn.sanity.io/images/example/moisturizer.jpg',
+        metadata: { dimensions: { width: 1200, height: 1200 } },
+      },
+    },
+  };
+  assert.throws(
+    () => toGoogleProduct(product, 'https://houseofrosefl.com/'),
+    /verified retail-item shipping weight/,
+  );
+});
+
+test('Merchant transformer requires verified identifiers for branded manufacturer products', () => {
+  const product: Product = {
+    _id: 'product-3',
+    title: 'Daily Serum',
+    slug: 'daily-serum',
+    brand: 'glymed',
+    sku: 'HOR-GLY-0003',
+    price: 7200,
+    identifierExists: true,
+    merchantStatus: 'eligible',
+    merchantDestinations: ['free-listings', 'shopping-ads'],
+    shippable: true,
+    weightLb: 0.4,
+    image: {
+      asset: {
+        url: 'https://cdn.sanity.io/images/example/serum.jpg',
+        metadata: { dimensions: { width: 1200, height: 1200 } },
+      },
+    },
+  };
+  assert.throws(
+    () => toGoogleProduct(product, 'https://houseofrosefl.com/'),
+    /verified GTIN or MPN/,
+  );
 });

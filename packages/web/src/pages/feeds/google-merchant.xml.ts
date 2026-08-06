@@ -48,6 +48,7 @@ export const GET: APIRoute = async ({ site }) => {
       ${element('size', item.size)}
       ${element('material', item.material)}
       ${element('shipping_weight', item.shippingWeight)}
+      ${item.excludedDestinations.map((destination) => element('excluded_destination', destination)).join('\n')}
       ${element('custom_label_0', item.customLabel0)}
       ${element('custom_label_1', item.customLabel1)}
       ${element('custom_label_2', item.customLabel2)}
