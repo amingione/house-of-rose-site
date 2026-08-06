@@ -32,6 +32,8 @@
     "content:homepage-conversion:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/refresh-homepage-conversion-copy.mjs --apply",
     "content:remove-skinpen": "node scripts/run-with-env.mjs node packages/studio/scripts/remove-skinpen-service.mjs",
     "content:remove-skinpen:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/remove-skinpen-service.mjs --apply",
+    "content:glo2-copy": "node scripts/run-with-env.mjs node packages/studio/scripts/update-glo2facial-verified-copy.mjs",
+    "content:glo2-copy:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/update-glo2facial-verified-copy.mjs --apply",
     "content:merge-microneedling": "node scripts/run-with-env.mjs node packages/studio/scripts/merge-microneedling-service.mjs",
     "content:merge-microneedling:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/merge-microneedling-service.mjs --apply",
     "booking:reconcile": "node scripts/run-with-env.mjs node packages/studio/scripts/reconcile-glossgenius-booking.mjs",

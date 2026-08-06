@@ -44,7 +44,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Home](${base}/): House of Rose Aesthetics — a medical aesthetics practice in Punta Gorda, FL`,
     `- [Services](${base}/services/): Full menu across regenerative aesthetics, injectables, skin health, and wellness`,
     `- [Consultation](${base}/consultation/): Explore regenerative skin treatments, targeted modalities, skin maintenance, IV hydration, and provider-guided weight support`,
-    `- [AI Skin Analysis](${base}/skin-analysis/): In-studio AI-assisted imaging for pigmentation, texture, pores, fine lines, hydration cues, visible sun exposure, and treatment planning`,
+    `- [Advanced Skin Imaging & Analysis](${base}/skin-analysis/): In-studio multi-spectrum imaging for pigmentation, texture, pores, fine lines, hydration cues, visible sun exposure, and treatment planning`,
     `- [Treatment Series & Packages](${base}/packages/): Verified series and consultation-led treatment pathways`,
     `- [Experience](${base}/experience/): What to expect before, during, and after an unhurried visit`,
     `- [Contact](${base}/contact/): Book a consultation or reach out`,

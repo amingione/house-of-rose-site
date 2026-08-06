@@ -24,7 +24,7 @@
 
 ## 1. Why this exists
 
-House of Rose sells **individual services and treatment packages**, with **AI skin analysis** as the
+House of Rose sells **individual services and treatment packages**, with **advanced skin imaging** as the
 evidence-based first step that draws clients in and guides what they book. _(Memberships are **NOT
 OFFERED** — none exist, none are planned, and **no "member rate," "founding-member," or tier framing is
 permitted anywhere**; see `CLAUDE.md`. Do not write "deferred" — that wording invites reintroduction. The
@@ -109,7 +109,7 @@ medical result:
   "advanced aesthetics & wellness," "personalized," "unhurried," "curated," "guided plan."
 - **Structure (the differentiator):** "Skin transforms through timing, consistency, and structure,"
   "sequenced," "phased," "a plan, not a punch card."
-- **AI Skin Analysis (the draw):** "evidence-based," "see your skin," "before any treatment,"
+- **Advanced Skin Imaging & Analysis (the draw):** "evidence-based," "see your skin," "before any treatment,"
   "the smart first step," "no pressure, no commitment."
 
 Brand voice in one line: *confident, not loud; specific over superlative; sensory but disciplined.*

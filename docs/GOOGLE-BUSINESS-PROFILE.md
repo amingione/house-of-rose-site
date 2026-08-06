@@ -413,8 +413,8 @@ Post **weekly** minimum. Posts expire from prominence, so cadence matters. No hy
 > Not everything at once. Everything at the right time. We build results the right way, so they
 > compound and look unmistakably like you.
 
-**Post 6 — AI Skin Analysis (the draw)**
-> See your skin before you decide anything. Our in-studio AI skin analysis is the evidence-based first
+**Post 6 — Advanced Skin Imaging (the draw)**
+> See your skin before you decide anything. Our in-studio advanced skin imaging is the evidence-based first
 > step — book it and we'll build your plan around exactly what we find. No pressure, no commitment.
 
 > Add a real **photo** to every post. Avoid the word "deal." Frame value as access, not discounts.

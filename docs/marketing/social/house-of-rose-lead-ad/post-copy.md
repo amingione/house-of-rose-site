@@ -4,7 +4,7 @@
 
 Not sure where to begin? Start by seeing your skin more clearly. ✨
 
-At House of Rose Aesthetics, your complimentary consultation includes AI skin analysis to help your provider take a more informed look at visible and near-surface patterns before recommending a plan.
+At House of Rose Aesthetics, your complimentary consultation includes advanced skin imaging to help your provider take a more informed look at visible and near-surface patterns before recommending a plan.
 
 No pressure. No commitment. Just a thoughtful first step, personalized to your goals and comfort.
 
@@ -18,7 +18,7 @@ This assessment supports cosmetic consultation and treatment planning. It is not
 
 ## Headline
 
-AI Skin Analysis
+Advanced Skin Imaging
 
 ## Description
 

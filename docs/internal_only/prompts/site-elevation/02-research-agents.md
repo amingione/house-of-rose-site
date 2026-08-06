@@ -35,7 +35,7 @@ facial waxing
 
 **Retail:** Jane Iredale products (no makeup-application service)
 
-**Cross-cutting:** AI skin analysis (the evidence-based first step) · Face Reality acne
+**Cross-cutting:** advanced skin imaging (the evidence-based first step) · Face Reality acne
 program · product lines (Procell, GlyMed+, Skin Script, Face Reality, Jane Iredale,
 House of Rose retail)
 

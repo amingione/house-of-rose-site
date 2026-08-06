@@ -1,360 +1,334 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
-import {
-  ALL_SERVICES_QUERY,
-  HOMEPAGE_QUERY,
-  type HomePage,
-  type Service,
-} from '@/lib/queries';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { HOMEPAGE_QUERY, type HomePage } from '@/lib/queries';
 import { alignPublicChannelCopy } from '@/lib/publicCopy';
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
 
 const hp = (await sanityFetch<HomePage | null>(HOMEPAGE_QUERY)) ?? ({} as HomePage);
-const allServices = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 const oid = hp._id ? sbObjectId(hp._id) : {};
 const safe = (value: string | undefined, fallback: string): string =>
   alignPublicChannelCopy(value?.trim() || fallback);
 
-const FALLBACK_SERVICE_GROUPS = [
-  {
-    name: 'Skin Renewal & Device Treatments',
-    description:
-      'Explore microneedling, PRF, BioRePeel, radiofrequency, and IPL options by concern and recovery preference.',
-    imagePath: '/images/editorial/home/regenerative-skin-treatments.webp',
-  },
-  {
-    name: 'Injectables & Structural Enhancements',
-    description:
-      'Learn about neurotoxins, dermal fillers, PRF under-eye options, and EZ Gel through a consultation-led approach.',
-    imagePath: '/images/editorial/home/injectables-consultation.webp',
-  },
-  {
-    name: 'Skin Health & Corrective Care',
-    description:
-      'Start with Face Reality acne care, Glo2Facial, dermaplaning, and guidance based on what your skin is showing today.',
-    imagePath: '/images/editorial/home/skin-health-analysis.webp',
-  },
-  {
-    name: 'Wellness & Performance Support',
-    description:
-      'Review IV hydration and provider-guided weight-management services that may support a broader care plan.',
-    imagePath: '/images/editorial/home/wellness-iv-hydration.webp',
-  },
-];
+const phoneDisplay = '(844) 941-7673';
+const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
+const heroTitle = safe(hp.heroTitle, 'Medical Aesthetics.\nThoughtfully Practiced.');
 
-const serviceGroups = FALLBACK_SERVICE_GROUPS.map((fallback, index) => ({
-  ...fallback,
-  ...(hp.serviceGroups?.[index] ?? {}),
-  imagePath: fallback.imagePath,
-  name: safe(hp.serviceGroups?.[index]?.name, fallback.name),
-  description: safe(hp.serviceGroups?.[index]?.description, fallback.description),
-}));
-
-const GROUP_ANCHORS: Record<string, string> = {
-  'advanced skin treatments': '/services/#advanced-skin-treatments',
-  'skin renewal & device treatments': '/services/#advanced-skin-treatments',
-  'regenerative skin treatments': '/services/#advanced-skin-treatments',
-  'injectables & structural enhancements': '/services/#injectables-structural-enhancements',
-  'skin health & corrective care': '/services/#skin-health-corrective-care',
-  'wellness & performance support': '/services/#wellness-performance-support',
-};
-const groupHref = (name: string): string =>
-  GROUP_ANCHORS[name.trim().toLowerCase()] ?? '/services/';
-
-const featuredOrder = [
-  'glo2facial',
-  'dermaplaning',
-  'morpheus8',
-  'lumecca-peak-ipl',
-  'injectables',
-  'face-reality-acne-program',
-];
-const servicesBySlug = new Map(allServices.map((service) => [service.slug, service]));
-const featuredServices = featuredOrder
-  .map((slug) => servicesBySlug.get(slug))
-  .filter((service): service is Service => Boolean(service));
-
-const careSteps = [
+const practiceStandards = [
   {
-    title: 'Consultation',
-    body: 'Begin with your goals, timing, health history, and questions.',
+    title: 'Selection',
+    body: 'Indication, candidacy, and the desired degree of change determine what belongs on the table.',
   },
   {
-    title: 'Assessment',
-    body: 'Review candidacy, the treatment area, and what the service can reasonably address.',
+    title: 'Sequencing',
+    body: 'Corrective work, maintenance, home care, and recovery need an order that makes sense together.',
   },
   {
-    title: 'Treatment',
-    body: 'Proceed with a plan selected for the service, area, and provider scope.',
+    title: 'Expectations',
+    body: 'Preparation, limitations, temporary downtime, and aftercare are discussed before they become surprises.',
   },
   {
-    title: 'Aftercare',
-    body: 'Leave with preparation, recovery, follow-up, and maintenance guidance.',
+    title: 'Continuity',
+    body: 'Documentation, reassessment, and maintenance keep the work accountable over time.',
   },
-];
+] as const;
 ---
 
 <BaseLayout
-  title={hp.seoTitle ?? 'House of Rose Aesthetics | Medical Aesthetics Punta Gorda'}
-  description={hp.seoDescription ?? 'House of Rose Aesthetics is a Punta Gorda medical aesthetics practice offering individualized skin, injectable, facial, IV hydration, and wellness care.'}
-  preloadImage="/images/optimized/hor-skin-studio-800.webp"
-  preloadImageSrcset="/images/optimized/hor-skin-studio-800.webp 800w, /images/optimized/hor-skin-studio-1400.webp 1400w"
+  title={hp.seoTitle ?? 'House of Rose | Medical Aesthetics in Punta Gorda'}
+  description={hp.seoDescription ?? 'Explore skin treatments, injectables, facials, body treatments, IV hydration, wellness services, and professional skincare at House of Rose in Punta Gorda.'}
+  preloadImage="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp"
+  preloadImageSrcset="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp 1942w"
   preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
 >
   <div {...oid}>
-    <section class="bg-bone pt-20">
-      <div class="mx-auto grid max-w-[1440px] lg:min-h-[720px] lg:grid-cols-[minmax(0,0.92fr)_minmax(520px,1.08fr)]">
-        <div class="flex flex-col justify-center px-6 py-14 sm:px-10 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
-          <span class="kicker" {...sbFieldPath('heroKicker')}>
-            {safe(hp.heroKicker, 'Medical Aesthetics Practice')}
-          </span>
-          <h1 class="max-w-[700px] font-serif text-[clamp(46px,7vw,82px)] leading-[0.98] text-ink" {...sbFieldPath('heroTitle')}>
-            {safe(hp.heroTitle, 'Medical Aesthetics.\nThoughtfully Practiced.').split('\n').map((line) => (
+    <section class="bg-breath pt-20">
+      <div class="mx-auto grid max-w-[1440px] border-x border-walnut/10 lg:min-h-[calc(100svh-80px)] lg:max-h-[860px] lg:grid-cols-[minmax(0,0.9fr)_minmax(540px,1.1fr)]">
+        <div class="flex flex-col justify-center px-6 py-14 sm:px-10 lg:px-[clamp(48px,6.5vw,96px)] lg:py-20">
+          <span class="kicker" {...sbFieldPath('heroKicker')}>{safe(hp.heroKicker, 'House of Rose Aesthetics')}</span>
+          <h1 class="max-w-[680px] font-serif text-[clamp(47px,6.2vw,80px)] leading-[0.97] tracking-[-0.025em] text-ink">
+            {heroTitle.split('\n').map((line) => (
               <span class="block">{line}</span>
             ))}
           </h1>
-          <p class="mt-7 max-w-[620px] text-[clamp(17px,2vw,20px)] leading-[1.7] text-muted-strong" {...sbFieldPath('heroDescription')}>
-            {safe(hp.heroDescription, 'Individualized facial, body, skin, injectable, and wellness care planned through consultation, assessment, clinical judgment, and long-term follow-through.')}
+          <p class="mt-7 max-w-[610px] text-[clamp(17px,1.7vw,20px)] leading-[1.7] text-muted-strong" {...sbFieldPath('heroDescription')}>
+            {safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
           </p>
-          <div class="mt-9 flex flex-wrap gap-3">
-            <a href="/services/" class="btn-gold" {...sbFieldPath('heroCtaPrimaryText')}>
-              {safe(hp.heroCtaPrimaryText, 'Explore services')}
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[218px]" data-global-booking data-cta-location="homepage-hero">
+              {safe(hp.heroCtaPrimaryText, 'Book an appointment')}
             </a>
-            <a href="/consultation/" class="btn-outline-gold" {...sbFieldPath('heroCtaSecondaryText')}>
-              {safe(hp.heroCtaSecondaryText, 'Start with a consultation')}
+            <a href="/services/" class="btn-outline-gold sm:min-w-[190px]" data-cta-location="homepage-hero-services">
+              {safe(hp.heroCtaSecondaryText, 'View services')}
             </a>
           </div>
-          <p class="mt-8 text-[13px] font-medium text-muted" {...sbFieldPath('heroSubtitle')}>
-            {safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
-          </p>
+
+          <a href={phoneHref} class="mt-6 inline-flex w-fit items-center gap-3 text-[13px] font-semibold text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive" data-cta-location="homepage-hero-call">
+            Call {phoneDisplay}
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <div class="mt-9 border-t border-walnut/15 pt-5">
+            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold" {...sbFieldPath('heroSubtitle')}>
+              {safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
+            </p>
+            <p class="mt-2 text-[13px] leading-relaxed text-muted">
+              Serving Charlotte County and Southwest Florida.
+            </p>
+          </div>
         </div>
-        <figure class="relative min-h-[500px] overflow-hidden bg-limestone lg:min-h-full">
-          <picture>
-            <img
-              src="/images/optimized/hor-skin-studio-1400.webp"
-              srcset="/images/optimized/hor-skin-studio-800.webp 800w, /images/optimized/hor-skin-studio-1400.webp 1400w"
-              sizes="(max-width: 1023px) 100vw, 55vw"
-              alt="A House of Rose Aesthetics treatment room in Punta Gorda"
-              width="1400"
-              height="1050"
-              fetchpriority="high"
-              decoding="sync"
-              class="absolute inset-0 h-full w-full object-cover"
-            />
-          </picture>
+
+        <figure class="min-h-[440px] bg-walnut sm:min-h-[560px] lg:min-h-full">
+          <img
+            src="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp"
+            srcset="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp 1942w"
+            sizes="(max-width: 1023px) 100vw, 55vw"
+            alt="The reception and waiting area inside House of Rose Aesthetics in Punta Gorda"
+            width="1942"
+            height="809"
+            fetchpriority="high"
+            decoding="sync"
+            class="h-full w-full object-cover object-center"
+          />
+
         </figure>
       </div>
     </section>
 
-    <aside class="border-y border-walnut/10 bg-walnut px-6 py-5 text-ivory" aria-label="Practice details">
-      <div class="mx-auto flex max-w-[1240px] flex-wrap justify-center gap-x-10 gap-y-2 text-center text-[13px] font-medium sm:justify-between sm:text-left">
-        <span>525 E Olympia Ave, Unit 9 · Punta Gorda</span>
-        <span>Serving Charlotte County and Southwest Florida</span>
-        <span>Walk-ins welcome · Appointments recommended</span>
-      </div>
-    </aside>
 
-    <section class="bg-bone px-6 py-[clamp(64px,9vw,112px)]">
-      <div class="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[0.94fr_1.06fr] lg:gap-20">
-        <figure class="relative aspect-[4/3] overflow-hidden bg-limestone">
-          <picture>
-            <source
-              type="image/avif"
-              srcset="/images/optimized/hor-lobby-800.avif 800w, /images/optimized/hor-lobby-1400.avif 1400w"
-              sizes="(max-width: 1023px) 100vw, 48vw"
-            />
-            <img
-              src="/images/optimized/hor-lobby-1400.webp"
-              srcset="/images/optimized/hor-lobby-800.webp 800w, /images/optimized/hor-lobby-1400.webp 1400w"
-              sizes="(max-width: 1023px) 100vw, 48vw"
-              alt="The House of Rose Aesthetics reception area"
-              width="1400"
-              height="1050"
-              loading="lazy"
-              decoding="async"
-              class="absolute inset-0 h-full w-full object-cover"
-            />
-          </picture>
-        </figure>
-        <div>
-          <span class="kicker" {...sbFieldPath('aboutKicker')}>{safe(hp.aboutKicker, 'About House of Rose Aesthetics')}</span>
-          <h2 class="font-serif text-[clamp(34px,5vw,54px)] leading-[1.05] text-ink" {...sbFieldPath('aboutHeading')}>
-            {safe(hp.aboutHeading, 'Medical aesthetics, thoughtfully practiced.')}
-          </h2>
-          <div class="mt-7 max-w-[650px] space-y-5 text-[17px] leading-[1.75] text-muted">
-            <p {...sbFieldPath('aboutPara1')}>{safe(hp.aboutPara1, 'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, built around individualized treatment planning and long-term care.')}</p>
-            <p {...sbFieldPath('aboutPara2')}>{safe(hp.aboutPara2, 'Consultation and assessment guide the service, preparation, recovery, aftercare, and maintenance recommendations that belong in your plan.')}</p>
-            <p {...sbFieldPath('aboutPara3')}>{safe(hp.aboutPara3, 'Located in Punta Gorda, House of Rose serves Charlotte County and Southwest Florida.')}</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="bg-breath px-6 py-[clamp(64px,9vw,112px)]">
-      <div class="mx-auto max-w-[1280px]">
-        <div class="max-w-[760px]">
-          <span class="kicker" {...sbFieldPath('servicesKicker')}>{safe(hp.servicesKicker, 'Explore care')}</span>
-          <h2 class="font-serif text-[clamp(34px,5vw,56px)] leading-[1.05] text-ink" {...sbFieldPath('servicesHeading')}>
-            {safe(hp.servicesHeading, 'Start with what you want to understand.')}
-          </h2>
-          <p class="mt-6 text-[17px] leading-[1.75] text-muted" {...sbFieldPath('servicesIntro')}>
-            {safe(hp.servicesIntro, 'Learn how each category is approached, then compare specific services, candidacy, and the next step for booking.')}
-          </p>
-        </div>
-        <div class="mt-12 grid gap-5 md:grid-cols-2">
-          {serviceGroups.map((group, index) => (
-            <a href={groupHref(group.name)} class="group grid overflow-hidden border border-walnut/10 bg-bone sm:grid-cols-[180px_1fr]">
-              <div class="min-h-[190px] overflow-hidden bg-limestone sm:min-h-full">
-                <img
-                  src={group.imagePath}
-                  alt=""
-                  width="700"
-                  height="438"
-                  loading="lazy"
-                  decoding="async"
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.025]"
-                />
-              </div>
-              <div class="flex flex-col justify-center p-6 sm:p-7">
-                <h3 class="font-serif text-[25px] leading-tight text-ink" {...sbFieldPathParts('serviceGroups', index, 'name')}>{group.name}</h3>
-                <p class="mt-3 text-[14px] leading-[1.7] text-muted" {...sbFieldPathParts('serviceGroups', index, 'description')}>{group.description}</p>
-                <span class="learn-more">Explore this category</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {featuredServices.length > 0 && (
-      <section class="bg-bone px-6 py-[clamp(64px,9vw,112px)]">
-        <div class="mx-auto max-w-[1280px]">
-          <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <div class="max-w-[700px]">
-              <span class="kicker">Featured services</span>
-              <h2 class="font-serif text-[clamp(34px,5vw,54px)] leading-[1.05] text-ink">Learn first. Book the exact next step.</h2>
-            </div>
-            <a href="/services/" class="btn-outline-gold">View all services</a>
-          </div>
-          <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredServices.map((service) => (
-              <ServiceCard
-                title={service.title}
-                slug={service.slug}
-                tagline={service.tagline}
-                bookingMode={service.bookingMode}
-                bookingUrl={service.bookingUrl}
-                objectId={service._id}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
-
-    <section class="on-dark bg-walnut px-6 py-[clamp(64px,9vw,112px)]">
+    <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
-        <div class="max-w-[760px]">
-          <span class="kicker" {...sbFieldPath('approachKicker')}>{safe(hp.approachKicker, 'How care is planned')}</span>
-          <h2 class="font-serif text-[clamp(36px,5vw,58px)] leading-[1.05] text-ivory" {...sbFieldPath('approachHeading')}>
-            {safe(hp.approachHeading, 'A clear plan before a procedure.')}
-          </h2>
-          <p class="mt-6 text-[17px] leading-[1.75] text-muted" {...sbFieldPath('approachPara1')}>
-            {safe(hp.approachPara1, 'The right next step depends on the concern, treatment area, candidacy, timing, and recovery you can reasonably plan for.')}
+        <div class="grid gap-8 border-b border-walnut/15 pb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <span class="kicker" {...sbFieldPath('servicesKicker')}>{safe(hp.servicesKicker, 'A considered range')}</span>
+            <h2 class="max-w-[650px] font-serif text-[clamp(36px,5vw,58px)] leading-[1.02] tracking-[-0.02em] text-ink" {...sbFieldPath('servicesHeading')}>
+              {safe(hp.servicesHeading, 'Different treatments. One standard of judgment.')}
+            </h2>
+          </div>
+          <p class="max-w-[600px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('servicesIntro')}>
+            {safe(hp.servicesIntro, 'Corrective work, maintenance care, and wellness services can belong in the same practice without being treated as interchangeable. Each has its own indication, obligations, and place in a longer view.')}
           </p>
         </div>
-        <ol class="care-plan-rail mt-14 grid gap-0 md:grid-cols-4">
-          {careSteps.map((step, index) => (
-            <li class="relative border-l border-ivory/25 px-6 pb-9 md:border-l-0 md:border-t md:pb-0 md:pt-8">
-              <span class="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-gold-metal md:-top-[5px] md:left-6"></span>
-              <p class="text-[12px] font-semibold tracking-[0.08em] text-gold">{String(index + 1).padStart(2, '0')}</p>
-              <h3 class="mt-2 font-serif text-[26px] text-ivory">{step.title}</h3>
-              <p class="mt-3 max-w-[260px] text-[14px] leading-[1.7] text-muted">{step.body}</p>
+
+        <div class="mt-8 grid border border-walnut/15 lg:grid-cols-3">
+          <a href="/services/" class="group flex min-h-[310px] flex-col justify-between bg-olive p-7 text-ivory transition-colors hover:bg-green-deep sm:p-9" data-cta-location="homepage-scope-services">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-ivory/75">Treatment menu</p>
+              <h3 class="mt-5 max-w-[290px] font-serif text-[32px] leading-[1.08] text-ivory">See the full scope of the practice.</h3>
+              <p class="mt-5 max-w-[320px] text-[15px] leading-[1.7] text-ivory/85">
+                Review skin procedures, facials, injectables, body treatments, IV hydration, wellness care, and professional skincare.
+              </p>
+            </div>
+            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold">
+              View all services <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a href="/skin-analysis/" class="group flex min-h-[310px] flex-col justify-between border-t border-walnut/15 bg-bone p-7 transition-colors hover:bg-limestone/35 sm:p-9 lg:border-l lg:border-t-0">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Skin analysis</p>
+              <h3 class="mt-5 max-w-[300px] font-serif text-[32px] leading-[1.08] text-ink" {...sbFieldPath('scanHeading')}>
+                {safe(hp.scanHeading, 'A more detailed view of the skin.')}
+              </h3>
+              <p class="mt-5 max-w-[330px] text-[15px] leading-[1.7] text-muted" {...sbFieldPath('scanPara1')}>
+                {safe(hp.scanPara1, 'Multi-spectrum imaging adds context around texture, hydration, pores, pigmentation, fine lines, and visible sun exposure before treatment is considered.')}
+              </p>
+            </div>
+            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-walnut">
+              {safe(hp.scanCtaPrimaryText, 'Review skin analysis')} <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a href="/consultation/" class="group flex min-h-[310px] flex-col justify-between border-t border-walnut/15 bg-bone p-7 transition-colors hover:bg-limestone/35 sm:p-9 lg:border-l lg:border-t-0" data-cta-location="homepage-scope-consultation">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Professional guidance</p>
+              <h3 class="mt-5 max-w-[290px] font-serif text-[32px] leading-[1.08] text-ink">When the decision is not obvious.</h3>
+              <p class="mt-5 max-w-[330px] text-[15px] leading-[1.7] text-muted">
+                A consultation is useful when several approaches could apply, treatment order matters, or recovery time changes the decision.
+              </p>
+            </div>
+            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-walnut">
+              Request guidance <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-bone px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
+        <figure class="relative aspect-[4/3] overflow-hidden bg-limestone">
+          <img
+            src="/images/optimized/actual-welcome-1400.webp"
+            srcset="/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w"
+            sizes="(max-width: 1023px) 100vw, 52vw"
+            alt="The welcome hallway inside House of Rose Aesthetics"
+            width="1400"
+            height="1050"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+        </figure>
+
+        <div>
+          <span class="kicker" {...sbFieldPath('aboutKicker')}>{safe(hp.aboutKicker, 'House of Rose')}</span>
+          <h2 class="font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink" {...sbFieldPath('aboutHeading')}>
+            {safe(hp.aboutHeading, 'Independent by design. Accountable in practice.')}
+          </h2>
+          <div class="mt-7 max-w-[620px] space-y-5 text-[17px] leading-[1.75] text-muted">
+            <p {...sbFieldPath('aboutPara1')}>
+              {safe(hp.aboutPara1, 'House of Rose was designed for focused, personal care without the pace of a high-volume treatment floor. The rooms feel collected and residential; the work remains organized, documented, and clinically grounded.')}
+            </p>
+            <p {...sbFieldPath('aboutPara2')}>
+              {safe(hp.aboutPara2, 'Recommendations come with a rationale. So do preparation, limitations, downtime, aftercare, and the point at which reassessment makes more sense than simply adding another procedure.')}
+            </p>
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-walnut/15 pt-7 text-[13px] font-semibold">
+            <a href="/experience/" class="text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">See the practice</a>
+            <a href="/services/" class="text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">Review the work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto max-w-[1240px]">
+        <div class="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <span class="kicker" {...sbFieldPath('approachKicker')}>{safe(hp.approachKicker, 'What the standard requires')}</span>
+            <h2 class="max-w-[660px] font-serif text-[clamp(38px,5vw,60px)] leading-[1.03] tracking-[-0.02em] text-ivory" {...sbFieldPath('approachHeading')}>
+              {safe(hp.approachHeading, 'A recommendation should survive a harder question: why this, for you, now?')}
+            </h2>
+          </div>
+          <p class="max-w-[590px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('approachPara1')}>
+            {safe(hp.approachPara1, 'The answer may involve treatment history, candidacy, timing, tolerance for downtime, and the desired degree of change. A device name alone is not an answer.')}
+          </p>
+        </div>
+
+        <ol class="mt-14 grid border-y border-ivory/20 md:grid-cols-4">
+          {practiceStandards.map((step, index) => (
+            <li class="relative min-h-[250px] border-b border-ivory/20 px-6 py-8 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 lg:px-7">
+              <p class="text-[11px] font-semibold tracking-[0.12em] text-gold">{String(index + 1).padStart(2, '0')}</p>
+              <h3 class="mt-5 font-serif text-[27px] leading-tight text-ivory">{step.title}</h3>
+              <p class="mt-4 max-w-[250px] text-[14px] leading-[1.7] text-muted">{step.body}</p>
             </li>
           ))}
         </ol>
-        <p class="mt-12 max-w-[720px] font-serif text-[22px] leading-[1.55] text-ivory" {...sbFieldPath('approachClosing')}>
-          {safe(hp.approachClosing, 'The purpose is clarity: what is being considered, why it fits, and what comes afterward.')}
+
+        <p class="mt-10 max-w-[760px] font-serif text-[22px] leading-[1.55] text-ivory" {...sbFieldPath('approachClosing')}>
+          {safe(hp.approachClosing, 'More treatment is not the standard. Better judgment is.')}
         </p>
       </div>
     </section>
 
-    <section class="grid bg-limestone lg:grid-cols-2">
-      <figure class="relative min-h-[440px] overflow-hidden bg-walnut lg:min-h-[680px]">
-        <img
-          src="/images/editorial/home/skin-analysis-consultation.webp"
-          alt="A client reviewing a skin analysis with a House of Rose provider"
-          width="1448"
-          height="1086"
-          loading="lazy"
-          decoding="async"
-          class="absolute inset-0 h-full w-full object-cover"
-        />
-      </figure>
-      <div class="flex flex-col justify-center px-6 py-14 sm:px-10 lg:px-[clamp(48px,7vw,100px)] lg:py-20">
-        <span class="kicker" {...sbFieldPath('scanKicker')}>{safe(hp.scanKicker, 'AI-assisted skin analysis')}</span>
-        <h2 class="font-serif text-[clamp(34px,5vw,54px)] leading-[1.05] text-ink" {...sbFieldPath('scanHeading')}>
-          {safe(hp.scanHeading, 'See what your skin is showing today.')}
-        </h2>
-        <p class="mt-6 text-[17px] leading-[1.75] text-muted-strong" {...sbFieldPath('scanPara1')}>
-          {safe(hp.scanPara1, 'A skin analysis can support a closer look at visible texture, hydration, pores, pigmentation, fine lines, and sun exposure.')}
-        </p>
-        <p class="mt-4 text-[16px] leading-[1.75] text-muted" {...sbFieldPath('scanPara2')}>
-          {safe(hp.scanPara2, 'We review the images in plain language and connect what we see to the goals you share. The analysis supports—not replaces—professional assessment and clinical judgment.')}
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/skin-analysis/" class="btn-gold" {...sbFieldPath('scanCtaPrimaryText')}>{safe(hp.scanCtaPrimaryText, 'See what to expect')}</a>
-          <a href="/consultation/" class="btn-outline-gold">Start a consultation</a>
+    <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto max-w-[1240px]">
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <span class="kicker" {...sbFieldPath('expKicker')}>{safe(hp.expKicker, 'Inside House of Rose')}</span>
+            <h2 class="max-w-[690px] font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink" {...sbFieldPath('expHeading')}>
+              {safe(hp.expHeading, 'The rooms are considered. The care has to be more than that.')}
+            </h2>
+          </div>
+          <div class="max-w-[590px] space-y-4 text-[16px] leading-[1.75] text-muted">
+            <p {...sbFieldPath('expPara1')}>
+              {safe(hp.expPara1, 'A beautiful environment can make an appointment more comfortable; it cannot substitute for sound decisions, precise communication, or responsible follow-through.')}
+            </p>
+            <p {...sbFieldPath('expPara2')}>
+              {safe(hp.expPara2, 'These are the actual House of Rose spaces—photographed as they are, because the practice should be recognizable before you walk through the door.')}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
+          <figure>
+            <div class="relative aspect-[5/6] overflow-hidden bg-limestone">
+              <img
+                src="/images/optimized/actual-storefront-1000.webp"
+                srcset="/images/optimized/actual-storefront-700.webp 700w, /images/optimized/actual-storefront-1000.webp 1000w"
+                sizes="(max-width: 1023px) 100vw, 42vw"
+                alt="The House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda"
+                width="1000"
+                height="1333"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
+              <span>The House of Rose storefront</span>
+              <span class="font-semibold text-walnut">Unit 9</span>
+            </figcaption>
+          </figure>
+
+          <figure class="lg:pt-20">
+            <div class="relative aspect-[5/4] overflow-hidden bg-limestone">
+              <img
+                src="/images/optimized/actual-iv-suite-1400.webp"
+                srcset="/images/optimized/actual-iv-suite-800.webp 800w, /images/optimized/actual-iv-suite-1400.webp 1400w"
+                sizes="(max-width: 1023px) 100vw, 58vw"
+                alt="The IV hydration suite inside House of Rose Aesthetics"
+                width="1400"
+                height="1120"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
+              <span>A treatment suite inside the practice</span>
+              <a href="/experience/" class="font-semibold text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">Explore the experience</a>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="bg-bone px-6 py-[clamp(64px,9vw,112px)]">
-      <div class="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-20">
+    <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,112px)]">
+      <div class="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-20">
         <div>
-          <span class="kicker" {...sbFieldPath('expKicker')}>{safe(hp.expKicker, 'The experience')}</span>
-          <h2 class="font-serif text-[clamp(34px,5vw,54px)] leading-[1.05] text-ink" {...sbFieldPath('expHeading')}>
-            {safe(hp.expHeading, 'Time to ask questions. Space to understand the plan.')}
+          <span class="kicker">Appointments &amp; inquiries</span>
+          <h2 class="max-w-[700px] font-serif text-[clamp(40px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ivory" {...sbFieldPath('finalHeading')}>
+            {safe(hp.finalHeading, 'Book directly—or bring us the decision you are still working through.')}
           </h2>
-          <p class="mt-7 text-[17px] leading-[1.75] text-muted" {...sbFieldPath('expPara1')}>
-            {safe(hp.expPara1, 'Appointments leave room to discuss your goals, evaluate the area being considered, and understand why a service may—or may not—make sense for you.')}
+          <p class="mt-6 max-w-[650px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('finalPara')}>
+            {safe(hp.finalPara, 'Reserve a known service through the booking menu. If the choice depends on candidacy, timing, or competing priorities, send an inquiry or call us.')}
           </p>
-          <p class="mt-4 text-[17px] leading-[1.75] text-muted" {...sbFieldPath('expPara2')}>
-            {safe(hp.expPara2, 'Before you leave, you should understand what was done, what to expect next, and how to follow the aftercare plan.')}
-          </p>
-          <a href="/experience/" class="btn-outline-gold mt-8">See the practice experience</a>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[210px]" data-global-booking data-cta-location="homepage-final" {...sbFieldPath('finalCtaText')}>
+              {safe(hp.finalCtaText, 'Book a service')}
+            </a>
+            <a href="/consultation/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-final-inquiry">Send an inquiry</a>
+          </div>
+          <a href={phoneHref} class="mt-6 inline-flex items-center gap-3 text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold" data-cta-location="homepage-final-call">
+            Call {phoneDisplay} <span aria-hidden="true">→</span>
+          </a>
         </div>
-        <div class="border border-walnut/15 bg-breath p-8 sm:p-10">
-          <span class="kicker" {...sbFieldPath('localKicker')}>{safe(hp.localKicker, 'Punta Gorda')}</span>
-          <h2 class="font-serif text-[34px] leading-tight text-ink" {...sbFieldPath('localHeading')}>
-            {safe(hp.localHeading, 'Medical aesthetics close to home.')}
-          </h2>
-          <p class="mt-5 text-[16px] leading-[1.75] text-muted" {...sbFieldPath('localPara1')}>
-            {safe(hp.localPara1, 'House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, Punta Gorda Isles, and the surrounding Southwest Florida area.')}
-          </p>
-          <address class="mt-7 not-italic text-[15px] leading-[1.8] text-muted-strong">
-            525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950<br />
-            <a href="tel:+18449417673" class="font-semibold text-gold hover:text-walnut">(844) 941-7673</a>
-          </address>
-          <a href="/contact/" class="btn-gold mt-8">Contact House of Rose</a>
-        </div>
-      </div>
-    </section>
 
-    <section class="on-dark bg-walnut px-6 py-[clamp(64px,9vw,104px)] text-center">
-      <div class="mx-auto max-w-[760px]">
-        <span class="kicker">Your next step</span>
-        <h2 class="font-serif text-[clamp(38px,6vw,62px)] leading-[1.04] text-ivory" {...sbFieldPath('finalHeading')}>
-          {safe(hp.finalHeading, 'Begin with a clear conversation.')}
-        </h2>
-        <p class="mx-auto mt-6 max-w-[620px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('finalPara')}>
-          {safe(hp.finalPara, 'Tell us what you are considering, and we will help you identify the service or consultation that makes sense to explore next.')}
-        </p>
-        <div class="mt-9 flex flex-wrap justify-center gap-3">
-          <a href="/consultation/" class="btn-gold" {...sbFieldPath('finalCtaText')}>{safe(hp.finalCtaText, 'Start a consultation')}</a>
-          <a href="/services/" class="btn-outline-white">Explore services</a>
+        <div class="border border-ivory/25 p-7 sm:p-9">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold" {...sbFieldPath('localKicker')}>
+            {safe(hp.localKicker, 'Visit')}
+          </p>
+          <h3 class="mt-4 font-serif text-[32px] leading-tight text-ivory" {...sbFieldPath('localHeading')}>
+            {safe(hp.localHeading, 'A focused practice in Southwest Florida.')}
+          </h3>
+          <p class="mt-5 text-[15px] leading-[1.7] text-muted" {...sbFieldPath('localPara1')}>
+            {safe(hp.localPara1, 'Open Monday through Friday, 9 AM–5 PM. Walk-ins are welcome when the schedule allows; an appointment reserves your time.')}
+          </p>
+          <address class="mt-7 border-t border-ivory/20 pt-6 not-italic text-[14px] leading-[1.8] text-muted-strong">
+            {LOCAL_BUSINESS.streetAddress}<br />
+            {LOCAL_BUSINESS.addressLocality}, {LOCAL_BUSINESS.addressRegion} {LOCAL_BUSINESS.postalCode}
+          </address>
+          <div class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[13px] font-semibold">
+            <a href={BUSINESS_URLS.map} target="_blank" rel="noopener noreferrer" class="text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">Get directions</a>
+            <a href="/contact/" class="text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">Contact the practice</a>
+          </div>
         </div>
       </div>
     </section>

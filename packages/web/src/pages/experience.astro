@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import { EXPERIENCE_CONTENT_QUERY, type ExperienceContent } from '@/lib/queries';
 
@@ -45,8 +45,8 @@ const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTEN
       </div>
       <div class="relative min-h-[330px] bg-charcoal-lighter">
         <img
-          src={experienceContent?.storyImage ? urlFor(experienceContent.storyImage).width(800).height(600).fit('crop').url() : '/images/hor-lobby.webp'}
-          alt={experienceContent?.storyImage?.alt ?? 'House of Rose reception desk'}
+          src="/images/optimized/actual-reception-1400.webp"
+          alt="The reception and waiting area inside House of Rose Aesthetics"
           class="w-full h-full object-cover"
           width="800"
           height="600"

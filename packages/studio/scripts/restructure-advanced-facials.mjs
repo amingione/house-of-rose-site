@@ -71,30 +71,30 @@ const parkedServices = [
 const imageSpecs = [
   {
     key: 'hero',
-    filename: 'advanced-facials-consultation.webp',
+    filename: 'actual-reception-1400.webp',
     path: resolve(
       repoRoot,
-      'packages/web/public/images/editorial/advanced-facials/advanced-facials-consultation.webp',
+      'packages/web/public/images/optimized/actual-reception-1400.webp',
     ),
     alt: 'Advanced facial consultation at House of Rose Aesthetics in Punta Gorda',
   },
   {
     key: 'glo2facial',
-    filename: 'glo2facial-treatment.webp',
+    filename: 'glo2facial-company-600.webp',
     path: resolve(
       repoRoot,
-      'packages/web/public/images/editorial/advanced-facials/glo2facial-treatment.webp',
+      'packages/web/public/images/optimized/glo2facial-company-600.webp',
     ),
-    alt: 'Client receiving a customized Glo2Facial treatment',
+    alt: 'Glo2Facial manufacturer treatment overview',
   },
   {
     key: 'biorepeel',
-    filename: 'biorepeel-treatment.webp',
+    filename: 'biorepeel-products-800.webp',
     path: resolve(
       repoRoot,
-      'packages/web/public/images/editorial/advanced-facials/biorepeel-treatment.webp',
+      'packages/web/public/images/optimized/biorepeel-products-800.webp',
     ),
-    alt: 'Client receiving a professionally applied facial peel',
+    alt: 'BioRePeel face and body products',
   },
 ];
 

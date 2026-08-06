@@ -2,8 +2,22 @@
  * Prevent stale CMS copy from republishing business-channel details that have
  * changed more recently than the underlying Sanity documents.
  */
-export const alignPublicChannelCopy = (value: string): string =>
-	value
+export interface PublicCopyOptions {
+	/** Exact-procedure exception confirmed by the owner/provider. */
+	allowNoDowntime?: boolean;
+}
+
+const VERIFIED_NO_DOWNTIME_TOKEN = "__HOR_VERIFIED_NO_DOWNTIME__";
+
+export const alignPublicChannelCopy = (
+	value: string,
+	options: PublicCopyOptions = {},
+): string => {
+	const guardedValue = options.allowNoDowntime
+		? value.replace(/\b(?:no|zero)[- ]downtime\b/gi, VERIFIED_NO_DOWNTIME_TOKEN)
+		: value;
+
+	return guardedValue
 		.replaceAll("House of Rose LLC", "House of Rose Aesthetics LLC")
 		.replace(/call\s*(?:or|\/)\s*text/gi, "call")
 		.replace(/online booking menu/gi, "services menu")
@@ -86,7 +100,9 @@ export const alignPublicChannelCopy = (value: string): string =>
 		.replace(
 			/fully reversible results/gi,
 			"potentially adjustable results when clinically appropriate",
-		);
+		)
+		.replaceAll(VERIFIED_NO_DOWNTIME_TOKEN, "no downtime");
+};
 
 /**
  * Apply the public-channel guard to a Sanity result before it reaches a public
@@ -94,12 +110,12 @@ export const alignPublicChannelCopy = (value: string): string =>
  * records also covers Portable Text spans, SEO fields, FAQs, and referenced
  * service summaries without changing the stored source document.
  */
-export const alignPublicContent = <T>(value: T): T => {
-	if (typeof value === "string") return alignPublicChannelCopy(value) as T;
-	if (Array.isArray(value)) return value.map((item) => alignPublicContent(item)) as T;
+export const alignPublicContent = <T>(value: T, options: PublicCopyOptions = {}): T => {
+	if (typeof value === "string") return alignPublicChannelCopy(value, options) as T;
+	if (Array.isArray(value)) return value.map((item) => alignPublicContent(item, options)) as T;
 	if (value !== null && typeof value === "object") {
 		return Object.fromEntries(
-			Object.entries(value).map(([key, item]) => [key, alignPublicContent(item)]),
+			Object.entries(value).map(([key, item]) => [key, alignPublicContent(item, options)]),
 		) as T;
 	}
 	return value;

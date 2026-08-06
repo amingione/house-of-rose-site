@@ -45,7 +45,7 @@ const homepagePatch = {
   aboutPara1:
     'House of Rose is for people who want to understand their options, ask questions, and never feel rushed through a treatment.',
   aboutPara2:
-    'We look at your goals, your skin, and your comfort level before recommending a next step. AI-assisted imaging can add useful detail, while a real conversation keeps the plan grounded in what matters to you.',
+    'We look at your goals, your skin, and your comfort level before recommending a next step. Advanced imaging can add useful detail, while a real conversation keeps the plan grounded in what matters to you.',
   aboutPara3:
     "That might mean one focused service or a plan that changes over time. Either way, you'll know what we're recommending and why.",
   approachHeading: 'Advanced care, with a clear reason behind it.',
@@ -57,10 +57,10 @@ const homepagePatch = {
   servicesHeading: 'Start with what you want to improve.',
   servicesIntro:
     "You don't need to know the name of every treatment before you begin. Explore the four areas below, then we'll help you narrow the options around your goals, candidacy, and preferred recovery time.",
-  scanKicker: 'AI-Assisted Skin Analysis',
+  scanKicker: 'Advanced Skin Imaging',
   scanHeading: 'See what your skin is showing us.',
   scanPara1:
-    "If you're not sure where to start, an AI-assisted skin analysis can give us a closer look at texture, hydration, pores, pigmentation, fine lines, and visible sun exposure.",
+    "If you're not sure where to start, advanced skin imaging can give us a closer look at texture, hydration, pores, pigmentation, fine lines, and visible sun exposure.",
   scanPara2:
     "We'll review the images with you in plain language and connect what we see to the goals you share. You'll leave with a practical starting point and no pressure to book a treatment.",
   scanQuote: "Bring your questions. We'll help you make sense of the options.",
@@ -87,13 +87,13 @@ const homepagePatch = {
 };
 
 const skinAnalysisPatch = {
-  heroTitle: 'AI skin analysis gives you a clearer place to start.',
+  heroTitle: 'Advanced skin imaging gives you a clearer place to start.',
   heroDescription:
     'In-studio imaging helps us take a closer look at pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure before you choose a skin treatment.',
   heroCtaPrimaryText: 'Request a Skin Analysis',
   whatHeading: 'A closer look before you choose a treatment.',
   whatPara1:
-    'It can be hard to tell what your skin needs from the mirror alone. AI-assisted imaging gives us another way to look at pigmentation, texture, pores, hydration cues, and visible sun exposure.',
+    'It can be hard to tell what your skin needs from the mirror alone. Advanced imaging gives us another way to look at pigmentation, texture, pores, hydration cues, and visible sun exposure.',
   whatPara2:
     'We use those images to guide the conversation, not to make a diagnosis. The scan supports provider judgment and helps explain why one option may fit your goals better than another.',
   howHeading: "Here's how the visit works.",
@@ -108,7 +108,7 @@ const skinAnalysisPatch = {
       _key: 'step-analyze',
       n: '02',
       title: 'Review the details',
-      body: 'The AI-assisted analysis helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
+      body: 'Imaging under standard, cross-polarized, and UV light helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
     },
     {
       _key: 'step-plan',
@@ -128,7 +128,7 @@ const skinAnalysisPatch = {
     'Explore the concerns below to learn about common options, or bring your questions to the appointment and let us help you narrow the list.',
   ctaHeading: 'Want a closer look at your skin?',
   ctaPara:
-    "Leave your details and we'll reach out to arrange an AI-assisted skin analysis in Punta Gorda. You can review the images, ask questions, and decide what—if anything—you want to do next.",
+    "Leave your details and we'll reach out to arrange advanced skin imaging in Punta Gorda. You can review the images, ask questions, and decide what—if anything—you want to do next.",
   ctaPrimaryText: 'Request a Skin Analysis',
   faqs: [
     {
@@ -138,7 +138,7 @@ const skinAnalysisPatch = {
     },
     {
       _key: 'faq-what-looks-for',
-      q: 'What does the AI skin scanner look for?',
+      q: 'What does the skin imaging show?',
       a: 'The scanner helps evaluate visible and subsurface patterns such as pigmentation, sun exposure, pores, texture, fine lines, hydration cues, and overall skin quality. Your provider reviews the results for treatment planning; the scan is not a medical diagnosis.',
     },
     {
@@ -153,7 +153,7 @@ const skinAnalysisPatch = {
     },
     {
       _key: 'faq-uncomfortable',
-      q: 'Is AI skin analysis uncomfortable?',
+      q: 'Is skin imaging uncomfortable?',
       a: 'No. It is non-invasive, with no needles and no downtime. We take the images, review them with you, and explain what the analysis may mean for your options.',
     },
     {

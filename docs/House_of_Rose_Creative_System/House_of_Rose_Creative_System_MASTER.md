@@ -2,8 +2,9 @@
 
 ## Complete Operating Manual
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Issued:** July 30, 2026  
+**Last updated:** August 6, 2026 — homepage introduction line rewritten (see §6)  
 **Positioning:** Medical Aesthetics Practice  
 **Includes:** Brand, copy, profiles, visuals, AI, marketing, and approval
 
@@ -986,7 +987,7 @@ Use one owned or stable destination that clearly separates:
 
 ### Homepage introduction
 
-Individualized facial, body, skin, injectable, and wellness care planned through consultation, assessment, clinical judgment, and long-term follow-through.
+A treatment plan built around your skin and your goals — explained in plain language, assessed by a provider, and followed through long after your first visit.
 
 ### Homepage support line
 

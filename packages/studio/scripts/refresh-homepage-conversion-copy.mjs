@@ -54,31 +54,31 @@ const copy = {
       name: 'Skin Renewal & Device Treatments',
       description:
         'Explore microneedling, PRF, BioRePeel, radiofrequency, and IPL options by concern and recovery preference.',
-      imagePath: '/images/editorial/home/regenerative-skin-treatments.webp',
+      imagePath: '/images/optimized/procell-house-of-rose-800.webp',
     },
     {
       _key: 'sg2',
       name: 'Injectables & Structural Enhancements',
       description:
         'Learn about neurotoxins, dermal fillers, PRF under-eye options, and EZ Gel through a consultation-led approach.',
-      imagePath: '/images/editorial/home/injectables-consultation.webp',
+      imagePath: '/images/optimized/actual-reception-1400.webp',
     },
     {
       _key: 'sg3',
       name: 'Skin Health & Corrective Care',
       description:
         'Start with Face Reality acne care, Glo2Facial, dermaplaning, and guidance based on what your skin is showing today.',
-      imagePath: '/images/editorial/home/skin-health-analysis.webp',
+      imagePath: '/images/optimized/glo2facial-company-600.webp',
     },
     {
       _key: 'sg4',
       name: 'Wellness & Performance Support',
       description:
         'Review IV hydration and provider-guided weight-management services that may support a broader care plan.',
-      imagePath: '/images/editorial/home/wellness-iv-hydration.webp',
+      imagePath: '/images/optimized/actual-iv-suite-1400.webp',
     },
   ],
-  scanKicker: 'AI-assisted skin analysis',
+  scanKicker: 'Advanced skin imaging',
   scanHeading: 'See what your skin is showing today.',
   scanPara1:
     'A skin analysis can support a closer look at visible texture, hydration, pores, pigmentation, fine lines, and sun exposure.',

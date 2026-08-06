@@ -51,7 +51,7 @@ A light (superficial) chemical peel is a gentle, professional resurfacing treatm
 ## 4. The visit
 
 **Protocol (typical superficial-peel flow — final protocol is the provider's):**
-1. **Consultation & skin analysis** — history, contraindication screen, and goals; the provider selects formula (enzyme vs. AHA vs. BHA), acid, and strength for your skin. (House of Rose leads with AI skin analysis as the smart first step.)
+1. **Consultation & skin analysis** — history, contraindication screen, and goals; the provider selects formula (enzyme vs. AHA vs. BHA), acid, and strength for your skin. (House of Rose leads with advanced skin imaging as the smart first step.)
 2. **Double cleanse & prep/degrease** — removes oil and residue so the peel acts evenly.
 3. **Peel application** — the solution is applied in timed layers and closely monitored; you may feel warmth, mild tingling, or slight stinging that fades. Enzyme masks feel more like a warm, comfortable mask.
 4. **Neutralize / remove** — AHA peels are neutralized or timed off; enzymes are rinsed.
@@ -199,7 +199,7 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 ## 12. Why House of Rose
 
 - **A real, honest ladder — not a hard sell.** House of Rose offers the full exfoliation spectrum under one roof, from Brandy's gentle enzyme/light peels to Amber's advanced BioRePeel and needling — so the light peel is presented as the *right* rung for maintenance-tier goals, and clients are pointed up the ladder only when they genuinely need it.
-- **Provider-matched formula selection.** The acid/enzyme, strength, and whether a peel is even the right tool are chosen by a licensed provider after AI skin analysis — not off a menu — which matters most for sensitive and melanin-rich skin.
+- **Provider-matched formula selection.** The acid/enzyme, strength, and whether a peel is even the right tool are chosen by a licensed provider after advanced skin imaging — not off a menu — which matters most for sensitive and melanin-rich skin.
 - **Retail continuity that actually extends results.** We carry the aligned professional home-care (Skin Script, GlyMed+) so the in-studio peel and the at-home routine reinforce each other — with daily SPF as the anchor.
 - **Locally grounded, honestly.** In Punta Gorda / Charlotte County / Southwest Florida's year-round sun, a light peel positioned as gentle maintenance + disciplined sun protection is an honest, relevant fit — never overclaimed as "treating" or "reversing" sun damage.
 - **Calm, private, and unhurried.** Walk-ins are welcome, appointments are recommended to reserve a time, and the light peel doubles as a genuinely relaxing maintenance facial — glow you can feel, delivered with restraint. Individual outcomes vary; not every client is a candidate for every service.

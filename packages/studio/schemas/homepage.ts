@@ -16,7 +16,7 @@ export const homepage = defineType({
     { name: 'about', title: 'About' },
     { name: 'approach', title: 'Approach' },
     { name: 'services', title: 'Services' },
-    { name: 'scan', title: 'AI Skin Analysis' },
+    { name: 'scan', title: 'Advanced Skin Imaging' },
     { name: 'homecare', title: 'Home Care' },
     { name: 'experience', title: 'Experience' },
     { name: 'local', title: 'Local' },
@@ -74,7 +74,7 @@ export const homepage = defineType({
     }),
     defineField({ name: 'servicesCtaText', title: 'CTA Text', type: 'string', group: 'services' }),
 
-    // ── AI Skin Analysis ──
+    // ── Advanced Skin Imaging ──
     defineField({ name: 'scanKicker', title: 'Kicker', type: 'string', group: 'scan' }),
     defineField({ name: 'scanHeading', title: 'Heading', type: 'string', group: 'scan' }),
     defineField({ name: 'scanPara1', title: 'Paragraph 1', type: 'text', rows: 3, group: 'scan' }),

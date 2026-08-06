@@ -43,7 +43,7 @@
 
 - Show what the scan reviews and what it cannot diagnose.
 - Explain the provider's role in candidacy and sequencing.
-- Reuse the FAQ “Is AI Skin Analysis a medical diagnosis?”
+- Reuse the FAQ “Is Advanced Skin Imaging & Analysis a medical diagnosis?”
 
 ### Week 3 — Compare suitable paths
 
@@ -131,7 +131,7 @@ Track these 25 terms on mobile and desktop for the Houseofrosefl project:
 6. med spa port charlotte
 7. skin consultation punta gorda
 8. skin analysis punta gorda
-9. ai skin analysis punta gorda
+9. advanced skin imaging punta gorda
 10. Procell microchanneling
 11. Procell microchanneling punta gorda
 12. Procell microchanneling port charlotte

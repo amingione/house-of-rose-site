@@ -11,7 +11,7 @@
 
 **Leads now (top of page):** the regenerative method — skin analysis as the smart first step, then regenerative treatments (PRF, collagen induction) and conservative injectables, tied together as a *plan*.
 **Stays, demoted below the fold:** the full services grid, curated home care/shop, local-authority section, providers, final CTA. Nothing is removed — the breadth is still there for people who want it; it just no longer competes with the differentiator on the first screen.
-**Untouched:** NAP, hours, JSON-LD, forms, the AI Skin Analysis section's substance (it moves *up*, it doesn't change what it is).
+**Untouched:** NAP, hours, JSON-LD, forms, the Advanced Skin Imaging section's substance (it moves *up*, it doesn't change what it is).
 
 ---
 
@@ -46,7 +46,7 @@
 ## Proposed first-screen order
 
 1. **Hero** (above) — regenerative method + natural results.
-2. **The smart first step — AI Skin Analysis** (moved up from mid-page). This is the differentiator's entry point, so it should be the first thing after the hero.
+2. **The smart first step — Advanced Skin Imaging** (moved up from mid-page). This is the differentiator's entry point, so it should be the first thing after the hero.
 3. **Why regenerative** — the PRF / collagen-induction focus, framed as a philosophy of doing less, better.
 4. **Full menu** — the existing services grid (injectables, facials, wellness, waxing, jewelry). Present, complete, second.
 5. **Your providers** — the small, named, credentialed team (trust asset).
@@ -58,7 +58,7 @@
 
 ## Section copy
 
-### 2 · The smart first step (AI Skin Analysis — moves up)
+### 2 · The smart first step (Advanced Skin Imaging — moves up)
 **Kicker:** Start With Your Skin
 **H2:** See your skin before you treat it
 **Body:**

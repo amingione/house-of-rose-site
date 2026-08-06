@@ -13,6 +13,7 @@ import {
 import {
   getCollectionFallbackImage,
   getCuratedServiceImage,
+  getCuratedServiceImageAlt,
   getInModeDeviceImage,
   getServiceFallbackImage,
 } from '@/lib/imageFallbacks';
@@ -32,14 +33,10 @@ if (!collectionData) {
   throw new Error(`[collections/[collection]] No collection found in Sanity for slug "${slug}"`);
 }
 const collection = alignPublicContent(collectionData);
-const collectionImage = collection.image
-  ? urlFor(collection.image).width(1600).height(685).fit('crop').url()
-  : getCollectionFallbackImage(collection.slug);
+const collectionImage = getCollectionFallbackImage(collection.slug);
 const isEditorial = collection.presentation === 'editorial';
-const editorialHeroImage = collection.image
-  ? urlFor(collection.image).width(1536).height(1024).fit('crop').url()
-  : collection.slug === 'advanced-facials'
-    ? '/images/editorial/advanced-facials/advanced-facials-consultation.webp'
+const editorialHeroImage = collection.slug === 'advanced-facials'
+    ? '/images/optimized/actual-reception-1400.webp'
     : collectionImage;
 const editorialDefaults = {
   headline: 'Advanced facials, customized to your skin',
@@ -53,14 +50,14 @@ const editorialDefaults = {
     'Call House of Rose and tell us what you want to improve. We will help you choose a sensible next step.',
 };
 const editorialFallbackImages: Record<string, string> = {
-  glo2facial: '/images/editorial/advanced-facials/glo2facial-treatment.webp',
-  biorepeel: '/images/editorial/advanced-facials/biorepeel-treatment.webp',
+  glo2facial: '/images/optimized/glo2facial-company-600.webp',
+  biorepeel: '/images/optimized/biorepeel-products-800.webp',
 };
 const editorialFallbackSummaries: Record<string, string> = {
   glo2facial:
     'Oxygenation, exfoliation, and infusion for visible hydration and healthier-looking skin with little interruption to your day.',
   biorepeel:
-    'A minimal-downtime resurfacing peel selected for visible tone, texture, and clarity.',
+    'A provider-selected resurfacing peel considered for visible tone, texture, and clarity.',
 };
 const editorialFeatures = collection.featuredServices?.filter((item) => item.service) ?? [];
 const featuredStartingPoints: NonNullable<ServiceCollection['featuredServices']> = editorialFeatures.length > 0
@@ -154,7 +151,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
         <div class="editorial-hero__media">
           <img
             src={editorialHeroImage}
-            alt={collection.image?.alt ?? 'Advanced facial consultation at House of Rose Aesthetics'}
+            alt="The reception and waiting area inside House of Rose Aesthetics"
             width={1536}
             height={1024}
             class="h-full w-full object-cover"
@@ -171,15 +168,18 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
 
           <div class="editorial-treatments">
             {featuredStartingPoints.map((item, index) => {
-              const itemImage = item.image
+              const curatedItemImage = getCuratedServiceImage(item.service.slug);
+              const itemImage = curatedItemImage ?? (item.image
                 ? urlFor(item.image).width(900).height(1125).fit('crop').url()
-                : editorialFallbackImages[item.service.slug] ?? getServiceFallbackImage(item.service.slug);
+                : editorialFallbackImages[item.service.slug] ?? getServiceFallbackImage(item.service.slug));
               return (
                 <article class="editorial-treatment">
                   <div class="editorial-treatment__media">
                     <img
                       src={itemImage}
-                      alt={item.image?.alt ?? `${item.service.title} treatment at House of Rose Aesthetics`}
+                      alt={curatedItemImage
+                        ? getCuratedServiceImageAlt(item.service.slug)
+                        : item.image?.alt ?? `${item.service.title} treatment at House of Rose Aesthetics`}
                       width={900}
                       height={1125}
                       decoding="async"
@@ -247,7 +247,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
       <section class="editorial-closing">
         <div class="editorial-closing__media" aria-hidden="true">
           <img
-            src="/images/editorial/advanced-facials/house-of-rose-lounge.webp"
+            src="/images/optimized/actual-welcome-1400.webp"
             alt=""
             width={960}
             height={720}
@@ -297,7 +297,7 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
       <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
         <img
           src={collectionImage}
-          alt={collection.image?.alt ?? collection.title}
+          alt={collection.title}
           width={1600}
           height={685}
           class="w-full h-full object-cover"
@@ -327,7 +327,9 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
             ]}>
                 <img
                   src={inModeDeviceImage ?? curatedImage ?? (svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug))}
-                  alt={inModeDeviceImage || curatedImage ? svc.title : svc.image?.alt ?? svc.title}
+                  alt={inModeDeviceImage || curatedImage
+                    ? getCuratedServiceImageAlt(svc.slug)
+                    : svc.image?.alt ?? svc.title}
                   width={600}
                   height={400}
                   loading="lazy"

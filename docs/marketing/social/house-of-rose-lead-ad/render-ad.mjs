@@ -39,7 +39,7 @@ const overlay = `
   <text x="103" y="505" class="display" font-size="94" fill="#14110F">Plan with clarity.</text>
 
   <text x="108" y="605" class="sans" font-size="20" font-weight="700" letter-spacing="2.5" fill="#3F4D3A">COMPLIMENTARY CONSULTATION</text>
-  <text x="108" y="640" class="sans" font-size="20" font-weight="700" letter-spacing="2.5" fill="#3F4D3A">+ AI SKIN ANALYSIS</text>
+  <text x="108" y="640" class="sans" font-size="20" font-weight="700" letter-spacing="2.5" fill="#3F4D3A">+ ADVANCED SKIN IMAGING</text>
 
   <text x="108" y="715" class="sans" font-size="21" letter-spacing="0.5" fill="#2D2822">A thoughtful first step before</text>
   <text x="108" y="747" class="sans" font-size="21" letter-spacing="0.5" fill="#2D2822">you choose a treatment.</text>

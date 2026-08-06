@@ -120,7 +120,7 @@ const patches = [
           _key: 'start',
           _type: 'faq',
           question: 'Where should I start if I am unsure which service fits?',
-          answer: 'Begin with a consultation or AI-assisted skin analysis. House of Rose reviews your goals, relevant history, timing, recovery preferences, and candidacy before recommending a next step.',
+          answer: 'Begin with a consultation or advanced skin imaging. House of Rose reviews your goals, relevant history, timing, recovery preferences, and candidacy before recommending a next step.',
         },
       ],
       seo: {

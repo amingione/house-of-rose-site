@@ -1,4 +1,4 @@
-# Facebook / Instagram Ad Campaign — Microchanneling → AI Skin Analysis
+# Facebook / Instagram Ad Campaign — Microchanneling → Advanced Skin Imaging
 
 **Business:** House of Rose Aesthetics · 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 · (844) 941‑7673
 **Provider:** Amber (Aesthetician + RN assistant) — Advanced Facials lane
@@ -20,7 +20,7 @@
 
 **The strategic insight:** In a market this age-weighted, competitors sell *treatments*. Everyone runs "20% off microneedling." That's a commodity race.
 
-We sell **certainty**. The AI Skin Analysis is the wedge: it's non-invasive, no needles, no downtime, no commitment — the lowest-friction "yes" you can ask of a 65-year-old who has been burned by a med spa before and does not want to be sold to. It converts an expensive, scary decision ("do I let someone put needles in my face?") into a free, safe one ("let a scanner tell me what my skin actually needs").
+We sell **certainty**. Advanced Skin Imaging & Analysis is the wedge: it's non-invasive, no needles, no downtime, no commitment — the lowest-friction "yes" you can ask of a 65-year-old who has been burned by a med spa before and does not want to be sold to. It converts an expensive, scary decision ("do I let someone put needles in my face?") into a free, safe one ("let a scanner tell me what my skin actually needs").
 
 Then the analysis *sells the microchanneling for us* — because when the imaging shows the pigment and texture data on screen, the treatment recommendation stops being a pitch and starts being a read-out.
 
@@ -58,7 +58,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 >
 > There's a better first step.
 >
-> At House of Rose Aesthetics, we start with an **AI Skin Analysis** — in-studio imaging that reads what's actually happening beneath the surface: pigmentation, texture, pores, fine lines, hydration, and years of Florida sun.
+> At House of Rose Aesthetics, we start with **Advanced Skin Imaging & Analysis** — in-studio imaging that reads what's actually happening beneath the surface: pigmentation, texture, pores, fine lines, hydration, and years of Florida sun.
 >
 > No needles. No downtime. No pressure.
 >
@@ -71,7 +71,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 > 📍 525 E Olympia Ave, Unit 9 · Punta Gorda
 > 📞 (844) 941‑ROSE
 
-**Headline:** `See What Your Skin Actually Needs — Free AI Skin Analysis`
+**Headline:** `See What Your Skin Actually Needs — Free Skin Imaging`
 **Description:** `Punta Gorda · No needles, no downtime, no commitment. Book your scan.`
 **CTA button:** `Book Now`
 **Link:** `https://houseofrosefl.com/skin-analysis/`
@@ -83,7 +83,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 **Primary text:**
 > Nobody moves to Southwest Florida for the weather and then escapes what it does to their skin.
 >
-> Decades of sun leave a record — pigment, texture change, thinning, laxity. You can see some of it in the mirror. **An AI Skin Analysis sees the rest.**
+> Decades of sun leave a record — pigment, texture change, thinning, laxity. You can see some of it in the mirror. **Advanced skin imaging sees the rest.**
 >
 > It's non-invasive imaging that maps sun damage, pigmentation, pores, hydration and fine lines, so your treatment plan starts with facts — not a guess and a credit card.
 >
@@ -96,7 +96,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 > House of Rose Aesthetics — Punta Gorda
 
 **Headline:** `Florida Sun Leaves a Record. We Can Read It.`
-**Description:** `AI Skin Analysis + Procell Microchanneling · Punta Gorda, FL`
+**Description:** `Advanced Skin Imaging + Procell Microchanneling · Punta Gorda, FL`
 **CTA button:** `Learn More`
 
 ---
@@ -106,13 +106,13 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 **Primary text:**
 > Your skin already knows what it needs. Now you can too.
 >
-> AI Skin Analysis at House of Rose — advanced imaging that reads pigmentation, texture, pores and fine lines in minutes. No needles. No downtime.
+> Advanced Skin Imaging at House of Rose — multi-spectrum imaging that reads pigmentation, texture, pores and fine lines in minutes. No needles. No downtime.
 >
 > Then we build the plan. Usually it starts with Procell Microchanneling — collagen rebuilt from the inside out.
 >
 > Punta Gorda. Book your scan. 🌹
 
-**Headline:** `Free AI Skin Analysis — Punta Gorda`
+**Headline:** `Free Advanced Skin Imaging — Punta Gorda`
 **Description:** `Know before you spend.`
 **CTA button:** `Book Now`
 
@@ -123,7 +123,7 @@ Campaign: HoR — Skin Analysis Lead Gen (Objective: Leads)
 **Primary text:**
 > Still thinking about it?
 >
-> The AI Skin Analysis isn't a treatment — it's a read-out. Fifteen minutes, no needles, no downtime, no obligation to book anything afterward.
+> Advanced skin imaging isn't a treatment — it's a read-out. Fifteen minutes, no needles, no downtime, no obligation to book anything afterward.
 >
 > You'll leave knowing exactly what your skin needs, in what order, and what it costs. Whether you do it with us or not.
 >
@@ -163,7 +163,7 @@ Aesthetics ads get rejected constantly. These are the trip-wires:
 
 | Step | What they get | Price |
 |---|---|---|
-| **1. Hook** | AI Skin Analysis | **Free** (or $50, credited toward first treatment — see note) |
+| **1. Hook** | Advanced Skin Imaging | **Free** (or $50, credited toward first treatment — see note) |
 | **2. Core conversion** | Procell Microchanneling — Pro (Face) | **$299** |
 | **3. Trade-up** | Procell Microchanneling — MD (Face) | **$349** |
 | **4. Premium** | Procell MD — Face + Neck + Décolleté | **$449** |

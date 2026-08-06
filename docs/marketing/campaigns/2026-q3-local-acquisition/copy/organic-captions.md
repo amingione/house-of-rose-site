@@ -8,7 +8,7 @@ House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda. Begin 
 
 ### Consultation
 
-See your skin first. Our AI-assisted skin consultation gives your provider a clearer baseline for discussing texture, pigmentation, pores, hydration cues, and signs of sun exposure. The consultation is complimentary and pressure-free. House of Rose Aesthetics, 525 E Olympia Ave, Unit 9, Punta Gorda.
+See your skin first. Our advanced skin imaging gives your provider a clearer baseline for discussing texture, pigmentation, pores, hydration cues, and signs of sun exposure. The consultation is complimentary and pressure-free. House of Rose Aesthetics, 525 E Olympia Ave, Unit 9, Punta Gorda.
 
 ### Advanced skin
 
@@ -34,7 +34,7 @@ Begin with a complimentary skin consultation. Link in bio or call (844) 941-7673
 
 See your skin before choosing a treatment.
 
-AI-assisted imaging gives us a clearer baseline. Your goals, candidacy, and preferences complete the picture. The consultation is complimentary, private, and pressure-free.
+Advanced imaging gives us a clearer baseline. Your goals, candidacy, and preferences complete the picture. The consultation is complimentary, private, and pressure-free.
 
 Begin with a skin consultation at House of Rose Aesthetics in Punta Gorda.
 
@@ -94,7 +94,7 @@ Hello, neighbors. House of Rose Aesthetics is a medical aesthetics practice at 5
 ### Consultation
 
 - **Title:** See Your Skin First | House of Rose
-- **Description:** AI-assisted imaging can give your provider a clearer baseline before treatment choices. Request a complimentary skin consultation in Punta Gorda. No pressure and no commitment.
+- **Description:** Advanced imaging can give your provider a clearer baseline before treatment choices. Request a complimentary skin consultation in Punta Gorda. No pressure and no commitment.
 
 ### Advanced skin
 

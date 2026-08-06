@@ -4,7 +4,13 @@ import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
 import BookingLink from '@/components/BookingLink.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
-import { getCuratedServiceImage, getServiceFallbackImage, getServiceResultImages } from '@/lib/imageFallbacks';
+import {
+  getCuratedServiceImage,
+  getCuratedServiceImageAlt,
+  getServiceFallbackImage,
+  getServiceResultImages,
+  serviceImageUsesContain,
+} from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
@@ -31,13 +37,17 @@ if (!serviceData) {
   throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
 }
 
-const service: Service = alignPublicContent(serviceData);
+const service: Service = alignPublicContent(serviceData, {
+  allowNoDowntime: slug === 'glo2facial',
+});
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
 const curatedImage = slug ? getCuratedServiceImage(slug) : undefined;
+const curatedImageAlt = slug ? getCuratedServiceImageAlt(slug) : service.image?.alt ?? service.title;
+const containHeroImage = slug ? serviceImageUsesContain(slug) : false;
 const socialImage = curatedImage
   ? new URL(curatedImage, site).toString()
   : service.image?.asset
@@ -47,11 +57,12 @@ const socialImage = curatedImage
     : undefined;
 const heroImage = curatedImage ?? (service.image?.asset
   ? urlFor(service.image).width(1600).height(1200).fit('crop').auto('format').url()
-  : fallbackImage ?? '/images/hor-lobby.webp');
+  : fallbackImage ?? '/images/optimized/actual-reception-1400.webp');
 const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
 
-// Face Reality clinical before/after proof — only populated for the acne-program pages.
+// Approved brand or House of Rose result photography, populated only where documented.
 const resultImages = slug ? getServiceResultImages(slug) : [];
+const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'face-reality-acne-treatment'].includes(slug ?? '');
 
 const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
@@ -149,12 +160,15 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       <figure class="relative min-h-[420px] overflow-hidden bg-limestone lg:min-h-full">
         <img
           src={heroImage}
-          alt={curatedImage ? `${service.title} at House of Rose Aesthetics` : service.image?.alt ?? `${service.title} at House of Rose Aesthetics`}
+          alt={curatedImage ? curatedImageAlt : service.image?.alt ?? `${service.title} at House of Rose Aesthetics`}
           width="1600"
           height="1200"
           fetchpriority="high"
           decoding="async"
-          class="absolute inset-0 h-full w-full object-cover"
+          class:list={[
+            'absolute inset-0 h-full w-full',
+            containHeroImage ? 'object-contain p-8 sm:p-12' : 'object-cover',
+          ]}
         />
       </figure>
     </div>
@@ -294,7 +308,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Gallery</span>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {galleryImages.map((img) => (
             <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
               <img
@@ -313,27 +327,31 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
-  <!-- Face Reality clinical results (acne-program pages only) -->
+  <!-- Approved brand or House of Rose result photography -->
   {resultImages.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">Clinical Results</span>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-2">Results</span>
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mb-3">
-          The Face Reality Clear Skin Method
+          {hasFaceRealityResults ? 'The Face Reality Clear Skin Method' : `${service.title} before and after`}
         </h2>
         <p class="text-muted text-[14px] leading-relaxed max-w-[680px] mb-10">
-          Unretouched Week&nbsp;1 to Week&nbsp;16 results from the Face Reality clinical
-          study — the same customized professional and home-care method used in-studio.
-          Individual results vary with adherence to protocol.
+          {hasFaceRealityResults
+            ? 'Unretouched Week 1 to Week 16 results from the Face Reality clinical study. Individual results vary with adherence to protocol.'
+            : 'House of Rose before-and-after photography. Lighting, angle, timing, skin condition, and individual response can affect visible change.'}
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class:list={[
+          resultImages.length === 1
+            ? 'mx-auto w-full max-w-[960px]'
+            : 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3',
+        ]}>
           {resultImages.map((img) => (
             <figure class="bg-ivory border border-gold-metal/20 overflow-hidden">
               <img
                 src={img.src}
                 alt={img.alt}
-                width="1080"
-                height="1350"
+                width={img.width ?? 1080}
+                height={img.height ?? 1350}
                 loading="lazy"
                 decoding="async"
                 class="w-full h-auto"
@@ -341,9 +359,11 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
             </figure>
           ))}
         </div>
-        <p class="text-muted/70 text-[11px] tracking-[0.14em] uppercase mt-6">
-          Images © Face Reality Skincare · Clear Skin Method™ clinical study
-        </p>
+        {hasFaceRealityResults && (
+          <p class="text-muted/70 text-[11px] tracking-[0.14em] uppercase mt-6">
+            Images © Face Reality Skincare · Clear Skin Method™ clinical study
+          </p>
+        )}
       </div>
     </section>
   )}

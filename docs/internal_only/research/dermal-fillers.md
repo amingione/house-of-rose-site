@@ -114,7 +114,7 @@ Map to existing `/concerns/` slugs and propose new ones:
 - **PRF / EZ Gel** — natural collagen support alongside or instead of HA, especially under-eye.
 - **Skin-quality treatments** (Amber's lane) — microchanneling, Glo2Facial, BioRePeel improve tone/texture that filler can't touch; a well-rounded plan does both. Generally do resurfacing on a separate visit from injections, not the same day (Diana/Amber sequence it).
 
-**What to try first.** For someone new and unsure, the **AI Skin Analysis** (`/skin-analysis/`) plus consultation is the smart entry — it maps concerns to the right lane (volume vs. muscle vs. texture) before anything is injected. If the concern is "my face looks tired / deflated," filler consultation is the path; if it's "lines when I move," start with the neurotoxin conversation.
+**What to try first.** For someone new and unsure, **Advanced Skin Imaging & Analysis** (`/skin-analysis/`) plus consultation is the smart entry — it maps concerns to the right lane (volume vs. muscle vs. texture) before anything is injected. If the concern is "my face looks tired / deflated," filler consultation is the path; if it's "lines when I move," start with the neurotoxin conversation.
 
 **Retail follow-through (actual House of Rose shop brands).** Support the skin around an injectable result:
 - **Post-procedure calm & recovery:** GlyMed+ **Recovery Cream with Arnica**, GlyMed+ **Comfort Cream with Aloe Vera**, Skin Recovery Mist.
@@ -245,7 +245,7 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 
 - **Natural-result philosophy, on purpose.** House of Rose leads with restore-don't-distort: conservative dosing, movement-preserving product choice (the RHA Collection flexes with your expressions), and a "you can always add" approach — not the overfilled look.
 - **A registered nurse, under medical-director oversight.** Filler here is placed by **Diana, RN**, in a private, unhurried studio — with the training that matters most where facial vessels are, and with HA's reversibility (hyaluronidase) as a built-in safety net. Walk-ins are welcome when the schedule has room; that's a real differentiator over assembly-line injectable clinics.
-- **The whole face, honestly mapped.** Because House of Rose also offers neurotoxin, PRF/EZ-Gel, and advanced skin treatments, Diana can tell you when filler *isn't* the answer (under-eyes, texture, muscle-driven lines) instead of selling a syringe by default. The AI Skin Analysis backs that up with evidence before anything's injected.
+- **The whole face, honestly mapped.** Because House of Rose also offers neurotoxin, PRF/EZ-Gel, and advanced skin treatments, Diana can tell you when filler *isn't* the answer (under-eyes, texture, muscle-driven lines) instead of selling a syringe by default. Advanced skin imaging backs that up with evidence before anything's injected.
 - **Local grounding.** Punta Gorda / Charlotte County / Southwest Florida, private and unhurried, open since June 15, 2026 — with SPF and barrier support built into the aftercare because SW Florida sun is part of the plan.
 - **No memberships, no gimmicks.** Straightforward per-syringe investment, provider-led candidacy, no tiers or "deals."
 

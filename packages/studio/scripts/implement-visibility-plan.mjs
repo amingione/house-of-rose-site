@@ -253,7 +253,7 @@ const supportingDocuments = [
     slug: slug('port-charlotte'),
     city: 'Port Charlotte',
     region: 'Charlotte County, FL',
-    intro: 'House of Rose Aesthetics serves Port Charlotte clients from its advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. Clients visit for AI Skin Analysis, Procell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
+    intro: 'House of Rose Aesthetics serves Port Charlotte clients from its advanced aesthetics and wellness studio at 525 E Olympia Ave, Unit 9 in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. Clients visit for Advanced Skin Imaging & Analysis, Procell Microchanneling, topical PRF, Glo2Facial, dermaplaning, injectables, and wellness services.',
     whyLocal: 'House of Rose is located in downtown Punta Gorda, not in Port Charlotte. The studio serves clients from across Charlotte County with thoughtful consultations, individualized treatment planning, and clear preparation and aftercare guidance.',
     servedServices: [
       ref('f5308b9c-73df-4812-8c0d-afcf4ee5839a', 'microneedling'),
@@ -264,28 +264,28 @@ const supportingDocuments = [
     neighborhoods: ['Charlotte Harbor', 'Murdock', 'Deep Creek', 'Harbour Heights'],
     faqs: [
       faq('location', 'Is House of Rose located in Port Charlotte?', 'No. House of Rose is located at 525 E Olympia Ave, Unit 9 in Punta Gorda and serves clients who travel from Port Charlotte and surrounding Charlotte County communities.'),
-      faq('start', 'Where should a Port Charlotte client start?', 'If you are unsure which skin service fits, begin with AI Skin Analysis and a provider-reviewed consultation at the Punta Gorda studio.'),
+      faq('start', 'Where should a Port Charlotte client start?', 'If you are unsure which skin service fits, begin with Advanced Skin Imaging & Analysis and a provider-reviewed consultation at the Punta Gorda studio.'),
       faq('book', 'How do I schedule from Port Charlotte?', 'Review the current services menu or call (844) 941-7673. The team can help you choose an appropriate consultation or service.'),
     ],
     seo: {
       _type: 'seo',
       metaTitle: 'Advanced Aesthetics Near Port Charlotte, FL',
-      metaDescription: 'Port Charlotte clients visit House of Rose in Punta Gorda for AI Skin Analysis, Procell, topical PRF, facials, injectables, and wellness.',
+      metaDescription: 'Port Charlotte clients visit House of Rose in Punta Gorda for Advanced Skin Imaging & Analysis, Procell, topical PRF, facials, injectables, and wellness.',
     },
     orderRank: 20,
   },
 ];
 
 const skinAnalysisPatch = {
-  seoTitle: 'AI Skin Analysis in Punta Gorda, FL',
-  seoDescription: 'See your skin first with AI-assisted imaging and a provider-reviewed consultation at House of Rose in Punta Gorda. Build a clearer treatment plan.',
+  seoTitle: 'Advanced Skin Imaging & Analysis in Punta Gorda, FL',
+  seoDescription: 'See your skin first with advanced multi-spectrum imaging and a provider-reviewed consultation at House of Rose in Punta Gorda. Build a clearer treatment plan.',
   heroKicker: 'See Your Skin First · Punta Gorda',
   heroTitle: 'See your skin before choosing a treatment.',
-  heroDescription: 'AI-assisted imaging gives you and your provider a clearer view of visible skin patterns, followed by a consultation that turns the images into an individualized plan.',
+  heroDescription: 'Advanced multi-spectrum imaging gives you and your provider a clearer view of visible skin patterns, followed by a consultation that turns the images into an individualized plan.',
   heroCtaPrimaryText: 'Begin With a Skin Consultation',
   ctaKicker: 'See Your Skin First',
   ctaHeading: 'Begin with a clearer view of your skin.',
-  ctaPara: 'Share your details and our team will follow up during business hours to arrange your AI Skin Analysis and provider-reviewed consultation in Punta Gorda.',
+  ctaPara: 'Share your details and our team will follow up during business hours to arrange your advanced skin imaging session and provider-reviewed consultation in Punta Gorda.',
   ctaPrimaryText: 'Begin With a Skin Consultation',
   concernLinks: [
     { _key: 'fine-lines', title: 'Fine Lines & Laxity', slug: 'fine-lines-laxity' },

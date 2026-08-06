@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
 /**
- * Singleton for the AI Skin Analysis page (/skin-analysis) — migrated from the
+ * Singleton for the Advanced Skin Imaging & Analysis page (/skin-analysis) — migrated from the
  * hardcoded skin-analysis.astro so all copy is editable in the Studio + Netlify
  * Visual Editor. Section background/feature images stay as static asset paths in
  * the template. The concern-link slugs are fixed routes and stay in the template;
@@ -9,7 +9,7 @@ import { defineField, defineType } from 'sanity';
  */
 export const skinAnalysis = defineType({
   name: 'skinAnalysis',
-  title: 'AI Skin Analysis Page',
+  title: 'Advanced Skin Imaging & Analysis Page',
   type: 'document',
   __experimental_actions: ['update', 'publish'],
   groups: [
@@ -131,5 +131,5 @@ export const skinAnalysis = defineType({
     defineField({ name: 'ctaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'cta' }),
     defineField({ name: 'ctaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'cta' }),
   ],
-  preview: { prepare: () => ({ title: 'AI Skin Analysis Page Content' }) },
+  preview: { prepare: () => ({ title: 'Advanced Skin Imaging & Analysis Page Content' }) },
 });

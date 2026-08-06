@@ -43,8 +43,14 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
   **Stale = anything presenting any of them as a current offering.**
 - **Botanical names — dead:** Lily, Iris, Hydrangea, Magnolia, Porcelain Petal, Gilded Lily, Lumière,
   Camellia Peel, Clarity Session. Use plain, searchable names.
-- **AI Skin Analysis = the client draw-in** — hero CTA + main-nav item + lead-capture form on
-  `/skin-analysis/`. Keep and feature it.
+- **Advanced Skin Imaging & Analysis = the client draw-in** — hero CTA + main-nav item +
+  lead-capture form on `/skin-analysis/`. Keep and feature it.
+- **AI framing — RETIRED (2026-08-06):** the service is **Advanced Skin Imaging & Analysis**. We lead
+  with the multi-spectrum imaging (standard / cross-polarized / UV), not the AI. → **Stale = "AI Skin
+  Analysis," "AI-assisted," "AI skin scanner," "AI scan," "AI-powered" anywhere in client-facing copy,
+  Sanity content, ad units, or an AI instruction.** The device's manufacturer name — **M17 AI Skin
+  Analyzer** — is factually correct and may stay in *internal* device references; it is not the service
+  name and never appears in public copy. The URL `/skin-analysis/` is unchanged (no 301 needed).
 
 ## Done (history — no action)
 

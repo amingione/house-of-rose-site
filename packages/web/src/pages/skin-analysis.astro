@@ -85,10 +85,10 @@ const SKIN_ANALYSIS_QUERY = `*[_type == "skinAnalysis"][0]{
 const data = (await sanityFetch<SkinAnalysis | null>(SKIN_ANALYSIS_QUERY)) ?? ({} as SkinAnalysis);
 
 const pageTitle =
-  data.seoTitle ?? 'AI Skin Analysis in Punta Gorda, FL | House of Rose Aesthetics';
+  data.seoTitle ?? 'Advanced Skin Imaging & Analysis in Punta Gorda, FL | House of Rose Aesthetics';
 const pageDescription =
   data.seoDescription ??
-  'AI-assisted skin analysis at House of Rose Aesthetics in Punta Gorda, FL. Advanced imaging helps identify pigmentation, texture, pores, fine lines, hydration cues, and sun damage so your treatment plan starts with evidence.';
+  'Advanced skin imaging at House of Rose Aesthetics in Punta Gorda, FL. Multi-spectrum imaging helps identify pigmentation, texture, pores, fine lines, hydration cues, and sun damage so your treatment plan starts with evidence.';
 
 const FALLBACK_STEPS: SkinAnalysisStep[] = [
   {
@@ -99,7 +99,7 @@ const FALLBACK_STEPS: SkinAnalysisStep[] = [
   {
     n: '02',
     title: 'Review the details',
-    body: 'The AI-assisted analysis helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
+    body: 'Imaging under standard, cross-polarized, and UV light helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
   },
   {
     n: '03',
@@ -132,8 +132,8 @@ const FALLBACK_FAQS: SkinAnalysisFaq[] = [
     a: 'No. It is not required for every appointment. The analysis can be helpful when you are unsure where to begin or want a clearer baseline before choosing a skin treatment.',
   },
   {
-    q: 'What does the AI skin scanner look for?',
-    a: 'The scanner helps evaluate visible and subsurface patterns such as pigmentation, sun damage, pores, texture, fine lines, wrinkles, hydration cues, and overall skin quality. The results are reviewed by your provider and used for treatment planning, not as a medical diagnosis.',
+    q: 'What does the skin imaging show?',
+    a: 'The imaging helps evaluate visible and subsurface patterns such as pigmentation, sun damage, pores, texture, fine lines, wrinkles, hydration cues, and overall skin quality. The results are reviewed by your provider and used for treatment planning, not as a medical diagnosis.',
   },
   {
     q: 'Can the scan track before-and-after progress?',
@@ -144,8 +144,8 @@ const FALLBACK_FAQS: SkinAnalysisFaq[] = [
     a: 'Taking the images only takes a few minutes. We spend the rest of the visit walking through what we see, answering your questions, and discussing possible next steps.',
   },
   {
-    q: 'Is AI skin analysis uncomfortable?',
-    // AI skin analysis is non-invasive photographic imaging with no device contact, so there is
+    q: 'Is skin imaging uncomfortable?',
+    // Advanced skin imaging is non-invasive photographic capture with no device contact, so there is
     // genuinely nothing to recover from. Creative System Book 1 §12 permits "no downtime" when it
     // is true for the exact procedure and reviewed. Do not copy this line to a treatment page.
     // drift-guard-ok: non-invasive imaging, no downtime is factually accurate and reviewed
@@ -165,15 +165,15 @@ const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
 const faqSchema = faqPage(faqs.map((faq) => ({ question: faq.q ?? '', answer: faq.a ?? '' })));
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: siteUrl },
-  { name: 'AI Skin Analysis', item: canonicalURL.toString() },
+  { name: 'Advanced Skin Imaging & Analysis', item: canonicalURL.toString() },
 ]);
 const serviceSchema = service(
   {
-    name: 'AI Skin Analysis',
+    name: 'Advanced Skin Imaging & Analysis',
     description: pageDescription,
     url: canonicalURL.toString(),
-    image: new URL('/images/editorial/home/skin-analysis-consultation.webp', siteUrl).toString(),
-    serviceType: 'AI-assisted skin analysis and treatment planning',
+    image: new URL('/images/optimized/actual-reception-1400.webp', siteUrl).toString(),
+    serviceType: 'Advanced skin imaging and treatment planning',
     offerUrl: SKIN_ANALYSIS_BOOKING_URL,
   },
   siteUrl,
@@ -183,7 +183,7 @@ const serviceSchema = service(
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  preloadImage="/images/hor-skin-studio.webp"
+  preloadImage="/images/optimized/actual-reception-1400.webp"
 >
   <SchemaMarkup item={serviceSchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
@@ -192,15 +192,15 @@ const serviceSchema = service(
   <div {...(data._id ? sbObjectId(data._id) : {})}>
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title={data.heroTitle ?? "AI skin analysis gives you a clearer place to start."}
-    kicker={data.heroKicker ?? "AI Skin Analysis · Punta Gorda"}
+    title={data.heroTitle ?? "Advanced skin imaging gives you a clearer place to start."}
+    kicker={data.heroKicker ?? "Advanced Skin Imaging · Punta Gorda"}
     description={data.heroDescription ?? "In-studio imaging helps us take a closer look at pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure before you choose a skin treatment."}
     size="small"
     showCTA={true}
     ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Book a Skin Analysis', href: SKIN_ANALYSIS_BOOKING_URL }}
     ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services/' }}
-    backgroundImage="/images/hor-skin-studio.webp"
-    imageAlt="The skin analysis and consultation space at House of Rose Aesthetics"
+    backgroundImage="/images/optimized/actual-reception-1400.webp"
+    imageAlt="The reception and consultation area inside House of Rose Aesthetics"
     titleField="heroTitle"
     kickerField="heroKicker"
     descriptionField="heroDescription"
@@ -214,7 +214,7 @@ const serviceSchema = service(
         {data.whatHeading ?? "A closer look before you choose a treatment."}
       </h2>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4" {...sbFieldPath('whatPara1')}>
-        {data.whatPara1 ?? "It can be hard to tell what your skin needs from the mirror alone. AI-assisted imaging gives us another way to look at pigmentation, texture, pores, hydration cues, and visible sun exposure."}
+        {data.whatPara1 ?? "It can be hard to tell what your skin needs from the mirror alone. Advanced imaging gives us another way to look at pigmentation, texture, pores, hydration cues, and visible sun exposure."}
       </p>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath('whatPara2')}>
         {data.whatPara2 ?? "We use those images to guide the conversation, not to make a diagnosis. The scan supports provider judgment and helps explain why one option may fit your goals better than another."}
@@ -222,8 +222,8 @@ const serviceSchema = service(
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
       <img
-        src="/images/House of Rose complimentary consultation ad.webp"
-        alt="In-studio skin analysis at House of Rose Aesthetics in Punta Gorda, Florida"
+        src="/images/optimized/actual-welcome-1400.webp"
+        alt="The welcome hallway inside House of Rose Aesthetics in Punta Gorda"
         loading="lazy"
         class="w-full h-full object-cover"
         width="1200"
@@ -278,7 +278,7 @@ const serviceSchema = service(
   <!-- ── WHY IT MATTERS ───────────────────────────────────────────── -->
   <section
     class="on-dark relative py-[clamp(72px,10vw,140px)] px-6 bg-cover bg-center"
-    style="background-image: url('/images/editorial/home/skin-health-analysis.webp');"
+    style="background-image: url('/images/optimized/actual-reception-1400.webp');"
   >
     <!-- Warm walnut gradient scrim — same AA-verified treatment as the homepage photo
          bands. Inline style so it can't be Tailwind-purged; every stop clears AA for
@@ -344,7 +344,7 @@ const serviceSchema = service(
         {data.ctaHeading ?? "Want a closer look at your skin?"}
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]" {...sbFieldPath('ctaPara')}>
-        {data.ctaPara ?? "Leave your details and we'll reach out to arrange an AI-assisted skin analysis in Punta Gorda. You can review the images, ask questions, and decide what—if anything—you want to do next."}
+        {data.ctaPara ?? "Leave your details and we'll reach out to arrange advanced skin imaging in Punta Gorda. You can review the images, ask questions, and decide what—if anything—you want to do next."}
       </p>
       <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
         In studio · Punta Gorda
@@ -370,7 +370,7 @@ const serviceSchema = service(
         <label for="sa-phone" class="sr-only">Phone (optional)</label>
         <input id="sa-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)"
           class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none transition-colors" />
-        <input type="hidden" name="service-interest" value="AI Skin Analysis" />
+        <input type="hidden" name="service-interest" value="Advanced Skin Imaging & Analysis" />
         <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Request a Skin Analysis"}</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
           Prefer to reserve online?

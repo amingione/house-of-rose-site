@@ -41,7 +41,7 @@ const faqs = [
     _key: 'ai-choose-treatment',
     _type: 'faq',
     question: 'How do I choose the right treatment?',
-    answer: 'Start with a consultation or AI-assisted skin analysis so your goals, skin, preferences, and candidacy can guide the recommendation. A provider will explain suitable options and help you choose a service or sequence without pressure.',
+    answer: 'Start with a consultation or advanced skin imaging so your goals, skin, preferences, and candidacy can guide the recommendation. A provider will explain suitable options and help you choose a service or sequence without pressure.',
   },
   {
     _key: 'ai-regenerative-aesthetics',

@@ -7,7 +7,12 @@
 import { urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { SanityImage } from '@/lib/queries';
-import { getCuratedServiceImage, getServiceFallbackImage } from '@/lib/imageFallbacks';
+import {
+  getCuratedServiceImage,
+  getCuratedServiceImageAlt,
+  getServiceFallbackImage,
+  serviceImageUsesContain,
+} from '@/lib/imageFallbacks';
 import type { BookingMode } from '@/lib/booking';
 import BookingLink from '@/components/BookingLink.astro';
 import { alignPublicChannelCopy } from '@/lib/publicCopy';
@@ -31,10 +36,14 @@ interface Props {
 
 const { title, slug, tagline, image, bookingMode, bookingUrl, variant = 'grid', number, objectId } = Astro.props;
 const curatedImage = getCuratedServiceImage(slug);
+const curatedImageAlt = getCuratedServiceImageAlt(slug);
+const containImage = serviceImageUsesContain(slug);
 const imageSrc = curatedImage ?? (image
   ? urlFor(image).width(640).height(480).fit('crop').auto('format').quality(80).url()
   : getServiceFallbackImage(slug));
-const displayTagline = tagline ? alignPublicChannelCopy(tagline) : undefined;
+const displayTagline = tagline
+  ? alignPublicChannelCopy(tagline, { allowNoDowntime: slug === 'glo2facial' })
+  : undefined;
 // Always lead with the technical/industry-standard name — matches what people search for.
 const headline = title;
 // Visual Editor annotations — only emitted when an objectId is supplied.
@@ -47,15 +56,18 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
 {variant === 'grid' ? (
   <article class="service-card group" {...objAttrs}>
     <a href={`/services/${slug}/`} class="block" aria-label={`Learn about ${title}`}>
-    <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
+    <div class:list={['aspect-square overflow-hidden bg-charcoal-lighter mb-4', containImage && 'p-8']}>
         <img
           src={imageSrc}
-          alt={curatedImage ? title : image?.alt ?? title}
+          alt={curatedImage ? curatedImageAlt : image?.alt ?? title}
           width={400}
           height={400}
           loading="lazy"
           decoding="async"
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          class:list={[
+            'w-full h-full group-hover:scale-105 transition-transform duration-500',
+            containImage ? 'object-contain' : 'object-cover',
+          ]}
         />
       </div>
     <span class="service-name" {...fp(headlinePath)}>{headline}</span>
@@ -75,12 +87,12 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
     <a href={`/services/${slug}/`} class="block w-[84px] h-[84px] sm:w-28 sm:h-28 overflow-hidden bg-charcoal-lighter">
         <img
           src={imageSrc}
-          alt={curatedImage ? title : image?.alt ?? title}
+          alt={curatedImage ? curatedImageAlt : image?.alt ?? title}
           width={224}
           height={224}
           loading="lazy"
           decoding="async"
-          class="w-full h-full object-cover"
+          class:list={['w-full h-full', containImage ? 'object-contain p-2' : 'object-cover']}
         />
       </a>
     <div class="flex-1">

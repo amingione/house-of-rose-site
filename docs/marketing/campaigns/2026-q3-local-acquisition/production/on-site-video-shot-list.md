@@ -52,7 +52,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 
 ### Spoken script
 
-> Before we recommend a treatment, we look at what your skin is showing. AI-assisted imaging gives us a clearer baseline, and the consultation gives you space to ask questions. There’s no pressure and no commitment.
+> Before we recommend a treatment, we look at what your skin is showing. Advanced imaging gives us a clearer baseline, and the consultation gives you space to ask questions. There’s no pressure and no commitment.
 
 ### Edit
 

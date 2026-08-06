@@ -1,14 +1,16 @@
-# AI Skin Analysis — Research Brief
+# Advanced Skin Imaging & Analysis — Research Brief
 
 **Date:** 2026-07-13 · **Provider lane:** Cross-cutting front door (routes into Amber / Diana / Brandy pathways — informs a plan, does **not** diagnose) · **Status:** draft for Phase 3/4 consumption · Sources listed at end.
 
 > **Strategic role:** This is the evidence-based **first step** and the **router** for the whole studio. "See your skin before any treatment — no pressure, no commitment." It is not a treatment; it is the front door that turns a vague concern into a sequenced, personalized plan and a baseline you can track. Device: the **M17 AI Skin Analyzer** (a multi-imaging, multi-spectrum analysis system).
+>
+> **Naming (2026-08-06):** the client-facing service is **Advanced Skin Imaging & Analysis** — we lead with the imaging, not the AI. `M17 AI Skin Analyzer` is the manufacturer's product name and stays accurate in internal/device references; it is not the service name and does not appear in public copy.
 
 ---
 
 ## 1. The 3-sentence answer
 
-AI skin analysis at House of Rose Aesthetics in Punta Gorda is an in-studio, non-invasive imaging step that uses the M17 AI Skin Analyzer to capture your skin under multiple light modes and help evaluate visible patterns — pigmentation, texture, pores, fine lines, redness, hydration cues, and signs of sun exposure — more clearly than a naked-eye look alone. Your provider reviews the images with you and uses them to build a personalized treatment and home-care plan around what your skin is actually showing today, then re-images over time so progress can be compared consistently instead of from memory. It is the evidence-based first step before any treatment — a planning and tracking tool, not a medical diagnosis and not a substitute for evaluation by a licensed medical provider.
+Advanced skin imaging at House of Rose Aesthetics in Punta Gorda is an in-studio, non-invasive imaging step that uses the M17 AI Skin Analyzer to capture your skin under multiple light modes and help evaluate visible patterns — pigmentation, texture, pores, fine lines, redness, hydration cues, and signs of sun exposure — more clearly than a naked-eye look alone. Your provider reviews the images with you and uses them to build a personalized treatment and home-care plan around what your skin is actually showing today, then re-images over time so progress can be compared consistently instead of from memory. It is the evidence-based first step before any treatment — a planning and tracking tool, not a medical diagnosis and not a substitute for evaluation by a licensed medical provider.
 
 ---
 
@@ -67,8 +69,8 @@ The software then organizes what it captures into readable metrics grouped by co
 
 ## 5. Comparisons (honest)
 
-### AI skin analysis vs. a standard visual consultation
-| | Standard visual consult | AI skin analysis (M17) |
+### Advanced skin imaging vs. a standard visual consultation
+| | Standard visual consult | Advanced skin imaging (M17) |
 |---|---|---|
 | What's assessed | What's visible in room light, plus provider experience | Surface **and** near-surface patterns via white/polarized/UV modes |
 | Sub-surface & UV | Not visible | Cross-polarized surfaces pigment/redness; UV surfaces sun-related pigment & porphyrin/congestion cues |
@@ -79,7 +81,7 @@ The software then organizes what it captures into readable metrics grouped by co
 **When the visual consult is enough:** for a simple, single-service booking where you already know what you want, a conversation may be all you need — the scan is optional, never mandatory. **What the imaging adds:** clarity on what's below the surface, a quantified-feeling baseline, and a stronger foundation for comparison over time. The value isn't "more technology" — it's *more clarity, more personalization, and more confidence in the plan you choose.*
 
 ### It's the router, not a rival treatment
-AI skin analysis does not compete with microchanneling, microneedling, PRF, peels, Glo2Facial, facials, or injectables — **it feeds the decision between them.** It's the step that answers "which of these, in what order, for me?" So the honest framing on every comparison is: the scan comes *first*, then routes you to the right treatment and the right provider (see §6). Think of it as the map, not one of the roads.
+Advanced skin imaging does not compete with microchanneling, microneedling, PRF, peels, Glo2Facial, facials, or injectables — **it feeds the decision between them.** It's the step that answers "which of these, in what order, for me?" So the honest framing on every comparison is: the scan comes *first*, then routes you to the right treatment and the right provider (see §6). Think of it as the map, not one of the roads.
 
 ---
 
@@ -118,7 +120,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 
 ## 8. Cost factors
 
-**Positioning (from local docs + live surface):** AI skin analysis is presented as the **front-door consultation/planning step**, not a standalone priced treatment. There is **no price listed** for it anywhere in the local pricing docs, the live `/skin-analysis/` page, or the published Sanity content. The master menu references it only as part of the consultation process ("final pricing is confirmed after **consultation & skin analysis**"). The live page's CTA is a lead form and a GlossGenius booking link — no fee, no product SKU.
+**Positioning (from local docs + live surface):** Advanced skin imaging is presented as the **front-door consultation/planning step**, not a standalone priced treatment. There is **no price listed** for it anywhere in the local pricing docs, the live `/skin-analysis/` page, or the published Sanity content. The master menu references it only as part of the consultation process ("final pricing is confirmed after **consultation & skin analysis**"). The live page's CTA is a lead form and a GlossGenius booking link — no fee, no product SKU.
 
 **What this means for copy:** treat it as the complimentary/no-pressure first step ("see your skin before you decide anything — no pressure, no commitment," which is already the live CTA voice). **Do not invent a price.** If House of Rose later decides to charge for it or credit a scan fee toward a treatment, that becomes a Sanity/pricing-doc decision — flag as a gap, do not assume.
 
@@ -128,7 +130,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 
 ## 9. FAQ bank (answer-first, compliance-clean)
 
-1. **What is AI skin analysis?** It's a non-invasive in-studio imaging step at House of Rose that uses the M17 AI Skin Analyzer to photograph your skin under multiple light modes, so your provider can see visible and near-surface patterns more clearly and build your treatment plan around what your skin is actually showing.
+1. **What is Advanced Skin Imaging & Analysis?** It's a non-invasive in-studio imaging step at House of Rose that uses the M17 AI Skin Analyzer to photograph your skin under multiple light modes, so your provider can see visible and near-surface patterns more clearly and build your treatment plan around what your skin is actually showing.
 
 2. **Do I need a skin analysis before treatment?** Not for every appointment. But it gives your provider a clearer baseline and helps recommend treatments in the right order, so you invest in what's most likely to support your goals. It's the recommended first step if you're unsure where to start.
 
@@ -210,7 +212,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 - **No pressure, no commitment.** The analysis is framed as a genuine service to the client, not a sales funnel — sometimes the honest answer is home care or "keep doing what's working." That candor *is* the brand.
 - **One front door, three expert lanes.** The scan routes to the right provider — Amber's advanced facials, Diana's RN-led injectables/IV/GLP-1, or Brandy's maintenance facials — so clients land in the right hands instead of the loudest upsell.
 - **Measurable over time.** A standardized baseline means progress is compared consistently, which builds trust across a series rather than relying on "it looks better, right?"
-- **Locally grounded.** Advanced AI skin analysis in **Punta Gorda / Charlotte County / Southwest Florida** — a genuinely differentiated front-door offering in this market, delivered in a private studio where walk-ins are welcome and appointments are recommended to reserve a time.
+- **Locally grounded.** Advanced skin imaging in **Punta Gorda / Charlotte County / Southwest Florida** — a genuinely differentiated front-door offering in this market, delivered in a private studio where walk-ins are welcome and appointments are recommended to reserve a time.
 - **Refined, intentional, honest.** Copy stays squarely aesthetic and never overclaims: it *supports* personalized recommendations and *helps guide* your plan — it doesn't diagnose, cure, or guarantee.
 
 ---

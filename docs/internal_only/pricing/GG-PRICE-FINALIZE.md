@@ -133,7 +133,7 @@ Brandy's basic lane (enzyme / hydrodermabrasion / light peels) · Brazilian wax 
 
 Live GlossGenius menu cleanup completed (browser, system-of-record):
 - **Removed** leftover `Wrinkle Relaxers` bundle ($14) and `Facial Fillers` ($0 placeholder) from Dermal Fillers — real Botox/Daxxify + individual fillers already listed. (Dermal Fillers 9 → 7.)
-- **Categorized** the two uncategorized orphans → **Skin Services**: `Consultation + AI Skin Analysis` ($65) and `Acne Bootcamp (12-Week Program)` ($899). (Skin Services 18 → 20.)
+- **Categorized** the two uncategorized orphans → **Skin Services**: `Consultation + Advanced Skin Imaging` ($65) and `Acne Bootcamp (12-Week Program)` ($899). (Skin Services 18 → 20.)
 - **Kept** `Acne Bootcamp Consultation` ($99) per Amber (2026-07-26).
 - **Deleted** empty (0-service) categories during catalog cleanup.
 - Procell confirmed live at **Pro $300 / MD $400** (Amber decision, this session — supersedes the $299/$349 draft above).

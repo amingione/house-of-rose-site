@@ -6,7 +6,7 @@ pages feel the same, and every page loops the reader forward.
 ## The CTA doctrine
 
 1. **One booking CTA max per page**, phrased for that page's moment of intent —
-   "Book a PRF consult with Diana", "Start with an AI skin analysis", never a bare
+   "Book a PRF consult with Diana", "Start with advanced skin imaging", never a bare
    "Book now"/"Call us".
 2. **Every page ends with a "Where to next" block** of 2–4 *contextual* links drawn from
    the brief's Journey Links section. Labels are specific and curiosity-driven:
