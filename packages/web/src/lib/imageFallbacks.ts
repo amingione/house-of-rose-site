@@ -22,10 +22,6 @@ const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
   'morpheus8-device': '/images/inmode/Morpheus8-Burst.png',
   'morpheus8-face-example':
     '/images/inmode/EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
-  'morpheus8-abdomen-example':
-    '/images/inmode/NB_M8B_BeforeAfter_24Weeks_Abd_Zoomed-TM.jpg',
-  'morpheus8-buttocks-example':
-    '/images/inmode/Morpheus8-Burst-Deep-Before-and-After-Buttocks.png',
   'lumecca-device': '/images/inmode/Lumecca-Peak.png',
   'lumecca-face-example':
     '/images/inmode/Lumecca-Peak-Before-and-After.png',
