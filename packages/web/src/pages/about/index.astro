@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { ABOUT_PAGE_QUERY, PUBLIC_PROVIDERS_QUERY, type AboutPageContent, type PublicProviderProfile } from '@/lib/queries';
+import { ABOUT_PAGE_FALLBACK, PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { breadcrumbList, webPage } from '@/lib/structuredData';
+import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+
+const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
+const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
+const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+
+const heading = content?.indexHeading ?? ABOUT_PAGE_FALLBACK.indexHeading;
+const intro = content?.indexIntro ?? ABOUT_PAGE_FALLBACK.indexIntro;
+const imageUrl = content?.indexImageUrl ?? ABOUT_PAGE_FALLBACK.indexImageUrl;
+const imageAlt = content?.indexImageAlt ?? ABOUT_PAGE_FALLBACK.indexImageAlt;
+const title = content?.indexSeo?.metaTitle ?? ABOUT_PAGE_FALLBACK.indexSeo?.metaTitle;
+const description = content?.indexSeo?.metaDescription ?? ABOUT_PAGE_FALLBACK.indexSeo?.metaDescription;
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'About', item: canonical },
+]);
+const pageSchema = webPage({ name: heading, description: description ?? intro, url: canonical }, site);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={imageUrl}
+  imageAlt={imageAlt}
+  preloadImage={imageUrl}
+>
+  <SchemaMarkup item={pageSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
+  <div {...(content?._id ? sbObjectId(content._id) : {})}>
+    <section class="px-6 pb-[clamp(56px,8vw,96px)] pt-32">
+      <div class="mx-auto grid max-w-[1280px] items-end gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="max-w-[650px]">
+          <p class="kicker">About</p>
+          <h1 class="font-serif text-[clamp(42px,7vw,78px)] leading-[0.98] text-ink" {...sbFieldPath('indexHeading')}>
+            {heading}
+          </h1>
+          <p class="mt-7 max-w-[610px] text-[17px] leading-[1.8] text-muted" {...sbFieldPath('indexIntro')}>
+            {intro}
+          </p>
+        </div>
+        <div class="aspect-[16/10] overflow-hidden bg-limestone">
+          <img
+            src={imageUrl}
+            alt={imageAlt}
+            width="1400"
+            height="875"
+            class="h-full w-full object-cover"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-walnut/10 bg-breath px-6 py-[clamp(56px,8vw,96px)]">
+      <div class="mx-auto grid max-w-[1280px] gap-px bg-walnut/15 lg:grid-cols-2">
+        <a href="/about/hra/" class="group bg-bone p-[clamp(30px,5vw,58px)] transition-colors hover:bg-limestone/35">
+          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">HRA</p>
+          <h2 class="mt-4 font-serif text-[clamp(30px,4vw,48px)] leading-tight text-ink group-hover:text-olive">
+            House of Rose Aesthetics
+          </h2>
+          <p class="mt-5 max-w-[520px] text-[15px] leading-[1.8] text-muted">
+            Read how consultation, assessment, preparation, aftercare, and long-term planning define the practice.
+          </p>
+          <span class="learn-more mt-8">About the practice <span aria-hidden="true">→</span></span>
+        </a>
+
+        <a href="/about/providers/" class="group bg-bone p-[clamp(30px,5vw,58px)] transition-colors hover:bg-limestone/35">
+          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">Providers</p>
+          <h2 class="mt-4 font-serif text-[clamp(30px,4vw,48px)] leading-tight text-ink group-hover:text-olive">
+            Meet the team
+          </h2>
+          <ul class="mt-6 grid gap-2 text-[14px] leading-relaxed text-muted sm:grid-cols-2" aria-label="House of Rose team">
+            {providers.map((provider) => (
+              <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>{provider.publicName}</li>
+            ))}
+          </ul>
+          <span class="learn-more mt-8">View all providers <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

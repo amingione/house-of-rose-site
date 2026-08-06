@@ -9,6 +9,7 @@ import { privacyPolicy } from './privacyPolicy';
 import { rentARoom } from './rentARoom';
 import { janeIredalePage } from './janeIredalePage';
 import { experienceContent } from './experienceContent';
+import { aboutPage } from './aboutPage';
 import { serviceCollection } from './serviceCollection';
 import { service } from './service';
 import { concern } from './concern';
@@ -48,6 +49,7 @@ export const schemaTypes = [
   rentARoom,
   janeIredalePage,
   experienceContent,
+  aboutPage,
   // Content
   serviceCollection,
   service,

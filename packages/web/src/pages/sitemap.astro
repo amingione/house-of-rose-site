@@ -11,6 +11,7 @@ import {
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   type SitemapService,
   type BlogPost,
   type ServiceCollection,
@@ -20,7 +21,9 @@ import {
   type LocalArea,
   type CaseStudy,
   type TreatmentPackage,
+  type PublicProviderProfile,
 } from '@/lib/queries';
+import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
 
@@ -45,6 +48,7 @@ const [
   localAreas,
   caseStudies,
   packages,
+  sanityProviders,
 ] = await Promise.all([
   sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
   sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
@@ -55,7 +59,9 @@ const [
   sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
   sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
   sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
+  sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
 ]);
+const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -67,6 +73,9 @@ const breadcrumb = breadcrumbList([
 
 const corePages: SitemapLink[] = [
   { title: 'Home', href: '/' },
+  { title: 'About', href: '/about/' },
+  { title: 'House of Rose Aesthetics', href: '/about/hra/' },
+  { title: 'Providers', href: '/about/providers/' },
   { title: 'Services', href: '/services/' },
   {
     title: 'Consultation',
@@ -95,6 +104,14 @@ const servicePages = services.map((service) => ({
 
 const sectionData: SitemapSection[] = [
   { title: 'Main Pages', links: corePages },
+  {
+    title: 'Provider Profiles',
+    links: providers.map((provider) => ({
+      title: provider.publicName,
+      href: `/about/providers/${provider.slug}/`,
+      note: provider.publicRole,
+    })),
+  },
   {
     title: 'Services',
     links: servicePages,

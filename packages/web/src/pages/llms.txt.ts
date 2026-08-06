@@ -10,6 +10,7 @@ import {
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   AI_SEARCH_FAQ_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   type Service,
   type BlogPost,
   type ServiceCollection,
@@ -17,12 +18,14 @@ import {
   type Comparison,
   type LocalArea,
   type AiSearchFaqSection,
+  type PublicProviderProfile,
 } from '@/lib/queries';
+import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [services, posts, collections, costGuides, comparisons, localAreas, aiSearchFaq] = await Promise.all([
+  const [services, posts, collections, costGuides, comparisons, localAreas, aiSearchFaq, sanityProviders] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
@@ -30,7 +33,9 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
+    sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
+  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
 
   const lines: string[] = [
     `# House of Rose Aesthetics`,
@@ -43,6 +48,9 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `- [Home](${base}/): House of Rose Aesthetics — a medical aesthetics practice in Punta Gorda, FL`,
     `- [Services](${base}/services/): Full menu across regenerative aesthetics, injectables, skin health, and wellness`,
+    `- [About](${base}/about/): House of Rose Aesthetics and the people behind the practice`,
+    `- [House of Rose Aesthetics](${base}/about/hra/): How the Punta Gorda practice approaches consultation, planning, preparation, and follow-through`,
+    `- [Providers](${base}/about/providers/): Verified roles, service focus, and individual team profiles`,
     `- [Consultation](${base}/consultation/): Explore regenerative skin treatments, targeted modalities, skin maintenance, IV hydration, and provider-guided weight support`,
     `- [Advanced Skin Imaging & Analysis](${base}/skin-analysis/): In-studio multi-spectrum imaging for pigmentation, texture, pores, fine lines, hydration cues, visible sun exposure, and treatment planning`,
     `- [Treatment Series & Packages](${base}/packages/): Verified series and consultation-led treatment pathways`,
@@ -60,6 +68,14 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Sitemap](${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
     ``,
   ];
+
+  if (providers.length > 0) {
+    lines.push(`## Providers`, ``);
+    for (const provider of providers) {
+      lines.push(`- [${provider.publicName}](${base}/about/providers/${provider.slug}/): ${provider.publicRole}. ${provider.summary}`);
+    }
+    lines.push(``);
+  }
 
   if (aiSearchFaq?.faqs?.length) {
     lines.push(`## Frequently Asked Questions`, ``);

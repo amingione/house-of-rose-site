@@ -30,6 +30,8 @@
     "content:brand-search:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/reinforce-brand-search.mjs --apply",
     "content:homepage-conversion": "node scripts/run-with-env.mjs node packages/studio/scripts/refresh-homepage-conversion-copy.mjs",
     "content:homepage-conversion:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/refresh-homepage-conversion-copy.mjs --apply",
+    "content:about-providers": "node scripts/run-with-env.mjs node packages/studio/scripts/seed-about-providers.mjs",
+    "content:about-providers:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/seed-about-providers.mjs --apply",
     "content:remove-skinpen": "node scripts/run-with-env.mjs node packages/studio/scripts/remove-skinpen-service.mjs",
     "content:remove-skinpen:apply": "node scripts/run-with-env.mjs node packages/studio/scripts/remove-skinpen-service.mjs --apply",
     "content:glo2-copy": "node scripts/run-with-env.mjs node packages/studio/scripts/update-glo2facial-verified-copy.mjs",

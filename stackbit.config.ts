@@ -97,6 +97,7 @@ const PAGE_ROUTES: Record<string, string> = {
   blogPost: '/blog/{slug}',
   treatmentPackage: '/packages/{slug}',
   product: '/shop/{slug}',
+  provider: '/about/providers/{slug}',
 };
 
 /**
@@ -117,6 +118,7 @@ const SINGLETON_PAGE_ROUTES: Record<string, string> = {
   thankYou: '/thank-you',
   experienceContent: '/experience',
   janeIredalePage: '/shop/jane-iredale',
+  aboutPage: '/about',
 };
 
 const SANITY_PROJECT_ID = requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']);

@@ -1,0 +1,98 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { ABOUT_PAGE_QUERY, PUBLIC_PROVIDERS_QUERY, type AboutPageContent, type PublicProviderProfile } from '@/lib/queries';
+import { ABOUT_PAGE_FALLBACK, PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { breadcrumbList, itemListPage } from '@/lib/structuredData';
+import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+
+const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
+const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
+const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+const heading = content?.providersHeading ?? ABOUT_PAGE_FALLBACK.providersHeading;
+const intro = content?.providersIntro ?? ABOUT_PAGE_FALLBACK.providersIntro;
+const title = content?.providersSeo?.metaTitle ?? ABOUT_PAGE_FALLBACK.providersSeo?.metaTitle;
+const description = content?.providersSeo?.metaDescription ?? ABOUT_PAGE_FALLBACK.providersSeo?.metaDescription;
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'About', item: new URL('/about/', site).toString() },
+  { name: 'Providers', item: canonical },
+]);
+const directorySchema = itemListPage(
+  {
+    name: heading,
+    description: description ?? intro,
+    url: canonical,
+    items: providers.map((provider) => ({
+      name: provider.publicName,
+      url: new URL(`/about/providers/${provider.slug}/`, site).toString(),
+    })),
+  },
+  site,
+);
+---
+
+<BaseLayout title={title} description={description}>
+  <SchemaMarkup item={directorySchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
+  <div {...(content?._id ? sbObjectId(content._id) : {})}>
+    <section class="px-6 pb-[clamp(52px,7vw,80px)] pt-32">
+      <div class="mx-auto max-w-[980px] text-center">
+        <p class="kicker">Providers</p>
+        <h1 class="font-serif text-[clamp(40px,6vw,68px)] leading-[1.02] text-ink" {...sbFieldPath('providersHeading')}>
+          {heading}
+        </h1>
+        <p class="mx-auto mt-7 max-w-[720px] text-[17px] leading-[1.8] text-muted" {...sbFieldPath('providersIntro')}>
+          {intro}
+        </p>
+      </div>
+    </section>
+
+    <section class="border-y border-walnut/10 bg-breath px-6 py-[clamp(56px,8vw,96px)]">
+      <div class="mx-auto grid max-w-[1180px] gap-x-8 gap-y-12 sm:grid-cols-2">
+        {providers.map((provider) => (
+          <a
+            href={`/about/providers/${provider.slug}/`}
+            class="provider-card group grid overflow-hidden border-t border-walnut/20 bg-bone sm:grid-cols-[0.9fr_1.1fr]"
+            {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}
+          >
+            {provider.imageUrl ? (
+              <div class="aspect-[4/5] overflow-hidden bg-limestone sm:aspect-auto">
+                <img
+                  src={provider.imageUrl}
+                  alt={provider.imageAlt ?? provider.publicName}
+                  width="720"
+                  height="900"
+                  loading="lazy"
+                  class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
+                />
+              </div>
+            ) : (
+              <div class="on-dark flex min-h-[320px] items-center justify-center bg-walnut p-8 sm:min-h-[430px]">
+                <div class="text-center">
+                  <img src="/logos/house-of-rose-monogram/hr-logo-gold.webp" alt="" width="100" height="102" class="mx-auto h-20 w-auto opacity-80" />
+                  <p class="mt-7 text-[11px] font-semibold uppercase tracking-[0.16em] text-gold">House of Rose</p>
+                </div>
+              </div>
+            )}
+            <div class="flex flex-col justify-between p-7 sm:p-8">
+              <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold" {...sbFieldPath('publicRole')}>{provider.publicRole}</p>
+                <h2 class="mt-4 font-serif text-[clamp(28px,4vw,38px)] leading-tight text-ink group-hover:text-olive" {...sbFieldPath('publicName')}>
+                  {provider.publicName}
+                </h2>
+                <p class="mt-5 text-[14px] leading-[1.8] text-muted" {...sbFieldPath('summary')}>{provider.summary}</p>
+              </div>
+              <span class="learn-more mt-8">Read profile <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

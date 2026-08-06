@@ -93,6 +93,18 @@ If a genuinely new type is needed, keep the contract intact:
 6. Wire into `sitemap.xml.ts`, `llms.txt.ts`, and footer/internal links.
 7. Document it here and in the playbook.
 
+## Supporting identity pages (outside the 7 intent-led AEO types)
+
+About and provider profiles support entity clarity and local trust but are not new service-intent page types.
+
+| Surface | Sanity source | Route | JSON-LD | GROQ |
+| --- | --- | --- | --- | --- |
+| About index + practice story | `aboutPage` singleton | `/about/`, `/about/hra/` | `WebPage` + `BreadcrumbList` | `ABOUT_PAGE_QUERY` |
+| Provider directory | `provider` documents | `/about/providers/` | `CollectionPage` + `ItemList` + `BreadcrumbList` | `PUBLIC_PROVIDERS_QUERY` |
+| Provider profile | `provider` document | `/about/providers/[slug]/` | `Person` / `ProfilePage` + `BreadcrumbList` | `PUBLIC_PROVIDERS_QUERY`, `PUBLIC_PROVIDER_BY_SLUG_QUERY` |
+
+These pages use the same trailing-slash, internal-linking, sitemap, and `llms.txt` rules as the seven canonical page types. Existing `/amber/`, `/diana/`, and `/brandy/` routes remain standalone tap-to-share cards rather than canonical biography pages.
+
 ## Canonical business facts (NAP) — single source
 
 Authoritative values live in Sanity `siteSettings` and are mirrored in

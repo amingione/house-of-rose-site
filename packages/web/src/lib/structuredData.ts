@@ -218,10 +218,12 @@ export interface PersonProfileInput {
   name: string;
   jobTitle: string;
   url: string;
+  description?: string;
   email?: string;
   telephone?: string;
   image?: string;
   knowsAbout?: string[];
+  sameAs?: string[];
 }
 
 /** Person entity for provider profile and digital-card pages. */
@@ -234,12 +236,54 @@ export function personProfile(input: PersonProfileInput, siteUrl: string): JsonL
     name: input.name,
     jobTitle: input.jobTitle,
     url: input.url,
+    ...(input.description && { description: input.description }),
     mainEntityOfPage: { '@type': 'ProfilePage', '@id': `${input.url}#webpage`, url: input.url },
     worksFor: { '@id': `${baseUrl}#business` },
     ...(input.email && { email: input.email }),
     ...(input.telephone && { telephone: input.telephone }),
     ...(input.image && { image: input.image }),
     ...(input.knowsAbout?.length && { knowsAbout: input.knowsAbout }),
+    ...(input.sameAs?.length && { sameAs: input.sameAs }),
+  };
+}
+
+export interface ItemListPageInput {
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{ name: string; url: string }>;
+}
+
+/** Directory/index page with an ordered list of linked public profiles. */
+export function itemListPage(input: ItemListPageInput, siteUrl: string): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${input.url}#webpage`,
+        url: input.url,
+        name: input.name,
+        description: input.description,
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${baseUrl}#website` },
+        about: { '@id': `${baseUrl}#business` },
+        mainEntity: { '@id': `${input.url}#itemlist` },
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${input.url}#itemlist`,
+        name: input.name,
+        numberOfItems: input.items.length,
+        itemListElement: input.items.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          url: item.url,
+        })),
+      },
+    ],
   };
 }
 

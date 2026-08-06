@@ -6,10 +6,13 @@ import {
   ALL_COLLECTIONS_QUERY,
   ALL_BLOG_POSTS_QUERY,
   AI_SEARCH_FAQ_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   type ServiceCollection,
   type BlogPost,
   type AiSearchFaqSection,
+  type PublicProviderProfile,
 } from '@/lib/queries';
+import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 
 // Full service detail query for llms-full
 const SERVICES_FULL_QUERY = /* groq */ `
@@ -43,12 +46,14 @@ interface ServiceFull {
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [services, collections, posts, aiSearchFaq] = await Promise.all([
+  const [services, collections, posts, aiSearchFaq, sanityProviders] = await Promise.all([
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
+    sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
+  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
 
   const lines: string[] = [
     `# House of Rose Aesthetics — Medical Aesthetics Practice — Full Content Index`,
@@ -77,6 +82,9 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `- **Home** (${base}/): Overview of services, brand philosophy, and booking`,
     `- **Services** (${base}/services/): Full menu of treatments across regenerative aesthetics, injectables, skin health, and wellness`,
+    `- **About** (${base}/about/): House of Rose Aesthetics and the people behind the practice`,
+    `- **House of Rose Aesthetics** (${base}/about/hra/): The practice method, standards, and Punta Gorda location`,
+    `- **Providers** (${base}/about/providers/): Verified roles, service focus, and individual team profiles`,
     `- **Consultation** (${base}/consultation/): An overview of regenerative skin renewal, targeted face and body modalities, skin maintenance, IV hydration, and provider-guided weight support`,
     `- **Advanced Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum imaging for pigmentation, texture, pores, fine lines, hydration cues, sun damage, and evidence-led treatment planning`,
     `- **Treatment Series & Packages** (${base}/packages/): Verified treatment series and compatible service combinations`,
@@ -91,6 +99,19 @@ export const GET: APIRoute = async ({ site }) => {
     `---`,
     ``,
   ];
+
+  if (providers.length > 0) {
+    lines.push(`## Providers`, ``);
+    for (const provider of providers) {
+      lines.push(`### ${provider.publicName}`);
+      lines.push(`URL: ${base}/about/providers/${provider.slug}/`);
+      lines.push(`Role: ${provider.publicRole}`, ``, provider.summary, ``);
+      for (const paragraph of provider.biography) lines.push(paragraph, ``);
+      if (provider.serviceFocus.length > 0) lines.push(`Service focus: ${provider.serviceFocus.join(', ')}`, ``);
+      if (provider.medicallyDirected) lines.push(`Medical Director: Joshua Shaw, MD · FL Lic. ME136232`, ``);
+    }
+    lines.push(`---`, ``);
+  }
 
   if (aiSearchFaq?.faqs?.length) {
     lines.push(`## Frequently Asked Questions`, ``);

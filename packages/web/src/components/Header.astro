@@ -1,16 +1,21 @@
 ---
 import { sanityFetch } from '@/lib/sanity';
-import { NAV_COLLECTIONS_QUERY, type NavCollection } from '@/lib/queries';
+import { NAV_COLLECTIONS_QUERY, PUBLIC_PROVIDERS_QUERY, type NavCollection, type PublicProviderProfile } from '@/lib/queries';
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '/' } = Astro.props;
-const collections = (await sanityFetch<NavCollection[]>(NAV_COLLECTIONS_QUERY)) ?? [];
+const [collections, sanityProviders] = await Promise.all([
+  sanityFetch<NavCollection[]>(NAV_COLLECTIONS_QUERY),
+  sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
+]);
 const navCollections = collections.filter((collection) => collection?.slug);
+const aboutProviders = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
 const isActive = (path: string) =>
   path === '/' ? currentPath === '/' : currentPath === path || currentPath.startsWith(`${path}/`);
 const linkClass = (path: string) =>
@@ -32,7 +37,7 @@ const linkClass = (path: string) =>
     <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
       <a href="/" class={linkClass('/')}>Home</a>
 
-      <details class="services-menu relative">
+      <details class="services-menu desktop-menu relative">
         <summary class:list={['nav-link cursor-pointer list-none', isActive('/services') && 'nav-link-active']}>
           Services
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -78,7 +83,40 @@ const linkClass = (path: string) =>
 
       <a href="/skin-analysis/" class={linkClass('/skin-analysis')}>Skin analysis</a>
       <a href="/shop/" class={linkClass('/shop')}>Shop</a>
-      <a href="/experience/" class={linkClass('/experience')}>Experience</a>
+      <details class="about-menu desktop-menu relative">
+        <summary class:list={['nav-link cursor-pointer list-none', isActive('/about') && 'nav-link-active']}>
+          About
+          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="about-panel absolute right-0 top-[calc(100%+14px)] w-[420px] border border-walnut/15 bg-bone p-7 shadow-[0_24px_70px_rgba(58,43,36,0.18)]">
+          <a href="/about/" class="group block border-b border-walnut/10 pb-5">
+            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">About</p>
+            <p class="mt-2 font-serif text-[25px] text-ink group-hover:text-olive">House of Rose</p>
+          </a>
+          <div class="grid grid-cols-[0.78fr_1.22fr] gap-7 pt-5">
+            <a href="/about/hra/" class="group block">
+              <p class="text-[12px] font-semibold text-ink group-hover:text-olive">HRA</p>
+              <p class="mt-2 text-[12px] leading-relaxed text-muted">The practice, its method, and its standards.</p>
+            </a>
+            <section aria-label="Providers">
+              <p class="text-[12px] font-semibold text-ink">
+                <a href="/about/providers/" class="hover:text-olive">Providers</a>
+              </p>
+              <ul class="mt-3 space-y-2.5">
+                {aboutProviders.map((provider) => (
+                  <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>
+                    <a href={`/about/providers/${provider.slug}/`} class="text-[12px] leading-snug text-muted hover:text-ink" {...sbFieldPath('publicName')}>
+                      {provider.publicName}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </div>
+      </details>
       <a href="/contact/" class={linkClass('/contact')}>Contact</a>
       <a
         href={GLOSSGENIUS_SERVICES_URL}
@@ -164,7 +202,28 @@ const linkClass = (path: string) =>
       </details>
       <a href="/skin-analysis/" class="mobile-nav-link">Skin analysis</a>
       <a href="/shop/" class="mobile-nav-link">Shop</a>
-      <a href="/experience/" class="mobile-nav-link">Experience</a>
+      <details class="mobile-about border-b border-walnut/10 py-1">
+        <summary class="mobile-nav-link cursor-pointer list-none">
+          About
+          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="pb-5 pl-4">
+          <a href="/about/" class="flex min-h-11 items-center text-[13px] font-semibold text-gold">About index</a>
+          <a href="/about/hra/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">HRA</a>
+          <a href="/about/providers/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">Providers</a>
+          <ul class="ml-4 border-l border-walnut/15 pl-4">
+            {aboutProviders.map((provider) => (
+              <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>
+                <a href={`/about/providers/${provider.slug}/`} class="flex min-h-10 items-center text-[13px] leading-snug text-muted" {...sbFieldPath('publicName')}>
+                  {provider.publicName}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </details>
       <a href="/contact/" class="mobile-nav-link">Contact</a>
       <a href="/consultation/" class="mobile-nav-link">Consultation</a>
     </nav>
@@ -174,7 +233,7 @@ const linkClass = (path: string) =>
 <script>
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileNavigation = document.getElementById('mobile-navigation');
-  const servicesMenus = document.querySelectorAll<HTMLDetailsElement>('.services-menu');
+  const desktopMenus = document.querySelectorAll<HTMLDetailsElement>('.desktop-menu');
 
   const closeMobileNavigation = (): void => {
     mobileNavigation?.classList.add('hidden');
@@ -200,7 +259,7 @@ const linkClass = (path: string) =>
   });
 
   document.addEventListener('click', (event) => {
-    for (const menu of servicesMenus) {
+    for (const menu of desktopMenus) {
       if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
     }
   });
@@ -208,7 +267,7 @@ const linkClass = (path: string) =>
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
     closeMobileNavigation();
-    for (const menu of servicesMenus) menu.open = false;
+    for (const menu of desktopMenus) menu.open = false;
   });
 </script>
 

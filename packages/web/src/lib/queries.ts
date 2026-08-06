@@ -870,6 +870,44 @@ export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
   }
 `;
 
+export interface AboutPageContent {
+  _id?: string;
+  indexHeading?: string;
+  indexIntro?: string;
+  indexImageUrl?: string;
+  indexImageAlt?: string;
+  hraHeading?: string;
+  hraIntro?: string;
+  hraParagraphs?: string[];
+  hraImageUrl?: string;
+  hraImageAlt?: string;
+  providersHeading?: string;
+  providersIntro?: string;
+  indexSeo?: { metaTitle?: string; metaDescription?: string };
+  hraSeo?: { metaTitle?: string; metaDescription?: string };
+  providersSeo?: { metaTitle?: string; metaDescription?: string };
+}
+
+export const ABOUT_PAGE_QUERY = /* groq */ `
+  *[_type == "aboutPage" && _id == "aboutPage"][0] {
+    _id,
+    indexHeading,
+    indexIntro,
+    "indexImageUrl": indexImage.asset->url,
+    "indexImageAlt": indexImage.alt,
+    hraHeading,
+    hraIntro,
+    hraParagraphs,
+    "hraImageUrl": hraImage.asset->url,
+    "hraImageAlt": hraImage.alt,
+    providersHeading,
+    providersIntro,
+    indexSeo { metaTitle, metaDescription },
+    hraSeo { metaTitle, metaDescription },
+    providersSeo { metaTitle, metaDescription }
+  }
+`;
+
 // ─── Brand & Growth — mirrors Notion service system ──────────────────────────
 
 export type ProviderLane =
@@ -887,6 +925,51 @@ export interface Provider {
   roleCredential?: string;
   scopeOfPractice?: string;
 }
+
+export interface PublicProviderProfile {
+  _id: string;
+  slug: string;
+  publicName: string;
+  publicRole: string;
+  summary: string;
+  biography: string[];
+  serviceFocus: string[];
+  imageUrl?: string;
+  imageAlt?: string;
+  digitalCardPath?: string;
+  listingOrder: number;
+  medicallyDirected?: boolean;
+  seo?: { metaTitle?: string; metaDescription?: string };
+}
+
+const PUBLIC_PROVIDER_FIELDS = /* groq */ `
+  _id,
+  "slug": slug.current,
+  "publicName": coalesce(publicName, fullName, title),
+  "publicRole": coalesce(publicRole, roleCredential),
+  summary,
+  biography,
+  serviceFocus,
+  "imageUrl": coalesce(profileImage.asset->url, profileImagePath),
+  "imageAlt": profileImage.alt,
+  digitalCardPath,
+  "listingOrder": coalesce(listingOrder, 100),
+  medicallyDirected,
+  seo { metaTitle, metaDescription }
+`;
+
+export const PUBLIC_PROVIDERS_QUERY = /* groq */ `
+  *[_type == "provider" && showOnWebsite == true && defined(slug.current)]
+    | order(listingOrder asc, publicName asc) {
+      ${PUBLIC_PROVIDER_FIELDS}
+    }
+`;
+
+export const PUBLIC_PROVIDER_BY_SLUG_QUERY = /* groq */ `
+  *[_type == "provider" && showOnWebsite == true && slug.current == $slug][0] {
+    ${PUBLIC_PROVIDER_FIELDS}
+  }
+`;
 
 export interface BrandPillar {
   name: string;

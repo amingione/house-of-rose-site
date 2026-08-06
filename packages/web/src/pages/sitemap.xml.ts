@@ -11,6 +11,7 @@ import {
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   type SitemapService,
   type BlogPost,
   type ServiceCollection,
@@ -20,12 +21,14 @@ import {
   type LocalArea,
   type CaseStudy,
   type TreatmentPackage,
+  type PublicProviderProfile,
 } from '@/lib/queries';
+import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
 
-  const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages] = await Promise.all([
+  const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
     sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
@@ -35,7 +38,9 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
+    sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
+  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
 
   const now = new Date().toISOString().split('T')[0];
 
@@ -43,6 +48,9 @@ export const GET: APIRoute = async ({ site }) => {
   const staticPages = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/services/`, priority: '0.9', changefreq: 'weekly', lastmod: now },
+    { loc: `${baseUrl}/about/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/about/hra/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/about/providers/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/consultation/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/shop/jane-iredale/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/blog/`, priority: '0.8', changefreq: 'weekly', lastmod: now },
@@ -111,6 +119,12 @@ export const GET: APIRoute = async ({ site }) => {
   const comparePages = comparisons.map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
   const areaPages = localAreas.map((a) => ({ loc: `${baseUrl}/areas/${a.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: a._updatedAt ? a._updatedAt.split('T')[0] : now }));
   const resultPages = caseStudies.map((cs) => ({ loc: `${baseUrl}/results/${cs.slug}/`, priority: '0.6', changefreq: 'monthly', lastmod: cs._updatedAt ? cs._updatedAt.split('T')[0] : now }));
+  const providerPages = providers.map((provider) => ({
+    loc: `${baseUrl}/about/providers/${provider.slug}/`,
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: now,
+  }));
 
   // Keep the XML sitemap focused on high-value hubs and editorial pages.
   // Product detail pages remain crawlable through /shop/ but are intentionally
@@ -127,6 +141,7 @@ export const GET: APIRoute = async ({ site }) => {
     ...comparePages,
     ...areaPages,
     ...resultPages,
+    ...providerPages,
   ];
 
   // Generate XML

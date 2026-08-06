@@ -327,6 +327,7 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (Microneedling with the Procell Therapies device, Glo2Facial, PRF topical, Procell MD/Pro materials, BioRePeel, dermaplaning, carboxy). Use **Procell Microchanneling** only in explicit Procell context; it is not a separate service from Microneedling. PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service such as Microneedling — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
 - **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels) plus **facial waxing**. Rents a room. **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
+- **Aundrea** — **Professional makeup artistry and permanent jewelry** (weddings, special events, photoshoots, and celebrations). These are non-medical services. Public provider copy was restored by Amber on 2026-08-06.
 
 ## Memberships — NOT OFFERED
 House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are
@@ -488,6 +489,10 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/services/collections/[collection]` | `services/collections/[collection].astro` | Single collection |
 | `/shop/jane-iredale` | `shop/jane-iredale.astro` | Jane Iredale product feature singleton (`janeIredalePage`) — makeup/skincare/supplements, benefits, post-treatment use, this-for-that swap guide, Get-the-Look. |
 | `/experience` | `experience.astro` | Static |
+| `/about` | `about/index.astro` | About index singleton (`aboutPage`) |
+| `/about/hra` | `about/hra.astro` | Practice story from the `aboutPage` singleton |
+| `/about/providers` | `about/providers/index.astro` | Public provider directory (`provider`) |
+| `/about/providers/[slug]` | `about/providers/[slug].astro` | Public provider profile (`provider`; `Person` JSON-LD) |
 | `/cost/[slug]` | `cost/[slug].astro` | Cost guide by slug (`costGuide`) |
 | `/compare/[slug]` | `compare/[slug].astro` | Comparison by slug (`comparison`) |
 | `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |

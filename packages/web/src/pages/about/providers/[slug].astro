@@ -1,0 +1,138 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { sanityFetch } from '@/lib/sanity';
+import { PUBLIC_PROVIDERS_QUERY, type PublicProviderProfile } from '@/lib/queries';
+import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { breadcrumbList, personProfile } from '@/lib/structuredData';
+import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
+
+export async function getStaticPaths() {
+  const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
+  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+  return providers.map((profile) => ({ params: { slug: profile.slug }, props: { profile } }));
+}
+
+interface Props {
+  profile: PublicProviderProfile;
+}
+
+const { profile } = Astro.props;
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const title = profile.seo?.metaTitle ?? `${profile.publicName} | House of Rose Aesthetics`;
+const description = profile.seo?.metaDescription ?? profile.summary;
+const absoluteImage = profile.imageUrl ? new URL(profile.imageUrl, site).toString() : undefined;
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'About', item: new URL('/about/', site).toString() },
+  { name: 'Providers', item: new URL('/about/providers/', site).toString() },
+  { name: profile.publicName, item: canonical },
+]);
+const personSchema = personProfile(
+  {
+    name: profile.publicName,
+    jobTitle: profile.publicRole,
+    url: canonical,
+    image: absoluteImage,
+    description: profile.summary,
+    knowsAbout: profile.serviceFocus,
+    sameAs: profile.digitalCardPath ? [new URL(profile.digitalCardPath, site).toString()] : undefined,
+  },
+  site,
+);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={profile.imageUrl}
+  imageAlt={profile.imageAlt}
+  preloadImage={profile.imageUrl}
+>
+  <SchemaMarkup item={personSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
+  <div {...sbObjectId(profile._id)}>
+    <section class="grid min-h-[680px] pt-20 lg:grid-cols-[0.94fr_1.06fr]">
+      {profile.imageUrl ? (
+        <div class="min-h-[460px] bg-limestone lg:min-h-full">
+          <img
+            src={profile.imageUrl}
+            alt={profile.imageAlt ?? profile.publicName}
+            width="980"
+            height="1225"
+            class="h-full w-full object-cover object-top"
+            fetchpriority="high"
+          />
+        </div>
+      ) : (
+        <div class="on-dark flex min-h-[460px] items-center justify-center bg-walnut px-10 lg:min-h-full">
+          <div class="text-center">
+            <img src="/logos/house-of-rose-monogram/hr-logo-gold.webp" alt="" width="136" height="138" class="mx-auto h-28 w-auto opacity-90" />
+            <p class="mt-8 text-[12px] font-semibold uppercase tracking-[0.16em] text-gold">House of Rose Aesthetics</p>
+          </div>
+        </div>
+      )}
+
+      <div class="flex items-center px-6 py-[clamp(64px,9vw,112px)] sm:px-10 lg:px-[clamp(56px,7vw,108px)]">
+        <div class="max-w-[650px]">
+          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold" {...sbFieldPath('publicRole')}>
+            {profile.publicRole}
+          </p>
+          <h1 class="mt-5 font-serif text-[clamp(42px,6vw,70px)] leading-[1.02] text-ink" {...sbFieldPath('publicName')}>
+            {profile.publicName}
+          </h1>
+          <p class="mt-7 text-[17px] leading-[1.8] text-muted-strong" {...sbFieldPath('summary')}>
+            {profile.summary}
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="/about/providers/" class="btn-gold">Meet the full team</a>
+            {profile.digitalCardPath && <a href={profile.digitalCardPath} class="btn-outline-gold">Open digital card</a>}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-walnut/10 bg-breath px-6 py-[clamp(64px,9vw,112px)]">
+      <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-20">
+        <article>
+          <p class="kicker">Profile</p>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] text-ink">Meet {profile.publicName.split(',')[0]}</h2>
+          <div class="mt-7 space-y-6 text-[16px] leading-[1.85] text-muted">
+            {profile.biography.map((paragraph, index) => (
+              <p {...sbFieldPathParts('biography', index)}>{paragraph}</p>
+            ))}
+          </div>
+        </article>
+
+        <aside class="border-t border-walnut/20 pt-7">
+          <h2 class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">Service focus</h2>
+          <ul class="mt-5 divide-y divide-walnut/10 border-b border-walnut/10">
+            {profile.serviceFocus.map((focus, index) => (
+              <li class="py-4 text-[15px] text-muted-strong" {...sbFieldPathParts('serviceFocus', index)}>{focus}</li>
+            ))}
+          </ul>
+          {profile.slug === 'aundrea' && (
+            <p class="mt-6 text-[13px] leading-[1.7] text-muted">Makeup artistry and permanent jewelry are non-medical services.</p>
+          )}
+          {profile.medicallyDirected && (
+            <p class="mt-7 border-t border-walnut/10 pt-6 text-[13px] font-semibold leading-[1.7] text-muted-strong">
+              Medical Director: Joshua Shaw, MD · FL Lic. ME136232
+            </p>
+          )}
+        </aside>
+      </div>
+    </section>
+
+    <section class="px-6 py-[clamp(52px,7vw,80px)]">
+      <div class="mx-auto flex max-w-[960px] flex-col items-center text-center">
+        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">Start with the service you want to understand.</h2>
+        <p class="mt-5 max-w-[620px] text-[15px] leading-[1.8] text-muted">
+          Review current services and what each appointment involves before choosing a time.
+        </p>
+        <a href="/services/" class="btn-gold mt-8">Explore services</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

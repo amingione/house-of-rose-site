@@ -31,6 +31,8 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
           S.list()
             .title('Pages')
             .items([
+              S.listItem().title('About Section').id('aboutPage')
+                .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
               S.listItem().title('Experience Page').id('experiencePage')
                 .child(S.document().schemaType('experienceContent').documentId('experienceContent')),
               S.listItem().title('Jane Iredale Products').id('janeIredalePage')
@@ -51,6 +53,11 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
                 .child(S.document().schemaType('thankYou').documentId('thankYou')),
             ])
         ),
+
+      S.listItem()
+        .title('Providers')
+        .schemaType('provider')
+        .child(S.documentTypeList('provider').title('Providers')),
 
       S.divider(),
 

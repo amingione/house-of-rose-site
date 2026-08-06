@@ -10,6 +10,7 @@
     "deploy-graphql": "sanity graphql deploy"
   },
   "dependencies": {
+    "@sanity/client": "^6.29.1",
     "@sanity/vision": "^6.1.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
