@@ -483,40 +483,40 @@ export const product = defineType({
       options: {
         list: [
           { title: 'Eligible', value: 'eligible' },
-          { title: 'Review Required', value: 'reviewRequired' },
+          { title: 'Incomplete Data', value: 'incomplete' },
           { title: 'Excluded', value: 'excluded' },
         ],
       },
-      initialValue: 'reviewRequired',
+      initialValue: 'incomplete',
     }),
     defineField({
       name: 'exclusionReason',
-      title: 'Merchant Exclusion / Review Reason',
+      title: 'Merchant Exclusion / Missing-Data Reason',
       type: 'string',
       hidden: ({ parent }) => parent?.merchantStatus === 'eligible',
       validation: (R) =>
         R.custom((value, context) => {
           const document = context.document as { merchantStatus?: string } | undefined;
           return document?.merchantStatus !== 'eligible' && !value
-            ? 'Record why this product is excluded or requires review.'
+            ? 'Record the missing product data or the reason this product is excluded.'
             : true;
         }),
     }),
     defineField({
       name: 'policyClass',
-      title: 'Google Policy Class',
+      title: 'Google Product Classification',
       type: 'string',
       options: {
         list: [
           { title: 'Standard Retail', value: 'standard-retail' },
-          { title: 'OTC / Acne Review', value: 'otc-review' },
-          { title: 'SPF Review', value: 'spf-review' },
+          { title: 'OTC / Acne Product', value: 'otc-product' },
+          { title: 'SPF Product', value: 'spf-product' },
           { title: 'CBD — Prohibited', value: 'cbd-prohibited' },
           { title: 'Gift Card / Service-like', value: 'service-like' },
-          { title: 'Other Review', value: 'other-review' },
+          { title: 'Other', value: 'other' },
         ],
       },
-      initialValue: 'other-review',
+      initialValue: 'other',
     }),
     defineField({
       name: 'merchantDestinations',

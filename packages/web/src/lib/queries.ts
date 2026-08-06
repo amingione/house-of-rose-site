@@ -270,7 +270,7 @@ export interface Product {
     scent?: string;
     material?: string;
   };
-  merchantStatus?: 'eligible' | 'reviewRequired' | 'excluded';
+  merchantStatus?: 'eligible' | 'incomplete' | 'excluded';
   policyClass?: string;
   merchantDestinations?: string[];
   productTypePath?: string;

@@ -57,6 +57,8 @@
     "google:catalog:apply": "npm exec --workspace packages/studio -- sanity exec scripts/migrate-google-catalog.mjs --with-user-token -- --apply",
     "google:catalog:weights": "node scripts/run-with-env.mjs node packages/studio/scripts/apply-researched-shipping-weights.mjs",
     "google:catalog:weights:apply": "npm exec --workspace packages/studio -- sanity exec scripts/apply-researched-shipping-weights.mjs --with-user-token -- --apply",
+    "google:catalog:activate": "node scripts/run-with-env.mjs node packages/studio/scripts/activate-merchant-products.mjs",
+    "google:catalog:activate:apply": "npm exec --workspace packages/studio -- sanity exec scripts/activate-merchant-products.mjs --with-user-token -- --apply",
     "google:gbp:export": "node scripts/run-with-env.mjs node scripts/google/export-gbp-services.mjs",
     "google:offline:csv": "node scripts/run-with-env.mjs node scripts/google/export-offline-conversions.mjs",
     "google:test": "node --import tsx --test scripts/google/*.test.ts",

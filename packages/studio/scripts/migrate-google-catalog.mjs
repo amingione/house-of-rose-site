@@ -6,8 +6,8 @@
  * Apply:   npm run google:catalog:migrate -- --apply
  *
  * This script intentionally never marks a product Merchant-eligible. It assigns
- * stable internal keys and policy review states; eligibility still requires
- * inventory, image, price, identifiers, authorization, and human evidence.
+ * stable internal keys and an incomplete-data state; the activation migration
+ * separately verifies every factual feed requirement.
  */
 import { createClient } from '@sanity/client';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -100,13 +100,29 @@ const classify = (product) => {
   if (product.merchantStatus === 'excluded') {
     return {
       merchantStatus: 'excluded',
-      policyClass: product.policyClass ?? 'other-review',
+      policyClass: product.policyClass ?? 'other',
       exclusionReason: product.exclusionReason ?? 'Explicitly excluded from Google Merchant.',
     };
   }
-  if (/spf|sunscreen/.test(text)) return { merchantStatus: 'reviewRequired', policyClass: 'spf-review', exclusionReason: 'SPF product requires Google policy and label review.' };
-  if (/acne|benzoyl|salicylic|resorcinol|sulfur/.test(text)) return { merchantStatus: 'reviewRequired', policyClass: 'otc-review', exclusionReason: 'OTC/acne product requires Google policy and label review.' };
-  return { merchantStatus: 'reviewRequired', policyClass: 'standard-retail', exclusionReason: 'Requires identifiers, inventory, images, authorization, and human approval.' };
+  if (/spf|sunscreen/.test(text)) {
+    return {
+      merchantStatus: 'incomplete',
+      policyClass: 'spf-product',
+      exclusionReason: 'Complete the required Merchant product fields before activation.',
+    };
+  }
+  if (/acne|benzoyl|salicylic|resorcinol|sulfur/.test(text)) {
+    return {
+      merchantStatus: 'incomplete',
+      policyClass: 'otc-product',
+      exclusionReason: 'Complete the required Merchant product fields before activation.',
+    };
+  }
+  return {
+    merchantStatus: 'incomplete',
+    policyClass: 'standard-retail',
+    exclusionReason: 'Complete the required Merchant product fields before activation.',
+  };
 };
 const productTypePath = (category) => ({
   skincare: 'Beauty & Personal Care > Cosmetics > Skin Care',
@@ -204,7 +220,7 @@ const summary = {
   products: patches.length,
   brandsResolved: patches.filter((patch) => patch.set.brandRef).length,
   excluded: patches.filter((patch) => patch.set.merchantStatus === 'excluded').length,
-  reviewRequired: patches.filter((patch) => patch.set.merchantStatus === 'reviewRequired').length,
+  incomplete: patches.filter((patch) => patch.set.merchantStatus === 'incomplete').length,
   eligible: patches.filter((patch) => patch.set.merchantStatus === 'eligible').length,
   feedReadyAfterSafeMigration: readiness.filter((product) => product.missing.length === 0).length,
   missingFieldCounts,
