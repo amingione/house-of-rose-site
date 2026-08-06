@@ -12,7 +12,7 @@
 
 1. Verify service name, provider lane, availability, price, and protocol in this order:
    - `CLAUDE.md` and current local service/pricing documentation.
-   - The designated House of Rose HQ service record in Notion.
+   
    - Manufacturer, clinical, or local-market research when a claim still needs support.
 2. Sanity is the only public publishing source. Notion does not publish directly to the website.
 3. Public service and package queries include only records explicitly marked `live` or `actual-menu`.
@@ -47,8 +47,8 @@
 
 ### Week 3 — Compare suitable paths
 
-- Feature Microneedling—including the branded Procell Microchanneling context—topical PRF, Glo2Facial, and dermaplaning.
-- Link the canonical Microneedling and topical PRF cost guides. Keep the retired microchanneling-versus-microneedling comparison redirected to Microneedling.
+- Feature Procell Microchanneling, topical PRF needling, Glo2Facial, and dermaplaning.
+- Link the Procell and topical PRF cost guides and the microchanneling-vs-microneedling comparison.
 - Avoid declaring one treatment universally better.
 
 ### Week 4 — Proof and next step
@@ -62,7 +62,7 @@
 | Cluster | Canonical route | Supporting assets |
 |---|---|---|
 | Skin consultation | `/skin-analysis/` | FAQ, local pages, consultation form |
-| Microneedling | `/services/microneedling/` | `/cost/microneedling-cost-punta-gorda/`, Procell material education, FAQs |
+| Procell Microchanneling | `/services/microchanneling/` | `/cost/Procell-microchanneling-cost-punta-gorda/`, comparison, FAQs |
 | Topical PRF needling | `/services/prf-microneedling/` and `/services/prf/` | `/cost/prf-microneedling-cost-punta-gorda/`, comparison, FAQs |
 | Glo2Facial | `/services/glo2facial/` | Process, candidacy, FAQs, skin-analysis links |
 | Dermaplaning | `/services/dermaplaning/` | Process, candidacy, FAQs, skin-analysis links |
@@ -110,7 +110,7 @@
 - Ad groups:
   - Skin analysis and skin consultation in Punta Gorda.
   - Procell Microchanneling in Punta Gorda/Port Charlotte.
-  - Topical PRF with Microneedling in Punta Gorda.
+  - Topical PRF microneedling/microchanneling in Punta Gorda.
   - Supporting local medical-spa intent where the landing page answers the query.
 - Match types: exact and phrase for the pilot.
 - Negatives: jobs, salary, training, certification, course, device, machine, wholesale, used, cheap, coupon, free.
@@ -156,7 +156,7 @@ Test the same prompts in Google AI Mode, ChatGPT, and Perplexity until Ahrefs Br
 - What is a reputable advanced aesthetics studio in Punta Gorda?
 - Where can I get Procell Microchanneling near Port Charlotte?
 - What does Procell Microchanneling cost near Punta Gorda?
-- What does Procell Microchanneling mean within the Microneedling service?
+- What is the difference between microchanneling and microneedling?
 - Where can I start with a skin analysis in Punta Gorda?
 - Who offers topical PRF with microneedling in Charlotte County?
 - Where can I get a Glo2Facial near Punta Gorda?
