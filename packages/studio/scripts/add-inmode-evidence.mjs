@@ -76,16 +76,6 @@ const services = [
           'The Morpheus8 handpiece combines controlled microneedling with fractional bipolar radiofrequency. Treatment depth, energy, and area are selected for the individualized plan.',
         sourceCredit: 'InMode manufacturer media',
       }),
-      media({
-        key: 'morpheus8-face-example',
-        kind: 'before-after',
-        filename: 'EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
-        alt: 'Manufacturer-provided facial Morpheus8 before and after example',
-        title: 'Facial Skin-Quality Example',
-        caption:
-          'A manufacturer-provided example illustrating visible facial skin-quality change after a Morpheus8 treatment series. This is not a House of Rose client.',
-        sourceCredit: 'Manufacturer-provided treatment example; attribution embedded in image',
-      }),
     ],
     researchReferences: [],
   },
@@ -122,7 +112,7 @@ const services = [
         year: 2021,
         studyType: 'Retrospective photographic analysis',
         summary:
-          'The paper reviewed photographs from several clinics and reported visible improvement across selected pigment, redness or vessel, and texture concerns after treatment with a Lumecca IPL system.',
+          'The paper reviewed photographs from several clinics and reported visible improvement across selected pigment and texture concerns after treatment with a Lumecca IPL system.',
         limitations:
           'This was a retrospective review rather than a randomized controlled trial. It evaluated an earlier Lumecca system and should not be read as a direct trial of every current Lumecca Peak setting or as a promise of individual results.',
         url: 'https://doi.org/10.4236/jcdsa.2021.112012',
@@ -204,6 +194,7 @@ const excludedPublicFiles = [
   'Forma-Before-and-After.png',
   'KhloeKardashian.png',
   'KimM8_ElleArticle2022.png',
+  'EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
   'Morpheus8-Burst-Deep-Before-and-After-Buttocks.png',
   'NB_M8B_BeforeAfter_24Weeks_Abd_Zoomed-TM.jpg',
   'VogueMorpheus8.jpg',
@@ -261,6 +252,26 @@ function validate() {
   assert(
     services.find((service) => service.documentId === 'service-morpheus8')?.researchReferences.length === 0,
     'The supplied hidradenitis study must not support the public cosmetic Morpheus8 page.',
+  );
+
+  const restrictedEvidence = JSON.stringify(
+    services.filter((service) =>
+      ['service-morpheus8', 'service-lumecca-peak-ipl'].includes(service.documentId),
+    ),
+  );
+  assert(
+    !/\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?)\b/i.test(
+      restrictedEvidence,
+    ),
+    'Morpheus8 and Lumecca evidence must not position either treatment for tightening or lifting.',
+  );
+  assert(
+    !/\b(?:vascular|vessels?|capillaries?|rosacea)\b/i.test(
+      JSON.stringify(
+        services.find((service) => service.documentId === 'service-lumecca-peak-ipl'),
+      ),
+    ),
+    'Lumecca evidence must remain within the approved pigment, tone, and selected-texture lane.',
   );
 
   console.log(`Validated ${files.length} approved images and ${services.reduce((sum, service) => sum + service.researchReferences.length, 0)} cosmetic-use research references.`);

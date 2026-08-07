@@ -20,8 +20,6 @@ const INMODE_DEVICE_IMAGES: Record<string, string> = {
 
 const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
   'morpheus8-device': '/images/inmode/Morpheus8-Burst.png',
-  'morpheus8-face-example':
-    '/images/inmode/EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
   'lumecca-device': '/images/inmode/Lumecca-Peak.png',
   'lumecca-face-example':
     '/images/inmode/Lumecca-Peak-Before-and-After.png',

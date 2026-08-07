@@ -87,7 +87,7 @@ An IV appointment using the practice’s current Myers’ Cocktail formulation. 
 
 #### Morpheus8 RF Body | Consultation
 
-Meet with a provider to discuss body texture or laxity concerns and whether Morpheus8 RF microneedling may be appropriate. The consultation covers candidacy, treatment areas, preparation, recovery, series planning, and current pricing. `[Correct “Morpheous8” to “Morpheus8”; verify $2,500 display price.]`
+Meet with a provider to discuss body-skin tone, texture, visible scars, or stretch marks and whether Morpheus8 RF microneedling may be appropriate. The consultation covers candidacy, treatment areas, preparation, recovery, series planning, and current pricing. `[Correct “Morpheous8” to “Morpheus8”; verify $2,500 display price.]`
 
 #### PRF Bio-Filler | Consultation
 
@@ -95,11 +95,11 @@ Meet with a provider to discuss volume-related concerns and whether a PRF-derive
 
 #### Morpheus8 RF | Consultation
 
-Meet with a provider to discuss texture, scarring, pore appearance, or laxity concerns and whether Morpheus8 RF microneedling may be appropriate. The consultation covers candidacy, treatment depth, preparation, recovery, series planning, and current pricing. `[Correct “Morpheous8” to “Morpheus8”; verify $2,500 display price.]`
+Meet with a provider to discuss visible tone, texture, or scar concerns and whether Morpheus8 RF microneedling may be appropriate. The consultation covers candidacy, treatment depth, preparation, recovery, series planning, and current pricing. `[Correct “Morpheous8” to “Morpheus8”; verify $2,500 display price.]`
 
 #### Lumecca Peak IPL | Consultation
 
-Meet with a provider to discuss visible pigment or vascular concerns and whether Lumecca Peak IPL may be appropriate. The consultation covers candidacy, treatment area, preparation, recovery, limitations, and current pricing. `[Verify $50 deposit or consultation price.]`
+Meet with a provider to discuss visible pigment, uneven tone, or selected texture concerns and whether Lumecca Peak IPL may be appropriate. The consultation covers candidacy, treatment area, preparation, recovery, limitations, and current pricing. `[Verify $50 deposit or consultation price.]`
 
 #### Dermal Filler | Consultation
 

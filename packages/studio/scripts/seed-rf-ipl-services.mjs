@@ -38,8 +38,8 @@ const ids = {
 
 const concernIds = {
   acneScarring: 'ad938cc9-1677-42ce-ad14-085362954677',
-  enlargedPores: 'bf424b8e-119f-49b6-827f-82d2b24cefb1',
   fineLinesLaxity: 'ac651187-ec12-4324-a5c6-974a73b42f1a',
+  hyperpigmentation: 'concern-hyperpigmentation',
   stretchMarks: 'f36aa3c0-9681-4e82-95dd-1ad4abbdb3f8',
   sunDamage: 'e07ca64c-62da-4aef-94f5-a0517ccb70fb',
   texture: 'e775f8a4-266e-4edb-8c6f-eba826fc94cd',
@@ -65,7 +65,7 @@ const collection = {
   title: 'RF & IPL Skin Treatments',
   slug: slug('rf-ipl-skin-treatments'),
   description:
-    'Morpheus8, Lumecca Peak IPL, and Forma pair radiofrequency or light-based technology with a consultation-led plan for visible texture, tone, firmness, and body-skin concerns in Punta Gorda.',
+    'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and separate radiofrequency facial goals in Punta Gorda.',
   orderRank: 4.5,
 };
 
@@ -83,38 +83,36 @@ const services = [
     pricingNotes:
       'Consultation required. Treatment area, settings, comfort plan, timing, and investment are confirmed after candidacy is reviewed.',
     orderRank: 1,
-    tagline: 'Refine the look of laxity, lines, texture, scars, and stretch marks on the face or selected body areas.',
+    tagline: 'RF microneedling for visible tone, texture, scars, and stretch marks on eligible face and body areas.',
     description:
-      'Morpheus8 RF Microneedling combines controlled microneedling with fractional bipolar radiofrequency to support firmer, smoother, more refined-looking skin. At House of Rose Aesthetics in Punta Gorda, the treatment is personalized by depth, energy, and area for facial or selected body-skin goals.',
+      'Morpheus8 RF Microneedling combines controlled microneedling with fractional bipolar radiofrequency. At House of Rose Aesthetics in Punta Gorda, it is used for the appearance of uneven tone and texture, visible scars, and stretch marks on eligible face and body areas. Treatment depth, energy, and area are selected after consultation, and individual outcomes vary.',
     whoItsFor:
-      'Morpheus8 may fit clients who want a more intensive skin-renewal option for the appearance of mild laxity, fine lines, uneven texture, enlarged-looking pores, acne-scar texture, or stretch marks. Your consultation reviews the intended area, skin condition, health history, medications, recent procedures, recovery preferences, and any reason treatment should be postponed.',
+      'Morpheus8 may fit clients considering treatment for uneven tone or texture, visible scar texture, or stretch marks on the face or body. Your consultation reviews the intended area, skin condition, health history, medications, recent procedures, recovery preferences, and any reason treatment should be postponed.',
     concerns: [
-      concernReference('fineLinesLaxity', 'fine-lines-laxity'),
       concernReference('texture', 'texture'),
-      concernReference('enlargedPores', 'enlarged-pores'),
       concernReference('acneScarring', 'acne-scarring'),
       concernReference('stretchMarks', 'stretch-marks'),
     ],
     benefits: [
-      'Supports a firmer, more refined-looking surface',
-      'Improves the appearance of fine lines and uneven texture',
-      'Offers a customized approach for facial and selected body areas',
-      'Addresses several visible skin-quality goals in one treatment plan',
+      'Supports a smoother, more even-looking surface',
+      'Improves the appearance of uneven tone and texture',
+      'Addresses the visible texture of eligible scars',
+      'Improves the appearance of stretch marks on selected body areas',
     ],
     treatmentAreas: [
       treatmentArea(
         'Face',
-        'Fine lines, uneven texture, enlarged-looking pores, acne-scar texture, and overall skin refinement.',
+        'Uneven tone and texture, including the visible texture of eligible facial scars.',
         'face',
       ),
       treatmentArea(
-        'Jawline & Neck',
-        'The appearance of mild laxity, crepey-looking texture, and less-defined contours.',
-        'jawline-neck',
+        'Neck & Chest',
+        'Uneven tone, uneven surface texture, and eligible scar concerns.',
+        'neck-chest',
       ),
       treatmentArea(
         'Selected Body Areas',
-        'Stretch-mark texture, crepey-looking skin, and localized areas of visible laxity selected during consultation.',
+        'Stretch marks, visible scars, and uneven tone or texture selected during consultation.',
         'body',
       ),
     ],
@@ -128,17 +126,17 @@ const services = [
     faqs: [
       faq(
         'How does Morpheus8 RF Microneedling work?',
-        'Morpheus8 uses microneedles to deliver fractional bipolar radiofrequency at provider-selected depths. The combination creates a controlled skin-renewal response designed to improve the look of firmness, lines, texture, scars, and stretch marks.',
+        'Morpheus8 uses microneedles to deliver fractional bipolar radiofrequency at provider-selected depths. House of Rose uses the treatment for the appearance of uneven tone and texture, eligible scars, and stretch marks.',
         'how-it-works',
       ),
       faq(
         'What concerns can Morpheus8 address?',
-        'Morpheus8 may be considered for the appearance of mild laxity, fine lines, uneven texture, enlarged-looking pores, acne-scar texture, stretch marks, and crepey-looking skin. The most appropriate area and settings depend on your consultation.',
+        'Morpheus8 may be considered for uneven-looking tone, uneven texture, the visible texture of eligible scars, and stretch marks. The treatment area and settings depend on your consultation.',
         'concerns',
       ),
       faq(
         'Can Morpheus8 be used on the face and body?',
-        'Yes. Morpheus8 is designed for face and body applications. House of Rose lists the face, jawline, neck, and selected body areas, with final area selection confirmed after candidacy and available treatment tips are reviewed.',
+        'Yes. House of Rose considers Morpheus8 for eligible face, neck, chest, and selected body areas when tone, texture, scars, or stretch marks are the stated concern. Final area selection is confirmed after candidacy and available treatment tips are reviewed.',
         'face-body',
       ),
       faq(
@@ -164,7 +162,7 @@ const services = [
     seo: {
       metaTitle: 'Morpheus8 RF Microneedling Punta Gorda | House of Rose',
       metaDescription:
-        'Explore Morpheus8 RF microneedling for face and selected body areas at House of Rose Aesthetics in Punta Gorda. Call to consult.',
+        'Explore Morpheus8 RF microneedling for visible tone, texture, scars, and stretch marks at House of Rose Aesthetics in Punta Gorda.',
     },
   },
   {
@@ -180,22 +178,27 @@ const services = [
     pricingNotes:
       'Consultation required. Treatment area, skin assessment, timing, and investment are confirmed after candidacy is reviewed.',
     orderRank: 2,
-    tagline: 'Reveal clearer, more even-looking tone by targeting visible brown spots, redness, and vessels.',
+    tagline: 'IPL for visible pigment, uneven tone, and selected texture concerns.',
     description:
-      'Lumecca Peak is an intense pulsed light photofacial designed to improve the appearance of sun-related discoloration, brown spots, freckles, redness, and visible vessels. At House of Rose Aesthetics in Punta Gorda, IPL settings and treatment areas are selected after a careful review of your skin, recent sun exposure, and candidacy.',
+      'Lumecca Peak is an intense pulsed light photofacial used for the appearance of visible pigment, uneven tone, and selected texture concerns. At House of Rose Aesthetics in Punta Gorda, IPL settings and treatment areas are selected after a review of your skin, recent sun exposure, and candidacy. Individual outcomes vary.',
     whoItsFor:
-      'Lumecca Peak IPL may fit clients seeking clearer, more even-looking tone on the face, neck, chest, or hands. Recent tanning or sun exposure, light-sensitive medications, active irritation, and certain health or skin histories can affect timing or candidacy, so an IPL consultation is required before treatment.',
-    concerns: [concernReference('sunDamage', 'sun-damage')],
+      'Lumecca Peak IPL may fit clients considering treatment for visible pigment, uneven tone, or selected texture concerns on the face, neck, chest, or hands. Recent tanning or sun exposure, light-sensitive medications, active irritation, and certain health or skin histories can affect timing or candidacy, so an IPL consultation is required before treatment.',
+    concerns: [
+      concernReference('sunDamage', 'sun-damage'),
+      concernReference('hyperpigmentation', 'hyperpigmentation'),
+      concernReference('texture', 'texture'),
+    ],
     benefits: [
-      'Improves the look of visible sun-related discoloration and brown spots',
-      'Softens the appearance of freckles, redness, and small visible vessels',
-      'Supports brighter, more even-looking tone across exposed areas',
+      'Improves the appearance of visible sun-related pigment',
+      'Addresses the look of brown spots and freckles',
+      'Supports more even-looking tone across exposed areas',
+      'May be considered for selected visible texture concerns',
       'Uses customizable IPL settings selected for the planned area and skin assessment',
     ],
     treatmentAreas: [
       treatmentArea(
         'Face',
-        'Visible brown spots, freckles, redness, small visible vessels, and uneven-looking tone.',
+        'Visible pigment, brown spots, freckles, uneven-looking tone, and selected texture concerns.',
         'face',
       ),
       treatmentArea(
@@ -219,12 +222,12 @@ const services = [
     faqs: [
       faq(
         'Is Lumecca Peak IPL a laser?',
-        'No. IPL uses broad-spectrum intense pulsed light rather than a single laser wavelength. Its customizable light is selected to improve the appearance of visible pigment and vascular concerns.',
+        'No. IPL uses broad-spectrum intense pulsed light rather than a single laser wavelength. The settings are selected for visible pigment, uneven tone, and eligible texture concerns.',
         'ipl-vs-laser',
       ),
       faq(
         'What does Lumecca Peak IPL help improve?',
-        'Lumecca Peak IPL is designed for the appearance of brown spots, freckles, sun-related discoloration, redness, small visible vessels, and uneven-looking tone. A consultation determines whether IPL is the right approach for the specific concern.',
+        'Lumecca Peak IPL is used for the appearance of brown spots, freckles, sun-related pigment, uneven-looking tone, and selected texture concerns. A consultation determines whether IPL is the right approach for the specific concern.',
         'concerns',
       ),
       faq(
@@ -255,7 +258,7 @@ const services = [
     seo: {
       metaTitle: 'Lumecca Peak IPL Punta Gorda | House of Rose',
       metaDescription:
-        'Explore Lumecca Peak IPL for visible brown spots, redness, vessels, and uneven tone at House of Rose Aesthetics in Punta Gorda.',
+        'Explore Lumecca Peak IPL for visible pigment, uneven tone, and selected texture concerns at House of Rose Aesthetics in Punta Gorda.',
     },
   },
   {
@@ -399,6 +402,7 @@ function validateSeed() {
     assert(service.process.length >= 4, `${service.title} needs practical expectations.`);
     assert(service.faqs.length >= 6, `${service.title} needs at least six FAQs.`);
     assert(service.relatedServices.length === 2, `${service.title} must cross-link the other two treatments.`);
+    assert(service.concerns.every((item) => item._ref), `${service.title} contains an unresolved concern reference.`);
     assert(service.seo.metaTitle.length <= 60, `${service.title} meta title is longer than 60 characters.`);
     assert(service.seo.metaDescription.length <= 155, `${service.title} meta description is longer than 155 characters.`);
   }
@@ -406,6 +410,35 @@ function validateSeed() {
   const nonMorpheusContent = JSON.stringify([collection, ...services.filter((service) => service._id !== ids.morpheus8)]);
   assert(!/\bForma Plus\b/i.test(nonMorpheusContent), 'Forma Plus must not appear in this content.');
   assert(!/\bbody areas?\b|\bbody skin\b|\bbody-skin\b/i.test(JSON.stringify(services.find((service) => service._id === ids.forma))), 'Forma must remain facial-only.');
+
+  const restrictedIndicationCopy = JSON.stringify([
+    services.find((service) => service._id === ids.morpheus8),
+    services.find((service) => service._id === ids.lumecca),
+  ]);
+  assert(
+    !/\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?)\b/i.test(
+      restrictedIndicationCopy,
+    ),
+    'Morpheus8 and Lumecca must not be positioned for tightening, lifting, laxity, firmness, sagging, jowls, or contouring.',
+  );
+  assert(
+    !/\b(?:vascular|vessels?|capillaries?|rosacea)\b/i.test(
+      JSON.stringify(services.find((service) => service._id === ids.lumecca)),
+    ),
+    'Lumecca must remain within the approved pigment, tone, and selected-texture lane.',
+  );
+
+  const permittedConcernIds = {
+    [ids.morpheus8]: new Set([concernIds.texture, concernIds.acneScarring, concernIds.stretchMarks]),
+    [ids.lumecca]: new Set([concernIds.sunDamage, concernIds.hyperpigmentation, concernIds.texture]),
+  };
+  for (const serviceId of [ids.morpheus8, ids.lumecca]) {
+    const service = services.find((item) => item._id === serviceId);
+    assert(
+      service.concerns.every((item) => permittedConcernIds[serviceId].has(item._ref)),
+      `${service.title} contains a concern outside its approved indication set.`,
+    );
+  }
 
   const content = JSON.stringify(documents);
   for (const phrase of forbiddenPhrases) {
