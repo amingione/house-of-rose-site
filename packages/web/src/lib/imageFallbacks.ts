@@ -24,8 +24,6 @@ const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
   'lumecca-face-example':
     '/images/inmode/Lumecca-Peak-Before-and-After.png',
   'forma-device': '/images/inmode/Forma-handpiece-space.png',
-  'forma-profile-example': '/images/inmode/HO1_Forma_Website.jpg',
-  'forma-front-example': '/images/inmode/HO2_Forma_Website.jpg',
 };
 
 // Face Reality brand assets (from docs/Face Reality — Branded Assets 2026).

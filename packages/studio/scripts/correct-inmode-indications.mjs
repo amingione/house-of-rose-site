@@ -4,10 +4,12 @@
  * Owner direction, 2026-08-06:
  * - Do not position Morpheus8 or Lumecca for skin tightening or lifting.
  * - Limit their public routing to tone, texture, pigment, stretch marks, and scars.
+ * - Position Forma only for crepey-looking texture and collagen support, without
+ *   tightening, lifting, sculpting, contouring, firmness, laxity, or jowl claims.
  *
  * The supplied InMode library supports Lumecca pigment/tone/selected texture copy,
  * while the supplied pricing material lists Morpheus8 scars and stretch marks.
- * Forma remains the separate InMode treatment for firmness-related goals.
+ * The supplied Forma tissue study supports cautious collagen-response language.
  *
  * Usage from the repository root:
  *   npm run content:inmode-indications
@@ -277,6 +279,84 @@ const lumeccaCopy = {
   },
 };
 
+const formaCopy = {
+  tagline:
+    'Temperature-controlled radiofrequency for crepey-looking facial texture and collagen support.',
+  description:
+    'Forma RF Facial uses non-invasive, temperature-controlled radiofrequency on eligible facial areas. At House of Rose Aesthetics in Punta Gorda, it is used for the appearance of crepey texture and to support the skin’s collagen response. The handpiece moves continuously across the selected area while monitoring skin temperature in real time. The area, settings, timing, and candidacy are confirmed at consultation, and individual outcomes vary.',
+  whoItsFor:
+    'Forma may fit clients considering a non-needling radiofrequency option for crepey-looking texture on an eligible facial area. Your consultation reviews the area, skin condition, health history, recent procedures, comfort preferences, and any reason treatment should be postponed.',
+  concerns: [concern('texture', 'texture')],
+  benefits: [
+    'Improves the appearance of crepey-looking facial texture',
+    'Supports the skin’s collagen response over time',
+    'Uses real-time temperature monitoring during the appointment',
+    'Provides a non-invasive option with minimal interruption to the day',
+  ],
+  treatmentAreas: [
+    treatmentArea(
+      'Face & Cheeks',
+      'The appearance of crepey-looking texture on eligible facial skin.',
+      'face-cheeks',
+    ),
+    treatmentArea(
+      'Lower Face',
+      'Crepey-looking texture on an eligible lower-face area selected during consultation.',
+      'lower-face',
+    ),
+    treatmentArea(
+      'Neck',
+      'The appearance of crepey-looking neck texture when the area is appropriate for treatment.',
+      'neck',
+    ),
+  ],
+  process: [
+    'Begin with a consultation to confirm that a non-invasive RF facial fits the visible texture concern and health history.',
+    'The Forma handpiece is moved continuously across the selected facial area while skin temperature is monitored in real time.',
+    'The experience is typically warm and massage-like, with settings adjusted to the area and individual comfort.',
+    'Forma is designed for minimal interruption to the day. Your provider explains skincare, heat or sun considerations, and aftercare.',
+    'The treated area is reviewed after the skin has had time to respond. Another appointment is discussed only after the visible texture, response, and candidacy are evaluated.',
+  ],
+  faqs: [
+    faq(
+      'How does Forma RF Facial work?',
+      'Forma delivers controlled radiofrequency while monitoring skin temperature in real time. House of Rose uses the non-invasive treatment for the appearance of crepey facial texture and to support the skin’s collagen response.',
+      'how-it-works',
+    ),
+    faq(
+      'What areas can be treated with Forma at House of Rose?',
+      'House of Rose considers Forma for eligible areas of the face, cheeks, lower face, and neck. Your consultation confirms whether the area and crepey-texture concern fit the treatment.',
+      'areas',
+    ),
+    faq(
+      'What concern is Forma used for at House of Rose?',
+      'House of Rose uses Forma for the appearance of crepey-looking facial texture and to support the skin’s collagen response. A consultation confirms whether the visible texture concern and requested area are appropriate.',
+      'concerns',
+    ),
+    faq(
+      'What does a Forma appointment feel like?',
+      'Forma is generally experienced as controlled warmth while the handpiece moves across the skin. Sensation varies, and the provider monitors temperature and adjusts the experience for the planned facial area.',
+      'sensation',
+    ),
+    faq(
+      'What should I expect after Forma RF Facial?',
+      'Forma is a non-invasive treatment designed for minimal interruption to the day. Temporary warmth or redness can occur, and your provider reviews skincare and aftercare for the selected area.',
+      'recovery',
+    ),
+    faq(
+      'How many Forma appointments will I need?',
+      'There is no universal appointment count. Your provider reviews the crepey-texture concern, selected area, skin response, and candidacy before recommending timing or another appointment.',
+      'sessions',
+    ),
+  ],
+  seo: {
+    _type: 'seo',
+    metaTitle: 'Forma RF Facial for Crepey Texture | Punta Gorda',
+    metaDescription:
+      'Explore temperature-controlled Forma RF Facial for crepey-looking facial texture and collagen support at House of Rose Aesthetics in Punta Gorda.',
+  },
+};
+
 const morpheusComparisonCopy = {
   title: 'Morpheus8 vs. Microneedling: Which Texture Treatment Fits?',
   intro:
@@ -467,6 +547,52 @@ const lumeccaCostCopy = {
   },
 };
 
+const formaCostCopy = {
+  title: 'How Much Does Forma RF Facial Cost in Punta Gorda?',
+  answer:
+    'Forma RF Facial pricing in Punta Gorda depends on the selected facial area and the number of appointments in the plan. House of Rose uses Forma for the appearance of crepey-looking texture and to support the skin’s collagen response. The consultation reviews the area, candidacy, timing, and current investment before treatment.',
+  costFactors: [
+    {
+      _key: 'series',
+      factor: 'Single appointment or series',
+      effect:
+        'There is no universal appointment count. The visible texture concern, selected area, skin response, and candidacy guide whether another appointment is discussed.',
+    },
+    {
+      _key: 'area',
+      factor: 'Area treated',
+      effect:
+        'Eligible areas of the face and neck are planned separately. The consultation confirms the requested area and current investment.',
+    },
+    {
+      _key: 'follow-up',
+      factor: 'Follow-up plan',
+      effect:
+        'The provider reviews the treated area after it has had time to respond before recommending further timing or care.',
+    },
+  ],
+  whatsIncluded:
+    'A consultation and skin review, the temperature-controlled Forma RF treatment for the selected area, and aftercare guidance.',
+  faqs: [
+    faq(
+      'Why might Forma be planned as a series?',
+      'The skin’s collagen response develops over time and varies by person. Your provider reviews the crepey-texture concern, selected area, and response before recommending another appointment.',
+      'series',
+    ),
+    faq(
+      'What should I expect after Forma?',
+      'Forma is non-invasive and designed for minimal interruption to the day. Temporary warmth or redness can occur, and your provider reviews aftercare for the selected area.',
+      'recovery',
+    ),
+  ],
+  seo: {
+    _type: 'seo',
+    metaTitle: 'Forma RF Facial Cost in Punta Gorda | House of Rose',
+    metaDescription:
+      'Learn what shapes Forma RF Facial cost in Punta Gorda for crepey-looking facial texture and collagen support, including area and appointment planning.',
+  },
+};
+
 const serviceDocuments = await client.fetch(
   `*[_type == "service" && slug.current in ["morpheus8", "morpheus8-body", "lumecca-peak-ipl", "forma-rf-facial"]]`,
 );
@@ -529,16 +655,26 @@ for (const document of serviceDocuments) {
     });
   }
   if (slug === 'forma-rf-facial') {
-    const description = document.description
-      ?.replace(
-        /\s*Forma pairs beautifully with Morpheus8 for deeper remodeling and with our facials, PRF, and procell as ongoing maintenance\./i,
-        '',
-      )
-      .trim();
-    const whoItsFor = document.whoItsFor
-      ?.replace(/\s*and a perfect maintenance treatment between Morpheus8 sessions\./i, '.')
-      .trim();
-    servicePatches.push({ id: document._id, set: { description, whoItsFor } });
+    servicePatches.push({
+      id: document._id,
+      set: {
+        ...formaCopy,
+        evidenceMedia: (document.evidenceMedia ?? [])
+          .filter((item) => item.kind === 'device')
+          .map((item) =>
+            item._key === 'forma-device'
+              ? {
+                  ...item,
+                  caption:
+                    'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose considers eligible areas of the face and neck after consultation.',
+                }
+              : item,
+          ),
+        researchReferences: (document.researchReferences ?? []).filter(
+          (item) => item._key === 'forma-split-face-2017',
+        ),
+      },
+    });
   }
 }
 
@@ -556,13 +692,17 @@ const directPatches = [
     set: lumeccaCostCopy,
   },
   {
+    ids: ['hor-cost-forma', 'drafts.hor-cost-forma'],
+    set: formaCostCopy,
+  },
+  {
     ids: [
       'service-collection-rf-ipl-skin-treatments',
       'drafts.service-collection-rf-ipl-skin-treatments',
     ],
     set: {
       description:
-        'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and separate radiofrequency facial goals.',
+        'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and collagen-supporting RF facial care.',
     },
   },
 ];
@@ -571,29 +711,6 @@ for (const patch of directPatches) {
   for (const id of patch.ids) {
     if (byId.has(id)) servicePatches.push({ id, set: patch.set });
   }
-}
-
-for (const id of ['hor-cost-forma', 'drafts.hor-cost-forma']) {
-  const document = byId.get(id);
-  if (!document) continue;
-  servicePatches.push({
-    id,
-    set: {
-      answer:
-        'Forma pricing in Punta Gorda depends on the facial area and the number of appointments in the plan. The consultation reviews the requested area, candidacy, timing, and current investment before treatment.',
-      costFactors: (document.costFactors ?? []).filter(
-        (item) => !/Morpheus8/i.test(`${item.factor ?? ''} ${item.effect ?? ''}`),
-      ),
-      faqs: (document.faqs ?? []).filter(
-        (item) => !/Morpheus8/i.test(`${item.question ?? ''} ${item.answer ?? ''}`),
-      ),
-      seo: {
-        ...document.seo,
-        metaDescription:
-          'Learn what shapes Forma RF facial cost in Punta Gorda, including the treatment area and number of appointments in the plan.',
-      },
-    },
-  });
 }
 
 for (const id of ['hor-blog-is-morpheus8-safe', 'drafts.hor-blog-is-morpheus8-safe']) {
@@ -660,13 +777,17 @@ const strings = (value, path = '$', output = []) => {
   }
   return output;
 };
-const prohibitedDirection = /\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?)\b/i;
-const inModeName = /\b(?:Morpheus8|Lumecca(?: Peak)?)\b/i;
+const prohibitedDirection = /\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?|sculpt(?:ing|s|ed)?|facelift)\b/i;
+const inModeName = /\b(?:Morpheus8|Lumecca(?: Peak)?|Forma)\b/i;
 const lumeccaName = /\bLumecca(?: Peak)?\b/i;
 const lumeccaOutsideLane = /\b(?:vascular|vessels?|redness|capillaries?|rosacea)\b/i;
 const invalidStrings = [];
+const invalidFormaStrings = [];
 
 for (const document of verificationDocuments) {
+  const documentContainsForma = /\bForma\b|service-forma-rf-facial/i.test(
+    JSON.stringify(document),
+  );
   for (const entry of strings(document)) {
     if (
       (inModeName.test(entry.value) && prohibitedDirection.test(entry.value)) ||
@@ -674,13 +795,18 @@ for (const document of verificationDocuments) {
     ) {
       invalidStrings.push({ id: document._id, ...entry });
     }
+    if (documentContainsForma && prohibitedDirection.test(entry.value)) {
+      invalidFormaStrings.push({ id: document._id, ...entry });
+    }
   }
 }
 
 const restrictedServices = verificationDocuments.filter(
   (document) =>
     document._type === 'service' &&
-    ['morpheus8', 'morpheus8-body', 'lumecca-peak-ipl'].includes(document.slug?.current),
+    ['morpheus8', 'morpheus8-body', 'lumecca-peak-ipl', 'forma-rf-facial'].includes(
+      document.slug?.current,
+    ),
 );
 const invalidServices = restrictedServices.filter((document) => {
   const refs = new Set((document.concerns ?? []).map((item) => item._ref));
@@ -689,10 +815,13 @@ const invalidServices = restrictedServices.filter((document) => {
       ? new Set([concernIds.sunDamage, concernIds.hyperpigmentation, concernIds.texture])
       : document.slug.current === 'morpheus8'
         ? new Set([concernIds.texture, concernIds.acneScarring, concernIds.stretchMarks])
-        : new Set([concernIds.texture, concernIds.stretchMarks]);
+        : document.slug.current === 'morpheus8-body'
+          ? new Set([concernIds.texture, concernIds.stretchMarks])
+          : new Set([concernIds.texture]);
   return (
     [...refs].some((ref) => !permitted.has(ref)) ||
-    (document.slug.current.startsWith('morpheus8') &&
+    ((document.slug.current.startsWith('morpheus8') ||
+      document.slug.current === 'forma-rf-facial') &&
       (document.evidenceMedia ?? []).some((item) => item.kind === 'before-after'))
   );
 });
@@ -700,12 +829,17 @@ const deletedComparison = await client.fetch(
   'count(*[_id in ["hor-compare-ultherapy-vs-morpheus8", "drafts.hor-compare-ultherapy-vs-morpheus8"]])',
 );
 
-if (invalidStrings.length || invalidServices.length || deletedComparison !== 0) {
+if (
+  invalidStrings.length ||
+  invalidFormaStrings.length ||
+  invalidServices.length ||
+  deletedComparison !== 0
+) {
   throw new Error(
-    `InMode indication verification failed: ${JSON.stringify({ invalidStrings, invalidServices: invalidServices.map((item) => item._id), deletedComparison })}`,
+    `InMode indication verification failed: ${JSON.stringify({ invalidStrings, invalidFormaStrings, invalidServices: invalidServices.map((item) => item._id), deletedComparison })}`,
   );
 }
 
 console.log(
-  `Updated ${servicePatches.length} documents, removed ${deleteIds.length} tightening comparison document(s), and verified the restricted indication set.`,
+  `Updated ${servicePatches.length} documents, removed ${deleteIds.length} restricted comparison document(s), and verified the InMode indication set.`,
 );

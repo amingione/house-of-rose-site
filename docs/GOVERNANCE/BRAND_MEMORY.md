@@ -4,7 +4,7 @@
 > entire file before every task. Use it to connect strategy to execution, and
 > update it after work that creates durable knowledge.
 
-**Memory version:** 1.1.0
+**Memory version:** 1.2.0
 **Last updated:** 2026-08-06
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
 **Current state:** Foundation scaffold; brand-specific intake is not yet populated
@@ -84,7 +84,7 @@ minute. Populate it only with verified or explicitly decided information.
 | Current primary offer | `[UNKNOWN]` | Awaiting brand intake |
 | Primary call to action | `[UNKNOWN]` | Awaiting brand intake |
 | Brand personality | `[UNKNOWN]` | Awaiting brand intake |
-| Non-negotiable constraint | Morpheus8 and Lumecca must not be positioned for skin tightening or lifting. Public routing is limited to the approved concern lanes recorded in DEC-002. | `[DECIDED]` — user direction, 2026-08-06 |
+| Non-negotiable constraint | Morpheus8, Lumecca, and Forma must not be positioned for tightening, lifting, sculpting, contouring, firmness, laxity, or jowls. Their approved concern lanes are recorded in DEC-002 and DEC-003. | `[DECIDED]` — user direction, 2026-08-06 |
 
 ### One-line strategic spine
 
@@ -246,6 +246,7 @@ Copy must reflect what the business can actually deliver.
 | Constraint or reality | Customer impact | Copy implication | State / source |
 |---|---|---|---|
 | Morpheus8 and Lumecca are not tightening or lifting treatments in House of Rose messaging. | Clients must be routed by the visible concern House of Rose actually uses each device to address. | Morpheus8: tone, texture, visible scars, and stretch marks. Lumecca: visible pigment, uneven tone, and selected texture. Do not connect either name to tightening, lifting, laxity, firmness, sagging, jowls, or contouring. | `[DECIDED]` — user direction, 2026-08-06 |
+| Forma is used only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. | Clients should understand the visible texture concern and treatment mechanism without being promised facial reshaping. | Do not connect Forma to tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | `[DECIDED]` — user direction, 2026-08-06 |
 | `[UNKNOWN]` |  |  |  |
 
 ---
@@ -295,6 +296,7 @@ The claim ledger is the boundary between persuasive copy and invented copy.
 | Claim or proof point | Exact support | Allowed wording | Required qualifier | Prohibited wording | Status / source |
 |---|---|---|---|---|---|
 | House of Rose concern routing for Morpheus8 and Lumecca | Owner direction plus the supplied InMode library in `packages/web/docs/inmode/`; the retained Lumecca pigment and selected-texture wording and the Morpheus8 scar and stretch-mark wording are grounded in those materials. | Morpheus8 for visible tone, texture, eligible scars, and stretch marks; Lumecca for visible pigment, uneven tone, and selected texture. | Candidacy and treatment area are reviewed; individual outcomes vary. | Tightening, lifting, laxity, firmness, sagging, jowls, or contouring as a Morpheus8 or Lumecca indication; vascular, vessel, redness, or rosacea routing for Lumecca. | `[DECIDED]` / `[VERIFIED]` — user direction and supplied InMode files, 2026-08-06 |
+| Forma collagen-support positioning | The supplied 2017 split-face tissue study reported changes consistent with increased dermal collagen content and synthesis on the treated side. | Forma for the appearance of crepey-looking facial texture and to support the skin’s collagen response. | The study included four participants and cannot predict visible change for an individual client; candidacy and treatment area are reviewed. | Tightening, lifting, sculpting, contouring, firmness, laxity, jowls, facelift language, or defined-shape claims. | `[DECIDED]` / `[VERIFIED]` — user direction and supplied Forma study, 2026-08-06 |
 | `[UNKNOWN]` |  |  |  |  | Not approved |
 
 ### Trust assets
@@ -482,7 +484,8 @@ line.
 
 | Direction / wording | Reason rejected | What to use instead | Date / source | State |
 |---|---|---|---|---|
-| Positioning Morpheus8 or Lumecca for skin tightening, lifting, laxity, firmness, sagging, jowls, or contouring | It conflicts with the owner's approved treatment lanes and blurs the separate Forma firmness lane. | Route Morpheus8 to tone, texture, eligible scars, and stretch marks; route Lumecca to visible pigment, uneven tone, and selected texture. | 2026-08-06 / user direction | `[DECIDED]` |
+| Positioning Morpheus8 or Lumecca for skin tightening, lifting, laxity, firmness, sagging, jowls, or contouring | It conflicts with the owner's approved treatment lanes. The earlier rationale identifying Forma as a firmness lane is superseded by DEC-003. | Route Morpheus8 to tone, texture, eligible scars, and stretch marks; route Lumecca to visible pigment, uneven tone, and selected texture. | 2026-08-06 / user direction | `[DECIDED]`; prior Forma rationale `[SUPERSEDED]` |
+| Positioning Forma for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape | These outcomes are outside the owner-approved Forma marketing lane. | Describe Forma only for crepey-looking facial texture and cautious collagen-support language. | 2026-08-06 / user direction | `[DECIDED]` |
 | `[UNKNOWN]` |  |  |  |  |
 
 ---
@@ -520,7 +523,8 @@ settled questions or repeating rejected approaches.
 | ID | Date | Decision | Why | Downstream implications | Source / owner | State |
 |---|---|---|---|---|---|---|
 | DEC-001 | 2026-08-04 | Use this file as the canonical brand memory for the workspace. | Preserve durable context and reduce regression across tasks and agents. | All agents read before work and update after durable learning. | User request / workspace setup | `[DECIDED]` |
-| DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. Forma remains the separate InMode firmness lane. | User direction / Amber | `[DECIDED]` |
+| DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. The former Forma-firmness clause is `[SUPERSEDED]` by DEC-003. | User direction / Amber | `[DECIDED]` |
+| DEC-003 | 2026-08-06 | Position Forma only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. Do not market it for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | The owner prohibited reshaping language and approved a texture-and-collagen explanation. The retained split-face tissue study supports cautious collagen-response wording. | Applies to the Forma service page, SEO, structured data, cost guide, FAQs, collection copy, evidence captions, booking copy, concern references, and visual evidence. | User direction / Amber | `[DECIDED]` |
 
 ---
 
@@ -637,5 +641,6 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-06 | 1.2.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Restricted Forma to crepey-looking facial texture and collagen-support language; superseded the prior firmness-lane note. | User direction and supplied Forma tissue study |
 | 2026-08-06 | 1.1.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Recorded the Morpheus8 and Lumecca indication boundary and downstream anti-regression rule. | User direction and supplied InMode files |
 | 2026-08-04 | 1.0.0 | All | Created mandatory dynamic brand-memory system and initial intake scaffold. | User request |

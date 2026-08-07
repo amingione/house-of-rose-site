@@ -124,7 +124,7 @@ const services = [
     title: 'Forma RF Facial',
     fieldUpdates: {
       'faqs[_key=="areas"].answer':
-        'House of Rose offers Forma for the face, cheeks, jawline, and neck. Your consultation confirms which facial areas fit your goals and candidacy.',
+        'House of Rose considers Forma for eligible areas of the face, cheeks, lower face, and neck. Your consultation confirms whether the area and crepey-texture concern fit the treatment.',
     },
     evidenceMedia: [
       media({
@@ -134,28 +134,8 @@ const services = [
         alt: 'Forma temperature-controlled radiofrequency facial handpiece',
         title: 'Forma Facial RF Technology',
         caption:
-          'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose offers this service for the face, jawline, and neck.',
+          'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose considers eligible areas of the face and neck after consultation.',
         sourceCredit: 'InMode manufacturer media',
-      }),
-      media({
-        key: 'forma-profile-example',
-        kind: 'before-after',
-        filename: 'HO1_Forma_Website.jpg',
-        alt: 'Manufacturer-provided Forma facial profile before and after example',
-        title: 'Facial Profile Example',
-        caption:
-          'A manufacturer-provided example illustrating visible change in facial skin firmness and contour after a Forma treatment plan. This is not a House of Rose client.',
-        sourceCredit: 'Manufacturer-provided treatment example; attribution embedded in image',
-      }),
-      media({
-        key: 'forma-front-example',
-        kind: 'before-after',
-        filename: 'HO2_Forma_Website.jpg',
-        alt: 'Manufacturer-provided Forma facial front-view before and after example',
-        title: 'Facial Firmness Example',
-        caption:
-          'A manufacturer-provided example illustrating visible facial skin-quality change after a Forma treatment plan. This is not a House of Rose client.',
-        sourceCredit: 'Manufacturer-provided treatment example; attribution embedded in image',
       }),
     ],
     researchReferences: [
@@ -172,19 +152,6 @@ const services = [
           'Only four participants were included and the protocol used eight weekly sessions. The tissue findings are informative but cannot predict the amount of visible change an individual client may experience.',
         url: 'https://doi.org/10.1080/14764172.2016.1262957',
       }),
-      research({
-        key: 'forma-face-neck-2015',
-        title:
-          'A novel non-invasive radiofrequency dermal heating device for skin tightening of the face and neck',
-        journal: 'Journal of Cosmetic and Laser Therapy',
-        year: 2015,
-        studyType: 'Small prospective case series',
-        summary:
-          'Participants received a series of non-invasive Forma radiofrequency treatments to the face and neck. Blinded photographic review observed visible improvement after the treatment series.',
-        limitations:
-          'Fourteen participants completed the study, which did not include a randomized comparison group. Results from a small case series should be interpreted as preliminary and are not a guarantee of response.',
-        url: 'https://doi.org/10.3109/14764172.2015.1039035',
-      }),
     ],
   },
 ];
@@ -195,6 +162,8 @@ const excludedPublicFiles = [
   'KhloeKardashian.png',
   'KimM8_ElleArticle2022.png',
   'EsmeMedspa_Morpheus8_BeforeAfter_4Treatments_Front-TM.jpg',
+  'HO1_Forma_Website.jpg',
+  'HO2_Forma_Website.jpg',
   'Morpheus8-Burst-Deep-Before-and-After-Buttocks.png',
   'NB_M8B_BeforeAfter_24Weeks_Abd_Zoomed-TM.jpg',
   'VogueMorpheus8.jpg',
@@ -256,14 +225,16 @@ function validate() {
 
   const restrictedEvidence = JSON.stringify(
     services.filter((service) =>
-      ['service-morpheus8', 'service-lumecca-peak-ipl'].includes(service.documentId),
+      ['service-morpheus8', 'service-lumecca-peak-ipl', 'service-forma-rf-facial'].includes(
+        service.documentId,
+      ),
     ),
   );
   assert(
-    !/\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?)\b/i.test(
+    !/\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?|sculpt(?:ing|s|ed)?|facelift)\b/i.test(
       restrictedEvidence,
     ),
-    'Morpheus8 and Lumecca evidence must not position either treatment for tightening or lifting.',
+    'InMode evidence must not position Morpheus8, Lumecca, or Forma for restricted reshaping outcomes.',
   );
   assert(
     !/\b(?:vascular|vessels?|capillaries?|rosacea)\b/i.test(

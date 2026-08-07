@@ -294,7 +294,7 @@ const collectionDescriptions = {
   'collection-microchanneling':
     'Explore microneedling—including Procell Microchanneling—and eligible topical PRF options for face and body concerns.',
   'service-collection-rf-ipl-skin-treatments':
-    'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and separate radiofrequency facial goals.',
+    'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and collagen-supporting RF facial care.',
   '546e9841-b81f-413b-99b1-19b36e96451d':
     'Explore PRF, Procell, and other advanced skin-renewal options for visible texture, tone, and overall skin quality.',
   '5ae70d4c-c42e-4824-881e-b6bb4157de7f':

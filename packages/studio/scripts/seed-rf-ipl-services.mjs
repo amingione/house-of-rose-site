@@ -38,7 +38,6 @@ const ids = {
 
 const concernIds = {
   acneScarring: 'ad938cc9-1677-42ce-ad14-085362954677',
-  fineLinesLaxity: 'ac651187-ec12-4324-a5c6-974a73b42f1a',
   hyperpigmentation: 'concern-hyperpigmentation',
   stretchMarks: 'f36aa3c0-9681-4e82-95dd-1ad4abbdb3f8',
   sunDamage: 'e07ca64c-62da-4aef-94f5-a0517ccb70fb',
@@ -65,7 +64,7 @@ const collection = {
   title: 'RF & IPL Skin Treatments',
   slug: slug('rf-ipl-skin-treatments'),
   description:
-    'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and separate radiofrequency facial goals in Punta Gorda.',
+    'Explore InMode options for visible tone, pigment, texture, scars, stretch marks, and collagen-supporting RF facial care in Punta Gorda.',
   orderRank: 4.5,
 };
 
@@ -274,35 +273,33 @@ const services = [
     pricingNotes:
       'Consultation required. Facial area, timing, series recommendation, and investment are confirmed after candidacy is reviewed.',
     orderRank: 3,
-    tagline: 'A warm, non-invasive RF facial for smoother, firmer, more defined-looking facial contours.',
+    tagline:
+      'Temperature-controlled radiofrequency for crepey-looking facial texture and collagen support.',
     description:
-      'Forma RF Facial is a non-invasive, temperature-controlled radiofrequency treatment designed to support smoother, firmer-looking skin and more refined facial contours. At House of Rose Aesthetics in Punta Gorda, Forma is offered for the face, jawline, and neck with real-time temperature monitoring and a personalized treatment plan.',
+      'Forma RF Facial uses non-invasive, temperature-controlled radiofrequency on eligible facial areas. At House of Rose Aesthetics in Punta Gorda, it is used for the appearance of crepey texture and to support the skin’s collagen response. The handpiece moves continuously across the selected area while monitoring skin temperature in real time. The area, settings, timing, and candidacy are confirmed at consultation, and individual outcomes vary.',
     whoItsFor:
-      'Forma may fit clients who want to improve the appearance of mild facial laxity, crepey-looking texture, or less-defined contours without a microneedling procedure. Your consultation reviews the area, skin condition, health history, recent procedures, comfort preferences, and any reason treatment should be postponed.',
-    concerns: [
-      concernReference('fineLinesLaxity', 'fine-lines-laxity'),
-      concernReference('texture', 'texture'),
-    ],
+      'Forma may fit clients considering a non-needling radiofrequency option for crepey-looking texture on an eligible facial area. Your consultation reviews the area, skin condition, health history, recent procedures, comfort preferences, and any reason treatment should be postponed.',
+    concerns: [concernReference('texture', 'texture')],
     benefits: [
-      'Supports smoother, firmer-looking facial skin',
-      'Refines the appearance of mild laxity and crepey-looking texture',
+      'Improves the appearance of crepey-looking facial texture',
+      'Supports the skin’s collagen response over time',
       'Uses real-time temperature monitoring during the appointment',
       'Provides a non-invasive option with minimal interruption to the day',
     ],
     treatmentAreas: [
       treatmentArea(
         'Face & Cheeks',
-        'Smoother-looking texture, visible firmness, and refined facial contours.',
+        'The appearance of crepey-looking texture on eligible facial skin.',
         'face-cheeks',
       ),
       treatmentArea(
-        'Jawline',
-        'The appearance of mild laxity and less-defined lower-face contours.',
-        'jawline',
+        'Lower Face',
+        'Crepey-looking texture on an eligible lower-face area selected during consultation.',
+        'lower-face',
       ),
       treatmentArea(
         'Neck',
-        'Crepey-looking texture and a smoother, firmer overall appearance.',
+        'The appearance of crepey-looking neck texture when the area is appropriate for treatment.',
         'neck',
       ),
     ],
@@ -316,17 +313,17 @@ const services = [
     faqs: [
       faq(
         'How does Forma RF Facial work?',
-        'Forma delivers controlled radiofrequency while monitoring skin temperature in real time. The warm, non-invasive treatment is designed to support smoother, firmer-looking skin and more refined facial contours.',
+        'Forma delivers controlled radiofrequency while monitoring skin temperature in real time. House of Rose uses the non-invasive treatment for the appearance of crepey facial texture and to support the skin’s collagen response.',
         'how-it-works',
       ),
       faq(
         'What areas can be treated with Forma at House of Rose?',
-        'House of Rose offers Forma for the face, cheeks, jawline, and neck. Your consultation confirms which facial areas fit your goals and candidacy.',
+        'House of Rose considers Forma for eligible areas of the face, cheeks, lower face, and neck. Your consultation confirms whether the area and crepey-texture concern fit the treatment.',
         'areas',
       ),
       faq(
         'What concerns is Forma best suited for?',
-        'Forma may be considered for the appearance of mild facial laxity, crepey-looking texture, and less-defined contours. Clients seeking correction of visible pigment or a more intensive needling treatment may be guided toward another option.',
+        'House of Rose uses Forma for the appearance of crepey-looking facial texture and to support the skin’s collagen response. It is not presented as a treatment for reshaping facial features.',
         'concerns',
       ),
       faq(
@@ -341,7 +338,7 @@ const services = [
       ),
       faq(
         'How many Forma appointments will I need?',
-        'Forma can be planned as one appointment or a series depending on the visible concern, desired maintenance, and response. Your provider recommends timing only after a consultation and follow-up assessment.',
+        'There is no universal appointment count. Your provider reviews the crepey-texture concern, selected area, skin response, and candidacy before recommending timing or another appointment.',
         'sessions',
       ),
     ],
@@ -350,9 +347,9 @@ const services = [
       serviceReference('lumecca', 'lumecca'),
     ],
     seo: {
-      metaTitle: 'Forma RF Facial Punta Gorda | House of Rose',
+      metaTitle: 'Forma RF Facial for Crepey Texture | Punta Gorda',
       metaDescription:
-        'Explore Forma RF Facial for smoother, firmer-looking face, jawline, and neck contours at House of Rose Aesthetics in Punta Gorda.',
+        'Explore temperature-controlled Forma RF Facial for crepey-looking facial texture and collagen support at House of Rose Aesthetics in Punta Gorda.',
     },
   },
 ];
@@ -414,12 +411,13 @@ function validateSeed() {
   const restrictedIndicationCopy = JSON.stringify([
     services.find((service) => service._id === ids.morpheus8),
     services.find((service) => service._id === ids.lumecca),
+    services.find((service) => service._id === ids.forma),
   ]);
   assert(
-    !/\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?)\b/i.test(
+    !/\b(?:tighten(?:ing|s|ed)?|lift(?:ing|s|ed)?|laxity|firm(?:er|ing|ness)?|sagging|jowls?|contour(?:ing|s|ed)?|sculpt(?:ing|s|ed)?|facelift)\b/i.test(
       restrictedIndicationCopy,
     ),
-    'Morpheus8 and Lumecca must not be positioned for tightening, lifting, laxity, firmness, sagging, jowls, or contouring.',
+    'Morpheus8, Lumecca, and Forma must not be positioned for tightening, lifting, laxity, firmness, sagging, jowls, contouring, or sculpting.',
   );
   assert(
     !/\b(?:vascular|vessels?|capillaries?|rosacea)\b/i.test(
@@ -431,8 +429,9 @@ function validateSeed() {
   const permittedConcernIds = {
     [ids.morpheus8]: new Set([concernIds.texture, concernIds.acneScarring, concernIds.stretchMarks]),
     [ids.lumecca]: new Set([concernIds.sunDamage, concernIds.hyperpigmentation, concernIds.texture]),
+    [ids.forma]: new Set([concernIds.texture]),
   };
-  for (const serviceId of [ids.morpheus8, ids.lumecca]) {
+  for (const serviceId of [ids.morpheus8, ids.lumecca, ids.forma]) {
     const service = services.find((item) => item._id === serviceId);
     assert(
       service.concerns.every((item) => permittedConcernIds[serviceId].has(item._ref)),
