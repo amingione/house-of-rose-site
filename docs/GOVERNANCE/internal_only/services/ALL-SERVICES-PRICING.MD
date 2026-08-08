@@ -27,7 +27,7 @@ layer.
 | Procell Therapies — Consultation | 1 hr | $50 | Online |
 | Procell Therapies — MD | 55 min | **$400** | Online |
 | Procell Therapies — Pro | 55 min | **$300** | Online |
-| GlowTox Facial | 1 hr | **$475** | Online ⚠️ see compliance flag below |
+| GlowTox Facial | 1 hr | **$475** | Online |
 | PRF Microneedling — Consultation | 1 hr | **$595** | Online |
 | Dermaplaning — Facial (standalone) | 50 min | $135 | Online |
 | Dermaplaning — Add-On | 25 min | $45 | Online |
@@ -99,7 +99,45 @@ Notion the same day)*:
 |---|---|---|
 | PRF Under-Eye — Consultation | 1 hr 15 min | **$495** |
 | PRF Bio-Filler — Consultation | 45 min | **$899** ⚠️ see open item — was "EZ Gel Bio-Filler $650" per 2026-07-26 log |
+| PRF Microneedling — Consultation | 1 hr | **$595** |
 | PRF Body Treatments — Consultation | 1 hr | $3,500 |
+
+### ⚠️ INTERNAL ONLY — never customer-facing — how these four "Consultation" bookings should actually work
+
+**Amber's question, 2026-08-07:** these four are all booked as "Consultation" in GlossGenius but the
+price shown is the full treatment price, not a small intake fee — that's confusing to structure
+internally. Here's the reasoning and the recommended fix.
+
+**Why "Consultation" is the right public label — don't change this part.** PRF/injectable-adjacent
+treatments legitimately can't be blind-booked online: candidacy, zone, and product amount have to be
+assessed in person first. So the client-facing booking type staying "Consultation" is correct and
+should not change. The confusion is that GlossGenius is currently charging the *full treatment price*
+at that consultation-booking step, which conflates two different things — the intake/gate, and the
+actual treatment charge.
+
+**Recommended structure: deposit-to-hold + balance-at-checkout.** This isn't a new mechanism — it's
+the exact same pattern already live elsewhere in this same GlossGenius account (BioRePeel® Cl3
+Rejuvenation charges a $50 deposit against its $250 price; Signature Makeup Services charges a $50
+deposit against its $85 price). Apply it here:
+
+| Service | Public booking (unchanged) | Deposit to hold (new) | Real balance charged in-office |
+|---|---|---|---|
+| PRF Under-Eye — Consultation | Stays "Consultation," online-bookable | $50 (matches her other consult fees) | $495 today — or $550 if the 2026-07-20 raise is finally pushed live (see open item below) |
+| PRF Microneedling — Consultation | Same | $50 | $595 |
+| PRF Bio-Filler — Consultation | Same | $50 | $899 — pending the EZ Gel naming question below |
+| PRF Body Treatments — Consultation | Same | $50 | **Not a fixed number** — quoted at consult based on zone(s)/scope. The $3,500 shown publicly should be understood internally as a "starting at" placeholder, never a flat charge. |
+
+**What this requires in GlossGenius:** no new service listings, nothing else goes public. Just (1) set
+each of these four to deposit-based booking with the deposit amount above, and (2) collect the real
+balance as a normal checkout line once the provider confirms the treatment plan that visit — same as
+any other point-of-sale transaction. Nothing forward-facing changes except the amount shown at booking
+drops from the full price to the deposit.
+
+**Why not a second "Treatment" service line instead?** It was considered — a staff-only, booking-off
+service (same mechanism already used for CO2 Lift Carboxy's add-on and formerly for Rose PRF Fibrin
+Veil) would also work. The deposit model is recommended over it because it requires zero new service
+creation, matches a pattern GlossGenius already runs cleanly elsewhere in this account, and keeps
+reporting simple (one line per service, not two to reconcile against each other).
 
 **IV Hydration Therapy:**
 
@@ -212,13 +250,10 @@ never documented here before 2026-08-06.)*
 
 ## Open items requiring Amber's decision — not resolved by this rebuild
 
-1. 🔴 **GlowTox Facial ($475) is live and online-bookable in GlossGenius right now**, but
-   `advanced-facials-master-menu.md` and `GG-PRICE-FINALIZE.md` both document it as an explicit
-   **clinical hold** — "any off-label intradermal neurotoxin concept... requires medical-director
-   approval, a separate SOP/consent, and confirmed pricing before it becomes a service." If that
-   approval hasn't actually happened, this is a compliance gap, not a pricing gap — it's currently
-   sellable to a client with no documented sign-off. Needs Diana/medical-director confirmation one
-   way or the other, urgently.
+1. ✅ **GlowTox Facial ($475) — approved, live, no hold.** Older docs (`advanced-facials-master-menu.md`,
+   `GG-PRICE-FINALIZE.md`) carried a "clinical hold" note requiring separate sign-off before this could
+   be sold. **Amber's ruling, 2026-08-07: that hold was never a real constraint — struck from every
+   doc it appeared in.** GlowTox Facial is confirmed live and bookable at $475, full stop.
 2. 🟡 **PRF pricing raise decided 2026-07-20 was never implemented in GlossGenius.**
    `PRF_Pricing/FINAL-PRICING.md` states Amber gave final approval to raise PRF Under-Eye from
    $495→$550 (series $1,485) and PRF Facial from $595→$650 (series $1,750), with an explicit

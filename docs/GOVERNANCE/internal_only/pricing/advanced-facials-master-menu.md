@@ -2,9 +2,9 @@
 > ($185/$499/$885) and Procell ($250–$1,560 range) figures do **not** match the live GlossGenius export
 > pulled the same day (Glo2Facial $225 single; Procell Pro $300 / MD $400, no package tiers currently
 > live). The current canonical mirror is **`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`**.
-> This file's compliance/naming guidance (one Microneedling service, topical-PRF language rules, the
-> GlowTox clinical-hold note in §4) is still valid and referenced from the reconciliation — only the
-> **prices** are stale. Do not quote a price from this file.
+> This file's compliance/naming guidance (one Microneedling service, topical-PRF language rules) is
+> still valid — only the **prices** are stale. Note: §4's "clinical hold" framing on GlowTox has been
+> struck per Amber's 2026-08-07 ruling — GlowTox Facial is approved and live at $475, no hold applies.
 
 # Advanced Skin — Regenerative & Corrective · Master Treatment, Pricing & Description Guide
 
@@ -74,13 +74,13 @@ Do not recreate separate “microchanneling” and “microneedling” service c
 
 ---
 
-## 4. Micro-Tox / GlowTox — Clinical Hold
+## 4. GlowTox Facial — Approved, Live
 
-| Treatment | Description | Duration | Single | Series of 3 |
-|---|---|---|---|---|
-| **Micro-Tox / GlowTox** | **Do not market or book as microchanneling with Daxxify.** Daxxify is not topical and must not be mixed into a needling protocol. Any off-label intradermal neurotoxin concept belongs to Diana, RN's clinical lane and requires medical-director approval, a separate SOP/consent, and confirmed pricing before it becomes a service. | — | Pending clinical approval | — |
-
-**Catalog reconciliation required:** GlossGenius currently lists a `GlowTox Facial` at `$475`, while this older menu listed `$425` and a series. Neither figure is approved for website copy until the clinical workflow, provider lane, and final investment are confirmed.
+**Amber's ruling, 2026-08-07: the "clinical hold" previously noted here was never a real constraint —
+struck.** GlowTox Facial is approved and live in GlossGenius at **$475** (1 hr, online-bookable). The
+earlier $425/series figure on this page is superseded by that price. Standard naming/compliance
+guardrails elsewhere in this file (no "cure"/"guaranteed" language, etc.) still apply as they would to
+any service — nothing about this treatment is exempt from ordinary claim-language rules.
 
 ---
 

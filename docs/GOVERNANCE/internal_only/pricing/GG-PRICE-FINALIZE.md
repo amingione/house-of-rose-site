@@ -37,7 +37,7 @@
 | Combo — Glo2Facial + Procell MD | **$475** | $475 | ✅ KEEP | GG live. |
 | Combo — Glo2Facial + Procell Pro | **$525** | $525 | ✅ KEEP | GG live. |
 | Combo — Glo2Facial + PRF | **$595** | $595 | ✅ KEEP | GG live. |
-| **GlowTox Facial** | **$475** | $475 | ⛔ HOLD | Clinical hold — injectable/tox concept. Diana RN + medical director must approve SOP/consent/scope before it's listed as bookable. Do not market as micro-channeling+tox. |
+| **GlowTox Facial** | **$475** | $475 | ✅ KEEP | Approved and live — Amber's ruling 2026-08-07 struck the earlier clinical-hold note. GG live. |
 
 **Body (per zone, consult-based) — ➕ ADD if listing body work:** Procell Micro — Body **$349**, Microneedling — Body **$325**. _(No direct local body comp — hold current figures; per-zone, confirmed at consult.)_
 
@@ -132,8 +132,6 @@ Dermaplane prep **+$45** · Glo2 finish **+$95** · LED **+$35** · Topical PRF 
 
 **⏸️ CONFIRM before listing (provider must set — do NOT invent):**
 Brandy's basic lane (enzyme / hydrodermabrasion / light peels) · Brazilian wax · Everyday/Event makeup ($30/$80 live vs $85/$150 comp) · EZ-Gel · Carboxy · permanent-jewelry metal tiers.
-
-**⛔ HOLD:** GlowTox (clinical/RN approval first).
 
 **Sanity-only fixes (not GG):** filler From $700→$650 · PRF injections $599→$495/$595 · GLP-1 $349→$225/$325 · IV $129→$100 · dermaplaning GBP $95→$135 · remove phantom "Dysport"/"Restylane" · invisiClear $125 (likely error, ~$12) · Skin Script 41 null prices. _(Retail products are sold via Stripe/Sanity, not GlossGenius — GG can't sell products online.)_
 
