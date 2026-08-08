@@ -39,67 +39,76 @@ const practiceStandards = [
 <BaseLayout
   title={hp.seoTitle ?? 'House of Rose | Medical Aesthetics in Punta Gorda'}
   description={hp.seoDescription ?? 'Explore skin treatments, injectables, facials, body treatments, IV hydration, wellness services, and professional skincare at House of Rose in Punta Gorda.'}
-  preloadImage="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp"
-  preloadImageSrcset="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp 1942w"
-  preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
+  preloadImage="/images/optimized/actual-reception-1400.webp"
+  preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
+  preloadImageSizes="100vw"
 >
   <div {...oid}>
-    <section class="bg-breath pt-20">
-      <div class="mx-auto grid max-w-[1440px] border-x border-walnut/10 lg:min-h-[calc(100svh-80px)] lg:max-h-[860px] lg:grid-cols-[minmax(0,0.9fr)_minmax(540px,1.1fr)]">
-        <div class="flex flex-col justify-center px-6 py-14 sm:px-10 lg:px-[clamp(48px,6.5vw,96px)] lg:py-20">
-          <span class="kicker" {...sbFieldPath('heroKicker')}>{safe(hp.heroKicker, 'House of Rose Aesthetics')}</span>
-          <h1 class="max-w-[680px] font-serif text-[clamp(47px,6.2vw,80px)] leading-[0.97] tracking-[-0.025em] text-ink">
-            {heroTitle.split('\n').map((line) => (
-              <span class="block">{line}</span>
-            ))}
-          </h1>
-          <p class="mt-7 max-w-[610px] text-[clamp(17px,1.7vw,20px)] leading-[1.7] text-muted-strong" {...sbFieldPath('heroDescription')}>
-            {safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
-          </p>
+    <section class="on-dark relative isolate overflow-hidden bg-soft-black pt-20">
+      <div class="relative min-h-[720px] sm:min-h-[740px] lg:h-[calc(100svh-80px)] lg:min-h-[680px] lg:max-h-[800px]">
+        <img
+          src="/images/optimized/actual-reception-1400.webp"
+          srcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
+          sizes="100vw"
+          alt="The reception area inside House of Rose Aesthetics in Punta Gorda"
+          width="1400"
+          height="1050"
+          fetchpriority="high"
+          decoding="sync"
+          class="absolute inset-0 h-full w-full object-cover object-[38%_center] lg:object-[52%_center]"
+        />
+        <div class="home-hero-scrim absolute inset-0" aria-hidden="true"></div>
 
-          <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[218px]" data-global-booking data-cta-location="homepage-hero">
-              {safe(hp.heroCtaPrimaryText, 'Book an appointment')}
-            </a>
-            <a href="/services/" class="btn-outline-gold sm:min-w-[190px]" data-cta-location="homepage-hero-services">
-              {safe(hp.heroCtaSecondaryText, 'View services')}
-            </a>
-          </div>
+        <div class="relative mx-auto flex h-full min-h-[720px] max-w-[1440px] items-end px-6 pb-10 pt-16 sm:min-h-[740px] sm:px-10 sm:pb-12 lg:min-h-[680px] lg:px-[clamp(48px,6.5vw,96px)] lg:pb-14">
+          <div class="w-full">
+            <div class="max-w-[980px]">
+              <div class="flex items-center gap-4">
+                <span class="h-px w-10 bg-gold-metal sm:w-14" aria-hidden="true"></span>
+                <span class="kicker mb-0 text-ivory" {...sbFieldPath('heroKicker')}>
+                  {safe(hp.heroKicker, 'House of Rose Aesthetics')}
+                </span>
+              </div>
 
-          <a href={phoneHref} class="mt-6 inline-flex w-fit items-center gap-3 text-[13px] font-semibold text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive" data-cta-location="homepage-hero-call">
-            Call {phoneDisplay}
-            <span aria-hidden="true">→</span>
-          </a>
+              <h1 class="mt-5 max-w-[960px] font-serif text-[clamp(46px,7vw,88px)] leading-[0.94] tracking-[-0.025em] text-ivory">
+                {heroTitle.split('\n').map((line) => (
+                  <span class="block">{line}</span>
+                ))}
+              </h1>
 
-          <div class="mt-9 border-t border-walnut/15 pt-5">
-            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold" {...sbFieldPath('heroSubtitle')}>
-              {safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
-            </p>
-            <p class="mt-2 text-[13px] leading-relaxed text-muted">
-              Serving Charlotte County and Southwest Florida.
-            </p>
+              <p class="mt-6 max-w-[680px] text-[15px] leading-[1.65] text-muted-strong sm:mt-7 sm:text-[clamp(16px,1.5vw,19px)] sm:leading-[1.7]" {...sbFieldPath('heroDescription')}>
+                {safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
+              </p>
+
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[218px]" data-global-booking data-cta-location="homepage-hero">
+                  {safe(hp.heroCtaPrimaryText, 'Book an appointment')}
+                </a>
+                <a href="/services/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-hero-services">
+                  {safe(hp.heroCtaSecondaryText, 'View services')}
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-8 grid max-w-[900px] grid-cols-2 border-y border-ivory/30 text-[12px] sm:mt-10 sm:grid-cols-[1.15fr_1fr_auto] sm:items-stretch">
+              <div class="py-4 pr-3 sm:pr-6">
+                <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Practice</p>
+                <p class="mt-1.5 font-semibold text-ivory">Medical Aesthetics Practice</p>
+              </div>
+              <div class="border-l border-ivory/20 py-4 pl-3 sm:px-6">
+                <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Location</p>
+                <p class="mt-1.5 font-semibold text-ivory" {...sbFieldPath('heroSubtitle')}>
+                  {safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
+                </p>
+              </div>
+              <a href={phoneHref} class="group col-span-2 flex items-center justify-between gap-8 border-t border-ivory/20 py-4 font-semibold text-ivory sm:col-span-1 sm:border-l sm:border-t-0 sm:pl-6" data-cta-location="homepage-hero-call">
+                Call {phoneDisplay}
+                <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
-
-        <figure class="min-h-[440px] bg-walnut sm:min-h-[560px] lg:min-h-full">
-          <img
-            src="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp"
-            srcset="/images/socialShareCover/HOUSE-OF-ROSE-FL.webp 1942w"
-            sizes="(max-width: 1023px) 100vw, 55vw"
-            alt="The reception and waiting area inside House of Rose Aesthetics in Punta Gorda"
-            width="1942"
-            height="809"
-            fetchpriority="high"
-            decoding="sync"
-            class="h-full w-full object-cover object-center"
-          />
-
-        </figure>
       </div>
     </section>
-
-
-
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
         <div class="grid gap-8 border-b border-walnut/15 pb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -334,3 +343,19 @@ const practiceStandards = [
     </section>
   </div>
 </BaseLayout>
+
+<style>
+  .home-hero-scrim {
+    background:
+      linear-gradient(180deg, rgba(23, 22, 20, 0.28) 0%, rgba(23, 22, 20, 0.52) 42%, rgba(23, 22, 20, 0.92) 100%),
+      linear-gradient(90deg, rgba(23, 22, 20, 0.7) 0%, rgba(23, 22, 20, 0.3) 100%);
+  }
+
+  @media (min-width: 1024px) {
+    .home-hero-scrim {
+      background:
+        linear-gradient(180deg, rgba(23, 22, 20, 0.12) 45%, rgba(23, 22, 20, 0.62) 100%),
+        linear-gradient(90deg, rgba(23, 22, 20, 0.96) 0%, rgba(23, 22, 20, 0.82) 35%, rgba(23, 22, 20, 0.34) 66%, rgba(23, 22, 20, 0.08) 100%);
+    }
+  }
+</style>
