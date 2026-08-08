@@ -72,7 +72,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (providers.length > 0) {
     lines.push(`## Providers`, ``);
     for (const provider of providers) {
-      lines.push(`- [${provider.publicName}](${base}/about/providers/${provider.slug}/): ${provider.publicRole}. ${provider.summary}`);
+      lines.push(`- [${provider.publicName}](${base}/about/providers/${provider.slug}/): ${alignPublicChannelCopy(provider.publicRole)}. ${alignPublicChannelCopy(provider.summary)}`);
     }
     lines.push(``);
   }
@@ -116,7 +116,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (comparisons.length > 0) {
     lines.push(`## Treatment Comparisons`, ``);
     for (const c of comparisons) {
-      lines.push(`- [${c.title}](${base}/compare/${c.slug}/)${c.intro ? ` — ${c.intro}` : ''}`);
+      lines.push(`- [${c.title}](${base}/compare/${c.slug}/)${c.intro ? ` — ${alignPublicChannelCopy(c.intro)}` : ''}`);
     }
     lines.push(``);
   }
@@ -132,7 +132,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (posts.length > 0) {
     lines.push(`## Journal Articles`, ``);
     for (const p of posts) {
-      const desc = p.excerpt ? ` — ${p.excerpt}` : '';
+      const desc = p.excerpt ? ` — ${alignPublicChannelCopy(p.excerpt)}` : '';
       lines.push(`- [${p.title}](${base}/blog/${p.slug}/)${desc}`);
     }
     lines.push(``);

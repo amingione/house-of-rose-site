@@ -37,22 +37,22 @@ const linkClass = (path: string) =>
     <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
       <a href="/" class={linkClass('/')}>Home</a>
 
-      <details class="services-menu desktop-menu relative">
+      <details class="services-menu desktop-menu">
         <summary class:list={['nav-link cursor-pointer list-none', isActive('/services') && 'nav-link-active']}>
           Services
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </summary>
-        <div class="services-panel absolute right-0 top-[calc(100%+14px)] w-[min(920px,calc(100vw-48px))] border border-walnut/15 bg-bone p-7 shadow-[0_24px_70px_rgba(58,43,36,0.18)]">
-          <div class="mb-6 flex items-end justify-between gap-6 border-b border-walnut/10 pb-5">
+        <div class="services-panel absolute left-1/2 top-[calc(100%+1px)] flex max-h-[calc(100dvh-96px)] w-[min(1120px,calc(100vw-32px))] -translate-x-1/2 flex-col overflow-hidden border border-walnut/15 bg-bone p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] xl:p-7">
+          <div class="mb-5 flex shrink-0 items-end justify-between gap-6 border-b border-walnut/10 pb-5 xl:mb-6">
             <div>
               <p class="kicker mb-2">Explore care</p>
-              <p class="font-serif text-[26px] text-ink">Start with the service or concern you recognize.</p>
+              <p class="font-serif text-[22px] text-ink xl:text-[26px]">Start with the service or concern you recognize.</p>
             </div>
             <a href="/services/" class="learn-more mt-0 whitespace-nowrap">View all services</a>
           </div>
-          <div class="grid max-h-[62vh] grid-cols-2 gap-x-8 gap-y-7 overflow-y-auto pr-2 xl:grid-cols-3">
+          <div class="services-grid grid min-h-0 flex-1 gap-x-8 gap-y-7 overflow-y-auto overscroll-contain pr-2">
             {navCollections.map((collection) => (
               <section {...sbObjectId(collection._id)}>
                 <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
@@ -339,6 +339,9 @@ const linkClass = (path: string) =>
     color: #3a2b24;
     font-size: 15px;
     font-weight: 600;
+  }
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   }
   :global(html.menu-is-open) { overflow: hidden; }
   @media (prefers-reduced-motion: reduce) {

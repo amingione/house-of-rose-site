@@ -10,7 +10,7 @@
      channel for photo heroes, walnut bands, and the footer.
      Values are space-separated RGB triplets (Tailwind alpha support).  */
   :root {
-    /* LIGHT surfaces — ivory #F4ECDC / breath #F8F4EC / taupe #EADBC2 */
+    /* LIGHT surfaces — warm bone #F2E8D8 / cream #F3ECE0 / limestone #C9C0B3 */
     --hr-gold: 122 92 42;         /* #7A5C2A — 5.27:1 on ivory, 4.54:1 on taupe */
     --hr-muted: 86 78 70;
     --hr-muted-strong: 47 42 38;

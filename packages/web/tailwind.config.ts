@@ -49,19 +49,19 @@ export default {
         // `charcoal.*` kept as token NAMES for compatibility, but remapped to WARM
         // LIGHT surfaces so existing `bg-charcoal*` classes render ivory/greige.
         charcoal: {
-          DEFAULT: '#F1EDE5', // legacy surface alias → Bone
+          DEFAULT: '#F2E8D8', // legacy surface alias → warm Bone canvas
           light: '#C9C0B3',   // legacy accent alias → Limestone
           lighter: '#E4DED4', // raised surface
         },
         // Semantic brand tokens
-        bone: '#F1EDE5',
+        bone: '#F2E8D8',
         limestone: '#C9C0B3',
         olive: '#5F624D',
         bronze: '#8A6A43',
         'soft-black': '#171614',
         ink: '#171614',
         ivory: '#F1EDE5',
-        breath: '#F7F4EE',
+        breath: '#F3ECE0',
         greige: '#C9C0B3',
         green: { DEFAULT: '#5F624D', deep: '#4F5241', sage: '#8D907C', soft: '#C4C5B9' },
         // Warm neutral accents from the actual space (mocha wall, walnut wood)

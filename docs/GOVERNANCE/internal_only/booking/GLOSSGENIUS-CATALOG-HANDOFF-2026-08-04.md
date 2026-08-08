@@ -131,11 +131,11 @@ Option labels: `BioRePeel® Cl3 — Single Session`; `BioRePeel® Cl3 — Series
 
 This appointment combines controlled microchanneling with a provider-selected topical neuromodulator protocol. Candidacy, product use, scope, risks, aftercare, and expected recovery must be reviewed before booking. `[Proposed replacement for “GlowTox Facial”; clinical and compliance approval required before publishing; verify $475 price.]`
 
-#### ProCell Therapies | Consultation
+#### Procell Therapies | Consultation
 
-Meet with a provider to discuss texture, scarring, fine-line, or sun-exposure concerns and whether ProCell microchanneling may be appropriate. The consultation covers the serum used, candidacy, preparation, recovery, aftercare, series planning, and current pricing. `[Verify product terminology, $50 deposit, $300 Pro and $400 MD options.]`
+Meet with a provider to discuss texture, scarring, fine-line, or sun-exposure concerns and whether Procell microchanneling may be appropriate. The consultation covers the serum used, candidacy, preparation, recovery, aftercare, series planning, and current pricing. `[Verify product terminology, $50 deposit, $300 Pro and $400 MD options.]`
 
-Option labels: `Consultation`; `ProCell Pro`; `ProCell MD`.
+Option labels: `Consultation`; `Procell Pro`; `Procell MD`.
 
 #### PRF Microneedling | Consultation
 
@@ -184,14 +184,14 @@ Option labels: `Chin`; `Upper Lip`; `Eyebrow Wax`; `Eyebrow Shape, Trim & Wax`.
 ## Facts requiring verification
 
 - Confirm every price, deposit, duration, cancellation rule, and whether a displayed amount is a consultation fee, deposit, starting price, or full treatment price.
-- Confirm provider lane and scope for neuromodulators, filler, PRF, IV hydration, GLP-1 care, IPL, RF microneedling, ProCell, peels, and the proposed topical-neuromodulator service.
+- Confirm provider lane and scope for neuromodulators, filler, PRF, IV hydration, GLP-1 care, IPL, RF microneedling, Procell, peels, and the proposed topical-neuromodulator service.
 - Correct `Morpheous8` to the device’s verified spelling, `Morpheus8`, in both live entries.
 - Verify that the Skin Analysis device measures each property currently claimed and confirm retention/privacy practices for captured images.
 - Verify all IV formulation names and ingredients before approving benefit-oriented labels. The website correctly keeps the IV hub on phone fallback because no single catalog listing represents it.
 - Resolve whether PRF Under-Eye, PRF Bio-Filler, PRF Body, PRF Microneedling, and Morpheus8 consultation prices represent deposits or treatment totals.
 - Confirm the minimum age, consent process, and product protocol for the Parent & Child Facial.
 - Decide whether Forma RF should receive a new exact catalog listing. Until then, the website calls the practice.
-- Decide whether the BioRePeel body, acne-scarring, spot, Glo2 + PRF, Glo2 + ProCell, fibrin veil, and neck/décolleté pages should receive exact catalog entries. The canonical Microneedling pages use the verified Procell Therapies consultation.
+- Decide whether the BioRePeel body, acne-scarring, spot, Glo2 + PRF, Glo2 + Procell, fibrin veil, and neck/décolleté pages should receive exact catalog entries. The canonical Microneedling pages use the verified Procell Therapies consultation.
 
 ## Claims requiring clinical approval
 

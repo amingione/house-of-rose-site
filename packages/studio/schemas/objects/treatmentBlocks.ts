@@ -147,7 +147,7 @@ export const treatmentAftercare = defineType({
       title: 'Internal Protocol Reference',
       type: 'string',
       description:
-        'Operational cross-reference only — never rendered. e.g. "HOR-P004 (PRF & ProCell Aftercare)".',
+        'Operational cross-reference only — never rendered. e.g. "HOR-P004 (PRF & Procell Aftercare)".',
     }),
   ],
   preview: {

@@ -99,7 +99,7 @@ export const TREATMENT_CONTENT = [
         'A series is typical. Spacing is set at consultation based on how the skin responds.',
         'Daily broad-spectrum SPF protects the result more than any single product.',
       ],
-      protocolRef: 'HOR-P001 (PRF Microchanneling) · HOR-P004 (PRF & ProCell Aftercare)',
+      protocolRef: 'HOR-P001 (PRF Microchanneling) · HOR-P004 (PRF & Procell Aftercare)',
     },
     whyQualified: [
       'PRF is prepared in-house from your own blood, spun on the certified system it was validated for. Spin protocols are never substituted between systems.',
@@ -141,12 +141,12 @@ export const TREATMENT_CONTENT = [
   {
     slug: 'procell-microchanneling',
     aliases: ['procell-md-microchanneling', 'microchanneling', 'procell'],
-    displayName: 'ProCell Microchanneling',
+    displayName: 'Procell Microchanneling',
     scopeDecision: 'esthetics-medical',
     priceRange: {
       minPrice: 349,
       unit: 'session',
-      note: 'ProCell MD Microchanneling is $349 for a 45-minute session. Combined with a Glo2Facial, the same treatment is $475 (MD) or $525 (Pro).',
+      note: 'Procell MD Microchanneling is $349 for a 45-minute session. Combined with a Glo2Facial, the same treatment is $475 (MD) or $525 (Pro).',
       verifiedAgainstGlossGenius: VERIFIED,
     },
     downtime: {
@@ -185,10 +185,10 @@ export const TREATMENT_CONTENT = [
         'Sessions are typically spaced several weeks apart in a series.',
         'Home care between sessions carries a real share of the result.',
       ],
-      protocolRef: 'HOR-P003 (ProCell Biocellulose Recovery Mask) · HOR-P004 (PRF & ProCell Aftercare)',
+      protocolRef: 'HOR-P003 (Procell Biocellulose Recovery Mask) · HOR-P004 (PRF & Procell Aftercare)',
     },
     whyQualified: [
-      'We run the ProCell system as the manufacturer specifies, on the certified protocol, without improvised settings.',
+      'We run the Procell system as the manufacturer specifies, on the certified protocol, without improvised settings.',
       'Depth and pass count are selected per area and per skin condition rather than run as a single fixed setting across the whole face.',
       'A biocellulose recovery mask protocol is documented and used as part of the treatment rather than sold as an upgrade.',
       'The same treatment can be paired with a Glo2Facial or with PRF in one appointment, so you are not booking two visits to get one result.',
@@ -202,7 +202,7 @@ export const TREATMENT_CONTENT = [
       {
         question: 'How is this different from microneedling I have had elsewhere?',
         answer:
-          'The device, the depth, and the serum differ between systems, and results follow the system. We run a certified ProCell protocol rather than a generic needling pass.',
+          'The device, the depth, and the serum differ between systems, and results follow the system. We run a certified Procell protocol rather than a generic needling pass.',
       },
       {
         question: 'Why can I not wash my face afterward?',
@@ -556,7 +556,7 @@ export const TREATMENT_CONTENT = [
       minPrice: 195,
       maxPrice: 595,
       unit: 'session',
-      note: 'Glo2Facial alone is $195 for 60 minutes. Combined 90-minute appointments: with ProCell MD $475, with ProCell Pro $525, with PRF $595.',
+      note: 'Glo2Facial alone is $195 for 60 minutes. Combined 90-minute appointments: with Procell MD $475, with Procell Pro $525, with PRF $595.',
       verifiedAgainstGlossGenius: VERIFIED,
     },
     downtime: {
@@ -594,7 +594,7 @@ export const TREATMENT_CONTENT = [
     whyQualified: [
       'Performed by a Florida-licensed esthetician certified on the Glo2Facial system.',
       'The protocol is selected from your skin at that visit rather than run as a single fixed sequence for everyone.',
-      'It can be combined with ProCell or PRF in one 90-minute appointment, so you are not booking two visits.',
+      'It can be combined with Procell or PRF in one 90-minute appointment, so you are not booking two visits.',
       'No downtime makes it the reliable option in the two weeks before a wedding or event, and it is scheduled that way deliberately.',
     ],
     faqs: [
@@ -609,7 +609,7 @@ export const TREATMENT_CONTENT = [
           'It can be done the same week, and often the day before. There is no downtime and no expected redness.',
       },
       {
-        question: 'Should I add ProCell or PRF?',
+        question: 'Should I add Procell or PRF?',
         answer:
           'Adding either changes the treatment from a surface facial to a resurfacing treatment, which introduces downtime. If you are treating texture or tone rather than looking for immediate glow, that is the conversation to have at consultation.',
       },
