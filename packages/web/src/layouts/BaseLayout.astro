@@ -10,6 +10,7 @@ import LeadAnalytics from '@/components/LeadAnalytics.astro';
 import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
 import ConsentManager from '@/components/ConsentManager.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
+import PostHog from '@/components/posthog.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph } from '@/lib/structuredData';
 import { formatSeoTitle } from '@/lib/seo';
@@ -124,6 +125,7 @@ const entityGraph = siteEntityGraph(
       }}
     />
     <script is:inline type="text/javascript" src="//script.crazyegg.com/pages/scripts/0133/4876.js" async="async"></script>
+    <PostHog />
     <SchemaMarkup item={entityGraph} />
     <ConsentBootstrap />
     <script

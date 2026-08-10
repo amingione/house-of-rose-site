@@ -543,10 +543,35 @@ export const updateOpenAIAdsUser = async (input: {
   }
 };
 
+const capturePostHogMeasurement = (event: MeasurementEvent): void => {
+  switch (event.event) {
+    case 'select_item':
+    case 'add_to_cart':
+    case 'remove_from_cart':
+    case 'view_cart':
+    case 'begin_checkout':
+    case 'add_shipping_info':
+    case 'add_payment_info':
+    case 'purchase':
+    case 'generate_lead':
+    case 'phone_click':
+    case 'sms_click':
+    case 'booking_click': {
+      const { event: eventName, ...properties } = event;
+      window.posthog?.capture(eventName, properties);
+      break;
+    }
+    default:
+      // PostHog autocapture covers pageviews; consent state is not a conversion action.
+      break;
+  }
+};
+
 export const dispatchMeasurement = (event: MeasurementEvent): void => {
   const w = browser();
   w.dataLayer ??= [];
   w.dataLayer.push(event);
+  capturePostHogMeasurement(event);
   dispatchOpenAIAdsMeasurement(event);
 };
 
