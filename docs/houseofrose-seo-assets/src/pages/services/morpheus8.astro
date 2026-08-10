@@ -1,0 +1,163 @@
+---
+// src/pages/services/morpheus8.astro
+// Flagship service page — Morpheus8 (US volume 54,000/mo, Keyword Difficulty 5).
+// Adapt the layout import + class names to your actual design system. Content is real,
+// accurate copy you can edit; keep the FAQ text identical between the visible list and
+// the SchemaFAQ items (Google requires on-page parity).
+//
+// NOTE ON MEDICAL COPY: have your medical director review claims before publishing.
+// Pricing figures below are illustrative ranges — replace with your real pricing.
+
+import Layout from "../../layouts/Layout.astro"; // TODO: point at your real layout
+import SchemaService from "../../components/seo/SchemaService.astro";
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+
+const title = "Morpheus8 in Punta Gorda & Fort Myers, FL | House of Rose Aesthetics";
+const description =
+  "Morpheus8 RF microneedling at House of Rose Aesthetics — tighten skin, smooth wrinkles and refine texture on the face, neck and body. Serving Punta Gorda, Port Charlotte, Fort Myers & Cape Coral. Book a consultation.";
+
+const faqItems = [
+  {
+    q: "How much does Morpheus8 cost in Florida?",
+    a: "In Southwest Florida, a single Morpheus8 session typically ranges from about $600 to $1,200 depending on the treatment area and depth, and most people are advised to do a series of three sessions for best results. At House of Rose Aesthetics we quote your exact price during a complimentary consultation, since it depends on the areas treated and your goals.",
+  },
+  {
+    q: "Is Morpheus8 really worth it?",
+    a: "For most patients seeking firmer, smoother skin without surgery, yes. Morpheus8 combines microneedling with radiofrequency energy to stimulate collagen deep in the skin, improving skin laxity, fine lines, texture and acne scarring. Results build gradually over 8 to 12 weeks and can continue improving for several months. It is one of the most requested treatments at our Punta Gorda med spa.",
+  },
+  {
+    q: "How many Morpheus8 sessions will I need?",
+    a: "Most patients see the best results from a series of three sessions spaced about four to six weeks apart. Some people with mild concerns are happy after one or two, while deeper skin-tightening goals may benefit from a maintenance session once or twice a year. We map out a personalized plan at your consultation.",
+  },
+  {
+    q: "Does Morpheus8 hurt, and what is the downtime?",
+    a: "We apply a topical numbing cream before treatment, so most patients describe the sensation as tolerable — a warm, prickly feeling. Afterward you can expect redness and mild swelling that feels like a sunburn for one to three days, and sometimes tiny micro-marks that fade quickly. Most people return to normal activities the next day and can wear makeup after about 24 hours.",
+  },
+  {
+    q: "Is Morpheus8 better than a facelift?",
+    a: "They solve different problems. A facelift is surgery that physically lifts and removes excess skin, with a longer recovery. Morpheus8 is a non-surgical treatment that tightens and rejuvenates skin from within by stimulating collagen — no incisions, minimal downtime, and a natural, gradual result. Morpheus8 is an excellent option for early-to-moderate skin laxity or for anyone who wants to avoid surgery.",
+  },
+  {
+    q: "What areas can Morpheus8 treat?",
+    a: "Morpheus8 can be used on the face, neck and jawline to address laxity and fine lines, and on the body — abdomen, arms, knees and more — to firm crepey skin. It is also effective for acne scarring and uneven texture.",
+  },
+  {
+    q: "Am I a good candidate for Morpheus8?",
+    a: "Morpheus8 is safe for all skin tones and is a great fit for adults noticing early skin laxity, fine lines, enlarged pores, uneven texture or acne scars. It is not recommended during pregnancy or for people with certain skin infections or implanted electronic devices. The best way to know is a complimentary consultation and skin analysis with our team.",
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- === Structured data === -->
+  <SchemaService
+    name="Morpheus8 RF Microneedling"
+    description={description}
+    url={Astro.url.href}
+    procedureType="Morpheus8 (radiofrequency microneedling)"
+    bodyLocations={["Face", "Neck", "Jawline", "Abdomen", "Arms", "Body"]}
+  />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Services", url: "/services/" }, { name: "Morpheus8", url: "/services/morpheus8/" }]} />
+
+  <article class="service-page">
+    <!-- HERO -->
+    <header class="service-hero">
+      <p class="eyebrow">Skin Tightening &amp; Resurfacing</p>
+      <h1>Morpheus8 in Punta Gorda &amp; Fort Myers, FL</h1>
+      <p class="subhead">
+        Firmer, smoother, more radiant skin — without surgery. Morpheus8 combines microneedling with
+        radiofrequency to rebuild collagen deep in the skin, treating laxity, fine lines, texture and
+        acne scars on the face, neck and body.
+      </p>
+      <a class="cta" href="/contact/">Book your complimentary consultation</a>
+    </header>
+
+    <!-- WHAT IT IS -->
+    <section>
+      <h2>What is Morpheus8?</h2>
+      <p>
+        Morpheus8 is an advanced <strong>radiofrequency (RF) microneedling</strong> treatment by InMode.
+        Ultra-fine needles deliver RF energy beneath the surface of the skin, heating the deeper tissue to
+        trigger your body's natural collagen and elastin production. The result is skin that looks tighter,
+        smoother and more even — with the kind of deep remodeling that topical products and traditional
+        microneedling can't reach.
+      </p>
+      <p>
+        Because it works below the surface, Morpheus8 rejuvenates without removing or cutting skin, making
+        it one of the most effective non-surgical options for early-to-moderate skin laxity.
+      </p>
+    </section>
+
+    <!-- BENEFITS -->
+    <section>
+      <h2>What Morpheus8 treats</h2>
+      <ul class="benefit-list">
+        <li>Skin laxity and loss of firmness on the face, neck and jawline</li>
+        <li>Fine lines and wrinkles</li>
+        <li>Uneven texture and enlarged pores</li>
+        <li>Acne scarring</li>
+        <li>Crepey or loose skin on the body (abdomen, arms, knees)</li>
+        <li>Overall dullness — for a healthier, more radiant glow</li>
+      </ul>
+    </section>
+
+    <!-- WHAT TO EXPECT -->
+    <section>
+      <h2>What to expect at House of Rose</h2>
+      <p>
+        Every Morpheus8 journey begins with a <strong>complimentary consultation and skin analysis</strong>,
+        where we assess your skin and design a plan around your goals. On treatment day we cleanse the skin
+        and apply a topical numbing cream for comfort. The treatment itself takes roughly 30–60 minutes
+        depending on the area.
+      </p>
+      <p>
+        Afterward, expect redness and mild swelling similar to a sunburn for one to three days. Most patients
+        return to their routine the next day and can wear makeup after about 24 hours. Results build gradually
+        as new collagen forms — typically becoming visible over <strong>8 to 12 weeks</strong> and continuing to
+        improve for several months. For most people, a series of three sessions delivers the best outcome.
+      </p>
+    </section>
+
+    <!-- LOCAL -->
+    <section>
+      <h2>Morpheus8 for Charlotte &amp; Lee County</h2>
+      <p>
+        House of Rose Aesthetics is proud to offer Morpheus8 to clients across Southwest Florida — from our
+        home in <strong>Punta Gorda</strong> and <strong>Port Charlotte</strong> to <strong>Fort Myers</strong>
+        and <strong>Cape Coral</strong>. If you've been searching for Morpheus8 near you, we'd love to be your
+        provider. Book a consultation and we'll build a personalized plan for your skin.
+      </p>
+      <a class="cta" href="/contact/">Schedule your consultation</a>
+    </section>
+
+    <!-- FAQ (visible — MUST match SchemaFAQ text) -->
+    <section class="faq">
+      <h2>Morpheus8 FAQs</h2>
+      {faqItems.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .service-page { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .service-hero { margin-bottom: 2.5rem; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .benefit-list { padding-left: 1.2rem; }
+  .benefit-list li { margin-bottom: .4rem; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #7d2b41; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>

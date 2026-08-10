@@ -1,0 +1,84 @@
+---
+// src/pages/services/prf.astro — PRF ("prf facial" 250/mo KD 0, plus PRF under-eye & hair intent)
+// ⚕️ Medical director should review clinical claims. Replace illustrative pricing.
+import Layout from "../../layouts/Layout.astro"; // TODO: your real layout
+import SchemaService from "../../components/seo/SchemaService.astro";
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+
+const title = "PRF Treatments in Punta Gorda & Fort Myers, FL | House of Rose Aesthetics";
+const description =
+  "PRF (platelet-rich fibrin) at House of Rose Aesthetics — a natural, next-generation treatment for under-eye rejuvenation, skin quality and hair restoration using your own growth factors. Serving Punta Gorda, Port Charlotte, Fort Myers & Cape Coral.";
+
+const faqItems = [
+  { q: "How much does PRF cost?", a: "PRF treatments in our area typically range from about $500 to $800 per session depending on the treatment area (for example, under-eyes, full-face microneedling, or scalp for hair). A series is usually recommended. We confirm pricing at your consultation." },
+  { q: "What is the difference between PRF and PRP?", a: "Both are made from a small draw of your own blood. PRP (platelet-rich plasma) is spun faster for an immediate concentrated dose of growth factors. PRF (platelet-rich fibrin) is spun more gently with no anticoagulants or additives, so it forms a natural fibrin scaffold that holds more white blood cells and stem cells and releases growth factors slowly over days. Many providers consider PRF the more advanced, longer-acting option." },
+  { q: "Is PRF good for under-eye dark circles and hollows?", a: "PRF is one of the most popular natural options for the delicate under-eye area. Injected carefully, it can improve skin quality, tone and mild hollowing over time by stimulating collagen and new tissue — with a natural result and no synthetic filler. Results build gradually over weeks, and a short series is often recommended." },
+  { q: "Can PRF help with hair loss?", a: "Yes — PRF injections into the scalp are used to support thinning hair by delivering concentrated growth factors to the follicles, which may improve hair density and thickness over a series of sessions. It works best for early-to-moderate thinning and is a natural, drug-free option." },
+  { q: "What is the downtime for PRF?", a: "For injectable PRF (under-eyes, face, scalp), expect mild swelling, tenderness or occasional bruising for one to three days. For PRF with microneedling, expect redness like a mild sunburn for a day or two. Most people return to normal activities quickly." },
+  { q: "How many PRF sessions will I need, and am I a candidate?", a: "A series of about three sessions spaced four to six weeks apart is common, with periodic maintenance. PRF is natural and safe for most healthy adults across all skin tones, but isn't recommended during pregnancy or with certain blood or medical conditions. A consultation confirms it's right for you." },
+];
+---
+<Layout title={title} description={description}>
+  <SchemaService name="PRF (Platelet-Rich Fibrin)" description={description} url={Astro.url.href}
+    procedureType="Platelet-rich fibrin (PRF) therapy" bodyLocations={["Face", "Under-eye", "Scalp"]} />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Services", url: "/services/" }, { name: "PRF", url: "/services/prf/" }]} />
+
+  <article class="service-page">
+    <header class="service-hero">
+      <p class="eyebrow">Regenerative Aesthetics</p>
+      <h1>PRF Treatments in Punta Gorda &amp; Fort Myers, FL</h1>
+      <p class="subhead">A natural, next-generation treatment using your own platelet-rich fibrin to rejuvenate under-eyes, boost skin quality and support thinning hair — no synthetic fillers, just your own growth factors.</p>
+      <a class="cta" href="/contact/">Book your complimentary consultation</a>
+    </header>
+
+    <section>
+      <h2>What is PRF?</h2>
+      <p><strong>Platelet-Rich Fibrin (PRF)</strong> is a next-generation version of PRP. From a small draw of your own blood, we gently concentrate the platelets, white blood cells and stem cells — with <strong>no additives</strong> — into a natural fibrin matrix. That matrix releases healing growth factors slowly over days, stimulating collagen, new blood vessels and tissue repair. Because it's 100% you, PRF is one of the most natural regenerative options available.</p>
+    </section>
+
+    <section>
+      <h2>What PRF is used for</h2>
+      <ul class="benefit-list">
+        <li><strong>Under-eye rejuvenation</strong> — improving tone and mild hollowing naturally</li>
+        <li>Overall skin quality, texture and glow (with microneedling or injection)</li>
+        <li>Fine lines and early skin laxity</li>
+        <li><strong>Hair restoration</strong> — supporting early-to-moderate thinning</li>
+        <li>Faster, enhanced healing alongside other treatments</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What to expect at House of Rose</h2>
+      <p>We start with a quick blood draw, then process your PRF while we prepare the treatment area. Depending on your goals, PRF is injected (under-eyes, face or scalp) or applied with microneedling. Expect mild swelling or redness for one to three days. Results build gradually over several weeks, and a short series delivers the best outcome.</p>
+    </section>
+
+    <section>
+      <h2>PRF for Charlotte &amp; Lee County</h2>
+      <p>House of Rose Aesthetics offers PRF treatments throughout Southwest Florida — <strong>Punta Gorda</strong>, <strong>Port Charlotte</strong>, <strong>Fort Myers</strong> and <strong>Cape Coral</strong>. Book a consultation to find out if PRF is right for you.</p>
+      <a class="cta" href="/contact/">Schedule your consultation</a>
+    </section>
+
+    <section class="faq">
+      <h2>PRF FAQs</h2>
+      {faqItems.map((item) => (<details><summary>{item.q}</summary><p>{item.a}</p></details>))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .service-page { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .service-hero { margin-bottom: 2.5rem; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .benefit-list { padding-left: 1.2rem; } .benefit-list li { margin-bottom: .4rem; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #7d2b41; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>

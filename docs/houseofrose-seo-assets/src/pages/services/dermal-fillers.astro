@@ -1,0 +1,97 @@
+---
+// src/pages/services/dermal-fillers.astro — dermal fillers (national 31k/KD 77; win "dermal fillers fort myers" KD 0)
+// Shows example usage of <BeforeAfterGallery/> (swap in your real, consented photos).
+// ⚕️ Medical director should review clinical claims. Replace illustrative pricing.
+import Layout from "../../layouts/Layout.astro"; // TODO: your real layout
+import SchemaService from "../../components/seo/SchemaService.astro";
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+import BeforeAfterGallery from "../../components/seo/BeforeAfterGallery.astro";
+
+const title = "Dermal Fillers in Punta Gorda & Fort Myers, FL | House of Rose Aesthetics";
+const description =
+  "Dermal fillers at House of Rose Aesthetics — restore volume and definition to cheeks, jawline, lips and folds with hyaluronic-acid fillers, plus Sculptra for collagen. Serving Punta Gorda, Port Charlotte, Fort Myers & Cape Coral.";
+
+// TODO: replace with your OWN consented before/after photos, or remove this array to hide the gallery.
+const beforeAfter = [
+  // { before: "/images/fillers/cheek-before.jpg", after: "/images/fillers/cheek-after.jpg", alt: "Cheek filler restoring midface volume", caption: "1 syringe, immediate result" },
+];
+
+const faqItems = [
+  { q: "How much do dermal fillers cost in Southwest Florida?", a: "Hyaluronic-acid dermal fillers in our area are typically priced per syringe — commonly about $600 to $950 per syringe — and the number of syringes depends on the area and your goals. Sculptra (a collagen stimulator) is priced per vial. We give you an exact quote at your complimentary consultation." },
+  { q: "How long do dermal fillers last?", a: "It depends on the product and area. Most hyaluronic-acid fillers last about 6 to 18 months; firmer fillers used for cheeks and jawline can last longer, while lip filler tends to be on the shorter end. Sculptra's collagen-building results can last two years or more." },
+  { q: "Where can dermal fillers be used?", a: "Common areas include the cheeks and midface, jawline and chin, nasolabial folds (smile lines), marionette lines, lips, and under-eye hollows. We tailor product and placement to your anatomy for a balanced, natural look." },
+  { q: "Do fillers hurt, and what is the downtime?", a: "Most fillers contain lidocaine and we use topical numbing, so discomfort is minimal. Expect possible swelling, tenderness or bruising for a few days. Most people return to normal activities right away; results settle over one to two weeks." },
+  { q: "Are dermal fillers reversible?", a: "Hyaluronic-acid fillers can be dissolved with an enzyme (hyaluronidase) if needed — a key safety advantage. Collagen stimulators like Sculptra are not reversible, which is why expert, conservative placement matters." },
+  { q: "What's the difference between fillers and Botox?", a: "Fillers add volume and definition to restore or enhance facial structure. Botox (and Dysport/Xeomin) relaxes muscles to soften expression lines. They address different concerns and are often combined. See our Botox & injectables page for wrinkle relaxers." },
+  { q: "Who is a good candidate for dermal fillers?", a: "Healthy adults wanting to restore volume, contour or smooth folds are typically good candidates. Fillers aren't recommended during pregnancy or breastfeeding, or with certain conditions or active infections. A consultation confirms it's right for you." },
+];
+---
+<Layout title={title} description={description}>
+  <SchemaService name="Dermal Fillers" description={description} url={Astro.url.href}
+    procedureType="Dermal filler injection (hyaluronic acid & collagen stimulators)"
+    bodyLocations={["Cheeks", "Jawline", "Chin", "Nasolabial folds", "Lips", "Under-eye"]} />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Services", url: "/services/" }, { name: "Dermal Fillers", url: "/services/dermal-fillers/" }]} />
+
+  <article class="service-page">
+    <header class="service-hero">
+      <p class="eyebrow">Injectables</p>
+      <h1>Dermal Fillers in Punta Gorda &amp; Fort Myers, FL</h1>
+      <p class="subhead">Restore volume, refine contours and smooth folds with expertly placed hyaluronic-acid fillers — for a natural, refreshed look that's still unmistakably you.</p>
+      <a class="cta" href="/contact/">Book your complimentary consultation</a>
+    </header>
+
+    <section>
+      <h2>What are dermal fillers?</h2>
+      <p>Dermal fillers are gel-like injectables — most commonly <strong>hyaluronic acid (HA)</strong>, a hydrating molecule your body makes naturally — used to restore lost volume, define facial contours and soften lines. We also offer <strong>Sculptra</strong>, a collagen-stimulating injectable that rebuilds support gradually over months. Together they let us tailor a natural result to your face.</p>
+    </section>
+
+    <section>
+      <h2>What dermal fillers can do</h2>
+      <ul class="benefit-list">
+        <li>Restore volume to cheeks and midface</li>
+        <li>Define the jawline and chin</li>
+        <li>Soften nasolabial folds and marionette lines</li>
+        <li>Enhance and hydrate the lips (see our <a href="/services/lip-fillers/">lip fillers page</a>)</li>
+        <li>Improve under-eye hollows for a rested look</li>
+        <li>Rebuild collagen and overall support with Sculptra</li>
+      </ul>
+    </section>
+
+    {beforeAfter.length > 0 && <BeforeAfterGallery items={beforeAfter} heading="Dermal Filler Before & After" />}
+
+    <section>
+      <h2>What to expect at House of Rose</h2>
+      <p>We begin with a consultation to assess your features and goals, then apply numbing and place the filler precisely — most appointments take 30 to 45 minutes. HA fillers show results immediately; Sculptra builds gradually. Expect possible mild swelling or bruising for a few days, settling over one to two weeks.</p>
+    </section>
+
+    <section>
+      <h2>Dermal fillers for Charlotte &amp; Lee County</h2>
+      <p>House of Rose Aesthetics offers dermal fillers and Sculptra throughout Southwest Florida — <strong>Punta Gorda</strong>, <strong>Port Charlotte</strong>, <strong>Fort Myers</strong> and <strong>Cape Coral</strong>. Book a consultation for a natural, personalized plan.</p>
+      <a class="cta" href="/contact/">Schedule your consultation</a>
+    </section>
+
+    <section class="faq">
+      <h2>Dermal Filler FAQs</h2>
+      {faqItems.map((item) => (<details><summary>{item.q}</summary><p>{item.a}</p></details>))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .service-page { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .service-hero { margin-bottom: 2.5rem; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .benefit-list { padding-left: 1.2rem; } .benefit-list li { margin-bottom: .4rem; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #7d2b41; }
+  a { color: #a23b57; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>

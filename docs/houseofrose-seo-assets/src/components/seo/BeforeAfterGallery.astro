@@ -1,0 +1,56 @@
+---
+// src/components/seo/BeforeAfterGallery.astro
+// Renders a before/after gallery AND emits ImageObject JSON-LD so your own photos become
+// eligible for image search + are readable by AI. Use your OWN real photos (unique media is
+// a strong ranking + trust signal). Always get patient consent before publishing photos.
+//
+// <BeforeAfterGallery
+//   items={[
+//     { before: "/images/morpheus8/case1-before.jpg", after: "/images/morpheus8/case1-after.jpg",
+//       alt: "Morpheus8 jawline tightening, before and after 3 sessions", caption: "3 sessions, 12 weeks" },
+//   ]}
+//   heading="Morpheus8 Before & After"
+// />
+interface Item { before: string; after: string; alt: string; caption?: string; }
+interface Props { items: Item[]; heading?: string; }
+const { items, heading = "Before & After" } = Astro.props;
+
+const origin = Astro.site?.origin ?? "https://houseofrosefl.com";
+const abs = (u: string) => (u.startsWith("http") ? u : `${origin}${u}`);
+
+// One ImageObject per image (before + after).
+const images = items.flatMap((it) => [
+  { "@context": "https://schema.org", "@type": "ImageObject", contentUrl: abs(it.before), caption: `Before — ${it.alt}` },
+  { "@context": "https://schema.org", "@type": "ImageObject", contentUrl: abs(it.after), caption: `After — ${it.alt}` },
+]);
+---
+{images.map((img) => (<script type="application/ld+json" set:html={JSON.stringify(img)} />))}
+
+<section class="ba-gallery" aria-label={heading}>
+  <h2>{heading}</h2>
+  <div class="ba-grid">
+    {items.map((it) => (
+      <figure class="ba-item">
+        <div class="ba-pair">
+          <div class="ba-cell"><span class="ba-tag">Before</span><img src={it.before} alt={`Before — ${it.alt}`} loading="lazy" width="600" height="600" /></div>
+          <div class="ba-cell"><span class="ba-tag">After</span><img src={it.after} alt={`After — ${it.alt}`} loading="lazy" width="600" height="600" /></div>
+        </div>
+        {it.caption && <figcaption>{it.caption}</figcaption>}
+      </figure>
+    ))}
+  </div>
+  <p class="ba-note">Individual results vary. Photos shared with patient consent.</p>
+</section>
+
+<style>
+  .ba-gallery { margin: 2.25rem 0; }
+  .ba-gallery h2 { font-size: 1.5rem; margin: 0 0 .8rem; }
+  .ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+  .ba-item { margin: 0; }
+  .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+  .ba-cell { position: relative; }
+  .ba-cell img { width: 100%; height: auto; border-radius: 10px; display: block; object-fit: cover; }
+  .ba-tag { position: absolute; top: .5rem; left: .5rem; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: rgba(0,0,0,.6); color: #fff; padding: .2rem .5rem; border-radius: 999px; }
+  figcaption { margin-top: .5rem; font-size: .85rem; opacity: .8; }
+  .ba-note { font-size: .78rem; opacity: .6; margin-top: 1rem; }
+</style>

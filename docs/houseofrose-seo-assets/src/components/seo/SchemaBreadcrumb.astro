@@ -1,0 +1,27 @@
+---
+// src/components/seo/SchemaBreadcrumb.astro
+// BreadcrumbList JSON-LD.
+// <SchemaBreadcrumb items={[{ name: "Services", url: "/services/" }, { name: "Morpheus8", url: "/services/morpheus8/" }]} />
+import { business as b } from "../../config/business";
+
+interface Crumb { name: string; url: string; }
+interface Props { items: Crumb[]; }
+const { items } = Astro.props;
+
+const abs = (u: string) => (u.startsWith("http") ? u : `${b.url}${u}`);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: b.url },
+    ...items.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 2,
+      name: c.name,
+      item: abs(c.url),
+    })),
+  ],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

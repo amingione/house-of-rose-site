@@ -1,0 +1,124 @@
+---
+// src/pages/blog/prf-vs-prp.astro — comparison article targeting "prf vs prp"; feeds AI Overviews / PAA.
+// Links back to /services/prf/ and /services/prp-microneedling/.
+// ⚕️ Medical director should review clinical claims. Replace illustrative pricing.
+import Layout from "../../layouts/Layout.astro"; // TODO: your real layout
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+import { business as b } from "../../config/business";
+
+const title = "PRF vs PRP: What's the Difference? | House of Rose Aesthetics";
+const description =
+  "PRF vs PRP — how these two natural, blood-derived treatments differ, what each is best for (skin, under-eyes, hair), downtime and cost, from House of Rose Aesthetics in Punta Gorda, FL.";
+const datePublished = "2026-08-01";
+const url = Astro.url.href;
+
+const faqItems = [
+  { q: "What is the difference between PRF and PRP?", a: "Both are made from a small draw of your own blood. PRP (platelet-rich plasma) is spun in a centrifuge at higher speed to concentrate platelets into a liquid that releases growth factors quickly. PRF (platelet-rich fibrin) is spun more slowly with no anticoagulants or additives, so it forms a natural fibrin scaffold that traps more platelets, white blood cells and stem cells and releases growth factors slowly over several days." },
+  { q: "Is PRF better than PRP?", a: "PRF is newer and, because it contains no additives and releases growth factors gradually, many providers consider it the more advanced option — especially for delicate areas like under the eyes and for hair. PRP still works very well and is often paired with microneedling for skin rejuvenation. The 'better' choice depends on the treatment area and your goals." },
+  { q: "Which is better for under-eye treatment, PRF or PRP?", a: "PRF is usually preferred for the under-eye area. Its thicker, slow-release fibrin matrix supports gradual, natural improvement in skin quality and mild hollowing with a lower risk of lumps than thinner liquids — which is why it's a popular natural alternative to filler under the eyes." },
+  { q: "Which is better for hair loss, PRF or PRP?", a: "Both are injected into the scalp to deliver growth factors to the follicles. PRF's sustained, additive-free release makes it a strong choice for supporting early-to-moderate thinning, though PRP also has a long track record for hair. A consultation determines the best fit for your pattern of thinning." },
+  { q: "What is the downtime for PRF and PRP?", a: "For injectable PRF or PRP (under-eyes, face, scalp), expect mild swelling, tenderness or occasional bruising for one to three days. When either is combined with microneedling, expect redness like a mild sunburn for a day or two. Most people return to normal activities quickly." },
+  { q: "Do PRF and PRP cost the same?", a: "Pricing is similar because both start with a blood draw and processing. At House of Rose, sessions generally range from about $400 to $800 depending on the treatment area and whether it's combined with microneedling. We confirm pricing at your consultation." },
+];
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: "PRF vs PRP: What's the Difference?",
+  description,
+  datePublished,
+  dateModified: datePublished,
+  mainEntityOfPage: url,
+  author: { "@type": "Organization", name: b.name, url: b.url },
+  publisher: { "@id": `${b.url}/#business` },
+};
+---
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(article)} />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Blog", url: "/blog/" }, { name: "PRF vs PRP", url: "/blog/prf-vs-prp/" }]} />
+
+  <article class="post">
+    <header>
+      <p class="eyebrow">Regenerative Aesthetics · Guide</p>
+      <h1>PRF vs PRP: What's the Difference?</h1>
+      <p class="subhead">Both use your own blood to rejuvenate skin and hair — but they're processed differently and shine in different situations. Here's how to tell them apart.</p>
+    </header>
+
+    <section class="quick-answer">
+      <h2>The short answer</h2>
+      <p>Both <strong>PRP (platelet-rich plasma)</strong> and <strong>PRF (platelet-rich fibrin)</strong> are made from a small draw of your own blood. PRP is spun faster into a liquid that delivers a quick burst of growth factors — great paired with microneedling for skin. PRF is spun gently with <strong>no additives</strong>, forming a fibrin scaffold that releases growth factors slowly over days and contains more stem and white blood cells — making it the preferred choice for <strong>under-eyes and hair restoration</strong>. Neither is universally "better"; the right one depends on the area treated.</p>
+    </section>
+
+    <section>
+      <h2>At a glance</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>&nbsp;</th><th>PRP</th><th>PRF</th></tr></thead>
+          <tbody>
+            <tr><th>Full name</th><td>Platelet-Rich Plasma</td><td>Platelet-Rich Fibrin</td></tr>
+            <tr><th>Processing</th><td>Higher-speed spin; additives may be used</td><td>Gentle spin; <strong>no additives</strong></td></tr>
+            <tr><th>Form</th><td>Liquid</td><td>Gel-like fibrin scaffold</td></tr>
+            <tr><th>Growth factors</th><td>Fast, concentrated release</td><td>Slow release over days</td></tr>
+            <tr><th>Also contains</th><td>Platelets, plasma</td><td>More platelets, white blood cells &amp; stem cells</td></tr>
+            <tr><th>Best for</th><td>Skin rejuvenation with microneedling</td><td>Under-eyes, skin quality, hair restoration</td></tr>
+            <tr><th>Downtime</th><td>1–3 days (injection) / ~1–2 days (with microneedling)</td><td>1–3 days (injection) / ~1–2 days (with microneedling)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>What is PRP?</h2>
+      <p>PRP concentrates the platelets from your blood into a plasma that's rich in growth factors. Applied during <strong>microneedling</strong> (the "vampire facial") or injected, it amplifies collagen production and healing for smoother texture, softened scars and a natural glow.</p>
+      <p><a href="/services/prp-microneedling/">Explore PRP microneedling at House of Rose →</a></p>
+    </section>
+
+    <section>
+      <h2>What is PRF?</h2>
+      <p>PRF is the next-generation version. Spun gently and additive-free, it forms a natural fibrin matrix that holds more of your regenerative cells and releases growth factors slowly over several days. That gradual, natural action makes it especially well suited to the delicate <strong>under-eye area</strong> and to <strong>scalp injections for thinning hair</strong>.</p>
+      <p><a href="/services/prf/">Explore PRF treatments at House of Rose →</a></p>
+    </section>
+
+    <section>
+      <h2>How to choose</h2>
+      <p><strong>Consider PRP</strong> when your goal is overall skin rejuvenation — texture, tone and glow — especially combined with microneedling.</p>
+      <p><strong>Consider PRF</strong> for under-eye rejuvenation as a natural alternative to filler, for a deeper skin-quality boost, or for supporting early-to-moderate hair thinning.</p>
+      <p>Because both use your own biology, they're among the most natural options in aesthetics. The best way to decide is a <strong>complimentary consultation</strong> where we assess your goals and the treatment area.</p>
+    </section>
+
+    <section class="cta-block">
+      <h2>Not sure which is right for you?</h2>
+      <p>House of Rose Aesthetics offers both PRP and PRF across Punta Gorda, Port Charlotte, Fort Myers and Cape Coral. Book a complimentary consultation and we'll recommend the best fit for your skin or hair goals.</p>
+      <a class="cta" href="/contact/">Book your consultation</a>
+    </section>
+
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      {faqItems.map((item) => (<details><summary>{item.q}</summary><p>{item.a}</p></details>))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .post { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .quick-answer { background: rgba(162,59,87,.07); border-left: 4px solid #a23b57; border-radius: 8px; padding: 1rem 1.25rem; }
+  .quick-answer h2 { font-size: 1.15rem; }
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: .92rem; }
+  th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid rgba(0,0,0,.1); vertical-align: top; }
+  tbody th { white-space: nowrap; }
+  a { color: #a23b57; }
+  .cta-block { background: rgba(0,0,0,.03); border-radius: 12px; padding: 1.5rem; text-align: center; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; margin-top: .5rem; }
+  .cta:hover { background: #7d2b41; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>

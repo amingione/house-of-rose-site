@@ -1,0 +1,98 @@
+---
+// src/pages/services/facials.astro — facials hub (targets "facials near me" 109k/KD 18 + local).
+// Links to the individual treatments you offer (Glo2Facial, dermaplaning, BioRePeel, microchanneling, etc.).
+// NOTE: only list facials you actually provide. (You do NOT offer HydraFacial — it is intentionally omitted.)
+// ⚕️ Medical director should review clinical claims. Replace illustrative pricing.
+import Layout from "../../layouts/Layout.astro"; // TODO: your real layout
+import SchemaService from "../../components/seo/SchemaService.astro";
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+
+const title = "Facials in Punta Gorda & Fort Myers, FL | House of Rose Aesthetics";
+const description =
+  "Custom facials at House of Rose Aesthetics — Glo2Facial, dermaplaning, BioRePeel, microchanneling and more, tailored to your skin for a healthy, radiant glow. Serving Punta Gorda, Port Charlotte, Fort Myers & Cape Coral.";
+
+// Only treatments you actually offer. Adjust to match your live service list.
+const facials = [
+  { name: "Glo2Facial", url: "/services/glo2facial/", note: "Oxygenating, hydrating signature facial" },
+  { name: "Dermaplaning", url: "/services/dermaplaning/", note: "Smooths skin & removes peach fuzz" },
+  { name: "BioRePeel", url: "/services/biorepeel/", note: "No-downtime bio-stimulating peel" },
+  { name: "Microchanneling", url: "/services/microchanneling/", note: "Collagen induction with serums" },
+  { name: "Microneedling", url: "/services/microneedling/", note: "Texture, tone & scar improvement" },
+];
+
+const faqItems = [
+  { q: "How much does a facial cost at House of Rose?", a: "Facials typically range from about $90 to $250 depending on the treatment — a classic or dermaplaning facial is at the lower end, while advanced options like Glo2Facial, BioRePeel or microchanneling are higher. We'll recommend the right facial and confirm pricing at your visit." },
+  { q: "Which facial is right for my skin?", a: "It depends on your goals. For hydration and glow, a Glo2Facial is a great choice; for smooth, makeup-ready skin, dermaplaning; for brightening and texture, BioRePeel; for collagen and fine lines, microchanneling or microneedling. Not sure? A quick skin analysis points you to the best fit." },
+  { q: "How often should I get a facial?", a: "For most people, every four to six weeks keeps skin healthy and glowing, since it aligns with your skin's natural renewal cycle. Treatment series (like peels or microchanneling) follow their own recommended schedule." },
+  { q: "Is there any downtime after a facial?", a: "Most facials have little to no downtime — you may have a bit of redness for a few hours. Advanced resurfacing options like microchanneling or a peel may have mild redness for up to a day. We'll tell you exactly what to expect for your chosen treatment." },
+  { q: "Do you offer HydraFacial?", a: "We don't offer HydraFacial specifically, but we do offer the Glo2Facial — an oxygenating, exfoliating and hydrating treatment that delivers a similar radiant, refreshed result. We're happy to recommend the best facial for your skin at a consultation." },
+  { q: "Can I combine a facial with other treatments?", a: "Often, yes. Many clients pair a facial with injectables or add-ons. We'll build a plan that sequences treatments safely and gets you the best results." },
+];
+---
+<Layout title={title} description={description}>
+  <SchemaService name="Facials" description={description} url={Astro.url.href}
+    procedureType="Facial skincare treatment" bodyLocations={["Face", "Neck", "Décolletage"]} />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Services", url: "/services/" }, { name: "Facials", url: "/services/facials/" }]} />
+
+  <article class="service-page">
+    <header class="service-hero">
+      <p class="eyebrow">Skin Health</p>
+      <h1>Facials in Punta Gorda &amp; Fort Myers, FL</h1>
+      <p class="subhead">Healthy, radiant skin starts here. Our custom facials — from hydrating Glo2Facial to results-driven peels and collagen treatments — are tailored to what your skin needs.</p>
+      <a class="cta" href="/contact/">Book your facial</a>
+    </header>
+
+    <section>
+      <h2>Facials tailored to your skin</h2>
+      <p>No two complexions are the same, so we start by understanding yours. Whether you want a hydrating glow before an event, smoother makeup-ready skin, or a treatment series to improve texture and tone, we'll match you to the right facial — and adjust as your skin evolves.</p>
+    </section>
+
+    <section>
+      <h2>Our facial treatments</h2>
+      <ul class="service-grid">
+        {facials.map((f) => (
+          <li><a href={f.url}><span class="fname">{f.name}</span><span class="fnote">{f.note}</span></a></li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Not sure where to start?</h2>
+      <p>A quick <a href="/services/skin-analysis/">skin analysis</a> is the best way to choose. We'll assess your skin and recommend the facial — or series — that fits your goals and lifestyle.</p>
+    </section>
+
+    <section>
+      <h2>Facials for Charlotte &amp; Lee County</h2>
+      <p>House of Rose Aesthetics offers custom facials throughout Southwest Florida — <strong>Punta Gorda</strong>, <strong>Port Charlotte</strong>, <strong>Fort Myers</strong> and <strong>Cape Coral</strong>. Book your facial today.</p>
+      <a class="cta" href="/contact/">Schedule your facial</a>
+    </section>
+
+    <section class="faq">
+      <h2>Facial FAQs</h2>
+      {faqItems.map((item) => (<details><summary>{item.q}</summary><p>{item.a}</p></details>))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .service-page { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .service-hero { margin-bottom: 2.5rem; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .service-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .6rem; }
+  .service-grid a { display: flex; flex-direction: column; gap: .15rem; padding: .8rem 1rem; border: 1px solid rgba(0,0,0,.12); border-radius: 10px; text-decoration: none; color: inherit; }
+  .service-grid a:hover { border-color: #a23b57; }
+  .fname { font-weight: 700; color: #a23b57; }
+  .fnote { font-size: .82rem; opacity: .75; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #7d2b41; }
+  a { color: #a23b57; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>

@@ -1,0 +1,85 @@
+---
+// src/pages/services/biorepeel.astro — BioRePeel (5,100/mo, KD 0)
+// ⚕️ Medical director should review clinical claims. Replace illustrative pricing.
+import Layout from "../../layouts/Layout.astro"; // TODO: your real layout
+import SchemaService from "../../components/seo/SchemaService.astro";
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+
+const title = "BioRePeel in Punta Gorda & Fort Myers, FL | House of Rose Aesthetics";
+const description =
+  "BioRePeel at House of Rose Aesthetics — a no-downtime bio-stimulating peel that brightens, smooths texture and refreshes skin in about 30 minutes. Serving Punta Gorda, Port Charlotte, Fort Myers & Cape Coral.";
+
+const faqItems = [
+  { q: "How much does BioRePeel cost?", a: "A single BioRePeel treatment in our area typically ranges from about $150 to $250, and a series of four to six sessions is often recommended for the best results. We confirm your plan and pricing at your visit." },
+  { q: "Is there any downtime with BioRePeel?", a: "Very little — it's often called a 'lunchtime peel.' Unlike traditional peels, most people don't experience heavy visible peeling. You may have mild redness or slight tightness for a few hours. Most clients return to their day right away." },
+  { q: "How many BioRePeel sessions do I need?", a: "Most people see the best improvement from a course of four to six treatments spaced about one to two weeks apart, followed by occasional maintenance. Your skin and goals determine the exact plan." },
+  { q: "Does BioRePeel hurt?", a: "You may feel a mild tingling or warm sensation during the treatment, which lasts only a few minutes and is well tolerated by most clients. No numbing is typically needed." },
+  { q: "How is BioRePeel different from a regular chemical peel?", a: "BioRePeel is a TCA-based, two-phase peel designed to both exfoliate and bio-stimulate the skin while minimizing the downtime and visible peeling associated with traditional deeper peels. It brightens and smooths with little to no social downtime, which makes it a great option year-round." },
+  { q: "What does BioRePeel treat, and am I a candidate?", a: "It's used to brighten dull skin, smooth texture, refine pores, soften fine lines and improve mild acne and congestion. It suits most skin types, but isn't recommended during pregnancy or with active infections or certain skin conditions. A consultation confirms it's right for you." },
+];
+---
+<Layout title={title} description={description}>
+  <SchemaService name="BioRePeel" description={description} url={Astro.url.href}
+    procedureType="BioRePeel bio-stimulating chemical peel" bodyLocations={["Face", "Neck", "Décolletage"]} />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Services", url: "/services/" }, { name: "BioRePeel", url: "/services/biorepeel/" }]} />
+
+  <article class="service-page">
+    <header class="service-hero">
+      <p class="eyebrow">Facials &amp; Peels</p>
+      <h1>BioRePeel in Punta Gorda &amp; Fort Myers, FL</h1>
+      <p class="subhead">Brighter, smoother, refreshed skin in about 30 minutes — a bio-stimulating peel with little to no visible peeling or downtime.</p>
+      <a class="cta" href="/contact/">Book your complimentary consultation</a>
+    </header>
+
+    <section>
+      <h2>What is BioRePeel?</h2>
+      <p>BioRePeel is a modern, <strong>TCA-based two-phase peel</strong> that exfoliates the surface while stimulating collagen and delivering vitamins and amino acids into the skin. It's designed to give you the glow and texture benefits of a peel <strong>without the heavy flaking and downtime</strong> of traditional treatments — which is why it's popular as a quick, refreshing "lunchtime peel."</p>
+    </section>
+
+    <section>
+      <h2>What BioRePeel treats</h2>
+      <ul class="benefit-list">
+        <li>Dull, tired-looking skin</li>
+        <li>Uneven texture and rough patches</li>
+        <li>Enlarged or congested pores</li>
+        <li>Fine lines</li>
+        <li>Mild acne and blemish-prone skin</li>
+        <li>Uneven tone and early discoloration</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What to expect at House of Rose</h2>
+      <p>After cleansing, we apply BioRePeel and let it work for just a few minutes — you may feel a light tingling. There's no heavy peeling for most clients; expect at most mild redness for a few hours. A series of four to six treatments gives the fullest, longest-lasting glow.</p>
+    </section>
+
+    <section>
+      <h2>BioRePeel for Charlotte &amp; Lee County</h2>
+      <p>House of Rose Aesthetics offers BioRePeel throughout Southwest Florida — <strong>Punta Gorda</strong>, <strong>Port Charlotte</strong>, <strong>Fort Myers</strong> and <strong>Cape Coral</strong>. Book a consultation to get started.</p>
+      <a class="cta" href="/contact/">Schedule your consultation</a>
+    </section>
+
+    <section class="faq">
+      <h2>BioRePeel FAQs</h2>
+      {faqItems.map((item) => (<details><summary>{item.q}</summary><p>{item.a}</p></details>))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .service-page { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .service-hero { margin-bottom: 2.5rem; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .benefit-list { padding-left: 1.2rem; } .benefit-list li { margin-bottom: .4rem; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; }
+  .cta:hover { background: #7d2b41; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>

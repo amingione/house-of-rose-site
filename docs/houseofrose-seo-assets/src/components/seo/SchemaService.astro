@@ -1,0 +1,65 @@
+---
+// src/components/seo/SchemaService.astro
+// Per-service JSON-LD: a `Service` provided by your business, plus a `MedicalProcedure`.
+// Use one per service page.
+//
+// <SchemaService
+//   name="Morpheus8 RF Microneedling"
+//   description="..."
+//   url={Astro.url.href}
+//   procedureType="Morpheus8 (radiofrequency microneedling)"
+//   bodyLocations={["Face", "Neck", "Jawline", "Body"]}
+//   priceFrom={600}            // optional; omit if you don't publish prices
+// />
+import { business as b } from "../../config/business";
+
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  procedureType?: string;
+  bodyLocations?: string[];
+  priceFrom?: number;
+}
+const { name, description, url, procedureType, bodyLocations, priceFrom } = Astro.props;
+
+const service: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: name,
+  name,
+  description,
+  url,
+  provider: { "@id": `${b.url}/#business` },
+  areaServed: b.areaServed.map((n) => ({ "@type": "City", name: n })),
+  audience: { "@type": "MedicalAudience", audienceType: "Patient" },
+};
+
+if (priceFrom) {
+  service.offers = {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    price: priceFrom,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      minPrice: priceFrom,
+      priceCurrency: "USD",
+    },
+    availability: "https://schema.org/InStock",
+    url,
+  };
+}
+
+const procedure = {
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  name: procedureType ?? name,
+  description,
+  url,
+  procedureType: "https://schema.org/NoninvasiveProcedure",
+  ...(bodyLocations?.length ? { bodyLocation: bodyLocations } : {}),
+  provider: { "@id": `${b.url}/#business` },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(service)} />
+<script type="application/ld+json" set:html={JSON.stringify(procedure)} />

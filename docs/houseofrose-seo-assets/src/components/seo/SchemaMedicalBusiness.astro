@@ -1,0 +1,58 @@
+---
+// src/components/seo/SchemaMedicalBusiness.astro
+// Site-wide LocalBusiness/MedicalBusiness JSON-LD. Include ONCE, in your base layout <head>.
+// Optionally pass a real aggregateRating once you display on-site reviews.
+import { business as b } from "../../config/business";
+
+interface Props {
+  aggregateRating?: { ratingValue: number; reviewCount: number };
+}
+const { aggregateRating } = Astro.props;
+
+const schema: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  additionalType: "https://schema.org/HealthAndBeautyBusiness",
+  "@id": `${b.url}/#business`,
+  name: b.name,
+  legalName: b.legalName,
+  url: b.url,
+  logo: b.logo,
+  image: b.image,
+  description: b.description,
+  telephone: b.telephone,
+  email: b.email,
+  priceRange: b.priceRange,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: b.address.streetAddress,
+    addressLocality: b.address.addressLocality,
+    addressRegion: b.address.addressRegion,
+    postalCode: b.address.postalCode,
+    addressCountry: b.address.addressCountry,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: b.geo.latitude,
+    longitude: b.geo.longitude,
+  },
+  areaServed: b.areaServed.map((name) => ({ "@type": "City", name })),
+  openingHoursSpecification: b.openingHours.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days,
+    opens: h.opens,
+    closes: h.closes,
+  })),
+  sameAs: b.sameAs,
+};
+
+// Only include aggregateRating when you have real reviews to back it up.
+if (aggregateRating && aggregateRating.reviewCount > 0) {
+  schema.aggregateRating = {
+    "@type": "AggregateRating",
+    ratingValue: aggregateRating.ratingValue,
+    reviewCount: aggregateRating.reviewCount,
+  };
+}
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

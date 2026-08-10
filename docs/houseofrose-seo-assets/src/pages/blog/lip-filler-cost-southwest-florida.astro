@@ -1,0 +1,96 @@
+---
+// src/pages/blog/lip-filler-cost-southwest-florida.astro — cost article; AI-Overview / PAA target.
+// Links to /services/lip-fillers/. ⚕️ Medical director should review. REPLACE all pricing with real numbers.
+import Layout from "../../layouts/Layout.astro"; // TODO: your real layout
+import SchemaFAQ from "../../components/seo/SchemaFAQ.astro";
+import SchemaBreadcrumb from "../../components/seo/SchemaBreadcrumb.astro";
+import { business as b } from "../../config/business";
+
+const title = "How Much Do Lip Fillers Cost in Fort Myers & Punta Gorda? | House of Rose Aesthetics";
+const description =
+  "How much do lip fillers cost in Southwest Florida? A clear breakdown of per-syringe pricing, how long results last, and what affects the price — from House of Rose Aesthetics in Punta Gorda, FL.";
+const datePublished = "2026-08-01";
+const url = Astro.url.href;
+
+const faqItems = [
+  { q: "How much do lip fillers cost in Fort Myers and Punta Gorda?", a: "In Southwest Florida, hyaluronic-acid lip filler typically costs about $550 to $900 per syringe, and most people start with a single syringe. Your total depends on the product used and how much volume you want, which we confirm at a complimentary consultation." },
+  { q: "How many syringes of lip filler do I need?", a: "Most first-time clients get natural results with one syringe. If you want a fuller look or are restoring significant volume, a second syringe (now or at a follow-up) may be recommended. We build gradually for a balanced, natural result." },
+  { q: "How long do lip fillers last?", a: "Hyaluronic-acid lip fillers generally last about 6 to 12 months before gradually breaking down. Many clients schedule a touch-up once or twice a year to maintain their look." },
+  { q: "What affects the price of lip filler?", a: "The main factors are the number of syringes, the specific product used, and the expertise of your injector. Choosing an experienced, medically supervised provider is worth prioritizing for a safe, natural result — especially in an area as delicate as the lips." },
+  { q: "Is lip filler cheaper if I buy a package?", a: "Some practices offer loyalty pricing or membership savings on injectables. Ask us about current specials and any membership perks at your consultation." },
+  { q: "Is lip filler worth the cost?", a: "For most clients who want fuller, more defined or better-balanced lips with a natural feel, yes — and because HA filler is adjustable and even reversible, it's a lower-risk way to enhance your look. We always aim for results that are worth every dollar and never overdone." },
+];
+
+const article = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  headline: "How Much Do Lip Fillers Cost in Fort Myers & Punta Gorda?",
+  description, datePublished, dateModified: datePublished, mainEntityOfPage: url,
+  author: { "@type": "Organization", name: b.name, url: b.url }, publisher: { "@id": `${b.url}/#business` },
+};
+---
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(article)} />
+  <SchemaFAQ items={faqItems} />
+  <SchemaBreadcrumb items={[{ name: "Blog", url: "/blog/" }, { name: "Lip Filler Cost", url: "/blog/lip-filler-cost-southwest-florida/" }]} />
+
+  <article class="post">
+    <header>
+      <p class="eyebrow">Pricing Guide</p>
+      <h1>How Much Do Lip Fillers Cost in Fort Myers &amp; Punta Gorda?</h1>
+      <p class="subhead">A straightforward look at lip filler pricing in Southwest Florida — per syringe, how long it lasts, and what actually drives the cost.</p>
+    </header>
+
+    <section class="quick-answer">
+      <h2>The short answer</h2>
+      <p>In the Fort Myers and Punta Gorda area, <strong>lip fillers typically cost about $550 to $900 per syringe</strong>, and most people start with one syringe. Hyaluronic-acid lip filler lasts roughly <strong>6 to 12 months</strong>. Your final price depends on the product and how much volume you want.</p>
+    </section>
+
+    <section>
+      <h2>What goes into the price</h2>
+      <ul class="benefit-list">
+        <li><strong>Number of syringes</strong> — most first-timers need just one</li>
+        <li><strong>Product used</strong> — different HA fillers have different price points and textures</li>
+        <li><strong>Injector expertise</strong> — experienced, medically supervised care matters for a natural, safe result</li>
+        <li><strong>Maintenance</strong> — touch-ups once or twice a year keep your look consistent</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Is it worth it?</h2>
+      <p>Because hyaluronic-acid lip filler is adjustable — and even reversible with an enzyme if needed — it's one of the lower-risk ways to enhance your lips. Spread over 6 to 12 months, most clients find the cost very reasonable for the confidence boost. Our approach is always natural and never overfilled.</p>
+      <p><a href="/services/lip-fillers/">Learn more about lip fillers at House of Rose →</a></p>
+    </section>
+
+    <section class="cta-block">
+      <h2>Get your personalized quote</h2>
+      <p>House of Rose Aesthetics offers lip fillers across Punta Gorda, Port Charlotte, Fort Myers and Cape Coral. Book a complimentary consultation for an exact price and a natural, custom plan.</p>
+      <a class="cta" href="/services/lip-fillers/">Explore Lip Fillers</a>
+      <a class="cta ghost" href="/contact/">Book a consultation</a>
+    </section>
+
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      {faqItems.map((item) => (<details><summary>{item.q}</summary><p>{item.a}</p></details>))}
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .post { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.65; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 600; opacity: .7; margin: 0 0 .5rem; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); line-height: 1.1; margin: 0 0 .8rem; text-wrap: balance; }
+  .subhead { font-size: 1.1rem; opacity: .85; margin: 0 0 1.5rem; }
+  section { margin-bottom: 2.25rem; }
+  h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+  .quick-answer { background: rgba(162,59,87,.07); border-left: 4px solid #a23b57; border-radius: 8px; padding: 1rem 1.25rem; }
+  .quick-answer h2 { font-size: 1.15rem; }
+  .benefit-list { padding-left: 1.2rem; } .benefit-list li { margin-bottom: .4rem; }
+  a { color: #a23b57; }
+  .cta-block { background: rgba(0,0,0,.03); border-radius: 12px; padding: 1.5rem; text-align: center; }
+  .cta { display: inline-block; padding: .8rem 1.4rem; border-radius: 999px; background: #a23b57; color: #fff; text-decoration: none; font-weight: 600; margin: .5rem .3rem 0; }
+  .cta.ghost { background: transparent; color: #a23b57; border: 1px solid #a23b57; }
+  .cta:hover { background: #7d2b41; color:#fff; }
+  .faq details { border-bottom: 1px solid rgba(0,0,0,.1); padding: .9rem 0; }
+  .faq summary { font-weight: 600; cursor: pointer; font-size: 1.02rem; }
+  .faq details p { margin: .7rem 0 0; opacity: .85; }
+</style>
