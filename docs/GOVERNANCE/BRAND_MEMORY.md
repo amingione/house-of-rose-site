@@ -4,8 +4,8 @@
 > entire file before every task. Use it to connect strategy to execution, and
 > update it after work that creates durable knowledge.
 
-**Memory version:** 1.2.0
-**Last updated:** 2026-08-06
+**Memory version:** 1.2.1
+**Last updated:** 2026-08-08
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
 **Current state:** Foundation scaffold; brand-specific intake is not yet populated
 
@@ -295,6 +295,7 @@ The claim ledger is the boundary between persuasive copy and invented copy.
 
 | Claim or proof point | Exact support | Allowed wording | Required qualifier | Prohibited wording | Status / source |
 |---|---|---|---|---|---|
+| Topical PRF mechanism claims (release kinetics, fibroblast response, stretch-mark outcome) | PubMed-verified 2026-08-08: Kobayashi 2016, Clin Oral Investig (PRF released growth factors continually over 10 days vs PRP's first-hour burst; doi:10.1007/s00784-016-1719-1); Wang 2019, J Cosmet Dermatol (fluid PRF induced greater fibroblast migration/collagen markers than PRP in vitro; doi:10.1111/jocd.12955); Ahmed 2025, Arch Dermatol Res (RCT: MN+PRF significantly improved abdominal stretch marks, satisfaction favored PRF, PRF-vs-PRP difference not statistically significant; doi:10.1007/s00403-025-04135-9). | "Releases growth factors gradually over days rather than minutes"; "laboratory work shows skin cells respond more strongly to fluid PRF than PRP"; "a randomized study found MN with PRF significantly improved the appearance of abdominal stretch marks." | State study design and limitations wherever cited (lab study ≠ clinical outcome; the 2025 RCT is small, one body area, PRF-vs-PRP difference not significant); individual results vary. | "Clinically proven"; "superior to PRP" as an outcome claim; any guarantee; "delivers growth factors into the skin." | `[VERIFIED]` — PubMed metadata pulled 2026-08-08 during the PRF service-page rewrite |
 | House of Rose concern routing for Morpheus8 and Lumecca | Owner direction plus the supplied InMode library in `packages/web/docs/inmode/`; the retained Lumecca pigment and selected-texture wording and the Morpheus8 scar and stretch-mark wording are grounded in those materials. | Morpheus8 for visible tone, texture, eligible scars, and stretch marks; Lumecca for visible pigment, uneven tone, and selected texture. | Candidacy and treatment area are reviewed; individual outcomes vary. | Tightening, lifting, laxity, firmness, sagging, jowls, or contouring as a Morpheus8 or Lumecca indication; vascular, vessel, redness, or rosacea routing for Lumecca. | `[DECIDED]` / `[VERIFIED]` — user direction and supplied InMode files, 2026-08-06 |
 | Forma collagen-support positioning | The supplied 2017 split-face tissue study reported changes consistent with increased dermal collagen content and synthesis on the treated side. | Forma for the appearance of crepey-looking facial texture and to support the skin’s collagen response. | The study included four participants and cannot predict visible change for an individual client; candidacy and treatment area are reviewed. | Tightening, lifting, sculpting, contouring, firmness, laxity, jowls, facelift language, or defined-shape claims. | `[DECIDED]` / `[VERIFIED]` — user direction and supplied Forma study, 2026-08-06 |
 | `[UNKNOWN]` |  |  |  |  | Not approved |
@@ -534,7 +535,7 @@ settled questions or repeating rejected approaches.
 
 | ID | Conflicting information | Sources | Risk if unresolved | Proposed resolution | Owner / status |
 |---|---|---|---|---|---|
-| None yet |  |  |  |  |  |
+| CON-001 | ~~Topical PRF microneedling price: Sanity showed "From $450/session" while the 2026-08-06 pricing rebuild showed only "PRF Microneedling — Consultation $595" with unresolved attribution.~~ **RESOLVED 2026-08-09 — Amber ruled the $595 GlossGenius line is the topical service.** Page draft, pricing file, and Notion notes updated to "from $595"; the $450 figure (2026-07-09 PRF PDF) is dead. Diana-lane remainder (Under-Eye $495→$550 raise; whether her injectable PRF Facial needs its own GlossGenius line) stays tracked in the pricing file's open item #2. | Amber ruling 2026-08-09; `ALL-SERVICES-PRICING.MD` § Open items #2 | — | Applied same day across Sanity draft `818469ff…`, pricing file, and Notion pricing notes. | Amber / resolved 2026-08-09 |
 
 ### Highest-value open questions
 
@@ -641,6 +642,7 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-08 | 1.2.1 | Claim ledger, contradictions | Added PubMed-verified PRF claim citations (release kinetics, fibroblast response, 2025 stretch-mark RCT) from the PRF service-page rewrite; logged CON-001, the $450-vs-$595 topical-PRF price conflict awaiting Amber's ruling. | PRF page rewrite session, PubMed metadata + `ALL-SERVICES-PRICING.MD` open item #2 |
 | 2026-08-06 | 1.2.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Restricted Forma to crepey-looking facial texture and collagen-support language; superseded the prior firmness-lane note. | User direction and supplied Forma tissue study |
 | 2026-08-06 | 1.1.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Recorded the Morpheus8 and Lumecca indication boundary and downstream anti-regression rule. | User direction and supplied InMode files |
 | 2026-08-04 | 1.0.0 | All | Created mandatory dynamic brand-memory system and initial intake scaffold. | User request |
