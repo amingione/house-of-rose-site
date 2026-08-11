@@ -22,7 +22,7 @@ const linkClass = (path: string) =>
   `nav-link ${isActive(path) ? 'nav-link-active' : ''}`;
 ---
 
-<header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-walnut/10 bg-bone/95 backdrop-blur-md">
+<header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-soft-black/95 backdrop-blur-md">
   <div class="mx-auto flex h-20 max-w-[1440px] items-center gap-5 px-5 sm:px-8">
     <a href="/" class="brand-link shrink-0" aria-label="House of Rose Aesthetics home">
       <img
@@ -44,8 +44,8 @@ const linkClass = (path: string) =>
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </summary>
-        <div class="services-panel absolute left-1/2 top-[calc(100%+1px)] flex max-h-[calc(100dvh-96px)] w-[min(1120px,calc(100vw-32px))] -translate-x-1/2 flex-col overflow-hidden border border-walnut/15 bg-bone p-5 shadow-[0_24px_70px_rgba(58,43,36,0.18)] xl:p-7">
-          <div class="mb-5 flex shrink-0 items-end justify-between gap-6 border-b border-walnut/10 pb-5 xl:mb-6">
+        <div class="services-panel absolute left-1/2 top-[calc(100%+1px)] flex max-h-[calc(100dvh-96px)] w-[min(1120px,calc(100vw-32px))] -translate-x-1/2 flex-col overflow-hidden border border-ivory/15 bg-bone p-5 shadow-[0_24px_70px_rgba(0,0,0,0.52)] xl:p-7">
+          <div class="mb-5 flex shrink-0 items-end justify-between gap-6 border-b border-ivory/10 pb-5 xl:mb-6">
             <div>
               <p class="kicker mb-2">Explore care</p>
               <p class="font-serif text-[22px] text-ink xl:text-[26px]">Start with the service or concern you recognize.</p>
@@ -90,19 +90,19 @@ const linkClass = (path: string) =>
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </summary>
-        <div class="about-panel absolute right-0 top-[calc(100%+14px)] w-[420px] border border-walnut/15 bg-bone p-7 shadow-[0_24px_70px_rgba(58,43,36,0.18)]">
-          <a href="/about/" class="group block border-b border-walnut/10 pb-5">
+        <div class="about-panel absolute right-0 top-[calc(100%+14px)] w-[420px] border border-ivory/15 bg-bone p-7 shadow-[0_24px_70px_rgba(0,0,0,0.52)]">
+          <a href="/about/" class="group block border-b border-ivory/10 pb-5">
             <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">About</p>
-            <p class="mt-2 font-serif text-[25px] text-ink group-hover:text-olive">House of Rose</p>
+            <p class="mt-2 font-serif text-[25px] text-ink group-hover:text-gold">House of Rose</p>
           </a>
           <div class="grid grid-cols-[0.78fr_1.22fr] gap-7 pt-5">
             <a href="/about/hra/" class="group block">
-              <p class="text-[12px] font-semibold text-ink group-hover:text-olive">HRA</p>
+              <p class="text-[12px] font-semibold text-ink group-hover:text-gold">HRA</p>
               <p class="mt-2 text-[12px] leading-relaxed text-muted">The practice, its method, and its standards.</p>
             </a>
             <section aria-label="Providers">
               <p class="text-[12px] font-semibold text-ink">
-                <a href="/about/providers/" class="hover:text-olive">Providers</a>
+                <a href="/about/providers/" class="hover:text-gold">Providers</a>
               </p>
               <ul class="mt-3 space-y-2.5">
                 {aboutProviders.map((provider) => (
@@ -170,10 +170,10 @@ const linkClass = (path: string) =>
     </div>
   </div>
 
-  <div id="mobile-navigation" class="mobile-navigation hidden border-t border-walnut/10 bg-bone lg:hidden">
+  <div id="mobile-navigation" class="mobile-navigation hidden border-t border-ivory/10 bg-bone lg:hidden">
     <nav class="max-h-[calc(100dvh-80px)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
       <a href="/" class="mobile-nav-link">Home</a>
-      <details class="mobile-services border-y border-walnut/10 py-1">
+      <details class="mobile-services border-y border-ivory/10 py-1">
         <summary class="mobile-nav-link cursor-pointer list-none">
           Services
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -202,7 +202,7 @@ const linkClass = (path: string) =>
       </details>
       <a href="/skin-analysis/" class="mobile-nav-link">Skin analysis</a>
       <a href="/shop/" class="mobile-nav-link">Shop</a>
-      <details class="mobile-about border-b border-walnut/10 py-1">
+      <details class="mobile-about border-b border-ivory/10 py-1">
         <summary class="mobile-nav-link cursor-pointer list-none">
           About
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -213,7 +213,7 @@ const linkClass = (path: string) =>
           <a href="/about/" class="flex min-h-11 items-center text-[13px] font-semibold text-gold">About index</a>
           <a href="/about/hra/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">HRA</a>
           <a href="/about/providers/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">Providers</a>
-          <ul class="ml-4 border-l border-walnut/15 pl-4">
+          <ul class="ml-4 border-l border-ivory/15 pl-4">
             {aboutProviders.map((provider) => (
               <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>
                 <a href={`/about/providers/${provider.slug}/`} class="flex min-h-10 items-center text-[13px] leading-snug text-muted" {...sbFieldPath('publicName')}>
@@ -278,14 +278,14 @@ const linkClass = (path: string) =>
     align-items: center;
     gap: 6px;
     padding: 0 10px;
-    color: #3a2b24;
+    color: #f1ede5;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.02em;
   }
   .nav-link:hover,
   .nav-link-active {
-    color: #5f624d;
+    color: #e2d3b2;
   }
   summary::-webkit-details-marker { display: none; }
   details[open] > summary .menu-caret { transform: rotate(180deg); }
@@ -312,7 +312,7 @@ const linkClass = (path: string) =>
     min-height: 44px;
     align-items: center;
     justify-content: center;
-    color: #3a2b24;
+    color: #f1ede5;
   }
   .cart-count {
     position: absolute;
@@ -336,7 +336,7 @@ const linkClass = (path: string) =>
     min-height: 50px;
     align-items: center;
     justify-content: space-between;
-    color: #3a2b24;
+    color: #f1ede5;
     font-size: 15px;
     font-weight: 600;
   }

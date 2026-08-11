@@ -6,22 +6,19 @@
   /* ── Context-aware accent channels (see tailwind.config.ts) ──────────
      Every `text-gold` / `border-gold` / `text-muted` on the site resolves
      through these vars, so an element is legible on whatever surface it
-     lands on. Light surfaces are the default; `.on-dark` flips the
-     channel for photo heroes, walnut bands, and the footer.
+     lands on. The site now uses a dark canvas by default.
      Values are space-separated RGB triplets (Tailwind alpha support).  */
   :root {
-    /* LIGHT surfaces — warm bone #F2E8D8 / cream #F3ECE0 / limestone #C9C0B3 */
-    --hr-gold: 122 92 42;         /* #7A5C2A — 5.27:1 on ivory, 4.54:1 on taupe */
-    --hr-muted: 86 78 70;
-    --hr-muted-strong: 47 42 38;
+    --hr-gold: 226 211 178;
+    --hr-muted: 201 192 179;
+    --hr-muted-strong: 241 237 229;
 
     --color-bg: theme('colors.bone');
     --color-text: theme('colors.ink');
     --color-accent: rgb(var(--hr-gold));
   }
 
-  /* DARK surfaces — walnut #3E2C20, photo heroes under a near-black overlay.
-     Apply to the section/wrapper; all gold + muted descendants invert. */
+  /* Explicit dark wrappers retain the same accessible channels. */
   .on-dark {
     --hr-gold: 226 211 178;
     --hr-muted: 218 211 202;
@@ -51,8 +48,8 @@
   }
 
   ::selection {
-    background: #c9c0b3;
-    color: #171614;
+    background: #8a6a43;
+    color: #f1ede5;
   }
 }
 
@@ -70,7 +67,7 @@
 
   /* Button: Outline gold — border + label track the context-aware channel. */
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-walnut/40 text-walnut font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-200 hover:bg-walnut hover:border-walnut hover:text-ivory;
+    @apply inline-flex items-center justify-center px-5 py-3 bg-transparent border border-ivory/50 text-ivory font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-200 hover:bg-ivory hover:border-ivory hover:text-walnut;
   }
 
   /* Label/Kicker — was 10px @ 0.4em tracking in 2:1 gold: the single worst
@@ -86,7 +83,7 @@
 
   /* Service card */
   .service-card {
-    @apply bg-breath p-5 text-left border border-walnut/10 w-full min-h-[44px] transition-colors duration-200 hover:border-walnut/25;
+    @apply bg-breath p-5 text-left border border-ivory/10 w-full min-h-[44px] transition-colors duration-200 hover:border-ivory/25;
   }
 
   /* Service name in card */
@@ -101,7 +98,7 @@
 
   /* Learn more link — was gold @ 50% opacity (~1.4:1). Now full-strength. */
   .learn-more {
-    @apply text-gold text-[12px] font-semibold tracking-[0.02em] mt-3 block transition-colors duration-200 hover:text-walnut;
+    @apply text-gold text-[12px] font-semibold tracking-[0.02em] mt-3 block transition-colors duration-200 hover:text-ivory;
   }
 
   .service-booking-link {
@@ -129,11 +126,18 @@
   position: sticky;
   bottom: 0;
   z-index: 40;
-  border-top: 1px solid rgb(58 43 36 / 0.14);
-  background: rgb(241 237 229 / 0.96);
+  border-top: 1px solid rgb(241 237 229 / 0.14);
+  background: rgb(11 11 10 / 0.96);
   padding: 12px 16px max(12px, env(safe-area-inset-bottom));
   backdrop-filter: blur(12px);
 }
+
+/* Legacy border utilities now sit on a dark canvas; retain their semantic
+   hairline role without changing `bg-walnut` section surfaces. */
+.border-walnut\/10 { border-color: rgb(241 237 229 / 0.10); }
+.border-walnut\/15 { border-color: rgb(241 237 229 / 0.15); }
+.border-walnut\/20 { border-color: rgb(241 237 229 / 0.20); }
+.divide-walnut\/10 > :not([hidden]) ~ :not([hidden]) { border-color: rgb(241 237 229 / 0.10); }
 
 @media (prefers-reduced-motion: reduce) {
   *,

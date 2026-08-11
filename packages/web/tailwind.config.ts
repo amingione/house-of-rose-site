@@ -46,33 +46,32 @@ export default {
           DEFAULT: 'rgb(var(--hr-muted) / <alpha-value>)',
           strong: 'rgb(var(--hr-muted-strong) / <alpha-value>)', // body copy weight
         },
-        // `charcoal.*` kept as token NAMES for compatibility, but remapped to WARM
-        // LIGHT surfaces so existing `bg-charcoal*` classes render ivory/greige.
+        // `charcoal.*` remain the deepest neutral surfaces in the dark system.
         charcoal: {
-          DEFAULT: '#F2E8D8', // legacy surface alias → warm Bone canvas
-          light: '#C9C0B3',   // legacy accent alias → Limestone
-          lighter: '#E4DED4', // raised surface
+          DEFAULT: '#0B0B0A',
+          light: '#13110F',
+          lighter: '#1B1815',
         },
         // Semantic brand tokens
-        bone: '#F2E8D8',
-        limestone: '#C9C0B3',
+        bone: '#0B0B0A',
+        limestone: '#2A2521',
         olive: '#5F624D',
         bronze: '#8A6A43',
-        'soft-black': '#171614',
-        ink: '#171614',
+        'soft-black': '#070706',
+        ink: '#F1EDE5',
         ivory: '#F1EDE5',
-        breath: '#F3ECE0',
-        greige: '#C9C0B3',
-        green: { DEFAULT: '#5F624D', deep: '#4F5241', sage: '#8D907C', soft: '#C4C5B9' },
+        breath: '#12100F',
+        greige: '#2A2521',
+        green: { DEFAULT: '#5F624D', deep: '#4F5241', sage: '#8D907C', soft: '#25271F' },
         // Warm neutral accents from the actual space (mocha wall, walnut wood)
-        taupe: { DEFAULT: '#8A7259', soft: '#EDE2D0' },
-        walnut: { DEFAULT: '#3A2B24', deep: '#2B211C' },
-        // `cream.*` repurposed to INK tints so `text-cream*`/`border-cream*` read on light.
+        taupe: { DEFAULT: '#8A7259', soft: '#211B17' },
+        walnut: { DEFAULT: '#241B17', deep: '#17110F' },
+        // `cream.*` are light text/border tints on the dark canvas.
         cream: {
-          DEFAULT: '#14110F',
-          100: '#14110F',
-          200: 'rgba(20,17,15,0.72)',
-          300: 'rgba(20,17,15,0.30)',
+          DEFAULT: '#F1EDE5',
+          100: '#F1EDE5',
+          200: 'rgba(241,237,229,0.72)',
+          300: 'rgba(241,237,229,0.30)',
         },
       },
       fontFamily: {

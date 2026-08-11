@@ -6,6 +6,7 @@ import { HOMEPAGE_QUERY, type HomePage } from '@/lib/queries';
 import { alignPublicChannelCopy } from '@/lib/publicCopy';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
+import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
 
 const hp = (await sanityFetch<HomePage | null>(HOMEPAGE_QUERY)) ?? ({} as HomePage);
 const oid = hp._id ? sbObjectId(hp._id) : {};
@@ -39,76 +40,17 @@ const practiceStandards = [
 <BaseLayout
   title={hp.seoTitle ?? 'House of Rose | Medical Aesthetics in Punta Gorda'}
   description={hp.seoDescription ?? 'Explore skin treatments, injectables, facials, body treatments, IV hydration, wellness services, and professional skincare at House of Rose in Punta Gorda.'}
-  preloadImage="/images/optimized/actual-reception-1400.webp"
-  preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
+  preloadImage="/images/hero/treatment-scan-poster.webp"
   preloadImageSizes="100vw"
 >
   <div {...oid}>
-    <section class="on-dark relative isolate overflow-hidden bg-soft-black pt-20">
-      <div class="relative min-h-[720px] sm:min-h-[740px] lg:h-[calc(100svh-80px)] lg:min-h-[680px] lg:max-h-[800px]">
-        <img
-          src="/images/optimized/actual-reception-1400.webp"
-          srcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
-          sizes="100vw"
-          alt="The reception area inside House of Rose Aesthetics in Punta Gorda"
-          width="1400"
-          height="1050"
-          fetchpriority="high"
-          decoding="sync"
-          class="absolute inset-0 h-full w-full object-cover object-[38%_center] lg:object-[52%_center]"
-        />
-        <div class="home-hero-scrim absolute inset-0" aria-hidden="true"></div>
-
-        <div class="relative mx-auto flex h-full min-h-[720px] max-w-[1440px] items-end px-6 pb-10 pt-16 sm:min-h-[740px] sm:px-10 sm:pb-12 lg:min-h-[680px] lg:px-[clamp(48px,6.5vw,96px)] lg:pb-14">
-          <div class="w-full">
-            <div class="max-w-[980px]">
-              <div class="flex items-center gap-4">
-                <span class="h-px w-10 bg-gold-metal sm:w-14" aria-hidden="true"></span>
-                <span class="kicker mb-0 text-ivory" {...sbFieldPath('heroKicker')}>
-                  {safe(hp.heroKicker, 'House of Rose Aesthetics')}
-                </span>
-              </div>
-
-              <h1 class="mt-5 max-w-[960px] font-serif text-[clamp(46px,7vw,88px)] leading-[0.94] tracking-[-0.025em] text-ivory">
-                {heroTitle.split('\n').map((line) => (
-                  <span class="block">{line}</span>
-                ))}
-              </h1>
-
-              <p class="mt-6 max-w-[680px] text-[15px] leading-[1.65] text-muted-strong sm:mt-7 sm:text-[clamp(16px,1.5vw,19px)] sm:leading-[1.7]" {...sbFieldPath('heroDescription')}>
-                {safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
-              </p>
-
-              <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[218px]" data-global-booking data-cta-location="homepage-hero">
-                  {safe(hp.heroCtaPrimaryText, 'Book an appointment')}
-                </a>
-                <a href="/services/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-hero-services">
-                  {safe(hp.heroCtaSecondaryText, 'View services')}
-                </a>
-              </div>
-            </div>
-
-            <div class="mt-8 grid max-w-[900px] grid-cols-2 border-y border-ivory/30 text-[12px] sm:mt-10 sm:grid-cols-[1.15fr_1fr_auto] sm:items-stretch">
-              <div class="py-4 pr-3 sm:pr-6">
-                <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Practice</p>
-                <p class="mt-1.5 font-semibold text-ivory">Medical Aesthetics Practice</p>
-              </div>
-              <div class="border-l border-ivory/20 py-4 pl-3 sm:px-6">
-                <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Location</p>
-                <p class="mt-1.5 font-semibold text-ivory" {...sbFieldPath('heroSubtitle')}>
-                  {safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
-                </p>
-              </div>
-              <a href={phoneHref} class="group col-span-2 flex items-center justify-between gap-8 border-t border-ivory/20 py-4 font-semibold text-ivory sm:col-span-1 sm:border-l sm:border-t-0 sm:pl-6" data-cta-location="homepage-hero-call">
-                Call {phoneDisplay}
-                <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <SkinAnalysisHero
+      title={heroTitle}
+      description={safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
+      location={safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
+      primaryCta={safe(hp.heroCtaPrimaryText, 'Book an appointment')}
+      secondaryCta={safe(hp.heroCtaSecondaryText, 'View services')}
+    />
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
         <div class="grid gap-8 border-b border-walnut/15 pb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -147,7 +89,7 @@ const practiceStandards = [
                 {safe(hp.scanPara1, 'Multi-spectrum imaging adds context around texture, hydration, pores, pigmentation, fine lines, and visible sun exposure before treatment is considered.')}
               </p>
             </div>
-            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-walnut">
+            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-ivory">
               {safe(hp.scanCtaPrimaryText, 'Review skin analysis')} <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
             </span>
           </a>
@@ -160,7 +102,7 @@ const practiceStandards = [
                 A consultation is useful when several approaches could apply, treatment order matters, or recovery time changes the decision.
               </p>
             </div>
-            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-walnut">
+            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-ivory">
               Request guidance <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
             </span>
           </a>
@@ -199,8 +141,8 @@ const practiceStandards = [
           </div>
 
           <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-walnut/15 pt-7 text-[13px] font-semibold">
-            <a href="/experience/" class="text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">See the practice</a>
-            <a href="/services/" class="text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">Review the work</a>
+            <a href="/experience/" class="text-ivory underline decoration-ivory/30 underline-offset-4 hover:text-gold">See the practice</a>
+            <a href="/services/" class="text-ivory underline decoration-ivory/30 underline-offset-4 hover:text-gold">Review the work</a>
           </div>
         </div>
       </div>
@@ -272,7 +214,7 @@ const practiceStandards = [
             </div>
             <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
               <span>The House of Rose storefront</span>
-              <span class="font-semibold text-walnut">Unit 9</span>
+              <span class="font-semibold text-ivory">Unit 9</span>
             </figcaption>
           </figure>
 
@@ -292,7 +234,7 @@ const practiceStandards = [
             </div>
             <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
               <span>A treatment suite inside the practice</span>
-              <a href="/experience/" class="font-semibold text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">Explore the experience</a>
+              <a href="/experience/" class="font-semibold text-ivory underline decoration-ivory/30 underline-offset-4 hover:text-gold">Explore the experience</a>
             </figcaption>
           </figure>
         </div>
@@ -343,19 +285,3 @@ const practiceStandards = [
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .home-hero-scrim {
-    background:
-      linear-gradient(180deg, rgba(23, 22, 20, 0.28) 0%, rgba(23, 22, 20, 0.52) 42%, rgba(23, 22, 20, 0.92) 100%),
-      linear-gradient(90deg, rgba(23, 22, 20, 0.7) 0%, rgba(23, 22, 20, 0.3) 100%);
-  }
-
-  @media (min-width: 1024px) {
-    .home-hero-scrim {
-      background:
-        linear-gradient(180deg, rgba(23, 22, 20, 0.12) 45%, rgba(23, 22, 20, 0.62) 100%),
-        linear-gradient(90deg, rgba(23, 22, 20, 0.96) 0%, rgba(23, 22, 20, 0.82) 35%, rgba(23, 22, 20, 0.34) 66%, rgba(23, 22, 20, 0.08) 100%);
-    }
-  }
-</style>
