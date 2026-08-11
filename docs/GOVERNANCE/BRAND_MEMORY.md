@@ -4,8 +4,8 @@
 > entire file before every task. Use it to connect strategy to execution, and
 > update it after work that creates durable knowledge.
 
-**Memory version:** 1.2.2
-**Last updated:** 2026-08-11
+**Memory version:** 1.3.0
+**Last updated:** 2026-08-11 (v1.3.0, pricing-confidentiality reaffirmation)
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
 **Current state:** Foundation scaffold; brand-specific intake is not yet populated
 
@@ -524,6 +524,7 @@ settled questions or repeating rejected approaches.
 
 | ID | Date | Decision | Why | Downstream implications | Source / owner | State |
 |---|---|---|---|---|---|---|
+| DEC-004 | 2026-08-11 | Prices are never displayed on the public website. GlossGenius is the pricing source of truth and stays internal; pricing is quoted at booking or consultation. Reaffirms the 2026-07-24 pricing-confidentiality decision in CLAUDE.md that the treatment-page priceRange block had silently contradicted. | Amber's explicit instruction, 2026-08-11, correcting the service-page rewrite program. | All seven live treatment pages stripped of priceRange/price/dollar figures the same day (published); the build verifier now BLOCKS any live service carrying a price field or a dollar figure in client-facing copy; GlossGenius figures live only in the internal, never-rendered pricingNotes field; cost-guide pages (`/cost/*`) carry price ranges by design — scope question flagged to Amber. | User direction / Amber | `[DECIDED]` |
 | DEC-001 | 2026-08-04 | Use this file as the canonical brand memory for the workspace. | Preserve durable context and reduce regression across tasks and agents. | All agents read before work and update after durable learning. | User request / workspace setup | `[DECIDED]` |
 | DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. The former Forma-firmness clause is `[SUPERSEDED]` by DEC-003. | User direction / Amber | `[DECIDED]` |
 | DEC-003 | 2026-08-06 | Position Forma only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. Do not market it for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | The owner prohibited reshaping language and approved a texture-and-collagen explanation. The retained split-face tissue study supports cautious collagen-response wording. | Applies to the Forma service page, SEO, structured data, cost guide, FAQs, collection copy, evidence captions, booking copy, concern references, and visual evidence. | User direction / Amber | `[DECIDED]` |
@@ -536,7 +537,7 @@ settled questions or repeating rejected approaches.
 
 | ID | Conflicting information | Sources | Risk if unresolved | Proposed resolution | Owner / status |
 |---|---|---|---|---|---|
-| CON-001 | ~~Topical PRF microneedling price: Sanity showed "From $450/session" while the 2026-08-06 pricing rebuild showed only "PRF Microneedling — Consultation $595" with unresolved attribution.~~ **RESOLVED 2026-08-09 — Amber ruled the $595 GlossGenius line is the topical service.** Page draft, pricing file, and Notion notes updated to "from $595"; the $450 figure (2026-07-09 PRF PDF) is dead. Diana-lane remainder (Under-Eye $495→$550 raise; whether her injectable PRF Facial needs its own GlossGenius line) stays tracked in the pricing file's open item #2. | Amber ruling 2026-08-09; `ALL-SERVICES-PRICING.MD` § Open items #2 | — | Applied same day across Sanity draft `818469ff…`, pricing file, and Notion pricing notes. | Amber / resolved 2026-08-09 |
+| CON-001 | ~~Topical PRF microneedling price: Sanity showed "From $450/session" while the 2026-08-06 pricing rebuild showed only "PRF Microneedling — Consultation $595" with unresolved attribution.~~ **RESOLVED 2026-08-09 — Amber ruled the $595 GlossGenius line is the topical service.** The $450 figure (2026-07-09 PRF PDF) is dead; $595 recorded in internal notes only — per DEC-004, no price is ever displayed on the website. Diana-lane remainder (Under-Eye $495→$550 raise; whether her injectable PRF Facial needs its own GlossGenius line) stays tracked in the pricing file's open item #2. | Amber ruling 2026-08-09; `ALL-SERVICES-PRICING.MD` § Open items #2 | — | Applied across Sanity, the pricing file, and Notion pricing notes; public display subsequently removed everywhere per DEC-004. | Amber / resolved 2026-08-09 |
 
 ### Highest-value open questions
 
@@ -643,6 +644,7 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-11 | 1.3.0 | Decision ledger, contradictions | DEC-004: prices are never publicly displayed (Amber, explicit); all seven live treatment pages stripped of prices and republished; verifier now blocks public prices; CON-001 wording corrected. | Amber instruction, 2026-08-11 |
 | 2026-08-11 | 1.2.2 | Claim ledger | Added the PubMed-verified Diaz 2017 OxyGeneo citation with the RF-step caveat from the Glo2Facial page rewrite; page draft also moved from the stale $195 to the GlossGenius-verified $225. | Glo2Facial page rewrite session (page 2 of the program) |
 | 2026-08-08 | 1.2.1 | Claim ledger, contradictions | Added PubMed-verified PRF claim citations (release kinetics, fibroblast response, 2025 stretch-mark RCT) from the PRF service-page rewrite; logged CON-001, the $450-vs-$595 topical-PRF price conflict awaiting Amber's ruling. | PRF page rewrite session, PubMed metadata + `ALL-SERVICES-PRICING.MD` open item #2 |
 | 2026-08-06 | 1.2.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Restricted Forma to crepey-looking facial texture and collagen-support language; superseded the prior firmness-lane note. | User direction and supplied Forma tissue study |

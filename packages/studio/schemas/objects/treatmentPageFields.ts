@@ -42,7 +42,7 @@ export const treatmentPageFields = [
     title: 'Price Range',
     type: 'treatmentPriceRange',
     description:
-      'Structured mirror of the GlossGenius price. Powers the Offer node in JSON-LD. The existing free-text `price` field still drives the hero line.',
+      'DO NOT SET. Prices are never displayed on the website (pricing-confidentiality decision 2026-07-24, reaffirmed by Amber 2026-08-11) — the build verifier fails on any live service carrying this field or a free-text price. GlossGenius is commerce truth; record figures in the internal pricingNotes field, which never renders.',
   }),
   defineField({
     name: 'whyQualified',

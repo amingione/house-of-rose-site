@@ -13,8 +13,12 @@
  *   BLOCKING  — live service with no providerScope, or providerScope with no disclaimer
  *   BLOCKING  — a staff or owner name found in client-facing copy
  *   BLOCKING  — banned voice or compliance language
- *   WARNING   — live service missing downtime, aftercare, priceRange, or whyQualified
- *   WARNING   — priceRange verified against GlossGenius more than 90 days ago
+ *   BLOCKING  — a public price (priceRange, price, or a dollar figure in copy).
+ *               Prices are never displayed on the site (pricing-confidentiality
+ *               decision 2026-07-24, reaffirmed 2026-08-11). GlossGenius is
+ *               commerce truth and stays internal; `pricingNotes` (never
+ *               rendered) is the only permitted home for figures.
+ *   WARNING   — live service missing downtime, aftercare, or whyQualified
  */
 
 import { createClient } from '@sanity/client';
@@ -66,24 +70,26 @@ const BANNED_PHRASES = [
   { term: 'groupon', why: 'compliance — discount framing' },
 ];
 
-const REQUIRED_BLOCKS = ['downtime', 'aftercare', 'priceRange', 'whyQualified'];
-const STALE_PRICE_DAYS = 90;
+const REQUIRED_BLOCKS = ['downtime', 'aftercare', 'whyQualified'];
 
 const QUERY = /* groq */ `
 *[_type == "service" && status in ["live", "actual-menu"]]{
-  _id, title, "slug": slug.current,
-  description, whoItsFor, benefits, whyQualified,
-  downtime, aftercare, priceRange, providerScope,
-  "faqText": faqs[].answer
+  _id, title, "slug": slug.current, tagline,
+  description, whoItsFor, benefits, whyQualified, process,
+  downtime, aftercare, priceRange, price, providerScope,
+  "faqText": faqs[].answer, "faqQuestions": faqs[].question
 }`;
 
 function collectText(doc) {
   return [
+    doc.tagline,
     doc.description,
     doc.whoItsFor,
     ...(doc.benefits ?? []),
     ...(doc.whyQualified ?? []),
+    ...(doc.process ?? []),
     ...(doc.faqText ?? []),
+    ...(doc.faqQuestions ?? []),
     doc.downtime?.summary,
     doc.aftercare?.intro,
       ...(doc.providerScope?.credentialPoints ?? []),
@@ -91,13 +97,6 @@ function collectText(doc) {
     .filter(Boolean)
     .join(' \n ')
     .toLowerCase();
-}
-
-function daysSince(dateString) {
-  if (!dateString) return Infinity;
-  const then = new Date(dateString).getTime();
-  if (Number.isNaN(then)) return Infinity;
-  return Math.floor((Date.now() - then) / 86_400_000);
 }
 
 async function main() {
@@ -113,6 +112,19 @@ async function main() {
       blocking.push(`${label} — no providerScope. Every live treatment must state who performs it.`);
     } else if (!doc.providerScope.disclaimer?.trim()) {
       blocking.push(`${label} — providerScope has no results disclaimer (FL Rule 64B8-11.001).`);
+    }
+
+    // Prices are NEVER displayed on the website (pricing-confidentiality decision,
+    // 2026-07-24; reaffirmed by Amber 2026-08-11). GlossGenius is commerce truth and
+    // stays internal — pricing is quoted at booking/consultation only. The internal
+    // `pricingNotes` field is the one permitted home for figures; it never renders.
+    if (doc.priceRange != null || doc.price != null) {
+      blocking.push(
+        `${label} — public price field set (${doc.price ?? `priceRange from $${doc.priceRange?.minPrice}`}). Prices are never displayed on the site; move figures to pricingNotes.`,
+      );
+    }
+    if (/\$\s?\d/.test(text)) {
+      blocking.push(`${label} — dollar figure in client-facing copy. Prices are never displayed on the site.`);
     }
 
     // A named practitioner without a licence type is the violation, not the name.
@@ -145,13 +157,6 @@ async function main() {
       const value = doc[block];
       const empty = value == null || (Array.isArray(value) && value.length === 0);
       if (empty) warnings.push(`${label} — missing ${block}.`);
-    }
-
-    const age = daysSince(doc.priceRange?.verifiedAgainstGlossGenius);
-    if (doc.priceRange && age > STALE_PRICE_DAYS) {
-      warnings.push(
-        `${label} — priceRange last verified against GlossGenius ${age === Infinity ? 'never' : `${age} days ago`}.`,
-      );
     }
   }
 
