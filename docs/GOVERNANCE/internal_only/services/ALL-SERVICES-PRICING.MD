@@ -28,7 +28,7 @@ layer.
 | Procell Therapies — MD | 55 min | **$400** | Online |
 | Procell Therapies — Pro | 55 min | **$300** | Online |
 | GlowTox Facial | 1 hr | **$475** | Online |
-| PRF Microneedling — Consultation | 1 hr | **$595** | Online | _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. ⚠️ 2026-08-11: prices are NEVER displayed on the website — pricing-confidentiality decision, reaffirmed by Amber; the site page directs to consultation and this figure stays internal.)_
+| PRF Microneedling — Consultation | 1 hr | **$595** | Online _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. ⚠️ 2026-08-11: prices are NEVER displayed on the website — pricing-confidentiality decision, reaffirmed by Amber; the site page directs to consultation and this figure stays internal.)_ |
 | Dermaplaning — Facial (standalone) | 50 min | $135 | Online |
 | Dermaplaning — Add-On | 25 min | $45 | Online |
 | CO2 Lift Carboxy — Facial (standalone) | 1 hr | $175 | Online |

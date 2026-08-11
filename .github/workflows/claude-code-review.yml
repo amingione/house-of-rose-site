@@ -36,6 +36,10 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Linear's GitHub app flips PRs out of draft (ready_for_review), which
+          # fires this workflow with a bot actor; without this allowance the
+          # action hard-fails ("Workflow initiated by non-human actor").
+          allowed_bots: 'linear-code'
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
