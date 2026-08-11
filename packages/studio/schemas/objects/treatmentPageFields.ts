@@ -41,6 +41,7 @@ export const treatmentPageFields = [
     name: 'priceRange',
     title: 'Price Range',
     type: 'treatmentPriceRange',
+    hidden: true,
     description:
       'DO NOT SET. Prices are never displayed on the website (pricing-confidentiality decision 2026-07-24, reaffirmed by Amber 2026-08-11) — the build verifier fails on any live service carrying this field or a free-text price. GlossGenius is commerce truth; record figures in the internal pricingNotes field, which never renders.',
   }),

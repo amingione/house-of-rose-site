@@ -118,9 +118,15 @@ async function main() {
     // 2026-07-24; reaffirmed by Amber 2026-08-11). GlossGenius is commerce truth and
     // stays internal — pricing is quoted at booking/consultation only. The internal
     // `pricingNotes` field is the one permitted home for figures; it never renders.
-    if (doc.priceRange != null || doc.price != null) {
+    if (doc.priceRange != null || (doc.price != null && doc.price !== '')) {
+      const priceDetail =
+        doc.price && doc.price !== ''
+          ? doc.price
+          : doc.priceRange?.minPrice != null
+            ? `priceRange from $${doc.priceRange.minPrice}`
+            : 'priceRange set';
       blocking.push(
-        `${label} — public price field set (${doc.price ?? `priceRange from $${doc.priceRange?.minPrice}`}). Prices are never displayed on the site; move figures to pricingNotes.`,
+        `${label} — public price field set (${priceDetail}). Prices are never displayed on the site; move figures to pricingNotes.`,
       );
     }
     if (/\$\s?\d/.test(text)) {
