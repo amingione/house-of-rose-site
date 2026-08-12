@@ -18,6 +18,7 @@ import {
   getServiceFallbackImage,
 } from '@/lib/imageFallbacks';
 import { alignPublicContent } from '@/lib/publicCopy';
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COLLECTION_SLUGS_QUERY);
@@ -308,12 +309,22 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
     <div class="max-w-2xl mb-16">
       <h1 class="font-serif text-5xl text-ink mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
       {collection.description && (
-        <p class="text-xl text-muted leading-relaxed" {...sbFieldPath('description')}>{collection.description}</p>
+        <p class="text-xl text-muted leading-relaxed mb-8" {...sbFieldPath('description')}>{collection.description}</p>
       )}
+      <a
+        href={GLOSSGENIUS_SERVICES_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-gold"
+        data-global-booking
+        data-cta-location={`collection-${collection.slug}`}
+      >
+        Book on GlossGenius
+      </a>
     </div>
 
     {collection.services.length === 0 ? (
-      <p class="text-muted">Services coming soon.</p>
+      <p class="text-muted">Call (844) 941-7673 or book on GlossGenius to check availability.</p>
     ) : (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {collection.services.map((svc) => {
