@@ -13,6 +13,7 @@ import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph } from '@/lib/structuredData';
 import { formatSeoTitle } from '@/lib/seo';
+import { SHOP_ENABLED } from '@/lib/features';
 
 interface Props {
   title?: string;
@@ -154,7 +155,7 @@ const entityGraph = siteEntityGraph(
     {chrome === 'site' && <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />}
 
     <!-- Cart UI remains outside main so it does not interfere with page landmarks. -->
-    {chrome === 'site' && <CartDrawer />}
+    {chrome === 'site' && SHOP_ENABLED && <CartDrawer />}
 
     <LeadAnalytics />
     <ConsentManager />

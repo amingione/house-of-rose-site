@@ -1,5 +1,6 @@
 ---
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+import { SHOP_ENABLED } from '@/lib/features';
 
 interface Props {
   services?: Array<{ title: string; slug: string }>;
@@ -56,8 +57,8 @@ const currentYear = new Date().getFullYear();
           <li><a href="/cost/">Cost guides</a></li>
           <li><a href="/areas/">Areas we serve</a></li>
           <li><a href="/blog/">Journal</a></li>
-          <li><a href="/shop/">Shop</a></li>
-          <li><a href="/shop/jane-iredale/">Jane Iredale</a></li>
+          {SHOP_ENABLED && <li><a href="/shop/">Shop</a></li>}
+          {SHOP_ENABLED && <li><a href="/shop/jane-iredale/">Jane Iredale</a></li>}
         </ul>
       </nav>
 
@@ -90,8 +91,8 @@ const currentYear = new Date().getFullYear();
         <a href="/privacy-policy/" class="hover:text-ivory">Privacy</a>
         <button id="privacy-choices" type="button" class="hover:text-ivory">Privacy choices</button>
         <a href="/terms-of-service/" class="hover:text-ivory">Terms</a>
-        <a href="/shipping-policy/" class="hover:text-ivory">Shipping</a>
-        <a href="/return-policy/" class="hover:text-ivory">Returns</a>
+        {SHOP_ENABLED && <a href="/shipping-policy/" class="hover:text-ivory">Shipping</a>}
+        {SHOP_ENABLED && <a href="/return-policy/" class="hover:text-ivory">Returns</a>}
         <a href="/sitemap/" class="hover:text-ivory">Sitemap</a>
       </nav>
     </div>

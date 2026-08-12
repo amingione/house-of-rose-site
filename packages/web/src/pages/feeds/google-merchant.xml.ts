@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { MERCHANT_PRODUCTS_QUERY, type Product } from '@/lib/queries';
 import { toGoogleProduct } from '@/lib/googleProduct';
+import { SHOP_ENABLED } from '@/lib/features';
 
 const escapeXml = (value: string): string =>
   value
@@ -17,7 +18,9 @@ const element = (name: string, value: string | undefined): string =>
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = site?.toString() ?? 'https://houseofrosefl.com/';
   // MERCHANT_PRODUCTS_QUERY enforces merchantStatus == "eligible"; services have no path here.
-  const products = await sanityFetch<Product[]>(MERCHANT_PRODUCTS_QUERY);
+  const products = SHOP_ENABLED
+    ? await sanityFetch<Product[]>(MERCHANT_PRODUCTS_QUERY)
+    : [];
   const items = products.map((product) => toGoogleProduct(product, baseUrl));
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

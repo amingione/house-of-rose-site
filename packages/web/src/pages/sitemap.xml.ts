@@ -24,6 +24,7 @@ import {
   type PublicProviderProfile,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { SHOP_ENABLED } from '@/lib/features';
 
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
@@ -44,6 +45,13 @@ export const GET: APIRoute = async ({ site }) => {
 
   const now = new Date().toISOString().split('T')[0];
 
+  const shopPages = SHOP_ENABLED
+    ? [
+        { loc: `${baseUrl}/shop/jane-iredale/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+        { loc: `${baseUrl}/shop/`, priority: '0.6', changefreq: 'monthly', lastmod: now },
+      ]
+    : [];
+
   // Static pages — all use trailing-slash canonical URLs
   const staticPages = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: now },
@@ -52,7 +60,6 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/about/hra/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/about/providers/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/consultation/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/shop/jane-iredale/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/blog/`, priority: '0.8', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/experience/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/faq/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
@@ -63,7 +70,7 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/packages/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/skin-analysis/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/shop/`, priority: '0.6', changefreq: 'monthly', lastmod: now },
+    ...shopPages,
     { loc: `${baseUrl}/sitemap/`, priority: '0.5', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/contact/`, priority: '0.7', changefreq: 'yearly', lastmod: now },
     { loc: `${baseUrl}/rent-a-room/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
@@ -127,8 +134,8 @@ export const GET: APIRoute = async ({ site }) => {
   }));
 
   // Keep the XML sitemap focused on high-value hubs and editorial pages.
-  // Product detail pages remain crawlable through /shop/ but are intentionally
-  // omitted here so the catalog does not crowd out the service architecture.
+  // Product detail pages are intentionally omitted so the catalog does not
+  // crowd out the service architecture when the shop is enabled.
   const allPages = [
     ...staticPages,
     ...servicePages,

@@ -13,8 +13,11 @@ import {
 } from '@/lib/queries';
 import { product as productJsonLd } from '@/lib/structuredData';
 import { toCanonicalProduct } from '@/lib/productContract';
+import { SHOP_ENABLED } from '@/lib/features';
 
 export async function getStaticPaths() {
+  if (!SHOP_ENABLED) return [];
+
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_PRODUCT_SLUGS_QUERY);
   return slugs.map(({ slug }) => ({ params: { slug } }));
 }

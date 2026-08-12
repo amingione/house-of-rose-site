@@ -19,6 +19,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_OPENAI_ADS_PIXEL_ID?: string;
   readonly PUBLIC_GSC_VERIFY?: string;
   readonly PUBLIC_COMING_SOON?: string;
+  readonly PUBLIC_SHOP_ENABLED?: string;
   readonly SANITY_API_WRITE_TOKEN?: string;
   readonly RESEND_API_KEY?: string;
   readonly PRIVACY_SUPPORT_FROM?: string;

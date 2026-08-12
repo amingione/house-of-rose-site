@@ -208,18 +208,7 @@ export const service = defineType({
       name: 'faqs',
       title: 'FAQs',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({ name: 'question', title: 'Question', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3, validation: (R) => R.required() }),
-          ],
-          preview: {
-            select: { title: 'question', subtitle: 'answer' },
-          },
-        },
-      ],
+      of: [{ type: 'faq' }],
       description: 'Common questions about this service',
     }),
     defineField({

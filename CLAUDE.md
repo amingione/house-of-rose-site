@@ -340,6 +340,10 @@ membership.)
   "signature" names, and no membership-style program names.
 
 ## Checkout — Stripe Elements + Shippo (see `docs/CHECKOUT.md`, binding)
+- **TEMPORARILY HIDDEN (2026-08-11):** the public shop, cart, checkout entry point, merchant feed,
+  and shop sitemap links are off unless `PUBLIC_SHOP_ENABLED=true` at build time. Netlify also forces
+  `/shop/*` and `/checkout/*` to 404; remove those temporary rules when the shop is restored. The shop
+  source, Sanity schemas, products, and checkout functions remain intact.
 - **GlossGenius CANNOT sell products online** (no online store — their docs say so). It is
   booking + in-person POS only. It is **not** the checkout. Retail runs on **Stripe Elements
   + Shippo** on our own `/checkout` page, with **Sanity as the price source of truth**.
@@ -568,6 +572,7 @@ Production: set in Netlify dashboard
 | `PUBLIC_BOOKING_EMAIL` | web | Live `book@houseofrosefl.com` alias used only on rental/booking `mailto:` links |
 | `PUBLIC_GTM_ID` | web + edge | `GTM-NSDKJFP9`; browser-safe container ID served through the first-party `/metrics/` gateway |
 | `PUBLIC_MAPBOX_ACCESS_TOKEN` | web | Browser-safe `pk.` token for the contact map, address search, and directions; production token is URL-restricted |
+| `PUBLIC_SHOP_ENABLED` | web | Opt-in storefront flag; unset/false keeps shop navigation, cart UI, product routes, sitemap entries, and Merchant Center items hidden |
 
 ---
 

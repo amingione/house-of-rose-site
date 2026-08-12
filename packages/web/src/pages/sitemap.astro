@@ -26,6 +26,7 @@ import {
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
+import { SHOP_ENABLED } from '@/lib/features';
 
 interface SitemapLink {
   title: string;
@@ -85,8 +86,12 @@ const corePages: SitemapLink[] = [
   { title: 'Service Collections', href: '/services/collections/' },
   { title: 'Treatment Series & Packages', href: '/packages/' },
   { title: 'Advanced Skin Imaging & Analysis', href: '/skin-analysis/' },
-  { title: 'Shop', href: '/shop/' },
-  { title: 'Jane Iredale Products', href: '/shop/jane-iredale/' },
+  ...(SHOP_ENABLED
+    ? [
+        { title: 'Shop', href: '/shop/' },
+        { title: 'Jane Iredale Products', href: '/shop/jane-iredale/' },
+      ]
+    : []),
   { title: 'Experience', href: '/experience/' },
   { title: 'Journal', href: '/blog/' },
   { title: 'FAQ', href: '/faq/' },
