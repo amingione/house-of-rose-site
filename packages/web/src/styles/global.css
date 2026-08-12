@@ -129,6 +129,19 @@
 .border-walnut\/20 { border-color: rgb(241 237 229 / 0.20); }
 .divide-walnut\/10 > :not([hidden]) ~ :not([hidden]) { border-color: rgb(241 237 229 / 0.10); }
 
+.service-group-nav-track {
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.service-group-nav-track::-webkit-scrollbar {
+  display: none;
+}
+
+.service-group-nav-track > a {
+  scroll-snap-align: start;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

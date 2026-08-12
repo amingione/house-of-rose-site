@@ -8,10 +8,9 @@ import { sbObjectField } from '@/lib/visualEditing';
 import { alignPublicContent } from '@/lib/publicCopy';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
-// The homepage's four pillars (serviceGroups) deep-link here via anchor ids.
 // Collections come from Sanity (`serviceCollection`); this page rolls them up
-// into the marketing umbrellas so clicking "Injectables" never shows lashes.
-// Mapping decided in docs/PRICING-RECONCILIATION-2026-07-23.md §4 (F1/F2).
+// into a concise treatment index. The anchor ids are stable public links while
+// the collection slugs mirror the current Sanity collection taxonomy.
 
 interface GroupSection {
   /** Anchor id — must match GROUP_ANCHORS in pages/index.astro */
@@ -25,27 +24,27 @@ interface GroupSection {
 const SERVICE_GROUP_SECTIONS: GroupSection[] = [
   {
     id: 'advanced-skin-treatments',
-    kicker: 'Corrective Care',
+    kicker: 'Treatment Technology',
     title: 'Skin Renewal & Device Treatments',
-    collectionSlugs: ['advanced-facials', 'skin-renewal', 'rf-ipl-skin-treatments'],
+    collectionSlugs: ['inmode'],
   },
   {
     id: 'injectables-structural-enhancements',
     kicker: 'Medical Aesthetics',
-    title: 'Injectables & Structural Enhancements',
+    title: 'Injectables & Weight Management',
     collectionSlugs: ['injectables-bio-fillers'],
   },
   {
     id: 'skin-health-corrective-care',
-    kicker: 'Skin Health',
-    title: 'Skin Health & Corrective Care',
-    collectionSlugs: ['facials', 'acne-bootcamp', 'enhancements-add-ons'],
+    kicker: 'Facial Care',
+    title: 'Facials & Skin Health',
+    collectionSlugs: ['facials'],
   },
   {
     id: 'wellness-performance-support',
     kicker: 'Wellness',
-    title: 'Wellness & Performance Support',
-    collectionSlugs: ['wellness-restoration'],
+    title: 'IV Hydration Therapy',
+    collectionSlugs: ['iv-hydration-therapy'],
   },
   {
     id: 'beauty-grooming',
@@ -81,8 +80,6 @@ const unmapped = collections
   .map((collection) => ({ collection, services: bookable(collection.services) }))
   .filter(({ services }) => services.length > 0);
 
-let cardNumber = 0;
-const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
 ---
 
 <BaseLayout
@@ -104,17 +101,20 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
     imageAlt="The reception and waiting area inside House of Rose Aesthetics in Punta Gorda"
   />
 
-  <!-- Group index (jump nav) -->
-  <nav aria-label="Service groups" class="bg-charcoal border-b border-gold-metal/10 py-6 px-6">
-    <div class="max-w-[1280px] mx-auto flex flex-wrap gap-x-8 gap-y-3">
-      {sections.map((section) => (
-        <a
-          href={`#${section.id}`}
-          class="text-[11px] tracking-[0.2em] uppercase text-gold border-b border-transparent hover:border-gold pb-0.5 transition-colors"
-        >
-          {section.title}
-        </a>
-      ))}
+  <!-- Compact treatment index -->
+  <nav aria-label="Service groups" class="service-group-nav border-b border-gold-metal/10 bg-charcoal px-5 py-5 sm:px-6">
+    <div class="mx-auto max-w-[1280px]">
+      <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">Browse by service type</p>
+      <div class="service-group-nav-track flex gap-2 overflow-x-auto pb-1">
+        {sections.map((section) => (
+          <a
+            href={`#${section.id}`}
+            class="min-h-[44px] shrink-0 border border-ivory/15 bg-breath px-4 py-3 text-[12px] font-semibold text-ivory transition-colors hover:border-ivory/35 hover:bg-charcoal-light"
+          >
+            {section.title}
+          </a>
+        ))}
+      </div>
     </div>
   </nav>
 
@@ -122,16 +122,23 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
   {sections.map((section, sectionIndex) => (
     <section
       id={section.id}
-      class={`${sectionIndex % 2 === 0 ? 'bg-charcoal' : 'bg-charcoal-light'} py-[clamp(40px,6vw,80px)] scroll-mt-24`}
+      class={`${sectionIndex % 2 === 0 ? 'bg-charcoal' : 'bg-charcoal-light'} scroll-mt-24 py-[clamp(40px,6vw,72px)]`}
     >
-      <div class="max-w-[1280px] mx-auto px-6">
-        <div class="max-w-[720px] mb-10">
-          <span class="kicker">{section.kicker}</span>
-          <h2 class="font-serif text-[clamp(26px,3.6vw,38px)] text-ink mt-2">{section.title}</h2>
+      <div class="mx-auto max-w-[1280px] px-5 sm:px-6">
+        <div class="mb-6 grid gap-3 border-b border-gold-metal/20 pb-6 sm:mb-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+          <div class="max-w-[720px]">
+            <span class="kicker">{section.kicker}</span>
+            <h2 class="mt-2 font-serif text-[clamp(28px,5vw,40px)] leading-tight text-ink">{section.title}</h2>
+          </div>
+          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-muted">
+            {section.collections.reduce((count, entry) => count + entry.services.length, 0)}
+            {' '}
+            {section.collections.reduce((count, entry) => count + entry.services.length, 0) === 1 ? 'service' : 'services'}
+          </p>
         </div>
 
         {section.collections.map(({ collection, services }) => (
-          <div class="mb-12 last:mb-0">
+          <div class="mb-10 last:mb-0">
             {section.collections.length > 1 && (
               <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
                 <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">
@@ -160,7 +167,6 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
                 bookingMode={service.bookingMode}
                 bookingUrl={service.bookingUrl}
                 variant="row"
-                number={nextNumber()}
                 objectId={service._id}
               />
             ))}
@@ -172,8 +178,8 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
 
   {unmapped.length > 0 && (
     <section id="more" class="bg-charcoal-light py-[clamp(40px,6vw,80px)] scroll-mt-24">
-      <div class="max-w-[1280px] mx-auto px-6">
-        <div class="max-w-[720px] mb-10">
+      <div class="mx-auto max-w-[1280px] px-5 sm:px-6">
+        <div class="mb-8 max-w-[720px] border-b border-gold-metal/20 pb-6">
           <span class="kicker">More at House of Rose</span>
           <h2 class="font-serif text-[clamp(26px,3.6vw,38px)] text-ink mt-2">Additional Services</h2>
         </div>
@@ -196,7 +202,6 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
                 bookingMode={service.bookingMode}
                 bookingUrl={service.bookingUrl}
                 variant="row"
-                number={nextNumber()}
                 objectId={service._id}
               />
             ))}
@@ -226,53 +231,8 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
     </div>
   </section>
 
-  <!-- How to Choose Section -->
-  <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
-    <div class="max-w-[960px] mx-auto text-center mb-16">
-      <span class="kicker">Not Sure Where to Start?</span>
-      <h2 class="font-serif text-[32px] text-ink mt-2">
-        How to Choose
-      </h2>
-    </div>
-
-    <div class="max-w-[1120px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-      <!-- Step 1 -->
-      <div class="text-center">
-        <p class="text-gold text-[48px] font-serif mb-4">01</p>
-        <p class="text-ink text-[17px] font-medium mb-3 tracking-wide">
-          Define Your Goal
-        </p>
-        <p class="text-muted text-[14px] leading-relaxed">
-          Start with the change you want to see or the question you want answered.
-        </p>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="text-center">
-        <p class="text-gold text-[48px] font-serif mb-4">02</p>
-        <p class="text-ink text-[17px] font-medium mb-3 tracking-wide">
-          Request a Consultation
-        </p>
-        <p class="text-muted text-[14px] leading-relaxed">
-          If you are unsure what to book, talk through your goals, timing, and candidacy with us first.
-        </p>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="text-center">
-        <p class="text-gold text-[48px] font-serif mb-4">03</p>
-        <p class="text-ink text-[17px] font-medium mb-3 tracking-wide">
-          Choose Your Next Step
-        </p>
-        <p class="text-muted text-[14px] leading-relaxed">
-          Book the service that fits now, with a clear idea of what to expect afterward.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact CTA -->
-  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
+  <section id="book" class="border-t border-gold-metal/10 bg-charcoal px-5 py-[clamp(56px,8vw,88px)] sm:px-6">
     <div class="max-w-[680px] mx-auto text-center">
       <span class="kicker">Still Deciding?</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
@@ -281,7 +241,7 @@ const nextNumber = (): string => String(++cardNumber).padStart(2, '0');
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
         Tell us what you want to improve, and we will help you choose a sensible next step.
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
+      <div class="grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
         <a href="tel:+18449417673" class="btn-outline-gold">
           Call (844) 941-7673
         </a>
