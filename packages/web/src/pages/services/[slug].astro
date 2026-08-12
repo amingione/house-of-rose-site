@@ -172,12 +172,12 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   <!-- Answer-first service hero: the image is semantic and immediately discoverable for LCP. -->
   <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
     <div class="mx-auto grid max-w-[1440px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)]">
-      <div class="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
-        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-8 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline">
+      <div class="flex flex-col justify-center px-5 py-9 sm:px-10 sm:py-12 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
+        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-6 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline sm:mb-8">
           <span aria-hidden="true">←</span> {service.parentService ? service.parentService.title : 'All services'}
         </a>
         <span class="kicker">Medical Aesthetics Practice</span>
-        <h1 class="max-w-[720px] font-serif text-[clamp(38px,6vw,68px)] leading-[1.04] text-ink" {...sbFieldPath('title')}>
+        <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink" {...sbFieldPath('title')}>
           {service.title}
         </h1>
         {service.tagline && (
@@ -190,7 +190,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
             {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && service.duration && <span class="mx-2 text-gold">·</span>}{service.duration && <span {...sbFieldPath('duration')}>{service.duration}</span>}
           </p>
         )}
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="mt-7 grid gap-3 sm:flex sm:flex-wrap">
           <BookingLink
             slug={service.slug}
             bookingMode={service.bookingMode}
@@ -203,7 +203,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           A consultation confirms candidacy, timing, and the treatment plan that fits your goals.
         </p>
       </div>
-      <figure class="relative min-h-[420px] overflow-hidden bg-limestone lg:min-h-full">
+      <figure class="relative min-h-[300px] overflow-hidden bg-limestone sm:min-h-[420px] lg:min-h-full">
         <img
           src={heroImage}
           alt={curatedImage ? curatedImageAlt : service.image?.alt ?? `${service.title} at House of Rose Aesthetics`}
@@ -221,7 +221,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   </section>
 
   <!-- Answer-first treatment overview -->
-  <section class="bg-charcoal py-16 px-6">
+  <section class="bg-charcoal px-5 py-12 sm:px-6 sm:py-16">
     <div class="max-w-[960px] mx-auto">
       <span class="kicker">Treatment Overview</span>
       <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-5">
@@ -581,7 +581,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       <p class="text-muted text-[15px] max-w-[560px] mx-auto mb-10 leading-relaxed">
         Call to discuss your goals and arrange a consultation, or review the current services menu. Walk-ins are welcome when the schedule allows; an appointment is recommended to reserve a time.
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
+      <div class="grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
         <BookingLink
           slug={service.slug}
           bookingMode={service.bookingMode}
@@ -598,14 +598,5 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       </p>
     </div>
   </section>
-  <div class="service-mobile-booking lg:hidden">
-    <BookingLink
-      slug={service.slug}
-      bookingMode={service.bookingMode}
-      bookingUrl={service.bookingUrl}
-      location="service-mobile-bar"
-      class="btn-gold w-full"
-    />
-  </div>
   </div>
 </BaseLayout>
