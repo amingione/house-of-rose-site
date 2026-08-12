@@ -87,7 +87,9 @@ export const service = defineType({
         R.custom((value, context) => {
           const document = context.document as { status?: string } | undefined;
           return document?.status === 'live' || document?.status === 'actual-menu'
-            ? value || 'Live and actual-menu services require a booking action.'
+            ? value
+              ? true
+              : 'Live and actual-menu services require a booking action.'
             : true;
         }),
     }),
@@ -134,7 +136,9 @@ export const service = defineType({
         R.custom((value, context) => {
           const document = context.document as { status?: string } | undefined;
           return document?.status === 'live' || document?.status === 'actual-menu'
-            ? value || 'Verify the booking action before publishing this service.'
+            ? value
+              ? true
+              : 'Verify the booking action before publishing this service.'
             : true;
         }),
     }),

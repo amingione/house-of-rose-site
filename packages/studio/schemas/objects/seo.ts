@@ -23,7 +23,7 @@ export const seo = defineType({
       type: 'text',
       rows: 2,
       description: 'Direct answer to the page question, ≤ ~155 chars.',
-      validation: (R) => R.min(140).warning('Aim for 140–160 characters.').max(160).warning('Keep at or under 160 characters.'),
+      validation: (R) => R.max(160).warning('Keep at or under 160 characters.'),
     }),
   ],
 });

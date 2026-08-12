@@ -1,0 +1,1948 @@
+[
+ {
+  "key": "house of rose",
+  "display": "House of Rose",
+  "mentions": 5,
+  "recommended": 5,
+  "polarity": {
+   "positive": 5
+  },
+  "models": {
+   "google/gemini-3.5-flash": 5
+  },
+  "themes": {
+   "reputation_reviews": 4,
+   "staff_expertise": 4,
+   "injectables": 3,
+   "skincare_facials": 2,
+   "medical_oversight": 2
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Is House of Rose FL a good med spa?",
+    "polarity": "positive",
+    "one_line": "Described as a highly rated, popular med spa with strong reviews, clean facilities, and natural-looking results.",
+    "quote": "\"highly-rated and popular medical spa\"",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Is House of Rose FL a good med spa?",
+    "polarity": "positive",
+    "one_line": "Called a top-tier option, with advice to verify the specific provider's credentials before booking.",
+    "quote": "\"top-tier option\"",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What do people say about House of Rose in Punta Gorda?",
+    "polarity": "positive",
+    "one_line": "Described as a highly regarded studio with skilled artists, natural-looking results, a clean space, and strong customer service.",
+    "quote": "highly regarded beauty studio",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What do people say about House of Rose in Punta Gorda?",
+    "polarity": "positive",
+    "one_line": "The answer says clients praise its permanent makeup work, especially microblading, powder brows, and lip blushing.",
+    "quote": "natural-looking results",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What do people say about House of Rose in Punta Gorda?",
+    "polarity": "positive",
+    "one_line": "It is portrayed as patient, reassuring, and thorough with consultations and aftercare for nervous first-time clients.",
+    "quote": "incredibly patient, gentle, and reassuring",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "house of rose fl",
+  "display": "House of Rose FL",
+  "mentions": 4,
+  "recommended": 2,
+  "polarity": {
+   "neutral": 2,
+   "mixed": 1,
+   "positive": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 2,
+   "google/gemini-3.5-flash": 1,
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "uncertainty_disclaimer": 3,
+   "skincare_facials": 2,
+   "staff_expertise": 2,
+   "medical_oversight": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Is House of Rose FL a good med spa?",
+    "polarity": "neutral",
+    "one_line": "Says it can't reliably judge this med spa without checking reviews, licensing, and complaints first.",
+    "quote": "I can\u2019t reliably say \u201cyes\u201d or \u201cno\u201d without checking current reviews, licensing, and complaints.",
+    "recommended": false
+   },
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "House of Rose FL vs Fibba Aesthetics Laser & Wellness - which is better?",
+    "polarity": "mixed",
+    "one_line": "Suggested for a spa-like, beauty-forward setting with facials and skin treatments.",
+    "quote": "Choose House of Rose FL if you want:",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "House of Rose FL vs Fibba Aesthetics Laser & Wellness - which is better?",
+    "polarity": "positive",
+    "one_line": "Described as a luxury boutique focused on natural-looking injectables and personalized facial rejuvenation.",
+    "quote": "highly sought after for precise, natural-looking Botox",
+    "recommended": true
+   },
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "House of Rose FL vs Fibba Aesthetics Laser & Wellness - which is better?",
+    "polarity": "neutral",
+    "one_line": "The answer says it lacks specific detailed information to compare this business reliably.",
+    "quote": "I don't have specific detailed information about **House of Rose FL**",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "fibba laser",
+  "display": "Fibba Aesthetics Laser & Wellness",
+  "mentions": 3,
+  "recommended": 2,
+  "polarity": {
+   "mixed": 1,
+   "positive": 1,
+   "neutral": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1,
+   "google/gemini-3.5-flash": 1,
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "laser": 2,
+   "wellness_iv": 2,
+   "staff_expertise": 1,
+   "body_contouring": 1,
+   "uncertainty_disclaimer": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "House of Rose FL vs Fibba Aesthetics Laser & Wellness - which is better?",
+    "polarity": "mixed",
+    "one_line": "Suggested for laser-focused services and combined wellness plus aesthetics.",
+    "quote": "Choose Fibba Aesthetics Laser & Wellness if you want:",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "House of Rose FL vs Fibba Aesthetics Laser & Wellness - which is better?",
+    "polarity": "positive",
+    "one_line": "Described as a modern clinic specializing in lasers, body contouring, and machine-based skin tightening.",
+    "quote": "High-tech, modern, result-driven",
+    "recommended": true
+   },
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "House of Rose FL vs Fibba Aesthetics Laser & Wellness - which is better?",
+    "polarity": "neutral",
+    "one_line": "The answer says it lacks specific detailed information to compare this business reliably.",
+    "quote": "or **Fibba Aesthetics Laser & Wellness** to make a reliable comparison",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "riverchase dermatology",
+  "display": "Riverchase Dermatology",
+  "mentions": 3,
+  "recommended": 2,
+  "polarity": {
+   "positive": 2,
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 3
+  },
+  "themes": {
+   "medical_oversight": 3,
+   "injectables": 2,
+   "staff_expertise": 2,
+   "reputation_reviews": 2
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best place for dermal fillers near Port Charlotte, Florida?",
+    "polarity": "positive",
+    "one_line": "Described as a large established dermatology group with board-certified staff and strict safety standards.",
+    "quote": "one of the largest and most established dermatology groups",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a microneedling or PRP provider in Charlotte County, Florida.",
+    "polarity": "positive",
+    "one_line": "Described as a large, established dermatology group with board-certified dermatologists overseeing medical-grade microneedling.",
+    "quote": "one of the largest and most established dermatology groups",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "neutral",
+    "one_line": "Dermatology group in Port Charlotte and Punta Gorda said to offer platelet-rich therapies for skin rejuvenation and hair loss.",
+    "quote": "offer advanced cosmetic treatments, including platelet-rich therapies",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "riverchase dermatology and cosmetic surgery",
+  "display": "Riverchase Dermatology and Cosmetic Surgery",
+  "mentions": 3,
+  "recommended": 3,
+  "polarity": {
+   "positive": 3
+  },
+  "models": {
+   "google/gemini-3.5-flash": 3
+  },
+  "themes": {
+   "medical_oversight": 3,
+   "injectables": 1,
+   "staff_expertise": 1,
+   "skincare_facials": 1,
+   "laser": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "positive",
+    "one_line": "Recommended as a large, respected Southwest Florida practice offering injectables in a highly medical setting.",
+    "quote": "one of the largest and most respected dermatology practices",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where do locals in Punta Gorda go for facials and skincare treatments?",
+    "polarity": "positive",
+    "one_line": "Recommended as a dermatologist-backed option offering medical-grade facials, peels, and laser skin resurfacing.",
+    "quote": "For those who prefer a dermatologist-backed approach",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Described as a trusted, convenient network for standardized non-surgical body contouring across SWFL.",
+    "quote": "a massive, trusted medical network in SWFL",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "bella via",
+  "display": "Bella Via Medical Spa",
+  "mentions": 2,
+  "recommended": 2,
+  "polarity": {
+   "positive": 2
+  },
+  "models": {
+   "google/gemini-3.5-flash": 2
+  },
+  "themes": {
+   "laser": 2,
+   "body_contouring": 1,
+   "staff_expertise": 1,
+   "skincare_facials": 1,
+   "wellness_iv": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What's the best med spa in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Called a popular destination for Punta Gorda residents, with advanced laser treatments, body contouring, and highly trained staff.",
+    "quote": "very popular destination for Punta Gorda residents",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Recommended as a Port Charlotte spa combining day-spa pampering with medical-grade results and a strong aesthetics team.",
+    "quote": "Highly recommended",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "riverchase dermatology punta gorda port charlotte",
+  "display": "Riverchase Dermatology (Punta Gorda / Port Charlotte)",
+  "mentions": 2,
+  "recommended": 2,
+  "polarity": {
+   "positive": 2
+  },
+  "models": {
+   "google/gemini-3.5-flash": 2
+  },
+  "themes": {
+   "staff_expertise": 2,
+   "medical_oversight": 2,
+   "injectables": 1,
+   "laser": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where should I go for Botox in Punta Gorda, FL?",
+    "polarity": "positive",
+    "one_line": "Presented as a large, well-established dermatology group with board-certified dermatologists who routinely perform Botox.",
+    "quote": "one of the largest and most well-established dermatology groups in Southwest Florida",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "I'm looking for laser skin resurfacing in Punta Gorda FL. Who are the top providers?",
+    "polarity": "positive",
+    "one_line": "Presented as a large, established dermatology group with many laser technologies and experienced board-certified staff.",
+    "quote": "one of the largest and most established dermatology groups",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "suncoast skin solutions",
+  "display": "Suncoast Skin Solutions",
+  "mentions": 2,
+  "recommended": 2,
+  "polarity": {
+   "positive": 2
+  },
+  "models": {
+   "google/gemini-3.5-flash": 2
+  },
+  "themes": {
+   "medical_oversight": 2,
+   "reputation_reviews": 2,
+   "skincare_facials": 1,
+   "injectables": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a microneedling or PRP provider in Charlotte County, Florida.",
+    "polarity": "positive",
+    "one_line": "Described as a prominent dermatology group in Port Charlotte offering microneedling and medical skin checks.",
+    "quote": "A prominent Florida-based dermatology group",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Described as a professional dermatology office with cosmetic services and board-certified dermatologists for skin checks.",
+    "quote": "a leading Florida dermatology group",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "azul cosmetic surgery and",
+  "display": "Azul Cosmetic Surgery and Medical Spa",
+  "mentions": 2,
+  "recommended": 2,
+  "polarity": {
+   "positive": 2
+  },
+  "models": {
+   "google/gemini-3.5-flash": 2
+  },
+  "themes": {
+   "medical_oversight": 2,
+   "staff_expertise": 2,
+   "injectables": 1,
+   "body_contouring": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "positive",
+    "one_line": "Described as a Fort Myers-area gold standard for facial aesthetics with strong safety and training focus.",
+    "quote": "the gold standard",
+    "recommended": true
+   },
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Presented as a highly reputable SWFL clinic offering both surgical and non-surgical body contouring.",
+    "quote": "one of the most reputable medical spas in the region",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "house of rose in punta gorda",
+  "display": "House of Rose in Punta Gorda",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "What do people say about House of Rose in Punta Gorda?",
+    "polarity": "positive",
+    "one_line": "Described as charming and intimate, with a historic feel, good atmosphere, friendly service, and good food.",
+    "quote": "People generally describe **House of Rose in Punta Gorda** as a **charming, intimate, and romantic spot**",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "allura",
+  "display": "Allura Medspa",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "uncertainty_disclaimer": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "neutral",
+    "one_line": "Listed as a place people often check in the Fort Myers/Naples area for injectables.",
+    "quote": "Allura Medspa",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "spavela",
+  "display": "SpaVela Medical Spa",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "uncertainty_disclaimer": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "neutral",
+    "one_line": "Listed as a place people often check in the Fort Myers/Naples area for injectables.",
+    "quote": "SpaVela Medical Spa",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "ideal image",
+  "display": "Ideal Image",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "neutral",
+    "one_line": "Presented as a chain option with standardized protocols in the local area.",
+    "quote": "Ideal Image locations in the area if you want a chain option with standardized protocols",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "skinsmart dermatology",
+  "display": "SkinSmart Dermatology",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "neutral",
+    "one_line": "Mentioned as a Sarasota-area dermatology/medspa option that offers injectable services.",
+    "quote": "SkinSmart Dermatology / medspa services",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "for cosmetic surgery",
+  "display": "The Aesthetic Center for Cosmetic Surgery",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Presented as a well-known option offering liposuction, tummy tuck, and post-weight-loss body sculpting, with a board-certified team.",
+    "quote": "Good to consider if you want a board-certified plastic surgery practice with a full surgical team.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "sarasota plastic surgery",
+  "display": "Sarasota Plastic Surgery Center",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Described as a long-established practice known for abdominal contouring and fat reduction treatments.",
+    "quote": "A long-established practice in the region.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "renew plastic surgery",
+  "display": "Renew Plastic Surgery",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "injectables": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Described as providing both surgical and non-surgical body contouring options for mixed treatment preferences.",
+    "quote": "Useful if you\u2019re looking for a mix of liposuction and less invasive treatments.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "bayside plastic surgery",
+  "display": "Bayside Plastic Surgery",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "openai/gpt-5.4-mini": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "convenience_location": 1
+  },
+  "detail": [
+   {
+    "model": "openai/gpt-5.4-mini",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Listed as a Naples clinic offering liposuction and tummy tucks, with a note that Naples has several reputable clinics.",
+    "quote": "Offers body contouring services such as liposuction and tummy tucks.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "one at beauty by brueck",
+  "display": "Spa One (at Beauty by Brueck)",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "medical_oversight": 1,
+   "skincare_facials": 1,
+   "laser": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What's the best med spa in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Presented as a top-rated med spa, backed by a board-certified plastic surgeon and offering facials, lasers, and injectables.",
+    "quote": "highly rated: Spa One is overseen by board-certified plastic surgeon Dr. Robert Brueck",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "heal and hydrate",
+  "display": "Heal and Hydrate",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "reputation_reviews": 1,
+   "injectables": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What's the best med spa in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Described as a highly rated boutique clinic known for wellness services, positive customer service reviews, and aesthetic treatments.",
+    "quote": "highly positive reviews for their customer service and personalized care",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "ageless medical",
+  "display": "Ageless Medical Aesthetics",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "staff_expertise": 1,
+   "skincare_facials": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "What's the best med spa in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Described as well-regarded for natural-looking injectable results, anti-aging treatments, and patient education.",
+    "quote": "well-regarded for providing natural-looking results",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "robert brueck md beauty by brueck",
+  "display": "Robert Brueck, MD (Beauty by Brueck)",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where should I go for Botox in Punta Gorda, FL?",
+    "polarity": "positive",
+    "one_line": "Described as a board-certified plastic surgeon in Punta Gorda offering Botox and other cosmetic procedures.",
+    "quote": "Dr. Brueck is a board-certified plastic surgeon with decades of experience.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "gulf coast plastic surgery dr gregory carter",
+  "display": "Gulf Coast Plastic Surgery (Dr. Gregory Carter)",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where should I go for Botox in Punta Gorda, FL?",
+    "polarity": "positive",
+    "one_line": "Nearby Port Charlotte plastic surgery practice said to offer Botox, dermal fillers, and facial rejuvenation treatments.",
+    "quote": "Dr. Carter is a board-certified plastic surgeon who offers Botox, dermal fillers, and other facial rejuvenation treatments.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "dermatology skin cancer academy",
+  "display": "Aesthetic Dermatology & Skin Cancer Academy",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where should I go for Botox in Punta Gorda, FL?",
+    "polarity": "positive",
+    "one_line": "Nearby Port Charlotte practice said to offer cosmetic services, including Botox, by trained medical professionals.",
+    "quote": "This practice offers cosmetic services, including Botox, administered by trained medical professionals.",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "beauty by brueck dr robert brueck",
+  "display": "Beauty by Brueck / Dr. Robert Brueck",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best place for dermal fillers near Port Charlotte, Florida?",
+    "polarity": "positive",
+    "one_line": "Presented as a recommended option led by a board-certified plastic surgeon with decades of experience.",
+    "quote": "Dr. Robert Brueck is a board-certified plastic surgeon with decades of experience",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "port charlotte plastic surgery dr armen serebrakian",
+  "display": "Port Charlotte Plastic Surgery / Dr. Armen Serebrakian",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best place for dermal fillers near Port Charlotte, Florida?",
+    "polarity": "positive",
+    "one_line": "Recommended as a dedicated plastic surgery office with a board-certified surgeon directly overseeing care.",
+    "quote": "is a board-certified plastic surgeon practicing directly in Port Charlotte",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "florida skin punta gorda office",
+  "display": "Florida Skin Center (Punta Gorda Office)",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "laser": 1,
+   "medical_oversight": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "I'm looking for laser skin resurfacing in Punta Gorda FL. Who are the top providers?",
+    "polarity": "positive",
+    "one_line": "Described as highly regarded, offering fractional laser resurfacing and cosmetic dermatology with trained providers.",
+    "quote": "highly regarded in Southwest Florida",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "charlotte county dermatology",
+  "display": "Charlotte County Dermatology",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "laser": 1,
+   "medical_oversight": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "I'm looking for laser skin resurfacing in Punta Gorda FL. Who are the top providers?",
+    "polarity": "positive",
+    "one_line": "Described as a trusted local practice with board-certified dermatologists and fractional skin resurfacing services.",
+    "quote": "a staple of the local community",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "coastal elizabeth vance dermatology vance dermatology",
+  "display": "Coastal Elizabeth Vance Dermatology (Vance Dermatology)",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "laser": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "I'm looking for laser skin resurfacing in Punta Gorda FL. Who are the top providers?",
+    "polarity": "positive",
+    "one_line": "Framed as a respected board-certified dermatology practice offering advanced cosmetic laser rejuvenation.",
+    "quote": "highly respected, board-certified dermatologist",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "lush",
+  "display": "Lush Aesthetics & Wellness",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1,
+   "skincare_facials": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a microneedling or PRP provider in Charlotte County, Florida.",
+    "polarity": "positive",
+    "one_line": "Presented as a highly rated boutique med-spa offering microneedling and PRP therapies with personalized plans.",
+    "quote": "highly-rated, specialized medical aesthetics clinic",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "punta gorda plastic surgery",
+  "display": "Punta Gorda Plastic Surgery",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "medical_oversight": 1,
+   "staff_expertise": 1,
+   "skincare_facials": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a microneedling or PRP provider in Charlotte County, Florida.",
+    "polarity": "positive",
+    "one_line": "Recommended as a plastic surgery-backed practice where medical-grade aesthetic treatments are performed under surgeon oversight.",
+    "quote": "If you want a plastic surgery-backed practice",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "dr mark s standard",
+  "display": "Dr. Mark S. Standard",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a microneedling or PRP provider in Charlotte County, Florida.",
+    "polarity": "positive",
+    "one_line": "Named as the board-certified plastic surgeon leading Punta Gorda Plastic Surgery.",
+    "quote": "Led by board-certified plastic surgeon Dr. Mark Standard",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "dripbar",
+  "display": "The dripBAR",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "convenience_location": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where can I get IV hydration therapy in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Described as a popular dedicated IV therapy lounge nearby with a variety of drips and quick vitamin shots.",
+    "quote": "A highly popular, dedicated IV therapy lounge",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "bayside",
+  "display": "Bayside Aesthetics",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "wellness_iv": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where can I get IV hydration therapy in Punta Gorda, Florida?",
+    "polarity": "neutral",
+    "one_line": "Mentioned as a local Punta Gorda med spa to call and ask whether it currently offers IV drips.",
+    "quote": "worth calling local spots like Bayside Aesthetics",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "mobile iv medics",
+  "display": "Mobile IV Medics",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "convenience_location": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where can I get IV hydration therapy in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Presented as a clean, professional mobile IV service that serves Punta Gorda and nearby areas.",
+    "quote": "A clean, professional mobile service",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "pure iv florida",
+  "display": "Pure IV Florida",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "convenience_location": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where can I get IV hydration therapy in Punta Gorda, Florida?",
+    "polarity": "positive",
+    "one_line": "Listed as a mobile IV provider with fast-response setups across Southwest Florida, including Punta Gorda.",
+    "quote": "Offers dispatch services throughout Southwest Florida, including Punta Gorda",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "reset iv bounce hydration",
+  "display": "Reset IV / Bounce Hydration",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "convenience_location": 1,
+   "uncertainty_disclaimer": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where can I get IV hydration therapy in Punta Gorda, Florida?",
+    "polarity": "neutral",
+    "one_line": "Mentioned as regional mobile wellness networks that frequently service the Punta Gorda/Fort Myers area.",
+    "quote": "frequently service the Punta Gorda/Fort Myers area",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "allure",
+  "display": "Allure Aesthetics",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "laser": 1,
+   "skincare_facials": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Described as a boutique Punta Gorda clinic with personalized care, natural-looking results, and a range of aesthetic services.",
+    "quote": "highly personalized",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "punta gorda plastic surgery dr mark s j soloway",
+  "display": "Punta Gorda Plastic Surgery (Dr. Mark S. J. Soloway)",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1,
+   "body_contouring": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Presented as the premier Punta Gorda choice for treatment backed by a board-certified plastic surgeon and trained staff.",
+    "quote": "the premier choice in Punta Gorda",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "at sandhill",
+  "display": "The MedSpa at Sandhill",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "laser": 1,
+   "wellness_iv": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Portrayed as a nearby high-end spa with many reviews, state-of-the-art equipment, and all-in-one aesthetics and wellness offerings.",
+    "quote": "Boasting hundreds of 5-star reviews",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "hormone centers various local integrative providers",
+  "display": "Hormone & Wellness Centers (Various Local Integrative Providers)",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "medical_oversight": 1,
+   "uncertainty_disclaimer": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "neutral",
+    "one_line": "Mentioned as a category of local integrative providers for hormone therapy, weight loss, IV therapy, and functional medicine.",
+    "quote": "Various Local Integrative Providers",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "glow",
+  "display": "Glow Aesthetics & Wellness",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "skincare_facials": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Compare med spas in Punta Gorda, Florida. Which one should I pick and why?",
+    "polarity": "positive",
+    "one_line": "Presented as a modern, highly professional med spa praised for natural-looking facial results and strong injectors.",
+    "quote": "highly regarded for producing very natural-looking results",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "youthful balance medical",
+  "display": "Youthful Balance Medical Center",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "injectables": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Compare med spas in Punta Gorda, Florida. Which one should I pick and why?",
+    "polarity": "positive",
+    "one_line": "Described as a clinical, holistic option for hormones, weight loss, IV therapy, and aesthetics.",
+    "quote": "run by medical professionals",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "aura",
+  "display": "Aura Medspa",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "laser": 1,
+   "skincare_facials": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Compare med spas in Punta Gorda, Florida. Which one should I pick and why?",
+    "polarity": "positive",
+    "one_line": "Portrayed as a serene, luxury med spa known for high-tech lasers and effective treatments for sun damage.",
+    "quote": "their laser technology is top-tier",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "flawless",
+  "display": "Flawless Med Spa & Wellness",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "laser": 1,
+   "pricing": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Compare med spas in Punta Gorda, Florida. Which one should I pick and why?",
+    "polarity": "positive",
+    "one_line": "Listed as a nearby high-end option with a large menu and advanced technology, but not directly endorsed as the pick.",
+    "quote": "If you are looking for body sculpting or non-surgical alternatives to a facelift",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "sarasota facial",
+  "display": "Sarasota Facial Aesthetics",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "positive",
+    "one_line": "Presented as a premier Sarasota clinic with a highly sought-after injector and strong focus on natural results.",
+    "quote": "one of the premier boutique clinics in Sarasota",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "holcomb kreithen plastic surgery",
+  "display": "Holcomb - Kreithen Plastic Surgery & MedSpa",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "positive",
+    "one_line": "Recommended as a top-tier choice for injectables with board-certified surgeon oversight and combination therapies.",
+    "quote": "a top-tier choice",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "bowtox boutique",
+  "display": "Bowtox Boutique Med Spa",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "pricing": 1,
+   "convenience_location": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "neutral",
+    "one_line": "Listed as a popular, high-volume Sarasota/Lakewood Ranch med spa with competitive pricing and specials.",
+    "quote": "highly popular, high-volume med spa",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "assuage luxury",
+  "display": "Assuage Luxury Spa",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "medical_oversight": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "positive",
+    "one_line": "Presented as a luxurious Fort Myers medical spa offering fillers and neuromodulators in a relaxing environment.",
+    "quote": "a gorgeous luxury medical spa",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "one",
+  "display": "Spa One",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "pricing": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where do locals in Punta Gorda go for facials and skincare treatments?",
+    "polarity": "positive",
+    "one_line": "Described as a long-standing local staple with customized facials and a cozy, welcoming feel.",
+    "quote": "Spa One is a long-standing local staple",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "aura salon",
+  "display": "Aura Salon & Spa",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where do locals in Punta Gorda go for facials and skincare treatments?",
+    "polarity": "positive",
+    "one_line": "Presented as a high-end salon with a spa side that locals highly recommend for facials and waxing.",
+    "quote": "Locals highly recommend them",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "salt sanctuary of punta gorda",
+  "display": "The Salt Sanctuary of Punta Gorda",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "wellness_iv": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where do locals in Punta Gorda go for facials and skincare treatments?",
+    "polarity": "positive",
+    "one_line": "Called a hidden gem for wellness lovers that offers holistic facials and salt therapy.",
+    "quote": "It is a true hidden gem for wellness lovers",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "by design",
+  "display": "Aesthetics by Design",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where do locals in Punta Gorda go for facials and skincare treatments?",
+    "polarity": "positive",
+    "one_line": "Described as a highly rated medical spa known for customized clinical facials and advanced anti-aging treatments.",
+    "quote": "one of the most highly-rated medical spas",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "sola salon studios",
+  "display": "Sola Salon Studios",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "pricing": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Where do locals in Punta Gorda go for facials and skincare treatments?",
+    "polarity": "neutral",
+    "one_line": "Listed as a place housing independent estheticians with customized, unhurried, competitively priced facials.",
+    "quote": "houses several independent, highly talented estheticians",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "garramone plastic surgery",
+  "display": "Garramone Plastic Surgery",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "staff_expertise": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Recommended for surgical body contouring and non-invasive fat reduction, with praise for natural-looking results.",
+    "quote": "highly celebrated, board-certified plastic surgeon",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "surgery",
+  "display": "Aesthetic Surgery Center",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "body_contouring": 1,
+   "staff_expertise": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Recommend a body contouring clinic in southwest Florida.",
+    "polarity": "positive",
+    "one_line": "Recommended as a highly regarded Naples clinic for customizable surgical and non-surgical body sculpting.",
+    "quote": "highly regarded in the Naples area",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "florida skin",
+  "display": "Florida Skin Center",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "skincare_facials": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "neutral",
+    "one_line": "Punta Gorda dermatology practice said to provide platelet-rich treatments for facial rejuvenation and hair restoration.",
+    "quote": "provide advanced aesthetic therapies, including platelet-rich treatments",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "spago day salon",
+  "display": "Spago Day Spa, Salon & Med Spa",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "reputation_reviews": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "positive",
+    "one_line": "Punta Gorda med spa described as highly rated and said to include PRP and PRF in its cosmetic injection menu.",
+    "quote": "A highly-rated, long-standing local medical spa",
+    "recommended": true
+   }
+  ]
+ },
+ {
+  "key": "sass sass",
+  "display": "SASS Med Spa / SASS Aesthetics",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "skincare_facials": 1,
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "neutral",
+    "one_line": "Port Charlotte-area med spa said to offer medical-grade injectables, microneedling, and regenerative skin therapies.",
+    "quote": "Known for medical-grade injectables, microneedling, and regenerative skin therapies",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "panther hollow dental group",
+  "display": "Panther Hollow Dental Group",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "medical_oversight": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "neutral",
+    "one_line": "Port Charlotte dental group said to use PRF in reconstructive and implant dentistry for faster recovery.",
+    "quote": "utilize advanced healing modalities, including PRF",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "southwest florida oral maxillofacial surgery",
+  "display": "Southwest Florida Oral & Maxillofacial Surgery",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "medical_oversight": 1,
+   "uncertainty_disclaimer": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "neutral",
+    "one_line": "Port Charlotte oral surgery practice said to use PRF during bone grafting and dental implant procedures.",
+    "quote": "This practice utilizes PRF",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "dr carol w stevens dds",
+  "display": "Dr. Carol W. Stevens, DDS",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "neutral": 1
+  },
+  "models": {
+   "google/gemini-3.5-flash": 1
+  },
+  "themes": {
+   "medical_oversight": 1
+  },
+  "detail": [
+   {
+    "model": "google/gemini-3.5-flash",
+    "prompt": "Who offers PRF treatments in Punta Gorda or Port Charlotte FL?",
+    "polarity": "neutral",
+    "one_line": "Port Charlotte periodontist said to often include PRF/PRP in regenerative techniques for tissue and bone regeneration.",
+    "quote": "often include PRF/PRP therapies",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "skin speaks",
+  "display": "Skin Speaks",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Described as a well-regarded clinic known for facial treatments and skin care services.",
+    "quote": "Known for facial treatments and skin care services",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "charlotte",
+  "display": "Charlotte Aesthetics",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Listed as a well-regarded option that offers various cosmetic treatments.",
+    "quote": "Offers various cosmetic treatments",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "rejuvenate",
+  "display": "Rejuvenate Med Spa",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "injectables": 1,
+   "skincare_facials": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Listed as a popular med spa for injectables and skin treatments.",
+    "quote": "Popular for injectables and skin treatments",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "sunseeker",
+  "display": "Sunseeker Wellness",
+  "mentions": 1,
+  "recommended": 0,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "wellness_iv": 1,
+   "reputation_reviews": 1
+  },
+  "detail": [
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Top rated aesthetics and wellness clinics in Punta Gorda FL?",
+    "polarity": "positive",
+    "one_line": "Included as a wellness center offering comprehensive wellness services.",
+    "quote": "Comprehensive wellness services",
+    "recommended": false
+   }
+  ]
+ },
+ {
+  "key": "skin",
+  "display": "Skin Wellness Center",
+  "mentions": 1,
+  "recommended": 1,
+  "polarity": {
+   "positive": 1
+  },
+  "models": {
+   "anthropic/claude-sonnet-4.6": 1
+  },
+  "themes": {
+   "skincare_facials": 1,
+   "staff_expertise": 1
+  },
+  "detail": [
+   {
+    "model": "anthropic/claude-sonnet-4.6",
+    "prompt": "Best medical spa near Fort Myers or Sarasota for injectables?",
+    "polarity": "positive",
+    "one_line": "Described as a generally well-regarded Fort Myers-area option known for aesthetic treatments.",
+    "quote": "known for aesthetic treatments",
+    "recommended": true
+   }
+  ]
+ }
+]

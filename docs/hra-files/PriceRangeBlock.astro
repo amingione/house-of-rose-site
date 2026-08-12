@@ -1,0 +1,36 @@
+---
+import { sbFieldPath } from '@/lib/visualEditing';
+import { formatPriceRange, type TreatmentPriceRange } from '@/lib/treatmentQueries';
+
+interface Props {
+  priceRange: TreatmentPriceRange;
+  bookingUrl?: string;
+}
+
+const { priceRange, bookingUrl } = Astro.props;
+const href = bookingUrl ?? 'https://houseofrose.glossgenius.com/book';
+---
+
+<div>
+  <span class="kicker">Investment</span>
+  <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-5">
+    What does it cost?
+  </h2>
+
+  <p class="font-serif text-[clamp(30px,4.5vw,44px)] text-ivory leading-none mb-4" {...sbFieldPath('priceRange')}>
+    {formatPriceRange(priceRange)}
+  </p>
+
+  {priceRange.note && (
+    <p class="text-muted text-[15px] leading-[1.8] mb-7 max-w-[54ch]" {...sbFieldPath('priceRange.note')}>
+      {priceRange.note}
+    </p>
+  )}
+
+  <a
+    href={href}
+    class="inline-block text-[11px] font-medium tracking-[0.26em] uppercase text-gold border-b border-gold-metal/50 pb-1 transition-colors hover:text-ivory hover:border-ivory"
+  >
+    Book this treatment
+  </a>
+</div>

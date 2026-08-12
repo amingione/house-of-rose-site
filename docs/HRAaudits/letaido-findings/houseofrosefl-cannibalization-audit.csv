@@ -1,0 +1,41 @@
+Cluster,Priority,URL,Apparent Target Keyword,US Volume,Referring Domains,Recommendation
+PRF,High,/services/prf-injections/,prf injections,2600,0,KEEP - primary money page
+PRF,High,/services/prf-microneedling/,prf microneedling,1200,0,KEEP - distinct treatment
+PRF,High,/compare/prf-vs-prp/,prf vs prp,1600,0,KEEP - genuine comparison intent
+PRF,High,/services/prf/,prf hub,0,0,Keep as thin hub only; stop targeting prf injections
+PRF,High,/services/prf-fibrin-veil/,prf fibrin veil,0,0,Fold into /services/prf/
+PRF,High,/cost/prf-injections-cost-punta-gorda/,prf injections cost punta gorda,0,0,Fold into service page + 301
+PRF,High,/cost/prf-microneedling-cost-punta-gorda/,prf microneedling cost punta gorda,0,0,Fold into service page + 301
+PRF,High,/compare/topical-prf-vs-prf-injections/,topical prf vs prf injections,0,0,Fold into /services/prf/ FAQ + 301
+PRF,High,/compare/procell-serum-vs-prf/,procell serum vs prf,0,0,Fold into /services/prf/ FAQ + 301
+PRF,High,/compare/prf-injections-vs-ez-gel/,ez gel bio filler,80,0,Low value - fold into FAQ
+Microneedling,High,/services/microneedling/,microneedling punta gorda,0,0,KEEP - primary; target microneedling near me (26000)
+Microneedling,High,/services/collections/microchanneling-microneedling/,microchanneling,6100,0,Demote to navigation only or noindex
+Microneedling,High,/cost/microneedling-cost-punta-gorda/,microneedling cost,5600,0,Fold content into service page + 301
+Microneedling,High,/services/microneedling-body/,body microneedling,150,0,KEEP - distinct treatment
+Microneedling,High,/compare/biorepeel-vs-microneedling/,biorepeel vs microneedling,20,0,Retire into BioRePeel FAQ
+Injectables,High,/services/injectables/,botox punta gorda,20,0,KEEP - primary; target botox near me (85000)
+Injectables,High,/services/collections/injectables-aesthetics/,injectables,0,0,Merge with injectables-bio-fillers
+Injectables,High,/services/collections/injectables-bio-fillers/,injectables bio fillers,0,0,Merge - 301 weaker of the two
+Injectables,High,/compare/daxxify-vs-botox/,daxxify vs botox,8200,0,KEEP + INVEST - best opportunity (KD 0)
+Injectables,High,/compare/botox-vs-filler/,botox vs filler,600,0,KEEP - distinct intent
+Injectables,High,/cost/botox-cost-punta-gorda/,botox cost punta gorda,0,0,Fold into /services/injectables/ + 301
+Injectables,High,/cost/dermal-fillers-cost-punta-gorda/,dermal filler cost,800,0,Fold into /services/injectables/ + 301
+Facials,Medium,/services/collections/facials/,facials punta gorda,0,0,Merge with advanced-facials
+Facials,Medium,/services/collections/advanced-facials/,advanced facials,0,0,Merge - 301 weaker
+Facials,Medium,/services/glo2facial/,glo2facial,1400,0,KEEP - consolidate variants here
+Facials,Medium,/services/glo2facial-prf/,glo2facial prf,0,0,Fold in as option + 301
+Facials,Medium,/services/glo2facial-procell-md/,glo2facial procell md,0,0,Fold in as option + 301
+Facials,Medium,/services/glo2facial-procell-pro/,glo2facial procell pro,0,0,Fold in as option + 301
+Facials,Medium,/services/signature-rose-facial/,signature facial,500,0,KEEP - branded
+Facials,Medium,/services/sculpt-and-lift-facial/,sculpt and lift facial,0,0,KEEP - branded
+Morpheus8,Medium,/services/morpheus8/,morpheus8,54000,0,KEEP - primary; KD 1 - high value
+Morpheus8,Medium,/services/morpheus8-body/,morpheus8 body,600,0,KEEP - distinct treatment
+Morpheus8,Medium,/cost/morpheus8-cost-punta-gorda/,morpheus8 cost,3200,0,Fold in unless substantive unique pricing content
+Morpheus8,Medium,/compare/ultherapy-vs-morpheus8/,ultherapy vs morpheus8,450,0,KEEP - distinct research intent
+Morpheus8,Medium,/blog/is-morpheus8-safe/,is morpheus8 safe,80,0,KEEP - distinct research intent
+Lash,Low,/services/lash-lift/,lash lift,66000,0,KEEP separate - large distinct volume
+Lash,Low,/services/lash-lift-tint/,lash lift and tint,26000,0,KEEP separate - large distinct volume
+Lash,Low,/services/collections/lash-services/,lash services,0,0,Keep as navigation; link down not compete
+Location,Low,/areas/punta-gorda/,med spa punta gorda,0,0,No action - zero local volume to cannibalize
+Location,Low,/,medical aesthetics punta gorda,0,0,No action
