@@ -330,14 +330,20 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
         {collection.services.map((svc) => {
           const inModeDeviceImage = getInModeDeviceImage(svc.slug);
           const curatedImage = getCuratedServiceImage(svc.slug);
+          // Only show a photo when it's genuinely specific to this service (a curated
+          // shot, an accurate device image, or a real Sanity image). Never fall back to
+          // a generic reused interior photo here — a text-forward card beats a fake gallery.
+          const cardImage = inModeDeviceImage ?? curatedImage
+            ?? (svc.image?.asset ? urlFor(svc.image).width(600).height(400).fit('crop').url() : undefined);
           return (
           <article class="group bg-breath overflow-hidden border border-gold-metal/15" {...sbObjectId(svc._id)}>
-            <a href={`/services/${svc.slug}/`} class:list={[
-              'aspect-[3/2] overflow-hidden',
-              inModeDeviceImage ? 'bg-[#f3efe8] p-6' : 'bg-charcoal-lighter',
-            ]}>
+            {cardImage && (
+              <a href={`/services/${svc.slug}/`} class:list={[
+                'aspect-[3/2] overflow-hidden',
+                inModeDeviceImage ? 'bg-[#f3efe8] p-6' : 'bg-charcoal-lighter',
+              ]}>
                 <img
-                  src={inModeDeviceImage ?? curatedImage ?? (svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug))}
+                  src={cardImage}
                   alt={inModeDeviceImage || curatedImage
                     ? getCuratedServiceImageAlt(svc.slug)
                     : svc.image?.alt ?? svc.title}
@@ -351,7 +357,8 @@ const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
                   ]}
                 />
               </a>
-            <div class="p-6">
+            )}
+            <div class:list={['p-6', !cardImage && 'border-t border-gold-metal/15']}>
               <h2 class="font-serif text-xl text-ink mb-2" {...sbFieldPath('title')}>
                 <a href={`/services/${svc.slug}/`} class="hover:text-gold transition-colors">{svc.title}</a>
               </h2>

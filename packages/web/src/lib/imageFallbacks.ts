@@ -82,9 +82,19 @@ const SERVICE_IMAGES: Record<string, string> = {
 export const getServiceFallbackImage = (slug: string): string =>
   SERVICE_IMAGES[slug] ?? DEFAULT_SERVICE_IMAGE;
 
+// ACTUAL_FACIAL_SUITE_IMAGE is mapped to over a dozen unrelated services above —
+// it's real House of Rose photography, but it documents nothing treatment-specific.
+// Fine as a hero background (every page needs some image), not fine as a "curated"
+// card photo: showing the same empty room for dermaplaning, PRF, and waxing side by
+// side reads as filler, not documentation. Card contexts should show no photo at all
+// rather than imply this generic room is specific to the treatment.
+const GENERIC_FILLER_IMAGES = new Set<string>([ACTUAL_FACIAL_SUITE_IMAGE]);
+
 /** A deliberately selected real-practice, treatment, or accurate device image. */
-export const getCuratedServiceImage = (slug: string): string | undefined =>
-  SERVICE_IMAGES[slug];
+export const getCuratedServiceImage = (slug: string): string | undefined => {
+  const image = SERVICE_IMAGES[slug];
+  return image && !GENERIC_FILLER_IMAGES.has(image) ? image : undefined;
+};
 
 /**
  * Describe what the curated asset actually shows. Some assets are manufacturer

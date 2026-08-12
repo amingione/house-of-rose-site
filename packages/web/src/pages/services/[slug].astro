@@ -372,7 +372,16 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Gallery</span>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class:list={[
+            'grid gap-4',
+            galleryImages.length === 1
+              ? 'grid-cols-1 max-w-[480px]'
+              : galleryImages.length === 2
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-[820px]'
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+          ]}
+        >
           {galleryImages.map((img) => (
             <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
               <img
@@ -438,7 +447,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
       <div class="max-w-[1280px] mx-auto">
         <span class="kicker">Treatments</span>
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
-          Choose your protocol
+          Ways to approach {service.title}
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
