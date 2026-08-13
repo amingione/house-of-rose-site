@@ -1,5 +1,15 @@
 # House of Rose — Working Memory
 
+## ⚠️ Voice reset — binding as of 2026-08-13
+
+Amber explicitly rejected the Claude-developed voice currently embedded in the Creative System,
+brand memory, and website. Preserve verified facts and compliance rules, but do not extend,
+paraphrase, or imitate the current clinical/institutional tone. In particular, do not treat
+“selection / sequencing / indication / candidacy / accountability / documented standards” cadence
+as brand personality. The replacement voice is pending Amber's approval. Until then, any new
+brand-voice work is a clearly labeled working draft, not governing copy and not authorization for
+a sitewide Sanity publish.
+
 ## ⚠️ Rule #0 — Verify before you assert or change (binding on EVERY task)
 Anything that has to be **factually correct** — pricing, series counts, service names, descriptions,
 provider lanes, hours, NAP, protocols — must be **checked against the real sources before I state or

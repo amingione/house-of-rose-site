@@ -8,6 +8,15 @@ Read `CLAUDE.md` before any work.
 
 ## 📕 Brand, marketing & client-facing content — the Creative System is the source of truth
 
+> **VOICE RESET IN EFFECT — 2026-08-13.** Amber explicitly rejected the current
+> Claude-developed brand voice. Until she approves a replacement, do **not** use the
+> Creative System, `BRAND_MEMORY.md`, current website copy, or prior AI-authored brand
+> documents as a tonal model or as evidence of her taste. They may still be used for
+> verified business facts, service facts, medical/compliance boundaries, NAP, consent,
+> provider credentials, and operational constraints. New public copy must remain factual
+> and compliant, but it must not imitate the current clinical/institutional cadence.
+> Draft voice work requires Amber's approval before broad website or Sanity rollout.
+
 **`docs/House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md`** — House of Rose
 Creative System **v1.0 (issued 2026-07-30)**. Seven books in one file: Creative Bible, Brand Voice &
 Copy Standards, Social & Profile Bios, Visual Standards, AI Creative Rules & Prompt Library, Marketing

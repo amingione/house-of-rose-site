@@ -1,5 +1,13 @@
 # House of Rose Creative System
 
+> **VOICE STATUS: REJECTED / RESET IN PROGRESS — 2026-08-13.** Amber has rejected the
+> Claude-developed voice in this system and in the current website. Do not use this document's
+> positioning prose, personality, tone, message hierarchy, vocabulary preferences, biographies,
+> copy templates, taglines, or campaign copy as a model for new writing until Amber approves a
+> replacement. Continue to honor verified business facts, medical and legal boundaries, provider
+> credentials, consent requirements, NAP, and substantiated claims. This notice supersedes any
+> statement below that calls this document the voice or positioning source of truth.
+
 ## Complete Operating Manual
 
 **Version:** 1.1  

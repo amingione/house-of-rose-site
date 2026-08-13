@@ -4,10 +4,10 @@
 > entire file before every task. Use it to connect strategy to execution, and
 > update it after work that creates durable knowledge.
 
-**Memory version:** 1.2.2
-**Last updated:** 2026-08-12
+**Memory version:** 2.0.0
+**Last updated:** 2026-08-13
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
-**Current state:** Partial operating memory; the Creative System governs the brand foundation, while offer, customer-language, proof, and performance intake remain incomplete
+**Current state:** Voice reset in progress. Verified business, clinical, compliance, and operational facts remain usable; the Claude-developed voice and positioning language are rejected pending Amber's approval of a replacement.
 
 ---
 
@@ -53,6 +53,16 @@ otherwise:
 
 Record meaningful conflicts in Section 16 instead of quietly choosing a side.
 
+### Voice-reset boundary — 2026-08-13
+
+Amber explicitly rejected the current Claude-developed brand voice. The Creative
+System, this memory, current website copy, and earlier AI-authored brand documents
+must not be used as evidence of her tonal preference. They remain reference sources
+only for verified facts and binding legal, clinical, consent, credential, pricing,
+NAP, and operational constraints. New voice work must be developed from Amber's
+direct feedback and approved examples. Do not publish a sitewide rewrite before
+that calibration is approved.
+
 ### What belongs here
 
 Keep durable information that will improve multiple future tasks: governing
@@ -83,7 +93,7 @@ minute. Populate it only with verified or explicitly decided information.
 | Primary proof | The real House of Rose environment, staff, equipment, treatment process, documented standards, and consented result documentation when available. | `[DECIDED]` — Creative System Book 1 §10 and Book 4 |
 | Current primary offer | `[UNKNOWN]` | Awaiting brand intake |
 | Primary call to action | `[UNKNOWN]` | Awaiting brand intake |
-| Brand personality | Precise, refined, calm, direct, educated, personal, confident, contemporary, and accountable—without becoming severe, decorative, vague, cold, academic, familiar, promotional, trendy, or merely aspirational. | `[DECIDED]` — Creative System Book 1 §9 |
+| Brand personality | `[RESET IN PROGRESS]` — the prior Claude-developed personality was rejected by Amber on 2026-08-13. | `[SUPERSEDED]` — do not use prior voice traits as a tonal model |
 | Non-negotiable constraint | Morpheus8, Lumecca, and Forma must not be positioned for tightening, lifting, sculpting, contouring, firmness, laxity, or jowls. Their approved concern lanes are recorded in DEC-002 and DEC-003. | `[DECIDED]` — user direction, 2026-08-06 |
 
 ### One-line strategic spine
@@ -93,7 +103,7 @@ minute. Populate it only with verified or explicitly decided information.
 > **[distinct mechanism]**, unlike **[status quo/alternative]**, because
 > **[credible proof]**.
 
-**Current working synthesis:** For informed planners and natural-results patients who want aesthetic and wellness decisions handled with specificity, House of Rose Aesthetics is the Punta Gorda Medical Aesthetics Practice that develops individualized care through consultation, assessment, clinical judgment, preparation, aftercare, and long-term planning rather than trends or one-size-fits-all recommendations. `[INFERRED]` — synthesized from Creative System Book 1 §§1–3, §8, and §10; use the exact approved positioning statement from Book 1 §2 in public copy.
+**Current working synthesis:** `[RESET IN PROGRESS]` — the 2026-08-12 synthesis was derived from the rejected Claude-developed system and is `[SUPERSEDED]`. A replacement must be calibrated from Amber's direct feedback and approved examples.
 
 ---
 
@@ -335,10 +345,10 @@ channel, and emotional context without violating that character.
 
 ### Voice essence
 
-- **In three to five traits:** Precise, calm, direct, educated, accountable. `[DECIDED]`
-- **Reader should feel:** Informed, respected, prepared, and able to make a proportionate next decision. `[DECIDED]`
-- **Reader should never feel:** Pressured, shamed, dazzled by hype, or misled about candidacy, recovery, or results. `[DECIDED]`
-- **Relationship to the reader:** A clinically grounded, personally accountable guide. `[DECIDED]`
+- **In three to five traits:** `[RESET IN PROGRESS]`
+- **Reader should feel:** `[RESET IN PROGRESS]`
+- **Reader should never feel:** Like they are reading a policy manual, clinical intake document, AI manifesto, or an argument defending the practice. `[DECIDED]` — Amber rejected the current voice, 2026-08-13.
+- **Relationship to the reader:** `[RESET IN PROGRESS]`
 
 ### Voice sliders
 
@@ -536,6 +546,7 @@ settled questions or repeating rejected approaches.
 | DEC-001 | 2026-08-04 | Use this file as the canonical brand memory for the workspace. | Preserve durable context and reduce regression across tasks and agents. | All agents read before work and update after durable learning. | User request / workspace setup | `[DECIDED]` |
 | DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. The former Forma-firmness clause is `[SUPERSEDED]` by DEC-003. | User direction / Amber | `[DECIDED]` |
 | DEC-003 | 2026-08-06 | Position Forma only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. Do not market it for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | The owner prohibited reshaping language and approved a texture-and-collagen explanation. The retained split-face tissue study supports cautious collagen-response wording. | Applies to the Forma service page, SEO, structured data, cost guide, FAQs, collection copy, evidence captions, booking copy, concern references, and visual evidence. | User direction / Amber | `[DECIDED]` |
+| DEC-004 | 2026-08-13 | Reject and freeze the Claude-developed brand voice across the Creative System, brand memory, and current website. Preserve facts and compliance, but rebuild tone and positioning from Amber's direct feedback instead of extending existing copy. | Amber stated that she “absolutely hates” the voice Claude has been forming while the website was built. | Existing voice/personality/tagline/message rules are not approval evidence. No sitewide rewrite or Sanity publish until a replacement calibration is approved. | User direction / Amber | `[DECIDED]` |
 
 ---
 
@@ -546,6 +557,7 @@ settled questions or repeating rejected approaches.
 | ID | Conflicting information | Sources | Risk if unresolved | Proposed resolution | Owner / status |
 |---|---|---|---|---|---|
 | CON-001 | ~~Topical PRF microneedling price: Sanity showed "From $450/session" while the 2026-08-06 pricing rebuild showed only "PRF Microneedling — Consultation $595" with unresolved attribution.~~ **RESOLVED 2026-08-09 — Amber ruled the $595 GlossGenius line is the topical service.** Page draft, pricing file, and Notion notes updated to "from $595"; the $450 figure (2026-07-09 PRF PDF) is dead. Diana-lane remainder (Under-Eye $495→$550 raise; whether her injectable PRF Facial needs its own GlossGenius line) stays tracked in the pricing file's open item #2. | Amber ruling 2026-08-09; `ALL-SERVICES-PRICING.MD` § Open items #2 | — | Applied same day across Sanity draft `818469ff…`, pricing file, and Notion pricing notes. | Amber / resolved 2026-08-09 |
+| CON-002 | The Creative System and current website encode an AI-developed clinical/institutional voice that is marked as governing, but Amber has rejected that voice. | Creative System, `AGENTS.md`, `CLAUDE.md`, current site, Amber's 2026-08-13 instruction | Continued AI copy would compound the unwanted voice and make approval harder. | Freeze the existing voice; calibrate a replacement with direct examples from Amber; then revise the existing owner documents and roll out deliberately. | Amber / active voice reset |
 
 ### Highest-value open questions
 
@@ -652,6 +664,7 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-13 | 2.0.0 | Status, source boundary, executive snapshot, strategic spine, voice, decision ledger, contradictions | Marked the Claude-developed voice as rejected and froze it as a tonal source while preserving factual and compliance constraints. | Direct user instruction / Amber |
 | 2026-08-12 | 1.2.2 | Executive snapshot, strategic spine, foundations, positioning, message pillars, voice, source intake | Reconciled foundational `[UNKNOWN]` fields with the existing governing Creative System during the brand-asset audit; no new brand direction was invented. | Creative System v1.0 and `BRAND-ASSET-AUDIT.md` |
 | 2026-08-08 | 1.2.1 | Claim ledger, contradictions | Added PubMed-verified PRF claim citations (release kinetics, fibroblast response, 2025 stretch-mark RCT) from the PRF service-page rewrite; logged CON-001, the $450-vs-$595 topical-PRF price conflict awaiting Amber's ruling. | PRF page rewrite session, PubMed metadata + `ALL-SERVICES-PRICING.MD` open item #2 |
 | 2026-08-06 | 1.2.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Restricted Forma to crepey-looking facial texture and collagen-support language; superseded the prior firmness-lane note. | User direction and supplied Forma tissue study |
