@@ -182,6 +182,13 @@ from   = "/compare/prf-injections-vs-ez-gel/"
 to     = "/services/prf/"
 status = 301
 
+# The /services/collections/prf/ serviceCollection doc was an orphaned duplicate
+# of the real PRF hub — zero valid members, dead weight. Removed 2026-08-12.
+[[redirects]]
+from   = "/services/collections/prf/"
+to     = "/services/prf/"
+status = 301
+
 [[redirects]]
 from   = "/compare/Procell-serum-vs-prf/"
 to     = "/services/prf/"

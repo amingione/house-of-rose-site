@@ -4,10 +4,10 @@
 > entire file before every task. Use it to connect strategy to execution, and
 > update it after work that creates durable knowledge.
 
-**Memory version:** 1.2.1
-**Last updated:** 2026-08-08
+**Memory version:** 1.2.2
+**Last updated:** 2026-08-12
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
-**Current state:** Foundation scaffold; brand-specific intake is not yet populated
+**Current state:** Partial operating memory; the Creative System governs the brand foundation, while offer, customer-language, proof, and performance intake remain incomplete
 
 ---
 
@@ -72,18 +72,18 @@ minute. Populate it only with verified or explicitly decided information.
 
 | Field | Current memory | Status / source |
 |---|---|---|
-| Brand name | `[UNKNOWN]` | Awaiting brand intake |
-| Category | `[UNKNOWN]` | Awaiting brand intake |
-| What we sell | `[UNKNOWN]` | Awaiting brand intake |
-| Primary audience | `[UNKNOWN]` | Awaiting brand intake |
-| Core problem | `[UNKNOWN]` | Awaiting brand intake |
-| Desired transformation | `[UNKNOWN]` | Awaiting brand intake |
-| One-sentence promise | `[UNKNOWN]` | Awaiting brand intake |
-| Defensible difference | `[UNKNOWN]` | Awaiting brand intake |
-| Primary proof | `[UNKNOWN]` | Awaiting brand intake |
+| Brand name | House of Rose Aesthetics | `[VERIFIED]` — Creative System Book 1 §1 |
+| Category | Medical Aesthetics Practice | `[DECIDED]` — Creative System Book 1 §2 |
+| What we sell | Individualized facial, body, skin, injectable, wellness, and maintenance care; the exact live menu and prices remain governed by GlossGenius and `ALL-SERVICES-PRICING.MD`. | `[VERIFIED]` — Creative System Book 1 §1; operational truth remains external |
+| Primary audience | Informed planners and natural-results patients, with corrective-skin, maintenance, and wellness/hydration segments. | `[DECIDED]` — Creative System Book 1 §8 |
+| Core problem | Aesthetic and wellness decisions are often reduced to trends, devices, or quick transactions without enough assessment, preparation, aftercare, or long-term planning. | `[DECIDED]` — Creative System Book 1 §§2–3 |
+| Desired transformation | Healthy-looking, refreshed, balanced, natural-looking outcomes supported by an informed, individualized care plan. Individual outcomes vary. | `[DECIDED]` — Creative System Book 1 §§7 and 11 |
+| One-sentence promise | Recommendations are based on the individual, the treatment indication, and the long-term plan—not on a trend, a template, or pressure to purchase. | `[DECIDED]` — Creative System Book 1 §2 |
+| Defensible difference | Consultation, assessment, clinical judgment, individualized planning, preparation, aftercare, reassessment, and continuity are presented as part of care—not as marketing fine print. | `[DECIDED]` — Creative System Book 1 §§2–3 and §10 |
+| Primary proof | The real House of Rose environment, staff, equipment, treatment process, documented standards, and consented result documentation when available. | `[DECIDED]` — Creative System Book 1 §10 and Book 4 |
 | Current primary offer | `[UNKNOWN]` | Awaiting brand intake |
 | Primary call to action | `[UNKNOWN]` | Awaiting brand intake |
-| Brand personality | `[UNKNOWN]` | Awaiting brand intake |
+| Brand personality | Precise, refined, calm, direct, educated, personal, confident, contemporary, and accountable—without becoming severe, decorative, vague, cold, academic, familiar, promotional, trendy, or merely aspirational. | `[DECIDED]` — Creative System Book 1 §9 |
 | Non-negotiable constraint | Morpheus8, Lumecca, and Forma must not be positioned for tightening, lifting, sculpting, contouring, firmness, laxity, or jowls. Their approved concern lanes are recorded in DEC-002 and DEC-003. | `[DECIDED]` — user direction, 2026-08-06 |
 
 ### One-line strategic spine
@@ -93,7 +93,7 @@ minute. Populate it only with verified or explicitly decided information.
 > **[distinct mechanism]**, unlike **[status quo/alternative]**, because
 > **[credible proof]**.
 
-**Current approved version:** `[UNKNOWN]`
+**Current working synthesis:** For informed planners and natural-results patients who want aesthetic and wellness decisions handled with specificity, House of Rose Aesthetics is the Punta Gorda Medical Aesthetics Practice that develops individualized care through consultation, assessment, clinical judgment, preparation, aftercare, and long-term planning rather than trends or one-size-fits-all recommendations. `[INFERRED]` — synthesized from Creative System Book 1 §§1–3, §8, and §10; use the exact approved positioning statement from Book 1 §2 in public copy.
 
 ---
 
@@ -136,9 +136,9 @@ copy does not flatten the brand into a single generic trait.
 
 ### Purpose, mission, and vision
 
-- **Purpose — why we matter:** `[UNKNOWN]`
-- **Mission — what we do now:** `[UNKNOWN]`
-- **Vision — the future we want to help create:** `[UNKNOWN]`
+- **Purpose — why we matter:** House of Rose exists to provide medical aesthetic care that is both technically considered and personally accountable, with preparation, realistic expectations, downtime, aftercare, and continued compliance explained before treatment. `[DECIDED]` — Creative System Book 1 §3.
+- **Mission — what we do now:** To help patients make informed aesthetic and wellness decisions through individualized assessment, clinically appropriate treatment planning, clear education, and responsible follow-through. `[DECIDED]` — Creative System Book 1 §4.
+- **Vision — the future we want to help create:** To become Southwest Florida’s most trusted independent medical aesthetics practice for people who value specificity, natural-looking outcomes, and a long-term relationship with their care team. `[DECIDED]` — Creative System Book 1 §5.
 
 ### Values in behavior
 
@@ -146,7 +146,13 @@ Values only become useful when they govern choices.
 
 | Value | What it means here | We demonstrate it by | We reject |
 |---|---|---|---|
-| `[UNKNOWN]` |  |  |  |
+| Clinical judgment | Treatments fit the person, indication, timing, health information, and goals. | Evaluate before recommending; let clinical fit govern selection. | Device-led or trend-led plans. |
+| Individualized planning | The protocol follows assessment rather than preceding it. | Define “customized” through real decisions. | One-size-fits-all language. |
+| Informed participation | Preparation, consent, downtime, aftercare, maintenance, and compliance affect the experience and outcome. | Set expectations before treatment. | Hiding recovery or responsibilities in fine print. |
+| Natural-looking results | Care should preserve identity, proportion, expression, and individual character. | Use restrained outcome language and honest documentation. | Perfection, transformation, or standardized faces. |
+| Long-term thinking | Prevention, correction, restoration, maintenance, and reassessment form a continuum. | Connect a visit to the appropriate next phase of care. | Treating every visit as an isolated transaction. |
+| Honest communication | The practice states intended outcomes, limits, and patient responsibilities. | Use proportionate claims and explain uncertainty. | Guarantees, urgency, or minimized downtime. |
+| Documented standards | Records, consent, photography, product selection, clinical review, and marketing approval are repeatable. | Use governed processes and consent. | Improvised evidence or untraceable claims. |
 
 ### Brand worldview
 
@@ -205,13 +211,13 @@ are more predictive. Preserve the customer's own words whenever possible.
 
 ## 6. Positioning and category context
 
-- **Category we claim:** `[UNKNOWN]`
-- **Frame of reference customers already understand:** `[UNKNOWN]`
-- **Alternatives, including doing nothing:** `[UNKNOWN]`
-- **Our meaningful difference:** `[UNKNOWN]`
-- **Why that difference matters now:** `[UNKNOWN]`
-- **Who we are not for:** `[UNKNOWN]`
-- **Market clichés to avoid:** `[UNKNOWN]`
+- **Category we claim:** Medical Aesthetics Practice. `[DECIDED]`
+- **Frame of reference customers already understand:** Medical aesthetics / medical spa services; “medical spa” may support platform and search understanding but never leads the brand. `[DECIDED]`
+- **Alternatives, including doing nothing:** Transactional device-first providers, trend-led or spa-first services, one-size-fits-all treatment selection, self-directed retail care, or delaying care. Specific competitive claims remain unapproved until verified. `[INFERRED]`
+- **Our meaningful difference:** The practice explains and documents the decision process—assessment, planning, preparation, aftercare, reassessment, and maintenance—not merely the device or procedure. `[DECIDED]`
+- **Why that difference matters now:** Patients need credible expectations and a plan proportionate to the indication, procedure, recovery, and evidence. `[DECIDED]`
+- **Who we are not for:** People seeking guarantees, perfection, instant transformation, flash-sale medicine, or a generic spa experience. `[DECIDED]`
+- **Market clichés to avoid:** Luxury/luxe/premium as self-description; boutique as category; glow/radiance; timeless, flawless, ageless; pamper/indulge; best version of yourself; turn back time; pain-free; unreviewed no-downtime; guaranteed results. `[DECIDED]`
 
 ### Competitive contrast
 
@@ -255,13 +261,17 @@ Copy must reflect what the business can actually deliver.
 
 ### Core promise
 
-`[UNKNOWN]`
+Recommendations are based on the individual, the treatment indication, and the long-term plan—not on a trend, a template, or pressure to purchase. `[DECIDED]` — Creative System Book 1 §2.
 
 ### Message pillars
 
 | Pillar | Customer truth | Brand claim / idea | Supporting proof | Objection answered | Best use |
 |---|---|---|---|---|---|
-| `[UNKNOWN]` |  |  |  |  |  |
+| Assessment before recommendation | People want to know why a treatment fits them. | Evaluation precedes the recommendation. | Consultation, imaging/analysis, health information, clinical discussion. | “Are they just selling the device I clicked?” | Homepage, consultation, service pages, ads. |
+| Protocol over promotion | Preparation, series, recovery, and aftercare materially affect care. | Explain the full protocol rather than reducing a procedure to price. | Current service documentation and aftercare standards. | “What does this really involve?” | Service pages, email, consultation, education. |
+| Natural-looking outcomes | Many patients want improvement without looking standardized or overtreated. | Preserve identity, expression, and proportion. | Honest, standardized, consented documentation. | “Will I still look like myself?” | Injectables, results, provider copy. |
+| A practice built for continuity | Corrective work and maintenance often require reassessment over time. | The plan can evolve across correction, maintenance, skincare, and follow-up. | Documented treatment planning and follow-up process. | “Is this just a one-off transaction?” | Homepage, service pages, lifecycle communication. |
+| The real House of Rose | Generic stock and invented scenes weaken trust. | Show the actual place, people, devices, products, process, and details. | Real-practice image library. | “Is this practice real and locally established?” | Every visual channel. |
 
 ### Mechanism
 
@@ -325,10 +335,10 @@ channel, and emotional context without violating that character.
 
 ### Voice essence
 
-- **In three to five traits:** `[UNKNOWN]`
-- **Reader should feel:** `[UNKNOWN]`
-- **Reader should never feel:** `[UNKNOWN]`
-- **Relationship to the reader:** `[UNKNOWN: e.g. expert guide, peer, host]`
+- **In three to five traits:** Precise, calm, direct, educated, accountable. `[DECIDED]`
+- **Reader should feel:** Informed, respected, prepared, and able to make a proportionate next decision. `[DECIDED]`
+- **Reader should never feel:** Pressured, shamed, dazzled by hype, or misled about candidacy, recovery, or results. `[DECIDED]`
+- **Relationship to the reader:** A clinically grounded, personally accountable guide. `[DECIDED]`
 
 ### Voice sliders
 
@@ -555,8 +565,8 @@ downstream work.
 
 | Priority | Source needed | What it should resolve | Location / owner | Status |
 |---:|---|---|---|---|
-| 1 | Brand guidelines or founder-approved overview | Foundations, positioning, voice | `[UNKNOWN]` | Needed |
-| 2 | Product / service and offer details | Value, mechanism, terms, constraints | `[UNKNOWN]` | Needed |
+| 1 | Creative System v1.0 | Foundations, positioning, voice, visuals, channel rules | `docs/GOVERNANCE/House_of_Rose_Creative_System/` | Available; governing source |
+| 2 | Current service and pricing truth | Value, mechanism, terms, constraints | GlossGenius → `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` → Sanity | Available; verify per task |
 | 3 | Customer research, reviews, sales calls, or FAQs | Audience language, objections, triggers | `[UNKNOWN]` | Needed |
 | 4 | Approved high-performing content | Voice calibration and proven messages | `[UNKNOWN]` | Needed |
 | 5 | Campaign results | Performance patterns and test backlog | `[UNKNOWN]` | Needed |
@@ -642,6 +652,7 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-12 | 1.2.2 | Executive snapshot, strategic spine, foundations, positioning, message pillars, voice, source intake | Reconciled foundational `[UNKNOWN]` fields with the existing governing Creative System during the brand-asset audit; no new brand direction was invented. | Creative System v1.0 and `BRAND-ASSET-AUDIT.md` |
 | 2026-08-08 | 1.2.1 | Claim ledger, contradictions | Added PubMed-verified PRF claim citations (release kinetics, fibroblast response, 2025 stretch-mark RCT) from the PRF service-page rewrite; logged CON-001, the $450-vs-$595 topical-PRF price conflict awaiting Amber's ruling. | PRF page rewrite session, PubMed metadata + `ALL-SERVICES-PRICING.MD` open item #2 |
 | 2026-08-06 | 1.2.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Restricted Forma to crepey-looking facial texture and collagen-support language; superseded the prior firmness-lane note. | User direction and supplied Forma tissue study |
 | 2026-08-06 | 1.1.0 | Executive snapshot, operational truth, claim ledger, rejected directions, decision ledger | Recorded the Morpheus8 and Lumecca indication boundary and downstream anti-regression rule. | User direction and supplied InMode files |

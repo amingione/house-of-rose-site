@@ -1,0 +1,447 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+House of Rose Aesthetics — PRF Regenerative Pairing Brochure
+Built from real brand tokens (packages/web/tailwind.config.ts + global.css)
+and the Creative System (Book 2 voice / Book 4 visual / Book 5 AI rules).
+"""
+from weasyprint import HTML
+
+FONT_DIR = "assets/fonts"
+LOGO = "assets/logo/hr-monogram-white.png"
+OUT_DIR = "/sessions/lucid-blissful-mayer/mnt/house-of-rose-site/docs/GOVERNANCE/internal_only/marketing/print/prf-brochure"
+
+CSS = f"""
+@font-face {{
+  font-family: 'Cochin';
+  src: url('{FONT_DIR}/Cochin-Regular.woff2');
+  font-weight: 400;
+}}
+@font-face {{
+  font-family: 'Cochin';
+  src: url('{FONT_DIR}/Cochin-Bold.woff2');
+  font-weight: 700;
+}}
+
+@page {{
+  size: letter;
+  margin: 0;
+}}
+
+:root {{
+  --bg: #0B0B0A;
+  --panel: #12100F;
+  --walnut: #241B17;
+  --walnut-deep: #17110F;
+  --ivory: #F1EDE5;
+  --muted: #D8CFC0;
+  --gold: #E7D6A8;
+  --bronze: #8A6A43;
+  --olive: #5F624D;
+  --olive-deep: #4F5241;
+}}
+
+* {{ box-sizing: border-box; }}
+
+html, body {{
+  margin: 0;
+  padding: 0;
+  background: #0B0B0A;
+  color: #F1EDE5;
+  font-family: Arial, 'Liberation Sans', Helvetica, sans-serif;
+}}
+
+.page {{
+  width: 8.5in;
+  height: 11in;
+  position: relative;
+  background: #0B0B0A;
+  page-break-after: always;
+  padding: 0.85in 0.75in;
+  overflow: hidden;
+}}
+.page:last-child {{ page-break-after: avoid; }}
+
+.hairline {{
+  border: none;
+  border-top: 1px solid rgba(138,106,67,0.55);
+  margin: 0.28in 0;
+}}
+
+.kicker {{
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #E7D6A8;
+  margin-bottom: 10px;
+}}
+
+.eyebrow-num {{
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #8A6A43;
+  text-transform: uppercase;
+}}
+
+h1, h2, h3 {{
+  font-family: 'Cochin', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  color: #F1EDE5;
+  margin: 0;
+}}
+
+h1 {{ font-size: 40px; line-height: 1.12; letter-spacing: 0.01em; }}
+h2 {{ font-size: 30px; line-height: 1.16; margin-bottom: 14px; }}
+
+p {{ font-size: 12.5px; line-height: 1.65; color: #D8CFC0; margin: 0 0 12px 0; }}
+p.lede {{ font-size: 14px; color: #F1EDE5; }}
+
+.small-print {{
+  font-size: 9.5px;
+  color: rgba(216,207,192,0.75);
+  line-height: 1.5;
+  margin-top: 6px;
+}}
+
+.corner-tag {{
+  position: absolute;
+  top: 0.3in;
+  right: 0.75in;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(216,207,192,0.45);
+}}
+
+.logo-mark {{
+  height: 0.62in;
+  display: block;
+}}
+
+.footer-block {{
+  position: absolute;
+  bottom: 0.7in;
+  left: 0.75in;
+  right: 0.75in;
+}}
+
+/* ---------- COVER ---------- */
+.cover {{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}}
+.cover .center {{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}}
+.cover .center img {{ height: 0.95in; margin-bottom: 0.42in; }}
+.cover h1.title {{
+  font-size: 46px;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.22in;
+}}
+.cover .sub {{
+  font-size: 15px;
+  color: #D8CFC0;
+  max-width: 4.6in;
+  line-height: 1.6;
+}}
+.cover .tagline {{
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E7D6A8;
+  margin-top: 0.32in;
+}}
+.cover .footer-line {{
+  width: 100%;
+  text-align: center;
+  font-size: 9.5px;
+  color: rgba(216,207,192,0.6);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}}
+
+/* ---------- CALLOUT ---------- */
+.callout {{
+  border: 1px solid rgba(138,106,67,0.5);
+  padding: 0.22in 0.26in;
+  margin-top: 0.14in;
+}}
+.callout .label {{
+  font-size: 9.5px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8A6A43;
+  display: block;
+  margin-bottom: 6px;
+}}
+.callout p {{ margin: 0; font-size: 11.5px; }}
+
+/* ---------- PAIRING CARDS ---------- */
+.card {{
+  border: 1px solid rgba(241,237,229,0.12);
+  padding: 0.2in 0.24in;
+  margin-bottom: 0.16in;
+}}
+.card .name {{
+  font-family: 'Cochin', Georgia, serif;
+  font-size: 16px;
+  color: #F1EDE5;
+  display: block;
+  margin-bottom: 5px;
+}}
+.card p {{ margin: 0; font-size: 11.5px; }}
+
+/* ---------- BACK COVER ---------- */
+.back {{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}}
+.back .content {{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}}
+.cta-btn {{
+  display: inline-block;
+  background: #5F624D;
+  color: #F1EDE5;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 26px;
+  margin: 0.22in 0 0.3in 0;
+}}
+.nap {{
+  font-size: 11px;
+  color: #D8CFC0;
+  line-height: 1.8;
+}}
+.nap strong {{ color: #F1EDE5; }}
+"""
+
+def cover_page():
+    return f"""
+    <div class="page cover">
+      <span class="corner-tag">Internal Draft &middot; Pending Clinical &amp; Brand Review</span>
+      <div class="center">
+        <img src="{LOGO}" alt="House of Rose Aesthetics monogram" />
+        <span class="kicker">PRF &middot; Regenerative Therapy</span>
+        <h1 class="title">The Regenerative Layer<br/>Behind Every Treatment.</h1>
+        <p class="sub">PRF is prepared from your own blood and applied to work alongside
+        the treatments you already book &mdash; designed to give your skin more to build
+        with, visit after visit.</p>
+        <div class="tagline">Medical Aesthetics. Thoughtfully Practiced.</div>
+      </div>
+      <div class="footer-line">House of Rose Aesthetics &nbsp;&middot;&nbsp; Punta Gorda, Florida</div>
+    </div>
+    """
+
+def science_page():
+    return f"""
+    <div class="page">
+      <span class="eyebrow-num">01 / What It Is</span>
+      <hr class="hairline"/>
+      <span class="kicker">The Science, Simplified</span>
+      <h2>What PRF Actually Is</h2>
+      <p class="lede">Platelet-Rich Fibrin (PRF) is prepared from a small sample of your own
+      blood, spun down to concentrate your platelets, growth factors, and fibrin &mdash;
+      the same proteins your body already uses to repair itself.</p>
+      <p>At House of Rose, topical PRF is prepared chairside and applied to the skin&rsquo;s
+      surface as part of an eligible microneedling treatment. It is not injected. Because
+      it comes from your own blood, it is added to your plan the same day it is drawn.</p>
+
+      <h2 style="margin-top:0.34in;">Why We Layer It In</h2>
+      <p class="lede">PRF was never meant to stand alone.</p>
+      <p>Applied on top of the treatments already doing the work &mdash; resurfacing,
+      exfoliation, light-based therapy &mdash; PRF is designed to support your skin&rsquo;s
+      own collagen remodeling process, so the investment you&rsquo;re already making has
+      more raw material to build with. Think of it less as a stand-alone appointment and
+      more as an amplifier you bring to the treatments already on your plan.</p>
+
+      <div class="callout">
+        <span class="label">Ask Your Provider</span>
+        <p>Eligibility, timing, and which treatments PRF can be layered into are determined
+        by your provider during consultation. Individual results vary.</p>
+      </div>
+
+      <div class="footer-block">
+        <hr class="hairline"/>
+        <div class="small-print">House of Rose Aesthetics &middot; Punta Gorda, FL &middot; houseofrosefl.com</div>
+      </div>
+    </div>
+    """
+
+def lumecca_page():
+    return f"""
+    <div class="page">
+      <span class="eyebrow-num">02 / Pairing &middot; Tone &amp; Pigment</span>
+      <hr class="hairline"/>
+      <span class="kicker">PRF + Lumecca IPL</span>
+      <h2>Light Therapy, Layered With Regeneration</h2>
+      <p class="lede">Lumecca is a broad-spectrum IPL (intense pulsed light) treatment
+      available at House of Rose, used to address the visible appearance of uneven tone,
+      sun damage, and redness-prone skin.</p>
+      <p>Because light-based treatments like Lumecca work by prompting a visible response
+      in the skin, providers can choose to layer a topical PRF step into the same plan
+      &mdash; designed to support the skin&rsquo;s own renewal process while it&rsquo;s
+      already primed to respond. It&rsquo;s a pairing built around timing: PRF meets your
+      skin exactly when it&rsquo;s doing the most work.</p>
+
+      <div class="card">
+        <span class="name">The Idea</span>
+        <p>Correct tone and pigment with Lumecca. Layer in topical PRF to support what
+        comes next. Two treatments, one plan, working toward the same goal.</p>
+      </div>
+
+      <div class="callout">
+        <span class="label">Ask Your Provider</span>
+        <p>Lumecca and PRF are two separate treatments performed as part of a personalized
+        plan. Sequencing, spacing, and eligibility are determined by your provider.
+        Individual results vary.</p>
+      </div>
+
+      <div class="footer-block">
+        <hr class="hairline"/>
+        <div class="small-print">House of Rose Aesthetics &middot; Punta Gorda, FL &middot; houseofrosefl.com</div>
+      </div>
+    </div>
+    """
+
+def morpheus_page():
+    return f"""
+    <div class="page">
+      <span class="eyebrow-num">03 / Pairing &middot; Texture &amp; Scarring</span>
+      <hr class="hairline"/>
+      <span class="kicker">PRF + Morpheus8</span>
+      <h2>RF Microneedling, Layered With Regeneration</h2>
+      <p class="lede">Morpheus8 is RF (radiofrequency) microneedling available at House of
+      Rose, designed to address the visible appearance of texture, acne scarring, and
+      stretch marks.</p>
+      <p>Because Morpheus8 creates a controlled network of micro-channels across the
+      treatment area, providers can choose to layer a topical PRF step into the same visit
+      &mdash; designed to support the skin&rsquo;s own remodeling process while it&rsquo;s
+      already primed to respond. Ask your provider whether adding PRF to your Morpheus8
+      plan is right for you.</p>
+
+      <div class="card">
+        <span class="name">The Idea</span>
+        <p>Address texture, scarring, and stretch marks with Morpheus8. Layer in topical
+        PRF to support what your skin does next.</p>
+      </div>
+
+      <div class="callout">
+        <span class="label">Ask Your Provider</span>
+        <p>This pairing is available by provider recommendation as part of a personalized
+        treatment plan. Individual results vary.</p>
+      </div>
+
+      <div class="footer-block">
+        <hr class="hairline"/>
+        <div class="small-print">House of Rose Aesthetics &middot; Punta Gorda, FL &middot; houseofrosefl.com</div>
+      </div>
+    </div>
+    """
+
+def more_pairings_page():
+    return f"""
+    <div class="page">
+      <span class="eyebrow-num">04 / Build Your Plan</span>
+      <hr class="hairline"/>
+      <span class="kicker">Build Your Own Ritual</span>
+      <h2>PRF Plays Well With (Nearly) Everything</h2>
+      <p class="lede">PRF isn&rsquo;t limited to one treatment. Here&rsquo;s where clients
+      most often layer it in.</p>
+
+      <div class="card">
+        <span class="name">Microneedling</span>
+        <p>Our flagship PRF pairing. Microneedling opens the door; topical PRF is applied
+        right behind it, on the same visit.</p>
+      </div>
+      <div class="card">
+        <span class="name">Glo2Facial</span>
+        <p>An oxygenating, hydrating finish that layers beautifully onto a PRF-based visit.</p>
+      </div>
+      <div class="card">
+        <span class="name">Dermaplaning</span>
+        <p>The most common way to prep skin ahead of a PRF-based treatment, for a smoother
+        surface to build on.</p>
+      </div>
+      <div class="card">
+        <span class="name">BioRePeel</span>
+        <p>Ask your provider whether an add-on resurfacing step belongs in your PRF plan.</p>
+      </div>
+
+      <div class="callout" style="margin-top:0.06in;">
+        <span class="label">Most Clients Pair Three or More</span>
+        <p>A prep step, a resurfacing or light-based treatment, and PRF &mdash; in the same
+        visit or across a short series. Ask your provider to design yours.</p>
+      </div>
+
+      <div class="footer-block">
+        <hr class="hairline"/>
+        <div class="small-print">House of Rose Aesthetics &middot; Punta Gorda, FL &middot; houseofrosefl.com</div>
+      </div>
+    </div>
+    """
+
+def back_page():
+    return f"""
+    <div class="page back">
+      <span class="eyebrow-num">05 / Your Next Visit</span>
+      <hr class="hairline"/>
+      <div class="content">
+        <span class="kicker">Design Your Regenerative Plan</span>
+        <h2 style="font-size:34px;">PRF Isn&rsquo;t One Appointment.<br/>It&rsquo;s a Building Block.</h2>
+        <p class="lede" style="max-width:4.6in;">Bring it up at your next visit and ask
+        your provider to help you design a plan around it &mdash; PRF, paired with the
+        treatments already earning a place on your calendar.</p>
+        <div class="cta-btn">Call (844) 941-7673</div>
+        <div class="nap">
+          <strong>House of Rose Aesthetics</strong><br/>
+          525 E Olympia Ave, Unit 9 &middot; Punta Gorda, FL 33950<br/>
+          houseofrosefl.com &middot; info@houseofrosefl.com
+        </div>
+      </div>
+      <div>
+        <hr class="hairline"/>
+        <div class="small-print">
+          Individual results vary. Consultation required. Ask your provider which
+          treatments are appropriate for your skin and goals.<br/>
+          Medical Director: Joshua Shaw, MD &middot; FL Lic. ME136232<br/>
+          <span style="color:#E7D6A8; letter-spacing:0.08em; text-transform:uppercase;">Medical Aesthetics. Thoughtfully Practiced.</span>
+        </div>
+      </div>
+    </div>
+    """
+
+def build():
+    body = (
+        cover_page() + science_page() + lumecca_page() +
+        morpheus_page() + more_pairings_page() + back_page()
+    )
+    html = f"<html><head><meta charset='utf-8'><style>{CSS}</style></head><body>{body}</body></html>"
+    HTML(string=html, base_url=OUT_DIR + "/").write_pdf(
+        OUT_DIR + "/House-of-Rose-PRF-Brochure-DRAFT.pdf"
+    )
+    with open(OUT_DIR + "/House-of-Rose-PRF-Brochure-DRAFT.html", "w") as f:
+        f.write(html)
+    print("Built PDF + HTML at", OUT_DIR)
+
+if __name__ == "__main__":
+    build()
