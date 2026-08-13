@@ -13,14 +13,14 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
 ---
 
 <BaseLayout
-  title="Treatment Series & Packages in Punta Gorda, FL"
-  description="Review current treatment series and packages at House of Rose Aesthetics in Punta Gorda, including the number of visits, timing, and price."
+  title="Treatment Packages in Punta Gorda, FL"
+  description="House of Rose currently offers one verified treatment package: Acne Bootcamp, a 12-week Face Reality program with visits every two weeks for $899."
   preloadImage={heroImage}
 >
   <Hero
-    title="Treatment Series & Packages"
+    title="Treatment Packages"
     kicker="House of Rose Aesthetics"
-    description="Current multi-visit series and combined-service packages."
+    description="A defined service, schedule, and current program price—kept together."
     size="small"
     backgroundImage={heroImage}
     imageAlt="A treatment room at House of Rose Aesthetics"
@@ -29,13 +29,21 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[700px] mb-12">
-        <span class="kicker">Current options</span>
+        <span class="kicker">What a package means</span>
         <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-4">
-          What each package includes.
+          The commitment should be clear.
         </h2>
-        <p class="text-muted text-[15px] leading-[1.75]">
-          Each option names the service, number of visits, and timing. A price appears only when it matches the current services menu.
-        </p>
+        <div class="space-y-4 text-muted text-[15px] leading-[1.75]">
+          <p>
+            At House of Rose, a treatment package is a defined program with its service, visit schedule, and current price presented together. Only programs confirmed on the current services menu appear here.
+          </p>
+          <p>
+            Right now, that means one program: Acne Bootcamp, a 12-week Face Reality program with in-studio visits every two weeks. The current package price is $899.
+          </p>
+          <a href="/services/face-reality-acne-program/" class="learn-more inline-flex items-center gap-1">
+            Read about the Face Reality Acne Program <span>→</span>
+          </a>
+        </div>
       </div>
 
       {packages.length > 0 ? (
@@ -45,7 +53,7 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
           ))}
         </div>
       ) : (
-        <p class="text-muted text-[14px]">No treatment series are currently published. Call us if you would like help choosing a place to start.</p>
+        <p class="text-muted text-[14px]">No treatment packages are currently published.</p>
       )}
     </div>
   </section>
@@ -55,17 +63,17 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
     <div class="max-w-[680px] mx-auto text-center">
       <span class="kicker">Questions</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Ask about a series.
+        Considering Acne Bootcamp?
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Call for current availability, visit count, timing, and price.
+        Review the full 12-week structure, then contact the practice with questions about the program.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/packages/face-reality-12-week-program/" class="btn-gold">
+          Review the Program
+        </a>
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
-        </a>
-        <a href="/consultation/" class="btn-gold">
-          Request a Consultation
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

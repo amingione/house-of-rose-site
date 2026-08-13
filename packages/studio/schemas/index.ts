@@ -60,7 +60,7 @@ export const schemaTypes = [
   blogPost,
   leadSubmission,
   order,
-  // Brand & growth (Luxe Aesthetics Advisor) — mirrors Notion service system
+  // Business records retained for source compatibility during the voice reset
   brandProfile,
   provider,
   treatmentPackage,

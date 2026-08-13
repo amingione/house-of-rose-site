@@ -20,7 +20,7 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
 
   <!-- Contact Information -->
   <section class="bg-charcoal py-16 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Phone -->
       <div class="text-center">
         <span class="kicker">Call</span>
@@ -28,6 +28,15 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
           (844) 941-7673
         </a>
         <p class="text-muted text-[13px] mt-2">Monday–Friday, 9 AM–5 PM ET</p>
+      </div>
+
+      <!-- Email -->
+      <div class="text-center">
+        <span class="kicker">Email</span>
+        <a href="mailto:info@houseofrosefl.com" class="block text-ink text-[18px] hover:text-gold transition-colors mt-3 break-all">
+          info@houseofrosefl.com
+        </a>
+        <p class="text-muted text-[13px] mt-2">General questions and appointment help</p>
       </div>
 
       <!-- View Services -->
@@ -155,11 +164,13 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
             <option value="General question">General question</option>
             <option value="Advanced Skin Imaging &amp; Analysis">Advanced Skin Imaging &amp; Analysis</option>
             <option value="Microneedling">Microneedling</option>
-            <option value="Topical PRF">Topical PRF</option>
+            <option value="PRF">PRF</option>
             <option value="Glo2Facial">Glo2Facial</option>
             <option value="Dermaplaning">Dermaplaning</option>
             <option value="Injectables">Injectables</option>
-            <option value="Wellness">Wellness</option>
+            <option value="IV Hydration">IV Hydration</option>
+            <option value="Provider-Guided Weight Management">Provider-Guided Weight Management</option>
+            <option value="Waxing">Waxing</option>
           </select>
         </div>
 
@@ -189,6 +200,9 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
           </legend>
 
           <div id="sms-consent-disclosure" class="space-y-3 text-muted text-[13px] leading-relaxed">
+            <p class="text-[15px] text-ink">
+              <strong>Texting is optional.</strong> You can choose “No” below and still submit this form.
+            </p>
             <p>
               House of Rose Aesthetics LLC would like your consent to send informational and/or marketing text message
               communications from +18449417673 to your mobile number listed above. Informational messages may

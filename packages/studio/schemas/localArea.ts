@@ -14,7 +14,7 @@ export const localArea = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'e.g. "Advanced Aesthetics in Port Charlotte, FL" or "PRF Microneedling in Punta Gorda".',
+      description: 'Plain area or city title. Service-specific geographic intent belongs in the served-service relationships.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -36,10 +36,10 @@ export const localArea = defineType({
     }),
     defineField({
       name: 'whyLocal',
-      title: 'Why House of Rose Here',
+      title: 'Location Facts',
       type: 'text',
       rows: 5,
-      description: 'Local expertise/authority signals — proximity, who travels to us, area-specific notes.',
+      description: 'Verified distance, route, neighborhood, or location facts. Do not invent authority or demand signals.',
     }),
     defineField({
       name: 'servedServices',

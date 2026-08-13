@@ -2,14 +2,16 @@ import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
-  ALL_COLLECTIONS_QUERY,
   ALL_BLOG_POSTS_QUERY,
-  type ServiceCollection,
   type BlogPost,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
-import { getPublicBlogTitle } from '@/lib/publicBlogContent';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+import { getServiceEducation } from '@/lib/serviceEducation';
+import { IV_HYDRATION_FAQS, VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_LISTING } from '@/lib/prfUnderEyesFacts';
+import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 
 // During the voice reset, this feed intentionally exposes only factual service
 // inventory. Long-form Sanity prose returns after its source copy is approved.
@@ -30,8 +32,6 @@ const SERVICES_FULL_QUERY = /* groq */ `
   ] | order(orderRank asc, title asc) {
     title,
     "slug": slug.current,
-    price,
-    duration,
     collection->{ title }
   }
 `;
@@ -39,8 +39,6 @@ const SERVICES_FULL_QUERY = /* groq */ `
 interface ServiceFull {
   title: string;
   slug: string;
-  price?: number | string;
-  duration?: string;
   collection?: { title: string };
 }
 
@@ -58,13 +56,13 @@ const NON_PUBLIC_SERVICE_SLUGS = new Set([
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [services, collections, posts] = await Promise.all([
+  const [services, posts] = await Promise.all([
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
-    sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
   ]);
   const providers = PROVIDER_PROFILE_FALLBACKS;
   const publicServices = services.filter((service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug));
+  const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
 
   const lines: string[] = [
     `# House of Rose Aesthetics — Medical Aesthetics Practice — Full Content Index`,
@@ -99,10 +97,10 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Consultation** (${base}/consultation/): Information about current skin, injectable, IV hydration, and wellness services`,
     `- **Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
     `- **Treatment Series & Packages** (${base}/packages/): Current package pages and their included services`,
-    `- **Experience** (${base}/experience/): What clients can expect when visiting the Punta Gorda practice`,
+    `- **Experience** (${base}/experience/): Actual storefront, treatment rooms, providers, and visit information`,
     `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
     `- **Rent a Suite** (${base}/rent-a-room/): Treatment room rental information for eligible licensed professionals`,
-    `- **Journal** (${base}/blog/): Articles about services, skincare, wellness, and practice updates in Southwest Florida`,
+    `- **Journal** (${base}/blog/): Reviewed treatment articles with linked sources and clearly stated limitations`,
     `- **Shipping Policy** (${base}/shipping-policy/): Contiguous U.S. shipping timing and carrier-rate details`,
     `- **Return Policy** (${base}/return-policy/): Eligibility, reporting windows, return shipping, and refund timing`,
     `- **Sitemap** (${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
@@ -123,39 +121,79 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`---`, ``);
   }
 
-  if (collections.length > 0) {
-    lines.push(`## Service Collections`, ``);
-    for (const col of collections) {
-      const publicCollectionServices = col.services?.filter(
-        (service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug),
-      ) ?? [];
-      lines.push(`### ${col.title}`);
-      lines.push(`URL: ${base}/services/collections/${col.slug}/`);
-      if (publicCollectionServices.length > 0) {
-        lines.push(`Services in this collection: ${publicCollectionServices.map((service) => service.title).join(', ')}`);
+  if (publicServices.length > 0) {
+    lines.push(`## Services`, ``);
+    for (const s of publicServices) {
+      const education = getServiceEducation(s.slug);
+      const cardSummary = getServiceCardSummary(s.slug);
+      lines.push(`### ${s.title}`);
+      lines.push(`URL: ${base}/services/${s.slug}/`);
+      if (s.collection) lines.push(`Collection: ${s.collection.title}`);
+      const duration = getVerifiedServiceDuration(s.slug);
+      if (duration) lines.push(`Duration: ${duration}`);
+
+      if (education) {
+        lines.push(``, `Overview:`);
+        for (const paragraph of education.paragraphs) lines.push(paragraph);
+
+        if (education.distinctions && education.distinctions.length > 0) {
+          lines.push(``, `Key details:`);
+          for (const distinction of education.distinctions) {
+            lines.push(`- **${distinction.label}:** ${distinction.text}`);
+          }
+        }
+
+        if (education.menu) {
+          lines.push(``, `Current verified menu (${education.menu.verifiedAt}):`);
+          if (education.menu.intro) lines.push(education.menu.intro);
+          for (const item of education.menu.items) {
+            const appointmentFacts = [item.price, item.duration].filter(Boolean).join(' · ');
+            const itemNote = item.note ? ` ${item.note}` : '';
+            lines.push(`- ${item.name}${appointmentFacts ? ` — ${appointmentFacts}` : ''}.${itemNote}`);
+          }
+        }
+
+        if (education.faqs && education.faqs.length > 0) {
+          lines.push(``, `Common questions:`);
+          for (const faq of education.faqs) {
+            lines.push(`- **${faq.question}** ${faq.answer}`);
+          }
+        }
+      } else if (cardSummary) {
+        lines.push(`Summary: ${cardSummary}`);
+      }
+
+      if (s.slug === 'iv-hydration-therapy') {
+        lines.push(``, `Current verified IV menu:`);
+        for (const item of VERIFIED_IV_MENU) {
+          lines.push(`- ${item.name} — $${item.price} · ${item.durationMinutes} minutes.`);
+        }
+        lines.push(``, `Current IV questions:`);
+        for (const faq of IV_HYDRATION_FAQS) {
+          lines.push(`- **${faq.question}** ${faq.answer}`);
+        }
+      }
+
+      if (s.slug === 'prf-under-eyes') {
+        lines.push(
+          ``,
+          `Current verified listing: ${PRF_UNDER_EYES_LISTING.name} — ${PRF_UNDER_EYES_LISTING.price}.`,
+          `The appointment length is omitted because current menu sources disagree.`,
+          ``,
+          `Common questions:`,
+        );
+        for (const faq of PRF_UNDER_EYES_FAQS) {
+          lines.push(`- **${faq.question}** ${faq.answer}`);
+        }
       }
       lines.push(``);
     }
     lines.push(`---`, ``);
   }
 
-  if (publicServices.length > 0) {
-    lines.push(`## Services`, ``);
-    for (const s of publicServices) {
-      lines.push(`### ${s.title}`);
-      lines.push(`URL: ${base}/services/${s.slug}/`);
-      if (s.collection) lines.push(`Collection: ${s.collection.title}`);
-      if (s.price) lines.push(`Price: ${s.price}`);
-      const duration = getVerifiedServiceDuration(s.slug) ?? s.duration;
-      if (duration) lines.push(`Duration: ${duration}`);
-      lines.push(``);
-    }
-    lines.push(`---`, ``);
-  }
-
-  if (posts.length > 0) {
+  if (publicPosts.length > 0) {
     lines.push(`## Journal Articles`, ``);
-    for (const p of posts) {
+    for (const p of publicPosts) {
       lines.push(`### ${getPublicBlogTitle(p)}`);
       lines.push(`URL: ${base}/blog/${p.slug}/`);
       if (p.publishedAt) lines.push(`Published: ${p.publishedAt.split('T')[0]}`);

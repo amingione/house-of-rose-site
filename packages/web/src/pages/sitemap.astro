@@ -27,6 +27,10 @@ import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
 import { SHOP_ENABLED } from '@/lib/features';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
 
 interface SitemapLink {
   title: string;
@@ -63,6 +67,7 @@ const [
   sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
 ]);
 const providers = resolvePublicProviderProfiles(sanityProviders);
+const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -147,8 +152,8 @@ const sectionData: SitemapSection[] = [
   },
   {
     title: 'Comparisons',
-    links: comparisons.map((comparison) => ({
-      title: comparison.title,
+    links: publicComparisons.map((comparison) => ({
+      title: getPublicComparisonContent(comparison.slug)!.title,
       href: `/compare/${comparison.slug}/`,
     })),
   },

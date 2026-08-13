@@ -2,7 +2,7 @@
 import { sbFieldPath, sbObjectField } from '@/lib/visualEditing';
 import {
   performedByLabel,
-  verifiedRnProviderName,
+  verifiedProviderIdentity,
   type TreatmentProviderAttribution,
   type TreatmentProviderScope,
 } from '@/lib/treatmentQueries';
@@ -32,14 +32,23 @@ const { providerScope, provider, treatmentName } = Astro.props;
  */
 const MEDICAL_DIRECTOR = 'Medical Director: Joshua Shaw, MD · FL Lic. ME136232';
 
-const namedProvider = verifiedRnProviderName(provider, providerScope.performedBy);
+const verifiedIdentity = verifiedProviderIdentity(provider, providerScope.performedBy);
+const namedProvider = verifiedIdentity?.publicName;
 const providerLabel = namedProvider ?? performedByLabel(providerScope.performedBy);
-const providerNameAnnotation = provider
+const providerNameAnnotation = provider && namedProvider === provider.publicName?.trim()
   ? sbObjectField(provider._id, 'publicName')
   : {};
-const profilePath = namedProvider && provider?.profileSlug
-  ? `/about/providers/${provider.profileSlug}/`
+const profilePath = namedProvider && verifiedIdentity?.profileSlug
+  ? `/about/providers/${verifiedIdentity.profileSlug}/`
   : undefined;
+const optimizedProfileImages: Readonly<Record<string, string>> = {
+  amber: '/images/providers/amber-profile-1122.webp',
+  brandy: '/images/providers/brandy-profile-1122.webp',
+  diana: '/images/providers/diana-profile-1122.webp',
+};
+const providerImagePath = verifiedIdentity?.profileSlug
+  ? optimizedProfileImages[verifiedIdentity.profileSlug] ?? provider?.profileImagePath
+  : provider?.profileImagePath;
 const scopeSuffix = providerScope.medicalDirection
   ? ' under written physician protocol and medical direction.'
   : '.';
@@ -74,3 +83,17 @@ const scopeSuffix = providerScope.medicalDirection
     <p class="text-muted text-[13px] leading-relaxed mb-5">{MEDICAL_DIRECTOR}</p>
   )}
 </div>
+
+{providerImagePath && (
+  <figure class="overflow-hidden border border-gold-metal/15 bg-charcoal-light">
+    <img
+      src={providerImagePath}
+      alt={provider?.profileImageAlt ?? `${providerLabel} at House of Rose Aesthetics`}
+      width="1122"
+      height="1402"
+      loading="lazy"
+      decoding="async"
+      class="aspect-[4/5] h-full w-full object-cover"
+    />
+  </figure>
+)}

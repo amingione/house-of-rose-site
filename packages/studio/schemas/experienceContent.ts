@@ -11,33 +11,40 @@ export const experienceContent = defineType({
   fields: [
     defineField({
       name: 'heroTitle',
-      title: 'Hero Title',
+      title: 'Hero Title (suspended)',
       type: 'string',
-      initialValue: 'The Experience',
+      readOnly: true,
+      description: 'The public Experience page uses reviewed local copy during the voice reset.',
     }),
     defineField({
       name: 'heroSubtitle',
-      title: 'Hero Subtitle',
+      title: 'Hero Subtitle (suspended)',
       type: 'string',
-      initialValue: 'What to Expect',
+      readOnly: true,
+      description: 'The public Experience page uses reviewed local copy during the voice reset.',
     }),
     defineField({
       name: 'storyHeading',
-      title: 'Story Heading',
+      title: 'Story Heading (suspended)',
       type: 'string',
-      initialValue: 'Built for those who expect more.',
+      readOnly: true,
+      description: 'The public Experience page uses reviewed local copy during the voice reset.',
     }),
     defineField({
       name: 'storyParagraph1',
-      title: 'Story Paragraph 1',
+      title: 'Story Paragraph 1 (suspended)',
       type: 'text',
       rows: 3,
+      readOnly: true,
+      description: 'Not currently published. The public page uses reviewed local copy.',
     }),
     defineField({
       name: 'storyParagraph2',
-      title: 'Story Paragraph 2',
+      title: 'Story Paragraph 2 (suspended)',
       type: 'text',
       rows: 3,
+      readOnly: true,
+      description: 'Not currently published. The public page uses reviewed local copy.',
     }),
     defineField({
       name: 'storyImage',
@@ -50,8 +57,9 @@ export const experienceContent = defineType({
     }),
     defineField({
       name: 'standards',
-      title: 'Standards',
+      title: 'Practice Copy (suspended)',
       type: 'array',
+      readOnly: true,
       of: [
         {
           type: 'object',
@@ -64,13 +72,14 @@ export const experienceContent = defineType({
           },
         },
       ],
-      description: 'The House of Rose Standard items (3 recommended)',
+      description: 'Not currently published. Retained only until the reviewed page model is finalized.',
       validation: (R) => R.max(4),
     }),
     defineField({
       name: 'journeySteps',
-      title: 'Guest Journey Steps',
+      title: 'Visit Steps (suspended)',
       type: 'array',
+      readOnly: true,
       of: [
         {
           type: 'object',
@@ -89,7 +98,7 @@ export const experienceContent = defineType({
           },
         },
       ],
-      description: 'Timeline steps from inquiry to ongoing care (5 recommended)',
+      description: 'Not currently published. Do not use a process timeline as default brand copy.',
     }),
   ],
   preview: {

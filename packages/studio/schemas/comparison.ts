@@ -8,7 +8,13 @@ import { defineField, defineType } from 'sanity';
 const optionFields = (label: string) => [
   defineField({ name: 'label', title: `${label} — Label`, type: 'string', validation: (R) => R.required() }),
   defineField({ name: 'summary', title: `${label} — Summary`, type: 'text', rows: 3 }),
-  defineField({ name: 'bestFor', title: `${label} — Best For`, type: 'text', rows: 2 }),
+  defineField({
+    name: 'bestFor',
+    title: `${label} — Verified Distinction (review)`,
+    type: 'text',
+    rows: 2,
+    description: 'State a sourced treatment role, area, or concern. Do not choose for the client or invent candidacy criteria.',
+  }),
   defineField({ name: 'service', title: `${label} — Service`, type: 'reference', to: [{ type: 'service' }] }),
 ];
 
@@ -21,7 +27,7 @@ export const comparison = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'e.g. "Procell Pro vs MD: Which Material Plan Is Right for You?"',
+      description: 'Use the two treatment or service names in a factual “A vs B” title.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -50,7 +56,7 @@ export const comparison = defineType({
       title: 'Direct Answer / Intro',
       type: 'text',
       rows: 3,
-      description: 'Answer-first: state the short version of who should pick which, then explain.',
+      description: 'Answer-first: state the primary verified difference. Do not prescribe a choice or repeat consultation boilerplate.',
       validation: (R) => R.required(),
     }),
     defineField({ name: 'optionA', title: 'Option A', type: 'object', fields: optionFields('Option A') }),
@@ -70,9 +76,15 @@ export const comparison = defineType({
           preview: { select: { title: 'attribute', subtitle: 'valueA' } },
         },
       ],
-      description: 'Attribute-by-attribute comparison (downtime, results timeline, cost, etc.).',
+      description: 'Sourced differences only, such as modality, treatment area, verified duration, or reviewed recovery facts.',
     }),
-    defineField({ name: 'verdict', title: 'The Verdict', type: 'text', rows: 4 }),
+    defineField({
+      name: 'verdict',
+      title: 'Summary (review)',
+      type: 'text',
+      rows: 4,
+      description: 'Restate the verified distinction without declaring a winner or choosing for the client.',
+    }),
     defineField({ name: 'faqs', title: 'FAQs', type: 'array', of: [{ type: 'faq' }] }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
     defineField({ name: 'seo', title: 'SEO', type: 'seo' }),

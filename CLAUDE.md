@@ -181,19 +181,22 @@ this policy block, and the drift guard together.
 ## Public-Facing Copy Law (binding — 2026-07-24)
 _These repo-specific rules remain binding during the voice reset. The superseded Creative System
 Book 2 is not a tonal standard and must not be read as one._
-- **Provider lanes are internal-only.** The Amber/Diana/Brandy lane split exists so the right
-  provider gets credited/paid in the booking system — it is **never** customer-facing framing. Do not
-  write "Amber's version of X" / "this is in [provider]'s lane" / category copy that explains lane
-  structure to the customer. Customers picked the category already; they don't need the internal reason
-  it's organized that way. Provider names stay on: booking/scheduling UI, GlossGenius, Sanity `provider`
-  refs, individual tap-to-share bio pages (`/amber`, `/diana`, `/brandy`), and bios/testimonial
-  attribution — not stitched into service/category sales copy.
-- **Service descriptions must sell, not hedge.** No "may possibly," "could potentially," "results may
-  vary" filler stacked sentence after sentence — that's not clinical caution, it's copy that talks itself
-  out of the purchase. Lead with the outcome and benefit the client is paying for, back it with the real
-  protocol/mechanism, and keep FTC-sane claim language (no guarantees, no "cures," no fabricated stats) —
-  but confidence and benefit-forward language is the default, not apologetic hedging. A $200–$3,000 service
-  description that reads like a disclaimer is a bug.
+- **Internal provider lanes stay internal; verified provider attribution does not.** Do not explain
+  staffing, compensation, room-rental arrangements, or “Amber's lane / Diana's lane / Brandy's lane”
+  to customers, and do not invent provider ownership of a service. But when a verified provider is
+  responsible for a service, naming that person with the required licence type is useful trust evidence
+  and is encouraged on the service page, provider profile, booking UI, and related decision-support copy.
+  Say what the person provides; do not narrate the internal reason the menu is organized that way.
+- **Service descriptions must inform without performing a sales script.** Lead with the observable concern
+  or the service's verified role, then give only the facts a client needs to understand the distinction.
+  Do not default to outcome promises, emotional-benefit language, or a protocol recital. Also avoid stacking
+  "may possibly," "could potentially," and repeated variance disclaimers until useful information disappears.
+  Specific, direct decision support is the standard.
+- **Do not confuse restraint with removal.** The reset rejects robotic phrasing, unsupported claims,
+  repetition, and generic filler; it does not reject depth, warmth, persuasion, or treatment education.
+  A longer section is appropriate when it teaches a meaningful distinction, shows real proof, answers a
+  question a client actually has, or gives a specific reason to trust House of Rose. When stale CMS prose
+  is withheld, treat that as a temporary safety measure and replace its useful substance with reviewed copy.
 
 ---
 
@@ -558,11 +561,14 @@ facts and compliance limits apply to both.
   interlinking across related services / concerns / cost / compare pages.
 - Sanity fields remain the source records, but a renderer may temporarily withhold unreviewed tagline,
   description, whoItsFor, FAQ, process, or SEO prose during the voice reset.
-- No price (removed 2026-07-24). Provider lanes are internal-only, never customer-facing.
+- Publish only prices reconciled to the current GlossGenius menu; omit unresolved price structures.
+  Internal staffing lanes remain private, while verified provider attribution may be public under the
+  rule below.
 
 **GlossGenius = the generic BOOKING menu (in-app booking/POS).**
-- SIMPLE and SHORT. One benefit-focused blurb per service, UNDER 2000 characters (aim 2–4 punchy sentences).
-- Sells the benefit — what they get, how they'll look and feel — nothing operational.
+- SIMPLE and SHORT. One factual blurb per service, UNDER 2000 characters (aim 2–4 direct sentences).
+- State what the service is and the verified concern or category it addresses. Do not turn the booking menu
+  into either a sales script or a miniature clinical protocol.
 - NEVER include in a GlossGenius description: "provider lane"; "by [provider]" / any provider attribution
   or name; "category"; any price or dollar figure; "available in 3 or 6 sessions" / any series count;
   "discount"/"special"/"deal".

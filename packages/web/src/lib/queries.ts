@@ -4,6 +4,7 @@ import {
   type TreatmentPageFields,
   type TreatmentProviderAttribution,
 } from './treatmentQueries';
+import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -28,6 +29,7 @@ const RETIRED_COMPARISON_SLUGS = [
   'topical-prf-vs-prf-injections',
 ] as const;
 const RETIRED_COMPARISON_SLUGS_GROQ = JSON.stringify(RETIRED_COMPARISON_SLUGS);
+const REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COMPARISON_SLUGS);
 
 const RETIRED_COST_GUIDE_SLUGS = [
   'procell-microchanneling-cost-punta-gorda',
@@ -505,7 +507,9 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     "provider": provider->{
       _id,
       publicName,
-      "profileSlug": select(showOnWebsite == true => slug.current)
+      "profileSlug": select(showOnWebsite == true => slug.current),
+      profileImagePath,
+      "profileImageAlt": profileImage.alt
     },
     "parentService": select(!(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => parentService->{ title, "slug": slug.current }),
     "treatments": *[_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && parentService._ref == ^._id] | order(orderRank asc, title asc) {
@@ -624,6 +628,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       _type == "comparison" &&
       status == "live" &&
       defined(slug.current) &&
+      slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
       !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
       (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
     ] | order(orderRank asc, title asc) {
@@ -905,6 +910,7 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
       _type == "comparison" &&
       status == "live" &&
       defined(slug.current) &&
+      slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
       !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
       (
         (
@@ -1239,6 +1245,7 @@ export interface CostGuide {
   whatsIncluded?: string;
   faqs?: FAQ[];
   relatedServices?: ServiceRef[];
+  comparisons?: ServiceComparison[];
   _updatedAt?: string;
   seo?: SeoMeta;
 }
@@ -1326,6 +1333,17 @@ export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
     whatsIncluded, costFactors[]{ _key, factor, effect }, faqs[]{ _key, question, answer }, _updatedAt,
     "treatment": select(!(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => treatment->{ ${SERVICE_REF_FIELDS} }),
     "relatedServices": relatedServices[!(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{ ${SERVICE_REF_FIELDS} },
+    "comparisons": *[
+      _type == "comparison" &&
+      status == "live" &&
+      defined(slug.current) &&
+      slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
+      !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+      defined(^.treatment._ref) &&
+      (optionA.service._ref == ^.treatment._ref || optionB.service._ref == ^.treatment._ref)
+    ] | order(orderRank asc, title asc) [0...2] {
+      _id, title, "slug": slug.current, intro
+    },
     "seo": seo { metaTitle, metaDescription }
   }
 `;
@@ -1341,7 +1359,7 @@ const COMPARISON_OPTION_FIELDS = /* groq */ `
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "comparison" && status == "live" && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, intro, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -1350,7 +1368,7 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
 `;
 
 export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && slug.current == $slug && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})][0] {
+  *[_type == "comparison" && status == "live" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})][0] {
     _id, title, "slug": slug.current, intro, verdict, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -1361,7 +1379,7 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && defined(slug.current) && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})]{ "slug": slug.current }
+  *[_type == "comparison" && status == "live" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})]{ "slug": slug.current }
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────
@@ -1423,43 +1441,6 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
-export interface AiSearchFaqSection {
-  _id: string;
-  heading?: string;
-  intro?: string;
-  faqs?: FAQ[];
-}
-
-const CANONICAL_AI_FAQ_ANSWERS = {
-  whatIsHouseOfRose:
-    'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
-  location:
-    'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The practice serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.',
-  booking:
-    'Call (844) 941-7673 for help choosing an appointment, or review services at https://houseofrosefl.com/services/.',
-} as const;
-
-// These three answers contain canonical business facts. Keep the Sanity-authored
-// questions/order, but prevent a stale CMS value from republishing wrong visit,
-// location, or service-area information.
-export const AI_SEARCH_FAQ_QUERY = /* groq */ `
-  *[_type == "siteSettings" && _id == "siteSettings"][0] {
-    _id,
-    "heading": aiSearchFaqHeading,
-    "intro": aiSearchFaqIntro,
-    "faqs": aiSearchFaqs[]{
-      _key,
-      question,
-      "answer": select(
-        _key == "ai-what-is-house-of-rose" => ${JSON.stringify(CANONICAL_AI_FAQ_ANSWERS.whatIsHouseOfRose)},
-        _key == "ai-where-is-house-of-rose" => ${JSON.stringify(CANONICAL_AI_FAQ_ANSWERS.location)},
-        _key == "ai-book-consultation" => ${JSON.stringify(CANONICAL_AI_FAQ_ANSWERS.booking)},
-        answer
-      )
-    }
-  }
-`;
-
 export interface FaqGroup {
   _id: string;
   source: string;
@@ -1473,7 +1454,7 @@ export const FAQ_AGGREGATE_QUERY = /* groq */ `
     (
       (_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})) ||
       (_type == "costGuide" && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})) ||
-      (_type == "comparison" && status == "live" && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})) ||
+      (_type == "comparison" && status == "live" && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})) ||
       (_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ})
     ) &&
     count(faqs) > 0

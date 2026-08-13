@@ -80,6 +80,8 @@ export interface TreatmentProviderAttribution {
   _id: string;
   publicName?: string;
   profileSlug?: string | null;
+  profileImagePath?: string;
+  profileImageAlt?: string;
 }
 
 export interface TreatmentPriceRange {
@@ -121,18 +123,56 @@ export function performedByLabel(performedBy: PerformedBy): string {
   return PERFORMED_BY_LABELS[performedBy];
 }
 
+export interface VerifiedProviderIdentity {
+  publicName: string;
+  profileSlug?: string;
+}
+
+const REVIEWED_PROVIDER_IDENTITIES: Readonly<
+  Record<string, VerifiedProviderIdentity & { performedBy: Exclude<PerformedBy, 'either'> }>
+> = {
+  'provider-diana': {
+    publicName: 'Diana Morrison, RN',
+    profileSlug: 'diana',
+    performedBy: 'rn',
+  },
+  'provider-amber': {
+    publicName: 'Amber Mingione, Licensed Esthetician',
+    profileSlug: 'amber',
+    performedBy: 'esthetician',
+  },
+  'provider-brandy': {
+    publicName: 'Brandy, Licensed Esthetician',
+    profileSlug: 'brandy',
+    performedBy: 'esthetician',
+  },
+};
+
 /**
- * Returns a named RN only when the public name includes the required licence
- * type. A provider title such as "Injector" is not a credential and must not
- * replace the safe generic scope label.
+ * Returns a named provider only when the identity and licence type agree with
+ * the service scope. Exact reviewed House of Rose identities cover the known
+ * partial Sanity records; unfamiliar providers must carry a licence-bearing
+ * public name before they can replace the safe generic scope label.
  */
-export function verifiedRnProviderName(
+export function verifiedProviderIdentity(
   provider: TreatmentProviderAttribution | undefined,
   performedBy: PerformedBy,
-): string | undefined {
-  if (performedBy !== 'rn') return undefined;
+): VerifiedProviderIdentity | undefined {
+  if (!provider || performedBy === 'either') return undefined;
+
+  const reviewed = REVIEWED_PROVIDER_IDENTITIES[provider._id];
+  if (reviewed?.performedBy === performedBy) {
+    return { publicName: reviewed.publicName, profileSlug: reviewed.profileSlug };
+  }
+
   const publicName = provider?.publicName?.trim();
-  return publicName && /,\s*RN$/i.test(publicName) ? publicName : undefined;
+  const hasMatchingLicence = performedBy === 'rn'
+    ? /,\s*RN$/i.test(publicName ?? '')
+    : /,\s*(?:Licensed\s+)?Esthetician$/i.test(publicName ?? '');
+
+  return publicName && hasMatchingLicence
+    ? { publicName, profileSlug: provider.profileSlug ?? undefined }
+    : undefined;
 }
 
 const PRICE_UNIT_LABELS: Record<PriceUnit, string> = {

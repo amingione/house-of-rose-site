@@ -6,8 +6,30 @@ import { ALL_CONCERNS_QUERY, type Concern } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { alignPublicContent } from '@/lib/publicCopy';
+import { getConcernEducation } from '@/lib/concernEducation';
 
 const concerns = alignPublicContent(await sanityFetch<Concern[]>(ALL_CONCERNS_QUERY));
+const concernsBySlug = new Map(concerns.map((concern) => [concern.slug, concern]));
+const distinctionSpecs = [
+  { slug: 'active-acne', relatedSlugs: ['acne-scarring'] },
+  { slug: 'dark-circles', relatedSlugs: ['volume-loss'] },
+  { slug: 'fine-lines-laxity', relatedSlugs: ['texture', 'volume-loss'] },
+] as const;
+const distinctions = distinctionSpecs.flatMap(({ slug, relatedSlugs }) => {
+  const concern = concernsBySlug.get(slug);
+  const education = getConcernEducation(slug);
+  if (!concern || !education) return [];
+
+  return [{
+    concern,
+    heading: education.heading,
+    lead: education.lead,
+    related: relatedSlugs.flatMap((relatedSlug) => {
+      const relatedConcern = concernsBySlug.get(relatedSlug);
+      return relatedConcern ? [relatedConcern] : [];
+    }),
+  }];
+});
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -25,7 +47,7 @@ const concernsListSchema = concerns.length
 
 <BaseLayout
   title="Concern Guides | House of Rose Aesthetics"
-  description="Choose a skin or aesthetic concern and review the House of Rose services currently associated with it in Punta Gorda, Florida."
+  description="Review House of Rose guides to visible skin and facial concerns, with links to the services currently associated with each one."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {concernsListSchema && <SchemaMarkup item={concernsListSchema} slot="head" />}
@@ -35,7 +57,7 @@ const concernsListSchema = concerns.length
       <span class="kicker">Concern Guides</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Start with what you notice.</h1>
       <p class="text-ink/80 text-[16px] max-w-[660px] leading-relaxed">
-        Choose the concern closest to what you see. Each guide shows the House of Rose services currently associated with it.
+        Open the guide that most closely matches what you see. It will explain the visible distinctions and show the House of Rose services currently connected to that concern.
       </p>
     </div>
   </section>
@@ -54,12 +76,40 @@ const concernsListSchema = concerns.length
     </div>
   </section>
 
+  {distinctions.length > 0 && (
+    <section data-concern-index-guidance class="border-y border-gold-metal/10 bg-charcoal px-6 py-[clamp(48px,7vw,76px)]">
+      <div class="mx-auto max-w-[1280px]">
+        <div class="mb-10 max-w-[680px]">
+          <span class="kicker">Useful distinctions</span>
+          <h2 class="mt-2 font-serif text-[clamp(26px,4vw,40px)] leading-tight text-ink">Some concerns overlap in the mirror.</h2>
+          <p class="mt-4 text-[15px] leading-[1.8] text-muted">
+            These examples show what to notice before opening the related guides. They are observations, not a diagnosis.
+          </p>
+        </div>
+        <div class="grid gap-px bg-gold-metal/10 md:grid-cols-3">
+          {distinctions.map(({ concern, heading, lead, related }) => (
+            <article class="bg-charcoal-light p-7">
+              <h3 class="font-serif text-[22px] leading-snug text-ink">{heading}</h3>
+              <p class="mt-4 text-[14px] leading-[1.75] text-muted">{lead}</p>
+              <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+                <a href={`/concerns/${concern.slug}/`} class="learn-more">{concern.title}</a>
+                {related.map((relatedConcern) => (
+                  <a href={`/concerns/${relatedConcern.slug}/`} class="learn-more">{relatedConcern.title}</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">A Different Starting Point</span>
+      <span class="kicker">Skin analysis and consultation</span>
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Not every concern is easy to name.</h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-8 leading-[1.8]">
-        If the menu does not make the answer obvious, begin with a skin analysis or consultation.
+        Bring what you have noticed. A skin analysis or consultation can give the conversation a clearer starting point.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="/skin-analysis/" class="btn-outline-gold">Review skin analysis</a>

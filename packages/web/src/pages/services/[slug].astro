@@ -17,15 +17,22 @@ import {
   SERVICE_BY_SLUG_QUERY,
   type Service,
 } from '@/lib/queries';
-import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
+import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
 import ProviderScopeBlock from '@/components/treatment/ProviderScopeBlock.astro';
 import PriceRangeBlock from '@/components/treatment/PriceRangeBlock.astro';
+import InjectablesHubOverview from '@/components/treatment/InjectablesHubOverview.astro';
 import IvHydrationMenu from '@/components/treatment/IvHydrationMenu.astro';
+import PrfUnderEyesOverview from '@/components/treatment/PrfUnderEyesOverview.astro';
+import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
 import { medicalProcedure, treatmentOffer } from '@/lib/structuredData.treatment';
 import { isVerifiedGlossGeniusBookingUrl, resolveServiceBooking } from '@/lib/booking';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
 import { getVerifiedCostFact } from '@/lib/costFacts';
+import { PRF_UNDER_EYES_FAQS } from '@/lib/prfUnderEyesFacts';
+import { IV_HYDRATION_FAQS } from '@/lib/ivHydrationFacts';
+import { getServiceEducation } from '@/lib/serviceEducation';
+import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
@@ -45,8 +52,16 @@ if (!serviceData) {
 
 const service: Service = serviceData;
 const publicTagline = slug ? getServiceCardSummary(slug) : undefined;
+const serviceEducation = slug ? getServiceEducation(slug) : undefined;
 const verifiedDuration = slug ? getVerifiedServiceDuration(slug) : undefined;
-const displayDuration = verifiedDuration ?? service.duration;
+// The product-specific neurotoxin durations are shown in the reviewed menu below.
+// Current sources disagree on PRF under-eye duration, and Morpheus8 has no verified
+// standalone appointment length. Do not collapse any of those into one hero figure.
+const suppressHeroDuration = new Set(['injectables', 'microneedling', 'morpheus8', 'prf', 'prf-injections', 'prf-under-eyes']).has(slug ?? '');
+const displayDuration = suppressHeroDuration ? undefined : verifiedDuration ?? service.duration;
+// Reviewed education owns the current facts for covered pages. Keep stale or
+// ambiguous Sanity price strings out of the hero and structured data.
+const displayServicePrice = serviceEducation ? undefined : service.price;
 const splitInjectableSlugs = new Set(['injectables', 'dermal-fillers']);
 const splitInjectableSibling = slug === 'injectables'
   ? { slug: 'dermal-fillers', title: 'Dermal Fillers' }
@@ -67,11 +82,16 @@ const visibleRelatedServices = [
 const renderSplitInjectableSibling = splitInjectableSibling
   && !visibleRelatedServices.some((related) => related.slug === splitInjectableSibling.slug);
 const hasRelatedServices = visibleRelatedServices.length > 0 || Boolean(renderSplitInjectableSibling);
-const serviceDirectoryPath = service.collection?.slug && service.collection.slug !== 'permanent-jewelry'
-  ? `/services/collections/${service.collection.slug}/`
+const collectionSlug = service.collection?.slug;
+const collectionTitle = service.collection?.title;
+const hasDistinctCollectionDirectory = collectionSlug
+  && collectionSlug !== 'permanent-jewelry'
+  && collectionSlug !== service.slug;
+const serviceDirectoryPath = hasDistinctCollectionDirectory
+  ? `/services/collections/${collectionSlug}/`
   : '/services/';
-const serviceDirectoryLabel = service.collection?.title && service.collection.slug !== 'permanent-jewelry'
-  ? `View ${service.collection.title}`
+const serviceDirectoryLabel = hasDistinctCollectionDirectory && collectionTitle
+  ? `View ${collectionTitle}`
   : 'View all services';
 const verifiedCostGuide = service.costGuides?.find((guide) => getVerifiedCostFact(guide.slug));
 // Recovery and aftercare are medical-support copy, not general marketing copy.
@@ -80,7 +100,7 @@ const verifiedCostGuide = service.costGuides?.find((guide) => getVerifiedCostFac
 // The published Glo2 range contains retired combination prices and conflicts
 // with the current GlossGenius standalone price. Omit it until commerce truth
 // and Sanity are reconciled.
-const reviewedPriceRange = slug === 'glo2facial' ? undefined : service.priceRange;
+const reviewedPriceRange = serviceEducation ? undefined : service.priceRange;
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -112,9 +132,10 @@ const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
 const resultImages = slug ? getServiceResultImages(slug) : [];
 const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'face-reality-acne-treatment'].includes(slug ?? '');
 
-const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
+const priceMatch = displayServicePrice ? String(displayServicePrice).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
-const factualServiceDescription = `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
+const factualServiceDescription = serviceEducation?.metaDescription
+  ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {
@@ -151,13 +172,18 @@ const verifiedBookingUrl = isVerifiedGlossGeniusBookingUrl(service.bookingUrl)
   : undefined;
 const bookingAction = resolveServiceBooking(service, 'service-page-copy');
 const secondaryAction = bookingAction.mode === 'consultation'
-  ? { href: '/contact/', label: 'Contact' }
-  : { href: '/consultation/', label: 'Consultation' };
+  ? { href: '/contact/', label: 'Contact the practice' }
+  : { href: '/consultation/', label: 'Ask a question' };
 const finalHeading = bookingAction.mode === 'direct'
-  ? `Book ${service.title}.`
+  ? `Reserve ${service.title}.`
   : bookingAction.mode === 'consultation'
-    ? `Schedule a consultation.`
-    : `Call about ${service.title}.`;
+    ? `Talk with the practice about ${service.title}.`
+    : `Ask about ${service.title}.`;
+const finalCopy = bookingAction.mode === 'direct'
+  ? 'Choose an available time in the current booking menu, or send a question before you reserve.'
+  : bookingAction.mode === 'consultation'
+    ? 'Request a consultation time, or contact the practice if you have a question before scheduling.'
+    : 'Call the practice for current appointment availability, or send a question through the consultation form.';
 
 const procedureSchema = service.providerScope
   ? medicalProcedure(
@@ -182,6 +208,16 @@ const offerSchema = reviewedPriceRange
     })
   : null;
 
+const reviewedServiceFaqs = serviceEducation?.faqs
+  ?? (slug === 'prf-under-eyes'
+    ? PRF_UNDER_EYES_FAQS
+    : slug === 'iv-hydration-therapy'
+      ? IV_HYDRATION_FAQS
+      : undefined);
+const serviceFaqSchema = reviewedServiceFaqs
+  ? faqPage(reviewedServiceFaqs.map(({ question, answer }) => ({ question, answer })))
+  : null;
+
 
 // Service-page titles stay entity-first and do not inherit unreviewed CMS claims
 // or geo modifiers. Geo intent belongs to the localArea page type.
@@ -202,6 +238,7 @@ const pageDescription = factualServiceDescription;
   <SchemaMarkup item={breadcrumbSchema} slot="head" />
   {procedureSchema && <SchemaMarkup item={procedureSchema} slot="head" />}
   {offerSchema && <SchemaMarkup item={offerSchema} slot="head" />}
+  {serviceFaqSchema && <SchemaMarkup item={serviceFaqSchema} slot="head" />}
 
   <script
     slot="head"
@@ -232,9 +269,9 @@ const pageDescription = factualServiceDescription;
             {publicTagline}
           </p>
         )}
-        {(service.price || displayDuration) && (
+        {(displayServicePrice || displayDuration) && (
           <p class="mt-5 text-[13px] font-medium tracking-[0.08em] text-muted">
-            {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && displayDuration && <span class="mx-2 text-gold">·</span>}{verifiedDuration
+            {displayServicePrice && <span {...sbFieldPath('price')}>{displayServicePrice}</span>}{displayServicePrice && displayDuration && <span class="mx-2 text-gold">·</span>}{verifiedDuration
               ? <span>{verifiedDuration}</span>
               : displayDuration && <span {...sbFieldPath('duration')}>{displayDuration}</span>}
           </p>
@@ -268,11 +305,17 @@ const pageDescription = factualServiceDescription;
     </div>
   </section>
 
+  {serviceEducation && <ServiceEducation content={serviceEducation} />}
+
+  {slug === 'injectables-bio-fillers' && <InjectablesHubOverview />}
+
   <TreatmentEvidence
     serviceTitle={service.title}
     media={service.evidenceMedia}
     research={service.researchReferences}
   />
+
+  {slug === 'prf-under-eyes' && <PrfUnderEyesOverview />}
 
   <!-- Concern-to-treatment paths -->
   {service.concerns && service.concerns.length > 0 && (
@@ -434,7 +477,7 @@ const pageDescription = factualServiceDescription;
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10 mt-8">
           {service.comparisons.map((comparison) => (
             <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(comparison._id)}>
-              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{comparison.title}</h3>
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}</h3>
               <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the comparison</span>
             </a>
           ))}
@@ -532,6 +575,9 @@ const pageDescription = factualServiceDescription;
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         {finalHeading}
       </h2>
+      <p class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
+        {finalCopy}
+      </p>
       <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
         <BookingLink
           slug={service.slug}

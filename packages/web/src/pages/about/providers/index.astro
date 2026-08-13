@@ -107,6 +107,16 @@ const directorySchema = itemListPage(
                 <p class="mt-5 text-[14px] leading-[1.8] text-muted">
                   {getProviderProfileVoiceOverlay(provider.slug)?.summary ?? provider.summary}
                 </p>
+                {provider.serviceFocus.length > 0 && (
+                  <div class="mt-6 border-t border-walnut/10 pt-5">
+                    <p class="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold">Current work</p>
+                    <ul class="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-[12px] leading-relaxed text-muted">
+                      {provider.serviceFocus.map((focus) => (
+                        <li>{focus}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
               <span class="learn-more mt-8">Read profile <span aria-hidden="true">→</span></span>
             </div>

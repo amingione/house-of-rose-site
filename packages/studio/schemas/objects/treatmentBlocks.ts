@@ -203,14 +203,24 @@ export const treatmentProviderScope = defineType({
     }),
     defineField({
       name: 'disclaimer',
-      title: 'Results Disclaimer',
+      title: 'Service-Specific Variance Note',
       type: 'text',
       rows: 2,
-      initialValue:
-        'Individual results vary. Candidacy is determined at consultation. This page is general information and is not medical advice.',
       description:
-        'Required on every treatment page (FL Board of Medicine Rule 64B8-11.001). Do not remove.',
-      validation: (R) => R.required(),
+        'Use only when this service publishes an outcome claim. State that individual outcomes vary without adding generic consultation, candidacy, or medical-advice boilerplate.',
+      validation: (R) =>
+        R.custom((value) => {
+          if (!value) return true;
+          if (/\bcandidacy is determined at consultation\b/i.test(value)) {
+            return 'Remove the retired candidacy/consultation boilerplate and keep only a service-specific variance note.';
+          }
+          if (/\bthis page is general information and is not medical advice\b/i.test(value)) {
+            return 'Remove the generic medical-advice boilerplate and keep only a service-specific variance note.';
+          }
+          return /\bindividual (?:outcomes?|results?) var(?:y|ies)\b/i.test(value)
+            ? true
+            : 'A published variance note must state that individual outcomes or results vary.';
+        }),
     }),
   ],
   preview: {

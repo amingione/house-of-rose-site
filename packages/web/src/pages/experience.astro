@@ -1,27 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
-import { EXPERIENCE_CONTENT_QUERY, type ExperienceContent } from '@/lib/queries';
 
-const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTENT_QUERY);
 const heroImage = '/images/optimized/actual-welcome-800.webp';
 const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
-const storyImage = experienceContent?.storyImage;
-const storyImageSrc = storyImage
-  ? urlFor(storyImage).width(900).format('webp').quality(82).url()
-  : '/images/optimized/actual-reception-1400-light.webp';
-const storyImageWidth = storyImage ? 900 : 1400;
-const storyImageHeight = storyImage
-  ? Math.round(900 / storyImage.asset.metadata.dimensions.width * storyImage.asset.metadata.dimensions.height)
-  : 1050;
-
 ---
 
 <BaseLayout
-  title="Inside House of Rose | Medical Aesthetics Practice"
-  description="See the actual House of Rose spaces in Punta Gorda and review appointment, walk-in, and consultation information."
+  title="Inside the Practice"
+  description="See the actual House of Rose spaces in Punta Gorda and review how to choose between direct booking and a consultation."
   preloadImage={heroImage}
   preloadImageSrcset={heroImageSrcset}
   preloadImageSizes="100vw"
@@ -30,7 +17,7 @@ const storyImageHeight = storyImage
   <Hero
     title="Inside House of Rose."
     kicker="The practice"
-    description="Actual rooms and practical appointment information from the Punta Gorda practice."
+    description="See the actual storefront, reception, and treatment rooms—and the people and service information behind them."
     size="small"
     backgroundImage={heroImage}
     backgroundSrcset={heroImageSrcset}
@@ -40,51 +27,130 @@ const storyImageHeight = storyImage
     imageAlt="The House of Rose Aesthetics reception and waiting area"
   />
 
-  <!-- Story Section -->
-  <section
-    class="bg-charcoal grid grid-cols-1 md:grid-cols-2"
-    {...(experienceContent?._id ? sbObjectId(experienceContent._id) : {})}
-  >
-    <div class="p-[clamp(38px,6vw,76px)]">
+  <!-- Actual practice photography -->
+  <section class="bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+    <div class="mx-auto max-w-[1280px]">
       <span class="kicker">The practice</span>
-      <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-ink leading-tight mb-5">
+      <h2 class="mt-2 font-serif text-[clamp(30px,4vw,44px)] text-ink leading-tight">
         525 E Olympia Avenue, Unit 9.
       </h2>
-      <p class="text-muted text-[15px] leading-relaxed">
-        The photographs show the reception and treatment spaces as they are.
+      <p class="mt-5 max-w-[620px] text-muted text-[15px] leading-relaxed">
+        The storefront, IV hydration suite, and treatment room shown here are the actual House of Rose spaces.
       </p>
+      <div class="mt-10 grid gap-5 lg:grid-cols-[0.74fr_1.26fr]">
+        <figure class="border border-gold-metal/15 bg-charcoal-light">
+          <img
+            src="/images/optimized/house-of-rose-storefront-700.webp"
+            srcset="/images/optimized/house-of-rose-storefront-700.webp 700w, /images/optimized/house-of-rose-storefront-1000.webp 1000w"
+            sizes="(max-width: 1023px) 100vw, 37vw"
+            alt="The House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda"
+            width="1000"
+            height="1333"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[3/4] h-auto w-full object-cover"
+          />
+          <figcaption class="border-t border-gold-metal/15 px-5 py-4 text-[12px] tracking-[0.08em] text-muted">
+            The storefront · Unit 9
+          </figcaption>
+        </figure>
+        <div class="grid gap-5">
+          <figure class="border border-gold-metal/15 bg-charcoal-light">
+            <img
+              src="/images/optimized/actual-iv-suite-800.webp"
+              srcset="/images/optimized/actual-iv-suite-800.webp 800w, /images/optimized/actual-iv-suite-1400.webp 1400w"
+              sizes="(max-width: 1023px) 100vw, 63vw"
+              alt="The IV hydration suite inside House of Rose Aesthetics"
+              width="1400"
+              height="1120"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[5/4] h-auto w-full object-cover"
+            />
+            <figcaption class="border-t border-gold-metal/15 px-5 py-4 text-[12px] tracking-[0.08em] text-muted">
+              The IV hydration suite
+            </figcaption>
+          </figure>
+          <figure class="border border-gold-metal/15 bg-charcoal-light">
+            <img
+              src="/images/optimized/actual-facial-suite-800.webp"
+              srcset="/images/optimized/actual-facial-suite-800.webp 800w, /images/optimized/actual-facial-suite-1400.webp 1400w"
+              sizes="(max-width: 1023px) 100vw, 63vw"
+              alt="A treatment room inside House of Rose Aesthetics"
+              width="1400"
+              height="1050"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/3] h-auto w-full object-cover"
+            />
+            <figcaption class="border-t border-gold-metal/15 px-5 py-4 text-[12px] tracking-[0.08em] text-muted">
+              A treatment room
+            </figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
-    <div class="relative min-h-[330px] bg-charcoal-lighter">
-      <img
-        src={storyImageSrc}
-        alt={storyImage?.alt ?? 'The reception and waiting area inside House of Rose Aesthetics'}
-        class="w-full h-full object-cover"
-        width={storyImageWidth}
-        height={storyImageHeight}
-        loading="lazy"
-        {...(experienceContent?._id ? sbFieldPath('storyImage') : {})}
-      />
+  </section>
+
+  <!-- Decision support -->
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+    <div class="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+      <div>
+        <span class="kicker">Before the appointment</span>
+        <h2 class="mt-2 max-w-[520px] font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+          Know the place. Know who you are seeing.
+        </h2>
+      </div>
+      <div class="max-w-[620px]">
+        <p class="text-[16px] leading-[1.8] text-muted-strong">
+          House of Rose is one practice at one address. The storefront, reception, IV suite, and
+          treatment room pictured here are not stock photographs. When a service has a verified
+          provider, that person's name and licence type appear on the service page as well.
+        </p>
+        <p class="mt-5 text-[15px] leading-[1.8] text-muted">
+          Some services can be reserved directly; others begin with a conversation. The service page
+          shows the correct booking path, and the provider directory explains who does what.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+          <a href="/consultation/" class="learn-more hover:text-gold">Start with a consultation</a>
+          <a href="/about/providers/" class="learn-more hover:text-gold">Review providers</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Appointment information -->
   <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
     <div class="mx-auto max-w-[1120px]">
-      <span class="kicker">Appointments</span>
+      <span class="kicker">Your visit</span>
       <h2 class="mt-2 font-serif text-[clamp(30px,4vw,44px)] text-ink">
-        Before you arrive.
+        Can I walk in, or should I book?
       </h2>
-      <div class="mt-10 grid border-y border-walnut/15 md:grid-cols-2">
-        <article class="py-8 md:pr-10">
-          <h3 class="font-serif text-[26px] text-ink">Booking</h3>
+      <p class="mt-5 max-w-[680px] text-[16px] leading-[1.8] text-muted-strong">
+        Both are possible. An appointment reserves a specific time; walk-in availability depends on
+        the service and, for some appointments, the day’s schedule.
+      </p>
+      <div class="mt-10 grid border-y border-walnut/15 lg:grid-cols-3">
+        <article class="py-8 lg:pr-8">
+          <h3 class="font-serif text-[26px] text-ink">To reserve a time</h3>
           <p class="mt-4 max-w-[500px] text-[15px] leading-[1.75] text-muted">
-              Appointments reserve a specific time. Call to ask about same-day availability for waxing and facials.
+            Use the service page to reserve the current listing or request the consultation attached
+            to it. Appointments are recommended when you want a specific time.
           </p>
         </article>
-        <article class="border-t border-walnut/15 py-8 md:border-l md:border-t-0 md:pl-10">
-          <h3 class="font-serif text-[26px] text-ink">Consultations</h3>
+        <article class="border-t border-walnut/15 py-8 lg:border-l lg:border-t-0 lg:px-8">
+          <h3 class="font-serif text-[26px] text-ink">For a walk-in</h3>
           <p class="mt-4 max-w-[500px] text-[15px] leading-[1.75] text-muted">
-            Bring the treatment or concern you want to discuss, along with anything you do not want changed. Ask about options, limits, and recovery before deciding.
+            Walk-ins are always accepted for waxing and facials. For other services, walk-ins are
+            accepted when the schedule allows. Call <a href="tel:+18449417673" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">(844) 941-7673</a>
+            to check current availability before you travel.
+          </p>
+        </article>
+        <article class="border-t border-walnut/15 py-8 lg:border-l lg:border-t-0 lg:pl-8">
+          <h3 class="font-serif text-[26px] text-ink">When you are still comparing</h3>
+          <p class="mt-4 max-w-[500px] text-[15px] leading-[1.75] text-muted">
+            Send an inquiry or call the practice with the concern you want to discuss. You do not need
+            to choose a treatment name before asking a question.
           </p>
         </article>
       </div>

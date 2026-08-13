@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from '../validation/publicCopy';
 
 /**
  * Shared FAQ object — reused across AEO page-type documents.
@@ -14,7 +15,7 @@ export const faq = defineType({
       title: 'Question',
       type: 'string',
       description: 'Phrase as the question a client actually asks.',
-      validation: (R) => R.required(),
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'answer',
@@ -22,7 +23,7 @@ export const faq = defineType({
       type: 'text',
       rows: 3,
       description: 'Answer-first: lead with the direct answer, then support it.',
-      validation: (R) => R.required(),
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
   ],
   preview: {

@@ -36,7 +36,7 @@ const guidesListSchema = guides.length
       <span class="kicker">Pricing</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What does it cost?</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Verified House of Rose prices from the August 6, 2026 GlossGenius price list. Guides without an unequivocal price remain unpriced here.
+        Current House of Rose prices, with the product, treatment-area, or series distinctions that explain the range. When the current menu does not publish a standalone price, the guide says so plainly.
       </p>
     </div>
   </section>
@@ -46,18 +46,26 @@ const guidesListSchema = guides.length
       {guides.map((g) => {
         const fact = getVerifiedCostFact(g.slug);
         return (
-          <a href={`/cost/${g.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
-            <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
-            <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
-              {fact?.display ?? 'No verified price published'}
-            </p>
-            {g.treatment && (
-              <p class="text-muted text-[14px] leading-relaxed" {...sbObjectId(g.treatment._id)}>
-                Related service: <span class="text-ink" {...sbFieldPath('title')}>{g.treatment.title}</span>
+          <article class="bg-charcoal transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
+            <a href={`/cost/${g.slug}/`} class="group block p-7 pb-5">
+              <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
+              <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
+                {fact?.display ?? 'No verified price published'}
               </p>
+              {fact?.summary && (
+                <p class="mb-4 text-[14px] leading-[1.7] text-muted">{fact.summary}</p>
+              )}
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">View cost guide</span>
+            </a>
+            {g.treatment && (
+              <div class="mx-7 border-t border-gold-metal/10 pb-6 pt-4 text-[14px] leading-relaxed text-muted" {...sbObjectId(g.treatment._id)}>
+                <span>Related service: </span>
+                <a href={`/services/${g.treatment.slug}/`} class="text-ink underline decoration-gold-metal/40 underline-offset-4 hover:text-gold" {...sbFieldPath('title')}>
+                  {g.treatment.title}
+                </a>
+              </div>
             )}
-            <span class="learn-more group-hover:text-gold mt-4 inline-block">View cost guide</span>
-          </a>
+          </article>
         );
       })}
       {guides.length === 0 && (

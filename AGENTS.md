@@ -46,6 +46,11 @@ Enforced on every content task:
    and hands, accurate equipment.
    The visual blacklist (no perfect AI models, flowers as spa shorthand, splashes, glitter, gold foil,
    pink gradients, soft-focus glamour, blue LED rooms, cursive) is binding on generated imagery too.
+7. **The voice reset is not a brevity mandate.** Do not remove verified, client-useful substance merely
+   to make a page shorter or safer-looking. Preserve concrete treatment distinctions, real practice
+   character, proof, useful answers, and persuasive reasons to choose House of Rose. Edit out unsupported
+   claims, repetition, clichés, and the rejected process cadence; replace weak copy with better copy
+   instead of reducing every page to headings, links, and disclaimers.
 
 ## Marketing / SEO / AEO — MANDATORY when touching customer-facing content
 

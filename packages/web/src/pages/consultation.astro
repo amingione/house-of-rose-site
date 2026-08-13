@@ -24,17 +24,17 @@ const faqs: FAQ[] = [
   {
     question: 'Do I need to know which treatment to book?',
     answer:
-      'No. You can name a treatment, a concern, or the change you are considering. If you already have a shortlist, bring it.',
+      'No. Bring a treatment name if you have one. Otherwise, point to what catches your eye and say what you would—and would not—want to change. A shortlist is welcome; a decision is not required before the visit.',
   },
   {
     question: 'What happens during an aesthetics consultation?',
     answer:
-      'We discuss what you have noticed, what you would and would not want to change, relevant history, and how much recovery you are willing to accommodate. You leave with a clearer understanding of the available options.',
+      'You can describe what you notice, recent procedures, and how much recovery fits your calendar. Ask who performs a service, what it costs, how long the appointment takes, what recovery may involve, and whether waiting is reasonable. The purpose is to understand the tradeoffs before you book.',
   },
   {
     question: 'Do you take walk-ins?',
     answer:
-      `Call ${phoneDisplay} to ask about same-day availability for waxing and facials. Appointments reserve a specific time.`,
+      `Yes. Walk-ins are always accepted for waxing and facials. For other services, walk-ins are accepted when the schedule allows. Appointments reserve a specific time; call ${phoneDisplay} to check current availability.`,
   },
 ];
 
@@ -151,6 +151,60 @@ const faqSchema = faqPage(faqs);
       </div>
     </section>
 
+    <nav aria-label="Other ways to begin" class="border-b border-gold-metal/30 bg-breath px-5 py-7 sm:px-8">
+      <div class="mx-auto flex max-w-[1180px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-[13px] leading-relaxed text-muted-strong">You do not need a consultation to browse first.</p>
+        <div class="flex flex-wrap gap-x-6 gap-y-3 text-[13px]">
+          <a href="/services/" class="border-b border-gold text-ink hover:text-gold">Know the service? View services</a>
+          <a href="/skin-analysis/" class="border-b border-gold text-ink hover:text-gold">Starting with a skin question? View skin analysis</a>
+        </div>
+      </div>
+    </nav>
+
+    <section data-consultation-purpose class="border-b border-gold-metal/30 px-5 py-[clamp(60px,8vw,96px)] sm:px-8">
+      <div class="mx-auto max-w-[1180px]">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-gold">
+              What the time is for
+            </p>
+            <h2 class="mt-4 font-display text-[clamp(38px,5vw,58px)] leading-[1.04]">
+              Ask the questions that do not fit on a service menu.
+            </h2>
+          </div>
+          <div class="max-w-[680px] text-[16px] leading-[1.85] text-muted-strong">
+            <p>
+              A consultation is useful when you are comparing two options, care about how noticeable a change may be, or need to understand price, timing, and recovery before deciding. You may also have one direct question and no interest in a larger plan. Bring that question.
+            </p>
+            <p class="mt-5">
+              You are not expected to speak in treatment names. A photograph, a short list, or a plain description of what catches your eye is enough to begin. It is equally useful to say what you want to leave alone.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 grid gap-px border border-gold-metal/35 bg-gold-metal/35 md:grid-cols-3">
+          <article class="bg-breath p-7 sm:p-8">
+            <h3 class="font-serif text-[23px] leading-tight">Bring what you already know.</h3>
+            <p class="mt-4 text-[14px] leading-[1.75] text-muted-strong">
+              Bring the name of a service you are considering, photographs that help explain the change, and the names or dates of recent procedures when they are relevant.
+            </p>
+          </article>
+          <article class="bg-breath p-7 sm:p-8">
+            <h3 class="font-serif text-[23px] leading-tight">Ask for the practical details.</h3>
+            <p class="mt-4 text-[14px] leading-[1.75] text-muted-strong">
+              Ask who performs the service and their licence type, what the current price and appointment length are, what recovery can involve, and what other reasonable options exist.
+            </p>
+          </article>
+          <article class="bg-breath p-7 sm:p-8">
+            <h3 class="font-serif text-[23px] leading-tight">Keep the request form simple.</h3>
+            <p class="mt-4 text-[14px] leading-[1.75] text-muted-strong">
+              The form below asks only for your contact information and a general topic. House of Rose will contact you to arrange a time; personal health details can wait for the conversation at the practice.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="consultation" class="scroll-mt-4 bg-walnut px-5 py-[clamp(56px,7vw,88px)] sm:px-8">
       <div class="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
         <div class="on-dark lg:pt-5">
@@ -158,11 +212,11 @@ const faqSchema = faqPage(faqs);
             Begin here
           </p>
           <h2 id="consultation-heading" class="mt-4 font-display text-[clamp(40px,5vw,62px)] leading-[1.02] text-ivory">
-            Tell us what brought you in.
+            Tell us how to reach you.
           </h2>
           <p class="mt-6 max-w-[440px] text-[15px] leading-[1.8] text-muted">
-            Tell us what you are considering and how to reach you. We will contact
-            you to arrange a time.
+            Choose the closest topic—even “Help me choose.” We will contact you to
+            arrange a time for the fuller conversation.
           </p>
           <div class="mt-8 border-t border-gold-metal/40 pt-7">
             <p class="font-serif text-[20px] text-ivory">Prefer to speak first?</p>
@@ -288,9 +342,9 @@ const faqSchema = faqPage(faqs);
                   <svg class="h-5 w-5 shrink-0 text-gold transition-transform duration-200 group-open:rotate-45" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                     <path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
                   </svg>
-                  <span>{faq.question}</span>
+                  <span data-visit-faq-question>{faq.question}</span>
                 </summary>
-                <p class="pb-7 pl-9 text-[15px] leading-[1.8] text-muted-strong">
+                <p data-visit-faq-answer class="pb-7 pl-9 text-[15px] leading-[1.8] text-muted-strong">
                   {faq.answer}
                 </p>
               </details>

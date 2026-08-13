@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 export const brandProfile = defineType({
   name: 'brandProfile',
-  title: 'Brand Profile',
+  title: 'Brand Profile (archival)',
   type: 'document',
   fields: [
     defineField({
@@ -13,28 +13,28 @@ export const brandProfile = defineType({
     }),
     defineField({
       name: 'angle',
-      title: 'Brand Angle',
+      title: 'Brand Angle (archival)',
       type: 'string',
-      description: 'One sharp sentence on the lane this brand owns.',
+      description: 'Archived positioning field. Do not use as a source for public copy during the voice reset.',
       validation: (R) => R.required().max(180),
     }),
     defineField({
       name: 'idealClient',
-      title: 'Ideal Client',
+      title: 'Ideal Client (archival)',
       type: 'text',
       rows: 3,
-      description: 'Who she is, what she values, what she seeks, what she rejects.',
+      description: 'Archived positioning field. Do not write an aspirational customer profile.',
     }),
     defineField({
       name: 'differentiators',
-      title: 'Differentiators',
+      title: 'Differentiators (archival)',
       type: 'array',
       of: [{ type: 'string' }],
       validation: (R) => R.min(3).max(5),
     }),
     defineField({
       name: 'pillars',
-      title: 'Brand Pillars',
+      title: 'Brand Pillars (archival)',
       type: 'array',
       of: [
         {
@@ -50,14 +50,15 @@ export const brandProfile = defineType({
     }),
     defineField({
       name: 'voiceTraits',
-      title: 'Signature Voice Traits',
+      title: 'Voice Traits (archival)',
       type: 'array',
       of: [{ type: 'string' }],
     }),
     defineField({
       name: 'taglines',
-      title: 'Tagline Options',
+      title: 'Tagline Options (archival)',
       type: 'array',
+      description: 'Archived options. Public voice work requires Amber’s review before reuse.',
       of: [{ type: 'string' }],
       validation: (R) => R.max(5),
     }),

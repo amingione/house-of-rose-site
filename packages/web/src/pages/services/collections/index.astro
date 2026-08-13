@@ -5,6 +5,15 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection } from '@/lib/queries';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+
+const collectionIntroductions: Readonly<Record<string, string>> = {
+  inmode: 'Microneedling with radiofrequency, intense pulsed light, and radiofrequency without needling.',
+  'injectables-bio-fillers': 'Neurotoxins for movement-related lines, fillers for selected lip, cheek, and fold volume, and injectable PRF.',
+  'iv-hydration-therapy': 'Six current IV hydration options and the provider-guided GLP-1 weight-management service.',
+  facials: 'Facials, exfoliation, microneedling, topical PRF, and structured acne care.',
+  waxing: 'Facial and body waxing organized by treatment area.',
+};
 
 const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
 
@@ -36,9 +45,9 @@ const collectionsListSchema = collections.length
   <section class="mx-auto max-w-6xl px-6 py-24">
     <header class="max-w-2xl">
       <p class="kicker mb-4">Services</p>
-      <h1 class="font-serif text-5xl text-ink">Service categories.</h1>
+      <h1 class="font-serif text-5xl text-ink">Browse services by category.</h1>
       <p class="mt-5 leading-relaxed text-muted">
-        Choose a category or go directly to an individual service page.
+        Open a category for its current House of Rose services, or use the individual links below to go directly to a service page.
       </p>
     </header>
 
@@ -57,21 +66,29 @@ const collectionsListSchema = collections.length
                 {collection.title}
               </a>
             </h2>
+            <p class="mt-4 text-[14px] leading-relaxed text-muted">
+              {collectionIntroductions[collection.slug] ?? `Review the current ${collection.title} services.`}
+            </p>
 
             {collection.services.length > 0 && (
-              <ul class="mt-7 space-y-3 border-t border-walnut/15 pt-6" aria-label={`${collection.title} services`}>
-                {collection.services.map((service) => (
-                  <li {...sbObjectId(service._id)}>
-                    <a
-                      href={`/services/${service.slug}/`}
-                      class="inline-flex items-baseline gap-2 text-[14px] leading-relaxed text-muted-strong transition-colors hover:text-olive"
-                      {...sbFieldPath('title')}
-                    >
-                      <span>{service.title}</span>
-                      <span aria-hidden="true">→</span>
-                    </a>
-                  </li>
-                ))}
+              <ul class="mt-7 divide-y divide-walnut/10 border-t border-walnut/15" aria-label={`${collection.title} services`}>
+                {collection.services.map((service) => {
+                  const summary = getServiceCardSummary(service.slug);
+                  return (
+                    <li {...sbObjectId(service._id)}>
+                      <a
+                        href={`/services/${service.slug}/`}
+                        class="group block py-4"
+                      >
+                        <span class="inline-flex items-baseline gap-2 text-[14px] font-medium leading-relaxed text-muted-strong transition-colors group-hover:text-olive" {...sbFieldPath('title')}>
+                          <span>{service.title}</span>
+                          <span aria-hidden="true">→</span>
+                        </span>
+                        {summary && <span class="mt-1 block text-[13px] leading-relaxed text-muted">{summary}</span>}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             )}
           </li>

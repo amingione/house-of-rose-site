@@ -24,7 +24,7 @@ interface SkinAnalysisFaq {
 }
 const pageTitle = 'Skin Imaging & Analysis in Punta Gorda | House of Rose';
 const pageDescription =
-  'Multi-spectrum skin imaging in Punta Gorda offers a closer look at pigmentation, pores, texture, hydration cues, fine lines, and visible sun exposure.';
+  'Multi-spectrum skin imaging in Punta Gorda offers a closer look at pigmentation, pores, texture, fine lines, and visible sun exposure.';
 
 const steps: SkinAnalysisStep[] = [
   {
@@ -35,7 +35,7 @@ const steps: SkinAnalysisStep[] = [
   {
     n: '02',
     title: 'Look closely',
-    body: 'Imaging under standard, cross-polarized, and UV light helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
+    body: 'Imaging under standard, cross-polarized, and UV light helps us look more closely at pigmentation, pores, texture, fine lines, and visible signs of sun exposure.',
   },
   {
     n: '03',
@@ -65,6 +65,14 @@ const faqs: SkinAnalysisFaq[] = [
   {
     q: 'Is skin imaging uncomfortable?',
     a: 'No. It is non-invasive and does not use needles. We take the images and review them with you.',
+  },
+  {
+    q: 'Can skin imaging diagnose a skin condition or screen for skin cancer?',
+    a: 'No. The images document visible patterns but do not determine their medical cause, diagnose a condition, or screen for skin cancer. A changing spot, unexplained symptom, or other medical skin concern needs evaluation by an appropriately licensed medical provider.',
+  },
+  {
+    q: 'Can makeup or sunscreen affect the images?',
+    a: 'Yes. Makeup, sunscreen residue, and other material on the skin can affect what appears in a UV image. We review the photographs together rather than treating any one image as a diagnosis.',
   },
   {
     q: 'What happens to my photos?',
@@ -105,7 +113,7 @@ const serviceSchema = service(
   <Hero
     title="See more than the mirror shows."
     kicker="Skin Imaging · Punta Gorda"
-    description="Multi-spectrum photographs make pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure easier to examine before you choose a skin service."
+    description="Multi-spectrum photographs make pigmentation, texture, pores, fine lines, and visible sun exposure easier to examine before you choose a skin service."
     size="small"
     showCTA={true}
     ctaPrimary={{ text: 'Book a Skin Analysis', href: SKIN_ANALYSIS_BOOKING_URL }}
@@ -124,7 +132,7 @@ const serviceSchema = service(
         What the mirror cannot show clearly.
       </h2>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        Controlled lighting gives us another way to examine pigmentation, texture, pores, hydration cues, fine lines, and visible sun exposure.
+        Controlled lighting gives us another way to examine pigmentation, texture, pores, fine lines, and visible sun exposure.
       </p>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]">
         The photographs provide a visual baseline. They are not a medical diagnosis.
@@ -141,6 +149,52 @@ const serviceSchema = service(
         width="1200"
         height="900"
       />
+    </div>
+  </section>
+
+  <!-- ── THE THREE VIEWS ─────────────────────────────────────────── -->
+  <section data-skin-imaging-views class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6">
+    <div class="max-w-[1120px] mx-auto">
+      <div class="max-w-[720px] mb-10">
+        <span class="kicker">Reading the images</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink leading-tight mt-2 mb-5">
+          What each image adds—and what it cannot decide.
+        </h2>
+        <p class="text-muted text-[15px] leading-[1.8]">
+          Each light mode records the skin differently. We compare the views with one another because no single photograph explains the cause of a visible pattern.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold-metal/10">
+        <article class="bg-charcoal-light p-7 md:p-8">
+          <h3 class="font-serif text-[21px] text-ink mb-3">Standard light</h3>
+          <p class="text-muted text-[14px] leading-[1.75]">
+            Records the visible surface, including texture, pores, fine lines, and spots that can be seen in ordinary light.
+          </p>
+        </article>
+        <article class="bg-charcoal-light p-7 md:p-8">
+          <h3 class="font-serif text-[21px] text-ink mb-3">Cross-polarized light</h3>
+          <p class="text-muted text-[14px] leading-[1.75]">
+            Reduces surface reflection so pigment and redness patterns are easier to examine alongside the standard photograph.
+          </p>
+        </article>
+        <article class="bg-charcoal-light p-7 md:p-8">
+          <h3 class="font-serif text-[21px] text-ink mb-3">UV light</h3>
+          <p class="text-muted text-[14px] leading-[1.75]">
+            Adds a fluorescence-based view. Concentrated pigment may appear darker, and fluorescence associated with some porphyrins may be visible.
+          </p>
+        </article>
+      </div>
+
+      <aside class="mt-8 border-l-2 border-gold/60 pl-6 max-w-[840px]" aria-label="Skin imaging limitations">
+        <h3 class="text-ink text-[16px] mb-2">A photograph is not a diagnosis.</h3>
+        <p class="text-muted text-[14px] leading-[1.75] mb-3">
+          These views document patterns. They do not determine their medical cause, diagnose a skin condition, or screen for skin cancer.
+        </p>
+        <p class="text-muted text-[14px] leading-[1.75]">
+          Hair, facial expression, makeup, sunscreen residue, and other material on the skin can affect an image. A changing spot, unexplained symptom, or other medical skin concern needs evaluation by an appropriately licensed medical provider.
+        </p>
+      </aside>
     </div>
   </section>
 
@@ -219,8 +273,8 @@ const serviceSchema = service(
       <div class="divide-y divide-white/8 border-t border-ink/8">
         {faqs.map((faq) => (
           <div class="py-7">
-            <h3 class="text-ink text-[16px] mb-2.5">{faq.q}</h3>
-            <p class="text-muted text-[14px] leading-[1.75]">{faq.a}</p>
+            <h3 data-skin-analysis-faq-question class="text-ink text-[16px] mb-2.5">{faq.q}</h3>
+            <p data-skin-analysis-faq-answer class="text-muted text-[14px] leading-[1.75]">{faq.a}</p>
           </div>
         ))}
       </div>

@@ -5,12 +5,11 @@
  *   node packages/studio/scripts/verify-treatment-pages.mjs
  *   node packages/studio/scripts/verify-treatment-pages.mjs --warn   # report, exit 0
  *
- * Wire into `guard:drift` or as a prebuild step. The point is that the schema
- * keeps these fields optional (so no existing document breaks), and completeness
- * is enforced here instead — at the moment it actually matters, which is publish.
+ * The schema keeps these fields optional so existing documents remain editable;
+ * this verifier checks completeness and factual risk at publication time.
  *
  * Checks, in order of severity:
- *   BLOCKING  — live service with no providerScope, or providerScope with no disclaimer
+ *   BLOCKING  — live service with no providerScope, or an invalid supplied variance note
  *   BLOCKING  — a staff or owner name found in client-facing copy
  *   BLOCKING  — banned voice or compliance language
  *   WARNING   — live service missing downtime, aftercare, priceRange, or whyQualified
@@ -86,7 +85,7 @@ function collectText(doc) {
     ...(doc.faqText ?? []),
     doc.downtime?.summary,
     doc.aftercare?.intro,
-      ...(doc.providerScope?.credentialPoints ?? []),
+    ...(doc.providerScope?.credentialPoints ?? []),
   ]
     .filter(Boolean)
     .join(' \n ')
@@ -111,8 +110,15 @@ async function main() {
 
     if (!doc.providerScope) {
       blocking.push(`${label} — no providerScope. Every live treatment must state who performs it.`);
-    } else if (!doc.providerScope.disclaimer?.trim()) {
-      blocking.push(`${label} — providerScope has no results disclaimer (FL Rule 64B8-11.001).`);
+    }
+
+    const varianceNote = doc.providerScope?.disclaimer?.trim();
+    if (/\bcandidacy is determined at consultation\b/i.test(varianceNote ?? '') ||
+        /\bthis page is general information and is not medical advice\b/i.test(varianceNote ?? '')) {
+      blocking.push(`${label} — providerScope contains retired generic disclaimer boilerplate.`);
+    }
+    if (varianceNote && !/\bindividual (?:outcomes?|results?) var(?:y|ies)\b/i.test(varianceNote)) {
+      blocking.push(`${label} — providerScope variance note does not state that individual outcomes vary.`);
     }
 
     // A named practitioner without a licence type is the violation, not the name.

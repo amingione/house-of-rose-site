@@ -10,7 +10,7 @@ import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 // Working voice reset: copy stays local until Amber approves it for Sanity.
 const heading = ABOUT_PAGE_FALLBACK.hraHeading;
-const intro = ABOUT_PAGE_FALLBACK.hraIntro;
+const intro = 'A co-owned medical aesthetics practice where medical services, esthetic skin care, and a small group of related services share one Punta Gorda address.';
 const imageUrl = content?.hraImageUrl ?? ABOUT_PAGE_FALLBACK.hraImageUrl;
 const imageAlt = content?.hraImageAlt ?? ABOUT_PAGE_FALLBACK.hraImageAlt;
 const title = ABOUT_PAGE_FALLBACK.hraSeo?.metaTitle;
@@ -64,11 +64,16 @@ const breadcrumb = breadcrumbList([
       <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
         <div>
           <p class="kicker">The practice</p>
-          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">One location. Distinct service categories.</h2>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">Two owners. Distinct roles. One practice.</h2>
         </div>
-        <p class="text-[16px] leading-[1.85] text-muted">
-          House of Rose offers skin treatments, injectables, IV hydration, provider-guided weight management, facials, waxing, makeup, and permanent jewelry in Punta Gorda.
-        </p>
+        <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
+          <p>
+            House of Rose Aesthetics is co-owned by Diana Morrison, RN, and Amber Mingione, Licensed Esthetician. Diana’s work centers on medical services. Amber’s work centers on esthetic skin care. Their roles are different, and that difference gives the practice its range without blurring who provides what.
+          </p>
+          <p>
+            Together, they have made room for skin treatments, injectables, IV hydration, provider-guided weight management, facials, waxing, makeup, and permanent jewelry. Clients can get to know one local team even when the reason for a visit changes.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -78,15 +83,35 @@ const breadcrumb = breadcrumbList([
           <article class="bg-bone p-8 sm:p-10">
             <h2 class="font-serif text-[27px] text-ink">Medical services</h2>
             <p class="mt-5 max-w-[470px] text-[15px] leading-[1.8] text-muted">
-              Medical services include injectables, IV hydration, weight management, and medically directed skin treatments.
+              Diana Morrison, RN, provides injectable, IV hydration, and weight-management services. Medically directed skin treatments are also offered within the practice’s established provider roles.
             </p>
           </article>
           <article class="bg-bone p-8 sm:p-10">
-            <h2 class="font-serif text-[27px] text-ink">Skin and non-medical services</h2>
+            <h2 class="font-serif text-[27px] text-ink">Esthetic and related services</h2>
             <p class="mt-5 max-w-[470px] text-[15px] leading-[1.8] text-muted">
-              Licensed estheticians provide facial, skin, and waxing services. Makeup artistry and permanent jewelry are offered as separate non-medical services.
+              Amber Mingione, Licensed Esthetician, works in esthetic skin care, alongside licensed estheticians providing facial and waxing services. Makeup artistry and permanent jewelry have their own place on the menu.
             </p>
           </article>
+        </div>
+
+        <div data-practice-accountability class="mt-[clamp(56px,8vw,88px)] grid gap-10 border-t border-walnut/15 pt-[clamp(44px,6vw,68px)] lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <div>
+            <p class="kicker">People and oversight</p>
+            <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+              Who will I actually see?
+            </h2>
+          </div>
+          <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
+            <p>
+              Your service page names the practitioner and licence type when the appointment has an assigned provider. The provider directory brings those names, roles, and current services together, so you can know who you are contacting before you book.
+            </p>
+            <p>
+              Joshua Shaw, MD is the practice’s medical director, providing medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with that appointment.
+            </p>
+            <p>
+              The storefront, reception area, and treatment rooms shown on this site are the actual spaces at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
+            </p>
+          </div>
         </div>
 
         <div class="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-walnut/15 pt-8">

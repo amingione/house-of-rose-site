@@ -54,12 +54,7 @@ export const concern = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-      ],
-      options: { collapsed: true },
+      type: 'seo',
     }),
   ],
   preview: {

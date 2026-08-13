@@ -32,8 +32,8 @@ export const ABOUT_PAGE_FALLBACK: Required<
   hraIntro:
     'A medical aesthetics practice offering distinct services for skin, movement, volume, body concerns, hydration, and wellness.',
   hraParagraphs: [
-    'Skin texture, pigment, muscle movement, and volume change are not interchangeable concerns. Each service category has a different role.',
-    'Every recommendation should have a clear reason to be there. Sometimes the right answer is no treatment at all.',
+    'House of Rose brings skin care, injectable services, IV hydration, and medical weight management together at one Punta Gorda practice.',
+    'Co-Owners Diana Morrison, RN, and Amber Mingione, Licensed Esthetician, work in distinct verified roles, supported by a small team whose profiles explain exactly what each person provides.',
   ],
   hraImageUrl: '/images/optimized/actual-reception-1400-light.webp',
   hraImageAlt: 'House of Rose Aesthetics reception in Punta Gorda, Florida',
@@ -63,9 +63,11 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     slug: 'diana',
     publicName: 'Diana Morrison, RN',
     publicRole: 'Registered Nurse · Co-Owner · Aesthetic Injector',
-    summary: 'Diana Morrison, RN, is a Co-Owner of House of Rose Aesthetics.',
+    summary:
+      'Diana Morrison, RN, is a Co-Owner and provides the injectable, IV hydration, and medical weight-management services at House of Rose Aesthetics.',
     biography: [
-      'Her current work includes neuromodulators, dermal fillers, injectable PRF, PRF Bio-Filler, IV hydration, and GLP-1 weight management.',
+      'Diana’s injectable work includes Botox and Daxxify for movement-related lines, hyaluronic-acid dermal fillers for selected areas of lost volume, and the current injectable PRF appointments.',
+      'She also provides IV hydration and the GLP-1 weight-management program. These services are performed under written physician protocol and medical direction.',
     ],
     serviceFocus: ['Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'PRF Bio-Filler', 'IV hydration', 'GLP-1 weight management'],
     imageUrl: '/images/providers/diana-profile-1122.webp',
@@ -84,12 +86,13 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     slug: 'amber',
     publicName: 'Amber Mingione, Licensed Esthetician',
     publicRole: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist · Co-Owner',
-    summary: 'Amber Mingione, Licensed Esthetician, is a Co-Owner of House of Rose Aesthetics.',
+    summary:
+      'Amber Mingione, Licensed Esthetician, is a Co-Owner whose current work centers on skin-surface, texture, and selected device services.',
     biography: [
-      'Her current work includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and topical PRF used during eligible Microneedling.',
-      'PRF in Amber’s work is topical only. She does not perform PRF injections; injectable PRF is performed separately by Diana Morrison, RN.',
+      'Amber’s current menu includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel when used as an add-on to an eligible advanced service.',
+      'When PRF is part of Amber’s work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides the injectable PRF appointments.',
     ],
-    serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning'],
+    serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
     imageUrl: '/images/providers/amber-profile-1122.webp',
     imageAlt: 'Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics',
     digitalCardPath: '/amber/',
@@ -106,9 +109,11 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     slug: 'brandy',
     publicName: 'Brandy, Licensed Esthetician',
     publicRole: 'Licensed Esthetician',
-    summary: 'Brandy is a Licensed Esthetician at House of Rose Aesthetics.',
+    summary:
+      'Brandy is a Licensed Esthetician providing facials, standalone BioRePeel, and facial waxing at House of Rose Aesthetics.',
     biography: [
-      'Her current work includes facials, standalone BioRePeel, and facial waxing.',
+      'Brandy provides facials, standalone peels, and facial waxing. Standalone BioRePeel is booked with Brandy; Amber uses BioRePeel only as an add-on to an eligible advanced service.',
+      'Facial waxing is booked separately for brows, the upper lip, and the chin, including a distinct brow shape, trim, and wax appointment.',
     ],
     serviceFocus: ['Facials', 'Standalone BioRePeel', 'Facial waxing'],
     imageUrl: '/images/providers/brandy-profile-1122.webp',
@@ -129,8 +134,8 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Aundrea Pedigo, Esthetician, provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics.',
     biography: [
-      'Aundrea Pedigo, Esthetician, provides makeup for weddings, special events, photo shoots, and celebrations, with finishes ranging from soft event makeup to full glam.',
-      'She also provides permanent jewelry.',
+      'Aundrea provides makeup for weddings, special events, photo shoots, and celebrations, with work ranging from soft event makeup to full glam.',
+      'She also provides permanent jewelry: a fitted, clasp-free chain closed by welding and removable by cutting when needed. Makeup artistry and permanent jewelry are non-medical services.',
     ],
     serviceFocus: ['Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
     imageAlt: 'Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics',

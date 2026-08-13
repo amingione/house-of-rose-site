@@ -41,7 +41,7 @@ export const serviceCollection = defineType({
       options: {
         list: [
           { title: 'Catalog', value: 'catalog' },
-          { title: 'Editorial / Personalized', value: 'editorial' },
+          { title: 'Editorial (review)', value: 'editorial' },
         ],
         layout: 'radio',
       },
@@ -49,20 +49,22 @@ export const serviceCollection = defineType({
     }),
     defineField({
       name: 'headline',
-      title: 'Editorial Headline',
+      title: 'Editorial Headline (review)',
       type: 'string',
+      description: 'Use only a factual collection distinction; avoid campaign or aspirational language.',
       hidden: ({ document }) => document?.presentation !== 'editorial',
     }),
     defineField({
       name: 'intro',
-      title: 'Editorial Introduction',
+      title: 'Editorial Introduction (review)',
       type: 'text',
       rows: 4,
+      description: 'Explain the verified services in this collection without a customer profile or recommendation script.',
       hidden: ({ document }) => document?.presentation !== 'editorial',
     }),
     defineField({
       name: 'featuredServices',
-      title: 'Featured Starting Treatments',
+      title: 'Featured Services',
       type: 'array',
       hidden: ({ document }) => document?.presentation !== 'editorial',
       validation: (R) => R.max(3),

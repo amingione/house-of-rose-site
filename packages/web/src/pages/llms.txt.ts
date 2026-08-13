@@ -5,14 +5,12 @@ import {
   ALL_SERVICES_QUERY,
   LLMS_FEATURED_TREATMENTS_QUERY,
   ALL_BLOG_POSTS_QUERY,
-  ALL_COLLECTIONS_QUERY,
   ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
   type Service,
   type BlogPost,
-  type ServiceCollection,
   type CostGuide,
   type Comparison,
   type LocalArea,
@@ -20,7 +18,11 @@ import {
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
-import { getPublicBlogTitle } from '@/lib/publicBlogContent';
+import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
 
 const NON_PUBLIC_SERVICE_SLUGS = new Set([
   'microneedling-body',
@@ -31,11 +33,10 @@ const NON_PUBLIC_SERVICE_SLUGS = new Set([
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [services, featuredTreatments, posts, collections, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
+  const [services, featuredTreatments, posts, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<Service[]>(LLMS_FEATURED_TREATMENTS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
-    sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
@@ -45,6 +46,8 @@ export const GET: APIRoute = async ({ site }) => {
   const publicServices = [...services, ...featuredTreatments]
     .filter((service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug))
     .filter((service, index, allServices) => allServices.findIndex(({ slug }) => slug === service.slug) === index);
+  const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
+  const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
   const lines: string[] = [
     `# House of Rose Aesthetics`,
@@ -63,10 +66,10 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Consultation](${base}/consultation/): Information about current skin, injectable, IV hydration, and wellness services`,
     `- [Skin Imaging & Analysis](${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
     `- [Treatment Series & Packages](${base}/packages/): Current package pages and their included services`,
-    `- [Experience](${base}/experience/): What to expect when you visit the Punta Gorda practice`,
+    `- [Experience](${base}/experience/): Actual storefront, treatment rooms, providers, and visit information`,
     `- [Contact](${base}/contact/): Book a consultation or reach out`,
     `- [Rent a Suite](${base}/rent-a-room/): Treatment room rental information for eligible licensed professionals`,
-    `- [Journal](${base}/blog/): Articles about services, skincare, wellness, and practice updates in Southwest Florida`,
+    `- [Journal](${base}/blog/): Reviewed treatment articles with linked sources and clearly stated limitations`,
     `- [FAQ](${base}/faq/): Answers about treatments, pricing, and what to expect`,
     `- [Support](${base}/support/): Help with appointments, booking, directions, and contacting the studio`,
     `- [Terms of Service](${base}/terms-of-service/): Terms for website use, appointments, communications, and online product orders`,
@@ -90,21 +93,10 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(``);
   }
 
-  if (collections.length > 0) {
-    lines.push(`## Service Collections`, ``);
-    for (const col of collections) {
-      lines.push(`- [${col.title}](${base}/services/collections/${col.slug}/)`);
-    }
-    lines.push(``);
-  }
-
   if (publicServices.length > 0) {
     lines.push(`## Services`, ``);
     for (const s of publicServices) {
-      // `service.price` is editor-authored free text (e.g. "From $45", "Consultation required")
-      // — print it verbatim so we never emit a mangled "$From $45".
-      const price = s.price ? ` ${s.price}.` : '';
-      lines.push(`- [${s.title}](${base}/services/${s.slug}/).${price}`);
+      lines.push(`- [${s.title}](${base}/services/${s.slug}/).`);
     }
     lines.push(``);
   }
@@ -119,10 +111,10 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(``);
   }
 
-  if (comparisons.length > 0) {
+  if (publicComparisons.length > 0) {
     lines.push(`## Treatment Comparisons`, ``);
-    for (const c of comparisons) {
-      lines.push(`- [${c.title}](${base}/compare/${c.slug}/)`);
+    for (const c of publicComparisons) {
+      lines.push(`- [${getPublicComparisonContent(c.slug)!.title}](${base}/compare/${c.slug}/)`);
     }
     lines.push(``);
   }
@@ -135,9 +127,9 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(``);
   }
 
-  if (posts.length > 0) {
+  if (publicPosts.length > 0) {
     lines.push(`## Journal Articles`, ``);
-    for (const p of posts) {
+    for (const p of publicPosts) {
       lines.push(`- [${getPublicBlogTitle(p)}](${base}/blog/${p.slug}/)`);
     }
     lines.push(``);

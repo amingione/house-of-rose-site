@@ -52,6 +52,78 @@ const socialImage = profile.imageUrl && isSanityProfileImage
   ? urlFor(profile.imageUrl).width(1200).height(630).fit('crop').format('webp').quality(82).url()
   : profile.imageUrl;
 const absoluteImage = socialImage ? new URL(socialImage, site).toString() : undefined;
+const serviceFocusLinks: Readonly<Record<string, string>> = {
+  Neuromodulators: '/services/injectables/',
+  'Dermal fillers': '/services/dermal-fillers/',
+  'Injectable PRF': '/services/prf-injections/',
+  'PRF Bio-Filler': '/services/prf-injections/',
+  'IV hydration': '/services/iv-hydration-therapy/',
+  'GLP-1 weight management': '/services/glp-1-weight-management/',
+  'Microneedling with the Procell Therapies device': '/services/microneedling/',
+  'Topical PRF': '/services/microneedling/',
+  Glo2Facial: '/services/glo2facial/',
+  Dermaplaning: '/services/dermaplaning/',
+  'BioRePeel add-on': '/services/biorepeel/',
+  Facials: '/services/#skin-health-corrective-care',
+  'Standalone BioRePeel': '/services/biorepeel/',
+  'Facial waxing': '/services/facial-waxing/',
+  'Permanent jewelry': '/services/permanent-jewelry/',
+};
+interface ProviderClosingLink {
+  readonly href: string;
+  readonly label: string;
+}
+
+interface ProviderClosing {
+  readonly heading: string;
+  readonly body: string;
+  readonly links: readonly ProviderClosingLink[];
+}
+
+const providerClosings: Readonly<Record<string, ProviderClosing>> = {
+  diana: {
+    heading: 'Looking for a medical service with Diana?',
+    body: 'Start with the injectable overview, the six-option IV menu, or the current weight-management page.',
+    links: [
+      { href: '/services/injectables-bio-fillers/', label: 'Review injectables' },
+      { href: '/services/iv-hydration-therapy/', label: 'Review IV hydration' },
+      { href: '/services/glp-1-weight-management/', label: 'Review weight management' },
+    ],
+  },
+  amber: {
+    heading: 'Looking for a skin service with Amber?',
+    body: 'Her current work includes Procell Microneedling, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an eligible add-on.',
+    links: [
+      { href: '/services/microneedling/', label: 'Review Microneedling' },
+      { href: '/services/glo2facial/', label: 'Review Glo2Facial' },
+      { href: '/services/dermaplaning/', label: 'Review dermaplaning' },
+    ],
+  },
+  brandy: {
+    heading: 'Looking for a facial or waxing appointment with Brandy?',
+    body: 'Review standalone BioRePeel or choose the facial-waxing area you want to book.',
+    links: [
+      { href: '/services/biorepeel/', label: 'Review BioRePeel' },
+      { href: '/services/facial-waxing/', label: 'Review facial waxing' },
+    ],
+  },
+  aundrea: {
+    heading: 'Looking for makeup artistry or permanent jewelry?',
+    body: 'Permanent jewelry has its own service page. For wedding, event, or photo-shoot makeup, contact House of Rose with the date and occasion.',
+    links: [
+      { href: '/services/permanent-jewelry/', label: 'Review permanent jewelry' },
+      { href: '/contact/', label: 'Ask about makeup artistry' },
+    ],
+  },
+};
+const providerClosing = providerClosings[profile.slug] ?? {
+  heading: `Explore ${profile.publicName.split(',')[0]}’s current work.`,
+  body: 'Open the service menu or contact House of Rose with the appointment you want to discuss.',
+  links: [
+    { href: '/services/', label: 'Explore services' },
+    { href: '/contact/', label: 'Contact House of Rose' },
+  ],
+};
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'About', item: new URL('/about/', site).toString() },
@@ -145,7 +217,13 @@ const personSchema = personProfile(
           <h2 class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">Service focus</h2>
           <ul class="mt-5 divide-y divide-walnut/10 border-b border-walnut/10">
             {serviceFocus.map((focus, index) => (
-              <li class="py-4 text-[15px] text-muted-strong" {...(verifiedFallback ? {} : sbFieldPathParts('serviceFocus', index))}>{focus}</li>
+              <li class="py-4 text-[15px] text-muted-strong" {...(verifiedFallback ? {} : sbFieldPathParts('serviceFocus', index))}>
+                {serviceFocusLinks[focus] ? (
+                  <a href={serviceFocusLinks[focus]} class="underline decoration-walnut/25 underline-offset-4 transition-colors hover:text-gold">
+                    {focus}
+                  </a>
+                ) : focus}
+              </li>
             ))}
           </ul>
           {profile.slug === 'aundrea' && (
@@ -160,10 +238,17 @@ const personSchema = personProfile(
       </div>
     </section>
 
-    <section class="px-6 py-[clamp(52px,7vw,80px)]">
+    <section data-provider-closing class="px-6 py-[clamp(52px,7vw,80px)]">
       <div class="mx-auto flex max-w-[960px] flex-col items-center text-center">
-        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">Current services.</h2>
-        <a href="/services/" class="btn-gold mt-8">Explore services</a>
+        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">{providerClosing.heading}</h2>
+        <p class="mt-5 max-w-[620px] text-[15px] leading-[1.75] text-muted">
+          {providerClosing.body}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          {providerClosing.links.map((link, index) => (
+            <a href={link.href} class={index === 0 ? 'btn-gold' : 'btn-outline-gold'}>{link.label}</a>
+          ))}
+        </div>
       </div>
     </section>
   </div>

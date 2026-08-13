@@ -3,8 +3,8 @@ import { defineField, defineType } from 'sanity';
 /**
  * Treatment Package — mirrors the Notion "HOUSE OF ROSE: Packages & Series" database.
  * Operational fields (Type, Status, Provider, Services Included, Founding/Rack pricing,
- * Cadence) match Notion; marketing fields (outcome, positioning, candidacyNote, image)
- * are website-only enrichment.
+ * Cadence) match Notion; legacy website-copy fields remain for source compatibility
+ * while their public voice is under review.
  */
 export const treatmentPackage = defineType({
   name: 'treatmentPackage',
@@ -31,7 +31,7 @@ export const treatmentPackage = defineType({
       options: {
         list: [
           { title: 'Series', value: 'series' },
-          { title: 'Journey', value: 'journey' },
+          { title: 'Program', value: 'journey' },
           { title: 'Combo / Add-On Bundle', value: 'combo' },
         ],
         layout: 'radio',
@@ -73,10 +73,10 @@ export const treatmentPackage = defineType({
     }),
     defineField({
       name: 'cadence',
-      title: 'Cadence',
+      title: 'Timing',
       type: 'text',
       rows: 2,
-      description: 'Experience-level timing/sequencing; clinical specifics defer to the provider.',
+      description: 'Verified public timing or spacing only. Omit when the current booking source does not support it.',
     }),
     defineField({
       name: 'rackPrice',
@@ -84,26 +84,26 @@ export const treatmentPackage = defineType({
       type: 'string',
       description: 'Standard published rate (free text — supports ranges).',
     }),
-    // ─── Website-only marketing enrichment ───────────────────────────────────
+    // ─── Website copy under review ────────────────────────────────────────────
     defineField({
       name: 'outcome',
-      title: 'Ideal Outcome (website)',
+      title: 'Public Summary (review)',
       type: 'text',
       rows: 2,
-      description: 'Responsible, non-guaranteeing language. The visible/emotional result.',
+      description: 'Stored source copy. Not currently rendered until voice and claims are approved.',
     }),
     defineField({
       name: 'positioning',
-      title: 'Positioning Angle (website)',
+      title: 'Display Notes (review)',
       type: 'text',
       rows: 2,
+      description: 'Internal display notes only. Do not draft a positioning angle or public sales line here.',
     }),
     defineField({
       name: 'candidacyNote',
-      title: 'Candidacy Note (website)',
+      title: 'Suitability Note (review)',
       type: 'string',
-      initialValue:
-        'Final treatment combinations are confirmed by your licensed provider based on candidacy, contraindications, and local regulations.',
+      description: 'Use only when a package-specific suitability fact is necessary. No default boilerplate.',
     }),
     defineField({
       name: 'image',

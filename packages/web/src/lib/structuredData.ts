@@ -299,7 +299,7 @@ export function webPage(input: WebPageInput, siteUrl: string): JsonLd {
   };
 }
 
-export function faqPage(faqs: Pick<FAQ, 'question' | 'answer'>[]): JsonLd | null {
+export function faqPage(faqs: readonly Pick<FAQ, 'question' | 'answer'>[]): JsonLd | null {
   if (!faqs || faqs.length === 0) return null;
   return {
     '@context': 'https://schema.org',

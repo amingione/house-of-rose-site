@@ -14,11 +14,13 @@ import { blogPosting, breadcrumbList } from '@/lib/structuredData';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 import { alignPublicContent } from '@/lib/publicCopy';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
-import { getPublicBlogTitle } from '@/lib/publicBlogContent';
+import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_BLOG_POST_SLUGS_QUERY);
-  return slugs.map(({ slug }) => ({ params: { slug } }));
+  return slugs
+    .filter(({ slug }) => isReviewedPublicBlogSlug(slug))
+    .map(({ slug }) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
@@ -39,7 +41,7 @@ const pageTitle = isMorpheusSafetyArticle
   ? `${publicTitle} | House of Rose`
   : (post.seo?.metaTitle ?? `${post.title} | House of Rose`);
 const pageDescription = isMorpheusSafetyArticle
-  ? 'A concise guide to Morpheus8 safety, provider questions, possible side effects, recovery, and treatment fit from House of Rose in Punta Gorda.'
+  ? 'What to verify before Morpheus8: provider credentials, treatment area, settings, recovery, possible complications, and follow-up in Punta Gorda.'
   : (post.seo?.metaDescription ?? post.excerpt ?? '');
 const heroImage = post.featuredImage
   ? urlFor(post.featuredImage).width(1920).height(1080).fit('crop').url()
@@ -55,23 +57,32 @@ const publishedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
 });
 
 const morpheusSafetyArticle = `
-  <p>Morpheus8 is an FDA-cleared radiofrequency microneedling device. That does not make treatment risk-free or appropriate for everyone. Safety depends on the person being treated, the area, the settings, the provider, and the care surrounding the procedure.</p>
-  <h2>What matters before treatment</h2>
-  <p>A provider should review your medical history, medications, skin condition, treatment area, and expectations before recommending Morpheus8. The same settings do not belong on every person or every part of the face or body.</p>
-  <h2>Possible side effects and recovery</h2>
-  <p>Expected effects, recovery, and less common complications should be explained before you consent. Ask what is typical for the intended area, what aftercare is required, and which changes should prompt a call to the practice. Individual experiences and outcomes vary.</p>
-  <h2>About alarming stories online</h2>
-  <p>A post or photograph cannot establish why an unwanted outcome occurred. Persistent, worsening, or unexpected symptoms need an appropriate medical evaluation—not a diagnosis from social media.</p>
-  <h2>Questions worth asking</h2>
+  <p><strong>Short answer:</strong> Morpheus8 is a medical procedure. Whether a particular plan is reasonable cannot be decided from the device name, an online photograph, or a promise about downtime. The useful questions are concrete: who is performing it, what area is being treated, how depth and energy are chosen, what can happen during recovery, and how the practice responds if healing does not follow the expected course.</p>
+  <h2>Why the safety conversation matters</h2>
+  <p>Morpheus8 combines microneedles with radiofrequency energy. In October 2025, the FDA notified patients and providers that burns, scarring, fat loss, disfigurement, and nerve damage had been reported with certain uses of RF microneedling devices. The notice did not say that every procedure causes these outcomes. It advised clients to seek a licensed health care provider with RF microneedling training and experience, discuss benefits and risks, and ask which device will be used.</p>
+  <h2>Make the proposed plan specific</h2>
+  <p>The device name alone does not explain what would happen at an appointment. A useful consultation should cover the exact area, how depth and energy would be chosen, and whether your health history, medications, current skin condition, or recent procedures change what can be done. Depth and energy can vary by area and person; a one-setting explanation is not enough.</p>
+  <h2>Questions to take into the consultation</h2>
   <ul>
     <li>Who will perform the procedure, and what is their licence type?</li>
-    <li>Why is Morpheus8 being recommended for this concern and area?</li>
-    <li>How will the settings be selected?</li>
-    <li>What recovery should I expect, and when should I call?</li>
+    <li>What training and experience do they have with RF microneedling?</li>
+    <li>Which area will be treated, and why is Morpheus8 being considered for it?</li>
+    <li>How will the treatment depth and energy be selected?</li>
+    <li>Which short-term effects are expected, and which changes should prompt a call?</li>
+    <li>If I am concerned afterward, how do I reach the practice and who evaluates the response?</li>
     <li>What are the reasonable alternatives, including doing nothing now?</li>
   </ul>
-  <h2>House of Rose in Punta Gorda</h2>
-  <p>Morpheus8 is offered after a consultation and is performed under medical direction. The appropriate licensed provider determines whether the procedure is suitable.</p>
+  <h2>Recovery needs more than a number of days</h2>
+  <p>A day count alone is an incomplete recovery explanation. Ask which short-term effects are expected for the proposed area, what aftercare is required, and which changes should prompt a call to the practice or medical care. Individual experiences and outcomes vary.</p>
+  <h2>What an online story can—and cannot—tell you</h2>
+  <p>A post may give you a question worth asking. It usually cannot show the person's health history, exact device and cartridge, treatment area, settings, technique, or follow-up. A photograph alone cannot establish what caused another person's outcome or predict yours. Persistent, worsening, or unexpected symptoms need evaluation by a licensed health care provider.</p>
+  <h2>How this applies at House of Rose</h2>
+  <p>House of Rose lists <a href="/services/morpheus8/">Morpheus8 RF Microneedling</a> as a consultation-only service performed under medical direction. Before scheduling treatment, confirm the practitioner’s name, licence type, and RF microneedling experience. The conversation should also cover the proposed area, alternatives, recovery, and how to reach the practice with a concern afterward.</p>
+  <h2>Primary sources</h2>
+  <ul>
+    <li><a href="https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication" rel="noopener noreferrer">FDA safety communication on certain uses of RF microneedling</a>, issued October 15, 2025.</li>
+    <li><a href="https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices" rel="noopener noreferrer">FDA patient information about microneedling devices</a>.</li>
+  </ul>
 `;
 
 const bodyHTML = isMorpheusSafetyArticle
@@ -171,7 +182,8 @@ const breadcrumbSchema = breadcrumbList([
 
       {bodyHTML ? (
         <div
-          {...sbFieldPath('body')}
+          {...(isMorpheusSafetyArticle ? {} : sbFieldPath('body'))}
+          data-reviewed-morpheus-safety={isMorpheusSafetyArticle ? 'true' : undefined}
           class="prose prose-invert prose-lg max-w-none
             prose-headings:font-serif prose-headings:font-normal prose-headings:text-ink
             prose-h2:text-[clamp(22px,3vw,30px)] prose-h2:mt-12 prose-h2:mb-4

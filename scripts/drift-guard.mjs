@@ -157,7 +157,9 @@ function scanFile(file) {
     const reviewed = REVIEWED_EXCEPTION.test(text) || REVIEWED_EXCEPTION.test(lines[i - 1] ?? '');
     const publicCopyDetector = rel.endsWith('packages/web/src/lib/publicCopy.ts')
       && (/\.replace\(/.test(text) || /\.match\(/.test(text) || /^\s*\//.test(text) || /^\s*\? \/\\b/.test(text));
-    if (!reviewed && !publicCopyDetector && !WARN_EXEMPT.some((re) => re.test(text))) {
+    const studioCopyValidator = rel.endsWith('packages/studio/schemas/validation/publicCopy.ts')
+      && /^\s*\/.*\/i,?$/.test(text);
+    if (!reviewed && !publicCopyDetector && !studioCopyValidator && !WARN_EXEMPT.some((re) => re.test(text))) {
       for (const { label, re } of WARN_RULES) {
         if (re.test(text)) {
           warnings.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });

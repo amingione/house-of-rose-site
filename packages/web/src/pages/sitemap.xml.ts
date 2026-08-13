@@ -4,7 +4,6 @@ import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_SITEMAP_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
-  ALL_COLLECTIONS_QUERY,
   ALL_CONCERNS_QUERY,
   ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
@@ -14,7 +13,6 @@ import {
   PUBLIC_PROVIDERS_QUERY,
   type SitemapService,
   type BlogPost,
-  type ServiceCollection,
   type Concern,
   type CostGuide,
   type Comparison,
@@ -23,16 +21,17 @@ import {
   type TreatmentPackage,
   type PublicProviderProfile,
 } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
+import { isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
+import { filterReviewedPublicComparisons } from '@/lib/publicComparisonContent';
 import { SHOP_ENABLED } from '@/lib/features';
 
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
 
-  const [serviceSlugs, blogPosts, collections, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
+  const [serviceSlugs, blogPosts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
     sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
-    sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
@@ -41,7 +40,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
     sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
-  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+  const providers = resolvePublicProviderProfiles(sanityProviders);
 
   const now = new Date().toISOString().split('T')[0];
 
@@ -56,6 +55,7 @@ export const GET: APIRoute = async ({ site }) => {
   const staticPages = [
     { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/services/`, priority: '0.9', changefreq: 'weekly', lastmod: now },
+    { loc: `${baseUrl}/concerns/`, priority: '0.8', changefreq: 'weekly', lastmod: now },
     { loc: `${baseUrl}/about/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/about/hra/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/about/providers/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
@@ -91,23 +91,16 @@ export const GET: APIRoute = async ({ site }) => {
   }));
 
   // Blog post pages
-  const blogPages = blogPosts.map((post) => ({
+  const blogPages = blogPosts.filter((post) => isReviewedPublicBlogSlug(post.slug)).map((post) => ({
     loc: `${baseUrl}/blog/${post.slug}/`,
     priority: '0.7',
     changefreq: 'monthly',
     lastmod: post.publishedAt ? post.publishedAt.split('T')[0] : now,
   }));
 
-  // Collection pages
+  // Collection details are navigation-only and noindex. Keep only the category
+  // index in XML; canonical service pages carry the search intent.
   const collectionIndexPage = { loc: `${baseUrl}/services/collections/`, priority: '0.7', changefreq: 'monthly', lastmod: now };
-  // The waxing collection is a links-only directory and is deliberately
-  // noindex; its supported facial/body service pages remain in servicePages.
-  const collectionPages = collections.filter((col) => col.slug !== 'waxing').map((col) => ({
-    loc: `${baseUrl}/services/collections/${col.slug}/`,
-    priority: '0.7',
-    changefreq: 'monthly',
-    lastmod: now,
-  }));
 
   // Concern pages
   const concernPages = concerns.map((concern) => ({
@@ -127,7 +120,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // AEO page types
   const costPages = costGuides.map((c) => ({ loc: `${baseUrl}/cost/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
-  const comparePages = comparisons.map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
+  const comparePages = filterReviewedPublicComparisons(comparisons).map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
   const areaPages = localAreas.map((a) => ({ loc: `${baseUrl}/areas/${a.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: a._updatedAt ? a._updatedAt.split('T')[0] : now }));
   const resultPages = caseStudies.map((cs) => ({ loc: `${baseUrl}/results/${cs.slug}/`, priority: '0.6', changefreq: 'monthly', lastmod: cs._updatedAt ? cs._updatedAt.split('T')[0] : now }));
   const providerPages = providers.map((provider) => ({
@@ -144,7 +137,6 @@ export const GET: APIRoute = async ({ site }) => {
     ...staticPages,
     ...servicePages,
     collectionIndexPage,
-    ...collectionPages,
     ...concernPages,
     ...packagePages,
     ...blogPages,

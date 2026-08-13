@@ -10,6 +10,7 @@ import {
   type TreatmentPackage,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
+import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -32,9 +33,12 @@ const services = pkg.servicesIncluded ?? [];
 // GlossGenius is commerce truth. The current export corroborates only the
 // Acne Bootcamp package price; other live Sanity package amounts stay hidden
 // until their corresponding commerce line exists and is reconciled.
-const price = pkg.slug === 'face-reality-12-week-program' ? pkg.rackPrice : undefined;
+const isFaceRealityProgram = pkg.slug === FACE_REALITY_PROGRAM.packageSlug;
+const price = isFaceRealityProgram ? `$${FACE_REALITY_PROGRAM.packagePriceUsd}` : undefined;
 const serviceNames = services.map((service) => service.title).join(', ');
-const summary = serviceNames
+const summary = isFaceRealityProgram
+  ? `${FACE_REALITY_PROGRAM.summary} The complete program is $${FACE_REALITY_PROGRAM.packagePriceUsd}.`
+  : serviceNames
   ? `${pkg.title} includes ${serviceNames}.`
   : `${pkg.title} at House of Rose Aesthetics in Punta Gorda, Florida.`;
 // Temporary voice-reset overlay: keep the factual duration without rendering
@@ -100,6 +104,50 @@ const pageDescription = summary;
       )}
     </div>
   </section>
+
+  {isFaceRealityProgram && (
+    <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(52px,7vw,80px)] md:px-12">
+      <div class="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div>
+          <span class="kicker">The program</span>
+          <h2 class="mt-3 font-serif text-[clamp(30px,5vw,46px)] leading-tight text-ink">
+            What the $899 represents.
+          </h2>
+          <p class="mt-5 max-w-[540px] text-[16px] leading-[1.75] text-muted-strong">
+            {FACE_REALITY_PROGRAM.programOnly} The $899 figure is the price of the complete 12-week program, not the price of one visit.
+          </p>
+          <a href="/services/face-reality-acne-program/" class="learn-more mt-7 inline-block hover:text-gold">
+            Review the Face Reality program
+          </a>
+        </div>
+        <div class="border-y border-gold-metal/15">
+          {FACE_REALITY_PROGRAM.packageDetails.map((detail) => (
+            <p class="border-b border-gold-metal/10 py-6 text-[15px] leading-[1.7] text-muted last:border-b-0">
+              {detail}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mx-auto mt-12 grid max-w-[1120px] gap-px overflow-hidden border border-gold-metal/10 bg-gold-metal/10 md:grid-cols-2">
+        <div class="bg-charcoal p-7 md:p-9">
+          <h3 class="font-serif text-[24px] leading-tight text-ink">The consultation is separate.</h3>
+          <p class="mt-4 text-[15px] leading-[1.75] text-muted">
+            The current menu lists a 60-minute Acne Bootcamp Consultation at $99. It is the directly bookable starting appointment; the $899 listing is the complete program. Home-care products selected after consultation are a separate purchase.
+          </p>
+        </div>
+        <div class="bg-charcoal p-7 md:p-9">
+          <h3 class="font-serif text-[24px] leading-tight text-ink">Who provides the program.</h3>
+          <p class="mt-4 text-[15px] leading-[1.75] text-muted">
+            Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Face Reality program at House of Rose in Punta Gorda.
+          </p>
+          <a href="/about/providers/amber/" class="learn-more mt-5 inline-block hover:text-gold">
+            Meet Amber Mingione
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Included services -->
   {services.length > 0 && (

@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import ConcernEducation from '@/components/concerns/ConcernEducation.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
@@ -10,6 +11,8 @@ import {
   CONCERN_BY_SLUG_QUERY,
   type Concern,
 } from '@/lib/queries';
+import { getConcernEducation } from '@/lib/concernEducation';
+import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_CONCERN_SLUGS_QUERY);
@@ -25,9 +28,12 @@ if (!concernData) {
   throw new Error(`[concerns/[slug]] No concern found in Sanity for slug "${slug}"`);
 }
 const concern = concernData;
+const concernEducation = slug ? getConcernEducation(slug) : undefined;
 
 const pageTitle = `${concern.title} | House of Rose Aesthetics`;
-const pageDescription = `See the House of Rose Aesthetics services currently associated with ${concern.title.toLowerCase()} in Punta Gorda, Florida.`;
+const pageDescription = concernEducation
+  ? `${concernEducation.lead} Review related House of Rose services in Punta Gorda.`
+  : `See the House of Rose Aesthetics services currently associated with ${concern.title.toLowerCase()} in Punta Gorda, Florida.`;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -63,6 +69,8 @@ const treatmentList = concern.treatments?.length
       </h1>
     </div>
   </section>
+
+  {concernEducation && <ConcernEducation content={concernEducation} />}
 
   <!-- Matching treatments -->
   {concern.treatments && concern.treatments.length > 0 && (
@@ -100,8 +108,8 @@ const treatmentList = concern.treatments?.length
                 href={`/compare/${comparison.slug}/`}
                 class="group flex items-center justify-between gap-6 py-5"
               >
-                <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold" {...sbFieldPath('title')}>
-                  {comparison.title}
+                <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold" {...(!getPublicComparisonContent(comparison.slug) ? sbFieldPath('title') : {})}>
+                  {getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}
                 </span>
                 <span class="shrink-0 text-gold" aria-hidden="true">→</span>
               </a>
@@ -111,6 +119,22 @@ const treatmentList = concern.treatments?.length
       </div>
     </section>
   )}
+
+  <section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(48px,6vw,68px)]">
+    <div class="mx-auto max-w-[760px] text-center">
+      <span class="kicker">Questions</span>
+      <h2 data-concern-consultation-heading class="mt-3 font-serif text-[clamp(26px,4vw,38px)] leading-tight text-ink">
+        {concernEducation?.consultationHeading ?? `Ask about ${concern.title.toLowerCase()}.`}
+      </h2>
+      <p data-concern-consultation-prompt class="mx-auto mt-5 max-w-[590px] text-[15px] leading-[1.75] text-muted">
+        {concernEducation?.consultationPrompt ?? `Call the practice, or send an inquiry about ${concern.title.toLowerCase()}.`}
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/consultation/" class="btn-gold">Send an inquiry</a>
+        <a href="tel:+18449417673" class="btn-outline-gold">Call (844) 941-7673</a>
+      </div>
+    </div>
+  </section>
 
   </div>
 </BaseLayout>

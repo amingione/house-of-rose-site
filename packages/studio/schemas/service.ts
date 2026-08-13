@@ -1,5 +1,19 @@
 import { defineField, defineType } from 'sanity';
 import { treatmentPageFields } from './objects/treatmentPageFields';
+import { validatePublicCopy } from './validation/publicCopy';
+
+type GoogleBusinessProfileFields = {
+  enabled?: boolean;
+};
+
+function validateEnabledGoogleBusinessCopy(value: string | undefined, parent: unknown): true | string {
+  const { enabled } = (parent as GoogleBusinessProfileFields | undefined) ?? {};
+  if (enabled && !value?.trim()) {
+    return 'Required when this service is included in the GBP manifest.';
+  }
+
+  return validatePublicCopy(value);
+}
 
 export const service = defineType({
   name: 'service',
@@ -58,9 +72,9 @@ export const service = defineType({
     }),
     defineField({
       name: 'tagline',
-      title: 'Tagline',
+      title: 'Tagline (archival)',
       type: 'string',
-      description: 'Short one-liner shown on cards and listings',
+      description: 'Stored for source compatibility. Public service cards use reviewed factual summaries during the voice reset.',
     }),
     defineField({
       name: 'price',
@@ -150,24 +164,24 @@ export const service = defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Service Summary (review)',
       type: 'text',
       rows: 5,
-      description: 'Full description shown on the service detail page ("What It Is")',
+      description: 'Stored source copy. The public renderer withholds it until voice and claims are reviewed.',
     }),
     defineField({
       name: 'whoItsFor',
-      title: 'Who It\'s For',
+      title: 'Concern / Suitability Notes (review)',
       type: 'text',
       rows: 3,
-      description: 'Target audience and ideal candidates for this service',
+      description: 'Factual concern or suitability notes for review. Do not write an aspirational customer profile.',
     }),
     defineField({
       name: 'benefits',
-      title: 'Client Benefits',
+      title: 'Verified Service Facts (review)',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Short, client-facing benefits shown as scannable cards on the service page.',
+      description: 'Short factual statements requiring source and claims review before public use.',
       validation: (R) => R.max(8),
     }),
     defineField({
@@ -187,10 +201,10 @@ export const service = defineType({
             }),
             defineField({
               name: 'focus',
-              title: 'Appearance Focus',
+              title: 'Visible Concern / Use',
               type: 'text',
               rows: 2,
-              description: 'Describe appearance goals without making a disease-treatment or guaranteed-result claim.',
+              description: 'State the verified visible concern or use for this area. Do not write an outcome promise.',
               validation: (R) => R.required(),
             }),
           ],
@@ -203,10 +217,10 @@ export const service = defineType({
     }),
     defineField({
       name: 'process',
-      title: 'The Process',
+      title: 'Appointment Facts (review)',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Step-by-step process list (e.g., "Skin cleanse and prep")',
+      description: 'Only verified visit facts a client needs. Do not use a process list as brand positioning.',
     }),
     defineField({
       name: 'faqs',
@@ -503,8 +517,27 @@ export const service = defineType({
       fields: [
         defineField({ name: 'enabled', title: 'Include in GBP Manifest', type: 'boolean', initialValue: false }),
         defineField({ name: 'categoryId', title: 'Google Service Category / Group ID', type: 'string' }),
-        defineField({ name: 'displayName', title: 'Approved Display Name', type: 'string', validation: (R) => R.max(140) }),
-        defineField({ name: 'description', title: 'Approved GBP Description', type: 'text', rows: 4, validation: (R) => R.max(300) }),
+        defineField({
+          name: 'displayName',
+          title: 'Approved Display Name',
+          type: 'string',
+          description: 'Exact public service name for the review-only GBP manifest.',
+          validation: (R) => [
+            R.max(140),
+            R.custom((value, context) => validateEnabledGoogleBusinessCopy(value, context.parent)),
+          ],
+        }),
+        defineField({
+          name: 'description',
+          title: 'Approved GBP Description',
+          type: 'text',
+          rows: 4,
+          description: 'Concrete, source-supported service information for external review before posting.',
+          validation: (R) => [
+            R.max(300),
+            R.custom((value, context) => validateEnabledGoogleBusinessCopy(value, context.parent)),
+          ],
+        }),
         defineField({
           name: 'priceMode',
           title: 'Price Mode',

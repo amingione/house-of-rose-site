@@ -3,7 +3,6 @@ const VERIFIED_SERVICE_DURATIONS: Readonly<Record<string, string>> = {
   'iv-hydration-therapy': '30–45 minutes',
   'dermal-fillers': '30–45 minutes',
   'facial-waxing': '10–30 minutes by area',
-  'prf-under-eyes': '60 minutes',
 };
 
 export const getVerifiedServiceDuration = (slug: string): string | undefined =>

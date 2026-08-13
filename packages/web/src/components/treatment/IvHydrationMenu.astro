@@ -1,15 +1,30 @@
 ---
-import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import {
+  IV_HYDRATION_CATEGORY_OVERVIEW,
+  IV_HYDRATION_FAQS,
+  VERIFIED_IV_MENU,
+} from '@/lib/ivHydrationFacts';
 
 const formatPrice = (price: number): string => `$${price.toLocaleString('en-US')}`;
 ---
 
 <section class="bg-charcoal-light px-6 py-[clamp(48px,7vw,80px)] border-t border-gold-metal/10">
   <div class="mx-auto max-w-[960px]">
+    <div data-iv-category-overview class="mb-12 border-b border-gold-metal/20 pb-10">
+      <span class="kicker">The category</span>
+      <h2 class="mt-2 max-w-[720px] font-serif text-[clamp(26px,4vw,38px)] text-ink">
+        {IV_HYDRATION_CATEGORY_OVERVIEW.heading}
+      </h2>
+      <div class="mt-5 grid gap-4 text-[15px] leading-relaxed text-muted md:grid-cols-2 md:gap-10">
+        <p>{IV_HYDRATION_CATEGORY_OVERVIEW.lead}</p>
+        <p>{IV_HYDRATION_CATEGORY_OVERVIEW.detail}</p>
+      </div>
+    </div>
+
     <span class="kicker">Current menu</span>
     <h2 class="mt-2 font-serif text-[clamp(26px,4vw,38px)] text-ink">IV hydration options</h2>
     <p class="mt-4 max-w-[620px] text-[15px] leading-relaxed text-muted">
-      The current IV drip menu, with appointment length and price for each base option.
+      The current IV hydration menu, with appointment length and price for each base option.
     </p>
 
     <div class="mt-9 overflow-x-auto border-y border-gold-metal/20">
@@ -36,6 +51,22 @@ const formatPrice = (price: number): string => `$${price.toLocaleString('en-US')
           ))}
         </tbody>
       </table>
+    </div>
+
+    <div class="mt-14 border-t border-gold-metal/20 pt-10">
+      <span class="kicker">Questions</span>
+      <h2 class="mt-2 font-serif text-[clamp(26px,4vw,38px)] text-ink">Before you call.</h2>
+      <div class="mt-7 divide-y divide-gold-metal/15 border-y border-gold-metal/15">
+        {IV_HYDRATION_FAQS.map((item) => (
+          <details class="group py-5">
+            <summary class="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-5 font-serif text-[19px] text-ink">
+              {item.question}
+              <span aria-hidden="true" class="text-gold transition-transform group-open:rotate-45">+</span>
+            </summary>
+            <p class="max-w-[760px] pb-2 pr-10 pt-3 text-[15px] leading-[1.75] text-muted">{item.answer}</p>
+          </details>
+        ))}
+      </div>
     </div>
   </div>
 </section>

@@ -109,12 +109,7 @@ export const blogPost = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'object',
-      options: { collapsed: true },
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string', validation: (R) => R.max(60) }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2, validation: (R) => R.max(160) }),
-      ],
+      type: 'seo',
     }),
   ],
   orderings: [

@@ -9,6 +9,20 @@ import {
   COLLECTION_BY_SLUG_QUERY,
   type ServiceCollection,
 } from '@/lib/queries';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+
+const collectionIntroductions: Readonly<Record<string, string>> = {
+  inmode:
+    'Morpheus8 delivers radiofrequency through microneedles, Lumecca Peak uses intense pulsed light, and Forma delivers radiofrequency without needles. Open each service for its current role and booking path.',
+  'injectables-bio-fillers':
+    'For lines that appear with facial movement, open Neurotoxin Injections. For lost volume in selected lips, cheeks, and folds, open Dermal Fillers. Injectable PRF has its own page for its current blood-derived preparations and appointments.',
+  'iv-hydration-therapy':
+    'This category includes the six current IV hydration options and the provider-guided GLP-1 weight-management program. Each page shows its own medical-service facts and booking path.',
+  facials:
+    'Browse surface exfoliation, dermaplaning, Glo2Facial, Procell Microneedling, topical PRF, BioRePeel, and the 12-week Face Reality Acne Program.',
+  waxing:
+    'House of Rose books facial and body waxing by area, from brows, upper lip, and chin to underarms, bikini line, arms, legs, back, and chest.',
+};
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COLLECTION_SLUGS_QUERY);
@@ -43,13 +57,11 @@ const serviceListSchema = collection.services.length
   : null;
 const pageTitle = `${collection.title} Services | House of Rose Aesthetics`;
 const pageDescription = `Directory of ${collection.title} services with links to individual service pages.`;
-// Waxing has two supported standalone service pages. Keep this collection as a
-// navigation directory without allowing it to compete with a future canonical
-// service hub at /services/waxing/.
-const noindex = slug === 'waxing';
+const collectionIntroduction = collectionIntroductions[collection.slug]
+  ?? `Review the current ${collection.title} services at House of Rose Aesthetics.`;
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} noindex={noindex}>
+<BaseLayout title={pageTitle} description={pageDescription} noindex>
   <SchemaMarkup item={breadcrumb} slot="head" />
   {serviceListSchema && <SchemaMarkup item={serviceListSchema} slot="head" />}
 
@@ -64,6 +76,7 @@ const noindex = slug === 'waxing';
     <header class="mt-12 max-w-2xl">
       <p class="kicker mb-4">Service category</p>
       <h1 class="font-serif text-5xl text-ink" {...sbFieldPath('title')}>{collection.title}</h1>
+      <p class="mt-6 text-[16px] leading-[1.8] text-muted">{collectionIntroduction}</p>
     </header>
 
     {collection.services.length === 0 ? (
@@ -73,22 +86,28 @@ const noindex = slug === 'waxing';
       </div>
     ) : (
       <ul class="mt-14 divide-y divide-walnut/15 border-y border-walnut/15" aria-label={`${collection.title} services`}>
-        {collection.services.map((service) => (
-          <li {...sbObjectId(service._id)}>
-            <a
-              href={`/services/${service.slug}/`}
-              class="group flex items-center justify-between gap-8 py-6"
-            >
-              <span
-                class="font-serif text-[clamp(22px,3vw,30px)] leading-tight text-ink transition-colors group-hover:text-olive"
-                {...sbFieldPath('title')}
+        {collection.services.map((service) => {
+          const summary = getServiceCardSummary(service.slug);
+          return (
+            <li {...sbObjectId(service._id)}>
+              <a
+                href={`/services/${service.slug}/`}
+                class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-8"
               >
-                {service.title}
-              </span>
-              <span class="shrink-0 text-gold" aria-hidden="true">→</span>
-            </a>
-          </li>
-        ))}
+                <span>
+                  <span
+                    class="block font-serif text-[clamp(22px,3vw,30px)] leading-tight text-ink transition-colors group-hover:text-olive"
+                    {...sbFieldPath('title')}
+                  >
+                    {service.title}
+                  </span>
+                  {summary && <span class="mt-2 block text-[14px] leading-relaxed text-muted">{summary}</span>}
+                </span>
+                <span class="shrink-0 text-gold" aria-hidden="true">→</span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     )}
   </section>

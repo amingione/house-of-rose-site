@@ -46,11 +46,11 @@ export const treatmentPageFields = [
   }),
   defineField({
     name: 'whyQualified',
-    title: 'Why House of Rose',
+    title: 'Practice / Equipment Facts (review)',
     type: 'array',
     of: [{ type: 'string' }],
     description:
-      'Specific, checkable reasons this practice is the right place for this treatment. Device, certification, protocol, setting. No generic trust language — "attention to detail" and "steady hands" are rejected on review.',
+      'Specific, checkable device, credential, protocol, or setting facts. Do not write comparative quality claims or generic trust language.',
     validation: (R) => R.max(5),
   }),
 ];

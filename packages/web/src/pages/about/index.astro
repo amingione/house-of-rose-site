@@ -14,7 +14,7 @@ const sanityProviderIds = new Set(sanityProviders.map((provider) => provider._id
 
 // Working voice reset: public copy stays local while images and provider facts may remain in Sanity.
 const heading = 'House of Rose Aesthetics.';
-const intro = 'A medical aesthetics practice in Punta Gorda, Florida. Read about the practice or meet the people who work here.';
+const intro = 'A co-owned medical aesthetics practice in Punta Gorda, with medical and esthetic services offered by people whose names, credentials, and work are easy to find.';
 const imageUrl = content?.indexImageUrl ?? ABOUT_PAGE_FALLBACK.indexImageUrl;
 const imageAlt = content?.indexImageAlt ?? ABOUT_PAGE_FALLBACK.indexImageAlt;
 const title = ABOUT_PAGE_FALLBACK.indexSeo?.metaTitle;
@@ -62,6 +62,25 @@ const breadcrumb = breadcrumbList([
       </div>
     </section>
 
+    <section class="px-6 pb-[clamp(56px,8vw,96px)]">
+      <div class="mx-auto grid max-w-[1080px] gap-8 border-t border-walnut/15 pt-[clamp(40px,6vw,68px)] md:grid-cols-[0.75fr_1.25fr] md:gap-16">
+        <div>
+          <p class="kicker">A local practice</p>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+            Different expertise, under one roof.
+          </h2>
+        </div>
+        <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
+          <p>
+            House of Rose is co-owned by Diana Morrison, RN, and Amber Mingione, Licensed Esthetician. Diana’s work centers on medical services; Amber’s centers on esthetic skin care. Those roles are distinct, and both are part of the practice clients come to know.
+          </p>
+          <p>
+            Other team members work across facials, waxing, makeup, and permanent jewelry. The result is a practice with more than one kind of visit, but a clear person and role behind each one.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="border-y border-walnut/10 bg-breath px-6 py-[clamp(56px,8vw,96px)]">
       <div class="mx-auto grid max-w-[1280px] gap-px bg-walnut/15 lg:grid-cols-2">
         <a href="/about/hra/" class="group bg-bone p-[clamp(30px,5vw,58px)] transition-colors hover:bg-limestone/35">
@@ -70,7 +89,7 @@ const breadcrumb = breadcrumbList([
             House of Rose Aesthetics
           </h2>
           <p class="mt-5 max-w-[520px] text-[15px] leading-[1.8] text-muted">
-            What the practice offers and how the service categories differ.
+            Meet the co-owners, see how their roles shape the practice, and learn what to expect at the Punta Gorda location.
           </p>
           <span class="learn-more mt-8">About the practice <span aria-hidden="true">→</span></span>
         </a>
@@ -80,6 +99,9 @@ const breadcrumb = breadcrumbList([
           <h2 class="mt-4 font-serif text-[clamp(30px,4vw,48px)] leading-tight text-ink group-hover:text-olive">
             Meet the team
           </h2>
+          <p class="mt-5 max-w-[520px] text-[15px] leading-[1.8] text-muted">
+            See each team member’s credentials, current work, and individual profile.
+          </p>
           <ul class="mt-6 grid gap-2 text-[14px] leading-relaxed text-muted sm:grid-cols-2" aria-label="House of Rose team">
             {providers.map((provider) => (
               <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>{provider.publicName}</li>

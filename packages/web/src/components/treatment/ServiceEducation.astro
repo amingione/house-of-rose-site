@@ -1,0 +1,91 @@
+---
+import type { ServiceEducationContent } from '@/lib/serviceEducation';
+
+interface Props {
+  content: ServiceEducationContent;
+}
+
+const { content } = Astro.props;
+---
+
+<section data-service-education class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+  <div class="mx-auto max-w-[1180px]">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
+      <div>
+        <span class="kicker">{content.kicker}</span>
+        <h2 class="mt-3 max-w-[560px] font-serif text-[clamp(32px,5vw,50px)] leading-[1.08] text-ink">
+          {content.heading}
+        </h2>
+      </div>
+      <div class="space-y-5 text-[17px] leading-[1.75] text-muted-strong">
+        {content.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {content.links && content.links.length > 0 && (
+          <div class="flex flex-wrap gap-x-8 gap-y-3 pt-3 text-[14px]">
+            {content.links.map((link) => (
+              <a href={link.href} class="learn-more hover:text-gold">{link.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+
+    {content.distinctions && content.distinctions.length > 0 && (
+      <div class="mt-12 grid gap-px bg-gold-metal/15 sm:grid-cols-2">
+        {content.distinctions.map((distinction) => (
+          <article class="bg-charcoal-light p-7 sm:p-9">
+            <h3 class="font-serif text-[24px] text-ink">{distinction.label}</h3>
+            <p class="mt-4 text-[15px] leading-[1.75] text-muted">{distinction.text}</p>
+          </article>
+        ))}
+      </div>
+    )}
+
+    {content.menu && (
+      <div class="mt-14 border-t border-gold-metal/20 pt-10">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <span class="block text-[11px] uppercase tracking-[0.28em] text-gold">Current menu</span>
+            <h3 class="mt-3 font-serif text-[clamp(27px,4vw,38px)] text-ink">{content.menu.heading}</h3>
+            {content.menu.intro && (
+              <p class="mt-4 max-w-[680px] text-[14px] leading-[1.7] text-muted">{content.menu.intro}</p>
+            )}
+          </div>
+          <p class="text-[11px] uppercase tracking-[0.18em] text-muted">
+            Verified {content.menu.verifiedAt}
+          </p>
+        </div>
+        <div class="mt-8 grid gap-px bg-gold-metal/15 sm:grid-cols-2 lg:grid-cols-3">
+          {content.menu.items.map((item) => (
+            <article class="bg-charcoal-light p-6 sm:p-7">
+              <h4 class="font-serif text-[21px] leading-snug text-ink">{item.name}</h4>
+              {(item.price || item.duration) && (
+                <p class="mt-4 text-[13px] font-medium tracking-[0.06em] text-gold">
+                  {item.price}{item.price && item.duration && <span class="mx-2 text-muted">·</span>}{item.duration}
+                </p>
+              )}
+              {item.note && <p class="mt-3 text-[13px] leading-[1.65] text-muted">{item.note}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {content.faqs && content.faqs.length > 0 && (
+      <div class="mt-14 border-t border-gold-metal/20 pt-10">
+        <span class="block text-[11px] uppercase tracking-[0.28em] text-gold">Questions</span>
+        <h3 class="mt-3 font-serif text-[clamp(27px,4vw,38px)] text-ink">{content.faqHeading ?? 'The program, in plain terms.'}</h3>
+        <div class="mt-8 border-y border-gold-metal/15">
+          {content.faqs.map((faq) => (
+            <details class="group border-b border-gold-metal/10 last:border-b-0">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left font-serif text-[20px] text-ink">
+                {faq.question}
+                <span class="text-gold transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="max-w-[780px] pb-7 text-[15px] leading-[1.75] text-muted">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>

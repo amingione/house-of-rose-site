@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: 'Where is House of Rose located?',
-    answer: 'The practice is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.',
+    answer: 'House of Rose has one practice location: 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The storefront and treatment rooms shown on this website are the actual spaces.',
   },
   {
     question: 'What services are offered?',
@@ -23,18 +23,43 @@ const faqs = [
     answer: 'Start with a treatment name if you have one. Otherwise, start with what you have noticed and ask the practice to compare the relevant options.',
   },
   {
+    question: 'Should I book a service or request a consultation?',
+    answer: 'Book the service when you already know the current menu listing you want. Request a consultation when you are comparing options, want to discuss a concern first, or the service page identifies consultation as the correct booking path.',
+  },
+  {
+    question: 'How can I tell who provides a service?',
+    answer: 'When an appointment has an assigned provider, the service page names that person and licence type. The provider directory also lists each person’s verified role and current service focus.',
+  },
+  {
+    question: 'What is the medical director’s role?',
+    answer: 'Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with that appointment.',
+  },
+  {
     question: 'Where can I see current prices?',
     answer: 'Review the pricing guides or the current GlossGenius booking menu. Call (844) 941-7673 if you need help finding the correct service.',
   },
   {
     question: 'Do you accept walk-ins?',
-    answer: 'Call to ask about same-day availability for waxing and facials. Appointments reserve a specific time.',
+    answer: 'Yes. Walk-ins are always accepted for waxing and facials. For other services, walk-ins are accepted when the schedule allows. Appointments reserve a specific time; call (844) 941-7673 to check current availability.',
   },
 ];
+const faqGroups = [
+  {
+    kicker: 'The practice',
+    heading: 'Location and people',
+    questions: [faqs[0], faqs[1], faqs[5], faqs[6]],
+  },
+  {
+    kicker: 'Appointments',
+    heading: 'Choosing and booking',
+    questions: [faqs[2], faqs[3], faqs[4], faqs[7], faqs[8]],
+  },
+] as const;
+const orderedFaqs = faqGroups.flatMap((group) => group.questions);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
-const faq = faqPage(faqs);
+const faq = faqPage(orderedFaqs);
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'FAQ', item: canonical },
@@ -53,26 +78,28 @@ const breadcrumb = breadcrumbList([
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Answers</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Frequently asked questions</h1>
-      <p class="text-ink/80 text-[16px] leading-relaxed">The essential facts about the practice, services, prices, and visits.</p>
+      <p class="text-ink/80 text-[16px] leading-relaxed">Direct answers about the practice, the people behind an appointment, current prices, and the right way to begin.</p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
-    <div class="max-w-[860px] mx-auto space-y-12">
-      <div>
-        <div class="mb-6 border-b border-gold-metal/15 pb-3">
-          <span class="kicker">House of Rose at a glance</span>
-          <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-gold mt-2">The essentials</h2>
+    <div class="max-w-[860px] mx-auto space-y-16">
+      {faqGroups.map((group) => (
+        <div>
+          <div class="mb-6 border-b border-gold-metal/15 pb-3">
+            <span class="kicker">{group.kicker}</span>
+            <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-gold mt-2">{group.heading}</h2>
+          </div>
+          <div class="space-y-5">
+            {group.questions.map((f) => (
+              <div class="border-b border-ink/5 pb-5">
+                <h3 data-visit-faq-question class="text-ink text-[16px] font-medium mb-2">{f.question}</h3>
+                <p data-visit-faq-answer class="text-muted text-[14px] leading-relaxed">{f.answer}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="space-y-5">
-          {faqs.map((f) => (
-            <div class="border-b border-ink/5 pb-5">
-              <h3 class="text-ink text-[16px] font-medium mb-2">{f.question}</h3>
-              <p class="text-muted text-[14px] leading-relaxed">{f.answer}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   </section>
 

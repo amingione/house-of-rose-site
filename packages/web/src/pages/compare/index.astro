@@ -2,11 +2,17 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { sbObjectId } from '@/lib/visualEditing';
 import { ALL_COMPARISONS_QUERY, type Comparison } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
 
-const comparisons = await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY);
+const comparisons = filterReviewedPublicComparisons(
+  await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
+);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -16,7 +22,10 @@ const breadcrumb = breadcrumbList([
 ]);
 const comparisonsListSchema = comparisons.length
   ? itemList(
-      comparisons.map((c) => ({ name: c.title, url: new URL(`/compare/${c.slug}/`, site).toString() })),
+      comparisons.map((c) => ({
+        name: getPublicComparisonContent(c.slug)!.title,
+        url: new URL(`/compare/${c.slug}/`, site).toString(),
+      })),
       'Treatment Comparisons',
     )
   : null;
@@ -32,24 +41,29 @@ const comparisonsListSchema = comparisons.length
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Compare</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Treatment comparisons.</h1>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Compare services side by side.</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Review the published differences, then open either service page for full treatment details.
+        Each guide puts the treatment technology, current menu facts, evidence limits, and linked service pages in one place.
       </p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
-      {comparisons.map((c) => (
-        <a href={`/compare/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
-          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{c.title}</h2>
-          {c.optionA?.label && c.optionB?.label && (
-            <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{c.optionA.label} vs {c.optionB.label}</p>
-          )}
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">View comparison</span>
-        </a>
-      ))}
+    <div class:list={[
+      'max-w-[1280px] mx-auto grid grid-cols-1 gap-px bg-gold-metal/10',
+      comparisons.length > 1 && 'sm:grid-cols-2',
+    ]}>
+      {comparisons.map((c) => {
+        const publicContent = getPublicComparisonContent(c.slug)!;
+        return (
+          <a href={`/compare/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
+            <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors">{publicContent.title}</h2>
+            <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{publicContent.optionALabel} vs {publicContent.optionBLabel}</p>
+            <p class="mt-4 max-w-[620px] text-[14px] leading-6 text-muted">{publicContent.lead}</p>
+            <span class="learn-more group-hover:text-gold mt-4 inline-block">View comparison</span>
+          </a>
+        );
+      })}
       {comparisons.length === 0 && (
         <p class="bg-charcoal p-7 text-muted text-[14px]">No comparisons are currently published.</p>
       )}

@@ -1,28 +1,45 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { verifiedRnProviderName } from '../packages/web/src/lib/treatmentQueries.ts';
+import { verifiedProviderIdentity } from '../packages/web/src/lib/treatmentQueries.ts';
 
 test('uses a referenced RN public name when the licence type is present', () => {
-  assert.equal(
-    verifiedRnProviderName(
+  assert.deepEqual(
+    verifiedProviderIdentity(
       { _id: 'provider-diana', publicName: 'Diana Morrison, RN', profileSlug: 'diana' },
       'rn',
     ),
-    'Diana Morrison, RN',
+    { publicName: 'Diana Morrison, RN', profileSlug: 'diana' },
   );
 });
 
-test('does not name an RN when the public name lacks the licence type', () => {
+test('uses reviewed esthetician identities when a partial Sanity record lacks public fields', () => {
+  assert.deepEqual(
+    verifiedProviderIdentity({ _id: 'provider-brandy' }, 'esthetician'),
+    { publicName: 'Brandy, Licensed Esthetician', profileSlug: 'brandy' },
+  );
+});
+
+test('uses the reviewed licensed-esthetician form for Amber', () => {
+  assert.deepEqual(
+    verifiedProviderIdentity(
+      { _id: 'provider-amber', publicName: 'Amber Mingione, Esthetician', profileSlug: 'amber' },
+      'esthetician',
+    ),
+    { publicName: 'Amber Mingione, Licensed Esthetician', profileSlug: 'amber' },
+  );
+});
+
+test('does not use a verified identity for a different provider-scope preset', () => {
   assert.equal(
-    verifiedRnProviderName({ _id: 'provider-diana', publicName: 'Diana Morrison' }, 'rn'),
+    verifiedProviderIdentity({ _id: 'provider-diana', publicName: 'Diana Morrison, RN' }, 'esthetician'),
     undefined,
   );
 });
 
-test('does not use an RN identity for a different provider-scope preset', () => {
+test('does not name an unfamiliar provider without a matching licence-bearing public name', () => {
   assert.equal(
-    verifiedRnProviderName({ _id: 'provider-diana', publicName: 'Diana Morrison, RN' }, 'esthetician'),
+    verifiedProviderIdentity({ _id: 'provider-unknown', publicName: 'Taylor Provider' }, 'rn'),
     undefined,
   );
 });

@@ -54,18 +54,20 @@ const localIntro = isPuntaGorda
   : `House of Rose Aesthetics serves ${area.city} from its practice at ${practiceAddress}.`;
 const localFaqs = [
   {
-    question: `Does House of Rose Aesthetics serve ${area.city}?`,
+    question: isPuntaGorda
+      ? 'Is this the House of Rose practice location?'
+      : `Is there a House of Rose location in ${area.city}?`,
     answer: isPuntaGorda
-      ? `Yes. House of Rose Aesthetics is located at ${practiceAddress}.`
-      : `Yes. House of Rose Aesthetics serves ${area.city} from its Punta Gorda location at ${practiceAddress}.`,
+      ? `Yes. This is our one House of Rose practice at ${practiceAddress}. The Unit 9 storefront is pictured on this website.`
+      : `House of Rose has one practice, at ${practiceAddress}. This page is for clients coming from ${area.city}; it does not represent a second location.`,
   },
   {
-    question: 'Where is House of Rose Aesthetics located?',
-    answer: `House of Rose Aesthetics is located at ${practiceAddress}.`,
+    question: 'What should I check before making the trip?',
+    answer: 'Open the service page first. It shows whether the current listing can be booked directly, begins with a consultation, or asks you to call. Appointments are recommended when you want a specific time.',
   },
   {
-    question: 'How can I review the available services?',
-    answer: 'Review the current services menu or call (844) 941-7673 for help choosing where to start.',
+    question: 'Is parking available?',
+    answer: 'Yes. Free parking is available at the Punta Gorda practice.',
   },
 ];
 
@@ -168,13 +170,20 @@ const pageDescription = localIntro;
     </div>
   </section>
 
-  <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
-    <div class="max-w-[860px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Visit House of Rose.</h2>
-      <p class="text-muted text-[15px] max-w-[520px] mx-auto mb-8">{practiceAddress}.</p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="/consultation/" class="btn-gold">Start a consultation</a>
+  <section data-area-visit-planning class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
+    <div class="max-w-[860px] mx-auto grid gap-8 md:grid-cols-[1.35fr_1fr] md:items-center">
+      <div>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-3">Plan the visit</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-4">
+          {isPuntaGorda ? 'House of Rose is in Unit 9.' : `Your appointment is in Punta Gorda.`}
+        </h2>
+        <p class="text-muted text-[15px] leading-relaxed max-w-[590px]">
+          The storefront photograph shows the entrance at {practiceAddress}. Free parking is available. Review the service page before you leave so you know whether to book online, request a consultation, or call first.
+        </p>
+      </div>
+      <div class="flex gap-3 md:justify-end flex-wrap">
+        <a href="/services/" class="btn-outline-gold">Review services</a>
+        <a href="tel:+18449417673" class="btn-gold">Call (844) 941-7673</a>
       </div>
     </div>
   </section>
