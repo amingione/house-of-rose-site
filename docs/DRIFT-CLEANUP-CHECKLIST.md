@@ -21,10 +21,11 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
   wrong. → **Stale = any doc asserting a five-category stack is live.**
   _(Exception: `structuredData.ts`'s `BUSINESS_CATEGORIES` legitimately keeps all five — it is a
   JSON-LD `keywords` list describing real offerings, not a GBP mirror. Do not sync it.)_
-- **Visit policy:** walk-ins welcome; appointments recommended to reserve a time. GBP planning attribute:
-  **Appointment not required**.
+- **Visit policy:** keep the GBP planning attribute **Appointment not required** while the current policy
+  is active. State the details only in the direct visit FAQ or when a customer asks; do not repeat them as
+  general marketing copy.
 - **Phone SMS:** not enabled while Grasshopper verification is pending. Use call, email, contact-form,
-  walk-in, and services-menu CTAs; do not advertise texting as an active channel.
+  and services-menu CTAs; do not advertise texting as an active channel.
 - **GlossGenius:** `https://houseofrose.glossgenius.com/services` is the services/menu link, not a primary
   online-booking-button CTA.
 - **Lead descriptor — `Medical Aesthetics Practice`** (Creative System v1.0, Book 1 §2 / Book 3 §1,
@@ -77,7 +78,7 @@ occurrences remain** outside deliberate "this is retired" annotations and the gr
 - [x] Sanity — **verified clean**; the descriptor does not appear in any published document.
 - [x] `docs/GOOGLE-BUSINESS-PROFILE.md` — brand-law line + Q&A seed.
 - [x] Campaign kit — `meta-ad-copy.md`, `organic-captions.md`, `google-search-ads.csv`,
-  `on-site-video-shot-list.md`, `README.md`. **"Private" removed too** — it contradicts the walk-in policy.
+  `on-site-video-shot-list.md`, `README.md`. **"Private" removed too** because it was inaccurate.
 - [x] Internal briefs — `research/{professional-makeup,hydrodermabrasion,waxing,_audit-report}.md`,
   `services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md`, `services/PRF_Pricing/{README,homepage-regenerative-repositioning}.md`,
   `pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md`.

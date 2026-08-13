@@ -94,7 +94,6 @@ export const homepage = defineType({
     defineField({ name: 'expKicker', title: 'Kicker', type: 'string', group: 'experience' }),
     defineField({ name: 'expHeading', title: 'Heading', type: 'string', group: 'experience' }),
     defineField({ name: 'expPara1', title: 'Paragraph 1', type: 'text', rows: 4, group: 'experience' }),
-    defineField({ name: 'expPara2', title: 'Paragraph 2', type: 'text', rows: 2, group: 'experience' }),
 
     // ── Local ──
     defineField({ name: 'localKicker', title: 'Kicker', type: 'string', group: 'local' }),

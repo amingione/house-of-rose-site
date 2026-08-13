@@ -20,6 +20,23 @@ const INMODE_DEVICE_IMAGES: Record<string, string> = {
   'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
 };
 
+// The services directory is stricter than a treatment-page hero. A card image
+// must identify the actual device or setting at a glance; an empty treatment
+// room is omitted instead of being repeated beside unrelated services.
+const SERVICE_CARD_IMAGES: Record<string, string> = {
+  morpheus8: '/images/inmode/Morpheus8-Burst.png',
+  'lumecca-peak-ipl': '/images/inmode/Lumecca-Peak.png',
+  'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
+  injectables: '/images/generated/service-cards/neurotoxin-treatment-setup.webp',
+  'dermal-fillers': '/images/generated/service-cards/dermal-filler-treatment-setup.webp',
+  'iv-hydration-therapy': ACTUAL_IV_SUITE_IMAGE,
+  'glp-1-weight-management': '/images/generated/service-cards/glp1-consultation-setup.webp',
+  glo2facial: '/images/generated/service-cards/glo2facial-treatment-setup.webp',
+  dermaplaning: '/images/generated/service-cards/dermaplaning-treatment-setup.webp',
+  'facial-waxing': '/images/generated/service-cards/facial-waxing-treatment-setup.webp',
+  'body-waxing': '/images/generated/service-cards/body-waxing-treatment-setup.webp',
+};
+
 const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
   'morpheus8-device': '/images/inmode/Morpheus8-Burst.png',
   'lumecca-device': '/images/inmode/Lumecca-Peak.png',
@@ -151,6 +168,50 @@ const CONTAINED_SERVICE_IMAGES = new Set([
 /** Transparent manufacturer handpieces need breathing room instead of an object-cover crop. */
 export const serviceImageUsesContain = (slug: string): boolean =>
   CONTAINED_SERVICE_IMAGES.has(slug);
+
+const CONTAINED_SERVICE_CARD_IMAGES = new Set([
+  'morpheus8',
+  'lumecca-peak-ipl',
+  'forma-rf-facial',
+]);
+
+/** Exact device or real-practice image approved for the services directory. */
+export const getServiceCardImage = (slug: string): string | undefined =>
+  SERVICE_CARD_IMAGES[slug];
+
+export const getServiceCardImageAlt = (slug: string): string => {
+  if (slug === 'morpheus8') return 'Morpheus8 Burst RF microneedling handpiece';
+  if (slug === 'lumecca-peak-ipl') return 'Lumecca Peak IPL handpiece';
+  if (slug === 'forma-rf-facial') return 'Forma radiofrequency handpiece';
+  if (slug === 'injectables') {
+    return 'Illustrative neurotoxin appointment setup with sealed syringes, gauze, gloves, and a mapping pencil';
+  }
+  if (slug === 'dermal-fillers') {
+    return 'Illustrative dermal filler appointment setup with sealed instruments, gauze, gloves, and a handheld mirror';
+  }
+  if (slug === 'iv-hydration-therapy') {
+    return 'IV hydration suite inside House of Rose Aesthetics';
+  }
+  if (slug === 'glp-1-weight-management') {
+    return 'Illustrative GLP-1 consultation setup with a scale, blood pressure cuff, measuring tape, and intake clipboard';
+  }
+  if (slug === 'glo2facial') {
+    return 'Illustrative Glo2Facial appointment setup with a treatment handpiece and sealed single-use tip';
+  }
+  if (slug === 'dermaplaning') {
+    return 'Illustrative dermaplaning appointment setup with sealed single-use tools, gauze, cleanser, and headband';
+  }
+  if (slug === 'facial-waxing') {
+    return 'Illustrative facial waxing setup with hard wax, narrow applicators, brow tools, and gloves';
+  }
+  if (slug === 'body-waxing') {
+    return 'Illustrative body waxing setup with hard wax, wide applicators, clean linens, and gloves';
+  }
+  return '';
+};
+
+export const serviceCardImageUsesContain = (slug: string): boolean =>
+  CONTAINED_SERVICE_CARD_IMAGES.has(slug);
 
 export const getInModeDeviceImage = (slug: string): string | undefined =>
   INMODE_DEVICE_IMAGES[slug];

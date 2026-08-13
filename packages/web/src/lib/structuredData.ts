@@ -143,7 +143,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
   const business = {
     ...providerNode(baseUrl),
     description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida. Walk-ins welcome; appointments recommended to reserve a time.',
+      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida.',
     ...(input.email && { email: input.email }),
     // Google wants an actual logo here, not a social card. `og.png` is the
     // 1200x630 share image; the square monogram is the real mark.

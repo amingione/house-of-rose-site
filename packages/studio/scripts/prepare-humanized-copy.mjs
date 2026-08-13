@@ -71,11 +71,9 @@ const homepagePatch = {
     'The products you use between visits matter. We carry post-treatment aftercare, acne support, mineral makeup, SPF, and professional skincare that can fit into a realistic home routine.',
   carePara2:
     "We'll help you sort through the options and explain what each recommendation is for, so you can spend less time guessing and more time using what works for your plan.",
-  expHeading: 'Time to ask questions. Space to feel comfortable.',
-  expPara1:
-    "We want your visit to feel calm and unhurried. There's time to talk through your goals, look closely at your skin, and understand why a treatment may—or may not—make sense for you.",
-  expPara2:
-    "Before you leave, you'll know what we did, what to expect next, and how to care for your skin at home.",
+  expKicker: 'The practice',
+  expHeading: 'Inside House of Rose.',
+  expPara1: 'These are the actual treatment rooms and storefront at 525 E Olympia Avenue in Punta Gorda.',
   localHeading: 'Advanced aesthetics, right here in Punta Gorda.',
   localPara1:
     'House of Rose welcomes clients from Punta Gorda, Charlotte County, and across Southwest Florida for advanced aesthetics, skin care, injectables, and wellness services.',

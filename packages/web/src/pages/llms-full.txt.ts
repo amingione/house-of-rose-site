@@ -64,7 +64,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. The practice provides individualized facial, body, skin, injectable, wellness, and maintenance care through consultation, assessment, and treatment planning. Patients can ask questions, compare appropriate options, and choose care with preparation, aftercare, and natural-looking goals in mind.`,
     ``,
-    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Visits are focused and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call (844) 941-7673 to book ahead.`,
+    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Call (844) 941-7673 for help choosing a service or arranging a visit.`,
     ``,
     `**Contact:**`,
     `- Phone: (844) 941-7673`,
@@ -91,7 +91,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Experience** (${base}/experience/): What clients can expect before, during, and after an unhurried visit`,
     `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
     `- **Rent a Suite** (${base}/rent-a-room/): Private treatment room rentals starting at $850/month for licensed aestheticians, massage therapists, and permanent makeup artists`,
-    `- **Journal** (${base}/blog/): Articles on wellness, beauty, and living well in Southwest Florida`,
+    `- **Journal** (${base}/blog/): Articles about aesthetics, skincare, wellness, and treatment decisions in Southwest Florida`,
     `- **Shipping Policy** (${base}/shipping-policy/): Contiguous U.S. shipping timing and carrier-rate details`,
     `- **Return Policy** (${base}/return-policy/): Eligibility, reporting windows, return shipping, and refund timing`,
     `- **Sitemap** (${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
@@ -185,7 +185,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `## Positioning`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. PRF is one of the practice's core services, alongside skin procedures, injectables, facials, and wellness support. Walk-ins are welcome; appointments are recommended to reserve a time.`,
+    `House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. PRF is one of the practice's core services, alongside skin procedures, injectables, facials, and wellness support.`,
   );
 
   return new Response(lines.join('\n'), {

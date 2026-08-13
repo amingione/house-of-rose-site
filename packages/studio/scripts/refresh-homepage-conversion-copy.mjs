@@ -87,12 +87,9 @@ const copy = {
   scanQuote: 'Bring your questions. The purpose is a clearer place to start.',
   scanCtaPrimaryText: 'See what to expect',
   scanCtaSecondaryText: 'Start a consultation',
-  expKicker: 'The experience',
-  expHeading: 'Time to ask questions. Space to understand the plan.',
-  expPara1:
-    'Appointments leave room to discuss your goals, evaluate the area being considered, and understand why a service may—or may not—make sense for you.',
-  expPara2:
-    'Before you leave, you should understand what was done, what to expect next, and how to follow the aftercare plan.',
+  expKicker: 'The practice',
+  expHeading: 'Inside House of Rose.',
+  expPara1: 'These are the actual treatment rooms and storefront at 525 E Olympia Avenue in Punta Gorda.',
   localKicker: 'Punta Gorda',
   localHeading: 'Medical aesthetics close to home.',
   localPara1:

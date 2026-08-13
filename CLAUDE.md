@@ -153,12 +153,13 @@ against the Creative System first.
   clinically reviewed), **guaranteed results**.
 - **Controlled-use language** — only when accurate, necessary, and not repeated: skin rejuvenation,
   evidence-based, advanced, personalized, customized, restore/restorative, confidence.
-- **AI may not** (Book 5 §3): decide clinical appropriateness · infer provider scope · invent a protocol ·
-  fill a gap with a "typical" assumption · write a guarantee · fabricate before/after imagery, reviews,
-  or credentials · use an AI-generated person as a patient or staff member · state "FDA approved,"
-  "clinically proven," "pain-free," or "no downtime" without approved support.
-- **Label every client-facing deliverable** (Book 5 §3): **Draft** / **Facts that require verification** /
-  **Claims that require clinical approval** / **Assets still needed.**
+- **AI is a creative collaborator** (Book 5 §3): it should originate concepts, hooks, names, narratives,
+  metaphors, campaigns, scripts, layouts, and art direction. Its boundary is truth, not imagination. It
+  may not present invented business or clinical facts, credentials, reviews, patient evidence, or outcomes
+  as real, or make a clinical decision.
+- **Use review notes only when relevant** (Book 5 §3): flag unresolved factual assertions, new or materially
+  changed clinical claims, fictional concepts, or missing assets. Do not force four boilerplate labels onto
+  every creative draft.
 - **Run the Fast Preflight (Book 7 §1) before anything publishes.**
 - **Decision filter (Book 1 §17)** — if any of its 8 questions answers *no*, revise or reject the asset.
 
@@ -196,7 +197,7 @@ against the Creative System first.
 **Closed 2026-08-01 — verified, do not re-open:**
 - ~~Lead-descriptor sweep~~ — **done.** Governing docs, shipping source, campaign kit, and internal briefs
   all lead with `Medical Aesthetics Practice`. Sanity verified clean (descriptor never present there).
-  "Private" was removed alongside it — it contradicts the walk-in policy.
+  "Private" was removed alongside it because it was inaccurate.
 
 **Closed 2026-08-01 — verified against the live Google Business Profile, do not re-open:**
 - ~~GBP description conflict~~ — **false alarm.** `docs/GOOGLE-BUSINESS-PROFILE.md` §3, Creative System
@@ -215,28 +216,21 @@ This is a **completely separate business from FAS Motorsports** — no shared in
 
 ---
 
-## Walk-In Policy (binding — 2026-07-24, overrides all prior "appointment-only/no walk-ins" copy)
-House of Rose **takes walk-ins**. This was previously written up backwards across docs/site copy as
-"private, appointment-only, no walk-ins" — that is **not the real policy** and every instance of it is a
-copy bug, not a business rule, unless Amber says otherwise.
+## Visit Policy (operational fact, not recurring marketing copy)
+House of Rose currently takes walk-ins. Keep that fact accurate when a customer directly asks about
+availability, in the relevant visit FAQ, and in platform settings. It is not a brand pillar, slogan,
+differentiator, or required line of copy.
 - **Waxing and facials:** walk-ins always accepted.
 - **Everything else (including Botox/injectables, IV, body treatments, etc.):** walk-ins accepted
-  **whenever there's time on the schedule** — "time-permitting," not "never." House of Rose has walked in
-  Botox before; don't write copy that forecloses that.
-- Appointments are still the recommended/primary path (call to book ahead, no online-booking button —
-  that part stands), but **never claim "by appointment only," "no walk-ins," or "not a walk-in mill/clinic"
-  anywhere** — customer-facing pages, GBP, ad copy, FAQs, llms-full.txt, everywhere. If a doc says that,
-  it's wrong; fix it, don't preserve it as "the vibe."
-- Correct phrasing pattern: *"Walk-ins welcome — appointments recommended for [service]."* or *"We take
-  walk-ins when the schedule allows; call (844) 941-7673 to reserve a time."*
+  whenever there is time on the schedule.
+- Appointments remain the recommended path. Never claim "by appointment only" or "no walk-ins" while
+  the current policy is active.
+- Do not add walk-in language to heroes, footers, service pages, bios, ads, schema descriptions, general
+  CTAs, or AI-feed boilerplate. One direct FAQ answer plus accurate GBP/platform settings is enough.
 
-🔭 **Known future reversal — change these together, never one at a time.** Amber has flagged that the
-walk-in posture **will tighten once the client base is consistent** (noted 2026-08-01). When that happens
-it is a coordinated change across four surfaces, and doing one without the others recreates exactly the
-contradiction this section exists to fix: (1) the GBP **Planning** attribute `Appointment not required`,
-(2) this policy block, (3) every "walk-ins welcome" line in site/Sanity copy, (4) `drift-guard.mjs`'s
-`Wrong visit policy` rule, which currently **fails the build** on "appointment-only" phrasing and would
-need inverting. Until Amber says the date has come, walk-ins-welcome remains binding.
+🔭 **Known future change:** Amber has said the walk-in posture will tighten once the client base is
+consistent (noted 2026-08-01). When that happens, update the GBP planning attribute, the direct visit FAQ,
+this policy block, and the drift guard together.
 
 ---
 

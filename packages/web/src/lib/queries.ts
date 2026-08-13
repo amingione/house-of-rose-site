@@ -1290,11 +1290,11 @@ export interface AiSearchFaqSection {
 
 const CANONICAL_AI_FAQ_ANSWERS = {
   whatIsHouseOfRose:
-    'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. Care is planned through consultation, assessment, clinical judgment, and long-term follow-through. Walk-ins are welcome, and appointments are recommended to reserve a time.',
+    'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
   location:
     'House of Rose Aesthetics is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. The practice serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.',
   booking:
-    'Call (844) 941-7673 for help choosing an appointment, or review services at https://houseofrosefl.com/services/. Walk-ins are welcome; appointments are recommended to reserve a time.',
+    'Call (844) 941-7673 for help choosing an appointment, or review services at https://houseofrosefl.com/services/.',
 } as const;
 
 // These three answers contain canonical business facts. Keep the Sanity-authored
@@ -1393,7 +1393,6 @@ export interface HomePage {
   expKicker?: string;
   expHeading?: string;
   expPara1?: string;
-  expPara2?: string;
   localKicker?: string;
   localHeading?: string;
   localPara1?: string;
@@ -1416,7 +1415,7 @@ export const HOMEPAGE_QUERY = /* groq */ `
     servicesCtaText,
     scanKicker, scanHeading, scanPara1, scanPara2, scanQuote, scanCtaPrimaryText, scanCtaSecondaryText,
     careKicker, careHeading, carePara1, carePara2, careCtaText,
-    expKicker, expHeading, expPara1, expPara2,
+    expKicker, expHeading, expPara1,
     localKicker, localHeading, localPara1, localPara2,
     finalHeading, finalPara, finalCtaText, finalAddressLine
   }

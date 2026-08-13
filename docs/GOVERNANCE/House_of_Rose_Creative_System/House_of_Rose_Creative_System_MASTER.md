@@ -87,10 +87,10 @@ Do not delete old materials until the new system has been imported and checked. 
 ## Operating rules
 
 - **Category language:** Use **Medical Aesthetics Practice** in controlled brand copy. Google may still display **Medical spa** as its closest platform category; that category does not redefine the brand.
-- **Clinical accuracy:** A licensed clinician or authorized clinical reviewer must approve treatment claims, contraindication language, preparation instructions, downtime statements, aftercare, and before-and-after use.
-- **Current reality wins:** Keep walk-in, pickup, payment, accessibility, hours, categories, and service attributes accurate. Do not change profile settings merely to make the business appear more exclusive.
+- **Clinical review is proportional:** Routine nonclinical creative work and unchanged, already-approved factual language do not need fresh clinical approval. New or materially changed claims about effects, safety, candidacy, contraindications, preparation, recovery, downtime, aftercare, treatment combinations, or patient evidence require the appropriate licensed clinician or authorized reviewer.
+- **Operational facts are not slogans:** Keep hours, access, payment, pickup, accessibility, availability, categories, and service attributes accurate where they are relevant. Their existence does not require repetition. Walk-in status belongs in platform settings and one direct visit FAQ, not in every page, footer, bio, ad, CTA, schema description, or AI feed.
 - **Platform policies change:** Recheck the linked official Google, Meta, and FTC references before launching a new claim, targeting method, prescription-drug-related campaign, or lead-capture workflow.
-- **AI is a draft tool:** AI may organize, revise, and generate concepts. It may not invent credentials, devices, ingredients, protocols, outcomes, reviews, patient stories, or clinical facts.
+- **AI is a creative collaborator:** Encourage it to originate bold concepts, hooks, names, narratives, metaphors, campaigns, scripts, layouts, and art direction. Its boundary is truth, not imagination: it may not present invented business or clinical facts, credentials, reviews, patient evidence, or outcomes as real, or make clinical decisions.
 
 ## File maintenance
 
@@ -509,7 +509,7 @@ Most House of Rose copy should move through four parts:
 1. **What it is:** Identify the service, concern, or decision.
 2. **How it is approached:** Consultation, assessment, treatment selection, or protocol.
 3. **What participation involves:** Preparation, series, downtime, aftercare, or maintenance.
-4. **What to do next:** Learn, schedule, call, walk in, or shop.
+4. **What to do next:** Learn, schedule, call, visit, or shop.
 
 ### Example
 
@@ -597,18 +597,18 @@ Name the exact therapy and approved purpose when possible. Do not imply that an 
 
 ### Level 1 - Descriptive claims
 
-Usually acceptable after basic factual review:
+Usually acceptable after a basic fact check; no fresh clinical approval is needed when approved language is reused unchanged:
 
 - What the practice offers
 - Where it is located
 - How consultation and planning work
-- Whether walk-ins, pickup, or appointments are available
-- What preparation or aftercare the practice requires
+- Current hours, access, pickup, payment, and availability when directly relevant
 - What device or product is used, when factually accurate
+- Approved preparation or aftercare language reproduced without material changes
 
 ### Level 2 - Intended-use and appearance claims
 
-Require clinical review and exact wording:
+Require clinical review and exact wording when newly introduced or materially changed. This level also includes new or changed candidacy, contraindication, preparation, recovery, downtime, aftercare, and treatment-combination guidance:
 
 - Designed to improve the appearance of texture
 - Used to address selected pigmentation concerns
@@ -703,10 +703,6 @@ The goal is healthy-looking, balanced, natural-looking improvement that respects
 
 Located in Punta Gorda, House of Rose serves Charlotte County and Southwest Florida.
 
-### Walk-in statement
-
-Walk-ins are currently accepted based on service and provider availability. Call ahead for time-sensitive or medical services.
-
 ### Retail statement
 
 Medical-grade skincare and selected wellness products are available in practice, with online ordering and local pickup where offered.
@@ -728,7 +724,7 @@ Before treatment, the practice will review [preparation requirements]. The proce
 **Lead:** Name the decision or misconception.  
 **Explain:** State how House of Rose evaluates it.  
 **Expectation:** Mention preparation, series, downtime, aftercare, or maintenance when material.  
-**CTA:** Invite a consultation, call, walk-in, or page visit.
+**CTA:** Invite a consultation, call, or page visit.
 
 ### Google Business Profile post
 
@@ -740,7 +736,7 @@ We are writing to clarify [topic]. The information below explains [what the pati
 
 ### SMS (inactive until verification is complete)
 
-Do not use SMS as a customer contact path until Grasshopper verification is complete and the channel has been tested. For now, direct customers to call, use the website contact form, walk in, or review the services menu.
+Do not use SMS as a customer contact path until Grasshopper verification is complete and the channel has been tested. For now, direct customers to call, use the website contact form, or review the services menu.
 
 ## 10. Before and after: copy examples
 
@@ -816,7 +812,6 @@ Do not:
 - Learn what to expect
 - Contact the practice
 - Call for current availability
-- Walk in or call ahead
 - Shop skincare
 - Order for local pickup
 
@@ -844,7 +839,7 @@ Use this checklist when editing copy:
 3. Remove duplicated uses of personalized, customized, advanced, skin rejuvenation, healthy skin, and natural-looking results.
 4. Identify every clinical claim and confirm its support.
 5. Add preparation, downtime, aftercare, or maintenance when material.
-6. Confirm that the call to action matches current operations, including walk-ins and availability.
+6. Confirm that the call to action matches the actual customer path and current availability.
 7. Read aloud. If it sounds like a brochure, simplify it.
 
 <!-- PAGEBREAK -->
@@ -1031,7 +1026,7 @@ House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florid
 
 ### GlossGenius / booking profile
 
-House of Rose Aesthetics provides individualized medical aesthetic, skincare, injectable, and wellness services in Punta Gorda. Review each service for eligibility, preparation, downtime, and booking instructions. Walk-ins are accepted based on service and provider availability; call ahead for medical procedures or time-sensitive visits.
+House of Rose Aesthetics provides individualized medical aesthetic, skincare, injectable, and wellness services in Punta Gorda. Review each service for eligibility, preparation, downtime, and booking instructions.
 
 ## 8. Provider and directory template
 
@@ -1047,7 +1042,7 @@ Never invent a degree, board certification, specialty, training relationship, su
 - [ ] Address, unit number, phone, hours, and links match across platforms.
 - [ ] “Medical Aesthetics Practice” is the public descriptor.
 - [ ] Google’s “Medical spa” category is not copied into brand headlines by default.
-- [ ] Walk-in and pickup settings match current operations.
+- [ ] Visit and pickup settings match current operations.
 - [ ] Service lists include only services currently offered.
 - [ ] Retail and supplements categories remain only while customer-facing inventory is meaningful.
 - [ ] Clinical claims are reviewed.
@@ -1449,7 +1444,7 @@ Any AI person must have real skin texture and anatomically credible hands. Do no
 
 # 6. AI Creative Rules & Prompt Library / Tool-Agnostic Standards & Reusable Prompts
 
-> **AI RULE:** AI may help produce work. It may not define the practice, invent clinical facts, or replace real documentation.
+> **AI RULE:** AI is invited to create, challenge, and surprise. Its freedom ends only where an idea is presented as a real business fact, clinical fact, credential, patient result, review, or medical decision.
 
 ## 1. Permanent context block
 
@@ -1473,10 +1468,10 @@ Visual direction:
 - No perfect AI models, smiling stock poses, flowers as spa shorthand, water splashes, glitter, gold foil, pink gradients, floating products, soft-focus glamour, blue LED rooms, cursive, or random Canva aesthetics.
 
 Clinical guardrails:
-- Do not invent services, devices, formulations, ingredients, credentials, protocols, candidacy, contraindications, benefits, downtime, aftercare, or results.
-- Flag every clinical claim for verification.
+- Treat supplied business and clinical facts as the truth boundary. If a fact is missing, create around it, label a placeholder, or ask for the source instead of silently asserting it as true.
+- New or materially changed clinical claims and instructions follow proportional review; approved factual language may be reused unchanged.
 - Never create fake patient results, reviews, testimonials, or staff.
-- State uncertainty and ask for source material when facts are missing.
+- Fictional concepts, metaphors, scenes, and speculative directions are welcome in ideation when they are clearly framed as concepts rather than evidence.
 - Write in plain language and do not diagnose the reader.
 ```
 
@@ -1498,7 +1493,7 @@ Verified facts:
 [Paste only approved facts, protocol details, device names, preparation, downtime, aftercare, pricing, availability, credentials, and links.]
 
 Primary action:
-[Schedule a consultation / learn what to expect / call / walk in / shop / order for pickup.]
+[Schedule a consultation / learn what to expect / call / shop / order for pickup.]
 
 Required elements:
 [List exact inclusions.]
@@ -1515,10 +1510,13 @@ Output constraints:
 ### AI may
 
 - Organize verified information
-- Draft multiple concepts
+- Originate bold brand territories, headlines, hooks, names, narratives, metaphors, campaigns, scripts, layouts, and visual worlds
+- Draft multiple concepts, including unexpected directions
+- Challenge stale conventions and rewrite generic category language
 - Shorten and adapt approved copy
 - Propose shot lists
 - Create non-clinical mood studies
+- Create clearly labeled fictional scenarios and speculative concept work
 - Review work against this guide
 - Identify repeated or generic language
 - Create placeholders that are clearly labeled
@@ -1526,25 +1524,17 @@ Output constraints:
 ### AI may not
 
 - Decide clinical appropriateness
-- Infer provider scope
-- Invent a treatment protocol
-- Fill missing facts with “typical” assumptions
+- Present an invented service, device, ingredient, protocol, business detail, or clinical effect as verified fact
 - Write a guarantee
 - Create fake before-and-after imagery
-- Alter a real patient’s result
+- Materially alter a real patient’s result and present it as authentic
 - Fabricate reviews or credentials
 - Use an AI person as if they were a patient or staff member
-- Add products or equipment not actually used
 - State “FDA approved,” “clinically proven,” “pain-free,” or “no downtime” without approved support
 
-### Required AI output labels
+### Risk-based AI output notes
 
-Ask the model to separate:
-
-1. **Draft**
-2. **Facts that require verification**
-3. **Claims that require clinical approval**
-4. **Assets still needed**
+Do not force the same four boilerplate sections onto every creative draft. Add a concise note only when the output contains an unresolved factual assertion, a new or materially changed clinical claim, a missing real asset, or a fictional concept that could otherwise be mistaken for evidence. Clearly label internal mocks and fictional scenarios.
 
 ## 4. Prompt quality formula
 
@@ -1746,7 +1736,7 @@ Shot-by-shot edit list, timing, on-screen text, voiceover if needed, music direc
 Write and storyboard a 20-30 second IV hydration education reel for House of Rose Aesthetics.
 
 Verified facts:
-[Insert screening, available service, formulation rules, duration, eligibility, and current booking/walk-in information.]
+[Insert screening, available service, formulation rules, duration, eligibility, and the accurate next step.]
 
 Required narrative:
 - Identify IV hydration as a medical service.
@@ -1838,7 +1828,7 @@ Brand requirements:
 Use Medical Aesthetics Practice. Explain process and patient participation. Use “skin rejuvenation” no more than once. Do not use luxury, glow, flawless, pamper, transform, pain-free, no downtime, guaranteed, or reverse aging.
 
 Output:
-Draft, meta title, meta description, internal link suggestions, facts requiring verification, and claims requiring clinical approval.
+Draft, meta title, meta description, and internal link suggestions. Add a short verification note only for unresolved facts or newly introduced or materially changed clinical claims.
 ```
 
 ### B. Social caption
@@ -1877,7 +1867,7 @@ Audience:
 Local adults near Punta Gorda who may be researching medical aesthetics. Do not imply that Meta or House of Rose knows anything about the viewer’s age, health, skin, body, or insecurities.
 
 Goal:
-[Awareness / landing-page view / qualified consultation / walk-in / retail pickup.]
+[Awareness / landing-page view / qualified consultation / retail pickup.]
 
 Use:
 [Verified facts and offer, if any.]
@@ -2064,7 +2054,8 @@ Stop and rewrite a prompt if it includes:
 - [ ] Is the clinical setup accurate?
 - [ ] Does the output avoid the visual and verbal blacklist?
 - [ ] Could a reasonable reader mistake AI content for patient evidence?
-- [ ] Has a human owner and clinical reviewer approved the final version?
+- [ ] Has the owner approved the final creative direction?
+- [ ] If the output introduces or materially changes a clinical claim, instruction, or patient-evidence use, has the appropriate clinical reviewer approved that portion?
 
 <!-- PAGEBREAK -->
 
@@ -2110,14 +2101,13 @@ Primary metrics:
 
 ### Action
 
-Use a service-matched booking path, current availability, walk-in information, call options, and local pickup.
+Use a service-matched booking path, current availability, call options, and local pickup.
 
 Primary metrics:
 
 - Booked consultation
 - Booked treatment
 - Qualified phone call
-- Walk-in attributed to campaign
 - Retail order or pickup
 
 ### Continuity
@@ -2311,7 +2301,7 @@ Google currently allows up to 15 headlines of 30 characters and 4 descriptions o
 | Consultation, assessment, and individualized medical aesthetic planning in Punta Gorda. | 87 |
 | Regenerative therapies, laser, radiofrequency, injectables, IV hydration, and skincare. | 87 |
 | Plans may include preparation, downtime, aftercare, follow-up, and maintenance. | 79 |
-| View services, availability, walk-in options, and local pickup from House of Rose. | 82 |
+| View services, current availability, and local pickup from House of Rose. | 69 |
 
 #### Display paths
 
@@ -2331,7 +2321,7 @@ Google currently allows up to 15 headlines of 30 characters and 4 descriptions o
 | IV Screening Before Treatment | 29 |
 | Hydration With Clinical Review | 30 |
 | Punta Gorda IV Therapy | 22 |
-| IV Hydration Walk-Ins | 21 |
+| Call for IV Availability | 24 |
 | Call for IV Availability | 24 |
 | Medical Aesthetics Practice | 27 |
 | House of Rose Aesthetics | 24 |
@@ -2346,7 +2336,7 @@ Google currently allows up to 15 headlines of 30 characters and 4 descriptions o
 |---|---:|
 | IV hydration at House of Rose begins with screening and an individualized plan. | 79 |
 | Review current IV options, availability, timing, and what to expect in Punta Gorda. | 83 |
-| Walk-ins are accepted based on provider availability. Call ahead when possible. | 79 |
+| Call House of Rose to discuss current IV availability and what to expect. | 72 |
 | IV hydration is offered within a medical aesthetics practice in Punta Gorda. | 76 |
 
 #### Display paths
@@ -2456,7 +2446,7 @@ Use the search-terms report and conversion quality, not assumptions, to decide.
 - Preparation & Aftercare
 - Natural-Looking Results
 - Medical-Grade Skincare
-- Walk-Ins Based on Availability
+- Current Availability
 - Local Pickup Available
 
 #### Structured snippet
@@ -2677,7 +2667,7 @@ Collect the minimum information needed for the next step. Do not ask for diagnos
 - Cost per qualified action
 - Landing-page issues
 - Policy disapprovals
-- Walk-ins that mention the campaign
+- Visits that mention the campaign
 
 ### Monthly
 
@@ -2703,7 +2693,7 @@ Collect the minimum information needed for the next step. Do not ask for diagnos
 
 ### Week 1 - Foundation
 
-- Confirm profile facts, categories, hours, walk-ins, pickup, and service links.
+- Confirm profile facts, categories, hours, pickup, and service links.
 - Test booking, call, retail, and form tracking.
 - Select one high-intent service campaign plus brand search.
 - Finish the matching landing page.
@@ -2802,7 +2792,7 @@ Approve only when every answer is yes.
 
 ## 3. Clinical review
 
-Complete with the licensed clinician or authorized clinical reviewer.
+Complete this section only when the asset introduces or materially changes clinical claims, instructions, treatment combinations, or patient evidence. For nonclinical work or unchanged approved factual copy, mark it not applicable.
 
 - [ ] Service and indication are accurate.
 - [ ] Provider scope and credentials are accurate.
@@ -2816,7 +2806,7 @@ Complete with the licensed clinician or authorized clinical reviewer.
 - [ ] “FDA approved,” “clinically proven,” “pain-free,” “no downtime,” and similar terms are either removed or specifically approved.
 - [ ] The destination page preserves the same qualifications.
 
-**Clinical reviewer:** ______________________________  
+**Clinical reviewer, if required:** ______________________________
 **Review date:** __________________  
 **Source or protocol version:** ______________________________
 
@@ -2873,7 +2863,7 @@ Complete with the licensed clinician or authorized clinical reviewer.
 - [ ] Business name matches real-world branding.
 - [ ] Description contains no links, promotions, or keyword stuffing.
 - [ ] Categories are few and accurate.
-- [ ] Walk-in, appointment, pickup, hours, and retail settings match current operations.
+- [ ] Visit, pickup, hours, and retail settings match current operations.
 - [ ] Photos are real and relevant.
 
 ### Website / SEO
@@ -2902,7 +2892,7 @@ Complete with the licensed clinician or authorized clinical reviewer.
 **Channel:** ______________________________________________  
 **Campaign / service:** ____________________________________  
 **Owner:** ________________________________________________  
-**Clinical reviewer:** _____________________________________  
+**Clinical reviewer, if required:** __________________________
 **Consent verified by:** ___________________________________  
 **Destination URL:** _______________________________________  
 **Tracking tested by:** ____________________________________  

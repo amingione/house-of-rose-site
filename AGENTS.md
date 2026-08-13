@@ -41,11 +41,13 @@ Enforced on every content task:
    true for that exact procedure and reviewed), guaranteed results.
 3. **Controlled-use words are rationed** — skin rejuvenation, evidence-based, advanced, personalized,
    customized, restore, confidence. Accurate, necessary, and never repeated across a page.
-4. **AI may not** invent a protocol, infer provider scope, fill a gap with a "typical" assumption, write
-   a guarantee, fabricate before/after imagery, reviews or credentials, or claim "FDA approved,"
-   "clinically proven," "pain-free," or "no downtime" without approved support (Book 5 §3).
-5. **Label output** as Draft / Facts requiring verification / Claims requiring clinical approval /
-   Assets still needed (Book 5 §3), and **run the Book 7 §1 Fast Preflight before anything publishes.**
+4. **AI is a creative collaborator.** It is encouraged to originate bold concepts, hooks, names,
+   narratives, metaphors, campaigns, scripts, layouts, and art direction. The boundary is truth, not
+   imagination: AI may not present invented business or clinical facts, credentials, reviews, patient
+   evidence, or outcomes as real, or make a clinical decision (Book 5 §3).
+5. **Use review notes only when they are relevant.** Flag an unresolved factual assertion, a new or
+   materially changed clinical claim, a fictional concept, or a missing asset; do not force the same
+   four boilerplate labels onto every creative draft. Run the Book 7 §1 Fast Preflight before publishing.
 6. **Visuals follow Book 4** — real House of Rose environment, real skin and hands, accurate equipment.
    The visual blacklist (no perfect AI models, flowers as spa shorthand, splashes, glitter, gold foil,
    pink gradients, soft-focus glamour, blue LED rooms, cursive) is binding on generated imagery too.

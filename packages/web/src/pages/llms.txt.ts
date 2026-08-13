@@ -40,7 +40,7 @@ export const GET: APIRoute = async ({ site }) => {
   const lines: string[] = [
     `# House of Rose Aesthetics`,
     ``,
-    `> Medical Aesthetics. Thoughtfully Practiced. House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, offering PRF, Procell Microchanneling, injectables, facial care, IV hydration, provider-guided weight management, and professional home care. Walk-ins are welcome; appointments are recommended to reserve a time.`,
+    `> Medical Aesthetics. Thoughtfully Practiced. House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, offering PRF, Procell Microchanneling, injectables, facial care, IV hydration, provider-guided weight management, and professional home care.`,
     ``,
     `House of Rose is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Phone: (844) 941-7673. Email: info@houseofrosefl.com. Serving Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.`,
     ``,
@@ -57,7 +57,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Experience](${base}/experience/): What to expect before, during, and after an unhurried visit`,
     `- [Contact](${base}/contact/): Book a consultation or reach out`,
     `- [Rent a Suite](${base}/rent-a-room/): Private treatment room rentals for licensed aestheticians and wellness professionals`,
-    `- [Journal](${base}/blog/): Expert insights on wellness, beauty, and living well in Southwest Florida`,
+    `- [Journal](${base}/blog/): Articles about aesthetics, skincare, wellness, and treatment decisions in Southwest Florida`,
     `- [FAQ](${base}/faq/): Answers about treatments, pricing, and what to expect`,
     `- [Support](${base}/support/): Help with appointments, booking, directions, and contacting the studio`,
     `- [Terms of Service](${base}/terms-of-service/): Terms for website use, appointments, communications, and online product orders`,

@@ -10,12 +10,16 @@ import type { SanityImage } from '@/lib/queries';
 import {
   getCuratedServiceImage,
   getCuratedServiceImageAlt,
+  getServiceCardImage,
+  getServiceCardImageAlt,
   getServiceFallbackImage,
+  serviceCardImageUsesContain,
   serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
 import type { BookingMode } from '@/lib/booking';
 import BookingLink from '@/components/BookingLink.astro';
 import { alignPublicChannelCopy } from '@/lib/publicCopy';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
 
 interface Props {
   title: string;
@@ -37,6 +41,10 @@ const { title, slug, tagline, image, bookingMode, bookingUrl, variant = 'grid', 
 const curatedImage = getCuratedServiceImage(slug);
 const curatedImageAlt = getCuratedServiceImageAlt(slug);
 const containImage = serviceImageUsesContain(slug);
+const rowImage = getServiceCardImage(slug);
+const rowImageAlt = getServiceCardImageAlt(slug);
+const containRowImage = serviceCardImageUsesContain(slug);
+const rowSummary = getServiceCardSummary(slug);
 const imageSrc = curatedImage ?? (image
   ? urlFor(image).width(640).height(480).fit('crop').auto('format').quality(80).url()
   : getServiceFallbackImage(slug));
@@ -83,32 +91,42 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
   </article>
 ) : (
   <article class="service-row group border-b border-ivory/10 py-5" {...objAttrs}>
-    <div class="grid grid-cols-[76px_minmax(0,1fr)] gap-x-4 gap-y-2 sm:grid-cols-[96px_minmax(0,1fr)_auto] sm:items-center sm:gap-x-6">
-      <a
-        href={`/services/${slug}/`}
-        class="row-span-2 block h-[76px] w-[76px] overflow-hidden bg-charcoal-lighter sm:row-span-1 sm:h-24 sm:w-24"
-        aria-label={`Review ${title}`}
-      >
-        <img
-          src={imageSrc}
-          alt={curatedImage ? curatedImageAlt : image?.alt ?? title}
-          width={192}
-          height={192}
-          loading="lazy"
-          decoding="async"
-          class:list={[
-            'h-full w-full transition-transform duration-500 group-hover:scale-[1.03]',
-            containImage ? 'object-contain p-2' : 'object-cover',
-          ]}
-        />
-      </a>
+    <div class:list={[
+      'grid gap-y-2 sm:items-center',
+      rowImage
+        ? 'grid-cols-[76px_minmax(0,1fr)] gap-x-4 sm:grid-cols-[96px_minmax(0,1fr)_auto] sm:gap-x-6'
+        : 'grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-x-6',
+    ]}>
+      {rowImage && (
+        <a
+          href={`/services/${slug}/`}
+          class="row-span-2 block h-[76px] w-[76px] overflow-hidden bg-charcoal-lighter sm:row-span-1 sm:h-24 sm:w-24"
+          aria-label={`Review ${title}`}
+        >
+          <img
+            src={rowImage}
+            alt={rowImageAlt}
+            width={192}
+            height={192}
+            loading="lazy"
+            decoding="async"
+            class:list={[
+              'h-full w-full transition-transform duration-500 group-hover:scale-[1.03]',
+              containRowImage ? 'object-contain p-2' : 'object-cover',
+            ]}
+          />
+        </a>
+      )}
       <div class="min-w-0">
         <h3 class="mb-1 font-serif text-[clamp(20px,2.4vw,27px)] leading-tight text-ink" {...fp(headlinePath)}>
           <a href={`/services/${slug}/`} class="transition-colors hover:text-gold">{headline}</a>
         </h3>
-        {displayTagline && <p class="max-w-[720px] text-[13px] leading-relaxed text-muted sm:text-sm" {...fp(taglinePath)}>{displayTagline}</p>}
+        {rowSummary && <p class="max-w-[720px] text-[13px] leading-relaxed text-muted sm:text-sm">{rowSummary}</p>}
       </div>
-      <div class="col-start-2 flex flex-wrap items-center gap-x-5 gap-y-1 sm:col-start-3 sm:row-start-1 sm:flex-col sm:items-end sm:gap-1">
+      <div class:list={[
+        'flex flex-wrap items-center gap-x-5 gap-y-1 sm:row-start-1 sm:flex-col sm:items-end sm:gap-1',
+        rowImage ? 'col-start-2 sm:col-start-3' : 'col-start-1 sm:col-start-2',
+      ]}>
         <a
           href={`/services/${slug}/`}
           class="inline-flex min-h-[44px] items-center text-[12px] font-semibold text-gold transition-colors hover:text-ivory"

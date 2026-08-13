@@ -4,10 +4,10 @@
 > entire file before every task. Use it to connect strategy to execution, and
 > update it after work that creates durable knowledge.
 
-**Memory version:** 2.0.0
+**Memory version:** 2.3.2
 **Last updated:** 2026-08-13
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
-**Current state:** Voice reset in progress. Verified business, clinical, compliance, and operational facts remain usable; the Claude-developed voice and positioning language are rejected pending Amber's approval of a replacement.
+**Current state:** Voice reset in progress. Verified business, clinical, compliance, and operational facts remain usable; the Claude-developed voice and positioning language are rejected. A concrete, education-led homepage body is now in local testing and is not approved for Sanity publication; the homepage practice/interior section is approved and may be synced to Sanity.
 
 ---
 
@@ -62,6 +62,34 @@ only for verified facts and binding legal, clinical, consent, credential, pricin
 NAP, and operational constraints. New voice work must be developed from Amber's
 direct feedback and approved examples. Do not publish a sitewide rewrite before
 that calibration is approved.
+
+### Direct voice calibration — 2026-08-13
+
+For the homepage, Amber directed the brand toward the standards associated with
+affluent aesthetics markets such as Naples, Sarasota, Boca Raton, Scottsdale,
+and Newport Beach. The differentiator is discernment: a clear point of view,
+restraint, and knowing what not to do. Keep copy minimal. Avoid defaulting to
+confidence, glow, radiance, beauty, self-care, age gracefully, look your best,
+or personalized treatments. This is approved direction for the homepage section
+currently being revised, not yet authorization for a sitewide rewrite.
+
+### Creative freedom and review boundary — 2026-08-13
+
+AI is a creative collaborator, not merely a draft utility. It should be encouraged
+to originate concepts, names, hooks, narratives, metaphors, campaigns, scripts,
+layouts, and art direction. Its boundary is truth: it must not present an invented
+business or clinical fact, credential, review, patient result, or patient story as
+real, and it must not make clinical decisions. Clearly fictional internal concepts
+are allowed. Clinical review is proportional and applies to new or materially
+changed clinical claims, guidance, or patient evidence—not every routine sentence,
+layout, CTA, or nonclinical creative idea. Operational facts must remain accurate
+where relevant without becoming repeated brand messages. Walk-in status belongs in
+the applicable platform setting and one direct visit FAQ, not in general site copy,
+ads, bios, footers, schemas, or AI-feed boilerplate.
+
+Voice must be corrected in source copy, not through global word substitution at
+render time. Automated checks may normalize verified operational facts and flag
+high-risk claims, but they must not turn one cliché into a different stock phrase.
 
 ### What belongs here
 
@@ -118,6 +146,7 @@ to it. Add or revise a row whenever evidence changes the logic.
 | `[UNKNOWN: market reality]` | `[What it means]` | `[What we should communicate]` | `[Hook, format, offer, CTA, or experience]` | `[UNKNOWN]` |
 | `[UNKNOWN: brand strength]` | `[What it means]` | `[What we should communicate]` | `[Hook, format, offer, CTA, or experience]` | `[UNKNOWN]` |
 | `[UNKNOWN: friction/risk]` | `[What it means]` | `[What we should clarify or prove]` | `[Proof, objection handling, guarantee, or CTA]` | `[UNKNOWN]` |
+| Affluent, aesthetically experienced clients already assume the category offers current treatments. | A treatment list is not meaningful differentiation. | Lead with discernment, restraint, and a recognizable point of view. | Keep homepage copy short and let real-space imagery carry atmosphere. | `[DECIDED]` — Amber, 2026-08-13 |
 
 ### Governing cause-and-effect chain
 
@@ -334,7 +363,12 @@ The claim ledger is the boundary between persuasive copy and invented copy.
 - Separate customer experience from a promised typical result.
 - Respect relevant platform, industry, privacy, intellectual-property, and
   disclosure rules.
-- Current brand- or industry-specific restrictions: `[UNKNOWN]`
+- Use clinical review proportionally: new or materially changed effects, safety,
+  candidacy, contraindication, preparation, recovery, downtime, aftercare,
+  treatment-combination, or patient-evidence language requires appropriate review.
+  Routine nonclinical creative and unchanged approved factual copy do not.
+- Treat AI's boundary as truthful representation, not creative conformity. Fictional
+  ideation is allowed when it cannot be mistaken for real patient or clinical evidence.
 
 ---
 
@@ -346,9 +380,9 @@ channel, and emotional context without violating that character.
 ### Voice essence
 
 - **In three to five traits:** `[RESET IN PROGRESS]`
-- **Reader should feel:** `[RESET IN PROGRESS]`
+- **Reader should feel:** Better informed because the practice explains meaningful differences between concerns, treatment categories, and treatment forms. `[TESTING]` — local homepage body draft, 2026-08-13.
 - **Reader should never feel:** Like they are reading a policy manual, clinical intake document, AI manifesto, or an argument defending the practice. `[DECIDED]` — Amber rejected the current voice, 2026-08-13.
-- **Relationship to the reader:** `[RESET IN PROGRESS]`
+- **Relationship to the reader:** A knowledgeable guide who names the distinction, explains why it matters, and lets the reader choose the next level of detail. `[TESTING]` — local homepage body draft, 2026-08-13.
 
 ### Voice sliders
 
@@ -368,7 +402,9 @@ Set each from 1 to 5 and explain the implication.
 
 | Do | Because | Do not | Why not |
 |---|---|---|---|
-| `[UNKNOWN]` |  | `[UNKNOWN]` |  |
+| Build sections around concrete distinctions: pigment vs texture, movement vs volume, topical vs injected. `[TESTING]` | Expertise is more persuasive when the reader can learn something specific from the copy. | Build every section around abstract judgment, standards, candidacy, sequencing, or restraint. | That repeated posture produced the powerless, uniform Claude voice Amber rejected. |
+| Use declarative headlines that tell the reader what the section proves. `[TESTING]` | It creates momentum and makes dense information easier to scan. | Use rhetorical questions, mirrored fragments, or aphorisms as the default headline pattern. | Repetition makes every section sound composed by the same formula. |
+| Give each paragraph one clear job and vary sentence length. `[TESTING]` | The homepage needs authority without reading like policy or a research abstract. | Pad simple facts with process language or stack qualifiers into every sentence. | It weakens the point and produces an inhuman cadence. |
 
 ### Language system
 
@@ -499,7 +535,7 @@ line.
 
 | Asset / phrase | Exact approved copy or source link | Why it is on-brand | Reuse / adaptation rules | Status |
 |---|---|---|---|---|
-| `[UNKNOWN]` |  |  |  |  |
+| Homepage practice/interior section | Kicker: “The practice” · Heading: “Inside House of Rose.” · Body: “These are the actual treatment rooms and storefront at 525 E Olympia Avenue in Punta Gorda.” · Storefront caption: “525 E Olympia Avenue” / “Unit 9” · Storefront image: `packages/web/public/images/H_OF_A_EXTERIOR_WINDOW_DECALS.webp` | It is factual, locally specific, concise, and lets the real photographs establish the space. | Keep the full storefront description as image alt text. Display the approved image at its native 3:4 composition. Do not restore a second visible “House of Rose storefront” caption. | `[DECIDED]` — Amber approved, 2026-08-13 |
 
 ### Rejected or retired directions
 
@@ -547,6 +583,12 @@ settled questions or repeating rejected approaches.
 | DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. The former Forma-firmness clause is `[SUPERSEDED]` by DEC-003. | User direction / Amber | `[DECIDED]` |
 | DEC-003 | 2026-08-06 | Position Forma only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. Do not market it for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | The owner prohibited reshaping language and approved a texture-and-collagen explanation. The retained split-face tissue study supports cautious collagen-response wording. | Applies to the Forma service page, SEO, structured data, cost guide, FAQs, collection copy, evidence captions, booking copy, concern references, and visual evidence. | User direction / Amber | `[DECIDED]` |
 | DEC-004 | 2026-08-13 | Reject and freeze the Claude-developed brand voice across the Creative System, brand memory, and current website. Preserve facts and compliance, but rebuild tone and positioning from Amber's direct feedback instead of extending existing copy. | Amber stated that she “absolutely hates” the voice Claude has been forming while the website was built. | Existing voice/personality/tagline/message rules are not approval evidence. No sitewide rewrite or Sanity publish until a replacement calibration is approved. | User direction / Amber | `[DECIDED]` |
+| DEC-005 | 2026-08-13 | Calibrate the homepage toward discernment, restraint, and point of view for an affluent aesthetics audience; keep the language minimal and avoid standard med-spa outcome clichés. | Amber identified Naples, Sarasota, Boca Raton, Scottsdale, and Newport Beach as the market benchmark and stated that sophisticated clients are choosing judgment, not a treatment list. | Apply to the homepage section under revision. Treat broader rollout as unapproved until Amber directs it. | User direction / Amber | `[DECIDED]` |
+| DEC-006 | 2026-08-13 | Make clinical review proportional, treat AI as a creative collaborator bounded by truthful representation, and stop repeating walk-in status as brand copy. | Amber rejected blanket clinical approval, objected to operational facts becoming overused copy, and said the prior AI restriction was eliminating creativity. | Review new or materially changed clinical claims instead of every routine sentence; invite original creative concepts; keep walk-in details to the relevant platform setting and one direct FAQ. | User direction / Amber | `[DECIDED]` |
+| DEC-007 | 2026-08-13 | Do not enforce voice through global runtime word replacement. Fix voice in the source; reserve automation for factual normalization, placement rules, and risk flags. | Hermes identified artifacts such as “healthy, natural healthy-looking finish,” confirming that reactive substitutions were making the writing less human. | `publicCopy.ts` must not rewrite broad style words into stock alternatives. It may preserve verified operational corrections, suppress misplaced walk-in boilerplate, and warn about high-risk claims. | Hermes review accepted by Amber / implementation finding | `[DECIDED]` |
+| DEC-008 | 2026-08-13 | Test a homepage body built around specific concern and treatment distinctions, with PRF explained as three related but non-interchangeable forms: topical with Microneedling, injectable PRF, and PRF EZ-Gel. | Amber asked for knowledgeable, persuasive, informative copy and deeper education on PRF's versatility after rejecting abstract, repetitive section headlines. | The draft remains local and code-authored so stale Sanity voice cannot override it. Do not publish this wording to Sanity or roll it across the site until Amber approves the direction. Preserve the hard topical-versus-injectable distinction in every PRF adaptation. | Direct user instruction / local homepage rebuild | `[TESTING]` |
+| DEC-009 | 2026-08-13 | Approve the factual, minimal homepage practice/interior section and its address-first storefront caption. | Amber preferred local proof and real-space photography over language that told the reader how to interpret the design. | This section may be synced to Sanity. Retain the descriptive image alt text; visible storefront caption is “525 E Olympia Avenue” and “Unit 9.” | Direct user approval / Amber | `[DECIDED]` |
+| DEC-010 | 2026-08-13 | Use `H_OF_A_EXTERIOR_WINDOW_DECALS.webp` as the homepage exterior image and preserve its 3:4 portrait composition. | Amber explicitly preferred this storefront view to the previous exterior photograph. | Homepage uses responsive 700 px and 1000 px derivatives without changing the source image. | Direct user approval / Amber | `[DECIDED]` |
 
 ---
 
@@ -664,6 +706,12 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-13 | 2.3.2 | Approved copy library, decision ledger | Recorded the approved homepage exterior photograph and its uncropped 3:4 presentation. | Direct user approval / Amber |
+| 2026-08-13 | 2.3.1 | Current state, approved copy library, decision ledger | Approved the homepage practice/interior section and simplified its visible storefront caption to the address and unit. | Direct user approval / Amber |
+| 2026-08-13 | 2.3.0 | Current state, voice operating system, decision ledger | Recorded the local homepage voice test: concrete distinctions, declarative headlines, varied rhythm, and a three-form PRF education narrative; explicitly kept it unapproved for Sanity publication. | Direct user instruction / homepage rebuild and PRF evidence review |
+| 2026-08-13 | 2.2.1 | Creative boundary, decision ledger | Recorded that voice must be fixed at the source rather than through runtime synonym replacement; retained only factual normalization and risk signals. | Hermes review supplied by Amber; verified in built pages and `publicCopy.ts` |
+| 2026-08-13 | 2.2.0 | Source boundary, compliance guardrails, decision ledger | Replaced blanket clinical review with proportional review, established AI as a creative collaborator bounded by truth, and limited walk-in language to operationally relevant surfaces. | Direct user instruction / Amber |
+| 2026-08-13 | 2.1.0 | Source boundary, strategy map, decision ledger | Added Amber's direct homepage voice calibration: minimal copy centered on discernment, restraint, and point of view for an affluent aesthetics audience. | Direct user instruction / Amber |
 | 2026-08-13 | 2.0.0 | Status, source boundary, executive snapshot, strategic spine, voice, decision ledger, contradictions | Marked the Claude-developed voice as rejected and froze it as a tonal source while preserving factual and compliance constraints. | Direct user instruction / Amber |
 | 2026-08-12 | 1.2.2 | Executive snapshot, strategic spine, foundations, positioning, message pillars, voice, source intake | Reconciled foundational `[UNKNOWN]` fields with the existing governing Creative System during the brand-asset audit; no new brand direction was invented. | Creative System v1.0 and `BRAND-ASSET-AUDIT.md` |
 | 2026-08-08 | 1.2.1 | Claim ledger, contradictions | Added PubMed-verified PRF claim citations (release kinetics, fibroblast response, 2025 stretch-mark RCT) from the PRF service-page rewrite; logged CON-001, the $450-vs-$595 topical-PRF price conflict awaiting Amber's ruling. | PRF page rewrite session, PubMed metadata + `ALL-SERVICES-PRICING.MD` open item #2 |

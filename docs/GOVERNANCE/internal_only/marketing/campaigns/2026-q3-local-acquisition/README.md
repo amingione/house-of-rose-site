@@ -23,7 +23,7 @@ This package turns the 30-day acquisition plan into publish-ready campaign input
 - **Goal:** qualified consultation requests and booked appointments.
 - **Audience:** adults 35+ within 20 miles of 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
 - **Core message:** see the practice, understand the options, and begin with a clear plan.
-- **Positioning angle:** unhurried, individualized care with restrained, provider-led recommendations. Walk-ins are welcome; appointments are recommended to reserve a time. _(Lead descriptor is **Medical Aesthetics Practice** — "private" is retired here because it contradicts the walk-in policy.)_
+- **Positioning angle:** restrained, provider-led recommendations for aesthetics, skin, and wellness care in Punta Gorda. _(Lead descriptor is **Medical Aesthetics Practice**.)_
 - **Primary CTA:** Begin with a complimentary skin consultation.
 - **Paid destinations:** `/skin-analysis/`, `/services/injectables/`, `/services/glo2facial/`, and `/services/microchanneling/`.
 
