@@ -1,7 +1,7 @@
 ---
 import '@/styles/global.css';
 import { sanityFetch } from '@/lib/sanity';
-import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
+import { SITE_SETTINGS_QUERY, type SiteSettings } from '@/lib/queries';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CartDrawer from '@/components/shop/CartDrawer.astro';
@@ -20,6 +20,8 @@ interface Props {
   description?: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   preloadImage?: string;
   preloadImageSrcset?: string;
   preloadImageSizes?: string;
@@ -29,7 +31,6 @@ interface Props {
 }
 
 const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
-const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
 const siteName = settings?.siteName ?? 'House of Rose Aesthetics';
 
 const {
@@ -37,6 +38,8 @@ const {
   description = settings?.description ?? 'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
   image,
   imageAlt,
+  imageWidth,
+  imageHeight,
   preloadImage,
   preloadImageSrcset,
   preloadImageSizes,
@@ -56,11 +59,11 @@ const openAIAdsPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLI
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
-const defaultOgImage = new URL('/images/socialShareCover/HOUSE-OF-ROSE-FL.webp', siteURL).toString();
+const defaultOgImage = new URL('/images/socialShareCover/house-of-rose-social-1942.webp', siteURL).toString();
 const socialImage = image ? new URL(image, siteURL).toString() : defaultOgImage;
 const socialImageAlt = imageAlt ?? `${siteName} in Punta Gorda, Florida`;
-const socialImageWidth = image ? 1200 : 1942;
-const socialImageHeight = image ? 630 : 809;
+const socialImageWidth = image ? imageWidth ?? 1200 : 1942;
+const socialImageHeight = image ? imageHeight ?? 630 : 809;
 const pageTitle = formatSeoTitle(title, siteName);
 const entityGraph = siteEntityGraph(
   {
@@ -124,7 +127,6 @@ const entityGraph = siteEntityGraph(
         imageAlt: socialImageAlt,
       }}
     />
-    <script is:inline type="text/javascript" src="//script.crazyegg.com/pages/scripts/0133/4876.js" async="async"></script>
     <SchemaMarkup item={entityGraph} />
     <ConsentBootstrap />
     <script
@@ -152,7 +154,7 @@ const entityGraph = siteEntityGraph(
       <slot />
     </main>
 
-    {chrome === 'site' && <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />}
+    {chrome === 'site' && <Footer />}
 
     <!-- Cart UI remains outside main so it does not interfere with page landmarks. -->
     {chrome === 'site' && SHOP_ENABLED && <CartDrawer />}

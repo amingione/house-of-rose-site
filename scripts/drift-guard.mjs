@@ -67,12 +67,10 @@ const RULES = [
 ];
 
 /**
- * WARN-ONLY tier — retired brand language per the House of Rose Creative System v1.0
- * (`docs/House_of_Rose_Creative_System/`, Book 1 §12 "Retired language").
+ * WARN-ONLY tier — cliché and high-risk language signals retained during the voice reset.
  *
- * These are reported but do NOT fail the build, on purpose: the lead-descriptor sweep is
- * still open (P0 in docs/DRIFT-CLEANUP-CHECKLIST.md), so shipping source legitimately still
- * contains some of these today. Promote a rule into RULES above once its sweep is done.
+ * These are reported but do NOT fail the build. They identify strings for human review; they do
+ * not certify voice quality and must never be "fixed" with mechanical synonym substitution.
  */
 const WARN_RULES = [
   { label: 'Retired positioning (luxury/luxe/premium/boutique as self-description)', re: /\b(luxury|luxe|premium|boutique)\b/i },
@@ -91,10 +89,11 @@ const WARN_RULES = [
 const WARN_EXEMPT = [
   // Code/CSS/markup comments — implementation notes, not customer-facing words.
   /^\s*(?:\/\/|\/\*|\*(?!\/)|<!--)/,
-  // Sanitizer patterns name retired phrases only so public CMS copy can be rewritten at render time.
+  // Risk-detector patterns name retired phrases so CMS copy can be flagged for source review.
   /\.replace\(\/.*(?:guaranteed results|treat yourself|best version of yourself|instant transformation)/i,
-  // Real vendor product names we resell. "Glow Time" is Jane Iredale's SKU, not our voice.
-  /Glow Time|Radiance-Boosting|Skintuition/i,
+  // Exact catalog/vendor names are facts, not House of Rose voice. "Beauty Glow IV"
+  // is the current GlossGenius service name; the other matches are Jane Iredale SKUs.
+  /Beauty Glow IV|Glow Time|Radiance-Boosting|Skintuition/i,
   // Cosmetic *finish* vocabulary. "Radiant coverage" is a foundation finish type (the
   // opposite of matte) and is Jane Iredale's own term — technical product language, not a
   // brand pillar. Bare "radiance"/"radiant" in brand copy is still flagged.
@@ -104,8 +103,8 @@ const WARN_EXEMPT = [
 /**
  * Reviewed, documented exception. Put `drift-guard-ok: <reason>` on the offending line or the
  * line immediately above it (eslint-disable-next-line style) when a retired phrase is factually
- * correct for that exact procedure — the Creative System permits "no downtime" and similar when
- * true AND reviewed (Book 1 §12). The reason is required: a bare marker exempts nothing.
+ * correct for that exact procedure and has been reviewed by the appropriate owner or clinician.
+ * The reason is required: a bare marker exempts nothing.
  */
 const REVIEWED_EXCEPTION = /drift-guard-ok:\s*\S+/;
 
@@ -156,8 +155,9 @@ function scanFile(file) {
       }
     }
     const reviewed = REVIEWED_EXCEPTION.test(text) || REVIEWED_EXCEPTION.test(lines[i - 1] ?? '');
-    const sanitizerPattern = rel.endsWith('packages/web/src/lib/publicCopy.ts') && (/\.replace\(/.test(text) || /^\s*\//.test(text));
-    if (!reviewed && !sanitizerPattern && !WARN_EXEMPT.some((re) => re.test(text))) {
+    const publicCopyDetector = rel.endsWith('packages/web/src/lib/publicCopy.ts')
+      && (/\.replace\(/.test(text) || /\.match\(/.test(text) || /^\s*\//.test(text) || /^\s*\? \/\\b/.test(text));
+    if (!reviewed && !publicCopyDetector && !WARN_EXEMPT.some((re) => re.test(text))) {
       for (const { label, re } of WARN_RULES) {
         if (re.test(text)) {
           warnings.push({ file: rel, line: i + 1, label, text: text.trim().slice(0, 120) });
@@ -189,22 +189,21 @@ for (const route of RETIRED_ROUTE_CONFIGS) {
 function reportWarnings() {
   if (warnings.length === 0) return;
   console.warn(
-    `\n⚠️  drift-guard: ${warnings.length} retired brand-language warning(s) ` +
-    '(Creative System Book 1 §12 — does NOT fail the build):\n',
+    `\n⚠️  drift-guard: ${warnings.length} copy-risk warning(s) ` +
+    '(human review signal — does NOT fail the build):\n',
   );
   for (const w of warnings) {
     console.warn(`  ${w.file}:${w.line}  [${w.label}]`);
     console.warn(`      ${w.text}`);
   }
   console.warn(
-    '\nThese are retired per docs/House_of_Rose_Creative_System/. Some are expected until the' +
-    '\nlead-descriptor sweep lands (P0 in docs/DRIFT-CLEANUP-CHECKLIST.md). Rewrite them in' +
-    '\nCreative System voice, or narrow the rule in scripts/drift-guard.mjs if it is a false positive.\n',
+    '\nReview these in their exact context. Fix source copy when needed, or narrow the detector' +
+    '\nwhen the match is code, product nomenclature, or another documented false positive.\n',
   );
 }
 
 if (hits.length === 0) {
-  console.log('✅ drift-guard: clean — no retired/wrong-fact strings in shipping source.');
+  console.log('✅ drift-guard: fact and retired-term checks passed. This is not a voice-quality certification.');
   reportWarnings();
   process.exit(0);
 }

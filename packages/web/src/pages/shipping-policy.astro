@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { TERMS_OF_SERVICE_QUERY, type TermsOfService } from '@/lib/queries';
-import { breadcrumbList, webPage } from '@/lib/structuredData';
+import { breadcrumbList } from '@/lib/structuredData';
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 
 const data = (await sanityFetch<TermsOfService | null>(TERMS_OF_SERVICE_QUERY)) ?? {};
@@ -16,7 +16,6 @@ const description = 'Shipping destinations, handling time, carrier rates, and tr
 ---
 
 <BaseLayout title="Shipping Policy | House of Rose Aesthetics" description={description}>
-  <SchemaMarkup item={webPage({ name: 'Shipping Policy', description, url: canonical }, site)} slot="head" />
   <SchemaMarkup item={breadcrumbList([{ name: 'Home', item: site }, { name: 'Shipping Policy', item: canonical }])} slot="head" />
   <section class="bg-charcoal px-6 py-24" {...annotations}>
     <article class="mx-auto max-w-3xl pt-12">

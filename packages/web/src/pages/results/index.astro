@@ -18,15 +18,16 @@ const breadcrumb = breadcrumbList([
 
 <BaseLayout
   title="Before & After Results | House of Rose Aesthetics"
-  description="Real client results from House of Rose in Punta Gorda, FL — before and after treatment outcomes, shared with consent."
+  description="Consented before-and-after treatment cases from House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary."
+  noindex={studies.length === 0}
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
-      <span class="kicker">Proof</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Real results, real clients</h1>
-      <p class="text-ink/80 text-[16px] max-w-[640px] leading-relaxed">Before-and-after outcomes from House of Rose, shared with written client consent. Individual results vary.</p>
+      <span class="kicker">Before &amp; After</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Results, with context.</h1>
+      <p class="text-ink/80 text-[16px] max-w-[640px] leading-relaxed">Only cases with written client consent are published. Individual outcomes vary.</p>
     </div>
   </section>
 
@@ -59,13 +60,10 @@ const breadcrumb = breadcrumbList([
   ) : (
     <section class="bg-charcoal-light py-16 px-6">
       <div class="max-w-[680px] mx-auto text-center">
-        <p class="text-muted text-[15px] leading-[1.8] mb-4">
-          Our consented before-and-after galleries are being photographed now. In the meantime, explore how our advanced treatments work and what to expect.
-        </p>
         <p class="text-muted text-[15px] leading-[1.8] mb-8">
-		  Explore the <a href="/services/microneedling/" class="text-gold hover:underline">microneedling and topical PRF guide</a>, browse <a href="/services/" class="text-gold hover:underline">all treatments</a>, or start with <a href="/skin-analysis/" class="text-gold hover:underline">advanced skin imaging</a> to map your own plan.
+          No client cases are currently published.
         </p>
-        <a href="/skin-analysis/" class="btn-outline-gold">See what your skin needs</a>
+        <a href="/services/" class="btn-outline-gold">Browse services</a>
       </div>
     </section>
   )}
@@ -73,7 +71,7 @@ const breadcrumb = breadcrumbList([
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
       <p class="text-muted text-[15px] leading-[1.8]">
-		  Curious what's realistic for your skin? Read the <a href="/services/microneedling/" class="text-gold hover:underline">microneedling guide</a> or compare your options on the <a href="/compare/" class="text-gold hover:underline">comparison hub</a> before you book.
+        Review <a href="/services/" class="text-gold hover:underline">service details</a> or browse the available <a href="/compare/" class="text-gold hover:underline">side-by-side comparisons</a>.
       </p>
     </div>
   </section>

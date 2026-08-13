@@ -67,7 +67,9 @@ export const GET: APIRoute = async ({ site }) => {
     { loc: `${baseUrl}/cost/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/compare/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/areas/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    ...(caseStudies.length > 0
+      ? [{ loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly', lastmod: now }]
+      : []),
     { loc: `${baseUrl}/packages/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     { loc: `${baseUrl}/skin-analysis/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
     ...shopPages,
@@ -98,7 +100,9 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Collection pages
   const collectionIndexPage = { loc: `${baseUrl}/services/collections/`, priority: '0.7', changefreq: 'monthly', lastmod: now };
-  const collectionPages = collections.map((col) => ({
+  // The waxing collection is a links-only directory and is deliberately
+  // noindex; its supported facial/body service pages remain in servicePages.
+  const collectionPages = collections.filter((col) => col.slug !== 'waxing').map((col) => ({
     loc: `${baseUrl}/services/collections/${col.slug}/`,
     priority: '0.7',
     changefreq: 'monthly',

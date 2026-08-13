@@ -3,20 +3,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ABOUT_PAGE_QUERY, PUBLIC_PROVIDERS_QUERY, type AboutPageContent, type PublicProviderProfile } from '@/lib/queries';
-import { ABOUT_PAGE_FALLBACK, PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
-import { breadcrumbList, webPage } from '@/lib/structuredData';
-import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+import { ABOUT_PAGE_FALLBACK, resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
+import { breadcrumbList } from '@/lib/structuredData';
+import { sbObjectId } from '@/lib/visualEditing';
 
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
-const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+const providers = resolvePublicProviderProfiles(sanityProviders);
+const sanityProviderIds = new Set(sanityProviders.map((provider) => provider._id));
 
-const heading = content?.indexHeading ?? ABOUT_PAGE_FALLBACK.indexHeading;
-const intro = content?.indexIntro ?? ABOUT_PAGE_FALLBACK.indexIntro;
+// Working voice reset: public copy stays local while images and provider facts may remain in Sanity.
+const heading = 'House of Rose Aesthetics.';
+const intro = 'A medical aesthetics practice in Punta Gorda, Florida. Read about the practice or meet the people who work here.';
 const imageUrl = content?.indexImageUrl ?? ABOUT_PAGE_FALLBACK.indexImageUrl;
 const imageAlt = content?.indexImageAlt ?? ABOUT_PAGE_FALLBACK.indexImageAlt;
-const title = content?.indexSeo?.metaTitle ?? ABOUT_PAGE_FALLBACK.indexSeo?.metaTitle;
-const description = content?.indexSeo?.metaDescription ?? ABOUT_PAGE_FALLBACK.indexSeo?.metaDescription;
+const title = ABOUT_PAGE_FALLBACK.indexSeo?.metaTitle;
+const description = ABOUT_PAGE_FALLBACK.indexSeo?.metaDescription;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -24,7 +26,6 @@ const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'About', item: canonical },
 ]);
-const pageSchema = webPage({ name: heading, description: description ?? intro, url: canonical }, site);
 ---
 
 <BaseLayout
@@ -34,7 +35,6 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
   imageAlt={imageAlt}
   preloadImage={imageUrl}
 >
-  <SchemaMarkup item={pageSchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
 
   <div {...(content?._id ? sbObjectId(content._id) : {})}>
@@ -42,10 +42,10 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
       <div class="mx-auto grid max-w-[1280px] items-end gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div class="max-w-[650px]">
           <p class="kicker">About</p>
-          <h1 class="font-serif text-[clamp(42px,7vw,78px)] leading-[0.98] text-ink" {...sbFieldPath('indexHeading')}>
+          <h1 class="font-serif text-[clamp(42px,7vw,78px)] leading-[0.98] text-ink">
             {heading}
           </h1>
-          <p class="mt-7 max-w-[610px] text-[17px] leading-[1.8] text-muted" {...sbFieldPath('indexIntro')}>
+          <p class="mt-7 max-w-[610px] text-[17px] leading-[1.8] text-muted">
             {intro}
           </p>
         </div>
@@ -70,7 +70,7 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
             House of Rose Aesthetics
           </h2>
           <p class="mt-5 max-w-[520px] text-[15px] leading-[1.8] text-muted">
-            Read how consultation, assessment, preparation, aftercare, and long-term planning define the practice.
+            What the practice offers and how the service categories differ.
           </p>
           <span class="learn-more mt-8">About the practice <span aria-hidden="true">→</span></span>
         </a>
@@ -82,7 +82,7 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
           </h2>
           <ul class="mt-6 grid gap-2 text-[14px] leading-relaxed text-muted sm:grid-cols-2" aria-label="House of Rose team">
             {providers.map((provider) => (
-              <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>{provider.publicName}</li>
+              <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>{provider.publicName}</li>
             ))}
           </ul>
           <span class="learn-more mt-8">View all providers <span aria-hidden="true">→</span></span>

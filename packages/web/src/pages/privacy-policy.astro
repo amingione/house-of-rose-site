@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import SchemaMarkup from "@/components/SchemaMarkup.astro";
 import { sanityFetch } from "@/lib/sanity";
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
-import { webPage, breadcrumbList } from "@/lib/structuredData";
+import { breadcrumbList } from "@/lib/structuredData";
 import { alignPublicChannelCopy } from "@/lib/publicCopy";
 
 const privacySupportEmail = "support@updates.houseofrosefl.com";
@@ -76,7 +76,7 @@ const REQUIRED_MEASUREMENT_SECTIONS: PrivacySection[] = [
 	{
 		_key: "measurement",
 		heading: "Website Measurement and Advertising",
-		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 to understand consented website activity, and Google Ads, Meta Pixel, and OpenAI Ads measurement tools to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Meta Pixel, OpenAI Ads measurement, and Ahrefs Analytics do not activate until the applicable analytics or advertising permission is granted.",
+		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 and Crazy Egg to understand consented website activity, and Google Ads, Meta Pixel, and OpenAI Ads measurement tools to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Crazy Egg, Meta Pixel, OpenAI Ads measurement, and Ahrefs Analytics do not activate until the applicable analytics or advertising permission is granted.",
 	},
 	{
 		_key: "attribution",
@@ -116,7 +116,7 @@ const sections = [
 	}));
 
 const pageTitle = data.pageTitle ?? "Privacy Policy";
-const lastUpdated = data.lastUpdated ?? "Effective July 26, 2026";
+const lastUpdated = "Updated August 13, 2026";
 const intro = alignPublicChannelCopy(
 	(data.intro ??
 		"House of Rose Aesthetics LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging."),
@@ -131,10 +131,6 @@ const pageMetaDescription = alignPublicChannelCopy(
 	data.seoDescription ??
 	"House of Rose Aesthetics LLC privacy policy, data sharing practices, and messaging terms and conditions.",
 );
-const webPageSchema = webPage(
-	{ name: pageTitle, description: pageMetaDescription, url: canonical },
-	site,
-);
 const breadcrumb = breadcrumbList([
 	{ name: "Home", item: site },
 	{ name: "Privacy Policy", item: canonical },
@@ -142,7 +138,6 @@ const breadcrumb = breadcrumbList([
 ---
 
 <BaseLayout title={pageMetaTitle} description={pageMetaDescription}>
-	<SchemaMarkup item={webPageSchema} slot="head" />
 	<SchemaMarkup item={breadcrumb} slot="head" />
 	<section class="bg-charcoal py-24 max-w-4xl mx-auto px-6" {...oid}>
 		<div class="text-center mb-16">

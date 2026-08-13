@@ -32,6 +32,10 @@ import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. Resolve the PRF and EZ Gel catalog identities and review the embedded copy before recreating drafts.',
+);
+
 const APPLY = process.argv.includes('--apply');
 const REPLACE = process.argv.includes('--replace');
 const SHOULD_WRITE = APPLY || REPLACE;

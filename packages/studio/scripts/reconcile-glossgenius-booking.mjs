@@ -15,6 +15,10 @@ import {
   bookingUrlFor,
 } from './glossgenius-booking-map.mjs';
 
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. Reconcile this script against the current GlossGenius catalog before writing booking fields.',
+);
+
 const APPLY = process.argv.includes('--apply');
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID ?? '4e7axyi7';
 const dataset = process.env.PUBLIC_SANITY_DATASET ?? 'production';

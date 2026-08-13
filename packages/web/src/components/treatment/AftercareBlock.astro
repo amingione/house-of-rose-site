@@ -10,8 +10,8 @@ interface Props {
 const { aftercare, treatmentName } = Astro.props;
 
 const columns = [
-  { key: 'firstDay' as const, label: 'First 24 Hours', items: aftercare.firstDay },
-  { key: 'firstWeek' as const, label: 'First Week', items: aftercare.firstWeek },
+  { key: 'firstDay' as const, label: 'First 24 hours', items: aftercare.firstDay },
+  { key: 'firstWeek' as const, label: 'First week', items: aftercare.firstWeek },
   { key: 'avoid' as const, label: 'Avoid', items: aftercare.avoid },
   { key: 'ongoing' as const, label: 'Ongoing', items: aftercare.ongoing },
 ].filter((column) => column.items && column.items.length > 0);
@@ -20,7 +20,7 @@ const columns = [
 <div>
   <span class="kicker">Aftercare</span>
   <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-5">
-    How do you care for skin after {treatmentName}?
+    Aftercare for {treatmentName}.
   </h2>
 
   {aftercare.intro && (
@@ -38,9 +38,7 @@ const columns = [
         <ul class="space-y-2.5">
           {column.items!.map((item, i) => (
             <li class="flex gap-3 text-muted text-[14px] leading-relaxed">
-              <span class="text-gold mt-0.5 shrink-0" aria-hidden="true">
-                {column.key === 'avoid' ? '—' : '✦'}
-              </span>
+              <span class="block w-1 h-1 rounded-full bg-gold mt-[0.65em] shrink-0" aria-hidden="true"></span>
               <span {...sbFieldPathParts(`aftercare.${column.key}`, i)}>{item}</span>
             </li>
           ))}

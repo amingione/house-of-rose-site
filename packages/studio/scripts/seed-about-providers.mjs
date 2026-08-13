@@ -1,6 +1,8 @@
 /** Seed the About singleton and public provider-profile fields. */
 import { createClient } from '@sanity/client';
 
+throw new Error('Archived by the 2026-08-13 voice reset. Rewrite and review the About/provider copy before use.');
+
 const APPLY = process.argv.includes('--apply');
 const token = process.env.SANITY_API_WRITE_TOKEN ?? process.env.SANITY_AUTH_TOKEN ?? process.env.SANITY_TOKEN;
 if (APPLY && !token) throw new Error('SANITY_API_WRITE_TOKEN is required with --apply.');

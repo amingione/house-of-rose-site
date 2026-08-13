@@ -5,9 +5,8 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COMPARISONS_QUERY, type Comparison } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
 
-const comparisons = alignPublicContent(await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY));
+const comparisons = await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -24,8 +23,8 @@ const comparisonsListSchema = comparisons.length
 ---
 
 <BaseLayout
-  title="Treatment Comparisons | House of Rose Aesthetics, Punta Gorda FL"
-  description="Clear comparisons of PRF, microneedling, injectables, and other treatments to help you prepare for a consultation at House of Rose in Punta Gorda, FL."
+  title="Treatment Comparisons | House of Rose Aesthetics"
+  description="View side-by-side treatment comparisons from House of Rose Aesthetics in Punta Gorda, Florida, with links to each service page."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {comparisonsListSchema && <SchemaMarkup item={comparisonsListSchema} slot="head" />}
@@ -33,9 +32,9 @@ const comparisonsListSchema = comparisons.length
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Compare</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Two treatments, side by side</h1>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Treatment comparisons.</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        When two treatments could both work, the right choice comes down to your skin, your goals, and your downtime. These neutral comparisons lay out the differences so you can decide with your provider.
+        Review the published differences, then open either service page for full treatment details.
       </p>
     </div>
   </section>
@@ -48,12 +47,11 @@ const comparisonsListSchema = comparisons.length
           {c.optionA?.label && c.optionB?.label && (
             <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{c.optionA.label} vs {c.optionB.label}</p>
           )}
-          {c.intro && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('intro')}>{c.intro}</p>}
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">Compare them</span>
+          <span class="learn-more group-hover:text-gold mt-4 inline-block">View comparison</span>
         </a>
       ))}
       {comparisons.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Comparisons are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No comparisons are currently published.</p>
       )}
     </div>
   </section>
@@ -61,9 +59,9 @@ const comparisonsListSchema = comparisons.length
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
       <p class="text-muted text-[15px] leading-[1.8] mb-6">
-        Still weighing your options? In-studio advanced skin imaging reads your skin first, so the comparison that matters most for you rises to the top.
+        Looking for a specific treatment instead?
       </p>
-      <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
+      <a href="/services/" class="btn-outline-gold">Browse all services</a>
     </div>
   </section>
 </BaseLayout>

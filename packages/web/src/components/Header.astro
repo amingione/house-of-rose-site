@@ -3,7 +3,7 @@ import { sanityFetch } from '@/lib/sanity';
 import { NAV_COLLECTIONS_QUERY, PUBLIC_PROVIDERS_QUERY, type NavCollection, type PublicProviderProfile } from '@/lib/queries';
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { SHOP_ENABLED } from '@/lib/features';
 
 interface Props {
@@ -16,7 +16,8 @@ const [collections, sanityProviders] = await Promise.all([
   sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
 ]);
 const navCollections = collections.filter((collection) => collection?.slug);
-const aboutProviders = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+const aboutProviders = resolvePublicProviderProfiles(sanityProviders);
+const sanityProviderIds = new Set(sanityProviders.map((provider) => provider._id));
 const isActive = (path: string) =>
   path === '/' ? currentPath === '/' : currentPath === path || currentPath.startsWith(`${path}/`);
 const linkClass = (path: string) =>
@@ -36,8 +37,6 @@ const linkClass = (path: string) =>
     </a>
 
     <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
-      <a href="/" class={linkClass('/')}>Home</a>
-
       <details class="services-menu desktop-menu">
         <summary class:list={['nav-link cursor-pointer list-none', isActive('/services') && 'nav-link-active']}>
           Services
@@ -48,8 +47,8 @@ const linkClass = (path: string) =>
         <div class="services-panel absolute left-1/2 top-[calc(100%+1px)] flex max-h-[calc(100dvh-96px)] w-[min(1120px,calc(100vw-32px))] -translate-x-1/2 flex-col overflow-hidden border border-ivory/15 bg-bone p-5 shadow-[0_24px_70px_rgba(0,0,0,0.52)] xl:p-7">
           <div class="mb-5 flex shrink-0 items-end justify-between gap-6 border-b border-ivory/10 pb-5 xl:mb-6">
             <div>
-              <p class="kicker mb-2">Explore care</p>
-              <p class="font-serif text-[22px] text-ink xl:text-[26px]">Start with the service or concern you recognize.</p>
+              <p class="kicker mb-2">Services</p>
+              <p class="font-serif text-[22px] text-ink xl:text-[26px]">Browse by category.</p>
             </div>
             <a href="/services/" class="learn-more mt-0 whitespace-nowrap">View all services</a>
           </div>
@@ -82,8 +81,8 @@ const linkClass = (path: string) =>
         </div>
       </details>
 
-      <a href="/skin-analysis/" class={linkClass('/skin-analysis')}>Skin analysis</a>
-      {SHOP_ENABLED && <a href="/shop/" class={linkClass('/shop')}>Shop</a>}
+      <a href="/skin-analysis/" class={linkClass('/skin-analysis')} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
+      {SHOP_ENABLED && <a href="/shop/" class={linkClass('/shop')} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
       <details class="about-menu desktop-menu relative">
         <summary class:list={['nav-link cursor-pointer list-none', isActive('/about') && 'nav-link-active']}>
           About
@@ -98,8 +97,8 @@ const linkClass = (path: string) =>
           </a>
           <div class="grid grid-cols-[0.78fr_1.22fr] gap-7 pt-5">
             <a href="/about/hra/" class="group block">
-              <p class="text-[12px] font-semibold text-ink group-hover:text-gold">HRA</p>
-              <p class="mt-2 text-[12px] leading-relaxed text-muted">The practice, its method, and its standards.</p>
+              <p class="text-[12px] font-semibold text-ink group-hover:text-gold">The practice</p>
+              <p class="mt-2 text-[12px] leading-relaxed text-muted">House of Rose in Punta Gorda.</p>
             </a>
             <section aria-label="Providers">
               <p class="text-[12px] font-semibold text-ink">
@@ -107,7 +106,7 @@ const linkClass = (path: string) =>
               </p>
               <ul class="mt-3 space-y-2.5">
                 {aboutProviders.map((provider) => (
-                  <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>
+                  <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>
                     <a href={`/about/providers/${provider.slug}/`} class="text-[12px] leading-snug text-muted hover:text-ink" {...sbFieldPath('publicName')}>
                       {provider.publicName}
                     </a>
@@ -118,7 +117,7 @@ const linkClass = (path: string) =>
           </div>
         </div>
       </details>
-      <a href="/contact/" class={linkClass('/contact')}>Contact</a>
+      <a href="/contact/" class={linkClass('/contact')} aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a>
       <a
         href={GLOSSGENIUS_SERVICES_URL}
         target="_blank"
@@ -175,11 +174,11 @@ const linkClass = (path: string) =>
     </div>
   </div>
 
-  <div id="mobile-navigation" class="mobile-navigation hidden border-t border-ivory/10 bg-bone lg:hidden">
+  <div id="mobile-navigation" class="mobile-navigation hidden border-t border-ivory/10 bg-bone lg:hidden" aria-label="Site navigation" aria-hidden="true">
     <nav class="max-h-[calc(100dvh-80px)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
-      <a href="/" class="mobile-nav-link">Home</a>
+      <a href="/" class:list={['mobile-nav-link', isActive('/') && 'mobile-nav-link-active']} aria-current={isActive('/') ? 'page' : undefined}>Home</a>
       <details class="mobile-services border-y border-ivory/10 py-1">
-        <summary class="mobile-nav-link cursor-pointer list-none">
+        <summary class:list={['mobile-nav-link cursor-pointer list-none', isActive('/services') && 'mobile-nav-link-active']}>
           Services
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -205,10 +204,10 @@ const linkClass = (path: string) =>
           ))}
         </div>
       </details>
-      <a href="/skin-analysis/" class="mobile-nav-link">Skin analysis</a>
-      {SHOP_ENABLED && <a href="/shop/" class="mobile-nav-link">Shop</a>}
+      <a href="/skin-analysis/" class:list={['mobile-nav-link', isActive('/skin-analysis') && 'mobile-nav-link-active']} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
+      {SHOP_ENABLED && <a href="/shop/" class:list={['mobile-nav-link', isActive('/shop') && 'mobile-nav-link-active']} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
       <details class="mobile-about border-b border-ivory/10 py-1">
-        <summary class="mobile-nav-link cursor-pointer list-none">
+        <summary class:list={['mobile-nav-link cursor-pointer list-none', isActive('/about') && 'mobile-nav-link-active']}>
           About
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
             <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -216,11 +215,11 @@ const linkClass = (path: string) =>
         </summary>
         <div class="pb-5 pl-4">
           <a href="/about/" class="flex min-h-11 items-center text-[13px] font-semibold text-gold">About index</a>
-          <a href="/about/hra/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">HRA</a>
+          <a href="/about/hra/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">The practice</a>
           <a href="/about/providers/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">Providers</a>
           <ul class="ml-4 border-l border-ivory/15 pl-4">
             {aboutProviders.map((provider) => (
-              <li {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}>
+              <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>
                 <a href={`/about/providers/${provider.slug}/`} class="flex min-h-10 items-center text-[13px] leading-snug text-muted" {...sbFieldPath('publicName')}>
                   {provider.publicName}
                 </a>
@@ -229,8 +228,8 @@ const linkClass = (path: string) =>
           </ul>
         </div>
       </details>
-      <a href="/contact/" class="mobile-nav-link">Contact</a>
-      <a href="/consultation/" class="mobile-nav-link">Consultation</a>
+      <a href="/contact/" class:list={['mobile-nav-link', isActive('/contact') && 'mobile-nav-link-active']} aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a>
+      <a href="/consultation/" class:list={['mobile-nav-link', isActive('/consultation') && 'mobile-nav-link-active']} aria-current={isActive('/consultation') ? 'page' : undefined}>Consultation</a>
     </nav>
   </div>
 </header>
@@ -239,12 +238,30 @@ const linkClass = (path: string) =>
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileNavigation = document.getElementById('mobile-navigation');
   const desktopMenus = document.querySelectorAll<HTMLDetailsElement>('.desktop-menu');
+  const mobileMenus = document.querySelectorAll<HTMLDetailsElement>('#mobile-navigation details');
+  const pageContent = document.getElementById('main-content');
+  const pageFooter = document.querySelector<HTMLElement>('body > footer');
 
-  const closeMobileNavigation = (): void => {
+  const setBackgroundInert = (inert: boolean): void => {
+    if (pageContent) pageContent.inert = inert;
+    if (pageFooter) pageFooter.inert = inert;
+  };
+
+  const visibleMobileControls = (): HTMLElement[] => [
+    ...(menuButton instanceof HTMLElement ? [menuButton] : []),
+    ...Array.from(mobileNavigation?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), summary') ?? []),
+  ].filter((element) => element.getClientRects().length > 0 && element.getAttribute('aria-hidden') !== 'true');
+
+  const closeMobileNavigation = (restoreFocus = false): void => {
+    const wasOpen = menuButton?.getAttribute('aria-expanded') === 'true';
     mobileNavigation?.classList.add('hidden');
+    mobileNavigation?.setAttribute('aria-hidden', 'true');
     menuButton?.setAttribute('aria-expanded', 'false');
     menuButton?.setAttribute('aria-label', 'Open navigation');
     document.documentElement.classList.remove('menu-is-open');
+    setBackgroundInert(false);
+    for (const menu of mobileMenus) menu.open = false;
+    if (restoreFocus && wasOpen) menuButton?.focus();
   };
 
   menuButton?.addEventListener('click', () => {
@@ -254,9 +271,12 @@ const linkClass = (path: string) =>
       return;
     }
     mobileNavigation?.classList.remove('hidden');
+    mobileNavigation?.setAttribute('aria-hidden', 'false');
     menuButton.setAttribute('aria-expanded', 'true');
     menuButton.setAttribute('aria-label', 'Close navigation');
     document.documentElement.classList.add('menu-is-open');
+    setBackgroundInert(true);
+    mobileNavigation?.querySelector<HTMLElement>('a[href], summary')?.focus();
   });
 
   mobileNavigation?.addEventListener('click', (event) => {
@@ -269,10 +289,49 @@ const linkClass = (path: string) =>
     }
   });
 
+  for (const menu of desktopMenus) {
+    menu.addEventListener('toggle', () => {
+      if (!menu.open) return;
+      for (const other of desktopMenus) {
+        if (other !== menu) other.open = false;
+      }
+    });
+  }
+
+  for (const menu of mobileMenus) {
+    menu.addEventListener('toggle', () => {
+      if (!menu.open) return;
+      for (const other of mobileMenus) {
+        if (other !== menu) other.open = false;
+      }
+    });
+  }
+
   document.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab' && menuButton?.getAttribute('aria-expanded') === 'true') {
+      const controls = visibleMobileControls();
+      const first = controls.at(0);
+      const last = controls.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+      return;
+    }
     if (event.key !== 'Escape') return;
-    closeMobileNavigation();
-    for (const menu of desktopMenus) menu.open = false;
+    const openDesktopMenu = Array.from(desktopMenus).find((menu) => menu.open);
+    closeMobileNavigation(true);
+    if (openDesktopMenu) {
+      openDesktopMenu.open = false;
+      openDesktopMenu.querySelector<HTMLElement>('summary')?.focus();
+    }
+  });
+
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
+    if (event.matches) closeMobileNavigation();
   });
 </script>
 
@@ -291,6 +350,7 @@ const linkClass = (path: string) =>
   .nav-link:hover,
   .nav-link-active {
     color: #e2d3b2;
+    box-shadow: inset 0 -1px #8a6a43;
   }
   summary::-webkit-details-marker { display: none; }
   details[open] > summary .menu-caret { transform: rotate(180deg); }
@@ -335,7 +395,15 @@ const linkClass = (path: string) =>
     font-weight: 700;
   }
   .menu-button { flex-direction: column; gap: 4px; }
-  .menu-button span { width: 20px; height: 1.5px; background: currentColor; }
+  .menu-button span {
+    width: 20px;
+    height: 1.5px;
+    background: currentColor;
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+  .menu-button[aria-expanded="true"] span:first-child { transform: translateY(5.5px) rotate(45deg); }
+  .menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-button[aria-expanded="true"] span:last-child { transform: translateY(-5.5px) rotate(-45deg); }
   .mobile-nav-link {
     display: flex;
     min-height: 50px;
@@ -345,11 +413,13 @@ const linkClass = (path: string) =>
     font-size: 15px;
     font-weight: 600;
   }
+  .mobile-nav-link-active { color: #e2d3b2; }
   .services-grid {
     grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   }
   :global(html.menu-is-open) { overflow: hidden; }
   @media (prefers-reduced-motion: reduce) {
-    .menu-caret { transition: none; }
+    .menu-caret,
+    .menu-button span { transition: none; }
   }
 </style>

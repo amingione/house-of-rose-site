@@ -2,7 +2,12 @@
 
 **Audit date:** 2026-08-12  
 **Status:** Internal operating inventory — not a replacement brand guide  
-**Governing source:** [`House_of_Rose_Creative_System_MASTER.md`](./House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md)
+**Voice status:** `[SUPERSEDED — ARCHIVAL ONLY]` as of 2026-08-13
+**Facts/compliance/visual reference:** [`House_of_Rose_Creative_System_MASTER.md`](./House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md)
+
+> Amber rejected the voice, positioning, biographies, copy templates, and campaign strategy this
+> audit previously classified as ready. Do not use the readiness labels below as approval evidence.
+> They remain only as an inventory of what existed before the reset.
 
 This inventory reconciles the supplied “Complete Brand Document & Asset Checklist” against the files currently present in the House of Rose repository. It identifies what is ready, what exists but needs packaging or completion, what is missing, and what is not applicable.
 
@@ -13,14 +18,18 @@ This inventory reconciles the supplied “Complete Brand Document & Asset Checkl
 - **Missing** — no usable House of Rose deliverable was found in the repository.
 - **Not applicable** — the item does not fit the current business model or has been explicitly retired.
 - **Approval required** — the asset exists as a draft but must not publish yet.
+- **Superseded** — retained for provenance; not approved for reuse or adaptation.
 
 ## Executive finding
 
-House of Rose already has a substantial brand operating system. The Creative System covers the mission, vision, values, positioning, audiences, promise, voice, messaging, visual direction, approved biographies, channel copy, marketing framework, AI rules, and publishing review. The website adds a working component system, structured content, service copy, FAQs, legal pages, transactional communications, and a large image library.
+House of Rose has a substantial archive of brand material, but its mission, vision, positioning,
+voice, messaging, biographies, channel copy, and campaign strategy are superseded. Verified facts,
+compliance controls, visual standards, the website component system, and factual content architecture
+remain usable.
 
 The highest-value work is not another 50–100 page brand book. It is:
 
-1. creating a current one-page quick reference and logo-use sheet from the Creative System;
+1. creating a reset-era one-page quick reference after Amber approves the replacement voice, plus a factual logo-use sheet;
 2. completing the logo/export package and production specifications;
 3. turning the five audience segments into research-backed personas;
 4. building lifecycle email, social template, press-kit, and sales-collateral systems;
@@ -31,17 +40,17 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 | Deliverable | Status | Existing source or evidence | Gap / next action |
 |---|---|---|---|
-| Mission statement | **Ready** | Creative System, Book 1 §4 | Use verbatim unless a future versioned brand decision supersedes it. |
-| Vision statement | **Ready** | Creative System, Book 1 §5 | No new document needed. |
-| Brand values framework | **Ready** | Creative System, Book 1 §6 | Seven values are defined as operating behaviors. |
+| Mission statement | **Superseded** | Creative System, Book 1 §4 | Do not reuse; replacement requires Amber's approval. |
+| Vision statement | **Superseded** | Creative System, Book 1 §5 | Do not reuse; replacement requires Amber's approval. |
+| Brand values framework | **Superseded** | Creative System, Book 1 §6 | Retained only for provenance. |
 | Target audience personas, 3–5 | **Partial** | Creative System, Book 1 §8 defines five audience segments | Add demographics only where decision-useful; validate triggers, objections, buying criteria, language, channel behavior, and proof needs through real customer research. |
 | Competitive analysis | **Partial** | `docs/HRAaudits/letaido-findings/Second-Pass-—-Amber's-Named-Competitors-2026-08-11.md`, Semrush competitor/heatmap audits, SEO demand files | Current material is strong for local search and named competitors, but it is not a single brand-positioning analysis covering experience, offer, proof, message, visual identity, reviews, and market gaps. |
-| Unique value proposition | **Ready** | Creative System, Book 1 §§1–3 and §10 | The meaningful difference is the consultation → assessment → individualized plan → preparation/aftercare → reassessment process. |
-| Brand positioning statement | **Ready** | Creative System, Book 1 §2 | “Medical Aesthetics Practice” is the lead category. Do not restore luxury-spa positioning. |
-| Brand archetype | **Partial** | Creative System, Book 1 §9 defines a precise personality | No formal archetype label is established. Add one only if it improves decisions; the existing personality traits are more actionable than a generic archetype name. |
-| Voice and tone guidelines | **Ready** | Creative System, Book 2 | Includes voice profile, writing rules, claims discipline, vocabulary, house style, templates, CTA rules, and before/after examples. |
-| Brand promise | **Ready** | Creative System, Book 1 §2 | No separate document needed. |
-| Brand story | **Partial** | Creative System, Book 1 §3 and §15 | Purpose and biography exist. A founder/origin narrative with dates, turning points, and verified milestones is not assembled. |
+| Unique value proposition | **Superseded** | Creative System, Book 1 §§1–3 and §10 | The process-led difference was rejected; replacement is being calibrated from Amber's direct examples. |
+| Brand positioning statement | **Superseded** | Creative System, Book 1 §2 | Keep only the verified category “Medical Aesthetics Practice”; the prior positioning prose is archival. |
+| Brand archetype | **Superseded** | Creative System, Book 1 §9 | Do not use the prior personality as a tonal model. |
+| Voice and tone guidelines | **Superseded** | Creative System, Book 2 | Do not reuse or adapt its voice profile, templates, CTAs, or sentence formulas. |
+| Brand promise | **Superseded** | Creative System, Book 1 §2 | Replacement requires Amber's approval. |
+| Brand story | **Approval required** | Creative System, Book 1 §3 and §15 | Prior story copy is archival; a factual founder narrative has not been approved. |
 
 ## 2. Visual identity
 
@@ -60,8 +69,8 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 | Deliverable | Status | Existing source or evidence | Gap / next action |
 |---|---|---|---|
-| Comprehensive brand book | **Ready** | Creative System master Markdown and PDF | This is the brand book. Version it rather than creating a parallel replacement. |
-| One-page quick reference | **Partial** | `internal_only/marketing/HouseOfRose-Brand-Stylesheet.pdf` exists, but predates or sits outside the current governing Creative System | Replace with a v1.0+ quick sheet covering category, signature line, promise, voice, banned language, palette, typography, photography, logo basics, and approval path. |
+| Comprehensive brand book | **Superseded** | Creative System master Markdown and PDF | Facts, compliance history, and visual standards remain usable; voice and strategy require replacement. |
+| One-page quick reference | **Approval required** | `internal_only/marketing/HouseOfRose-Brand-Stylesheet.pdf` and the Creative System are archival | Build a reset-era sheet only after Amber approves the replacement positioning and voice. |
 | Standalone logo usage guide | **Partial** | Creative System, Book 4 §5 | Add measured clear space, minimum digital/print sizes, approved backgrounds, one-color variants, and misuse examples. |
 | Visual identity standards | **Ready** | Creative System, Book 4 plus the live site tokens and contrast standard | Production color and logo measurements remain the main gaps. |
 
@@ -69,9 +78,9 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 | Deliverable | Status | Existing source or evidence | Gap / next action |
 |---|---|---|---|
-| Messaging framework | **Ready** | Creative System, Book 1 §§10–12 and Book 2 | Signature line, hierarchy, pillars, proof/claim discipline, and CTAs are established. |
-| Elevator pitch / 30-second summary | **Partial** | Creative System, Book 3 provides 25-, 50-, 100-word, and full bios | Add audience-specific spoken versions for patients, referral partners, community partners, and media. An investor version is unnecessary unless fundraising becomes active. |
-| About copy | **Ready** | Creative System, Book 3 §§2 and 6; site About routes | Current short and long forms cover the website/profile need. |
+| Messaging framework | **Superseded** | Creative System, Book 1 §§10–12 and Book 2 | The signature, hierarchy, pillars, and CTAs are not approved for reuse. |
+| Elevator pitch / 30-second summary | **Superseded** | Creative System, Book 3 | Prior bios and summaries are archival; replacement spoken versions require approval. |
+| About copy | **Approval required** | Current local About route reset | The live renderer uses temporary local copy; Sanity and Creative System source copy remain superseded. |
 | Product and service descriptions | **Partial** | Sanity `service`, `serviceCollection`, `product`, `shopBrand`, and `treatmentPackage` models; live site routes; GlossGenius-linked pricing governance | The system and most copy exist, but claim, naming, and retired-language cleanup remains open in the existing drift checklist. |
 | Testimonials and case studies | **Partial** | Sanity `caseStudy` model, `/results/` routes, before/after assets, consent guard in code | Create a consent ledger and curated proof library with exact treatment, interval, session count, combined-treatment disclosure, individual-results line, quote approval, and permitted channels. Do not fabricate or over-edit. |
 | FAQ document | **Ready** | `/faq/`, FAQ schema object, service/cost/comparison/area FAQ support | Maintain answer-first, locally grounded copy and structured data. |
@@ -152,14 +161,16 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 ### Priority 0 — governance and drift control
 
-1. Make this audit an inventory only; keep the Creative System as the single brand source of truth.
-2. Update the Dynamic Brand Memory’s foundational fields from the Creative System so agents stop treating known brand facts as unknown.
+1. Keep this audit as an inventory only; use the Creative System solely for verified facts,
+   compliance history, and visual standards during the reset.
+2. Update Dynamic Brand Memory from Amber's approved replacement direction, not from the
+   superseded Creative System voice.
 3. Review `internal_only/marketing/PHOTOGRAPHY.md` and the older brand stylesheet for pre–Creative System positioning and palette drift.
 4. Finish the existing retired-language/service-name cleanup before multiplying templates.
 
 ### Priority 1 — production essentials
 
-1. One-page Creative System quick reference.
+1. One-page reset-era quick reference after Amber approves the replacement voice.
 2. Logo-use and production-export package.
 3. Print/digital color and typography specifications.
 4. Email signature and media kit.
@@ -185,7 +196,7 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 An item should move to **Ready** only when:
 
-- it follows the current Creative System and compliance rules;
+- it follows the current voice-reset direction, verified facts, visual standards, and compliance rules;
 - facts, prices, services, provider attribution, and claims trace to current sources;
 - required clinical, legal, brand, and owner approvals are recorded;
 - editable source files and final exports are both stored in a governed location;

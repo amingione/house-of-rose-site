@@ -2,13 +2,13 @@
 // or an appropriate manufacturer/device asset. Never reintroduce generic models or
 // generated treatment scenes here: this module feeds cards, heroes, social images,
 // collections, packages, and empty Sanity image fields across the site.
-const ACTUAL_RECEPTION_IMAGE = '/images/optimized/actual-reception-1400.webp';
+const ACTUAL_RECEPTION_IMAGE = '/images/optimized/actual-reception-1400-light.webp';
 const ACTUAL_WELCOME_IMAGE = '/images/optimized/actual-welcome-1400.webp';
 const ACTUAL_IV_SUITE_IMAGE = '/images/optimized/actual-iv-suite-1400.webp';
 const ACTUAL_STOREFRONT_IMAGE = '/images/optimized/actual-storefront-1000.webp';
 const ACTUAL_FACIAL_SUITE_IMAGE = '/images/optimized/actual-facial-suite-1400.webp';
 const ACTUAL_MICRONEEDLING_ROOM_IMAGE = '/images/optimized/actual-microneedling-room-1400.webp';
-const ACTUAL_MORPHEUS8_ROOM_IMAGE = '/images/optimized/actual-morpheus8-room-1400.webp';
+const ACTUAL_MORPHEUS8_ROOM_IMAGE = '/images/optimized/actual-morpheus8-room-1400-light.webp';
 const GLO2_COMPANY_IMAGE = '/images/optimized/glo2facial-company-600.webp';
 const GLO2_RESULT_IMAGE = '/images/optimized/glo2facial-before-after-1400.webp';
 const PROCELL_HOUSE_IMAGE = '/images/optimized/procell-house-of-rose-800.webp';
@@ -24,8 +24,8 @@ const INMODE_DEVICE_IMAGES: Record<string, string> = {
 // must identify the actual device or setting at a glance; an empty treatment
 // room is omitted instead of being repeated beside unrelated services.
 const SERVICE_CARD_IMAGES: Record<string, string> = {
-  morpheus8: '/images/inmode/Morpheus8-Burst.png',
-  'lumecca-peak-ipl': '/images/inmode/Lumecca-Peak.png',
+  morpheus8: '/images/inmode/morpheus8-burst-device.webp',
+  'lumecca-peak-ipl': '/images/inmode/lumecca-peak-device.webp',
   'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
   injectables: '/images/generated/service-cards/neurotoxin-treatment-setup.webp',
   'dermal-fillers': '/images/generated/service-cards/dermal-filler-treatment-setup.webp',
@@ -38,10 +38,10 @@ const SERVICE_CARD_IMAGES: Record<string, string> = {
 };
 
 const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
-  'morpheus8-device': '/images/inmode/Morpheus8-Burst.png',
-  'lumecca-device': '/images/inmode/Lumecca-Peak.png',
+  'morpheus8-device': '/images/inmode/morpheus8-burst-device.webp',
+  'lumecca-device': '/images/inmode/lumecca-peak-device.webp',
   'lumecca-face-example':
-    '/images/inmode/Lumecca-Peak-Before-and-After.png',
+    '/images/inmode/lumecca-peak-before-after.webp',
   'forma-device': '/images/inmode/Forma-handpiece-space.png',
 };
 
@@ -63,11 +63,13 @@ const SERVICE_IMAGES: Record<string, string> = {
   'ez-gel-bio-filler': ACTUAL_FACIAL_SUITE_IMAGE,
   'injectables-bio-fillers': ACTUAL_FACIAL_SUITE_IMAGE,
   'prf-injections': ACTUAL_FACIAL_SUITE_IMAGE,
+  'prf-under-eyes': ACTUAL_FACIAL_SUITE_IMAGE,
   'iv-hydration-therapy': ACTUAL_IV_SUITE_IMAGE,
   'glp-1-weight-management': ACTUAL_RECEPTION_IMAGE,
   wellness: ACTUAL_IV_SUITE_IMAGE,
   'body-waxing': ACTUAL_FACIAL_SUITE_IMAGE,
   'facial-waxing': ACTUAL_FACIAL_SUITE_IMAGE,
+  waxing: ACTUAL_FACIAL_SUITE_IMAGE,
   dermaplaning: ACTUAL_FACIAL_SUITE_IMAGE,
   'face-reality-acne-program': FACE_REALITY_SYSTEM_IMAGE,
   'acne-bootcamp': FACE_REALITY_SYSTEM_IMAGE,
@@ -144,11 +146,13 @@ export const getCuratedServiceImageAlt = (slug: string): string => {
       'ez-gel-bio-filler',
       'injectables-bio-fillers',
       'prf-injections',
+      'prf-under-eyes',
       'prf',
       'prf-fibrin-veil',
       'prf-body-treatments',
       'body-waxing',
       'facial-waxing',
+      'waxing',
       'dermaplaning',
       'neck-decollete-extension',
       'back-treatment',

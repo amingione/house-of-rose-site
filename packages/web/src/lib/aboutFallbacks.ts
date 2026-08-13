@@ -26,18 +26,16 @@ export const ABOUT_PAGE_FALLBACK: Required<
   indexHeading: 'About House of Rose',
   indexIntro:
     'Learn how House of Rose Aesthetics approaches medical aesthetics and meet the people responsible for each part of the client experience.',
-  indexImageUrl: '/images/optimized/actual-reception-1400.webp',
+  indexImageUrl: '/images/optimized/actual-reception-1400-light.webp',
   indexImageAlt: 'Reception and consultation area at House of Rose Aesthetics in Punta Gorda',
   hraHeading: 'House of Rose Aesthetics',
   hraIntro:
-    'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, built around individualized treatment planning and long-term care.',
+    'A medical aesthetics practice offering distinct services for skin, movement, volume, body concerns, hydration, and wellness.',
   hraParagraphs: [
-    'Medical aesthetics is not a one-size-fits-all service. The same concern can require a different approach depending on skin condition, treatment history, health information, timing, tolerance for downtime, and the patient’s desired degree of change. Our process is designed to evaluate those factors before a medical procedure is recommended.',
-    'Services include regenerative therapies, radiofrequency and laser technologies, neurotoxins, dermal fillers, IV hydration, medical-grade skincare, customized facial treatments, and ongoing maintenance care. Each service has a different role. A treatment plan may include preparation, a procedure series, temporary downtime, home care, reassessment, or a maintenance schedule.',
-    'House of Rose was designed to support focused, personal care without operating like a high-volume treatment floor. The environment is considered, but the standard of practice is defined by consultation, clear education, responsible treatment selection, documentation, aftercare, and follow-through.',
-    'Our goal is not to change every feature or follow every trend. It is to help patients make informed decisions and pursue healthy-looking, natural-looking improvement through a plan that is appropriate for them.',
+    'Skin texture, pigment, muscle movement, and volume change are not interchangeable concerns. Each service category has a different role.',
+    'Every recommendation should have a clear reason to be there. Sometimes the right answer is no treatment at all.',
   ],
-  hraImageUrl: '/images/optimized/actual-reception-1400.webp',
+  hraImageUrl: '/images/optimized/actual-reception-1400-light.webp',
   hraImageAlt: 'House of Rose Aesthetics reception in Punta Gorda, Florida',
   providersHeading: 'Meet the House of Rose team',
   providersIntro:
@@ -50,7 +48,7 @@ export const ABOUT_PAGE_FALLBACK: Required<
   hraSeo: {
     metaTitle: 'House of Rose Aesthetics | About Our Punta Gorda Practice',
     metaDescription:
-      'House of Rose Aesthetics is a Punta Gorda medical aesthetics practice built around consultation, assessment, treatment planning, and follow-through.',
+      'Read how House of Rose distinguishes skin, injectable, body, IV hydration, and wellness services at its Punta Gorda practice.',
   },
   providersSeo: {
     metaTitle: 'House of Rose Providers | Punta Gorda, FL',
@@ -65,16 +63,12 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     slug: 'diana',
     publicName: 'Diana Morrison, RN',
     publicRole: 'Registered Nurse · Co-Owner · Aesthetic Injector',
-    summary:
-      'Diana Morrison, RN, is Co-Owner of House of Rose Aesthetics and an aesthetic injector with more than 17 years of experience in medical aesthetics.',
+    summary: 'Diana Morrison, RN, is a Co-Owner of House of Rose Aesthetics.',
     biography: [
-      'Diana’s approach begins with facial assessment. Treatment plans are built around anatomy, movement, proportion, treatment history, and the degree of change a patient wants, rather than a standard template.',
-      'Her experience includes work alongside aesthetic professionals in Los Angeles and Miami before she relocated to Southwest Florida and co-founded House of Rose in Punta Gorda.',
-      'Her work includes neuromodulators, dermal fillers, injectable PRF, IV hydration, and provider-guided weight management. She reviews candidacy, alternatives, preparation, and aftercare before making a recommendation.',
-      'Diana’s goal is balanced, natural-looking improvement that respects each patient’s features.',
+      'Her current work includes neuromodulators, dermal fillers, injectable PRF, PRF Bio-Filler, IV hydration, and GLP-1 weight management.',
     ],
-    serviceFocus: ['Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'IV hydration', 'Provider-guided weight management'],
-    imageUrl: '/images/providers/Diana.webp',
+    serviceFocus: ['Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'PRF Bio-Filler', 'IV hydration', 'GLP-1 weight management'],
+    imageUrl: '/images/providers/diana-profile-1122.webp',
     imageAlt: 'Diana Morrison, RN, at House of Rose Aesthetics',
     digitalCardPath: '/diana/',
     listingOrder: 10,
@@ -90,22 +84,19 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     slug: 'amber',
     publicName: 'Amber Mingione, Licensed Esthetician',
     publicRole: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist · Co-Owner',
-    summary:
-      'Amber Mingione is Co-Owner of House of Rose Aesthetics, a Licensed Esthetician, Medical Assistant, and Certified Phlebotomist with more than 8 years of experience in medical aesthetics.',
+    summary: 'Amber Mingione, Licensed Esthetician, is a Co-Owner of House of Rose Aesthetics.',
     biography: [
-      'Amber approaches skin care through continual study of wound healing, collagen remodeling, and the way skin responds over time. That interest informs how she plans advanced facial and needling appointments.',
-      'Her current work includes microneedling with the Procell Therapies device, Procell Microchanneling, Glo2Facial, dermaplaning, carboxy treatments, and topical PRF used during an appropriate needling appointment.',
-      'PRF in Amber’s practice is topical only. She does not perform PRF injections; injectable PRF is evaluated and performed separately by Diana Morrison, RN.',
-      'Amber uses consultation, preparation, written aftercare, and reassessment to keep each recommendation connected to the client’s skin, timing, and long-term plan.',
+      'Her current work includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and topical PRF used during eligible Microneedling.',
+      'PRF in Amber’s work is topical only. She does not perform PRF injections; injectable PRF is performed separately by Diana Morrison, RN.',
     ],
-    serviceFocus: ['Microneedling', 'Procell Microchanneling', 'Topical PRF', 'Glo2Facial', 'Dermaplaning'],
-    imageUrl: '/images/providers/amber.webp',
-    imageAlt: 'Amber Mingione at House of Rose Aesthetics',
+    serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning'],
+    imageUrl: '/images/providers/amber-profile-1122.webp',
+    imageAlt: 'Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics',
     digitalCardPath: '/amber/',
     listingOrder: 20,
     medicallyDirected: true,
     seo: {
-      metaTitle: 'Amber Mingione | House of Rose Aesthetics',
+      metaTitle: 'Amber Mingione, Licensed Esthetician | House of Rose',
       metaDescription:
         'Meet Amber Mingione, Licensed Esthetician and Co-Owner of House of Rose Aesthetics in Punta Gorda, Florida.',
     },
@@ -115,44 +106,91 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     slug: 'brandy',
     publicName: 'Brandy, Licensed Esthetician',
     publicRole: 'Licensed Esthetician',
-    summary:
-      'Brandy is a Licensed Esthetician at House of Rose Aesthetics focused on facial treatments, skin maintenance, peels, and facial waxing.',
+    summary: 'Brandy is a Licensed Esthetician at House of Rose Aesthetics.',
     biography: [
-      'Brandy keeps skin care practical. She looks past trends and exaggerated promises to recommend treatments that make sense for the person in front of her.',
-      'Her work includes customized facial treatments, professional skin maintenance, peels, hydrodermabrasion, and facial waxing. Recommendations are based on current skin condition, tolerance, home care, and maintenance goals.',
-      'Quiet by nature and direct in conversation, Brandy listens first and gives straightforward guidance without turning the appointment into a sales pitch.',
-      'For Brandy, healthy-looking skin is built through consistency, useful home habits, and treatments selected for a clear reason.',
+      'Her current work includes facials, standalone BioRePeel, and facial waxing.',
     ],
-    serviceFocus: ['Facial treatments', 'Professional peels', 'Hydrodermabrasion', 'Facial waxing'],
-    imageUrl: '/images/providers/Brandy.PNG',
+    serviceFocus: ['Facials', 'Standalone BioRePeel', 'Facial waxing'],
+    imageUrl: '/images/providers/brandy-profile-1122.webp',
     imageAlt: 'Brandy, Licensed Esthetician at House of Rose Aesthetics',
     digitalCardPath: '/brandy/',
     listingOrder: 30,
     seo: {
-      metaTitle: 'Brandy | House of Rose Aesthetics',
+      metaTitle: 'Brandy, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Meet Brandy, Licensed Esthetician at House of Rose Aesthetics in Punta Gorda, focused on facials, peels, maintenance, and waxing.',
+        'Meet Brandy, Licensed Esthetician at House of Rose Aesthetics in Punta Gorda, Florida.',
     },
   },
   {
     _id: 'provider-aundrea',
     slug: 'aundrea',
-    publicName: 'Aundrea',
-    publicRole: 'Makeup Artist · Permanent Jewelry Artist',
+    publicName: 'Aundrea Pedigo, Esthetician',
+    publicRole: 'Licensed Esthetician · Makeup Artist · Permanent Jewelry Artist',
     summary:
-      'Aundrea provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics, with each appointment shaped around the person and occasion.',
+      'Aundrea Pedigo, Esthetician, provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics.',
     biography: [
-      'Aundrea approaches makeup as individual work, not a repeatable template. She adapts the finish, from soft event makeup to full glam, to the person, occasion, and way the client wants to look.',
-      'Her work includes makeup for weddings, special events, photo shoots, and celebrations, along with permanent jewelry.',
-      'She brings an energetic, direct personality to the appointment and keeps the process collaborative from the first reference image to the finished look.',
-      'For Aundrea, makeup is not about hiding a face. It is about making intentional choices that still feel like the person wearing it.',
+      'Aundrea Pedigo, Esthetician, provides makeup for weddings, special events, photo shoots, and celebrations, with finishes ranging from soft event makeup to full glam.',
+      'She also provides permanent jewelry.',
     ],
     serviceFocus: ['Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
+    imageAlt: 'Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics',
     listingOrder: 40,
     seo: {
-      metaTitle: 'Aundrea | House of Rose Aesthetics',
+      metaTitle: 'Aundrea Pedigo, Esthetician | House of Rose',
       metaDescription:
-        'Meet Aundrea, makeup and permanent jewelry artist at House of Rose Aesthetics in Punta Gorda, Florida.',
+        'Meet Aundrea Pedigo, Esthetician, makeup artist, and permanent jewelry artist at House of Rose in Punta Gorda, Florida.',
     },
   },
 ];
+
+export interface ProviderProfileVoiceOverlay {
+  summary: string;
+  biography: string[];
+  metaDescription?: string;
+}
+
+/**
+ * Temporary voice-reset layer for the known provider slugs. The fallback holds
+ * the reviewed public identity, credentials, and service facts; Sanity remains
+ * the source for real provider imagery and any future provider profiles.
+ */
+export function getProviderProfileVoiceOverlay(slug: string): ProviderProfileVoiceOverlay | undefined {
+  const fallback = PROVIDER_PROFILE_FALLBACKS.find((profile) => profile.slug === slug);
+  if (!fallback) return undefined;
+
+  return {
+    summary: fallback.summary,
+    biography: fallback.biography,
+    metaDescription: fallback.seo?.metaDescription,
+  };
+}
+
+/**
+ * Overlay reviewed public provider facts without losing current Sanity imagery.
+ * Known fallback profiles remain public even when a partial Sanity record is
+ * missing its website fields; additional future Sanity profiles pass through.
+ */
+export function resolvePublicProviderProfiles(
+  sanityProviders: PublicProviderProfile[],
+): PublicProviderProfile[] {
+  const sanityBySlug = new Map(sanityProviders.map((provider) => [provider.slug, provider]));
+  const reviewedSlugs = new Set(PROVIDER_PROFILE_FALLBACKS.map((provider) => provider.slug));
+
+  const reviewedProfiles = PROVIDER_PROFILE_FALLBACKS.map((fallback) => {
+    const sanityProvider = sanityBySlug.get(fallback.slug);
+    if (!sanityProvider) return fallback;
+
+    return {
+      ...sanityProvider,
+      ...fallback,
+      _id: sanityProvider._id,
+      imageUrl: sanityProvider.imageUrl ?? fallback.imageUrl,
+      imageAlt: fallback.imageAlt ?? sanityProvider.imageAlt,
+    };
+  });
+
+  return [
+    ...reviewedProfiles,
+    ...sanityProviders.filter((provider) => !reviewedSlugs.has(provider.slug)),
+  ].sort((left, right) => left.listingOrder - right.listingOrder || left.publicName.localeCompare(right.publicName));
+}

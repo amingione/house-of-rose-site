@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_COST_GUIDE_SLUGS_QUERY,
   COST_GUIDE_BY_SLUG_QUERY,
@@ -10,7 +10,7 @@ import {
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getVerifiedCostFact } from '@/lib/costFacts';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COST_GUIDE_SLUGS_QUERY);
@@ -22,31 +22,37 @@ const guideData = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug 
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!guideData) throw new Error(`[cost/[slug]] No cost guide found in Sanity for slug "${slug}"`);
-const guide = alignPublicContent(guideData);
+const guide = guideData;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
-const priceRange =
-  guide.priceLow != null && guide.priceHigh != null
-    ? `$${guide.priceLow.toLocaleString()}–$${guide.priceHigh.toLocaleString()}${guide.priceUnit ? ` ${guide.priceUnit}` : ''}`
-    : guide.priceLow != null
-      ? `From $${guide.priceLow.toLocaleString()}${guide.priceUnit ? ` ${guide.priceUnit}` : ''}`
-      : null;
+const treatmentName = guide.treatment?.title ?? 'this treatment';
+const verifiedFact = getVerifiedCostFact(guide.slug);
+const pricingStatement = verifiedFact?.answer
+  ?? `A verified price is not published for ${treatmentName} on this Punta Gorda cost guide.`;
+const dateModified = verifiedFact && (!guide._updatedAt || guide._updatedAt < verifiedFact.verifiedAt)
+  ? verifiedFact.verifiedAt
+  : guide._updatedAt;
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Pricing', item: `${site}cost/` },
   { name: guide.title, item: canonical },
 ]);
-const faq = faqPage(guide.faqs ?? []);
+const faq = faqPage([
+  {
+    question: `What price is published for ${treatmentName}?`,
+    answer: pricingStatement,
+  },
+]);
 const articleSchema = article(
-  { headline: guide.title, description: guide.answer, url: canonical, dateModified: guide._updatedAt },
+  { headline: guide.title, description: pricingStatement, url: canonical, dateModified },
   site,
 );
 
 const pageTitle = guide.seo?.metaTitle ?? `${guide.title} | House of Rose`;
-const pageDescription = guide.seo?.metaDescription ?? guide.answer;
+const pageDescription = pricingStatement;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -59,51 +65,23 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Pricing Guide</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6" {...sbFieldPath('title')}>{guide.title}</h1>
-      <p class="text-ink/85 text-[17px] leading-relaxed" {...sbFieldPath('answer')}>{guide.answer}</p>
-      {priceRange && (
-        <p class="mt-6 inline-block border border-gold-metal/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
-          Typical range: <span class="font-medium">{priceRange}</span>
-        </p>
-      )}
+      <div class="mt-6 inline-block border border-gold-metal/40 px-5 py-4">
+        <span class="block text-gold text-[11px] tracking-[0.2em] uppercase mb-2">Verified price</span>
+        <p class="text-ink text-[17px] font-medium">{verifiedFact?.display ?? 'No verified price published'}</p>
+      </div>
+      <p class="text-muted text-[14px] leading-relaxed mt-5 max-w-[640px]">{pricingStatement}</p>
     </div>
   </section>
 
-  {guide.costFactors && guide.costFactors.length > 0 && (
+  {guide.treatment && (
     <section class="bg-charcoal-light py-14 px-6">
       <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What Affects the Cost</span>
-        <div class="space-y-6">
-          {guide.costFactors.map((f, i) => (
-            <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[18px] font-medium mb-2" {...sbFieldPathParts('costFactors', i, 'factor')}>{f.factor}</h2>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('costFactors', i, 'effect')}>{f.effect}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  {guide.whatsIncluded && (
-    <section class="bg-charcoal py-14 px-6">
-      <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What's Included</span>
-        <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line" {...sbFieldPath('whatsIncluded')}>{guide.whatsIncluded}</p>
-      </div>
-    </section>
-  )}
-
-  {guide.faqs && guide.faqs.length > 0 && (
-    <section class="bg-charcoal-light py-14 px-6">
-      <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
-        <div class="space-y-6">
-          {guide.faqs.map((f, i) => (
-            <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
-            </div>
-          ))}
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Related service</span>
+        <div {...sbObjectId(guide.treatment._id)}>
+          <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink leading-tight mb-4" {...sbFieldPath('title')}>
+            {guide.treatment.title}
+          </h2>
+          <a href={`/services/${guide.treatment.slug}/`} class="learn-more">View service</a>
         </div>
       </div>
     </section>
@@ -111,16 +89,9 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
-      {guide.treatment && (
-        <a href={`/services/${guide.treatment.slug}/`} class="learn-more inline-block mb-8">
-          ← Explore {guide.treatment.title}
-        </a>
-      )}
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Ask about your exact investment</h2>
-      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">Pricing can change with the treatment area and plan. Call or request a consultation to confirm what applies to you.</p>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Questions about pricing?</h2>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="/skin-analysis/" class="btn-outline-gold">Start With Skin Analysis</a>
         {guide.treatment ? (
           <BookingLink
             slug={guide.treatment.slug}
@@ -130,7 +101,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
             class="btn-gold"
           />
         ) : (
-          <a href="/consultation/" class="btn-gold">Request a Consultation</a>
+          <a href="/consultation/" class="btn-gold">Request a consultation</a>
         )}
       </div>
     </div>

@@ -1,6 +1,4 @@
 ---
-import { Schema } from 'astro-seo-schema';
-import type { Graph, Thing, WithContext } from 'schema-dts';
 import type { JsonLd } from '@/lib/structuredData';
 
 interface Props {
@@ -9,7 +7,13 @@ interface Props {
 }
 
 const { item, space } = Astro.props;
-const schemaItem = item as unknown as Graph | WithContext<Thing>;
+// JSON-LD script contents are raw text: HTML entities such as `&amp;` are not
+// decoded there and would change names, URLs, and answer text seen by crawlers.
+// Escape only characters that could terminate or disrupt the script element.
+const serializedItem = JSON.stringify(item, null, space)
+  .replace(/</g, '\\u003c')
+  .replace(/\u2028/g, '\\u2028')
+  .replace(/\u2029/g, '\\u2029');
 ---
 
-<Schema item={schemaItem} space={space} />
+<script is:inline type="application/ld+json" set:html={serializedItem} />

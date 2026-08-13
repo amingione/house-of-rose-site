@@ -8,7 +8,7 @@ export interface PublicCopyOptions {
 }
 
 export interface PublicCopyRisk {
-	code: "clinical-claim-review" | "absolute-outcome-review";
+	code: "clinical-claim-review" | "absolute-outcome-review" | "unsupported-treatment-review";
 	message: string;
 	match: string;
 }
@@ -44,6 +44,15 @@ export const findPublicCopyRisks = (
 		});
 	}
 
+	const unsupportedTreatment = value.match(/\bstem[- ]cell (?:treatment|therapy)\b/i);
+	if (unsupportedTreatment) {
+		risks.push({
+			code: "unsupported-treatment-review",
+			message: "Remove or verify the unsupported treatment claim at its source.",
+			match: unsupportedTreatment[0],
+		});
+	}
+
 	return risks;
 };
 
@@ -67,40 +76,15 @@ export const alignPublicChannelCopy = (
 
 	return value
 		.replaceAll("House of Rose LLC", "House of Rose Aesthetics LLC")
-		.replace(/call\s*(?:or|\/)\s*text/gi, "call")
-		.replace(/online booking menu/gi, "services menu")
-		.replace(/online booking/gi, "services menu")
-		.replace(/book online/gi, "review the services menu")
-		.replace(/stem[- ]cell treatment/gi, "cell-based treatment")
-		.replace(/stem[- ]cell therapy/gi, "cell-based therapy")
-		// Keep the visit policy accurate without turning it into boilerplate.
-		.replace(/\s*[—–;]\s*walk-ins?[^.]*\./gi, ".")
-		.replace(/(?:^|\s+)walk-ins? (?:are )?(?:welcome|accepted)[^.]*\./gi, "")
-		.replace(
-			/Port Charlotte, Englewood, North Port, Venice, and the wider Charlotte County and Southwest Florida area/gi,
-			"Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles",
-		)
-		.replace(
-			/Punta Gorda, Port Charlotte, Englewood, North Port, and Venice/gi,
-			"Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles",
-		)
-		.replace(
-			/Port Charlotte, Englewood, Venice, North Port, and Cape Coral/gi,
-			"Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles",
-		)
-		.replace(
-			/Port Charlotte, North Port\s*(?:&|and)\s*Venice/gi,
-			"Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles",
-		)
-		.replace(/Port Charlotte and North Port/gi, "Port Charlotte and Charlotte County")
 		.trim();
 };
 
 /**
  * Apply the public-channel guard to a Sanity result before it reaches a public
- * route. Sanity responses are plain JSON, so recursively walking arrays and
- * records also covers Portable Text spans, SEO fields, FAQs, and referenced
- * service summaries without changing the stored source document.
+ * route. The recursion reports risky claims in nested Sanity values and applies
+ * only exact entity-name normalization. Visit policy, geography, CTAs, and
+ * clinical meaning must be corrected at their owning source instead of being
+ * rewritten at runtime.
  */
 export const alignPublicContent = <T>(value: T, options: PublicCopyOptions = {}): T => {
 	if (typeof value === "string") return alignPublicChannelCopy(value, options) as T;

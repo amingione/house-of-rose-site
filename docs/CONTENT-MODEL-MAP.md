@@ -6,9 +6,9 @@
 > before/after", this file is the single source of truth for *where everything goes*. Follow it
 > exactly — do not inline GROQ in pages, do not hand-roll JSON-LD, do not invent routes.
 >
-> **This file covers wiring only — not words.** What actually goes *into* those fields is governed by
-> `docs/House_of_Rose_Creative_System/` (voice, vocabulary, approved copy, claim discipline). Read
-> Book 2 before filling a `description`, `tagline`, `metaTitle`, or `faq.answer`.
+> **This file covers wiring only — not words.** During the voice reset, use Amber's latest approved
+> direction plus verified facts and binding compliance rules. The Creative System's prior voice,
+> vocabulary, bios, and templates are archival and must not be used as a tonal model.
 
 ## File responsibilities (recap of AGENTS.md)
 
@@ -27,7 +27,7 @@
 
 ## The 7 page types → full wiring
 
-### 1. Service page — *what it is / who it's for / process / FAQs*
+### 1. Service page — *what it is / verified decision support for the search intent*
 - **Doc type:** `service` (`kind`: `hub` | `treatment` | `standalone`)
 - **Route:** `/services/[slug]` (+ `/services`, `/services/collections/[collection]`)
 - **JSON-LD:** `Service` + `BreadcrumbList` + `FAQPage` (when `faqs` present)
@@ -78,6 +78,8 @@
 - **Route:** lives on `/services/[slug]` and `/experience`
 - **JSON-LD:** inherited from the Service page
 - **Status:** ✅ existing
+- **Voice boundary:** this is an available content shape, not a requirement to narrate process on
+  every service or use process language as brand positioning.
 
 ---
 

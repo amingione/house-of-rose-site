@@ -17,51 +17,51 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 1. Exterior establishing shot from the parking area.
 2. Slow approach to the blue-and-gold entrance.
 3. Hand opening the studio door.
-4. Welcome console, sign, candles, and florals.
+4. Welcome console and House of Rose sign.
 5. Hallway walk-through at normal speed.
-6. Consultation seating with no client visible.
+6. Seating area with no client visible.
 7. Skin-analysis device and screen with no identifiable client data.
 8. Provider preparing a clean treatment tray.
 9. Glo2Facial or Procell equipment and products, labels accurate and unobstructed.
 10. Diana entering or preparing the injectables room; no needle close-up.
-11. Amber arranging advanced-skin products or reviewing a blank treatment-planning page.
+11. Amber Mingione, Licensed Esthetician, arranging current skin-treatment products.
 12. Exterior closing shot with the sign centered.
 
 ## Video 1 — Local proof
 
 **Length:** 15–20 seconds  
-**Speaker:** Amber or owner representative  
-**Destination:** `/skin-analysis/`
+**Speaker:** Amber Mingione, Licensed Esthetician, or owner representative
+**Destination:** `/experience/`
 
 ### Spoken script
 
-> If you’ve passed our blue-and-gold entrance on E Olympia Avenue, this is what’s inside. House of Rose is a medical aesthetics practice built around thoughtful consultations and unhurried care. Begin with a skin consultation.
+> This is House of Rose Aesthetics at 525 E Olympia Avenue in Punta Gorda. The storefront, welcome hallway, and treatment rooms are shown as they are.
 
 ### Edit
 
 - 0–3s: exterior and sign; on-screen text: `PUNTA GORDA, MEET HOUSE OF ROSE`
-- 3–8s: door and welcome area; on-screen text: `PRIVATE · WALK-INS WELCOME`
-- 8–14s: speaker plus studio details; on-screen text: `BEGIN WITH A SKIN CONSULTATION`
-- End frame: logo, `(844) 941-7673`, `houseofrosefl.com/skin-analysis/`
+- 3–8s: door and welcome area; on-screen text: `525 E OLYMPIA AVE · UNIT 9`
+- 8–14s: speaker plus treatment-room details; on-screen text: `ACTUAL HOUSE OF ROSE SPACES`
+- End frame: logo, `(844) 941-7673`, `houseofrosefl.com/experience/`
 
 ## Video 2 — See your skin first
 
 **Length:** 15–25 seconds  
-**Speaker:** Amber  
+**Speaker:** Amber Mingione, Licensed Esthetician
 **Destination:** `/skin-analysis/`
 
 ### Spoken script
 
-> Before we recommend a treatment, we look at what your skin is showing. Advanced imaging gives us a clearer baseline, and the consultation gives you space to ask questions. There’s no pressure and no commitment.
+> Texture, pigment, pores, and visible sun exposure are not the same concern. Advanced Skin Imaging & Analysis records the skin in standard, cross-polarized, and UV light. It provides a closer look and a baseline; it does not diagnose a skin condition.
 
 ### Edit
 
 - 0–4s: Amber on camera; on-screen text: `SEE YOUR SKIN FIRST`
 - 4–10s: analysis device and privacy-safe screen B-roll; text: `A CLEARER BASELINE`
-- 10–17s: seated conversation and notes; text: `CONTEXT BEFORE TREATMENT`
-- End frame: `COMPLIMENTARY SKIN CONSULTATION · PUNTA GORDA`
+- 10–17s: privacy-safe screen detail; text: `NON-DIAGNOSTIC SKIN IMAGING`
+- End frame: `ADVANCED SKIN IMAGING · PUNTA GORDA`
 
-## Video 3 — Injectables, with restraint
+## Video 3 — Different concerns, different services
 
 **Length:** 15–25 seconds  
 **Speaker:** Diana, RN  
@@ -69,15 +69,15 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 
 ### Spoken script
 
-> With injectables, more is not automatically better. I start with anatomy, candidacy, your preferences, and a clear conversation about the available options. The plan should feel considered and appropriate for you.
+> Movement-related lines and volume loss are not the same concern. Neurotoxins address movement. Dermal filler addresses shape and volume. Injectable PRF has a separate role.
 
 ### Edit
 
-- 0–4s: Diana on camera; on-screen text: `INJECTABLES, WITH RESTRAINT`
-- 4–10s: Diana preparing the room; text: `ANATOMY · CANDIDACY · PREFERENCES`
-- 10–17s: consultation B-roll; text: `A PROVIDER-LED PLAN`
-- End frame: `DIANA, RN · HOUSE OF ROSE AESTHETICS`
-- Caption/disclaimer: `Not every client is a candidate for every service. Individual outcomes vary.`
+- 0–4s: Diana on camera; on-screen text: `MOVEMENT IS NOT VOLUME`
+- 4–10s: Diana preparing the room; text: `NEUROTOXIN · FILLER · PRF`
+- 10–17s: room and current product B-roll; text: `THREE DISTINCT SERVICES`
+- End frame: `DIANA MORRISON, RN · HOUSE OF ROSE AESTHETICS`
+- Caption/disclaimer: `Individual outcomes vary. Medical Director: Joshua Shaw, MD · FL Lic. ME136232`
 
 ## Delivery checklist
 

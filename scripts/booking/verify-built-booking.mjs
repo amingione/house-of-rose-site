@@ -4,11 +4,10 @@ import path from 'node:path';
 const DIST_DIR = path.resolve('packages/web/dist');
 const ACTIVE_MENU_URL = 'https://houseofrose.glossgenius.com/services';
 const ACTIVE_BOOKING_PREFIX = 'https://houseofrose.glossgenius.com/book?';
-const RETIRED_PATHS = [
+const RETIRED_PATHS = new Set([
   '/aundrea/',
-  '/services/permanent-jewelry/',
   '/services/professional-makeup/',
-];
+]);
 
 const failures = [];
 
@@ -41,13 +40,16 @@ for (const file of await collectHtml(DIST_DIR)) {
   const html = await readFile(file, 'utf8');
   const route = `/${path.relative(DIST_DIR, file).replace(/index\.html$/, '').replace(/\\/g, '/')}`;
 
-  for (const retiredPath of RETIRED_PATHS) {
-    if (html.includes(retiredPath)) failures.push(`${route}: reintroduced retired path ${retiredPath}`);
-  }
-
   for (const tag of html.match(/<a\b[^>]*>/gi) ?? []) {
     const href = getAttribute(tag, 'href');
     if (!href) continue;
+    const hrefPath = href.split(/[?#]/, 1)[0];
+
+    // Match retired routes exactly. `/aundrea/` is the retired digital-card
+    // root; `/about/providers/aundrea/` is the current provider profile.
+    if (RETIRED_PATHS.has(hrefPath)) {
+      failures.push(`${route}: reintroduced retired path ${hrefPath}`);
+    }
 
     if (isRouteHref(href) && !href.split(/[?#]/, 1)[0].endsWith('/')) {
       failures.push(`${route}: internal route is missing its trailing slash: ${href}`);

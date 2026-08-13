@@ -5,8 +5,8 @@ import { defineField, defineType } from 'sanity';
  * `service`: downtime, aftercare, provider scope, and price range.
  *
  * Compliance constraints encoded here on purpose:
- *  - No House of Rose staff or owner names anywhere client-facing. Scope is
- *    described by licensure and delegation, never by person.
+ *  - A named practitioner must include the license type. This object records
+ *    scope; the service's provider reference supplies the verified public name.
  *  - Every page that shows an outcome must carry a results-variance line
  *    (FL Board of Medicine Rule 64B8-11.001). `treatmentProviderScope.disclaimer`
  *    is required for that reason.
@@ -27,8 +27,8 @@ export const treatmentDowntime = defineType({
       description: 'Drives the badge on the page and the recovery signal in search results.',
       options: {
         list: [
-          { title: 'None — return to normal activity immediately', value: 'none' },
-          { title: 'Minimal — makeup-ready same or next day', value: 'minimal' },
+          { title: 'None — exact procedure must be reviewed', value: 'none' },
+          { title: 'Minimal — use the approved service-specific summary', value: 'minimal' },
           { title: 'Moderate — visible redness or texture for several days', value: 'moderate' },
           { title: 'Significant — plan around social and work commitments', value: 'significant' },
         ],
@@ -109,7 +109,7 @@ export const treatmentAftercare = defineType({
       title: 'Aftercare Intro',
       type: 'text',
       rows: 2,
-      description: 'One or two sentences framing why aftercare determines the result.',
+      description: 'One or two factual sentences explaining why the instructions matter for this service.',
       validation: (R) => R.max(300),
     }),
     defineField({
@@ -162,7 +162,7 @@ export const treatmentProviderScope = defineType({
   title: 'Provider Qualifications',
   type: 'object',
   description:
-    'Who performs this treatment and under what authority. Describe licensure only — never a staff or owner name.',
+    'Who performs this treatment and under what authority. Record licensure here; use the service provider reference for a verified public name and license type.',
   fields: [
     defineField({
       name: 'performedBy',
@@ -184,7 +184,7 @@ export const treatmentProviderScope = defineType({
       type: 'boolean',
       initialValue: false,
       description:
-        'Required true for injectables, IV therapy, weight management, and any device that breaches the epidermis (FL Rule 61G5-18.00015 excludes microneedling from esthetician scope regardless of naming).',
+        'Required true for injectables, IV therapy, weight management, microneedling, microchanneling, and other services delivered under the practice’s written physician protocol.',
     }),
     defineField({
       name: 'credentialPoints',

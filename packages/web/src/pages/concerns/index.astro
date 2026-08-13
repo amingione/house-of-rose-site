@@ -13,29 +13,29 @@ const canonical = new URL(Astro.url.pathname, site).toString();
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
-  { name: 'What We Treat', item: canonical },
+  { name: 'Concern Guides', item: canonical },
 ]);
 const concernsListSchema = concerns.length
   ? itemList(
       concerns.map((c) => ({ name: c.title, url: new URL(`/concerns/${c.slug}/`, site).toString() })),
-      'Skin & Aesthetic Concerns We Treat',
+      'Concern Guides from House of Rose Aesthetics',
     )
   : null;
 ---
 
 <BaseLayout
-  title="What We Treat — Skin & Aesthetic Concerns | House of Rose, Punta Gorda FL"
-  description="Acne scars, fine lines, dark spots, under-eyes, volume loss, texture, and more. See the concerns House of Rose treats in Punta Gorda and the treatments matched to each."
+  title="Concern Guides | House of Rose Aesthetics"
+  description="Choose a skin or aesthetic concern and review the House of Rose services currently associated with it in Punta Gorda, Florida."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {concernsListSchema && <SchemaMarkup item={concernsListSchema} slot="head" />}
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
-      <span class="kicker">What We Treat</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Start with your concern</h1>
+      <span class="kicker">Concern Guides</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Start with what you notice.</h1>
       <p class="text-ink/80 text-[16px] max-w-[660px] leading-relaxed">
-        Every concern has more than one path. Find yours below and see the treatments at House of Rose matched to it — then we map the plan at your consultation.
+        Choose the concern closest to what you see. Each guide shows the House of Rose services currently associated with it.
       </p>
     </div>
   </section>
@@ -45,26 +45,25 @@ const concernsListSchema = concerns.length
       {concerns.map((c) => (
         <a href={`/concerns/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
           <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{c.title}</h2>
-          {c.intro && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('intro')}>{c.intro}</p>}
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">See treatments</span>
+          <span class="learn-more group-hover:text-gold mt-4 inline-block">View options</span>
         </a>
       ))}
       {concerns.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Concern guides are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No concern guides are currently available.</p>
       )}
     </div>
   </section>
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Not Sure Where To Start?</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Let your skin tell us.</h2>
+      <span class="kicker">A Different Starting Point</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Not every concern is easy to name.</h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-8 leading-[1.8]">
-        In-studio advanced skin imaging reads your skin and maps it to the right treatments — the clearest first step before you book.
+        If the menu does not make the answer obvious, begin with a skin analysis or consultation.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
-        <a href="/services/" class="btn-gold">Explore Services</a>
+        <a href="/skin-analysis/" class="btn-outline-gold">Review skin analysis</a>
+        <a href="/consultation/" class="btn-gold">Start a consultation</a>
       </div>
     </div>
   </section>

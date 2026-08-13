@@ -73,7 +73,7 @@ const services = [
         alt: 'Morpheus8 Burst radiofrequency microneedling handpiece',
         title: 'Morpheus8 Burst Technology',
         caption:
-          'The Morpheus8 handpiece combines controlled microneedling with fractional bipolar radiofrequency. Treatment depth, energy, and area are selected for the individualized plan.',
+          'The Morpheus8 handpiece combines microneedling with fractional bipolar radiofrequency.',
         sourceCredit: 'InMode manufacturer media',
       }),
     ],
@@ -90,7 +90,7 @@ const services = [
         alt: 'Lumecca Peak intense pulsed light handpiece',
         title: 'Lumecca Peak IPL Technology',
         caption:
-          'Lumecca Peak delivers customizable pulses of broad-spectrum light. The planned area, skin assessment, recent sun exposure, and candidacy guide treatment settings.',
+          'Lumecca Peak is an intense pulsed light device used for selected pigment and tone concerns.',
         sourceCredit: 'InMode manufacturer media',
       }),
       media({
@@ -124,7 +124,7 @@ const services = [
     title: 'Forma RF Facial',
     fieldUpdates: {
       'faqs[_key=="areas"].answer':
-        'House of Rose considers Forma for eligible areas of the face, cheeks, lower face, and neck. Your consultation confirms whether the area and crepey-texture concern fit the treatment.',
+        'Forma may be used on the face, cheeks, lower face, and neck. Available treatment areas are listed in the current services menu.',
     },
     evidenceMedia: [
       media({
@@ -134,7 +134,7 @@ const services = [
         alt: 'Forma temperature-controlled radiofrequency facial handpiece',
         title: 'Forma Facial RF Technology',
         caption:
-          'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose considers eligible areas of the face and neck after consultation.',
+          'The Forma handpiece delivers radiofrequency while monitoring skin temperature in real time.',
         sourceCredit: 'InMode manufacturer media',
       }),
     ],

@@ -1,22 +1,15 @@
-import {
-  BUSINESS_SERVICE_AREAS,
-  LOCAL_BUSINESS,
-  type JsonLd,
-} from './structuredData';
+import type { JsonLd } from './structuredData';
 import type {
   TreatmentAftercare,
-  TreatmentDowntime,
   TreatmentPriceRange,
-  TreatmentProviderScope,
 } from './treatmentQueries';
 
 /**
  * Treatment-specific structured data.
  *
- * The existing `service()` builder emits a generic `Service` node with a
- * `minPrice` only. For a treatment page that is under-specified: Google's
- * local-intent surfaces respond to `MedicalProcedure` (procedure type,
- * preparation, followup) and to an `Offer` carrying a real low/high range.
+ * The existing `service()` builder emits the bookable service. This builder
+ * adds only treatment facts that map directly to MedicalProcedure properties;
+ * it does not synthesize preparation, provider, recovery, or specialty claims.
  *
  * These are emitted *alongside* the existing Service + BreadcrumbList + FAQPage
  * nodes, not instead of them. Page-scoped `@id` values keep Google from merging
@@ -31,42 +24,22 @@ export interface MedicalProcedureInput {
   /** How the procedure is delivered. Maps to schema.org MedicalProcedureType. */
   procedureType?: 'NoninvasiveProcedure' | 'PercutaneousProcedure';
   bodyLocation?: string[];
-  downtime?: TreatmentDowntime;
   aftercare?: TreatmentAftercare;
-  providerScope?: TreatmentProviderScope;
-  priceRange?: TreatmentPriceRange;
-  bookingUrl?: string;
 }
 
-function areaNodes(): JsonLd[] {
-  return BUSINESS_SERVICE_AREAS.map((name) => ({ '@type': 'Place', name }));
-}
-
-/** Aftercare rendered as a followup instruction, which is the field Google reads. */
-function followupNode(aftercare?: TreatmentAftercare): JsonLd | undefined {
+/** Schema.org expects MedicalProcedure.followup to be Text. */
+function followupText(aftercare?: TreatmentAftercare): string | undefined {
   if (!aftercare) return undefined;
   const steps = [
     ...(aftercare.firstDay ?? []),
     ...(aftercare.firstWeek ?? []),
   ];
   if (steps.length === 0) return undefined;
-  return {
-    '@type': 'MedicalEntity',
-    name: 'Aftercare',
-    description: steps.join(' '),
-  };
+  return steps.join(' ');
 }
 
-function preparationNode(providerScope?: TreatmentProviderScope): string | undefined {
-  if (!providerScope) return undefined;
-  return providerScope.consultRequired === false
-    ? undefined
-    : 'A consultation is completed before treatment to confirm candidacy.';
-}
-
-export function medicalProcedure(input: MedicalProcedureInput, siteUrl: string): JsonLd {
-  const followup = followupNode(input.aftercare);
-  const preparation = preparationNode(input.providerScope);
+export function medicalProcedure(input: MedicalProcedureInput): JsonLd {
+  const followup = followupText(input.aftercare);
 
   return {
     '@context': 'https://schema.org',
@@ -76,32 +49,9 @@ export function medicalProcedure(input: MedicalProcedureInput, siteUrl: string):
     ...(input.description && { description: input.description }),
     url: input.url,
     ...(input.image && { image: input.image }),
-    procedureType: {
-      '@type': 'MedicalProcedureType',
-      name: input.procedureType ?? 'NoninvasiveProcedure',
-    },
+    procedureType: `https://schema.org/${input.procedureType ?? 'NoninvasiveProcedure'}`,
     ...(input.bodyLocation?.length && { bodyLocation: input.bodyLocation }),
-    ...(preparation && { preparation }),
     ...(followup && { followup }),
-    ...(input.downtime && {
-      // No first-class downtime property exists; expected-recovery text belongs
-      // in howPerformed so it is at least machine-readable rather than dropped.
-      howPerformed: input.downtime.summary,
-    }),
-    performer: {
-      '@type': 'MedicalBusiness',
-      '@id': `${siteUrl}#business`,
-      name: LOCAL_BUSINESS.name,
-    },
-    availableService: {
-      '@type': 'MedicalTherapy',
-      name: input.name,
-    },
-    relevantSpecialty: {
-      '@type': 'MedicalSpecialty',
-      name: 'Dermatology',
-    },
-    areaServed: areaNodes(),
   };
 }
 
@@ -132,9 +82,6 @@ export function treatmentOffer(
       : { price: priceRange.minPrice }),
     availability: 'https://schema.org/InStock',
     ...(input.bookingUrl && { url: input.bookingUrl }),
-    seller: {
-      '@type': 'MedicalBusiness',
-      name: LOCAL_BUSINESS.name,
-    },
+    seller: { '@id': `${new URL('/', input.url).toString()}#business` },
   };
 }

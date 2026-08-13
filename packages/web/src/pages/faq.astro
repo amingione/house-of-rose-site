@@ -1,44 +1,45 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
-import {
-  AI_SEARCH_FAQ_QUERY,
-  FAQ_AGGREGATE_QUERY,
-  type AiSearchFaqSection,
-  type FaqGroup,
-  type FAQ,
-} from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
 
-const [aiSearchFaqData, groupData] = await Promise.all([
-  sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
-  sanityFetch<FaqGroup[]>(FAQ_AGGREGATE_QUERY),
-]);
-const aiSearchFaq = aiSearchFaqData ? alignPublicContent(aiSearchFaqData) : null;
-const groups: FaqGroup[] = alignPublicContent(groupData);
+// Temporary local reset layer. Published CMS FAQs remain suppressed until their
+// claims and voice have been reviewed at the source.
+const faqs = [
+  {
+    question: 'What is House of Rose Aesthetics?',
+    answer: 'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida.',
+  },
+  {
+    question: 'Where is House of Rose located?',
+    answer: 'The practice is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.',
+  },
+  {
+    question: 'What services are offered?',
+    answer: 'Services include skin treatments, injectables, body treatments, IV hydration, provider-guided weight management, facial waxing, and professional home care.',
+  },
+  {
+    question: 'How do I choose a service?',
+    answer: 'Start with a treatment name if you have one. Otherwise, start with what you have noticed and ask the practice to compare the relevant options.',
+  },
+  {
+    question: 'Where can I see current prices?',
+    answer: 'Review the pricing guides or the current GlossGenius booking menu. Call (844) 941-7673 if you need help finding the correct service.',
+  },
+  {
+    question: 'Do you accept walk-ins?',
+    answer: 'Call to ask about same-day availability for waxing and facials. Appointments reserve a specific time.',
+  },
+];
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
-// Flatten every FAQ across content into one FAQPage schema.
-const aiSearchFaqs = aiSearchFaq?.faqs ?? [];
-const allFaqs: FAQ[] = [...aiSearchFaqs, ...groups.flatMap((g) => g.faqs ?? [])];
-const faq = faqPage(allFaqs);
+const faq = faqPage(faqs);
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'FAQ', item: canonical },
 ]);
 
-const routeFor = (g: FaqGroup): string => {
-  switch (g.type) {
-    case 'costGuide': return `/cost/${g.slug}/`;
-    case 'comparison': return `/compare/${g.slug}/`;
-    case 'localArea': return `/areas/${g.slug}/`;
-    default: return `/services/${g.slug}/`;
-  }
-};
 ---
 
 <BaseLayout
@@ -52,54 +53,26 @@ const routeFor = (g: FaqGroup): string => {
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Answers</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Frequently asked questions</h1>
-      <p class="text-ink/80 text-[16px] leading-relaxed">Everything clients ask about treatments, pricing, and what to expect.</p>
+      <p class="text-ink/80 text-[16px] leading-relaxed">The essential facts about the practice, services, prices, and visits.</p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[860px] mx-auto space-y-12">
-      {aiSearchFaq && aiSearchFaqs.length > 0 && (
-        <div {...sbObjectId(aiSearchFaq._id)}>
-          <div class="mb-6 border-b border-gold-metal/15 pb-3">
-            <span class="kicker">House of Rose at a glance</span>
-            <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-gold mt-2" {...sbFieldPath('aiSearchFaqHeading')}>
-              {aiSearchFaq.heading ?? 'The Essentials'}
-            </h2>
-            {aiSearchFaq.intro && (
-              <p class="text-muted text-[14px] leading-relaxed mt-3 max-w-[720px]" {...sbFieldPath('aiSearchFaqIntro')}>
-                {aiSearchFaq.intro}
-              </p>
-            )}
-          </div>
-          <div class="space-y-5">
-            {aiSearchFaqs.map((f, i) => (
-              <div class="border-b border-ink/5 pb-5">
-                <h3 class="text-ink text-[16px] font-medium mb-2" {...sbFieldPathParts('aiSearchFaqs', i, 'question')}>{f.question}</h3>
-                <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('aiSearchFaqs', i, 'answer')}>{f.answer}</p>
-              </div>
-            ))}
-          </div>
+      <div>
+        <div class="mb-6 border-b border-gold-metal/15 pb-3">
+          <span class="kicker">House of Rose at a glance</span>
+          <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-gold mt-2">The essentials</h2>
         </div>
-      )}
-      {groups.map((g) => (
-        <div {...sbObjectId(g._id)}>
-          <div class="flex items-baseline justify-between mb-6 border-b border-gold-metal/15 pb-3">
-            <h2 class="font-serif text-[22px] text-gold" {...sbFieldPath('title')}>{g.source}</h2>
-            <a href={routeFor(g)} class="learn-more">View page →</a>
-          </div>
-          <div class="space-y-5">
-            {(g.faqs ?? []).map((f, i) => (
-              <div class="border-b border-ink/5 pb-5">
-                <h3 class="text-ink text-[16px] font-medium mb-2" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h3>
-                <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
-              </div>
-            ))}
-          </div>
+        <div class="space-y-5">
+          {faqs.map((f) => (
+            <div class="border-b border-ink/5 pb-5">
+              <h3 class="text-ink text-[16px] font-medium mb-2">{f.question}</h3>
+              <p class="text-muted text-[14px] leading-relaxed">{f.answer}</p>
+            </div>
+          ))}
         </div>
-      ))}
-      {aiSearchFaqs.length === 0 && groups.length === 0 && (
-        <p class="text-muted text-[14px]">FAQs will appear here as content is added.</p>
-      )}
+      </div>
     </div>
   </section>
 

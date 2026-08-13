@@ -5,6 +5,10 @@ import { spawn } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 
+throw new Error(
+  'VOICE RESET: Q3 acquisition video rendering is disabled until the source frames and public copy are approved.',
+);
+
 const outputFlag = process.argv.indexOf('--output');
 if (outputFlag === -1 || !process.argv[outputFlag + 1]) {
   console.error('Usage: render-local-acquisition-videos.mjs --output /absolute/output/path');

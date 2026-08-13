@@ -21,22 +21,18 @@ const approvedMedia = media.filter(
 const deviceMedia = approvedMedia.filter((item) => item.kind === 'device');
 const resultMedia = approvedMedia.filter((item) => item.kind === 'before-after');
 const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
-  getInModeEvidenceImage(item._key) ?? urlFor(item.image).width(width).url();
+  getInModeEvidenceImage(item._key) ?? urlFor(item.image).width(width).format('webp').quality(80).url();
 ---
 
 {approvedMedia.length > 0 && (
   <section class="bg-charcoal py-[clamp(52px,7vw,84px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[1280px] mx-auto">
-      <span class="kicker">Treatment in Practice</span>
-      <h2 class="font-serif text-[clamp(27px,4vw,40px)] text-ink mt-2 mb-4">
-        What does {serviceTitle} look like?
+      <h2 class="font-serif text-[clamp(27px,4vw,40px)] text-ink mb-10">
+        {serviceTitle}
       </h2>
-      <p class="text-muted text-[15px] leading-relaxed max-w-[760px] mb-10">
-        See the treatment technology and manufacturer-provided examples below. These examples help illustrate the kinds of visible changes the treatment may support; they are not a prediction of your outcome.
-      </p>
 
       {deviceMedia.length > 0 && (
-        <div class="grid grid-cols-1 lg:grid-cols-[minmax(280px,0.8fr)_1.2fr] gap-6 mb-12">
+        <div class="max-w-[720px] mb-12">
           {deviceMedia.map((item) => {
             const dimensions = item.image.asset.metadata.dimensions;
             return (
@@ -53,8 +49,7 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
                   />
                 </div>
                 <figcaption class="p-6 border-t border-gold-metal/15">
-                  <h3 class="font-serif text-[22px] text-ink mb-2">{item.title}</h3>
-                  <p class="text-muted text-[14px] leading-relaxed">{item.caption}</p>
+                  <h3 class="font-serif text-[22px] text-ink">{item.title}</h3>
                   <p class="text-muted/70 text-[11px] tracking-[0.12em] uppercase mt-4">
                     {item.sourceCredit}
                   </p>
@@ -62,26 +57,17 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
               </figure>
             );
           })}
-          <div class="bg-charcoal-light border border-gold-metal/10 p-8 sm:p-10 flex flex-col justify-center">
-            <span class="text-gold text-[11px] tracking-[0.24em] uppercase mb-3">Settings Chosen for You</span>
-            <h3 class="font-serif text-[clamp(23px,3vw,32px)] text-ink mb-4">
-              The device is only one part of your treatment plan.
-            </h3>
-            <p class="text-muted text-[15px] leading-[1.8]">
-              Area selection, settings, treatment timing, comfort planning, and aftercare are individualized after your consultation. A photograph can show the equipment, but candidacy and a thoughtful plan determine whether this service fits your skin and goals.
-            </p>
-          </div>
         </div>
       )}
 
       {resultMedia.length > 0 && (
         <div>
-          <span class="text-gold text-[11px] tracking-[0.24em] uppercase">Before & After Examples</span>
+          <span class="text-gold text-[11px] tracking-[0.24em] uppercase">Manufacturer examples</span>
           <h3 class="font-serif text-[clamp(24px,3.5vw,34px)] text-ink mt-2 mb-3">
-            What kind of visible change may be possible?
+            What the sources show.
           </h3>
           <p class="text-muted text-[14px] leading-relaxed max-w-[760px] mb-8">
-            These manufacturer-provided treatment examples are not House of Rose clients. Source attribution appears in the image where supplied. Individual outcomes vary by starting point, candidacy, treatment plan, response, and aftercare.
+            These manufacturer-provided examples are not House of Rose clients. Source attribution appears with each image. Individual outcomes vary.
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {resultMedia.map((item) => {
@@ -117,12 +103,12 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
 {research.length > 0 && (
   <section class="bg-charcoal-light py-[clamp(52px,7vw,84px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[1100px] mx-auto">
-      <span class="kicker">Published Research</span>
+      <span class="kicker">Research</span>
       <h2 class="font-serif text-[clamp(27px,4vw,40px)] text-ink mt-2 mb-4">
-        What does published research suggest about {serviceTitle}?
+        Published research on {serviceTitle}.
       </h2>
       <p class="text-muted text-[15px] leading-relaxed max-w-[800px] mb-10">
-        Research can help explain how a technology has been studied, but it does not guarantee an individual result. We identify each study design and its limitations so you can read the evidence in context.
+        Each entry includes the study design, summary, and stated limitations.
       </p>
       <div class="space-y-5">
         {research.map((study) => (
@@ -138,11 +124,11 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
             <h3 class="font-serif text-[clamp(21px,3vw,27px)] text-ink mb-4">{study.title}</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 class="text-ink text-[12px] tracking-[0.16em] uppercase mb-2">What it suggests</h4>
+                <h4 class="text-ink text-[12px] tracking-[0.16em] uppercase mb-2">Finding</h4>
                 <p class="text-muted text-[14px] leading-relaxed">{study.summary}</p>
               </div>
               <div>
-                <h4 class="text-ink text-[12px] tracking-[0.16em] uppercase mb-2">Important context</h4>
+                <h4 class="text-ink text-[12px] tracking-[0.16em] uppercase mb-2">Limitation</h4>
                 <p class="text-muted text-[14px] leading-relaxed">{study.limitations}</p>
               </div>
             </div>
@@ -158,7 +144,7 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
         ))}
       </div>
       <p class="text-muted/75 text-[12px] leading-relaxed mt-7">
-        Published studies describe selected participants and protocols. Your consultation remains the appropriate place to discuss candidacy, alternatives, expected recovery, and what may be reasonable for your goals.
+        Published studies reflect selected participants and protocols. Individual outcomes vary.
       </p>
     </div>
   </section>

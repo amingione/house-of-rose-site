@@ -3,9 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { ALL_COLLECTIONS_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
+import { ALL_COLLECTIONS_QUERY, ALL_SERVICES_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
 import { sbObjectField } from '@/lib/visualEditing';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
 // Collections come from Sanity (`serviceCollection`); this page rolls them up
@@ -15,7 +15,6 @@ import { alignPublicContent } from '@/lib/publicCopy';
 interface GroupSection {
   /** Anchor id — must match GROUP_ANCHORS in pages/index.astro */
   id: string;
-  kicker: string;
   title: string;
   /** serviceCollection slugs rolled into this umbrella, in display order */
   collectionSlugs: string[];
@@ -24,41 +23,42 @@ interface GroupSection {
 const SERVICE_GROUP_SECTIONS: GroupSection[] = [
   {
     id: 'advanced-skin-treatments',
-    kicker: 'Treatment Technology',
-    title: 'Skin Renewal & Device Treatments',
+    title: 'Skin & Device Treatments',
     collectionSlugs: ['inmode'],
   },
   {
     id: 'injectables-structural-enhancements',
-    kicker: 'Medical Aesthetics',
-    title: 'Injectables & Weight Management',
+    title: 'Injectables',
     collectionSlugs: ['injectables-bio-fillers'],
   },
   {
     id: 'skin-health-corrective-care',
-    kicker: 'Facial Care',
-    title: 'Facials & Skin Health',
+    title: 'Facials & Skin Care',
     collectionSlugs: ['facials'],
   },
   {
     id: 'wellness-performance-support',
-    kicker: 'Wellness',
-    title: 'IV Hydration Therapy',
+    title: 'IV Hydration & Weight Management',
     collectionSlugs: ['iv-hydration-therapy'],
   },
   {
     id: 'beauty-grooming',
-    kicker: 'Supporting Care',
-    title: 'Facial Waxing',
+    title: 'Waxing',
     collectionSlugs: ['waxing'],
   },
 ];
 
-const collections = alignPublicContent(await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY));
+const [collections, allServices] = await Promise.all([
+  sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
+  sanityFetch<Service[]>(ALL_SERVICES_QUERY),
+]);
 const bySlug = new Map<string, ServiceCollection>(collections.map((c) => [c.slug, c]));
 
-/** Hub docs are landing pages, not bookable services — keep them out of the menu list. */
-const bookable = (services: Service[]): Service[] => services.filter((s) => s.kind !== 'hub');
+/** Prefer bookable services; retain a canonical hub when it is the collection's only public entry. */
+const menuServices = (services: Service[]): Service[] => {
+  const bookable = services.filter((service) => service.kind !== 'hub');
+  return bookable.length > 0 ? bookable : services;
+};
 
 interface ResolvedSection extends GroupSection {
   collections: { collection: ServiceCollection; services: Service[] }[];
@@ -69,34 +69,37 @@ const sections: ResolvedSection[] = SERVICE_GROUP_SECTIONS.map((section) => ({
   collections: section.collectionSlugs
     .map((slug) => bySlug.get(slug))
     .filter((c): c is ServiceCollection => Boolean(c))
-    .map((collection) => ({ collection, services: bookable(collection.services) }))
+    .map((collection) => ({ collection, services: menuServices(collection.services) }))
     .filter(({ services }) => services.length > 0),
 })).filter((section) => section.collections.length > 0);
 
 // Anything not mapped above still renders (future collections never silently vanish).
 const mappedSlugs = new Set(SERVICE_GROUP_SECTIONS.flatMap((s) => s.collectionSlugs));
-const unmapped = collections
+const collectionUnmappedServices = collections
   .filter((c) => !mappedSlugs.has(c.slug))
-  .map((collection) => ({ collection, services: bookable(collection.services) }))
-  .filter(({ services }) => services.length > 0);
+  .flatMap((collection) => menuServices(collection.services));
+const standaloneServices = allServices.filter((service) => service.slug === 'permanent-jewelry');
+const unmappedServices = Array.from(
+  new Map([...collectionUnmappedServices, ...standaloneServices].map((service) => [service.slug, service])).values(),
+);
 
 ---
 
 <BaseLayout
   title="Medical Aesthetic Services | House of Rose Punta Gorda, FL"
-  description="Explore skin, injectable, facial, IV hydration, and wellness services at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida."
+  description="Review skin, injectable, facial, IV hydration, and wellness services offered at House of Rose Aesthetics in Punta Gorda, Florida."
   preloadImage="/images/optimized/actual-reception-800.webp"
-  preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
+  preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"
   preloadImageSizes="100vw"
 >
   <!-- Hero -->
   <Hero
-    title="Our Services"
-    kicker="Medical Aesthetics. Thoughtfully Practiced."
-    description="Learn what each service is designed to address, then book the exact service or matching consultation when you are ready."
+    title="Services at House of Rose."
+    kicker="Punta Gorda, Florida"
+    description="Browse skin treatments, injectables, facials, IV hydration, weight management, waxing, and permanent jewelry."
     size="small"
-    backgroundImage="/images/optimized/actual-reception-1400.webp"
-    backgroundSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
+    backgroundImage="/images/optimized/actual-reception-1400-light.webp"
+    backgroundSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"
     backgroundSizes="100vw"
     imageAlt="The reception and waiting area inside House of Rose Aesthetics in Punta Gorda"
   />
@@ -104,7 +107,7 @@ const unmapped = collections
   <!-- Compact treatment index -->
   <nav aria-label="Service groups" class="service-group-nav border-b border-gold-metal/10 bg-charcoal px-5 py-5 sm:px-6">
     <div class="mx-auto max-w-[1280px]">
-      <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">Browse by service type</p>
+      <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">Services by category</p>
       <div class="service-group-nav-track flex gap-2 overflow-x-auto pb-1">
         {sections.map((section) => (
           <a
@@ -122,13 +125,12 @@ const unmapped = collections
   {sections.map((section, sectionIndex) => (
     <section
       id={section.id}
-      class={`${sectionIndex % 2 === 0 ? 'bg-charcoal' : 'bg-charcoal-light'} scroll-mt-24 py-[clamp(40px,6vw,72px)]`}
+      class={`${sectionIndex % 2 === 0 ? 'bg-charcoal' : 'bg-charcoal-light'} scroll-mt-24 py-[clamp(32px,5vw,56px)]`}
     >
       <div class="mx-auto max-w-[1280px] px-5 sm:px-6">
         <div class="mb-6 grid gap-3 border-b border-gold-metal/20 pb-6 sm:mb-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
           <div class="max-w-[720px]">
-            <span class="kicker">{section.kicker}</span>
-            <h2 class="mt-2 font-serif text-[clamp(28px,5vw,40px)] leading-tight text-ink">{section.title}</h2>
+            <h2 class="font-serif text-[clamp(28px,5vw,40px)] leading-tight text-ink">{section.title}</h2>
           </div>
           <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-muted">
             {section.collections.reduce((count, entry) => count + entry.services.length, 0)}
@@ -140,7 +142,7 @@ const unmapped = collections
         {section.collections.map(({ collection, services }) => (
           <div class="mb-10 last:mb-0">
             {section.collections.length > 1 && (
-              <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
+              <div class="mb-6 flex items-baseline gap-4 border-b border-gold-metal/15 pb-3">
                 <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">
                   <a
                     href={`/services/collections/${collection.slug}/`}
@@ -152,7 +154,7 @@ const unmapped = collections
                 </h3>
                 <a
                   href={`/services/collections/${collection.slug}/`}
-                  class="learn-more text-[11px] whitespace-nowrap ml-auto"
+                  class="learn-more ml-auto whitespace-nowrap text-[11px]"
                 >
                   View {collection.title} →
                 </a>
@@ -176,76 +178,45 @@ const unmapped = collections
     </section>
   ))}
 
-  {unmapped.length > 0 && (
-    <section id="more" class="bg-charcoal-light py-[clamp(40px,6vw,80px)] scroll-mt-24">
+  {unmappedServices.length > 0 && (
+    <section id="more" class="bg-charcoal-light py-[clamp(32px,5vw,56px)] scroll-mt-24">
       <div class="mx-auto max-w-[1280px] px-5 sm:px-6">
-        <div class="mb-8 max-w-[720px] border-b border-gold-metal/20 pb-6">
-          <span class="kicker">More at House of Rose</span>
-          <h2 class="font-serif text-[clamp(26px,3.6vw,38px)] text-ink mt-2">Additional Services</h2>
+        <div class="mb-6 max-w-[720px] border-b border-gold-metal/20 pb-6 sm:mb-8">
+          <h2 class="font-serif text-[clamp(26px,3.6vw,38px)] text-ink">Additional Services</h2>
         </div>
-        {unmapped.map(({ collection, services }) => (
-          <div class="mb-12 last:mb-0">
-            <div class="flex items-baseline gap-4 mb-6 border-b border-gold-metal/15 pb-3">
-              <h3
-                class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink"
-                {...sbObjectField(collection._id, 'title')}
-              >
-                {collection.title}
-              </h3>
-            </div>
-            {services.map((service) => (
-              <ServiceCard
-                title={service.title}
-                slug={service.slug}
-                tagline={service.tagline}
-                image={service.image}
-                bookingMode={service.bookingMode}
-                bookingUrl={service.bookingUrl}
-                variant="row"
-                objectId={service._id}
-              />
-            ))}
-          </div>
+        {unmappedServices.map((service) => (
+          <ServiceCard
+            title={service.title}
+            slug={service.slug}
+            tagline={service.tagline}
+            image={service.image}
+            bookingMode={service.bookingMode}
+            bookingUrl={service.bookingUrl}
+            variant="row"
+            objectId={service._id}
+          />
         ))}
       </div>
     </section>
   )}
 
-  <!-- Learn before you choose — canonical needling hub -->
-  <section class="bg-charcoal py-[clamp(40px,6vw,72px)] px-6 border-t border-gold-metal/10">
-    <div class="max-w-[1080px] mx-auto">
-      <a
-        href="/services/microneedling/"
-        class="group grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-6 bg-breath p-8 transition-colors hover:bg-charcoal-light"
-      >
-        <div>
-          <span class="kicker">Learn Before You Choose</span>
-          <h2 class="font-serif text-[clamp(24px,3.4vw,34px)] text-ink mt-2 mb-2">Microneedling</h2>
-          <p class="text-muted text-[15px] leading-[1.75] max-w-[640px]">
-            What microneedling actually does, where it works on the body, and how many sessions it
-            really takes — plus every option that fits, in one place.
-          </p>
-        </div>
-        <span class="learn-more whitespace-nowrap">Explore Microneedling →</span>
-      </a>
-    </div>
-  </section>
-
   <!-- Contact CTA -->
-  <section id="book" class="border-t border-gold-metal/10 bg-charcoal px-5 py-[clamp(56px,8vw,88px)] sm:px-6">
+  <section id="book" class="border-t border-gold-metal/10 bg-charcoal px-5 py-[clamp(48px,7vw,72px)] sm:px-6">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Still Deciding?</span>
+      <span class="kicker">Questions</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Talk through your options
+        Book online or speak with House of Rose.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Tell us what you want to improve, and we will help you choose a sensible next step.
+        Choose a service now, or call if you want help comparing the options.
       </p>
       <div class="grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
+        <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold" data-global-booking data-cta-location="services-index-final">
+          Book a service
+        </a>
         <a href="tel:+18449417673" class="btn-outline-gold">
           Call (844) 941-7673
         </a>
-        <a href="/consultation/" class="btn-gold">Request a Consultation</a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950

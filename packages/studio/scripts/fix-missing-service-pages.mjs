@@ -10,6 +10,10 @@
  */
 import { getCliClient } from 'sanity/cli';
 
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. This script reactivates unsupported services and stale public copy.',
+);
+
 const apply = process.argv.includes('--apply');
 const apiVersion = '2025-04-26';
 const client = getCliClient({ apiVersion });

@@ -24,6 +24,10 @@ import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. Rewrite and review the RF/IPL draft copy and facts before use.',
+);
+
 const APPLY = process.argv.includes('--apply');
 const REPLACE = process.argv.includes('--replace');
 const SHOULD_WRITE = APPLY || REPLACE;

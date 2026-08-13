@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { sbObjectId, sbFieldPathParts } from '@/lib/visualEditing';
 
 const bookingEmail = import.meta.env.PUBLIC_BOOKING_EMAIL;
 
@@ -13,12 +13,6 @@ if (!bookingEmail) {
 // ─── Rent a Suite content from Sanity (singleton) ────────────────────────────
 // Falls back to the original hardcoded copy if a field is empty, so there's no
 // regression when the document is absent or partially filled.
-interface RentARoomPerk {
-  _key: string;
-  kicker: string;
-  title: string;
-  description: string;
-}
 interface RentARoomCandidate {
   _key: string;
   number: string;
@@ -32,114 +26,16 @@ interface RentARoomSpec {
 }
 interface RentARoom {
   _id?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  heroKicker?: string;
-  heroTitle?: string;
-  heroDescription?: string;
-  heroCtaPrimaryText?: string;
-  heroCtaSecondaryText?: string;
-  perksKicker?: string;
-  perksHeading?: string;
-  perksIntro?: string;
-  perks?: RentARoomPerk[];
-  specsKicker?: string;
-  specsHeading?: string;
   roomSpecs?: RentARoomSpec[];
-  ctaKicker?: string;
-  ctaHeading?: string;
-  ctaBody?: string;
-  ctaButtonText?: string;
-  candidatesKicker?: string;
-  candidatesHeading?: string;
-  candidatesIntro?: string;
-  candidates?: RentARoomCandidate[];
-  applyKicker?: string;
-  applyHeading?: string;
-  applyIntro?: string;
-  bottomCtaKicker?: string;
-  bottomCtaText?: string;
 }
 
 const RENT_A_ROOM_QUERY = /* groq */ `*[_type == "rentARoom"][0]{
   _id,
-  seoTitle,
-  seoDescription,
-  heroKicker,
-  heroTitle,
-  heroDescription,
-  heroCtaPrimaryText,
-  heroCtaSecondaryText,
-  perksKicker,
-  perksHeading,
-  perksIntro,
-  perks[]{ _key, kicker, title, description },
-  specsKicker,
-  specsHeading,
-  roomSpecs[]{ _key, label, value },
-  ctaKicker,
-  ctaHeading,
-  ctaBody,
-  ctaButtonText,
-  candidatesKicker,
-  candidatesHeading,
-  candidatesIntro,
-  candidates[]{ _key, number, title, description },
-  applyKicker,
-  applyHeading,
-  applyIntro,
-  bottomCtaKicker,
-  bottomCtaText
+  roomSpecs[]{ _key, label, value }
 }`;
 
 const data = (await sanityFetch<RentARoom | null>(RENT_A_ROOM_QUERY)) ?? ({} as RentARoom);
 const oid = data._id ? sbObjectId(data._id) : {};
-
-// ─── Fallback copy (exact original) ─────────────────────────────────────────
-const FALLBACK_PERKS: RentARoomPerk[] = [
-  {
-    _key: 'p1',
-    kicker: 'No Competing Services',
-    title: 'Your Specialty, Protected',
-    description:
-      'We enforce a no-competing-services policy. If someone calls for your specialty, that booking belongs to you — no internal competition.',
-  },
-  {
-    _key: 'p2',
-    kicker: 'Team Member Listing',
-    title: 'Visible on Our Website',
-    description:
-      "You're listed as a House of Rose team member with your services on our booking platform — giving you immediate exposure to our existing client base.",
-  },
-  {
-    _key: 'p3',
-    kicker: 'Business Development',
-    title: 'We Send You Clients',
-    description:
-      'When calls come in requesting your services, we direct that business straight to you. No leads left on the table.',
-  },
-  {
-    _key: 'p4',
-    kicker: 'Marketing Included',
-    title: 'Shop-Run Advertising',
-    description:
-      'House of Rose runs ongoing digital and local advertising for the shop. Your services benefit from our marketing investment at no extra cost.',
-  },
-  {
-    _key: 'p5',
-    kicker: 'Utilities Included',
-    title: 'No Hidden Costs',
-    description:
-      "All utilities are covered in your monthly rate. Water, electric — no surprises. You know exactly what you're paying.",
-  },
-  {
-    _key: 'p6',
-    kicker: 'Your Space',
-    title: 'Sink & Product Display',
-    description:
-      'Each room includes a sink and dedicated shelf space to display and sell your own retail products. Build your brand within ours.',
-  },
-];
 
 const FALLBACK_SPECS: RentARoomSpec[] = [
   { _key: 's1', label: 'Room Size', value: '10 × 14 ft private suite' },
@@ -157,86 +53,53 @@ const FALLBACK_CANDIDATES: RentARoomCandidate[] = [
     number: '01',
     title: 'Aestheticians',
     description:
-      'Licensed facial specialists, skin care therapists, and estheticians who want a private room for seeing their own clients.',
+      'Licensed professionals offering facial and skin care services.',
   },
   {
     _key: 'c2',
     number: '02',
     title: 'Massage Therapists',
     description:
-      'Licensed massage specialists who want a dedicated treatment room with all the infrastructure — without the overhead of a standalone studio.',
+      'Licensed massage therapists seeking a dedicated treatment room.',
   },
   {
     _key: 'c3',
     number: '03',
     title: 'PMU Artists',
     description:
-      'Permanent makeup artists specializing in microblading, brows, lips, or liner — working in a clean, professional space that matches your artistry.',
+      'Permanent makeup artists offering brows, lips, liner, or microblading.',
   },
 ];
 
-const perks = data.perks?.length ? data.perks : FALLBACK_PERKS;
 const roomSpecs = data.roomSpecs?.length ? data.roomSpecs : FALLBACK_SPECS;
-const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDATES;
+const candidates = FALLBACK_CANDIDATES;
 ---
 
 <BaseLayout
-  title={data.seoTitle ?? 'Rent a Private Suite | House of Rose — Punta Gorda FL'}
-  description={data.seoDescription ?? 'Private suite rentals for aestheticians, massage therapists, and PMU artists in Punta Gorda, FL. Starting at $850 per month with utilities included.'}
+  title="Private Suite Rental | House of Rose, Punta Gorda"
+  description="Review private suite details and apply to rent space at House of Rose Aesthetics, 525 E Olympia Ave, Unit 9, Punta Gorda, Florida."
 >
   <div {...oid}>
   <!-- ── Hero ──────────────────────────────────────────────────── -->
   <Hero
-    title={data.heroTitle ?? 'Grow Your Practice Here'}
-    kicker={data.heroKicker ?? 'Suite Rentals'}
-    description={data.heroDescription ?? 'Private, equipped rooms for independent beauty and wellness professionals who want to grow their own practice in Punta Gorda.'}
+    title="A private room for your practice."
+    kicker="Suite Rental"
+    description="For licensed independent professionals working from House of Rose in Punta Gorda."
     size="small"
     backgroundImage="/images/optimized/actual-iv-suite-1400.webp"
     imageAlt="A treatment suite inside House of Rose Aesthetics"
     showCTA={true}
-    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Apply Now', href: '#apply' }}
-    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'Learn More', href: '#perks' }}
-    titleField="heroTitle"
-    kickerField="heroKicker"
-    descriptionField="heroDescription"
+    ctaPrimary={{ text: 'Apply for a suite', href: '#apply' }}
+    ctaSecondary={{ text: 'Review the details', href: '#details' }}
   />
 
-  <!-- ── Why House of Rose ─────────────────────────────────────── -->
-  <section id="perks" class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6">
-    <div class="max-w-[1280px] mx-auto">
-      <div class="text-center mb-16">
-        <span class="kicker" {...sbFieldPath('perksKicker')}>{data.perksKicker ?? "What's Included"}</span>
-        <h2 class="font-serif text-[clamp(30px,4vw,46px)] text-ink mt-2" {...sbFieldPath('perksHeading')}>
-          {data.perksHeading ?? 'The practical details are already handled'}
-        </h2>
-        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('perksIntro')}>
-          {data.perksIntro ?? 'Utilities and shared studio essentials are included, so you can focus on your clients and your own business.'}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
-        {
-          perks.map((perk, i) => (
-            <div class="bg-charcoal p-8 hover:bg-charcoal-lighter transition-colors duration-300">
-              <span class="kicker" {...sbFieldPathParts('perks', i, 'kicker')}>{perk.kicker}</span>
-              <h3 class="font-serif text-[20px] text-ink mb-3" {...sbFieldPathParts('perks', i, 'title')}>{perk.title}</h3>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('perks', i, 'description')}>
-                {perk.description}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
   <!-- ── Room Details ──────────────────────────────────────────── -->
-  <section class="bg-charcoal-lighter py-[clamp(48px,7vw,88px)] px-6">
+  <section id="details" class="bg-charcoal-lighter py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker" {...sbFieldPath('specsKicker')}>{data.specsKicker ?? 'Room Specifications'}</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('specsHeading')}>
-          {data.specsHeading ?? 'Private Suites Built for Professionals'}
+        <span class="kicker">Room Specifications</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
+          Room, rate, and renter requirements.
         </h2>
       </div>
 
@@ -255,17 +118,16 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
 
         <!-- CTA aside -->
         <div class="bg-charcoal p-10 border border-gold-metal/20">
-          <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? 'Ready to Apply?'}</span>
+          <span class="kicker">Application</span>
           <h3
             class="font-serif text-[clamp(22px,3vw,30px)] text-ink mb-4 leading-snug"
-            set:html={(data.ctaHeading ?? 'Interested in a Room?\nTell Us About Your Practice.').replace(/\n/g, '<br />')}
-            {...sbFieldPath('ctaHeading')}
+            set:html={'Interested in a room?<br />Tell us about your work.'}
           />
-          <p class="text-muted text-[14px] leading-relaxed mb-8" {...sbFieldPath('ctaBody')}>
-            {data.ctaBody ?? "We limit the number of suites and do not place competing specialties in the studio. Once a specialty is represented, that opening closes until the room becomes available again."}
+          <p class="text-muted text-[14px] leading-relaxed mb-8">
+            Applications are reviewed before a tour is scheduled.
           </p>
-          <a href="#apply" class="btn-gold" {...sbFieldPath('ctaButtonText')}>
-            {data.ctaButtonText ?? 'Submit Your Application'}
+          <a href="#apply" class="btn-gold">
+            Apply for a suite
           </a>
         </div>
       </div>
@@ -276,24 +138,24 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
   <section class="bg-charcoal py-[clamp(56px,8vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-16">
-        <span class="kicker" {...sbFieldPath('candidatesKicker')}>{data.candidatesKicker ?? 'Ideal Candidates'}</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('candidatesHeading')}>
-          {data.candidatesHeading ?? "Who We're Looking For"}
+        <span class="kicker">Eligible Specialties</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
+          Who the suites are intended for.
         </h2>
-        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('candidatesIntro')}>
-          {data.candidatesIntro ?? 'We are looking for licensed professionals who care about their clients and are ready to run an independent practice.'}
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed">
+          Applicants must hold the licenses or certifications required for their work.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {
-          candidates.map((candidate, i) => (
+          candidates.map((candidate) => (
             <div class="border border-ink/[0.08] p-8 text-center hover:border-gold-metal/40 transition-colors duration-300">
               <div class="w-12 h-12 border border-gold-metal/30 mx-auto mb-6 flex items-center justify-center">
-                <span class="text-gold text-[11px] tracking-[0.3em] uppercase" {...sbFieldPathParts('candidates', i, 'number')}>{candidate.number}</span>
+                <span class="text-gold text-[11px] tracking-[0.3em] uppercase">{candidate.number}</span>
               </div>
-              <h3 class="font-serif text-[22px] text-ink mb-3" {...sbFieldPathParts('candidates', i, 'title')}>{candidate.title}</h3>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('candidates', i, 'description')}>
+              <h3 class="font-serif text-[22px] text-ink mb-3">{candidate.title}</h3>
+              <p class="text-muted text-[14px] leading-relaxed">
                 {candidate.description}
               </p>
             </div>
@@ -307,12 +169,12 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
   <section id="apply" class="bg-charcoal-lighter py-[clamp(56px,8vw,96px)] px-6">
     <div class="max-w-[840px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker" {...sbFieldPath('applyKicker')}>{data.applyKicker ?? 'Apply for a Suite'}</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2" {...sbFieldPath('applyHeading')}>
-          {data.applyHeading ?? 'Tell Us About Yourself'}
+        <span class="kicker">Suite Application</span>
+        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
+          Tell us about your work.
         </h2>
-        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed" {...sbFieldPath('applyIntro')}>
-          {data.applyIntro ?? "Fill out the form below and we'll be in touch within 48 hours to schedule a tour and answer any questions."}
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed">
+          House of Rose will reply to discuss availability and a tour.
         </p>
       </div>
 
@@ -481,7 +343,7 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
         </div>
 
         <p class="text-muted text-[12px]">
-          * Required fields. We'll respond within 48 hours to schedule a tour.
+          * Required fields. We will reply to discuss availability and a tour.
         </p>
       </form>
     </div>
@@ -491,8 +353,8 @@ const candidates = data.candidates?.length ? data.candidates : FALLBACK_CANDIDAT
   <section class="bg-charcoal border-t border-ink/5 py-12 px-6">
     <div class="max-w-[960px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div>
-        <span class="kicker" {...sbFieldPath('bottomCtaKicker')}>{data.bottomCtaKicker ?? 'Have Questions?'}</span>
-        <p class="text-ink text-[16px] font-serif" {...sbFieldPath('bottomCtaText')}>{data.bottomCtaText ?? "We're happy to walk you through the details before you apply."}</p>
+        <span class="kicker">Questions</span>
+        <p class="text-ink text-[16px] font-serif">Call or email before applying.</p>
       </div>
       <div class="flex gap-4 flex-wrap justify-center">
         <a href="tel:+18449417673" class="btn-outline-gold">

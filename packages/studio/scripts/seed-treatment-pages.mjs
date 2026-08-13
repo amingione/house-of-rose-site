@@ -29,6 +29,10 @@
 import { createClient } from '@sanity/client';
 import { TREATMENT_CONTENT, SCOPE_PRESETS, BLOCKED_TREATMENTS } from './treatment-page-content.mjs';
 
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. Rewrite and review the treatment-page copy and facts before use.',
+);
+
 const args = process.argv.slice(2);
 const APPLY = args.includes('--apply');
 const ONLY = args.find((a) => a.startsWith('--only='))?.split('=')[1];

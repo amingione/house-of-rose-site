@@ -2,7 +2,7 @@ export type ConsentSignal = 'granted' | 'denied';
 
 export interface ConsentStateV1 {
   schemaVersion: 1;
-  policyVersion: '2026-07-24';
+  policyVersion: '2026-08-13';
   analytics_storage: ConsentSignal;
   ad_storage: ConsentSignal;
   ad_user_data: ConsentSignal;
@@ -137,6 +137,7 @@ interface MeasurementWindow extends Window {
   __horLastPageView?: string;
   __horLastMetaPageView?: string;
   __horGtmInitialized?: boolean;
+  __horCrazyEggInitialized?: boolean;
 }
 
 interface OpenAIAdsContent {
@@ -212,7 +213,7 @@ export const createConsentState = (
 ): ConsentStateV1 => {
   return {
     schemaVersion: 1,
-    policyVersion: '2026-07-24',
+    policyVersion: '2026-08-13',
     analytics_storage: input.analytics_storage,
     ad_storage: gpc ? 'denied' : input.ad_storage,
     ad_user_data: gpc ? 'denied' : input.ad_user_data,
@@ -240,7 +241,7 @@ const isConsentState = (value: unknown): value is ConsentStateV1 => {
   const state = value as Partial<ConsentStateV1>;
   return (
     state.schemaVersion === 1 &&
-    state.policyVersion === '2026-07-24' &&
+    state.policyVersion === '2026-08-13' &&
     ['granted', 'denied'].includes(state.analytics_storage ?? '') &&
     ['granted', 'denied'].includes(state.ad_storage ?? '') &&
     ['granted', 'denied'].includes(state.ad_user_data ?? '') &&
@@ -300,6 +301,18 @@ const loadGoogleTagManager = (consent: ConsentStateV1): void => {
   w.dataLayer ??= [];
   w.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
   loadScript('hor-google-tag-manager', `${measurementPath}?id=${encodeURIComponent(containerId)}`);
+};
+
+const loadCrazyEgg = (consent: ConsentStateV1): void => {
+  const w = browser();
+  if (
+    isLocalMeasurementHost() ||
+    consent.analytics_storage !== 'granted' ||
+    w.__horCrazyEggInitialized
+  ) return;
+
+  w.__horCrazyEggInitialized = true;
+  loadScript('hor-crazy-egg', 'https://script.crazyegg.com/pages/scripts/0133/4876.js');
 };
 
 export const loadAhrefs = (consent: ConsentStateV1): void => {
@@ -577,6 +590,7 @@ export const applyConsent = (
     },
   });
   loadAhrefs(consent);
+  loadCrazyEgg(consent);
   loadGoogleTagManager(consent);
   loadMeta(consent);
   loadOpenAIAds(consent);
@@ -706,6 +720,7 @@ export const initializeConsentAwareVendors = (): void => {
     ad_personalization: consent.ad_personalization,
   });
   loadAhrefs(consent);
+  loadCrazyEgg(consent);
   loadGoogleTagManager(consent);
   loadMeta(consent);
   loadOpenAIAds(consent);

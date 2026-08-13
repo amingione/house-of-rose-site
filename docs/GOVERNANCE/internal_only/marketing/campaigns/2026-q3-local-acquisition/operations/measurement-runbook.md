@@ -25,7 +25,7 @@ Qualification does not determine medical or treatment candidacy. That remains wi
 
 Suggested first reply:
 
-> Hi [First name], this is House of Rose Aesthetics in Punta Gorda. Thank you for requesting a consultation. What would you most like to explore, and is text or a quick call easier for scheduling?
+> Hi [First name], this is House of Rose Aesthetics in Punta Gorda. Thank you for your inquiry. What would you most like to explore, and when is a quick scheduling call convenient?
 
 ## Required events
 

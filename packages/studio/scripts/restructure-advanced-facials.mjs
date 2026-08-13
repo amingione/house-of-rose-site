@@ -21,6 +21,10 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@sanity/client';
 
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. Rewrite and review the collection copy and service-status plan before use.',
+);
+
 const shouldApply = process.argv.includes('--apply');
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET;

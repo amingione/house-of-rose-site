@@ -6,6 +6,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 
+throw new Error(
+  'VOICE RESET: Q3 acquisition asset rendering is disabled until the offer disclosure and public copy are approved.',
+);
+
 const outputFlag = process.argv.indexOf('--output');
 if (outputFlag === -1 || !process.argv[outputFlag + 1]) {
   console.error('Usage: render-local-acquisition-assets.mjs --output /absolute/output/path');

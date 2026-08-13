@@ -6,9 +6,13 @@
 > copy templates, taglines, or campaign copy as a model for new writing until Amber approves a
 > replacement. Continue to honor verified business facts, medical and legal boundaries, provider
 > credentials, consent requirements, NAP, and substantiated claims. This notice supersedes any
-> statement below that calls this document the voice or positioning source of truth.
+> statement below that calls this document the voice or positioning source of truth. The prior
+> signature line is also superseded. Sections marked archival below are retained only so the origin
+> of existing copy can be identified and removed safely. Facts in this archive are not self-verifying;
+> confirm them against the current owner documents mapped in
+> `docs/GOVERNANCE/internal_only/START-HERE.md` before use.
 
-## Complete Operating Manual
+## Archived Operating Manual
 
 **Version:** 1.1  
 **Issued:** July 30, 2026  
@@ -16,14 +20,15 @@
 **Positioning:** Medical Aesthetics Practice  
 **Includes:** Brand, copy, profiles, visuals, AI, marketing, and approval
 
-> **SOURCE-OF-TRUTH STANDARD:** House of Rose should look considered, sound clinically grounded, and explain how care is delivered. The brand does not rely on spa sentiment, beauty clichés, or exaggerated outcomes to create desire.
+> **ARCHIVAL NOTE:** The prior source-of-truth standard is superseded. Verified facts, compliance
+> limits, consent rules, credentials, NAP, and visual standards remain usable.
 
 ## Contents
 
 - 1. House of Rose Creative System / Local document package
 - 2. House of Rose Creative Bible / Brand Foundation
 - 3. Brand Voice & Copy Standards / Writing Rules, Claims Discipline & Copy Application
-- 4. Social & Profile Bios / Approved Bios, Descriptions & Profile Data
+- 4. Social & Profile Bios / Historical Bios, Descriptions & Profile Data
 - 5. Visual Standards / Photography, Video & Design Direction
 - 6. AI Creative Rules & Prompt Library / Tool-Agnostic Standards & Reusable Prompts
 - 7. Marketing System / Meta, Google, SEO, Landing Pages, and Measurement
@@ -33,22 +38,25 @@
 
 # 1. House of Rose Creative System / Local document package
 
-This package replaces earlier House of Rose guidance that framed the practice as a luxury med spa, boutique spa, beauty destination, or feel-good facial business. The new system describes how House of Rose practices: consultation, assessment, individualized planning, clinical judgment, procedural preparation, aftercare, and long-term follow-through.
+> **[SUPERSEDED — ARCHIVAL ONLY]** This package formerly replaced earlier House of Rose guidance.
+> Its positioning and process-led voice are retained only for provenance and must not guide new copy.
 
-> **SOURCE-OF-TRUTH RULE:** Import either the separate Word files or the combined Markdown file as the editable system of record. Do not import both into the same Notion location unless you intentionally want duplicates.
+> **ARCHIVAL RECORD RULE:** If this historical package is imported, use either the separate Word
+> files or the combined Markdown file to avoid duplicates. It is not the voice or positioning source
+> of truth during the reset.
 
 ## What is included
 
 1. **Creative Bible / Brand Foundation** - positioning, promise, principles, audience, vocabulary, and retired guidance.
 2. **Brand Voice & Copy Standards** - writing rules, claims discipline, copy structures, and examples.
-3. **Social & Profile Bios** - approved descriptions, business data, and platform-specific versions.
+3. **Social & Profile Bios** - historical descriptions, business data, and platform-specific versions.
 4. **Visual Standards** - photography, video, color, typography, layout, treatment documentation, and asset rules.
 5. **AI Creative Rules & Prompt Library** - reusable prompts for image, video, writing, editing, and review.
 6. **Marketing System** - Meta, Google Ads, Google Business Profile, SEO, landing pages, measurement, and launch sequence.
 7. **Content Approval Checklist** - a fast preflight and a full clinical/brand/platform review.
 8. **Combined master files** - one Word document, one Markdown file, and one reference PDF.
 
-## Recommended Notion import
+## Historical Notion import instructions `[ARCHIVAL — DO NOT IMPORT AS CURRENT GUIDANCE]`
 
 ### Option A - Separate pages
 
@@ -108,9 +116,10 @@ This package is a brand and marketing operating system, not legal, regulatory, m
 
 <!-- PAGEBREAK -->
 
-# 2. House of Rose Creative Bible / Brand Foundation
+# 2. House of Rose Creative Bible / Brand Foundation `[SUPERSEDED — ARCHIVAL ONLY]`
 
-> **THE STANDARD:** House of Rose should look considered, sound clinically grounded, and explain how care is delivered. The brand does not rely on spa sentiment, beauty clichés, or exaggerated outcomes to create desire.
+> **ARCHIVAL:** Do not use this chapter's positioning, promise, audience, vocabulary, personality,
+> pillars, biography, or decision filter to generate new public copy.
 
 ## 1. Brand in one sentence
 
@@ -126,17 +135,17 @@ This is the master internal definition. Shorter public versions may change the s
 
 Use this phrase on the website, in biographies, in advertisements, in staff language, and in AI instructions. “Medical spa” may remain as a Google Business Profile category when it is the closest available platform label. It is not the preferred public-facing brand description.
 
-### Positioning statement
+### Former positioning statement `[SUPERSEDED — ARCHIVAL ONLY]`
 
 House of Rose is for people who want aesthetic and wellness services approached as medical care: evaluated individually, selected intentionally, explained clearly, and supported with preparation and aftercare. The practice combines advanced modalities and maintenance care without treating every concern as a quick cosmetic transaction.
 
-### Signature line
+### Former signature line `[SUPERSEDED — DO NOT USE]`
 
-**Medical Aesthetics. Thoughtfully Practiced.**
+**[SUPERSEDED SIGNATURE — DO NOT USE]**
 
-Use the signature line selectively on brand introductions, campaign covers, and high-level pages. It should not appear under every logo or at the end of every post.
+Do not publish or reuse this line during the voice reset.
 
-### Brand promise
+### Former brand promise `[SUPERSEDED — ARCHIVAL ONLY]`
 
 **Recommendations are based on the individual, the treatment indication, and the long-term plan - not on a trend, a template, or pressure to purchase.**
 
@@ -414,9 +423,11 @@ If any answer is no, revise or reject the asset.
 
 <!-- PAGEBREAK -->
 
-# 3. Brand Voice & Copy Standards / Writing Rules, Claims Discipline & Copy Application
+# 3. Brand Voice & Copy Standards / Writing Rules, Claims Discipline & Copy Application `[SUPERSEDED — ARCHIVAL ONLY]`
 
-> **VOICE RULE:** Describe what House of Rose evaluates, decides, explains, documents, and follows. Do not substitute atmosphere or beauty language for proof of practice.
+> **ARCHIVAL:** The voice, sentence architecture, core copy blocks, templates, preferred CTAs, and
+> examples in this chapter are rejected. Claim ceilings remain useful only where independently
+> supported by current compliance guidance.
 
 ## 1. Voice profile
 
@@ -677,15 +688,15 @@ One to three sentences for social and landing pages. Two to four sentences for p
 
 Avoid in website, Google Business Profile, clinical education, and Google Ads. Use sparingly on Instagram or Facebook, never as substitutes for clinical meaning. No sparkles.
 
-## 8. Core copy blocks
+## 8. Core copy blocks `[SUPERSEDED — ARCHIVAL ONLY]`
 
 ### Category line
 
 **Medical Aesthetics Practice**
 
-### Signature line
+### Former signature line `[SUPERSEDED — DO NOT USE]`
 
-**Medical Aesthetics. Thoughtfully Practiced.**
+**[SUPERSEDED SIGNATURE — DO NOT USE]**
 
 ### One-sentence introduction
 
@@ -707,7 +718,7 @@ Located in Punta Gorda, House of Rose serves Charlotte County and Southwest Flor
 
 Medical-grade skincare and selected wellness products are available in practice, with online ordering and local pickup where offered.
 
-## 9. Copy templates
+## 9. Copy templates `[SUPERSEDED — ARCHIVAL ONLY]`
 
 ### Service page opening
 
@@ -844,9 +855,10 @@ Use this checklist when editing copy:
 
 <!-- PAGEBREAK -->
 
-# 4. Social & Profile Bios / Approved Bios, Descriptions & Profile Data
+# 4. Social & Profile Bios / Approved Bios, Descriptions & Profile Data `[COPY SUPERSEDED; FACTS ONLY]`
 
-> **USAGE RULE:** Copy these versions as written unless a service, attribute, limit, or platform field has changed. Keep platform facts accurate even when a different setting might appear more exclusive.
+> **ARCHIVAL:** Do not copy these biographies or descriptions. Use this chapter only to cross-check
+> canonical identity, contact, hours, and other verified platform facts against current sources.
 
 ## 1. Canonical business information
 
@@ -890,7 +902,7 @@ Platform service areas currently listed:
 
 Do not add cities solely for keywords. Keep areas that accurately reflect where patients come from or where the practice serves.
 
-## 2. Approved master biographies
+## 2. Former approved master biographies `[SUPERSEDED — DO NOT COPY]`
 
 ### 25-word biography
 
@@ -914,7 +926,7 @@ House of Rose is designed for patients who value natural-looking results, clear 
 
 ## 3. Google Business Profile
 
-### Approved description
+### Former approved description `[SUPERSEDED — DO NOT COPY]`
 
 **Character count: 730 of 750**
 
@@ -924,7 +936,8 @@ House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florid
 
 - Keep **Medical spa** as the primary Google category.
 - Keep the four live secondary categories: **Facial spa**, **Skin care clinic**, **Health and beauty shop**, and **Vitamin & supplements store**.
-- Treat this five-category stack as authoritative; change it only when the live Google Business Profile source of truth is revised.
+- **[STALE FACT — DO NOT USE]** This former five-category stack is not authoritative. The verified
+  live category list is maintained in `CLAUDE.md` and `docs/GOOGLE-BUSINESS-PROFILE.md`.
 - Keep **Appointment not required** while walk-ins are accepted.
 - Keep **Pickup** while customers can order online for local pickup or purchase in the practice.
 - Keep ownership, accessibility, payment, parking, and inclusivity attributes accurate.
@@ -948,7 +961,7 @@ House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florid
 
 ### Facebook profile introduction
 
-Medical Aesthetics. Thoughtfully Practiced.  
+[SUPERSEDED SIGNATURE — DO NOT USE]
 Punta Gorda, Florida
 
 ## 5. Instagram
@@ -1442,13 +1455,16 @@ Any AI person must have real skin texture and anatomically credible hands. Do no
 
 <!-- PAGEBREAK -->
 
-# 6. AI Creative Rules & Prompt Library / Tool-Agnostic Standards & Reusable Prompts
+# 6. AI Creative Rules & Prompt Library / Tool-Agnostic Standards & Reusable Prompts `[WRITING PROMPTS SUPERSEDED]`
 
-> **AI RULE:** AI is invited to create, challenge, and surprise. Its freedom ends only where an idea is presented as a real business fact, clinical fact, credential, patient result, review, or medical decision.
+> **ACTIVE BOUNDARY:** AI may create, challenge, and surprise. Its freedom ends where an idea is
+> presented as a real business fact, clinical fact, credential, patient result, review, or medical
+> decision. The Permanent Context Block and all voice, writing, and campaign prompts below are archival.
 
-## 1. Permanent context block
+## 1. Former permanent context block `[SUPERSEDED — DO NOT PASTE]`
 
-Paste this at the beginning of any new AI project:
+Do not paste this into a new AI project. It is retained only to show the source of the rejected
+process-led voice.
 
 ```text
 You are producing work for House of Rose Aesthetics, a Medical Aesthetics Practice in Punta Gorda, Florida.
@@ -1719,7 +1735,7 @@ Sequence:
 5. 3 seconds - House of Rose identity and call to action
 
 On-screen copy:
-Medical Aesthetics. Thoughtfully Practiced.
+[SUPERSEDED SIGNATURE — DO NOT USE]
 Consultation. Treatment planning. Follow-through.
 Punta Gorda, Florida
 
@@ -2059,9 +2075,10 @@ Stop and rewrite a prompt if it includes:
 
 <!-- PAGEBREAK -->
 
-# 7. Marketing System / Meta, Google, SEO, Landing Pages, and Measurement
+# 7. Marketing System / Meta, Google, SEO, Landing Pages, and Measurement `[VOICE & STRATEGY SUPERSEDED]`
 
-> **MARKETING RULE:** Match the campaign to the service, the search intent, and the next measurable action. Do not use one generic ad or landing page to sell the entire practice.
+> **ARCHIVAL:** Prior campaign positioning, messages, copy, and rollout strategy do not govern new
+> work. Verified platform facts, measurement definitions, privacy controls, and compliance limits remain usable.
 
 ## 1. Marketing strategy
 
@@ -2122,7 +2139,7 @@ Use aftercare, reassessment, maintenance education, skincare, and patient commun
 
 **Goal:** Local awareness and qualified practice discovery  
 **Creative:** Editorial image of the real lobby, reception, or doorway; no text required  
-**Message:** Medical Aesthetics. Thoughtfully Practiced.  
+**Message:** [SUPERSEDED SIGNATURE — DO NOT USE]
 **Destination:** Practice overview or profile
 
 #### Service education
@@ -2174,7 +2191,7 @@ Medical aesthetics begins before the procedure. House of Rose uses consultation,
 
 **Headline**
 
-Medical Aesthetics. Thoughtfully Practiced.
+[SUPERSEDED SIGNATURE — DO NOT USE]
 
 **Short description**
 
@@ -2500,7 +2517,7 @@ House of Rose public descriptor:
 
 Both can coexist. Do not rename the business “House of Rose Medical Aesthetics Punta Gorda” unless that is the real-world name shown consistently on signage and business materials.
 
-### Approved description
+### Former approved description `[SUPERSEDED — DO NOT COPY]`
 
 House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida. We specialize in personalized skin rejuvenation through advanced, non-surgical facial and body treatments designed to achieve natural-looking results. Every treatment begins with a comprehensive consultation and skin analysis, allowing us to develop an individualized treatment plan using regenerative therapies, radiofrequency, laser technologies, neurotoxins, dermal fillers, medical-grade skincare, and customized facial treatments. Our approach combines clinical expertise, evidence-based treatment protocols, and long-term planning to help patients maintain healthy, naturally rejuvenated skin.
 
@@ -2508,8 +2525,10 @@ House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florid
 
 - Keep **Appointment not required** while walk-ins are accepted.
 - Keep **Pickup** while online ordering and local product pickup are offered.
-- Keep the authoritative category stack: **Medical spa** (primary), plus **Facial spa**, **Skin care clinic**, **Health and beauty shop**, and **Vitamin & supplements store**.
-- Do not add or remove categories unless the live Google Business Profile source of truth is revised.
+- **[STALE FACT — DO NOT USE]** The former five-category stack below is historical, not authoritative:
+  **Medical spa**, **Facial spa**, **Skin care clinic**, **Health and beauty shop**, and
+  **Vitamin & supplements store**. Use the verified live list in `CLAUDE.md` and
+  `docs/GOOGLE-BUSINESS-PROFILE.md`.
 - Keep hours, special hours, payment types, accessibility, parking, and ownership attributes accurate.
 - Fully populate services with useful descriptions, but do not keyword-stuff.
 - Use real exterior, interior, staff, procedure, and product photos.
@@ -2751,7 +2770,12 @@ Accessed July 30, 2026:
 
 <!-- PAGEBREAK -->
 
-# 8. Content Approval Checklist / Clinical, Brand, Visual & Platform Preflight
+# 8. Content Approval Checklist / Factual, Clinical, Visual & Platform Preflight
+
+> **ACTIVE SCOPE:** Factual accuracy, provider scope, consent, claim support, visual integrity, links,
+> offers, and platform requirements remain binding. The former brand/voice criteria below are archival,
+> including any requirement to make assessment, planning, standards, participation, or follow-through
+> the message. Use current approved direction for voice and apply clinical review proportionally.
 
 > **STOP RULE:** Do not publish if the clinical fact, consent, provider scope, device, result, link, offer, or required qualification has not been verified.
 
@@ -2760,9 +2784,9 @@ Accessed July 30, 2026:
 Approve only when every answer is yes.
 
 - [ ] The asset uses **Medical Aesthetics Practice** or another approved descriptor.
-- [ ] It describes or demonstrates how House of Rose practices.
+- [ ] Its public claims are specific and verified; it does not need to narrate process unless relevant.
 - [ ] The service, provider, device, product, price, date, and availability are accurate.
-- [ ] Clinical claims have been reviewed.
+- [ ] New or materially changed clinical claims have been reviewed when required.
 - [ ] Preparation, downtime, aftercare, or maintenance is included when material.
 - [ ] The reader is not diagnosed, shamed, or promised a result.
 - [ ] “Skin rejuvenation” and other controlled-use phrases are not repeated.
@@ -2772,7 +2796,11 @@ Approve only when every answer is yes.
 - [ ] The call to action and destination work.
 - [ ] Platform policy and character limits have been checked.
 
-## 2. Brand review
+## 2. Former brand review `[SUPERSEDED — ARCHIVAL ONLY]`
+
+> The criteria in this section document the rejected voice system and must not be used as a publish
+> gate. Current category rules and the retired-language list remain active through `AGENTS.md`; current
+> voice direction comes from Amber's explicit approvals.
 
 ### Identity
 

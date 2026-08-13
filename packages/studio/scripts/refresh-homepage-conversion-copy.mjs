@@ -1,8 +1,10 @@
-/** Refresh the homepage singleton with Creative System v1.0 conversion copy. */
+/** Archived: the copy in this migration belongs to the rejected pre-reset voice. */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { createClient } from '@sanity/client';
+
+throw new Error('Archived by the 2026-08-13 voice reset. Do not republish this homepage copy.');
 
 const APPLY = process.argv.includes('--apply');
 const INCLUDE_DRAFT = process.argv.includes('--include-draft');

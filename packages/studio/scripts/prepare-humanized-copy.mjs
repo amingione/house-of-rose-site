@@ -16,6 +16,8 @@
 
 import { createClient } from '@sanity/client';
 
+throw new Error('Archived by the 2026-08-13 voice reset. Do not recreate these drafts.');
+
 const APPLY = process.argv.includes('--apply');
 const REFRESH = process.argv.includes('--refresh');
 const VERIFY = process.argv.includes('--verify');

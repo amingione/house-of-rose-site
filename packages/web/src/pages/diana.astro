@@ -14,20 +14,20 @@ import { personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/diana/', siteURL).toString();
-const ogImage = new URL('/logos/house-of-rose-monogram/hr-monogram-gold.png', siteURL).toString();
+const ogImage = new URL('/images/providers/diana-profile-1122.webp', siteURL).toString();
 
 const PHONE_E164 = '+18449417673';
-const PHONE_DISPLAY = '844-941-ROSE (7673)';
-const EMAIL = 'diana@houseofrosefl.com';
+const PHONE_DISPLAY = '(844) 941-7673';
+const EMAIL = 'info@houseofrosefl.com';
 const WEBSITE = 'houseofrosefl.com';
-const ADDRESS_LINE1 = '525 E. Olympia Ave. Unit 9';
+const ADDRESS_LINE1 = '525 E Olympia Ave, Unit 9';
 const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
 const MAPS_URL =
-  'https://maps.google.com/?q=525+E.+Olympia+Ave+Unit+9,+Punta+Gorda,+FL+33950';
+  'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950';
 
 const personLd = personProfile({
   name: 'Diana Morrison, RN',
-  jobTitle: 'Aesthetic Nurse Injector',
+  jobTitle: 'Registered Nurse · Co-Owner · Aesthetic Injector',
   telephone: PHONE_E164,
   email: EMAIL,
   url: canonicalURL,
@@ -35,11 +35,10 @@ const personLd = personProfile({
   knowsAbout: [
     'Neurotoxins',
     'Dermal fillers',
-    'PRF EZ Gel',
+    'Injectable PRF',
+    'PRF Bio-Filler',
     'IV hydration therapy',
-    'Vitamin injections',
-    'GLP-1',
-    'Skin analysis',
+    'GLP-1 weight management',
   ],
 }, siteURL.toString());
 ---
@@ -53,18 +52,17 @@ const personLd = personProfile({
     <title>Diana Morrison, RN | House of Rose Aesthetics</title>
     <meta
       name="description"
-      content="Diana Morrison, RN — Aesthetic Nurse Injector at House of Rose Aesthetics in Punta Gorda, FL. Tap to save my contact or book your appointment."
+      content="Contact Diana Morrison, RN, at House of Rose Aesthetics in Punta Gorda, Florida."
     />
     <meta property="og:title" content="Diana Morrison, RN | House of Rose Aesthetics" />
     <meta
       property="og:description"
-      content="Aesthetic Nurse Injector at House of Rose Aesthetics. Tap to save my contact."
+      content="Contact details for Diana Morrison, RN, at House of Rose Aesthetics."
     />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
-    <script is:inline type="text/javascript" src="//script.crazyegg.com/pages/scripts/0133/4876.js" async="async"></script>
-    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
+    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold-192.png" />
     <SchemaMarkup item={personLd} />
 
     <style>
@@ -240,18 +238,18 @@ const personLd = personProfile({
   <body>
     <main class="card">
       <div class="avatar">
-        <img src="/images/providers/Diana.webp" alt="Diana Morrison, RN, House of Rose Aesthetics" width="128" height="128" />
+        <img src="/images/providers/diana-card-256.webp" alt="Diana Morrison, RN, House of Rose Aesthetics" width="128" height="128" decoding="async" />
       </div>
 
       <header class="crest">
-        <img src="/logos/house-of-rose-monogram/hr-monogram-gold.png" alt="House of Rose Aesthetics monogram" width="96" height="110" />
+        <img src="/logos/house-of-rose-monogram/hr-monogram-gold-192.webp" alt="House of Rose Aesthetics monogram" width="96" height="110" decoding="async" />
         <div class="wordmark">House of Rose</div>
         <div class="sub-box">Aesthetics</div>
       </header>
 
       <section class="identity">
         <h1 class="name">Diana Morrison, RN</h1>
-        <p class="role">Aesthetic Nurse Injector</p>
+        <p class="role">Registered Nurse · Co-Owner · Aesthetic Injector</p>
       </section>
 
       <nav class="rows" aria-label="Contact methods">
@@ -285,20 +283,23 @@ const personLd = personProfile({
       </nav>
 
       <div class="actions">
-        <a class="save" id="saveBtn" href="/diana.vcf">+ Save My Contact</a>
-        <a class="book" href={`tel:${PHONE_E164}`}>Call to Book</a>
+        <a class="save" id="saveBtn" href="/diana.vcf">Save Contact</a>
+        <a class="book" href={`tel:${PHONE_E164}`}>Call House of Rose</a>
       </div>
 
       <footer class="meta">
         <div class="divider" aria-hidden="true">✦</div>
         <div class="services">
-          <b>Services</b>
-          Neurotoxins · Dermal Fillers · PRF EZ Gel<br />
-          IV Hydration Therapy · Vitamin Injections<br />
-          GLP-1 · Skin Analysis
+          <b>Current Work</b>
+          Neurotoxins · Dermal Fillers<br />
+          Injectable PRF · PRF Bio-Filler<br />
+          IV Hydration Therapy · GLP-1 Weight Management
         </div>
         <div class="creds">
           Registered Nurse · Aesthetic Nurse Injector
+        </div>
+        <div class="creds">
+          Medical Director: Joshua Shaw, MD · FL Lic. ME136232
         </div>
       </footer>
     </main>

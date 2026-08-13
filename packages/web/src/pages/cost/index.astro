@@ -5,9 +5,9 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COST_GUIDES_QUERY, type CostGuide } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getVerifiedCostFact } from '@/lib/costFacts';
 
-const guides = alignPublicContent(await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY));
+const guides = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -22,16 +22,11 @@ const guidesListSchema = guides.length
     )
   : null;
 
-const formatRange = (g: CostGuide): string | null => {
-  if (g.priceLow == null || g.priceHigh == null) return null;
-  const unit = g.priceUnit ? ` ${g.priceUnit}` : '';
-  return `$${g.priceLow}–$${g.priceHigh}${unit}`;
-};
 ---
 
 <BaseLayout
   title="Treatment Cost Guides | House of Rose Aesthetics, Punta Gorda FL"
-  description="Honest pricing for advanced aesthetics in Punta Gorda, FL — what PRF, microneedling, injectables, and more actually cost, and the factors that move the price."
+  description="Published treatment cost ranges and related House of Rose services in Punta Gorda, Florida."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {guidesListSchema && <SchemaMarkup item={guidesListSchema} slot="head" />}
@@ -39,9 +34,9 @@ const formatRange = (g: CostGuide): string | null => {
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Pricing</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What advanced aesthetics cost in Punta Gorda</h1>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What does it cost?</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Straight answers on how treatments at House of Rose are priced — what's included, and the factors that shape your investment. Your exact pricing is confirmed at your consultation.
+        Verified House of Rose prices from the August 6, 2026 GlossGenius price list. Guides without an unequivocal price remain unpriced here.
       </p>
     </div>
   </section>
@@ -49,18 +44,24 @@ const formatRange = (g: CostGuide): string | null => {
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
       {guides.map((g) => {
-        const range = formatRange(g);
+        const fact = getVerifiedCostFact(g.slug);
         return (
           <a href={`/cost/${g.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
             <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
-            {range && <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{range}</p>}
-            {g.answer && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('answer')}>{g.answer}</p>}
-            <span class="learn-more group-hover:text-gold mt-4 inline-block">See the guide</span>
+            <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
+              {fact?.display ?? 'No verified price published'}
+            </p>
+            {g.treatment && (
+              <p class="text-muted text-[14px] leading-relaxed" {...sbObjectId(g.treatment._id)}>
+                Related service: <span class="text-ink" {...sbFieldPath('title')}>{g.treatment.title}</span>
+              </p>
+            )}
+            <span class="learn-more group-hover:text-gold mt-4 inline-block">View cost guide</span>
           </a>
         );
       })}
       {guides.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Cost guides are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No cost guides are published.</p>
       )}
     </div>
   </section>
@@ -68,9 +69,9 @@ const formatRange = (g: CostGuide): string | null => {
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
       <p class="text-muted text-[15px] leading-[1.8] mb-6">
-        Not sure which treatment fits your budget and goals? Start with in-studio advanced skin imaging — it maps your concerns to the right plan before you commit.
+        For guides without a verified price, use the related service page or call House of Rose.
       </p>
-      <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
+      <a href="/services/" class="btn-outline-gold">View services</a>
     </div>
   </section>
 </BaseLayout>

@@ -1,8 +1,9 @@
 # Dynamic Brand Memory
 
-> The canonical source of durable brand context for this workspace. Read this
-> entire file before every task. Use it to connect strategy to execution, and
-> update it after work that creates durable knowledge.
+> Durable decision and evidence record for this workspace. During the voice reset, this file is not
+> a voice authority and must not be read wholesale as a creative brief. Use only the sections needed
+> for the task, verify operational facts against their current owner documents, and treat all prior
+> positioning, personality, message, and prose systems as archival unless Amber explicitly reapproves them.
 
 **Memory version:** 2.3.2
 **Last updated:** 2026-08-13
@@ -47,8 +48,8 @@ otherwise:
 1. The user's latest explicit instruction or approval.
 2. Current legal, compliance, product, pricing, and operational documentation.
 3. Verified customer research and measured campaign results.
-4. Current approved brand strategy and guidelines.
-5. Previously approved copy.
+4. Brand strategy or guidelines explicitly approved after the 2026-08-13 reset began.
+5. Copy explicitly approved for the current use after the reset began.
 6. Agent inference.
 
 Record meaningful conflicts in Section 16 instead of quietly choosing a side.
@@ -110,15 +111,15 @@ minute. Populate it only with verified or explicitly decided information.
 
 | Field | Current memory | Status / source |
 |---|---|---|
-| Brand name | House of Rose Aesthetics | `[VERIFIED]` — Creative System Book 1 §1 |
-| Category | Medical Aesthetics Practice | `[DECIDED]` — Creative System Book 1 §2 |
-| What we sell | Individualized facial, body, skin, injectable, wellness, and maintenance care; the exact live menu and prices remain governed by GlossGenius and `ALL-SERVICES-PRICING.MD`. | `[VERIFIED]` — Creative System Book 1 §1; operational truth remains external |
-| Primary audience | Informed planners and natural-results patients, with corrective-skin, maintenance, and wellness/hydration segments. | `[DECIDED]` — Creative System Book 1 §8 |
-| Core problem | Aesthetic and wellness decisions are often reduced to trends, devices, or quick transactions without enough assessment, preparation, aftercare, or long-term planning. | `[DECIDED]` — Creative System Book 1 §§2–3 |
-| Desired transformation | Healthy-looking, refreshed, balanced, natural-looking outcomes supported by an informed, individualized care plan. Individual outcomes vary. | `[DECIDED]` — Creative System Book 1 §§7 and 11 |
-| One-sentence promise | Recommendations are based on the individual, the treatment indication, and the long-term plan—not on a trend, a template, or pressure to purchase. | `[DECIDED]` — Creative System Book 1 §2 |
-| Defensible difference | Consultation, assessment, clinical judgment, individualized planning, preparation, aftercare, reassessment, and continuity are presented as part of care—not as marketing fine print. | `[DECIDED]` — Creative System Book 1 §§2–3 and §10 |
-| Primary proof | The real House of Rose environment, staff, equipment, treatment process, documented standards, and consented result documentation when available. | `[DECIDED]` — Creative System Book 1 §10 and Book 4 |
+| Brand name | House of Rose Aesthetics | `[VERIFIED]` — canonical NAP in `CLAUDE.md` / Sanity `siteSettings` |
+| Category | Medical Aesthetics Practice | `[DECIDED]` — current voice-reset rules in `AGENTS.md` / `CLAUDE.md` |
+| What we sell | Individualized facial, body, skin, injectable, wellness, and maintenance care; the exact live menu and prices remain governed by GlossGenius and `ALL-SERVICES-PRICING.MD`. | `[VERIFIED]` — operational truth remains external; verify the current menu before use |
+| Primary audience | Discerning, aesthetically experienced clients who already assume current treatment options are available and are choosing whom to trust. | `[TESTING]` — Amber's direct homepage direction, 2026-08-13 |
+| Core problem | A crowded treatment menu does not answer the client's real question: who has the judgment to recommend enough, but not too much? | `[TESTING]` — Amber's direct homepage direction, 2026-08-13 |
+| Desired transformation | `[RESET IN PROGRESS]` — the prior outcome formula is superseded. | `[SUPERSEDED]` |
+| One-sentence promise | `[RESET IN PROGRESS]` — the prior long-term-plan promise is superseded. | `[SUPERSEDED]` |
+| Defensible difference | Discernment, restraint, and knowing what not to do. | `[TESTING]` — Amber's direct homepage direction, 2026-08-13 |
+| Primary proof | The real House of Rose environment, staff, equipment, and consented result documentation when available. | `[DECIDED]` — factual/visual direction retained during reset |
 | Current primary offer | `[UNKNOWN]` | Awaiting brand intake |
 | Primary call to action | `[UNKNOWN]` | Awaiting brand intake |
 | Brand personality | `[RESET IN PROGRESS]` — the prior Claude-developed personality was rejected by Amber on 2026-08-13. | `[SUPERSEDED]` — do not use prior voice traits as a tonal model |
@@ -135,10 +136,11 @@ minute. Populate it only with verified or explicitly decided information.
 
 ---
 
-## 3. Connected-dots strategy map
+## 3. Connected-dots strategy map `[OPTIONAL INTERNAL ANALYSIS]`
 
-This is the central reasoning chain. Every major creative choice should connect
-to it. Add or revise a row whenever evidence changes the logic.
+This is an optional planning aid, not a required copy sequence or an approved voice model. Use it
+only when it helps organize evidence; do not force every deliverable through it or surface the chain
+as public-facing process language. Add or revise a row whenever evidence changes the logic.
 
 | Input truth | Strategic meaning | Messaging implication | Execution consequence | State / source |
 |---|---|---|---|---|
@@ -148,14 +150,13 @@ to it. Add or revise a row whenever evidence changes the logic.
 | `[UNKNOWN: friction/risk]` | `[What it means]` | `[What we should clarify or prove]` | `[Proof, objection handling, guarantee, or CTA]` | `[UNKNOWN]` |
 | Affluent, aesthetically experienced clients already assume the category offers current treatments. | A treatment list is not meaningful differentiation. | Lead with discernment, restraint, and a recognizable point of view. | Keep homepage copy short and let real-space imagery carry atmosphere. | `[DECIDED]` — Amber, 2026-08-13 |
 
-### Governing cause-and-effect chain
+### Optional cause-and-effect chain
 
-Use this sequence when creating or reviewing work:
+Use this sequence only when it clarifies an internal strategy question:
 
 `Audience state → tension → desired progress → brand promise → mechanism → proof → offer → CTA → channel expression`
 
-If a deliverable skips a link, either repair it or explain why that link is not
-needed for the specific task.
+It is not a completeness test. A deliverable may use only the elements its purpose requires.
 
 ### Strategic tensions to preserve
 
@@ -173,11 +174,14 @@ copy does not flatten the brand into a single generic trait.
 
 ## 4. Brand foundations
 
+> `[SUPERSEDED — ARCHIVAL ONLY]` The purpose, mission, vision, and values below came from the rejected
+> voice system. They remain visible only for provenance and must not guide new copy.
+
 ### Purpose, mission, and vision
 
-- **Purpose — why we matter:** House of Rose exists to provide medical aesthetic care that is both technically considered and personally accountable, with preparation, realistic expectations, downtime, aftercare, and continued compliance explained before treatment. `[DECIDED]` — Creative System Book 1 §3.
-- **Mission — what we do now:** To help patients make informed aesthetic and wellness decisions through individualized assessment, clinically appropriate treatment planning, clear education, and responsible follow-through. `[DECIDED]` — Creative System Book 1 §4.
-- **Vision — the future we want to help create:** To become Southwest Florida’s most trusted independent medical aesthetics practice for people who value specificity, natural-looking outcomes, and a long-term relationship with their care team. `[DECIDED]` — Creative System Book 1 §5.
+- **Purpose — why we matter:** House of Rose exists to provide medical aesthetic care that is both technically considered and personally accountable, with preparation, realistic expectations, downtime, aftercare, and continued compliance explained before treatment. `[SUPERSEDED — ARCHIVAL ONLY]` — Creative System Book 1 §3.
+- **Mission — what we do now:** To help patients make informed aesthetic and wellness decisions through individualized assessment, clinically appropriate treatment planning, clear education, and responsible follow-through. `[SUPERSEDED — ARCHIVAL ONLY]` — Creative System Book 1 §4.
+- **Vision — the future we want to help create:** To become Southwest Florida’s most trusted independent medical aesthetics practice for people who value specificity, natural-looking outcomes, and a long-term relationship with their care team. `[SUPERSEDED — ARCHIVAL ONLY]` — Creative System Book 1 §5.
 
 ### Values in behavior
 
@@ -250,12 +254,15 @@ are more predictive. Preserve the customer's own words whenever possible.
 
 ## 6. Positioning and category context
 
+> `[SUPERSEDED — ARCHIVAL ONLY]` Except for verified category and compliance facts, the positioning
+> and contrast language below does not govern new work.
+
 - **Category we claim:** Medical Aesthetics Practice. `[DECIDED]`
 - **Frame of reference customers already understand:** Medical aesthetics / medical spa services; “medical spa” may support platform and search understanding but never leads the brand. `[DECIDED]`
-- **Alternatives, including doing nothing:** Transactional device-first providers, trend-led or spa-first services, one-size-fits-all treatment selection, self-directed retail care, or delaying care. Specific competitive claims remain unapproved until verified. `[INFERRED]`
-- **Our meaningful difference:** The practice explains and documents the decision process—assessment, planning, preparation, aftercare, reassessment, and maintenance—not merely the device or procedure. `[DECIDED]`
-- **Why that difference matters now:** Patients need credible expectations and a plan proportionate to the indication, procedure, recovery, and evidence. `[DECIDED]`
-- **Who we are not for:** People seeking guarantees, perfection, instant transformation, flash-sale medicine, or a generic spa experience. `[DECIDED]`
+- **Alternatives, including doing nothing:** Transactional device-first providers, trend-led or spa-first services, one-size-fits-all treatment selection, self-directed retail care, or delaying care. Specific competitive claims remain unapproved until verified. `[SUPERSEDED — ARCHIVAL ONLY]`
+- **Our meaningful difference:** The practice explains and documents the decision process—assessment, planning, preparation, aftercare, reassessment, and maintenance—not merely the device or procedure. `[SUPERSEDED — ARCHIVAL ONLY]`
+- **Why that difference matters now:** Patients need credible expectations and a plan proportionate to the indication, procedure, recovery, and evidence. `[SUPERSEDED — ARCHIVAL ONLY]`
+- **Who we are not for:** People seeking guarantees, perfection, instant transformation, flash-sale medicine, or a generic spa experience. `[SUPERSEDED — ARCHIVAL ONLY]`
 - **Market clichés to avoid:** Luxury/luxe/premium as self-description; boutique as category; glow/radiance; timeless, flawless, ageless; pamper/indulge; best version of yourself; turn back time; pain-free; unreviewed no-downtime; guaranteed results. `[DECIDED]`
 
 ### Competitive contrast
@@ -298,9 +305,12 @@ Copy must reflect what the business can actually deliver.
 
 ## 8. Message architecture
 
+> `[SUPERSEDED — ARCHIVAL ONLY]` The promise, pillars, and message hierarchy below produced the
+> rejected process cadence. Do not use them as a writing brief.
+
 ### Core promise
 
-Recommendations are based on the individual, the treatment indication, and the long-term plan—not on a trend, a template, or pressure to purchase. `[DECIDED]` — Creative System Book 1 §2.
+Recommendations are based on the individual, the treatment indication, and the long-term plan—not on a trend, a template, or pressure to purchase. `[SUPERSEDED — ARCHIVAL ONLY]` — Creative System Book 1 §2.
 
 ### Message pillars
 
@@ -372,10 +382,12 @@ The claim ledger is the boundary between persuasive copy and invented copy.
 
 ---
 
-## 10. Brand voice operating system
+## 10. Voice calibration log — no approved operating system yet
 
-Voice is the stable character of the brand. Tone changes with audience state,
-channel, and emotional context without violating that character.
+This section records current tests and rejection evidence. Only entries marked `[DECIDED]` by Amber
+are binding. `[TESTING]` entries apply only to their named surface, and blank framework fields carry
+no authority. Do not convert this section into a sitewide formula before Amber approves a replacement
+voice.
 
 ### Voice essence
 
@@ -520,7 +532,7 @@ An ad is not ready until all applicable answers are “yes”:
 - Does proof appear before the audience must make a high-trust decision?
 - Does the copy match the audience's awareness state?
 - Is the CTA a natural next step rather than a leap?
-- Does it sound like the voice system in Section 10?
+- Does it follow Amber's currently approved direction, or is it clearly identified as a test?
 - Does it avoid false urgency, shame, fear exploitation, and generic hype?
 - Does it match the landing experience in message, offer, and tone?
 - Is the test variable clear enough to produce a reusable learning?
@@ -579,14 +591,14 @@ settled questions or repeating rejected approaches.
 
 | ID | Date | Decision | Why | Downstream implications | Source / owner | State |
 |---|---|---|---|---|---|---|
-| DEC-001 | 2026-08-04 | Use this file as the canonical brand memory for the workspace. | Preserve durable context and reduce regression across tasks and agents. | All agents read before work and update after durable learning. | User request / workspace setup | `[DECIDED]` |
+| DEC-001 | 2026-08-04 | Use this file as a durable decision and evidence record for the workspace. | Preserve durable context and reduce regression across tasks and agents. | Use relevant verified facts and decisions selectively; do not read the file wholesale as a creative brief. The former voice-authority implication is superseded by DEC-004. | User request / workspace setup; narrowed by DEC-004 | `[DECIDED]` for memory, `[SUPERSEDED]` for voice authority |
 | DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. The former Forma-firmness clause is `[SUPERSEDED]` by DEC-003. | User direction / Amber | `[DECIDED]` |
 | DEC-003 | 2026-08-06 | Position Forma only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. Do not market it for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | The owner prohibited reshaping language and approved a texture-and-collagen explanation. The retained split-face tissue study supports cautious collagen-response wording. | Applies to the Forma service page, SEO, structured data, cost guide, FAQs, collection copy, evidence captions, booking copy, concern references, and visual evidence. | User direction / Amber | `[DECIDED]` |
 | DEC-004 | 2026-08-13 | Reject and freeze the Claude-developed brand voice across the Creative System, brand memory, and current website. Preserve facts and compliance, but rebuild tone and positioning from Amber's direct feedback instead of extending existing copy. | Amber stated that she “absolutely hates” the voice Claude has been forming while the website was built. | Existing voice/personality/tagline/message rules are not approval evidence. No sitewide rewrite or Sanity publish until a replacement calibration is approved. | User direction / Amber | `[DECIDED]` |
 | DEC-005 | 2026-08-13 | Calibrate the homepage toward discernment, restraint, and point of view for an affluent aesthetics audience; keep the language minimal and avoid standard med-spa outcome clichés. | Amber identified Naples, Sarasota, Boca Raton, Scottsdale, and Newport Beach as the market benchmark and stated that sophisticated clients are choosing judgment, not a treatment list. | Apply to the homepage section under revision. Treat broader rollout as unapproved until Amber directs it. | User direction / Amber | `[DECIDED]` |
 | DEC-006 | 2026-08-13 | Make clinical review proportional, treat AI as a creative collaborator bounded by truthful representation, and stop repeating walk-in status as brand copy. | Amber rejected blanket clinical approval, objected to operational facts becoming overused copy, and said the prior AI restriction was eliminating creativity. | Review new or materially changed clinical claims instead of every routine sentence; invite original creative concepts; keep walk-in details to the relevant platform setting and one direct FAQ. | User direction / Amber | `[DECIDED]` |
 | DEC-007 | 2026-08-13 | Do not enforce voice through global runtime word replacement. Fix voice in the source; reserve automation for factual normalization, placement rules, and risk flags. | Hermes identified artifacts such as “healthy, natural healthy-looking finish,” confirming that reactive substitutions were making the writing less human. | `publicCopy.ts` must not rewrite broad style words into stock alternatives. It may preserve verified operational corrections, suppress misplaced walk-in boilerplate, and warn about high-risk claims. | Hermes review accepted by Amber / implementation finding | `[DECIDED]` |
-| DEC-008 | 2026-08-13 | Test a homepage body built around specific concern and treatment distinctions, with PRF explained as three related but non-interchangeable forms: topical with Microneedling, injectable PRF, and PRF EZ-Gel. | Amber asked for knowledgeable, persuasive, informative copy and deeper education on PRF's versatility after rejecting abstract, repetitive section headlines. | The draft remains local and code-authored so stale Sanity voice cannot override it. Do not publish this wording to Sanity or roll it across the site until Amber approves the direction. Preserve the hard topical-versus-injectable distinction in every PRF adaptation. | Direct user instruction / local homepage rebuild | `[TESTING]` |
+| DEC-008 | 2026-08-13 | Test a homepage body built around specific concern and treatment distinctions, with topical PRF and injectable PRF kept distinct. The current booking menu separately names PRF Bio-Filler; do not treat it as equivalent to the Sanity service named EZ Gel Bio-Filler unless Diana resolves the naming question. | Amber asked for knowledgeable, persuasive, informative copy and deeper education on PRF's versatility after rejecting abstract, repetitive section headlines. Current GlossGenius evidence does not establish PRF Bio-Filler and EZ Gel as the same service. | The draft remains local and code-authored so stale Sanity voice cannot override it. Do not publish this wording to Sanity or roll it across the site until Amber approves the direction. Preserve the topical-versus-injectable distinction and route ambiguous Bio-Filler references to the PRF overview. | Direct user instruction / local homepage rebuild; GlossGenius naming audit | `[TESTING]` |
 | DEC-009 | 2026-08-13 | Approve the factual, minimal homepage practice/interior section and its address-first storefront caption. | Amber preferred local proof and real-space photography over language that told the reader how to interpret the design. | This section may be synced to Sanity. Retain the descriptive image alt text; visible storefront caption is “525 E Olympia Avenue” and “Unit 9.” | Direct user approval / Amber | `[DECIDED]` |
 | DEC-010 | 2026-08-13 | Use `H_OF_A_EXTERIOR_WINDOW_DECALS.webp` as the homepage exterior image and preserve its 3:4 portrait composition. | Amber explicitly preferred this storefront view to the previous exterior photograph. | Homepage uses responsive 700 px and 1000 px derivatives without changing the source image. | Direct user approval / Amber | `[DECIDED]` |
 
@@ -599,7 +611,7 @@ settled questions or repeating rejected approaches.
 | ID | Conflicting information | Sources | Risk if unresolved | Proposed resolution | Owner / status |
 |---|---|---|---|---|---|
 | CON-001 | ~~Topical PRF microneedling price: Sanity showed "From $450/session" while the 2026-08-06 pricing rebuild showed only "PRF Microneedling — Consultation $595" with unresolved attribution.~~ **RESOLVED 2026-08-09 — Amber ruled the $595 GlossGenius line is the topical service.** Page draft, pricing file, and Notion notes updated to "from $595"; the $450 figure (2026-07-09 PRF PDF) is dead. Diana-lane remainder (Under-Eye $495→$550 raise; whether her injectable PRF Facial needs its own GlossGenius line) stays tracked in the pricing file's open item #2. | Amber ruling 2026-08-09; `ALL-SERVICES-PRICING.MD` § Open items #2 | — | Applied same day across Sanity draft `818469ff…`, pricing file, and Notion pricing notes. | Amber / resolved 2026-08-09 |
-| CON-002 | The Creative System and current website encode an AI-developed clinical/institutional voice that is marked as governing, but Amber has rejected that voice. | Creative System, `AGENTS.md`, `CLAUDE.md`, current site, Amber's 2026-08-13 instruction | Continued AI copy would compound the unwanted voice and make approval harder. | Freeze the existing voice; calibrate a replacement with direct examples from Amber; then revise the existing owner documents and roll out deliberately. | Amber / active voice reset |
+| CON-002 | The Creative System and current website encode an AI-developed clinical/institutional voice that Amber rejected. Governance now marks that voice archival, but historical bodies remain searchable. | Creative System, `AGENTS.md`, `CLAUDE.md`, current site, Amber's 2026-08-13 instruction | Reusing archival prose would compound the unwanted voice and make approval harder. | Keep authority banners explicit, calibrate from Amber's direct examples, and do not treat archival prose as a writing model. | Amber / active voice reset |
 
 ### Highest-value open questions
 
@@ -619,7 +631,7 @@ downstream work.
 
 | Priority | Source needed | What it should resolve | Location / owner | Status |
 |---:|---|---|---|---|
-| 1 | Creative System v1.0 | Foundations, positioning, voice, visuals, channel rules | `docs/GOVERNANCE/House_of_Rose_Creative_System/` | Available; governing source |
+| 1 | Creative System v1.0 | Verified facts, compliance history, and visual standards only | `docs/GOVERNANCE/House_of_Rose_Creative_System/` | Available; voice and strategy superseded |
 | 2 | Current service and pricing truth | Value, mechanism, terms, constraints | GlossGenius → `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` → Sanity | Available; verify per task |
 | 3 | Customer research, reviews, sales calls, or FAQs | Audience language, objections, triggers | `[UNKNOWN]` | Needed |
 | 4 | Approved high-performing content | Voice calibration and proven messages | `[UNKNOWN]` | Needed |
@@ -648,8 +660,8 @@ be fixed, explicitly disclosed, or logged as an unresolved risk.
 
 ### Voice and experience
 
-- [ ] Language follows the voice rules and tone for the moment.
-- [ ] The content sounds recognizably like this brand, not a generic competitor.
+- [ ] Language follows Amber's explicitly approved direction for this surface, or is clearly labeled as a test.
+- [ ] The content uses specific facts and approved choices rather than archived voice rules or generic category clichés.
 - [ ] The reader is treated with respect and can understand the next step.
 - [ ] Message and offer match the downstream experience.
 

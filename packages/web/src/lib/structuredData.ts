@@ -50,22 +50,11 @@ export const BUSINESS_SERVICE_AREAS = [
   'Punta Gorda Isles',
 ] as const;
 
-/**
- * Topical `keywords` for the LocalBusiness/MedicalBusiness JSON-LD — NOT a mirror of the live
- * Google Business Profile category stack, despite the overlapping vocabulary.
- *
- * The live GBP stack is only THREE categories (`Medical spa` primary, `Facial spa`, `Skin care
- * clinic`) as of 2026-08-01. The last two entries here describe real offerings — retail skincare,
- * and the B-12 / IV / GLP-1 wellness lane — so they are accurate as keywords even while absent
- * from GBP. **This divergence is intentional; do not "sync" the two.** If Amber adds those two
- * categories to GBP (open question in CLAUDE.md), they converge on their own.
- */
+/** Verified live Google Business Profile categories as of 2026-08-01. */
 export const BUSINESS_CATEGORIES = [
   'Medical spa',
   'Facial spa',
   'Skin care clinic',
-  'Health and beauty shop',
-  'Vitamin & supplements store',
 ] as const;
 
 export type JsonLd = Record<string, unknown>;
@@ -237,7 +226,7 @@ export function personProfile(input: PersonProfileInput, siteUrl: string): JsonL
     jobTitle: input.jobTitle,
     url: input.url,
     ...(input.description && { description: input.description }),
-    mainEntityOfPage: { '@type': 'ProfilePage', '@id': `${input.url}#webpage`, url: input.url },
+    mainEntityOfPage: { '@id': `${input.url}#webpage` },
     worksFor: { '@id': `${baseUrl}#business` },
     ...(input.email && { email: input.email }),
     ...(input.telephone && { telephone: input.telephone }),
@@ -256,34 +245,20 @@ export interface ItemListPageInput {
 
 /** Directory/index page with an ordered list of linked public profiles. */
 export function itemListPage(input: ItemListPageInput, siteUrl: string): JsonLd {
-  const baseUrl = new URL('/', siteUrl).toString();
+  void siteUrl;
   return {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'CollectionPage',
-        '@id': `${input.url}#webpage`,
-        url: input.url,
-        name: input.name,
-        description: input.description,
-        inLanguage: 'en-US',
-        isPartOf: { '@id': `${baseUrl}#website` },
-        about: { '@id': `${baseUrl}#business` },
-        mainEntity: { '@id': `${input.url}#itemlist` },
-      },
-      {
-        '@type': 'ItemList',
-        '@id': `${input.url}#itemlist`,
-        name: input.name,
-        numberOfItems: input.items.length,
-        itemListElement: input.items.map((item, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: item.name,
-          url: item.url,
-        })),
-      },
-    ],
+    '@type': 'ItemList',
+    '@id': `${input.url}#itemlist`,
+    name: input.name,
+    description: input.description,
+    numberOfItems: input.items.length,
+    itemListElement: input.items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+    })),
   };
 }
 
@@ -353,12 +328,12 @@ export function article(input: ArticleInput, siteUrl: string): JsonLd {
     '@id': `${input.url}#article`,
     headline: input.headline,
     ...(input.description && { description: input.description }),
-    mainEntityOfPage: { '@type': 'WebPage', '@id': input.url },
+    mainEntityOfPage: { '@id': `${input.url}#webpage` },
     ...(input.image && { image: input.image }),
     ...(input.datePublished && { datePublished: input.datePublished }),
     ...(input.dateModified && { dateModified: input.dateModified }),
-    author: providerNode(siteUrl),
-    publisher: providerNode(siteUrl),
+    author: { '@id': `${new URL('/', siteUrl).toString()}#business` },
+    publisher: { '@id': `${new URL('/', siteUrl).toString()}#business` },
   };
 }
 
@@ -384,7 +359,7 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
     '@id': `${input.url}#service`,
     name: input.name,
     description: input.description ?? '',
-    provider: providerNode(siteUrl),
+    provider: { '@id': `${new URL('/', siteUrl).toString()}#business` },
     url: input.url,
     ...(input.image && { image: input.image }),
     serviceType: input.serviceType ?? input.name,
@@ -608,6 +583,7 @@ export interface BlogPostingInput {
 
 /** BlogPosting node for journal articles. Author/publisher resolve to the canonical business. */
 export function blogPosting(input: BlogPostingInput, siteUrl: string): JsonLd {
+  const businessId = `${new URL('/', siteUrl).toString()}#business`;
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -615,13 +591,13 @@ export function blogPosting(input: BlogPostingInput, siteUrl: string): JsonLd {
     headline: input.headline,
     ...(input.description && { description: input.description }),
     url: input.url,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${input.url}#webpage` },
+    mainEntityOfPage: { '@id': `${input.url}#webpage` },
     ...(input.image && { image: input.image }),
     ...(input.datePublished && { datePublished: input.datePublished }),
     ...(input.dateModified && { dateModified: input.dateModified }),
     ...(input.readingTimeMinutes && { timeRequired: `PT${input.readingTimeMinutes}M` }),
-    author: providerNode(siteUrl),
-    publisher: providerNode(siteUrl),
+    author: { '@id': businessId },
+    publisher: { '@id': businessId },
   };
 }
 

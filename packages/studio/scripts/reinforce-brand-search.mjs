@@ -17,6 +17,8 @@
 
 import { createClient } from '@sanity/client';
 
+throw new Error('Archived by the 2026-08-13 voice reset. Rewrite and review this patch before use.');
+
 const apply = process.argv.includes('--apply');
 const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.PUBLIC_SANITY_DATASET;

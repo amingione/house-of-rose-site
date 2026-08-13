@@ -7,10 +7,8 @@
  * Contacts prefilled (downloads /brandy.vcf served inline as text/vcard — see
  * netlify.toml).
  *
- * Brandy rents a room and prices her own services (classic facials, peels,
- * hydrodermabrasion, Mommy & Me duo facial, facial waxing — see Sanity
- * `provider-brandy`). NAP follows the canonical siteSettings source of truth
- * (Unit 9, 33950, +18449417673).
+ * NAP follows the canonical siteSettings source of truth (Unit 9, 33950,
+ * +18449417673).
  */
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
@@ -18,29 +16,27 @@ import { personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/brandy/', siteURL).toString();
-const ogImage = new URL('/logos/house-of-rose-monogram/hr-monogram-gold.png', siteURL).toString();
+const ogImage = new URL('/images/providers/brandy-profile-1122.webp', siteURL).toString();
 
 const PHONE_E164 = '+18449417673';
-const PHONE_DISPLAY = '844-941-ROSE (7673)';
-const EMAIL = 'brandy@houseofrosefl.com';
+const PHONE_DISPLAY = '(844) 941-7673';
+const EMAIL = 'info@houseofrosefl.com';
 const WEBSITE = 'houseofrosefl.com';
-const ADDRESS_LINE1 = '525 E. Olympia Ave. Unit 9';
+const ADDRESS_LINE1 = '525 E Olympia Ave, Unit 9';
 const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
 const MAPS_URL =
-  'https://maps.google.com/?q=525+E.+Olympia+Ave+Unit+9,+Punta+Gorda,+FL+33950';
+  'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950';
 
 const personLd = personProfile({
-  name: 'Brandy',
-  jobTitle: 'Esthetician — Classic Facials & Waxing',
+  name: 'Brandy, Licensed Esthetician',
+  jobTitle: 'Licensed Esthetician',
   telephone: PHONE_E164,
   email: EMAIL,
   url: canonicalURL,
   image: ogImage,
   knowsAbout: [
-    'Classic Facials',
-    'Facial + Peel',
-    'Hydrodermabrasion',
-    'Mommy & Me Facial',
+    'Facials',
+    'Standalone BioRePeel',
     'Facial Waxing',
   ],
 }, siteURL.toString());
@@ -52,21 +48,20 @@ const personLd = personProfile({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonicalURL} />
-    <title>Brandy | House of Rose Aesthetics</title>
+    <title>Brandy, Licensed Esthetician | House of Rose</title>
     <meta
       name="description"
-      content="Brandy — Esthetician at House of Rose Aesthetics in Punta Gorda, FL. Tap to save my contact or book your appointment."
+      content="Contact Brandy, Licensed Esthetician, at House of Rose Aesthetics in Punta Gorda, Florida."
     />
-    <meta property="og:title" content="Brandy | House of Rose Aesthetics" />
+    <meta property="og:title" content="Brandy, Licensed Esthetician | House of Rose" />
     <meta
       property="og:description"
-      content="Esthetician — Classic Facials, Peels & Waxing at House of Rose Aesthetics. Tap to save my contact."
+      content="Contact details for Brandy, Licensed Esthetician, at House of Rose Aesthetics."
     />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
-    <script is:inline type="text/javascript" src="//script.crazyegg.com/pages/scripts/0133/4876.js" async="async"></script>
-    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
+    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold-192.png" />
     <SchemaMarkup item={personLd} />
 
     <style>
@@ -242,18 +237,18 @@ const personLd = personProfile({
   <body>
     <main class="card">
       <div class="avatar">
-        <img src="/images/providers/Brandy.PNG" alt="Brandy, House of Rose Aesthetics" width="128" height="128" />
+        <img src="/images/providers/brandy-card-256.webp" alt="Brandy, Licensed Esthetician, at House of Rose Aesthetics" width="128" height="128" decoding="async" />
       </div>
 
       <header class="crest">
-        <img src="/logos/house-of-rose-monogram/hr-monogram-gold.png" alt="House of Rose Aesthetics monogram" width="96" height="110" />
+        <img src="/logos/house-of-rose-monogram/hr-monogram-gold-192.webp" alt="House of Rose Aesthetics monogram" width="96" height="110" decoding="async" />
         <div class="wordmark">House of Rose</div>
         <div class="sub-box">Aesthetics</div>
       </header>
 
       <section class="identity">
-        <h1 class="name">Brandy</h1>
-        <p class="role">Esthetician — Classic Facials &amp; Waxing</p>
+        <h1 class="name">Brandy, Licensed Esthetician</h1>
+        <p class="role">Licensed Esthetician</p>
       </section>
 
       <nav class="rows" aria-label="Contact methods">
@@ -287,20 +282,18 @@ const personLd = personProfile({
       </nav>
 
       <div class="actions">
-        <a class="save" id="saveBtn" href="/brandy.vcf">+ Save My Contact</a>
-        <a class="book" href={`tel:${PHONE_E164}`}>Call to Book</a>
+        <a class="save" id="saveBtn" href="/brandy.vcf">Save Contact</a>
+        <a class="book" href={`tel:${PHONE_E164}`}>Call House of Rose</a>
       </div>
 
       <footer class="meta">
         <div class="divider" aria-hidden="true">✦</div>
         <div class="services">
-          <b>Services</b>
-          Classic Facials · Facial + Peel<br />
-          Hydrodermabrasion · Mommy &amp; Me Facial<br />
-          Facial Waxing
+          <b>Current Work</b>
+          Facials · Standalone BioRePeel · Facial Waxing
         </div>
         <div class="creds">
-          Esthetician · Classic Facials
+          Licensed Esthetician
         </div>
       </footer>
     </main>

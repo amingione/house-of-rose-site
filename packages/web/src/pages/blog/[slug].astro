@@ -13,6 +13,8 @@ import { toHTML } from '@portabletext/to-html';
 import { blogPosting, breadcrumbList } from '@/lib/structuredData';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 import { alignPublicContent } from '@/lib/publicCopy';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+import { getPublicBlogTitle } from '@/lib/publicBlogContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_BLOG_POST_SLUGS_QUERY);
@@ -31,11 +33,20 @@ const post = alignPublicContent(postData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const pageTitle = post.seo?.metaTitle ?? `${post.title} | House of Rose`;
-const pageDescription = post.seo?.metaDescription ?? post.excerpt ?? '';
+const isMorpheusSafetyArticle = slug === 'is-morpheus8-safe';
+const publicTitle = getPublicBlogTitle(post);
+const pageTitle = isMorpheusSafetyArticle
+  ? `${publicTitle} | House of Rose`
+  : (post.seo?.metaTitle ?? `${post.title} | House of Rose`);
+const pageDescription = isMorpheusSafetyArticle
+  ? 'A concise guide to Morpheus8 safety, provider questions, possible side effects, recovery, and treatment fit from House of Rose in Punta Gorda.'
+  : (post.seo?.metaDescription ?? post.excerpt ?? '');
 const heroImage = post.featuredImage
   ? urlFor(post.featuredImage).width(1920).height(1080).fit('crop').url()
   : DEFAULT_JOURNAL_IMAGE;
+const relatedServiceSummary = post.relatedService
+  ? getServiceCardSummary(post.relatedService.slug)
+  : undefined;
 
 const publishedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
   month: 'long',
@@ -43,7 +54,29 @@ const publishedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
   year: 'numeric',
 });
 
-const bodyHTML = post.body
+const morpheusSafetyArticle = `
+  <p>Morpheus8 is an FDA-cleared radiofrequency microneedling device. That does not make treatment risk-free or appropriate for everyone. Safety depends on the person being treated, the area, the settings, the provider, and the care surrounding the procedure.</p>
+  <h2>What matters before treatment</h2>
+  <p>A provider should review your medical history, medications, skin condition, treatment area, and expectations before recommending Morpheus8. The same settings do not belong on every person or every part of the face or body.</p>
+  <h2>Possible side effects and recovery</h2>
+  <p>Expected effects, recovery, and less common complications should be explained before you consent. Ask what is typical for the intended area, what aftercare is required, and which changes should prompt a call to the practice. Individual experiences and outcomes vary.</p>
+  <h2>About alarming stories online</h2>
+  <p>A post or photograph cannot establish why an unwanted outcome occurred. Persistent, worsening, or unexpected symptoms need an appropriate medical evaluation—not a diagnosis from social media.</p>
+  <h2>Questions worth asking</h2>
+  <ul>
+    <li>Who will perform the procedure, and what is their licence type?</li>
+    <li>Why is Morpheus8 being recommended for this concern and area?</li>
+    <li>How will the settings be selected?</li>
+    <li>What recovery should I expect, and when should I call?</li>
+    <li>What are the reasonable alternatives, including doing nothing now?</li>
+  </ul>
+  <h2>House of Rose in Punta Gorda</h2>
+  <p>Morpheus8 is offered after a consultation and is performed under medical direction. The appropriate licensed provider determines whether the procedure is suitable.</p>
+`;
+
+const bodyHTML = isMorpheusSafetyArticle
+  ? morpheusSafetyArticle
+  : post.body
   ? toHTML(post.body, {
       components: {
         types: {
@@ -69,7 +102,7 @@ const bodyHTML = post.body
 
 const blogPostingSchema = blogPosting(
   {
-    headline: post.title,
+    headline: publicTitle,
     description: pageDescription,
     url: canonicalURL.toString(),
     image: post.featuredImage
@@ -84,7 +117,7 @@ const blogPostingSchema = blogPosting(
 const breadcrumbSchema = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Journal', item: new URL('/blog/', site).toString() },
-  { name: post.title, item: canonicalURL.toString() },
+  { name: publicTitle, item: canonicalURL.toString() },
 ]);
 ---
 
@@ -111,8 +144,11 @@ const breadcrumbSchema = breadcrumbList([
       {post.category && (
         <span class="block text-gold text-[11px] font-medium tracking-[0.26em] uppercase mb-3" {...sbFieldPath('category')}>{post.category}</span>
       )}
-      <h1 class="font-serif text-[clamp(28px,5vw,48px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
-        {post.title}
+      <h1
+        class="font-serif text-[clamp(28px,5vw,48px)] leading-tight font-normal text-ivory"
+        {...(isMorpheusSafetyArticle ? {} : sbFieldPath('title'))}
+      >
+        {publicTitle}
       </h1>
       <div class="flex items-center gap-4 mt-4 text-muted text-[12px] tracking-[0.1em]">
         <time datetime={post.publishedAt}>{publishedDate}</time>
@@ -127,7 +163,7 @@ const breadcrumbSchema = breadcrumbList([
   <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6">
     <div class="max-w-[800px] mx-auto">
 
-      {post.excerpt && (
+      {post.excerpt && !isMorpheusSafetyArticle && (
         <p class="text-muted text-[17px] leading-relaxed italic mb-10 border-l-2 border-gold-metal/40 pl-5" {...sbFieldPath('excerpt')}>
           {post.excerpt}
         </p>
@@ -165,8 +201,8 @@ const breadcrumbSchema = breadcrumbList([
         <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-ink mt-2 mb-3">
           {post.relatedService.title}
         </h2>
-        {post.relatedService.tagline && (
-          <p class="text-muted text-[15px] mb-6">{post.relatedService.tagline}</p>
+        {relatedServiceSummary && (
+          <p class="text-muted text-[15px] mb-6">{relatedServiceSummary}</p>
         )}
         <div class="flex gap-3 justify-center flex-wrap">
           <a href={`/services/${post.relatedService.slug}/`} class="btn-outline-gold">

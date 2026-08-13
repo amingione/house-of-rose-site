@@ -8,6 +8,8 @@
 // @sanity/client v3 is CommonJS; a static `import { createClient }` fails under
 // ESM, so it is loaded via dynamic import at point of use (see below).
 
+throw new Error('Archived by the 2026-08-13 voice reset. Rewrite and review the AI-search FAQ copy before use.');
+
 const shouldApply = process.argv.includes('--apply');
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? process.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET ?? process.env.PUBLIC_SANITY_DATASET;

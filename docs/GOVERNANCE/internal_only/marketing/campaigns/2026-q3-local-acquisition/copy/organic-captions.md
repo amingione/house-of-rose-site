@@ -1,102 +1,91 @@
 # Organic Caption Bank
 
+> Working copy reset 2026-08-13. Business facts and service names require a final
+> platform check before publishing. No free-service offer is advertised here.
+
 ## Google Business Profile
 
-### Local proof
+### The practice
 
-House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda. Begin with a skin consultation, ask questions, and understand the options before deciding what fits.
+House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, in Punta Gorda. View current services, call (844) 941-7673, or stop in Monday through Friday from 9 AM to 5 PM.
 
-### Consultation
+### Skin analysis
 
-See your skin first. Our advanced skin imaging gives your provider a clearer baseline for discussing texture, pigmentation, pores, hydration cues, and signs of sun exposure. The consultation is complimentary and pressure-free. House of Rose Aesthetics, 525 E Olympia Ave, Unit 9, Punta Gorda.
+Advanced Skin Imaging & Analysis uses standard, cross-polarized, and UV images to document visible texture, pigment, pores, and sun exposure. It provides a closer look and a baseline; it does not diagnose a skin condition.
 
-### Advanced skin
+### Skin services
 
-Glo2Facial and Procell microchanneling are two different options within a thoughtful skin-quality plan. The appropriate service depends on goals, candidacy, and provider guidance. Request a private consultation at House of Rose Aesthetics in Punta Gorda.
+Glo2Facial and Microneedling are different services. One is a facial; the other uses the Procell Therapies device for controlled microchanneling. Compare current skin services before booking.
 
 ### Injectables
 
-Injectables, with restraint. Diana, RN, provides consultations for Botox, Daxxify, dermal fillers, and related options at House of Rose Aesthetics. Final recommendations depend on anatomy, candidacy, and provider judgment; individual outcomes vary.
+Neurotoxins address movement-related lines. Dermal filler addresses shape and volume. Injectable PRF has a separate role. Diana Morrison, RN provides injectable consultations at House of Rose Aesthetics under medical direction. Individual outcomes vary.
 
 ## Instagram and Facebook
 
 ### Exterior reel or carousel
 
-You’ve passed it. Now come inside.
+House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, in Punta Gorda. These are the actual storefront and treatment rooms clients see when they arrive.
 
-House of Rose is a medical aesthetics practice in Punta Gorda—built for thoughtful conversations, restrained recommendations, and care that never feels rushed. Walk-ins are welcome, and appointments are recommended to reserve a time.
+View current services through the link in bio or call (844) 941-7673.
 
-Begin with a complimentary skin consultation. Link in bio or call (844) 941-7673.
-
-`#PuntaGorda #CharlotteCountyFL #HouseOfRoseAesthetics #AdvancedAesthetics #PuntaGordaFlorida`
+`#PuntaGorda #CharlotteCountyFL #HouseOfRoseAesthetics #PuntaGordaFlorida`
 
 ### See your skin first
 
-See your skin before choosing a treatment.
+Texture, pigment, pores, and visible sun exposure are not the same concern.
 
-Advanced imaging gives us a clearer baseline. Your goals, candidacy, and preferences complete the picture. The consultation is complimentary, private, and pressure-free.
+Advanced Skin Imaging & Analysis records the skin in standard, cross-polarized, and UV light. Review the service at houseofrosefl.com/skin-analysis/.
 
-Begin with a skin consultation at House of Rose Aesthetics in Punta Gorda.
+`#SkinAnalysis #PuntaGordaAesthetics #HouseOfRoseAesthetics`
 
-`#SkinConsultation #PuntaGordaAesthetics #SkinHealth #HouseOfRoseAesthetics`
+### Inside the practice
 
-### Studio experience
+The House of Rose storefront, welcome hallway, and treatment rooms are photographed as they are. See the practice before your first visit at houseofrosefl.com/experience/.
 
-A private appointment. A clear plan.
+`#PuntaGorda #HouseOfRoseAesthetics #PuntaGordaFlorida`
 
-No crowded waiting room. No pressure to choose from a long treatment menu. Just an unhurried conversation about what fits—and what may not.
+### Microneedling
 
-House of Rose Aesthetics · Punta Gorda · Walk-ins welcome
+Microneedling at House of Rose uses the Procell Therapies device. It is a separate service from Glo2Facial, BioRePeel, and light-based treatments.
 
-`#PuntaGorda #AdvancedAesthetics #PrivateStudio #HouseOfRoseAesthetics`
+Review Microneedling at houseofrosefl.com/services/microneedling/. Individual outcomes vary.
 
-### Procell
-
-Skin quality, planned.
-
-Procell microchanneling may be considered for clients exploring overall skin quality within a structured treatment plan. Your provider confirms candidacy and the appropriate option at consultation. Individual outcomes vary.
-
-Explore advanced skin services at House of Rose Aesthetics in Punta Gorda.
-
-`#Procell #Microchanneling #PuntaGordaAesthetics #HouseOfRoseAesthetics`
+`#Microneedling #ProcellTherapies #PuntaGordaAesthetics #HouseOfRoseAesthetics`
 
 ### Injectables
 
-Injectables, with restraint.
+Movement-related lines and volume loss are different concerns. House of Rose offers neurotoxin, dermal filler, and injectable PRF services in Punta Gorda.
 
-Diana, RN, approaches Botox, Daxxify, dermal fillers, and related options through facial anatomy, candidacy, and clear expectations—not a one-size-fits-all trend.
-
-Private consultations are available in Punta Gorda. Individual outcomes vary.
+Review the injectable service menu at houseofrosefl.com/services/collections/injectables-bio-fillers/. Individual outcomes vary.
 
 `#PuntaGordaInjectables #BotoxPuntaGorda #Daxxify #DermalFillers #HouseOfRoseAesthetics`
 
-### Provider voice
+### Diana Morrison, RN
 
-Meet Diana, RN—the House of Rose provider for injectables, IV hydration, and wellness services.
+Diana Morrison, RN provides neurotoxin, dermal filler, injectable PRF, IV hydration, and GLP-1 services at House of Rose Aesthetics.
 
-Her approach begins with a measured conversation about anatomy, candidacy, preferences, and what is appropriate for the individual client.
+View Diana's verified profile at houseofrosefl.com/about/providers/diana/.
 
-Request a private consultation in Punta Gorda.
-
-`#MeetTheProvider #PuntaGordaRN #HouseOfRoseAesthetics #PuntaGorda`
+`#PuntaGordaRN #HouseOfRoseAesthetics #PuntaGorda`
 
 ## Nextdoor
 
-Hello, neighbors. House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, in Punta Gorda. Walk-ins are welcome, and appointments are recommended to reserve a time. We offer complimentary skin consultations, advanced skin services, and provider-led injectable consultations in a calm, unhurried setting. Call (844) 941-7673 to begin.
+Hello, neighbors. House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, in Punta Gorda. Current services include facials, Microneedling, injectables, IV hydration, skin imaging, and selected wellness services. Call (844) 941-7673 or visit houseofrosefl.com/services/.
 
 ## YouTube Shorts
 
-### Local studio
+### The practice
 
 - **Title:** Inside House of Rose Aesthetics in Punta Gorda
-- **Description:** A look inside House of Rose, a medical aesthetics practice in Punta Gorda, Florida. Begin with a complimentary skin consultation at houseofrosefl.com/skin-analysis/.
+- **Description:** See the actual storefront and treatment rooms at House of Rose Aesthetics, 525 E Olympia Ave, Unit 9, in Punta Gorda.
 
-### Consultation
+### Skin analysis
 
-- **Title:** See Your Skin First | House of Rose
-- **Description:** Advanced imaging can give your provider a clearer baseline before treatment choices. Request a complimentary skin consultation in Punta Gorda. No pressure and no commitment.
+- **Title:** What Advanced Skin Imaging Shows | House of Rose
+- **Description:** Standard, cross-polarized, and UV images document visible texture, pigment, pores, and sun exposure. The service is non-diagnostic.
 
-### Advanced skin
+### Microneedling
 
-- **Title:** Skin Quality, Planned | Procell at House of Rose
-- **Description:** Explore Procell microchanneling through a consultation-first approach. Final recommendations and candidacy are confirmed by the appropriate provider; individual outcomes vary.
+- **Title:** Microneedling with the Procell Therapies Device
+- **Description:** A direct look at the current Microneedling service at House of Rose Aesthetics in Punta Gorda. Individual outcomes vary.

@@ -23,7 +23,7 @@ import {
   type TreatmentPackage,
   type PublicProviderProfile,
 } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
 import { SHOP_ENABLED } from '@/lib/features';
@@ -62,7 +62,7 @@ const [
   sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
 ]);
-const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+const providers = resolvePublicProviderProfiles(sanityProviders);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -78,11 +78,7 @@ const corePages: SitemapLink[] = [
   { title: 'House of Rose Aesthetics', href: '/about/hra/' },
   { title: 'Providers', href: '/about/providers/' },
   { title: 'Services', href: '/services/' },
-  {
-    title: 'Consultation',
-    href: '/consultation/',
-    note: 'Advanced aesthetics & wellness',
-  },
+  { title: 'Consultation', href: '/consultation/' },
   { title: 'Service Collections', href: '/services/collections/' },
   { title: 'Treatment Series & Packages', href: '/packages/' },
   { title: 'Advanced Skin Imaging & Analysis', href: '/skin-analysis/' },
@@ -96,7 +92,7 @@ const corePages: SitemapLink[] = [
   { title: 'Journal', href: '/blog/' },
   { title: 'FAQ', href: '/faq/' },
   { title: 'Areas We Serve', href: '/areas/' },
-  { title: 'Results', href: '/results/' },
+  ...(caseStudies.length > 0 ? [{ title: 'Results', href: '/results/' }] : []),
   { title: 'Contact', href: '/contact/' },
   { title: 'Rent a Suite', href: '/rent-a-room/' },
 ];
@@ -174,7 +170,9 @@ const sectionData: SitemapSection[] = [
   {
     title: 'Journal Articles',
     links: blogPosts.map((post) => ({
-      title: post.title,
+      title: post.slug === 'is-morpheus8-safe'
+        ? 'Is Morpheus8 Safe? What to Ask Before Treatment'
+        : post.title,
       href: `/blog/${post.slug}/`,
     })),
   },
@@ -205,7 +203,7 @@ const sectionData: SitemapSection[] = [
         Explore House of Rose
       </h1>
       <p class="text-ink/75 text-[16px] leading-relaxed max-w-[680px]">
-        A complete HTML index of public House of Rose pages for clients, search crawlers, and answer engines.
+        An index of public House of Rose pages.
       </p>
     </div>
   </section>

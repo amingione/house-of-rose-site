@@ -1,25 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
-import { HOMEPAGE_QUERY, type HomePage } from '@/lib/queries';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
 import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
 
-const hp = (await sanityFetch<HomePage | null>(HOMEPAGE_QUERY)) ?? ({} as HomePage);
-const oid = hp._id ? sbObjectId(hp._id) : {};
-const safe = (value: string | undefined, fallback: string): string =>
-  alignPublicChannelCopy(value?.trim() || fallback);
-
 const phoneDisplay = '(844) 941-7673';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
-const heroTitle = safe(hp.heroTitle, 'Medical Aesthetics.\nThoughtfully Practiced.');
-const localVisitText = safe(hp.localPara1, 'Open Monday through Friday, 9 AM–5 PM.')
-  .replace(/\s*Walk-ins?[^.]*\./gi, '')
-  .replace(/\s*Appointments? (?:are )?(?:still )?(?:recommended|preferred)[^.]*\./gi, '')
-  .trim() || 'Open Monday through Friday, 9 AM–5 PM.';
+const localVisitText = 'Open Monday through Friday, 9 AM–5 PM.';
 
 // Working voice reset: body copy stays local until the owner approves it for Sanity.
 // This prevents the previous CMS-authored cadence from leaking back into the preview.
@@ -27,80 +14,49 @@ const treatmentCategories = [
   {
     label: 'Skin',
     title: 'Texture, pigment, pores, and visible sun exposure',
-    body: 'Facials, peels, Microneedling, and light-based treatments do different work. Some act at the surface; others target selected pigment or support texture remodeling.',
+    body: 'Facials, peels, Microneedling, and light-based treatments each address a different layer or concern.',
     href: '/services/collections/facials/',
     cta: 'Explore skin treatments',
   },
   {
     label: 'Injectables',
     title: 'Movement is not the same as volume loss',
-    body: 'Neuromodulators address targeted muscle movement. Hyaluronic-acid fillers add shape and volume. Injectable PRF has a different role: gradual support for skin quality and subtle correction.',
+    body: 'Neuromodulators address movement. Filler adds shape or volume. Injectable PRF serves a different purpose.',
     href: '/services/collections/injectables-bio-fillers/',
     cta: 'Explore injectables',
   },
   {
     label: 'Skin analysis',
-    title: 'A closer look at what the mirror cannot separate',
-    body: 'Multi-spectrum imaging adds information about pigmentation, visible sun exposure, texture, pores, and hydration. It establishes a baseline and makes follow-up more useful.',
+    title: 'Photographs reveal patterns an ordinary mirror misses',
+    body: 'Multi-spectrum imaging separates visible pigment, texture, pores, and sun exposure and establishes a baseline.',
     href: '/skin-analysis/',
     cta: 'Review skin analysis',
   },
 ] as const;
 
-const prfForms = [
-  {
-    number: '01',
-    eyebrow: 'Surface application',
-    title: 'Topical PRF with Microneedling',
-    body: 'Prepared PRF is placed on the skin surface during eligible Microneedling. It is not injected. This route is used when the focus is visible texture, fine lines, or selected scars and stretch marks.',
-    href: '/services/prf-microneedling/',
-    cta: 'Read about topical PRF',
-  },
-  {
-    number: '02',
-    eyebrow: 'Beneath the skin',
-    title: 'Injectable PRF',
-    body: 'Liquid PRF is placed beneath the skin by a registered nurse. Under-eye and selected facial areas are common uses. The change develops gradually and is different from the immediate volume of a conventional filler.',
-    href: '/services/prf-injections/',
-    cta: 'Read about PRF injections',
-  },
-  {
-    number: '03',
-    eyebrow: 'Autologous gel',
-    title: 'PRF EZ-Gel Bio-Filler',
-    body: 'A plasma fraction is heated and cooled, then combined with liquid PRF to create a thicker gel. It provides subtle, temporary volume. It is not equivalent to hyaluronic-acid filler or intended for major structural correction.',
-    href: '/services/ez-gel-bio-filler/',
-    cta: 'Read about EZ-Gel',
-  },
-] as const;
 ---
 
 <BaseLayout
-  title={hp.seoTitle ?? 'House of Rose | Medical Aesthetics in Punta Gorda'}
-  description={hp.seoDescription ?? 'Explore skin treatments, injectables, facials, body treatments, IV hydration, wellness services, and professional skincare at House of Rose in Punta Gorda.'}
+  title="House of Rose | Medical Aesthetics in Punta Gorda"
+  description="Explore skin treatments, injectables, facials, body treatments, IV hydration, and wellness services at House of Rose in Punta Gorda."
   preloadImage="/images/hero/treatment-scan-poster.webp"
   preloadImageSizes="100vw"
 >
-  <div {...oid}>
+  <div>
     <SkinAnalysisHero
-      title={heroTitle}
-      description={safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
-      location={safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
-      primaryCta={safe(hp.heroCtaPrimaryText, 'Book an appointment')}
-      secondaryCta={safe(hp.heroCtaSecondaryText, 'View services')}
+      title={'Good skin is a reflection\nof good judgment.'}
+      description={'In aesthetics, knowing what to do matters. Knowing what not to do matters more.'}
+      location="Punta Gorda, Florida"
+      primaryCta="Book an appointment"
+      secondaryCta="Explore services"
     />
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
-        <div class="grid gap-8 border-b border-walnut/15 pb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
-            <span class="kicker">Treatment categories</span>
-            <h2 class="max-w-[720px] font-serif text-[clamp(36px,5vw,58px)] leading-[1.02] tracking-[-0.02em] text-ink">
-              Skin texture, pigment, movement, and volume require different approaches.
-            </h2>
-          </div>
-          <p class="max-w-[600px] text-[17px] leading-[1.75] text-muted">
-            House of Rose brings skin treatments, injectables, body services, IV hydration, and wellness care into one Punta Gorda practice. The useful question is not which treatment is popular. It is which category actually addresses what you see.
-          </p>
+        <div class="border-b border-walnut/15 pb-10">
+          <span class="kicker">Where to begin</span>
+          <h2 class="max-w-[850px] font-serif text-[clamp(36px,5vw,58px)] leading-[1.02] tracking-[-0.02em] text-ink">
+            Texture, pigment, movement, and volume are not the same problem.
+          </h2>
         </div>
 
         <div class="mt-8 grid border border-walnut/15 lg:grid-cols-3">
@@ -135,50 +91,6 @@ const prfForms = [
       </div>
     </section>
 
-    <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,120px)]">
-      <div class="mx-auto max-w-[1240px]">
-        <div class="grid gap-8 border-b border-ivory/20 pb-11 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
-            <span class="kicker">Platelet-rich fibrin</span>
-            <h2 class="max-w-[660px] font-serif text-[clamp(38px,5vw,60px)] leading-[1.03] tracking-[-0.02em] text-ivory">
-              PRF is not one treatment.
-            </h2>
-          </div>
-          <p class="max-w-[630px] text-[17px] leading-[1.75] text-muted">
-            PRF begins with a small sample of your blood. It is centrifuged without an anticoagulant, concentrating platelets within a fibrin matrix. How that preparation is finished—and where it is placed—changes the job it can do.
-          </p>
-        </div>
-
-        <ol class="grid border-b border-ivory/20 lg:grid-cols-3">
-          {prfForms.map((form) => (
-            <li class="flex min-h-[390px] flex-col border-b border-ivory/20 px-6 py-9 last:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0 lg:px-8">
-              <div class="flex items-baseline justify-between gap-4">
-                <p class="text-[11px] font-semibold tracking-[0.12em] text-gold">{form.number}</p>
-                <p class="text-[10px] font-semibold uppercase tracking-[0.13em] text-muted">{form.eyebrow}</p>
-              </div>
-              <h3 class="mt-8 max-w-[300px] font-serif text-[30px] leading-[1.1] text-ivory">{form.title}</h3>
-              <p class="mt-5 max-w-[330px] text-[15px] leading-[1.75] text-muted">{form.body}</p>
-              <a href={form.href} class="mt-auto inline-flex items-center gap-3 pt-8 text-[13px] font-semibold text-ivory underline decoration-ivory/30 underline-offset-4 hover:text-gold">
-                {form.cta} <span aria-hidden="true">→</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-
-        <div class="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <p class="font-serif text-[25px] leading-[1.45] text-ivory">Same source material. Three forms. Three different uses.</p>
-          <div class="max-w-[650px]">
-            <p class="text-[15px] leading-[1.75] text-muted">
-              Laboratory studies show that PRF can release signaling proteins over several days. Small facial studies and reviews report potential benefits for selected concerns, but protocols vary and many samples are limited. Preparation, treatment area, and route matter as much as the initials “PRF.”
-            </p>
-            <a href="/services/prf/" class="mt-5 inline-flex items-center gap-3 text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
-              Explore the complete PRF guide <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="bg-bone px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
         <figure class="relative aspect-[4/3] overflow-hidden bg-limestone">
@@ -200,12 +112,9 @@ const prfForms = [
           <h2 class="font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink">
             What looks similar can have different causes.
           </h2>
-          <div class="mt-7 max-w-[620px] space-y-5 text-[17px] leading-[1.75] text-muted">
+          <div class="mt-7 max-w-[620px] text-[17px] leading-[1.75] text-muted">
             <p>
-              An under-eye shadow can come from pigment, thin skin, hollowing, or a combination. A facial line can be driven by muscle movement, volume change, skin texture, or all three. Those distinctions change the recommendation.
-            </p>
-            <p>
-              House of Rose uses consultation and, when useful, multi-spectrum skin imaging to identify the concern before choosing the tool. Botox, filler, PRF, peels, Microneedling, and light-based treatments solve different problems—and sometimes the right answer is a sequence rather than a single appointment.
+              An under-eye shadow can come from pigment, thin skin, hollowing, or a combination. Facial lines may reflect movement, volume, texture, or all three. The recommendation should follow the cause—not the treatment name.
             </p>
           </div>
 
@@ -250,7 +159,7 @@ const prfForms = [
             </div>
             <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
               <span>525 E Olympia Avenue</span>
-              <span class="font-semibold text-ivory">Unit 9</span>
+              <span class="font-semibold text-ink">Unit 9</span>
             </figcaption>
           </figure>
 
@@ -270,7 +179,7 @@ const prfForms = [
             </div>
             <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
               <span>A treatment suite inside the practice</span>
-              <a href="/experience/" class="font-semibold text-ivory underline decoration-ivory/30 underline-offset-4 hover:text-gold">See inside</a>
+              <a href="/experience/" class="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">See inside</a>
             </figcaption>
           </figure>
         </div>
@@ -305,7 +214,7 @@ const prfForms = [
           <h3 class="mt-4 font-serif text-[32px] leading-tight text-ivory">
             House of Rose Aesthetics in Punta Gorda.
           </h3>
-          <p class="mt-5 text-[15px] leading-[1.7] text-muted" {...sbFieldPath('localPara1')}>
+          <p class="mt-5 text-[15px] leading-[1.7] text-muted">
             {localVisitText}
           </p>
           <address class="mt-7 border-t border-ivory/20 pt-6 not-italic text-[14px] leading-[1.8] text-muted-strong">

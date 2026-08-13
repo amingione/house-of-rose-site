@@ -3,94 +3,30 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, service } from '@/lib/structuredData';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
 import BookingLink from '@/components/BookingLink.astro';
 import { SKIN_ANALYSIS_BOOKING_URL } from '@/lib/booking';
 
 const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// ─── Skin Analysis content from Sanity (singleton) ─────────────────────────────
-// Falls back to the original hardcoded copy if a field is empty (no regression).
 interface SkinAnalysisStep {
-  _key?: string;
-  n?: string;
-  title?: string;
-  body?: string;
+  n: string;
+  title: string;
+  body: string;
 }
 interface SkinAnalysisConcern {
-  _key?: string;
-  title?: string;
-  slug?: string;
+  title: string;
+  slug: string;
 }
 interface SkinAnalysisFaq {
-  _key?: string;
-  q?: string;
-  a?: string;
+  q: string;
+  a: string;
 }
-interface SkinAnalysis {
-  _id?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  heroKicker?: string;
-  heroTitle?: string;
-  heroDescription?: string;
-  heroCtaPrimaryText?: string;
-  heroCtaSecondaryText?: string;
-  whatKicker?: string;
-  whatHeading?: string;
-  whatPara1?: string;
-  whatPara2?: string;
-  howKicker?: string;
-  howHeading?: string;
-  steps?: SkinAnalysisStep[];
-  lookKicker?: string;
-  lookHeading?: string;
-  lookPara?: string;
-  looksAt?: string[];
-  whyKicker?: string;
-  whyHeading?: string;
-  whyPara?: string;
-  planKicker?: string;
-  planHeading?: string;
-  planPara?: string;
-  concernLinks?: SkinAnalysisConcern[];
-  faqKicker?: string;
-  faqHeading?: string;
-  faqs?: SkinAnalysisFaq[];
-  ctaKicker?: string;
-  ctaHeading?: string;
-  ctaPara?: string;
-  ctaPrimaryText?: string;
-  ctaSecondaryText?: string;
-}
-
-const SKIN_ANALYSIS_QUERY = `*[_type == "skinAnalysis"][0]{
-  _id,
-  seoTitle, seoDescription,
-  heroKicker, heroTitle, heroDescription, heroCtaPrimaryText, heroCtaSecondaryText,
-  whatKicker, whatHeading, whatPara1, whatPara2,
-  howKicker, howHeading,
-  steps[]{ _key, n, title, body },
-  lookKicker, lookHeading, lookPara, looksAt,
-  whyKicker, whyHeading, whyPara,
-  planKicker, planHeading, planPara,
-  concernLinks[]{ _key, title, slug },
-  faqKicker, faqHeading,
-  faqs[]{ _key, q, a },
-  ctaKicker, ctaHeading, ctaPara, ctaPrimaryText, ctaSecondaryText
-}`;
-
-const data = (await sanityFetch<SkinAnalysis | null>(SKIN_ANALYSIS_QUERY)) ?? ({} as SkinAnalysis);
-
-const pageTitle =
-  data.seoTitle ?? 'Advanced Skin Imaging & Analysis in Punta Gorda, FL | House of Rose Aesthetics';
+const pageTitle = 'Skin Imaging & Analysis in Punta Gorda | House of Rose';
 const pageDescription =
-  data.seoDescription ??
-  'Advanced skin imaging at House of Rose Aesthetics in Punta Gorda, FL. Multi-spectrum imaging helps identify pigmentation, texture, pores, fine lines, hydration cues, and sun damage so your treatment plan starts with evidence.';
+  'Multi-spectrum skin imaging in Punta Gorda offers a closer look at pigmentation, pores, texture, hydration cues, fine lines, and visible sun exposure.';
 
-const FALLBACK_STEPS: SkinAnalysisStep[] = [
+const steps: SkinAnalysisStep[] = [
   {
     n: '01',
     title: 'Take the images',
@@ -98,26 +34,17 @@ const FALLBACK_STEPS: SkinAnalysisStep[] = [
   },
   {
     n: '02',
-    title: 'Review the details',
+    title: 'Look closely',
     body: 'Imaging under standard, cross-polarized, and UV light helps us look more closely at pigmentation, pores, texture, fine lines, hydration cues, and visible signs of sun exposure.',
   },
   {
     n: '03',
-    title: 'Talk through a plan',
-    body: 'We review the images with you, answer your questions, and discuss which concerns make sense to address first.',
+    title: 'Review the findings',
+    body: 'We review the photographs with you and answer your questions about the visible patterns.',
   },
 ];
 
-const FALLBACK_LOOKS_AT = [
-  'Pigmentation & sun damage',
-  'Texture & smoothness',
-  'Pores & congestion',
-  'Fine lines & wrinkles',
-  'Hydration cues',
-  'Firmness & laxity',
-];
-
-const FALLBACK_CONCERN_LINKS: SkinAnalysisConcern[] = [
+const concernLinks: SkinAnalysisConcern[] = [
   { title: 'Fine Lines & Laxity', slug: 'fine-lines-laxity' },
   { title: 'Acne Scarring', slug: 'acne-scarring' },
   { title: 'Sun Damage', slug: 'sun-damage' },
@@ -126,43 +53,26 @@ const FALLBACK_CONCERN_LINKS: SkinAnalysisConcern[] = [
   { title: 'Texture', slug: 'texture' },
 ];
 
-const FALLBACK_FAQS: SkinAnalysisFaq[] = [
+const faqs: SkinAnalysisFaq[] = [
   {
     q: 'Do I need a skin analysis before treatment?',
     a: 'No. It is not required for every appointment. The analysis can be helpful when you are unsure where to begin or want a clearer baseline before choosing a skin treatment.',
   },
   {
-    q: 'What does the skin imaging show?',
-    a: 'The imaging helps evaluate visible and subsurface patterns such as pigmentation, sun damage, pores, texture, fine lines, wrinkles, hydration cues, and overall skin quality. The results are reviewed by your provider and used for treatment planning, not as a medical diagnosis.',
-  },
-  {
-    q: 'Can the scan track before-and-after progress?',
-    a: 'Yes. The scan creates a baseline that can be compared over time, which is especially helpful for advanced skin treatments, corrective skincare, acne care, pigmentation work, and long-term skin maintenance.',
-  },
-  {
     q: 'How long does it take?',
-    a: 'Taking the images only takes a few minutes. We spend the rest of the visit walking through what we see, answering your questions, and discussing possible next steps.',
+    a: 'Taking the images takes a few minutes. The rest of the visit is used to review what appears in them and answer your questions.',
   },
   {
     q: 'Is skin imaging uncomfortable?',
-    // Advanced skin imaging is non-invasive photographic capture with no device contact, so there is
-    // genuinely nothing to recover from. Creative System Book 1 §12 permits "no downtime" when it
-    // is true for the exact procedure and reviewed. Do not copy this line to a treatment page.
-    // drift-guard-ok: non-invasive imaging, no downtime is factually accurate and reviewed
-    a: 'No. It is non-invasive, with no needles and no downtime. We capture images, review the findings with you, and explain what the analysis means for your plan.',
+    a: 'No. It is non-invasive and does not use needles. We take the images and review them with you.',
   },
   {
     q: 'What happens to my photos?',
-    a: 'Your images are kept private and used only to inform your personal treatment plan. They are not shared or published without your explicit permission.',
+    a: 'Your images are kept private and are not shared or published without your explicit permission.',
   },
 ];
 
-const steps = data.steps?.length ? data.steps : FALLBACK_STEPS;
-const looksAt = data.looksAt?.length ? data.looksAt : FALLBACK_LOOKS_AT;
-const concernLinks = data.concernLinks?.length ? data.concernLinks : FALLBACK_CONCERN_LINKS;
-const faqs = data.faqs?.length ? data.faqs : FALLBACK_FAQS;
-
-const faqSchema = faqPage(faqs.map((faq) => ({ question: faq.q ?? '', answer: faq.a ?? '' })));
+const faqSchema = faqPage(faqs.map((faq) => ({ question: faq.q, answer: faq.a })));
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: siteUrl },
   { name: 'Advanced Skin Imaging & Analysis', item: canonicalURL.toString() },
@@ -173,7 +83,7 @@ const serviceSchema = service(
     description: pageDescription,
     url: canonicalURL.toString(),
     image: new URL('/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp', siteUrl).toString(),
-    serviceType: 'Advanced skin imaging and treatment planning',
+    serviceType: 'Multi-spectrum skin imaging',
     offerUrl: SKIN_ANALYSIS_BOOKING_URL,
   },
   siteUrl,
@@ -191,37 +101,33 @@ const serviceSchema = service(
   <SchemaMarkup item={breadcrumb} slot="head" />
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
 
-  <div {...(data._id ? sbObjectId(data._id) : {})}>
   <!-- ── HERO ─────────────────────────────────────────────────────── -->
   <Hero
-    title={data.heroTitle ?? "Advanced skin imaging gives you a clearer place to start."}
-    kicker={data.heroKicker ?? "Advanced Skin Imaging · Punta Gorda"}
-    description={data.heroDescription ?? "In-studio imaging helps us take a closer look at pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure before you choose a skin treatment."}
+    title="See more than the mirror shows."
+    kicker="Skin Imaging · Punta Gorda"
+    description="Multi-spectrum photographs make pigmentation, texture, pores, fine lines, hydration cues, and visible sun exposure easier to examine before you choose a skin service."
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: data.heroCtaPrimaryText ?? 'Book a Skin Analysis', href: SKIN_ANALYSIS_BOOKING_URL }}
-    ctaSecondary={{ text: data.heroCtaSecondaryText ?? 'View Services', href: '/services/' }}
+    ctaPrimary={{ text: 'Book a Skin Analysis', href: SKIN_ANALYSIS_BOOKING_URL }}
+    ctaSecondary={{ text: 'View Services', href: '/services/' }}
     backgroundImage="/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp"
     backgroundSrcset="/images/editorial/skin-analysis/skin-texture-study-v1-800.webp 800w, /images/editorial/skin-analysis/skin-texture-study-v1-1536.webp 1536w"
     backgroundSizes="100vw"
     imageAlt="Editorial close-up showing natural skin texture, fine lines, pores, and pigmentation"
-    titleField="heroTitle"
-    kickerField="heroKicker"
-    descriptionField="heroDescription"
   />
 
   <!-- ── WHAT IT IS ───────────────────────────────────────────────── -->
   <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-      <span class="kicker" {...sbFieldPath('whatKicker')}>{data.whatKicker ?? "What It Is"}</span>
-      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath('whatHeading')}>
-        {data.whatHeading ?? "A closer look before you choose a treatment."}
+      <span class="kicker">What it shows</span>
+      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
+        What the mirror cannot show clearly.
       </h2>
-      <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4" {...sbFieldPath('whatPara1')}>
-        {data.whatPara1 ?? "It can be hard to tell what your skin needs from the mirror alone. Advanced imaging gives us another way to look at pigmentation, texture, pores, hydration cues, and visible sun exposure."}
+      <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4">
+        Controlled lighting gives us another way to examine pigmentation, texture, pores, hydration cues, fine lines, and visible sun exposure.
       </p>
-      <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]" {...sbFieldPath('whatPara2')}>
-        {data.whatPara2 ?? "We use those images to guide the conversation, not to make a diagnosis. The scan supports provider judgment and helps explain why one option may fit your goals better than another."}
+      <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]">
+        The photographs provide a visual baseline. They are not a medical diagnosis.
       </p>
     </div>
     <div class="relative min-h-[340px] bg-charcoal-lighter">
@@ -242,17 +148,17 @@ const serviceSchema = service(
   <section class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[640px] mb-12">
-        <span class="kicker" {...sbFieldPath('howKicker')}>{data.howKicker ?? "How It Works"}</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2" {...sbFieldPath('howHeading')}>
-          {data.howHeading ?? "Here's how the visit works."}
+        <span class="kicker">The visit</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">
+          Three clear steps.
         </h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gold-metal/10">
-        {steps.map((step, i) => (
+        {steps.map((step) => (
           <div class="bg-charcoal-light p-8">
-            <span class="font-serif text-gold text-[28px]" {...sbFieldPathParts('steps', i, 'n')}>{step.n}</span>
-            <h3 class="font-serif text-[21px] text-ink mt-2 mb-3" {...sbFieldPathParts('steps', i, 'title')}>{step.title}</h3>
-            <p class="text-muted text-[14px] leading-[1.7]" {...sbFieldPathParts('steps', i, 'body')}>{step.body}</p>
+            <span class="font-serif text-gold text-[28px]">{step.n}</span>
+            <h3 class="font-serif text-[21px] text-ink mt-2 mb-3">{step.title}</h3>
+            <p class="text-muted text-[14px] leading-[1.7]">{step.body}</p>
           </div>
         ))}
       </div>
@@ -260,31 +166,10 @@ const serviceSchema = service(
   </section>
 
   <!-- ── WHAT WE LOOK AT ──────────────────────────────────────────── -->
-  <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-[clamp(32px,5vw,72px)] items-center">
-      <div>
-        <span class="kicker" {...sbFieldPath('lookKicker')}>{data.lookKicker ?? "What We Look At"}</span>
-        <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('lookHeading')}>
-          {data.lookHeading ?? "What the images can help us see."}
-        </h2>
-        <p class="text-muted text-[15px] leading-[1.75] max-w-[460px]" {...sbFieldPath('lookPara')}>
-          {data.lookPara ?? "We'll explain each marker in plain language and connect it to the concerns you brought up. You can ask questions as we go."}
-        </p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
-        {looksAt.map((item, i) => (
-          <div class="bg-charcoal p-6">
-            <span class="text-ink text-[15px]" {...sbFieldPathParts('looksAt', i)}>{item}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- ── WHY IT MATTERS ───────────────────────────────────────────── -->
   <section
     class="on-dark relative py-[clamp(72px,10vw,140px)] px-6 bg-cover bg-center"
-    style="background-image: url('/images/optimized/actual-reception-1400.webp');"
+    style="background-image: url('/images/optimized/actual-reception-1400-light.webp');"
   >
     <!-- Warm walnut gradient scrim — same AA-verified treatment as the homepage photo
          bands. Inline style so it can't be Tailwind-purged; every stop clears AA for
@@ -294,12 +179,12 @@ const serviceSchema = service(
       style="background:linear-gradient(180deg,rgba(44,31,22,0.86) 0%,rgba(44,31,22,0.92) 50%,rgba(44,31,22,0.88) 100%);"
     ></div>
     <div class="relative z-10 max-w-[680px] mx-auto text-center">
-      <span class="kicker text-gold" {...sbFieldPath('whyKicker')}>{data.whyKicker ?? "Why It Matters"}</span>
-      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6" {...sbFieldPath('whyHeading')}>
-        {data.whyHeading ?? "A clearer conversation about your skin."}
+      <span class="kicker text-gold">Why it matters</span>
+      <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ivory leading-tight mt-2 mb-6">
+        A clearer visual record.
       </h2>
-      <p class="text-ivory text-[15px] leading-[1.8] max-w-[600px] mx-auto" {...sbFieldPath('whyPara')}>
-        {data.whyPara ?? "A baseline makes it easier to focus on the concern that matters most to you and avoid treatments that do not belong in your plan. Future images can also help you and your provider discuss visible changes over time."}
+      <p class="text-ivory text-[15px] leading-[1.8] max-w-[600px] mx-auto">
+        Imaging provides a consistent point of comparison for future photographs and makes subtle patterns easier to examine.
       </p>
     </div>
   </section>
@@ -307,16 +192,16 @@ const serviceSchema = service(
   <!-- ── FROM ANALYSIS TO PLAN ────────────────────────────────────── -->
   <section class="bg-charcoal-light py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[960px] mx-auto text-center">
-      <span class="kicker" {...sbFieldPath('planKicker')}>{data.planKicker ?? "From Analysis to Plan"}</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5" {...sbFieldPath('planHeading')}>
-        {data.planHeading ?? "Match what we see to a sensible next step."}
+      <span class="kicker">Explore by concern</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-5">
+        Continue by concern.
       </h2>
-      <p class="text-muted text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10" {...sbFieldPath('planPara')}>
-        {data.planPara ?? "Explore the concerns below to learn about common options, or bring your questions to the appointment and let us help you narrow the list."}
+      <p class="text-muted text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
+        Read about the concern you notice, or bring your photographs and questions to the appointment.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        {concernLinks.map((c, i) => (
-          <a href={`/concerns/${c.slug}/`} class="border border-gold-metal/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors" {...sbFieldPathParts('concernLinks', i, 'title')}>
+        {concernLinks.map((c) => (
+          <a href={`/concerns/${c.slug}/`} class="border border-gold-metal/30 text-ink/85 text-[12px] tracking-[0.16em] uppercase px-5 py-3 hover:border-gold hover:text-gold transition-colors">
             {c.title}
           </a>
         ))}
@@ -327,15 +212,15 @@ const serviceSchema = service(
   <!-- ── FAQ ──────────────────────────────────────────────────────── -->
   <section class="bg-charcoal py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[760px] mx-auto">
-      <span class="kicker" {...sbFieldPath('faqKicker')}>{data.faqKicker ?? "Questions"}</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-10" {...sbFieldPath('faqHeading')}>
-        {data.faqHeading ?? "Good to know."}
+      <span class="kicker">Questions</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-10">
+        Before you book.
       </h2>
       <div class="divide-y divide-white/8 border-t border-ink/8">
-        {faqs.map((faq, i) => (
+        {faqs.map((faq) => (
           <div class="py-7">
-            <h3 class="text-ink text-[16px] mb-2.5" {...sbFieldPathParts('faqs', i, 'q')}>{faq.q}</h3>
-            <p class="text-muted text-[14px] leading-[1.75]" {...sbFieldPathParts('faqs', i, 'a')}>{faq.a}</p>
+            <h3 class="text-ink text-[16px] mb-2.5">{faq.q}</h3>
+            <p class="text-muted text-[14px] leading-[1.75]">{faq.a}</p>
           </div>
         ))}
       </div>
@@ -345,12 +230,12 @@ const serviceSchema = service(
   <!-- ── CTA ──────────────────────────────────────────────────────── -->
   <section id="consultation" class="bg-charcoal-light py-[clamp(56px,8vw,96px)] px-6 border-t border-gold-metal/10 scroll-mt-24">
     <div class="max-w-[640px] mx-auto text-center">
-      <span class="kicker" {...sbFieldPath('ctaKicker')}>{data.ctaKicker ?? "Begin Here"}</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5" {...sbFieldPath('ctaHeading')}>
-        {data.ctaHeading ?? "Want a closer look at your skin?"}
+      <span class="kicker">Skin analysis</span>
+      <h2 id="skin-analysis-form-heading" class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
+        Request a skin imaging appointment.
       </h2>
-      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]" {...sbFieldPath('ctaPara')}>
-        {data.ctaPara ?? "Leave your details and we'll reach out to arrange advanced skin imaging in Punta Gorda. You can review the images, ask questions, and decide what—if anything—you want to do next."}
+      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
+        Send your contact details, or reserve a time online.
       </p>
       <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
         In studio · Punta Gorda
@@ -360,24 +245,27 @@ const serviceSchema = service(
         method="POST"
         action="/.netlify/functions/lead-submit"
         data-netlify="true"
+        netlify-honeypot="bot-field"
         class="max-w-[440px] mx-auto text-left flex flex-col gap-4"
+        aria-labelledby="skin-analysis-form-heading"
       >
         <input type="hidden" name="form-name" value="skin-analysis" />
         <input type="hidden" name="source-page" value="/skin-analysis/" />
         <p class="hidden" aria-hidden="true">
-          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          <label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
         </p>
-        <label for="sa-name" class="sr-only">Name</label>
+        <p class="text-muted text-[12px]">Name and email are required.</p>
+        <label for="sa-name" class="text-gold text-[11px] tracking-[0.2em] uppercase">Name</label>
         <input id="sa-name" name="name" type="text" required autocomplete="name" placeholder="Your name"
-          class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none transition-colors" />
-        <label for="sa-email" class="sr-only">Email</label>
-        <input id="sa-email" name="email" type="email" required autocomplete="email" placeholder="Email address"
-          class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none transition-colors" />
-        <label for="sa-phone" class="sr-only">Phone (optional)</label>
-        <input id="sa-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone (optional)"
-          class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none transition-colors" />
+          class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-colors" />
+        <label for="sa-email" class="text-gold text-[11px] tracking-[0.2em] uppercase">Email</label>
+        <input id="sa-email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="Email address"
+          class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-colors" />
+        <label for="sa-phone" class="text-gold text-[11px] tracking-[0.2em] uppercase">Phone <span class="normal-case tracking-normal text-muted">(optional)</span></label>
+        <input id="sa-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone number"
+          class="w-full bg-transparent border border-ink/25 text-ink px-4 py-3 text-[15px] placeholder:text-ink/70 focus:border-gold focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-colors" />
         <input type="hidden" name="service-interest" value="Advanced Skin Imaging & Analysis" />
-        <button type="submit" class="btn-gold w-full" {...sbFieldPath('ctaPrimaryText')}>{data.ctaPrimaryText ?? "Request a Skin Analysis"}</button>
+        <button type="submit" class="btn-gold w-full">Request a Skin Analysis</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
           Prefer to reserve online?
           <BookingLink
@@ -388,10 +276,10 @@ const serviceSchema = service(
             class="text-gold hover:underline"
             label="Book a skin analysis"
           />.
-          We'll only use your details to arrange your analysis.
+          We only use your details to arrange your analysis. Read our
+          <a href="/privacy-policy/" class="text-gold hover:underline">privacy policy</a>.
         </p>
       </form>
     </div>
   </section>
-  </div>
 </BaseLayout>

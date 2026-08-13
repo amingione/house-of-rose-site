@@ -15,31 +15,30 @@ import { personProfile } from '@/lib/structuredData';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/amber/', siteURL).toString();
-const ogImage = new URL('/logos/house-of-rose-monogram/hr-monogram-gold.png', siteURL).toString();
+const ogImage = new URL('/images/providers/amber-profile-1122.webp', siteURL).toString();
 
 const PHONE_E164 = '+18449417673';
-const PHONE_DISPLAY = '844-941-ROSE (7673)';
-const EMAIL = 'amber@houseofrosefl.com';
+const PHONE_DISPLAY = '(844) 941-7673';
+const EMAIL = 'info@houseofrosefl.com';
 const WEBSITE = 'houseofrosefl.com';
-const ADDRESS_LINE1 = '525 E. Olympia Ave. Unit 9';
+const ADDRESS_LINE1 = '525 E Olympia Ave, Unit 9';
 const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
 const MAPS_URL =
-  'https://maps.google.com/?q=525+E.+Olympia+Ave+Unit+9,+Punta+Gorda,+FL+33950';
+  'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950';
 
 const personLd = personProfile({
-  name: 'Amber Mingione',
-  jobTitle: 'Advanced Aesthetics Specialist',
+  name: 'Amber Mingione, Licensed Esthetician',
+  jobTitle: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist · Co-Owner',
   telephone: PHONE_E164,
   email: EMAIL,
   url: canonicalURL,
   image: ogImage,
   knowsAbout: [
     'Microneedling with the Procell Therapies device',
-    'Morpheus8 Microneedling',
-    'PRF (Platelet-Rich Fibrin)',
+    'Topical PRF (Platelet-Rich Fibrin)',
     'Glo2Facial',
     'Dermaplaning',
-    'Face Reality Acne Expert — Acne Bootcamp',
+    'Face Reality Acne Program',
   ],
 }, siteURL.toString());
 ---
@@ -50,21 +49,20 @@ const personLd = personProfile({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonicalURL} />
-    <title>Amber Mingione | House of Rose Aesthetics</title>
+    <title>Amber Mingione, Licensed Esthetician | House of Rose</title>
     <meta
       name="description"
-      content="Amber Mingione — Advanced Aesthetics Specialist at House of Rose Aesthetics in Punta Gorda, FL. Tap to save my contact or book your appointment."
+      content="Contact Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics in Punta Gorda, Florida."
     />
-    <meta property="og:title" content="Amber Mingione | House of Rose Aesthetics" />
+    <meta property="og:title" content="Amber Mingione, Licensed Esthetician | House of Rose" />
     <meta
       property="og:description"
-      content="Advanced Aesthetics Specialist — Microneedling, topical PRF, and advanced facials. Tap to save my contact."
+      content="Contact details for Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics."
     />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
-    <script is:inline type="text/javascript" src="//script.crazyegg.com/pages/scripts/0133/4876.js" async="async"></script>
-    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold.png" />
+    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold-192.png" />
     <SchemaMarkup item={personLd} />
 
     <style>
@@ -247,20 +245,20 @@ const personLd = personProfile({
     <main class="card">
       <!-- Photo -->
       <div class="avatar">
-        <img src="/images/providers/Amber.webp" alt="Amber Mingione, House of Rose Aesthetics" width="128" height="128" />
+        <img src="/images/providers/amber-card-256.webp" alt="Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics" width="128" height="128" decoding="async" />
       </div>
 
       <!-- Crest -->
       <header class="crest">
-        <img src="/logos/house-of-rose-monogram/hr-monogram-gold.png" alt="House of Rose Aesthetics monogram" width="96" height="110" />
+        <img src="/logos/house-of-rose-monogram/hr-monogram-gold-192.webp" alt="House of Rose Aesthetics monogram" width="96" height="110" decoding="async" />
         <div class="wordmark">House of Rose</div>
         <div class="sub-box">Aesthetics</div>
       </header>
 
       <!-- Identity -->
       <section class="identity">
-        <h1 class="name">Amber Mingione</h1>
-        <p class="role">Advanced Aesthetics Specialist</p>
+        <h1 class="name">Amber Mingione, Licensed Esthetician</h1>
+        <p class="role">Licensed Esthetician · Co-Owner</p>
       </section>
 
       <!-- Contact rows -->
@@ -296,22 +294,24 @@ const personLd = personProfile({
 
       <!-- Actions -->
       <div class="actions">
-        <a class="save" id="saveBtn" href="/amber.vcf">+ Save My Contact</a>
-        <a class="book" href={`tel:${PHONE_E164}`}>Call to Book</a>
+        <a class="save" id="saveBtn" href="/amber.vcf">Save Contact</a>
+        <a class="book" href={`tel:${PHONE_E164}`}>Call House of Rose</a>
       </div>
 
       <!-- Services + credentials -->
       <footer class="meta">
         <div class="divider" aria-hidden="true">✦</div>
         <div class="services">
-          <b>Services</b>
-          Microneedling · Morpheus8 RF Microneedling<br />
-          Topical PRF · Glo2Facial<br />
-          Dermaplaning · LED Therapy<br />
-          Face Reality Acne Expert — Acne Bootcamp
+          <b>Current Work</b>
+          Microneedling with the Procell Therapies device<br />
+          Topical PRF · Glo2Facial · Dermaplaning<br />
+          Face Reality Acne Program
         </div>
         <div class="creds">
-          Licensed Esthetician · Medical Assistant · Phlebotomist
+          Licensed Esthetician · Medical Assistant · Certified Phlebotomist
+        </div>
+        <div class="creds">
+          Medical Director: Joshua Shaw, MD · FL Lic. ME136232
         </div>
       </footer>
     </main>

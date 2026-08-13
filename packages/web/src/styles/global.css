@@ -108,7 +108,9 @@
   /* Focus-visible states for accessibility (WCAG 2.1 AA) */
   .btn-gold:focus-visible,
   .btn-outline-gold:focus-visible,
-  .btn-outline-white:focus-visible {
+  .btn-outline-white:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
     @apply outline-2 outline-offset-2 outline-gold ring-2 ring-gold/30;
   }
 

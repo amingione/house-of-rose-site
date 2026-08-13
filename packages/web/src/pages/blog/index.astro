@@ -6,8 +6,11 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_BLOG_POSTS_QUERY, type BlogPost } from '@/lib/queries';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 import { alignPublicContent } from '@/lib/publicCopy';
+import { getPublicBlogTitle } from '@/lib/publicBlogContent';
 
 const posts = alignPublicContent(await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY));
+const heroImage = '/images/optimized/actual-welcome-800.webp';
+const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -16,18 +19,26 @@ function formatDate(iso: string) {
     year: 'numeric',
   });
 }
+
 ---
 
 <BaseLayout
   title="Medical Aesthetics Journal | House of Rose Punta Gorda FL"
-  description="Expert insights on microneedling, PRF, IV hydration, GLP-1, and skin health from House of Rose Aesthetics — Punta Gorda, FL."
+  description="Articles about microneedling, PRF, injectables, IV hydration, and treatment decisions from House of Rose Aesthetics in Punta Gorda."
+  preloadImage={heroImage}
+  preloadImageSrcset={heroImageSrcset}
+  preloadImageSizes="100vw"
 >
   <Hero
-    title="The Rose Journal"
-    kicker="Insights & Education"
-    description="Plain-language guidance on treatment planning, skin health, wellness services, and what to ask before an appointment."
+    title="Read before you decide."
+    kicker="The Journal"
+    description="Clear explanations of what different services do, where they differ, and what is worth asking before an appointment."
     size="small"
-    backgroundImage="/images/welcome-house-of-rose.webp"
+    backgroundImage={heroImage}
+    backgroundSrcset={heroImageSrcset}
+    backgroundSizes="100vw"
+    backgroundWidth={1400}
+    backgroundHeight={1050}
     imageAlt="The reception area inside House of Rose Aesthetics"
   />
 
@@ -47,7 +58,7 @@ function formatDate(iso: string) {
                   <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
                     <img
                       src={urlFor(post.featuredImage).width(600).height(450).fit('crop').url()}
-                      alt={post.featuredImage.alt ?? post.title}
+                      alt={post.featuredImage.alt ?? getPublicBlogTitle(post)}
                       width={600}
                       height={450}
                       loading="lazy"
@@ -56,7 +67,7 @@ function formatDate(iso: string) {
                   </div>
                 ) : (
                   <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
-                    <img src={DEFAULT_JOURNAL_IMAGE} alt={post.title} width={600} height={450} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={DEFAULT_JOURNAL_IMAGE} alt={getPublicBlogTitle(post)} width={600} height={450} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                 )}
 
@@ -70,15 +81,12 @@ function formatDate(iso: string) {
                     )}
                   </div>
 
-                  <h2 class="font-serif text-ink text-[20px] leading-snug mb-3 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>
-                    {post.title}
+                  <h2
+                    class="font-serif text-ink text-[20px] leading-snug mb-3 group-hover:text-gold transition-colors"
+                    {...(post.slug === 'is-morpheus8-safe' ? {} : sbFieldPath('title'))}
+                  >
+                    {getPublicBlogTitle(post)}
                   </h2>
-
-                  {post.excerpt && (
-                    <p class="text-muted text-[13px] leading-relaxed line-clamp-3 mb-4" {...sbFieldPath('excerpt')}>
-                      {post.excerpt}
-                    </p>
-                  )}
 
                   <div class="flex items-center justify-between">
                     <time class="text-muted text-[11px] tracking-[0.15em]" datetime={post.publishedAt}>
@@ -101,15 +109,15 @@ function formatDate(iso: string) {
   <!-- CTA -->
   <section class="bg-charcoal-light py-16 px-6 border-t border-ink/5">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Ready to Begin?</span>
+      <span class="kicker">Questions</span>
       <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-4">
-        Every treatment starts with a conversation.
+        Questions about an article?
       </h2>
       <p class="text-muted text-[15px] mb-8">
-        Book a private consultation at House of Rose in Punta Gorda, FL.
+        Contact the practice with a question about a service.
       </p>
       <a href="/consultation/" class="btn-gold">
-        Request a Consultation
+        Request a consultation
       </a>
     </div>
   </section>

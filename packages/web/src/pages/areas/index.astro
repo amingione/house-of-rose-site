@@ -5,9 +5,8 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_LOCAL_AREAS_QUERY, type LocalArea } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
 
-const areas = alignPublicContent(await sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY));
+const areas = await sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -19,15 +18,15 @@ const breadcrumb = breadcrumbList([
 
 <BaseLayout
   title="Areas We Serve | House of Rose Aesthetics, Punta Gorda FL"
-  description="Advanced aesthetics and wellness for Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles."
+  description="House of Rose Aesthetics is located in Punta Gorda and serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Areas We Serve</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Advanced aesthetics across Southwest Florida</h1>
-      <p class="text-ink/80 text-[16px] max-w-[720px] leading-relaxed">From our Punta Gorda studio, House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">One practice in Punta Gorda.</h1>
+      <p class="text-ink/80 text-[16px] max-w-[720px] leading-relaxed">House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles from 525 E Olympia Ave, Unit 9.</p>
     </div>
   </section>
 
@@ -35,14 +34,13 @@ const breadcrumb = breadcrumbList([
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
       {areas.map((area) => (
         <a href={`/areas/${area.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(area._id)}>
-          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{area.title}</h2>
-          {area.city && <p class="text-gold text-[11px] tracking-[0.2em] uppercase mb-3"><span {...sbFieldPath('city')}>{area.city}</span>{area.region ? ' · ' : ''}{area.region && <span {...sbFieldPath('region')}>{area.region}</span>}</p>}
-          {area.intro && <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPath('intro')}>{area.intro}</p>}
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">Explore</span>
+          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('city')}>{area.city}</h2>
+          {area.region && <p class="text-gold text-[11px] tracking-[0.2em] uppercase mb-3" {...sbFieldPath('region')}>{area.region}</p>}
+          <span class="learn-more group-hover:text-gold mt-4 inline-block">View area</span>
         </a>
       ))}
       {areas.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Area pages are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No area guides are currently available.</p>
       )}
     </div>
   </section>

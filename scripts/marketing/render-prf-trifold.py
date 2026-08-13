@@ -3,6 +3,10 @@
 
 from __future__ import annotations
 
+raise SystemExit(
+    "VOICE RESET: PRF brochure rendering is disabled until PRF Bio-Filler/EZ Gel identity and brochure claims are reverified."
+)
+
 from io import BytesIO
 from pathlib import Path
 

@@ -75,6 +75,13 @@ export interface TreatmentProviderScope {
   disclaimer: string;
 }
 
+/** Public provider identity projected from the referenced Sanity provider. */
+export interface TreatmentProviderAttribution {
+  _id: string;
+  publicName?: string;
+  profileSlug?: string | null;
+}
+
 export interface TreatmentPriceRange {
   minPrice: number;
   maxPrice?: number;
@@ -94,7 +101,7 @@ export interface TreatmentPageFields {
 // ─── Display helpers ──────────────────────────────────────────────────────────
 
 const DOWNTIME_LABELS: Record<DowntimeLevel, string> = {
-  none: 'No downtime',
+  none: 'None listed',
   minimal: 'Minimal downtime',
   moderate: 'Moderate downtime',
   significant: 'Planned downtime',
@@ -112,6 +119,20 @@ const PERFORMED_BY_LABELS: Record<PerformedBy, string> = {
 
 export function performedByLabel(performedBy: PerformedBy): string {
   return PERFORMED_BY_LABELS[performedBy];
+}
+
+/**
+ * Returns a named RN only when the public name includes the required licence
+ * type. A provider title such as "Injector" is not a credential and must not
+ * replace the safe generic scope label.
+ */
+export function verifiedRnProviderName(
+  provider: TreatmentProviderAttribution | undefined,
+  performedBy: PerformedBy,
+): string | undefined {
+  if (performedBy !== 'rn') return undefined;
+  const publicName = provider?.publicName?.trim();
+  return publicName && /,\s*RN$/i.test(publicName) ? publicName : undefined;
 }
 
 const PRICE_UNIT_LABELS: Record<PriceUnit, string> = {

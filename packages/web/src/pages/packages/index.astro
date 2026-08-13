@@ -4,23 +4,23 @@ import Hero from '@/components/Hero.astro';
 import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
-import { alignPublicContent } from '@/lib/publicCopy';
 
 // Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
 // emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
 
-const packages = alignPublicContent(await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY));
+const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
 const heroImage = '/images/optimized/actual-welcome-1400.webp';
 ---
 
 <BaseLayout
   title="Treatment Series & Packages in Punta Gorda, FL"
-  description="Explore verified treatment series and packages at House of Rose in Punta Gorda. Your provider confirms candidacy, sequencing, and current investment."
+  description="Review current treatment series and packages at House of Rose Aesthetics in Punta Gorda, including the number of visits, timing, and price."
   preloadImage={heroImage}
 >
   <Hero
     title="Treatment Series & Packages"
-    kicker="Consultation-Led Planning"
+    kicker="House of Rose Aesthetics"
+    description="Current multi-visit series and combined-service packages."
     size="small"
     backgroundImage={heroImage}
     imageAlt="A treatment room at House of Rose Aesthetics"
@@ -29,12 +29,12 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[700px] mb-12">
-        <span class="kicker">Series &amp; Combinations</span>
+        <span class="kicker">Current options</span>
         <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-4">
-          When more than one visit makes sense.
+          What each package includes.
         </h2>
         <p class="text-muted text-[15px] leading-[1.75]">
-          Some goals call for a series, while others benefit from compatible services used together. Your provider will confirm candidacy, timing, and the current investment before you begin.
+          Each option names the service, number of visits, and timing. A price appears only when it matches the current services menu.
         </p>
       </div>
 
@@ -53,12 +53,12 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
   <!-- Booking CTA -->
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Questions About a Package?</span>
+      <span class="kicker">Questions</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Talk through the schedule before you commit.
+        Ask about a series.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Review your goals, candidacy, timing, and what each visit includes with the appropriate provider.
+        Call for current availability, visit count, timing, and price.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
