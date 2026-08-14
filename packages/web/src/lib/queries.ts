@@ -545,7 +545,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     description,
     whoItsFor,
     "concerns": concerns[
-      @->status != "parked" &&
+      @->status == "live" &&
       defined(@->slug.current) &&
       !(@->slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})
     ]->{
@@ -889,7 +889,7 @@ export const ALL_SHOP_BRANDS_QUERY = /* groq */ `
 `;
 
 export const ALL_CONCERNS_QUERY = /* groq */ `
-  *[_type == "concern" && status != "parked" && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "concern" && status == "live" && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -899,7 +899,7 @@ export const ALL_CONCERNS_QUERY = /* groq */ `
 `;
 
 export const CONCERN_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "concern" && status != "parked" && slug.current == $slug && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})][0] {
+  *[_type == "concern" && status == "live" && slug.current == $slug && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})][0] {
     _id,
     title,
     "slug": slug.current,
@@ -945,7 +945,7 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_CONCERN_SLUGS_QUERY = /* groq */ `
-  *[_type == "concern" && status != "parked" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})]{ "slug": slug.current }
+  *[_type == "concern" && status == "live" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})]{ "slug": slug.current }
 `;
 
 // Slug arrays for Astro getStaticPaths()

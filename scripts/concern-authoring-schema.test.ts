@@ -2,6 +2,12 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { concern } from '../packages/studio/schemas/concern.ts';
+import {
+  ALL_CONCERNS_QUERY,
+  ALL_CONCERN_SLUGS_QUERY,
+  CONCERN_BY_SLUG_QUERY,
+  SERVICE_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 function concernField(name: string) {
   return concern.fields.find((field) => field.name === name);
@@ -22,4 +28,25 @@ test('concern fields replaced by reviewed website content remain visible but are
     assert.match(String(field?.title), /not published/i, `${fieldName} must be labeled accurately.`);
     assert.match(String(field?.description), /(?:legacy|do not render|generated)/i);
   }
+});
+
+test('only the schema public status can generate or enter public concern routes', () => {
+  const status = concernField('status');
+  assert.ok(status && 'options' in status && Array.isArray(status.options?.list));
+  assert.deepEqual(
+    status.options.list.map((option) => option.value),
+    ['live', 'parked'],
+  );
+
+  for (const query of [ALL_CONCERNS_QUERY, CONCERN_BY_SLUG_QUERY, ALL_CONCERN_SLUGS_QUERY]) {
+    assert.match(query, /_type == "concern" && status == "live"/);
+    assert.doesNotMatch(query, /status != "parked"/);
+  }
+
+  const serviceConcernProjection = SERVICE_BY_SLUG_QUERY.match(
+    /"concerns": concerns\[([\s\S]*?)\]->/,
+  );
+  assert.ok(serviceConcernProjection?.[1], 'The service query must guard linked concerns.');
+  assert.match(serviceConcernProjection[1], /@->status == "live"/);
+  assert.doesNotMatch(serviceConcernProjection[1], /status != "parked"/);
 });
