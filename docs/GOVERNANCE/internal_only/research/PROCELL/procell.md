@@ -206,7 +206,11 @@ No — not every client is a candidate for every service. Active skin infection,
 - Discount language on a series ("% off," "deal," "sale"). State only a verified current appointment
   or series price, without value-positioning euphemisms or an invented lower bound.
 
-**Required guardrails on every surface:** "for the appearance of…," "designed to / supports / helps reveal," "many clients notice," "individual results vary," "not every client is a candidate," final candidacy/tier/combination confirmed by the licensed provider at consultation, new single-use cartridge every session, packages carry the Fla. Stat. 456.062 disclaimer, and the performing licensee is identified.
+**Place safeguards where they govern the content:** identify Amber Mingione, Licensed Esthetician when
+naming her; keep single-use-cartridge facts in visit or safety guidance; keep candidacy, material tier,
+and combinations with the provider; and put individual-variation language beside a results claim rather
+than forcing a stock phrase into every sentence. Use the applicable disclosure only if a future offer
+triggers Fla. Stat. 456.062.
 
 ---
 

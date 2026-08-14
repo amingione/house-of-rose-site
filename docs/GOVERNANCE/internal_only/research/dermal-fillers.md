@@ -1,7 +1,9 @@
 # Dermal Fillers (Hyaluronic-Acid Fillers) — Research Brief
 
 **Date:** 2026-07-13
-**Provider lane:** Diana, RN — injectables, under medical-director oversight. Provider-authority language is mandatory on every surface built from this brief.
+**Provider lane:** Diana Morrison, RN — injectables, under medical-director oversight. Name her with
+the RN credential wherever she is named; use treatment-planning authority where product, dose, area,
+or candidacy is actually being discussed rather than as repeated page boilerplate.
 **Status:** draft for Phase 3/4 consumption.
 **Sources:** see the `## Sources` list at the end. Pricing truth = local docs (`Diana_Pricing_Menu_Consolidated.md` + GlossGenius CSV). Web sources = mechanism, FDA approvals, candidacy, safety only — never pricing.
 

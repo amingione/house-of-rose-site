@@ -165,7 +165,10 @@ What will move price once set (for structuring the eventual menu):
 - Pricing remains unresolved. Publish no amount or lower-bound wording until an exact current
   GlossGenius listing is reconciled.
 
-**Required guardrails on any surface:** provider confirms final candidacy, serum choice, settings, and combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · identify the licensee performing the service.
+**Place safeguards where they carry information:** identify the licensed provider when naming her;
+keep serum choice, settings, combinations, and candidacy in consultation or safety guidance; and add
+individual-variation language only beside a results claim. Do not paste the whole block into a card,
+price row, or navigation reference.
 
 ---
 

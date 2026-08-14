@@ -166,9 +166,11 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 
 **Whose lane:** cross-cutting **front door**. It is *performed within* whichever consultation you're in and **routes** to the right provider — Amber (advanced facials, PRF **topical only**), Diana (injectables, IV, GLP-1), Brandy (basic/maintenance facials, facial waxing). The scan itself does not "belong" to one lane; the *destination* does. Never let the copy imply the analysis prescribes an injectable — that decision is Diana's, at consultation.
 
-**Required guardrails on every surface (from COMPLIANCE-COPY-RULES.md):**
-- "Not every client is a candidate." · "Individual outcomes vary." · Final candidacy/treatment/combinations confirmed by the licensed provider at consultation.
-- Include the compliance line (from the source PDF, recommended verbatim): *"This assessment is intended to support cosmetic consultation and treatment planning. It is not a medical diagnosis or a substitute for evaluation by a licensed medical provider."*
+**Place safeguards where the capability creates the need:** when explaining what the scan evaluates,
+state that it supports cosmetic consultation and is not medical diagnosis. Treatment recommendations
+belong with the licensed provider wherever the copy discusses next steps. Use candidacy and outcome-
+variation language only when making a candidacy or results claim; a booking link or factual device label
+does not need the full block.
 
 **Phrases to AVOID for this topic specifically:**
 - ❌ "diagnoses," "detects disease," "detects/screens for skin cancer," "detects melanoma" (the web literature mentions melanoma-detection claims for other devices — **do not import them**).

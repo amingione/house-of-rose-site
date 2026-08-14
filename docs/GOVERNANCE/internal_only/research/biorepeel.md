@@ -110,7 +110,10 @@ prices unless they first return to GlossGenius.
 - **Lane (provider-split):** Brandy, Licensed Esthetician provides the standalone and current series. Amber Mingione, Licensed Esthetician provides the verified advanced-service work. Use the current appointment matrix for body, acne-scarring, and Gold Spot choices; do not restore a historical add-on price. BioRePeel is not an injectable and involves no neurotoxin or filler.
 - **Never write (topic-specific):** "treats acne," "cures acne," "removes/erases scars," "eliminates," "permanent," "reverses aging," "anti-aging," "FDA-approved," "clinically proven" (unless citing a specific verifiable clearance — do not), any specific "% of scars filled" or efficacy statistic from clinic blogs, "guaranteed" results or downtime, "day spa." Do not claim the peel "delivers actives deep into the dermis" as a cure mechanism.
 - **Say instead:** "for the appearance of" acne marks/scars/texture, "the visible signs of sun damage," "designed to," "supports," "helps reveal," "many clients notice," "minimal to no downtime" (not "zero" as a promise). For pricing, use the exact current appointment or series amount from the canonical ledger.
-- **Required guardrails on every BioRePeel surface:** provider authority (final candidacy, variant, and combinations confirmed by the licensed provider at consultation & skin analysis) · "not every client is a candidate" · "individual outcomes vary" · packages/series carry the Fla. Stat. 456.062 disclaimer and identify the licensee performing the service.
+- **Place safeguards with the claim they govern:** identify Brandy, Licensed Esthetician or Amber
+  Mingione, Licensed Esthetician when naming the responsible provider; keep candidacy, variant, and
+  combinations in consultation or safety guidance; put variation beside a results claim; and use the
+  applicable disclosure only if an offer triggers Fla. Stat. 456.062.
 - **TCA framing:** it's accurate to name the 35% TCA face formula and biphasic mechanism (manufacturer-sourced); frame peeling as "minimal to light flaking," never "no peel at all" as an absolute.
 
 ## 11. Journey links
@@ -136,7 +139,9 @@ prices unless they first return to GlossGenius.
 - **The no-downtime advantage, honestly framed.** BioRePeel gives Punta Gorda / Charlotte County clients real resurfacing without disappearing for a week — ideal for the SW Florida lifestyle (events, boating, snowbird season) where a peeling face isn't an option. We describe it accurately: minimal-to-light flaking, not a miracle.
 - **A true ladder, not one product.** From Brandy's gentle light peels → **Brandy's standalone BioRePeel** → **Amber's BioRePeel add-on on an advanced service** → the advanced acne-scarring protocol (peel + microneedling) → body and gold spot variants, the client is matched to the right depth for their concern by a licensed provider — no upselling into the wrong tool.
 - **Advanced, provider-led, and unhurried.** BioRePeel sits in a genuinely advanced regenerative/corrective menu (Procell, microchanneling, topical PRF, Glo2Facial) that local basic-facial menus don't offer, delivered by an esthetician + RN assistant in a private studio with skin analysis at every consult. Walk-ins are welcome; appointments are recommended to reserve a time.
-- **Locally grounded and compliant.** Punta Gorda pricing calibrated to the market, honest limits stated up front, and every surface carries provider-authority and individual-results language — trust as a differentiator, not fine print.
+- **Locally grounded and compliant.** State the verified Punta Gorda appointment price plainly. Name
+  the responsible licensed provider when relevant, and place individual-variation language beside a
+  results claim rather than turning both into repeated fine print.
 
 ---
 

@@ -145,7 +145,10 @@ with a generic lower bound or discount language.
 - Pricing: state the verified standalone or add-on amount directly; never use deal, percentage-off,
   sale, or cheap framing.
 
-**Required guardrails on the surface:** provider authority ("final candidacy, combinations, and timing confirmed by the licensed provider at consultation & skin analysis"); "not every client is a candidate"; "individual outcomes vary." Single-use blade every session; never performed over active acne, inflamed, sunburned, infected, or broken skin. Series/package pricing carries the Fla. Stat. 456.062 disclaimer and identifies the performing licensee.
+**Place safeguards where they answer the visitor's question:** identify Amber Mingione, Licensed
+Esthetician when naming her; keep single-use-blade and active/inflamed/broken-skin cautions in visit or
+safety guidance; keep candidacy, combinations, and timing with the provider; and put variation beside a
+results claim. Use the applicable disclosure only if a future offer triggers Fla. Stat. 456.062.
 
 ## 11. Journey links
 

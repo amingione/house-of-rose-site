@@ -131,7 +131,11 @@ working menus, Sanity, or cost guides are not current commerce authority and mus
 "autologous" and "prepared from a small sample of your own blood." State the verified current
 appointment price directly rather than replacing it with a pricing euphemism.
 
-**Required guardrails on every surface:** provider confirms final candidacy/combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · new single-use cartridge every session · never needle sunburned/inflamed/infected/open skin · before/after or results claims carry "individual results vary" · packages/series carry the Fla. Stat. 456.062 disclaimer · clearly identify the licensee performing each service.
+**Place safeguards where they govern the content:** identify Amber Mingione, Licensed Esthetician and
+the medical-direction boundary on the canonical service page; keep single-use-cartridge and
+sunburned/inflamed/infected/open-skin cautions in visit or safety guidance; keep candidacy and
+combinations with the provider; and put variation beside results claims or consented cases. Use the
+applicable disclosure only if a future offer triggers Fla. Stat. 456.062.
 
 ## 11. Journey links
 

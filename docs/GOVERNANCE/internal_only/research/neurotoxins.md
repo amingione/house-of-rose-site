@@ -5,7 +5,13 @@
 **Status:** draft for Phase 3/4 consumption
 **Sources:** listed at the end
 
-> **Compliance frame for this whole brief.** Neurotoxins are prescription medical injectables. Every surface must carry provider authority (final candidacy, dosing, and area combinations are determined by the licensed injector, Diana RN, at consultation, under medical-director oversight), plus "not every client is a candidate" and "individual outcomes vary." FDA approvals for Botox and Daxxify are real and may be cited precisely (see §10); never imply approval for anything beyond the stated indication. Never write "anti-aging," "erase," "eliminate," "permanent," "guaranteed," "frozen-free guarantee," or "reverse aging." Neuromodulators are **cosmetic/medical treatments**, not a beauty gimmick — copy stays honest and understated.
+> **Compliance frame for this whole brief.** Neurotoxins are prescription medical injectables.
+> Identify Diana Morrison, RN and medical direction where clinical authority is described; keep final
+> candidacy, dosing, and area combinations with her. Put candidacy and outcome-variation language in
+> the sections that make those claims rather than in every card or link. FDA approvals for Botox and
+> Daxxify may be cited precisely (see §10); never imply approval beyond the stated indication. Never
+> write “anti-aging,” “erase,” “eliminate,” “permanent,” “guaranteed,” “frozen-free guarantee,” or
+> “reverse aging.”
 
 ---
 
@@ -189,7 +195,11 @@ bound. **No** discount language or membership pricing.
 - Any **membership / per-unit member pricing** ("$13.50/unit," "$13/unit," "$12.50/unit," Rose / Rose Gold / Black Rose) — these appear in the stale v2 PDF and are **permanently removed**. Never surface them.
 - Discount/sale language ("deal," "% off").
 
-**Required guardrails on every neurotoxin surface:** provider authority (candidacy, dosing, and area combinations determined by Diana, RN, under medical-director oversight, at consultation) · "not every client is a candidate" · "individual outcomes vary" · explicit pregnancy/breastfeeding and neuromuscular-condition contraindication callouts · consultation-first CTA (call, no online booking of injectables).
+**Place safeguards with the relevant decision:** use Diana Morrison, RN plus exact medical-director
+attribution on the canonical service page; keep candidacy, dosing, and area selection in consultation
+guidance; put pregnancy/breastfeeding and neuromuscular-condition cautions in safety content; and add
+variation beside results claims. Use the verified consultation booking path rather than implying direct
+treatment booking or repeating the full block on every mention.
 
 ---
 

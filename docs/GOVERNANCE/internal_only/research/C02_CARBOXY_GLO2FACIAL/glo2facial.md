@@ -168,7 +168,10 @@ add-on, lower-bound price, or needling finish from historical menus or Sanity fi
 - No **"medical-grade / FDA-approved / clinically proven"** shortcuts. If citing the OxyGeneo clinical study, cite it precisely (Diaz et al., JCAD 2017) and describe it honestly (small, 10-patient study).
 - Not a **"day spa"** treatment — it's advanced aesthetics.
 
-**Required guardrails on the surface:** provider confirms final candidacy/combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · packages/series carry the Fla. Stat. 456.062 disclaimer and identify the licensee performing the service.
+**Place safeguards where the content creates the need:** identify Amber Mingione, Licensed Esthetician
+when naming her; address candidacy and combinations in consultation or safety guidance; put variation
+beside an outcome claim; and include the applicable disclosure only if a future offer triggers Fla.
+Stat. 456.062. A factual appointment row does not need the entire block.
 
 ---
 

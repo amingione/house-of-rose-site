@@ -5,11 +5,11 @@
 **Status:** draft for Phase 3/4 consumption
 **Sources:** see the `## Sources` list at the end.
 
-> Compliance banner for every surface built from this brief: this is a **medically supervised
-> program**, physician-guided, with real candidacy screening. **No weight-loss guarantees. No "X
-> pounds" promises. No off-label claims.** Final candidacy, medication choice, dosing, and
-> combinations are confirmed by the licensed provider/physician at consultation. Not every client
-> is a candidate. Individual outcomes vary.
+> **Compliance boundary for this brief:** this is a medically supervised service under physician
+> oversight. Use that fact where the service or clinical decision is described; keep candidacy,
+> medication choice, dosing, and combinations with the licensed provider. Never publish weight-loss
+> guarantees, “X pounds” promises, or off-label claims. Put individual-variation language beside an
+> outcome claim rather than repeating a full banner on every mention.
 
 ---
 
@@ -306,10 +306,12 @@ oversight**. This is the **most medically regulated topic** in the practice — 
 compliance discipline. It is a **normal service, never tied to any membership or rewards program**.
 Do not attribute this program to providers outside Diana's RN lane.
 
-**Required guardrails on every surface:**
-- "Medically supervised" / "physician-guided" — always foreground the oversight.
-- "Candidacy is determined by the provider" / "not every client is a candidate."
-- "Individual outcomes vary."
+**Place safeguards with the claim they govern:**
+- Identify Diana Morrison, RN and the exact medical-director attribution on the canonical service
+  page and any surface that describes clinical authority; a short navigation label need not repeat it.
+- State that the provider determines candidacy when answering who the service is for, and keep
+  medication choice, dose, and combinations out of marketing copy.
+- Put concise individual-variation language next to an outcome statement or consented case.
 - Publish only the current GlossGenius-backed amount or verified range. If the medication or ongoing
   program structure remains unresolved, omit it or direct the client to confirm it with House of Rose.
 

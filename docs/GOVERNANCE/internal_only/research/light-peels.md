@@ -163,7 +163,10 @@ generic series framework, and do not use discount framing.
 - **Lane: Brandy** — basic/relaxing-maintenance facials (enzyme exfoliation, hydrodermabrasion, light peels) + facial waxing; rents a room. **Do NOT attribute light peels to providers outside this lane.** BioRePeel, dermaplaning, Face Reality acne, and needling remain **Amber's** lane; keep them clearly separated on any light-peel page.
 - **Phrases to avoid for THIS topic:** never "treats/cures/heals/fixes acne / pigmentation / sun damage / melasma / rosacea"; never "anti-aging / reverse aging / age-defying / turn back the clock"; never "removes/erases/eliminates" spots, lines, or discoloration; never "permanent" or "guaranteed"; never "FDA-approved"/"clinically proven" (a cosmetic superficial peel has no such specific claim to cite); no discount language.
 - **Say instead:** "for the appearance of," "helps reveal," "supports," "designed to," "many clients notice," "the visible signs of," "brighter-looking," "smoother-looking." State only a current GlossGenius-backed price, without euphemisms or an invented lower bound.
-- **Required guardrails on the surface:** provider authority (formula/strength/candidacy confirmed by the licensed provider at consultation & skin analysis) · "not every client is a candidate" · "individual outcomes vary." Contraindication honesty (pregnancy/nursing, recent isotretinoin, active infection/open skin, sunburn) belongs on the page.
+- **Place safeguards with the relevant question:** formula, strength, and candidacy belong with the
+  licensed provider; contraindications belong in safety or consultation guidance; and outcome
+  variation belongs beside a results claim. Do not require every card, price row, or link to carry all
+  three statements.
 - **SW-Florida sun/photoaging context is fair and encouraged** — frame as maintenance + rigorous SPF, never as "treating" sun damage.
 - **Naming law:** use plain, searchable names — "Light Peel," "Superficial Peel," "Brightening Peel," "Glow Peel," "Enzyme Peel." **No botanical/flowery names** (no Petal/Lily/Rose-anything). Do **not** revive any retired "Rose Pass/Circle/Method/Rewards" or membership framing — a light-peel *series/package* (prepaid bundle) is fine; a "pass"/membership is not.
 

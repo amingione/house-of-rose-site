@@ -145,7 +145,10 @@ Do not infer the enzyme price or relative value from Glo2Facial, Microneedling, 
 - **Lane: Brandy** — basic / relaxing-maintenance facials (enzyme exfoliation, hydrodermabrasion, light peels) + facial waxing; she rents a room. **This is not Amber's advanced/corrective lane.** Never describe an enzyme facial as corrective, medical-grade, or as treatment for a condition. When a client's goals outgrow maintenance, hand off to Amber's lane — don't overreach within Brandy's.
 - **Phrases to avoid for THIS topic:** "treats/cures/heals" + acne/rosacea/eczema/scarring; "removes/erases wrinkles or scars"; "anti-aging"/"reverse aging"/"age-defying"; "permanent"/"guaranteed"; "clinically proven"/"FDA-approved" (no verifiable clearance to cite for a fruit-enzyme facial); "chemical peel" as a synonym (it's an *enzyme* exfoliation — mechanistically distinct). Never "day spa." Never call it a "medical" or "corrective" treatment. Do not publish a price until an exact current GlossGenius line is reconciled; do not invent a lower-bound price or use discount language.
 - **Say instead:** "gentle," "relaxing," "maintenance," "helps reveal," "for the appearance of," "supports smoother-looking, brighter skin," "many clients notice."
-- **Required guardrails on the surface:** provider authority ("final candidacy and combinations are confirmed by your licensed provider"); "not every client is a candidate"; "individual outcomes vary"; the **fruit/latex allergy patch-test** caution; SPF/aftercare note.
+- **Place safeguards where they answer the question:** name Brandy with her licence type when naming
+  her; address the fruit/latex allergy and candidacy boundary in safety or consultation guidance; put
+  SPF/aftercare with visit information; and add outcome variation only beside a results claim. A price,
+  service definition, or navigation card does not need all four lines.
 - **No memberships** — a prepaid maintenance *series/package* is fine; never a membership, pass, or rewards program.
 - **Naming law:** call it plainly — **"Enzyme Exfoliation Facial"** (searchable); no botanical/flowery name.
 
