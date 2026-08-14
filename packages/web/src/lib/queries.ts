@@ -965,7 +965,7 @@ export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `
 `;
 
 export const ALL_BLOG_POSTS_QUERY = /* groq */ `
-  *[_type == "blogPost" && defined(publishedAt)] | order(publishedAt desc) {
+  *[_type == "blogPost" && defined(publishedAt) && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,

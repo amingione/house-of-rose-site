@@ -6,7 +6,11 @@ import {
   PUBLIC_BLOG_CATEGORIES,
   validateBlogPortableText,
 } from '../packages/studio/schemas/blogPost.ts';
-import { BLOG_POST_BY_SLUG_QUERY } from '../packages/web/src/lib/queries.ts';
+import {
+  ALL_BLOG_POSTS_QUERY,
+  ALL_BLOG_POST_SLUGS_QUERY,
+  BLOG_POST_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 test('blog Portable Text validation reviews complete paragraph text across decorated spans', () => {
   assert.equal(
@@ -108,4 +112,16 @@ test('related-service CTAs can resolve only to generated public service routes',
   assert.match(authoringFilter, /defined\(slug\.current\)/);
   assert.match(BLOG_POST_BY_SLUG_QUERY, /relatedService->status in \["live", "actual-menu"\]/);
   assert.match(BLOG_POST_BY_SLUG_QUERY, /defined\(relatedService->slug\.current\)/);
+});
+
+test('the published blog listing only includes records with generated routes', () => {
+  const slug = blogPost.fields.find(({ name }) => name === 'slug');
+  const publishedAt = blogPost.fields.find(({ name }) => name === 'publishedAt');
+  assert.match(String(slug?.validation), /required/);
+  assert.match(String(publishedAt?.validation), /required/);
+
+  for (const query of [ALL_BLOG_POSTS_QUERY, ALL_BLOG_POST_SLUGS_QUERY]) {
+    assert.match(query, /defined\(publishedAt\)/);
+    assert.match(query, /defined\(slug\.current\)/);
+  }
 });
