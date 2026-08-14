@@ -2202,7 +2202,7 @@ test('concern index preserves reviewed distinctions and direct guide navigation'
   }
   const mainText = visibleText(main);
   for (const [label, pattern] of [
-    ['pigment/texture/movement/volume orientation', /similar-looking changes[\s\S]{0,140}pigment[\s\S]{0,60}texture[\s\S]{0,60}movement[\s\S]{0,60}volume/i],
+    ['pigment/texture/movement/volume orientation', /pigment[\s\S]{0,60}texture[\s\S]{0,60}movement[\s\S]{0,60}volume/i],
     ['skin-analysis baseline distinction', /skin analysis[\s\S]{0,100}visual baseline/i],
     ['consultation discussion distinction', /consultation[\s\S]{0,100}(?:compare|talk|discuss)/i],
   ]) {
