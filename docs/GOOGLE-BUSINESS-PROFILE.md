@@ -96,12 +96,13 @@ The description live at the 2026-08-01 check belongs to the rejected pre-reset v
 as external-state history in the platform audit; do not use it as a tonal model or paste it into another
 channel.
 
-### Working replacement — owner approval required
+### Working factual replacement — owner approval required
 
-> House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida. We offer skin
-> treatments, injectables, body treatments, IV hydration, and wellness services for clients across
-> Charlotte County. Our approach favors expertise over trends, quality over quantity, and results that
-> remain believable. Visit us at 525 E Olympia Ave, Unit 9, or review the current services menu online.
+> House of Rose Aesthetics is a four-person medical aesthetics practice in Punta Gorda, Florida.
+> Current services include skin and device treatments, facials, injectables, IV hydration,
+> provider-guided weight management, waxing, makeup artistry, and permanent jewelry. Some appointments
+> book online; others begin with a consultation or phone call. The practice is at 525 E Olympia Ave,
+> Unit 9, and the current services menu is available online.
 
 Before replacing the live description:
 
