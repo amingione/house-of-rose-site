@@ -2396,8 +2396,13 @@ test('Face Reality package distinguishes the consultation, complete program, and
     metaDescription.length >= 120 && metaDescription.length <= 160,
     `Face Reality package meta description is ${metaDescription.length} characters.`,
   );
-  for (const required of ['$899', '12-week program', '$99', '60-minute consultation']) {
-    assert.ok(metaDescription.includes(required), `Face Reality package metadata is missing ${JSON.stringify(required)}.`);
+  for (const [label, pattern] of [
+    ['program price', /\$899/],
+    ['program length', /12-week(?: Face Reality)? program/i],
+    ['consultation price', /\$99/],
+    ['consultation length', /60-minute(?: Acne Bootcamp)? Consultation/i],
+  ]) {
+    assert.match(metaDescription, pattern, `Face Reality package metadata is missing ${label}.`);
   }
   for (const [label, pattern] of [
     ['complete-program price', /\$899[\s\S]{0,100}(?:complete )?12-week program[\s\S]{0,100}(?:not|rather than)[\s\S]{0,60}(?:one|single) visit/i],

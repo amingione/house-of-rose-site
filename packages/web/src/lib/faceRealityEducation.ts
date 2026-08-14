@@ -39,7 +39,7 @@ export interface FaceRealityServiceEducation {
 export const FACE_REALITY_PROGRAM = {
   packageSlug: 'face-reality-12-week-program',
   metaDescription:
-    'Face Reality Acne Bootcamp at House of Rose is a $899 12-week program with visits every two weeks. Begin with the separate $99, 60-minute consultation.',
+    'House of Rose offers a separate $99, 60-minute Acne Bootcamp Consultation and an $899 12-week Face Reality program with visits every two weeks.',
   duration: '12 weeks',
   cadence: 'In-studio visits every two weeks',
   summary:
@@ -78,14 +78,14 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
   'face-reality-acne-program': {
     slug: 'face-reality-acne-program',
     title: 'Face Reality Acne Program',
-    heading: 'Begin with the consultation, then see how the 12 weeks work.',
+    heading: 'The consultation is one appointment. Acne Bootcamp is the full 12 weeks.',
     whatItIs:
       'House of Rose offers a 60-minute Acne Bootcamp Consultation and a complete 12-week Acne Bootcamp program. The consultation is the first appointment; the program combines visits every two weeks with daily home care.',
     whyTheStructureMatters:
-      'The consultation gives you and the esthetician time to discuss what is happening now and review the home-care part of the program before the 12 weeks begin.',
+      'The consultation gives you and the esthetician time to discuss what is happening now, the home-care purchase, and whether you want to continue into the 12-week program.',
     distinctions: [
       {
-        label: 'The starting consultation',
+        label: 'The consultation',
         text: 'The first appointment is a 60-minute consultation at $99. You can book it directly.',
       },
       {
@@ -110,7 +110,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       },
     ],
     menuHeading: 'The consultation and the 12-week program',
-    menuIntro: 'Begin with the consultation. The complete program follows across 12 weeks.',
+    menuIntro: 'These are separate purchases: a directly bookable $99 consultation and the complete $899 program if you decide to continue.',
     menuOrder: [0, 1],
   },
   'acne-bootcamp': {
@@ -140,7 +140,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       {
         question: 'Is Acne Bootcamp a single facial?',
         answer:
-          'No. Acne Bootcamp is one complete 12-week program. Begin with the separately booked 60-minute consultation before starting the program.',
+          'No. Acne Bootcamp is one complete 12-week program. The required 60-minute consultation is booked separately for $99.',
       },
       {
         question: 'Does the program replace medical acne care?',
@@ -148,8 +148,8 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
           'No. This is a non-prescription esthetics program. Deep, painful, widespread, or actively scarring breakouts need medical evaluation first.',
       },
     ],
-    menuHeading: 'The complete program and its starting consultation',
-    menuIntro: 'The $899 program runs for 12 weeks with in-studio visits every two weeks. Home-care products are purchased separately. Begin with the directly bookable, $99, 60-minute consultation.',
+    menuHeading: 'The complete program and its separate consultation',
+    menuIntro: 'The $899 program runs for 12 weeks with in-studio visits every two weeks. Home-care products are purchased separately, as is the directly bookable $99, 60-minute consultation.',
     menuOrder: [1, 0],
   },
 } as const satisfies Readonly<Record<FaceRealityServiceSlug, FaceRealityServiceEducation>>;

@@ -17,9 +17,9 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'dermal-fillers':
     'Request the 60-minute, $300 Dermal Filler Consultation and describe whether the change in volume is at the lips, cheeks, or folds. You do not need to choose among the Juvéderm and RHA products first.',
   'face-reality-acne-program':
-    'The $99 Acne Bootcamp Consultation is the directly bookable first appointment for the complete 12-week Face Reality program.',
+    'The $99 Acne Bootcamp Consultation is booked separately from the complete $899, 12-week Face Reality program. Home-care products are also a separate purchase.',
   'acne-bootcamp':
-    'Begin with the $99 Acne Bootcamp Consultation before enrolling in the complete 12-week program.',
+    'Book the $99 Acne Bootcamp Consultation to discuss the complete $899, 12-week program and its separately purchased home care.',
   'glp-1-weight-management':
     'The first appointment is a 40-minute, $25 consultation with Diana Morrison, RN. Medication and ongoing program charges are separate; call House of Rose for those prices.',
   'permanent-jewelry':
