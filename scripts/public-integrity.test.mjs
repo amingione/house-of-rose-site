@@ -395,6 +395,52 @@ test('public HTML, AI feeds, and sitemap do not link to edge-retired routes', ()
   assert.equal(failures.length, 0, formatFailures('Links to Netlify redirect/forced-404 sources', failures));
 });
 
+test('retired PRF cluster routes resolve one hop to reviewed canonical services', () => {
+  const expectedRedirects = new Map([
+    ['/compare/prf-injections-vs-ez-gel/', '/services/prf-injections/'],
+    ['/compare/procell-serum-vs-prf/', '/services/prf/'],
+    ['/compare/topical-prf-vs-prf-injections/', '/services/prf/'],
+    ['/compare/prf-vs-prp/', '/services/prf/'],
+    ['/services/prf-microneedling/', '/services/prf/'],
+    ['/services/prf-fibrin-veil/', '/services/prf/'],
+    ['/cost/prf-injections-cost-punta-gorda/', '/services/prf-injections/'],
+    ['/cost/prf-microneedling-cost-punta-gorda/', '/services/prf/'],
+    ['/packages/prf-under-eye-series-of-3/', '/services/prf-under-eyes/'],
+  ]);
+  const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
+
+  for (const [source, destination] of expectedRedirects) {
+    const exactRules = redirectRules.filter((rule) => rule.from === source);
+    assert.equal(exactRules.length, 1, `${source} must have exactly one redirect rule.`);
+    assert.equal(exactRules[0].status, '301', `${source} must use a permanent 301.`);
+    assert.equal(exactRules[0].to, destination, `${source} must redirect directly to ${destination}.`);
+    assert.ok(!generatedTargetExists(source), `${source} must not generate a public HTML route.`);
+    assert.ok(!sitemap.includes(`<loc>${SITE_ORIGIN}${source}</loc>`), `Sitemap must not contain ${source}.`);
+
+    const destinationRule = redirectRules.find((rule) => rule.from === destination);
+    assert.ok(
+      !destinationRule || Number(destinationRule.status) >= 400,
+      `${source} creates a redirect chain through ${destination}.`,
+    );
+  }
+
+  for (const route of ['/services/prf/', '/services/prf-injections/', '/services/microneedling/', '/services/prf-under-eyes/']) {
+    assert.ok(generatedTargetExists(route), `Reviewed PRF architecture is missing ${route}.`);
+  }
+
+  const hub = visibleText(mainHtml(readFileSync(path.join(DIST_ROOT, 'services/prf/index.html'), 'utf8')));
+  for (const reviewedFact of [
+    'small sample of your own blood',
+    'Topical PRF Microneedling',
+    'PRF Under-Eye',
+    '$495',
+    'PRF Bio-Filler',
+    '$899',
+  ]) {
+    assert.ok(hub.includes(reviewedFact), `PRF hub is missing substantive reviewed fact ${JSON.stringify(reviewedFact)}.`);
+  }
+});
+
 test('the indexable concerns hub appears exactly once in the XML sitemap', () => {
   const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
   const concernsHub = `<loc>${SITE_ORIGIN}/concerns/</loc>`;
