@@ -147,6 +147,16 @@ test('obsolete collection planning imports cannot compete with reviewed route in
   );
 });
 
+test('obsolete Phase 1 inventories cannot act as current implementation authority', () => {
+  for (const relativePath of ['_audit-report.md', '_site-inventory.md']) {
+    assert.equal(
+      existsSync(new URL(relativePath, researchRoot)),
+      false,
+      `${relativePath} must not preserve superseded route, schema, feed, or voice instructions.`,
+    );
+  }
+});
+
 test('unsigned clinical timing drafts cannot act as staff policy', () => {
   for (const retiredArtifact of [
     new URL('../prompts/CLINICAL-TIMING-AND-PREGNANCY-POLICY.md', researchRoot),
