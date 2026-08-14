@@ -29,7 +29,7 @@ import { isVerifiedGlossGeniusBookingUrl, resolveServiceBooking } from '@/lib/bo
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 import { getServiceAppointmentGuidance, getVerifiedServiceDuration } from '@/lib/serviceFacts';
 import { getVerifiedCostFact } from '@/lib/costFacts';
-import { PRF_UNDER_EYES_FAQS } from '@/lib/prfUnderEyesFacts';
+import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_META_DESCRIPTION } from '@/lib/prfUnderEyesFacts';
 import { IV_HYDRATION_FAQS } from '@/lib/ivHydrationFacts';
 import { getServiceEducation } from '@/lib/serviceEducation';
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
@@ -136,8 +136,10 @@ const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'fa
 
 const priceMatch = displayServicePrice ? String(displayServicePrice).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
-const factualServiceDescription = serviceEducation?.metaDescription
-  ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
+const factualServiceDescription = slug === 'prf-under-eyes'
+  ? PRF_UNDER_EYES_META_DESCRIPTION
+  : serviceEducation?.metaDescription
+    ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {

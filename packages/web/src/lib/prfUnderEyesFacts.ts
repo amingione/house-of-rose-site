@@ -4,6 +4,9 @@ export const PRF_UNDER_EYES_LISTING = {
   verifiedAt: '2026-08-13',
 } as const;
 
+export const PRF_UNDER_EYES_META_DESCRIPTION =
+  'PRF Under Eyes at House of Rose is a $495 injectable consultation with Diana Morrison, RN when hollowing or shadowing contributes to the concern in Punta Gorda.';
+
 export const PRF_UNDER_EYES_FAQS = [
   {
     question: 'What is PRF under eyes?',
