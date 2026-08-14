@@ -1278,7 +1278,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Amber Mingione, Licensed Esthetician',
       'Injectable PRF',
       'Diana Morrison, RN',
-      'Review the complete PRF overview',
       'Meet Amber Mingione, Licensed Esthetician',
       'Procell Therapies — Pro',
       '$300',
@@ -1357,6 +1356,22 @@ test('priority service pages retain reviewed facts instead of falling back to th
     for (const value of requiredCopy) {
       if (!text.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
     }
+  }
+
+  const microneedlingHtml = readFileSync(
+    path.join(DIST_ROOT, 'services/microneedling/index.html'),
+    'utf8',
+  );
+  const microneedlingEducation = microneedlingHtml.match(
+    /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
+  const prfOverviewLink = microneedlingEducation.match(
+    /<a\b[^>]*href="\/services\/prf\/"[^>]*>([\s\S]*?)<\/a>/i,
+  );
+  assert.ok(prfOverviewLink, 'Microneedling education must link the canonical PRF overview.');
+  const prfOverviewLabel = visibleText(prfOverviewLink[1]);
+  for (const term of [/\btopical\b/i, /\binjectable\b/i, /\bPRF\b/i]) {
+    assert.match(prfOverviewLabel, term, 'Microneedling must distinguish the topical and injectable PRF relationship.');
   }
 
   const weightManagementFile = path.join(
@@ -2472,11 +2487,19 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
 
   assert.equal(occurrenceCount(hub, 'href="/services/facial-waxing/"'), 1, 'Waxing hub must link Facial Waxing once in main content.');
   assert.equal(occurrenceCount(hub, 'href="/services/body-waxing/"'), 1, 'Waxing hub must link Body Waxing once in main content.');
-  assert.ok(
-    visibleText(hub).includes('Eleven area-specific waxing appointments, with two ways to book.')
-      && visibleText(hub).includes('Facial Waxing has a direct online booking path.')
-      && visibleText(hub).includes('Body Waxing is arranged by phone'),
-    'Waxing hub must preserve the verified 11-appointment structure and booking distinction.',
+  const hubText = visibleText(hub);
+  assert.match(hubText, /\b11\b/, 'Waxing hub must preserve the verified 11-appointment total.');
+  assert.match(hubText, /\bfour\b[\s\S]{0,40}\b(?:face|facial)\b/i, 'Waxing hub must preserve the four facial appointments.');
+  assert.match(hubText, /\bseven\b[\s\S]{0,40}\bbody\b/i, 'Waxing hub must preserve the seven body appointments.');
+  assert.match(
+    hub,
+    /data-booking-service="facial-waxing"[^>]*data-booking-mode="direct"/i,
+    'Waxing hub must render Facial Waxing with its verified direct-booking behavior.',
+  );
+  assert.match(
+    hub,
+    /data-booking-service="body-waxing"[^>]*data-booking-mode="phone"/i,
+    'Waxing hub must render Body Waxing with its verified phone-booking behavior.',
   );
   assert.ok(
     visibleText(hub).includes('chin, upper lip, and brows')
