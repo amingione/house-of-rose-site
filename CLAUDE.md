@@ -289,7 +289,7 @@ appear in customer-facing copy: not in `publicRole`/title strings, bios, meta de
 (`/amber`, `/diana`), the homepage team section, or `/about` copy. If you find "Co-Owner"/"Owner" in any
 customer-facing surface (including a seed script that could regenerate it), remove it — don't just fix the live
 page and leave the source it came from. Swept clean 2026-08-13: `aboutFallbacks.ts`, `amber.astro`, `diana.astro`,
-homepage, `about/index.astro`, and `studio/scripts/seed-about-providers.mjs`.
+homepage, and `about/index.astro`; the obsolete provider seed was removed.
 
 ## Memberships — NOT OFFERED
 House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are

@@ -11,8 +11,8 @@ once approved.
   the **provider is not specified** in the GlossGenius export. Confirm who actually runs
   these before this goes out, since provider lane isn't printed in the brochure (by design —
   provider lanes stay internal-only in customer copy) but you'll need it to route bookings.
-- Confirm current Lumecca/Morpheus8 naming/eligibility hasn't changed since the 2026-08-06
-  `correct-inmode-indications.mjs` compliance pass.
+- Confirm current Lumecca/Morpheus8 naming and eligibility against the reviewed service education and
+  owner direction recorded in `CLAUDE.md` before release.
 
 ## Claims that require clinical approval
 - **PRF + Lumecca** and **PRF + Morpheus8** are framed as provider-recommended pairings
@@ -24,9 +24,8 @@ once approved.
   director / clinical review confirm sequencing, spacing, and eligibility before staff
   start booking it that way.
 - Morpheus8/Lumecca copy is restricted to **tone, texture, pigment, stretch marks, scars**
-  only — no tightening/lifting/laxity language — per the binding 2026-08-06 owner directive
-  in `correct-inmode-indications.mjs`. Please double-check the final copy still holds that
-  line if you edit it.
+  only — no tightening/lifting/laxity language — per the binding 2026-08-06 owner directive.
+  Recheck the current reviewed service education if you edit it.
 - No claim above Level 2 (Creative System Book 2 §6) was used: no "clinically proven," no
   "no downtime," no "pain-free," no guarantees. If you want a stronger performance claim
   anywhere, it needs documented substantiation + clinical + legal review first.
