@@ -942,6 +942,13 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
   if (!visibleFaqs.some(({ question }) => question === 'Can makeup or sunscreen affect the images?')) {
     failures.push('skin-analysis: missing the visible image-preparation FAQ');
   }
+  if (!visibleFaqs.some(({ question, answer }) =>
+    question === 'What happens to my photos?' &&
+    answer.includes('does not authorize House of Rose to publish them') &&
+    answer.includes('written permission for website publication has been recorded')
+  )) {
+    failures.push('skin-analysis: missing the written website-publication consent boundary');
+  }
   if (JSON.stringify(visibleFaqs) !== JSON.stringify(schemaFaqs)) {
     failures.push('skin-analysis: visible FAQ copy and FAQPage JSON-LD differ');
   }
@@ -1017,6 +1024,9 @@ test('priority service pages retain reviewed facts instead of falling back to th
       '$1,200 single · $3,000 series of 3',
       'Face & Neck',
       '$1,250 single · $3,500 series of 3',
+      'Morpheus8 Burst — Hyperhidrosis',
+      '$2,200–$2,400',
+      'Package of 3',
     ],
     'morpheus8-body': [
       'same InMode platform',
@@ -2112,8 +2122,19 @@ test('Face Reality package distinguishes the consultation, complete program, and
   const file = path.join(DIST_ROOT, 'packages/face-reality-12-week-program/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
 
-  const main = mainHtml(readFileSync(file, 'utf8'));
+  const html = readFileSync(file, 'utf8');
+  const main = mainHtml(html);
   const text = visibleText(main);
+  const metaDescription = decodeHtmlEntities(
+    html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '',
+  );
+  assert.ok(
+    metaDescription.length >= 120 && metaDescription.length <= 160,
+    `Face Reality package meta description is ${metaDescription.length} characters.`,
+  );
+  for (const required of ['$899', '12-week program', '$99', '60-minute consultation']) {
+    assert.ok(metaDescription.includes(required), `Face Reality package metadata is missing ${JSON.stringify(required)}.`);
+  }
   for (const required of [
     'The $899 figure is the price of the complete 12-week program, not the price of one visit.',
     'The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly.',
