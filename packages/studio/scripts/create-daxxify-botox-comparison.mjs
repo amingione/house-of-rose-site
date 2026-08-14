@@ -27,25 +27,8 @@ const client = cliAuth
       useCdn: false,
     });
 
-const option = (label, summary) => ({
-  label,
-  summary,
+const option = () => ({
   service: { _type: 'reference', _ref: INJECTABLES_SERVICE_ID },
-});
-
-const row = (_key, attribute, valueA, valueB) => ({
-  _key,
-  _type: 'comparisonRow',
-  attribute,
-  valueA,
-  valueB,
-});
-
-const faq = (_key, question, answer) => ({
-  _key,
-  _type: 'faq',
-  question,
-  answer,
 });
 
 const sourceDocument = {
@@ -54,64 +37,9 @@ const sourceDocument = {
   title: 'Daxxify vs. Botox',
   slug: { _type: 'slug', current: 'daxxify-vs-botox' },
   status: 'live',
-  intro:
-    'Daxxify and Botox are two botulinum toxin type A products on the House of Rose Neurotoxin Injections menu. Each is listed at $14 per unit, but their unit systems cannot be compared or converted.',
-  optionA: option(
-    'Daxxify',
-    'DaxibotulinumtoxinA-lanm with the 35-amino-acid RTP004 peptide excipient. The current House of Rose menu lists Daxxify at $14 per unit and 60 minutes.',
-  ),
-  optionB: option(
-    'Botox',
-    'OnabotulinumtoxinA in a formulation that includes human albumin. The current House of Rose menu lists Botox at $14 per unit and 30 minutes.',
-  ),
-  rows: [
-    row('active-product', 'Active product', 'Daxxify · daxibotulinumtoxinA-lanm', 'Botox · onabotulinumtoxinA'),
-    row(
-      'formulation',
-      'Formulation distinction',
-      'Includes the 35-amino-acid RTP004 peptide excipient',
-      'Includes human albumin and sodium chloride',
-    ),
-    row(
-      'current-price',
-      'Current House of Rose price',
-      '$14 per Daxxify unit; units are not convertible to Botox units',
-      '$14 per Botox unit',
-    ),
-    row('appointment-length', 'Current appointment length', '60 minutes', '30 minutes'),
-    row(
-      'published-duration',
-      'Published glabellar-line duration evidence',
-      'Median 24.0 and 23.9 weeks maintaining none-or-mild severity at maximum frown in two phase 3 trials',
-      'Median 120 days among day-30 responders at maximum contraction in a pooled analysis',
-    ),
-  ],
-  faqs: [
-    faq(
-      'units',
-      'Are Daxxify and Botox units interchangeable?',
-      'No. The prescribing information for both products states that their potency units are product-specific and cannot be compared or converted between botulinum toxin products.',
-    ),
-    faq(
-      'same-price',
-      'Does the same $14-per-unit price mean the total price is the same?',
-      'No. House of Rose lists both products at $14 per unit, but the units are not equivalent. The per-unit prices do not create a dose-conversion table or establish the same total treatment price.',
-    ),
-    faq(
-      'duration',
-      'Does Daxxify last longer than Botox?',
-      'Separate glabellar-line studies reported different duration endpoints for the two products, but they were not a direct head-to-head trial. The published figures should be read as product-specific study results, and individual duration varies.',
-    ),
-  ],
-  verdict:
-    'The price per unit is the same on the current House of Rose menu, but the products, unit systems, formulations, and published duration evidence are not the same. The cited duration studies were separate—not a direct head-to-head comparison—and individual outcomes vary.',
+  optionA: option(),
+  optionB: option(),
   orderRank: 20,
-  seo: {
-    _type: 'seo',
-    metaTitle: 'Daxxify vs. Botox | House of Rose Aesthetics',
-    metaDescription:
-      'Compare Daxxify and Botox by formulation, current House of Rose pricing, appointment length, unit limitations, and published duration evidence.',
-  },
 };
 
 const current = await client.fetch(
