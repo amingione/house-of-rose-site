@@ -671,6 +671,7 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'Three uses of PRF. Three distinct appointments.',
     'A separate listing',
     'PRF EZ-Gel Bio-Filler',
+    'Three ways PRF appears at House of Rose.',
     'Different concerns call for different tools.',
     'Looking well is specific',
     'A tired look can have more than one source.',
