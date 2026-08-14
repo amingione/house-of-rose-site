@@ -64,7 +64,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       metaDescription: faceReality.slug === 'acne-bootcamp'
         ? 'Acne Bootcamp at House of Rose: a $99 consultation or the $899 Face Reality 12-week program with in-studio visits and home care.'
         : 'Face Reality options at House of Rose include a $99 consultation and the $899 12-week program with in-studio visits and home care.',
-      paragraphs: [faceReality.whatItIs, faceReality.whyTheStructureMatters],
+      paragraphs: [
+        faceReality.whatItIs,
+        faceReality.whyTheStructureMatters,
+        FACE_REALITY_PROGRAM.provider,
+      ],
       distinctions: faceReality.distinctions,
       menu: {
         heading: faceReality.menuHeading,
@@ -92,6 +96,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               href: '/concerns/active-acne/',
               label: 'Read the active breakouts guide',
             },
+            {
+              href: '/about/providers/amber/',
+              label: 'Meet Amber Mingione, Licensed Esthetician',
+            },
           ]
         : [
             {
@@ -101,6 +109,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             {
               href: '/concerns/active-acne/',
               label: 'Read the active breakouts guide',
+            },
+            {
+              href: '/about/providers/amber/',
+              label: 'Meet Amber Mingione, Licensed Esthetician',
             },
           ],
     };
