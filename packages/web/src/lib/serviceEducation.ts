@@ -348,6 +348,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       distinctions: isNeurotoxin
         ? [
+            ...(injectable.consultation
+              ? [
+                  {
+                    label: 'Where to begin',
+                    text: `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. Treatment is priced separately by the number of product-specific units administered.`,
+                  },
+                ]
+              : []),
             {
               label: 'Expression is the clue',
               text: 'A movement-related line becomes visible or deepens when you frown, raise your brows, or squint.',
@@ -376,14 +384,27 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               : []),
           ],
       menu: {
-        heading: isNeurotoxin ? 'Botox and Daxxify' : 'Dermal filler products',
-        intro: injectable.pricingSummary,
+        heading: isNeurotoxin ? 'Consultation, Botox, and Daxxify' : 'Dermal filler products',
+        intro: injectable.consultation
+          ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary}`
+          : injectable.pricingSummary,
         verifiedAt: 'August 6, 2026',
-        items: injectable.products.map((product) => ({
-          name: product.name,
-          price: formatUsd(product.price.amountUsd, product.price.qualifier),
-          duration: formatMinutes(product.durationMinutes),
-        })),
+        items: [
+          ...(injectable.consultation
+            ? [
+                {
+                  name: injectable.consultation.name,
+                  price: formatUsd(injectable.consultation.priceUsd),
+                  duration: formatMinutes(injectable.consultation.durationMinutes),
+                },
+              ]
+            : []),
+          ...injectable.products.map((product) => ({
+            name: product.name,
+            price: formatUsd(product.price.amountUsd, product.price.qualifier),
+            duration: formatMinutes(product.durationMinutes),
+          })),
+        ],
       },
       faqs: injectable.faqs,
       faqHeading: isNeurotoxin

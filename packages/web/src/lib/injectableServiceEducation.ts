@@ -13,6 +13,12 @@ export interface InjectableProductFact {
   readonly price: InjectableProductPrice;
 }
 
+export interface InjectableConsultationFact {
+  readonly name: string;
+  readonly durationMinutes: number;
+  readonly priceUsd: number;
+}
+
 export interface InjectableServiceEducation {
   readonly slug: InjectableServiceSlug;
   readonly title: string;
@@ -20,6 +26,7 @@ export interface InjectableServiceEducation {
   readonly whereItFits: string;
   readonly pricingSummary: string;
   readonly bookingGuidance?: string;
+  readonly consultation?: InjectableConsultationFact;
   readonly provider: {
     readonly publicName: string;
     readonly profilePath: string;
@@ -51,6 +58,11 @@ export const INJECTABLE_SERVICE_EDUCATION = {
     whatItIs: 'House of Rose offers Botox and Daxxify for expression lines created by facial movement.',
     whereItFits: 'The clearest clue is what happens when you frown, raise your brows, or squint: a movement-related line appears or becomes deeper.',
     pricingSummary: 'Both products are priced at $14 per unit.',
+    consultation: {
+      name: 'Neuromodulator Consultation',
+      durationMinutes: 20,
+      priceUsd: 50,
+    },
     provider: {
       publicName: 'Diana Morrison, RN',
       profilePath: '/about/providers/diana/',
