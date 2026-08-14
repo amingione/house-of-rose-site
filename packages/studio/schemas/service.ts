@@ -254,10 +254,11 @@ export const service = defineType({
     }),
     defineField({
       name: 'faqs',
-      title: 'FAQs',
+      title: 'FAQs (not published)',
       type: 'array',
+      readOnly: true,
       of: [{ type: 'faq' }],
-      description: 'Add only real client questions that are not already answered clearly elsewhere on the page.',
+      description: 'Legacy source field. Public service FAQs and FAQPage schema come from reviewed website education, not this stored array.',
     }),
     defineField({
       name: 'relatedServices',

@@ -554,11 +554,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     },
     process,
     _updatedAt,
-    faqs[] {
-      _key,
-      question,
-      answer
-    },
     "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },

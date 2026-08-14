@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { service } from '../packages/studio/schemas/service.ts';
@@ -79,6 +80,21 @@ test('the archival service tagline cannot pose as a live control', () => {
   const tagline = serviceField('tagline');
   assert.equal(tagline?.readOnly, true);
   assert.match(String(tagline?.title), /not published/i);
+});
+
+test('stored service FAQs cannot pose as the reviewed public FAQ source', () => {
+  const faqs = serviceField('faqs');
+  assert.equal(faqs?.readOnly, true);
+  assert.match(String(faqs?.title), /not published/i);
+  assert.match(String(faqs?.description), /reviewed website education/i);
+  assert.doesNotMatch(SERVICE_BY_SLUG_QUERY, /\bfaqs\[\]\s*\{/);
+
+  const renderer = readFileSync(
+    new URL('../packages/web/src/pages/services/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  assert.match(renderer, /reviewedServiceFaqs\s*=\s*serviceEducation\?\.faqs/);
+  assert.doesNotMatch(renderer, /service\.faqs/);
 });
 
 test('related-service authoring only offers relationships the public query can render', () => {
