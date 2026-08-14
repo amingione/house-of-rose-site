@@ -15,7 +15,28 @@ const writerSource = readFileSync(writerUrl, 'utf8');
 const disclaimerMatch = writerSource.match(
   /const providerScope\s*=\s*\{[\s\S]*?disclaimer:\s*'([^']+)'/,
 );
+const underEyeWriterSource = readFileSync(
+  new URL('../packages/studio/scripts/create-prf-under-eyes.mjs', import.meta.url),
+  'utf8',
+);
+const underEyeDisclaimerMatch = underEyeWriterSource.match(
+  /providerScope:\s*\{[\s\S]*?disclaimer:\s*'([^']+)'/,
+);
+const underEyeProviderScopeMatch = underEyeWriterSource.match(
+  /providerScope:\s*(\{[\s\S]*?\n\s*\}),\n\s*status:/,
+);
 const disclaimerField = treatmentProviderScope.fields.find(({ name }) => name === 'disclaimer');
+
+function validateVarianceNote(value: string): true | string {
+  assert.ok(disclaimerField?.validation, 'The provider-scope schema must validate its variance note.');
+  const rule = {
+    custom(fn: (input: string | undefined) => true | string) {
+      return { validate: fn };
+    },
+  };
+  const { validate } = disclaimerField.validation(rule);
+  return validate(value);
+}
 
 test('the active PRF provider-scope command uses a schema-valid variance note', () => {
   assert.match(
@@ -23,14 +44,16 @@ test('the active PRF provider-scope command uses a schema-valid variance note', 
     /patch-prf-injections-provider-scope\.mjs\s+--apply/,
   );
   assert.ok(disclaimerMatch?.[1], 'The PRF provider-scope writer must define its variance note.');
-  assert.ok(disclaimerField?.validation, 'The provider-scope schema must validate its variance note.');
+  assert.equal(validateVarianceNote(disclaimerMatch[1]), true);
+});
 
-  const rule = {
-    custom(fn: (value: string | undefined) => true | string) {
-      return { validate: fn };
-    },
-  };
-  const { validate } = disclaimerField.validation(rule);
-
-  assert.equal(validate(disclaimerMatch[1]), true);
+test('the PRF under-eye public-record writer uses a schema-valid variance note', () => {
+  assert.match(underEyeWriterSource, /status:\s*'actual-menu'/);
+  assert.ok(
+    underEyeDisclaimerMatch?.[1],
+    'The PRF under-eye writer must define its provider-scope variance note.',
+  );
+  assert.ok(underEyeProviderScopeMatch?.[1], 'The PRF under-eye writer must define provider scope.');
+  assert.doesNotMatch(underEyeProviderScopeMatch[1], /\bconsultRequired\b/);
+  assert.equal(validateVarianceNote(underEyeDisclaimerMatch[1]), true);
 });
