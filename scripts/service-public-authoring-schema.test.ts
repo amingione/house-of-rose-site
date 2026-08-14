@@ -97,6 +97,20 @@ test('stored service FAQs cannot pose as the reviewed public FAQ source', () => 
   assert.doesNotMatch(renderer, /service\.faqs/);
 });
 
+test('stored treatment areas cannot pose as reviewed public guidance', () => {
+  const treatmentAreas = serviceField('treatmentAreas');
+  assert.equal(treatmentAreas?.readOnly, true);
+  assert.match(String(treatmentAreas?.title), /not published/i);
+  assert.match(String(treatmentAreas?.description), /reviewed website education/i);
+  assert.doesNotMatch(SERVICE_BY_SLUG_QUERY, /\btreatmentAreas\[\]\s*\{/);
+
+  const renderer = readFileSync(
+    new URL('../packages/web/src/pages/services/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  assert.doesNotMatch(renderer, /service\.treatmentAreas/);
+});
+
 test('related-service authoring only offers relationships the public query can render', () => {
   const relatedServices = serviceField('relatedServices') as NestedField | undefined;
   assert.ok(relatedServices?.of && Array.isArray(relatedServices.of));

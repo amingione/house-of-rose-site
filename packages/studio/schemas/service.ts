@@ -216,9 +216,10 @@ export const service = defineType({
     }),
     defineField({
       name: 'treatmentAreas',
-      title: 'Treatment Areas',
+      title: 'Treatment Areas (not published)',
       type: 'array',
-      description: 'Areas that may be considered and the visible concerns addressed there.',
+      readOnly: true,
+      description: 'Legacy source field. Public treatment-area guidance comes from reviewed website education, not this stored array.',
       of: [
         {
           type: 'object',

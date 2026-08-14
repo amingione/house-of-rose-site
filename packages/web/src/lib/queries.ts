@@ -547,11 +547,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       intro
     },
     benefits,
-    treatmentAreas[] {
-      _key,
-      area,
-      focus
-    },
     process,
     _updatedAt,
     "seo": seo { metaTitle, metaDescription },
