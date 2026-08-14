@@ -26,6 +26,10 @@ const trendingKeywordPath = new URL(
   '../docs/HRAaudits/letaido-findings/Trending-Keyword-Research-—-Med-Spa-2026-08-11.md',
   import.meta.url,
 );
+const seoEditsPath = new URL(
+  '../docs/HRAaudits/letaido-findings/HouseOfRose_SEO_Edits.md',
+  import.meta.url,
+);
 
 const architecture = readFileSync(architecturePath, 'utf8');
 const competitorStudy = readFileSync(competitorPath, 'utf8');
@@ -33,7 +37,8 @@ const demand = readFileSync(demandPath, 'utf8');
 const prfArchitecture = readFileSync(prfArchitecturePath, 'utf8');
 const siteAudit = readFileSync(siteAuditPath, 'utf8');
 const trendingKeywords = readFileSync(trendingKeywordPath, 'utf8');
-const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}`;
+const seoEdits = readFileSync(seoEditsPath, 'utf8');
+const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}\n${seoEdits}`;
 
 test('SEO strategy sources cannot reintroduce permanently retired programs', () => {
   assert.doesNotMatch(
@@ -92,4 +97,15 @@ test('keyword research cannot authorize duplicate or unsupported service work', 
   assert.match(trendingKeywords, /recorded written website-publication consent/i);
   assert.doesNotMatch(trendingKeywords, /dedicated service pages with the menu and pricing[^\n]*peptide therapy/i);
   assert.doesNotMatch(trendingKeywords, /one strong service page plus a results\/gallery page/i);
+});
+
+test('historical SEO observations cannot become assumed copy or unsupported inventory', () => {
+  assert.match(seoEdits, /never label an assumed title or description as the current value/i);
+  assert.match(seoEdits, /\/services\/microneedling\//i);
+  assert.match(seoEdits, /\/services\/permanent-jewelry\//i);
+  assert.match(seoEdits, /Geographic intent belongs to the `localArea` page type/i);
+  assert.match(seoEdits, /Do not invent bracelet, anklet, necklace, charm, material, welding, inventory, or walk-in availability claims/i);
+  assert.doesNotMatch(seoEdits, /\/services\/collections\/permanent-jewelry\//i);
+  assert.doesNotMatch(seoEdits, /Add ["`“]?Dysport|no clasp, no worries|Book or walk in today/i);
+  assert.doesNotMatch(seoEdits, /Ensure every other page on the site links back to the homepage/i);
 });
