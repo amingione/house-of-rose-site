@@ -13,13 +13,13 @@ import { getServiceCardSummary } from '@/lib/serviceCardContent';
 
 const collectionIntroductions: Readonly<Record<string, string>> = {
   inmode:
-    'Morpheus8 delivers radiofrequency through microneedles, Lumecca Peak uses intense pulsed light, and Forma delivers radiofrequency without needles. Open each service for its current role and booking path.',
+    'Morpheus8 delivers radiofrequency through microneedles, Lumecca Peak uses intense pulsed light, and Forma delivers radiofrequency through surface electrodes. They use different forms of energy delivery and have separate appointment paths.',
   'injectables-bio-fillers':
-    'For lines that appear with facial movement, open Neurotoxin Injections. For lost volume in selected lips, cheeks, and folds, open Dermal Fillers. Injectable PRF has its own page for its current blood-derived preparations and appointments.',
+    'Lines that appear with facial movement belong to the neurotoxin conversation. Lost volume in selected lips, cheeks, and folds belongs to the dermal-filler conversation. Injectable PRF uses a blood-derived material and has separate under-eye and bio-filler consultations.',
   'iv-hydration-therapy':
-    'This category includes the six current IV hydration options and the provider-guided GLP-1 weight-management program. Each page shows its own medical-service facts and booking path.',
+    'This category includes six IV hydration appointments and the provider-guided GLP-1 weight-management program. IV hydration and GLP-1 weight management are distinct medical services with different appointment and pricing structures.',
   facials:
-    'Browse surface exfoliation, dermaplaning, Glo2Facial, Procell Microneedling, topical PRF, BioRePeel, and the 12-week Face Reality Acne Program.',
+    'This group includes surface exfoliation, dermaplaning, Glo2Facial, Procell Microneedling, topical PRF, BioRePeel, and the 12-week Face Reality Acne Program.',
   waxing:
     'House of Rose books facial and body waxing by area, from brows, upper lip, and chin to underarms, bikini line, arms, legs, back, and chest.',
 };
@@ -56,9 +56,9 @@ const serviceListSchema = collection.services.length
     )
   : null;
 const pageTitle = `${collection.title} Services | House of Rose Aesthetics`;
-const pageDescription = `Directory of ${collection.title} services with links to individual service pages.`;
+const pageDescription = `${collection.title} appointments at House of Rose, grouped with their individual treatment and booking details.`;
 const collectionIntroduction = collectionIntroductions[collection.slug]
-  ?? `Review the current ${collection.title} services at House of Rose Aesthetics.`;
+  ?? `Related ${collection.title} appointments at House of Rose keep their own treatment and booking details.`;
 const facialPathways = collection.slug === 'facials'
   ? [
       {
@@ -112,10 +112,10 @@ const facialPathways = collection.slug === 'facials'
         <div class="max-w-2xl">
           <p class="kicker mb-3">Finding your starting point</p>
           <h2 id="facials-pathway-heading" class="font-serif text-[clamp(28px,4vw,38px)] text-ink">
-            These appointments are built differently.
+            Surface services, Microneedling, and a 12-week program.
           </h2>
           <p class="mt-4 text-[15px] leading-7 text-muted">
-            A surface appointment, Procell Microneedling, and the 12-week Face Reality program ask for different kinds of time and home care. The three paths below show what belongs in each.
+            These appointments are not interchangeable. Surface appointments stay at the skin surface, Procell Microneedling creates controlled microchannels, and Face Reality combines visits every two weeks with daily home care across a complete program.
           </p>
         </div>
 
