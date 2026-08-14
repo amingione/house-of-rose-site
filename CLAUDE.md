@@ -22,8 +22,9 @@ routine copy into a clinical-process manifesto. The real-practice visual standar
 
 **Verification order (do all that apply, in this order):**
 1. **Current user direction** — Amber's latest explicit approvals and corrections govern voice.
-2. **Existing local docs** — `docs/GOVERNANCE/internal_only/services/**` (incl. GlossGenius import CSVs), `docs/GOVERNANCE/internal_only/research/**`
-   (treatment briefs + `_pricing-catalog.md`, `_gaps.md`).
+2. **Existing local docs** — `docs/GOVERNANCE/internal_only/services/**` (including the canonical
+   `ALL-SERVICES-PRICING.MD` GlossGenius mirror), plus the treatment briefs in
+   `docs/GOVERNANCE/internal_only/research/**`.
    `docs/GOVERNANCE/internal_only/START-HERE.md` is the "which folder has the real answer" map — start there if unsure.
 3. **Compliance** — `docs/GOVERNANCE/internal_only/compliance/` (statute) + `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md`
    (claims). Statute wins over voice everywhere they touch.

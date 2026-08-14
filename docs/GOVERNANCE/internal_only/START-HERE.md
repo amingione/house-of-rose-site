@@ -41,9 +41,10 @@ Notion is strategy/competitive context. The old duplicate-pricing conflict is cl
 
 ## 4. Treatment research → `docs/GOVERNANCE/internal_only/research/`
 
-One brief per treatment holds sourced protocol, manufacturer, and compliance research. Files prefixed
-`_` are the tracking/index layer for the site-elevation work. Research supports facts and claims; it is
-not House of Rose voice.
+One brief per treatment holds sourced protocol, manufacturer, and compliance research. Research
+supports facts and claims; it is not House of Rose voice. Current public routes live in
+`docs/CONTENT-MODEL-MAP.md`, and current prices live in the canonical pricing ledger above. Historical
+underscore-prefixed audits are not route, inventory, or pricing authority.
 
 ## 5. Provider-specific service detail → `docs/GOVERNANCE/internal_only/services/`
 
