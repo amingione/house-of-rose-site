@@ -94,7 +94,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : [
             {
               href: '/services/face-reality-acne-program/',
-              label: 'Review the Face Reality overview',
+              label: 'Consultation and program overview',
             },
             {
               href: '/concerns/active-acne/',

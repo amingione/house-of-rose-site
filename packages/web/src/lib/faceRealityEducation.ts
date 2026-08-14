@@ -147,7 +147,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       },
     ],
     menuHeading: 'The complete program and its starting consultation',
-    menuIntro: 'The program is shown first here; the consultation remains the directly bookable starting point.',
+    menuIntro: 'The $899 program runs for 12 weeks with in-studio visits every two weeks. Home-care products are purchased separately. Begin with the directly bookable, $99, 60-minute consultation.',
     menuOrder: [1, 0],
   },
 } as const satisfies Readonly<Record<FaceRealityServiceSlug, FaceRealityServiceEducation>>;
