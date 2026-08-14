@@ -661,8 +661,8 @@ test('navigation and visit guidance speaks to clients rather than internal inven
     },
     {
       route: 'experience/index.html',
-      required: 'Open the service page to book online, call, or send a consultation request',
-      retired: 'reserve the current listing',
+      required: 'Online booking is available for some services; others begin with a consultation request or phone call.',
+      retired: 'Open the service page to book online',
     },
     {
       route: 'areas/port-charlotte/index.html',
