@@ -87,7 +87,7 @@ BioRePeel is a TCA-based resurfacing peel. At House of Rose in Punta Gorda, BioR
 
 All pricing is presented as "investment / from / starting at." Final pricing is confirmed after consultation and skin analysis based on variant, area size, and skin condition.
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is BioRePeel?** A TCA-based resurfacing peel designed to refresh tone, texture, and radiance with little to no visible peeling and essentially no downtime. At House of Rose, **Brandy** offers the standalone BioRePeel facial; **Amber** offers it as a +$65 add-on to an advanced treatment and performs the advanced acne-scarring, body, and gold spot variants.
 2. **Will I actually peel?** Usually only lightly, if at all — that's the point of BioRePeel. Some clients get mild flaking over a few days; many get none. It does not cause the heavy sheeting of a deep peel. Individual reactions vary.

@@ -230,7 +230,7 @@ Both are **"starting at" monthly program fees** — always phrase as "investment
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is House of Rose's GLP-1 program?**
    A medically supervised, physician-guided weight-management program led by Diana, RN, using
@@ -373,7 +373,7 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 - **Concern:** `/concerns/weight-management/` (or `/concerns/metabolic-wellness/`) — wellness-pillar
   concern page; the only concern that fits GLP-1.
 - **Cost guide:** `/cost/semaglutide-tirzepatide-cost-punta-gorda/` — honest, "from"-priced,
-  provider-authority-gated cost guide (answer-first, locally grounded).
+  provider-authority-gated cost guide with useful locally grounded context.
 - **Comparison:** `/compare/semaglutide-vs-tirzepatide/` — mechanism/positioning comparison, no
   superiority guarantee (built directly from §5).
 - *(Optional)* **Comparison:** `/compare/medically-supervised-vs-online-glp-1/` — the safety/oversight

@@ -146,7 +146,7 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What are dermal fillers made of?**
    Hyaluronic acid — a water-binding sugar your skin already produces — formulated into a smooth gel. House of Rose uses the Juvéderm and RHA hyaluronic-acid families.

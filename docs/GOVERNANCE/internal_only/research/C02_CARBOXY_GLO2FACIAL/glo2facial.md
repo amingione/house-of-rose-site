@@ -142,7 +142,7 @@ Maps to these **existing** `/concerns/` slugs:
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is a Glo2Facial?** It's a non-invasive, no-downtime signature facial by Geneo that exfoliates, infuses active ingredients, and oxygenates the skin from within in one session — designed to reveal an immediate, luminous glow. At House of Rose it's performed by Amber and starts at $185.
 2. **How does the "oxygenation" actually work?** As a single-use pod reacts with its gel it releases a layer of CO₂ bubbles at the skin; that local rise in CO₂ prompts your own blood to release more oxygen into the treated skin (the Bohr effect). Nothing is injected — it's your skin oxygenating itself.

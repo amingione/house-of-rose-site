@@ -130,7 +130,7 @@ What will move price once set (for structuring the eventual menu):
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is hydrodermabrasion?** It's a gentle, water-and-serum-based resurfacing facial that exfoliates, extracts, and hydrates in one no-downtime session — the accessible maintenance-glow treatment at House of Rose in Punta Gorda.
 2. **Is it the same as a HydraFacial?** They're in the same family of water-based resurfacing facials. "HydraFacial" is a specific brand of device; we describe ours generically as hydrodermabrasion. Both exfoliate, extract, and infuse serums with no downtime.

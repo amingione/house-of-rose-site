@@ -137,7 +137,7 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is a light chemical peel?** A gentle professional treatment that uses a mild cosmetic acid (or fruit enzyme) to loosen dull surface skin cells, helping reveal smoother, brighter-looking skin — with little to no downtime.
 2. **Will I actually peel / flake?** Not necessarily. Some clients see light flaking around days 3–5; many see nothing visible and simply notice smoother, brighter skin. **Visible peeling isn't required for the treatment to work.**

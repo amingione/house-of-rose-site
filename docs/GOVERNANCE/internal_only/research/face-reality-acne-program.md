@@ -121,7 +121,7 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is the Face Reality Acne Program?** It's a 12-week, coaching-based program for clearer-looking skin — biweekly in-studio treatments plus a customized daily home-care regimen, led by Amber, a Face Reality Certified Acne Specialist in Punta Gorda. It's a plan and a partnership, not a single facial.
 2. **Does it cure acne?** No — and we won't say that. It's a non-medical program designed to support **clearer-looking, calmer skin** and better skin habits. Many clients notice meaningful improvement, but individual outcomes vary, and prescription/medical care is a dermatologist's role.

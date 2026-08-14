@@ -147,7 +147,7 @@ Upgrades: **Topical PRF +$175** (face) / **+$200** (body) · **Glo2Facial Finish
 
 ---
 
-## 9. FAQ bank (compliance-clean, answer-first)
+## 9. FAQ bank (substantive, compliance-clean)
 
 **What's the difference between Procell Pro and Procell MD?**
 Both are professional growth-factor + cytokine serums applied during the same Procell Microchanneling treatment. Procell MD carries roughly twice the growth factors of Pro and is the go-to for clients 40+ and age-related collagen support; Pro is the professional-grade baseline for prevention and maintenance, often chosen under 40 or for a first visit. Your esthetician selects the tier at consultation.

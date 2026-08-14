@@ -82,7 +82,7 @@ added an always-on closing "explore" band (guide + comparison hub). No longer a 
 
 ### A10 · Content P0
 `services/[slug]`: "What It Is" answer slot fallback `'Details coming soon.'` → `tagline` (never a
-visible placeholder in the flagship answer-first slot).
+visible placeholder in the flagship opening slot).
 
 ### A11 · Accessibility quick wins
 - Header mobile-menu button: added `aria-expanded`/`aria-controls`, toggled in the click handler.

@@ -188,7 +188,7 @@ All retail prices come from **Sanity** (cents→USD). No web prices.
 
 ---
 
-## 9. FAQ bank (compliance-clean, answer-first)
+## 9. FAQ bank (substantive, compliance-clean)
 
 **Do I really need professional products, or is drugstore fine?**
 Professional lines aren't automatically "stronger" — the difference is that a licensed provider selects and sequences them for *your* skin and what was just done to it, and several are built for the post-treatment window. That guidance is what a drugstore aisle can't give. Your provider will tell you honestly what you need and what you don't.

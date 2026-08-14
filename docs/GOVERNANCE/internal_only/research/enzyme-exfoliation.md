@@ -119,7 +119,7 @@ Factors that *would* move price once set (for planning only, not for publication
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is an enzyme facial?** A gentle, relaxing exfoliation facial that uses natural fruit enzymes (papaya, pineapple, pumpkin) to lift away dull, dead surface skin — revealing brighter, smoother-looking skin with no downtime.
 2. **How is an enzyme facial different from a chemical peel?** Enzymes dissolve the protein bonds holding dead cells together and are essentially pH-neutral; acid peels work by lowering the skin's pH and generally reach deeper. Enzyme facials are the gentler, maintenance-level option.

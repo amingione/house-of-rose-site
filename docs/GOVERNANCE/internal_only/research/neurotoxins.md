@@ -86,7 +86,7 @@ For **fine surface lines, texture, tone, and skin quality** — as opposed to mu
 
 - **Primary → `/concerns/fine-lines-laxity/`** ("Fine Lines & Laxity"). Neurotoxins map specifically to the **dynamic-line** portion of this concern — the expression lines that a wrinkle relaxer is designed for. Copy should distinguish *dynamic* lines (neurotoxin territory) from *static* lines and volume loss (filler/PRF territory) and from surface texture (resurfacing/topicals), so the concern page routes honestly. Note that "laxity" itself (skin looseness) is **not** a neurotoxin indication — flag this so the concern page doesn't overpromise.
 - **Prevention framing** belongs here too: neurotoxins can reduce the repetitive folding that deepens dynamic lines over time — framed as "supports the appearance of smoother skin over time" / "many clients start earlier as maintenance," never as "prevents aging."
-- **Proposed new concern page:** `/concerns/frown-lines-forehead-lines/` (or `/concerns/expression-lines/`) — a dedicated dynamic-lines concern page would give neurotoxins a clean, answer-first home distinct from the broader fine-lines-laxity page. Type: concern.
+- **Proposed new concern page:** `/concerns/frown-lines-forehead-lines/` (or `/concerns/expression-lines/`) — a dedicated dynamic-lines concern page would give neurotoxins a focused home distinct from the broader fine-lines-laxity page. Type: concern.
 
 ---
 
@@ -119,7 +119,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What are neurotoxins / wrinkle relaxers?**
    They're precision injections of botulinum toxin type A that temporarily relax the facial muscles causing expression lines, softening the look of frown lines, forehead lines, and crow's feet. At House of Rose they're administered by Diana, RN, under medical-director oversight.

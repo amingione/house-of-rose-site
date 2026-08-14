@@ -19,7 +19,7 @@ source docs, which have been deleted from this folder now that their content liv
 
 Prices are Diana's own figures — treated as authoritative, no hedging. Durations and description
 copy below are set using standard med-spa appointment-length benchmarks and positioned for the
-Punta Gorda / Charlotte County / SW Florida market, per the site's AEO playbook (answer-first,
+Punta Gorda / Charlotte County / SW Florida market, per the site's AEO playbook (clear early,
 locally grounded, no medical overclaiming).
 
 ## Master Pricing Table

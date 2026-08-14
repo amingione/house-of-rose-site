@@ -110,7 +110,7 @@ No new concern pages required — the existing six cover the topical-PRF surface
 
 Use the **local master menu** as pricing truth per the source hierarchy, and flag the drift. **Never publish a price from web research.** Present all pricing as "investment," "from," or "starting at."
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is topical PRF?** It's your own platelet-rich fibrin—prepared from a small sample of your blood—applied to your skin during eligible Microneedling. At House of Rose it is topical only.
 2. **Is topical PRF the same as PRF injections?** No. Topical PRF is applied on the surface during needling (Amber's advanced-facial lane). PRF injections are a separate procedure performed beneath the skin by Diana, RN. They are different treatments with different goals.

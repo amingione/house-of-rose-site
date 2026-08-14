@@ -166,7 +166,7 @@ All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consol
 
 **Proposed new pages (type + suggested slug):**
 - **Concern page** — `/concerns/dull-tired-skin/` (or `/concerns/skin-radiance/`): beauty-from-within; Beauty Glow IV + facials + retail as pathways.
-- **Cost guide** — `/cost/iv-hydration-therapy-cost-punta-gorda/`: "How much does IV therapy cost in Punta Gorda?" answer-first, honest per-session ranges from local docs, add-on math, RN-administered value framing. (Would be only the 2nd cost guide on the site.)
+- **Cost guide** — `/cost/iv-hydration-therapy-cost-punta-gorda/`: “How much does IV therapy cost in Punta Gorda?” with honest per-session ranges from current sources and exact RN attribution. Do not infer add-on pricing or formulations. (Would be only the 2nd cost guide on the site.)
 - **Comparison** — `/compare/iv-therapy-vs-oral-hydration/` (or `/compare/iv-drip-vs-oral-vitamins/`): the honest bioavailability-vs-convenience piece, including "when oral is enough."
 - Optionally a dedicated treatment/menu page per base IV if the wellness hub gets large, but the single `iv-hydration-therapy` page + menu is sufficient for launch.
 
@@ -181,7 +181,7 @@ All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consol
 
 ## 13. The case for routine IV hydration at House of Rose
 
-**Answer-first:** Hydration and nutrition aren't one-and-done — they're daily, and SW Florida's heat, sun, and active lifestyle quietly drain them faster than most people replace. Making an occasional IV a **routine part of a wellness and skin-health plan** — rather than a once-a-year rescue — is designed to help you stay consistently replenished, and many clients notice they simply feel and look their best when they don't wait until they're depleted. (Supportive wellness, not disease treatment.)
+**Retired draft — do not publish:** the former paragraph in this slot promoted routine IV use and implied unsupported appearance and wellness outcomes. Current public copy should describe only the verified six-option menu, appointment lengths, prices, RN provider, and medical-direction boundary until formulation and outcome claims are sourced.
 
 **Why routine over one-offs.** A single drip is a reset; a *rhythm* is a habit. Just as a skincare routine beats a single facial, folding periodic IVs into a plan supports steady hydration and nutrient status across the seasons instead of a spike-and-crash pattern. Cadence is always a wellness choice you set with Diana — there's no medical prescription — but consistency is where the "feel-good" many clients describe tends to hold.
 

@@ -128,7 +128,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is Advanced Skin Imaging & Analysis?** It's a non-invasive in-studio imaging step at House of Rose that uses the M17 AI Skin Analyzer to photograph your skin under multiple light modes, so your provider can see visible and near-surface patterns more clearly and build your treatment plan around what your skin is actually showing.
 
@@ -201,7 +201,7 @@ The skin-analysis page should map to **every** concern page and hand off to the 
 **Proposed new pages (type + slug):**
 - **New concern pages** (router destinations the M17 reads but the site can't route to yet): `/concerns/pigmentation-melasma/`, `/concerns/redness-rosacea-appearance/`, `/concerns/pores-congestion/`, `/concerns/dehydration-barrier/`.
 - **Comparison** (`comparison`): `/compare/ai-skin-analysis-vs-visual-consultation/` — captures the §5 table for AEO (currently the only comparison on the site is the PRF one).
-- **Process/guide** (like `/guides/microchanneling-prf/`): `/guides/what-ai-skin-analysis-shows/` — a deeper, answer-first explainer of the light modes and what each reveals.
+- **Process/guide** (like `/guides/microchanneling-prf/`): `/guides/what-ai-skin-analysis-shows/` — a deeper explainer of the light modes and what each reveals.
 - Optionally a **Sanity `service` doc** for skin analysis so it appears in service listings and JSON-LD is a first-class `service` rather than only the singleton (decision needed — see gaps).
 
 ---

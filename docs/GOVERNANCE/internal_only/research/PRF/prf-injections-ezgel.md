@@ -138,7 +138,7 @@ Source: `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Con
 
 **Proposed new pages (type + slug):**
 - **service/treatment:** confirm `/services/ez-gel-bio-filler/` exists and is distinct from `/services/prf-injections/` (both are in Sanity).
-- **costGuide:** `/cost/prf-under-eye-cost-punta-gorda/` — under-eye PRF investment, answer-first.
+- **costGuide:** `/cost/prf-under-eye-cost-punta-gorda/` — under-eye PRF pricing with useful context.
 - **comparison:** `/compare/prf-vs-filler-under-eye/` — PRF/EZ-Gel vs HA filler for the under-eye (honest, when-each-wins).
 - **comparison:** `/compare/ez-gel-bio-filler-vs-ha-filler/` — autologous vs synthetic volume.
 - **caseStudy:** `/results/prf-under-eye-punta-gorda/` — consented before/after (consent + "results vary" required).

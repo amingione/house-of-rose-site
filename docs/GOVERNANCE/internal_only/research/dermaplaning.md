@@ -100,7 +100,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level â€
 
 **Compliance note on pricing copy:** always "from" / "investment" / "starting at"; never "deal," "% off," "sale," or "cheap." Package/series pricing carries the Fla. Stat. 456.062 disclaimer; the performing licensee is identified.
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 **Will the hair grow back thicker or darker?** No. Dermaplaning removes fine vellus (peach-fuzz) hair at the surface; it grows back the same size, shape, and color it was before. Cutting a hair doesn't change the follicle, its thickness, or its pigment â€” this is the same well-worn shaving myth.
 

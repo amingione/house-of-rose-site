@@ -34,7 +34,7 @@ The labels **“MD”** and **“Pro”** need one final operational verificatio
 
 ### Suggested decision language once verified
 
-Use an answer-first structure: “Both are Procell microchanneling protocols. The difference is the topical protocol and/or treatment plan selected for your skin; neither is automatically right for every concern.” Then state only the confirmed difference, the expected recovery, and the appropriate client profile. Avoid “medical grade,” “clinically proven,” “regenerates,” “repairs DNA,” “stem-cell,” or guaranteed-result language.
+State the settled distinction clearly and give enough verified context for it to be useful: “Both are Procell microchanneling protocols. The difference is the topical protocol and/or treatment plan selected for your skin; neither is automatically right for every concern.” Include confirmed differences and supported recovery information when relevant. Avoid “medical grade,” “clinically proven,” “regenerates,” “repairs DNA,” “stem-cell,” or guaranteed-result language.
 
 ---
 

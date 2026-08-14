@@ -116,7 +116,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 
 ---
 
-## 9. FAQ bank (answer-first, compliance-clean)
+## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is a carboxy facial?** A needle-free treatment that uses a two-part carbon-dioxide gel/mask to support your skin's local circulation and oxygen delivery for a fresh, radiant look. At House of Rose it's a topical facial in Amber's advanced-facials lane — no injections.
 2. **Does it involve needles or injections?** No. Our carboxy facial is **topical only** — the CO₂ is released from a gel on the skin's surface. (Injectable carboxytherapy is a separate, injection-based medical procedure we frame separately.)
