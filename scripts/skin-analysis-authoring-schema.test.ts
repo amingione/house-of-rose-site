@@ -27,5 +27,5 @@ test('the public Skin Analysis route uses local reviewed content, not the Studio
   const stackbit = readFileSync(new URL('../stackbit.config.ts', import.meta.url), 'utf8');
 
   assert.doesNotMatch(route, /skinAnalysis|sanityFetch|SKIN_ANALYSIS_QUERY/);
-  assert.match(stackbit, /skinAnalysis:\s*['"]\/skin-analysis['"]/);
+  assert.doesNotMatch(stackbit, /skinAnalysis:\s*['"]\/skin-analysis['"]/);
 });

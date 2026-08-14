@@ -44,6 +44,10 @@ test("the public Experience route does not fetch the disconnected Studio singlet
     new URL("../packages/web/src/pages/experience.astro", import.meta.url),
     "utf8",
   );
+  const stackbit = readFileSync(
+    new URL("../stackbit.config.ts", import.meta.url),
+    "utf8",
+  );
 
   assert.doesNotMatch(
     route,
@@ -53,5 +57,9 @@ test("the public Experience route does not fetch the disconnected Studio singlet
   assert.match(
     route,
     /\/images\/optimized\/house-of-rose-storefront-700\.webp/,
+  );
+  assert.doesNotMatch(
+    stackbit,
+    /experienceContent:\s*["']\/experience["']/,
   );
 });

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { thankYou } from '../packages/studio/schemas/thankYou.ts';
@@ -28,4 +29,18 @@ test('Thank You Studio groups state the current publication boundary', () => {
   for (const group of thankYou.groups ?? []) {
     assert.match(String(group.title), /not published/i);
   }
+});
+
+test('the visual editor does not advertise disconnected Thank You copy as a page model', () => {
+  const route = readFileSync(
+    new URL('../packages/web/src/pages/thank-you.astro', import.meta.url),
+    'utf8',
+  );
+  const stackbit = readFileSync(new URL('../stackbit.config.ts', import.meta.url), 'utf8');
+
+  for (const fieldName of thankYou.fields.map((field) => field.name)) {
+    assert.doesNotMatch(route, new RegExp(`data\\.${fieldName}\\b`));
+  }
+  assert.match(route, /sbObjectId\(data\._id\)/);
+  assert.doesNotMatch(stackbit, /thankYou:\s*['"]\/thank-you['"]/);
 });

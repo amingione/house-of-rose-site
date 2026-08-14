@@ -115,9 +115,6 @@ const SINGLETON_PAGE_ROUTES: Record<string, string> = {
   termsOfService: '/terms-of-service',
   privacyPolicy: '/privacy-policy',
   rentARoom: '/rent-a-room',
-  skinAnalysis: '/skin-analysis',
-  thankYou: '/thank-you',
-  experienceContent: '/experience',
   ...(PUBLIC_SHOP_ENABLED ? { janeIredalePage: '/shop/jane-iredale' } : {}),
   aboutPage: '/about',
 };
