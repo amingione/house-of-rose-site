@@ -1660,14 +1660,13 @@ test('services index keeps canonical decision hubs and provider orientation visi
   const guidanceText = visibleText(guidance);
   const failures = [];
 
-  for (const required of [
-    'Begin with the service, the concern, or the person you want to see.',
-    'Some appointments can be booked directly.',
-    'Others begin with a consultation or call',
-    'names that person and their licence type',
-    'provider directory connects each person to the work they currently provide',
+  for (const [label, pattern] of [
+    ['observable distinctions', /movement[\s\S]{0,80}lost volume[\s\S]{0,80}pigment[\s\S]{0,80}texture/i],
+    ['no treatment-name prerequisite', /do not need[\s\S]{0,80}treatment name/i],
+    ['booking-path distinction', /direct booking[\s\S]{0,80}consultation[\s\S]{0,80}phone call/i],
+    ['provider licence transparency', /provider directory[\s\S]{0,80}licence type/i],
   ]) {
-    if (!guidanceText.includes(required)) failures.push(`services index guidance is missing ${JSON.stringify(required)}`);
+    if (!pattern.test(guidanceText)) failures.push(`services index guidance is missing ${label}`);
   }
   if (!guidance.includes('href="/about/providers/"')) {
     failures.push('services index guidance is missing the provider-directory link');
