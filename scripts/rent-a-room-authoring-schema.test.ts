@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { rentARoom } from '../packages/studio/schemas/rentARoom.ts';
@@ -34,4 +35,26 @@ test('published room specification labels and values use the shared copy guard',
     assert.equal(typeof field?.validation, 'function');
     assert.match(String(field?.validation), /validatePublicCopy/);
   }
+});
+
+test('the public rental route reads only the Studio canonical singleton', () => {
+  const structure = readFileSync(
+    new URL('../packages/studio/structure.ts', import.meta.url),
+    'utf8',
+  );
+  const route = readFileSync(
+    new URL('../packages/web/src/pages/rent-a-room.astro', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(
+    structure,
+    /schemaType\('rentARoom'\)\.documentId\('rentARoom'\)/,
+    'Studio must keep the rental page on its canonical document ID.',
+  );
+  assert.match(
+    route,
+    /_type == "rentARoom" && _id == "rentARoom"/,
+    'The public route must not select an arbitrary duplicate singleton.',
+  );
 });

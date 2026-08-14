@@ -29,7 +29,7 @@ interface RentARoom {
   roomSpecs?: RentARoomSpec[];
 }
 
-const RENT_A_ROOM_QUERY = /* groq */ `*[_type == "rentARoom"][0]{
+const RENT_A_ROOM_QUERY = /* groq */ `*[_type == "rentARoom" && _id == "rentARoom"][0]{
   _id,
   roomSpecs[]{ _key, label, value }
 }`;
