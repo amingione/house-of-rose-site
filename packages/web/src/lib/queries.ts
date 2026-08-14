@@ -413,6 +413,15 @@ export interface ExperienceContent {
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
+const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
+  optionA.service->status in ["live", "actual-menu"] &&
+  defined(optionA.service->slug.current) &&
+  !(optionA.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
+  optionB.service->status in ["live", "actual-menu"] &&
+  defined(optionB.service->slug.current) &&
+  !(optionB.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+`;
+
 export const SITE_SETTINGS_QUERY = /* groq */ `
   *[_type == "siteSettings" && _id == "siteSettings"][0] {
     siteName,
@@ -629,6 +638,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       defined(slug.current) &&
       slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
       !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+      ${COMPARISON_ROUTEABLE_OPTIONS} &&
       (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
     ] | order(orderRank asc, title asc) {
       _id,
@@ -1411,15 +1421,6 @@ export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── Comparisons ──────────────────────────────────────────────────────────────
-const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
-  optionA.service->status in ["live", "actual-menu"] &&
-  defined(optionA.service->slug.current) &&
-  !(optionA.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-  optionB.service->status in ["live", "actual-menu"] &&
-  defined(optionB.service->slug.current) &&
-  !(optionB.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-`;
-
 const COMPARISON_OPTION_FIELDS = /* groq */ `
   label, summary, bestFor,
   "service": select(
