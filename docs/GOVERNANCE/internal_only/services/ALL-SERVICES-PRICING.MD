@@ -253,20 +253,18 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
    `GG-PRICE-FINALIZE.md`) carried a "clinical hold" note requiring separate sign-off before this could
    be sold. **Amber's ruling, 2026-08-07: that hold was never a real constraint — struck from every
    doc it appeared in.** GlowTox Facial is confirmed live and bookable at $475, full stop.
-2. 🟡 **PRF pricing raise decided 2026-07-20 was never implemented in GlossGenius** — *the
-   attribution half is resolved.* ✅ **Amber confirmed 2026-08-09: the "PRF Microneedling —
-   Consultation" $595 line IS her topical PRF + microneedling service, not Diana's injectable.**
-   The canonical website page `/services/prf/` shows the current $595 appointment; the old $450 figure
-   (2026-07-09 PRF PDF) is dead. What stays open below is Diana's lane only.
-   `PRF_Pricing/FINAL-PRICING.md` states Amber gave final approval to raise PRF Under-Eye from
-   $495→$550 (series $1,485) and PRF Facial from $595→$650 (series $1,750), with an explicit
-   instruction to update GlossGenius "first." The 2026-08-06 export still shows PRF Under-Eye at
-   $495, and there's no clearly matching "PRF Facial Rejuvenation (1 Area)" line in GlossGenius at
-   all — only "PRF Microneedling Consultation" $595, which the naming suggests may actually be
-   Amber's *topical* PRF Skin Renewal service, not Diana's *injectable* PRF Facial Rejuvenation.
-   Two separate questions: (a) was the $550/$650 raise ever pushed live, and (b) does Diana's
-   injectable "PRF Facial Rejuvenation (1 Area)" currently exist as its own bookable GlossGenius
-   line at all?
+2. 🟡 **Diana's proposed PRF pricing raise was never implemented in GlossGenius; the topical
+   attribution is resolved.** ✅ **Amber confirmed 2026-08-09: the "PRF Microneedling —
+   Consultation" $595 line is her topical PRF + microneedling service, not Diana's injectable.**
+   The canonical website page `/services/prf/` shows that current $595 appointment; the old $450 figure
+   (2026-07-09 PRF PDF) is dead.
+   `PRF_Pricing/FINAL-PRICING.md` records approval to raise Diana's PRF Under-Eye from $495→$550
+   (series $1,485) and a proposed PRF Facial from $595→$650 (series $1,750), with an explicit
+   instruction to update GlossGenius first. The 2026-08-06 export still shows PRF Under-Eye at $495
+   and no separate "PRF Facial Rejuvenation (1 Area)" appointment. Within the facial PRF inventory,
+   Diana's current GlossGenius-backed rows therefore remain PRF Under-Eye at $495 and PRF Bio-Filler
+   at $899. Do not publish the proposed $550/$650 prices, either series, or a separate injectable PRF
+   Facial Rejuvenation appointment unless GlossGenius is updated first and this ledger is rebuilt.
 3. 🟡 **EZ Gel Bio-Filler vs. PRF Bio-Filler.** `GG-PRICE-FINALIZE.md`'s change log says "EZ Gel
    Bio-Filler → ADDED $650" on 2026-07-26. The 2026-08-06 export shows no "EZ Gel" line at all —
    only "PRF Bio-Filler — Consultation" $899. Either EZ Gel was renamed and repriced, or it's two
