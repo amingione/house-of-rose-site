@@ -39,7 +39,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   dermaplaning:
     'Book the 50-minute standalone facial or the 25-minute add-on. Review Facial Waxing if you want one named facial area waxed.',
   microneedling:
-    'Begin with the $50, 60-minute Procell Therapies Consultation with Amber Mingione, Licensed Esthetician. Pro and MD use the same Procell device with different topical serums; during eligible PRF Microneedling, PRF is applied at the skin surface.',
+    'The $50, 60-minute Procell Therapies Consultation with Amber Mingione, Licensed Esthetician covers the Pro and MD serum options, which use the same Procell device. PRF Microneedling is a separate $595, 60-minute consultation where PRF is applied at the skin surface.',
   'facial-waxing':
     'Call with the area you want waxed: chin, upper lip, eyebrows, or eyebrow shaping.',
   'forma-rf-facial':

@@ -166,7 +166,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     links: [
       {
         href: '/services/prf/',
-        label: 'Review the complete PRF overview',
+        label: 'Topical and injectable PRF',
       },
       {
         href: '/about/providers/amber/',
