@@ -2128,12 +2128,14 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   assert.equal(occurrenceCount(hub, 'href="/services/facial-waxing/"'), 1, 'Waxing hub must link Facial Waxing once in main content.');
   assert.equal(occurrenceCount(hub, 'href="/services/body-waxing/"'), 1, 'Waxing hub must link Body Waxing once in main content.');
   assert.ok(
-    visibleText(hub).includes('Facial and body waxing, organized by area.'),
-    'Waxing hub must orient clients to the two current area menus.',
+    visibleText(hub).includes('Eleven area-specific waxing appointments, with two ways to book.')
+      && visibleText(hub).includes('Facial Waxing has a direct online booking path.')
+      && visibleText(hub).includes('Body Waxing is arranged by phone'),
+    'Waxing hub must preserve the verified 11-appointment structure and booking distinction.',
   );
   assert.ok(
-    visibleText(hub).includes('eyebrows, upper lip, and chin')
-      && visibleText(hub).includes('underarms, bikini line, arms, legs, back, and chest'),
+    visibleText(hub).includes('chin, upper lip, and brows')
+      && visibleText(hub).includes('underarms, bikini line, chest, back, full leg, partial leg, and full arm'),
     'Waxing hub must identify the verified areas in each service lane.',
   );
   for (const required of ['Eyebrow Shape, Trim &amp; Wax', '$25', '25 minutes']) {
