@@ -1041,7 +1041,6 @@ export interface TreatmentPackage {
   slug: string;
   type?: PackageType;
   status?: PackageStatus;
-  provider?: { title: string; lane?: ProviderLane };
   servicesIncluded?: PackageServiceRef[];
   whatsIncluded?: string;
   cadence?: string;
@@ -1058,7 +1057,6 @@ const PACKAGE_FIELDS = /* groq */ `
   "slug": slug.current,
   type,
   status,
-  "provider": provider->{ title, lane },
   "servicesIncluded": servicesIncluded[
     @->status in ["live", "actual-menu"] &&
     defined(@->slug.current) &&

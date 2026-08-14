@@ -56,9 +56,10 @@ export const treatmentPackage = defineType({
     }),
     defineField({
       name: 'provider',
-      title: 'Provider',
+      title: 'Provider (internal — not published)',
       type: 'reference',
       to: [{ type: 'provider' }],
+      description: 'Operational Notion mirror only. Public package pages use reviewed provider attribution rather than this internal relationship.',
     }),
     defineField({
       name: 'servicesIncluded',

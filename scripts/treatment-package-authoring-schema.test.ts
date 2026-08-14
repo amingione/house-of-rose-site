@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { treatmentPackage } from '../packages/studio/schemas/treatmentPackage.ts';
@@ -13,6 +14,7 @@ const titleField = treatmentPackage.fields.find(({ name }) => name === 'title');
 const cadenceField = treatmentPackage.fields.find(({ name }) => name === 'cadence');
 const rackPriceField = treatmentPackage.fields.find(({ name }) => name === 'rackPrice');
 const imageField = treatmentPackage.fields.find(({ name }) => name === 'image');
+const providerField = treatmentPackage.fields.find(({ name }) => name === 'provider');
 const servicesIncludedField = treatmentPackage.fields.find(({ name }) => name === 'servicesIncluded') as
   | {
       of?: Array<{
@@ -93,6 +95,27 @@ test('published package image alt text uses the shared public-copy guard', () =>
   assert.equal(validate(undefined), true);
   assert.equal(validate('Face Reality products used during the 12-week program.'), true);
   assert.match(String(validate('A flawless skin transformation.')), /retired or prohibited/i);
+});
+
+test('the operational package provider relationship cannot pose as public package copy', () => {
+  assert.equal(providerField?.type, 'reference');
+  assert.notEqual(providerField?.readOnly, true, 'The internal provider assignment remains operational.');
+  assert.match(String(providerField?.title), /internal.*not published/i);
+  assert.match(String(providerField?.description), /operational notion mirror/i);
+  assert.match(String(providerField?.description), /reviewed provider attribution/i);
+
+  for (const query of [ALL_TREATMENT_PACKAGES_QUERY, TREATMENT_PACKAGE_BY_SLUG_QUERY]) {
+    assert.doesNotMatch(query, /"provider"\s*:/);
+    assert.doesNotMatch(query, /provider->\{[^}]*\blane\b/);
+  }
+
+  for (const relativePath of [
+    '../packages/web/src/pages/packages/index.astro',
+    '../packages/web/src/pages/packages/[slug].astro',
+  ]) {
+    const renderer = readFileSync(new URL(relativePath, import.meta.url), 'utf8');
+    assert.doesNotMatch(renderer, /(?:pkg|package)\.provider/);
+  }
 });
 
 test('package service authoring and projections require routeable public services', () => {
