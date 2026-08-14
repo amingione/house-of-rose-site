@@ -384,15 +384,15 @@ Astro's default `build.format` is `directory` and `site` resolves to `https://ho
 Click-to-edit / side-by-side editing sits **on top of** Sanity — **not** a second CMS,
 and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 
-- **Config**: `stackbit.config.ts` (repo root) — Sanity content source + `PAGE_ROUTES`
-  map (keep in sync with the Routes table below) + Astro `custom` SSG dev command.
+- **Config**: `stackbit.config.ts` (repo root) — Sanity content source + slug-routed
+  `PAGE_ROUTES` + fixed `SINGLETON_PAGE_ROUTES` maps (keep both aligned with the
+  actual public renderers) + Astro `custom` SSG dev command.
 - **Dev deps only**: `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types`
   (never imported by site code — production build untouched).
-- **Run locally**: `npm run dev:visual` (editor on `:3000`; Astro preview on a
-  Stackbit-assigned port injected via the `{PORT}` placeholder in `devCommand`).
-  The editor origin `http://localhost:3000` is already in the Sanity CORS list —
-  don't pass `--port` to `stackbit dev` (it moves the editor off that origin and
-  breaks Sanity reads/writes via CORS).
+- **Run locally**: `npm run dev:visual` (Astro preview on `:3000`; Stackbit
+  editor/proxy on `:8090`, opened at `http://localhost:8090/_stackbit`). The
+  `{PORT}` placeholder in `devCommand` belongs to the cloud Visual Editor
+  container; local orchestration is handled by `scripts/visual-editing/dev-visual.mjs`.
 - **Env** (add to `.env.local`, auto-loaded by `stackbit.config.ts`):
   `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_STUDIO_URL`, `SANITY_ACCESS_TOKEN`
   (Editor token, read+write, for two-way sync).
@@ -403,11 +403,14 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
   `ve:sync` (PAGE_ROUTES drift), `ve:new` (scaffold pre-annotated page/component +
   auto-register route). A `prepare`-installed pre-commit hook blocks un-annotated
   Sanity-backed files. Allow-list lives in `check-coverage.mjs`.
-- **Formerly-hardcoded pages now Sanity-backed singletons** (deployed + seeded):
-  `homepage`, `contactPage`, `supportPage`, `privacyPolicy`, `termsOfService`, `rentARoom`, `skinAnalysis`, `thankYou` — each
-  edited under Studio → **Pages** (or **Home Page**). During the voice reset, local renderers may
-  withhold unreviewed prose; only Sanity content that is actually rendered remains click-to-edit.
-  Forms (contact, rent-a-room) and JSON-LD remain untouched.
+- **Retained singleton schemas are not automatically public copy authority.** The deployed records for
+  `homepage`, `contactPage`, `supportPage`, `privacyPolicy`, `termsOfService`, `rentARoom`,
+  `skinAnalysis`, and `thankYou` remain source-compatible in Sanity. During the voice reset,
+  `homepage`, `contactPage`, `supportPage`, `skinAnalysis`, and `thankYou` are read-only archival
+  records: their public routes use reviewed local copy, they are absent from active Studio page
+  navigation, and they are not Visual Editor page models. `privacyPolicy`, `termsOfService`, and
+  the published `rentARoom.roomSpecs` remain active singleton sources. Only Sanity fields that the
+  public renderer actually uses are annotated and promoted for visual editing.
   _(The `roseCirclePage` and `membershipsPage` singletons were deleted in the 2026-07-07 membership teardown.)_
 
 ---
@@ -467,8 +470,14 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | `/areas` · `/areas/[slug]` | `areas/...` | Local authority pages (`localArea`) |
 | `/results` · `/results/[slug]` | `results/...` | Before/after proof (`caseStudy`) |
 | `/faq` | `faq.astro` | Aggregated FAQ hub (FAQPage JSON-LD) |
-| `/support` | `support.astro` | Customer support singleton (`supportPage`) — appointments, booking, contact options, and support FAQs (FAQPage JSON-LD) |
+| `/support` | `support.astro` | Reviewed local support copy + FAQPage JSON-LD; the archival `supportPage` record is not public copy authority |
+| `/contact` | `contact.astro` | Reviewed local contact copy + lead form; the archival `contactPage` record is disconnected |
+| `/consultation` | `consultation.astro` | Reviewed local consultation guidance + lead form |
+| `/privacy-policy` | `privacy-policy.astro` | Active `privacyPolicy` singleton + reviewed form/channel guidance |
 | `/terms-of-service` | `terms-of-service.astro` | Legal terms singleton (`termsOfService`) — website use, appointments, communications, and online product orders (WebPage JSON-LD) |
+| `/rent-a-room` | `rent-a-room.astro` | Active `rentARoom.roomSpecs`; reviewed local page copy + application form |
+| `/skin-analysis` | `skin-analysis.astro` | Reviewed local copy + lead form; the archival `skinAnalysis` record is disconnected |
+| `/thank-you` | `thank-you.astro` | Reviewed local noindex confirmation; the archival `thankYou` record supplies no public prose |
 | `/shop` | `shop.astro` | Product catalog — promotions (`promotion`), category filter, top sellers, brand-grouped grid (`shopBrand` + `product`). See `docs/SHOP-ARCHITECTURE.md`. |
 | `/shop/[slug]` | `shop/[slug].astro` | Single product detail page (`product`) — checkout CTA when `purchaseUrl` is set, related products from the same brand. `Product` JSON-LD. |
 | `/amber` | `amber.astro` | Static — Amber's tap-to-share digital business card (self-contained black/gold card, no Header/Footer, `Person` JSON-LD; downloads `public/amber.vcf`) |
