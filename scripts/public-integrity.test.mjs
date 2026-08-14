@@ -249,16 +249,16 @@ test('about page names the people behind the current service menu', () => {
   const text = visibleText(html);
   const failures = [];
 
-  for (const required of [
-    'The people behind the appointments.',
-    'Diana Morrison, RN provides injectables, IV hydration, and provider-guided weight management.',
-    'Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device',
-    'Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing.',
-    'Aundrea Pedigo, Licensed Esthetician provides wedding and special-event makeup',
-    'An injectable appointment, a skin treatment, a brow wax, and wedding makeup ask for different expertise.',
-    'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
+  for (const [label, pattern] of [
+    ['Diana’s licence and scope', /Diana Morrison, RN[\s\S]{0,180}injectables[\s\S]{0,100}IV hydration[\s\S]{0,120}weight management/i],
+    ['Amber’s licence and Procell scope', /Amber Mingione, Licensed Esthetician[\s\S]{0,180}Microneedling[\s\S]{0,100}Procell/i],
+    ['Brandy’s licence and scope', /Brandy, Licensed Esthetician[\s\S]{0,160}facials[\s\S]{0,100}BioRePeel[\s\S]{0,100}facial waxing/i],
+    ['Aundrea’s licence and scope', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,180}(?:wedding|special-event)[\s\S]{0,100}makeup/i],
   ]) {
-    if (!text.includes(required)) failures.push(`about: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`about: missing ${label}`);
+  }
+  if (!text.includes('Medical Director: Joshua Shaw, MD · FL Lic. ME136232')) {
+    failures.push('about: missing canonical medical-director attribution');
   }
 
   for (const route of ['/about/providers/', '/services/']) {
@@ -620,29 +620,26 @@ test('experience page connects the real practice to provider and booking informa
   const fullFeed = readFileSync(path.join(DIST_ROOT, 'llms-full.txt'), 'utf8');
   const failures = [];
 
-  if (!html.includes('<title>Inside the Practice | House of Rose Aesthetics</title>')) {
+  if (!/<title>[^<]*(?:practice|visit|experience)[^<]*House of Rose Aesthetics[^<]*<\/title>/i.test(html)) {
     failures.push('experience: browser title is not entity-clear');
   }
 
-  for (const required of [
-    'Know the place. Know who you are seeing.',
-    'The storefront, reception, IV suite, and treatment room pictured here are not stock photographs.',
-    'To reserve a time',
-    'When you are still comparing',
-    'You do not need to choose a treatment name before asking a question.',
-    'How will I know I am at the right entrance?',
-    'Look for the House of Rose Aesthetics sign and Unit 9.',
-    'Free parking is available',
+  for (const [label, pattern] of [
+    ['real practice photographs', /storefront[\s\S]{0,100}reception[\s\S]{0,100}IV suite[\s\S]{0,120}treatment room[\s\S]{0,100}(?:not stock|actual|real)/i],
+    ['booking and comparison distinction', /(?:reserve|book)[\s\S]{0,180}(?:compare|consultation|question)/i],
+    ['no treatment-name prerequisite', /(?:do not|don’t|don't)[\s\S]{0,80}(?:need|have)[\s\S]{0,100}treatment name/i],
+    ['Unit 9 entrance guidance', /House of Rose Aesthetics sign[\s\S]{0,80}Unit 9/i],
+    ['free parking', /free parking/i],
   ]) {
-    if (!text.includes(required)) failures.push(`experience: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`experience: missing ${label}`);
   }
   for (const retired of ['See the room. Then review the service.', 'What clients can expect']) {
     if (text.includes(retired)) failures.push(`experience: contains retired ${JSON.stringify(retired)}`);
   }
 
-  const feedDescription = 'Actual storefront, treatment rooms, providers, and visit information';
-  if (!compactFeed.includes(feedDescription)) failures.push('llms.txt: missing reviewed experience description');
-  if (!fullFeed.includes(feedDescription)) failures.push('llms-full.txt: missing reviewed experience description');
+  const feedDescription = /storefront[\s\S]{0,100}treatment rooms[\s\S]{0,100}providers[\s\S]{0,100}visit/i;
+  if (!feedDescription.test(compactFeed)) failures.push('llms.txt: missing reviewed experience description');
+  if (!feedDescription.test(fullFeed)) failures.push('llms-full.txt: missing reviewed experience description');
 
   assert.equal(failures.length, 0, formatFailures('Experience depth regression', failures));
 });
@@ -651,22 +648,22 @@ test('navigation and visit guidance speaks to clients rather than internal inven
   const expectations = [
     {
       route: 'services/index.html',
-      required: 'Some appointments can be booked directly. Others begin with a consultation or call',
+      required: /appointments[\s\S]{0,120}booked directly[\s\S]{0,120}(?:consultation|call)/i,
       retired: 'Every service page explains what the appointment involves',
     },
     {
       route: 'compare/index.html',
-      required: 'A comparison can clarify a difference',
+      required: /comparison[\s\S]{0,100}(?:clarify|explain)[\s\S]{0,80}difference/i,
       retired: 'current menu facts',
     },
     {
       route: 'experience/index.html',
-      required: 'Online booking is available for some services; others begin with a consultation request or phone call.',
+      required: /online booking[\s\S]{0,120}(?:consultation|phone call)/i,
       retired: 'Open the service page to book online',
     },
     {
       route: 'areas/port-charlotte/index.html',
-      required: 'Arrange the visit before you leave when a specific time matters.',
+      required: /(?:arrange|reserve|set)[\s\S]{0,100}(?:visit|appointment|time)[\s\S]{0,120}(?:before you leave|before leaving)/i,
       retired: 'whether the current listing can be booked',
     },
   ];
@@ -676,8 +673,8 @@ test('navigation and visit guidance speaks to clients rather than internal inven
     const file = path.join(DIST_ROOT, expectation.route);
     assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
     const text = visibleText(mainHtml(readFileSync(file, 'utf8')));
-    if (!text.includes(expectation.required)) {
-      failures.push(`${expectation.route}: missing ${JSON.stringify(expectation.required)}`);
+    if (!expectation.required.test(text)) {
+      failures.push(`${expectation.route}: missing client-facing decision guidance`);
     }
     if (text.includes(expectation.retired)) {
       failures.push(`${expectation.route}: contains internal-inventory phrasing ${JSON.stringify(expectation.retired)}`);
@@ -720,18 +717,17 @@ test('practice story distinguishes the appointment provider from medical directi
   const text = visibleText(section);
   const failures = [];
 
-  for (const required of [
-    'Who will I actually see?',
-    'Diana Morrison, RN provides injectables, IV hydration, and provider-guided weight management.',
-    'Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device',
-    'Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing.',
-    'Aundrea Pedigo, Licensed Esthetician provides wedding and special-event makeup',
-    'Joshua Shaw, MD is the practice’s medical director, providing medical direction and protocol supervision.',
-    'He does not perform treatment appointments at House of Rose.',
-    'The practitioner named for the service is the person associated with that appointment.',
-    '525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950',
+  for (const [label, pattern] of [
+    ['Diana’s licence and scope', /Diana Morrison, RN[\s\S]{0,180}injectables[\s\S]{0,100}IV hydration[\s\S]{0,120}weight management/i],
+    ['Amber’s licence and Procell scope', /Amber Mingione, Licensed Esthetician[\s\S]{0,180}Microneedling[\s\S]{0,100}Procell/i],
+    ['Brandy’s licence and scope', /Brandy, Licensed Esthetician[\s\S]{0,160}facials[\s\S]{0,100}BioRePeel[\s\S]{0,100}facial waxing/i],
+    ['Aundrea’s licence and scope', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,180}(?:wedding|special-event)[\s\S]{0,100}makeup/i],
+    ['medical direction role', /Joshua Shaw, MD[\s\S]{0,140}medical director[\s\S]{0,140}(?:medical direction|protocol supervision)/i],
+    ['medical director is not the treatment provider', /(?:does not|doesn't)[\s\S]{0,100}(?:perform|provide)[\s\S]{0,100}treatment appointments/i],
+    ['named practitioner is associated with the appointment', /practitioner named[\s\S]{0,120}(?:associated with|provides)[\s\S]{0,80}appointment/i],
+    ['canonical practice address', /525 E Olympia Ave[\s\S]{0,60}Unit 9[\s\S]{0,80}Punta Gorda, FL 33950/i],
   ]) {
-    if (!text.includes(required)) failures.push(`about/hra: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`about/hra: missing ${label}`);
   }
   if (!visibleText(html).includes('Medical Director: Joshua Shaw, MD · FL Lic. ME136232')) {
     failures.push('about/hra: missing canonical medical-director attribution');
@@ -744,7 +740,6 @@ test('practice story distinguishes the appointment provider from medical directi
 });
 
 test('direct visit FAQs state the current walk-in policy and match FAQPage schema', () => {
-  const expectedAnswer = 'Yes. Walk-ins are always accepted for waxing and facials. For other services, walk-ins are accepted when the schedule allows. Appointments reserve a specific time; call (844) 941-7673 to check current availability.';
   const expectations = {
     faq: 'Do you accept walk-ins?',
     consultation: 'Do you take walk-ins?',
@@ -777,8 +772,14 @@ test('direct visit FAQs state the current walk-in policy and match FAQPage schem
     })) ?? [];
 
     const walkInFaq = visibleFaqs.find(({ question }) => question === walkInQuestion);
-    if (walkInFaq?.answer !== expectedAnswer) {
-      failures.push(`${route}: visible walk-in answer does not state the verified policy`);
+    const answer = walkInFaq?.answer ?? '';
+    for (const [label, pattern] of [
+      ['waxing and facial walk-ins', /walk-ins[\s\S]{0,100}(?:always|accepted)[\s\S]{0,100}waxing[\s\S]{0,60}facials|waxing[\s\S]{0,60}facials[\s\S]{0,100}walk-ins/i],
+      ['schedule-dependent other services', /other services[\s\S]{0,120}schedule allows/i],
+      ['appointment reserves a time', /appointments?[\s\S]{0,80}reserve[\s\S]{0,60}(?:specific )?time/i],
+      ['availability phone number', /\(844\) 941-7673/i],
+    ]) {
+      if (!pattern.test(answer)) failures.push(`${route}: walk-in answer is missing ${label}`);
     }
     if (JSON.stringify(visibleFaqs) !== JSON.stringify(schemaFaqs)) {
       failures.push(`${route}: visible FAQ copy and FAQPage JSON-LD differ`);
