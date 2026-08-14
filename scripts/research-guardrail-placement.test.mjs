@@ -77,3 +77,13 @@ test('GLP research cannot regenerate a clinical script or cross-sell pathway', (
     /provider lane|wellness & restoration lane|retail follow-through|downstream aesthetic pathway|whole-journey wellness|start low, go slow|monthly in-person check-ins|faceless online subscription|Ozempic face/i,
   );
 });
+
+test('dermal filler research cannot regenerate a clinical script or cross-sell pathway', () => {
+  const fillers = readFileSync(new URL('dermal-fillers.md', researchRoot), 'utf8');
+
+  assert.match(fillers, /Place safeguards where the content creates the need/i);
+  assert.doesNotMatch(
+    fillers,
+    /^## (?:The visit|Pairings & pathways|Journey links|Why House of Rose)|retail follow-through|skin analysis.*first|frequently paired|classic "relax \+ restore"/im,
+  );
+});

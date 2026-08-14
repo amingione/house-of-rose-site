@@ -146,6 +146,15 @@ test('GLP, dermaplaning, fillers, and neurotoxins use exact current structures',
   assert.match(fillers, /\$650–\$850 range/i);
   assert.match(fillers, /Consultation is \$300/i);
   assert.match(fillers, /does not establish that PRF\s+Bio-Filler is EZ-Gel/i);
+  for (const row of [
+    /Dermal Filler Consultation \| \*\*\$300\*\* \| 60 minutes/i,
+    /Juvéderm Ultra XC \| \*\*\$700\*\* \| 30 minutes/i,
+    /Juvéderm Voluma XC \| \*\*\$850\*\* \| 45 minutes/i,
+    /RHA 1 \| \*\*\$650\*\* \| 40 minutes/i,
+    /RHA 2 \| \*\*\$700\*\* \| 30 minutes/i,
+    /RHA 3 \| \*\*\$800\*\* \| 40 minutes/i,
+  ]) assert.match(fillers, row);
+  assert.match(fillers, /Do not describe any amount as a per-syringe price unless/i);
 
   const neurotoxins = read('neurotoxins.md');
   assert.match(neurotoxins, /\$14(?: per unit|\/unit)/i);

@@ -12,6 +12,7 @@ const routeGuidanceBriefs = [
   'advanced-skin-imaging.md',
   'biorepeel.md',
   'carboxy-therapy.md',
+  'dermal-fillers.md',
   'dermaplaning.md',
   'face-reality-acne-program.md',
   'glp-1.md',
@@ -197,5 +198,27 @@ test('GLP research uses the current service and provider paths without inventing
   assert.doesNotMatch(
     brief,
     /\/concerns\/weight-management\/|\/concerns\/metabolic-wellness\/|\/compare\/(?:semaglutide|medically-supervised)|\/cost\/glp|wellness-restoration|\/services\/wellness\//i,
+  );
+});
+
+test('dermal filler research stays on current routes without rebuilding a sales pathway', () => {
+  const brief = readFileSync(new URL('dermal-fillers.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/dermal-fillers/',
+    '/services/injectables-bio-fillers/',
+    '/services/collections/injectables-bio-fillers/',
+    '/cost/dermal-fillers-cost-punta-gorda/',
+    '/about/providers/diana/',
+    '/contact/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Diana Morrison, RN/);
+  assert.match(brief, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+  assert.doesNotMatch(
+    brief,
+    /provider lane|retail follow-through|stacks well with|what to try first|journey links|proposed new pages|natural-result philosophy|private, unhurried|assembly-line|product-shop|\/concerns\/volume-loss\/|\/compare\/filler|\/services\/ez-gel-bio-filler\//i,
   );
 });
