@@ -81,6 +81,7 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
       bookingUrl={bookingUrl}
       location="service-card-grid"
       class="service-booking-link"
+      accessibleContext={title}
     />
   </article>
 ) : (
@@ -127,6 +128,7 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
           bookingUrl={bookingUrl}
           location="service-card-row"
           class="inline-flex min-h-[44px] items-center text-[12px] font-semibold text-ivory underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-gold"
+          accessibleContext={title}
         />
       </div>
     </div>
