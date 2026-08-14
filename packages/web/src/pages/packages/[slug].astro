@@ -117,7 +117,7 @@ const pageDescription = summary;
             {FACE_REALITY_PROGRAM.programOnly} The $899 figure is the price of the complete 12-week program, not the price of one visit.
           </p>
           <a href="/services/face-reality-acne-program/" class="learn-more mt-7 inline-block hover:text-gold">
-            Review the Face Reality program
+            Consultation and program details
           </a>
         </div>
         <div class="border-y border-gold-metal/15">
@@ -183,22 +183,26 @@ const pageDescription = summary;
   <!-- Booking CTA -->
   <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Questions</span>
+      <span class="kicker">{isFaceRealityProgram ? 'First appointment' : 'Questions'}</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Ask about {pkg.title}.
+        {isFaceRealityProgram ? 'Begin with the $99 Acne Bootcamp Consultation.' : `Ask about ${pkg.title}.`}
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
-        Call us or request a consultation.
+        {isFaceRealityProgram
+          ? 'The consultation is a separate 60-minute appointment that can be booked directly. The complete 12-week program is $899, and its home-care products are purchased separately.'
+          : 'Call us or request a consultation.'}
       </p>
       <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10">
-        Package availability and timing are confirmed when you contact the practice. Individual outcomes vary.
+        {isFaceRealityProgram
+          ? 'Program enrollment and timing are confirmed after the consultation. Individual outcomes vary.'
+          : 'Package availability and timing are confirmed when you contact the practice. Individual outcomes vary.'}
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="/consultation/" class="btn-gold">
-          Request a Consultation
+        <a href={isFaceRealityProgram ? '/services/face-reality-acne-program/' : '/consultation/'} class="btn-gold">
+          {isFaceRealityProgram ? 'See consultation booking' : 'Request a Consultation'}
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
