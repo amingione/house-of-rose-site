@@ -853,6 +853,9 @@ test('contact form explains reply timing and preserves the messaging-consent con
     ['phone-number/text-consent boundary', /phone number[\s\S]{0,100}(?:does not|doesn't|is not)[\s\S]{0,100}(?:permission|consent)[\s\S]{0,60}text/i],
     ['topical PRF provider attribution', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}topical PRF[\s\S]{0,80}Microneedling/i],
     ['injectable PRF provider attribution', /Diana Morrison, RN[\s\S]{0,100}injectable PRF/i],
+    ['browser-location permission disclosure', /use my location[\s\S]{0,100}browser[\s\S]{0,80}location access[\s\S]{0,80}route/i],
+    ['manual starting-address alternative', /enter a starting address/i],
+    ['external map alternatives', /Google Maps[\s\S]{0,60}Apple Maps/i],
   ]) {
     if (!pattern.test(text)) failures.push(`contact: missing ${label}`);
   }
@@ -1092,6 +1095,17 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'visible pigment, uneven tone, and selected texture concerns',
       'legs, full face, chest, neck, face and neck, face, neck, and chest, spot treatment, hands',
       'InMode and the FDA classify the applicator separately from laser applicators',
+      'Lumecca Peak IPL Consultation',
+      '$50',
+      'Starting consultation',
+      '$850 single · $2,400 series of 3',
+      '$500 single · $1,200 series of 3',
+      '$500 single · $1,300 series of 3',
+      '$350 single · $900 series of 3',
+      '$800 single · $2,000 series of 3',
+      '$950 single · $2,600 series of 3',
+      '$250 single · $800 series of 3',
+      'Hands',
     ],
     morpheus8: [
       'fractional bipolar radiofrequency',
