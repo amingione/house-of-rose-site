@@ -37,6 +37,12 @@ test('the guard preserves substantive copy and the exact verified IV service nam
   );
   assert.equal(validatePublicCopy('Beauty Glow IV is listed on the current menu.'), true);
   assert.equal(validatePublicCopy('A consultation reviews medical history before this service.'), true);
+  assert.equal(
+    validatePublicCopy(
+      'These products are not intended to diagnose, treat, cure, or prevent any disease.',
+    ),
+    true,
+  );
   assert.match(String(validatePublicCopy('A premium boutique experience!')), /retired or prohibited/i);
 });
 
@@ -52,6 +58,7 @@ test('the guard rejects every explicitly banned House copy pattern', () => {
     'See a dermatologist.',
     'Dermatology specialists.',
     'Available on Groupon.',
+    'These products are not intended to diagnose, treat, cure, or prevent disease. This cures acne.',
   ]) {
     assert.match(String(validatePublicCopy(value)), /retired or prohibited/i, value);
   }

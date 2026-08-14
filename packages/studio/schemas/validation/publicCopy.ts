@@ -37,7 +37,15 @@ export function validatePublicCopy(value: string | undefined): true | string {
 
   // Exact current catalog names remain factual even when one word would be
   // retired as free-standing positioning language.
-  const reviewableCopy = value.replace(/\bBeauty Glow IV\b/gi, 'verified IV service');
+  const reviewableCopy = value
+    .replace(/\bBeauty Glow IV\b/gi, 'verified IV service')
+    // Preserve the standard negative FDA product disclaimer. The replacement
+    // is deliberately exact enough that an appended positive cure claim still
+    // reaches the prohibited-language check below.
+    .replace(
+      /\bnot intended to diagnose,\s*treat,\s*cure,\s*or prevent\b/gi,
+      'not intended to make disease claims',
+    );
   const retiredPhrase = RETIRED_OR_PROHIBITED_PUBLIC_COPY.find((pattern) => pattern.test(reviewableCopy));
 
   return retiredPhrase
