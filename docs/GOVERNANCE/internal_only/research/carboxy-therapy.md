@@ -3,7 +3,9 @@
 **Date:** 2026-07-13
 **Provider lane:** Amber — Advanced Facials (topical carboxy facial ONLY; needle-free). *Injectable carboxytherapy is out of Amber's lane — see §10.*
 **Status:** draft for Phase 3/4 consumption.
-**⚠️ PRICING STATUS:** **No local pricing doc and no published Sanity `service` exist for carboxy therapy.** All pricing sections below are marked **pending Amber — no local source.** Do NOT publish an investment figure until Amber supplies one. See §8 and GAPS.
+**⚠️ PRICING STATUS:** **No current GlossGenius-backed standalone carboxy price is established by this
+brief.** Do not publish a price until the exact bookable line is reconciled against the canonical ledger.
+See §8 and GAPS.
 
 > **Scope note (read first):** This brief covers the **topical carboxy facial** — a needle-free CO₂ gel/mask treatment an esthetician performs. It deliberately does **not** cover **injectable carboxytherapy** (subcutaneous/intradermal CO₂ gas injection), which is a medical injection procedure and would sit in Diana's (RN) lane, not Amber's. The recommended House of Rose framing is the **topical carboxy facial**. See §10 for the compliance guardrail on this distinction.
 
@@ -57,14 +59,14 @@ A carboxy facial is a needle-free treatment that uses a two-part carbon-dioxide 
 
 **Results timeline:** an **immediate** fresh/plumped, glowing look from the circulation boost (why it's an event favorite). Firmer, more lasting changes in the **appearance** of hydration, elasticity, and under-eye tone build with **repeated sessions over several weeks** — published topical protocols have used frequent short courses (e.g., multiple 45-minute applications per week over 2+ weeks) with elasticity gains noted at ~10 weeks. Results are individual.
 
-**Cadence:** best thought of as a **series plus maintenance** for corrective goals (dullness/under-eye), with single visits for a pre-event glow. Exact frequency is set by the provider.
+**Cadence boundary:** carboxy is not current public inventory, so this brief does not establish a visit schedule or series.
 
 ---
 
 ## 5. Comparisons (honest — only vs. what House of Rose offers)
 
 **Carboxy facial vs. Glo2Facial (the key one — both are "oxygenation / glow" stories, but the mechanism differs).**
-- **Glo2Facial (Geneo)** creates a **surface CO₂ reaction** using a capsule + primer to trigger a gentle exfoliation and a physiological "oxygenation" response, and pairs it with **infusion of active serums and a lymphatic/massage step** — a full multi-step facial and House of Rose's **entry/gateway treatment and base for corrective work** (published $185 single, per the master menu).
+- **Glo2Facial (Geneo)** creates a surface CO₂ reaction using an OxyPod and gel, then includes topical infusion and facial massage. It is a separate current $225, 60-minute appointment with Amber Mingione, Licensed Esthetician.
 - **Carboxy facial** uses a **CO₂-releasing gel/mask** whose whole job is **transdermal CO₂ → Bohr-effect oxygen delivery and microcirculation** over ~45 minutes; it's a quieter, single-purpose "circulation & glow" treatment, strongest as a **soothing, no-downtime brightener** and for **under-eye/periorbital** tone.
 - **Real difference:** Glo2Facial is a *fuller facial experience with exfoliation + serum infusion + massage*; carboxy is a *focused CO₂-oxygenation mask*. **Pick Glo2Facial** as the do-everything glow/entry facial and corrective base. **Pick carboxy** when the target is dull/tired skin and vascular under-eye shadowing, when you want the gentlest no-exfoliation option, or as a calming finish. *(Note: House of Rose already sells a **Glo2Facial Finish +$95** add-on — carboxy could sit as a similar add-on/finish, see §7 and GAPS re: overlap.)*
 
@@ -96,7 +98,7 @@ Maps cleanly to **existing** concern pages (all end in `/`):
 - **LED (LightStim)** — layer for a light + oxygenation calming finish.
 - **Dark-circle pathway:** carboxy facial as the **needle-free** entry for tired-looking under-eyes; if the concern is structural hollowing/pigment, the consult routes to the RN (filler) lane — a clean cross-lane handoff.
 
-**Try first / sequence:** For a new client chasing "glow," **Glo2Facial** remains the gateway; carboxy is the targeted brightening/under-eye or gentle-finish choice. Sell as a **series + maintenance** for corrective (dark-circle/dullness) goals.
+**Decision boundary:** Glo2Facial is current public inventory; carboxy therapy is not. Do not create a sequence, cadence, add-on, or series from this brief.
 
 **Retail follow-through (name real shop brands we carry):** support results at home with brightening/antioxidant and barrier care from our stocked lines — e.g., **GlyMed+** and **Skin Script** antioxidant/vitamin-C and hydrating steps, **Procell** post-care where appropriate, and diligent **broad-spectrum SPF** (any stocked SPF). Confirm exact SKUs against the live shop; keep retail claims to "supports / helps maintain the appearance of."
 
@@ -104,15 +106,17 @@ Maps cleanly to **existing** concern pages (all end in `/`):
 
 ## 8. Cost factors
 
-**⚠️ PENDING AMBER — NO LOCAL SOURCE.** There is **no carboxy pricing** in `docs/internal_only/pricing/advanced-facials-master-menu.md` (the canonical advanced-facials pricing doc), no other local doc, and **no published Sanity `service`** for carboxy. **Do not invent or infer a price.**
+Carboxy therapy is not current GlossGenius inventory. Do not create a route, appointment, duration,
+cadence, or price from this research brief.
 
 What *will* move price once Amber sets it (for structuring the eventual menu, not for quoting):
 - **Standalone facial vs. add-on/finish** (an add-on like the Glo2Facial Finish would be a lower "+$" line; a standalone facial a full line).
-- **Single vs. series** — House of Rose's standard framework is **Single · Series of 3 (Renewal, ~10%) · Series of 6 (Full Correction, ~20%)**; carboxy should slot into the same framework.
+- **No generic package framework** — a future carboxy appointment or series would require its own current GlossGenius evidence.
 - **Area** — face only vs. adding under-eye focus / neck extension (the menu already uses a **Neck & Décolleté +$95** extension pattern).
 - **Product cost** of the specific carboxy gel/mask system chosen.
 
-**For reference (adjacent, published, do NOT reuse as carboxy price):** Glo2Facial $185 single / $499 (3) / $885 (6); Glo2Facial Finish add-on +$95; LightStim LED +$35 (all from the master menu, dated 2026-07-10).
+**Current adjacent reference:** Glo2Facial is $225 for 60 minutes. That amount does not establish a
+carboxy price, and historical series, finish, or LED figures are not current commerce authority.
 
 ---
 
@@ -125,9 +129,9 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 5. **Is there downtime?** Essentially none — you can return to normal activities right away. Skin may look pleasantly flushed briefly.
 6. **What can it help with?** Many clients choose it for the appearance of dull, tired skin and for softening the look of under-eye shadowing; it can also be a soothing finish after other treatments. It supports the appearance of hydration and radiance. Individual outcomes vary.
 7. **Will it get rid of my dark circles?** It's designed to support the *appearance* of under-eye tone, and it works best on day-to-day, circulation-related (bluish) shadowing. It doesn't fill hollows or remove pigment; if that's the cause, your provider will discuss other options at consultation.
-8. **How is it different from the Glo2Facial?** Glo2Facial is our fuller gateway facial — exfoliation, serum infusion, and lymphatic massage with an oxygenation step. The carboxy facial is a focused CO₂-oxygenation mask; many pick it for tired skin, under-eyes, or as a gentle no-exfoliation glow.
-9. **How many sessions will I need?** For a pre-event glow, a single visit gives an immediate look; for goals like dullness or under-eye tone, a series with maintenance is typical. Amber recommends a plan at your consultation.
-10. **When will I see results?** An immediate fresh, glowing look from the circulation boost, with firmer improvements in the appearance of hydration and tone building over a series of weeks. Results are individual.
+8. **How is it different from the Glo2Facial?** Glo2Facial is current public inventory using an OxyPod reaction, topical infusion, and facial massage. Carboxy therapy is an unbookable research concept; do not imply it is offered.
+9. **How many sessions will I need?** House of Rose does not currently list a carboxy appointment or series. Do not publish a cadence from this research brief.
+10. **When will I see results?** Literature findings do not establish a House of Rose outcome. Do not convert them into a public promise for an unlisted service.
 11. **Is it safe around my eyes?** The topical CO₂ gel is reported as non-irritating and is commonly used around the eye area — your provider confirms suitability for you.
 12. **Can I add it to another treatment?** Often yes — a carboxy step can be a soothing finish after treatments like microchanneling or a peel. Your provider confirms combinations at your visit.
 13. **Who shouldn't get it?** It's generally deferred during pregnancy or breastfeeding, over active skin infection at the site, or with certain significant uncontrolled health conditions. Not every client is a candidate — candidacy is confirmed at consultation.
@@ -164,8 +168,8 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 - `/experience/` and `/skin-analysis/` (soft entry points)
 
 **Where a carboxy page should link OUT:**
-- `/services/glo2facial/` (comparison / gateway alternative)
-- `/services/microneedling/` (as a stack/finish partner)
+- `/services/glo2facial/` (current public appointment; carboxy is not a bookable alternative)
+- `/services/microneedling/` only as a separate current service, not a carboxy stack or finish.
 - `/concerns/dark-circles/` (the concern it most serves)
 - `/shop/` brand/product pages for antioxidant/SPF home care
 - `/faq/` and booking (call — GlossGenius)
@@ -181,7 +185,7 @@ What *will* move price once Amber sets it (for structuring the eventual menu, no
 
 - **A genuinely gentle, needle-free option** inside a serious advanced-aesthetics practice — carboxy gives the "glow + awake under-eyes" result without downtime, and sits honestly next to our more corrective needling work rather than overpromising.
 - **Clean cross-lane handoffs:** Amber (topical carboxy facial) and, when structure is the real issue, our RN's injectable/filler options — clients get routed to the *right* fix, not upsold the wrong one.
-- **Part of a coherent skin-quality ladder:** Glo2Facial (gateway) → Procell/microneedling (correction) → carboxy & LED (support/finish) — a real plan, not a random menu.
+- **No invented treatment ladder.** Glo2Facial and Microneedling are current separate appointments; carboxy and historical LED finishes are not current inventory.
 - **Local grounding:** private studio in **Punta Gorda** serving Charlotte County / SW Florida, with walk-ins welcome and appointments recommended to reserve a time; honest pricing confirmed at consultation; candidacy assessed with a skin analysis. No overclaiming — outcomes are individual, and not every client is a candidate.
 
 ---

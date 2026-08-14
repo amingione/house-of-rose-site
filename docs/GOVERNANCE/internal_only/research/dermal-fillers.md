@@ -87,8 +87,10 @@ Maintenance is periodic top-ups as the gel breaks down; Diana sets your interval
 **HA filler vs. neurotoxins (Botox / Daxxify — also Diana's lane).**
 Different jobs. **Filler adds volume and structure** (restores what's lost — cheeks, lips, folds). **Neurotoxin relaxes the muscles** that crease dynamic lines (forehead, frown, crow's feet). Filler fills; tox softens motion. They're frequently *paired* — e.g., tox to soften the upper face while filler restores midface volume — but one is never a substitute for the other. Wins: choose **filler** for hollowing, flat cheeks, thin lips, and deep static folds; choose **neurotoxin** for expression lines caused by muscle movement. See the neurotoxin brief and `/services/injectables/`.
 
-**HA filler vs. PRF "EZ Gel" bio-filler (also Diana's lane).**
-Both add volume, but the material is fundamentally different. **HA filler is a manufactured gel** — off-the-shelf, precise, immediate, longer-lasting, and reversible with hyaluronidase. **EZ Gel is an autologous bio-filler** made from *your own blood* (heated platelet-rich fibrin), so it's "made from you," fully natural, and works partly by stimulating your own collagen — but it's more modest in projection and doesn't last as long as HA. Wins: choose **HA filler** when you want defined structure, a strong lip or cheek result, predictable longevity, and the reversibility safety net; choose **EZ Gel** when the priority is an all-natural, no-synthetic material, gradual skin-quality improvement, or you prefer your own biology. The two can be complementary. See `/services/ez-gel-bio-filler/`.
+**HA filler vs. PRF Bio-Filler (also Diana's lane).**
+They are different material and appointment paths. The current menu does not establish that PRF
+Bio-Filler is EZ-Gel, so public copy must not use those names interchangeably or create an EZ-Gel
+route. Diana Morrison, RN explains material choice, reversibility, candidacy, and expected limits at consultation.
 
 **RHA family vs. Juvéderm family (both HA, different engineering).**
 Not better/worse — different design goals. **Juvéderm** (VYCROSS) leans toward **cohesive structure and longevity** — Voluma XC is a firm, high-lift gel for cheek scaffolding; Ultra XC is a smooth, softer gel for lips. **RHA** is engineered for **flexibility and dynamic movement** — it stretches with expression, so it's favored where the face moves a lot (perioral lines, lips-in-motion, animated folds). Wins: choose **Voluma XC** for structural midface lift; **Ultra XC** for classic lip/lower-face volume; **RHA** when preserving natural movement in an expressive area is the priority. Diana matches the gel's rheology (lift vs. spread) to the job.
@@ -102,7 +104,7 @@ Not better/worse — different design goals. **Juvéderm** (VYCROSS) leans towar
 Map to existing `/concerns/` slugs and propose new ones:
 
 - **`/concerns/fine-lines-laxity/`** — primary fit. Filler restores volume that, when lost, reads as laxity and deepened folds; RHA softens dynamic lines around the mouth. (Pair the concern page with neurotoxin for muscle-driven lines and PRF/microchanneling for surface texture.)
-- **`/concerns/dark-circles/`** ("Dark Circles & Under-Eyes") — filler *can* be relevant for under-eye hollowing, **but flag PRF/EZ-Gel as the often-preferred under-eye option**. This page should present both honestly and route the choice to Diana. Do not imply HA filler is the standard under-eye fix.
+- **`/concerns/dark-circles/`** ("Dark Circles & Under-Eyes") — filler can be relevant for under-eye hollowing, while PRF Under-Eye is a separate current consultation. Route the material decision to Diana Morrison, RN; do not imply a default.
 - **Volume loss** — no existing concern page. **Propose new concern page: `/concerns/volume-loss/`** ("Facial Volume Loss — Cheeks, Temples & Folds") as the natural landing page for filler intent (midface flattening, deepened nasolabial folds, thinning lips). This is a real gap; filler is the flagship answer for it.
 
 ---
@@ -128,19 +130,19 @@ Frame retail as "supports" / "helps maintain" — never as changing the filler r
 
 **What moves price:** which product family/tier, **number of syringes** (fillers are priced per syringe and most goals take more than one over time), the area and its complexity, and whether it's a single visit or a maintenance cadence. There is **no membership pricing** — memberships were removed 2026-07-07; ignore any member/tier discount lines in older source docs.
 
-**Authoritative pricing (local docs — `Diana_Pricing_Menu_Consolidated.md` + GlossGenius CSV, Diana's own figures):**
+**Current GlossGenius-backed pricing:**
 
 | Product | Price (per syringe) | Duration (appt) | Best for |
 |---|---|---|---|
-| Juvéderm Ultra XC | **From $650** | 30 min | Lips, lower-face lines |
-| Juvéderm Voluma XC | **From $850** | 45 min | Structural cheek/midface lift |
-| RHA 1 | **From $650** | 30 min | Fine lines, delicate areas (lips, under-eye) |
-| RHA 2 | **From $700** | 30 min | Moderate lines/folds, everyday face |
-| RHA 3 | **From $800** | 45 min | Deeper folds, stronger support |
+| Juvéderm Ultra XC | **$700** | 30 min | Lips, lower-face lines |
+| Juvéderm Voluma XC | **$850** | 45 min | Structural cheek/midface lift |
+| RHA 1 | **$650** | 40 min | Fine lines, delicate areas |
+| RHA 2 | **$700** | 30 min | Moderate lines/folds |
+| RHA 3 | **$800** | 40 min | Deeper folds, stronger support |
 
-So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pricing as "investment / from / starting at."
-
-> **⚠ PRICING DRIFT — must reconcile before publish:** the published Sanity `dermal-fillers` service says **"From $700"** (and SEO meta says "from $700/syringe"). The local pricing truth is **From $650**. **Keep $650 in the brief; flag Sanity for correction to "From $650."** (Details in the orchestrator GAPS reply.)
+Public copy must use these current product amounts from `ALL-SERVICES-PRICING.MD` and state either the
+exact product price or the verified $650–$850 range plainly. The separate 60-minute Dermal Filler
+Consultation is $300.
 
 > **⚠ PRODUCT-LINE DRIFT:** Sanity `dermal-fillers` tagline + SEO name **"Restylane"** as a carried line ("RHA, Restylane & Juvéderm"). Diana's local menu carries **no Restylane** — only Juvéderm (Ultra XC, Voluma XC) and RHA (1/2/3). Do not write Restylane into page copy until Diana confirms; treat the two families above as the source of truth.
 
@@ -222,19 +224,19 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 **Existing pages that should link *to* the dermal-fillers page:**
 - `/services/injectables-bio-fillers/` (the hub) — dermal fillers is a child; hub should route here.
 - `/services/injectables/` (neurotoxins) — cross-link "filler vs. tox / often paired."
-- `/services/ez-gel-bio-filler/` and `/services/prf-injections/` — cross-link the "synthetic HA vs. your-own-biology" choice, and the under-eye note.
+- `/services/prf-under-eyes/` and `/services/prf-injections/` — current injectable PRF comparisons.
 - `/services/collections/injectables-aesthetics/` — collection index.
 - `/concerns/fine-lines-laxity/` and `/concerns/dark-circles/` — concern → treatment routing (dark-circles page must present PRF as the often-preferred under-eye option).
 - `/areas/punta-gorda/` — add injectables/filler to the served-treatments list (currently prf/microchanneling/glo2facial only).
 
 **Where the dermal-fillers page should link *out*:**
-- `/services/injectables/` (neurotoxin comparison), `/services/ez-gel-bio-filler/` (bio-filler comparison), `/services/prf-injections/` (under-eye alternative).
+- `/services/injectables/` (neurotoxin comparison), `/services/prf-under-eyes/`, and `/services/prf-injections/` (current PRF comparisons).
 - `/skin-analysis/` (smart first step), `/faq/`, `/experience/`, and `/contact/` (call to book — Diana consultation).
 - Retail: `/shop/` brand anchors for GlyMed+ recovery/barrier and SPF.
 
 **Proposed new pages (type + slug):**
 - **Concern page — `/concerns/volume-loss/`** ("Facial Volume Loss — Cheeks, Temples & Folds"). Real gap; the natural landing for filler intent.
-- **Cost guide — `/cost/dermal-fillers-cost-punta-gorda/`** ("How Much Do Dermal Fillers Cost in Punta Gorda?"), factors from §8, honest per-syringe framing (from $650), FAQ from §9. (Only the PRF cost guide exists today.)
+- **Cost guide — `/cost/dermal-fillers-cost-punta-gorda/`** ("How Much Do Dermal Fillers Cost in Punta Gorda?"), current $650–$850 product range plus the separate $300 consultation.
 - **Comparison — `/compare/filler-vs-botox/`** ("Dermal Filler vs. Botox: Volume or Muscle?") — the single most-searched injectable question, cleanly honest.
 - **Comparison — `/compare/ha-filler-vs-prf-bio-filler/`** ("HA Filler vs. PRF/EZ-Gel Bio-Filler") — synthetic vs. autologous, incl. the under-eye case.
 - Optional **service treatment page — `/services/dermal-fillers/`** already exists as the Sanity service; ensure it's built out as a full treatment page with the product-family breakdown above.
@@ -245,9 +247,9 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 
 - **Natural-result philosophy, on purpose.** House of Rose leads with restore-don't-distort: conservative dosing, movement-preserving product choice (the RHA Collection flexes with your expressions), and a "you can always add" approach — not the overfilled look.
 - **A registered nurse, under medical-director oversight.** Filler here is placed by **Diana, RN**, in a private, unhurried studio — with the training that matters most where facial vessels are, and with HA's reversibility (hyaluronidase) as a built-in safety net. Walk-ins are welcome when the schedule has room; that's a real differentiator over assembly-line injectable clinics.
-- **The whole face, honestly mapped.** Because House of Rose also offers neurotoxin, PRF/EZ-Gel, and advanced skin treatments, Diana can tell you when filler *isn't* the answer (under-eyes, texture, muscle-driven lines) instead of selling a syringe by default. Advanced skin imaging backs that up with evidence before anything's injected.
+- **The options, honestly mapped.** Because House of Rose also offers neurotoxin, current injectable PRF, and skin treatments, Diana Morrison, RN can explain when HA filler is not the appropriate material instead of defaulting to a syringe.
 - **Local grounding.** Punta Gorda / Charlotte County / Southwest Florida, private and unhurried, open since June 15, 2026 — with SPF and barrier support built into the aftercare because SW Florida sun is part of the plan.
-- **No memberships, no gimmicks.** Straightforward per-syringe investment, provider-led candidacy, no tiers or "deals."
+- **No memberships, no gimmicks.** Straightforward per-syringe pricing, provider-led candidacy, no tiers or "deals."
 
 *Not every client is a candidate for every filler or area. Individual outcomes vary. Final product, dosing, and candidacy are confirmed by Diana, RN, at consultation.*
 
@@ -256,15 +258,16 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 ## Sources
 
 **Local docs (primary truth — pricing & lane):**
-- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing (Juvéderm Ultra XC From $650, Voluma XC From $850, RHA 1 $650 / RHA 2 $700 / RHA 3 $800), durations, provider = Diana, memberships-excluded decision.
-- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — corroborates the same pricing/durations, no membership contamination.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — historical pricing context; current amounts come from the canonical GlossGenius mirror.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — historical import context.
 - `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — same filler prices; **contains stale Rose/Rose Gold/Black Rose membership tiers with filler discounts (flagged as a gap)**.
 - `docs/internal_only/services/Diana/filler/dermalfillers.md` — **empty (0 bytes); no content to draw from (gap)**.
 - `docs/internal_only/COMPLIANCE-COPY-RULES.md` — binding avoid/say-instead vocabulary and guardrails.
 - `CLAUDE.md` — provider lanes, no-memberships law, NAP, trailing-slash URL rule.
 
-**Sanity published content (consulted; snapshot + live query):**
-- `service` `dermal-fillers` (price "From $700"; tagline/SEO name "Restylane" — both flagged as drift), `injectables` (neurotoxins; SEO names Dysport), `injectables-bio-fillers` (hub), `ez-gel-bio-filler` (From $699), `prf-injections` (From $599), `prf` (hub).
+**Sanity published content consulted:** raw legacy price/tagline fields are not public copy authority
+during the voice reset. The reviewed website overlay and canonical ledger control the public amounts
+and product inventory.
 - `collection` `injectables-aesthetics`; `concern` `fine-lines-laxity`, `dark-circles`, `sun-damage`; `localArea` `punta-gorda` (served list lacks injectables).
 
 **Web (mechanism / FDA / safety only — never pricing):**

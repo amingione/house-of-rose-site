@@ -65,14 +65,15 @@ IV hydration and vitamin therapy at House of Rose is an infusion of fluids, elec
 **Across the IV menu — which IV for which goal (honest, plain-language guide):**
 | Goal | Best-fit IV |
 |---|---|
-| Just need fluids fast (heat, water day, travel, "off" day) | **Hydration IV** ($100, ~30 min) — the entry reset |
-| Immune/antioxidant support in a high-exposure or seasonal-change stretch | **Immunity IV** ($175) |
-| Bounce back after workouts / physical strain / muscle fatigue | **Recovery IV** ($185) |
-| From-within glow before an event or beach day; skin-health support | **Beauty Glow IV** ($185) — links to skin goals |
-| Rapid rehydration after a big night out | **Reboot (Hangover Recovery) IV** ($185) |
-| Broad, comprehensive "everything" multivitamin | **Myers' Cocktail IV** ($190) — the classic |
+| Just need fluids fast (heat, water day, travel, "off" day) | **Hydration IV** ($99, 30 min) |
+| Immune/antioxidant support in a high-exposure or seasonal-change stretch | **Immunity IV** ($160, 45 min) |
+| Bounce back after workouts / physical strain / muscle fatigue | **Recovery IV** ($175, 45 min) |
+| A skin-oriented menu choice | **Beauty Glow IV** ($170, 45 min) |
+| Rapid rehydration after a big night out | **Reboot (Hangover Recovery) IV** ($165, 45 min) |
+| The broadest named menu choice | **Myers' Cocktail IV** ($185, 45 min) |
 
-Add-ons layer onto any base: Vitamin C / B12 / Biotin / Magnesium ($25 each), Glutathione ($35), NAD+ ($100).
+The appointment names do not establish exact formulations or current add-ons. Diana Morrison, RN
+reviews the selected IV and candidacy; public copy must not infer ingredients from historical menus.
 
 ## 6. Concern mapping
 
@@ -84,60 +85,48 @@ IV therapy is primarily a **wellness / "beauty from within"** service, so it map
 
 ## 7. Pairings & pathways
 
-**Stacks with (same visit or same plan):**
-- **Beauty Glow IV + a facial / PRF Skin Renewal (Amber's lane):** the inside-out pairing — infuse hydration + skin-supporting nutrients while pursuing your facial series. Natural cross-sell inside the skin-health plan.
-- **Recovery IV** for active clients around Diana's other wellness services.
-- **Add-on layering:** any base + Glutathione (skin/detox), B12 (energy), Biotin (hair/skin/nails), Magnesium (relaxation/sleep), NAD+ (cellular energy), Vitamin C (immune).
+**Service boundary:** each IV is its own RN-administered appointment. Do not prescribe bundles,
+supplement pairings, ingredient stacks, or an ongoing cadence from this research brief.
 
-**What to try first.** A first-timer who just wants to feel better starts with the **Hydration IV** (lowest investment, shortest sit) or the **Myers' Cocktail** if they want the full classic. Skin-focused clients start with **Beauty Glow IV + Glutathione**.
+**Current menu distinction.** Hydration IV is the lowest-priced and shortest base appointment. The
+other five verified base IV appointments are 45 minutes. Do not recommend an add-on or formulation
+from this brief because current add-on ingredients were not visible as separate GlossGenius line items.
 
 **Retail follow-through.** IV is inherently occasional, so the honest at-home complement is **oral hydration + a good regimen** — point skin-glow clients to our shop's antioxidant/vitamin-C skincare (e.g., a vitamin-C serum from the retail lineup) and daily-SPF as the *sustaining* layer between visits. (Confirm exact SKUs against the live `/shop/` catalog before naming products in copy.)
 
 ## 8. Cost factors
 
-All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consolidated.md` + `Diana_Pricing_GlossGenius_Import.csv`) — treated as authoritative. **Never quote web prices.**
+Current public prices below mirror the August 6 GlossGenius-backed canonical ledger. **Never quote web prices.**
 
 **Base IV sessions (per session):**
-| IV | Investment | Duration |
+| IV | Price | Duration |
 |---|---|---|
-| Hydration IV | **$100** | 30 min |
-| Immunity IV | $175 | 45 min |
-| Recovery IV | $185 | 45 min |
-| Beauty Glow IV | $185 | 45 min |
-| Reboot (Hangover Recovery) IV | $185 | 45 min |
-| Myers' Cocktail IV | $190 | 45 min |
+| Hydration IV | **$99** | 30 min |
+| Immunity IV | $160 | 45 min |
+| Recovery IV | $175 | 45 min |
+| Beauty Glow IV | $170 | 45 min |
+| Reboot (Hangover Recovery) IV | $165 | 45 min |
+| Myers' Cocktail IV | $185 | 45 min |
 
-**Add-ons (layer onto a base IV — NOT standalone bookable):**
-| Add-on | Investment |
-|---|---|
-| Vitamin C | $25 |
-| B12 | $25 |
-| Biotin | $25 |
-| Magnesium | $25 |
-| Glutathione | $35 |
-| NAD+ | $100 |
-
-**What moves the price:** which base blend you choose (more ingredients = higher), and how many add-ons you layer on. A Hydration IV with an NAD+ add-on ($100 + $100 = $200) can exceed a Myers' Cocktail. There is **no series/package pricing** for IVs in the local docs (unlike PRF), so each visit is priced per session.
-
-**⚠️ Pricing-drift flag (must resolve before publish):** Published Sanity service `iv-hydration-therapy` shows **"From $129"**, but the local (authoritative) **Hydration IV entry price is $100**. Local docs win — the site should read **from $100**. (Related drift: Sanity `glp-1-weight-management` shows "From $349/month" while local Semaglutide starts at **$225/month** — out of scope for this brief but flagged since it lives in the same wellness hub.)
+**Price boundary:** the six current appointments are priced individually from $99 to $185. Current
+GlossGenius evidence does not authorize an add-on menu or series price, so neither belongs in public
+copy. Do not use stale Sanity summary prices as a substitute.
 
 ## 9. FAQ bank
 
 1. **What is IV hydration therapy?** It's an RN-administered infusion of fluids, electrolytes, and vitamins delivered directly into a vein by Diana, RN, under medical-director oversight, to help replenish hydration and support overall wellness. It is not a treatment for any medical condition.
-2. **How long does a session take?** About 30 minutes for a Hydration IV and roughly 45 minutes for the vitamin blends; add-ons add a few minutes.
-3. **What's in the IV?** A fluid-and-electrolyte base plus the vitamins for your chosen blend — from simple hydration up to the Myers' Cocktail's broad vitamin-and-mineral mix. Diana reviews the exact contents with you.
+2. **How long does a session take?** The Hydration IV is listed at 30 minutes; the other five current IV appointments are listed at 45 minutes.
+3. **What's in the IV?** The current appointment names do not establish exact formulations. Diana Morrison, RN reviews the selected IV and its contents with you.
 4. **Does it hurt?** Just a brief pinch when the IV is placed. Some blends can feel warm or flushed as they run; Diana paces the infusion for comfort.
 5. **Is there downtime?** No. Most clients return to normal activity immediately. A small bruise at the site is possible.
 6. **Is IV therapy better than taking vitamins by mouth?** For speed and completeness, IV bypasses the gut and delivers nutrients right away. But for everyday needs, drinking water and eating well is usually enough — IV is for when you want a faster, more complete reset under an RN's care.
 7. **How often should I get an IV?** There's no fixed medical schedule. Many clients use IVs situationally (travel, events, heavy activity, seasonal stretches) or as a routine wellness habit. Cadence is a wellness choice you make with Diana.
 8. **Is it safe?** In a clinical setting with an RN, IV therapy is generally well tolerated, and Diana monitors you throughout. Safety depends on proper screening — which is exactly why we screen every client and operate under medical-director oversight.
 9. **Who should not get IV therapy here?** People with kidney disease, heart disease, uncontrolled high blood pressure, or who are pregnant, among others, are generally not candidates. Diana screens for this at consultation and will decline or defer when it isn't appropriate.
-10. **What is the Myers' Cocktail?** The classic broad-spectrum vitamin-and-mineral infusion — vitamin C, B vitamins, magnesium, and calcium — designed to support comprehensive, overall wellness.
-11. **What does NAD+ do?** NAD+ is a coenzyme cells use for energy production; the add-on is designed to support cellular energy and recovery. Human evidence for infused NAD+ is still early, so we frame it as supportive, not a cure or anti-aging claim.
-12. **What is glutathione for?** It's the body's master antioxidant; the add-on is designed to support skin clarity and the body's antioxidant balance — a from-within complement to a skin-health plan.
-13. **Can I add a vitamin boost to any drip?** Yes. Vitamin C, B12, Biotin, and Magnesium ($25 each), Glutathione ($35), or NAD+ ($100) layer onto any base IV. Add-ons aren't booked on their own.
-14. **Which IV should I choose?** Depends on your goal — Hydration for a fast fluid reset, Immunity for antioxidant support, Recovery post-activity, Beauty Glow for a from-within radiance boost, Reboot after a big night, or Myers' Cocktail for the comprehensive classic. Diana helps you decide.
-15. **Will an IV help my skin?** The Beauty Glow IV pairs hydration with skin-supporting nutrients and many clients notice a healthy glow — it supports the same radiance goals as our facials, but it complements a good skincare routine and SPF rather than replacing them.
+10. **What is the Myers' Cocktail appointment?** It is the current $185, 45-minute menu choice. Confirm its exact formulation with Diana Morrison, RN rather than inferring ingredients from the name.
+11. **Are add-ons available?** The current GlossGenius inventory does not establish a public add-on menu. Call House of Rose to ask what is currently available; do not infer ingredients or prices from an older list.
+14. **Which IV should I choose?** The six appointment names describe the current menu, but they do not prove formulation or outcome. Diana Morrison, RN helps you choose after reviewing your goal and candidacy.
+15. **Will an IV help my skin?** The Beauty Glow name does not establish a skin outcome. Avoid promising one; Diana Morrison, RN explains the current formulation and its limits.
 16. **Who administers the IV?** Diana, a registered nurse (RN), under medical-director oversight — not an unlicensed technician.
 
 ## 10. Provider + compliance notes
@@ -160,7 +149,7 @@ All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consol
 **Where the IV page should link *out* to (trailing slashes):**
 - `/services/collections/wellness-restoration/` (parent collection)
 - `/services/iv-hydration-therapy/` (canonical treatment page) and the `wellness` hub
-- A facial/skin page for the Beauty Glow cross-sell, e.g. `/services/prf-skin-renewal/` (Amber's microchanneling+PRF) — the inside-out pairing
+- A factual comparison may explain that Beauty Glow IV is an RN-administered infusion while facial and PRF services are separate skin appointments; do not manufacture a bundle or sales sequence.
 - `/shop/` for the sustaining at-home antioxidant/vitamin-C + SPF layer
 - `/contact/` / booking for the consultation-and-screening CTA
 
@@ -200,13 +189,14 @@ All prices below are from the **local pricing docs** (`Diana_Pricing_Menu_Consol
 ## Sources
 
 **Local docs (primary truth — pricing authoritative):**
-- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — canonical IV menu + add-on pricing, durations, provider lane (Diana), memberships-excluded note.
-- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — mirror of the pricing table; adds the operational note that add-ons "attach to a base IV session; not a standalone bookable service."
+- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — current GlossGenius-backed six-appointment menu, prices, and durations.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — historical menu context only; does not override current commerce inventory.
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — historical import context only; not current add-on authority.
 - `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — rendered ReportLab treatment menu; content duplicates the consolidated MD/CSV pricing (binary render not needed for pricing truth).
 - `CLAUDE.md` / Phase-2 CHARTER — provider lanes, NAP, compliance rules, no-memberships law.
 
 **Sanity published snapshot (consulted; contradictions flagged, not silently adopted):**
-- `iv-hydration-therapy` (price "From $129" — **conflicts** with local $100; local wins), `wellness` (hub), `glp-1-weight-management` ("From $349/month" vs local $225 — noted), collection `wellness-restoration`, concerns list (no radiance/dullness slug exists yet).
+- `iv-hydration-therapy` and wellness records were reviewed for route context only. Their legacy summary prices do not override the current GlossGenius-backed ledger.
 
 **Web (mechanism / candidacy / safety framing only — NO prices, NO efficacy overclaims imported):**
 - Cleveland Clinic, "IV Vitamin Therapy: Does It Work?" (health.clevelandclinic.org/iv-vitamin-therapy) — authoritative health system; the honest "limited evidence / not a miracle cure / when oral is enough" framing and the **contraindication list** (heart disease, high blood pressure, kidney disease, pregnancy) + FDA/unregulated-clinic caution.

@@ -80,10 +80,10 @@ Honest framing: these are **rungs on a ladder**, chosen by concern and downtime 
 | Rung | Treatment | Lane | Depth / intensity | When it wins |
 |---|---|---|---|---|
 | 1 (gentlest) | **Enzyme exfoliation** (fruit enzymes) | **Brandy** (basic) | Surface keratin digestion; no acid | Very sensitive/reactive skin, first-timers, a warm-up or the calmest possible glow. *(Note: no discrete enzyme-facial service exists in Sanity yet — same gap as light peels.)* |
-| 2 | **Dermaplaning** | Amber (advanced) | Mechanical (removes dead cells + vellus "peach fuzz"); no chemical | Instant smooth "glass-skin" finish, flawless makeup base, or prepping skin so products/peels absorb better. Physical, not chemical — pairs *with* a peel, doesn't compete. Published `dermaplaning` (From $135). |
+| 2 | **Dermaplaning** | Amber (advanced) | Mechanical (removes dead cells + vellus "peach fuzz"); no chemical | A current $135, 50-minute standalone appointment or $45, 25-minute add-on; physical rather than chemical exfoliation. |
 | 3 | **Light / superficial chemical peel** *(this brief)* | **Brandy** (basic) | Epidermis-only AHA/BHA | Maintenance-tier brightening & smoothing for the appearance of dullness, texture, mild unevenness — with little/no downtime. **The gentle chemical resurfacing step.** *(No service doc yet.)* |
-| 4 | **Face Reality Acne Peel** | Amber (Certified Acne Specialist) | Targeted acne peel + extractions + LED | When the concern is congested/acne-prone skin specifically — part of a structured Face Reality protocol. Published `acne-peel` (From $139); full program `acne-bootcamp` ($899, 12-week). *A corrective acne track, not a glow peel.* |
-| 5 (most corrective) | **BioRePeel** (TCA-based) | Amber (advanced) | Reaches toward medium-depth resurfacing; certified protocols | When the goal is stronger resurfacing for the appearance of texture, tone, fine lines, or scarring/stretch marks — including combined with microneedling. Published `biorepeel` (From $295) + advanced/body/duo variants. Can also be a **+$65 face add-on** to a needling treatment (Amber's menu). |
+| 4 | **Face Reality Acne Program** | Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist | Structured acne program | Current menu: $99, 60-minute consultation and $899, 60-minute program appointment; home care is purchased separately. |
+| 5 (most corrective) | **BioRePeel** (TCA-based) | Brandy / Amber, by current appointment | Stronger surface resurfacing | Current five-option menu spans $250–$699; use the exact appointment row and provider distinction rather than a generic lower bound. |
 
 **Quick guidance:**
 - **Just want a glow / staying on maintenance?** → Enzyme or **light peel** (Brandy).
@@ -111,8 +111,8 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 
 **What it stacks with (in-studio):**
 - **Dermaplaning + light peel/enzyme** — dermaplaning first to remove peach fuzz and dead surface, so the peel/enzyme absorbs more evenly; a classic "brightening + smooth-finish" combo.
-- **Glo2Facial finish** — oxygenation + glow after gentle exfoliation for an event-ready radiance (published `glo2facial`, From $185).
-- **LightStim LED** — to calm and support skin after resurfacing (published `lightstim-led-therapy`, From $65).
+- **Glo2Facial** — a separate $225, 60-minute surface facial with Amber Mingione, Licensed Esthetician.
+- **LightStim LED** — historical comparison only; current availability and price require a GlossGenius match.
 - **Hydrating mask** — soothing, plumping finish in the maintenance-facial style.
 
 **Try-first pathway:** For a nervous first-timer or very sensitive skin → **enzyme** first, then graduate to a **light AHA peel**, then consider stepping up to advanced work (BioRePeel / needling with Amber) only if the concern warrants. Light peel is the on-ramp, not the destination.
@@ -128,12 +128,13 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 
 ## 8. Cost factors
 
-**⚠️ PRICING PENDING — no local doc, no Sanity service.** There is **no** light-peel/basic-facial price anywhere in the local pricing docs or the published Sanity snapshot. **Do not publish a price until Amber/Brandy provide one.** Reference points that exist (do NOT reuse as the light-peel price — different lane/depth):
-- Face Reality single **`acne-peel`: From $139** (Sanity) — corrective acne, Amber's lane.
-- **`biorepeel`: From $295** (Sanity) / **+$65 face add-on** (master menu) — TCA, advanced, Amber's lane.
-- **`dermaplaning`: From $135**, **`glo2facial`: From $185**, **`lightstim-led-therapy`: From $65** (Sanity).
+There is no current GlossGenius appointment for a generic light peel/basic facial. Omit its price
+until commerce evidence exists; do not borrow a number from Face Reality, BioRePeel, Dermaplaning,
+Glo2Facial, LightStim, or a legacy Sanity field.
 
-**What would move a light-peel price (for when pricing is set):** acid vs. enzyme and strength; single vs. series (House of Rose's standard framework is Single · Series of 3 · Series of 6 — a light-peel series should follow the same "sell the series" logic); add-ons (dermaplane prep, Glo2Facial finish, LED, mask); face-only vs. neck/décolleté extension (+$95 precedent on Amber's menu). Present as "investment / from," never a discount.
+**Pricing boundary:** publish only an exact light-peel appointment or series that exists in the current
+GlossGenius-backed ledger. Do not infer a price from acid strength, another service, an add-on, or a
+generic series framework, and do not use discount framing.
 
 ---
 
@@ -161,7 +162,7 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 
 - **Lane: Brandy** — basic/relaxing-maintenance facials (enzyme exfoliation, hydrodermabrasion, light peels) + facial waxing; rents a room. **Do NOT attribute light peels to providers outside this lane.** BioRePeel, dermaplaning, Face Reality acne, and needling remain **Amber's** lane; keep them clearly separated on any light-peel page.
 - **Phrases to avoid for THIS topic:** never "treats/cures/heals/fixes acne / pigmentation / sun damage / melasma / rosacea"; never "anti-aging / reverse aging / age-defying / turn back the clock"; never "removes/erases/eliminates" spots, lines, or discoloration; never "permanent" or "guaranteed"; never "FDA-approved"/"clinically proven" (a cosmetic superficial peel has no such specific claim to cite); no discount language.
-- **Say instead:** "for the appearance of," "helps reveal," "supports," "designed to," "many clients notice," "the visible signs of," "brighter-looking," "smoother-looking." Pricing = "investment / from / starting at."
+- **Say instead:** "for the appearance of," "helps reveal," "supports," "designed to," "many clients notice," "the visible signs of," "brighter-looking," "smoother-looking." State only a current GlossGenius-backed price, without euphemisms or an invented lower bound.
 - **Required guardrails on the surface:** provider authority (formula/strength/candidacy confirmed by the licensed provider at consultation & skin analysis) · "not every client is a candidate" · "individual outcomes vary." Contraindication honesty (pregnancy/nursing, recent isotretinoin, active infection/open skin, sunburn) belongs on the page.
 - **SW-Florida sun/photoaging context is fair and encouraged** — frame as maintenance + rigorous SPF, never as "treating" sun damage.
 - **Naming law:** use plain, searchable names — "Light Peel," "Superficial Peel," "Brightening Peel," "Glow Peel," "Enzyme Peel." **No botanical/flowery names** (no Petal/Lily/Rose-anything). Do **not** revive any retired "Rose Pass/Circle/Method/Rewards" or membership framing — a light-peel *series/package* (prepaid bundle) is fine; a "pass"/membership is not.
@@ -175,14 +176,14 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 - `/services/dermaplaning/` — "pairs with / step up from" cross-link.
 - `/services/glo2facial/` — glow/radiance cross-link.
 - `/services/biorepeel/` — the "when you want stronger resurfacing" step-up link (and reciprocal "start gentler" link back).
-- `/services/face-reality-acne-program/` and `/services/acne-peel/` — "if acne is the concern" redirect.
+- `/services/face-reality-acne-program/` and `/services/acne-bootcamp/` — current acne-program paths.
 - `/concerns/sun-damage/` and `/concerns/fine-lines-laxity/` — concern → treatment links.
 - `/skin-analysis/` — the smart-first-step funnel.
 - `/shop/` (Skin Script + GlyMed+ brand anchors) — retail follow-through.
 
 **Where a light-peel page should link *out*:**
-- Up the ladder → `/services/biorepeel/`, `/services/microneedling-corrective/` (via Amber).
-- Sideways → `/services/dermaplaning/`, `/services/glo2facial/`, `/services/lightstim-led-therapy/`.
+- Separate current services → `/services/biorepeel/` and `/services/microneedling/`.
+- Sideways → `/services/dermaplaning/` and `/services/glo2facial/` as current comparisons.
 - Concerns → `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`.
 - Retail → Skin Script / GlyMed+ product pages under `/shop/`.
 - `/faq/` and `/skin-analysis/`.

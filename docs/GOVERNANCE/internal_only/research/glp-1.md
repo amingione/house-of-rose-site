@@ -17,8 +17,9 @@
 
 House of Rose's GLP-1 weight-management program is a **medically supervised, physician-guided
 wellness program** led by Diana, RN, using **semaglutide** or **tirzepatide** — the same active
-ingredients in the FDA-approved medications Wegovy and Zepbound — with monthly dosing and progress
-check-ins. It is a **metabolic wellness program, not a cosmetic quick fix**: candidacy is
+ingredients in the FDA-approved medications Wegovy and Zepbound. The current public appointment is
+a $25, 40-minute consultation; medication, dosing, and ongoing program details are confirmed by
+House of Rose. It is a **metabolic wellness program, not a cosmetic quick fix**: candidacy is
 determined by the provider through screening and health history, and the medication works alongside
 nutrition and lifestyle support. It is a **normal service in our Wellness & Restoration lane**,
 never tied to any membership or rewards program, and it is one of the few advanced-wellness options
@@ -102,9 +103,8 @@ dose titration, and regular check-ins — versus an unsupervised online source.
    gradually** ("start low, go slow"). Slow titration is the single most important lever for keeping
    side effects tolerable — it lets the body adjust and lets GI symptoms settle before stepping up.
    In clinical practice a client may stay at a given dose for several weeks as needed.
-3. **Monthly dosing & check-ins.** The menu lists a **~15-minute monthly visit**. Each check-in
-   reviews tolerance, side effects, progress, and whether to hold or advance the dose. This cadence
-   is where supervision earns its keep.
+3. **Ongoing plan.** Current public inventory does not establish a fixed check-in appointment,
+   duration, cadence, or included medication. Those details are confirmed after consultation.
 4. **Lifestyle support alongside the medication.** GLP-1 therapy works best paired with adequate
    **protein intake, hydration, and resistance/strength activity to protect lean muscle**, plus
    smaller, more frequent, lower-fat meals early on to reduce nausea. (Program-level nutrition
@@ -125,8 +125,8 @@ issues) are part of the provider's counseling and monitoring — defer specifics
 change is gradual over months as the dose is titrated up. **We do not quote pounds or timelines as
 promises** — the provider frames realistic expectations for each individual.
 
-**Cadence.** Ongoing program with monthly visits; the provider sets the plan for maintenance,
-continuation, or tapering over time.
+**Cadence.** The current public menu does not establish one. The provider sets any continuation or
+follow-up plan after consultation.
 
 ---
 
@@ -134,7 +134,7 @@ continuation, or tapering over time.
 
 ### Semaglutide vs Tirzepatide (both offered here)
 
-| | **Semaglutide** (menu: from $225/mo) | **Tirzepatide** (menu: from $325/mo) |
+| | **Semaglutide** | **Tirzepatide** |
 |---|---|---|
 | **Mechanism** | Single agonist — **GLP-1 only** | **Dual agonist — GLP-1 + GIP** |
 | **Positioning** | Established, single-pathway appetite regulation | "More comprehensive metabolic approach" — added GIP activity |
@@ -204,29 +204,19 @@ GLP-1 lives in the **wellness / metabolic pillar**, not the skin-concern pillar.
 
 ## 8. Cost factors
 
-**Pricing truth = local docs only.** Per `Diana_Pricing_Menu_Consolidated.md` and the GlossGenius
-import CSV (Diana's own authoritative figures):
-
-- **Semaglutide — starting at $225 / month** (Program; ~15-min monthly visit).
-- **Tirzepatide — starting at $325 / month** (Program; ~15-min monthly visit).
-
-Both are **"starting at" monthly program fees** — always phrase as "investment," "from," or
-"starting at," never with discount language.
+**Current verified public pricing:** the GlossGenius-backed ledger establishes a **$25, 40-minute
+GLP-1 Consultation**. Medication and ongoing program pricing remain unresolved for publication and
+must be confirmed with House of Rose.
 
 **What moves the price / what to disclose at consultation (not on the public price line):**
 
 - **Medication choice** — tirzepatide's dual-mechanism program starts higher than semaglutide's.
-- **Dose** — monthly cost can vary with the dose reached during titration; the provider explains
-  this. Do not publish per-dose figures on the site; defer to consultation.
-- **What's included** — the monthly fee covers the supervised-program structure (dosing +
-  check-ins); labs (when clinically indicated) and any add-on wellness services are separate.
+- **Dose and inclusions** — these may affect ongoing cost, but the current ledger does not establish
+  medication, labs, dosing, or check-ins as included public line items.
 
-> **PRICING DRIFT — FLAG (charter-required):** Published Sanity doc `glp-1-weight-management` shows
-> **"From $349/month"** for the combined GLP-1 program. The authoritative local docs list
-> **Semaglutide from $225/mo** and **Tirzepatide from $325/mo**. **$349 contradicts both local
-> figures and appears to be stale.** Keep the local-docs truth ($225 / $325) in all content and
-> correct the Sanity doc in Phase 3/4. If a single combined "from" price is needed for the hub, the
-> correct starting figure is **from $225/month** (the semaglutide floor), not $349.
+> **Publication boundary:** do not publish the former monthly figures from historical local docs or
+> Sanity. Until the current medication and ongoing program structure is reconciled in GlossGenius,
+> the only public price from this brief is the $25 consultation.
 
 ---
 
@@ -234,7 +224,8 @@ Both are **"starting at" monthly program fees** — always phrase as "investment
 
 1. **What is House of Rose's GLP-1 program?**
    A medically supervised, physician-guided weight-management program led by Diana, RN, using
-   semaglutide or tirzepatide, with monthly dosing and progress check-ins. It is a wellness program
+   semaglutide or tirzepatide. Medication, dosing, and follow-up details are confirmed after the
+   current $25, 40-minute consultation. It is a wellness program
    with real candidacy screening — not an over-the-counter product.
 
 2. **How do GLP-1 medications work?**
@@ -275,23 +266,22 @@ Both are **"starting at" monthly program fees** — always phrase as "investment
    develop.
 
 9. **How is the medication given, and how often do I come in?**
-   It's a small weekly self-injection you're trained to do at home, with a roughly 15-minute
-   in-person check-in each month to review tolerance, progress, and dosing.
+   Administration and monitoring instructions are clinical details confirmed after consultation;
+   the current public menu does not establish a fixed follow-up visit or duration.
 
 10. **Why do this here instead of ordering online?**
     Oversight. You get real candidacy screening, provider-guided dose titration (which is the safest
-    way to manage side effects), and monthly in-person check-ins with a nurse you can actually reach
-    — in Punta Gorda, under physician oversight.
+    way to manage side effects), and a provider-directed follow-up plan in Punta Gorda under
+    physician oversight. Do not promise a fixed in-person cadence absent from current inventory.
 
 11. **Will this affect my face or skin?**
     Significant weight loss from any cause can reduce facial volume and affect skin firmness — some
     people notice this. If it's a concern for you, it's worth discussing volume-supporting options
     with your provider as part of your plan.
 
-12. **What's included in the monthly program fee?**
-    The supervised-program structure — your dosing and monthly check-ins. Any labs (when clinically
-    indicated) or additional wellness services are separate. Your provider reviews everything at
-    consultation.
+12. **What's included after the consultation?**
+    The current ledger does not establish medication, labs, dosing, or follow-up visits as included.
+    House of Rose confirms the current program structure and price before enrollment.
 
 13. **What happens if I stop?**
     Appetite effects fade after stopping, and weight regain is possible — which is why the program
@@ -304,8 +294,8 @@ Both are **"starting at" monthly program fees** — always phrase as "investment
     supports your effort — it doesn't replace it.
 
 15. **Is this a membership?**
-    No. It's a normal wellness service billed as a monthly program. House of Rose does not offer
-    memberships of any kind.
+    No. House of Rose does not offer memberships. The current consultation does not establish a
+    subscription or monthly billing structure.
 
 ---
 
@@ -320,7 +310,8 @@ Do not attribute this program to providers outside Diana's RN lane.
 - "Medically supervised" / "physician-guided" — always foreground the oversight.
 - "Candidacy is determined by the provider" / "not every client is a candidate."
 - "Individual outcomes vary."
-- Pricing always "from" / "starting at" / "investment."
+- Publish only the current GlossGenius-backed amount or verified range. If the medication or ongoing
+  program structure remains unresolved, omit it or direct the client to confirm it with House of Rose.
 
 **Phrases to AVOID for THIS topic specifically:**
 - **No weight-loss guarantees** — never "guaranteed," "you will lose," or any "X pounds" figure.
@@ -360,20 +351,19 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 **Where THIS page should link OUT (real slugs, trailing slashes):**
 - `/services/iv-hydration-therapy/` — sibling wellness service.
 - `/concerns/fine-lines-laxity/` — the honest, cautious facial-volume bridge.
-- `/services/dermal-fillers/` and `/services/ez-gel-bio-filler/` — volume-restoration options
+- `/services/dermal-fillers/` and `/services/prf-injections/` — separate current injectable options; do not imply they are part of the GLP program.
   (Diana) for clients noticing facial volume change.
 - `/services/prf/` (and PRF/microchanneling skin-renewal pages) — skin-quality/collagen support
   (Amber).
 - `/contact/` (or the call booking path) — consultation is the required first step.
 
-**Proposed NEW pages (type + suggested slug):**
-- **Service / treatment hub:** `/services/glp-1-weight-management/` — the canonical program page
-  (this brief is its content source). *Note the Sanity slug `glp-1-weight-management` already
-  exists; correct its $349 price to the local truth.*
+**Current and potential routes:**
+- **Service / treatment hub:** `/services/glp-1-weight-management/` is the canonical public page. It
+  publishes the verified $25 consultation and withholds unresolved medication/program figures.
 - **Concern:** `/concerns/weight-management/` (or `/concerns/metabolic-wellness/`) — wellness-pillar
   concern page; the only concern that fits GLP-1.
-- **Cost guide:** `/cost/semaglutide-tirzepatide-cost-punta-gorda/` — honest, "from"-priced,
-  provider-authority-gated cost guide with useful locally grounded context.
+- **Cost guide:** do not create a medication/program cost guide until the current GlossGenius structure
+  is reconciled. The $25 consultation alone does not establish ongoing cost.
 - **Comparison:** `/compare/semaglutide-vs-tirzepatide/` — mechanism/positioning comparison, no
   superiority guarantee (built directly from §5).
 - *(Optional)* **Comparison:** `/compare/medically-supervised-vs-online-glp-1/` — the safety/oversight
@@ -384,7 +374,7 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 ## 12. Why House of Rose
 
 - **Real medical oversight, locally.** A **licensed RN (Diana) under physician oversight** runs the
-  program — candidacy screening, guided titration, and monthly in-person check-ins — in **Punta
+  program and current consultation — including candidacy screening and provider-directed follow-up — in **Punta
   Gorda**, not a faceless online subscription. In the Charlotte County / SW Florida market, a
   supervised GLP-1 program inside a private advanced-aesthetics & wellness studio where walk-ins are welcome when the schedule allows
   is a genuine differentiator.
@@ -402,17 +392,15 @@ schema. Mirror NAP from `siteSettings` / `LOCAL_BUSINESS`.
 
 ## Sources
 
-**Local docs read (pricing truth):**
-- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md` — authoritative pricing:
-  Semaglutide from $225/mo, Tirzepatide from $325/mo; provider = Diana; Wellness & Restoration lane.
-- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv` — same figures, GLP-1
-  Program sub-category, ~15-min monthly visit.
+**Local docs read (historical context, not current pricing authority):**
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md`
+- `docs/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv`
 - `docs/internal_only/services/Diana/House_of_Rose_Aesthetics_Treatment_Menu_v2.pdf` — Flate-compressed 2-page
   ReportLab PDF; text not extractable via textutil and superseded by the consolidated MD (which
   states it replaces the original source docs). No unique GLP-1 pricing available from it.
 
 **Sanity docs consulted (published snapshot):**
-- `glp-1-weight-management` (service/treatment; **"From $349/month"** — flagged as drift vs local).
+- `glp-1-weight-management`; its legacy price field is not public price authority during the voice reset.
 - `iv-hydration-therapy`, `wellness-restoration` (collection), `wellness` (hub), `dermal-fillers`,
   `ez-gel-bio-filler`, `fine-lines-laxity` (concern) — for journey-link mapping.
 

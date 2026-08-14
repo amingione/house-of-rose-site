@@ -1,7 +1,7 @@
 # Neurotoxins (Botox & Daxxify) — Research Brief
 
 **Date:** 2026-07-13
-**Provider lane:** Diana, RN — Injectables (neurotoxins, dermal fillers, PRF injections & EZ-Gel), under medical-director oversight
+**Provider lane:** Diana Morrison, RN — neurotoxins, dermal fillers, and current injectable PRF under medical direction. The current menu does not establish an EZ-Gel service.
 **Status:** draft for Phase 3/4 consumption
 **Sources:** listed at the end
 
@@ -115,7 +115,10 @@ Both are **per-unit** pricing. What moves the total:
 - **Number of areas** treated in a visit.
 - **Maintenance frequency** — Daxxify's longer duration can mean fewer visits per year.
 
-Pricing language: always "investment," "from," "starting at," per-unit. **No** discount language. **No** membership pricing — see the GAP in §10 / the flags below (the v2 PDF's per-unit "member" rates are DEAD and must never surface).
+Public pricing should state the verified **$14 per product-specific unit** for Botox and Daxxify
+plainly. Explain that the total depends on the provider-determined unit count and that the two
+products' units are not interchangeable; do not hide the known unit price behind a generic lower
+bound. **No** discount language or membership pricing.
 
 ---
 
@@ -204,7 +207,7 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 
 **Where the neurotoxin page should link *out* to:**
 - `/services/dermal-fillers/` (volume, static lines).
-- `/services/ez-gel-bio-filler/` and PRF services `/services/prf/` (regenerative / skin quality).
+- `/services/prf-under-eyes/` and `/services/prf-injections/` for current injectable PRF distinctions.
 - `/concerns/fine-lines-laxity/` (and a proposed dedicated expression-lines concern).
 - `/services/collections/injectables-aesthetics/`.
 - A proposed cost guide and comparison (below).
@@ -243,8 +246,8 @@ Pricing language: always "investment," "from," "starting at," per-unit. **No** d
 **Sanity published snapshot (consulted):**
 - `injectables` — "Botox & Neurotoxins" treatment (parent `injectables-bio-fillers`), **price: null**, tagline "Botox, Dysport & Daxxify," FAQ "How long do results last? / Will I look frozen?" — see GAPS (price missing; mentions Dysport, which is NOT in Diana's local menu).
 - `injectables-bio-fillers` — injectables hub (price null).
-- `dermal-fillers` — "From $700," RHA/Restylane/Juvéderm.
-- `ez-gel-bio-filler`, and concern `fine-lines-laxity` — mapping targets.
+- `dermal-fillers` — separate $300/60-minute consultation and five current HA product appointments from $650 to $850.
+- Current PRF service routes and concern `fine-lines-laxity` — comparison context only.
 
 **Web sources (mechanism / candidacy / duration / comparison framing only — never pricing, no imported claims):**
 - Drugs.com Daxxify FDA approval history (`drugs.com/history/daxxify.html`) — approval date and indication; reputable drug reference.

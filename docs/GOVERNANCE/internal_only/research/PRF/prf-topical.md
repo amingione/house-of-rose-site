@@ -88,27 +88,15 @@ No new concern pages required — the existing six cover the topical-PRF surface
 - **LightStim LED (+$35)** — to calm and support skin after channeling.
 - **Dermaplane prep (+$45)** — remove peach fuzz and prep the surface.
 
-**Example client journey:** ① **Glo2Facial** ($185) as an entry and skin-analysis moment → ② **Microneedling** for an eligible concern → ③ consider topical PRF or another provider-approved adjunct. The provider confirms sequence and candidacy.
+**Appointment distinction:** topical PRF Microneedling is its own $595, 60-minute appointment. Glo2Facial and non-PRF Microneedling are separate choices, not required steps in a sales sequence.
 
 **Retail follow-through (drives results retention).** Home care is what holds the result between visits. Sensible, compliant retail (name real shop brands the studio carries): the **Procell PRO / MD home systems** (recombinant/bone-marrow-derived growth-factor topicals — describe accurately, never "stem-cell"), plus barrier-supportive and SPF-forward regimens from the studio's professional lines (e.g., **GlyMed+**, **Skin Script**, **Face Reality** for acne-prone skin). Frame retail as "supports and extends your in-studio results," never as a cure.
 
 ## 8. Cost factors
 
-**What moves the price:** face vs body zone, area size, single visit vs series, provider-selected material plan, and whether topical PRF is added as an upgrade. Device choice is not a pricing variable; House of Rose uses the Procell Therapies device for Microneedling.
-
-**Local-doc pricing (canonical source: `docs/internal_only/pricing/advanced-facials-master-menu.md`, updated 2026-07-10):**
-- **Topical PRF — face upgrade: +$175** (added to any needling treatment).
-- **Topical PRF — body upgrade: +$200** (per zone).
-- Internal price references include Procell Pro and MD material-plan figures plus a separate $295 Microneedling figure. Reconcile them as variations inside one Microneedling service before publishing an exact base price.
-- Series framework: Series of 3 (~10% value) · Series of 6 (~20% value).
-
-**Pricing conflict to resolve (FLAG — see GAPS):** the House PRF PDFs (dated 2026-07-09) and the published Sanity services price PRF as a **bundled treatment**, not a +$175/+$200 upgrade:
-- PDF `PRF_Pricing_House_of_Rose.pdf`: "PRF Skin Renewal (Microchanneling + PRF) **$450** / Series of 3 **$1,200** / Series of 4 **$1,550**."
-- Sanity `prf-microneedling` ("PRF Skin Texture & Tightening"): **From $425**, 90 min.
-- Sanity `prf-body-treatments`: **From $475 per zone**, 90 min.
-- Sanity cost guide `prf-microneedling-cost-punta-gorda`: **$599–$850 per session** — but this range spans the whole PRF hub (it reaches up to the injectable `prf-injections` at From $599), so it over-states the *topical* microneedling floor.
-
-Use the **local master menu** as pricing truth per the source hierarchy, and flag the drift. **Never publish a price from web research.** Present all pricing as "investment," "from," or "starting at."
+The current topical PRF Microneedling appointment is **$595 for 60 minutes**. State that exact
+GlossGenius-backed amount plainly. Historical upgrade, body, bundle, and series figures in PDFs,
+working menus, Sanity, or cost guides are not current commerce authority and must not be republished.
 
 ## 9. FAQ bank (substantive, compliance-clean)
 
@@ -139,7 +127,9 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 - "non-surgical BBL" (do not offer or imply).
 - discount language ("deal," "% off," "sale," "cheap").
 
-**Say instead:** "designed to," "supports," "helps reveal," "for the appearance of," "the visible signs of," "many clients notice," "your own growth factors," "autologous," "supports your skin's own collagen." Pricing is always "investment," "from," "starting at."
+**Claim boundary:** use only supported treatment-specific language, including factual terms such as
+"autologous" and "prepared from a small sample of your own blood." State the verified current
+appointment price directly rather than replacing it with a pricing euphemism.
 
 **Required guardrails on every surface:** provider confirms final candidacy/combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · new single-use cartridge every session · never needle sunburned/inflamed/infected/open skin · before/after or results claims carry "individual results vary" · packages/series carry the Fla. Stat. 456.062 disclaimer · clearly identify the licensee performing each service.
 
@@ -147,15 +137,15 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 
 **Existing pages that should link *to* the topical-PRF surface (use trailing slashes):**
 - `/services/prf/` (the PRF hub) — the primary parent; the topical microneedling child lives under it.
-- `/services/prf-microneedling/` — the current "PRF Skin Texture & Tightening" treatment page (this is effectively the topical-PRF service surface).
+- `/services/prf/` — current topical-versus-injectable PRF hub.
 - `/services/microneedling/` — the one canonical Microneedling service; cross-link the topical PRF adjunct where appropriate.
 - `/cost/prf-microneedling-cost-punta-gorda/` — the one published cost guide.
 - `/services/collections/skin-renewal/` — the collection home.
 - `/concerns/fine-lines-laxity/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`, `/concerns/sun-damage/`.
 
 **Where the topical-PRF page should link *out*:**
-- The canonical needling pages: `/services/microneedling/`, `/services/microneedling-body/`, and `/services/prf-body-treatments/`.
-- The cross-lane referrals (clearly labeled as Diana, RN): `/services/prf-injections/`, `/services/ez-gel-bio-filler/`.
+- The canonical needling page: `/services/microneedling/`.
+- The cross-lane referrals, clearly attributed to Diana Morrison, RN: `/services/prf-under-eyes/` and `/services/prf-injections/`.
 - Any package links must resolve to current Microneedling variations and must not recreate separate microchanneling and microneedling categories.
 - `/faq/`, `/areas/punta-gorda/`, `/skin-analysis/`.
 
@@ -180,7 +170,8 @@ Use the **local master menu** as pricing truth per the source hierarchy, and fla
 **Local docs read (paths under repo root):**
 - `docs/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education research report; the primary compliance + topical-vs-injectable framing.
 - `docs/internal_only/research/compass_artifact_wf-116088fa-2d44-4fdf-a81e-8886533f95e6_text_markdown.md` — PRF science/strategy package (mechanism, evidence citations, competitive landscape, compliance).
-- `docs/internal_only/pricing/advanced-facials-master-menu.md` — **canonical pricing** (Topical PRF +$175 face / +$200 body; needling bases; series framework; compliance guardrails).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — historical upgrade/series context only; not current commerce authority.
+- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — current $595, 60-minute topical PRF Microneedling authority.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (points to the master menu; prices not used).
 - `docs/internal_only/services/microchanneling/PRF.md` — **empty file (0 bytes)** — flagged as a gap.
 - `docs/internal_only/services/Diana/PRF_Treatment_Guide_House_of_Rose.pdf` — House PRF guide; injectable-vs-microchanneling contrast, "~24 hours of redness."

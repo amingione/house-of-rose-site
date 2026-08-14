@@ -49,7 +49,8 @@ Because it swaps abrasive crystals/diamond tips for water and adjustable suction
 
 ## 4. The visit
 
-**Provider:** Brandy (basic / maintenance facials). Approximate duration and price are **pending** the House of Rose service build (see source note; maintenance facials in this category commonly run ~30–60 minutes — to be confirmed by Brandy, not stated on a live page until set).
+**Provider context:** Brandy's basic/maintenance lane. Hydrodermabrasion is not current public
+inventory, so this brief does not assign a duration, price, or public provider claim.
 
 **Step-by-step (typical protocol):**
 1. **Cleanse & skin read** — surface cleanse; the provider assesses skin type and any sensitivity, and selects serums/intensity.
@@ -72,12 +73,12 @@ Because it swaps abrasive crystals/diamond tips for water and adjustable suction
 ### Hydrodermabrasion vs **Glo2Facial** (Amber) — the key one
 Both are **exfoliate + hydrate + infuse** facials that leave an immediate no-downtime glow, so clients will ask how they differ. Honest framing:
 
-- **Glo2Facial** (Amber, advanced lane; Skin Renewal; **From $185**, 60 min per Sanity) is House of Rose's **advanced signature "gateway" facial** — it adds **CO₂/oxygenation** (the Geneo capnography reaction) plus infusion and lymphatic massage, and it's positioned as the **entry point and base for corrective work** (needling, PRF finishes). It's the elevated, oxygenating experience and the on-ramp to Amber's corrective menu.
+- **Glo2Facial** is a separate $225, 60-minute appointment with Amber Mingione, Licensed Esthetician. It uses an OxyPod reaction, topical infusion, and facial massage rather than water/serum suction.
 - **Hydrodermabrasion** (Brandy, basic lane) is the **accessible maintenance glow** — water/serum vortex resurfacing without the oxygenation step, aimed at routine clean-and-hydrate upkeep, sensitive skin, and event prep at a friendlier entry point.
 
 **When each wins:** choose **hydrodermabrasion** for gentle, regular maintenance, first-time/sensitive-skin comfort, and budget-conscious upkeep. Choose **Glo2Facial** when the client wants the signature oxygenating experience or intends to build into corrective treatments with Amber. They are **complementary tiers**, not rivals — and they live in **different provider lanes** (keep that clean).
 
-### Hydrodermabrasion vs **Dermaplaning** (From $135, 50 min per Sanity)
+### Hydrodermabrasion vs **Dermaplaning** ($135, 50-minute current standalone appointment)
 Different mechanisms: **dermaplaning** manually shaves off dead skin **and peach fuzz** with a blade (great instant smoothness and makeup application), while **hydrodermabrasion** exfoliates with water + suction **and hydrates/extracts** in one pass. Dermaplaning wins for removing vellus hair and pre-makeup smoothing; hydrodermabrasion wins for hydration, decongestion, and a plumped glow. They **pair well** — dermaplane first, then hydrodermabrasion (or a hydrating facial) infuses the freshly cleared skin.
 
 ### Hydrodermabrasion vs **Enzyme exfoliation** (Brandy's lane; not yet a Sanity service)
@@ -103,15 +104,15 @@ Traditional **microdermabrasion** mechanically sands the surface with crystals o
 
 ## 7. Pairings & pathways
 
-**Try first / gateway:** hydrodermabrasion is an ideal **first facial** and **maintenance base** — comfortable, no downtime, low commitment. It's the accessible on-ramp within Brandy's basic lane before a client steps up to Amber's advanced/corrective work.
+**Inventory boundary:** hydrodermabrasion remains an unpriced research concept in Brandy's lane. Do not position it as a required first step or a path into another provider's services.
 
 **Stacks well with:**
-- **Dermaplane Prep** — dermaplane first to clear peach fuzz and dead skin, then hydrodermabrasion infuses freshly cleared skin (dermaplaning is in the menu at +$45 as a prep add-on in Amber's lane; a basic-lane pairing/price is **pending**).
-- **LED / LightStim** — calm and support the skin after (LED is a standalone service, From $65).
+- **Dermaplaning** — a separate current service for comparison only. Do not create a hydrodermabrasion pairing or price from this brief.
+- **LED / LightStim** — historical comparison only; confirm current availability through GlossGenius before presenting it.
 - **Hydrating mask finish** — reinforce hydration for event prep.
 - **Enzyme exfoliation** — as an alternative or complementary gentle exfoliation within the basic lane.
 
-**Pathways (step-up):** hydrodermabrasion (maintenance) → **Glo2Facial** (Amber) → **Microneedling / BioRePeel / PRF** for correction. Use **Procell Microchanneling** only when Procell is specifically in context. Keep the lane hand-off explicit: Brandy for maintenance, Amber for advanced/corrective.
+**Related services:** Glo2Facial, Microneedling, BioRePeel, and PRF answer different questions and must be presented as separate choices, not an escalation ladder.
 
 **Retail follow-through** (name real HoR shop brands once confirmed in Sanity shopBrands — snapshot did not include brand records, so treat as directional): support the glow at home with a **gentle cleanser, a hyaluronic-acid/hydrating serum, and daily SPF**. HoR retail brands referenced across the site include **Procell, GlyMed+, Skin Script, Face Reality, and House of Rose** — pick a hydrating serum + SPF from whichever the provider stocks for maintenance clients. (Confirm exact SKUs against live `product`/`shopBrand` docs before naming on a page.)
 
@@ -119,7 +120,8 @@ Traditional **microdermabrasion** mechanically sands the surface with crystals o
 
 ## 8. Cost factors
 
-**PENDING — no House of Rose price source exists for hydrodermabrasion.** Do **not** publish a price until Brandy/Amber set one and it's entered in Sanity. Do not borrow the Glo2Facial or dermaplaning price — different treatment and lane.
+Hydrodermabrasion is not current GlossGenius inventory. Do not publish a placeholder or borrow the
+Glo2Facial or Dermaplaning price; omit it until a verified appointment exists.
 
 What will move price once set (for structuring the eventual menu):
 - **Session length / add-ons** (dermaplane prep, LED, mask, targeted serums).
@@ -160,7 +162,8 @@ What will move price once set (for structuring the eventual menu):
 - Do **not** claim it treats acne, rosacea, or scarring, or that it removes/reverses anything. "For the appearance of dullness and congestion" is the safe framing.
 - Do **not** name/imply a branded **HydraFacial** device unless the specific device is confirmed; use generic "hydrodermabrasion."
 - No "clinically proven" / "FDA-approved" language.
-- Pricing language: "investment," "from," "starting at" — and **no price at all until set** (currently pending).
+- Pricing remains unresolved. Publish no amount or lower-bound wording until an exact current
+  GlossGenius listing is reconciled.
 
 **Required guardrails on any surface:** provider confirms final candidacy, serum choice, settings, and combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · identify the licensee performing the service.
 
@@ -179,9 +182,9 @@ What will move price once set (for structuring the eventual menu):
 **Where a hydrodermabrasion page should link *out* to (real slugs, trailing slashes):**
 - `/services/glo2facial/` (the advanced signature step-up)
 - `/services/dermaplaning/` (pairing)
-- `/services/lightstim-led-therapy/` (add-on)
+- Historical LED references are not current route authority.
 - `/services/collections/skin-renewal/`
-- Corrective step-up references: `/services/microchanneling/` (Procell), `/services/microneedling-corrective/`, `/services/biorepeel/`
+- Separate current comparisons: `/services/microneedling/` and `/services/biorepeel/`.
 - `/shop/` (retail hydration + SPF follow-through)
 - `/faq/`, `/contact/`, booking (call-first, GlossGenius)
 
@@ -211,11 +214,11 @@ What will move price once set (for structuring the eventual menu):
 - `docs/internal_only/services/facials/hydrodermabrasion.md` — **empty (0 bytes)**; no content.
 - `docs/internal_only/services/facials/packagesAdd-ons.md` — current menu boundary; it does not establish a hydrodermabrasion package or add-on.
 - `docs/internal_only/services/facials/biorepeel.md`, `docs/internal_only/services/facials/dermaplaning.md` (empty), `docs/internal_only/services/facials/glo2facialxGeneo.md` (empty) — checked for adjacent content; mostly stubs.
-- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical Amber-lane menu (confirms Glo2Facial From $185; explicitly excludes Brandy's maintenance lane; no hydrodermabrasion price).
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — historical Amber-lane context only; no hydrodermabrasion authority.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub.
 
 **Sanity docs consulted (snapshot):**
-- Services present and used for comparison/pricing: `glo2facial` (From $185, 60 min, Skin Renewal, "Oxygenating facial treatment"), `dermaplaning` (From $135, 50 min), `lightstim-led-therapy` (From $65). Collections: `skin-renewal`. Concerns: `sun-damage` (+ full concern list). **No `hydrodermabrasion` service, no enzyme-exfoliation service, no basic-facials collection, no `shopBrand` records in snapshot** — Brandy's basic lane is unbuilt.
+- Legacy service fields were reviewed for comparison context only. Current price authority is Glo2Facial $225/60 minutes and Dermaplaning $135/50 minutes; hydrodermabrasion remains absent from current inventory.
 
 **Web sources (URL + why trustworthy):**
 - https://www.hydrafacial.com/blogs/articles/what-is-hydradermabrasion-and-how-does-it-compare-to-hydrodermabrasion — manufacturer/brand explainer distinguishing hydradermabrasion vs generic hydrodermabrasion.

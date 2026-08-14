@@ -97,9 +97,9 @@ No existing concern page is a strong native fit, which reinforces that this is a
 
 **Stacks well with (in-visit or as a plan):**
 - **+ Dermaplaning** — a possible research relationship only. The current menu does not establish an enzyme add-on, so do not publish or book this combination from the brief.
-- **+ LED (LightStim)** — calming light to finish a relaxing facial (`/services/lightstim-led-therapy/`, from $65).
+- **LED / LightStim** — a separate historical comparison only; current availability and price require a GlossGenius match.
 - **+ Hydrating mask / facial massage** — the relaxing-maintenance experience.
-- **Gateway toward Amber's lane** — a client whose goals outgrow maintenance (real texture, scarring, laxity) is warmly handed off to **Glo2Facial** (`/services/glo2facial/`, the studio's entry point at $185) and then corrective work. Keep the lane handoff explicit and provider-led.
+- **Different provider lanes** — enzyme exfoliation is an unpriced research concept in Brandy's lane; Glo2Facial is a separate $225, 60-minute appointment with Amber Mingione, Licensed Esthetician.
 
 **Retail follow-through (real House of Rose shop brands).** House of Rose carries a deep **Skin Script** professional enzyme line that an in-treatment enzyme facial draws on — e.g. **Coconut Papaya Enzyme** (`/shop/coconut-papaya-enzyme/`), **Blueberry Enzyme** (`/shop/blueberry-enzyme/`), **Cherry Enzyme** (`/shop/cherry-enzyme/`), **Passionfruit Enzyme**, **Lemon Zest Enzyme**, **Eucalyptus Enzyme**, **Jackfruit Enzyme**, **Blue Aqua Enzyme** — plus **GlyMed+** enzyme masques (**Hydrating Masque with Enzymes** `/shop/hydrating-masque-with-enzymes/`, **Chocolate Masque with Enzymes**). For gentle home maintenance between visits, the House of Rose **Smooth Ritual Polish** (`/shop/smooth-ritual-polish/`) and a **mineral SPF** (**Shield Ritual Mineral SPF 30**, `/shop/shield-ritual-spf/`) are the honest, on-brand follow-through. *(Note: many Skin Script enzymes are listed at `price: null` in the snapshot — several are professional/back-bar items; confirm which are retail SKUs before pricing any of them on a service page.)*
 
@@ -107,7 +107,8 @@ No existing concern page is a strong native fit, which reinforces that this is a
 
 ## 8. Cost factors
 
-**⚠️ Pending Brandy — no local source.** There is **no local pricing document and no published Sanity price** for an enzyme exfoliation facial or any Brandy basic facial. Do **not** invent, estimate, or borrow a figure. All service pages must show cost as **"pending"** until Brandy sets rack pricing.
+There is no current GlossGenius appointment for an enzyme exfoliation facial. Do not invent,
+estimate, borrow, or publish a placeholder price; omit the service price until commerce evidence exists.
 
 Factors that *would* move price once set (for planning only, not for publication as numbers):
 - Treatment length / whether it's an express vs. full facial.
@@ -115,7 +116,7 @@ Factors that *would* move price once set (for planning only, not for publication
 - Single visit vs. a prepaid maintenance series (treatment *packages/series* are allowed and current; **no memberships**).
 - Which professional enzyme line/formulation is used.
 
-**Contrast for reference only (Amber's lane, from `advanced-facials-master-menu.md`):** the studio's *advanced* entry point is Glo2Facial at **$185**; corrective work runs higher (Procell $250+, Microneedling — Corrective $295, BioRePeel from $295). A Brandy *basic maintenance* enzyme facial would sit **below** these as an entry-level relaxing service — but the actual number is Brandy's to set and is not in any doc.
+Do not infer the enzyme price or relative value from Glo2Facial, Microneedling, BioRePeel, or another provider's menu.
 
 ---
 
@@ -142,7 +143,7 @@ Factors that *would* move price once set (for planning only, not for publication
 ## 10. Provider + compliance notes
 
 - **Lane: Brandy** — basic / relaxing-maintenance facials (enzyme exfoliation, hydrodermabrasion, light peels) + facial waxing; she rents a room. **This is not Amber's advanced/corrective lane.** Never describe an enzyme facial as corrective, medical-grade, or as treatment for a condition. When a client's goals outgrow maintenance, hand off to Amber's lane — don't overreach within Brandy's.
-- **Phrases to avoid for THIS topic:** "treats/cures/heals" + acne/rosacea/eczema/scarring; "removes/erases wrinkles or scars"; "anti-aging"/"reverse aging"/"age-defying"; "permanent"/"guaranteed"; "clinically proven"/"FDA-approved" (no verifiable clearance to cite for a fruit-enzyme facial); "chemical peel" as a synonym (it's an *enzyme* exfoliation — mechanistically distinct). Never "day spa." Never call it a "medical" or "corrective" treatment. No discount language — pricing is "investment/from/starting at," and it's **pending** anyway.
+- **Phrases to avoid for THIS topic:** "treats/cures/heals" + acne/rosacea/eczema/scarring; "removes/erases wrinkles or scars"; "anti-aging"/"reverse aging"/"age-defying"; "permanent"/"guaranteed"; "clinically proven"/"FDA-approved" (no verifiable clearance to cite for a fruit-enzyme facial); "chemical peel" as a synonym (it's an *enzyme* exfoliation — mechanistically distinct). Never "day spa." Never call it a "medical" or "corrective" treatment. Do not publish a price until an exact current GlossGenius line is reconciled; do not invent a lower-bound price or use discount language.
 - **Say instead:** "gentle," "relaxing," "maintenance," "helps reveal," "for the appearance of," "supports smoother-looking, brighter skin," "many clients notice."
 - **Required guardrails on the surface:** provider authority ("final candidacy and combinations are confirmed by your licensed provider"); "not every client is a candidate"; "individual outcomes vary"; the **fruit/latex allergy patch-test** caution; SPF/aftercare note.
 - **No memberships** — a prepaid maintenance *series/package* is fine; never a membership, pass, or rewards program.
@@ -160,8 +161,8 @@ Factors that *would* move price once set (for planning only, not for publication
 - Proposed concern pages (below) and the existing `/concerns/sun-damage/` (as *maintenance* support only).
 
 **This page should link *out* to:**
-- `/services/dermaplaning/`, `/services/glo2facial/`, `/services/lightstim-led-therapy/` (pairings/escalation).
-- `/services/biorepeel/` and `/services/microchanneling/` (honest "when to escalate to correction / Amber's lane").
+- `/services/dermaplaning/` and `/services/glo2facial/` as separate surface-service comparisons.
+- `/services/biorepeel/` and `/services/microneedling/` as separate current services, not an escalation ladder.
 - Retail: `/shop/coconut-papaya-enzyme/`, `/shop/blueberry-enzyme/`, `/shop/hydrating-masque-with-enzymes/`, `/shop/smooth-ritual-polish/`, `/shop/shield-ritual-spf/`.
 
 **Proposed new pages (type + slug):**

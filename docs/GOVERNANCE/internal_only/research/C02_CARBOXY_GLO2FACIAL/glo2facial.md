@@ -2,13 +2,15 @@
 
 **Date:** 2026-07-13 · **Provider lane:** Amber (advanced facials) · **Status:** draft for Phase 3/4 consumption · Sources listed at the end.
 
-Topic scope: the **Glo2Facial by Geneo** — an oxygenating, exfoliating, infusing facial and a finish or add-on layered onto eligible microneedling. Amber's lane (advanced facials, no needling required for the standalone). **Taxonomy note:** use Microneedling generically and Procell Microchanneling only when Procell is specifically in context.
+Topic scope: the current standalone **Glo2Facial by Geneo** — an OxyPod surface pass, topical infusion, and facial massage. Historical finishes and needling add-ons are not current inventory.
 
 ---
 
 ## 1. The 3-sentence answer
 
-The Glo2Facial by Geneo is a non-invasive signature facial that gently exfoliates, applies targeted infusions, and supports surface oxygenation in one visit. At House of Rose in Punta Gorda, Amber performs it as an advanced-facial entry point (investment from $185). It can also be used as a finishing layer after eligible microneedling.
+The Glo2Facial by Geneo uses an OxyPod surface pass, topical infusion, and facial massage in one
+60-minute appointment. At House of Rose in Punta Gorda, Amber Mingione, Licensed Esthetician provides
+the current standalone service for $225.
 
 ---
 
@@ -29,12 +31,11 @@ The Glo2Facial by Geneo is a non-invasive signature facial that gently exfoliate
 - **First-timers and sensitive skin.** No aggressive suction, no acids required, comfortable — a gentle on-ramp to House of Rose's advanced-skin lane.
 - **Dull, dry, tired, or dehydrated skin** wanting brightness, softness, and hydration.
 - Clients who want the **feel-good spa experience** (massage, glow) rather than corrective downtime.
-- As a **finish/add-on** after eligible microneedling.
 - A broad range of skin tones — the underlying OxyGeneo study included Fitzpatrick I–VI.
 
 **Honest limits — what it is not:**
 - It is **not a collagen-induction / corrective treatment.** For deeper acne-scar texture, defined scars, stretch marks, or significant laxity, microneedling may be considered after consultation — Glo2Facial complements that service; it does not replace it.
-- Results are **cumulative and gradual on texture and tone**; the standalone "wow" is the glow and hydration, which is immediate but temporary. A series builds and sustains the skin-quality changes.
+- The current menu establishes one standalone appointment. Published study schedules do not establish a House of Rose series or cadence.
 - It does **not** replace medical treatment for any skin condition.
 
 **Not a candidate / check with the provider first (candidacy is always the provider's call at consultation):**
@@ -67,25 +68,25 @@ The Glo2Facial by Geneo is a non-invasive signature facial that gently exfoliate
 
 **Results timeline:**
 - **Immediate:** glow, hydration, softness, brightness after the single visit — best seen 1–3 days out; ideal timing for an event is a day or two before.
-- **Cumulative:** in the OxyGeneo clinical study (6 weekly sessions over ~2 months), evaluators and patients reported improvement in skin texture, brightness, and tone, with more modest change in fine lines/wrinkles. Texture/tone gains build over a series.
+- **Research context:** an OxyGeneo study evaluated six weekly sessions, but that study schedule is not a current House of Rose series or public cadence.
 
-**Cadence:** the standalone glow is a lovely one-off or monthly maintenance facial. For visible skin-quality change, a **series of 3–6 sessions ~4–6 weeks apart** is the norm, then individualized maintenance. House of Rose offers Glo2Facial as **Single · Series of 3 (Renewal) · Series of 6 (Full Correction)** (see §8).
+**Cadence:** current inventory establishes only the standalone 60-minute appointment. Amber Mingione, Licensed Esthetician confirms any repeat timing; do not publish a series from this brief.
 
 ---
 
 ## 5. Comparisons (honest — vs. treatments we offer)
 
 **Glo2Facial vs. hydrodermabrasion (Brandy's basic-facial lane).**
-Both are gentle, exfoliating, no-downtime "glow" facials — the honest overlap is real. Hydrodermabrasion uses water/serum + light suction to exfoliate and hydrate; Glo2Facial uses the CO₂/Bohr-effect **oxygenation** step and active-pod infusion on top of light exfoliation, plus the finishing massage. **When hydrodermabrasion wins:** a relaxing, budget-friendly maintenance cleanse-and-glow, or a client who prefers Brandy's basic-facial experience; it's the everyday-glow entry. **When Glo2Facial wins:** the marquee event glow, the oxygenation/infusion experience, sensitive skin that dislikes suction, and — critically — as the **branded gateway into Amber's advanced lane** and the finishing layer for needling. Lane note: hydrodermabrasion sits with **Brandy (basic facials)**; Glo2Facial is **Amber (advanced)**. Recommend by goal and provider, never disparage either.
+Both are surface facials, but the mechanisms differ. Hydrodermabrasion uses water/serum and light suction; Glo2Facial uses an OxyPod reaction, topical infusion, and facial massage. Hydrodermabrasion remains an unpriced research concept in Brandy's lane; the current Glo2Facial is a verified standalone appointment with Amber Mingione, Licensed Esthetician. Do not turn that distinction into a hierarchy or sales path.
 
 **Glo2Facial vs. dermaplaning.**
-Different jobs. Dermaplaning is manual exfoliation with a blade — it removes peach fuzz + dead surface cells for instant smoothness and flawless makeup application. Glo2Facial exfoliates *and* infuses *and* oxygenates for glow and hydration. **When dermaplaning wins:** removing vellus hair, prepping for flawless foundation, ultra-smooth texture. **When Glo2Facial wins:** hydration, brightness, oxygenated glow, and a full-service experience. They're **complementary** — dermaplaning is often done first (as a prep add-on, +$45) to help the Glo2Facial infusion absorb.
+Different jobs. Dermaplaning manually removes vellus hair and surface cells; Glo2Facial uses an OxyPod reaction, topical infusion, and massage. They have separate current appointment rows. Do not prescribe a same-visit pairing from this brief.
 
 **Glo2Facial vs. microneedling.**
-These are not the same category. Needling creates controlled micro-channels to trigger the skin's collagen-repair response — it's the **corrective, collagen-induction** tool for texture, fine lines, pore appearance, acne-scar and stretch-mark appearance, and it comes with some downtime (redness, later flaking). Glo2Facial is **surface-level**: glow, hydration, brightness, no channels, no downtime. **When needling wins:** you want to change the skin's structure/texture over a series. **When Glo2Facial wins:** you want a glow now with zero recovery, you're not ready for needling, or you want the between-needling maintenance facial. They pair beautifully (see §7).
+These are not the same category. Microneedling creates controlled microchannels; Glo2Facial is a surface facial without needling. They are separate current appointments, and this brief does not authorize a shared cadence or same-visit combination.
 
 **Glo2Facial as an add-on/finish layered onto microneedling.**
-After an eligible microneedling session, a **Glo2Facial Finish (+$95)** may be considered. The provider confirms whether the combination and timing are appropriate.
+Historical working menus described a Glo2Facial finish, but it is not current public inventory. Do not offer or price it without a new GlossGenius match.
 
 ---
 
@@ -102,20 +103,17 @@ Maps to these **existing** `/concerns/` slugs:
 
 ## 7. Pairings & pathways
 
-**What it stacks with (same visit):**
-- **Dermaplane Prep (+$45)** — remove peach fuzz first so the infusion absorbs; smoother finish.
-- **LightStim LED Therapy (+$35 as add-on; standalone from $65)** — calm and support the skin after the facial; amplifies the glow.
-- **Neck & Décolleté Extension (+$95)** — carry the treatment onto the neck and chest (existing Sanity `neck-decollete-extension`).
-- **BioRePeel (+$65)** — for clients wanting more resurfacing punch alongside the glow (provider's call).
+**Current appointment boundary:** GlossGenius verifies one standalone Glo2Facial appointment at
+$225 for 60 minutes. Historical add-ons, finishes, extensions, and series in older working menus are
+not current public inventory and must not be presented as available without a new GlossGenius match.
 
 **Around a needling appointment:**
 - A Glo2-related preparation or finishing step is considered only when the provider selects a non-RF protocol that is appropriate for the same visit. Do not present RF, ultrasound, or a full Glo2 sequence as a same-day needling stack without device-specific and medical-director approval.
 - Micro-Tox / GlowTox is not a Glo2 or needling add-on. Daxxify must not be applied topically, mixed into a facial cocktail, or used with a needling device. See `micro-tox-glowtox-safety-brief.md`.
 
-**Try-first / journey:**
-1. **Start:** Glo2Facial (gateway, $185) — experience the studio, get a skin analysis.
-2. **Correct:** graduate into Microneedling with the Procell Therapies device when appropriate; use Procell Microchanneling when Procell is specifically in context.
-3. **Upgrade/finish:** add Topical PRF (Amber, topical only) or a Glo2Facial Finish; maintain with LED and monthly facials.
+**Different treatment paths:** Glo2Facial is a standalone surface facial. Microneedling and topical
+PRF answer different texture questions and require their own verified appointments; do not turn that
+distinction into a prescribed upgrade sequence.
 
 **Retail follow-through (name real HoR shop brands):** support the glow between visits with a gentle brightening/hydrating home routine — the studio carries **Skin Script**, **GlyMed+**, **Face Reality** (acne-prone), **Procell** aftercare, and the **House of Rose** line. Recommend a hydrating serum + daily SPF pairing; final product picks are the provider's at consultation. (Do not claim products "cure" or "treat" any condition.)
 
@@ -123,42 +121,36 @@ Maps to these **existing** `/concerns/` slugs:
 
 ## 8. Cost factors
 
-**Source of truth = local master menu (`advanced-facials-master-menu.md`, 2026-07-10) + Sanity published snapshot.** Prices are always "investment / from / starting at."
+**Current public price authority = GlossGenius-backed `ALL-SERVICES-PRICING.MD`.** State the verified
+$225, 60-minute standalone appointment plainly. Historical series and add-on prices are not current
+public menu authority.
 
-| Offering | Investment | Source |
+| Current offering | Price | Source |
 |---|---|---|
-| Glo2Facial — Single (60 min) | **from $185** | master menu §1; Sanity `glo2facial` ("From $185") |
-| Glo2Facial — Series of 3 ("Renewal", ~10% value) | **$499** | master menu §1 |
-| Glo2Facial — Series of 6 ("Full Correction", ~20% value) | **$885** | master menu §1 |
-| **Glo2Facial Finish** (add to any needling treatment) | **+$95** | master menu §5 |
-| Neck & Décolleté Extension | +$95 | master menu; Sanity `neck-decollete-extension` |
-| Dermaplane Prep | +$45 | master menu §5 |
-| LightStim LED add-on | +$35 (standalone from $65) | master menu §5; Sanity `lightstim-led-therapy` ("From $65") |
-| BioRePeel (face) add-on | +$65 | master menu §5 |
+| Glo2Facial — standalone (60 min) | **$225** | `ALL-SERVICES-PRICING.MD` |
 
-**What moves the price:** single visit vs. series (series lowers per-session cost); add-ons (dermaplane prep, LED, neck & décolleté, BioRePeel); whether it's booked standalone or as a needling finish. Series pricing is the value play and the intended sell.
-
-**Conflict to flag:** Sanity lists the **standalone Glo2Facial ($185)** but has **no Glo2Facial series/package document** — the $499 (Series of 3) and $885 (Series of 6) exist only in the local master menu. See GAPS. (The generic `prf-microneedling-cost-punta-gorda` cost guide is PRF-specific and does not cover Glo2Facial.)
+**Price boundary:** $225 is the exact current standalone price. Do not infer a series, package,
+add-on, lower-bound price, or needling finish from historical menus or Sanity fields.
 
 ---
 
 ## 9. FAQ bank (substantive, compliance-clean)
 
-1. **What is a Glo2Facial?** It's a non-invasive, no-downtime signature facial by Geneo that exfoliates, infuses active ingredients, and oxygenates the skin from within in one session — designed to reveal an immediate, luminous glow. At House of Rose it's performed by Amber and starts at $185.
+1. **What is a Glo2Facial?** It is a 60-minute Geneo facial using an OxyPod, topical infusion, and facial massage. At House of Rose it is provided by Amber Mingione, Licensed Esthetician, and the current standalone appointment is $225.
 2. **How does the "oxygenation" actually work?** As a single-use pod reacts with its gel it releases a layer of CO₂ bubbles at the skin; that local rise in CO₂ prompts your own blood to release more oxygen into the treated skin (the Bohr effect). Nothing is injected — it's your skin oxygenating itself.
 3. **Is there any downtime?** Typically none. There's no peeling or forced redness — most clients return to their day and can wear makeup, which is why it's a favorite before events.
 4. **Is it good before a wedding or photoshoot?** Yes — it's our go-to event glow. Book it a day or two before so skin looks its brightest for the big day; final timing is confirmed with your provider.
 5. **Does it hurt?** No — most clients feel a light effervescent tingle and warmth during the pass, then a relaxing facial massage. Comfort is a hallmark of the treatment.
-6. **How is it different from a regular facial or hydrodermabrasion?** A basic hydrating facial cleanses and exfoliates; the Glo2Facial adds the CO₂/Bohr-effect oxygenation step and active-pod infusion for extra brightness and glow. Hydrodermabrasion (in our basic-facial lane with Brandy) is a great everyday option; Glo2Facial is the advanced glow and our gateway into corrective care.
-7. **How often should I get one?** Wonderful as a one-off or monthly glow. For visible texture and tone change, many clients do a series of 3–6 sessions about 4–6 weeks apart, then maintenance — the provider tailors this to your skin.
+6. **How is it different from a regular facial or hydrodermabrasion?** Glo2Facial uses an OxyPod reaction, topical infusion, and facial massage. Hydrodermabrasion uses water/serum and light suction. They are different surface-facial mechanisms, not successive tiers.
+7. **How often should I get one?** The current menu establishes a standalone visit, not a public series or maintenance cadence. Ask Amber Mingione, Licensed Esthetician what timing fits your skin.
 8. **Will it help with fine lines?** It hydrates and plumps for the appearance of smoother, more supple skin. For structural change in fine lines and texture, the provider may discuss microneedling.
 9. **Can it be added to microneedling?** It may be considered as a finish for an eligible microneedling appointment. The provider confirms whether the combination is appropriate.
 10. **Is it safe for sensitive skin?** It's designed to be gentle — no aggressive suction, no required acids — and is a comfortable first step for sensitive skin and first-timers. Candidacy is confirmed by the provider.
 11. **Can I get it if I'm pregnant or breastfeeding?** The manufacturer notes Glo2Facial hasn't been formally tested on pregnant persons and recommends checking with your doctor. Bring it up at consultation and we'll confirm candidacy and pod selection with you.
 12. **Does it work on all skin tones?** It's a gentle, non-ablative treatment used across a broad range of skin tones (the underlying clinical study included Fitzpatrick types I–VI). Your provider confirms suitability.
-13. **What areas can be treated?** The face, and it can be extended onto the neck and décolleté (+$95). Ask about hands/chest at consultation.
-14. **When will I see results?** The glow and hydration are immediate — best seen 1–3 days after. Texture, brightness, and tone build over a series of sessions; individual outcomes vary.
-15. **Can I wear makeup afterward?** Yes — with no downtime you can typically apply makeup right away; your provider will confirm based on any add-ons you chose.
+13. **What areas can be treated?** The current verified appointment is a standalone facial. Do not publish an extension or additional-area price without current GlossGenius evidence.
+14. **When will I see results?** The reviewed procedure-specific guidance supports an immediate surface-facial result; individual outcomes vary. Do not promise cumulative series results from the current menu.
+15. **Can I wear makeup afterward?** The reviewed procedure-specific guidance supports no downtime for this appointment; Amber confirms individual aftercare.
 
 ---
 
@@ -188,12 +180,12 @@ Maps to these **existing** `/concerns/` slugs:
 - `/guides/microchanneling-prf/` — as the no-downtime glow alternative / finishing layer.
 - `/areas/punta-gorda/` — already serves `glo2facial` in Sanity `localAreas.served`.
 - `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/dark-circles/` — as a gentle, no-downtime option.
-- `/skin-analysis/` and `/faq/` — gateway/first-visit funnel.
+- `/skin-analysis/` and `/faq/` — preparation and common-question guidance.
 - `/services/dermaplaning/` — cross-link (dermaplane prep pairing).
 
 **Where the Glo2Facial page should link OUT to (real slugs, trailing slashes):**
 - `/services/microneedling/` (graduate to correction).
-- `/services/dermaplaning/`, `/services/lightstim-led-therapy/`, `/services/neck-decollete-extension/` (add-ons).
+- `/services/dermaplaning/` and `/services/microneedling/` as separate current comparisons, not Glo2 add-ons.
 - `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/dark-circles/`.
 - `/areas/punta-gorda/`, `/faq/`, `/shop/` (Skin Script / GlyMed+ / House of Rose home care).
 
@@ -201,14 +193,13 @@ Maps to these **existing** `/concerns/` slugs:
 - **costGuide** → `/cost/glo2facial-cost-punta-gorda/` — "How much does a Glo2Facial cost in Punta Gorda?" (single vs. series, add-ons).
 - **comparison** → `/compare/glo2facial-vs-hydrodermabrasion/` — honest glow-facial comparison across our two lanes; and/or `/compare/glo2facial-vs-microneedling/`.
 - **caseStudy** → `/results/glo2facial-glow/` — before/event glow (needs real, consented before/afters; "individual results vary").
-- **package/series docs in Sanity** for Glo2Facial Series of 3 ($499) and Series of 6 ($885) — currently missing (see GAPS).
 
 ---
 
 ## 12. Why House of Rose
 
-- **The gateway, done right.** Glo2Facial is our deliberate entry point — a comfortable, no-downtime, luxurious first experience that opens the door to Amber's full advanced-skin lane (microchanneling, PRF-topical, corrective work). Most competitors sell it as a one-off; we build it into a real skin journey.
-- **A considered finishing option.** Layering the Glo2Facial Finish (+$95) onto eligible microneedling is a House of Rose pairing. The provider confirms whether the combination is appropriate.
+- **One verified appointment.** The current menu is a $225, 60-minute standalone Glo2Facial with
+  Amber Mingione, Licensed Esthetician. Other services remain separate choices.
 - **Right treatment, honest lane.** We'll tell you when hydrodermabrasion with Brandy is the better everyday call, when dermaplaning is what you actually want, and when needling is the tool for real texture change — no upselling into the wrong thing.
 - **Local & event-ready.** Punta Gorda / Charlotte County / SW Florida clients book it before weddings, reunions, and photoshoots precisely because there's no recovery — a private studio, open since June 15, 2026, where walk-ins are welcome and the licensed provider tailors the pod and plan to your skin.
 - **Grounded, never overclaimed.** We describe the real mechanism (exfoliate + infuse + oxygenate via the Bohr effect), cite the clinical study honestly, and keep results claims to "helps reveal," "for the appearance of," and "many clients notice."
@@ -218,14 +209,15 @@ Maps to these **existing** `/concerns/` slugs:
 ## Sources
 
 **Local docs read (paths):**
-- `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical Glo2Facial pricing ($185 / $499 / $885), Glo2Facial Finish (+$95), package framework, compliance guardrails, client journey (gateway positioning). **Primary pricing truth.**
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — historical working menu; not current commerce authority.
+- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — GlossGenius-backed current authority for the $225, 60-minute standalone appointment.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub; confirms master menu supersedes it.
 - `docs/internal_only/services/facials/glo2facialxGeneo.md` — **empty (0 bytes)** — no topic-specific local content exists (gap).
 - `docs/internal_only/services/facials/packagesAdd-ons.md` — current menu boundary; verifies one Glo2Facial appointment and does not authorize a series or bundled extras.
 
 **Sanity docs consulted (published snapshot):**
-- Service `glo2facial` — "Glo2Facial," Skin Renewal, 60 min, From $185, standalone, tagline "Oxygenating facial treatment for radiant, hydrated skin."
-- `neck-decollete-extension` (+$95), `lightstim-led-therapy` (From $65), `dermaplaning` (From $135), `microneedling` (canonical hub).
+- Service `glo2facial` — legacy Sanity display fields were reviewed for route context only; they do not override the current GlossGenius-backed $225, 60-minute appointment.
+- Related legacy service records were reviewed for historical context only; current route and price authority comes from the canonical ledger.
 - Concerns: `sun-damage`, `fine-lines-laxity`, `dark-circles` (also `acne-scarring`, `hair-thinning`, `stretch-marks`).
 - `localAreas.punta-gorda` — serves `glo2facial`.
 - Cost guide `prf-microneedling-cost-punta-gorda` (PRF-only; factors list still includes "Membership" — stale).

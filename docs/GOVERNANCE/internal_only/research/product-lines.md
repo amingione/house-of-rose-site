@@ -42,7 +42,7 @@ Organized per brand (the charter's §1–§4 collapsed into one per-brand capsul
 
 ### 3.2 Skin Script Rx (`skin-script`) — 52 products
 
-- **1-line positioning:** Accessible, chirally-correct professional daily care — effective actives at an approachable investment, famous for its enzymes and back-bar.
+- **1-line positioning:** Chirally correct professional daily care with enzymes, back-bar products, and comparatively accessible price points.
 - **Who it's for:** Clients who want a real professional regimen without the highest price rung — first-time professional-skincare buyers, maintenance clients, and anyone stepping up from drugstore care. Strong for everyday brightening, gentle exfoliation, and hydration.
 - **Hero categories (4):** (1) **Enzymes & exfoliation** (the signature enzyme range — Blueberry, Cherry, Pumpkin/Coconut Papaya, etc.; Glycolic & Retinol Pads; Retinol Exfoliating Scrub); (2) **Vitamin C / brightening** (Triple C Serum, Citrus-C, Mandelic Brightening Serum); (3) **Cleansers & toners** (Glycolic, Green Tea Citrus, Charcoal Clay); (4) **Daily moisturize & protect** (Peptide Moisturizer, Sheer Protection SPF 30, Hydrating Moisturizer).
 - **Treatments it supports as aftercare:** **basic/maintenance facials** (Brandy's lane — enzyme exfoliation, light peels), **daily regimen** between advanced facials, gentle **brightening/tone maintenance** for sun-damage and dullness clients, and an approachable step-in for clients not ready for GlyMed+.
@@ -63,7 +63,7 @@ Organized per brand (the charter's §1–§4 collapsed into one per-brand capsul
 - **1-line positioning:** The matched two-step at-home aftercare for a Procell Microchanneling treatment — Pro and MD strengths mirroring the in-chair serum tier.
 - **Who it's for:** Anyone who just had (or is planning) Procell Microchanneling — face or body. Tier-matched: Pro-treatment clients → Pro aftercare; MD-treatment clients → MD aftercare.
 - **Hero categories (2):** (1) **Cellular Renewal Serum (Step 1)**; (2) **Healing Accelerator (Step 2)** — each in **Pro** and **MD** strengths, plus a **Trial Set** per tier. That's the whole line: Pro Step 1 / Pro Step 2 / Pro Trial Set / MD Step 1 / MD Step 2 / MD Trial Set (6 SKUs).
-- **Treatments it supports as aftercare:** **Procell Microchanneling** (`/services/microchanneling/`) and **Procell Microchanneling — Body** (`/services/Procell-microchanneling-body/`) — full coverage in the Procell brief.
+- **Treatments it may support as aftercare:** current Microneedling appointments at `/services/microneedling/`, when the provider recommends the exact product.
 - **Retail follow-through:** the **Trial Set** is the natural first post-treatment purchase; match the aftercare tier to the treatment tier. Prices (Sanity, cents→USD): Pro Step 1 $65, Pro Step 2 $80, Pro Trial Set $75; MD Step 1 $150, MD Step 2 $160, MD Trial Set $310.
 - **Compliance (from Procell brief):** describe as a **growth-factor + cytokine** aftercare line; **never** "stem-cell," never "delivered deep into the skin." (April 2025 reformulation = recombinant/lab-made growth factors, no cells/DNA/blood.)
 
@@ -72,8 +72,8 @@ Organized per brand (the charter's §1–§4 collapsed into one per-brand capsul
 - **1-line positioning:** A small, brand-voice house line of simple daily rituals — the everyday, low-commitment retail entry that carries the House of Rose name.
 - **Who it's for:** Any client wanting an easy, universal add-on or a first House of Rose purchase; gift-able; not concern-corrective.
 - **Hero categories (1, "rituals"):** the three products — **Shield Ritual Mineral SPF 30** ($30), **Smooth Ritual Polish** ($22, a body/skin polish), **Daily Ritual Coconut Oil** ($18).
-- **Treatments it supports as aftercare:** **universal daily protection** (Shield Ritual SPF is the everyone-needs-SPF close on any treatment), gentle at-home exfoliation/nourishment; a soft cross-sell that reinforces the brand rather than a corrective regimen.
-- **Retail follow-through:** the impulse/gift/loyalty tier — the "take a piece of House of Rose home" purchase; SPF is the honest, compliance-clean upsell after *any* resurfacing/needling treatment.
+- **Treatments it may support as aftercare:** provider-confirmed daily protection and gentle at-home care where relevant; do not turn a treatment into an automatic retail close.
+- **Retail boundary:** recommend a product only when it fits the client's current instructions. No impulse, loyalty, or mandatory after-treatment sales script.
 - **Naming check:** "Ritual" naming is compliant (no botanical/flowery service names; these are products, and "Ritual" is a real-world descriptor, not a retired brand term).
 
 ### 3.6 Jane Iredale (`jane-iredale`) — 0 retail products, a *service* line
@@ -154,7 +154,7 @@ The single most important table in this brief: **treatment → matched retail br
 
 | In-studio treatment | Primary retail follow-through | Secondary / universal |
 |---|---|---|
-| **Procell Microchanneling** (`/services/microchanneling/`) | **Procell** aftercare (tier-matched Trial Set → Step 1/2) | GlyMed+ Post-Procedural kit; House of Rose SPF |
+| **Microneedling** (`/services/microneedling/`) | **Procell** aftercare when provider-matched | Other products only when specifically recommended |
 | **Procell Microchanneling — Body** | **Procell** aftercare (tier-matched) | House of Rose Smooth Ritual Polish; SPF |
 | **PRF / Microneedling — Corrective** | **GlyMed+** recovery (Recovery Cream w/ Arnica, Post-Procedural kit) | SPF; barrier creams |
 | **BioRePeel / peels** | **GlyMed+** barrier + SPF; **Skin Script** gentle daily care | House of Rose SPF |
@@ -174,7 +174,7 @@ All retail prices come from **Sanity** (cents→USD). No web prices.
 **What moves price across the lines:**
 - **Brand tier** — GlyMed+ is the priciest line (clinical serums/kits run high — e.g. Essential Serum with Amino Acids $166, Firming Serum $142, Post-Procedural kit $146); Skin Script sits mid/accessible; House of Rose is the low-commitment tier ($18–$30).
 - **Product type** — serums and procedural kits > cleansers/toners > SPF/lip/basics.
-- **Kits vs singles** — GlyMed+ collections/kits and Skin Script travel/intro kits bundle multiple SKUs at a set investment.
+- **Kits vs singles** — GlyMed+ collections/kits and Skin Script travel/intro kits bundle multiple SKUs at a set price.
 - **Procell tier** — MD aftercare (~$150–$310) is roughly 2× the Pro aftercare (~$65–$80), mirroring the in-chair serum tiers.
 
 **Observed ranges (Sanity, illustrative — always render "from"):**
@@ -212,7 +212,8 @@ No. They're professional growth-factor and cytokine aftercare. As of the current
 Jane Iredale mineral makeup is breathable and non-comedogenic, which is why it's a common same-day choice after facials, microchanneling, or PRF — but your provider confirms when it's appropriate for your skin. Individual recovery varies.
 
 **Is Skin Script a "cheaper" version of the other lines?**
-It's positioned as accessible professional care — chirally-correct, effective actives at an approachable investment — not a discount product. It's a genuine professional line; it simply sits at a friendlier price point than the most clinical options.
+It is professional care with comparatively accessible price points, not a discount line. State the
+actual product function and verified price instead of assigning it a value tier.
 
 **Do you sell Jane Iredale to take home?**
 Jane Iredale is currently part of our professional and event makeup service rather than a shelf retail line. If that changes, it'll appear in the shop. Ask your provider about post-treatment mineral coverage.
@@ -233,7 +234,8 @@ Tell your provider everything you use — including prescriptions and any recent
 Because the provider who treated you knows exactly what your skin went through and can match strength, timing, and product to your recovery — especially with treatment-specific lines like Procell and Face Reality that are built for the pre/post-procedure window.
 
 **Do you offer product discounts or sales?**
-We speak in terms of investment and value rather than discounts. Ask about kits and travel sizes as lower-commitment ways to start a regimen.
+State verified product and kit prices directly without discount or prestige framing. Kits and travel
+sizes may be described as smaller-format options when that is factually accurate.
 
 ---
 
@@ -264,7 +266,8 @@ Several **real manufacturer product names** contain banned terms. These are the 
 - "Clinically proven," "clinically proven results in 8 weeks" — Face Reality's own marketing line; **do not import**.
 - "Treats / cures / heals / clears acne," "treats rosacea" — Face Reality lists acne grades it "treats"; we say "for the appearance of," "supports clearer-looking skin," "part of a guided acne program."
 - "Guaranteed," "permanent," "eliminate," "erase."
-- Discount language ("deal," "% off," "sale," "cheap") — even for the accessible Skin Script line; use "accessible," "approachable investment," "from."
+- Discount language ("deal," "% off," "sale," "cheap") — even for the accessible Skin Script line.
+  State a verified product price directly; do not replace it with value-positioning euphemisms.
 - Naming the checkout platform ("Stripe," "buy on…") anywhere customer-facing.
 
 **Required guardrails on every retail surface:** "designed to / supports / helps reveal," "for the appearance of," "many clients notice," "individual results vary," "not every product suits every client," final regimen and candidacy confirmed by the licensed provider at consultation. Amber's **Face Reality Certified Acne Specialist** credential may be stated (it's a real certification, not an outcome claim).
@@ -274,14 +277,14 @@ Several **real manufacturer product names** contain banned terms. These are the 
 ## 11. Journey links (real slugs, trailing slashes)
 
 **Pages that should link *into* this retail content:**
-- Every treatment page whose result has a home regimen: `/services/microchanneling/`, `/services/Procell-microchanneling-body/`, `/services/prf-microneedling/`, `/services/microneedling-corrective/`, `/services/biorepeel/`, `/services/glo2facial/`, `/services/face-reality-acne-program/`, `/services/acne-bootcamp/`, `/services/dermaplaning/`.
+- Current treatment pages where home care may be relevant: `/services/microneedling/`, `/services/prf/`, `/services/biorepeel/`, `/services/glo2facial/`, `/services/face-reality-acne-program/`, `/services/acne-bootcamp/`, and `/services/dermaplaning/`.
 - `/services/professional-makeup/jane-iredale/` → post-treatment mineral makeup.
 - Concern pages: `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`, `/concerns/dark-circles/`.
 - `/skin-analysis/` (the evidence-based first step that guides the regimen), `/faq/`, `/experience/`.
 
 **Where retail pages should link *out* to:**
 - `/shop/` → per-brand anchors (`/shop#glymed`, `#skin-script`, `#face-reality`, `#Procell`, `#house-of-rose`) and `/shop/[slug]/` detail pages.
-- Back up to the treatment that the regimen supports (Procell aftercare → `/services/microchanneling/`; Face Reality products → `/services/face-reality-acne-program/`).
+- Back up to the current treatment that the regimen supports (Procell aftercare → `/services/microneedling/`; Face Reality products → `/services/face-reality-acne-program/`).
 - `/skin-analysis/` and `/areas/punta-gorda/`.
 
 **Proposed new pages (type + slug):**

@@ -66,7 +66,7 @@ The **MD vs Pro difference is concentration, not a different machine or a differ
 | What it is | Professional-grade growth-factor + cytokine serum — the baseline tier | Same category serum with **~2× the growth factors** of Pro + additional supporting ingredients |
 | Best for | Under-40, preventative/maintenance, sensitive skin, first-timers, most comfortable starting point | **40+**, age-related collagen support, clients wanting more correction from the visit |
 | The difference the client feels | Same device, same protocol; a comfortable, predictable channeling visit | Same device, same protocol — the difference is serum concentration and treatment plan, not a "stronger machine" |
-| Investment (single, face) | **From $250** | **From $325** |
+| Current appointment price | **$300** | **$400** |
 | Honest note | Not "weaker" — the right tool for prevention and maintenance | Not automatically right for everyone; higher concentration, provider-selected |
 
 **Rule of thumb:** start with **Pro** to prevent and maintain, or if you're a first-timer/sensitive; choose **MD** when the goal is age-related correction (typically 40+) and you want more from the same appointment. Amber confirms the tier at consultation.
@@ -82,7 +82,7 @@ Both are the "what's delivered" layer applied *topically* during a needling prot
 | Wants the maximum-effort visit and is a candidate for both | **Both** — a Procell serum tier with a **Topical PRF** upgrade |
 | Cost-sensitive, or first-timer testing tolerance | **Procell Pro** alone first |
 
-Topical PRF is a **+$175 (face) / +$200 (body)** upgrade that adds a blood draw, centrifugation/prep, time, and clinical screening. It is a different *ingredient*, not a different machine. **Compliance line:** never say the device injects or "delivers PRF into" the skin — the FDA states microneedling devices are not authorized to deliver blood products into skin. Injectable PRF is a separate service in **Diana's** (RN) lane.
+Topical PRF Microneedling is a separate **$595, 60-minute** appointment that adds a blood draw and preparation. It is not a machine upgrade. Never say the device injects or "delivers PRF into" the skin; injectable PRF is a separate service provided by Diana Morrison, RN.
 
 ### Selecting the Procell material plan
 House of Rose performs Microneedling with the Procell Therapies device. Procell Pro, Procell MD, and eligible topical PRF are material-plan decisions within that one service—not separate needling modalities. The provider selects the appropriate plan after consultation.
@@ -103,13 +103,10 @@ Maps to existing `/concerns/` pages:
 
 ## 7. Pairings & pathways
 
-**What it stacks with (same visit):**
-- **Topical PRF** (+$175 face / +$200 body) — autologous boost delivered alongside the serum.
-- **Glo2Facial Finish** (+$95) — add the oxygenating "signature" glow on top of channeling.
-- **LightStim LED** (+$35) and **Dermaplane Prep** (+$45) to calm/prep.
-- **BioRePeel (face)** (+$65) layered for radiance/texture.
-
-**What to try first (client journey):** ① **Glo2Facial** ($185) as the gateway → ② **Procell Microchanneling — Pro** (or **MD** for 40+) as the core → ③ upgrade with **Topical PRF** or a **Glo2Facial finish**. Sell the **series**, not the single visit.
+**Current appointment distinctions:** the verified Microneedling menu includes a $50, 60-minute
+consultation, Procell Pro at $300 for 55 minutes, Procell MD at $400 for 55 minutes, and topical PRF
+Microneedling at $595 for 60 minutes. Do not prescribe a prerequisite, sales ladder, series, body option,
+or add-on unless it appears in current GlossGenius inventory.
 
 **Retail follow-through — the Procell at-home aftercare line (in the shop, brand `Procell`):**
 - **Procell PRO Aftercare Step 1 — Cellular Renewal Serum** (`/shop/Procell-pro-step-1-cellular-renewal-serum/`)
@@ -119,29 +116,28 @@ Maps to existing `/concerns/` pages:
 - **Procell MD Aftercare Step 2 — Healing Accelerator** (`/shop/Procell-md-step-2-healing-accelerator/`)
 - **Procell MD Aftercare Trial Set** (`/shop/Procell-md-aftercare-trial-set/`)
 
-Match the aftercare tier to the treatment tier (Pro treatment → Pro aftercare; MD treatment → MD aftercare). The **Trial Set** is the natural post-treatment first purchase to protect and extend the visit's investment. (Note: these six products carry no `ctaLabel`/`badge`/`purchaseUrl` in Sanity — see GAPS.)
+Match the aftercare tier to the treatment tier only when that is the verified provider recommendation.
+Do not turn a treatment visit into a required product upsell. (These six products carry no
+`ctaLabel`/`badge`/`purchaseUrl` in Sanity — see GAPS.)
 
 ---
 
 ## 8. Cost factors
 
-All figures from **local docs** (`advanced-facials-master-menu.md`, 2026-07-10) and cross-checked against the **Sanity published snapshot**. Prices are "from / starting at" and confirmed after consultation.
+Current public figures come only from the GlossGenius-backed canonical ledger.
 
-**What moves the price:**
-- **Serum tier** — Pro vs MD is the single biggest lever (MD carries ~2× growth factors).
-- **Face vs body** — body zones price higher (thicker skin, larger area, more product).
-- **Series vs single** — Series of 3 (~10% value) and Series of 6 (~20% value) lower per-visit cost.
-- **Upgrades** — Topical PRF, Glo2Facial finish, LED, dermaplane prep, BioRePeel, neck & décolleté extension.
+| Appointment | Duration | Price |
+|---|---:|---:|
+| Microneedling consultation | 60 min | **$50** |
+| Procell Microchanneling — Pro | 55 min | **$300** |
+| Procell Microchanneling — MD | 55 min | **$400** |
+| PRF Microneedling | 60 min | **$595** |
 
-| Treatment | Duration | Single | Series of 3 | Series of 6 |
-|---|---|---|---|---|
-| **Procell Microchanneling — Pro** (face) | 60–75 min | **$250** | $675 | $1,200 |
-| **Procell Microchanneling — MD** (face) | 60–75 min | **$325** | $875 | $1,560 |
-| **Procell Microchanneling — Body** (per zone; tier chosen in consult) | 60–75 min | **$349** | $940 | $1,675 |
+**Price boundary:** Pro, MD, and topical PRF are distinct verified appointments. Historical body,
+series, finish, and add-on figures are not current public inventory.
 
-Upgrades: **Topical PRF +$175** (face) / **+$200** (body) · **Glo2Facial Finish +$95** · **LightStim LED +$35** · **Dermaplane Prep +$45** · **BioRePeel (face) +$65** · **Neck & Décolleté Extension +$95**. Example combo: Procell MD + Glo2Facial Finish = $420.
-
-**Sanity taxonomy rule:** the canonical records are `microneedling` and `microneedling-body`. The former `microchanneling`, `microneedling-corrective`, and `procell-microchanneling-body` records are retired duplicates. Procell Pro and MD remain material-plan context within the Microneedling service, not separate services. Exact public prices still require reconciliation against the active booking catalog.
+**Sanity taxonomy rule:** the canonical record is `microneedling`. Former duplicate and body records
+do not authorize public appointments. Procell Pro and MD remain choices within the current Microneedling menu.
 
 **Retail aftercare prices** (Sanity, cents → USD): Pro Step 1 $65, Pro Step 2 $80, Pro Trial Set $75; MD Step 1 $150, MD Step 2 $160, MD Trial Set $310. (Retail, not treatment pricing.)
 
@@ -207,7 +203,8 @@ No — not every client is a candidate for every service. Active skin infection,
 - "Growth factors delivered *deep into* the skin," "injects the serum/PRF," or "FDA-approved" for serum/PRF delivery.
 - Importing Procell's own strong marketing verbs — the manufacturer writes "reverse [sun damage] on the DNA level" and "literally reverse it"; **House of Rose must not** use "reverse," "reverses aging," "erases," "removes," "heals," "cures," or "treats [acne/condition]."
 - Unsupported exosome/peptide efficacy claims.
-- Discount language on the series ("% off," "deal," "sale") — use "value," "investment," "from."
+- Discount language on a series ("% off," "deal," "sale"). State only a verified current appointment
+  or series price, without value-positioning euphemisms or an invented lower bound.
 
 **Required guardrails on every surface:** "for the appearance of…," "designed to / supports / helps reveal," "many clients notice," "individual results vary," "not every client is a candidate," final candidacy/tier/combination confirmed by the licensed provider at consultation, new single-use cartridge every session, packages carry the Fla. Stat. 456.062 disclaimer, and the performing licensee is identified.
 
@@ -217,14 +214,14 @@ No — not every client is a candidate for every service. Active skin infection,
 
 **Pages that should link *into* the Procell serum content:**
 - `/services/microneedling/` — the canonical service page.
-- `/services/microneedling-body/` — the canonical body-area page.
+- Body Microneedling is not current public inventory; do not create or link a body route from this brief.
 - `/cost/microneedling-cost-punta-gorda/` — the canonical cost guide.
 - Concern pages: `/concerns/fine-lines-laxity/`, `/concerns/sun-damage/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`.
 - Shop: the six Procell product pages under `/shop/` (brand `Procell`).
 
 **Where the Procell serum page should link *out* to:**
 - Up to `/services/microneedling/`.
-- Across to `/services/prf-microneedling/` (Topical PRF upgrade) and `/services/glo2facial/` (finish + gateway).
+- Across to `/services/prf/` for the topical-versus-injectable PRF distinction and `/services/glo2facial/` for a separate surface-facial option.
 - To the six `/shop/Procell-*/` aftercare products.
 - To `/faq/`, `/skin-analysis/`, and `/areas/punta-gorda/`.
 
@@ -240,7 +237,7 @@ No — not every client is a candidate for every service. Active skin infection,
 
 - **A serum tier decided by a licensed provider, not a menu upsell.** Amber picks Pro or MD after a real skin analysis, matched to your age, goals, and skin — not a default add-on.
 - **The current, honest science.** House of Rose uses Procell's **recombinant** growth-factor formula (April 2025) and describes it accurately — growth factors and cytokines, no stem-cell theater, no injected-serum claims.
-- **A real pathway, not a one-off.** Gateway Glo2Facial → Procell channeling (Pro or MD) → autologous PRF or Glo2 finish → matched at-home aftercare, with a clear Single / Series of 3 / Series of 6 framework.
+- **Clear appointment choices.** Pro, MD, and topical PRF Microneedling are separate current appointments; the provider explains their material and preparation differences without imposing a sales ladder.
 - **Locally grounded.** No competitor in Punta Gorda / Charlotte County / SW Florida offers Procell growth-factor channeling; positioning is calibrated for an affluent, value-conscious, 55+-heavy local market.
 - **Honest limits as a feature.** We say "for the appearance of," "individual results vary," and "not every client is a candidate" — and we never promise removal, reversal, or a cure.
 

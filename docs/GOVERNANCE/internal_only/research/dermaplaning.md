@@ -82,7 +82,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 - **Enzyme peel / BioRePeel** — dermaplane clears the way for more even peel penetration.
 - **LED / LightStim (+$35)** and a **hydrating mask** — soothing, glow-boosting finish.
 
-**Try first / sequencing.** For a client's first advanced visit, the entry point is typically the **Glo2Facial ($185)** gateway; dermaplaning is the natural quick add-on or standalone "event glow." For anyone booked for needling, a peel, or a Glo2Facial, dermaplaning as **prep** amplifies the result. Dermaplaning is not the corrective step — it feeds into the corrective pathway (needling / BioRePeel) by keeping the surface primed.
+**Current choices.** Dermaplaning is available as a $135, 50-minute standalone appointment or a $45, 25-minute add-on. Glo2Facial, Microneedling, and BioRePeel remain separate appointments; do not prescribe an escalation sequence.
 
 **Retail follow-through (name real shop brands).** Because dermaplaned skin absorbs product better and is briefly more sun-sensitive, the sensible take-home is a **broad-spectrum SPF** (essential in SW Florida) plus **gentle hydration**. House of Rose carries professional retail brands — **Procell** (aftercare/growth-factor serums), **GlyMed+**, **Skin Script**, and **Face Reality** — good sources for a daily SPF, a gentle non-acid cleanser, and a hydrating serum to wear between sessions. Advise pausing at-home retinoids/acids for ~72 hours post-treatment.
 
@@ -92,13 +92,14 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 
 | Item | Price | Source |
 |---|---|---|
-| **Dermaplaning — standalone** | **From $135** · 50 min | Sanity published snapshot (`dermaplaning` service); matches competitor-analysis live-menu doc |
-| **Dermaplaning — Package of 4** | **$340** | competitor-analysis doc live-menu list (Sanity package `dermaplaning-package-of-4` exists but price is null in snapshot) |
-| **Dermaplane Prep (add-on to a needling/facial treatment)** | **+$45** | `advanced-facials-master-menu.md` §5 Upgrades & Add-Ons |
+| **Dermaplaning — standalone** | **$135** · 50 min | Current GlossGenius-backed ledger |
+| **Dermaplane Prep add-on** | **$45** · 25 min | Current GlossGenius-backed ledger |
 
-**What moves the price:** standalone vs. add-on (prep is cheaper because the room/setup is shared with the main treatment); single visit vs. the Package of 4 maintenance set; and whether it's layered with other services. GBP service catalog also lists "Dermaplaning · From $95" (see GAPS — this is a **conflict** with the $135 standalone price and needs Amber's reconciliation).
+**Price boundary:** the current menu distinguishes the standalone appointment from the add-on. Do not restore the historical package or GBP lower-bound figure without a new GlossGenius match.
 
-**Compliance note on pricing copy:** always "from" / "investment" / "starting at"; never "deal," "% off," "sale," or "cheap." Package/series pricing carries the Fla. Stat. 456.062 disclaimer; the performing licensee is identified.
+**Pricing copy:** state the current GlossGenius-backed amount for the exact appointment. The canonical
+menu currently distinguishes the $135 standalone service from the $45 add-on; do not replace either
+with a generic lower bound or discount language.
 
 ## 9. FAQ bank (substantive, compliance-clean)
 
@@ -141,7 +142,8 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 - Don't call it "anti-aging" / "age-defying" / "turn back the clock." Don't say "permanent," "guaranteed," "cure," "treats acne," or "eliminates."
 - Don't imply it's a hair-removal *solution* for coarse hair or that hair "won't come back" — it removes vellus hair temporarily and it grows back normally.
 - Don't overstate depth — it's a **superficial** exfoliation; don't conflate it with deep dermatome resurfacing or claim it "renews collagen."
-- Pricing: "from" / "investment" only — never "deal / % off / sale / cheap."
+- Pricing: state the verified standalone or add-on amount directly; never use deal, percentage-off,
+  sale, or cheap framing.
 
 **Required guardrails on the surface:** provider authority ("final candidacy, combinations, and timing confirmed by the licensed provider at consultation & skin analysis"); "not every client is a candidate"; "individual outcomes vary." Single-use blade every session; never performed over active acne, inflamed, sunburned, infected, or broken skin. Series/package pricing carries the Fla. Stat. 456.062 disclaimer and identifies the performing licensee.
 
@@ -156,7 +158,7 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 - A future `/packages/dermaplaning-package-of-4/` page (package exists in Sanity but is unpublished/priceless — see GAPS).
 
 **Where the dermaplaning page should link *out*:**
-- `/services/glo2facial/` (the gateway/finish pairing) and the BioRePeel/peel service page.
+- `/services/glo2facial/` and `/services/biorepeel/` as separate comparison paths.
 - `/services/facial-waxing/` — the honest "if you want coarse-hair removal, here's waxing" hand-off.
 - `/shop/` (SPF + gentle hydration retail follow-through: Procell, GlyMed+, Skin Script, Face Reality).
 - `/faq/` and `/skin-analysis/` (book a consult).
@@ -182,10 +184,10 @@ Existing `/concerns/` slugs this treatment supports (surface/appearance level �
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — Dermaplane Prep +$45 add-on; package framework; compliance guardrails.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (points to master menu).
 - `docs/internal_only/services/facials/packagesAdd-ons.md` — current standalone and add-on Dermaplaning appointments; no series or universal cadence is established.
-- `docs/GOOGLE-BUSINESS-PROFILE.md` — GBP service catalog "Dermaplaning · From $95" (price conflict).
+- `docs/GOOGLE-BUSINESS-PROFILE.md` — historical lower-bound listing; not current commerce authority.
 
 **Sanity docs consulted (snapshot):**
-- Service `dermaplaning` — "From $135", 50 min, Skin Renewal collection, tagline "The glass-skin finish", FAQ questions include "Will the hair grow back thicker or darker?"
+- Legacy service fields were reviewed for route history only. Current authority is $135/50 minutes standalone and $45/25 minutes add-on.
 - Package `dermaplaning-package-of-4` — title present; price/services/priceNote all null (unpublished detail).
 - Service `glo2facial`; concern slugs `sun-damage`, `fine-lines-laxity`, `acne-scarring`, `stretch-marks`, `dark-circles`, `hair-thinning`; collection `skin-renewal`.
 

@@ -1,7 +1,9 @@
 # Face Reality Acne Program — Research Brief
 
 **Date:** 2026-07-13
-**Provider lane:** Amber — Advanced Facials / regenerative & corrective skin. Amber is a **Face Reality Certified Acne Specialist**. Face Reality is also a **retail brand** (30 products in Sanity). Injectable and prescription paths are out of lane (Diana = injectables/RN; anything prescription = refer to a dermatologist).
+**Provider lane:** Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist.
+Injectable and prescription paths are outside this lane; prescription needs are referred to a
+medical clinician who can prescribe.
 **Status:** draft for Phase 3/4 consumption.
 **Compliance note (topic is medical-adjacent):** acne is a medical-adjacent condition. Copy addresses **"the appearance of breakouts / clearer-looking, calmer skin,"** never "treats/cures/heals/clears acne." The program is framed as a **guided coaching program**, not a medical treatment. See §10.
 
@@ -19,7 +21,7 @@ The Face Reality Acne Program at House of Rose is a structured, coaching-based p
 
 **One level deeper.**
 
-- **Alternating actives.** The Face Reality home-care system is built around **mandelic acid** (an alpha-hydroxy acid) and **benzoyl peroxide**, typically **alternated** (e.g., mandelic serum one evening, benzoyl peroxide the next). Mandelic acid is a keratolytic AHA that helps loosen the bonds between dead surface cells (supporting a clearer-looking, less-congested surface) and has anti-bacterial and pigment-calming properties; benzoyl peroxide targets acne-associated bacteria (*Cutibacterium acnes*). Mandelic acid's **larger molecule** absorbs more slowly and evenly than glycolic or lactic acid, so it tends to be gentler on **sensitive and melanin-rich skin** — one reason the brand favors it for a wide range of skin tones prone to post-breakout dark marks. *(Mechanism per dermatology/ingredient sources; not a House of Rose claim about any product.)*
+- **Alternating actives.** The Face Reality home-care system is built around **mandelic acid** (an alpha-hydroxy acid) and **benzoyl peroxide**, typically **alternated** (e.g., mandelic serum one evening, benzoyl peroxide the next). Mandelic acid is a keratolytic AHA that helps loosen the bonds between dead surface cells (supporting a clearer-looking, less-congested surface) and has anti-bacterial and pigment-calming properties; benzoyl peroxide targets acne-associated bacteria (*Cutibacterium acnes*). Mandelic acid's **larger molecule** absorbs more slowly and evenly than glycolic or lactic acid, so it tends to be gentler on **sensitive and melanin-rich skin** — one reason the brand favors it for a wide range of skin tones prone to post-breakout dark marks. *(Mechanism per clinical and ingredient sources; not a House of Rose claim about any product.)*
 - **Progressive adjustment ("titration").** The regimen starts conservative and is **re-evaluated every two weeks**. The specialist strengthens it in small steps *before the skin gets used to it*, but not so fast that it becomes dry or irritated. This measured escalation is the core of the method — it's why the every-two-weeks cadence matters and why the program is time-boxed rather than a standing appointment.
 - **Removing the obstacles.** A large part of the work is **eliminating pore-clogging (comedogenic) ingredients** from a client's existing products (cleansers, moisturizers, makeup, hair products, sunscreens) and reviewing lifestyle **triggers** — certain foods, some medications/supplements, friction, and stress can influence breakouts. Face Reality frames this as education the client carries forward.
 - **In-studio acceleration.** Each biweekly visit typically includes a double cleanse, an **enzyme treatment or acne peel**, **expert extractions** of ready congestion, and **high-frequency and/or LED** light — plus a look at progress and a home-care tweak.
@@ -36,7 +38,7 @@ The Face Reality Acne Program at House of Rose is a structured, coaching-based p
 - Body-acne clients (back/chest) who can add the Back/Chest Acne add-on.
 
 **Not the right fit / refer out (honest limits)**
-- **Deep, painful cystic or nodular acne**, widespread inflammation, or acne that is actively scarring — this warrants a **dermatologist / medical evaluation** first (prescription care is outside an esthetician's scope). We say so plainly and refer out; the program can be a *complement* to medical care, coordinated with the client's physician.
+- **Deep, painful cystic or nodular acne**, widespread inflammation, or acne that is actively scarring warrants medical evaluation first because prescription care is outside an esthetician's scope. Refer to an appropriate medical clinician; the program may complement physician-directed care when coordinated.
 - Anyone on or recently on **isotretinoin (Accutane)** or considering it — that's a physician's decision; certain treatments (peels, extractions, waxing, needling) are paused around it. Confirm timing at consultation.
 - Clients unwilling or unable to commit to the daily home-care routine — the honest truth is the program is built on adherence, and results depend on it.
 - Active infection, open/broken skin, or other contraindications the specialist screens for.
@@ -70,12 +72,15 @@ A single acne facial or peel can leave skin feeling cleaner and looking brighter
 
 **Face Reality acne peel vs. BioRePeel vs. light/enzyme peels.**
 - **Face Reality acne peel (in the program)** — an acne-focused professional peel used *within* the coaching framework, paired with extractions and LED and tuned to where the skin is that week. Best when the goal is **active-breakout management as part of a plan**.
-- **BioRePeel** (we offer `/services/biorepeel/`, from $295) — a TCA-based, largely no-downtime resurfacing peel aimed at **radiance, tone, and texture**, and (in the advanced/microneedling protocol) at the **appearance of acne scarring**. Best when the concern is **texture and post-acne marks/scarring**, not active breakouts. There's also a **BioRePeel Advanced — Acne Scarring Protocol** (`/services/biorepeel-advanced-acne-scarring/`, from $450) and **BioRePeel Body** for the back/chest.
+- **BioRePeel** (`/services/biorepeel/`) is a separate TCA-based surface-resurfacing menu with five current appointment choices spanning $250–$699. Use the exact appointment row and provider distinction; do not reduce it to a generic lower bound.
 - **Light/enzyme peels** (Brandy's basic-facial lane) — gentle maintenance exfoliation for glow and mild congestion; not a corrective acne program.
 - **Honest takeaway:** use the **program** for active breakouts and habit change; use **BioRePeel** for the *aftermath* (texture, marks, the appearance of scarring). They can sequence — clear first, resurface later.
 
-**The program vs. seeing a dermatologist (when to refer out).**
-We're honest about the line. A dermatologist can **prescribe** (topical/oral antibiotics, retinoids, hormonal therapy, isotretinoin) and is the right first stop for **deep cystic/nodular acne, widespread inflammation, or actively scarring acne**. Our program is a **non-prescription, esthetics-based coaching program** for the appearance of breakouts and skin habits; it does **not** replace medical care and can run **alongside** a physician's plan when coordinated. If your acne is severe or not responding, we'll say so and refer you out — that's the responsible answer, and it protects your skin.
+**The program vs. prescription medical care (when to refer out).**
+House of Rose's program is non-prescription and esthetics-based. Deep cystic/nodular acne,
+widespread inflammation, actively scarring acne, or a need for prescription medication belongs with
+an appropriate medical clinician. The program does not replace medical care and may run alongside a
+physician's plan when coordinated.
 
 ---
 
@@ -91,8 +96,8 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 ## 7. Pairings & pathways
 
 - **Try first:** the **consultation + skin analysis** (or a single **Acne Peel** / **Back Treatment** to sample the experience) before committing to the full program.
-- **Program → aftermath sequence:** once active breakouts are under control, step into **BioRePeel** or **Microneedling — Corrective** (`/services/microneedling-corrective/`) for the **appearance of acne scarring and texture**. This is the natural "clear, then refine" journey.
-- **Body add-on:** **Back/Chest Acne Add-On (+$95)** extends the program to bacne; or a stand-alone **Back Treatment — Acne & Texture** (`/services/back-treatment/`).
+- **Separate texture questions:** BioRePeel and Microneedling have their own current appointments for eligible texture concerns. Do not prescribe them as the automatic next purchase after Acne Bootcamp.
+- **Body inventory boundary:** the current ledger does not establish a back/chest add-on or standalone back treatment. Do not offer or link either from this brief.
 - **Retail follow-through (Face Reality brand, in our shop):** the home-care regimen *is* the retail. Real products in Sanity (`/shop/[slug]/`) the specialist may build a routine from — always specialist-selected, never self-prescribed:
   - **Cleansers/washes:** Ultra Gentle Gel Cleanser, Barrier Balance Creamy Cleanser, Acne Face & Body Wash, Mandelic (L-Mandelic) Face & Body Wash.
   - **Exfoliating actives:** 5% / 8% / 11% / 15% L-Mandelic Serum; 5% / 10% Glycolic Serum; Acne Face & Body Scrub.
@@ -106,25 +111,23 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 
 ## 8. Cost factors
 
-*(Prices from local docs + Sanity snapshot only. Never quote web prices.)*
+Current public prices come only from the GlossGenius-backed canonical ledger.
 
 | Item | Price | Source |
 |---|---|---|
-| **Acne Bootcamp — 12-Week Face Reality Program** (sold as the complete program only) | **$899 program** | `faceRealityAcneProgram.md` + master menu §7 + Sanity `acne-bootcamp` |
-| **Back / Chest Acne Add-On** (adds body acne to the Bootcamp) | **+$95** | master menu §7 |
-| **Acne Peel** (single session — peel + extractions + LED) | **From $139** | Sanity `acne-peel` *(not in the master menu — see GAPS)* |
-| **Back Treatment — Acne & Texture** (single) | **From $159** (Series of 3 $429 / Series of 6 $765) | master menu §6 + Sanity `back-treatment` |
-| **Face Reality Acne Program hub** (starting price) | **From $139** | Sanity `face-reality-acne-program` hub |
-| **Home-care products (Face Reality retail)** | ~$29–$64 each (e.g., Advanced Acne Med $29–$31; L-Mandelic serums $42–$48; glowTone $64) | Sanity products (cents ÷ 100) |
+| **Face Reality consultation** | **$99** · 60 min | `ALL-SERVICES-PRICING.MD` |
+| **Acne Bootcamp — 12-Week Face Reality Program** | **$899** · 60 min | `ALL-SERVICES-PRICING.MD` |
 
-**What moves price:** whether the client buys the **full program** ($899) vs. **single sessions**; whether **body (back/chest)** is added (+$95); the **home-care products** the specialist selects (a separate retail spend on top of treatment); and any **maintenance** treatments after the program. The **program price is fixed at $899** (program-only, not per-visit). Final specifics confirmed at consultation.
+**Price boundary:** the consultation and program are separate purchases. Face Reality home care is
+purchased separately and is not included in either amount. Do not restore historical acne peels,
+back treatments, body add-ons, series, or product prices without current GlossGenius evidence.
 
 ---
 
 ## 9. FAQ bank (substantive, compliance-clean)
 
 1. **What is the Face Reality Acne Program?** It's a 12-week, coaching-based program for clearer-looking skin — biweekly in-studio treatments plus a customized daily home-care regimen, led by Amber, a Face Reality Certified Acne Specialist in Punta Gorda. It's a plan and a partnership, not a single facial.
-2. **Does it cure acne?** No — and we won't say that. It's a non-medical program designed to support **clearer-looking, calmer skin** and better skin habits. Many clients notice meaningful improvement, but individual outcomes vary, and prescription/medical care is a dermatologist's role.
+2. **Does it cure acne?** No. It is a non-prescription program designed to support clearer-looking skin and better skin habits. Individual outcomes vary; prescription care belongs with an appropriate medical clinician.
 3. **How long does it take to see a difference?** Face Reality's method is designed to show visible improvement in roughly **6–8 weeks**, with more clearing over **3–6 months** — depending heavily on your acne type and how consistently you follow the home care. We don't promise a timeframe.
 4. **Do I have to buy the full program?** The **Bootcamp is sold as the complete program** because the biweekly cadence and adjusted home care are what make it work. If you want to sample the experience first, you can book a single **Acne Peel** or **Back Treatment** and step up from there.
 5. **What happens at each biweekly visit?** Typically a double cleanse, an enzyme treatment or acne peel, expert extractions of ready congestion, and high-frequency and/or LED — plus a progress check and a tweak to your home-care routine.
@@ -135,17 +138,19 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 10. **Is it safe for sensitive or deeper skin tones?** The mandelic-forward approach is chosen partly because it tends to be **gentler and less likely to trigger dark marks** on sensitive and melanin-rich skin. Candidacy is always confirmed at consultation.
 11. **Can you treat back and chest acne?** Yes — add the **Back/Chest Acne Add-On (+$95)** to the program, or book a stand-alone **Back Treatment — Acne & Texture**.
 12. **What about acne scars?** Scarring is a **texture** concern and a different path — once your skin is calmer, we can look at **BioRePeel** or **Microneedling — Corrective** for the *appearance of* acne scarring. The acne program focuses on the active breakouts first.
-13. **Should I see a dermatologist instead?** If you have deep, painful cystic or nodular acne, widespread inflammation, or acne that's actively scarring, **yes — start with a dermatologist**, who can prescribe. Our program is non-prescription and can run alongside medical care. We'll tell you honestly if you're better served medically.
+13. **When should I seek medical care first?** Seek medical evaluation for deep, painful cystic or nodular acne, widespread inflammation, actively scarring acne, or prescription needs. The program is non-prescription and may run alongside physician-directed care.
 14. **I'm on (or considering) Accutane — can I still do the program?** That's a physician's call, and certain treatments are paused around isotretinoin. Bring it up at consultation so we can time things safely.
-15. **What does it cost?** The 12-week Bootcamp is an investment of **$899** (program-only). Single **Acne Peel** starts at $139 and **Back Treatment** at $159. Home-care products are a separate retail spend. Final specifics are confirmed at consultation.
+15. **What does it cost?** The current menu lists the 60-minute Acne Bootcamp Consultation at **$99**
+    and the 60-minute, 12-week program appointment at **$899**. Home-care products are purchased
+    separately. Do not publish older peel or back-treatment prices from this brief.
 
 ---
 
 ## 10. Provider + compliance notes
 
-- **Lane:** **Amber** (Advanced Facials), a **Face Reality Certified Acne Specialist** — she owns the acne bootcamp, acne peel, and back treatment. Nothing here is injectable or prescription. Diana's lane (injectables/RN) is unrelated; anything requiring a prescription goes to a **dermatologist** (refer out).
+- **Lane:** Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist provides the current consultation and Acne Bootcamp program. Nothing here is injectable or prescription. Refer prescription needs to an appropriate medical clinician.
 - **NEVER write:** "treats/cures/heals/clears/fixes acne," "acne treatment" as a medical claim, "eliminate/erase breakouts," "guaranteed clear skin," "permanent," "90% success rate," "clinically proven" (Face Reality's own marketing uses "clinically proven Clear Skin Method™" and "visible results in 8 weeks" and a "90% success rate" — **do not repeat these as House of Rose claims**), "FDA-approved."
-- **SAY INSTEAD:** "for the appearance of breakouts," "supports clearer-looking, calmer skin," "designed to," "many clients notice," "a guided program," "a plan and a partnership." Pricing is always "investment," "from," "starting at."
+- **SAY INSTEAD:** "for the appearance of breakouts," "supports clearer-looking, calmer skin," "designed to," "many clients notice," "a guided program," "a plan and a partnership." State the verified $99 consultation and $899 program prices plainly.
 - **Purge language:** describe the purge honestly and reassuringly, never as a promised sign of success ("purging can happen; it's temporary and part of the process" — not "purging means it's working").
 - **Framing as a differentiator, not a treatment:** lean into **commitment, coaching, and consistency** — the program is a guided journey. This is compliant *and* it's the actual product.
 - **Required guardrails on every surface:** provider confirms final candidacy/combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · refer-out language for severe acne · package/series pricing carries the Fla. Stat. 456.062 disclaimer; identify the licensee performing each service.
@@ -158,14 +163,14 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 **Existing pages that should link *in* to the program:**
 - `/concerns/acne-scarring/` → "before scarring work, get active breakouts under control" link to the program.
 - `/concerns/sun-damage/` → for the appearance of post-breakout dark marks.
-- `/services/biorepeel/` and `/services/biorepeel-advanced-acne-scarring/` → "clear first with the acne program, then resurface."
+- `/services/biorepeel/` as a separate current surface-resurfacing comparison.
 - `/services/collections/skin-renewal/` (collection: Skin Renewal) → program lives here.
 - `/shop/` Face Reality brand section → cross-link the brand's retail to the program (home care = the retail).
 - `/faq/`, `/skin-analysis/`, and `/experience/` → general entry points.
 
 **Where the program pages should link *out* (all trailing-slash):**
-- Hub `/services/face-reality-acne-program/` → children `/services/acne-bootcamp/`, `/services/acne-peel/`, `/services/back-treatment/`; package `/packages/face-reality-12-week-program/`.
-- → `/services/biorepeel/` and `/services/microneedling-corrective/` for the *appearance of* acne scarring (the "clear, then refine" path).
+- `/services/face-reality-acne-program/` and `/services/acne-bootcamp/` are the two current canonical service routes. The package detail is `/packages/face-reality-12-week-program/`.
+- → `/services/biorepeel/` and `/services/microneedling/` as separate current options for eligible texture concerns.
 - → the proposed `/concerns/acne-breakouts/` hub.
 - → `/shop/` Face Reality product pages for the home-care regimen (specialist-selected).
 - → `/skin-analysis/` and contact/booking (call-first, GlossGenius).
@@ -174,7 +179,7 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 - **Concern page** — `/concerns/acne-breakouts/` ("Active Acne & Breakouts — the appearance of"). *Highest priority; the missing anchor.*
 - **Concern page (optional)** — `/concerns/post-inflammatory-marks/` (post-breakout discoloration).
 - **Cost guide** — `/cost/acne-program-cost-punta-gorda/` ("How Much Does an Acne Program Cost in Punta Gorda?") — honest breakdown of the $899 program vs. single sessions + home care.
-- **Comparison** — `/compare/acne-program-vs-one-off-facials/` (or `/compare/acne-facials-vs-dermatologist/`) — structured program vs. one-offs / when to see a dermatologist.
+- **Comparison** — `/compare/acne-program-vs-one-off-facials/` — structured program versus one-off facial care, with a clear medical-referral boundary.
 - **Case study** — `/results/[slug]/` once consented before/after exists (currently `/results/` is empty).
 
 ---
@@ -194,11 +199,12 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 
 **Local docs read (paths):**
 - `docs/internal_only/services/facials/faceRealityAcneProgram.md` — $899, 12-week, program-only; Amber = Face Reality Certified Acne Specialist.
-- `docs/internal_only/pricing/advanced-facials-master-menu.md` — §6 Back Treatment (from $159 / $429 / $765), §7 Acne Program (Bootcamp $899, Back/Chest add-on +$95), §9 compliance guardrails.
+- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — current $99 consultation and $899 program authority.
+- `docs/internal_only/pricing/advanced-facials-master-menu.md` — historical context only; its additional acne appointments and add-ons are not current commerce authority.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (confirmed superseded by master menu).
 
 **Sanity docs consulted (published snapshot):**
-- Services: `face-reality-acne-program` (hub, From $139), `acne-bootcamp` ($899 program, 12 weeks · biweekly), `acne-peel` (From $139), `back-treatment` (From $159), plus `biorepeel*` and `microneedling-corrective` for §5/§7.
+- Legacy service records were reviewed for route history only. The reviewed public overlay and canonical ledger control current inventory.
 - Package: `face-reality-12-week-program` (title only; price/services null in snapshot).
 - Concern: `acne-scarring`, `sun-damage`.
 - Products: 30 Face Reality items (cleansers, L-Mandelic 5/8/11/15%, Glycolic 5/10%, Advanced Acne Med 2.5/5/10%, toners, barrier/hydration, glowTone, Brighten-C, invisiClear patches).
@@ -207,4 +213,4 @@ We're honest about the line. A dermatologist can **prescribe** (topical/oral ant
 - facerealityskincare.com (brand home + certification pages) — authoritative brand source for the Clear Skin Method, certified-specialist model, alternating actives, and acne-safe (non-comedogenic) positioning.
 - Multiple certified-provider clinic pages (dhhmedspa.com, ericmjoseph.com, tourmalineskincare.com, barevt.com, etc.) — corroborating the biweekly cadence, home-care adjustment, extractions/enzyme/peel/LED protocol, purge expectations, and 3–6 month timeline.
 - Dermatology/ingredient sources (prescription-professional.nl, artofskincare.com, mesoestetic.com) — mandelic acid mechanism (keratolytic + anti-bacterial, larger molecule → gentler on sensitive/melanin-rich skin, tyrosinase/pigment context); benzoyl peroxide targets *C. acnes*.
-- aad.org, my.clevelandclinic.org, jaad.org — dermatologist/isotretinoin scope, cystic/nodular acne, and the refer-out line (esthetician vs. dermatologist boundary).
+- aad.org, my.clevelandclinic.org, jaad.org — prescription-care scope, cystic/nodular acne, and medical-referral boundaries.
