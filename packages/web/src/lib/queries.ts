@@ -460,6 +460,7 @@ export const ALL_SERVICES_QUERY = /* groq */ `
     _updatedAt,
     ${IMAGE_FIELDS},
     "collection": select(
+      defined(collection->slug.current) &&
       !(collection->slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ}) =>
         collection->{ title, "slug": slug.current }
     ),
@@ -597,7 +598,11 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       limitations,
       url
     },
-    collection->{ title, "slug": slug.current },
+    "collection": select(
+      defined(collection->slug.current) &&
+      !(collection->slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ}) =>
+        collection->{ title, "slug": slug.current }
+    ),
     "relatedServices": relatedServices[@->status in ["live", "actual-menu"] && defined(@->slug.current) && !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{
       _id,
       title,

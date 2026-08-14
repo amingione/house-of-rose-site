@@ -94,6 +94,22 @@ test('related-service authoring only offers relationships the public query can r
   assert.match(relatedProjection[1], /defined\(@->slug\.current\)/);
 });
 
+test('service collection authoring and projections require a generated collection route', () => {
+  const collection = serviceField('collection') as NestedField | undefined;
+  const authoringFilter = collection?.options?.filter ?? '';
+  assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(authoringFilter, /!\(slug\.current in \[/);
+
+  for (const query of [ALL_SERVICES_QUERY, SERVICE_BY_SLUG_QUERY]) {
+    const collectionProjection = query.match(
+      /"collection": select\(([\s\S]*?)=>\s*collection->/,
+    );
+    assert.ok(collectionProjection?.[1], 'The service query must guard collection links.');
+    assert.match(collectionProjection[1], /defined\(collection->slug\.current\)/);
+    assert.match(collectionProjection[1], /!\(collection->slug\.current in/);
+  }
+});
+
 test('parent-service authoring and public projections require a routeable public hub', () => {
   const parentService = serviceField('parentService') as NestedField | undefined;
   const filter = parentService?.options?.filter ?? '';
