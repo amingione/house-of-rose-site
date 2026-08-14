@@ -892,6 +892,14 @@ test('privacy requests remain distinct from browser consent choices', () => {
     /privacy question or request[\s\S]{0,120}(?:does not|doesn't)[\s\S]{0,80}(?:change|update)[\s\S]{0,80}(?:measurement|consent) preferences/i,
     'Privacy page must explain that a support request does not change browser consent.',
   );
+  for (const [label, pattern] of [
+    ['Mapbox directions processing', /directions and location access[\s\S]{0,220}Mapbox[\s\S]{0,160}(?:search|starting address)[\s\S]{0,120}(?:driving time|distance|route)/i],
+    ['browser permission before coordinate use', /use my location[\s\S]{0,100}browser[\s\S]{0,100}permission[\s\S]{0,140}coordinates[\s\S]{0,100}Mapbox/i],
+    ['location-free alternatives', /decline location access[\s\S]{0,160}(?:starting address|Google Maps|Apple Maps)/i],
+    ['route data excluded from contact form', /directions tool[\s\S]{0,140}(?:does not|doesn't)[\s\S]{0,100}(?:starting address|current location)[\s\S]{0,100}contact form/i],
+  ]) {
+    assert.match(text, pattern, `Privacy page is missing ${label}.`);
+  }
   for (const required of [
     'action="/.netlify/functions/privacy-contact"',
     'id="privacy-form-choices"',
@@ -1115,6 +1123,15 @@ test('priority service pages retain reviewed facts instead of falling back to th
       '$1,200 single · $3,000 series of 3',
       'Face & Neck',
       '$1,250 single · $3,500 series of 3',
+      'Morpheus8 Resurfacing — Full Face',
+      '$750 single · $2,000 series of 3',
+      'Morpheus8 Resurfacing — Face & Neck',
+      '$950 single · $2,700 series of 3',
+      'Morpheus8 Prime — Eyes & Mouth',
+      '$1,000 single · $2,200 series of 3',
+      'Morpheus8 Prime — Around the Eyes',
+      '$450 single · $1,200 series of 3',
+      'Morpheus8 Prime — Around the Mouth',
       'Morpheus8 Burst — Hyperhidrosis',
       '$2,200–$2,400',
       'Package of 3',
