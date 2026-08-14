@@ -1842,7 +1842,7 @@ test('provider profiles explain verified roles and connect them to current servi
     amber: [
       'Amber Mingione, Licensed Esthetician',
       'Microneedling with the Procell Therapies device',
-      'BioRePeel when used as an add-on',
+      /BioRePeel[\s\S]{0,80}(?:only[\s\S]{0,30}add-on|add-on[\s\S]{0,30}only)/i,
       'Diana Morrison, RN provides the injectable PRF appointments.',
       'href="/services/microneedling/"',
       'href="/services/dermaplaning/"',
@@ -1870,7 +1870,10 @@ test('provider profiles explain verified roles and connect them to current servi
     const html = readFileSync(file, 'utf8');
     const main = mainHtml(html);
     for (const value of required) {
-      if (!main.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
+      const present = value instanceof RegExp ? value.test(visibleText(main)) : main.includes(value);
+      if (!present) {
+        failures.push(`${slug}: missing ${value instanceof RegExp ? value : JSON.stringify(value)}`);
+      }
     }
   }
 
