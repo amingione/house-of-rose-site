@@ -274,6 +274,11 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     ): Promise<void> => {
       routeRequest?.abort();
       routeRequest = new AbortController();
+      originMarker?.remove();
+      originMarker = undefined;
+      if (map.getLayer(ROUTE_LAYER_ID)) map.removeLayer(ROUTE_LAYER_ID);
+      if (map.getSource(ROUTE_SOURCE_ID)) map.removeSource(ROUTE_SOURCE_ID);
+      updateExternalLinks(root);
       setStatus(`Calculating the drive from ${originLabel}…`, 'loading');
       locationButton?.setAttribute('aria-busy', 'true');
 
@@ -319,7 +324,6 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
           });
         }
 
-        originMarker?.remove();
         originMarker = new mapboxgl.Marker({ color: '#7A5C2A', scale: 0.8 })
           .setLngLat(origin)
           .addTo(map);
