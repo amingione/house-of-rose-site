@@ -62,9 +62,9 @@ export const WAXING_SERVICE_EDUCATION = {
     slug: 'waxing',
     title: 'Waxing',
     whatItIs:
-      'House of Rose currently books facial waxing for the eyebrows, upper lip, and chin, and body waxing for the underarms, bikini line, arms, legs, back, and chest.',
+      'House of Rose books 11 waxing appointments by area: four for the face and seven for the body.',
     whereItFits:
-      'The complete 11-appointment menu is below. Open Facial Waxing or Body Waxing afterward for the page and booking action that match your area.',
+      'Facial Waxing has a direct online booking path. Body Waxing is arranged by phone, beginning with the body area you want waxed.',
     distinctions: [
       {
         label: 'Four facial appointments',
@@ -77,8 +77,8 @@ export const WAXING_SERVICE_EDUCATION = {
     ],
     faqs: [
       {
-        question: 'How do I book facial or body waxing?',
-        answer: 'Open Facial Waxing for its direct booking link. Open Body Waxing to call House of Rose about the area you want waxed.',
+        question: 'Can facial and body waxing both be booked online?',
+        answer: 'Facial Waxing has a direct booking link. For Body Waxing, call House of Rose and name the area you want waxed.',
       },
     ],
     menu: {

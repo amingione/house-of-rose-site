@@ -53,7 +53,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'prf-under-eyes':
     'Request a consultation and describe whether the under-eye concern looks more like color, visible vessels, shadow, or a combination.',
   waxing:
-    'Start with Facial Waxing or Body Waxing to see the available areas, prices, and appointment lengths before you call.',
+    'Facial Waxing can be booked online. For Body Waxing, call House of Rose with the area you want waxed.',
 };
 
 export const getVerifiedServiceDuration = (slug: string): string | undefined =>

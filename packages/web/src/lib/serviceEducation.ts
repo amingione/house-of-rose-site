@@ -282,7 +282,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: waxing.title,
       heading: waxing.slug === 'waxing'
-        ? 'Facial and body waxing, organized by area.'
+        ? 'Eleven area-specific waxing appointments, with two ways to book.'
         : waxing.slug === 'facial-waxing'
           ? 'Choose the facial-waxing appointment that matches the area.'
           : 'Seven body-waxing appointments, each tied to an area.',
@@ -299,7 +299,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? {
             heading: waxing.menu.heading,
             intro: waxing.slug === 'waxing'
-              ? 'The first four appointments are facial waxing; the next seven are body waxing.'
+              ? 'Facial prices range from $10–$25; body prices range from $20–$65. Each row includes the appointment length.'
               : waxing.slug === 'facial-waxing'
                 ? 'Each appointment is booked by facial area or brow service.'
                 : 'Choose the exact area row below, or call House of Rose if you are unsure which one matches.',
@@ -314,7 +314,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : undefined,
       faqs: waxing.faqs,
       faqHeading: waxing.slug === 'waxing'
-        ? 'Choose the page that matches your area.'
+        ? 'Online booking for facial waxing; a phone call for body waxing.'
         : waxing.faqs
           ? 'Choosing an area and making the call.'
           : undefined,
