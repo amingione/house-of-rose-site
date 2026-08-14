@@ -237,7 +237,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       {
         question: 'What is the difference between topical and injectable PRF at House of Rose?',
         answer:
-          'Topical PRF is applied to the skin surface during Microneedling. Diana Morrison, RN provides the injectable PRF consultations—PRF Under-Eye and PRF Bio-Filler—under medical direction.',
+          'Topical PRF is applied to the skin surface during Microneedling. Diana Morrison, RN provides the injectable PRF consultations—PRF Under-Eye and PRF Bio-Filler—under medical direction. Medical Director: Joshua Shaw, MD · FL Lic. ME136232.',
       },
       {
         question: 'Is PRF Bio-Filler the same service as PRF Under-Eye?',
