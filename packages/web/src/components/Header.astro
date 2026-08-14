@@ -56,7 +56,11 @@ const linkClass = (path: string) =>
             {navCollections.map((collection) => (
               <section {...sbObjectId(collection._id)}>
                 <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
-                  <a href={`/services/collections/${collection.slug}/`} class="hover:text-gold">
+                  <a
+                    href={`/services/collections/${collection.slug}/`}
+                    aria-label={`Browse ${collection.title} services`}
+                    class="hover:text-gold"
+                  >
                     {collection.title}
                   </a>
                 </h2>
@@ -189,7 +193,12 @@ const linkClass = (path: string) =>
           {navCollections.map((collection) => (
             <section {...sbObjectId(collection._id)}>
               <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
-                <a href={`/services/collections/${collection.slug}/`}>{collection.title}</a>
+                <a
+                  href={`/services/collections/${collection.slug}/`}
+                  aria-label={`Browse ${collection.title} services`}
+                >
+                  {collection.title}
+                </a>
               </h2>
               <ul class="mt-2 space-y-2">
                 {collection.services.slice(0, 6).map((service) => (
