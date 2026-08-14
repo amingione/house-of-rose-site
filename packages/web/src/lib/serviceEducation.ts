@@ -584,6 +584,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
 
   if (device.slug === 'lumecca-peak-ipl') {
     const areaList = device.currentAreas?.join(', ') ?? '';
+    const consultation = device.menu.consultation;
+    const treatmentPriceRange = device.menu.treatmentPriceRange;
 
     return {
       kicker: device.title,
@@ -602,16 +604,26 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           label: 'Where House of Rose offers it',
           text: `Appointments are organized by treatment area: ${areaList}.`,
         },
+        ...(treatmentPriceRange && consultation
+          ? [
+              {
+                label: 'How treatment pricing is organized',
+                text: `Separate treatment listings range from $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')} to $${treatmentPriceRange.maximumUsd.toLocaleString('en-US')}, based on ${treatmentPriceRange.basis}. The ${formatUsd(consultation.priceUsd)} consultation is priced separately.`,
+              },
+            ]
+          : []),
       ],
-      menu: device.menu.consultation
+      menu: consultation
         ? {
             heading: 'Lumecca Peak consultation',
-            intro: `The ${formatUsd(device.menu.consultation.priceUsd)} consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed.`,
+            intro: treatmentPriceRange
+              ? `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Separate treatment listings range from $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')} to $${treatmentPriceRange.maximumUsd.toLocaleString('en-US')}, based on ${treatmentPriceRange.basis}.`
+              : `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed.`,
             verifiedAt: 'August 6, 2026',
             items: [
               {
-                name: device.menu.consultation.name,
-                price: formatUsd(device.menu.consultation.priceUsd),
+                name: consultation.name,
+                price: formatUsd(consultation.priceUsd),
               },
             ],
           }
@@ -625,6 +637,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           question: 'Which areas can I ask about for Lumecca Peak at House of Rose?',
           answer: `House of Rose offers Lumecca Peak for ${areaList}. The service is booked by treatment area.`,
         },
+        ...(treatmentPriceRange && consultation
+          ? [
+              {
+                question: `What does the $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')}–$${treatmentPriceRange.maximumUsd.toLocaleString('en-US')} Lumecca Peak range mean?`,
+                answer: `The range covers separate treatment-area listings for a single session or three sessions. The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment and is priced separately.`,
+              },
+            ]
+          : []),
         {
           question: 'How is Lumecca Peak different from Forma?',
           answer: device.comparisonToForma ?? 'Lumecca Peak delivers filtered optical energy as IPL, while Forma delivers radiofrequency through electrodes at the skin surface.',

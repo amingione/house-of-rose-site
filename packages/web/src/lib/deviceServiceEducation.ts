@@ -10,6 +10,11 @@ export interface DeviceServiceMenuFacts {
     readonly name: string;
     readonly priceUsd: number;
   };
+  readonly treatmentPriceRange?: {
+    readonly minimumUsd: number;
+    readonly maximumUsd: number;
+    readonly basis: string;
+  };
 }
 
 export interface DeviceServiceEducation {
@@ -111,6 +116,11 @@ export const DEVICE_SERVICE_EDUCATION = {
       consultation: {
         name: 'Lumecca Peak IPL Consultation',
         priceUsd: 50,
+      },
+      treatmentPriceRange: {
+        minimumUsd: 250,
+        maximumUsd: 2600,
+        basis: 'treatment area and single- or three-session selection',
       },
     },
   },
