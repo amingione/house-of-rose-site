@@ -1,26 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId } from '@/lib/visualEditing';
 
-// ─── Thank You content from Sanity (singleton) ──────────────────────────────────
-// Falls back to the original copy if a field is empty, so there's no regression.
-interface ThankYou {
-  _id?: string;
-  kicker?: string;
-  heading?: string;
-  paragraph1?: string;
-  paragraph2?: string;
-  ctaPrimaryText?: string;
-  ctaSecondaryText?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-}
-
-const data =
-  (await sanityFetch<ThankYou | null>(
-    `*[_type=="thankYou"][0]{ _id, kicker, heading, paragraph1, paragraph2, ctaPrimaryText, ctaSecondaryText, seoTitle, seoDescription }`,
-  )) ?? ({} as ThankYou);
 ---
 
 <BaseLayout
@@ -31,7 +11,7 @@ const data =
 >
 
   <section class="bg-charcoal min-h-[70vh] flex items-center justify-center px-6 py-24">
-    <div class="max-w-[560px] mx-auto text-center" {...(data._id ? sbObjectId(data._id) : {})}>
+    <div class="max-w-[560px] mx-auto text-center">
 
       <!-- Rose motif -->
       <div class="mb-8 flex justify-center">

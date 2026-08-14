@@ -4,7 +4,7 @@ import test from 'node:test';
 
 import { thankYou } from '../packages/studio/schemas/thankYou.ts';
 
-test('queried but disconnected Thank You copy is preserved without posing as a live control', () => {
+test('disconnected Thank You copy is preserved without posing as a live control', () => {
   const expectedFields = [
     'seoTitle',
     'seoDescription',
@@ -46,7 +46,8 @@ test('the visual editor does not advertise disconnected Thank You copy as a page
   for (const fieldName of thankYou.fields.map((field) => field.name)) {
     assert.doesNotMatch(route, new RegExp(`data\\.${fieldName}\\b`));
   }
-  assert.match(route, /sbObjectId\(data\._id\)/);
+  assert.doesNotMatch(route, /sanityFetch|_type\s*==\s*["']thankYou["']/);
+  assert.doesNotMatch(route, /sbObjectId|data\._id/);
   assert.doesNotMatch(stackbit, /thankYou:\s*['"]\/thank-you['"]/);
   assert.doesNotMatch(structure, /schemaType\(['"]thankYou['"]\)/);
   assert.match(schemaIndex, /\bthankYou,/);
