@@ -877,6 +877,35 @@ test('contact form explains reply timing and preserves the messaging-consent con
   assert.equal(failures.length, 0, formatFailures('Contact-form guidance regression', failures));
 });
 
+test('privacy requests remain distinct from browser consent choices', () => {
+  const file = path.join(DIST_ROOT, 'privacy-policy/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = readFileSync(file, 'utf8');
+  const main = mainHtml(html);
+  const text = visibleText(main);
+
+  assert.match(
+    text,
+    /privacy question or request[\s\S]{0,120}(?:does not|doesn't)[\s\S]{0,80}(?:change|update)[\s\S]{0,80}(?:measurement|consent) preferences/i,
+    'Privacy page must explain that a support request does not change browser consent.',
+  );
+  for (const required of [
+    'action="/.netlify/functions/privacy-contact"',
+    'id="privacy-form-choices"',
+    'type="button"',
+    'hor:open-consent',
+  ]) {
+    assert.ok(html.includes(required), `Privacy page is missing ${required}.`);
+  }
+  for (const field of ['name', 'email', 'subject', 'message']) {
+    assert.match(
+      main,
+      new RegExp(`<(?:input|textarea)\\b(?=[^>]*\\bname=["']${field}["'])(?=[^>]*\\brequired\\b)[^>]*>`, 'i'),
+      `Privacy request form is missing required field ${field}.`,
+    );
+  }
+});
+
 test('suite-rental application explains the next step without changing the form contract', () => {
   const file = path.join(DIST_ROOT, 'rent-a-room/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
