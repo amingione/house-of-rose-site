@@ -256,10 +256,11 @@ const linkClass = (path: string) =>
     if (pageFooter) pageFooter.inert = inert;
   };
 
-  const visibleMobileControls = (): HTMLElement[] => [
-    ...(menuButton instanceof HTMLElement ? [menuButton] : []),
-    ...Array.from(mobileNavigation?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), summary') ?? []),
-  ].filter((element) => element.getClientRects().length > 0 && element.getAttribute('aria-hidden') !== 'true');
+  const visibleMobileControls = (): HTMLElement[] => Array.from(
+    document.querySelectorAll<HTMLElement>(
+      '#header a[href], #header button:not([disabled]), #header summary',
+    ),
+  ).filter((element) => element.getClientRects().length > 0 && element.getAttribute('aria-hidden') !== 'true');
 
   const closeMobileNavigation = (restoreFocus = false): void => {
     const wasOpen = menuButton?.getAttribute('aria-expanded') === 'true';
