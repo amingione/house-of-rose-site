@@ -135,7 +135,8 @@ test('skin imaging research preserves the current paid optional appointment', ()
 test('GLP, dermaplaning, fillers, and neurotoxins use exact current structures', () => {
   const glp = read('glp-1.md');
   assert.match(glp, /\$25, 40-minute[\s\S]{0,40}consultation/i);
-  assert.doesNotMatch(glp, /\$225\/month|\$325\/month|\$349\/month/);
+  assert.doesNotMatch(glp, /\$(?:225|299|325|349|399)(?:\/month)?/);
+  assert.match(glp, /medication and ongoing\s+program prices must be confirmed/i);
 
   const dermaplaning = read('dermaplaning.md');
   assert.match(dermaplaning, /\$135[^\n]*50-minute standalone/i);

@@ -14,6 +14,7 @@ const routeGuidanceBriefs = [
   'carboxy-therapy.md',
   'dermaplaning.md',
   'face-reality-acne-program.md',
+  'glp-1.md',
   'iv-hydration.md',
   'product-lines.md',
 ];
@@ -177,5 +178,24 @@ test('BioRePeel research uses the current service, cost, and provider paths', ()
   assert.doesNotMatch(
     brief,
     /Proposed new pages|no BioRePeel cost guide exists|\/concerns\/congestion-and-uneven-texture\/|\/compare\/biorepeel|\/results\/biorepeel/i,
+  );
+});
+
+test('GLP research uses the current service and provider paths without inventing a funnel', () => {
+  const brief = readFileSync(new URL('glp-1.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/glp-1-weight-management/',
+    '/about/providers/diana/',
+    '/contact/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Diana Morrison, RN/);
+  assert.match(brief, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+  assert.doesNotMatch(
+    brief,
+    /\/concerns\/weight-management\/|\/concerns\/metabolic-wellness\/|\/compare\/(?:semaglutide|medically-supervised)|\/cost\/glp|wellness-restoration|\/services\/wellness\//i,
   );
 });

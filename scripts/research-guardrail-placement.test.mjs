@@ -67,3 +67,13 @@ test('active research uses the current practice category and direct language', (
     );
   }
 });
+
+test('GLP research cannot regenerate a clinical script or cross-sell pathway', () => {
+  const glp = readFileSync(new URL('glp-1.md', researchRoot), 'utf8');
+
+  assert.match(glp, /do not publish dosing, titration, administration instructions/i);
+  assert.doesNotMatch(
+    glp,
+    /provider lane|wellness & restoration lane|retail follow-through|downstream aesthetic pathway|whole-journey wellness|start low, go slow|monthly in-person check-ins|faceless online subscription|Ozempic face/i,
+  );
+});
