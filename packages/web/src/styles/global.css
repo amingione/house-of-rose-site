@@ -31,6 +31,12 @@
     line-height: 1.6;
   }
 
+  /* Keep browser-focused fields clear of the fixed site header, including
+     native constraint-validation jumps after an invalid form submission. */
+  form :is(input:not([type='hidden']), select, textarea) {
+    scroll-margin-block-start: 6rem;
+  }
+
   /* Force high-quality smooth image rendering for photos */
   img {
     image-rendering: auto;
