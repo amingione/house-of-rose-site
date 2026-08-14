@@ -1859,7 +1859,19 @@ test('cost guides explain the current price structure instead of publishing a ba
     ],
     'biorepeel-cost-punta-gorda': ['BioRePeel Cl3 Rejuvenation', '$250', 'Series of 3', '$699'],
     'microneedling-cost-punta-gorda': ['Procell Therapies — Pro', '$300', 'Procell Therapies — MD', '$400', 'PRF Microneedling — Consultation', '$595'],
-    'morpheus8-cost-punta-gorda': ['Full Face', '$1,200 single · $3,000 series of 3', 'Face & Neck', '$1,250 single · $3,500 series of 3', 'Morpheus8 + Lumecca Bundle', '$1,799'],
+    'morpheus8-cost-punta-gorda': [
+      'Full Face', '$1,200 single · $3,000 series of 3',
+      'Face & Neck', '$1,250 single · $3,500 series of 3',
+      'Morpheus8 Burst — Hyperhidrosis', '$2,200–$2,400 · package of 3',
+      'Morpheus8 Resurfacing — Full Face', '$750 single · $2,000 series of 3',
+      'Morpheus8 Resurfacing — Face & Neck', '$950 single · $2,700 series of 3',
+      'Morpheus8 Prime — Eyes & Mouth', '$1,000 single · $2,200 series of 3',
+      'Morpheus8 Prime — Around the Eyes', '$450 single · $1,200 series of 3',
+      'Morpheus8 Prime — Around the Mouth', '$450 single · $1,200 series of 3',
+      'Morpheus8 Burst Deep — Small Area', '$3,500 · 4 × 10-inch area · Series of 3',
+      'Morpheus8 Burst Deep — Large Area', '$4,500 · 8 × 11-inch area · Series of 3',
+      'Morpheus8 + Lumecca Bundle', '$1,799 · 2 total treatments',
+    ],
   };
   const failures = [];
 

@@ -221,22 +221,22 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     ],
   },
   'morpheus8-cost-punta-gorda': {
-    display: 'Single treatments from $500',
-    metaDescription: 'Morpheus8 Burst at House of Rose in Punta Gorda ranges from $500 to $1,250 for one treatment and $1,300 to $3,500 for three, depending on treatment area.',
-    summary: 'Morpheus8 Burst single treatments range from $500 to $1,250 by area. Three-treatment prices range from $1,300 to $3,500 for the five listed Burst areas.',
-    answer: 'As of August 14, 2026, House of Rose lists Morpheus8 Burst single treatments from $500 to $1,250 and three-treatment prices from $1,300 to $3,500, depending on the area.',
-    menuHeading: 'Single and three-treatment prices by area.',
-    faqHeading: 'Areas, single treatments, and series pricing.',
+    display: '$450–$4,500',
+    metaDescription: 'Morpheus8 at House of Rose in Punta Gorda runs from $450 single treatments to $4,500 body packages, with Burst, Resurfacing, Prime and bundle prices.',
+    summary: 'Morpheus8 prices depend on the applicator, treatment area, and whether the listing is one treatment or a series of three. Published prices run from $450 to $4,500.',
+    answer: 'As of August 14, 2026, House of Rose lists Morpheus8 single treatments from $450 to $1,250. Three-treatment prices and packages run from $1,200 to $4,500, depending on the applicator and area.',
+    menuHeading: 'Every published Morpheus8 price, separated by applicator and area.',
+    faqHeading: 'Burst, Resurfacing, Prime, and Burst Deep pricing.',
     verifiedAt: '2026-08-14',
-    context: 'The separate $1,799 Morpheus8 + Lumecca price covers two total treatments and is not a standalone Morpheus8 price.',
+    context: 'Burst, Resurfacing, and Prime have area-specific single and series-of-three prices. Hyperhidrosis and Burst Deep are three-treatment packages. The $1,799 Morpheus8 + Lumecca bundle covers two total treatments.',
     faqs: [
       {
-        question: 'What does one Morpheus8 Burst treatment cost?',
-        answer: 'Single-treatment prices are $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
+        question: 'What is the lowest published Morpheus8 single-treatment price?',
+        answer: 'Morpheus8 Prime Around the Eyes and Around the Mouth are each $450 for one treatment. Other published single-treatment prices range from $500 to $1,250 by applicator and area.',
       },
       {
-        question: 'What do three Morpheus8 Burst treatments cost?',
-        answer: 'Three-treatment prices are $3,000 for Full Face, $3,500 for Face & Neck, $1,300 for Scars, $1,300 for Chest, and $1,700 for Stretch Marks.',
+        question: 'Which Morpheus8 prices are packages of three?',
+        answer: 'Hyperhidrosis is $2,200–$2,400 for a package of three. Burst Deep body packages are $3,500 for a 4 × 10-inch area and $4,500 for an 8 × 11-inch area.',
       },
       {
         question: 'Does the $1,799 price represent Morpheus8 alone?',
@@ -247,6 +247,22 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       ...MORPHEUS8_PRICING.burst.map((item) => ({
         name: item.name,
         price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+      })),
+      ...MORPHEUS8_PRICING.burstPackageRanges.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.minimumPriceUsd)}–${formatMorpheus8Price(item.maximumPriceUsd)} · package of ${item.treatmentCount}`,
+      })),
+      ...MORPHEUS8_PRICING.resurfacing.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+      })),
+      ...MORPHEUS8_PRICING.prime.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+      })),
+      ...MORPHEUS8_PRICING.burstDeep.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.seriesOfThreePriceUsd)} · ${item.note}`,
       })),
       {
         name: MORPHEUS8_PRICING.bundle.name,
