@@ -226,16 +226,19 @@ const breadcrumbSchema = breadcrumbList([
   {post.relatedService && (
     <section class="bg-charcoal-light py-14 px-6 border-t border-ink/5">
       <div class="max-w-[680px] mx-auto text-center">
-        <span class="kicker">Related Service</span>
+        <span class="kicker">From the article to the appointment</span>
         <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-ink mt-2 mb-3">
           {post.relatedService.title}
         </h2>
+        <p class="mx-auto max-w-[620px] text-[15px] leading-[1.8] text-muted">
+          The article explains why the questions matter. The service page shows what House of Rose currently offers, who provides the appointment, and whether the next step is direct booking or a consultation.
+        </p>
         {relatedServiceSummary && (
-          <p class="text-muted text-[15px] mb-6">{relatedServiceSummary}</p>
+          <p class="mt-4 text-[13px] font-medium tracking-[0.04em] text-muted-strong">{relatedServiceSummary}</p>
         )}
-        <div class="flex gap-3 justify-center flex-wrap">
+        <div class="mt-7 flex gap-3 justify-center flex-wrap">
           <a href={`/services/${post.relatedService.slug}/`} class="btn-outline-gold">
-            Learn More
+            Read service details
           </a>
           <BookingLink
             slug={post.relatedService.slug}
