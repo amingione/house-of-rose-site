@@ -66,9 +66,13 @@
   const analytics = document.getElementById('consent-analytics') as HTMLInputElement | null;
   const advertising = document.getElementById('consent-advertising') as HTMLInputElement | null;
   const gpcNote = document.getElementById('consent-gpc-note');
+  let preferencesOpener: HTMLElement | null = null;
 
   const closeBanner = (): void => banner?.classList.add('hidden');
   const openPreferences = (): void => {
+    preferencesOpener = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     const current = getConsent();
     if (analytics) analytics.checked = current.analytics_storage === 'granted';
     if (advertising) {
@@ -78,6 +82,33 @@
     gpcNote?.classList.toggle('hidden', navigator.globalPrivacyControl !== true);
     dialog?.showModal();
   };
+
+  const visibleDialogControls = (): HTMLElement[] => Array.from(
+    dialog?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ) ?? [],
+  ).filter((element) => element.getClientRects().length > 0);
+
+  dialog?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || !dialog.open) return;
+
+    const controls = visibleDialogControls();
+    const first = controls.at(0);
+    const last = controls.at(-1);
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  });
+
+  dialog?.addEventListener('close', () => {
+    const opener = preferencesOpener;
+    preferencesOpener = null;
+    if (opener?.isConnected && opener.getClientRects().length > 0) opener.focus();
+  });
 
   document.getElementById('consent-reject')?.addEventListener('click', () => {
     applyConsent({
