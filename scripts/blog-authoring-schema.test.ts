@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import {
@@ -123,17 +124,27 @@ test('related-service CTAs can resolve only to generated public service routes',
 test('all public blog queries require published records with generated routes', () => {
   const slug = blogPost.fields.find(({ name }) => name === 'slug');
   const publishedAt = blogPost.fields.find(({ name }) => name === 'publishedAt');
+  const body = blogPost.fields.find(({ name }) => name === 'body');
   assert.match(String(slug?.validation), /required/);
   assert.match(String(publishedAt?.validation), /required/);
+  assert.match(String(body?.validation), /required/);
+  assert.match(String(body?.validation), /min\(1\)/);
 
   for (const query of [ALL_BLOG_POSTS_QUERY, ALL_BLOG_POST_SLUGS_QUERY]) {
     assert.match(query, /defined\(publishedAt\)/);
     assert.match(query, /defined\(slug\.current\)/);
+    assert.match(query, /count\(body\) > 0/);
   }
 
   assert.match(
     BLOG_POST_BY_SLUG_QUERY,
-    /slug\.current == \$slug && defined\(publishedAt\)/,
+    /slug\.current == \$slug && defined\(publishedAt\) && count\(body\) > 0/,
     'The detail lookup must not select an unpublished duplicate of a generated slug.',
   );
+
+  const renderer = readFileSync(
+    new URL('../packages/web/src/pages/blog/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  assert.doesNotMatch(renderer, /Content coming soon\./);
 });

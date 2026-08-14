@@ -88,6 +88,7 @@ export const blogPost = defineType({
       title: 'Body',
       type: 'array',
       description: 'Write a substantive, source-backed article in a natural voice. Use sections that help the reader; do not force a consultation, candidacy, process, or answer-first template.',
+      validation: (R) => R.required().min(1),
       of: [
         {
           type: 'block',

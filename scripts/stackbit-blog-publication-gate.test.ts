@@ -12,16 +12,19 @@ function unwrapConfig(value: unknown): StackbitConfigShape {
   return value as StackbitConfigShape;
 }
 
-const blogDocument = (slug: string, publishedAt?: string) => ({
+const blogDocument = (slug: string, publishedAt?: string, bodyBlocks = 1) => ({
   fields: {
     slug: { type: 'slug', value: slug },
     ...(publishedAt
       ? { publishedAt: { type: 'datetime', value: publishedAt } }
       : {}),
+    ...(bodyBlocks > 0
+      ? { body: { type: 'list', items: Array.from({ length: bodyBlocks }, () => ({ type: 'object' })) } }
+      : {}),
   },
 });
 
-test('Stackbit exposes only dated blog posts with reviewed public content', async () => {
+test('Stackbit exposes only complete, dated blog posts with reviewed public content', async () => {
   process.env.SANITY_PROJECT_ID = '4e7axyi7';
   process.env.SANITY_ACCESS_TOKEN = 'test-only-token';
 
@@ -47,6 +50,10 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
       document: documentRef('reviewed-undated', 'blogPost'),
     },
     {
+      urlPath: '/blog/is-morpheus8-safe-empty',
+      document: documentRef('reviewed-empty', 'blogPost'),
+    },
+    {
       urlPath: '/blog/unreviewed-treatment-guide',
       document: documentRef('unreviewed-dated', 'blogPost'),
     },
@@ -58,6 +65,7 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
   const documents = new Map<string, ReturnType<typeof blogDocument>>([
     ['reviewed-dated', blogDocument('is-morpheus8-safe', '2026-08-01T12:00:00Z')],
     ['reviewed-undated', blogDocument('is-morpheus8-safe')],
+    ['reviewed-empty', blogDocument('is-morpheus8-safe', '2026-08-01T12:00:00Z', 0)],
     ['unreviewed-dated', blogDocument('unreviewed-treatment-guide', '2026-08-01T12:00:00Z')],
   ]);
 

@@ -399,7 +399,12 @@ export default defineStackbitConfig({
 
     if (entry.document.modelName === 'blogPost') {
       const publishedAt = documentStringField(document, 'publishedAt');
-      return Boolean(slug && publishedAt && isReviewedPublicBlogSlug(slug));
+      return Boolean(
+        slug &&
+          publishedAt &&
+          documentHasNonEmptyList(document, 'body') &&
+          isReviewedPublicBlogSlug(slug),
+      );
     }
 
     if (entry.document.modelName === 'caseStudy') {

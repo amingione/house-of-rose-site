@@ -182,27 +182,23 @@ const breadcrumbSchema = breadcrumbList([
         </p>
       )}
 
-      {bodyHTML ? (
-        <div
-          {...(isMorpheusSafetyArticle ? {} : sbFieldPath('body'))}
-          data-reviewed-morpheus-safety={isMorpheusSafetyArticle ? 'true' : undefined}
-          class="prose prose-invert prose-lg max-w-none
-            prose-headings:font-serif prose-headings:font-normal prose-headings:text-ink
-            prose-h2:text-[clamp(22px,3vw,30px)] prose-h2:mt-12 prose-h2:mb-4
-            prose-h3:text-[clamp(18px,2.5vw,24px)] prose-h3:mt-8 prose-h3:mb-3
-            prose-p:text-muted-strong prose-p:text-[16px] prose-p:leading-[1.85]
-            prose-a:text-gold prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-ink prose-strong:font-medium
-            prose-blockquote:border-l-2 prose-blockquote:border-gold-metal/40 prose-blockquote:text-muted-strong prose-blockquote:not-italic
-            prose-ul:text-muted-strong prose-ol:text-muted-strong
-            prose-li:text-[15px] prose-li:leading-relaxed
-            prose-img:rounded-none prose-img:my-10
-            prose-figcaption:text-muted-strong prose-figcaption:text-center prose-figcaption:text-[12px] prose-figcaption:mt-2"
-          set:html={bodyHTML}
-        />
-      ) : (
-        <p class="text-muted text-[15px]">Content coming soon.</p>
-      )}
+      <div
+        {...(isMorpheusSafetyArticle ? {} : sbFieldPath('body'))}
+        data-reviewed-morpheus-safety={isMorpheusSafetyArticle ? 'true' : undefined}
+        class="prose prose-invert prose-lg max-w-none
+          prose-headings:font-serif prose-headings:font-normal prose-headings:text-ink
+          prose-h2:text-[clamp(22px,3vw,30px)] prose-h2:mt-12 prose-h2:mb-4
+          prose-h3:text-[clamp(18px,2.5vw,24px)] prose-h3:mt-8 prose-h3:mb-3
+          prose-p:text-muted-strong prose-p:text-[16px] prose-p:leading-[1.85]
+          prose-a:text-gold prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-ink prose-strong:font-medium
+          prose-blockquote:border-l-2 prose-blockquote:border-gold-metal/40 prose-blockquote:text-muted-strong prose-blockquote:not-italic
+          prose-ul:text-muted-strong prose-ol:text-muted-strong
+          prose-li:text-[15px] prose-li:leading-relaxed
+          prose-img:rounded-none prose-img:my-10
+          prose-figcaption:text-muted-strong prose-figcaption:text-center prose-figcaption:text-[12px] prose-figcaption:mt-2"
+        set:html={bodyHTML}
+      />
 
       {isMorpheusSafetyArticle && (
         <aside data-article-follow-up class="mt-12 border border-gold-metal/20 bg-charcoal-light px-6 py-7 sm:px-8">

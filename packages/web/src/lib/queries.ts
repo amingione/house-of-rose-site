@@ -951,7 +951,7 @@ export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `
 `;
 
 export const ALL_BLOG_POSTS_QUERY = /* groq */ `
-  *[_type == "blogPost" && defined(publishedAt) && defined(slug.current)] | order(publishedAt desc) {
+  *[_type == "blogPost" && defined(publishedAt) && defined(slug.current) && count(body) > 0] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -967,7 +967,7 @@ export const ALL_BLOG_POSTS_QUERY = /* groq */ `
 `;
 
 export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "blogPost" && slug.current == $slug && defined(publishedAt)][0] {
+  *[_type == "blogPost" && slug.current == $slug && defined(publishedAt) && count(body) > 0][0] {
     _id,
     title,
     "slug": slug.current,
@@ -991,7 +991,7 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_BLOG_POST_SLUGS_QUERY = /* groq */ `
-  *[_type == "blogPost" && defined(slug.current) && defined(publishedAt)]{ "slug": slug.current }
+  *[_type == "blogPost" && defined(slug.current) && defined(publishedAt) && count(body) > 0]{ "slug": slug.current }
 `;
 
 export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
