@@ -3,11 +3,13 @@ import test from 'node:test';
 
 import { costGuide } from '../packages/studio/schemas/costGuide.ts';
 import {
+  ALL_COST_GUIDE_SLUGS_QUERY,
   ALL_COST_GUIDES_QUERY,
   COST_GUIDE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
 const titleField = costGuide.fields.find(({ name }) => name === 'title');
+const slugField = costGuide.fields.find(({ name }) => name === 'slug');
 const treatmentField = costGuide.fields.find(({ name }) => name === 'treatment') as
   | { options?: { filter?: string }; description?: string }
   | undefined;
@@ -47,5 +49,27 @@ test('cost-guide treatment authoring and projections require a routeable public 
     assert.ok(treatmentProjection?.[1], 'The cost query must guard its treatment projection.');
     assert.match(treatmentProjection[1], /treatment->status in \["live", "actual-menu"\]/);
     assert.match(treatmentProjection[1], /defined\(treatment->slug\.current\)/);
+  }
+});
+
+test('cost-guide public inventories require the schema-required route slug', () => {
+  let requiredCalls = 0;
+  const rule = {
+    required() {
+      requiredCalls += 1;
+      return this;
+    },
+  };
+
+  assert.equal(typeof slugField?.validation, 'function', 'Cost-guide slug must be validated.');
+  slugField.validation(rule);
+  assert.equal(requiredCalls, 1, 'Cost-guide slug must remain required in Studio.');
+
+  for (const query of [ALL_COST_GUIDES_QUERY, ALL_COST_GUIDE_SLUGS_QUERY]) {
+    assert.match(
+      query,
+      /_type == "costGuide" && defined\(slug\.current\)/,
+      'Every public cost-guide inventory must reject records without a route slug.',
+    );
   }
 });

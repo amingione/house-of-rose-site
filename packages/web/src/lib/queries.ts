@@ -1341,7 +1341,7 @@ const SERVICE_REF_FIELDS = /* groq */ `
 
 // ── Cost guides ──────────────────────────────────────────────────────────────
 export const ALL_COST_GUIDES_QUERY = /* groq */ `
-  *[_type == "costGuide" && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "costGuide" && defined(slug.current) && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&
