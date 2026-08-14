@@ -1,15 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { SUPPORT_PAGE_QUERY, type FAQ, type SupportPage } from '@/lib/queries';
+import type { FAQ } from '@/lib/queries';
 import { breadcrumbList, faqPage } from '@/lib/structuredData';
-import { sbObjectId } from '@/lib/visualEditing';
 
-const data = (await sanityFetch<SupportPage | null>(SUPPORT_PAGE_QUERY)) ?? {};
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL('/support/', site).toString();
-const annotations = data._id ? sbObjectId(data._id) : {};
 
 const fallbackFaqs: FAQ[] = [
   { question: 'How quickly will House of Rose respond?', answer: 'Messages received Monday through Friday are typically answered within one business day. For the fastest help during practice hours, call (844) 941-7673.' },
@@ -34,7 +30,7 @@ const breadcrumb = breadcrumbList([
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   <SchemaMarkup item={breadcrumb} slot="head" />
 
-  <div {...annotations}>
+  <div>
     <section class="bg-charcoal pt-36 pb-20 px-6">
       <div class="max-w-[900px] mx-auto text-center">
         <h1 class="font-serif text-[clamp(38px,7vw,68px)] text-ink leading-[1.05]">

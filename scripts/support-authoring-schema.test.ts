@@ -59,7 +59,7 @@ test('the visual editor does not advertise disconnected Support copy as a page m
   for (const fieldName of supportPage.fields.map((field) => field.name)) {
     assert.doesNotMatch(route, new RegExp(`data\\.${fieldName}\\b`));
   }
-  assert.match(route, /sbObjectId\(data\._id\)/);
+  assert.doesNotMatch(route, /supportPage|SUPPORT_PAGE_QUERY|sanityFetch|sbObjectId/);
   assert.doesNotMatch(stackbit, /supportPage:\s*['"]\/support['"]/);
   assert.doesNotMatch(structure, /schemaType\(['"]supportPage['"]\)/);
   assert.match(schemaIndex, /\bsupportPage,/);

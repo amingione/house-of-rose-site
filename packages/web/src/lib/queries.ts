@@ -74,46 +74,6 @@ export interface FAQ {
   answer: string;
 }
 
-export interface SupportPage {
-  _id?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  heroTitle?: string;
-  heroDescription?: string;
-  contactHeading?: string;
-  contactIntro?: string;
-  callTitle?: string;
-  callBody?: string;
-  callCta?: string;
-  emailTitle?: string;
-  emailBody?: string;
-  emailCta?: string;
-  bookingTitle?: string;
-  bookingBody?: string;
-  bookingCta?: string;
-  faqHeading?: string;
-  faqIntro?: string;
-  faqs?: FAQ[];
-  ctaHeading?: string;
-  ctaBody?: string;
-  ctaText?: string;
-}
-
-export const SUPPORT_PAGE_QUERY = /* groq */ `
-  *[_type == "supportPage" && _id == "supportPage"][0] {
-    _id,
-    seoTitle, seoDescription,
-    heroTitle, heroDescription,
-    contactHeading, contactIntro,
-    callTitle, callBody, callCta,
-    emailTitle, emailBody, emailCta,
-    bookingTitle, bookingBody, bookingCta,
-    faqHeading, faqIntro,
-    faqs[]{ _key, question, answer },
-    ctaHeading, ctaBody, ctaText
-  }
-`;
-
 export interface TermsSection {
   _key: string;
   heading: string;
