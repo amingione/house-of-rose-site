@@ -61,6 +61,8 @@ function loadEnvFile(file: string): void {
 loadEnvFile('.env.local');
 loadEnvFile('.env');
 
+const PUBLIC_SHOP_ENABLED = process.env.PUBLIC_SHOP_ENABLED === 'true';
+
 /**
  * Return the first non-empty value among `names`, or throw listing all of them.
  *
@@ -96,7 +98,7 @@ const PAGE_ROUTES: Record<string, string> = {
   caseStudy: '/results/{slug}',
   blogPost: '/blog/{slug}',
   treatmentPackage: '/packages/{slug}',
-  product: '/shop/{slug}',
+  ...(PUBLIC_SHOP_ENABLED ? { product: '/shop/{slug}' } : {}),
   provider: '/about/providers/{slug}',
 };
 
@@ -117,7 +119,7 @@ const SINGLETON_PAGE_ROUTES: Record<string, string> = {
   skinAnalysis: '/skin-analysis',
   thankYou: '/thank-you',
   experienceContent: '/experience',
-  janeIredalePage: '/shop/jane-iredale',
+  ...(PUBLIC_SHOP_ENABLED ? { janeIredalePage: '/shop/jane-iredale' } : {}),
   aboutPage: '/about',
 };
 
