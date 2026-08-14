@@ -57,7 +57,7 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
 
 {variant === 'grid' ? (
   <article class="service-card group" {...objAttrs}>
-    <a href={`/services/${slug}/`} class="block" aria-label={`Learn about ${title}`}>
+    <a href={`/services/${slug}/`} class="block">
     <div class:list={['aspect-square overflow-hidden bg-charcoal-lighter mb-4', containImage && 'p-8']}>
         <img
           src={imageSrc}
