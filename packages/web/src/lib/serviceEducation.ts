@@ -869,7 +869,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       device.whereItFits,
       isBodyMorpheus
         ? 'Morpheus8 Burst Deep body pricing is organized by area size: 4 × 10 inches or 8 × 11 inches. Both are priced as a series of three; call House of Rose to confirm the appointment length.'
-        : 'House of Rose publishes single-treatment and series-of-three prices for five Burst areas, two Resurfacing areas, and three Prime eye-and-mouth areas. Hyperhidrosis is listed separately at $2,200–$2,400 for a package of three. The Morpheus8 + Lumecca Bundle is $1,799 for two total treatments. Call the practice to confirm the appointment length.',
+        : 'Burst has five choices: Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Resurfacing covers Full Face or Face & Neck, while Prime covers Eyes & Mouth, Around the Eyes, or Around the Mouth. Each of those options has a single-treatment and series-of-three price. Hyperhidrosis is $2,200–$2,400 for a package of three, and the Morpheus8 + Lumecca Bundle is $1,799 for two total treatments. Call the practice to confirm the appointment length.',
     ],
     distinctions: [
       {
@@ -882,13 +882,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         label: 'How the area is priced',
         text: isBodyMorpheus
           ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each price is for a series of three.'
-          : 'Burst lists Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Resurfacing lists Full Face and Face & Neck. Prime lists Eyes & Mouth, Around the Eyes, and Around the Mouth. Each has a single-treatment price and a series-of-three price; Hyperhidrosis has a separate package-of-three price range.',
+          : 'Burst covers Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Resurfacing covers Full Face and Face & Neck. Prime covers Eyes & Mouth, Around the Eyes, and Around the Mouth. Each has one-treatment and three-treatment prices; Hyperhidrosis is priced only as a package of three.',
       },
       ...(!isBodyMorpheus
         ? [
             {
-              label: 'The separate Lumecca bundle',
-              text: 'The $1,799 Morpheus8 + Lumecca Bundle covers two total treatments. It is listed separately from the standalone Morpheus8 area prices.',
+              label: 'Morpheus8 with Lumecca',
+              text: 'The $1,799 Morpheus8 + Lumecca Bundle covers two total treatments. That bundle price does not replace the area prices for standalone Morpheus8.',
             },
           ]
         : []),
@@ -899,7 +899,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : 'Morpheus8 pricing by option and area',
       intro: isBodyMorpheus
         ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
-        : 'Burst has five area listings, Resurfacing has two, and Prime has three. Each has a single-treatment and series-of-three price. Hyperhidrosis and the Morpheus8 + Lumecca Bundle are separate package listings.',
+        : 'Choose the area under Burst, Resurfacing, or Prime to compare one treatment with a series of three. Hyperhidrosis is a package of three; the Morpheus8 + Lumecca option is a two-treatment bundle.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
@@ -925,7 +925,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
           {
             question: 'What are the Morpheus8 Burst single-treatment prices?',
-            answer: 'The current Morpheus8 Burst single-treatment prices are $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
+            answer: 'One Morpheus8 Burst treatment is $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
           },
           {
             question: 'How is Morpheus8 Resurfacing priced?',
@@ -937,11 +937,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
           {
             question: 'How is the Morpheus8 Burst Hyperhidrosis package priced?',
-            answer: 'The current Hyperhidrosis listing is $2,200–$2,400 for a package of three. Call House of Rose to confirm the appointment length.',
+            answer: 'The Hyperhidrosis package is $2,200–$2,400 for three treatments. Call House of Rose to confirm the appointment length.',
           },
           {
             question: 'What does the $1,799 Morpheus8 + Lumecca Bundle include?',
-            answer: 'The current bundle listing covers two total treatments. It is separate from the standalone Morpheus8 area prices.',
+            answer: 'The $1,799 bundle covers two total treatments. Standalone Morpheus8 remains priced by option, area, and whether you choose one treatment or a series of three.',
           },
         ],
     faqHeading: isBodyMorpheus
