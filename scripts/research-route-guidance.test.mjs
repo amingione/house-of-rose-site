@@ -86,3 +86,29 @@ test('unsupported facial concepts do not retain active treatment briefs', () => 
   assert.doesNotMatch(currentResearch, /\/services\/hydrodermabrasion\//i);
   assert.doesNotMatch(currentResearch, /\/compare\/(?:glo2facial-vs-hydrodermabrasion|hydrodermabrasion-vs-glo2facial)\//i);
 });
+
+test('PRF research cannot regenerate the rejected strategy artifact', () => {
+  assert.equal(
+    existsSync(new URL(
+      'compass_artifact_wf-116088fa-2d44-4fdf-a81e-8886533f95e6_text_markdown.md',
+      researchRoot,
+    )),
+    false,
+    'The raw PRF strategy artifact must not remain available as drafting authority.',
+  );
+
+  const prfResearch = [
+    'PRF/prf-injections-ezgel.md',
+    'PRF/prf-topical.md',
+  ].map((relativePath) => readFileSync(new URL(relativePath, researchRoot), 'utf8')).join('\n');
+
+  assert.doesNotMatch(
+    prfResearch,
+    /signature stack|signature treatment|price to the local luxury band|provider lane|retail follow-through|recurring revenue/i,
+  );
+  assert.doesNotMatch(
+    prfResearch,
+    /Proposed new pages|\/concerns\/hair-thinning\/|\/services\/prf-microneedling\/|\/services\/prf-body-treatments\//i,
+  );
+  assert.match(prfResearch, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+});

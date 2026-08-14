@@ -103,14 +103,16 @@ test('research mirrors the current high-risk service price facts', () => {
 
 test('injectable and topical PRF research preserves current names and unknowns', () => {
   const topical = read('PRF/prf-topical.md');
-  assert.match(topical, /\$595 for 60 minutes/i);
+  assert.match(topical, /PRF Microneedling — Consultation \| \$595 \| 60 minutes/i);
   assert.doesNotMatch(topical, /From \$425|From \$475|From \$599|\+\$175|\+\$200/);
+  assert.doesNotMatch(topical, /EZ-?Gel|signature stack|provider lane|retail follow-through/i);
 
   const injectable = read('PRF/prf-injections-ezgel.md');
-  assert.match(injectable, /PRF Under-Eye \(\$495; public duration\s+> omitted\)/i);
-  assert.match(injectable, /PRF Bio-Filler \(\$899; 45 minutes\)/i);
-  assert.match(injectable, /does \*\*not\*\* establish EZ-Gel equivalence/i);
+  assert.match(injectable, /PRF Under-Eye — Consultation \| \$495 \| Confirm by phone/i);
+  assert.match(injectable, /PRF Bio-Filler — Consultation \| \$899 \| 45 minutes/i);
+  assert.match(injectable, /Do not call PRF Bio-Filler `EZ-Gel`/i);
   assert.match(injectable, /do not create `\/services\/ez-gel-bio-filler\/`/i);
+  assert.doesNotMatch(injectable, /\$650|\$700|\$775|\$800|\$1,700|signature treatment|luxury band/i);
 });
 
 test('GLP, dermaplaning, fillers, and neurotoxins use exact current structures', () => {
