@@ -11,7 +11,7 @@ medical clinician who can prescribe.
 
 ## 1. The 3-sentence answer
 
-The Face Reality Acne Program at House of Rose is a structured, coaching-based path to **clearer-looking skin** — a 12-week program (biweekly in-studio visits plus a customized home-care regimen) led by Amber, a **Face Reality Certified Acne Specialist**, in Punta Gorda, FL. Rather than a single facial, it pairs professional treatments (an acne peel, expert extractions, and LED) with an at-home routine that is adjusted every two weeks as your skin responds, plus guidance on avoiding pore-clogging ingredients and common breakout triggers. It's designed for people with persistent or recurring breakouts who want a plan and a partner, not a one-off fix — and because so much of the result depends on doing the home care consistently, it works best when you commit to the full program.
+The Face Reality Acne Program at House of Rose is a structured, coaching-based path to **clearer-looking skin** — a 12-week program (biweekly in-studio visits plus a customized home-care regimen) led by Amber Mingione, Licensed Esthetician and **Face Reality Certified Acne Specialist**, in Punta Gorda, FL. Rather than a single facial, it pairs professional treatments (an acne peel, expert extractions, and LED) with an at-home routine that is adjusted every two weeks as your skin responds, plus guidance on avoiding pore-clogging ingredients and common breakout triggers. It's designed for people with persistent or recurring breakouts who want a plan and a partner, not a one-off fix — and because so much of the result depends on doing the home care consistently, it works best when you commit to the full program.
 
 ---
 
