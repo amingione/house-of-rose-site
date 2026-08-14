@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
 /**
  * Provider — mirrors the Notion "HOUSE OF ROSE: Providers" database.
  * Chain: Provider → Service → Package/Series.
@@ -13,8 +15,8 @@ export const provider = defineType({
       name: 'title',
       title: 'Provider',
       type: 'string',
-      description: 'Display name (e.g. Amber, Diana, Brandy).',
-      validation: (R) => R.required(),
+      description: 'Studio label and public-name fallback. Use the verified name; include the licence type wherever a healthcare practitioner is named.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -27,6 +29,8 @@ export const provider = defineType({
       name: 'fullName',
       title: 'Full Name',
       type: 'string',
+      description: 'Verified full name and public-name fallback. Include the licence type wherever a healthcare practitioner is named.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'lane',
@@ -47,6 +51,8 @@ export const provider = defineType({
       name: 'roleCredential',
       title: 'Role / Credential',
       type: 'string',
+      description: 'Verified role or credential. This becomes the public-role fallback when Public Role is empty.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'scopeOfPractice',
@@ -86,39 +92,44 @@ export const provider = defineType({
       title: 'Public Name + Credential',
       type: 'string',
       description: 'Include the applicable license type beside a healthcare practitioner’s name, e.g. Diana Morrison, RN.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'publicRole',
       title: 'Public Role',
       type: 'string',
-      description: 'Use only verified roles and credentials.',
+      description: 'Use only verified roles and credentials. Do not turn an internal provider lane into a public title.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'summary',
       title: 'Directory Summary',
       type: 'text',
       rows: 4,
+      description: 'Give enough verified context for a client to understand who this person is and what they currently provide. Avoid a generic benefit line or consultation/process boilerplate.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'biography',
       title: 'Website Biography',
       type: 'array',
-      of: [{ type: 'text', rows: 5 }],
+      description: 'Use natural paragraphs for verified experience, current work, and concrete practice context. Depth is welcome; do not force a fixed paragraph count or repeat a process or candidacy template.',
+      of: [{ type: 'text', rows: 5, validation: (R) => R.custom(validatePublicCopy) }],
       validation: (R) => R.max(8),
     }),
     defineField({
       name: 'serviceFocus',
       title: 'Public Service Focus',
       type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Public service labels only. Do not describe internal provider lanes.',
+      of: [{ type: 'string', validation: (R) => R.custom(validatePublicCopy) }],
+      description: 'Verified current public service labels only. Do not describe internal provider lanes or add promotional claims.',
     }),
     defineField({
       name: 'profileImage',
       title: 'Profile Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (R) => R.custom(validatePublicCopy) })],
     }),
     defineField({
       name: 'profileImagePath',
