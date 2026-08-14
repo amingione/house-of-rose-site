@@ -177,7 +177,13 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       .setLngLat(DESTINATION)
       .setPopup(popup)
       .addTo(map);
-    destinationMarker.getElement().setAttribute('aria-label', 'House of Rose Aesthetics location');
+    const destinationMarkerElement = destinationMarker.getElement();
+    destinationMarkerElement.setAttribute('aria-label', 'House of Rose Aesthetics location');
+    destinationMarkerElement.addEventListener('keydown', (event) => {
+      if (event.key !== ' ') return;
+      event.preventDefault();
+      if (!event.repeat) destinationMarker.togglePopup();
+    });
 
     const searchBox = new MapboxSearchBox();
     searchBox.accessToken = accessToken;
