@@ -6,6 +6,7 @@ import {
 } from './treatmentQueries';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
 import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from './publicConcernContent';
 import {
   RETIRED_COST_GUIDE_SLUGS,
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
@@ -51,11 +52,7 @@ const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_
 
 // Concern routes retired at the edge must not be emitted again from dereferenced
 // service records. The source reference remains in Sanity for reconciliation.
-const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify([
-  'hair-thinning',
-  'enlarged-pores',
-  'ingrown-hair',
-]);
+const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify(RETIRED_PUBLIC_CONCERN_SLUGS);
 
 const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 

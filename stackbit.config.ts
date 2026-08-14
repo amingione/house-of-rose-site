@@ -7,6 +7,7 @@ import { SanityContentSource } from '@stackbit/cms-sanity';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
 import { isReviewedPublicBlogSlug } from './packages/web/src/lib/publicBlogContent';
 import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './packages/web/src/lib/publicCollectionContent';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from './packages/web/src/lib/publicConcernContent';
 import {
   RETIRED_COST_GUIDE_SLUGS,
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
@@ -79,6 +80,7 @@ const REVIEWED_PUBLIC_COMPARISON_SLUG_SET = new Set<string>(
 const REVIEWED_PUBLIC_COLLECTION_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_COLLECTION_SLUGS,
 );
+const RETIRED_PUBLIC_CONCERN_SLUG_SET = new Set<string>(RETIRED_PUBLIC_CONCERN_SLUGS);
 const REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
 );
@@ -290,6 +292,7 @@ export default defineStackbitConfig({
         'comparison',
         'blogPost',
         'caseStudy',
+        'concern',
         'localArea',
         'service',
         'serviceCollection',
@@ -320,6 +323,11 @@ export default defineStackbitConfig({
           documentHasAssetReference(document, 'beforeImage') &&
           documentHasAssetReference(document, 'afterImage'),
       );
+    }
+
+    if (entry.document.modelName === 'concern') {
+      const status = documentStringField(document, 'status');
+      return Boolean(slug && status === 'live' && !RETIRED_PUBLIC_CONCERN_SLUG_SET.has(slug));
     }
 
     if (entry.document.modelName === 'localArea') {
