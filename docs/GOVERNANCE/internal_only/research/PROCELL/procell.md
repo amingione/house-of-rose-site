@@ -1,6 +1,10 @@
 # Procell Growth-Factor Serums (MD vs Pro) — Research Brief
 
-Date: 2026-07-13 · Provider lane: **Amber** (Advanced Facials) · Status: draft for Phase 3/4 consumption · Sources listed at end.
+**Status:** Active reviewed research for Procell device and material distinctions. Current appointment
+names, prices, durations, provider attribution, and routes are owned by
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` and
+`packages/web/src/lib/skinRenewalServiceEducation.ts`; sources for the device and material claims are
+listed at the end.
 
 > **Scope note.** This brief covers the **Procell growth-factor / cytokine serum system** used in the branded **Procell Microchanneling** context and the **MD vs Pro** material tiers. House of Rose has one Microneedling service performed with the Procell Therapies device; Procell Microchanneling is not a separate modality. Topical PRF is a separate current Microneedling appointment, not a Procell-serum adjunct or combination. Treatment prices come only from the canonical GlossGenius-backed ledger.
 
