@@ -33,13 +33,13 @@ export const ABOUT_PAGE_FALLBACK: Required<
     'A medical aesthetics practice offering distinct services for skin, movement, volume, body concerns, hydration, and wellness.',
   hraParagraphs: [
     'House of Rose brings skin care, injectable services, IV hydration, and medical weight management together at one Punta Gorda practice.',
-    'Co-Owners Diana Morrison, RN, and Amber Mingione, Licensed Esthetician, work in distinct verified roles, supported by a small team whose profiles explain exactly what each person provides.',
+    'Diana Morrison, RN, and Amber Mingione, Licensed Esthetician, have distinct responsibilities within a small team. Each profile names the services that person currently provides.',
   ],
   hraImageUrl: '/images/optimized/actual-reception-1400-light.webp',
   hraImageAlt: 'House of Rose Aesthetics reception in Punta Gorda, Florida',
   providersHeading: 'Meet the House of Rose team',
   providersIntro:
-    'Each profile explains the person’s verified role, current service focus, and approach to care or artistry at House of Rose Aesthetics.',
+    'Each profile names the person’s licence type and the services they currently provide at House of Rose Aesthetics.',
   indexSeo: {
     metaTitle: 'About House of Rose Aesthetics | Punta Gorda, FL',
     metaDescription:
@@ -53,18 +53,20 @@ export const ABOUT_PAGE_FALLBACK: Required<
   providersSeo: {
     metaTitle: 'House of Rose Providers | Punta Gorda, FL',
     metaDescription:
-      'Meet the House of Rose Aesthetics team in Punta Gorda and learn each provider’s verified role, focus, and approach.',
+      'Meet the House of Rose Aesthetics team in Punta Gorda and see the services each person currently provides.',
   },
 };
 
+// Ownership structure ("Co-Owner"/"Owner") is private — never public-facing (binding, 2026-08-13).
+// Do not add it back into publicRole, summary, or seo below. See CLAUDE.md "Providers & Team".
 export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
   {
     _id: 'provider-diana',
     slug: 'diana',
     publicName: 'Diana Morrison, RN',
-    publicRole: 'Registered Nurse · Co-Owner · Aesthetic Injector',
+    publicRole: 'Registered Nurse · Aesthetic Injector',
     summary:
-      'Diana Morrison, RN, is a Co-Owner and provides the injectable, IV hydration, and medical weight-management services at House of Rose Aesthetics.',
+      'Diana Morrison, RN, provides the injectable, IV hydration, and medical weight-management services at House of Rose Aesthetics.',
     biography: [
       'Diana’s injectable work includes Botox and Daxxify for movement-related lines, hyaluronic-acid dermal fillers for selected areas of lost volume, and the current injectable PRF appointments.',
       'She also provides IV hydration and the GLP-1 weight-management program. These services are performed under written physician protocol and medical direction.',
@@ -78,16 +80,16 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Diana Morrison, RN | House of Rose Aesthetics',
       metaDescription:
-        'Meet Diana Morrison, RN, Co-Owner and aesthetic injector at House of Rose Aesthetics in Punta Gorda, Florida.',
+        'Meet Diana Morrison, RN, aesthetic injector at House of Rose Aesthetics in Punta Gorda, Florida.',
     },
   },
   {
     _id: 'provider-amber',
     slug: 'amber',
     publicName: 'Amber Mingione, Licensed Esthetician',
-    publicRole: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist · Co-Owner',
+    publicRole: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist',
     summary:
-      'Amber Mingione, Licensed Esthetician, is a Co-Owner whose current work centers on skin-surface, texture, and selected device services.',
+      'Amber Mingione, Licensed Esthetician, focuses on skin-surface, texture, and selected device services.',
     biography: [
       'Amber’s current menu includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel when used as an add-on to an eligible advanced service.',
       'When PRF is part of Amber’s work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides the injectable PRF appointments.',
@@ -101,7 +103,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Amber Mingione, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Meet Amber Mingione, Licensed Esthetician and Co-Owner of House of Rose Aesthetics in Punta Gorda, Florida.',
+        'Meet Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics in Punta Gorda, Florida.',
     },
   },
   {
@@ -129,10 +131,10 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
   {
     _id: 'provider-aundrea',
     slug: 'aundrea',
-    publicName: 'Aundrea Pedigo, Esthetician',
+    publicName: 'Aundrea Pedigo, Licensed Esthetician',
     publicRole: 'Licensed Esthetician · Makeup Artist · Permanent Jewelry Artist',
     summary:
-      'Aundrea Pedigo, Esthetician, provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics.',
+      'Aundrea Pedigo, Licensed Esthetician, provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics.',
     biography: [
       'Aundrea provides makeup for weddings, special events, photo shoots, and celebrations, with work ranging from soft event makeup to full glam.',
       'She also provides permanent jewelry: a fitted, clasp-free chain closed by welding and removable by cutting when needed. Makeup artistry and permanent jewelry are non-medical services.',
@@ -141,9 +143,9 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     imageAlt: 'Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics',
     listingOrder: 40,
     seo: {
-      metaTitle: 'Aundrea Pedigo, Esthetician | House of Rose',
+      metaTitle: 'Aundrea Pedigo, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Meet Aundrea Pedigo, Esthetician, makeup artist, and permanent jewelry artist at House of Rose in Punta Gorda, Florida.',
+        'Meet Aundrea Pedigo, Licensed Esthetician, makeup artist, and permanent jewelry artist at House of Rose in Punta Gorda, Florida.',
     },
   },
 ];

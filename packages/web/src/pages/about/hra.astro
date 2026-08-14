@@ -10,7 +10,7 @@ import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 // Working voice reset: copy stays local until Amber approves it for Sanity.
 const heading = ABOUT_PAGE_FALLBACK.hraHeading;
-const intro = 'A co-owned medical aesthetics practice where medical services, esthetic skin care, and a small group of related services share one Punta Gorda address.';
+const intro = 'A Punta Gorda medical aesthetics practice where medical services, esthetic skin care, and a small group of related services share one address and a clearly named team.';
 const imageUrl = content?.hraImageUrl ?? ABOUT_PAGE_FALLBACK.hraImageUrl;
 const imageAlt = content?.hraImageAlt ?? ABOUT_PAGE_FALLBACK.hraImageAlt;
 const title = ABOUT_PAGE_FALLBACK.hraSeo?.metaTitle;
@@ -64,11 +64,11 @@ const breadcrumb = breadcrumbList([
       <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
         <div>
           <p class="kicker">The practice</p>
-          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">Two owners. Distinct roles. One practice.</h2>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">Medical and esthetic services, with clear roles.</h2>
         </div>
         <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
           <p>
-            House of Rose Aesthetics is co-owned by Diana Morrison, RN, and Amber Mingione, Licensed Esthetician. Diana’s work centers on medical services. Amber’s work centers on esthetic skin care. Their roles are different, and that difference gives the practice its range without blurring who provides what.
+            Diana Morrison, RN works in injectables, IV hydration, and provider-guided weight management. Amber Mingione, Licensed Esthetician works in esthetic skin care, including Microneedling with the Procell Therapies device, Glo2Facial, and dermaplaning. Their roles give the practice range without blurring who provides what.
           </p>
           <p>
             Together, they have made room for skin treatments, injectables, IV hydration, provider-guided weight management, facials, waxing, makeup, and permanent jewelry. Clients can get to know one local team even when the reason for a visit changes.
@@ -103,8 +103,22 @@ const breadcrumb = breadcrumbList([
           </div>
           <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
             <p>
-              Your service page names the practitioner and licence type when the appointment has an assigned provider. The provider directory brings those names, roles, and current services together, so you can know who you are contacting before you book.
+              House of Rose appointments are provided by a small, named team:
             </p>
+            <ul class="grid gap-4 border-y border-walnut/15 py-6 sm:grid-cols-2">
+              <li>
+                <strong class="text-muted-strong">Diana Morrison, RN</strong> provides injectables, IV hydration, and provider-guided weight management.
+              </li>
+              <li>
+                <strong class="text-muted-strong">Amber Mingione, Licensed Esthetician</strong> provides Microneedling with the Procell Therapies device, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an add-on to an eligible service.
+              </li>
+              <li>
+                <strong class="text-muted-strong">Brandy, Licensed Esthetician</strong> provides facials, standalone BioRePeel, and facial waxing.
+              </li>
+              <li>
+                <strong class="text-muted-strong">Aundrea Pedigo, Licensed Esthetician</strong> provides wedding and special-event makeup, photo-shoot makeup, and permanent jewelry.
+              </li>
+            </ul>
             <p>
               Joshua Shaw, MD is the practice’s medical director, providing medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with that appointment.
             </p>

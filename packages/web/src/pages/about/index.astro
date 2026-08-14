@@ -14,7 +14,7 @@ const sanityProviderIds = new Set(sanityProviders.map((provider) => provider._id
 
 // Working voice reset: public copy stays local while images and provider facts may remain in Sanity.
 const heading = 'House of Rose Aesthetics.';
-const intro = 'A co-owned medical aesthetics practice in Punta Gorda, with medical and esthetic services offered by people whose names, credentials, and work are easy to find.';
+const intro = 'A medical aesthetics practice in Punta Gorda, with medical and esthetic services offered by people whose names, credentials, and work are easy to find.';
 const imageUrl = content?.indexImageUrl ?? ABOUT_PAGE_FALLBACK.indexImageUrl;
 const imageAlt = content?.indexImageAlt ?? ABOUT_PAGE_FALLBACK.indexImageAlt;
 const title = ABOUT_PAGE_FALLBACK.indexSeo?.metaTitle;
@@ -67,21 +67,53 @@ const breadcrumb = breadcrumbList([
         <div>
           <p class="kicker">A local practice</p>
           <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
-            Different expertise, under one roof.
+            The people behind the appointments.
           </h2>
         </div>
         <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
           <p>
-            House of Rose is co-owned by Diana Morrison, RN, and Amber Mingione, Licensed Esthetician. Diana’s work centers on medical services; Amber’s centers on esthetic skin care. Those roles are distinct, and both are part of the practice clients come to know.
+            Diana Morrison, RN provides injectables, IV hydration, and provider-guided weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an add-on to an eligible service.
           </p>
           <p>
-            Other team members work across facials, waxing, makeup, and permanent jewelry. The result is a practice with more than one kind of visit, but a clear person and role behind each one.
+            Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides wedding and special-event makeup, photo-shoot makeup, and permanent jewelry.
+          </p>
+          <p>
+            An injectable appointment, a skin treatment, a brow wax, and wedding makeup ask for different expertise. The provider profiles make those differences visible before a client walks through the door.
           </p>
         </div>
       </div>
     </section>
 
     <section class="border-y border-walnut/10 bg-breath px-6 py-[clamp(56px,8vw,96px)]">
+      <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+        <div>
+          <p class="kicker">Before you book</p>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+            A service name is only part of the answer.
+          </h2>
+        </div>
+        <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
+          <p>
+            Who provides the appointment matters too. When a service has an assigned provider, its page names that person with the relevant licence type. The provider directory then shows that person’s current work, so you can understand the role before you book or ask a question.
+          </p>
+          <p>
+            Makeup artistry and permanent jewelry are non-medical services. Medical services and medically directed skin services follow their established provider roles and physician protocols.
+          </p>
+          <p>
+            Joshua Shaw, MD is the practice’s medical director, providing medical direction and protocol supervision. He does not perform treatment appointments at House of Rose; the practitioner named for the service is the person associated with that appointment.
+          </p>
+          <p class="border-t border-walnut/15 pt-5 text-[13px] font-semibold tracking-[0.03em] text-muted-strong">
+            Medical Director: Joshua Shaw, MD · FL Lic. ME136232
+          </p>
+          <div class="flex flex-wrap gap-x-8 gap-y-4 pt-2">
+            <a href="/about/providers/" class="learn-more">Review providers</a>
+            <a href="/services/" class="learn-more">Review current services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 py-[clamp(56px,8vw,96px)]">
       <div class="mx-auto grid max-w-[1280px] gap-px bg-walnut/15 lg:grid-cols-2">
         <a href="/about/hra/" class="group bg-bone p-[clamp(30px,5vw,58px)] transition-colors hover:bg-limestone/35">
           <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">HRA</p>
@@ -89,7 +121,7 @@ const breadcrumb = breadcrumbList([
             House of Rose Aesthetics
           </h2>
           <p class="mt-5 max-w-[520px] text-[15px] leading-[1.8] text-muted">
-            Meet the co-owners, see how their roles shape the practice, and learn what to expect at the Punta Gorda location.
+            See how each provider's role shapes the practice, and learn what to expect at the Punta Gorda location.
           </p>
           <span class="learn-more mt-8">About the practice <span aria-hidden="true">→</span></span>
         </a>

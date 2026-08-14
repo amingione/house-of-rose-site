@@ -62,9 +62,10 @@ const providers = [
     showOnWebsite: true,
     listingOrder: 10,
     publicName: 'Diana Morrison, RN',
-    publicRole: 'Registered Nurse · Co-Owner · Aesthetic Injector',
+    // Ownership structure is private — never public-facing. Do not add "Co-Owner"/"Owner" back into publicRole, summary, or seo below.
+    publicRole: 'Registered Nurse · Aesthetic Injector',
     summary:
-      'Diana Morrison, RN, is Co-Owner of House of Rose Aesthetics and an aesthetic injector with more than 17 years of experience in medical aesthetics.',
+      'Diana Morrison, RN, is an aesthetic injector at House of Rose Aesthetics with more than 17 years of experience in medical aesthetics.',
     biography: [
       'Diana’s approach begins with facial assessment. Treatment plans are built around anatomy, movement, proportion, treatment history, and the degree of change a patient wants, rather than a standard template.',
       'Her experience includes work alongside aesthetic professionals in Los Angeles and Miami before she relocated to Southwest Florida and co-founded House of Rose in Punta Gorda.',
@@ -78,7 +79,7 @@ const providers = [
     seo: {
       _type: 'seo',
       metaTitle: 'Diana Morrison, RN | House of Rose Aesthetics',
-      metaDescription: 'Meet Diana Morrison, RN, Co-Owner and aesthetic injector at House of Rose Aesthetics in Punta Gorda, Florida.',
+      metaDescription: 'Meet Diana Morrison, RN, aesthetic injector at House of Rose Aesthetics in Punta Gorda, Florida.',
     },
   },
   {
@@ -91,9 +92,10 @@ const providers = [
     showOnWebsite: true,
     listingOrder: 20,
     publicName: 'Amber Mingione, Licensed Esthetician',
-    publicRole: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist · Co-Owner',
+    // Ownership structure is private — never public-facing. Do not add "Co-Owner"/"Owner" back into publicRole, summary, or seo below.
+    publicRole: 'Licensed Esthetician · Medical Assistant · Certified Phlebotomist',
     summary:
-      'Amber Mingione is Co-Owner of House of Rose Aesthetics, a Licensed Esthetician, Medical Assistant, and Certified Phlebotomist with more than 8 years of experience in medical aesthetics.',
+      'Amber Mingione is a Licensed Esthetician, Medical Assistant, and Certified Phlebotomist with more than 8 years of experience in medical aesthetics.',
     biography: [
       'Amber approaches skin care through continual study of wound healing, collagen remodeling, and the way skin responds over time. That interest informs how she plans advanced facial and needling appointments.',
       'Her current work includes microneedling with the Procell Therapies device, Procell Microchanneling, Glo2Facial, dermaplaning, carboxy treatments, and topical PRF used during an appropriate needling appointment.',
@@ -107,7 +109,7 @@ const providers = [
     seo: {
       _type: 'seo',
       metaTitle: 'Amber Mingione | House of Rose Aesthetics',
-      metaDescription: 'Meet Amber Mingione, Licensed Esthetician and Co-Owner of House of Rose Aesthetics in Punta Gorda, Florida.',
+      metaDescription: 'Meet Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics in Punta Gorda, Florida.',
     },
   },
   {
