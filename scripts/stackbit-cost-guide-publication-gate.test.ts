@@ -57,8 +57,8 @@ test('Stackbit exposes only reviewed, routeable cost guides', async () => {
       document: documentRef('cost-missing-slug', 'costGuide'),
     },
     {
-      urlPath: '/about/providers/amber-mingione/',
-      document: documentRef('provider-amber', 'provider'),
+      urlPath: '/about',
+      document: documentRef('about-page', 'aboutPage'),
     },
   ];
   const documents = new Map([
@@ -81,6 +81,6 @@ test('Stackbit exposes only reviewed, routeable cost guides', async () => {
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    [...reviewedEntries.map(({ urlPath }) => urlPath), '/about/providers/amber-mingione/'],
+    [...reviewedEntries.map(({ urlPath }) => urlPath), '/about'],
   );
 });

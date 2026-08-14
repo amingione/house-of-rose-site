@@ -12,21 +12,21 @@ function unwrapConfig(value: unknown): StackbitConfigShape {
   return value as StackbitConfigShape;
 }
 
-const blogDocument = (slug: string, publishedAt?: string) => ({
+const providerDocument = (slug?: string, showOnWebsite?: boolean) => ({
   fields: {
-    slug: { type: 'slug', value: slug },
-    ...(publishedAt
-      ? { publishedAt: { type: 'datetime', value: publishedAt } }
-      : {}),
+    ...(slug ? { slug: { type: 'slug', value: slug } } : {}),
+    ...(showOnWebsite === undefined
+      ? {}
+      : { showOnWebsite: { type: 'boolean', value: showOnWebsite } }),
   },
 });
 
-test('Stackbit exposes only dated blog posts with reviewed public content', async () => {
+test('Stackbit exposes only providers with generated public profile routes', async () => {
   process.env.SANITY_PROJECT_ID = '4e7axyi7';
   process.env.SANITY_ACCESS_TOKEN = 'test-only-token';
 
   const imported = await import(
-    new URL(`../stackbit.config.ts?blog-gate=${Date.now()}`, import.meta.url).href
+    new URL(`../stackbit.config.ts?provider-gate=${Date.now()}`, import.meta.url).href
   );
   const transformSitemap = unwrapConfig(imported.default).transformSitemap;
   assert.equal(typeof transformSitemap, 'function');
@@ -39,26 +39,26 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
   });
   const sitemap = [
     {
-      urlPath: '/blog/is-morpheus8-safe',
-      document: documentRef('reviewed-dated', 'blogPost'),
+      urlPath: '/about/providers/public-provider',
+      document: documentRef('provider-public', 'provider'),
     },
     {
-      urlPath: '/blog/is-morpheus8-safe-draft',
-      document: documentRef('reviewed-undated', 'blogPost'),
+      urlPath: '/about/providers/hidden-provider',
+      document: documentRef('provider-hidden', 'provider'),
     },
     {
-      urlPath: '/blog/unreviewed-treatment-guide',
-      document: documentRef('unreviewed-dated', 'blogPost'),
+      urlPath: '/about/providers/missing-slug',
+      document: documentRef('provider-missing-slug', 'provider'),
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('unrelated-about', 'aboutPage'),
     },
   ];
-  const documents = new Map<string, ReturnType<typeof blogDocument>>([
-    ['reviewed-dated', blogDocument('is-morpheus8-safe', '2026-08-01T12:00:00Z')],
-    ['reviewed-undated', blogDocument('is-morpheus8-safe')],
-    ['unreviewed-dated', blogDocument('unreviewed-treatment-guide', '2026-08-01T12:00:00Z')],
+  const documents = new Map([
+    ['provider-public', providerDocument('public-provider', true)] as const,
+    ['provider-hidden', providerDocument('hidden-provider', false)] as const,
+    ['provider-missing-slug', providerDocument(undefined, true)] as const,
   ]);
 
   const filtered = transformSitemap!({
@@ -68,6 +68,6 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    ['/blog/is-morpheus8-safe', '/about'],
+    ['/about/providers/public-provider', '/about'],
   );
 });

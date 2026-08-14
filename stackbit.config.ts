@@ -295,6 +295,7 @@ export default defineStackbitConfig({
         'serviceCollection',
         'costGuide',
         'treatmentPackage',
+        'provider',
       ].includes(entry.document.modelName)
     ) {
       return true;
@@ -352,6 +353,10 @@ export default defineStackbitConfig({
       return Boolean(
         slug && status === 'live' && VERIFIED_TREATMENT_PACKAGE_SLUG_SET.has(slug),
       );
+    }
+
+    if (entry.document.modelName === 'provider') {
+      return Boolean(slug && documentBooleanField(document, 'showOnWebsite') === true);
     }
 
     const status = documentStringField(document, 'status');

@@ -56,8 +56,8 @@ test('Stackbit exposes only live treatment packages with verified public pricing
       document: documentRef('package-missing-slug', 'treatmentPackage'),
     },
     {
-      urlPath: '/about/providers/amber-mingione/',
-      document: documentRef('provider-amber', 'provider'),
+      urlPath: '/about',
+      document: documentRef('about-page', 'aboutPage'),
     },
   ];
   const documents = new Map([
@@ -74,6 +74,6 @@ test('Stackbit exposes only live treatment packages with verified public pricing
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    [`/packages/${verifiedSlug}`, '/about/providers/amber-mingione/'],
+    [`/packages/${verifiedSlug}`, '/about'],
   );
 });

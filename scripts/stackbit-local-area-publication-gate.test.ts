@@ -49,8 +49,8 @@ test('Stackbit exposes only the reviewed public local-area inventory', async () 
       document: documentRef('area-missing-slug', 'localArea'),
     },
     {
-      urlPath: '/about/providers/amber-mingione/',
-      document: documentRef('provider-amber', 'provider'),
+      urlPath: '/about',
+      document: documentRef('about-page', 'aboutPage'),
     },
   ];
   const documents = new Map([
@@ -69,6 +69,6 @@ test('Stackbit exposes only the reviewed public local-area inventory', async () 
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    [...reviewedEntries.map(({ urlPath }) => urlPath), '/about/providers/amber-mingione/'],
+    [...reviewedEntries.map(({ urlPath }) => urlPath), '/about'],
   );
 });

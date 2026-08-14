@@ -49,8 +49,8 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
       document: documentRef('unreviewed-live', 'comparison'),
     },
     {
-      urlPath: '/about/providers/amber-mingione/',
-      document: documentRef('provider-amber', 'provider'),
+      urlPath: '/about',
+      document: documentRef('about-page', 'aboutPage'),
     },
   ];
   const documents = new Map<string, ReturnType<typeof comparisonDocument>>([
@@ -66,6 +66,6 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    ['/compare/daxxify-vs-botox', '/about/providers/amber-mingione/'],
+    ['/compare/daxxify-vs-botox', '/about'],
   );
 });

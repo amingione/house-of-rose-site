@@ -49,8 +49,8 @@ test('Stackbit exposes only the reviewed public service-collection inventory', a
       document: documentRef('collection-missing-slug', 'serviceCollection'),
     },
     {
-      urlPath: '/about/providers/amber-mingione/',
-      document: documentRef('provider-amber', 'provider'),
+      urlPath: '/about',
+      document: documentRef('about-page', 'aboutPage'),
     },
   ];
   const documents = new Map([
@@ -71,7 +71,7 @@ test('Stackbit exposes only the reviewed public service-collection inventory', a
     filtered.map(({ urlPath }) => urlPath),
     [
       ...reviewedEntries.map(({ urlPath }) => urlPath),
-      '/about/providers/amber-mingione/',
+      '/about',
     ],
   );
 });
