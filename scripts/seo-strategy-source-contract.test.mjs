@@ -34,6 +34,10 @@ const cannibalizationPath = new URL(
   '../docs/HRAaudits/letaido-findings/houseofrosefl-cannibalization-audit.csv',
   import.meta.url,
 );
+const contentGapsPath = new URL(
+  '../docs/HRAaudits/letaido-findings/houseofrose-content-gaps-2026-08-10.csv',
+  import.meta.url,
+);
 
 const architecture = readFileSync(architecturePath, 'utf8');
 const competitorStudy = readFileSync(competitorPath, 'utf8');
@@ -43,7 +47,8 @@ const siteAudit = readFileSync(siteAuditPath, 'utf8');
 const trendingKeywords = readFileSync(trendingKeywordPath, 'utf8');
 const seoEdits = readFileSync(seoEditsPath, 'utf8');
 const cannibalization = readFileSync(cannibalizationPath, 'utf8');
-const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}\n${seoEdits}\n${cannibalization}`;
+const contentGaps = readFileSync(contentGapsPath, 'utf8');
+const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}\n${seoEdits}\n${cannibalization}\n${contentGaps}`;
 
 test('SEO strategy sources cannot reintroduce permanently retired programs', () => {
   assert.doesNotMatch(
@@ -137,4 +142,20 @@ test('cannibalization guidance reflects current canonical route roles', () => {
     /\/services\/prf-microneedling\/|\/services\/prf-fibrin-veil\/|\/compare\/prf-vs-prp\/|\/services\/glo2facial-(?:prf|procell)/i,
   );
   assert.doesNotMatch(cannibalization, /thin hub|fold content into service page \+ 301|merge - 301/i);
+});
+
+test('competitor keyword gaps remain research instead of automatic page tasks', () => {
+  const [header, ...rows] = contentGaps.trim().split(/\r?\n/);
+  assert.match(header, /Historical Priority,Current Publication Decision$/);
+  assert.equal(rows.length, 91, 'The reconciled content-gap dataset must preserve every research row.');
+
+  for (const row of rows) {
+    assert.match(
+      row,
+      /,No automatic page - verify current commerce truth and documented page type$/,
+      `Content-gap row still behaves as a publishing directive: ${row}`,
+    );
+  }
+
+  assert.doesNotMatch(contentGaps, /Create new page|,Consider\s*$|Monitor\/defer/im);
 });
