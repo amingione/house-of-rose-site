@@ -40,7 +40,14 @@ export const caseStudy = defineType({
       title: 'Before Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
+      ],
       validation: (R) => R.required(),
     }),
     defineField({
@@ -48,7 +55,14 @@ export const caseStudy = defineType({
       title: 'After Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
+      ],
       validation: (R) => R.required(),
     }),
     defineField({
