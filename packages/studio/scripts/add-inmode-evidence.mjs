@@ -27,6 +27,7 @@ const media = ({
   title,
   caption,
   sourceCredit,
+  consentConfirmed,
 }) => ({
   _key: key,
   _type: 'object',
@@ -37,7 +38,7 @@ const media = ({
   caption,
   sourceCredit,
   usageApproved: true,
-  ...(kind === 'before-after' ? { consentConfirmed: true } : {}),
+  ...(typeof consentConfirmed === 'boolean' ? { consentConfirmed } : {}),
 });
 
 const research = ({
@@ -93,16 +94,6 @@ const services = [
           'Lumecca Peak is an intense pulsed light device used for selected pigment and tone concerns.',
         sourceCredit: 'InMode manufacturer media',
       }),
-      media({
-        key: 'lumecca-face-example',
-        kind: 'before-after',
-        filename: 'Lumecca-Peak-Before-and-After.png',
-        alt: 'Manufacturer-provided Lumecca Peak IPL facial before and after example',
-        title: 'Visible Tone and Discoloration Example',
-        caption:
-          'A manufacturer-provided example illustrating visible change in facial discoloration and overall tone after Lumecca IPL. This is not a House of Rose client.',
-        sourceCredit: 'Manufacturer-provided treatment example; attribution embedded in image',
-      }),
     ],
     researchReferences: [
       research({
@@ -157,6 +148,7 @@ const services = [
 ];
 
 const excludedPublicFiles = [
+  'Lumecca-Peak-Before-and-After.png',
   'Forma-and-Plus.png',
   'Forma-Before-and-After.png',
   'KhloeKardashian.png',
