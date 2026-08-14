@@ -1032,7 +1032,6 @@ export interface PackageServiceRef {
   _id: string;
   title: string;
   slug: string;
-  tagline?: string;
 }
 
 export interface TreatmentPackage {
@@ -1042,12 +1041,8 @@ export interface TreatmentPackage {
   type?: PackageType;
   status?: PackageStatus;
   servicesIncluded?: PackageServiceRef[];
-  whatsIncluded?: string;
   cadence?: string;
   rackPrice?: string;
-  outcome?: string;
-  positioning?: string;
-  candidacyNote?: string;
   image?: SanityImage;
 }
 
@@ -1061,13 +1056,9 @@ const PACKAGE_FIELDS = /* groq */ `
     @->status in ["live", "actual-menu"] &&
     defined(@->slug.current) &&
     !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-  ]->{ _id, title, "slug": slug.current, tagline },
-  whatsIncluded,
+  ]->{ _id, title, "slug": slug.current },
   cadence,
   rackPrice,
-  outcome,
-  positioning,
-  candidacyNote,
   ${IMAGE_FIELDS}
 `;
 

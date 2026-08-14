@@ -118,6 +118,36 @@ test('the operational package provider relationship cannot pose as public packag
   }
 });
 
+test('stored package review fields and service taglines stay out of the public package payload', () => {
+  for (const fieldName of ['whatsIncluded', 'outcome', 'candidacyNote']) {
+    const field = treatmentPackage.fields.find(({ name }) => name === fieldName);
+    assert.equal(field?.readOnly, true, `${fieldName} must remain a stored nonpublic field.`);
+    assert.match(String(field?.title), /not published/i);
+  }
+
+  const positioning = treatmentPackage.fields.find(({ name }) => name === 'positioning');
+  assert.match(String(positioning?.description), /internal display notes only/i);
+
+  for (const query of [ALL_TREATMENT_PACKAGES_QUERY, TREATMENT_PACKAGE_BY_SLUG_QUERY]) {
+    for (const fieldName of ['whatsIncluded', 'outcome', 'positioning', 'candidacyNote', 'tagline']) {
+      assert.doesNotMatch(query, new RegExp(`\\b${fieldName}\\b`));
+    }
+  }
+
+  for (const relativePath of [
+    '../packages/web/src/pages/packages/index.astro',
+    '../packages/web/src/pages/packages/[slug].astro',
+    '../packages/web/src/components/TreatmentPackageCard.astro',
+  ]) {
+    const renderer = readFileSync(new URL(relativePath, import.meta.url), 'utf8');
+    assert.doesNotMatch(
+      renderer,
+      /(?:pkg|package)\.(?:whatsIncluded|outcome|positioning|candidacyNote)/,
+    );
+    assert.doesNotMatch(renderer, /service\.tagline/);
+  }
+});
+
 test('package service authoring and projections require routeable public services', () => {
   const authoringFilter = servicesIncludedField?.of?.[0]?.options?.filter ?? '';
   assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
