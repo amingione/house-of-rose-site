@@ -682,28 +682,31 @@ export const attachAttributionToLeadForms = (): void => {
       }
       input.value = value;
     }
+  }
 
-    // Mirror this submission into Netlify Forms so it also appears in the Netlify
-    // dashboard. Additive only — the native POST to lead-submit (Sanity CRM, owner
-    // + client emails, conversion receipt, thank-you redirect) is untouched. The
-    // keepalive fetch completes even as the page navigates away.
-    if (!form.dataset.netlifyMirror) {
-      form.dataset.netlifyMirror = '1';
-      form.addEventListener('submit', () => {
-        try {
-          const entries: string[][] = [];
-          for (const [key, val] of new FormData(form)) entries.push([key, String(val)]);
-          void fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(entries).toString(),
-            keepalive: true,
-          }).catch(() => {});
-        } catch {
-          /* best-effort mirror; never blocks the native submission */
-        }
-      });
-    }
+  // Mirror accepted submissions into Netlify Forms so they also appear in the
+  // dashboard. The document-level listener runs after form-level validation can
+  // cancel the event, while keepalive lets the additive request survive the
+  // native POST to lead-submit and its navigation.
+  if (!document.documentElement.dataset.netlifyMirrorBound) {
+    document.documentElement.dataset.netlifyMirrorBound = '1';
+    document.addEventListener('submit', (event) => {
+      if (event.defaultPrevented || !(event.target instanceof HTMLFormElement)) return;
+      const form = event.target;
+      if (!form.matches('form[action="/.netlify/functions/lead-submit"]')) return;
+      try {
+        const entries: string[][] = [];
+        for (const [key, val] of new FormData(form)) entries.push([key, String(val)]);
+        void fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(entries).toString(),
+          keepalive: true,
+        }).catch(() => {});
+      } catch {
+        /* best-effort mirror; never blocks the native submission */
+      }
+    });
   }
 };
 

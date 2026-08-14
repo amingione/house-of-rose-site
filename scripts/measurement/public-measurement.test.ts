@@ -82,3 +82,11 @@ test('consent defaults deny optional measurement before vendor initialization', 
     'consent default must be emitted before measurement configuration',
   );
 });
+
+test('lead-form mirroring waits for form validation before posting', async () => {
+  const measurement = await read('packages/web/src/lib/measurement.ts');
+
+  assert.match(measurement, /document\.addEventListener\('submit', \(event\) =>/);
+  assert.match(measurement, /event\.defaultPrevented/);
+  assert.doesNotMatch(measurement, /form\.addEventListener\('submit'/);
+});
