@@ -148,7 +148,7 @@ as public-facing process language. Add or revise a row whenever evidence changes
 | `[UNKNOWN: market reality]` | `[What it means]` | `[What we should communicate]` | `[Hook, format, offer, CTA, or experience]` | `[UNKNOWN]` |
 | `[UNKNOWN: brand strength]` | `[What it means]` | `[What we should communicate]` | `[Hook, format, offer, CTA, or experience]` | `[UNKNOWN]` |
 | `[UNKNOWN: friction/risk]` | `[What it means]` | `[What we should clarify or prove]` | `[Proof, objection handling, guarantee, or CTA]` | `[UNKNOWN]` |
-| Affluent, aesthetically experienced clients already assume the category offers current treatments. | A treatment list is not meaningful differentiation. | Lead with discernment, restraint, and a recognizable point of view. | Keep homepage copy short and let real-space imagery carry atmosphere. | `[DECIDED]` — Amber, 2026-08-13 |
+| Clients need to understand both what House of Rose offers and what the practice feels like. | A treatment list alone is not meaningful differentiation, but atmosphere cannot replace useful substance. | Use real people, the actual space, concrete service distinctions, and natural explanation together. | Preserve or restore substantive homepage sections; remove only unsupported, stale, or genuinely repetitive material. Never shorten the homepage merely for SEO or visual restraint. | `[DECIDED]` — Amber, 2026-08-14; supersedes the short-homepage instruction from 2026-08-13 |
 
 ### Optional cause-and-effect chain
 

@@ -187,11 +187,14 @@ Book 2 is not a tonal standard and must not be read as one._
   responsible for a service, naming that person with the required licence type is useful trust evidence
   and is encouraged on the service page, provider profile, booking UI, and related decision-support copy.
   Say what the person provides; do not narrate the internal reason the menu is organized that way.
-- **Service descriptions must inform without performing a sales script.** Lead with the observable concern
-  or the service's verified role, then give only the facts a client needs to understand the distinction.
-  Do not default to outcome promises, emotional-benefit language, or a protocol recital. Also avoid stacking
-  "may possibly," "could potentially," and repeated variance disclaimers until useful information disappears.
-  Specific, direct decision support is the standard.
+- **Service descriptions must inform without performing a sales script.** Establish the observable concern
+  or the service's verified role early, but do not force every description to open with the same declarative
+  formula. A human observation, concrete practice detail, or useful client question may lead when it reaches
+  the distinction just as clearly. Include enough verified context to make that distinction meaningful; do
+  not reduce the page to an inventory line and a disclaimer. Do not default to outcome promises,
+  emotional-benefit language, or a protocol recital. Also avoid stacking "may possibly," "could potentially,"
+  and repeated variance disclaimers until useful information disappears. Specific, direct decision support
+  is the standard.
 - **Do not confuse restraint with removal.** The reset rejects robotic phrasing, unsupported claims,
   repetition, and generic filler; it does not reject depth, warmth, persuasion, or treatment education.
   A longer section is appropriate when it teaches a meaningful distinction, shows real proof, answers a
@@ -279,6 +282,14 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
 - **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels) plus **facial waxing**. Rents a room. **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
 - **Aundrea** — **Professional makeup artistry and permanent jewelry** (weddings, special events, photoshoots, and celebrations). These are non-medical services. Public provider copy was restored by Amber on 2026-08-06.
+
+⚠️ **Ownership structure ("Co-Owner") is PRIVATE — never public-facing (binding — 2026-08-13).** Amber and Diana
+are both authorized LLC members per Sunbiz (see Florida Advertising Law section above), but that fact must never
+appear in customer-facing copy: not in `publicRole`/title strings, bios, meta descriptions, tap-to-share cards
+(`/amber`, `/diana`), the homepage team section, or `/about` copy. If you find "Co-Owner"/"Owner" in any
+customer-facing surface (including a seed script that could regenerate it), remove it — don't just fix the live
+page and leave the source it came from. Swept clean 2026-08-13: `aboutFallbacks.ts`, `amber.astro`, `diana.astro`,
+homepage, `about/index.astro`, and `studio/scripts/seed-about-providers.mjs`.
 
 ## Memberships — NOT OFFERED
 House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are
@@ -479,8 +490,10 @@ documents; its strategy and Book 2 voice rules are archival.
 
 - **7 canonical page types**: Service, Cost guide, FAQ, Comparison, Local area, Before/after, Process.
 - **Every new intent-led treatment/SEO page ships JSON-LD** via `src/lib/structuredData.ts` (typed builders — never inline).
-- **AEO content rules**: answer-first, entity-clear, locally grounded (Punta Gorda / Charlotte
-  County / SW FL), honest pricing, no medical overclaiming, no orphan pages.
+- **AEO content rules**: make the page purpose and main answer clear early, keep entities explicit,
+  ground local facts accurately (Punta Gorda / Charlotte County / SW FL), use honest pricing, avoid
+  medical overclaiming, and create no orphan pages. Clarity is required; a repeated answer-first or
+  question-heading formula is not.
 - **AEO doc types**: `costGuide`, `comparison`, `localArea`, `caseStudy` (+ shared `seo`, `faq`
   objects). Canonical NAP lives in `siteSettings`, mirrored in `structuredData.ts` (`LOCAL_BUSINESS`).
 
@@ -553,7 +566,8 @@ carry fuller decision-supporting detail; GlossGenius remains concise and booking
 facts and compliance limits apply to both.
 
 **Sanity = the customer-facing WEBSITE menu (houseofrosefl.com).**
-- Concise, answer-first decision support that helps a client understand the service without a sales script.
+- Clear, substantive decision support that helps a client understand the service without a sales script
+  or a repeated answer-first template.
 - Depth is proportional to the service: keep verified treatment facts, recovery, pricing, provider scope,
   and evidence; suppress stale promotional fields until their voice and claims are reviewed.
 - SEO/AEO: keyword-optimized from real research (Semrush + Ahrefs, run with agents in parallel), local

@@ -39,21 +39,22 @@
 - **Route:** `/cost/[slug]` (e.g. `prf-treatment-cost`)
 - **Key fields:** `treatment` (ref → service), `priceLow`/`priceHigh`/`priceUnit`,
   `costFactors[]` (factor + effect), `whatsIncluded`, `faqs[]`, `seo`
-- **JSON-LD:** `FAQPage` + `BreadcrumbList` + `Article`
+- **JSON-LD:** `BreadcrumbList` + `Article` + `FAQPage` when reviewed `faqs` are published
 - **GROQ:** `ALL_COST_GUIDES_QUERY`, `COST_GUIDE_BY_SLUG_QUERY`, `ALL_COST_GUIDE_SLUGS_QUERY`
 
 ### 3. FAQ page
-- **Doc type:** none new — aggregates `faqs[]` from `service` + `costGuide` + `comparison`
+- **Doc type:** none — the current route uses one reviewed local set rather than aggregating every
+  CMS question into a generic page
 - **Route:** `/faq`
 - **JSON-LD:** `FAQPage`
-- **GROQ:** `FAQ_AGGREGATE_QUERY`
+- **GROQ:** none while the reviewed local set is in effect
 
 ### 4. Comparison page — *A vs B*
 - **Doc type:** `comparison`
 - **Route:** `/compare/[slug]` (e.g. `procell-pro-vs-md`)
 - **Key fields:** `optionA`/`optionB` (label, summary, bestFor, service ref),
   `rows[]` (attribute, valueA, valueB), `verdict`, `faqs[]`, `seo`
-- **JSON-LD:** `FAQPage` + `BreadcrumbList` + `Article`
+- **JSON-LD:** `BreadcrumbList` + `Article` + `FAQPage` when reviewed `faqs` are published
 - **GROQ:** `ALL_COMPARISONS_QUERY`, `COMPARISON_BY_SLUG_QUERY`, `ALL_COMPARISON_SLUGS_QUERY`
 
 ### 5. Local authority page — *treatment in {city}*
@@ -61,7 +62,7 @@
 - **Route:** `/areas/[slug]` (+ `/areas` index) (e.g. `punta-gorda`, `port-charlotte`)
 - **Key fields:** `city`, `region`, `intro`, `whyLocal`, `servedServices[]` (refs),
   `neighborhoods[]`, `faqs[]`, `seo`
-- **JSON-LD:** `LocalBusiness` (with `areaServed`) + `BreadcrumbList` + `FAQPage`
+- **JSON-LD:** `LocalBusiness` (with `areaServed`) + `BreadcrumbList` + `FAQPage` when reviewed `faqs` are published
 - **GROQ:** `ALL_LOCAL_AREAS_QUERY`, `LOCAL_AREA_BY_SLUG_QUERY`, `ALL_LOCAL_AREA_SLUGS_QUERY`
 
 ### 6. Before/after / proof page
@@ -73,13 +74,14 @@
 - **GROQ:** `ALL_CASE_STUDIES_QUERY`, `CASE_STUDY_BY_SLUG_QUERY`, `ALL_CASE_STUDY_SLUGS_QUERY`
 - **Rule:** never publish a case study with `consentGiven != true`.
 
-### 7. Process page
+### 7. Appointment information
 - **Doc type:** `service.process[]` (per treatment) + `experienceContent.journeySteps`
 - **Route:** lives on `/services/[slug]` and `/experience`
 - **JSON-LD:** inherited from the Service page
 - **Status:** ✅ existing
-- **Voice boundary:** this is an available content shape, not a requirement to narrate process on
-  every service or use process language as brand positioning.
+- **Voice boundary:** the legacy field name remains for source compatibility. Use it only for verified,
+  useful visit details; it is not a requirement to narrate a sequence on every service or use process
+  language as brand positioning.
 
 ---
 

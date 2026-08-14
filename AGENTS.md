@@ -74,7 +74,9 @@ Hard rules (inherited by every task):
    supporting page types in `docs/CONTENT-MODEL-MAP.md`.
 2. Every new content page **MUST ship valid JSON-LD** via `src/lib/structuredData.ts`
    (never hand-roll schema objects in pages).
-3. **Answer-first, entity-clear, locally grounded** copy (Punta Gorda / Charlotte County / SW FL).
+3. **Clear early, entity-specific, locally grounded** copy (Punta Gorda / Charlotte County / SW FL).
+   The page should answer its main intent promptly, but do not force every opening or heading into the
+   same answer-first/question-first formula.
 4. Use real NAP only (canonical in `siteSettings` + `structuredData.ts`) — invent nothing.
 5. No orphan pages: wire internal links + `sitemap.xml.ts` + `llms.txt.ts`.
 6. New page-type doc types: shared `seo` + `faq` objects, registered in `schemas/index.ts`,
