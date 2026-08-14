@@ -1,4 +1,22 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from './validation/publicCopy';
+
+export const validateBlogPortableText = (value: unknown): true | string => {
+  if (!value || typeof value !== 'object' || !('children' in value)) return true;
+
+  const { children } = value as { children?: unknown };
+  if (!Array.isArray(children)) return true;
+
+  const text = children
+    .map((child) => {
+      if (!child || typeof child !== 'object' || !('text' in child)) return '';
+      const childText = (child as { text?: unknown }).text;
+      return typeof childText === 'string' ? childText : '';
+    })
+    .join('');
+
+  return validatePublicCopy(text);
+};
 
 export const blogPost = defineType({
   name: 'blogPost',
@@ -9,7 +27,7 @@ export const blogPost = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (R) => R.required().max(100),
+      validation: (R) => R.required().max(100).custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -45,8 +63,8 @@ export const blogPost = defineType({
       title: 'Excerpt',
       type: 'text',
       rows: 3,
-      description: 'Short summary shown in blog listing (also used as meta description if SEO field is empty)',
-      validation: (R) => R.max(200),
+      description: 'Listing summary and fallback metadata. Name the article’s specific subject naturally; do not reduce it to a generic benefit line.',
+      validation: (R) => R.max(200).custom(validatePublicCopy),
     }),
     defineField({
       name: 'featuredImage',
@@ -61,9 +79,11 @@ export const blogPost = defineType({
       name: 'body',
       title: 'Body',
       type: 'array',
+      description: 'Write a substantive, source-backed article in a natural voice. Use sections that help the reader; do not force a consultation, candidacy, process, or answer-first template.',
       of: [
         {
           type: 'block',
+          validation: (R) => R.custom(validateBlogPortableText),
           styles: [
             { title: 'Normal', value: 'normal' },
             { title: 'H2', value: 'h2' },
@@ -94,7 +114,7 @@ export const blogPost = defineType({
           options: { hotspot: true },
           fields: [
             defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
-            defineField({ name: 'caption', title: 'Caption', type: 'string' }),
+            defineField({ name: 'caption', title: 'Caption', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
           ],
         },
       ],

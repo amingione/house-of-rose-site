@@ -60,6 +60,8 @@ const morpheusSafetyArticle = `
   <p><strong>Short answer:</strong> Morpheus8 is a medical procedure. Whether a particular plan is reasonable cannot be decided from the device name, an online photograph, or a promise about downtime. The useful questions are concrete: who is performing it, what area is being treated, how depth and energy are chosen, what can happen during recovery, and how the practice responds if healing does not follow the expected course.</p>
   <h2>Why the safety conversation matters</h2>
   <p>Morpheus8 combines microneedles with radiofrequency energy. In October 2025, the FDA notified patients and providers that burns, scarring, fat loss, disfigurement, and nerve damage had been reported with certain uses of RF microneedling devices. The notice did not say that every procedure causes these outcomes. It advised clients to seek a licensed health care provider with RF microneedling training and experience, discuss benefits and risks, and ask which device will be used.</p>
+  <h2>What does “FDA-cleared” tell me?</h2>
+  <p>RF microneedling devices are Class II medical devices cleared through the FDA’s 510(k) process. That clearance applies to a specific device and its authorized indications; it does not decide whether every treatment area, depth, energy setting, or use is appropriate for every person. Ask which device would be used, which area is proposed, and how that use relates to the device’s authorized labeling.</p>
   <h2>Make the proposed plan specific</h2>
   <p>The device name alone does not explain what would happen at an appointment. A useful consultation should cover the exact area, how depth and energy would be chosen, and whether your health history, medications, current skin condition, or recent procedures change what can be done. Depth and energy can vary by area and person; a one-setting explanation is not enough.</p>
   <h2>Questions to take into the consultation</h2>
@@ -200,6 +202,21 @@ const breadcrumbSchema = breadcrumbList([
         />
       ) : (
         <p class="text-muted text-[15px]">Content coming soon.</p>
+      )}
+
+      {isMorpheusSafetyArticle && (
+        <aside data-article-follow-up class="mt-12 border border-gold-metal/20 bg-charcoal-light px-6 py-7 sm:px-8">
+          <span class="kicker">If this is about your appointment</span>
+          <h2 class="mt-3 font-serif text-[clamp(23px,3vw,30px)] leading-tight text-ink">
+            A safety article should not be your only point of contact.
+          </h2>
+          <p class="mt-4 text-[15px] leading-[1.8] text-muted">
+            If you are unsure about aftercare or notice an unexpected change after a House of Rose appointment, call <a href="tel:+18449417673" class="text-gold hover:underline">(844) 941-7673</a> during practice hours. For a non-urgent question you prefer to send in writing, email <a href="mailto:info@houseofrosefl.com" class="text-gold hover:underline">info@houseofrosefl.com</a>. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.
+          </p>
+          <a href="/support/" class="mt-5 inline-flex text-[12px] font-medium tracking-[0.12em] uppercase text-gold hover:underline">
+            See contact and support options
+          </a>
+        </aside>
       )}
 
     </div>
