@@ -42,9 +42,10 @@ routine copy into a clinical-process manifesto. The real-practice visual standar
   and platforms legitimately differ — and that difference is usually *correct*, not drift to be "fixed":
   - **By protocol:** Procell = series of **4** (manufacturer min 4, 6+ scarring); BioRePeel = **4** (mfr 4–6);
     Glo2Facial = **3/6**; microneedling = **3–6**. Series length is per-treatment, never one house count.
-  - **By provider lane:** the *same treatment* can have *different models* per provider. BioRePeel = **add-on
-    only** for Amber (advanced lane, +$65 onto microchanneling) but a **standalone** for Brandy (facials &
-    peels lane). Two primary models, both correct. Always ask "whose lane?" before assuming one model.
+  - **By provider lane:** the *same treatment* can have *different models* per provider. BioRePeel is
+    **add-on only** for Amber's eligible advanced skin services, with no independently verified add-on
+    price in the current GlossGenius ledger; Brandy provides the standalone face appointment and Series
+    of 3. Both models are correct. Always ask "whose lane?" before assuming one model.
   - **By platform:** GlossGenius (commerce truth) ≠ Sanity (display) ≠ local docs (staging) ≠ Notion (HQ).
     They are *allowed* to differ; reconcile toward the right source-of-truth per the truth rule, don't
     flatten them to look identical.
@@ -279,9 +280,9 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **GBP CTA:** call; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
 
 ## Providers & Team (memory — never re-ask)
-- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (Microneedling with the Procell Therapies device, Glo2Facial, PRF topical, Procell MD/Pro materials, BioRePeel, dermaplaning, carboxy). Use **Procell Microchanneling** only in explicit Procell context; it is not a separate service from Microneedling. PRF **topical only, no injections**. **BioRePeel for Amber is an ADD-ON ONLY (+$65) to an advanced service such as Microneedling — she does NOT do standalone BioRePeel.** Standalone BioRePeel is Brandy's.
+- **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (Microneedling with the Procell Therapies device, Glo2Facial, PRF topical, Procell MD/Pro materials, BioRePeel, dermaplaning, carboxy). Use **Procell Microchanneling** only in explicit Procell context; it is not a separate service from Microneedling. PRF **topical only, no injections**. **Amber uses BioRePeel only as an add-on to an eligible advanced skin service; no independent add-on price is verified in the current GlossGenius ledger, and she does not provide standalone BioRePeel.** Standalone BioRePeel is Brandy's.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
-- **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels) plus **facial waxing**. Rents a room. **Brandy owns STANDALONE BioRePeel** (facial + standalone series of 4) — the standalone peel is hers, not Amber's.
+- **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels) plus **facial waxing**. Rents a room. **Brandy provides standalone BioRePeel** (the face appointment and Series of 3) — the standalone peel is hers, not Amber's.
 - **Aundrea** — **Professional makeup artistry and permanent jewelry** (weddings, special events, photoshoots, and celebrations). These are non-medical services. Public provider copy was restored by Amber on 2026-08-06.
 
 ⚠️ **Ownership structure ("Co-Owner") is PRIVATE — never public-facing (binding — 2026-08-13).** Amber and Diana
