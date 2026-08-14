@@ -273,7 +273,8 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       originLabel: string,
     ): Promise<void> => {
       routeRequest?.abort();
-      routeRequest = new AbortController();
+      const request = new AbortController();
+      routeRequest = request;
       originMarker?.remove();
       originMarker = undefined;
       if (map.getLayer(ROUTE_LAYER_ID)) map.removeLayer(ROUTE_LAYER_ID);
@@ -291,7 +292,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
         url.searchParams.set('steps', 'false');
         url.searchParams.set('access_token', accessToken);
 
-        const response = await fetch(url, { signal: routeRequest.signal });
+        const response = await fetch(url, { signal: request.signal });
         if (!response.ok) throw new Error(`Directions request failed (${response.status})`);
 
         const result = (await response.json()) as DirectionsResponse;
@@ -348,7 +349,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
           'error',
         );
       } finally {
-        locationButton?.removeAttribute('aria-busy');
+        if (routeRequest === request) locationButton?.removeAttribute('aria-busy');
       }
     };
 
