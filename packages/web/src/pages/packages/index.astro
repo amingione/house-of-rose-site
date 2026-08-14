@@ -4,6 +4,7 @@ import Hero from '@/components/Hero.astro';
 import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
+import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
 
 // Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
 // emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
@@ -28,7 +29,7 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
 
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1280px] mx-auto">
-      <div class="max-w-[700px] mb-12">
+      <div class="max-w-[700px] mb-10">
         <span class="kicker">The current program</span>
         <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-4">
           Acne Bootcamp follows the skin across 12 weeks.
@@ -45,6 +46,23 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
           </a>
         </div>
       </div>
+
+      <aside data-package-provider-safety class="mb-12 grid gap-px border border-gold-metal/10 bg-gold-metal/10 md:grid-cols-2" aria-label="Face Reality provider and medical boundary">
+        <div class="bg-charcoal p-7 sm:p-8">
+          <span class="kicker">Provider</span>
+          <h3 class="mt-3 font-serif text-[24px] leading-tight text-ink">Who provides the program?</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Acne Bootcamp Consultation and the complete 12-week program.
+          </p>
+        </div>
+        <div class="bg-charcoal p-7 sm:p-8">
+          <span class="kicker">An important distinction</span>
+          <h3 class="mt-3 font-serif text-[24px] leading-tight text-ink">When medical evaluation comes first.</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            {FACE_REALITY_PROGRAM.medicalBoundary}
+          </p>
+        </div>
+      </aside>
 
       {packages.length > 0 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
