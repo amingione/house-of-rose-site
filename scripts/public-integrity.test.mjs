@@ -1217,7 +1217,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
       '$1,500',
       'Forma + Lumecca Bundle',
       '$2,599',
-      'Separate bundle listing',
+      'Bundle price',
     ],
     'lumecca-peak-ipl': [
       'InMode intense pulsed light (IPL) handpiece',
