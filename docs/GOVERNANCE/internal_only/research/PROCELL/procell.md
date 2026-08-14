@@ -179,7 +179,9 @@ The current formula includes DNA-repair enzymes selected to address the visible 
 The matched at-home line (Cellular Renewal Serum + Healing Accelerator, in Pro and MD strengths) is designed to support your skin through the days after channeling and help extend your results. Match the aftercare tier to your treatment tier; the Trial Set is an easy first step.
 
 **Can I get Procell on my body, not just my face?**
-Yes — Procell Microchanneling — Body treats areas like the neck, décolleté, hands, and crepey-looking skin, priced per zone. Body skin is thicker, so a longer series is often realistic.
+Procell Microchanneling — Body is not current GlossGenius-backed inventory. Do not publish body areas,
+prices, series, or availability unless they first appear in
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`.
 
 **What does Procell Microchanneling mean?**
 Procell Microchanneling is the branded Procell name used when discussing the device system or Procell materials within House of Rose's Microneedling service. It is not a separate service category.
