@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { costGuide } from '../packages/studio/schemas/costGuide.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_COST_GUIDE_SLUGS_QUERY,
   ALL_COST_GUIDES_QUERY,
@@ -13,7 +14,11 @@ import {
 const titleField = costGuide.fields.find(({ name }) => name === 'title');
 const slugField = costGuide.fields.find(({ name }) => name === 'slug');
 const treatmentField = costGuide.fields.find(({ name }) => name === 'treatment') as
-  | { options?: { filter?: string }; description?: string }
+  | {
+      options?: { filter?: string; filterParams?: { unavailableSlugs?: readonly string[] } };
+      description?: string;
+      validation?: (rule: { required: () => unknown }) => unknown;
+    }
   | undefined;
 
 test('the public cost-guide title is required and uses the shared public-copy guard', () => {
@@ -44,7 +49,23 @@ test('cost-guide treatment authoring and projections require a routeable public 
   const filter = treatmentField?.options?.filter ?? '';
   assert.match(filter, /status in \["live", "actual-menu"\]/);
   assert.match(filter, /defined\(slug\.current\)/);
+  assert.match(filter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(treatmentField?.options?.filterParams, {
+    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+  });
   assert.match(treatmentField?.description ?? '', /canonical public service/i);
+  assert.equal(typeof treatmentField?.validation, 'function');
+  assert.match(String(treatmentField.validation), /required/);
+
+  for (const query of [
+    ALL_COST_GUIDES_QUERY,
+    COST_GUIDE_BY_SLUG_QUERY,
+    ALL_COST_GUIDE_SLUGS_QUERY,
+  ]) {
+    assert.match(query, /treatment->status in \["live", "actual-menu"\]/);
+    assert.match(query, /defined\(treatment->slug\.current\)/);
+    assert.match(query, /!\(treatment->slug\.current in \[/);
+  }
 
   for (const query of [ALL_COST_GUIDES_QUERY, COST_GUIDE_BY_SLUG_QUERY]) {
     const treatmentProjection = query.match(/"treatment": select\(([\s\S]*?)=> treatment->/);

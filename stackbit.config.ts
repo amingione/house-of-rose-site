@@ -449,10 +449,24 @@ export default defineStackbitConfig({
     }
 
     if (entry.document.modelName === 'costGuide') {
+      const treatmentId = documentReferenceId(document, 'treatment');
+      const treatment = treatmentId
+        ? getDocumentById({
+            id: treatmentId,
+            srcType: entry.document.srcType,
+            srcProjectId: entry.document.srcProjectId,
+          })
+        : undefined;
+      const treatmentSlug = documentStringField(treatment, 'slug');
+      const treatmentStatus = documentStringField(treatment, 'status');
       return Boolean(
         slug &&
           REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET.has(slug) &&
-          !RETIRED_COST_GUIDE_SLUG_SET.has(slug),
+          !RETIRED_COST_GUIDE_SLUG_SET.has(slug) &&
+          treatmentSlug &&
+          treatmentStatus &&
+          PUBLIC_SERVICE_STATUS_SET.has(treatmentStatus) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
       );
     }
 
