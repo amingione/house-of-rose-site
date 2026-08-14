@@ -1,8 +1,11 @@
 # PHASE 2 — Parallel Research Agents (Every Treatment, Service & Product Line)
 
-Prepend `00-MASTER-PROMPT.md`. Goal: a research brief per topic deep enough that a curious
-client could learn everything from our site alone. These briefs are the *only* content
-input for Phases 3–4.
+> **Historical task inventory — do not execute as a prompt.** Research supports verified facts; it
+> does not dictate a page opening, voice, CTA pattern, treatment recommendation, or publish action.
+
+Historical goal: gather enough sourced treatment evidence to support useful client education.
+Research briefs are factual references, not exclusive content inputs, voice models, or publication
+instructions.
 
 ## Source hierarchy (strict)
 
@@ -41,7 +44,8 @@ House of Rose retail)
 
 ## Brief template — each agent writes `docs/internal_only/research/<topic>.md`
 
-1. **The 3-sentence answer** (what it is — becomes the answer-first opener)
+1. **Plain-language orientation** (what it is and the distinction a client needs; not a required
+   three-sentence block or page opener)
 2. **How it works** (mechanism, plain English + one level deeper for the curious)
 3. **Who it's for / not for** (candidacy, honest limits)
 4. **The visit** (protocol, sensation, downtime, aftercare, results timeline, cadence)
@@ -51,14 +55,16 @@ House of Rose retail)
 6. **Concern mapping** (which client concerns this addresses → feeds `/concerns/`)
 7. **Pairings & pathways** (what it stacks with; what to try first; retail follow-through)
 8. **Cost factors** (what moves price — ranges only from local docs/Sanity)
-9. **FAQ bank** (10–15 real questions with answer-first replies)
+9. **Real client questions** (only questions the topic genuinely raises, answered directly without
+   manufacturing a quota or repeated sentence pattern)
 10. **Provider + compliance notes** (whose lane; phrases to avoid per compliance doc)
 11. **Journey links** (which existing/planned pages this should link to and from)
-12. **Why House of Rose** (differentiators, local grounding — no overclaiming)
+12. **Verified House of Rose context** (only specific local, provider, equipment, price, or booking
+   facts that materially help the client; no generic trust or superiority claims)
 
-**IV hydration brief gets an extra section:** the case for *routine* IV hydration and why
-clients already getting it elsewhere should get it here (RN-administered, med-director
-oversight, integration with skin-health plan) — persuasive but compliance-clean.
+**IV hydration boundary:** document only the verified menu, price, duration, provider credential,
+medical-direction attribution, and supported device/formulation facts. Do not construct a case for
+routine IV use, imply integration with a skin plan, or invent a reason to switch providers.
 
 ## Deliverables
 

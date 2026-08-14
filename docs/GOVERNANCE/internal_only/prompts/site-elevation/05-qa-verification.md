@@ -1,7 +1,10 @@
 # PHASE 5 — QA & Verification (always last)
 
-Prepend `00-MASTER-PROMPT.md`. Goal: prove the definition of done with evidence, not
-assertion. Run independent verification subagents where noted.
+> **Historical task inventory — do not execute as a prompt.** Use current package scripts and task
+> acceptance criteria; do not recreate obsolete quotas or treat QA as permission to publish.
+
+Historical goal: prove the definition of done with evidence rather than assertion. Current validation
+must follow the actual package scripts, route architecture, and acceptance criteria in scope.
 
 ## Gates (all must pass)
 
@@ -19,9 +22,9 @@ assertion. Run independent verification subagents where noted.
    banned phrase in `COMPLIANCE-COPY-RULES.md` §2, retired brand terms, botanical names,
    `7376`, `33982`, `Ste`/`Suite`, "day spa", membership language, and public-NAP use of `book@`.
    The confirmed `book@houseofrosefl.com` alias is allowed only in rental/booking `mailto:` links.
-7. **Content spot-audit** (independent subagent): sample 10 pages across page types; score
-   against the experience doctrine — answer-first opener, unique CTA labels, ≥2 contextual
-   forward links, local grounding, no boilerplate clones. All 10 pass or fix and re-run.
+7. **Content spot-audit** (independent subagent): sample pages across relevant page types and verify
+   that each purpose is clear early, its useful detail is substantive, local facts are accurate, and
+   links/actions fit the page rather than a quota. Reject boilerplate clones and internal-site language.
 8. **Accessibility**: heading hierarchy, image alts, contrast per `COLOR-CONTRAST.md`,
    keyboard focus on interactive components (spot-check via chrome-devtools if available).
 9. **Fact-check pricing**: every price shown on a page traces to `docs/internal_only/pricing/**`,
@@ -32,5 +35,5 @@ assertion. Run independent verification subagents where noted.
 - `docs/internal_only/research/_qa-report.md`: each gate, evidence (command output summaries, counts),
   and anything waived with justification.
 - Update `CHANGELOG.md` (dated entry per phase) and the `CLAUDE.md` routes table.
-- Remind Amber: publish drafts via `_publish-checklist.md`, then push via Desktop Commander
-  (`git push origin main`) and verify Netlify deploys for both sites.
+- Report what was verified and what still requires owner review. Do not publish, push, or deploy unless
+  the current user instruction explicitly authorizes that external action.

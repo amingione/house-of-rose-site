@@ -1,7 +1,10 @@
 # PHASE 1 — Audit & Perfect Everything Already Built
 
-Prepend `00-MASTER-PROMPT.md`. Goal: everything that already exists becomes flawless before
-anything new is added.
+> **Historical task inventory — do not execute as a prompt.** Re-check every premise against current
+> source, rendered output, and the August 13 voice-reset rules before treating it as work.
+
+Historical goal: audit what already existed before adding more routes. Current work must use the
+repository's actual routes, current governing files, and task-specific acceptance evidence.
 
 ## Step 1 — Re-inventory (don't trust the tables)
 
@@ -17,8 +20,9 @@ internal links.
 Launch subagents in parallel, one per area, each returning findings as
 `P0 broken · P1 wrong · P2 weak · P3 polish`:
 
-1. **Content quality** — every page vs the AEO rules: answer-first opening? entity-clear?
-   locally grounded? honest pricing? thin sections? placeholder/fallback copy still live?
+1. **Content quality** — every page vs the AEO rules: is its purpose clear early without a fixed
+   opening formula? are entities explicit, local facts accurate, prices honest, useful sections
+   substantive, and placeholder/fallback copy absent from public output?
 2. **Compliance** — grep every page + Sanity-seeded copy against
    `docs/internal_only/COMPLIANCE-COPY-RULES.md` §2 banned phrases; flag membership/retired-brand-term
    ("Rose Pass", "Rose Circle", "Rose Rewards", "Rose Method") and botanical-name leakage;

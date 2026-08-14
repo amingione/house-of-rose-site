@@ -1,8 +1,10 @@
 # PHASE 4 — New Informational Pages + Sanity Seeding
 
-Prepend `00-MASTER-PROMPT.md`. Requires Phase 2 briefs and Phase 3 journey infrastructure.
-Goal: fill every knowledge gap with pages of the **7 canonical types** — never ad-hoc
-shapes. If content doesn't fit a type, extend the type's schema.
+> **Historical task inventory — do not execute as a prompt.** It does not authorize new pages, schema
+> deployment, Sanity writes, or broad content generation.
+
+Historical goal: map proven knowledge gaps to an existing canonical page type. A gap is not evidence
+that a new URL is needed; current search intent, source support, and internal-link value must justify it.
 
 ## Step 1 — Gap matrix
 
@@ -31,26 +33,24 @@ exists / thin / missing. Prioritize by decision value:
   objects, register it, add the route with `npm run ve:new`, add JSON-LD builder in
   `structuredData.ts` (Article/FAQPage as appropriate), update `CONTENT-MODEL-MAP.md` and
   the routes table in `CLAUDE.md`, and keep `stackbit.config.ts` PAGE_ROUTES in sync.
-- Deploy schema changes (studio deploy flow) before seeding content that uses them.
+- Schema deployment and external content writes require current explicit authorization. A historical
+  gap matrix is not approval to create or publish a page.
 
 ## Step 3 — Write & seed
 
-- Author content **from the Phase 2 briefs only** — answer-first, entity-clear, locally
-  grounded, compliance-clean, FAQ blocks included, unique closing "Where to next" edges
-  registered in `journeys.ts`.
-- Seed via a typed script (`scripts/seed-elevation.ts`, `@sanity/client`,
-  `SANITY_API_WRITE_TOKEN` from `.env.local`) creating **drafts only**. Idempotent:
-  deterministic `_id`s, re-runnable without duplication.
-- Every new page: `data-sb-*` annotations, JSON-LD via builders, trailing-slash links,
-  registered journey edges (no orphans — at least two inbound edges each).
-- Emit `docs/internal_only/research/_publish-checklist.md`: each draft with its route, a one-line summary,
-  and anything Amber must verify (especially prices and provider attribution) before
-  publishing.
+- Use research briefs as factual evidence, not as the only writing input or a voice template. Make the
+  page purpose clear early, keep entities and local facts accurate, and include FAQs or contextual links
+  only when they add real decision value.
+- Do not seed Sanity from this pack. If a currently authorized task requires a draft, use the approved
+  workflow and exact current scope; local implementation and review come before any external write.
+- Every authorized new page: `data-sb-*` annotations, JSON-LD via builders, trailing-slash links, and
+  enough meaningful inbound context to avoid an orphan. Do not create an arbitrary link-count quota.
+- If drafts are explicitly authorized, record each route and every unresolved price, provider, or
+  clinical fact that must be verified before publication.
 
 ## Deliverables
 
 - Coverage matrix (`docs/internal_only/research/_coverage-matrix.md`)
-- New/extended schemas deployed; routes live with fallback rendering for unpublished drafts
-  handled gracefully (page builds even if draft unpublished — hide, don't crash)
-- Seed script + drafts in Sanity + publish checklist
+- Any authorized schema or route change validated locally, with unpublished content handled safely
+- No Sanity draft, publish, or deploy unless separately authorized in the current task
 - `CONTENT-MODEL-MAP.md`, `CLAUDE.md` routes, `stackbit.config.ts`, sitemap all updated
