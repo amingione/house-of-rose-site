@@ -63,7 +63,12 @@ test("the public Contact route does not fetch the disconnected Studio singleton"
     new URL("../packages/web/src/lib/queries.ts", import.meta.url),
     "utf8",
   );
+  const stackbit = readFileSync(
+    new URL("../stackbit.config.ts", import.meta.url),
+    "utf8",
+  );
 
   assert.doesNotMatch(route, /contactPage|sanityFetch|CONTACT_PAGE_QUERY/);
   assert.doesNotMatch(queries, /_type\s*==\s*["']contactPage["']/);
+  assert.doesNotMatch(stackbit, /contactPage:\s*["']\/contact["']/);
 });

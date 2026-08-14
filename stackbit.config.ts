@@ -110,8 +110,6 @@ const PAGE_ROUTES: Record<string, string> = {
  * click-to-edit annotated. Keep in sync with CLAUDE.md "Routes" table.
  */
 const SINGLETON_PAGE_ROUTES: Record<string, string> = {
-  contactPage: '/contact',
-  supportPage: '/support',
   termsOfService: '/terms-of-service',
   privacyPolicy: '/privacy-policy',
   rentARoom: '/rent-a-room',
