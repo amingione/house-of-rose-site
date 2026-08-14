@@ -322,6 +322,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
         originMarker = new mapboxgl.Marker({ color: '#7A5C2A', scale: 0.8 })
           .setLngLat(origin)
           .addTo(map);
+        originMarker.getElement().setAttribute('aria-label', `Route starting point: ${originLabel}`);
 
         const bounds = new mapboxgl.LngLatBounds(origin, origin).extend(DESTINATION);
         map.fitBounds(bounds, {
