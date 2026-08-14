@@ -1,3 +1,9 @@
+import { DEVICE_SERVICE_EDUCATION } from '@/lib/deviceServiceEducation';
+import {
+  formatMorpheus8Price,
+  MORPHEUS8_PRICING,
+} from '@/lib/morpheus8Pricing';
+
 export interface VerifiedCostFaq {
   question: string;
   answer: string;
@@ -133,10 +139,10 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     metaDescription: 'Lumecca Peak IPL at House of Rose in Punta Gorda ranges from $250 to $2,600 by treatment area and single- or three-session selection across eight areas.',
     summary: 'Lumecca Peak IPL pricing ranges from $250 to $2,600 across treatment areas and single- or three-session options.',
     answer: 'As of August 6, 2026, Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600.',
-    menuHeading: 'Area and series determine the listing.',
-    faqHeading: 'How to read the $250–$2,600 range.',
+    menuHeading: 'Eight areas, each with one-session and three-session prices.',
+    faqHeading: 'Why the range runs from $250 to $2,600.',
     verifiedAt: VERIFIED_AT,
-    context: 'Treatment area and single- or three-session selection account for the range. It is not one appointment with a negotiable price.',
+    context: 'Spot Treatment is $250 for one session. Face, Neck & Chest is $2,600 for three. The $50 Lumecca Peak IPL Consultation is a separate appointment.',
     faqs: [
       {
         question: 'What is the published price range for Lumecca Peak IPL?',
@@ -144,18 +150,22 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'What does the Lumecca price range represent?',
-        answer: 'The $250 to $2,600 range spans single-session and three-session listings for legs, full face, chest, neck, face and neck, face neck and chest, spot treatment, and hands.',
+        answer: 'Each of the eight areas has a one-session and a three-session price: legs, full face, chest, neck, face and neck, face neck and chest, spot treatment, and hands.',
       },
       {
         question: 'Is $2,600 the price for every Lumecca appointment?',
-        answer: 'No. $2,600 is the upper end of the area and series listings, not a flat price for every appointment.',
+        answer: '$2,600 is the three-session Face, Neck & Chest price. Single-session prices range from $250 to $950; the other three-session prices range from $800 to $2,400.',
       },
     ],
     items: [
       {
-        name: 'Legs · Full Face · Chest · Neck · Face & Neck · Face, Neck & Chest · Spot · Hands',
-        price: 'Single and three-session listings · $250–$2,600 overall',
+        name: DEVICE_SERVICE_EDUCATION['lumecca-peak-ipl'].menu.consultation.name,
+        price: formatMorpheus8Price(DEVICE_SERVICE_EDUCATION['lumecca-peak-ipl'].menu.consultation.priceUsd),
       },
+      ...DEVICE_SERVICE_EDUCATION['lumecca-peak-ipl'].menu.singleAndSeriesPrices.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+      })),
     ],
   },
   'biorepeel-cost-punta-gorda': {
@@ -248,7 +258,3 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
 
 export const getVerifiedCostFact = (slug: string): VerifiedCostFact | undefined =>
   VERIFIED_COST_FACTS[slug];
-import {
-  formatMorpheus8Price,
-  MORPHEUS8_PRICING,
-} from '@/lib/morpheus8Pricing';
