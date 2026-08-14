@@ -102,7 +102,8 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 - **`/concerns/fine-lines-laxity/`** — **secondary/supporting.** Superficial peels help the *look* of surface smoothness and refined texture; be careful not to overclaim on lines — corrective work lives with Amber's needling/BioRePeel. Light peel = maintenance layer here.
 
 **Proposed new concern pages (would give the light peel a stronger home — both are genuine client concerns with no current page):**
-- **`/concerns/dullness-uneven-tone/`** (type: concern) — the most natural landing concern for a glow peel; maps enzyme + light peel + dermaplaning + Glo2Facial as the "radiance" cluster.
+- **`/concerns/dullness-uneven-tone/`** (type: concern) — a possible home for comparing enzyme,
+  light-peel, dermaplaning, and Glo2Facial options without grouping them under a marketing label.
 - **`/concerns/rough-texture/`** or **`/concerns/enlarged-pores-congestion/`** (type: concern) — texture/congestion cluster; light BHA peel + enzyme + Glo2Facial.
 
 ---
@@ -148,13 +149,16 @@ generic series framework, and do not use discount framing.
 6. **How much downtime?** Typically little to none — occasionally a day or two of mild redness or light flaking. You can usually resume normal life right away and makeup the next day, per your provider.
 7. **How many treatments will I need?** Light peels work best as a series — commonly around 3–6 sessions a few weeks apart — then ongoing maintenance. Your provider sets your plan.
 8. **How soon will I see results?** Many clients notice smoother-feeling skin first, then a brighter, more even-looking tone over the following days, with more improvement as the series continues. Individual outcomes vary.
-9. **Can I get one before an event?** Yes — a light peel or enzyme (often with dermaplaning and a Glo2Facial finish) is a popular pre-event glow. We'll time it so any flaking is well behind you; ask us at booking.
+9. **Can I get one before an event?** A light peel or enzyme may be considered for event preparation.
+   Ask the provider about timing, because formula choice and possible flaking affect the appropriate date.
 10. **Is it safe for sensitive skin or darker skin tones?** Often yes, with the right formula and strength — your provider may choose an enzyme, lactic, or mandelic acid, which are gentler options. Careful provider selection is exactly why this is a professional treatment.
 11. **Can I do it if I'm pregnant or breastfeeding, or recently on Accutane?** These generally require waiting or a modified approach; please tell us at consultation so your provider can advise. Not every client is a candidate.
 12. **What do I do afterward?** Wear broad-spectrum SPF 30+ every day (essential in our Florida sun), keep skin gently moisturized, don't pick or peel flaking skin, and pause strong actives for a few days per your provider's instructions.
 13. **Do I need to protect my skin from the sun even if I'm indoors mostly?** Yes — daily sunscreen protects and preserves your results, especially in Southwest Florida's year-round sun. Skip it and you undo the work.
-14. **How is this different from a facial?** A relaxing facial cleans, hydrates, and pampers; a light peel adds a gentle chemical-exfoliation step focused on brightening and smoothing. We often combine the two.
-15. **Should I get a light peel or a stronger treatment?** That depends on your skin and goals — a light peel is our maintenance/glow option; deeper texture, tone, or scarring may be better served by advanced treatments. Your skin analysis and provider will guide the honest choice.
+14. **How is this different from a facial?** A facial may focus on cleansing and hydration. A light peel
+    uses chemical exfoliation; the provider determines whether either service or a combination fits.
+15. **Should I get a light peel or another treatment?** That depends on the visible concern, skin, and
+    goals. A skin analysis and provider consultation can distinguish maintenance from a different service.
 
 ---
 
@@ -184,7 +188,7 @@ generic series framework, and do not use discount framing.
 - `/services/biorepeel/` — the "when you want stronger resurfacing" step-up link (and reciprocal "start gentler" link back).
 - `/services/face-reality-acne-program/` and `/services/acne-bootcamp/` — current acne-program paths.
 - `/concerns/sun-damage/` and `/concerns/fine-lines-laxity/` — concern → treatment links.
-- `/skin-analysis/` — the smart-first-step funnel.
+- `/skin-analysis/` — the current consultation and imaging route.
 - `/shop/` (Skin Script + GlyMed+ brand anchors) — retail follow-through.
 
 **Where a light-peel page should link *out*:**

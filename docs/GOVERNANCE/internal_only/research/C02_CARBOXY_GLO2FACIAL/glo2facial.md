@@ -203,9 +203,13 @@ Stat. 456.062. A factual appointment row does not need the entire block.
 
 - **One verified appointment.** The current menu is a $225, 60-minute standalone Glo2Facial with
   Amber Mingione, Licensed Esthetician. Other services remain separate choices.
-- **Right treatment, honest lane.** We'll tell you when hydrodermabrasion with Brandy is the better everyday call, when dermaplaning is what you actually want, and when needling is the tool for real texture change — no upselling into the wrong thing.
-- **Local & event-ready.** Punta Gorda / Charlotte County / SW Florida clients book it before weddings, reunions, and photoshoots precisely because there's no recovery — a private studio, open since June 15, 2026, where walk-ins are welcome and the licensed provider tailors the pod and plan to your skin.
-- **Grounded, never overclaimed.** We describe the real mechanism (exfoliate + infuse + oxygenate via the Bohr effect), cite the clinical study honestly, and keep results claims to "helps reveal," "for the appearance of," and "many clients notice."
+- **Related services stay distinct.** Hydrodermabrasion, Dermaplaning, and Microneedling are separate
+  appointments with different service facts. Do not arrange them as a generic step-up sequence.
+- **Local & event-ready.** Glo2Facial is a 60-minute appointment at the House of Rose practice in
+  Punta Gorda. The reviewed service facts support no recovery time for this exact procedure. Keep
+  walk-in guidance in the direct visit FAQ, and keep OxyPod selection with the licensed provider.
+- **Claim boundary.** Explain the reviewed exfoliation, infusion, and oxygenation mechanism precisely;
+  do not turn the small cited study into a broad outcome claim.
 
 ---
 

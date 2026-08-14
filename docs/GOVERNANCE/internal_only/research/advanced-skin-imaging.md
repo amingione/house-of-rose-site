@@ -208,14 +208,21 @@ does not need the full block.
 
 ---
 
-## 12. Why House of Rose
+## 12. Verified House of Rose use
 
-- **Evidence, not guesswork.** The brand promise is that your plan starts with what your skin is actually showing today — the scan makes that literal. It's the differentiator that separates House of Rose from a "just book something" spa.
-- **No pressure, no commitment.** The analysis is framed as a genuine service to the client, not a sales funnel — sometimes the honest answer is home care or "keep doing what's working." That candor *is* the brand.
-- **One front door, three expert lanes.** The scan routes to the right provider — Amber's advanced facials, Diana's RN-led injectables/IV/GLP-1, or Brandy's maintenance facials — so clients land in the right hands instead of the loudest upsell.
-- **Measurable over time.** A standardized baseline means progress is compared consistently, which builds trust across a series rather than relying on "it looks better, right?"
-- **Locally grounded.** Advanced skin imaging in **Punta Gorda / Charlotte County / Southwest Florida** — a genuinely differentiated front-door offering in this market, delivered in a private studio where walk-ins are welcome and appointments are recommended to reserve a time.
-- **Refined, intentional, honest.** Copy stays squarely aesthetic and never overclaims: it *supports* personalized recommendations and *helps guide* your plan — it doesn't diagnose, cure, or guarantee.
+- **Three image types.** The current analysis uses natural, polarized, and UV views to document
+  different visible skin features for the consultation.
+- **A routing tool, not a diagnosis.** The images may support a home-care discussion or a handoff to a
+  relevant provider. They do not diagnose a condition or prescribe an injectable.
+- **Provider identity stays explicit.** Name Amber Mingione, Licensed Esthetician; Diana Morrison, RN;
+  or Brandy, Licensed Esthetician when that person is part of the recommendation.
+- **A repeatable baseline.** Standardized images can be compared over time when follow-up imaging is
+  relevant. Do not turn that comparison into a promised outcome.
+- **Locally grounded.** Advanced skin imaging is available at the House of Rose practice in **Punta
+  Gorda**, serving Charlotte County and Southwest Florida. Keep walk-in and appointment guidance in
+  the direct visit FAQ rather than treating it as positioning copy.
+- **Copy boundary.** Describe the analysis as support for cosmetic consultation and treatment
+  planning. Do not call it medical diagnosis or promise that it selects a particular service.
 
 ---
 

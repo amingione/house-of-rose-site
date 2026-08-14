@@ -152,7 +152,8 @@ area extension, or LED bundle. Glo2Facial remains a separate $225, 60-minute app
 - No cure/removal/permanence: never "erases dark circles," "removes pigment," "cures dullness," "reverses aging," "anti-aging," "guaranteed." Use **"supports the appearance of," "helps reveal," "designed to," "many clients notice."**
 - Don't claim it treats a medical condition (e.g., "treats hyperpigmentation/rosacea"). Keep to appearance language.
 - No "FDA-approved / clinically proven" unless citing a specific, verifiable clearance (none needed here — omit).
-- Avoid "day spa." Lead "advanced aesthetics & wellness"; "med spa" allowed in meta/SEO only.
+- Avoid "day spa." Use **Medical Aesthetics Practice** when a category descriptor is needed. "Medical
+  spa" may support accurate platform or search context but does not lead.
 
 **Use guardrails where the claim creates the need:** identify Amber with her licence type when naming
 her; state the topical/no-injection boundary wherever procedure type could be ambiguous; add outcome
@@ -185,12 +186,17 @@ all five statements mechanically on every surface.
 
 ---
 
-## 12. Why House of Rose
+## 12. Verified House of Rose distinctions
 
-- **A genuinely gentle, needle-free option** inside a serious advanced-aesthetics practice — carboxy gives the "glow + awake under-eyes" result without downtime, and sits honestly next to our more corrective needling work rather than overpromising.
-- **Clean cross-lane handoffs:** Amber (topical carboxy facial) and, when structure is the real issue, our RN's injectable/filler options — clients get routed to the *right* fix, not upsold the wrong one.
+- **A topical, needle-free service.** CO2 Lift Carboxy is applied to the skin; it is not injectable
+  carboxytherapy. Keep any recovery or outcome statement limited to reviewed facts for this exact service.
+- **Provider roles stay separate.** Name Amber Mingione, Licensed Esthetician for the topical carboxy
+  facial. Injectable or filler questions belong with Diana Morrison, RN, but neither is an automatic
+  next step from this service.
 - **No invented treatment ladder.** Glo2Facial, Microneedling, and CO2 Lift Carboxy are current separate appointments; the ledger establishes no Carboxy series or LED finish.
-- **Local grounding:** private studio in **Punta Gorda** serving Charlotte County / SW Florida, with walk-ins welcome and appointments recommended to reserve a time; exact standalone and staff-added prices stated plainly; candidacy assessed before treatment. No overclaiming — outcomes are individual, and not every client is a candidate.
+- **Local grounding:** House of Rose is one practice in **Punta Gorda** serving Charlotte County and
+  Southwest Florida. State the exact standalone and staff-added prices plainly. Use the verified visit
+  policy only in direct visit guidance, and address candidacy where the treatment decision is discussed.
 
 ---
 

@@ -51,3 +51,21 @@ test('active research does not recommend retired glow or escalation framing', ()
   assert.doesNotMatch(lightPeels, /naming law:[^\n]*"Glow Peel"/i);
   assert.doesNotMatch(biorepeel, /no-downtime advantage|a true ladder|private studio|RN assistant/i);
 });
+
+test('active research uses the current practice category and direct language', () => {
+  const briefs = [
+    'C02_CARBOXY_GLO2FACIAL/glo2facial.md',
+    'advanced-skin-imaging.md',
+    'carboxy-therapy.md',
+    'light-peels.md',
+  ];
+
+  for (const relativePath of briefs) {
+    const brief = readFileSync(new URL(relativePath, researchRoot), 'utf8');
+    assert.doesNotMatch(
+      brief,
+      /private studio|lead "advanced aesthetics & wellness"|pre-event glow|maintenance\/glow|pampers|radiance" cluster|smart-first-step funnel|brand promise|three expert lanes|right treatment, honest lane|clean cross-lane handoffs|glow \+ awake|serious advanced-aesthetics/i,
+      `${relativePath} still teaches superseded positioning or canned funnel language.`,
+    );
+  }
+});
