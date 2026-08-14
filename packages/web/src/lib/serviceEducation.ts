@@ -110,7 +110,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: WEIGHT_MANAGEMENT_EDUCATION.title,
       heading: 'Semaglutide, tirzepatide, and the consultation that begins the conversation.',
-      metaDescription: 'Understand the GLP-1 and GIP receptor distinction, the $25 consultation, and who provides weight-management appointments at House of Rose Aesthetics in Punta Gorda.',
+      metaDescription: 'House of Rose offers a $25 GLP-1 weight-management consultation with Diana Morrison, RN in Punta Gorda. Compare semaglutide and tirzepatide.',
       paragraphs: [
         WEIGHT_MANAGEMENT_EDUCATION.whatItIs,
         WEIGHT_MANAGEMENT_EDUCATION.provider,
@@ -719,7 +719,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'Facial radiofrequency through surface electrodes.',
-      metaDescription: 'Forma at House of Rose delivers facial radiofrequency through surface electrodes. Compare six area prices from $600 to $3,000 and the separate $2,599 Forma + Lumecca bundle.',
+      metaDescription: 'Forma RF Facial at House of Rose in Punta Gorda uses surface electrodes. Compare six area prices from $600 to $3,000 and the separate $2,599 bundle.',
       paragraphs: [device.whatItIs, device.whereItFits],
       distinctions: [
         {
