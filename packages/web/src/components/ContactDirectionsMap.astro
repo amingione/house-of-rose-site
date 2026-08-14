@@ -209,6 +209,32 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     // TypeScript reject it as a generic Node. Keep the boundary cast local.
     searchHost.appendChild(searchBox as unknown as HTMLElement);
 
+    const syncSearchComboboxState = (): void => {
+      const combobox = searchHost.querySelector<HTMLInputElement>('[role="combobox"]');
+      if (!combobox || combobox.hasAttribute('aria-expanded')) return;
+
+      const controlledId = combobox.getAttribute('aria-controls');
+      const results = controlledId ? document.getElementById(controlledId) : null;
+      const resultsContainer = results?.closest<HTMLElement>('[aria-hidden]');
+      const resultsAreVisible = Boolean(
+        results
+        && results.getClientRects().length > 0
+        && resultsContainer?.getAttribute('aria-hidden') !== 'true',
+      );
+      combobox.setAttribute('aria-expanded', resultsAreVisible ? 'true' : 'false');
+    };
+    syncSearchComboboxState();
+
+    // Mapbox manages the state once suggestions open, but its initial render omits
+    // the required combobox attribute. Re-apply only if a runtime render drops it.
+    const searchAccessibilityObserver = new MutationObserver(syncSearchComboboxState);
+    searchAccessibilityObserver.observe(searchHost, {
+      attributes: true,
+      attributeFilter: ['aria-expanded'],
+      childList: true,
+      subtree: true,
+    });
+
     let originMarker: Marker | undefined;
     let routeRequest: AbortController | undefined;
 
@@ -356,6 +382,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     document.addEventListener(
       'astro:before-swap',
       () => {
+        searchAccessibilityObserver.disconnect();
         routeRequest?.abort();
         map.remove();
       },
