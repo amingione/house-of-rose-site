@@ -27,10 +27,16 @@ test('sitewide public brand text uses the shared public-copy guard', () => {
 
 test('the archival tagline cannot pose as a live sitewide control', () => {
   const tagline = settingsField('tagline');
+  const layout = readFileSync(
+    new URL('../packages/web/src/layouts/BaseLayout.astro', import.meta.url),
+    'utf8',
+  );
 
   assert.equal(tagline?.readOnly, true);
   assert.match(String(tagline?.title), /not published/i);
   assert.match(String(tagline?.description), /do not use a CMS tagline/i);
+  assert.doesNotMatch(SITE_SETTINGS_QUERY, /\btagline\b/);
+  assert.doesNotMatch(layout, /settings(?:\?\.|\.)tagline/);
 });
 
 test('stored brand images cannot pose as the website asset authority', () => {

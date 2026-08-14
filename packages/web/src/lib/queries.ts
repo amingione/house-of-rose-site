@@ -316,7 +316,6 @@ export interface ShopBrand {
 
 export interface SiteSettings {
   siteName: string;
-  tagline?: string;
   description?: string;
   email?: string;
   phone?: string;
@@ -370,7 +369,6 @@ const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
 export const SITE_SETTINGS_QUERY = /* groq */ `
   *[_type == "siteSettings" && _id == "siteSettings"][0] {
     siteName,
-    tagline,
     description,
     email,
     phone,
