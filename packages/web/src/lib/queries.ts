@@ -1457,7 +1457,7 @@ export const ALL_LOCAL_AREA_SLUGS_QUERY = /* groq */ `
 
 // ── Case studies (consent-gated) ─────────────────────────────────────────────
 export const ALL_CASE_STUDIES_QUERY = /* groq */ `
-  *[_type == "caseStudy" && consentGiven == true] | order(orderRank asc, _createdAt desc) {
+  *[_type == "caseStudy" && consentGiven == true && defined(slug.current)] | order(orderRank asc, _createdAt desc) {
     _id, title, "slug": slug.current, clientProfile, timeframe, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&

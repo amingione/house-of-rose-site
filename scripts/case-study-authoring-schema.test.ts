@@ -4,6 +4,7 @@ import test from 'node:test';
 import { caseStudy } from '../packages/studio/schemas/caseStudy.ts';
 import {
   ALL_CASE_STUDIES_QUERY,
+  ALL_CASE_STUDY_SLUGS_QUERY,
   CASE_STUDY_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
@@ -58,5 +59,17 @@ test('case-study treatment links can resolve only to generated public service ro
   for (const query of [ALL_CASE_STUDIES_QUERY, CASE_STUDY_BY_SLUG_QUERY]) {
     assert.match(query, /treatment->status in \["live", "actual-menu"\]/);
     assert.match(query, /defined\(treatment->slug\.current\)/);
+  }
+});
+
+test('the consented results listing only includes records with generated routes', () => {
+  const slug = caseStudy.fields.find(({ name }) => name === 'slug');
+  const consent = caseStudy.fields.find(({ name }) => name === 'consentGiven');
+  assert.match(String(slug?.validation), /required/);
+  assert.match(String(consent?.validation), /required/);
+
+  for (const query of [ALL_CASE_STUDIES_QUERY, ALL_CASE_STUDY_SLUGS_QUERY]) {
+    assert.match(query, /consentGiven == true/);
+    assert.match(query, /defined\(slug\.current\)/);
   }
 });
