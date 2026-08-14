@@ -2,8 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { treatmentPackage } from '../packages/studio/schemas/treatmentPackage.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_TREATMENT_PACKAGES_QUERY,
+  ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
   TREATMENT_PACKAGE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
@@ -12,7 +14,12 @@ const cadenceField = treatmentPackage.fields.find(({ name }) => name === 'cadenc
 const rackPriceField = treatmentPackage.fields.find(({ name }) => name === 'rackPrice');
 const imageField = treatmentPackage.fields.find(({ name }) => name === 'image');
 const servicesIncludedField = treatmentPackage.fields.find(({ name }) => name === 'servicesIncluded') as
-  | { of?: Array<{ options?: { filter?: string } }> }
+  | {
+      of?: Array<{
+        options?: { filter?: string; filterParams?: Record<string, unknown> };
+      }>;
+      validation?: unknown;
+    }
   | undefined;
 
 test('the published package identity is required and uses the shared public-copy guard', () => {
@@ -92,6 +99,23 @@ test('package service authoring and projections require routeable public service
   const authoringFilter = servicesIncludedField?.of?.[0]?.options?.filter ?? '';
   assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
   assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(servicesIncludedField?.of?.[0]?.options?.filterParams, {
+    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+  });
+  assert.match(String(servicesIncludedField?.validation), /min\(1\)/);
+
+  for (const query of [
+    ALL_TREATMENT_PACKAGES_QUERY,
+    TREATMENT_PACKAGE_BY_SLUG_QUERY,
+    ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
+  ]) {
+    assert.match(query, /count\(servicesIncluded\[/);
+    assert.match(query, /@->status in \["live", "actual-menu"\]/);
+    assert.match(query, /defined\(@->slug\.current\)/);
+    assert.match(query, /!\(@->slug\.current in \[/);
+    assert.match(query, /\]\) > 0/);
+  }
 
   for (const query of [ALL_TREATMENT_PACKAGES_QUERY, TREATMENT_PACKAGE_BY_SLUG_QUERY]) {
     const servicesProjection = query.match(

@@ -1206,20 +1206,45 @@ const PACKAGE_FIELDS = /* groq */ `
   ${IMAGE_FIELDS}
 `;
 
+const PACKAGE_HAS_ROUTEABLE_SERVICE = /* groq */ `
+  count(servicesIncluded[
+    @->status in ["live", "actual-menu"] &&
+    defined(@->slug.current) &&
+    !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+  ]) > 0
+`;
+
 export const ALL_TREATMENT_PACKAGES_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && status == "live" && slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ}] | order(orderRank asc, _createdAt desc) {
+  *[
+    _type == "treatmentPackage" &&
+    status == "live" &&
+    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ} &&
+    ${PACKAGE_HAS_ROUTEABLE_SERVICE}
+  ] | order(orderRank asc, _createdAt desc) {
     ${PACKAGE_FIELDS}
   }
 `;
 
 export const TREATMENT_PACKAGE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && status == "live" && slug.current == $slug && slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ}][0] {
+  *[
+    _type == "treatmentPackage" &&
+    status == "live" &&
+    slug.current == $slug &&
+    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ} &&
+    ${PACKAGE_HAS_ROUTEABLE_SERVICE}
+  ][0] {
     ${PACKAGE_FIELDS}
   }
 `;
 
 export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
-  *[_type == "treatmentPackage" && status == "live" && defined(slug.current) && slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ}]{ "slug": slug.current }
+  *[
+    _type == "treatmentPackage" &&
+    status == "live" &&
+    defined(slug.current) &&
+    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ} &&
+    ${PACKAGE_HAS_ROUTEABLE_SERVICE}
+  ]{ "slug": slug.current }
 `;
 
 

@@ -126,6 +126,32 @@ function documentHasNonEmptyList(
   return false;
 }
 
+function documentReferenceIds(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): string[] {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object' || !('items' in field) || !Array.isArray(field.items)) {
+    return [];
+  }
+  return field.items.flatMap((item) => {
+    if (
+      !item ||
+      typeof item !== 'object' ||
+      !('type' in item) ||
+      item.type !== 'reference' ||
+      !('refType' in item) ||
+      item.refType !== 'document' ||
+      !('refId' in item) ||
+      typeof item.refId !== 'string' ||
+      !item.refId
+    ) {
+      return [];
+    }
+    return [item.refId];
+  });
+}
+
 function documentHasAssetReference(
   document: { fields: Record<string, unknown> } | undefined,
   fieldName: string,
@@ -432,8 +458,28 @@ export default defineStackbitConfig({
 
     if (entry.document.modelName === 'treatmentPackage') {
       const status = documentStringField(document, 'status');
+      const hasRouteableService = documentReferenceIds(document, 'servicesIncluded').some(
+        (serviceId) => {
+          const service = getDocumentById({
+            id: serviceId,
+            srcType: entry.document.srcType,
+            srcProjectId: entry.document.srcProjectId,
+          });
+          const serviceSlug = documentStringField(service, 'slug');
+          const serviceStatus = documentStringField(service, 'status');
+          return Boolean(
+            serviceSlug &&
+              serviceStatus &&
+              PUBLIC_SERVICE_STATUS_SET.has(serviceStatus) &&
+              !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(serviceSlug),
+          );
+        },
+      );
       return Boolean(
-        slug && status === 'live' && VERIFIED_TREATMENT_PACKAGE_SLUG_SET.has(slug),
+        slug &&
+          status === 'live' &&
+          VERIFIED_TREATMENT_PACKAGE_SLUG_SET.has(slug) &&
+          hasRouteableService,
       );
     }
 
