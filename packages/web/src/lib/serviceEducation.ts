@@ -528,11 +528,12 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: 'Standalone Glo2Facial',
-        intro: 'Glo2Facial is a directly bookable, standalone facial at House of Rose.',
-        verifiedAt: 'August 13, 2026',
+        intro: 'The 60-minute Glo2Facial is directly bookable at $225.',
+        verifiedAt: 'August 14, 2026',
         items: [
           {
             name: 'Glo2Facial',
+            price: device.menu.priceUsd ? formatUsd(device.menu.priceUsd) : undefined,
             duration: device.menu.duration,
           },
         ],
