@@ -586,15 +586,16 @@ test('journal index describes the reviewed article that is actually published', 
   const fullFeed = readFileSync(path.join(DIST_ROOT, 'llms-full.txt'), 'utf8');
   const failures = [];
 
-  for (const required of [
-    'Treatment questions, answered with sources.',
-    'Morpheus8 safety questions, with the source notes visible.',
-    'FDA safety communications',
-    'href="/services/morpheus8/"',
-    'href="/contact/"',
+  // Keep the evidence and article orientation without freezing full public headings.
+  for (const [label, pattern] of [
+    ['treatment-question/source orientation', /treatment questions?[\s\S]{0,100}(?:source|evidence)/i],
+    ['Morpheus8 safety/source orientation', /Morpheus8[\s\S]{0,100}safety[\s\S]{0,140}(?:source|FDA)/i],
+    ['FDA safety context', /FDA safety communications/i],
   ]) {
-    const haystack = required.startsWith('href=') ? html : text;
-    if (!haystack.includes(required)) failures.push(`journal index is missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`journal index is missing ${label}`);
+  }
+  for (const route of ['/services/morpheus8/', '/contact/']) {
+    if (!html.includes(`href="${route}"`)) failures.push(`journal index is missing ${route}`);
   }
   for (const retired of [
     'Read before you decide.',
