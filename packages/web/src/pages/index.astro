@@ -3,34 +3,73 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
 import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
+import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import { PERMANENT_JEWELRY_EDUCATION } from '@/lib/permanentJewelryEducation';
+import { SKIN_RENEWAL_SERVICE_EDUCATION } from '@/lib/skinRenewalServiceEducation';
+import { WAXING_SERVICE_EDUCATION } from '@/lib/waxingServiceEducation';
+import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 
 const phoneDisplay = '(844) 941-7673';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
 const localVisitText = 'Open Monday through Friday, 9 AM–5 PM.';
+const [topicalPrf, underEyePrf, bioFillerPrf] = SKIN_RENEWAL_SERVICE_EDUCATION.prf.menu.items;
+const hydrationIv = VERIFIED_IV_MENU[0];
+const fortyFiveMinuteIvPrices = VERIFIED_IV_MENU.slice(1).map(({ price }) => price);
+
+const broaderPracticeServices = [
+  {
+    label: 'IV hydration',
+    title: `${VERIFIED_IV_MENU.length} options, with the details visible`,
+    body: `${hydrationIv.name} is ${hydrationIv.durationMinutes} minutes at $${hydrationIv.price}. The other five appointments are 45 minutes and range from $${Math.min(...fortyFiveMinuteIvPrices)} to $${Math.max(...fortyFiveMinuteIvPrices)}. Diana Morrison, RN provides IV hydration under medical direction.`,
+    href: '/services/iv-hydration-therapy/',
+    cta: 'See the IV menu',
+  },
+  {
+    label: 'Weight management',
+    title: 'A conversation before a program',
+    body: `The ${WEIGHT_MANAGEMENT_EDUCATION.consultation.durationMinutes}-minute GLP-1 consultation with Diana Morrison, RN is $${WEIGHT_MANAGEMENT_EDUCATION.consultation.priceUsd}. Medication and ongoing program costs are confirmed directly with the practice.`,
+    href: '/services/glp-1-weight-management/',
+    cta: 'Read about the consultation',
+  },
+  {
+    label: 'Waxing',
+    title: 'Facial and body appointments by area',
+    body: `The current menu includes ${WAXING_SERVICE_EDUCATION.waxing.menu.items.length} area-specific appointments. Facial waxing includes the brows, upper lip, and chin; body waxing includes the underarms, bikini line, arms, legs, back, and chest.`,
+    href: '/services/waxing/',
+    cta: 'See the waxing menu',
+  },
+  {
+    label: 'Permanent jewelry',
+    title: 'Fitted in person and closed without a clasp',
+    body: `Aundrea Pedigo, Licensed Esthetician fits the chain and joins its ends by welding. The ${PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes}-minute non-medical appointment is $${PERMANENT_JEWELRY_EDUCATION.menu.priceUsd}; the chain can be cut when removal is needed.`,
+    href: '/services/permanent-jewelry/',
+    cta: 'Read about permanent jewelry',
+  },
+] as const;
 
 // Working voice reset: body copy stays local until the owner approves it for Sanity.
 // This prevents the previous CMS-authored cadence from leaking back into the preview.
 const treatmentCategories = [
   {
     label: 'Skin',
-    title: 'Skin quality, seen clearly',
-    body: 'Facials, peels, microneedling, and light-based treatments address different aspects of texture, pores, selected pigment, and visible sun exposure.',
+    title: 'Start with the change you can see or feel',
+    body: 'Maybe makeup catches on roughness, pores seem more visible, or a patch of uneven color keeps drawing your eye. Facials, peels, microneedling, and light-based treatments each work differently.',
     href: '/services/collections/facials/',
     cta: 'Explore skin treatments',
   },
   {
     label: 'Injectables',
-    title: 'Expression, shape, and support',
-    body: 'Neuromodulators address expression-related movement. Hyaluronic-acid fillers add shape or volume in selected areas. Injectable PRF begins with a small sample of your own blood.',
+    title: 'Notice what changes when your face moves',
+    body: 'A line that appears when you frown or squint is a different concern from lost fullness in the lips, cheeks, or folds. Botox and Daxxify address movement; hyaluronic-acid fillers add selected volume.',
     href: '/services/collections/injectables-bio-fillers/',
     cta: 'Explore injectables',
   },
   {
     label: 'Skin analysis',
-    title: 'What the mirror cannot separate',
+    title: 'See more than ordinary light reveals',
     body: 'Multi-spectrum imaging adds another view of visible pigment, texture, pores, and sun exposure. The photographs are reviewed with you as a baseline; they do not make a diagnosis.',
     href: '/skin-analysis/',
-    cta: 'Review skin analysis',
+    cta: 'See how skin analysis works',
   },
 ] as const;
 
@@ -67,7 +106,10 @@ const treatmentCategories = [
             You can start with the way your skin feels, a shadow you keep noticing, a line that has changed, or a service you have already researched.
           </p>
           <p class="mt-5 text-[17px] leading-[1.8] text-muted">
-            We will explain what House of Rose offers, who provides it, and what the appointment involves—plainly, without trying to turn every question into a treatment.
+            House of Rose is a four-person practice in a real Punta Gorda storefront. The menu moves from medically directed injectables and IV hydration to esthetic skin care, waxing, makeup artistry, and permanent jewelry, and the provider pages name the work each person currently does.
+          </p>
+          <p class="mt-5 text-[17px] leading-[1.8] text-muted">
+            If you already recognize the service, you can book it directly when online booking is available. If you only recognize the concern, begin there and let us explain what each relevant appointment actually is.
           </p>
           <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-walnut/15 pt-7 text-[13px] font-semibold">
             <a href="/about/hra/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Learn about the practice</a>
@@ -80,12 +122,12 @@ const treatmentCategories = [
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
         <div class="border-b border-walnut/15 pb-10">
-          <span class="kicker">Where to begin</span>
+          <span class="kicker">A place to start</span>
           <h2 class="max-w-[850px] font-serif text-[clamp(36px,5vw,58px)] leading-[1.02] tracking-[-0.02em] text-ink">
-            Different concerns call for different tools.
+            What do you keep noticing?
           </h2>
           <p class="mt-6 max-w-[760px] text-[17px] leading-[1.8] text-muted">
-            Texture, pigment, movement, volume, and hydration describe different concerns. Understanding the difference is what turns a long treatment menu into a useful place to start.
+            Start with the detail that keeps catching your eye: roughness in certain light, a patch of uneven color, a line that appears when you smile, or a change in fullness. Each one leads to a different part of the House of Rose menu.
           </p>
         </div>
 
@@ -127,13 +169,56 @@ const treatmentCategories = [
       </div>
     </section>
 
+    <section class="bg-bone px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto max-w-[1240px]">
+        <div class="grid gap-10 border-b border-walnut/15 pb-11 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
+          <div>
+            <span class="kicker">More reasons to visit</span>
+            <h2 class="max-w-[610px] font-serif text-[clamp(38px,5.5vw,60px)] leading-[1.02] tracking-[-0.02em] text-ink">
+              One address. Several very different appointments.
+            </h2>
+          </div>
+          <div class="max-w-[690px] lg:pt-8">
+            <p class="font-serif text-[clamp(23px,3vw,32px)] leading-[1.25] text-ink">
+              A skin appointment, an IV, a brow wax, and a fitted piece of jewelry are four very different reasons to walk through the same door.
+            </p>
+            <p class="mt-6 text-[16px] leading-[1.8] text-muted">
+              You should be able to tell who you will see, how long to allow, and what the current menu says before you book. These are four of the visits that sit beyond the skin and injectable starting points above.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid border-b border-walnut/15 md:grid-cols-2">
+          {broaderPracticeServices.map((service, index) => (
+            <article
+              class:list={[
+                'flex min-h-[315px] flex-col justify-between py-9 md:p-10',
+                index > 0 ? 'border-t border-walnut/15' : '',
+                index % 2 === 1 ? 'md:border-l md:border-walnut/15' : '',
+                index > 1 ? 'md:border-t' : 'md:border-t-0',
+              ]}
+            >
+              <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">{service.label}</p>
+                <h3 class="mt-5 max-w-[480px] font-serif text-[30px] leading-[1.08] text-ink">{service.title}</h3>
+                <p class="mt-5 max-w-[500px] text-[15px] leading-[1.75] text-muted">{service.body}</p>
+              </div>
+              <a href={service.href} class="mt-8 inline-flex text-[13px] font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">
+                {service.cta}
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
         <div class="grid gap-10 border-b border-ivory/20 pb-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
           <div>
             <span class="kicker">Platelet-rich fibrin</span>
             <h2 class="max-w-[570px] font-serif text-[clamp(38px,5.5vw,60px)] leading-[1.02] tracking-[-0.02em] text-ivory">
-              Three uses of PRF. Three distinct appointments.
+              Three ways PRF appears at House of Rose.
             </h2>
           </div>
           <div class="max-w-[690px] lg:pt-8">
@@ -141,38 +226,50 @@ const treatmentCategories = [
               PRF is a platelet concentrate prepared from a small sample of your own blood. The way it is used changes what the appointment is for.
             </p>
             <p class="mt-6 text-[16px] leading-[1.8] text-ivory/72">
-              Topical PRF with microneedling, injectable under-eye PRF, and PRF Bio-Filler each have their own place on the current menu.
+              At House of Rose, topical PRF is used with microneedling, while under-eye PRF and PRF Bio-Filler are injectable appointments provided by Diana Morrison, RN.
             </p>
           </div>
         </div>
 
         <div class="grid divide-y divide-ivory/15 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
           <article class="py-9 lg:pr-9">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">On the skin</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">With microneedling</p>
             <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">Topical PRF with microneedling</h3>
             <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
               PRF is applied to the skin surface during an eligible microneedling service. It is not injected.
             </p>
+            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
+              {topicalPrf.durationMinutes} minutes · ${topicalPrf.priceUsd}
+            </p>
             <a href="/services/microneedling/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
-              Review microneedling
+              Microneedling with topical PRF
             </a>
           </article>
           <article class="py-9 lg:px-9">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Under the eyes</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Under-eye appointment</p>
             <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">Injectable PRF</h3>
             <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
               Diana Morrison, RN provides the under-eye PRF appointment under medical direction.
+            </p>
+            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
+              ${underEyePrf.priceUsd} · Call to confirm the appointment length
             </p>
             <a href="/services/prf-under-eyes/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
               Read about PRF under eyes
             </a>
           </article>
           <article class="py-9 lg:pl-9">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">A separate listing</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Bio-Filler appointment</p>
             <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">PRF Bio-Filler</h3>
             <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
-              The current booking menu lists PRF Bio-Filler as its own injectable appointment.
+              Diana Morrison, RN provides PRF Bio-Filler as an injectable appointment under medical direction.
             </p>
+            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
+              {bioFillerPrf.durationMinutes} minutes · ${bioFillerPrf.priceUsd}
+            </p>
+            <a href="/services/prf-injections/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
+              Injectable PRF appointments
+            </a>
           </article>
         </div>
 
@@ -188,7 +285,7 @@ const treatmentCategories = [
               Explore PRF
             </a>
             <a href="/services/dermal-fillers/" class="text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
-              Review dermal fillers
+              Dermal Fillers
             </a>
           </div>
         </div>
@@ -212,23 +309,23 @@ const treatmentCategories = [
         </figure>
 
         <div>
-          <span class="kicker">Looking well is specific</span>
+          <span class="kicker">The detail matters</span>
           <h2 class="font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink">
-            A tired look can have more than one source.
+            Bring us the thing you keep seeing in the mirror.
           </h2>
           <div class="mt-7 max-w-[650px] space-y-5 text-[17px] leading-[1.75] text-muted">
             <p>
-              An under-eye shadow can come from pigment, thin skin, hollowing, or a combination. Facial lines may reflect movement, volume, texture, or all three. Two concerns that look similar in a photograph can call for entirely different recommendations.
+              An under-eye shadow can come from pigment, thin skin, hollowing, or a combination. Facial lines may reflect movement, volume, texture, or all three. Two concerns that look similar in a photograph may point toward different services.
             </p>
             <p>
-              Begin with what you notice. From there, the treatment options become much easier to understand.
+              Point to it in the mirror, bring the photograph where it shows up, or simply describe when you notice it most. You do not need to name it before you ask about it; we can explain the relevant House of Rose services in plain language.
             </p>
           </div>
 
           <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-walnut/15 pt-7 text-[13px] font-semibold">
             <a href="/concerns/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Explore concerns</a>
             <a href="/compare/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Compare options</a>
-            <a href="/skin-analysis/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Review skin analysis</a>
+            <a href="/skin-analysis/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Skin Analysis</a>
           </div>
         </div>
       </div>
@@ -242,7 +339,7 @@ const treatmentCategories = [
             Who you trust with your face matters.
           </h2>
           <p class="mt-7 text-[17px] leading-[1.8] text-ivory/78">
-            House of Rose is owned by Diana Morrison, RN, and Amber Mingione, Licensed Esthetician. Their names, credentials, and roles are published plainly because trust should begin before the appointment.
+            Know who provides your appointment before you book it. Diana Morrison, RN provides injectables, IV hydration, and provider-guided weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy and Aundrea round out the team with facials, waxing, makeup artistry, and permanent jewelry.
           </p>
           <div class="mt-7 grid gap-3 border-t border-ivory/20 pt-6 text-[13px] leading-[1.6]">
             <a href="/about/providers/brandy/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
@@ -254,12 +351,15 @@ const treatmentCategories = [
             </a>
             <a href="/about/providers/aundrea/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
               <span>
-                <strong class="font-semibold">Aundrea Pedigo, Esthetician</strong><br />
+                <strong class="font-semibold">Aundrea Pedigo, Licensed Esthetician</strong><br />
                 <span class="text-ivory/65 group-hover:text-gold/80">Makeup artistry · Permanent jewelry</span>
               </span>
               <span aria-hidden="true">→</span>
             </a>
           </div>
+          <p class="mt-7 border-t border-ivory/20 pt-6 text-[14px] leading-[1.75] text-ivory/72">
+            Medical direction and the person providing your appointment are different roles. Joshua Shaw, MD provides medical direction and protocol supervision; he does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with your appointment.
+          </p>
           <p class="mt-7 border-t border-ivory/20 pt-6 text-[13px] font-semibold tracking-[0.02em] text-ivory">
             Medical Director: Joshua Shaw, MD · FL Lic. ME136232
           </p>
@@ -281,7 +381,7 @@ const treatmentCategories = [
             </div>
             <div class="px-2 pb-2 pt-5">
               <h3 class="font-serif text-[25px] text-ivory">Diana Morrison, RN</h3>
-              <p class="mt-2 text-[12px] uppercase tracking-[0.12em] text-ivory/65">Registered Nurse · Co-Owner</p>
+              <p class="mt-2 text-[12px] uppercase tracking-[0.12em] text-ivory/65">Registered Nurse</p>
             </div>
           </a>
 
@@ -299,7 +399,7 @@ const treatmentCategories = [
             </div>
             <div class="px-2 pb-2 pt-5">
               <h3 class="font-serif text-[25px] text-ivory">Amber Mingione</h3>
-              <p class="mt-2 text-[12px] uppercase tracking-[0.12em] text-ivory/65">Licensed Esthetician · Co-Owner</p>
+              <p class="mt-2 text-[12px] uppercase tracking-[0.12em] text-ivory/65">Licensed Esthetician</p>
             </div>
           </a>
         </div>
@@ -371,7 +471,7 @@ const treatmentCategories = [
         <div>
           <span class="kicker">Appointments &amp; inquiries</span>
           <h2 class="max-w-[700px] font-serif text-[clamp(40px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ivory">
-            Choose a service, or start with a consultation.
+            Know what you want—or tell us what you are still figuring out.
           </h2>
           <p class="mt-6 max-w-[650px] text-[17px] leading-[1.75] text-muted">
             If you already know the service you want, reserve it online. If you are comparing options—or want help identifying the concern—send an inquiry or call the practice.
