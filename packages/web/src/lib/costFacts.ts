@@ -247,16 +247,16 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'morpheus8-cost-punta-gorda': {
     display: '$450–$4,500',
     metaDescription: 'Morpheus8 at House of Rose in Punta Gorda runs from $450 single treatments to $4,500 body packages, with Burst, Resurfacing, Prime and bundle prices.',
-    summary: 'Morpheus8 prices depend on the applicator, treatment area, and whether the listing is one treatment or a series of three. Published prices run from $450 to $4,500.',
+    summary: 'Morpheus8 prices depend on the applicator, treatment area, and whether the price covers one treatment or a series of three. Prices run from $450 to $4,500.',
     answer: 'As of August 14, 2026, House of Rose lists Morpheus8 single treatments from $450 to $1,250. Three-treatment prices and packages run from $1,200 to $4,500, depending on the applicator and area.',
-    menuHeading: 'Every published Morpheus8 price, separated by applicator and area.',
+    menuHeading: 'Morpheus8 prices by applicator and area.',
     faqHeading: 'Burst, Resurfacing, Prime, and Burst Deep pricing.',
     verifiedAt: '2026-08-14',
     context: 'Burst, Resurfacing, and Prime have area-specific single and series-of-three prices. Hyperhidrosis and Burst Deep are three-treatment packages. The $1,799 Morpheus8 + Lumecca bundle covers two total treatments.',
     faqs: [
       {
-        question: 'What is the lowest published Morpheus8 single-treatment price?',
-        answer: 'Morpheus8 Prime Around the Eyes and Around the Mouth are each $450 for one treatment. Other published single-treatment prices range from $500 to $1,250 by applicator and area.',
+        question: 'What is the lowest Morpheus8 single-treatment price?',
+        answer: 'Morpheus8 Prime Around the Eyes and Around the Mouth are each $450 for one treatment. Other single-treatment prices range from $500 to $1,250 by applicator and area.',
       },
       {
         question: 'Which Morpheus8 prices are packages of three?',
@@ -264,7 +264,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'Does the $1,799 price represent Morpheus8 alone?',
-        answer: 'No. $1,799 is the published Morpheus8 + Lumecca bundle price for two total treatments.',
+        answer: 'No. $1,799 is the Morpheus8 + Lumecca bundle price for two total treatments.',
       },
     ],
     items: [
