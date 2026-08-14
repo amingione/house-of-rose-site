@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
 export const concern = defineType({
   name: 'concern',
   title: 'Concern',
@@ -23,7 +25,8 @@ export const concern = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (R) => R.required(),
+      description: 'Public concern-guide name. Use a specific, recognizable concern rather than a campaign phrase.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -34,16 +37,19 @@ export const concern = defineType({
     }),
     defineField({
       name: 'intro',
-      title: 'Intro',
+      title: 'Intro (not published)',
       type: 'text',
       rows: 4,
-      description: 'Opening context for what the client may be seeing or feeling. Be specific and useful without forcing the same question-and-answer pattern onto every concern.',
+      readOnly: true,
+      description: 'Legacy source field. Public concern guidance comes from the reviewed website education for each guide.',
     }),
     defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Image (not published)',
       type: 'image',
       options: { hotspot: true },
+      readOnly: true,
+      description: 'Legacy source asset retained with the record. Current concern pages do not render a concern image.',
       fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
     }),
     defineField({
@@ -53,8 +59,10 @@ export const concern = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
+      title: 'SEO (not published)',
       type: 'seo',
+      readOnly: true,
+      description: 'Legacy source field. Current concern metadata is generated from the public title and reviewed website education.',
     }),
   ],
   preview: {
