@@ -7,9 +7,9 @@ import { defineField, defineType } from 'sanity';
  * Compliance constraints encoded here on purpose:
  *  - A named practitioner must include the license type. This object records
  *    scope; the service's provider reference supplies the verified public name.
- *  - Every page that shows an outcome must carry a results-variance line
- *    (FL Board of Medicine Rule 64B8-11.001). `treatmentProviderScope.disclaimer`
- *    is required for that reason.
+ *  - Every page that shows an outcome must carry a service-specific results-
+ *    variance line (FL Board of Medicine Rule 64B8-11.001). Pages without an
+ *    outcome claim do not need generic disclaimer copy.
  *  - Price is display-only. GlossGenius remains commerce truth; this mirrors it.
  */
 
@@ -59,9 +59,9 @@ export const treatmentDowntime = defineType({
     }),
     defineField({
       name: 'timeline',
-      title: 'Recovery Timeline',
+      title: 'Recovery by Time Window',
       type: 'array',
-      description: 'Sequential milestones. Keep to what is typical, not best case.',
+      description: 'Approved time-window facts for this exact service. Do not fill every window or turn recovery into a required narrative.',
       of: [
         {
           type: 'object',
@@ -75,7 +75,7 @@ export const treatmentDowntime = defineType({
             }),
             defineField({
               name: 'expectation',
-              title: 'What to Expect',
+              title: 'Observable Guidance',
               type: 'text',
               rows: 2,
               validation: (R) => R.required(),
@@ -102,7 +102,7 @@ export const treatmentAftercare = defineType({
   name: 'treatmentAftercare',
   title: 'Aftercare',
   type: 'object',
-  description: 'Client-facing aftercare. Mirrors the clinical protocol but written for a client, not a provider.',
+  description: 'Reviewed instructions for this exact service. Leave the object absent when no approved client guidance exists.',
   fields: [
     defineField({
       name: 'intro',

@@ -6,14 +6,15 @@ import { defineField, defineType } from 'sanity';
  * See docs/CONTENT-MODEL-MAP.md.
  */
 const optionFields = (label: string) => [
-  defineField({ name: 'label', title: `${label} — Label`, type: 'string', validation: (R) => R.required() }),
-  defineField({ name: 'summary', title: `${label} — Summary`, type: 'text', rows: 3 }),
+  defineField({ name: 'label', title: `${label} — Label (not published)`, type: 'string', readOnly: true, description: 'Legacy source field. The reviewed website overlay supplies the public label.' }),
+  defineField({ name: 'summary', title: `${label} — Summary (not published)`, type: 'text', rows: 3, readOnly: true, description: 'Legacy source field. The reviewed website overlay supplies the public overview.' }),
   defineField({
     name: 'bestFor',
-    title: `${label} — Verified Distinction (review)`,
+    title: `${label} — Verified Distinction (not published)`,
     type: 'text',
     rows: 2,
-    description: 'State a sourced treatment role, area, or concern. Do not choose for the client or invent candidacy criteria.',
+    readOnly: true,
+    description: 'Legacy source field. The reviewed website overlay supplies the public distinction.',
   }),
   defineField({ name: 'service', title: `${label} — Service`, type: 'reference', to: [{ type: 'service' }] }),
 ];
@@ -25,9 +26,9 @@ export const comparison = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Internal Title',
       type: 'string',
-      description: 'Use the two treatment or service names in a factual “A vs B” title.',
+      description: 'Identifies this record in Studio. The reviewed website overlay supplies the public title.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -49,45 +50,48 @@ export const comparison = defineType({
         ],
         layout: 'radio',
       },
+      description: 'Live makes the record eligible for routing; it cannot publish without a matching reviewed website overlay.',
       validation: (R) => R.required(),
     }),
     defineField({
       name: 'intro',
-      title: 'Direct Answer / Intro',
+      title: 'Intro (not published)',
       type: 'text',
       rows: 3,
-      description: 'Answer-first: state the primary verified difference. Do not prescribe a choice or repeat consultation boilerplate.',
-      validation: (R) => R.required(),
+      readOnly: true,
+      description: 'Legacy source field. The reviewed website overlay supplies the public introduction.',
     }),
     defineField({ name: 'optionA', title: 'Option A', type: 'object', fields: optionFields('Option A') }),
     defineField({ name: 'optionB', title: 'Option B', type: 'object', fields: optionFields('Option B') }),
     defineField({
       name: 'rows',
-      title: 'Comparison Rows',
+      title: 'Comparison Rows (not published)',
       type: 'array',
+      readOnly: true,
       of: [
         {
           type: 'object',
           fields: [
-            defineField({ name: 'attribute', title: 'Attribute', type: 'string', validation: (R) => R.required() }),
+            defineField({ name: 'attribute', title: 'Attribute', type: 'string' }),
             defineField({ name: 'valueA', title: 'Option A', type: 'string' }),
             defineField({ name: 'valueB', title: 'Option B', type: 'string' }),
           ],
           preview: { select: { title: 'attribute', subtitle: 'valueA' } },
         },
       ],
-      description: 'Sourced differences only, such as modality, treatment area, verified duration, or reviewed recovery facts.',
+      description: 'Legacy source field. The reviewed website overlay supplies the public comparison table.',
     }),
     defineField({
       name: 'verdict',
-      title: 'Summary (review)',
+      title: 'Summary (not published)',
       type: 'text',
       rows: 4,
-      description: 'Restate the verified distinction without declaring a winner or choosing for the client.',
+      readOnly: true,
+      description: 'Legacy source field. The reviewed website overlay supplies the public summary.',
     }),
-    defineField({ name: 'faqs', title: 'FAQs', type: 'array', of: [{ type: 'faq' }] }),
+    defineField({ name: 'faqs', title: 'FAQs (not published)', type: 'array', of: [{ type: 'faq' }], readOnly: true, description: 'Legacy source field. Public FAQs and FAQPage schema come from the reviewed website overlay.' }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
-    defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
+    defineField({ name: 'seo', title: 'SEO (not published)', type: 'seo', readOnly: true, description: 'Legacy source field. The reviewed website overlay supplies current public metadata.' }),
   ],
   preview: { select: { title: 'title' } },
 });

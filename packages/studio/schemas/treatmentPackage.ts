@@ -49,6 +49,7 @@ export const treatmentPackage = defineType({
         ],
         layout: 'radio',
       },
+      description: 'Live makes the record eligible for publication; the website also requires a verified package slug before it can generate a public route.',
       initialValue: 'proposed',
     }),
     defineField({
@@ -66,10 +67,11 @@ export const treatmentPackage = defineType({
     }),
     defineField({
       name: 'whatsIncluded',
-      title: "What's Included",
+      title: "What's Included (not published)",
       type: 'text',
       rows: 3,
-      description: 'Plain-language summary of what the package contains.',
+      readOnly: true,
+      description: 'Legacy source field. Public package contents come from the Services Included references and reviewed package overlay.',
     }),
     defineField({
       name: 'cadence',
@@ -87,10 +89,11 @@ export const treatmentPackage = defineType({
     // ─── Website copy under review ────────────────────────────────────────────
     defineField({
       name: 'outcome',
-      title: 'Public Summary (review)',
+      title: 'Public Summary (not published)',
       type: 'text',
       rows: 2,
-      description: 'Stored source copy. Not currently rendered until voice and claims are approved.',
+      readOnly: true,
+      description: 'Legacy source field. The current public package pages do not render this copy.',
     }),
     defineField({
       name: 'positioning',
@@ -101,9 +104,10 @@ export const treatmentPackage = defineType({
     }),
     defineField({
       name: 'candidacyNote',
-      title: 'Suitability Note (review)',
+      title: 'Suitability Note (not published)',
       type: 'string',
-      description: 'Use only when a package-specific suitability fact is necessary. No default boilerplate.',
+      readOnly: true,
+      description: 'Legacy source field. The current public package pages do not render a generic suitability section.',
     }),
     defineField({
       name: 'image',

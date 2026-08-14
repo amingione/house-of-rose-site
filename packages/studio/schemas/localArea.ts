@@ -12,9 +12,9 @@ export const localArea = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Internal Title',
       type: 'string',
-      description: 'Plain area or city title. Service-specific geographic intent belongs in the served-service relationships.',
+      description: 'Identifies and orders this record in Studio. Public headings use the City field.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -28,18 +28,19 @@ export const localArea = defineType({
     defineField({ name: 'region', title: 'Region', type: 'string', initialValue: 'Charlotte County, FL' }),
     defineField({
       name: 'intro',
-      title: 'Intro / Direct Answer',
+      title: 'Intro (not published)',
       type: 'text',
       rows: 3,
-      description: 'Answer-first: who we serve in this area and what for, in plain language.',
-      validation: (R) => R.required(),
+      readOnly: true,
+      description: 'Legacy source field. The public introduction is generated from the verified practice address and City field.',
     }),
     defineField({
       name: 'whyLocal',
-      title: 'Location Facts',
+      title: 'Location Facts (not published)',
       type: 'text',
       rows: 5,
-      description: 'Verified distance, route, neighborhood, or location facts. Do not invent authority or demand signals.',
+      readOnly: true,
+      description: 'Legacy source field. The current public area page does not publish this CMS section.',
     }),
     defineField({
       name: 'servedServices',
@@ -55,7 +56,7 @@ export const localArea = defineType({
       of: [{ type: 'string' }],
       description: 'Nearby neighborhoods or towns served from this location.',
     }),
-    defineField({ name: 'faqs', title: 'FAQs', type: 'array', of: [{ type: 'faq' }] }),
+    defineField({ name: 'faqs', title: 'FAQs (not published)', type: 'array', of: [{ type: 'faq' }], readOnly: true, description: 'Legacy source field. Public area FAQs and FAQPage schema are generated together from verified practice facts.' }),
     defineField({
       name: 'image',
       title: 'Image',
@@ -64,7 +65,7 @@ export const localArea = defineType({
       fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
     }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
-    defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
+    defineField({ name: 'seo', title: 'SEO (not published)', type: 'seo', readOnly: true, description: 'Legacy source field. Public metadata is generated from City and the verified Punta Gorda practice location.' }),
   ],
   preview: { select: { title: 'title', subtitle: 'city', media: 'image' } },
 });

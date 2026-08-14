@@ -12,23 +12,22 @@ import { defineField } from 'sanity';
  *     ...treatmentPageFields,
  *   ],
  *
- * Everything here is additive and optional at the schema level, so no existing
- * document is invalidated. Completeness is enforced at build time instead —
- * see `packages/studio/scripts/verify-treatment-pages.mjs`, which fails the build
- * when a service with `status: "live"` is missing a required block.
+ * Everything here is additive and optional at the schema level. A block belongs
+ * on a public page only when House of Rose has reviewed, service-specific facts
+ * for it; an empty template is not evidence and must not become generic copy.
  */
 export const treatmentPageFields = [
   defineField({
     name: 'downtime',
     title: 'Downtime',
     type: 'treatmentDowntime',
-    description: 'Recovery expectation. Required for every live treatment.',
+    description: 'Use only for reviewed, service-specific recovery information. Do not fill this field with a generic estimate.',
   }),
   defineField({
     name: 'aftercare',
     title: 'Aftercare',
     type: 'treatmentAftercare',
-    description: 'Client-facing aftercare. Required for every live treatment.',
+    description: 'Use only for reviewed instructions tied to this exact service. Do not infer a standard protocol.',
   }),
   defineField({
     name: 'providerScope',

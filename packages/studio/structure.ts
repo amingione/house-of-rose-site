@@ -33,16 +33,8 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
             .items([
               S.listItem().title('About Section').id('aboutPage')
                 .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
-              S.listItem().title('Experience Page').id('experiencePage')
-                .child(S.document().schemaType('experienceContent').documentId('experienceContent')),
-              S.listItem().title('Jane Iredale Products').id('janeIredalePage')
-                .child(S.document().schemaType('janeIredalePage').documentId('janeIredalePage')),
-              S.listItem().title('Skin Analysis Page').id('skinAnalysis')
-                .child(S.document().schemaType('skinAnalysis').documentId('skinAnalysis')),
               S.listItem().title('Rent a Room Page').id('rentARoom')
                 .child(S.document().schemaType('rentARoom').documentId('rentARoom')),
-              S.listItem().title('Contact Page').id('contactPage')
-                .child(S.document().schemaType('contactPage').documentId('contactPage')),
               S.listItem().title('Support Page').id('supportPage')
                 .child(S.document().schemaType('supportPage').documentId('supportPage')),
               S.listItem().title('Privacy Policy Page').id('privacyPolicy')
@@ -76,9 +68,9 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
 
       // Products
       S.listItem()
-        .title('Products')
+        .title('Products (storefront disabled)')
         .schemaType('product')
-        .child(S.documentTypeList('product').title('Products')),
+        .child(S.documentTypeList('product').title('Products (storefront disabled)')),
 
       S.divider(),
 

@@ -1,18 +1,17 @@
 #!/usr/bin/env node
 /**
- * Fails the build when a live service is missing a required treatment-page block.
+ * Checks live treatment pages for factual, credential, claims, and pricing risk.
  *
  *   node packages/studio/scripts/verify-treatment-pages.mjs
  *   node packages/studio/scripts/verify-treatment-pages.mjs --warn   # report, exit 0
  *
- * The schema keeps these fields optional so existing documents remain editable;
- * this verifier checks completeness and factual risk at publication time.
+ * Optional public blocks remain optional until reviewed, service-specific facts
+ * exist. This verifier must not pressure editors to fill gaps with generic copy.
  *
  * Checks, in order of severity:
  *   BLOCKING  — live service with no providerScope, or an invalid supplied variance note
  *   BLOCKING  — a staff or owner name found in client-facing copy
  *   BLOCKING  — banned voice or compliance language
- *   WARNING   — live service missing downtime, aftercare, priceRange, or whyQualified
  *   WARNING   — priceRange verified against GlossGenius more than 90 days ago
  */
 
@@ -65,7 +64,6 @@ const BANNED_PHRASES = [
   { term: 'groupon', why: 'compliance — discount framing' },
 ];
 
-const REQUIRED_BLOCKS = ['downtime', 'aftercare', 'priceRange', 'whyQualified'];
 const STALE_PRICE_DAYS = 90;
 
 const QUERY = /* groq */ `
@@ -145,12 +143,6 @@ async function main() {
       if (text.includes(term)) {
         blocking.push(`${label} — banned phrase "${term}" (${why}).`);
       }
-    }
-
-    for (const block of REQUIRED_BLOCKS) {
-      const value = doc[block];
-      const empty = value == null || (Array.isArray(value) && value.length === 0);
-      if (empty) warnings.push(`${label} — missing ${block}.`);
     }
 
     const age = daysSince(doc.priceRange?.verifiedAgainstGlossGenius);

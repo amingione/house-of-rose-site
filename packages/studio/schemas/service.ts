@@ -181,7 +181,7 @@ export const service = defineType({
       title: 'Verified Service Facts (review)',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Short factual statements requiring source and claims review before public use.',
+      description: 'Specific, source-backed facts that help a client understand the service. Useful detail is welcome; repetition and unsupported outcomes are not.',
       validation: (R) => R.max(8),
     }),
     defineField({
@@ -227,7 +227,7 @@ export const service = defineType({
       title: 'FAQs',
       type: 'array',
       of: [{ type: 'faq' }],
-      description: 'Common questions about this service',
+      description: 'Add only real client questions that are not already answered clearly elsewhere on the page.',
     }),
     defineField({
       name: 'relatedServices',

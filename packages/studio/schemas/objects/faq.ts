@@ -2,8 +2,8 @@ import { defineField, defineType } from 'sanity';
 import { validatePublicCopy } from '../validation/publicCopy';
 
 /**
- * Shared FAQ object — reused across AEO page-type documents.
- * Question-shaped entries power FAQPage JSON-LD and AI Overview extraction.
+ * Shared FAQ object — reused across AEO page-type documents when a real client
+ * question is clearer than covering the same fact in ordinary page copy.
  */
 export const faq = defineType({
   name: 'faq',
@@ -22,7 +22,7 @@ export const faq = defineType({
       title: 'Answer',
       type: 'text',
       rows: 3,
-      description: 'Answer-first: lead with the direct answer, then support it.',
+      description: 'Give the useful answer promptly, then add the context the client needs. Do not force every answer into the same sentence pattern.',
       validation: (R) => R.required().custom(validatePublicCopy),
     }),
   ],

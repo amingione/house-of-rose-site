@@ -37,7 +37,7 @@ export const concern = defineType({
       title: 'Intro',
       type: 'text',
       rows: 4,
-      description: 'Short framing paragraph shown at the top of the concern page',
+      description: 'Opening context for what the client may be seeing or feeling. Be specific and useful without forcing the same question-and-answer pattern onto every concern.',
     }),
     defineField({
       name: 'image',
