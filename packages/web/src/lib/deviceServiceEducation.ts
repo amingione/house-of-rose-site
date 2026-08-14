@@ -10,6 +10,11 @@ export interface DeviceServiceMenuFacts {
     readonly name: string;
     readonly priceUsd: number;
   }[];
+  readonly singleAndSeriesPrices?: readonly {
+    readonly name: string;
+    readonly singlePriceUsd: number;
+    readonly seriesOfThreePriceUsd: number;
+  }[];
   readonly bundle?: {
     readonly name: string;
     readonly priceUsd: number;
@@ -142,6 +147,16 @@ export const DEVICE_SERVICE_EDUCATION = {
         maximumUsd: 2600,
         basis: 'treatment area and single- or three-session selection',
       },
+      singleAndSeriesPrices: [
+        { name: 'Legs', singlePriceUsd: 850, seriesOfThreePriceUsd: 2400 },
+        { name: 'Full Face', singlePriceUsd: 500, seriesOfThreePriceUsd: 1200 },
+        { name: 'Chest', singlePriceUsd: 500, seriesOfThreePriceUsd: 1300 },
+        { name: 'Neck', singlePriceUsd: 350, seriesOfThreePriceUsd: 900 },
+        { name: 'Face & Neck', singlePriceUsd: 800, seriesOfThreePriceUsd: 2000 },
+        { name: 'Face, Neck & Chest', singlePriceUsd: 950, seriesOfThreePriceUsd: 2600 },
+        { name: 'Spot Treatment', singlePriceUsd: 250, seriesOfThreePriceUsd: 800 },
+        { name: 'Hands', singlePriceUsd: 350, seriesOfThreePriceUsd: 900 },
+      ],
     },
   },
   morpheus8: {

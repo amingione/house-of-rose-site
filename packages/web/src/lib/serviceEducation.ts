@@ -586,11 +586,12 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     const areaList = device.currentAreas?.join(', ') ?? '';
     const consultation = device.menu.consultation;
     const treatmentPriceRange = device.menu.treatmentPriceRange;
+    const singleAndSeriesPrices = device.menu.singleAndSeriesPrices ?? [];
 
     return {
       kicker: device.title,
       heading: 'Filtered light for visible pigment and uneven tone.',
-      metaDescription: 'Lumecca Peak IPL at House of Rose uses filtered optical energy, with a $50 consultation and appointments organized across eight areas.',
+      metaDescription: 'Lumecca Peak IPL at House of Rose uses filtered optical energy. Compare the $50 consultation and exact single- or three-session prices across eight areas.',
       paragraphs: [
         device.whatItIs,
         `${device.whereItFits} House of Rose books it for ${areaList}.`,
@@ -613,20 +614,37 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             ]
           : []),
       ],
-      menu: consultation
+      menu: consultation && singleAndSeriesPrices.length > 0
         ? {
-            heading: 'Lumecca Peak consultation',
-            intro: treatmentPriceRange
-              ? `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Separate treatment listings range from $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')} to $${treatmentPriceRange.maximumUsd.toLocaleString('en-US')}, based on ${treatmentPriceRange.basis}.`
-              : `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed.`,
+            heading: 'Consultation and Lumecca Peak pricing by area',
+            intro: `The ${formatUsd(consultation.priceUsd)} consultation is priced separately. Each of the eight treatment areas has a single-session price and a three-session price.`,
             verifiedAt: 'August 6, 2026',
             items: [
               {
                 name: consultation.name,
                 price: formatUsd(consultation.priceUsd),
+                note: 'Starting consultation',
               },
+              ...singleAndSeriesPrices.map((item) => ({
+                name: item.name,
+                price: `${formatUsd(item.singlePriceUsd)} single · ${formatUsd(item.seriesOfThreePriceUsd)} series of 3`,
+              })),
             ],
           }
+        : consultation
+          ? {
+              heading: 'Lumecca Peak consultation',
+              intro: treatmentPriceRange
+                ? `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Separate treatment listings range from $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')} to $${treatmentPriceRange.maximumUsd.toLocaleString('en-US')}, based on ${treatmentPriceRange.basis}.`
+                : `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed.`,
+              verifiedAt: 'August 6, 2026',
+              items: [
+                {
+                  name: consultation.name,
+                  price: formatUsd(consultation.priceUsd),
+                },
+              ],
+            }
         : undefined,
       faqs: [
         {
@@ -641,7 +659,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? [
               {
                 question: `What does the $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')}–$${treatmentPriceRange.maximumUsd.toLocaleString('en-US')} Lumecca Peak range mean?`,
-                answer: `The range covers separate treatment-area listings for a single session or three sessions. The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment and is priced separately.`,
+                answer: `The range covers eight separate treatment areas, each with a single-session price and a three-session price. The ${formatUsd(consultation.priceUsd)} consultation is priced separately.`,
               },
             ]
           : []),
