@@ -45,7 +45,7 @@ const renderResponse = (title: string, message: string, status: number): Respons
 			<section>
 				<h1>${escapeHtml(title)}</h1>
 				<p>${escapeHtml(message)}</p>
-				<a href="/privacy-policy#privacy-contact">Return to privacy policy</a>
+				<a href="/privacy-policy/#privacy-contact">Return to privacy policy</a>
 			</section>
 		</main>
 	</body>
