@@ -5,8 +5,8 @@
 > for the task, verify operational facts against their current owner documents, and treat all prior
 > positioning, personality, message, and prose systems as archival unless Amber explicitly reapproves them.
 
-**Memory version:** 2.3.2
-**Last updated:** 2026-08-13
+**Memory version:** 2.3.3
+**Last updated:** 2026-08-14
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
 **Current state:** Voice reset in progress. Verified business, clinical, compliance, and operational facts remain usable; the Claude-developed voice and positioning language are rejected. A concrete, education-led homepage body is now in local testing and is not approved for Sanity publication; the homepage practice/interior section is approved and may be synced to Sanity.
 
@@ -69,10 +69,13 @@ that calibration is approved.
 For the homepage, Amber directed the brand toward the standards associated with
 affluent aesthetics markets such as Naples, Sarasota, Boca Raton, Scottsdale,
 and Newport Beach. The differentiator is discernment: a clear point of view,
-restraint, and knowing what not to do. Keep copy minimal. Avoid defaulting to
-confidence, glow, radiance, beauty, self-care, age gracefully, look your best,
-or personalized treatments. This is approved direction for the homepage section
-currently being revised, not yet authorization for a sitewide rewrite.
+restraint, and knowing what not to do. Avoid defaulting to confidence, glow,
+radiance, beauty, self-care, age gracefully, look your best, or personalized
+treatments. The initial instruction to keep one homepage section minimal is not a
+page-wide short-copy rule: Amber's 2026-08-14 direction requires substantive
+service distinctions, real people, and real-space proof where they help a client
+understand the practice. This remains homepage direction, not authorization for a
+sitewide rewrite.
 
 ### Creative freedom and review boundary — 2026-08-13
 
@@ -595,12 +598,13 @@ settled questions or repeating rejected approaches.
 | DEC-002 | 2026-08-06 | Remove skin-tightening and lifting positioning from Morpheus8 and Lumecca. Route Morpheus8 only to visible tone, texture, eligible scars, and stretch marks; route Lumecca only to visible pigment, uneven tone, and selected texture. | These are the treatment lanes explicitly approved by the owner after review of the supplied InMode materials. | Applies to website copy, SEO, structured data, comparisons, cost guides, articles, booking descriptions, concern references, and visual evidence. The former Forma-firmness clause is `[SUPERSEDED]` by DEC-003. | User direction / Amber | `[DECIDED]` |
 | DEC-003 | 2026-08-06 | Position Forma only for the appearance of crepey-looking facial texture and to support the skin’s collagen response. Do not market it for tightening, lifting, sculpting, contouring, firmness, laxity, jowls, a facelift effect, or a more-defined facial shape. | The owner prohibited reshaping language and approved a texture-and-collagen explanation. The retained split-face tissue study supports cautious collagen-response wording. | Applies to the Forma service page, SEO, structured data, cost guide, FAQs, collection copy, evidence captions, booking copy, concern references, and visual evidence. | User direction / Amber | `[DECIDED]` |
 | DEC-004 | 2026-08-13 | Reject and freeze the Claude-developed brand voice across the Creative System, brand memory, and current website. Preserve facts and compliance, but rebuild tone and positioning from Amber's direct feedback instead of extending existing copy. | Amber stated that she “absolutely hates” the voice Claude has been forming while the website was built. | Existing voice/personality/tagline/message rules are not approval evidence. No sitewide rewrite or Sanity publish until a replacement calibration is approved. | User direction / Amber | `[DECIDED]` |
-| DEC-005 | 2026-08-13 | Calibrate the homepage toward discernment, restraint, and point of view for an affluent aesthetics audience; keep the language minimal and avoid standard med-spa outcome clichés. | Amber identified Naples, Sarasota, Boca Raton, Scottsdale, and Newport Beach as the market benchmark and stated that sophisticated clients are choosing judgment, not a treatment list. | Apply to the homepage section under revision. Treat broader rollout as unapproved until Amber directs it. | User direction / Amber | `[DECIDED]` |
+| DEC-005 | 2026-08-13 | Calibrate the homepage toward discernment, restraint, and point of view for an affluent aesthetics audience; keep the section under revision concise and avoid standard med-spa outcome clichés. | Amber identified Naples, Sarasota, Boca Raton, Scottsdale, and Newport Beach as the market benchmark and stated that sophisticated clients are choosing judgment, not a treatment list. | Retain the discernment direction. The short-homepage interpretation is superseded by DEC-011; broader voice rollout remains unapproved until Amber directs it. | User direction / Amber | `[DECIDED]` for discernment; `[SUPERSEDED]` for page-wide minimalism |
 | DEC-006 | 2026-08-13 | Make clinical review proportional, treat AI as a creative collaborator bounded by truthful representation, and stop repeating walk-in status as brand copy. | Amber rejected blanket clinical approval, objected to operational facts becoming overused copy, and said the prior AI restriction was eliminating creativity. | Review new or materially changed clinical claims instead of every routine sentence; invite original creative concepts; keep walk-in details to the relevant platform setting and one direct FAQ. | User direction / Amber | `[DECIDED]` |
 | DEC-007 | 2026-08-13 | Do not enforce voice through global runtime word replacement. Fix voice in the source; reserve automation for factual normalization, placement rules, and risk flags. | Hermes identified artifacts such as “healthy, natural healthy-looking finish,” confirming that reactive substitutions were making the writing less human. | `publicCopy.ts` must not rewrite broad style words into stock alternatives. It may preserve verified operational corrections, suppress misplaced walk-in boilerplate, and warn about high-risk claims. | Hermes review accepted by Amber / implementation finding | `[DECIDED]` |
 | DEC-008 | 2026-08-13 | Test a homepage body built around specific concern and treatment distinctions, with topical PRF and injectable PRF kept distinct. The current booking menu separately names PRF Bio-Filler; do not treat it as equivalent to the Sanity service named EZ Gel Bio-Filler unless Diana resolves the naming question. | Amber asked for knowledgeable, persuasive, informative copy and deeper education on PRF's versatility after rejecting abstract, repetitive section headlines. Current GlossGenius evidence does not establish PRF Bio-Filler and EZ Gel as the same service. | The draft remains local and code-authored so stale Sanity voice cannot override it. Do not publish this wording to Sanity or roll it across the site until Amber approves the direction. Preserve the topical-versus-injectable distinction and route ambiguous Bio-Filler references to the PRF overview. | Direct user instruction / local homepage rebuild; GlossGenius naming audit | `[TESTING]` |
 | DEC-009 | 2026-08-13 | Approve the factual, minimal homepage practice/interior section and its address-first storefront caption. | Amber preferred local proof and real-space photography over language that told the reader how to interpret the design. | This section may be synced to Sanity. Retain the descriptive image alt text; visible storefront caption is “525 E Olympia Avenue” and “Unit 9.” | Direct user approval / Amber | `[DECIDED]` |
 | DEC-010 | 2026-08-13 | Use `H_OF_A_EXTERIOR_WINDOW_DECALS.webp` as the homepage exterior image and preserve its 3:4 portrait composition. | Amber explicitly preferred this storefront view to the previous exterior photograph. | Homepage uses responsive 700 px and 1000 px derivatives without changing the source image. | Direct user approval / Amber | `[DECIDED]` |
+| DEC-011 | 2026-08-14 | Preserve a substantive homepage that explains what House of Rose offers and what the practice feels like; do not shorten it merely for SEO or visual restraint. | Amber rejected the short-homepage interpretation because atmosphere cannot replace useful treatment information. | Use real people, the actual space, concrete service distinctions, and natural explanation together. Remove only unsupported, stale, or genuinely repetitive material. | Direct user instruction / Amber | `[DECIDED]` |
 
 ---
 
@@ -718,6 +722,7 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-14 | 2.3.3 | Voice calibration, decision ledger | Removed the stale page-wide minimalism rule and recorded Amber's later decision to preserve substantive homepage information. | Direct user instruction / Amber |
 | 2026-08-13 | 2.3.2 | Approved copy library, decision ledger | Recorded the approved homepage exterior photograph and its uncropped 3:4 presentation. | Direct user approval / Amber |
 | 2026-08-13 | 2.3.1 | Current state, approved copy library, decision ledger | Approved the homepage practice/interior section and simplified its visible storefront caption to the address and unit. | Direct user approval / Amber |
 | 2026-08-13 | 2.3.0 | Current state, voice operating system, decision ledger | Recorded the local homepage voice test: concrete distinctions, declarative headlines, varied rhythm, and a three-form PRF education narrative; explicitly kept it unapproved for Sanity publication. | Direct user instruction / homepage rebuild and PRF evidence review |
