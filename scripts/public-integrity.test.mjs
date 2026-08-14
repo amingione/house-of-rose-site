@@ -1982,33 +1982,34 @@ test('results index explains the proof standard even when no cases are published
     /<section\b[^>]*data-results-standard[^>]*>([\s\S]*?)<\/section>/i,
   )?.[1] ?? '';
   const text = visibleText(standard);
+  const mainText = visibleText(main);
   const failures = [];
 
-  for (const required of [
-    'Two pictures can be persuasive before they are informative.',
-    'same distance, crop, angle, lighting, and background',
-    'Retouching or editing must not change the apparent result.',
-    'anything else used in the same series that contributed to the result',
-    'The elapsed timeframe—and the number of sessions when relevant',
-    'Written client permission is required for website publication.',
-    'Will my photographs be published?',
-    'A treatment appointment does not, by itself, authorize website publication.',
-    'individual results vary',
+  if (!standard) failures.push('results index: missing proof-standard section');
+  for (const [label, pattern] of [
+    ['comparable-photo conditions', /same distance[\s\S]{0,40}crop[\s\S]{0,40}angle[\s\S]{0,40}lighting[\s\S]{0,40}background/i],
+    ['no result-changing edits', /(?:retouching|editing)[\s\S]{0,80}(?:must not|cannot|can't)[\s\S]{0,80}(?:change|alter)[\s\S]{0,60}(?:apparent )?result/i],
+    ['concurrent-treatment context', /treatment[\s\S]{0,120}(?:anything else|other service|add-on)[\s\S]{0,120}(?:contributed|used)[\s\S]{0,60}result/i],
+    ['timeframe and session context', /(?:elapsed )?timeframe[\s\S]{0,100}(?:number of )?sessions/i],
+    ['written publication permission', /written[\s\S]{0,60}(?:client )?permission[\s\S]{0,80}website publication/i],
+    ['appointment is not publication consent', /treatment appointment[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}authoriz[\s\S]{0,80}(?:website )?publication/i],
+    ['individual-variation boundary', /individual (?:results|outcomes) vary/i],
+    ['documented example is not a forecast', /documented example[\s\S]{0,80}not a forecast/i],
+    ['photographs cannot predict an outcome', /photographs? alone[\s\S]{0,100}(?:cannot|can't)[\s\S]{0,100}(?:outcome|result)/i],
   ]) {
-    if (!text.includes(required)) failures.push(`results index: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`results index: missing ${label}`);
   }
 
   if (/<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(html)) {
-    for (const required of [
-      'Why the gallery is empty',
-      'An empty gallery is better than borrowed proof.',
-      'No House of Rose client cases are currently published.',
-      'rather than filled with stock or context-free images',
-      'written permission for website publication',
-      'the treatment and timeframe can be shown with the photographs',
+    for (const [label, pattern] of [
+      ['no currently published client cases', /No House of Rose client cases[\s\S]{0,60}currently published/i],
+      ['no stock/context-free stand-ins', /(?:stock|borrowed)[\s\S]{0,100}context-free images/i],
+      ['written website-publication permission', /written permission[\s\S]{0,80}website publication/i],
+      ['treatment/timeframe photo context', /treatment[\s\S]{0,80}timeframe[\s\S]{0,100}photographs/i],
+      ['appointment still does not authorize publication', /service appointment[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}authoriz[\s\S]{0,80}publication/i],
     ]) {
-      if (!visibleText(main).includes(required)) {
-        failures.push(`results index: empty state is missing ${JSON.stringify(required)}`);
+      if (!pattern.test(mainText)) {
+        failures.push(`results index: empty state is missing ${label}`);
       }
     }
   }
@@ -2018,16 +2019,21 @@ test('results index explains the proof standard even when no cases are published
     'Use the service—not the photograph—as your starting point.',
     'A service page explains',
   ]) {
-    if (visibleText(main).includes(retired)) failures.push(`results index: contains retired ${JSON.stringify(retired)}`);
+    if (mainText.includes(retired)) failures.push(`results index: contains retired ${JSON.stringify(retired)}`);
   }
-  for (const required of [
-    'A photograph can start the conversation. It cannot finish it.',
-    'cannot predict how your skin will respond',
-    'not a promise to recreate someone else’s result',
-    'href="/services/"',
-    'href="/compare/"',
+  const nextStep = main.match(
+    /<section\b[^>]*data-results-next-step[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
+  const nextStepText = visibleText(nextStep);
+  for (const [label, pattern] of [
+    ['photo starts but cannot finish the conversation', /photograph[\s\S]{0,80}(?:start|begin)[\s\S]{0,80}conversation[\s\S]{0,80}(?:cannot|can't|does not)[\s\S]{0,50}finish/i],
+    ['individual response cannot be predicted', /(?:cannot|can't)[\s\S]{0,80}predict[\s\S]{0,80}(?:skin|response)/i],
+    ['no promise to recreate another result', /not a promise[\s\S]{0,100}recreate[\s\S]{0,100}(?:someone else|another person)/i],
   ]) {
-    if (!main.includes(required)) failures.push(`results index: missing useful next step ${JSON.stringify(required)}`);
+    if (!pattern.test(nextStepText)) failures.push(`results index: missing ${label}`);
+  }
+  for (const href of ['/services/', '/compare/']) {
+    if (!nextStep.includes(`href="${href}"`)) failures.push(`results index: next step is missing ${href}`);
   }
 
   assert.equal(failures.length, 0, formatFailures('Results-proof standard regression', failures));
