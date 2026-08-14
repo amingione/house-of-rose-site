@@ -58,6 +58,20 @@
   </form>
 </dialog>
 
+<style is:global>
+  html[data-consent-banner-visible] {
+    scroll-padding-block-end: calc(var(--consent-banner-height, 0px) + 0.5rem);
+  }
+
+  html[data-consent-banner-visible] body {
+    padding-block-end: calc(var(--consent-banner-height, 0px) + 0.5rem);
+  }
+
+  html[data-consent-banner-visible] .fixed.bottom-0:not(#consent-banner) {
+    bottom: calc(var(--consent-banner-height, 0px) + 0.5rem);
+  }
+</style>
+
 <script>
   import { applyConsent, getConsent, hasStoredConsent } from '@/lib/measurement';
 
@@ -68,7 +82,24 @@
   const gpcNote = document.getElementById('consent-gpc-note');
   let preferencesOpener: HTMLElement | null = null;
 
-  const closeBanner = (): void => banner?.classList.add('hidden');
+  const root = document.documentElement;
+  const clearBannerReserve = (): void => {
+    root.removeAttribute('data-consent-banner-visible');
+    root.style.removeProperty('--consent-banner-height');
+  };
+  const syncBannerReserve = (): void => {
+    if (!banner || banner.classList.contains('hidden')) {
+      clearBannerReserve();
+      return;
+    }
+
+    root.style.setProperty('--consent-banner-height', `${Math.ceil(banner.getBoundingClientRect().height)}px`);
+    root.setAttribute('data-consent-banner-visible', '');
+  };
+  const closeBanner = (): void => {
+    banner?.classList.add('hidden');
+    clearBannerReserve();
+  };
   const openPreferences = (): void => {
     preferencesOpener = document.activeElement instanceof HTMLElement
       ? document.activeElement
@@ -135,5 +166,15 @@
     dialog?.close();
   });
 
-  if (!hasStoredConsent()) banner?.classList.remove('hidden');
+  if (!hasStoredConsent()) {
+    banner?.classList.remove('hidden');
+    syncBannerReserve();
+  } else {
+    clearBannerReserve();
+  }
+
+  if (banner && typeof ResizeObserver !== 'undefined') {
+    const bannerResizeObserver = new ResizeObserver(syncBannerReserve);
+    bannerResizeObserver.observe(banner);
+  }
 </script>
