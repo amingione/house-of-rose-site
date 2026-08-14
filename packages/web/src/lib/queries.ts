@@ -1425,7 +1425,12 @@ export const ALL_LOCAL_AREA_SLUGS_QUERY = /* groq */ `
 export const ALL_CASE_STUDIES_QUERY = /* groq */ `
   *[_type == "caseStudy" && consentGiven == true] | order(orderRank asc, _createdAt desc) {
     _id, title, "slug": slug.current, clientProfile, timeframe, _updatedAt,
-    "treatment": select(!(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => treatment->{ ${SERVICE_REF_FIELDS} }),
+    "treatment": select(
+      treatment->status in ["live", "actual-menu"] &&
+      defined(treatment->slug.current) &&
+      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
+        treatment->{ ${SERVICE_REF_FIELDS} }
+    ),
     "afterImage": afterImage { asset->{ url, metadata { dimensions } }, alt },
     "seo": seo { metaTitle, metaDescription }
   }
@@ -1434,7 +1439,12 @@ export const ALL_CASE_STUDIES_QUERY = /* groq */ `
 export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
   *[_type == "caseStudy" && slug.current == $slug && consentGiven == true][0] {
     _id, title, "slug": slug.current, consentGiven, clientProfile, protocol, timeframe, outcome, _updatedAt,
-    "treatment": select(!(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => treatment->{ ${SERVICE_REF_FIELDS} }),
+    "treatment": select(
+      treatment->status in ["live", "actual-menu"] &&
+      defined(treatment->slug.current) &&
+      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
+        treatment->{ ${SERVICE_REF_FIELDS} }
+    ),
     "concern": concern->{ title, "slug": slug.current },
     "beforeImage": beforeImage { asset->{ url, metadata { dimensions } }, alt },
     "afterImage": afterImage { asset->{ url, metadata { dimensions } }, alt },

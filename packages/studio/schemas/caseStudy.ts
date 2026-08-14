@@ -33,7 +33,16 @@ export const caseStudy = defineType({
       description: 'REQUIRED to publish. Do not display before/after photos without written consent.',
       validation: (R) => R.required(),
     }),
-    defineField({ name: 'treatment', title: 'Treatment', type: 'reference', to: [{ type: 'service' }], validation: (R) => R.required() }),
+    defineField({
+      name: 'treatment',
+      title: 'Treatment',
+      type: 'reference',
+      to: [{ type: 'service' }],
+      options: {
+        filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+      },
+      validation: (R) => R.required(),
+    }),
     defineField({ name: 'concern', title: 'Concern', type: 'reference', to: [{ type: 'concern' }] }),
     defineField({
       name: 'beforeImage',

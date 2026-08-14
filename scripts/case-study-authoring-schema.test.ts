@@ -2,6 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { caseStudy } from '../packages/studio/schemas/caseStudy.ts';
+import {
+  ALL_CASE_STUDIES_QUERY,
+  CASE_STUDY_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 test('directly published case-study copy uses the shared public-copy guard', () => {
   for (const fieldName of ['title', 'clientProfile', 'protocol', 'timeframe', 'outcome']) {
@@ -40,5 +44,19 @@ test('consented results-image alt text uses the shared public-copy guard', () =>
     const { validate } = alt.validation(rule);
     assert.equal(validate('Documented treatment area before the recorded service.'), true);
     assert.match(String(validate('Flawless transformation after treatment.')), /retired or prohibited/i);
+  }
+});
+
+test('case-study treatment links can resolve only to generated public service routes', () => {
+  const treatment = caseStudy.fields.find(({ name }) => name === 'treatment');
+  assert.equal(treatment?.type, 'reference');
+  const authoringFilter = String(treatment?.options?.filter);
+
+  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
+  assert.match(authoringFilter, /defined\(slug\.current\)/);
+
+  for (const query of [ALL_CASE_STUDIES_QUERY, CASE_STUDY_BY_SLUG_QUERY]) {
+    assert.match(query, /treatment->status in \["live", "actual-menu"\]/);
+    assert.match(query, /defined\(treatment->slug\.current\)/);
   }
 });
