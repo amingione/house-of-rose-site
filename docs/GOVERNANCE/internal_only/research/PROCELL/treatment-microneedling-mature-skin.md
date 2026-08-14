@@ -2,7 +2,7 @@
 
 **Status:** Consolidated into the canonical Microneedling brief on 2026-08-06.
 
-Use `docs/internal_only/research/MICRONEEDLING/microneedling.md` for service taxonomy, routes, booking, candidacy framing, and copy guardrails.
+Use `docs/GOVERNANCE/internal_only/research/MICRONEEDLING/microneedling.md` for service taxonomy, routes, booking, candidacy framing, and copy guardrails.
 
 For mature-skin copy:
 

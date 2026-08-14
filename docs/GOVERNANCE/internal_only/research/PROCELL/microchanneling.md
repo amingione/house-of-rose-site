@@ -6,8 +6,8 @@
 
 Use these sources going forward:
 
-- Canonical service research: `docs/internal_only/research/MICRONEEDLING/microneedling.md`
-- Procell manufacturer and material research: `docs/internal_only/research/PROCELL/procell.md`
-- Procell source files: `docs/internal_only/research/PROCELL/Company_files/`
+- Canonical service research: `docs/GOVERNANCE/internal_only/research/MICRONEEDLING/microneedling.md`
+- Procell manufacturer and material research: `docs/GOVERNANCE/internal_only/research/PROCELL/procell.md`
+- Procell source files: `docs/GOVERNANCE/internal_only/research/PROCELL/Company_files/`
 
 Manufacturer-specific device and material facts may remain labeled Procell Microchanneling. Generic House of Rose service copy must use Microneedling.

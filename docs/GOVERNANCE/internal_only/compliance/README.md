@@ -1,9 +1,9 @@
-# docs/internal_only/compliance — Advertising and messaging compliance
+# docs/GOVERNANCE/internal_only/compliance — Advertising and messaging compliance
 
 The statutory and regulatory layer for House of Rose advertising. **Binding on every agent and person
 who writes, edits, builds or publishes customer-facing copy or ad creative.**
 
-`docs/internal_only/COMPLIANCE-COPY-RULES.md` governs public voice and claims. This directory contains
+`docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` governs public voice and claims. This directory contains
 the remaining operational controls for paid advertising and toll-free messaging.
 
 The draft files `FL-ADVERTISING-LAW.md` and `CONSULTATION-FEE-POLICY.md` were intentionally deleted on

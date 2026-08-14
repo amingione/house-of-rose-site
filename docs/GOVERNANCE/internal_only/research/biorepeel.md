@@ -2,7 +2,8 @@
 
 **Reconciled:** 2026-08-14
 
-**Commerce authority:** GlossGenius, mirrored in `docs/internal_only/services/ALL-SERVICES-PRICING.MD`
+**Commerce authority:** GlossGenius, mirrored in
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`
 
 **Current routes:** `/services/biorepeel/` and `/cost/biorepeel-cost-punta-gorda/`
 
@@ -125,7 +126,7 @@ Procell device.
 
 Primary current authority:
 
-- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — GlossGenius-backed names, prices, durations,
+- `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — GlossGenius-backed names, prices, durations,
   and booking status.
 - `CLAUDE.md` — provider responsibilities, credential rules, public claims, and route policy.
 - `packages/web/src/lib/skinRenewalServiceEducation.ts` — reviewed public BioRePeel facts and provider

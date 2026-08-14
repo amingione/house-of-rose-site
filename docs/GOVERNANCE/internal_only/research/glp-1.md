@@ -2,7 +2,8 @@
 
 **Reconciled:** 2026-08-14
 
-**Commerce authority:** GlossGenius, mirrored in `docs/internal_only/services/ALL-SERVICES-PRICING.MD`
+**Commerce authority:** GlossGenius, mirrored in
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`
 
 **Current route:** `/services/glp-1-weight-management/`
 
@@ -122,7 +123,7 @@ Call House of Rose. Medication and ongoing program charges are separate from the
 
 Primary current authority:
 
-- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — GlossGenius-backed consultation price,
+- `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — GlossGenius-backed consultation price,
   duration, and unresolved medication-price boundary.
 - `CLAUDE.md` — Diana Morrison, RN, written-protocol, medical-direction, credential, and public-claims
   rules.

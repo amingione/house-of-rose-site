@@ -215,9 +215,9 @@ Campaign or framework version reviewed: `[VERSION / COMMIT]` · Date: `[DATE]`
 | `[NAME, FIRM]` | Florida healthcare attorney | § 400.9905(4)(g) position · § 456.062 trigger and placement · 64B8-11.001 · 16 CFR § 255 image and endorsement exposure · fee policy sufficiency | | |
 | Amber Mingione | Owner | Gates G1–G15 evidenced | | |
 
-**Reviewed files:** `docs/internal_only/compliance/README.md` ·
-`docs/internal_only/compliance/GOOGLE-ADS-COMPLIANCE.md` ·
-`docs/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` · the shipping ad copy · the strategy document ·
+**Reviewed files:** `docs/GOVERNANCE/internal_only/compliance/README.md` ·
+`docs/GOVERNANCE/internal_only/compliance/GOOGLE-ADS-COMPLIANCE.md` ·
+`docs/GOVERNANCE/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` · the shipping ad copy · the strategy document ·
 the current external legal source packet supplied to the reviewers.
 
 ---

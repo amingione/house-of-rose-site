@@ -10,7 +10,7 @@
 
 ## Compliance guardrails when turning any of this into site copy (BINDING)
 
-Read `docs/internal_only/COMPLIANCE-COPY-RULES.md` first. Specific to this literature:
+Read `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` first. Specific to this literature:
 
 1. **Topical vs injectable is a hard line.** Most of these papers study **injected / microneedled**
    PRF (facial injections, plastic surgery, TMJ, scalp). At House of Rose:
@@ -26,7 +26,8 @@ Read `docs/internal_only/COMPLIANCE-COPY-RULES.md` first. Specific to this liter
 3. **No medical overclaiming.** This is clinical/surgical literature (wound healing, ulcers, bone).
    Facial aesthetics copy describes *appearance* outcomes only — "for the appearance of," "supports,"
    "designed to," "many clients notice." Never "treats/cures/heals" a condition.
-4. **Pricing never comes from research** — only from `docs/internal_only/services/**` and Sanity.
+4. **Pricing never comes from research** — only from
+   `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`, which mirrors current GlossGenius.
 
 ---
 
@@ -95,7 +96,8 @@ neuro, cardiac, diabetes, etc.) per Amber's note.
 ## How Phase 2 should use this
 
 - These are Amber's **private files**, not committed to the repo — reference by absolute path; do
-  not copy PDFs into the repo. Extract facts into `docs/internal_only/research/prf-*.md` briefs (per the pack).
+  not copy PDFs into the repo. Extract verified facts into the existing briefs under
+  `docs/GOVERNANCE/internal_only/research/PRF/`; do not create parallel research documents.
 - Tier 1 + the facial-esthetics half of Tier 2 are the primary inputs for the **PRF service hub,
   the PRF cost guide, the PRF-vs-microchanneling comparison, and PRF FAQ** content.
 - Keep the **topical (Amber) vs injectable (Diana, RN)** split explicit in every derived page.

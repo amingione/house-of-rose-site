@@ -90,7 +90,7 @@ page and match the URL entered in the application.
 - Keep the displayed opt-in wording, application description, and actual messaging use aligned.
 - Do not send a free, discounted, or credited health-service offer by SMS unless the exact Florida
   § 456.062 disclosure is included in that same message and the content has passed the
-  `docs/internal_only/compliance/` review gate. House of Rose's default is not to send discount messaging.
+  `docs/GOVERNANCE/internal_only/compliance/` review gate. House of Rose's default is not to send discount messaging.
 
 ### Final submission gate
 

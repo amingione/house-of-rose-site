@@ -54,7 +54,7 @@ Legend: **GG** = GlossGenius booking (`https://houseofrose.glossgenius.com/servi
 | 28 | `/blog/[slug]/` | `blog/[slug].astro` | `blogPost` · `BLOG_POST_BY_SLUG_QUERY` + `ALL_BLOG_POST_SLUGS_QUERY` | **Inline hand-rolled** `BlogPosting`+`BreadcrumbList` ⚠️ (`/blog` no-slash) | "Learn More" → `/services/{slug}` ⚠️ · GG | `/blog` ⚠️, `/services/{slug}` ⚠️. `Astro.redirect` ⚠️ |
 | 29 | `/packages/` | `packages/index.astro` | `treatmentPackage` · `ALL_TREATMENT_PACKAGES_QUERY` | none | tel · GG | package cards → `/packages/{slug}`. **ORPHAN cluster** ⚠️ |
 | 30 | `/packages/[slug]/` | `packages/[slug].astro` | `treatmentPackage` · `TREATMENT_PACKAGE_BY_SLUG_QUERY` + `ALL_TREATMENT_PACKAGE_SLUGS_QUERY` | **Inline hand-rolled** `Service`+`OfferCatalog`+`BreadcrumbList` ⚠️ | tel · GG | "← All Packages" ⚠️, included services ⚠️. `Astro.redirect` ⚠️ |
-| 31 | `/guides/microchanneling-prf/` | `guides/microchanneling-prf.astro` | **static/hardcoded** (from `docs/internal_only/services/microchanneling/`) | `breadcrumbList()`+`article()`+`faqPage()` ✅ | tel · sms · GG · "Compare the two →" | Richest link page, all ✅ trailing-slash. ⚠️ Breadcrumb cites `/guides/` — no index |
+| 31 | `/guides/microchanneling-prf/` | `guides/microchanneling-prf.astro` | **static/hardcoded** (from `docs/GOVERNANCE/internal_only/services/microchanneling/`) | `breadcrumbList()`+`article()`+`faqPage()` ✅ | tel · sms · GG · "Compare the two →" | Richest link page, all ✅ trailing-slash. ⚠️ Breadcrumb cites `/guides/` — no index |
 
 ### 1.4 Legal, cards & utilities
 

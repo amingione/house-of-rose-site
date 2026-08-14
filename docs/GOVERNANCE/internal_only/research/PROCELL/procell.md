@@ -252,10 +252,8 @@ triggers Fla. Stat. 456.062.
 ## Sources
 
 **Local docs read (paths):**
-- `docs/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education report; compliance framing, MD-vs-Pro verification cautions, PRF-topical-only rule, FDA delivery limitation.
-- `docs/internal_only/pricing/advanced-facials-master-menu.md` — **canonical pricing & framework**; Pro/MD serum tiers, MD = 2× growth factors / 40+ (confirmed), recombinant/no-cells-DNA-blood note, upgrade pricing, series framework, compliance §9.
-- `docs/internal_only/pricing/advanced-facials-pricing.md` — **deprecated** stub (redirects to master menu; no prices used from it).
-- `docs/internal_only/services/microchanneling/PRF.md` — **empty (0 bytes)** — see GAPS.
+- `docs/GOVERNANCE/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education report; compliance framing, MD-vs-Pro verification cautions, PRF-topical-only rule, FDA delivery limitation.
+- `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — sole current commerce authority for Procell Pro, Procell MD, and topical PRF Microneedling appointment names, prices, durations, and booking modes.
 
 **Sanity docs consulted (published snapshot):**
 - Canonical services: `microneedling`, `microneedling-body`, `prf-microneedling`, and `prf`. The former `microchanneling`, `microneedling-corrective`, and `procell-microchanneling-body` records are migration-history duplicates.
