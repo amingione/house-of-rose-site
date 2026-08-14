@@ -71,21 +71,21 @@ The **MD vs Pro difference is concentration, not a different machine or a differ
 
 **Rule of thumb:** start with **Pro** to prevent and maintain, or if you're a first-timer/sensitive; choose **MD** when the goal is age-related correction (typically 40+) and you want more from the same appointment. Amber confirms the tier at consultation.
 
-### Procell serum vs **Topical PRF** during the same channel (serum vs PRF vs both)
+### Procell serum and topical PRF (distinct Microneedling appointments)
 
-Both are the "what's delivered" layer applied *topically* during a needling protocol — they are **not** the machine, and neither is injected. The choice is about what the client wants delivered:
+Procell serum and topical PRF are both applied at the skin surface during Microneedling. They are not
+injected and do not create separate needling modalities. The current booking distinctions are:
 
-| Situation | Best pick |
-|---|---|
-| Wants a **streamlined, standardized, off-the-shelf** growth-factor protocol; no blood draw | **Procell serum** (Pro or MD) |
-| Wants an **autologous** ("from my own body") boost and is comfortable with a blood draw + prep + extra screening | **Topical PRF** (Amber's lane — **topical only, never injected**) |
-| Wants the maximum-effort visit and is a candidate for both | **Both** — a Procell serum tier with a **Topical PRF** upgrade |
-| Cost-sensitive, or first-timer testing tolerance | **Procell Pro** alone first |
+- **Procell Pro** is a 55-minute, $300 appointment using Pro Microchannel Serum with the Procell
+  Therapies device.
+- **Procell MD** is a 55-minute, $400 appointment using MD Microchannel Serum with the same device.
+- **PRF Microneedling** is a separate 60-minute, $595 appointment. PRF is prepared from a small sample
+  of the client's own blood and applied topically at the skin surface.
 
-Topical PRF Microneedling is a separate **$595, 60-minute** appointment that adds a blood draw and preparation. It is not a machine upgrade. Never say the device injects or "delivers PRF into" the skin; injectable PRF is a separate service provided by Diana Morrison, RN.
-
-### Selecting the Procell material plan
-House of Rose performs Microneedling with the Procell Therapies device. Procell Pro, Procell MD, and eligible topical PRF are material-plan decisions within that one service—not separate needling modalities. The provider selects the appropriate plan after consultation.
+The current GlossGenius-backed menu does not list a combined Procell-serum-and-PRF appointment,
+upgrade, or add-on. Do not present one as available or rank these appointments as a sales ladder. The
+device creates the controlled microchannels; it does not inject the serum or PRF. Injectable PRF is a
+different service provided by Diana Morrison, RN.
 
 ---
 
