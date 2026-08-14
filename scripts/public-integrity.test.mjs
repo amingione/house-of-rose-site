@@ -627,7 +627,7 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
   }
   for (const verifiedFact of [
     'Diana Morrison, RN',
-    'Amber Mingione',
+    'Amber Mingione, Licensed Esthetician',
     'Brandy, Licensed Esthetician',
     'Aundrea Pedigo, Licensed Esthetician',
     'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
@@ -635,6 +635,9 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'Unit 9',
   ]) {
     if (!homepage.includes(verifiedFact)) failures.push(`homepage is missing verified fact ${JSON.stringify(verifiedFact)}`);
+  }
+  if (!/<a\b[^>]*href="\/about\/providers\/amber\/"[^>]*>[\s\S]*?<h3\b[^>]*>\s*Amber Mingione, Licensed Esthetician\s*<\/h3>/i.test(main)) {
+    failures.push('homepage Amber profile card heading omits the practitioner licence type');
   }
   for (const route of [
     '/services/',
