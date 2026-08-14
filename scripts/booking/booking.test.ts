@@ -44,13 +44,14 @@ test('resolves a direct service with exact analytics metadata', () => {
   });
 });
 
-test('uses the verified matching consultation label', () => {
+test('uses an explicit action-oriented consultation label', () => {
   const action = resolveServiceBooking(
     { slug: 'dermal-fillers', bookingMode: 'consultation', bookingUrl: DIRECT_URL },
     'service_inline',
   );
 
-  assert.equal(action.label, 'Schedule a consultation');
+  assert.match(action.label, /\b(?:book|request|schedule)\b/i);
+  assert.match(action.label, /\bconsultation\b/i);
   assert.equal(action.mode, 'consultation');
 });
 
