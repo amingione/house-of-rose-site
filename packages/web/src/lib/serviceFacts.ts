@@ -45,11 +45,11 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'forma-rf-facial':
     'Reserve Forma, or send a question if you are comparing its non-invasive radiofrequency with Morpheus8 or Lumecca Peak.',
   'lumecca-peak-ipl':
-    'Request a consultation and name the treatment area you want to discuss. The eight Lumecca Peak areas are shown above.',
+    'Request the $50 consultation and name one of the current treatment areas: legs; full face; chest; neck; face and neck; face, neck, and chest; spot treatment; or hands.',
   morpheus8:
-    'Use the consultation to name the face, neck, chest, scar, or stretch-mark area you want to discuss; the single and three-treatment prices are shown above.',
+    'Request a consultation for Full Face, Face & Neck, Scars, Chest, or Stretch Marks. Single-treatment prices range from $500–$1,250; series-of-three prices range from $1,300–$3,500. Call to confirm the appointment length.',
   'morpheus8-body':
-    'Use the consultation to name the body area and visible concern you want to discuss. Burst Deep small- and large-area package prices are shown above; call to confirm the appointment length.',
+    'When requesting the consultation, name the body area and whether your question is about tone, texture, an eligible scar, or stretch marks. Burst Deep is $3,500 for a 4 × 10-inch area or $4,500 for an 8 × 11-inch area, each as a series of three. Call to confirm the appointment length.',
   'prf-under-eyes':
     'Request a consultation and describe whether the under-eye concern looks more like color, visible vessels, shadow, or a combination.',
   waxing:
