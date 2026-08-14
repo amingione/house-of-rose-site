@@ -2,43 +2,16 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SchemaMarkup from "@/components/SchemaMarkup.astro";
 import { sanityFetch } from "@/lib/sanity";
+import {
+	PRIVACY_POLICY_QUERY,
+	type PrivacyPolicy,
+	type PrivacySection,
+} from "@/lib/queries";
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
 import { breadcrumbList } from "@/lib/structuredData";
 import { alignPublicChannelCopy } from "@/lib/publicCopy";
 
 const privacySupportEmail = "support@updates.houseofrosefl.com";
-
-// ─── Privacy Policy content from Sanity (singleton) ─────────────────────────────
-// Falls back to the original hardcoded copy if a field is empty, so there's no
-// regression and nothing is lost. Section bodies are plain text (rendered with
-// whitespace-pre-line) — list bullets/numbers live inside the text.
-interface PrivacySection {
-	_key: string;
-	heading: string;
-	body: string;
-}
-
-interface PrivacyPolicy {
-	_id?: string;
-	seoTitle?: string;
-	seoDescription?: string;
-	pageTitle?: string;
-	lastUpdated?: string;
-	intro?: string;
-	sections?: PrivacySection[];
-}
-
-const PRIVACY_POLICY_QUERY = /* groq */ `
-	*[_type == "privacyPolicy" && _id == "privacyPolicy"][0]{
-		_id,
-		seoTitle,
-		seoDescription,
-		pageTitle,
-		lastUpdated,
-		intro,
-		sections[]{ _key, heading, body }
-	}
-`;
 
 const data =
 	(await sanityFetch<PrivacyPolicy | null>(PRIVACY_POLICY_QUERY)) ??

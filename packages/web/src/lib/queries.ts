@@ -74,6 +74,32 @@ export interface FAQ {
   answer: string;
 }
 
+export interface PrivacySection {
+  _key: string;
+  heading: string;
+  body: string;
+}
+
+export interface PrivacyPolicy {
+  _id?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  pageTitle?: string;
+  intro?: string;
+  sections?: PrivacySection[];
+}
+
+export const PRIVACY_POLICY_QUERY = /* groq */ `
+  *[_type == "privacyPolicy" && _id == "privacyPolicy"][0] {
+    _id,
+    seoTitle,
+    seoDescription,
+    pageTitle,
+    intro,
+    sections[]{ _key, heading, body }
+  }
+`;
+
 export interface TermsSection {
   _key: string;
   heading: string;
