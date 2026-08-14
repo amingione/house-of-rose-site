@@ -19,6 +19,7 @@ const SERVICES_FULL_QUERY = /* groq */ `
   *[
     _type == "service" &&
     status in ["live", "actual-menu"] &&
+    defined(slug.current) &&
     !(slug.current in [
       "microneedling-body",
       "neck-decollete-extension",
