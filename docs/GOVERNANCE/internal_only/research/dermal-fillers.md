@@ -197,7 +197,7 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 
 ## 10. Provider + compliance notes
 
-**Whose lane.** Dermal fillers are **Diana, RN only**, under medical-director oversight. Never attribute injectables to providers outside this lane; Amber remains **PRF topical only, never injections**. Every filler surface must carry provider-authority, real-candidacy, and individual-outcomes language.
+**Whose lane.** Dermal fillers are **Diana, RN only**, under medical-director oversight. Never attribute injectables to providers outside this lane; Amber remains **PRF topical only, never injections**. Public service and booking surfaces should identify Diana with her RN credential and state medical direction. Candidacy and outcomes language belongs where the copy actually discusses treatment selection, contraindications, or results; it is not a required footer on every filler mention.
 
 **Phrases to avoid for THIS topic specifically:**
 - "permanent," "erase," "eliminate," "get rid of forever" — fillers are temporary and reversible; never imply permanence.
@@ -208,10 +208,10 @@ So the **lowest HA syringe is $650** (Ultra XC and RHA 1). Present all filler pr
 - Discount language of any kind.
 - **Restylane** — do not name it as carried until Diana confirms (Sanity currently drifts on this; local menu carries only Juvéderm + RHA).
 
-**Required guardrails (every page):**
-- "Final product selection, dosing, areas, and candidacy are confirmed by Diana, RN, at consultation, based on your anatomy, contraindications, and local regulations."
-- "Not every client is a candidate for every filler or every area."
-- "Individual outcomes vary and depend on your anatomy, the product, and follow-through."
+**Claims and safety boundaries:**
+- When copy discusses product choice, dosing, areas, or treatment planning, make clear that Diana, RN confirms those decisions after reviewing anatomy and relevant contraindications. Use the fact directly; do not require one fixed consultation sentence across every surface.
+- Add concise variation language when making a results claim or presenting before/after evidence. A factual service definition, product list, price, or provider attribution does not need a generic outcomes disclaimer.
+- Use candidacy or contraindication guidance when it answers a real safety or decision question, such as in the service FAQ or consultation guidance. Do not repeat it as brand boilerplate.
 - Vascular-safety framing where natural: state that fillers are placed by a trained RN under medical oversight and that HA is reversible with hyaluronidase — a genuine safety feature, not a scare line.
 - Before/after only with `caseStudy.consentGiven == true`.
 
