@@ -903,7 +903,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : 'Morpheus8 pricing by option and area',
       intro: isBodyMorpheus
         ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
-        : 'Choose the area under Burst, Resurfacing, or Prime to compare one treatment with a series of three. Hyperhidrosis is a package of three; the Morpheus8 + Lumecca option is a two-treatment bundle.',
+        : 'Burst, Resurfacing, and Prime are each priced by area for one treatment or a series of three. Hyperhidrosis is a package of three; the Morpheus8 + Lumecca option is a two-treatment bundle.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
