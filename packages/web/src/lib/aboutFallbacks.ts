@@ -80,7 +80,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Diana Morrison, RN | House of Rose Aesthetics',
       metaDescription:
-        'Meet Diana Morrison, RN, aesthetic injector at House of Rose Aesthetics in Punta Gorda, Florida.',
+        'Diana Morrison, RN provides neurotoxin, dermal filler, injectable PRF, IV hydration, and GLP-1 appointments at House of Rose in Punta Gorda.',
     },
   },
   {
@@ -103,7 +103,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Amber Mingione, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Meet Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics in Punta Gorda, Florida.',
+        'Amber Mingione, Licensed Esthetician provides Procell Microneedling, topical PRF, Glo2Facial, and dermaplaning at House of Rose in Punta Gorda.',
     },
   },
   {
@@ -125,7 +125,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Brandy, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Meet Brandy, Licensed Esthetician at House of Rose Aesthetics in Punta Gorda, Florida.',
+        'Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing at House of Rose in Punta Gorda.',
     },
   },
   {
@@ -145,7 +145,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Aundrea Pedigo, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Meet Aundrea Pedigo, Licensed Esthetician, makeup artist, and permanent jewelry artist at House of Rose in Punta Gorda, Florida.',
+        'Aundrea Pedigo, Licensed Esthetician provides makeup artistry and permanent jewelry at House of Rose in Punta Gorda; both are non-medical services.',
     },
   },
 ];
