@@ -4,6 +4,18 @@
 
 Run 2026-08-10. Seed topic **med spa**, US market, 6-month growth window, min volume 100/mo, min growth +25%, KD cap 40.
 
+## Current-source reconciliation — 2026-08-14
+
+This report records search demand; it does not authorize a service, route, claim, provider scope, image, or price. Current House of Rose inventory and architecture remain controlling.
+
+* IV Hydration Therapy already has one substantive canonical route at `/services/iv-hydration-therapy/`. It publishes the six current appointments, their verified 30- or 45-minute durations, current prices, and Diana Morrison, RN. Do not create `/services/iv-drip/` or another keyword variant.
+* Lumecca Peak IPL owns the current IPL/photofacial path at `/services/lumecca-peak-ipl/`. Clear + Brilliant is a different branded device and is not a House of Rose service. Search adjacency is not product equivalence.
+* House of Rose does not have a verified peptide-therapy service. The word *peptide* in an ingredient, product, or GLP-1 explanation does not establish one.
+* Results pages may publish only real House of Rose cases with recorded written website-publication consent. Keyword demand never authorizes fabricated, stock, or unconsented before-and-after material.
+* Geographic intent belongs to the `localArea` page type. Do not put `near me`, Punta Gorda, Port Charlotte, or another city into a service-page H1 or slug to manufacture a second page.
+
+The keyword rows and methodology below remain useful research evidence. Any implementation still needs a current GlossGenius-backed service, the canonical pricing ledger, an existing page-type contract, and reviewed factual copy.
+
 ## Headline
 
 Of **640** qualifying med spa keywords, **27 are trending** at +25% or better over the last six complete months (Feb–Jul 2026). Average growth across them is **+65.5%**.
@@ -42,13 +54,13 @@ These are the keywords where the underlying market is actually growing.
 | body contouring benefits    | 150        | +40.0%     | +115.6%    | 34         | Body Contouring        |
 | prf facial treatment        | 100        | +33.6%     | +307.6%    | 0          | Regenerative (PRP/PRF) |
 
-Three things stand out:
+Three findings remain useful when read against current inventory:
 
-**IV therapy is the volume play.** `iv drip near me` is 13,000/mo at **KD 3** and growing +50% over six months with +69% YoY. That is the single largest realistic opportunity in this dataset, and it is a service House of Rose already offers. `peptide therapy near me` adds 3,300/mo at KD 19.
+**IV demand supports the existing IV route.** `iv drip near me` is 13,000/mo at **KD 3** and grew +50% over six months with +69% YoY in this dataset. The implementation task is to maintain the canonical IV Hydration Therapy route and its verified six-option menu, not create a duplicate page.
 
-**The IPL/laser cluster is the cheapest entry point.** Six keywords, four of them durable, average KD **4.3**. `ipl results` (1,100/mo, KD 0, +220% / +70% YoY) and `photofacial near me` (600/mo, KD 0) are as close to free rankings as this market offers. "Results" terms want before/after photography, which is content you can produce in-house.
+**IPL demand supports the existing Lumecca route.** `ipl results` (1,100/mo, KD 0, +220% / +70% YoY) and `photofacial near me` (600/mo, KD 0) support clear IPL terminology around Lumecca Peak IPL. They do not support borrowing another manufacturer's brand or publishing a results case without written consent.
 
-**PRF keeps validating.** `prf facial treatment` shows +307% YoY off a small base (100/mo). Low volume, but it confirms the regenerative trend behind the 11,000/mo `prf under eyes` opportunity already identified in [[seo-content/content-gap-analysis]] — and it is your stated differentiator.
+**PRF demand supports the reviewed PRF cluster.** `prf facial treatment` shows +307% YoY off a small base (100/mo). The current cluster assigns distinct jobs to `/services/prf/`, `/services/prf-injections/`, `/services/microneedling/`, and `/services/prf-under-eyes/`; keyword volume does not establish treatment equivalence or a clinical claim.
 
 ## Complete keyword database
 
@@ -101,15 +113,13 @@ All 27 trending keywords, sorted by 6-month growth. Status is "Not ranking" for 
 
 Body Contouring is the trap here: 8 keywords and decent volume, but only 1 of 8 is durable — it is almost entirely a summer swimsuit-season effect. Wellness & IV and Laser & IPL are where the durable demand sits.
 
-## Recommended sequence
+## Implementation use
 
-**Months 0-3 — IPL and photofacial.** One strong service page plus a results/gallery page. Targets `ipl results`, `photofacial near me`, `clear and brilliant near me`, `ipl near me`. All KD 0. This is where the site gets its first rankings.
-
-**Months 3-6 — IV therapy and peptides.** Dedicated service pages with the menu and pricing. Targets `iv drip near me` (13,000/mo, KD 3) and `peptide therapy near me` (3,300/mo, KD 19). Highest volume you can realistically win.
-
-**Months 6-9 — Regenerative and injectables.** PRF and filler content: `prf facial treatment`, `vampire facial recovery`, `filler dissolving`, `dermal filler price`, `lip filler treatment`. Pairs with the PRF briefs already written in [[seo-content/prf-content-briefs]].
-
-**Months 9-12 — Seasonal and competitive.** Melasma (publish autumn, rank for summer), body contouring, stretch marks, skin rejuvenation. Higher KD, needs the authority built in phases 1-3.
+1. Keep one canonical, substantive page for each verified service. Use the current IV, Lumecca, PRF, dermal-filler, and concern routes instead of creating keyword variants.
+2. Use search language only where it accurately describes the verified service. A high-volume adjacent brand or treatment is not a synonym.
+3. Treat Google Business Profile and current local entity data as separate authenticated work. Do not simulate that work with geo-stuffed service pages.
+4. Reconnect current GSC and bot-analytics evidence before using the old "not ranking" observation to judge the revised site.
+5. Create a new page only after the service exists in current commerce truth, fits a documented page type, has supported claims and imagery, and can be linked without cannibalizing a canonical route.
 
 ## Method and limits
 

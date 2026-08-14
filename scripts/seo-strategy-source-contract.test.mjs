@@ -22,13 +22,18 @@ const siteAuditPath = new URL(
   '../docs/HRAaudits/letaido-findings/Site-Audit-—-houseofrosefl.com-(Aug-2026)-2026-08-11.md',
   import.meta.url,
 );
+const trendingKeywordPath = new URL(
+  '../docs/HRAaudits/letaido-findings/Trending-Keyword-Research-—-Med-Spa-2026-08-11.md',
+  import.meta.url,
+);
 
 const architecture = readFileSync(architecturePath, 'utf8');
 const competitorStudy = readFileSync(competitorPath, 'utf8');
 const demand = readFileSync(demandPath, 'utf8');
 const prfArchitecture = readFileSync(prfArchitecturePath, 'utf8');
 const siteAudit = readFileSync(siteAuditPath, 'utf8');
-const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}`;
+const trendingKeywords = readFileSync(trendingKeywordPath, 'utf8');
+const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}`;
 
 test('SEO strategy sources cannot reintroduce permanently retired programs', () => {
   assert.doesNotMatch(
@@ -76,4 +81,15 @@ test('site-audit strategy follows the active storefront gate instead of old craw
   assert.doesNotMatch(siteAudit, /\b(?:add|include|submit)\b[^\n]{0,80}`?\/shop\/`?[^\n]{0,80}sitemap/i);
   assert.doesNotMatch(siteAudit, /compress\s+(?:the\s+)?9\s+oversized images/i);
   assert.match(siteAudit, /run a new launch audit against that exact\s+build/i);
+});
+
+test('keyword research cannot authorize duplicate or unsupported service work', () => {
+  assert.match(trendingKeywords, /search demand; it does not authorize a service, route, claim, provider scope, image, or price/i);
+  assert.match(trendingKeywords, /\/services\/iv-hydration-therapy\//i);
+  assert.match(trendingKeywords, /do not create `\/services\/iv-drip\/`/i);
+  assert.match(trendingKeywords, /Clear \+ Brilliant is a different branded device/i);
+  assert.match(trendingKeywords, /does not have a verified peptide-therapy service/i);
+  assert.match(trendingKeywords, /recorded written website-publication consent/i);
+  assert.doesNotMatch(trendingKeywords, /dedicated service pages with the menu and pricing[^\n]*peptide therapy/i);
+  assert.doesNotMatch(trendingKeywords, /one strong service page plus a results\/gallery page/i);
 });
