@@ -95,7 +95,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     whereItFits:
       'Procell Microchanneling is the device-specific name used for this Microneedling service.',
     providerStatement:
-      'Amber Mingione, Licensed Esthetician, provides the current Microneedling services. When PRF is part of an eligible appointment, her role is topical only.',
+      'Amber Mingione, Licensed Esthetician, provides these Microneedling appointments. When PRF is part of an eligible appointment, her role is topical only.',
     distinctions: [
       {
         label: 'Procell Pro',
@@ -107,24 +107,24 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       },
       {
         label: 'Topical PRF',
-        text: 'During eligible Microneedling, PRF is applied to the skin surface. This listing does not involve a PRF injection.',
+        text: 'During eligible Microneedling, PRF is applied to the skin surface. Injectable PRF is a different appointment provided by Diana Morrison, RN.',
       },
     ],
     faqs: [
       {
         question: 'What does Procell Microchanneling mean at House of Rose?',
         answer:
-          'At House of Rose, Procell Microchanneling names the Microneedling service performed with the Procell Therapies device. Both terms lead to this current Microneedling menu.',
+          'Microneedling is the service name. When the Procell device or Pro and MD materials are being discussed, House of Rose calls it Procell Microchanneling. It is the same service, not a second treatment.',
       },
       {
         question: 'What is the difference between Procell Pro and Procell MD?',
         answer:
-          'Both options use the same Procell Therapies device. Their Microchannel Serums share the same core formulation, while the MD serum contains twice the concentration of growth factors found in the Pro serum. Pro and MD are material choices within one Microneedling service, not different needling devices.',
+          'Both options use the same Procell Therapies device. Pro uses the Pro Microchannel Serum. The MD serum shares its core formulation and contains twice the concentration of growth factors; the serum is what changes between the two appointments.',
       },
       {
         question: 'How is PRF used during PRF Microneedling?',
         answer:
-          'PRF is applied topically to the skin surface during an eligible Microneedling appointment. It is not injected; injectable PRF appointments are listed separately and provided by Diana Morrison, RN.',
+          'With Amber Mingione, Licensed Esthetician, PRF is applied topically to the skin surface during an eligible Microneedling appointment. Injectable PRF is provided by Diana Morrison, RN as a different appointment.',
       },
     ],
     links: [
@@ -145,7 +145,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
           durationMinutes: 60,
           priceUsd: 50,
           bookingMode: 'consultation',
-          note: 'Entry point for the canonical Microneedling service.',
+          note: 'The 60-minute starting appointment for Microneedling.',
         },
         {
           name: 'Procell Therapies — Pro',

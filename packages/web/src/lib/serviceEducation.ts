@@ -401,7 +401,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     const heading = skinRenewal.slug === 'biorepeel'
       ? 'A topical chemical peel for visible texture and uneven tone.'
       : skinRenewal.slug === 'microneedling'
-        ? 'Procell is the device behind the Microneedling menu.'
+        ? 'One Procell device, with Pro, MD, and topical PRF options.'
         : skinRenewal.slug === 'prf-injections'
           ? 'Two injectable PRF appointments, provided by Diana Morrison, RN.'
           : 'PRF begins with a small sample of your own blood.';
