@@ -43,7 +43,7 @@ export const FACE_REALITY_PROGRAM = {
   summary:
     'The Face Reality Acne Program is a 12-week esthetics program for the appearance of recurring breakouts. It combines in-studio visits every two weeks with a home-care plan that is reviewed as the skin responds.',
   programOnly:
-    'The current Acne Bootcamp is sold as one complete program rather than as a series of unrelated facials. Daily home care and the in-studio visits are two parts of the same program.',
+    'Acne Bootcamp brings in-studio visits and daily home care into one 12-week program. The two parts are designed to be followed together rather than booked as unrelated facials.',
   provider:
     'The program is provided by a licensed esthetician who is a Face Reality Certified Acne Specialist.',
   medicalBoundary:
@@ -56,7 +56,7 @@ export const FACE_REALITY_PROGRAM = {
       name: 'Acne Bootcamp Consultation',
       duration: '60 minutes',
       priceUsd: 99,
-      note: 'The current directly bookable starting point.',
+      note: 'Book this appointment before beginning the complete program.',
     },
     {
       name: 'Acne Bootcamp — 12-Week Program',
@@ -76,15 +76,15 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
   'face-reality-acne-program': {
     slug: 'face-reality-acne-program',
     title: 'Face Reality Acne Program',
-    heading: 'The consultation and the complete program, explained together.',
+    heading: 'Begin with the consultation, then see how the 12 weeks work.',
     whatItIs:
-      'House of Rose lists two Face Reality appointments: a directly bookable Acne Bootcamp Consultation and the complete 12-week Acne Bootcamp program.',
+      'House of Rose offers a 60-minute Acne Bootcamp Consultation and a complete 12-week Acne Bootcamp program. The consultation is the first appointment; the program combines visits every two weeks with daily home care.',
     whyTheStructureMatters:
-      'Use this overview to see how the starting consultation, in-studio visits, and daily home care connect before opening the full program page.',
+      'The consultation gives you and the esthetician time to discuss what is happening now and review the home-care part of the program before the 12 weeks begin.',
     distinctions: [
       {
         label: 'The starting consultation',
-        text: 'The current menu lists a 60-minute consultation at $99. This is the directly bookable entry point.',
+        text: 'The first appointment is a 60-minute consultation at $99. You can book it directly.',
       },
       {
         label: 'The complete program',
@@ -95,7 +95,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       {
         question: 'Is the Acne Bootcamp Consultation the complete program?',
         answer:
-          'No. The current menu lists the 60-minute consultation at $99 and the complete 12-week program at $899 as two separate entries.',
+          'No. The 60-minute consultation is $99. The complete 12-week program is $899 and includes its in-studio visits; home-care products are purchased separately.',
       },
       {
         question: 'Who provides the Face Reality Acne Program?',
@@ -107,8 +107,8 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
           'No. This is a non-prescription esthetics program for the appearance of recurring breakouts. Deep, painful, widespread, or actively scarring breakouts need medical evaluation first.',
       },
     ],
-    menuHeading: 'Two current Face Reality entries',
-    menuIntro: 'The consultation is the directly bookable starting point; the program is the complete 12-week service.',
+    menuHeading: 'The consultation and the 12-week program',
+    menuIntro: 'Begin with the consultation. The complete program follows across 12 weeks.',
     menuOrder: [0, 1],
   },
   'acne-bootcamp': {
@@ -116,7 +116,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
     title: 'Acne Bootcamp',
     heading: 'What the complete 12 weeks include.',
     whatItIs:
-      'Acne Bootcamp is the current 12-week Face Reality program at House of Rose. In-studio visits take place every two weeks, with daily home care between visits.',
+      'Acne Bootcamp is the 12-week Face Reality program at House of Rose. In-studio visits take place every two weeks, with daily home care between visits.',
     whyTheStructureMatters:
       'This is one complete program rather than a group of unrelated facials. The work continues between appointments through the home-care plan.',
     distinctions: [
@@ -138,7 +138,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       {
         question: 'Is Acne Bootcamp a single facial?',
         answer:
-          'No. Acne Bootcamp is sold as one complete 12-week program. The consultation is a separate, directly bookable starting point on the current menu.',
+          'No. Acne Bootcamp is one complete 12-week program. Begin with the separately booked 60-minute consultation before starting the program.',
       },
       {
         question: 'Does the program replace medical acne care?',

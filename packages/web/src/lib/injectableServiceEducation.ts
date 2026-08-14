@@ -19,6 +19,7 @@ export interface InjectableServiceEducation {
   readonly whatItIs: string;
   readonly whereItFits: string;
   readonly pricingSummary: string;
+  readonly bookingGuidance?: string;
   readonly provider: {
     readonly publicName: string;
     readonly profilePath: string;
@@ -47,22 +48,26 @@ export const INJECTABLE_SERVICE_EDUCATION = {
   injectables: {
     slug: 'injectables',
     title: 'Neurotoxin Injections',
-    whatItIs: 'Botox and Daxxify are the two neurotoxin products on the current House of Rose menu. Both are listed for expression lines formed by facial movement.',
-    whereItFits: 'That includes lines that appear or deepen when you frown, raise your brows, or squint.',
-    pricingSummary: 'Botox and Daxxify are each $14 per unit.',
+    whatItIs: 'House of Rose offers Botox and Daxxify for expression lines created by facial movement.',
+    whereItFits: 'The clearest clue is what happens when you frown, raise your brows, or squint: a movement-related line appears or becomes deeper.',
+    pricingSummary: 'Both products are priced at $14 per unit.',
     provider: {
       publicName: 'Diana Morrison, RN',
       profilePath: '/about/providers/diana/',
-      statement: 'Diana Morrison, RN provides the current injectable services under medical direction.',
+      statement: 'Neurotoxin consultations and appointments are provided by Diana Morrison, RN under medical direction.',
     },
     faqs: [
+      {
+        question: 'Is $14 per unit the complete appointment price?',
+        answer: 'No. $14 is the rate for each unit of Botox or Daxxify, not a flat appointment total. The appointment total depends on the number of units administered.',
+      },
       {
         question: 'Are Botox and Daxxify units interchangeable?',
         answer: 'No. The units are specific to each product and cannot be compared or converted between Botox and Daxxify.',
       },
       {
-        question: 'Which page should I use for a line caused by facial movement?',
-        answer: 'Start with Neurotoxin Injections when the line appears or deepens with expression. The Dermal Fillers page covers lost volume in selected lip, cheek, and fold areas.',
+        question: 'What is useful to describe when I ask about a line?',
+        answer: 'Say whether the line appears or becomes deeper with expression. If what you notice is a change in volume at the lips, cheeks, or folds, the Dermal Fillers consultation addresses that different concern.',
       },
     ],
     links: [
@@ -72,7 +77,7 @@ export const INJECTABLE_SERVICE_EDUCATION = {
       },
       {
         href: '/services/dermal-fillers/',
-        label: 'Review Dermal Fillers',
+        label: 'Explore Dermal Fillers',
       },
       {
         href: '/about/providers/diana/',
@@ -95,28 +100,34 @@ export const INJECTABLE_SERVICE_EDUCATION = {
   'dermal-fillers': {
     slug: 'dermal-fillers',
     title: 'Dermal Fillers',
-    whatItIs: 'The current House of Rose menu contains five hyaluronic-acid dermal fillers from Juvéderm and RHA.',
-    whereItFits: 'They are listed for lost facial volume in selected lip, cheek, and fold areas.',
-    pricingSummary: 'Current dermal filler products range from $650 to $850.',
+    whatItIs: 'House of Rose offers five manufactured hyaluronic-acid gels from Juvéderm and RHA for selected areas of lost facial volume.',
+    whereItFits: 'Those areas are the lips, cheeks, and folds. The five products have different published prices and appointment lengths, while the consultation gives you one place to begin.',
+    pricingSummary: 'The five dermal filler products range from $650 to $850.',
+    bookingGuidance:
+      'Request the 60-minute, $300 Dermal Filler Consultation and describe where you have noticed a change in volume—lips, cheeks, or folds. You are not expected to arrive with a product name.',
     provider: {
       publicName: 'Diana Morrison, RN',
       profilePath: '/about/providers/diana/',
-      statement: 'Diana Morrison, RN provides the current injectable services under medical direction.',
+      statement: 'Dermal filler consultations and appointments are provided by Diana Morrison, RN under medical direction.',
     },
     faqs: [
       {
-        question: 'Are the current dermal fillers made with hyaluronic acid?',
-        answer: 'Yes. All five current House of Rose filler listings are hyaluronic-acid gels from the Juvéderm and RHA product families.',
+        question: 'Are all five House of Rose fillers made with hyaluronic acid?',
+        answer: 'Yes. Juvéderm Ultra XC, Juvéderm Voluma XC, RHA 1, RHA 2, and RHA 3 are manufactured hyaluronic-acid gels.',
       },
       {
         question: 'How are dermal fillers different from Botox or Daxxify?',
-        answer: 'House of Rose lists dermal fillers for lost volume in selected lip, cheek, and fold areas. Botox and Daxxify are listed for lines formed by facial movement.',
+        answer: 'Dermal fillers are used here for selected areas of lost volume in the lips, cheeks, and folds. Botox and Daxxify address lines related to facial movement.',
+      },
+      {
+        question: 'Why are five products shown if booking begins with a consultation?',
+        answer: 'Each product has its own price and appointment length. The Dermal Filler Consultation is 60 minutes at $300, so you can begin with the area you want to discuss rather than a product name.',
       },
     ],
     links: [
       {
         href: '/services/injectables/',
-        label: 'Review Neurotoxin Injections',
+        label: 'Explore Neurotoxin Injections',
       },
       {
         href: '/about/providers/diana/',

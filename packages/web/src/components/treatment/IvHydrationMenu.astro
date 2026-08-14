@@ -11,7 +11,7 @@ const formatPrice = (price: number): string => `$${price.toLocaleString('en-US')
 <section class="bg-charcoal-light px-6 py-[clamp(48px,7vw,80px)] border-t border-gold-metal/10">
   <div class="mx-auto max-w-[960px]">
     <div data-iv-category-overview class="mb-12 border-b border-gold-metal/20 pb-10">
-      <span class="kicker">The category</span>
+      <span class="kicker">What IV hydration means</span>
       <h2 class="mt-2 max-w-[720px] font-serif text-[clamp(26px,4vw,38px)] text-ink">
         {IV_HYDRATION_CATEGORY_OVERVIEW.heading}
       </h2>
@@ -21,15 +21,15 @@ const formatPrice = (price: number): string => `$${price.toLocaleString('en-US')
       </div>
     </div>
 
-    <span class="kicker">Current menu</span>
+    <span class="kicker">Six options</span>
     <h2 class="mt-2 font-serif text-[clamp(26px,4vw,38px)] text-ink">IV hydration options</h2>
     <p class="mt-4 max-w-[620px] text-[15px] leading-relaxed text-muted">
-      The current IV hydration menu, with appointment length and price for each base option.
+      Compare the appointment length and price for each base option.
     </p>
 
     <div class="mt-9 overflow-x-auto border-y border-gold-metal/20">
       <table class="w-full min-w-[520px] border-collapse text-left">
-        <caption class="sr-only">Current IV hydration options, duration, and price</caption>
+        <caption class="sr-only">IV hydration options, duration, and price</caption>
         <thead>
           <tr class="border-b border-gold-metal/20 text-[11px] uppercase tracking-[0.16em] text-muted">
             <th scope="col" class="px-4 py-4 font-medium">IV option</th>
@@ -55,7 +55,7 @@ const formatPrice = (price: number): string => `$${price.toLocaleString('en-US')
 
     <div class="mt-14 border-t border-gold-metal/20 pt-10">
       <span class="kicker">Questions</span>
-      <h2 class="mt-2 font-serif text-[clamp(26px,4vw,38px)] text-ink">Before you call.</h2>
+      <h2 class="mt-2 font-serif text-[clamp(26px,4vw,38px)] text-ink">Questions about the options.</h2>
       <div class="mt-7 divide-y divide-gold-metal/15 border-y border-gold-metal/15">
         {IV_HYDRATION_FAQS.map((item) => (
           <details class="group py-5">

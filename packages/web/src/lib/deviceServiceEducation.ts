@@ -12,7 +12,14 @@ export interface DeviceServiceEducation {
   readonly title: string;
   readonly whatItIs: string;
   readonly whereItFits: string;
+  readonly exfoliation?: string;
+  readonly infusionAndFinish?: string;
   readonly oxygenation?: string;
+  readonly recovery?: string;
+  readonly comparisonToProcell?: string;
+  readonly comparisonToDermaplaning?: string;
+  readonly comparisonToForma?: string;
+  readonly needleDistinction?: string;
   readonly currentAreas?: readonly string[];
   readonly menu: DeviceServiceMenuFacts;
 }
@@ -42,9 +49,11 @@ export const DEVICE_SERVICE_EDUCATION = {
     slug: 'forma-rf-facial',
     title: 'Forma RF Facial',
     whatItIs:
-      'Forma is an InMode non-invasive radiofrequency handpiece. Radiofrequency travels through electrodes to provide controlled dermal and subdermal heating; the handpiece does not use needles.',
+      'Forma is an InMode non-invasive radiofrequency handpiece for the face. Surface electrodes deliver radiofrequency for controlled dermal and subdermal heating.',
     whereItFits:
-      'House of Rose lists Forma as a facial RF service, separate from Morpheus8 RF Microneedling and Lumecca Peak IPL.',
+      'Within the House of Rose InMode services, Forma provides facial radiofrequency through surface electrodes; Morpheus8 pairs microneedling with fractional radiofrequency, while Lumecca Peak uses IPL for visible pigment and uneven tone.',
+    needleDistinction:
+      'Forma delivers radiofrequency through electrodes at the skin surface and does not use microneedles. Morpheus8 is the InMode service that combines microneedling with fractional radiofrequency.',
     menu: {
       bookingMode: 'call',
     },
@@ -55,9 +64,18 @@ export const DEVICE_SERVICE_EDUCATION = {
     whatItIs:
       'Glo2Facial is a Geneo facial that combines surface exfoliation, topical infusion, and an oxygenation step.',
     whereItFits:
-      'House of Rose lists it as a standalone facial combining surface exfoliation, topical infusion, and oxygenation.',
+      'At House of Rose, Glo2Facial is a directly bookable, 60-minute standalone facial.',
+    exfoliation:
+      'During the surface pass, a single-use OxyPod moves across the skin with its paired Primer Gel. Their reaction creates carbon-dioxide bubbles while the OxyPod exfoliates at the skin’s surface.',
+    infusionAndFinish:
+      'After the surface pass, the appointment continues with topical infusion and finishes with facial massage.',
     oxygenation:
       'Geneo describes the oxygenation step as a reaction between its OxyPod and Primer Gel. The reaction creates a carbon-dioxide-rich bubbly environment on the skin’s surface that triggers the oxygenation step; oxygen is not blown onto the face from an external source.',
+    recovery:
+      // drift-guard-ok: procedure-specific recovery fact verified by the owner on 2026-08-06
+      'House of Rose confirms that Glo2Facial has no downtime. You can return to your usual day after the appointment, and your provider will review any recommended aftercare.',
+    comparisonToDermaplaning:
+      'Both appointments include surface exfoliation, but they use different tools. Dermaplaning uses a specialized blade across the face to remove fine vellus hair and accumulated dead skin cells. Glo2Facial uses a single-use OxyPod with Primer Gel for its surface pass, then continues with topical infusion and facial massage.',
     menu: {
       bookingMode: 'direct',
       duration: '60 minutes',
@@ -70,6 +88,8 @@ export const DEVICE_SERVICE_EDUCATION = {
       'Lumecca Peak is an InMode intense pulsed light (IPL) handpiece. Its xenon flash lamp delivers filtered optical energy.',
     whereItFits:
       'House of Rose lists Lumecca Peak for visible pigment, uneven tone, and selected texture concerns.',
+    comparisonToForma:
+      'Lumecca Peak delivers filtered optical energy as IPL. Forma uses radiofrequency delivered through electrodes at the skin surface. They are two different InMode technologies, even though both appear in the same House of Rose device collection.',
     currentAreas: [
       'legs',
       'full face',
@@ -90,7 +110,9 @@ export const DEVICE_SERVICE_EDUCATION = {
     whatItIs:
       'Morpheus8 is an InMode device that combines microneedling with fractional bipolar radiofrequency.',
     whereItFits:
-      'House of Rose lists it for visible tone and texture, eligible scars, and stretch marks across the face, neck and chest, and selected body areas.',
+      'House of Rose offers Morpheus8 for visible tone and texture, eligible scars, and stretch marks across the face, neck and chest and selected body areas.',
+    comparisonToProcell:
+      'House of Rose’s Procell Microneedling service uses the Procell device to create controlled microchannels. Morpheus8 combines microneedling with fractional bipolar radiofrequency in the same InMode device.',
     menu: {
       bookingMode: 'consultation',
     },
@@ -99,9 +121,9 @@ export const DEVICE_SERVICE_EDUCATION = {
     slug: 'morpheus8-body',
     title: 'Morpheus8 RF Body',
     whatItIs:
-      'Morpheus8 Body uses the same InMode platform, combining microneedling with fractional bipolar radiofrequency for selected body areas.',
+      'Morpheus8 Body uses the same InMode platform to combine microneedling with fractional bipolar radiofrequency across selected body areas.',
     whereItFits:
-      'The body listing focuses that platform on selected body areas for body-skin tone, texture, eligible scars, and stretch marks.',
+      'House of Rose lists it for body-skin tone, texture, eligible scars, and stretch marks. The main Morpheus8 page also covers the face, neck and chest, and selected body areas.',
     menu: {
       bookingMode: 'consultation',
     },

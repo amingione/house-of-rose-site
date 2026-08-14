@@ -27,7 +27,7 @@ import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
 import { medicalProcedure, treatmentOffer } from '@/lib/structuredData.treatment';
 import { isVerifiedGlossGeniusBookingUrl, resolveServiceBooking } from '@/lib/booking';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
-import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
+import { getServiceAppointmentGuidance, getVerifiedServiceDuration } from '@/lib/serviceFacts';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { PRF_UNDER_EYES_FAQS } from '@/lib/prfUnderEyesFacts';
 import { IV_HYDRATION_FAQS } from '@/lib/ivHydrationFacts';
@@ -59,6 +59,8 @@ const verifiedDuration = slug ? getVerifiedServiceDuration(slug) : undefined;
 // standalone appointment length. Do not collapse any of those into one hero figure.
 const suppressHeroDuration = new Set(['injectables', 'microneedling', 'morpheus8', 'prf', 'prf-injections', 'prf-under-eyes']).has(slug ?? '');
 const displayDuration = suppressHeroDuration ? undefined : verifiedDuration ?? service.duration;
+const getChildTreatmentDuration = (childSlug: string, fallback?: string): string | undefined =>
+  childSlug === 'prf-under-eyes' ? undefined : getVerifiedServiceDuration(childSlug) ?? fallback;
 // Reviewed education owns the current facts for covered pages. Keep stale or
 // ambiguous Sanity price strings out of the hero and structured data.
 const displayServicePrice = serviceEducation ? undefined : service.price;
@@ -171,6 +173,7 @@ const verifiedBookingUrl = isVerifiedGlossGeniusBookingUrl(service.bookingUrl)
   ? service.bookingUrl
   : undefined;
 const bookingAction = resolveServiceBooking(service, 'service-page-copy');
+const reviewedAppointmentGuidance = slug ? getServiceAppointmentGuidance(slug) : undefined;
 const secondaryAction = bookingAction.mode === 'consultation'
   ? { href: '/contact/', label: 'Contact the practice' }
   : { href: '/consultation/', label: 'Ask a question' };
@@ -179,11 +182,11 @@ const finalHeading = bookingAction.mode === 'direct'
   : bookingAction.mode === 'consultation'
     ? `Talk with the practice about ${service.title}.`
     : `Ask about ${service.title}.`;
-const finalCopy = bookingAction.mode === 'direct'
+const finalCopy = reviewedAppointmentGuidance ?? (bookingAction.mode === 'direct'
   ? 'Choose an available time in the current booking menu, or send a question before you reserve.'
   : bookingAction.mode === 'consultation'
     ? 'Request a consultation time, or contact the practice if you have a question before scheduling.'
-    : 'Call the practice for current appointment availability, or send a question through the consultation form.';
+    : 'Call the practice for current appointment availability, or send a question through the consultation form.');
 
 const procedureSchema = service.providerScope
   ? medicalProcedure(
@@ -253,7 +256,7 @@ const pageDescription = factualServiceDescription;
   />
   {/* Visual Editor: all editable copy below belongs to this service document */}
   <div {...sbObjectId(service._id)}>
-  <!-- Answer-first service hero: the image is semantic and immediately discoverable for LCP. -->
+  <!-- Service hero: the image is semantic and immediately discoverable for LCP. -->
   <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
     <div class="mx-auto grid max-w-[1440px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)]">
       <div class="flex flex-col justify-center px-5 py-9 sm:px-10 sm:py-12 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
@@ -445,9 +448,9 @@ const pageDescription = factualServiceDescription;
               {getServiceCardSummary(t.slug) && (
                 <p class="text-muted text-[14px] leading-[1.65] mb-4">{getServiceCardSummary(t.slug)}</p>
               )}
-              {slug !== 'waxing' && (t.price || getVerifiedServiceDuration(t.slug) || t.duration) && (
+              {slug !== 'waxing' && (t.price || getChildTreatmentDuration(t.slug, t.duration)) && (
                 <p class="text-ink/70 text-[12px] tracking-[0.08em]">
-                  {t.price}{t.price && (getVerifiedServiceDuration(t.slug) ?? t.duration) && <span class="text-gold mx-2">·</span>}{getVerifiedServiceDuration(t.slug) ?? t.duration}
+                  {t.price}{t.price && getChildTreatmentDuration(t.slug, t.duration) && <span class="text-gold mx-2">·</span>}{getChildTreatmentDuration(t.slug, t.duration)}
                 </p>
               )}
               <div class="mt-5 flex flex-wrap gap-4 items-center">
@@ -513,18 +516,18 @@ const pageDescription = factualServiceDescription;
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
         {renderSplitInjectableSibling && splitInjectableSibling && (
           <article class="service-card group">
-            <a href={`/services/${splitInjectableSibling.slug}/`} class="block" aria-label={`Learn about ${splitInjectableSibling.title}`}>
+            <a href={`/services/${splitInjectableSibling.slug}/`} class="block" aria-label={`View ${splitInjectableSibling.title}`}>
               <span class="service-name">{splitInjectableSibling.title}</span>
               {getServiceCardSummary(splitInjectableSibling.slug) && (
                 <p class="service-desc mt-1">{getServiceCardSummary(splitInjectableSibling.slug)}</p>
               )}
-              <span class="learn-more group-hover:text-gold">Learn more</span>
+              <span class="learn-more group-hover:text-gold">View {splitInjectableSibling.title}</span>
             </a>
           </article>
         )}
         {visibleRelatedServices.map((related) => (
           <article class="service-card group" {...sbObjectId(related._id)}>
-            <a href={`/services/${related.slug}/`} class="block" aria-label={`Learn about ${related.title}`}>
+            <a href={`/services/${related.slug}/`} class="block" aria-label={`View ${related.title}`}>
               {related.image?.asset && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
@@ -542,7 +545,7 @@ const pageDescription = factualServiceDescription;
               {getServiceCardSummary(related.slug) && (
                 <p class="service-desc mt-1">{getServiceCardSummary(related.slug)}</p>
               )}
-              <span class="learn-more group-hover:text-gold">Learn more</span>
+              <span class="learn-more group-hover:text-gold">View {related.title}</span>
             </a>
             <BookingLink
               slug={related.slug}
@@ -558,7 +561,7 @@ const pageDescription = factualServiceDescription;
       <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
         {verifiedCostGuide && (
           <a href={`/cost/${verifiedCostGuide.slug}/`} class="learn-more hover:text-gold">
-            View verified pricing
+            See pricing details
           </a>
         )}
         <a href={serviceDirectoryPath} class="learn-more hover:text-gold">
@@ -575,7 +578,7 @@ const pageDescription = factualServiceDescription;
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
         {finalHeading}
       </h2>
-      <p class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
+      <p data-service-appointment-guidance class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
         {finalCopy}
       </p>
       <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:justify-center">

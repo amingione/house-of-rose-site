@@ -3,7 +3,7 @@ import { getInjectableServiceEducation } from '@/lib/injectableServiceEducation'
 import { getSkinRenewalServiceEducation } from '@/lib/skinRenewalServiceEducation';
 import { getWaxingServiceEducation } from '@/lib/waxingServiceEducation';
 import { PERMANENT_JEWELRY_EDUCATION } from '@/lib/permanentJewelryEducation';
-import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import { IV_HYDRATION_EDUCATION } from '@/lib/ivHydrationFacts';
 import { DERMAPLANING_EDUCATION } from '@/lib/dermaplaningEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 import {
@@ -103,25 +103,33 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   if (slug === 'glp-1-weight-management') {
     return {
       kicker: WEIGHT_MANAGEMENT_EDUCATION.title,
-      heading: 'The current menu lists a consultation, semaglutide, and tirzepatide.',
-      metaDescription: 'Review the current GLP-1 weight-management consultation, medication names, and RN provider information at House of Rose Aesthetics in Punta Gorda.',
+      heading: 'Semaglutide, tirzepatide, and the consultation that begins the conversation.',
+      metaDescription: 'Understand the GLP-1 and GIP receptor distinction, the $25 consultation, and who provides weight-management appointments at House of Rose Aesthetics in Punta Gorda.',
       paragraphs: [
         WEIGHT_MANAGEMENT_EDUCATION.whatItIs,
         WEIGHT_MANAGEMENT_EDUCATION.provider,
       ],
       distinctions: [
         {
-          label: 'Medication names, not prescribing guidance',
-          text: WEIGHT_MANAGEMENT_EDUCATION.medicationBoundary,
+          label: 'What GLP-1 means',
+          text: WEIGHT_MANAGEMENT_EDUCATION.plainLanguageDefinition,
         },
         {
-          label: 'What this page can verify',
+          label: 'How the two medications differ',
+          text: WEIGHT_MANAGEMENT_EDUCATION.medicationDifference,
+        },
+        {
+          label: 'What the $25 covers',
+          text: WEIGHT_MANAGEMENT_EDUCATION.consultationRole,
+        },
+        {
+          label: 'Medication and ongoing costs',
           text: WEIGHT_MANAGEMENT_EDUCATION.pricing,
         },
       ],
       menu: {
         heading: WEIGHT_MANAGEMENT_EDUCATION.consultation.name,
-        intro: 'The consultation is the only current listing whose price and appointment length are reconciled for public use.',
+        intro: 'The 40-minute consultation with Diana Morrison, RN is $25. Call House of Rose for medication and ongoing program pricing.',
         verifiedAt: new Date(`${WEIGHT_MANAGEMENT_EDUCATION.consultation.verifiedAt}T00:00:00Z`).toLocaleDateString('en-US', {
           month: 'long',
           day: 'numeric',
@@ -137,7 +145,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ],
       },
       faqs: WEIGHT_MANAGEMENT_EDUCATION.faqs,
-      faqHeading: 'The current offering, provider, and consultation.',
+      faqHeading: 'The two medications, the $25 consultation, and who you meet.',
+      links: [
+        {
+          href: '/about/providers/diana/',
+          label: 'Meet Diana Morrison, RN',
+        },
+      ],
     };
   }
 
@@ -145,7 +159,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: DERMAPLANING_EDUCATION.title,
       heading: 'Surface exfoliation and peach-fuzz removal in one service.',
-      metaDescription: `${DERMAPLANING_EDUCATION.whatItIs} Review the current standalone and add-on options at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: `${DERMAPLANING_EDUCATION.whatItIs} See the standalone and add-on appointments at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [DERMAPLANING_EDUCATION.whatItIs, DERMAPLANING_EDUCATION.whereItFits],
       distinctions: [
         {
@@ -159,7 +173,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: 'Standalone or add-on',
-        intro: 'The current menu offers dermaplaning as a standalone facial or a shorter add-on.',
+        intro: 'Book dermaplaning as a standalone facial or as the shorter add-on shown below.',
         verifiedAt: 'August 6, 2026',
         items: DERMAPLANING_EDUCATION.menu.map((item) => ({
           name: item.name,
@@ -172,32 +186,39 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       links: [
         {
           href: '/services/facial-waxing/',
-          label: 'Review facial waxing by area',
+          label: 'Facial Waxing by area',
         },
       ],
     };
   }
 
   if (slug === 'iv-hydration-therapy') {
-    const prices = VERIFIED_IV_MENU.map(({ price }) => price);
-    const durations = [...new Set(VERIFIED_IV_MENU.map(({ durationMinutes }) => durationMinutes))];
-
     return {
       kicker: 'IV Hydration Therapy',
-      heading: 'Six current IV options, listed plainly.',
-      metaDescription: 'Review the six current IV hydration options, appointment lengths, prices, and RN provider information at House of Rose Aesthetics in Punta Gorda.',
+      heading: IV_HYDRATION_EDUCATION.heading,
+      metaDescription: 'Compare six IV hydration options by appointment length and price, and meet the RN who provides them at House of Rose Aesthetics in Punta Gorda.',
       paragraphs: [
-        `The current House of Rose menu contains six base IV options. Appointment lengths are ${durations.join(' or ')} minutes, with published prices from $${Math.min(...prices)} to $${Math.max(...prices)}.`,
-        'Diana Morrison, RN provides IV hydration under written physician protocol and medical direction. Formulations and add-ons are not listed on this page because the current booking export does not verify them.',
+        IV_HYDRATION_EDUCATION.introduction,
+        IV_HYDRATION_EDUCATION.provider,
       ],
       distinctions: [
         {
-          label: 'Current menu facts',
-          text: 'Each base option below is shown with its exact current menu name, appointment length, and price.',
+          label: 'The 30-minute option',
+          text: IV_HYDRATION_EDUCATION.shorterOption,
         },
         {
-          label: 'No inferred ingredients',
-          text: 'A service name is not treated as an ingredient list. House of Rose will not publish a formulation that has not been verified against the current menu.',
+          label: 'The five 45-minute options',
+          text: IV_HYDRATION_EDUCATION.longerOptions,
+        },
+        {
+          label: 'Formulations and add-ons',
+          text: IV_HYDRATION_EDUCATION.formulation,
+        },
+      ],
+      links: [
+        {
+          href: '/about/providers/diana/',
+          label: 'Meet Diana Morrison, RN',
         },
       ],
     };
@@ -224,8 +245,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         },
       ],
       menu: {
-        heading: 'Current appointment',
-        intro: 'The current menu verifies one appointment at $65 for 20 minutes. It does not list chain materials, charms, or separate add-on prices.',
+        heading: 'The fitting appointment',
+        intro: 'The fitting is $65 and takes 20 minutes. If the chain material or charm matters to you, call before booking to ask what is available.',
         verifiedAt: new Date(`${PERMANENT_JEWELRY_EDUCATION.menu.verifiedAt}T00:00:00Z`).toLocaleDateString('en-US', {
           month: 'long',
           day: 'numeric',
@@ -259,23 +280,46 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       heading: waxing.slug === 'waxing'
         ? 'Facial and body waxing, organized by area.'
         : waxing.slug === 'facial-waxing'
-          ? 'Four facial-waxing appointments, listed by area.'
-          : 'Seven body-waxing appointments, listed by area.',
+          ? 'Choose the facial-waxing appointment that matches the area.'
+          : 'Seven body-waxing appointments, each tied to an area.',
       metaDescription: `${waxing.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
-      paragraphs: [waxing.whatItIs, waxing.whereItFits],
+      paragraphs: [
+        waxing.whatItIs,
+        waxing.whereItFits,
+        ...(waxing.provider
+          ? [`${waxing.provider.publicName} provides facial waxing at House of Rose.`]
+          : []),
+      ],
       distinctions: waxing.distinctions,
       menu: waxing.menu
         ? {
             heading: waxing.menu.heading,
-            intro: 'Prices and appointment lengths are shown by area.',
+            intro: waxing.slug === 'waxing'
+              ? 'The first four appointments are facial waxing; the next seven are body waxing.'
+              : waxing.slug === 'facial-waxing'
+                ? 'Each appointment is booked by facial area or brow service.'
+                : 'Choose the exact area row below, or call House of Rose if you are unsure which one matches.',
             verifiedAt: 'August 6, 2026',
             items: waxing.menu.items.map((item) => ({
               name: item.name,
               price: formatUsd(item.priceUsd),
               duration: formatMinutes(item.durationMinutes),
+              note: waxing.slug === 'waxing' ? item.category : undefined,
             })),
           }
         : undefined,
+      faqs: waxing.faqs,
+      faqHeading: waxing.slug === 'waxing'
+        ? 'Choose the page that matches your area.'
+        : waxing.faqs
+          ? 'Choosing an area and making the call.'
+          : undefined,
+      links: [
+        ...(waxing.links ?? []),
+        ...(waxing.provider
+          ? [{ href: waxing.provider.profilePath, label: `Meet ${waxing.provider.publicName}` }]
+          : []),
+      ],
     };
   }
 
@@ -288,14 +332,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       kicker: injectable.title,
       heading: isNeurotoxin
         ? 'Botox and Daxxify for movement-related lines.'
-        : 'Five current fillers for lips, cheeks, and folds.',
+        : 'Five hyaluronic-acid fillers for lips, cheeks, and folds.',
       metaDescription: `${injectable.whatItIs} ${injectable.whereItFits} Available at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [
         injectable.whatItIs,
         injectable.whereItFits,
         isNeurotoxin
-          ? 'Lost facial volume in selected lip, cheek, and fold areas is covered on the dermal filler page.'
-          : 'Botox and Daxxify appear on the neurotoxin page for movement-related lines.',
+          ? 'Dermal fillers address a different question: selected areas of lost volume in the lips, cheeks, and folds.'
+          : 'Botox and Daxxify address a different question: lines related to facial movement.',
         injectable.provider.statement,
       ],
       distinctions: isNeurotoxin
@@ -306,7 +350,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               label: 'Per-unit pricing',
-              text: 'Botox and Daxxify are each listed at $14 per unit. Their product-specific units cannot be compared or converted.',
+              text: 'Botox and Daxxify are each $14 per unit, not one flat appointment price. The appointment total depends on the number of units administered, and the two products’ units cannot be compared or converted.',
             },
           ]
         : [
@@ -316,8 +360,16 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               label: 'Selected facial areas',
-              text: 'The current listing names lips, cheeks, and folds. Each of the five HA products has its own price and appointment length below.',
+              text: 'House of Rose names lips, cheeks, and folds on this service. Each of the five HA products has its own price and appointment length below.',
             },
+            ...(injectable.bookingGuidance
+              ? [
+                  {
+                    label: 'How to begin',
+                    text: injectable.bookingGuidance,
+                  },
+                ]
+              : []),
           ],
       menu: {
         heading: isNeurotoxin ? 'Botox and Daxxify' : 'Dermal filler products',
@@ -331,8 +383,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       },
       faqs: injectable.faqs,
       faqHeading: isNeurotoxin
-        ? 'Movement-related lines and the two current products.'
-        : 'Hyaluronic-acid fillers and movement-related lines.',
+        ? 'Price, product units, and the detail that helps when you ask.'
+        : 'What the products share, what filler addresses, and how to begin.',
       links: injectable.links,
     };
   }
@@ -347,14 +399,18 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       : skinRenewal.slug === 'microneedling'
         ? 'Procell is the device behind the Microneedling menu.'
         : skinRenewal.slug === 'prf-injections'
-          ? 'Two injectable PRF consultations are currently listed.'
-          : 'Three current ways PRF appears on the menu.';
+          ? 'Two injectable PRF appointments, provided by Diana Morrison, RN.'
+          : 'PRF begins with a small sample of your own blood.';
 
     return {
       kicker: skinRenewal.title,
       heading,
       metaDescription: `${skinRenewal.whatItIs} ${skinRenewal.whereItFits} Available at House of Rose Aesthetics in Punta Gorda.`,
-      paragraphs: [skinRenewal.whatItIs, skinRenewal.whereItFits],
+      paragraphs: [
+        skinRenewal.whatItIs,
+        skinRenewal.whereItFits,
+        ...(skinRenewal.providerStatement ? [skinRenewal.providerStatement] : []),
+      ],
       distinctions: skinRenewal.distinctions,
       menu: {
         heading: skinRenewal.slug === 'biorepeel'
@@ -362,14 +418,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           : skinRenewal.slug === 'microneedling'
             ? 'Microneedling options'
             : skinRenewal.slug === 'prf-injections'
-              ? 'Current injectable PRF listings'
-              : 'Current PRF listings',
+              ? 'PRF Under-Eye and PRF Bio-Filler'
+              : 'PRF appointments',
         intro: skinRenewal.slug === 'biorepeel'
-          ? 'The current menu has one standalone BioRePeel face treatment, with its price and appointment length shown below.'
+          ? 'House of Rose offers one standalone BioRePeel face treatment; its price and appointment length are shown below.'
           : skinRenewal.slug === 'prf' || skinRenewal.slug === 'prf-injections'
             ? skinRenewal.slug === 'prf'
-              ? 'The current menu shows where PRF is used and how each listing is booked.'
-              : 'Under-Eye and Bio-Filler are the two current injectable PRF consultations.'
+              ? 'These appointments show where PRF is used and how each one is booked.'
+              : 'PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
             : undefined,
         verifiedAt: 'August 6, 2026',
         items: skinRenewal.menu.items.map((item) => ({
@@ -387,21 +443,35 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               question: 'Does the standalone BioRePeel appointment include microneedling?',
-              answer: 'No. The current standalone BioRePeel listing is a topical face peel. Microneedling is listed separately and uses the Procell device to create controlled microchannels.',
+              answer: 'No. Brandy, Licensed Esthetician provides standalone BioRePeel as a topical face peel. Microneedling is booked with Amber Mingione, Licensed Esthetician and uses the Procell device.',
+            },
+            {
+              question: 'Who provides standalone BioRePeel at House of Rose?',
+              answer: 'Brandy, Licensed Esthetician, provides standalone BioRePeel. Amber Mingione, Licensed Esthetician, uses BioRePeel only as an add-on to an eligible advanced skin service.',
             },
           ]
-        : undefined,
+        : skinRenewal.faqs,
       faqHeading: skinRenewal.slug === 'biorepeel'
-        ? 'The peel and the current appointment.'
-        : undefined,
+        ? 'The peel and the standalone appointment.'
+        : skinRenewal.slug === 'microneedling'
+          ? 'Procell Pro, Procell MD, and topical PRF.'
+          : skinRenewal.slug === 'prf'
+            ? 'What PRF is, and how House of Rose uses it.'
+            : skinRenewal.slug === 'prf-injections'
+              ? 'The two appointments and where topical PRF fits.'
+            : undefined,
       links: skinRenewal.slug === 'biorepeel'
         ? [
+            {
+              href: '/about/providers/brandy/',
+              label: 'Meet Brandy',
+            },
             {
               href: '/services/microneedling/',
               label: 'Compare the Microneedling service',
             },
           ]
-        : undefined,
+        : skinRenewal.links,
     };
   }
 
@@ -410,22 +480,26 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   if (device.slug === 'glo2facial') {
     return {
       kicker: device.title,
-      heading: 'A facial with three distinct steps.',
+      heading: 'What happens during the three-step facial.',
       metaDescription: `${device.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [device.whatItIs, device.whereItFits],
       distinctions: [
         {
           label: 'Surface exfoliation',
-          text: 'The exfoliation step works at the surface of the skin.',
+          text: device.exfoliation ?? 'The exfoliation step works at the surface of the skin.',
         },
         {
-          label: 'Topical infusion and oxygenation',
-          text: `The Geneo service pairs its topical infusion step with an oxygenation step in the same appointment. ${device.oxygenation}`,
+          label: 'Topical infusion and massage',
+          text: device.infusionAndFinish ?? 'The appointment includes topical infusion and facial massage.',
+        },
+        {
+          label: 'Oxygenation at the surface',
+          text: device.oxygenation ?? 'The oxygenation step takes place at the skin’s surface.',
         },
       ],
       menu: {
         heading: 'Standalone Glo2Facial',
-        intro: 'Glo2Facial is currently listed as a directly bookable, standalone facial.',
+        intro: 'Glo2Facial is a directly bookable, standalone facial at House of Rose.',
         verifiedAt: 'August 13, 2026',
         items: [
           {
@@ -436,11 +510,19 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       },
       faqs: [
         {
+          question: 'How is Glo2Facial different from Dermaplaning?',
+          answer: device.comparisonToDermaplaning ?? 'Glo2Facial uses an OxyPod and Primer Gel for its surface pass; Dermaplaning uses a specialized blade to remove fine vellus hair and accumulated dead skin cells.',
+        },
+        {
           question: 'Is oxygen blown onto the skin during Glo2Facial?',
           answer: 'No. Geneo describes the OxyPod and Primer Gel reacting on the skin’s surface to create a carbon-dioxide-rich bubbly environment that triggers the oxygenation step. The oxygenation does not come from an external stream of oxygen.',
         },
+        {
+          question: 'Does Glo2Facial have downtime?',
+          answer: device.recovery ?? 'Ask House of Rose what to expect after the appointment.',
+        },
       ],
-      faqHeading: 'The oxygenation question.',
+      faqHeading: 'The three steps and what follows.',
     };
   }
 
@@ -453,29 +535,33 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       metaDescription: `${device.whatItIs} Review the current Lumecca Peak treatment areas at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [
         device.whatItIs,
-        `${device.whereItFits} The current area-based menu covers ${areaList}.`,
+        `${device.whereItFits} House of Rose books it for ${areaList}.`,
       ],
       distinctions: [
         {
-          label: 'What the handpiece uses',
+          label: 'How the light is delivered',
           text: 'Lumecca Peak delivers filtered optical energy from a xenon flash lamp. InMode and the FDA identify the applicator as IPL.',
         },
         {
-          label: 'How House of Rose lists it',
-          text: `The current menu is organized by treatment area: ${areaList}.`,
+          label: 'Where House of Rose offers it',
+          text: `Appointments are organized by treatment area: ${areaList}.`,
         },
       ],
       faqs: [
         {
           question: 'Is Lumecca Peak a laser?',
-          answer: 'No. Lumecca Peak is an IPL handpiece. It uses a xenon flash lamp to deliver filtered optical energy; InMode and the FDA classify its applicators separately from laser applicators.',
+          answer: 'Lumecca Peak is an IPL handpiece. A xenon flash lamp delivers filtered optical energy, and InMode and the FDA classify the applicator separately from laser applicators.',
         },
         {
-          question: 'Which Lumecca Peak treatment areas are currently listed at House of Rose?',
-          answer: `The current House of Rose menu lists ${areaList}. The service is booked by treatment area.`,
+          question: 'Which areas can I ask about for Lumecca Peak at House of Rose?',
+          answer: `House of Rose offers Lumecca Peak for ${areaList}. The service is booked by treatment area.`,
+        },
+        {
+          question: 'How is Lumecca Peak different from Forma?',
+          answer: device.comparisonToForma ?? 'Lumecca Peak delivers filtered optical energy as IPL, while Forma delivers radiofrequency through electrodes at the skin surface.',
         },
       ],
-      faqHeading: 'Technology and current treatment areas.',
+      faqHeading: 'Technology, treatment areas, and the Forma distinction.',
       links: [
         {
           href: '/services/forma-rf-facial/',
@@ -492,34 +578,34 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   if (device.slug === 'forma-rf-facial') {
     return {
       kicker: device.title,
-      heading: 'Radiofrequency without needles.',
-      metaDescription: `${device.whatItIs} Review how Forma differs from Morpheus8 and Lumecca Peak at House of Rose Aesthetics in Punta Gorda.`,
+      heading: 'Facial radiofrequency through surface electrodes.',
+      metaDescription: `${device.whatItIs} Compare the roles of Forma, Morpheus8, and Lumecca Peak at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [device.whatItIs, device.whereItFits],
       distinctions: [
         {
-          label: 'Forma',
-          text: 'Forma is a non-invasive RF applicator. Its electrodes deliver radiofrequency for controlled dermal and subdermal heating.',
+          label: 'At the facial surface',
+          text: 'The Forma handpiece delivers radiofrequency through surface electrodes for controlled dermal and subdermal heating.',
         },
         {
-          label: 'Morpheus8',
-          text: 'Morpheus8 is a fractional RF applicator that combines microneedling with radiofrequency. Forma does not use microneedles.',
+          label: 'When microneedling is part of the comparison',
+          text: 'Morpheus8 combines microneedling with fractional radiofrequency in one InMode device.',
         },
         {
-          label: 'Lumecca Peak',
-          text: 'Lumecca Peak is an IPL handpiece that delivers filtered optical energy. It uses light rather than radiofrequency.',
+          label: 'When visible pigment is the question',
+          text: 'Lumecca Peak is the InMode IPL handpiece House of Rose lists for visible pigment, uneven tone, and selected texture concerns.',
         },
       ],
       faqs: [
         {
-          question: 'How is Forma different from Morpheus8?',
-          answer: 'Both use radiofrequency, but they deliver it differently. Forma uses surface electrodes and does not use needles. Morpheus8 combines microneedling with fractional radiofrequency.',
+          question: 'Does Forma use needles?',
+          answer: device.needleDistinction ?? 'Forma delivers radiofrequency through electrodes at the skin surface and does not use microneedles.',
         },
         {
-          question: 'How is Forma different from Lumecca Peak?',
-          answer: 'Forma delivers radiofrequency energy through surface electrodes. Lumecca Peak is an IPL handpiece that delivers filtered optical energy from a xenon flash lamp.',
+          question: 'How do Forma, Morpheus8, and Lumecca Peak differ?',
+          answer: 'Forma delivers radiofrequency through surface electrodes. Morpheus8 combines microneedling with fractional radiofrequency. Lumecca Peak delivers filtered optical energy as IPL.',
         },
       ],
-      faqHeading: 'Three InMode tools. Three different technologies.',
+      faqHeading: 'One useful distinction: how each device delivers energy.',
       links: [
         {
           href: '/services/morpheus8/',
@@ -538,28 +624,28 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   return {
     kicker: device.title,
     heading: isBodyMorpheus
-      ? 'The Morpheus8 platform, used for selected body concerns.'
-      : 'Microneedling and radiofrequency in one device.',
+      ? 'RF microneedling for selected body areas.'
+      : 'Microneedling and fractional radiofrequency, together.',
     metaDescription: `${device.whatItIs} Available by consultation at House of Rose Aesthetics in Punta Gorda.`,
     paragraphs: [
       device.whatItIs,
       device.whereItFits,
       isBodyMorpheus
-        ? 'It is a consultation-led service. House of Rose does not publish an unresolved treatment price, duration, or series for Morpheus8 Body.'
-        : 'It is a consultation-led service. House of Rose does not publish an unresolved standalone treatment price or appointment length for Morpheus8 RF Microneedling.',
+        ? 'Morpheus8 Body begins with a consultation. Call House of Rose before scheduling to confirm the standalone price, appointment length, and any series information.'
+        : 'Morpheus8 begins with a consultation. Call House of Rose before scheduling to confirm the standalone price and appointment length.',
     ],
     distinctions: [
       {
-        label: isBodyMorpheus ? 'One platform' : 'What works together',
+        label: isBodyMorpheus ? 'The technology' : 'What RF Microneedling means here',
         text: isBodyMorpheus
           ? 'Morpheus8 Body is the body-focused use of the same InMode RF microneedling platform described on the main Morpheus8 page.'
           : 'The Morpheus8 handpiece pairs microneedling with fractional bipolar radiofrequency in the same device.',
       },
       {
-        label: isBodyMorpheus ? 'The body focus' : 'Face and body',
+        label: isBodyMorpheus ? 'Start with the area' : 'Face, neck, chest, and body',
         text: isBodyMorpheus
-          ? 'This page is for selected body areas. The main Morpheus8 page also accounts for the face, neck and chest.'
-          : 'This page gives the full face-and-body overview. The Morpheus8 Body page narrows the same technology to selected body areas.',
+          ? 'Use this page for a selected body area. The main Morpheus8 page also covers the face, neck and chest.'
+          : 'The main Morpheus8 service covers the face, neck and chest as well as selected body areas. Morpheus8 Body uses the same InMode platform and keeps the body-area information together.',
       },
     ],
     faqs: isBodyMorpheus
@@ -569,23 +655,23 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             answer: 'Yes. Both House of Rose listings refer to the InMode platform that combines microneedling with fractional bipolar radiofrequency. The Body page focuses on selected body areas.',
           },
           {
-            question: 'Is a standalone Morpheus8 Body price or appointment length published?',
-            answer: 'No. The current listing is consultation-led, and House of Rose does not publish a reconciled standalone price, appointment length, or series for Morpheus8 Body.',
+            question: 'How do I confirm the Morpheus8 Body price and appointment length?',
+            answer: 'Call House of Rose before scheduling to confirm the standalone price, appointment length, and any series information.',
           },
         ]
       : [
           {
-            question: 'What does Morpheus8 combine?',
-            answer: 'Morpheus8 combines microneedling with fractional bipolar radiofrequency in one InMode device.',
+            question: 'Does Morpheus8 use the same device as Procell Microneedling?',
+            answer: device.comparisonToProcell ?? 'Morpheus8 combines microneedling with fractional bipolar radiofrequency in one InMode device.',
           },
           {
-            question: 'How do the Morpheus8 and Morpheus8 Body pages divide the offering?',
-            answer: 'The main Morpheus8 page covers the face, neck and chest, and selected body areas. The Morpheus8 Body page focuses on selected body areas and the visible concerns listed for them.',
+            question: 'Is Morpheus8 Body a different platform?',
+            answer: 'Morpheus8 Body uses the same InMode platform. The body-focused service keeps selected body areas together, while the main Morpheus8 service also covers the face, neck and chest.',
           },
         ],
     faqHeading: isBodyMorpheus
-      ? 'The shared platform and the body listing.'
-      : 'The technology and the two House of Rose listings.',
+      ? 'The technology, body focus, and current booking details.'
+      : 'The device, body areas, and the Procell distinction.',
     links: isBodyMorpheus
       ? [
           {
@@ -600,11 +686,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       : [
           {
             href: '/services/morpheus8-body/',
-            label: 'Review Morpheus8 Body',
+            label: 'Morpheus8 Body areas',
           },
           {
             href: '/compare/morpheus8-vs-microneedling/',
-            label: 'Compare Morpheus8 and microneedling',
+            label: 'Compare Morpheus8 and Procell Microneedling',
           },
         ],
   };

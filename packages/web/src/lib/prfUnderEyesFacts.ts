@@ -26,9 +26,9 @@ export const PRF_UNDER_EYES_FAQS = [
       'Visible under-eye darkness can reflect pigment, thin or translucent skin, visible vessels, structural shadowing, or more than one factor. A photograph of dark circles does not point to one service. Individual outcomes vary.',
   },
   {
-    question: 'What is the current price for PRF under eyes?',
+    question: 'How much is the PRF under-eye consultation?',
     answer:
-      'The current GlossGenius menu lists PRF Under-Eye — Consultation at $495. Duration is omitted here while the current menu sources disagree.',
+      'The PRF Under-Eye consultation is $495. Call House of Rose to confirm how much time to allow for the appointment.',
   },
 ] as const;
 
