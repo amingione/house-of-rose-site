@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { siteSettings } from '../packages/studio/schemas/siteSettings.ts';
+import { SITE_SETTINGS_QUERY } from '../packages/web/src/lib/queries.ts';
+
+const structureSource = readFileSync(
+  new URL('../packages/studio/structure.ts', import.meta.url),
+  'utf8',
+);
 
 function settingsField(name: string) {
   return siteSettings.fields.find((field) => field.name === name);
@@ -51,4 +58,14 @@ test('the sitewide structured-data email is format-validated without becoming re
 
   assert.equal(email.validation(rule), validatedRule);
   assert.equal(emailRuleCalls, 1);
+});
+
+test('sitewide public data resolves only from the canonical Studio singleton', () => {
+  const canonicalId = structureSource.match(
+    /schemaType\('siteSettings'\)[\s\S]*?\.documentId\('([^']+)'\)/,
+  )?.[1];
+  assert.ok(canonicalId, 'Studio structure must define the Site Settings singleton ID.');
+  assert.deepEqual(siteSettings.__experimental_actions, ['update', 'publish']);
+  assert.match(SITE_SETTINGS_QUERY, new RegExp(`_id == "${canonicalId}"`));
+  assert.doesNotMatch(SITE_SETTINGS_QUERY, /\*\[_type == "siteSettings"\]\[0\]/);
 });

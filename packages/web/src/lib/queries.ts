@@ -432,7 +432,7 @@ export interface ExperienceContent {
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
 export const SITE_SETTINGS_QUERY = /* groq */ `
-  *[_type == "siteSettings"][0] {
+  *[_type == "siteSettings" && _id == "siteSettings"][0] {
     siteName,
     tagline,
     description,
