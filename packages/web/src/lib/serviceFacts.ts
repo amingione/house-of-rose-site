@@ -15,7 +15,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   biorepeel:
     'The standalone face treatment is directly bookable. Send a question first if you are deciding between BioRePeel and another skin service.',
   'dermal-fillers':
-    'At the consultation, describe where you have noticed a change in facial volume. The five hyaluronic-acid filler options are shown above.',
+    'Request the 60-minute, $300 Dermal Filler Consultation and describe whether the change in volume is at the lips, cheeks, or folds. You do not need to choose among the Juvéderm and RHA products first.',
   'face-reality-acne-program':
     'The $99 Acne Bootcamp Consultation is the directly bookable first appointment for the complete 12-week Face Reality program.',
   'acne-bootcamp':
@@ -25,7 +25,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'permanent-jewelry':
     'Call House of Rose for the $65, 20-minute fitting. If the chain material or charm matters to you, ask what is available before booking.',
   injectables:
-    'At the consultation, point out the lines you notice when you frown, raise your brows, or squint. The Botox and Daxxify details are shown above.',
+    'At the consultation, describe which lines appear or deepen when you frown, raise your brows, or squint. Botox and Daxxify are each $14 per unit; the appointment total depends on the number of units administered.',
   'body-waxing':
     'Call House of Rose and name the body area you want waxed; for legs, specify Full Leg or Partial Leg.',
   'iv-hydration-therapy':
@@ -35,7 +35,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   prf:
     'Start with the PRF route that matches the appointment you want: topical PRF with Microneedling, PRF Under Eyes, or PRF Bio-Filler.',
   'injectables-bio-fillers':
-    'Open the child page that matches movement-related lines, facial volume, or PRF; each service has its own booking path.',
+    'Describe whether what you notice changes with expression, looks like lost volume at the lips, cheeks, or folds, or involves under-eye color, vessels, or shadow. You do not need to begin with a product name.',
   dermaplaning:
     'Book the 50-minute standalone facial or the 25-minute add-on. Review Facial Waxing if you want one named facial area waxed.',
   microneedling:
