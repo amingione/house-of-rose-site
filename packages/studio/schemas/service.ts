@@ -61,6 +61,9 @@ export const service = defineType({
       title: 'Parent Service (hub — not the same as Collection)',
       type: 'reference',
       to: [{ type: 'service' }],
+      options: {
+        filter: 'kind == "hub" && status in ["live", "actual-menu"] && defined(slug.current)',
+      },
       description: 'For treatments only: the specific hub SERVICE this treatment belongs under (e.g. "Microneedling — Body" under the "Microneedling" hub). This is a service-to-service link, separate from Collection above (which links to a serviceCollection grouping page).',
       hidden: ({ document }) => document?.kind !== 'treatment',
     }),

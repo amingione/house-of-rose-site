@@ -2,6 +2,10 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { service } from '../packages/studio/schemas/service.ts';
+import {
+  ALL_SITEMAP_SERVICES_QUERY,
+  SERVICE_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 type NestedField = {
   name?: string;
@@ -79,4 +83,20 @@ test('related-service authoring only offers relationships the public query can r
   const filter = reference?.options?.filter ?? '';
   assert.match(filter, /status in \["live", "actual-menu"\]/);
   assert.match(filter, /defined\(slug\.current\)/);
+});
+
+test('parent-service authoring and public projections require a routeable public hub', () => {
+  const parentService = serviceField('parentService') as NestedField | undefined;
+  const filter = parentService?.options?.filter ?? '';
+  assert.match(filter, /kind == "hub"/);
+  assert.match(filter, /status in \["live", "actual-menu"\]/);
+  assert.match(filter, /defined\(slug\.current\)/);
+
+  for (const query of [SERVICE_BY_SLUG_QUERY, ALL_SITEMAP_SERVICES_QUERY]) {
+    const parentProjection = query.match(/"parentService": select\(([\s\S]*?)=> parentService->/);
+    assert.ok(parentProjection?.[1], 'The query must guard its parent-service projection.');
+    assert.match(parentProjection[1], /parentService->kind == "hub"/);
+    assert.match(parentProjection[1], /parentService->status in \["live", "actual-menu"\]/);
+    assert.match(parentProjection[1], /defined\(parentService->slug\.current\)/);
+  }
 });

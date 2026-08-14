@@ -494,7 +494,13 @@ export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
     "slug": slug.current,
     kind,
     _updatedAt,
-    "parentService": select(!(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => parentService->{ title, "slug": slug.current })
+    "parentService": select(
+      parentService->kind == "hub" &&
+      parentService->status in ["live", "actual-menu"] &&
+      defined(parentService->slug.current) &&
+      !(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+      => parentService->{ title, "slug": slug.current }
+    )
   }
 `;
 
@@ -511,7 +517,13 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       profileImagePath,
       "profileImageAlt": profileImage.alt
     },
-    "parentService": select(!(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => parentService->{ title, "slug": slug.current }),
+    "parentService": select(
+      parentService->kind == "hub" &&
+      parentService->status in ["live", "actual-menu"] &&
+      defined(parentService->slug.current) &&
+      !(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+      => parentService->{ title, "slug": slug.current }
+    ),
     "treatments": *[_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && parentService._ref == ^._id] | order(orderRank asc, title asc) {
       _id,
       title,
