@@ -11,7 +11,7 @@ const VERIFIED_SERVICE_DURATIONS: Readonly<Record<string, string>> = {
 // sentence across every service page.
 const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   glo2facial:
-    'The $225, 60-minute standalone Glo2Facial is directly bookable with Amber Mingione, Licensed Esthetician. Send a question first if you want to compare it with another facial.',
+    'The $225, 60-minute standalone Glo2Facial is directly bookable with Amber Mingione, Licensed Esthetician. The surface pass uses an OxyPod with Primer Gel, followed by topical infusion and facial massage.',
   biorepeel:
     'The $250, 45-minute standalone face treatment and $699 Series of 3 are directly bookable. Call House of Rose to discuss Gold Body at $325 for 45 minutes, Advanced Acne Scarring at $450 for 75 minutes, or the Duo Gold Spot Upgrade at $395 for 60 minutes.',
   'dermal-fillers':
