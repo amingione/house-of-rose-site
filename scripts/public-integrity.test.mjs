@@ -1789,7 +1789,7 @@ test('area detail guides distinguish the location from the service area and supp
     'port-charlotte': {
       heading: 'Your appointment is in Punta Gorda.',
       locationAnswer: undefined,
-      satelliteAnswer: 'it does not represent a second location.',
+      satelliteAnswer: 'Appointments for clients coming from Port Charlotte take place there.',
     },
   };
   const failures = [];
