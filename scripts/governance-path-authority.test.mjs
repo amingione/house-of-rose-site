@@ -6,6 +6,18 @@ import { fileURLToPath } from 'node:url';
 
 const governanceRoot = fileURLToPath(new URL('../docs/GOVERNANCE/internal_only/', import.meta.url));
 const repositoryRoot = resolve(governanceRoot, '../../..');
+const governanceInstructions = readFileSync(
+  join(repositoryRoot, 'docs/GOVERNANCE/AGENTS.md'),
+  'utf8',
+);
+const brandMemory = readFileSync(
+  join(repositoryRoot, 'docs/GOVERNANCE/BRAND_MEMORY.md'),
+  'utf8',
+);
+const startHere = readFileSync(
+  join(repositoryRoot, 'docs/GOVERNANCE/internal_only/START-HERE.md'),
+  'utf8',
+);
 
 function markdownFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -45,4 +57,24 @@ test('active governance documents reference the current governance tree', () => 
     [],
     `Governance documents contain missing current-tree references:\n${missingReferences.join('\n')}`,
   );
+});
+
+test('governance preflight does not reinstate the archival brand system', () => {
+  assert.match(governanceInstructions, /Use[\s\S]*BRAND_MEMORY\.md[\s\S]*selectively/);
+  assert.match(governanceInstructions, /not a creative brief/);
+  assert.match(governanceInstructions, /Start with the user's latest direction/);
+  assert.match(governanceInstructions, /current owner documents/);
+  assert.match(governanceInstructions, /blank audience, offer, funnel, or voice framework/);
+
+  assert.doesNotMatch(
+    governanceInstructions,
+    /read[\s\S]{0,120}BRAND_MEMORY\.md[\s\S]{0,120}in full/i,
+  );
+  assert.doesNotMatch(
+    governanceInstructions,
+    /Every customer-facing deliverable must be traceable to the memory's audience/,
+  );
+
+  assert.match(brandMemory, /must not be read wholesale as a creative brief/);
+  assert.match(startHere, /BRAND_MEMORY\.md` are archival voice references during the reset/);
 });
