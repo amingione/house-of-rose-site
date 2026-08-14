@@ -127,7 +127,7 @@ export const INJECTABLE_SERVICE_EDUCATION = {
     slug: 'dermal-fillers',
     title: 'Dermal Fillers',
     whatItIs: 'House of Rose offers five manufactured hyaluronic-acid gels from Juvéderm and RHA for selected areas of lost facial volume.',
-    whereItFits: 'Those areas are the lips, cheeks, and folds. The five products have different published prices and appointment lengths, while the consultation gives you one place to begin.',
+    whereItFits: 'Those areas are the lips, cheeks, and folds. The five products have different published prices and appointment lengths; the $300 consultation does not require you to choose one in advance.',
     pricingSummary: 'The five dermal filler products range from $650 to $850.',
     consultation: {
       name: 'Dermal Filler Consultation',
@@ -151,8 +151,8 @@ export const INJECTABLE_SERVICE_EDUCATION = {
         answer: 'Dermal fillers are used here for selected areas of lost volume in the lips, cheeks, and folds. Botox and Daxxify address lines related to facial movement.',
       },
       {
-        question: 'Why are five products shown if booking begins with a consultation?',
-        answer: 'Each product has its own price and appointment length. The Dermal Filler Consultation is 60 minutes at $300, so you can begin with the area you want to discuss rather than a product name.',
+        question: 'Do I need to choose a filler product before the consultation?',
+        answer: 'No. Describe the area you want to discuss—lips, cheeks, or folds. The Dermal Filler Consultation is 60 minutes at $300; each of the five filler products has its own price and appointment length.',
       },
     ],
     links: [

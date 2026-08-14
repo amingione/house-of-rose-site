@@ -25,7 +25,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'permanent-jewelry':
     'Call House of Rose for the $65, 20-minute fitting. If the chain material or charm matters to you, ask what is available before booking.',
   injectables:
-    'Begin with the 20-minute, $50 Neuromodulator Consultation with Diana Morrison, RN, and describe which lines appear or deepen when you frown, raise your brows, or squint. Botox and Daxxify are each $14 per unit; the treatment appointment total depends on the number of units administered.',
+    'The 20-minute, $50 Neuromodulator Consultation with Diana Morrison, RN is for describing which lines appear or deepen when you frown, raise your brows, or squint. Botox and Daxxify are each $14 per unit; the treatment appointment total depends on the number of units administered.',
   'body-waxing':
     'Call House of Rose and name the body area you want waxed; for legs, specify Full Leg or Partial Leg.',
   'iv-hydration-therapy':
@@ -35,7 +35,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   prf:
     'For PRF applied at the skin surface, ask about Microneedling with Amber Mingione, Licensed Esthetician. For injectable PRF with Diana Morrison, RN, ask about PRF Under-Eye or PRF Bio-Filler.',
   'injectables-bio-fillers':
-    'Describe whether what you notice changes with expression, looks like lost volume at the lips, cheeks, or folds, or involves under-eye color, vessels, or shadow. You do not need to begin with a product name.',
+    'Describe whether what you notice changes with expression, looks like lost volume at the lips, cheeks, or folds, or involves under-eye color, vessels, or shadow. A product name is not required.',
   dermaplaning:
     'Book the 50-minute standalone facial or the 25-minute add-on. Review Facial Waxing if you want one named facial area waxed.',
   microneedling:

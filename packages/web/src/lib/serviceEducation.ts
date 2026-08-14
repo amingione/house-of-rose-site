@@ -359,7 +359,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             ...(injectable.consultation
               ? [
                   {
-                    label: 'Where to begin',
+                    label: 'The consultation',
                     text: `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. Treatment is priced separately by the number of product-specific units administered.`,
                   },
                 ]
@@ -385,7 +385,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             ...(injectable.bookingGuidance
               ? [
                   {
-                    label: 'How to begin',
+                    label: 'The consultation',
                     text: injectable.bookingGuidance,
                   },
                 ]
@@ -398,9 +398,9 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             ? 'Consultation and dermal filler products'
             : 'Dermal filler products',
         intro: isNeurotoxin && injectable.consultation && injectable.followUp
-          ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary} The ${injectable.followUp.name} takes ${formatMinutes(injectable.followUp.durationMinutes)} and is ${formatUsd(injectable.followUp.priceUsd)}; it is a post-appointment follow-up.`
+          ? `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. ${injectable.pricingSummary} The ${injectable.followUp.name} takes ${formatMinutes(injectable.followUp.durationMinutes)} and is ${formatUsd(injectable.followUp.priceUsd)}; it is a post-appointment follow-up.`
           : injectable.consultation
-            ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary}`
+            ? `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. ${injectable.pricingSummary}`
           : injectable.pricingSummary,
         verifiedAt: 'August 6, 2026',
         items: [
@@ -433,7 +433,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       faqs: injectable.faqs,
       faqHeading: isNeurotoxin
         ? 'Price, product units, and the detail that helps when you ask.'
-        : 'What the products share, what filler addresses, and how to begin.',
+        : 'What the products share, what filler addresses, and the consultation.',
       links: injectable.links,
     };
   }
