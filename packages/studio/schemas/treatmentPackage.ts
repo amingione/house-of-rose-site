@@ -87,6 +87,7 @@ export const treatmentPackage = defineType({
       title: 'Rack Price',
       type: 'string',
       description: 'Standard published rate (free text — supports ranges).',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     // ─── Website copy under review ────────────────────────────────────────────
     defineField({

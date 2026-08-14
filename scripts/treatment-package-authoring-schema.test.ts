@@ -5,6 +5,7 @@ import { treatmentPackage } from '../packages/studio/schemas/treatmentPackage.ts
 
 const titleField = treatmentPackage.fields.find(({ name }) => name === 'title');
 const cadenceField = treatmentPackage.fields.find(({ name }) => name === 'cadence');
+const rackPriceField = treatmentPackage.fields.find(({ name }) => name === 'rackPrice');
 const imageField = treatmentPackage.fields.find(({ name }) => name === 'image');
 
 test('the published package identity is required and uses the shared public-copy guard', () => {
@@ -43,6 +44,23 @@ test('published package timing uses the shared guard without a process template'
   assert.equal(validate(undefined), true);
   assert.equal(validate('12 weeks, with an in-studio appointment every two weeks.'), true);
   assert.match(String(validate('A premium transformation over 12 weeks.')), /retired or prohibited/i);
+});
+
+test('published package price text uses the shared guard without locking a value', () => {
+  assert.equal(typeof rackPriceField?.validation, 'function', 'Package price must validate public copy.');
+  assert.match(String(rackPriceField.validation), /validatePublicCopy/);
+
+  const rule = {
+    custom(fn: (value: string | undefined) => true | string) {
+      return { validate: fn };
+    },
+  };
+  const { validate } = rackPriceField.validation(rule);
+
+  assert.equal(validate(undefined), true);
+  assert.equal(validate('$899'), true);
+  assert.equal(validate('$250–$850'), true);
+  assert.match(String(validate('Premium package — $899!')), /retired or prohibited/i);
 });
 
 test('published package image alt text uses the shared public-copy guard', () => {
