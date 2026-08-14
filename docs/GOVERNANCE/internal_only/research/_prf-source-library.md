@@ -98,6 +98,7 @@ neuro, cardiac, diabetes, etc.) per Amber's note.
 - These are Amber's **private files**, not committed to the repo — reference by absolute path; do
   not copy PDFs into the repo. Extract verified facts into the existing briefs under
   `docs/GOVERNANCE/internal_only/research/PRF/`; do not create parallel research documents.
-- Tier 1 + the facial-esthetics half of Tier 2 are the primary inputs for the **PRF service hub,
-  the PRF cost guide, the PRF-vs-microchanneling comparison, and PRF FAQ** content.
+- Tier 1 + the facial-esthetics half of Tier 2 can support the current PRF briefs and canonical
+  `/services/prf/`, `/services/prf-under-eyes/`, and `/services/prf-injections/` pages. This source
+  library does not authorize a new cost guide, comparison, FAQ, or service route.
 - Keep the **topical (Amber) vs injectable (Diana, RN)** split explicit in every derived page.
