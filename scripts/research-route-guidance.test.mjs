@@ -147,6 +147,19 @@ test('obsolete collection planning imports cannot compete with reviewed route in
   );
 });
 
+test('unsigned clinical timing drafts cannot act as staff policy', () => {
+  for (const retiredArtifact of [
+    new URL('../prompts/CLINICAL-TIMING-AND-PREGNANCY-POLICY.md', researchRoot),
+    new URL('../WALL-CARDS-Timing-and-Pregnancy.pdf', researchRoot),
+  ]) {
+    assert.equal(
+      existsSync(retiredArtifact),
+      false,
+      `${retiredArtifact.pathname} must not remain available as unsigned clinical policy.`,
+    );
+  }
+});
+
 test('PRF research cannot regenerate the rejected strategy artifact', () => {
   for (const retiredArtifact of [
     new URL(
