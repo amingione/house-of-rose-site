@@ -43,7 +43,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'facial-waxing':
     'Call with the area you want waxed: chin, upper lip, eyebrows, or eyebrow shaping.',
   'forma-rf-facial':
-    'Reserve Forma, or send a question if you are comparing its non-invasive radiofrequency with Morpheus8 or Lumecca Peak.',
+    'Call House of Rose with the area you want to discuss: face, neck, face and neck, eyes, jawline, or nasolabial folds. Forma delivers radiofrequency through surface electrodes without microneedles; Morpheus8 is RF microneedling, and Lumecca Peak is IPL for pigment-related questions.',
   'lumecca-peak-ipl':
     'Request the $50 consultation and name one of the current treatment areas: legs; full face; chest; neck; face and neck; face, neck, and chest; spot treatment; or hands.',
   morpheus8:
