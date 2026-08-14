@@ -14,6 +14,7 @@ const routeGuidanceBriefs = [
   'carboxy-therapy.md',
   'dermaplaning.md',
   'face-reality-acne-program.md',
+  'iv-hydration.md',
   'product-lines.md',
 ];
 
@@ -134,5 +135,25 @@ test('skin imaging research follows current optional-service and concern routes'
   assert.doesNotMatch(
     brief,
     /provider lane|first step and the router|front-door consultation|dermatologist|EZ-?Gel|PRF body|body PRF/i,
+  );
+});
+
+test('IV research cannot regenerate an outcome funnel or unsupported routes', () => {
+  const brief = readFileSync(new URL('iv-hydration.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/iv-hydration-therapy/',
+    '/services/collections/iv-hydration-therapy/',
+    '/about/providers/diana/',
+    '/contact/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+  assert.match(brief, /catalog name, not[\s\S]{0,40}evidence of a skin result/i);
+  assert.doesNotMatch(
+    brief,
+    /inside-out|wellness rhythm|routine wellness habit|retail follow-through|skin-radiance|dull-tired-skin|wellness-restoration|\/services\/iv-drip\/|\/services\/wellness\/|\/cost\/iv-|\/compare\/iv-/i,
   );
 });

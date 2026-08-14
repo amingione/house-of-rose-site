@@ -76,6 +76,11 @@ test('research mirrors the current high-risk service price facts', () => {
     /Myers' Cocktail IV \| \$185 \| 45 min/,
   ]) assert.match(iv, row);
   assert.doesNotMatch(iv, /From \$129|Hydration IV[^\n]*\$100/i);
+  assert.match(iv, /current menu does not verify the\s+complete formulation/i);
+  assert.doesNotMatch(
+    iv,
+    /build IV therapy into your wellness rhythm|same skin goals|sustaining at-home|vitamin-C serum|glutathione add-on[^\n]*\$|NAD\+[^\n]*\$/i,
+  );
 
   const procell = read('PROCELL/procell.md');
   for (const fact of [/\$50[^\n]*60-minute/i, /\$300[^\n]*55 minutes/i, /\$400[^\n]*55 minutes/i, /\$595[^\n]*60 minutes/i]) {
