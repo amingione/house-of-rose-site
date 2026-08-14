@@ -5,6 +5,10 @@ export type DeviceServiceBookingMode = 'call' | 'consultation' | 'direct';
 export interface DeviceServiceMenuFacts {
   readonly bookingMode: DeviceServiceBookingMode;
   readonly duration?: string;
+  readonly consultation?: {
+    readonly name: string;
+    readonly priceUsd: number;
+  };
 }
 
 export interface DeviceServiceEducation {
@@ -27,9 +31,11 @@ export interface DeviceServiceEducation {
 /**
  * Factual overview copy for the named-device services.
  *
- * Prices and option names are deliberately absent. The current GlossGenius
- * menu does not agree with the repository pricing ledger, so neither source is
- * treated as reconciled public price truth here.
+ * Treatment prices and option names are deliberately absent. The current
+ * GlossGenius menu does not agree with the repository pricing ledger, so
+ * neither source is treated as reconciled public treatment-price truth here.
+ * A consultation price appears only where that starting appointment has been
+ * reconciled independently.
  *
  * Forma and Lumecca Peak identities are cross-checked against InMode product
  * descriptions and FDA documentation. The FDA separates Forma's non-invasive
@@ -102,6 +108,10 @@ export const DEVICE_SERVICE_EDUCATION = {
     ],
     menu: {
       bookingMode: 'consultation',
+      consultation: {
+        name: 'Lumecca Peak IPL Consultation',
+        priceUsd: 50,
+      },
     },
   },
   morpheus8: {

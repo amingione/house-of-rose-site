@@ -572,6 +572,19 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           text: `Appointments are organized by treatment area: ${areaList}.`,
         },
       ],
+      menu: device.menu.consultation
+        ? {
+            heading: 'Lumecca Peak consultation',
+            intro: `The ${formatUsd(device.menu.consultation.priceUsd)} consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed.`,
+            verifiedAt: 'August 6, 2026',
+            items: [
+              {
+                name: device.menu.consultation.name,
+                price: formatUsd(device.menu.consultation.priceUsd),
+              },
+            ],
+          }
+        : undefined,
       faqs: [
         {
           question: 'Is Lumecca Peak a laser?',
