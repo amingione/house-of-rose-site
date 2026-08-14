@@ -645,8 +645,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       device.whatItIs,
       device.whereItFits,
       isBodyMorpheus
-        ? 'Morpheus8 Body begins with a consultation. The two Burst Deep area packages are priced below; call House of Rose to confirm the appointment length.'
-        : 'Morpheus8 begins with a consultation. The current standalone and three-treatment prices are shown below; call House of Rose to confirm the appointment length.',
+        ? 'Morpheus8 Burst Deep body pricing is organized by area size: 4 × 10 inches or 8 × 11 inches. Both are priced as a series of three; call House of Rose to confirm the appointment length.'
+        : 'House of Rose publishes both a single-treatment price and a series-of-three price for Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Call the practice to confirm the appointment length.',
     ],
     distinctions: [
       {
@@ -656,10 +656,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           : 'The Morpheus8 handpiece pairs microneedling with fractional bipolar radiofrequency in the same device.',
       },
       {
-        label: isBodyMorpheus ? 'Start with the area' : 'Face, neck, chest, and body',
+        label: 'How the area is priced',
         text: isBodyMorpheus
-          ? 'Use this page for a selected body area. The main Morpheus8 page also covers the face, neck and chest.'
-          : 'The main Morpheus8 service covers the face, neck and chest as well as selected body areas. Morpheus8 Body uses the same InMode platform and keeps the body-area information together.',
+          ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each price is for a series of three.'
+          : 'Full Face, Face & Neck, Scars, Chest, and Stretch Marks each have a single-treatment price and a series-of-three price.',
       },
     ],
     menu: {
@@ -667,30 +667,30 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? 'Morpheus8 Burst Deep area packages'
         : 'Morpheus8 Burst pricing by area',
       intro: isBodyMorpheus
-        ? 'The source lists small and large Burst Deep areas as three-treatment packages.'
-        : 'Each row shows the single-treatment price followed by the three-treatment price.',
+        ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
+        : 'Each treatment area has one price for a single treatment and another for a series of three.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
     faqs: isBodyMorpheus
       ? [
           {
-            question: 'Do Morpheus8 and Morpheus8 Body use the same platform?',
-            answer: 'Yes. Both House of Rose listings refer to the InMode platform that combines microneedling with fractional bipolar radiofrequency. The Body page focuses on selected body areas.',
+            question: 'What does Morpheus8 Body share with Morpheus8?',
+            answer: 'Both use the InMode platform that combines microneedling with fractional bipolar radiofrequency. Morpheus8 Body focuses on selected body areas.',
           },
           {
-            question: 'How do I confirm the Morpheus8 Body price and appointment length?',
+            question: 'How are Morpheus8 Body areas priced?',
             answer: 'The Morpheus8 Burst Deep small-area package is $3,500 for three treatments, and the large-area package is $4,500 for three treatments. Call House of Rose to confirm the appointment length.',
           },
         ]
       : [
           {
-            question: 'Does Morpheus8 use the same device as Procell Microneedling?',
+            question: 'What distinguishes Morpheus8 from Procell Microneedling?',
             answer: device.comparisonToProcell ?? 'Morpheus8 combines microneedling with fractional bipolar radiofrequency in one InMode device.',
           },
           {
-            question: 'Is Morpheus8 Body a different platform?',
-            answer: 'Morpheus8 Body uses the same InMode platform. The body-focused service keeps selected body areas together, while the main Morpheus8 service also covers the face, neck and chest.',
+            question: 'How does Morpheus8 Body relate to Morpheus8?',
+            answer: 'Morpheus8 Body uses the same InMode platform and focuses on selected body areas. Morpheus8 also covers the face, neck, and chest.',
           },
           {
             question: 'What does a standalone Morpheus8 treatment cost?',
@@ -698,13 +698,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
         ],
     faqHeading: isBodyMorpheus
-      ? 'The technology, body focus, and current booking details.'
-      : 'The device, body areas, and the Procell distinction.',
+      ? 'How the platform and body-area pricing relate.'
+      : 'How the technology, treatment areas, and pricing fit together.',
     links: isBodyMorpheus
       ? [
           {
             href: '/services/morpheus8/',
-            label: 'Review the full Morpheus8 overview',
+            label: 'See Morpheus8 for face, neck, and chest',
           },
           {
             href: '/compare/morpheus8-vs-microneedling/',
@@ -714,7 +714,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       : [
           {
             href: '/services/morpheus8-body/',
-            label: 'Morpheus8 Body areas',
+            label: 'See Morpheus8 Body area pricing',
           },
           {
             href: '/compare/morpheus8-vs-microneedling/',
