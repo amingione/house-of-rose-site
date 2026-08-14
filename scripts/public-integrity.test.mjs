@@ -1337,7 +1337,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
     ],
     'iv-hydration-therapy': [
       'Diana Morrison, RN',
-      'If ingredients or add-ons are part of your decision, call House of Rose before booking.',
       'from $99 to $185',
       'one 30-minute base IV and 5 45-minute base IVs',
     ],
@@ -1375,6 +1374,22 @@ test('priority service pages retain reviewed facts instead of falling back to th
     for (const value of requiredCopy) {
       if (!text.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
     }
+  }
+
+  const ivEducationHtml = readFileSync(
+    path.join(DIST_ROOT, 'services/iv-hydration-therapy/index.html'),
+    'utf8',
+  );
+  const ivEducationText = visibleText(
+    ivEducationHtml.match(
+      /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
+    )?.[1] ?? '',
+  );
+  for (const [label, pattern] of [
+    ['ingredient and add-on decision boundary', /ingredients?[\s\S]{0,140}add-ons?/i],
+    ['call-before-booking guidance', /call House of Rose[\s\S]{0,160}before booking/i],
+  ]) {
+    if (!pattern.test(ivEducationText)) failures.push(`iv-hydration-therapy: missing ${label}`);
   }
 
   const microneedlingHtml = readFileSync(
