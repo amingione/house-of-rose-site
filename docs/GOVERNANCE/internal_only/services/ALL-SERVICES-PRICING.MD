@@ -105,45 +105,17 @@ Notion the same day)*:
 |---|---|---|
 | PRF Under-Eye — Consultation | 1 hr 15 min | **$495** |
 | PRF Bio-Filler — Consultation | 45 min | **$899** ⚠️ see open item — was "EZ Gel Bio-Filler $650" per 2026-07-26 log |
-| PRF Microneedling — Consultation | 1 hr | **$595** |
 | PRF Body Treatments — Consultation | 1 hr | $3,500 |
 
-### ⚠️ INTERNAL ONLY — never customer-facing — how these four "Consultation" bookings should actually work
+### PRF booking and provider boundary
 
-**Amber's question, 2026-08-07:** these four are all booked as "Consultation" in GlossGenius but the
-price shown is the full treatment price, not a small intake fee — that's confusing to structure
-internally. Here's the reasoning and the recommended fix.
+The rows above mirror current GlossGenius names and prices. They do not authorize a deposit, a
+balance-at-checkout workflow, a future price, or a second treatment listing. Make any commerce change
+in GlossGenius first, then rebuild this ledger from the current menu.
 
-**Why "Consultation" is the right public label — don't change this part.** PRF/injectable-adjacent
-treatments legitimately can't be blind-booked online: candidacy, zone, and product amount have to be
-assessed in person first. So the client-facing booking type staying "Consultation" is correct and
-should not change. The confusion is that GlossGenius is currently charging the *full treatment price*
-at that consultation-booking step, which conflates two different things — the intake/gate, and the
-actual treatment charge.
-
-**Recommended structure: deposit-to-hold + balance-at-checkout.** This isn't a new mechanism — it's
-the exact same pattern already live elsewhere in this same GlossGenius account (BioRePeel® Cl3
-Rejuvenation charges a $50 deposit against its $250 price; Signature Makeup Services charges a $50
-deposit against its $85 price). Apply it here:
-
-| Service | Public booking (unchanged) | Deposit to hold (new) | Real balance charged in-office |
-|---|---|---|---|
-| PRF Under-Eye — Consultation | Stays "Consultation," online-bookable | $50 (matches her other consult fees) | $495 today — or $550 if the 2026-07-20 raise is finally pushed live (see open item below) |
-| PRF Microneedling — Consultation | Same | $50 | $595 |
-| PRF Bio-Filler — Consultation | Same | $50 | $899 — pending the EZ Gel naming question below |
-| PRF Body Treatments — Consultation | Same | $50 | **Not a fixed number** — quoted at consult based on zone(s)/scope. The $3,500 shown publicly should be understood internally as a "starting at" placeholder, never a flat charge. |
-
-**What this requires in GlossGenius:** no new service listings, nothing else goes public. Just (1) set
-each of these four to deposit-based booking with the deposit amount above, and (2) collect the real
-balance as a normal checkout line once the provider confirms the treatment plan that visit — same as
-any other point-of-sale transaction. Nothing forward-facing changes except the amount shown at booking
-drops from the full price to the deposit.
-
-**Why not a second "Treatment" service line instead?** It was considered — a staff-only, booking-off
-service (the same mechanism already used for CO2 Lift Carboxy's add-on) would also work. The deposit
-model is recommended over it because it requires zero new service
-creation, matches a pattern GlossGenius already runs cleanly elsewhere in this account, and keeps
-reporting simple (one line per service, not two to reconcile against each other).
+PRF Microneedling — Consultation appears once in the advanced-facial section above. It is the $595,
+60-minute topical PRF appointment with Amber Mingione, Licensed Esthetician, not a Diana injectable
+PRF appointment.
 
 **IV Hydration Therapy:**
 
