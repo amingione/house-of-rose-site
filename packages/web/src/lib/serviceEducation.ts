@@ -61,7 +61,9 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: faceReality.title,
       heading: faceReality.heading,
-      metaDescription: `${faceReality.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: faceReality.slug === 'acne-bootcamp'
+        ? 'Acne Bootcamp at House of Rose: a $99 consultation or the $899 Face Reality 12-week program with in-studio visits and home care.'
+        : 'Face Reality options at House of Rose include a $99 consultation and the $899 12-week program with in-studio visits and home care.',
       paragraphs: [faceReality.whatItIs, faceReality.whyTheStructureMatters],
       distinctions: faceReality.distinctions,
       menu: {
@@ -163,7 +165,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: DERMAPLANING_EDUCATION.title,
       heading: 'Surface exfoliation and peach-fuzz removal in one service.',
-      metaDescription: `${DERMAPLANING_EDUCATION.whatItIs} See the standalone and add-on appointments at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: 'Dermaplaning at House of Rose removes fine facial hair and surface buildup. Compare the $135 standalone service and $45 add-on.',
       paragraphs: [DERMAPLANING_EDUCATION.whatItIs, DERMAPLANING_EDUCATION.whereItFits],
       distinctions: [
         {
@@ -232,7 +234,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: PERMANENT_JEWELRY_EDUCATION.title,
       heading: 'A fitted chain without a traditional clasp.',
-      metaDescription: `${PERMANENT_JEWELRY_EDUCATION.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: 'Permanent jewelry at House of Rose is a fitted, clasp-free chain appointment in Punta Gorda. The 20-minute fitting is $65.',
       paragraphs: [
         PERMANENT_JEWELRY_EDUCATION.whatItIs,
         PERMANENT_JEWELRY_EDUCATION.appointment,
@@ -286,7 +288,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : waxing.slug === 'facial-waxing'
           ? 'Chin, upper lip, and two brow appointments.'
           : 'Seven body areas, each with its own appointment.',
-      metaDescription: `${waxing.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: waxing.slug === 'waxing'
+        ? 'Compare 11 facial and body waxing appointments at House of Rose in Punta Gorda, including current areas, prices, timing, and booking paths.'
+        : waxing.slug === 'facial-waxing'
+          ? 'Facial waxing at House of Rose includes chin, upper lip, and two brow appointments, with prices from $10 to $25.'
+          : 'Body waxing at House of Rose includes seven area-specific appointments, with current prices from $20 to $65.',
       paragraphs: [
         waxing.whatItIs,
         waxing.whereItFits,
@@ -337,7 +343,9 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       heading: isNeurotoxin
         ? 'Botox and Daxxify for movement-related lines.'
         : 'Five hyaluronic-acid fillers for lips, cheeks, and folds.',
-      metaDescription: `${injectable.whatItIs} ${injectable.whereItFits} Available at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: isNeurotoxin
+        ? 'Botox and Daxxify at House of Rose are $14 per product-specific unit. A 20-minute Neuromodulator Consultation is $50.'
+        : 'Compare five hyaluronic-acid fillers from $650 to $850 at House of Rose, plus the $300 Dermal Filler Consultation.',
       paragraphs: [
         injectable.whatItIs,
         injectable.whereItFits,
@@ -434,7 +442,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: skinRenewal.title,
       heading,
-      metaDescription: `${skinRenewal.whatItIs} ${skinRenewal.whereItFits} Available at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: skinRenewal.slug === 'biorepeel'
+        ? 'BioRePeel at House of Rose: book the $250 standalone peel or the $699 Series of 3 in Punta Gorda.'
+        : skinRenewal.slug === 'microneedling'
+          ? 'Procell Microneedling at House of Rose includes Pro, MD, and topical PRF appointments, with current prices and timing.'
+          : skinRenewal.slug === 'prf-injections'
+            ? 'PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN at House of Rose.'
+            : 'Compare topical PRF with Microneedling and injectable PRF appointments at House of Rose in Punta Gorda.',
       paragraphs: [
         skinRenewal.whatItIs,
         skinRenewal.whereItFits,
@@ -510,7 +524,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'What happens during the three-step facial.',
-      metaDescription: `${device.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: 'Glo2Facial at House of Rose combines an OxyPod surface pass, topical infusion, and facial massage in a 60-minute, $225 appointment.',
       paragraphs: [device.whatItIs, device.whereItFits],
       distinctions: [
         {
@@ -562,7 +576,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'Filtered light for visible pigment and uneven tone.',
-      metaDescription: `${device.whatItIs} Review the current Lumecca Peak treatment areas at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: 'Lumecca Peak IPL at House of Rose uses filtered optical energy, with a $50 consultation and appointments organized across eight areas.',
       paragraphs: [
         device.whatItIs,
         `${device.whereItFits} House of Rose books it for ${areaList}.`,
@@ -622,7 +636,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'Facial radiofrequency through surface electrodes.',
-      metaDescription: `${device.whatItIs} Compare the roles of Forma, Morpheus8, and Lumecca Peak at House of Rose Aesthetics in Punta Gorda.`,
+      metaDescription: 'Forma at House of Rose delivers facial radiofrequency through surface electrodes. Compare its role with Morpheus8 and Lumecca Peak IPL.',
       paragraphs: [device.whatItIs, device.whereItFits],
       distinctions: [
         {
@@ -679,7 +693,9 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     heading: isBodyMorpheus
       ? 'RF microneedling for selected body areas.'
       : 'Microneedling and fractional radiofrequency, together.',
-    metaDescription: `${device.whatItIs} Available by consultation at House of Rose Aesthetics in Punta Gorda.`,
+    metaDescription: isBodyMorpheus
+      ? 'Morpheus8 Body at House of Rose combines microneedling with fractional radiofrequency for selected body areas, priced as series of three.'
+      : 'Morpheus8 at House of Rose combines microneedling with fractional radiofrequency. Compare single and series pricing by treatment area.',
     paragraphs: [
       device.whatItIs,
       device.whereItFits,
