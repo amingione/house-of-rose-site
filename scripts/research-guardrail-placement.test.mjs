@@ -111,3 +111,15 @@ test('dormant retail research cannot regenerate a treatment-to-product sales lad
     /retail follow-through|natural first (?:professional )?purchase|universal close|retail entry ladder|rule of thumb|when it wins|results you paid for|the retail closes the loop|why house of rose|provider lane/i,
   );
 });
+
+test('neurotoxin research cannot regenerate dose guidance or a cross-service sales plan', () => {
+  const neurotoxins = readFileSync(new URL('neurotoxins.md', researchRoot), 'utf8');
+
+  assert.match(neurotoxins, /Place safeguards where the content creates the need/i);
+  assert.match(neurotoxins, /No automatic cross-service pathway/i);
+  assert.match(neurotoxins, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+  assert.doesNotMatch(
+    neurotoxins,
+    /provider lane|pairings & pathways|retail follow-through|what to try first|cost-per-result|typical unit ranges|choose Botox|choose Daxxify|natural, undetectable results|private, unhurried|why house of rose|classic "relax \+ restore"|proposed new pages/i,
+  );
+});

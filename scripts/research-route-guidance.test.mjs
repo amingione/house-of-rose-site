@@ -249,3 +249,25 @@ test('dermal filler research stays on current routes without rebuilding a sales 
     /provider lane|retail follow-through|stacks well with|what to try first|journey links|proposed new pages|natural-result philosophy|private, unhurried|assembly-line|product-shop|\/concerns\/volume-loss\/|\/compare\/filler|\/services\/ez-gel-bio-filler\//i,
   );
 });
+
+test('neurotoxin research uses existing decision routes without inventing another funnel', () => {
+  const brief = readFileSync(new URL('neurotoxins.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/injectables/',
+    '/cost/botox-cost-punta-gorda/',
+    '/compare/daxxify-vs-botox/',
+    '/services/dermal-fillers/',
+    '/concerns/fine-lines-laxity/',
+    '/about/providers/diana/',
+    '/contact/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Diana Morrison, RN/);
+  assert.doesNotMatch(
+    brief,
+    /\/concerns\/(?:expression-lines|frown-lines-forehead-lines)\/|\/compare\/(?:botox-vs-fillers|neurotoxin-vs-dermal-filler)\/|\/cost\/neurotoxin|\/services\/(?:botox|daxxify)\//i,
+  );
+});

@@ -157,6 +157,12 @@ test('GLP, dermaplaning, fillers, and neurotoxins use exact current structures',
   assert.match(fillers, /Do not describe any amount as a per-syringe price unless/i);
 
   const neurotoxins = read('neurotoxins.md');
-  assert.match(neurotoxins, /\$14(?: per unit|\/unit)/i);
+  for (const row of [
+    /Neuromodulator Consultation[^\n]*\*\*\$50\*\*[^\n]*20 min/i,
+    /Botox[^\n]*\*\*\$14 per unit\*\*[^\n]*30 min/i,
+    /Daxxify[^\n]*\*\*\$14 per unit\*\*[^\n]*60 min/i,
+    /2-Week Check-In[^\n]*\*\*\$0\*\*[^\n]*20 min/i,
+  ]) assert.match(neurotoxins, row);
   assert.match(neurotoxins, /product-specific/i);
+  assert.doesNotMatch(neurotoxins, /Both are[^\n]*20 min|\$13\.50|\$13\/unit|\$12\.50/i);
 });
