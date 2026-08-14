@@ -549,6 +549,10 @@ test('reviewed Morpheus8 article retains sourced client decision support', () =>
   if ((guide.match(/<h2\b/gi) ?? []).length < 6) failures.push('missing substantive decision sections');
   if ((guide.match(/<li\b/gi) ?? []).length < 7) failures.push('missing consultation questions and sources');
   if (!guide.includes('href="/services/morpheus8/"')) failures.push('missing the current service path');
+  const servicePage = readFileSync(path.join(DIST_ROOT, 'services/morpheus8/index.html'), 'utf8');
+  if (!servicePage.includes(`href="/blog/${REVIEWED_BLOG.slug}/"`)) {
+    failures.push('Morpheus8 service page is missing the reviewed safety-article path');
+  }
   if (/<div\b(?=[^>]*data-reviewed-morpheus-safety="true")(?=[^>]*data-sb-field-path="body")/i.test(html)) {
     failures.push('local reviewed copy is incorrectly annotated as an editable Sanity body');
   }

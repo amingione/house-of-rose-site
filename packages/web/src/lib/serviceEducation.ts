@@ -971,6 +971,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             href: '/compare/morpheus8-vs-microneedling/',
             label: 'Compare Morpheus8 and Procell Microneedling',
           },
+          {
+            href: '/blog/is-morpheus8-safe/',
+            label: 'Morpheus8 safety questions and FDA sources',
+          },
         ],
   };
 };
