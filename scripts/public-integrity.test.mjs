@@ -2292,6 +2292,13 @@ test('packages index explains and links only the verified current program', () =
   ]) {
     assert.ok(text.includes(required), `Packages index is missing ${JSON.stringify(required)}.`);
   }
+  for (const [label, pattern] of [
+    ['provider licence and certification', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}Face Reality Certified Acne Specialist[\s\S]{0,180}(?:consultation|12-week program)/i],
+    ['non-prescription esthetics boundary', /non-prescription esthetics program/i],
+    ['medical-evaluation threshold', /deep[\s\S]{0,40}painful[\s\S]{0,40}widespread[\s\S]{0,80}actively scarring[\s\S]{0,140}medical evaluation/i],
+  ]) {
+    assert.match(text, pattern, `Packages index is missing ${label}.`);
+  }
 
   const packageRoutes = [...new Set(
     extractHrefAttributes(main, true)
