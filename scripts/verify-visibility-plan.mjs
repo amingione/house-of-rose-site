@@ -23,9 +23,16 @@ const walk = (directory) => {
 walk(DIST);
 
 const failures = [];
-const banned = [
+export const BANNED_PUBLIC_COPY_RULES = [
   ['membership language', /\b(member pricing|memberships?|rose circle|rose pass)\b/i],
   ['discount campaign language', /\b(groupon|buy 5[, ]+get 1|percentage off)\b/i],
+  ['unsupported treatment language', /\bexosomes?\b/i],
+  ['prohibited practitioner description', /\b(?:dermatologists?|dermatology specialists?|skin doctor)\b/i],
+  // Preserve the FDA-required negative product disclaimer while blocking a
+  // positive cure claim in editorial or CMS copy.
+  ['prohibited disease claim', /(?<!not intended to diagnose, treat, )\bcur(?:e|es|ed|ing)\b/i],
+  ['retired credibility cliché', /\b(?:attention to detail|steady hands?)\b/i],
+  ['retired spa language', /\b(?:pamper(?:ing|ed)?|indulge|indulgent)\b|treat yourself/i],
   ['retired treatment', /\b(glowtox|skinpen|prf hair restoration|hair restoration with prf)\b/i],
   ['retired microneedling split', /\b(?:microchanneling\s*(?:\/|&|and|or|vs\.?|versus)\s*microneedling|microneedling\s*(?:\/|&|and|or|vs\.?|versus)\s*microchanneling|regular microneedling)\b/i],
   ['prohibited claim', /\b(reverse aging|stem[- ]cell treatment|guaranteed results?)\b/i],
@@ -63,7 +70,7 @@ for (const file of htmlFiles) {
     failures.push(`${relative}: missing JSON-LD`);
   }
 
-  for (const [label, pattern] of banned) {
+  for (const [label, pattern] of BANNED_PUBLIC_COPY_RULES) {
     if (pattern.test(visibleText)) failures.push(`${relative}: ${label}`);
   }
 
@@ -107,7 +114,7 @@ for (const relative of ['sitemap.xml', 'llms.txt', 'llms-full.txt']) {
   }
 
   const content = readFileSync(file, 'utf8');
-  for (const [label, pattern] of banned) {
+  for (const [label, pattern] of BANNED_PUBLIC_COPY_RULES) {
     if (pattern.test(content)) failures.push(`${relative}: ${label}`);
   }
   for (const pattern of retiredMembershipRoutes) {
