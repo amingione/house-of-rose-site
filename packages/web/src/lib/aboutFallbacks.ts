@@ -91,7 +91,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Amber Mingione, Licensed Esthetician, focuses on skin-surface, texture, and selected device services.',
     biography: [
-      'Her current menu includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel when used as an add-on to an eligible advanced service.',
+      'She provides Microneedling with the Procell Therapies device, Glo2Facial, and dermaplaning. In her appointments, BioRePeel is used only as an add-on to an eligible advanced service.',
       'When PRF is part of her work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides the injectable PRF appointments.',
     ],
     serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
