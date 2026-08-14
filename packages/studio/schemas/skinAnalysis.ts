@@ -8,19 +8,21 @@ import { defineField, defineType } from 'sanity';
  */
 export const skinAnalysis = defineType({
   name: 'skinAnalysis',
-  title: 'Advanced Skin Imaging & Analysis Page',
+  title: 'Advanced Skin Imaging & Analysis Page (not published)',
   type: 'document',
+  readOnly: true,
+  description: 'Stored for source compatibility. The current /skin-analysis/ route uses reviewed website content.',
   __experimental_actions: ['update', 'publish'],
   groups: [
-    { name: 'hero', title: 'Hero' },
-    { name: 'whatItIs', title: 'What It Is' },
-    { name: 'howItWorks', title: 'How It Works (suspended)' },
-    { name: 'lookAt', title: 'What We Look At' },
-    { name: 'whyItMatters', title: 'Why It Matters' },
-    { name: 'toPlan', title: 'From Analysis to Plan (suspended)' },
-    { name: 'faq', title: 'FAQ' },
-    { name: 'cta', title: 'Final CTA' },
-    { name: 'seo', title: 'SEO' },
+    { name: 'hero', title: 'Hero (not published)' },
+    { name: 'whatItIs', title: 'What It Is (not published)' },
+    { name: 'howItWorks', title: 'How It Works (not published)' },
+    { name: 'lookAt', title: 'What We Look At (not published)' },
+    { name: 'whyItMatters', title: 'Why It Matters (not published)' },
+    { name: 'toPlan', title: 'From Analysis to Plan (not published)' },
+    { name: 'faq', title: 'FAQ (not published)' },
+    { name: 'cta', title: 'Final CTA (not published)' },
+    { name: 'seo', title: 'SEO (not published)' },
   ],
   fields: [
     // ── SEO ──
@@ -133,5 +135,5 @@ export const skinAnalysis = defineType({
     defineField({ name: 'ctaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'cta' }),
     defineField({ name: 'ctaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'cta' }),
   ],
-  preview: { prepare: () => ({ title: 'Advanced Skin Imaging & Analysis Page Content' }) },
+  preview: { prepare: () => ({ title: 'Advanced Skin Imaging & Analysis Page Content (not published)' }) },
 });
