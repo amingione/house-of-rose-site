@@ -61,7 +61,15 @@ export const localArea = defineType({
       name: 'servedServices',
       title: 'Featured Services',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }],
+          options: {
+            filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+          },
+        },
+      ],
       description: 'Services to highlight for this area (each links to its canonical hub).',
     }),
     defineField({

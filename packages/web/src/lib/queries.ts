@@ -1404,7 +1404,11 @@ export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
 export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current == $slug && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}][0] {
     _id, title, "slug": slug.current, city, region, intro, whyLocal, neighborhoods, _updatedAt,
-    "servedServices": servedServices[!(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{ ${SERVICE_REF_FIELDS} },
+    "servedServices": servedServices[
+      @->status in ["live", "actual-menu"] &&
+      defined(@->slug.current) &&
+      !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+    ]->{ ${SERVICE_REF_FIELDS} },
     faqs[]{ _key, question, answer },
     ${IMAGE_FIELDS},
     "seo": seo { metaTitle, metaDescription }
