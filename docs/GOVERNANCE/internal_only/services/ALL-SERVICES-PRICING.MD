@@ -19,7 +19,13 @@ layer.
 
 ---
 
-## Amber — Advanced Facials & Microneedling
+## Advanced Facials, Microneedling & Peels
+
+This pricing group is not a provider map. Amber Mingione, Licensed Esthetician is verified for
+Glo2Facial, Procell Microneedling including topical PRF, dermaplaning, CO2 Lift Carboxy, the three
+BioRePeel specialty variants, Face Reality peels, and Acne Bootcamp. Brandy, Licensed Esthetician
+provides the standalone BioRePeel face appointment and Series of 3. The current reviewed sources do
+not establish a provider for GlowTox Facial or the five shared facial appointments below.
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
@@ -39,7 +45,7 @@ layer.
 | Radiance & Renewal Facial | 1 hr 15 min | $200 | Online |
 | Mommy & Me Facial | 1 hr | $150 | Online |
 
-**Chemical peels (Amber/Face Reality lane):**
+**Chemical peels:**
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
