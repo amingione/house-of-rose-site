@@ -267,7 +267,7 @@ create a separate Procell comparison, concern, cost, or case-study route from th
 ## Sources
 
 **Local docs read (paths):**
-- `docs/GOVERNANCE/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — client-education report; compliance framing, MD-vs-Pro verification cautions, PRF-topical-only rule, FDA delivery limitation.
+- `docs/GOVERNANCE/internal_only/research/PROCELL/procell-prf-delivery-research-report.md` — current evidence report; verified same-device use and twice the growth-factor concentration in MD, the PRF-topical-only rule, and the FDA delivery limitation.
 - `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — sole current commerce authority for Procell Pro, Procell MD, and topical PRF Microneedling appointment names, prices, durations, and booking modes.
 
 **Sanity docs consulted (published snapshot):**
