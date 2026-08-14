@@ -15,7 +15,7 @@ Read `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` first. 
 1. **Topical vs injectable is a hard line.** Most of these papers study **injected / microneedled**
    PRF (facial injections, plastic surgery, TMJ, scalp). At House of Rose:
    - **Amber's lane = advanced facials, PRF _topical only_, NO injections.**
-   - **Diana (RN) = injectable PRF / EZ-Gel, IV, GLP-1.**
+   - **Diana Morrison, RN = injectable PRF, IV hydration, and GLP-1.**
    Any PRF copy must keep this distinction crisp (the current `/services/prf/` hub is the model:
    "Amber's PRF is topical only; injectable PRF is RN-led"). Never imply the
    topical facial service delivers an injectable study's outcome.
