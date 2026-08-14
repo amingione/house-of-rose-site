@@ -788,23 +788,47 @@ test('direct visit FAQs state the current walk-in policy and match FAQPage schem
   assert.equal(failures.length, 0, formatFailures('Walk-in policy regression', failures));
 });
 
+// Protect the operational distinctions without freezing a full customer-facing sentence.
+// Voice revisions may change syntax and cadence while these facts and schema parity remain binding.
 test('consultation form explains that an inquiry does not reserve an appointment', () => {
   const file = path.join(DIST_ROOT, 'consultation/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
   const html = readFileSync(file, 'utf8');
-  const text = visibleText(mainHtml(html));
+  const main = mainHtml(html);
+  const visibleQuestions = [...main.matchAll(
+    /<(h3|span)\b[^>]*data-visit-faq-question[^>]*>([\s\S]*?)<\/\1>/gi,
+  )].map((match) => visibleText(match[2]));
+  const visibleAnswers = [...main.matchAll(
+    /<p\b[^>]*data-visit-faq-answer[^>]*>([\s\S]*?)<\/p>/gi,
+  )].map((match) => visibleText(match[1]));
+  const visibleFaqs = visibleQuestions.map((question, index) => ({
+    question,
+    answer: visibleAnswers[index] ?? '',
+  }));
+  const faqSchema = [...html.matchAll(
+    /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )]
+    .map((match) => JSON.parse(match[1]))
+    .find((schema) => schema?.['@type'] === 'FAQPage');
+  const schemaFaqs = faqSchema?.mainEntity?.map((item) => ({
+    question: item.name,
+    answer: item.acceptedAnswer?.text,
+  })) ?? [];
+  const reservationFaq = visibleFaqs.find(({ question }) =>
+    /submitting the form|form.*reserve/i.test(question)
+  );
 
-  for (const required of [
-    'Does submitting the form reserve an appointment?',
-    'No. The form starts a consultation request; it does not choose or hold an appointment time.',
-    'House of Rose will contact you to arrange the consultation.',
-    'services available for online booking have a booking option on their page',
-    'consultation-only and phone-first services show the appropriate next step.',
+  assert.ok(reservationFaq, 'Consultation page is missing the form-reservation FAQ.');
+  for (const [label, pattern] of [
+    ['request does not reserve a time', /consultation request[\s\S]{0,140}(?:does not|doesn't)[\s\S]{0,100}(?:hold|reserve)[\s\S]{0,60}(?:time|appointment)/i],
+    ['practice arranges the consultation', /House of Rose[\s\S]{0,80}(?:contact|call|reach)[\s\S]{0,100}(?:arrange|schedule)[\s\S]{0,40}consultation/i],
+    ['online-booking path', /online book(?:ing|able)|book(?:ing)? online/i],
+    ['consultation-only path', /consultation-only/i],
+    ['phone-first path', /phone-first/i],
   ]) {
-    assert.ok(text.includes(required), `Consultation page is missing ${JSON.stringify(required)}.`);
+    assert.match(reservationFaq.answer, pattern, `Consultation FAQ is missing the ${label} distinction.`);
   }
-
-  assert.ok(html.includes('"@type":"FAQPage"'), 'Consultation page is missing FAQPage JSON-LD.');
+  assert.deepEqual(visibleFaqs, schemaFaqs, 'Consultation visible FAQs and FAQPage JSON-LD differ.');
 });
 
 test('contact form explains reply timing and preserves the messaging-consent contract', () => {
@@ -817,17 +841,20 @@ test('contact form explains reply timing and preserves the messaging-consent con
 
   for (const required of [
     'When to expect a reply',
-    'Messages received Monday through Friday are typically answered within one business day.',
     'When to call instead',
-    'Does a phone number mean text consent?',
-    'Entering a phone number does not, by itself, give permission to send text messages.',
-    'Amber Mingione, Licensed Esthetician provides topical PRF with Microneedling.',
-    'Diana Morrison, RN provides injectable PRF consultations.',
     '525 E Olympia Ave, Unit 9',
     'Punta Gorda, FL 33950',
     'Get directions',
   ]) {
     if (!text.includes(required)) failures.push(`contact: missing ${JSON.stringify(required)}`);
+  }
+  for (const [label, pattern] of [
+    ['one-business-day reply window', /Monday (?:through|to) Friday[\s\S]{0,100}one business day/i],
+    ['phone-number/text-consent boundary', /phone number[\s\S]{0,100}(?:does not|doesn't|is not)[\s\S]{0,100}(?:permission|consent)[\s\S]{0,60}text/i],
+    ['topical PRF provider attribution', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}topical PRF[\s\S]{0,80}Microneedling/i],
+    ['injectable PRF provider attribution', /Diana Morrison, RN[\s\S]{0,100}injectable PRF/i],
+  ]) {
+    if (!pattern.test(text)) failures.push(`contact: missing ${label}`);
   }
   for (const requiredMarkup of [
     'action="/.netlify/functions/lead-submit"',
@@ -1027,6 +1054,9 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Morpheus8 Burst — Hyperhidrosis',
       '$2,200–$2,400',
       'Package of 3',
+      'Morpheus8 + Lumecca Bundle',
+      '$1,799',
+      '2 total treatments',
     ],
     'morpheus8-body': [
       'same InMode platform',
