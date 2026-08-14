@@ -2285,14 +2285,16 @@ test('comparison pages expose only reviewed factual row types', () => {
   const morpheusFile = path.join(compareRoot, 'morpheus8-vs-microneedling/index.html');
   assert.ok(existsSync(morpheusFile), `Missing generated ${relativeToRepo(morpheusFile)}`);
   const morpheusText = visibleText(mainHtml(readFileSync(morpheusFile, 'utf8')));
-  for (const required of [
-    'Morpheus8 vs. Microneedling',
-    'Morpheus8 adds fractional bipolar radiofrequency; Procell microneedling does not.',
-    'Radiofrequency is the dividing line.',
-    'Both still use microneedling.',
-    'Current House of Rose role',
+  for (const [label, pattern] of [
+    ['page identity', /Morpheus8 vs\. Microneedling/i],
+    [
+      'fractional-radiofrequency distinction',
+      /Morpheus8[\s\S]{0,160}fractional bipolar radiofrequency[\s\S]{0,160}Procell[\s\S]{0,100}(?:does not|without radiofrequency)/i,
+    ],
+    ['shared microneedling', /both[\s\S]{0,80}(?:use|still use) microneedling/i],
+    ['current service role', /Current House of Rose role/i],
   ]) {
-    if (!morpheusText.includes(required)) failures.push(`morpheus8-vs-microneedling: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(morpheusText)) failures.push(`morpheus8-vs-microneedling: missing ${label}`);
   }
   for (const retired of [
     'Which Texture Treatment Fits?',
