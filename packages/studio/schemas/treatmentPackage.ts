@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from './validation/publicCopy';
 
 /**
  * Treatment Package — mirrors the Notion "HOUSE OF ROSE: Packages & Series" database.
@@ -15,7 +16,7 @@ export const treatmentPackage = defineType({
       name: 'title',
       title: 'Package',
       type: 'string',
-      validation: (R) => R.required(),
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
