@@ -1738,7 +1738,7 @@ test('concern index preserves reviewed distinctions and direct guide navigation'
     if (!guidance.includes(`href="${route}"`)) failures.push(`concerns index guidance is missing ${route}`);
   }
   for (const required of [
-    'You do not need the exact term for it.',
+    'Similar-looking changes can raise different questions about pigment, texture, movement, or volume',
     'Skin analysis gives you a visual baseline.',
     'A consultation gives you room to talk it through.',
   ]) {
