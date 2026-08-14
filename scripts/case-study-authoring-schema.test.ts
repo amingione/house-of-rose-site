@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { caseStudy } from '../packages/studio/schemas/caseStudy.ts';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../packages/web/src/lib/publicConcernContent.ts';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_CASE_STUDIES_QUERY,
@@ -71,6 +73,30 @@ test('case-study treatment links can resolve only to generated public service ro
     assert.match(query, /defined\(treatment->slug\.current\)/);
     assert.match(query, /!\(treatment->slug\.current in \[/);
   }
+});
+
+test('optional case-study concern links resolve only to generated public concern routes', () => {
+  const concern = caseStudy.fields.find(({ name }) => name === 'concern');
+  assert.equal(concern?.type, 'reference');
+  assert.equal(concern?.validation, undefined, 'A case study may omit its concern relationship.');
+
+  const authoringFilter = String(concern?.options?.filter);
+  assert.match(authoringFilter, /status == "live"/);
+  assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(authoringFilter, /!\(slug\.current in \$retiredSlugs\)/);
+  assert.deepEqual(
+    concern?.options?.filterParams,
+    { retiredSlugs: RETIRED_PUBLIC_CONCERN_SLUGS },
+  );
+
+  assert.match(CASE_STUDY_BY_SLUG_QUERY, /"concern": select\(/);
+  assert.match(CASE_STUDY_BY_SLUG_QUERY, /concern->status == "live"/);
+  assert.match(CASE_STUDY_BY_SLUG_QUERY, /defined\(concern->slug\.current\)/);
+  assert.match(CASE_STUDY_BY_SLUG_QUERY, /!\(concern->slug\.current in \[/);
+
+  const route = readFileSync('packages/web/src/pages/results/[slug].astro', 'utf8');
+  assert.match(route, /cs\.concern && <a href=\{`\/concerns\/\$\{cs\.concern\.slug\}\/`\}/);
+  assert.match(route, /\{cs\.concern\.title\}<\/a>/);
 });
 
 test('public results require consent, a generated route, and the documented image pair', () => {

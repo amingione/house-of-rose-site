@@ -1403,7 +1403,12 @@ export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
       !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
         treatment->{ ${SERVICE_REF_FIELDS} }
     ),
-    "concern": concern->{ title, "slug": slug.current },
+    "concern": select(
+      concern->status == "live" &&
+      defined(concern->slug.current) &&
+      !(concern->slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ}) =>
+        concern->{ title, "slug": slug.current }
+    ),
     "beforeImage": beforeImage { asset->{ url, metadata { dimensions } }, alt },
     "afterImage": afterImage { asset->{ url, metadata { dimensions } }, alt },
     "seo": seo { metaTitle, metaDescription }

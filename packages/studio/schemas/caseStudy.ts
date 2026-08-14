@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../../web/src/lib/publicConcernContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
 import { validatePublicCopy } from './validation/publicCopy';
 
@@ -46,7 +47,16 @@ export const caseStudy = defineType({
       },
       validation: (R) => R.required(),
     }),
-    defineField({ name: 'concern', title: 'Concern', type: 'reference', to: [{ type: 'concern' }] }),
+    defineField({
+      name: 'concern',
+      title: 'Concern',
+      type: 'reference',
+      to: [{ type: 'concern' }],
+      options: {
+        filter: 'status == "live" && defined(slug.current) && !(slug.current in $retiredSlugs)',
+        filterParams: { retiredSlugs: RETIRED_PUBLIC_CONCERN_SLUGS },
+      },
+    }),
     defineField({
       name: 'beforeImage',
       title: 'Before Image',
