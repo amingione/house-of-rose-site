@@ -48,6 +48,10 @@ test("the public Experience route does not fetch the disconnected Studio singlet
     new URL("../stackbit.config.ts", import.meta.url),
     "utf8",
   );
+  const queries = readFileSync(
+    new URL("../packages/web/src/lib/queries.ts", import.meta.url),
+    "utf8",
+  );
 
   assert.doesNotMatch(
     route,
@@ -61,5 +65,9 @@ test("the public Experience route does not fetch the disconnected Studio singlet
   assert.doesNotMatch(
     stackbit,
     /experienceContent:\s*["']\/experience["']/,
+  );
+  assert.doesNotMatch(
+    queries,
+    /EXPERIENCE_CONTENT_QUERY|interface ExperienceContent/,
   );
 });

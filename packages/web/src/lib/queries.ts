@@ -356,18 +356,6 @@ export interface JourneyStep {
   description: string;
 }
 
-export interface ExperienceContent {
-  _id?: string;
-  heroTitle?: string;
-  heroSubtitle?: string;
-  storyHeading?: string;
-  storyParagraph1?: string;
-  storyParagraph2?: string;
-  storyImage?: SanityImage;
-  standards?: Standard[];
-  journeySteps?: JourneyStep[];
-}
-
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
 const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
@@ -947,32 +935,6 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
 
 export const ALL_BLOG_POST_SLUGS_QUERY = /* groq */ `
   *[_type == "blogPost" && defined(slug.current) && defined(publishedAt) && count(body) > 0]{ "slug": slug.current }
-`;
-
-export const EXPERIENCE_CONTENT_QUERY = /* groq */ `
-  *[_type == "experienceContent"][0] {
-    _id,
-    heroTitle,
-    heroSubtitle,
-    storyHeading,
-    storyParagraph1,
-    storyParagraph2,
-    "storyImage": storyImage {
-      asset->{ url, metadata { dimensions } },
-      alt
-    },
-    standards[] {
-      _key,
-      title,
-      description
-    },
-    journeySteps[] {
-      _key,
-      step,
-      title,
-      description
-    }
-  }
 `;
 
 export interface AboutPageContent {
