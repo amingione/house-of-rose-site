@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
 export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Site Settings',
@@ -10,12 +12,14 @@ export const siteSettings = defineType({
       name: 'siteName',
       title: 'Site Name',
       type: 'string',
-      validation: (R) => R.required(),
+      description: 'Verified public business name used in default metadata and the site entity graph.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'tagline',
-      title: 'Tagline (archival)',
+      title: 'Tagline (not published)',
       type: 'string',
+      readOnly: true,
       description: 'Retained for source compatibility; current public chrome and metadata do not use a CMS tagline.',
     }),
     defineField({
@@ -23,7 +27,8 @@ export const siteSettings = defineType({
       title: 'Site Description',
       type: 'text',
       rows: 3,
-      description: 'Default meta description for SEO',
+      description: 'Public default metadata for routes without a page-specific description. Use factual practice context; useful detail is welcome.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'logo',
