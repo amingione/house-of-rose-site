@@ -13,6 +13,7 @@ import {
 } from './packages/web/src/lib/publicCostGuideContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './packages/web/src/lib/publicLocalAreaContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './packages/web/src/lib/publicServiceContent';
+import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './packages/web/src/lib/publicTreatmentPackageContent';
 
 /**
  * House of Rose — Netlify Visual Editor configuration.
@@ -87,6 +88,9 @@ const REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET = new Set<string>(
 );
 const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(
   UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+);
+const VERIFIED_TREATMENT_PACKAGE_SLUG_SET = new Set<string>(
+  VERIFIED_TREATMENT_PACKAGE_SLUGS,
 );
 const PUBLIC_SERVICE_STATUS_SET = new Set(['live', 'actual-menu']);
 
@@ -290,6 +294,7 @@ export default defineStackbitConfig({
         'service',
         'serviceCollection',
         'costGuide',
+        'treatmentPackage',
       ].includes(entry.document.modelName)
     ) {
       return true;
@@ -339,6 +344,13 @@ export default defineStackbitConfig({
         slug &&
           REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET.has(slug) &&
           !RETIRED_COST_GUIDE_SLUG_SET.has(slug),
+      );
+    }
+
+    if (entry.document.modelName === 'treatmentPackage') {
+      const status = documentStringField(document, 'status');
+      return Boolean(
+        slug && status === 'live' && VERIFIED_TREATMENT_PACKAGE_SLUG_SET.has(slug),
       );
     }
 

@@ -12,6 +12,7 @@ import {
 } from './publicCostGuideContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
+import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './publicTreatmentPackageContent';
 
 export { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
 export { REVIEWED_PUBLIC_COST_GUIDE_SLUGS } from './publicCostGuideContent';
@@ -61,7 +62,6 @@ const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COL
 // A package is public only when its package price is represented in the
 // current GlossGenius-backed menu. Other published Sanity records remain
 // available for reconciliation without advertising unsupported offerings.
-const VERIFIED_TREATMENT_PACKAGE_SLUGS = ['face-reality-12-week-program'] as const;
 const VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ = JSON.stringify(VERIFIED_TREATMENT_PACKAGE_SLUGS);
 
 // ─── Types ────────────────────────────────────────────────────────────────────
