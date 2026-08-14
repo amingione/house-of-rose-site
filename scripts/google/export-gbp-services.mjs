@@ -21,7 +21,8 @@ try {
   services = await client.fetch(`*[
     _type == "service" &&
     googleBusinessProfile.enabled == true &&
-    status in ["live", "actual-menu"]
+    status in ["live", "actual-menu"] &&
+    defined(slug.current)
   ] | order(serviceKey asc) {
     _id, serviceKey, "slug": slug.current,
     "categoryId": googleBusinessProfile.categoryId,
@@ -37,6 +38,7 @@ try {
 
 const invalid = services.filter((service) =>
   !service.serviceKey ||
+  !service.slug ||
   !service.displayName ||
   !service.description ||
   service.description.length > 300 ||
