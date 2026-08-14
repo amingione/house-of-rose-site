@@ -37,7 +37,7 @@ const collectionsListSchema = collections.length
 
 <BaseLayout
   title="Service Categories | House of Rose Aesthetics"
-  description="Directory of House of Rose Aesthetics service categories with links to individual service pages."
+  description="House of Rose services grouped into facials and skin care, injectables, InMode treatments, IV hydration and weight management, and waxing."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {collectionsListSchema && <SchemaMarkup item={collectionsListSchema} slot="head" />}
@@ -45,9 +45,9 @@ const collectionsListSchema = collections.length
   <section class="mx-auto max-w-6xl px-6 py-24">
     <header class="max-w-2xl">
       <p class="kicker mb-4">Services</p>
-      <h1 class="font-serif text-5xl text-ink">Browse services by category.</h1>
+      <h1 class="font-serif text-5xl text-ink">Services grouped by the kind of appointment.</h1>
       <p class="mt-5 leading-relaxed text-muted">
-        Open a category for its current House of Rose services, or use the individual links below to go directly to a service page.
+        House of Rose keeps related appointments together in five groups. Some book directly; others begin with a consultation or phone call. Within each group, the individual treatments carry the published price, length, provider, and next step.
       </p>
     </header>
 
@@ -67,7 +67,7 @@ const collectionsListSchema = collections.length
               </a>
             </h2>
             <p class="mt-4 text-[14px] leading-relaxed text-muted">
-              {collectionIntroductions[collection.slug] ?? `Review the current ${collection.title} services.`}
+              {collectionIntroductions[collection.slug] ?? `Related ${collection.title} appointments at House of Rose.`}
             </p>
 
             {collection.services.length > 0 && (
