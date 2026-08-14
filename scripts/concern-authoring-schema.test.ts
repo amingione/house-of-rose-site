@@ -50,3 +50,23 @@ test('only the schema public status can generate or enter public concern routes'
   assert.match(serviceConcernProjection[1], /@->status == "live"/);
   assert.doesNotMatch(serviceConcernProjection[1], /status != "parked"/);
 });
+
+test('concern inventories and linked treatments require generated route slugs', () => {
+  const slug = concernField('slug');
+  assert.match(String(slug?.validation), /required/);
+
+  for (const query of [ALL_CONCERNS_QUERY, ALL_CONCERN_SLUGS_QUERY]) {
+    assert.match(
+      query,
+      /_type == "concern" && status == "live" && defined\(slug\.current\)/,
+      'Every public concern inventory must reject records without a route slug.',
+    );
+  }
+
+  const linkedTreatments = CONCERN_BY_SLUG_QUERY.match(
+    /"treatments": \*\[([\s\S]*?)\] \| order/,
+  );
+  assert.ok(linkedTreatments?.[1], 'The concern query must guard linked treatments.');
+  assert.match(linkedTreatments[1], /status in \["live", "actual-menu"\]/);
+  assert.match(linkedTreatments[1], /defined\(slug\.current\)/);
+});

@@ -892,7 +892,7 @@ export const ALL_SHOP_BRANDS_QUERY = /* groq */ `
 `;
 
 export const ALL_CONCERNS_QUERY = /* groq */ `
-  *[_type == "concern" && status == "live" && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "concern" && status == "live" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -909,7 +909,7 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
     intro,
     ${IMAGE_FIELDS},
     "seo": seo { metaTitle, metaDescription },
-    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && ^._id in concerns[]._ref] | order(orderRank asc, title asc) [0...4] {
+    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && ^._id in concerns[]._ref] | order(orderRank asc, title asc) [0...4] {
       _id,
       title,
       "slug": slug.current,
