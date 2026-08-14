@@ -237,8 +237,16 @@ export const service = defineType({
       name: 'relatedServices',
       title: 'Related Services',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
-      description: 'Services to show in the "Related Services" section',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }],
+          options: {
+            filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+          },
+        },
+      ],
+      description: 'Public, routeable services to show in the "Related Services" section.',
       validation: (R) => R.max(3),
     }),
     defineField({

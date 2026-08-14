@@ -7,6 +7,7 @@ type NestedField = {
   name?: string;
   fields?: NestedField[];
   of?: NestedField[];
+  options?: { filter?: string };
   validation?: unknown;
 };
 
@@ -68,4 +69,14 @@ test('the archival service tagline cannot pose as a live control', () => {
   const tagline = serviceField('tagline');
   assert.equal(tagline?.readOnly, true);
   assert.match(String(tagline?.title), /not published/i);
+});
+
+test('related-service authoring only offers relationships the public query can render', () => {
+  const relatedServices = serviceField('relatedServices') as NestedField | undefined;
+  assert.ok(relatedServices?.of && Array.isArray(relatedServices.of));
+
+  const reference = relatedServices.of[0];
+  const filter = reference?.options?.filter ?? '';
+  assert.match(filter, /status in \["live", "actual-menu"\]/);
+  assert.match(filter, /defined\(slug\.current\)/);
 });
