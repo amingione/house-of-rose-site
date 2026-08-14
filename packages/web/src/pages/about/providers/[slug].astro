@@ -101,27 +101,29 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
   },
   brandy: {
     heading: 'Looking for a facial or waxing appointment with Brandy?',
-    body: 'Open standalone BioRePeel, or use the Facial Waxing page to find the area you want to book.',
+    body: 'Brandy provides facials, standalone BioRePeel, and facial waxing. BioRePeel is a standalone face appointment; facial waxing is booked by area for the brows, upper lip, or chin. For another facial, contact House of Rose with the appointment you want to discuss.',
     links: [
       { href: '/services/biorepeel/', label: 'BioRePeel' },
       { href: '/services/facial-waxing/', label: 'Facial Waxing' },
+      { href: '/contact/', label: 'Ask about facials' },
     ],
   },
   aundrea: {
     heading: 'Looking for makeup artistry or permanent jewelry?',
-    body: 'Permanent jewelry has its own service page. For wedding, event, or photo-shoot makeup, contact House of Rose with the date and occasion.',
+    body: 'Permanent jewelry is a 20-minute appointment that begins with a call to House of Rose. Wedding, event, and photo-shoot makeup begin with a message that includes the date and occasion.',
     links: [
-      { href: '/services/permanent-jewelry/', label: 'Permanent Jewelry' },
+      { href: 'tel:+18449417673', label: 'Call about Permanent Jewelry' },
       { href: '/contact/', label: 'Ask about makeup artistry' },
+      { href: '/services/permanent-jewelry/', label: 'Permanent Jewelry details' },
     ],
   },
 };
 const providerClosing = providerClosings[profile.slug] ?? {
-  heading: `Explore ${profile.publicName.split(',')[0]}’s current work.`,
-  body: 'Open the service menu or contact House of Rose with the appointment you want to discuss.',
+  heading: `Ask about an appointment with ${profile.publicName.split(',')[0]}.`,
+  body: 'Choose a listed service when online booking is available. For a consultation-only or phone-first appointment, contact House of Rose with the service name and provider.',
   links: [
-    { href: '/services/', label: 'Explore services' },
-    { href: '/contact/', label: 'Contact House of Rose' },
+    { href: '/services/', label: 'View current services' },
+    { href: '/contact/', label: 'Ask House of Rose' },
   ],
 };
 const breadcrumb = breadcrumbList([
