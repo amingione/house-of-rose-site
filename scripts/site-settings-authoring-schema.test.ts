@@ -31,3 +31,24 @@ test('canonical contact and NAP fields remain operational', () => {
     assert.notEqual(settingsField(fieldName)?.readOnly, true, `${fieldName} must remain editable.`);
   }
 });
+
+test('the sitewide structured-data email is format-validated without becoming required', () => {
+  const email = settingsField('email');
+  assert.equal(typeof email?.validation, 'function', 'email must carry format validation.');
+  assert.match(String(email?.description), /sitewide entity graph/i);
+
+  let emailRuleCalls = 0;
+  const validatedRule = { kind: 'email-rule' };
+  const rule = {
+    email() {
+      emailRuleCalls += 1;
+      return validatedRule;
+    },
+    required() {
+      assert.fail('The public business email must remain optional.');
+    },
+  };
+
+  assert.equal(email.validation(rule), validatedRule);
+  assert.equal(emailRuleCalls, 1);
+});

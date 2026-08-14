@@ -47,6 +47,8 @@ export const siteSettings = defineType({
       name: 'email',
       title: 'Contact Email',
       type: 'string',
+      description: 'Public business email emitted in the sitewide entity graph.',
+      validation: (R) => R.email(),
     }),
     defineField({
       name: 'phone',
