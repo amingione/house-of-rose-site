@@ -197,12 +197,14 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
           <select
             id="service-interest"
             name="service-interest"
+            aria-describedby="service-interest-help"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
           >
             <option value="General question">General question</option>
             <option value="Advanced Skin Imaging &amp; Analysis">Advanced Skin Imaging &amp; Analysis</option>
             <option value="Microneedling">Microneedling</option>
-            <option value="PRF">PRF</option>
+            <option value="PRF Microneedling (topical PRF)">PRF Microneedling (topical PRF)</option>
+            <option value="Injectable PRF">Injectable PRF</option>
             <option value="Glo2Facial">Glo2Facial</option>
             <option value="Dermaplaning">Dermaplaning</option>
             <option value="Injectables">Injectables</option>
@@ -210,6 +212,9 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
             <option value="Provider-Guided Weight Management">Provider-Guided Weight Management</option>
             <option value="Waxing">Waxing</option>
           </select>
+          <p id="service-interest-help" class="mt-2 text-[12px] leading-[1.65] text-muted">
+            Amber Mingione, Licensed Esthetician provides topical PRF with Microneedling. Diana Morrison, RN provides injectable PRF consultations. Choose “General question” if you are unsure which one you mean.
+          </p>
         </div>
 
         <!-- Message -->
