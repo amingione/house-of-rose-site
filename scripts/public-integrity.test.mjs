@@ -1679,11 +1679,28 @@ test('priority service pages retain reviewed facts instead of falling back to th
   }
 
   const faceRealityHtml = mainHtml(readFileSync(path.join(DIST_ROOT, 'services/face-reality-acne-program/index.html'), 'utf8'));
+  const faceRealityText = visibleText(faceRealityHtml);
   for (const required of [
     'Amber Mingione, Licensed Esthetician',
     'href="/about/providers/amber/"',
   ]) {
     if (!faceRealityHtml.includes(required)) failures.push(`face-reality-acne-program: missing ${JSON.stringify(required)}`);
+  }
+  for (const [label, pattern] of [
+    ['Acne Peel #1', /Face Reality Acne Peel #1[\s\S]{0,80}\$135[\s\S]{0,40}50 minutes/i],
+    ['Acne Peel #2', /Face Reality Acne Peel #2[\s\S]{0,80}\$155[\s\S]{0,40}45 minutes/i],
+    ['Bright Skin Peel', /Face Reality Bright Skin Peel[\s\S]{0,80}\$165[\s\S]{0,40}45 minutes/i],
+    ['Acne Back Peel', /Face Reality Acne Back Peel[\s\S]{0,80}\$205[\s\S]{0,40}10 minutes/i],
+  ]) {
+    if (!pattern.test(faceRealityText)) failures.push(`face-reality-acne-program: missing exact ${label} row`);
+  }
+  if (!/online booking is unavailable/i.test(faceRealityText)) {
+    failures.push('face-reality-acne-program: missing staff-arranged peel booking boundary');
+  }
+
+  const bootcampHtml = mainHtml(readFileSync(path.join(DIST_ROOT, 'services/acne-bootcamp/index.html'), 'utf8'));
+  for (const peelName of ['Face Reality Acne Peel #1', 'Face Reality Acne Peel #2', 'Face Reality Bright Skin Peel', 'Face Reality Acne Back Peel']) {
+    if (bootcampHtml.includes(peelName)) failures.push(`acne-bootcamp: program menu unexpectedly includes ${peelName}`);
   }
 
   assert.equal(failures.length, 0, formatFailures('Priority service education regression', failures));

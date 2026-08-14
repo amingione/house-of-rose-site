@@ -63,7 +63,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       heading: faceReality.heading,
       metaDescription: faceReality.slug === 'acne-bootcamp'
         ? 'Acne Bootcamp at House of Rose: a $99 consultation or the $899 Face Reality 12-week program with in-studio visits and home care.'
-        : 'Face Reality options at House of Rose include a $99 consultation and the $899 12-week program with in-studio visits and home care.',
+        : 'Face Reality at House of Rose includes a $99 consultation, the $899 12-week program, and four staff-arranged peels from $135 to $205.',
       paragraphs: [
         faceReality.whatItIs,
         faceReality.whyTheStructureMatters,

@@ -47,7 +47,7 @@ export const FACE_REALITY_PROGRAM = {
   programOnly:
     'Acne Bootcamp brings in-studio visits and daily home care into one 12-week program. The two parts are designed to be followed together rather than booked as unrelated facials.',
   provider:
-    'Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Acne Bootcamp Consultation and the complete 12-week program.',
+    'Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Acne Bootcamp Consultation, complete 12-week program, and current Face Reality peel appointments.',
   medicalBoundary:
     'This is a non-prescription esthetics program. Deep, painful, widespread, or actively scarring breakouts need medical evaluation before an esthetics program is considered.',
   packagePriceUsd: 899,
@@ -66,6 +66,30 @@ export const FACE_REALITY_PROGRAM = {
       priceUsd: 899,
       note: 'The complete program; not sold as individual program visits.',
     },
+    {
+      name: 'Face Reality Acne Peel #1',
+      duration: '50 minutes',
+      priceUsd: 135,
+      note: '',
+    },
+    {
+      name: 'Face Reality Acne Peel #2',
+      duration: '45 minutes',
+      priceUsd: 155,
+      note: '',
+    },
+    {
+      name: 'Face Reality Bright Skin Peel',
+      duration: '45 minutes',
+      priceUsd: 165,
+      note: '',
+    },
+    {
+      name: 'Face Reality Acne Back Peel',
+      duration: '10 minutes',
+      priceUsd: 205,
+      note: '',
+    },
   ] satisfies readonly FaceRealityMenuItem[],
   packageDetails: [
     'In-studio visits every two weeks across the 12-week program.',
@@ -80,9 +104,9 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
     title: 'Face Reality Acne Program',
     heading: 'The consultation is one appointment. Acne Bootcamp is the full 12 weeks.',
     whatItIs:
-      'House of Rose offers a 60-minute Acne Bootcamp Consultation and a complete 12-week Acne Bootcamp program. The consultation is the first appointment; the program combines visits every two weeks with daily home care.',
+      'House of Rose offers a 60-minute Acne Bootcamp Consultation, a complete 12-week Acne Bootcamp program, and four separate Face Reality peel appointments. The consultation is the first appointment for the program; the peels are staff-arranged choices rather than program visits.',
     whyTheStructureMatters:
-      'The consultation gives you and the esthetician time to discuss what is happening now, the home-care purchase, and whether you want to continue into the 12-week program.',
+      'The consultation gives you and the esthetician time to discuss what is happening now, the home-care purchase, and whether you want to continue into the 12-week program. Choosing a separate peel does not enroll you in Acne Bootcamp.',
     distinctions: [
       {
         label: 'The consultation',
@@ -91,6 +115,10 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       {
         label: 'The complete program',
         text: 'The complete program is $899 and runs for 12 weeks, with in-studio visits every two weeks and daily home care between visits.',
+      },
+      {
+        label: 'Separate peel appointments',
+        text: 'Four Face Reality peels are arranged through House of Rose: Acne Peel #1 at $135, Acne Peel #2 at $155, Bright Skin Peel at $165, and Acne Back Peel at $205.',
       },
     ],
     faqs: [
@@ -104,14 +132,19 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
         answer: FACE_REALITY_PROGRAM.provider,
       },
       {
+        question: 'Can I arrange a Face Reality peel without buying Acne Bootcamp?',
+        answer:
+          'Yes. Four Face Reality peel appointments are current and separate from the program. Online booking is unavailable for those appointments, so contact House of Rose to arrange the appropriate option.',
+      },
+      {
         question: 'Does the Face Reality program replace medical acne care?',
         answer:
           'No. This is a non-prescription esthetics program for the appearance of recurring breakouts. Deep, painful, widespread, or actively scarring breakouts need medical evaluation first.',
       },
     ],
-    menuHeading: 'The consultation and the 12-week program',
-    menuIntro: 'These are separate purchases: a directly bookable $99 consultation and the complete $899 program if you decide to continue.',
-    menuOrder: [0, 1],
+    menuHeading: 'The program path and separate peel appointments',
+    menuIntro: 'The $99 consultation is directly bookable. The $899 program is separate, and all four Face Reality peels are arranged with House of Rose because online booking is unavailable.',
+    menuOrder: [0, 1, 2, 3, 4, 5],
   },
   'acne-bootcamp': {
     slug: 'acne-bootcamp',
