@@ -25,7 +25,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'permanent-jewelry':
     'Call House of Rose for the $65, 20-minute fitting. If the chain material or charm matters to you, ask what is available before booking.',
   injectables:
-    'At the consultation, describe which lines appear or deepen when you frown, raise your brows, or squint. Botox and Daxxify are each $14 per unit; the appointment total depends on the number of units administered.',
+    'Begin with the 20-minute, $50 Neuromodulator Consultation with Diana Morrison, RN, and describe which lines appear or deepen when you frown, raise your brows, or squint. Botox and Daxxify are each $14 per unit; the treatment appointment total depends on the number of units administered.',
   'body-waxing':
     'Call House of Rose and name the body area you want waxed; for legs, specify Full Leg or Partial Leg.',
   'iv-hydration-therapy':
