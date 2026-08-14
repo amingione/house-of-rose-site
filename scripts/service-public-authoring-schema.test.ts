@@ -1,0 +1,71 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+
+import { service } from '../packages/studio/schemas/service.ts';
+
+type NestedField = {
+  name?: string;
+  fields?: NestedField[];
+  of?: NestedField[];
+  validation?: unknown;
+};
+
+function serviceField(name: string) {
+  return service.fields.find((field) => field.name === name);
+}
+
+function nestedObjectFields(fieldName: string): NestedField[] {
+  const field = serviceField(fieldName) as NestedField | undefined;
+  assert.ok(field?.of && Array.isArray(field.of));
+  const item = field.of[0];
+  assert.ok(item?.fields && Array.isArray(item.fields));
+  return item.fields;
+}
+
+function assertSharedGuard(field: NestedField | undefined, label: string): void {
+  const validation = field?.validation;
+  assert.equal(typeof validation, 'function', `${label} must validate public copy.`);
+  assert.match(String(validation), /validatePublicCopy/);
+}
+
+test('directly published service identity text uses the shared public-copy guard', () => {
+  for (const fieldName of ['title', 'price', 'duration']) {
+    assertSharedGuard(serviceField(fieldName), fieldName);
+  }
+
+  const image = serviceField('image') as NestedField | undefined;
+  assert.ok(image?.fields && Array.isArray(image.fields));
+  assertSharedGuard(image.fields.find((field) => field.name === 'alt'), 'image.alt');
+
+  const gallery = serviceField('gallery') as NestedField | undefined;
+  assert.ok(gallery?.of && Array.isArray(gallery.of));
+  const galleryImage = gallery.of[0];
+  assert.ok(galleryImage?.fields && Array.isArray(galleryImage.fields));
+  assertSharedGuard(galleryImage.fields.find((field) => field.name === 'alt'), 'gallery.alt');
+});
+
+test('approved evidence editorial copy is guarded without rewriting source citations', () => {
+  const evidenceFields = nestedObjectFields('evidenceMedia');
+  const evidenceImage = evidenceFields.find((field) => field.name === 'image');
+  assert.ok(evidenceImage?.fields && Array.isArray(evidenceImage.fields));
+  assertSharedGuard(evidenceImage.fields.find((field) => field.name === 'alt'), 'evidence image alt');
+
+  for (const fieldName of ['title', 'caption']) {
+    assertSharedGuard(evidenceFields.find((field) => field.name === fieldName), `evidence ${fieldName}`);
+  }
+  assert.doesNotMatch(String(evidenceFields.find((field) => field.name === 'sourceCredit')?.validation), /validatePublicCopy/);
+
+  const researchFields = nestedObjectFields('researchReferences');
+  for (const fieldName of ['summary', 'limitations']) {
+    assertSharedGuard(researchFields.find((field) => field.name === fieldName), `research ${fieldName}`);
+  }
+  for (const fieldName of ['title', 'journal']) {
+    assert.doesNotMatch(String(researchFields.find((field) => field.name === fieldName)?.validation), /validatePublicCopy/);
+  }
+});
+
+test('the archival service tagline cannot pose as a live control', () => {
+  const tagline = serviceField('tagline');
+  assert.equal(tagline?.readOnly, true);
+  assert.match(String(tagline?.title), /not published/i);
+});

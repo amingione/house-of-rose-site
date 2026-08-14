@@ -24,7 +24,8 @@ export const service = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (R) => R.required(),
+      description: 'Verified public service name used in page titles, navigation, cards, and structured data.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -72,8 +73,9 @@ export const service = defineType({
     }),
     defineField({
       name: 'tagline',
-      title: 'Tagline (archival)',
+      title: 'Tagline (not published)',
       type: 'string',
+      readOnly: true,
       description: 'Stored for source compatibility. Public service cards use reviewed factual summaries during the voice reset.',
     }),
     defineField({
@@ -81,6 +83,7 @@ export const service = defineType({
       title: 'Price',
       type: 'string',
       description: 'Starting-at price shown on the site (e.g., "From $399"). Leave empty for consult-only services.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'bookingMode',
@@ -161,6 +164,7 @@ export const service = defineType({
       title: 'Duration',
       type: 'string',
       description: 'Typical appointment length (e.g., "60–90 minutes")',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'description',
@@ -243,7 +247,7 @@ export const service = defineType({
       type: 'image',
       options: { hotspot: true },
       fields: [
-        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
       ],
     }),
     defineField({
@@ -256,7 +260,7 @@ export const service = defineType({
           type: 'image',
           options: { hotspot: true },
           fields: [
-            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+            defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
           ],
         },
       ],
@@ -294,7 +298,7 @@ export const service = defineType({
                   name: 'alt',
                   title: 'Alt Text',
                   type: 'string',
-                  validation: (R) => R.required(),
+                  validation: (R) => R.required().custom(validatePublicCopy),
                 }),
               ],
               validation: (R) => R.required(),
@@ -303,14 +307,14 @@ export const service = defineType({
               name: 'title',
               title: 'Client-Facing Title',
               type: 'string',
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'caption',
               title: 'Client-Facing Caption',
               type: 'text',
               rows: 3,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'sourceCredit',
@@ -400,14 +404,14 @@ export const service = defineType({
               title: 'What It Suggests',
               type: 'text',
               rows: 3,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'limitations',
               title: 'Important Limitations',
               type: 'text',
               rows: 3,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'url',
