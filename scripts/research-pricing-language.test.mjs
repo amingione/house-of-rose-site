@@ -62,6 +62,12 @@ test('research mirrors the current high-risk service price facts', () => {
   assert.match(glo2, /\$225, 60-minute standalone appointment/i);
   assert.doesNotMatch(glo2, /\$185|\$499|\$885/);
 
+  const carboxy = read('carboxy-therapy.md');
+  assert.match(carboxy, /CO2 Lift Carboxy — Facial \(standalone\)[^\n]*\*\*\$175\*\*[^\n]*60 min/i);
+  assert.match(carboxy, /CO2 Lift Carboxy — Add-On[^\n]*\*\*\$100\*\*[^\n]*30 min/i);
+  assert.match(carboxy, /Staff-added only; booking off by design/i);
+  assert.doesNotMatch(carboxy, /not current GlossGenius inventory|unbookable research concept/i);
+
   const iv = read('iv-hydration.md');
   for (const row of [
     /Hydration IV \| \*\*\$99\*\* \| 30 min/,
@@ -88,6 +94,13 @@ test('research mirrors the current high-risk service price facts', () => {
   const faceReality = read('face-reality-acne-program.md');
   assert.match(faceReality, /consultation[^\n]*\*\*\$99\*\*[^\n]*60 min/i);
   assert.match(faceReality, /Acne Bootcamp[^\n]*\*\*\$899\*\*[^\n]*60 min/i);
+  for (const row of [
+    /Face Reality Acne Peel #1[^\n]*\*\*\$135\*\*[^\n]*50 min/i,
+    /Face Reality Acne Peel #2[^\n]*\*\*\$155\*\*[^\n]*45 min/i,
+    /Face Reality Bright Skin Peel[^\n]*\*\*\$165\*\*[^\n]*45 min/i,
+    /Face Reality Acne Back Peel[^\n]*\*\*\$205\*\*[^\n]*10 min/i,
+  ]) assert.match(faceReality, row);
+  assert.match(faceReality, /staff-arranged[^\n]*booking off/i);
   assert.doesNotMatch(faceReality, /From \$139|From \$159|\$429|\$765/);
 });
 
