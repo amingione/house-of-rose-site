@@ -41,7 +41,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   microneedling:
     'The $50, 60-minute Procell Therapies Consultation with Amber Mingione, Licensed Esthetician covers the Pro and MD serum options, which use the same Procell device. PRF Microneedling is a separate $595, 60-minute consultation where PRF is applied at the skin surface.',
   'facial-waxing':
-    'Call with the area you want waxed: chin, upper lip, eyebrows, or eyebrow shaping.',
+    'Book Facial Waxing online by selecting Chin at $10 for 30 minutes, Upper Lip at $10 for 10 minutes, Eyebrows at $15 for 10 minutes, or Eyebrow Shape, Trim & Wax at $25 for 25 minutes.',
   'forma-rf-facial':
     'Call House of Rose with the area you want to discuss: face, neck, face and neck, eyes, jawline, or nasolabial folds. Forma delivers radiofrequency through surface electrodes without microneedles; Morpheus8 is RF microneedling, and Lumecca Peak is IPL for pigment-related questions.',
   'lumecca-peak-ipl':
