@@ -29,7 +29,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     menuHeading: 'Botox is priced by the unit.',
     faqHeading: 'What $14 per unit means.',
     verifiedAt: VERIFIED_AT,
-    context: 'This guide covers Botox. Daxxify has a separate neurotoxin listing, although both are priced at $14 per unit.',
+    context: 'Botox and Daxxify are separate neurotoxin listings. Both are priced at $14 per product-specific unit, but a unit of one product is not equivalent to a unit of the other.',
     faqs: [
       {
         question: 'How much is Botox at House of Rose?',
@@ -40,8 +40,8 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
         answer: 'No. $14 is the published price per unit. The total reflects the number of Botox units provided.',
       },
       {
-        question: 'Does this Botox guide include Daxxify pricing?',
-        answer: 'No. Botox and Daxxify have separate listings, although both are priced at $14 per unit.',
+        question: 'Is Daxxify included in the Botox price?',
+        answer: 'No. Botox and Daxxify have separate listings. Each is priced at $14 per product-specific unit, and the matching rate does not establish the same dose or total price.',
       },
     ],
     items: [
