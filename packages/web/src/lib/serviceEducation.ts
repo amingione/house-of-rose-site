@@ -443,14 +443,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       distinctions: skinRenewal.distinctions,
       menu: {
         heading: skinRenewal.slug === 'biorepeel'
-          ? 'Standalone BioRePeel'
+          ? 'BioRePeel appointments'
           : skinRenewal.slug === 'microneedling'
             ? 'Microneedling options'
             : skinRenewal.slug === 'prf-injections'
               ? 'PRF Under-Eye and PRF Bio-Filler'
               : 'PRF appointments',
         intro: skinRenewal.slug === 'biorepeel'
-          ? 'One directly bookable appointment: BioRePeel Cl3 Rejuvenation at $250 for 45 minutes.'
+          ? 'Book the standalone 45-minute appointment for $250 or the 50-minute Series of 3 for $699.'
           : skinRenewal.slug === 'prf' || skinRenewal.slug === 'prf-injections'
             ? skinRenewal.slug === 'prf'
               ? 'PRF Microneedling is $595 for 60 minutes; PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
@@ -481,7 +481,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ]
         : skinRenewal.faqs,
       faqHeading: skinRenewal.slug === 'biorepeel'
-        ? 'The peel and the standalone appointment.'
+        ? 'The peel and its booking options.'
         : skinRenewal.slug === 'microneedling'
           ? 'Procell Pro, Procell MD, and topical PRF.'
           : skinRenewal.slug === 'prf'

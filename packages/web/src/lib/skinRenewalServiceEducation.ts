@@ -84,6 +84,13 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
           bookingMode: 'direct',
           note: 'Directly bookable standalone face treatment.',
         },
+        {
+          name: 'BioRePeel Cl3 Rejuvenation — Series of 3',
+          durationMinutes: 50,
+          priceUsd: 699,
+          bookingMode: 'direct',
+          note: 'Directly bookable series of three.',
+        },
       ],
     },
   },
