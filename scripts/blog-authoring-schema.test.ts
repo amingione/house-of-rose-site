@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { blogPost, validateBlogPortableText } from '../packages/studio/schemas/blogPost.ts';
+import {
+  blogPost,
+  PUBLIC_BLOG_CATEGORIES,
+  validateBlogPortableText,
+} from '../packages/studio/schemas/blogPost.ts';
 
 test('blog Portable Text validation reviews complete paragraph text across decorated spans', () => {
   assert.equal(
@@ -34,6 +38,35 @@ test('directly published blog fields carry review guidance and validation', () =
     ? body.of.find((member) => member.type === 'block')
     : undefined;
   assert.equal(typeof block?.validation, 'function', 'Portable Text blocks must validate public copy.');
+});
+
+test('public blog categories are limited to current service and editorial areas', () => {
+  const category = blogPost.fields.find(({ name }) => name === 'category');
+  assert.equal(typeof category?.validation, 'function', 'Blog category must validate public output.');
+  assert.deepEqual(
+    category.options?.list,
+    PUBLIC_BLOG_CATEGORIES.map((value) => ({ title: value, value })),
+  );
+
+  let guarded = false;
+  let validValues: readonly string[] = [];
+  const rule = {
+    custom(fn: (value: string | undefined) => true | string) {
+      guarded = fn('Premium Wellness') !== true;
+      return this;
+    },
+    valid(...values: string[]) {
+      validValues = values;
+      return this;
+    },
+  };
+  category.validation(rule);
+
+  assert.equal(guarded, true);
+  assert.deepEqual(validValues, PUBLIC_BLOG_CATEGORIES);
+  assert.ok(validValues.includes('Provider-Guided Weight Management'));
+  assert.ok(!validValues.includes('Hormone Optimization'));
+  assert.ok(!validValues.includes('GLP-1 Weight Loss'));
 });
 
 test('blog image alt text uses the shared public-copy guard wherever it renders', () => {

@@ -18,6 +18,15 @@ export const validateBlogPortableText = (value: unknown): true | string => {
   return validatePublicCopy(text);
 };
 
+export const PUBLIC_BLOG_CATEGORIES = [
+  'Skin Rejuvenation',
+  'IV Hydration',
+  'Provider-Guided Weight Management',
+  'Injectables',
+  'Wellness',
+  'Local Guide',
+] as const;
+
 export const blogPost = defineType({
   name: 'blogPost',
   title: 'Blog Post',
@@ -47,16 +56,9 @@ export const blogPost = defineType({
       title: 'Category',
       type: 'string',
       options: {
-        list: [
-          { title: 'Skin Rejuvenation', value: 'Skin Rejuvenation' },
-          { title: 'IV Hydration', value: 'IV Hydration' },
-          { title: 'Hormone Optimization', value: 'Hormone Optimization' },
-          { title: 'GLP-1 Weight Loss', value: 'GLP-1 Weight Loss' },
-          { title: 'Injectables', value: 'Injectables' },
-          { title: 'Wellness', value: 'Wellness' },
-          { title: 'Local Guide', value: 'Local Guide' },
-        ],
+        list: PUBLIC_BLOG_CATEGORIES.map((value) => ({ title: value, value })),
       },
+      validation: (R) => R.custom(validatePublicCopy).valid(...PUBLIC_BLOG_CATEGORIES),
     }),
     defineField({
       name: 'excerpt',
