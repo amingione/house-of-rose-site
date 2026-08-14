@@ -34,11 +34,13 @@
 - **GROQ:** `SERVICE_BY_SLUG_QUERY`, `ALL_SERVICES_QUERY`, `ALL_SERVICE_SLUGS_QUERY`
 - **Status:** ✅ existing
 
-### 2. Pricing / "what affects cost" page
+### 2. Pricing page
 - **Doc type:** `costGuide`
 - **Route:** `/cost/[slug]` (e.g. `prf-treatment-cost`)
-- **Key fields:** `treatment` (ref → service), `priceLow`/`priceHigh`/`priceUnit`,
-  `costFactors[]` (factor + effect), `whatsIncluded`, `faqs[]`, `seo`
+- **Public content:** `treatment` (ref → service) plus the reviewed cost-facts overlay in website code;
+  publish the verified current amount or range and its menu context
+- **Legacy source fields:** `priceLow`/`priceHigh`/`priceUnit`, `costFactors[]`, `whatsIncluded`, and
+  `faqs[]` remain stored but are read-only in Studio and are not public copy authority
 - **JSON-LD:** `BreadcrumbList` + `Article` + `FAQPage` when reviewed `faqs` are published
 - **GROQ:** `ALL_COST_GUIDES_QUERY`, `COST_GUIDE_BY_SLUG_QUERY`, `ALL_COST_GUIDE_SLUGS_QUERY`
 

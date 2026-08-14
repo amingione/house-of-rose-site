@@ -54,7 +54,8 @@ supporting page types documented in the map.
    process, candidacy, and FAQs appear only when relevant.
    → `service` doc, `/services/[slug]`. Hubs answer the question a client googles;
    treatments are the specific bookable appointments beneath them.
-2. **Pricing / "what affects cost" page** — honest cost ranges and the factors that move them.
+2. **Pricing page** — the verified current amount or range and what that figure represents. Explain
+   price variability only when reconciled menu facts support it; do not manufacture generic cost factors.
    → `costGuide` doc, `/cost/[slug]`. Targets *"how much does ___ cost"* queries.
 3. **FAQ page** — concentrated question→answer pairs.
    → aggregated at `/faq`; service, cost, and comparison pages add their own `faqs` only when they
