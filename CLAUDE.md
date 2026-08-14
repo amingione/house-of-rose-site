@@ -349,7 +349,7 @@ Astro's default `build.format` is `directory` and `site` resolves to `https://ho
 ## Architecture Law (Never Break)
 - **Sanity owns the source records**: services, products, site settings, content, images. During the
   voice reset, a renderer may temporarily withhold unreviewed prose without changing the Sanity record.
-- **No Medusa** — this is a spa, not a high-volume e-commerce store
+- **No Medusa** — this is a medical aesthetics practice, not a high-volume e-commerce store
 - **No Vendure** — unrelated to FAS Motorsports ecosystem
 - **Astro is static (`output: 'static'`)** — all data fetched at build time via GROQ
 - **No React islands for now** — pure Astro components unless interactivity is explicitly needed
