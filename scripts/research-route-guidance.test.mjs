@@ -139,6 +139,14 @@ test('unsupported facial concepts do not retain active treatment briefs', () => 
   assert.doesNotMatch(currentResearch, /\/compare\/(?:glo2facial-vs-hydrodermabrasion|hydrodermabrasion-vs-glo2facial)\//i);
 });
 
+test('obsolete collection planning imports cannot compete with reviewed route inventory', () => {
+  assert.equal(
+    existsSync(new URL('sanity-collections.csv', researchRoot)),
+    false,
+    'sanity-collections.csv must not remain available as collection or service-migration authority.',
+  );
+});
+
 test('PRF research cannot regenerate the rejected strategy artifact', () => {
   for (const retiredArtifact of [
     new URL(
