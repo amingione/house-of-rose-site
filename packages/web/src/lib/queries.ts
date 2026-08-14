@@ -37,6 +37,16 @@ const RETIRED_COST_GUIDE_SLUGS = [
   'prf-microneedling-cost-punta-gorda',
 ] as const;
 const RETIRED_COST_GUIDE_SLUGS_GROQ = JSON.stringify(RETIRED_COST_GUIDE_SLUGS);
+export const REVIEWED_PUBLIC_COST_GUIDE_SLUGS = [
+  'biorepeel-cost-punta-gorda',
+  'botox-cost-punta-gorda',
+  'dermal-fillers-cost-punta-gorda',
+  'forma-cost-punta-gorda',
+  'ipl-photofacial-cost-punta-gorda',
+  'microneedling-cost-punta-gorda',
+  'morpheus8-cost-punta-gorda',
+] as const;
+const REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COST_GUIDE_SLUGS);
 
 // Published Sanity records that are not verified as current GlossGenius offerings.
 // Keep them available for reconciliation without exposing them as public services.
@@ -1346,7 +1356,7 @@ const SERVICE_REF_FIELDS = /* groq */ `
 
 // ── Cost guides ──────────────────────────────────────────────────────────────
 export const ALL_COST_GUIDES_QUERY = /* groq */ `
-  *[_type == "costGuide" && defined(slug.current) && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&
@@ -1359,7 +1369,7 @@ export const ALL_COST_GUIDES_QUERY = /* groq */ `
 `;
 
 export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "costGuide" && slug.current == $slug && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})][0] {
+  *[_type == "costGuide" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})][0] {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit,
     whatsIncluded, costFactors[]{ _key, factor, effect }, faqs[]{ _key, question, answer }, _updatedAt,
     "treatment": select(
@@ -1385,7 +1395,7 @@ export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
-  *[_type == "costGuide" && defined(slug.current) && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})]{ "slug": slug.current }
+  *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})]{ "slug": slug.current }
 `;
 
 // ── Comparisons ──────────────────────────────────────────────────────────────

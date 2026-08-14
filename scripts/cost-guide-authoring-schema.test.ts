@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { costGuide } from '../packages/studio/schemas/costGuide.ts';
@@ -6,6 +7,7 @@ import {
   ALL_COST_GUIDE_SLUGS_QUERY,
   ALL_COST_GUIDES_QUERY,
   COST_GUIDE_BY_SLUG_QUERY,
+  REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
 } from '../packages/web/src/lib/queries.ts';
 
 const titleField = costGuide.fields.find(({ name }) => name === 'title');
@@ -70,6 +72,34 @@ test('cost-guide public inventories require the schema-required route slug', () 
       query,
       /_type == "costGuide" && defined\(slug\.current\)/,
       'Every public cost-guide inventory must reject records without a route slug.',
+    );
+  }
+});
+
+test('cost-guide creation cannot publish without a reviewed factual overlay', () => {
+  assert.ok(REVIEWED_PUBLIC_COST_GUIDE_SLUGS.length > 0, 'The reviewed cost-guide inventory must not be empty.');
+  const reviewedSlugSet = JSON.stringify(REVIEWED_PUBLIC_COST_GUIDE_SLUGS);
+  const costFactsSource = readFileSync(
+    new URL('../packages/web/src/lib/costFacts.ts', import.meta.url),
+    'utf8',
+  );
+
+  for (const query of [
+    ALL_COST_GUIDES_QUERY,
+    COST_GUIDE_BY_SLUG_QUERY,
+    ALL_COST_GUIDE_SLUGS_QUERY,
+  ]) {
+    assert.ok(
+      query.includes(`slug.current in ${reviewedSlugSet}`),
+      'Every public cost-guide query must fail closed to fact-backed slugs.',
+    );
+  }
+
+  for (const slug of REVIEWED_PUBLIC_COST_GUIDE_SLUGS) {
+    assert.match(
+      costFactsSource,
+      new RegExp(`['"]${slug}['"]\\s*:`),
+      `${slug} must have a reviewed cost-fact overlay before it can publish.`,
     );
   }
 });
