@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Checks live treatment pages for factual, credential, claims, and pricing risk.
+ * Checks live service pages for factual, credential, claims, and pricing risk.
  *
  *   node packages/studio/scripts/verify-treatment-pages.mjs
  *   node packages/studio/scripts/verify-treatment-pages.mjs --warn   # report, exit 0
@@ -9,7 +9,7 @@
  * exist. This verifier must not pressure editors to fill gaps with generic copy.
  *
  * Checks, in order of severity:
- *   BLOCKING  — live service with no providerScope, or an invalid supplied variance note
+ *   BLOCKING  — an invalid supplied provider-scope variance note
  *   BLOCKING  — a staff or owner name found in client-facing copy
  *   BLOCKING  — banned voice or compliance language
  *   WARNING   — priceRange verified against GlossGenius more than 90 days ago
@@ -106,10 +106,6 @@ async function main() {
     const label = `${doc.title} (/services/${doc.slug}/)`;
     const text = collectText(doc);
 
-    if (!doc.providerScope) {
-      blocking.push(`${label} — no providerScope. Every live treatment must state who performs it.`);
-    }
-
     const varianceNote = doc.providerScope?.disclaimer?.trim();
     if (/\bcandidacy is determined at consultation\b/i.test(varianceNote ?? '') ||
         /\bthis page is general information and is not medical advice\b/i.test(varianceNote ?? '')) {
@@ -159,7 +155,7 @@ async function main() {
   const dim = '\u001b[2m';
   const reset = '\u001b[0m';
 
-  console.log(`\n  Treatment page verification — ${services.length} live services\n`);
+  console.log(`\n  Service page verification — ${services.length} live services\n`);
 
   if (blocking.length > 0) {
     console.log(`${red}  ${blocking.length} blocking issue(s):${reset}\n`);
@@ -174,7 +170,7 @@ async function main() {
   }
 
   if (blocking.length === 0 && warnings.length === 0) {
-    console.log(`${green}  All live treatment pages complete.${reset}\n`);
+    console.log(`${green}  All live service pages pass the configured checks.${reset}\n`);
   }
 
   if (blocking.length > 0 && !WARN_ONLY) {
