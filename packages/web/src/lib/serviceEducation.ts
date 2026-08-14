@@ -785,6 +785,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           name: item.name,
           price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
         })),
+        ...MORPHEUS8_PRICING.resurfacing.map((item) => ({
+          name: item.name,
+          price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+        })),
+        ...MORPHEUS8_PRICING.prime.map((item) => ({
+          name: item.name,
+          price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+        })),
         ...MORPHEUS8_PRICING.burstPackageRanges.map((item) => ({
           name: item.name,
           price: `${formatMorpheus8Price(item.minimumPriceUsd)}–${formatMorpheus8Price(item.maximumPriceUsd)}`,
@@ -804,13 +812,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       : 'Microneedling and fractional radiofrequency, together.',
     metaDescription: isBodyMorpheus
       ? 'Morpheus8 Body at House of Rose combines microneedling with fractional radiofrequency for selected body areas, priced as series of three.'
-      : 'Morpheus8 at House of Rose combines microneedling with fractional radiofrequency. Compare single and series pricing by treatment area.',
+      : 'Morpheus8 at House of Rose combines microneedling with fractional radiofrequency. Compare Burst, Resurfacing, and Prime single or series pricing.',
     paragraphs: [
       device.whatItIs,
       device.whereItFits,
       isBodyMorpheus
         ? 'Morpheus8 Burst Deep body pricing is organized by area size: 4 × 10 inches or 8 × 11 inches. Both are priced as a series of three; call House of Rose to confirm the appointment length.'
-        : 'House of Rose publishes both a single-treatment price and a series-of-three price for Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Hyperhidrosis is listed separately at $2,200–$2,400 for a package of three. The Morpheus8 + Lumecca Bundle is $1,799 for two total treatments. Call the practice to confirm the appointment length.',
+        : 'House of Rose publishes single-treatment and series-of-three prices for five Burst areas, two Resurfacing areas, and three Prime eye-and-mouth areas. Hyperhidrosis is listed separately at $2,200–$2,400 for a package of three. The Morpheus8 + Lumecca Bundle is $1,799 for two total treatments. Call the practice to confirm the appointment length.',
     ],
     distinctions: [
       {
@@ -823,7 +831,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         label: 'How the area is priced',
         text: isBodyMorpheus
           ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each price is for a series of three.'
-          : 'Full Face, Face & Neck, Scars, Chest, and Stretch Marks each have a single-treatment price and a series-of-three price. Hyperhidrosis has a separate package-of-three price range.',
+          : 'Burst lists Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Resurfacing lists Full Face and Face & Neck. Prime lists Eyes & Mouth, Around the Eyes, and Around the Mouth. Each has a single-treatment price and a series-of-three price; Hyperhidrosis has a separate package-of-three price range.',
       },
       ...(!isBodyMorpheus
         ? [
@@ -837,10 +845,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     menu: {
       heading: isBodyMorpheus
         ? 'Morpheus8 Burst Deep area packages'
-        : 'Morpheus8 Burst pricing by area',
+        : 'Morpheus8 pricing by option and area',
       intro: isBodyMorpheus
         ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
-        : 'Five treatment areas have a single-treatment price and a series-of-three price. Hyperhidrosis and the Morpheus8 + Lumecca Bundle are separate package listings.',
+        : 'Burst has five area listings, Resurfacing has two, and Prime has three. Each has a single-treatment and series-of-three price. Hyperhidrosis and the Morpheus8 + Lumecca Bundle are separate package listings.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
@@ -865,8 +873,16 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             answer: 'Morpheus8 Body uses the same InMode platform and focuses on selected body areas. Morpheus8 also covers the face, neck, and chest.',
           },
           {
-            question: 'What does a standalone Morpheus8 treatment cost?',
+            question: 'What are the Morpheus8 Burst single-treatment prices?',
             answer: 'The current Morpheus8 Burst single-treatment prices are $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
+          },
+          {
+            question: 'How is Morpheus8 Resurfacing priced?',
+            answer: 'Morpheus8 Resurfacing is $750 for one Full Face treatment or $2,000 for three; Face & Neck is $950 for one or $2,700 for three.',
+          },
+          {
+            question: 'How is Morpheus8 Prime priced?',
+            answer: 'Morpheus8 Prime Eyes & Mouth is $1,000 for one treatment or $2,200 for three. Around the Eyes and Around the Mouth are each $450 for one treatment or $1,200 for three.',
           },
           {
             question: 'How is the Morpheus8 Burst Hyperhidrosis package priced?',

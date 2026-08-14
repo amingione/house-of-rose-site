@@ -16,9 +16,9 @@ export interface Morpheus8PackageRangeItem {
  * House of Rose Morpheus8 pricing confirmed by the owner on 2026-08-14 from:
  * packages/web/docs/inmode/Optimas Max Pricing.pdf, page 2.
  *
- * The PDF also contains Resurfacing and Prime modality/add-on pricing. Those
- * rows are retained in the canonical pricing ledger, but are not presented as
- * standalone public services until their booking names and routes are settled.
+ * The exact Resurfacing and Prime single/series prices below are also retained
+ * in the canonical pricing ledger. Approximate add-on recommendations from the
+ * PDF remain unpublished because they are not exact House of Rose menu prices.
  */
 export const MORPHEUS8_PRICING = {
   verifiedAt: 'August 14, 2026',
@@ -49,6 +49,15 @@ export const MORPHEUS8_PRICING = {
       note: '8 × 11-inch area · Series of 3',
     },
   ],
+  resurfacing: [
+    { name: 'Morpheus8 Resurfacing — Full Face', singlePriceUsd: 750, seriesOfThreePriceUsd: 2000 },
+    { name: 'Morpheus8 Resurfacing — Face & Neck', singlePriceUsd: 950, seriesOfThreePriceUsd: 2700 },
+  ],
+  prime: [
+    { name: 'Morpheus8 Prime — Eyes & Mouth', singlePriceUsd: 1000, seriesOfThreePriceUsd: 2200 },
+    { name: 'Morpheus8 Prime — Around the Eyes', singlePriceUsd: 450, seriesOfThreePriceUsd: 1200 },
+    { name: 'Morpheus8 Prime — Around the Mouth', singlePriceUsd: 450, seriesOfThreePriceUsd: 1200 },
+  ],
   bundle: {
     name: 'Morpheus8 + Lumecca Bundle',
     priceUsd: 1799,
@@ -59,6 +68,8 @@ export const MORPHEUS8_PRICING = {
   readonly burst: readonly Morpheus8PriceItem[];
   readonly burstPackageRanges: readonly Morpheus8PackageRangeItem[];
   readonly burstDeep: readonly Morpheus8PriceItem[];
+  readonly resurfacing: readonly Morpheus8PriceItem[];
+  readonly prime: readonly Morpheus8PriceItem[];
   readonly bundle: {
     readonly name: string;
     readonly priceUsd: number;
