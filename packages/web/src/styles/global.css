@@ -35,6 +35,7 @@
      native constraint-validation jumps after an invalid form submission. */
   form :is(input:not([type='hidden']), select, textarea) {
     scroll-margin-block-start: 6rem;
+    scroll-margin-block-end: 6rem;
   }
 
   /* Force high-quality smooth image rendering for photos */
