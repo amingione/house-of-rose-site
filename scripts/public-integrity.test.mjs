@@ -1227,7 +1227,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'InMode and the FDA classify the applicator separately from laser applicators',
       'Lumecca Peak IPL Consultation',
       '$50',
-      'Starting consultation',
+      'Consultation appointment',
       '$850 single · $2,400 series of 3',
       '$500 single · $1,200 series of 3',
       '$500 single · $1,300 series of 3',
