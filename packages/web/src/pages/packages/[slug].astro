@@ -69,7 +69,9 @@ const breadcrumbSchema = breadcrumbList([
   { name: pkg.title, item: canonicalURL.toString() },
 ]);
 
-const pageTitle = `${pkg.title} | Treatment Package`;
+const pageTitle = isFaceRealityProgram
+  ? 'Acne Bootcamp: 12-Week Face Reality Program'
+  : `${pkg.title} | Treatment Package`;
 const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescription : summary;
 ---
 
