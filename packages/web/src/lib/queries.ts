@@ -1047,21 +1047,6 @@ export const PUBLIC_PROVIDER_BY_SLUG_QUERY = /* groq */ `
   }
 `;
 
-export interface BrandPillar {
-  name: string;
-  meaning?: string;
-}
-
-export interface BrandProfile {
-  title: string;
-  angle: string;
-  idealClient?: string;
-  differentiators?: string[];
-  pillars?: BrandPillar[];
-  voiceTraits?: string[];
-  taglines?: string[];
-}
-
 export type PackageType = 'series' | 'journey' | 'combo';
 export type PackageStatus = 'live' | 'proposed' | 'parked';
 
@@ -1088,18 +1073,6 @@ export interface TreatmentPackage {
   candidacyNote?: string;
   image?: SanityImage;
 }
-
-export const BRAND_PROFILE_QUERY = /* groq */ `
-  *[_type == "brandProfile"] | order(_updatedAt desc)[0] {
-    title,
-    angle,
-    idealClient,
-    differentiators,
-    pillars[] { name, meaning },
-    voiceTraits,
-    taglines
-  }
-`;
 
 const PACKAGE_FIELDS = /* groq */ `
   _id,
