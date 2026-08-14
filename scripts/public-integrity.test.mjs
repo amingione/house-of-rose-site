@@ -789,6 +789,39 @@ test('direct visit FAQs state the current walk-in policy and match FAQPage schem
   assert.equal(failures.length, 0, formatFailures('Walk-in policy regression', failures));
 });
 
+test('FAQ provider answer names verified practitioners instead of narrating the website', () => {
+  const file = path.join(DIST_ROOT, 'faq/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = readFileSync(file, 'utf8');
+  const main = mainHtml(html);
+  const question = 'How can I tell who provides a service?';
+  const visibleQuestions = [...main.matchAll(
+    /<(h3|span)\b[^>]*data-visit-faq-question[^>]*>([\s\S]*?)<\/\1>/gi,
+  )].map((match) => visibleText(match[2]));
+  const visibleAnswers = [...main.matchAll(
+    /<p\b[^>]*data-visit-faq-answer[^>]*>([\s\S]*?)<\/p>/gi,
+  )].map((match) => visibleText(match[1]));
+  const visibleAnswer = visibleAnswers[visibleQuestions.indexOf(question)] ?? '';
+  const faqSchema = [...html.matchAll(
+    /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )]
+    .map((match) => JSON.parse(match[1]))
+    .find((schema) => schema?.['@type'] === 'FAQPage');
+  const schemaAnswer = faqSchema?.mainEntity?.find((item) => item.name === question)?.acceptedAnswer?.text ?? '';
+
+  assert.equal(visibleAnswer, schemaAnswer, 'FAQ provider answer and FAQPage schema differ.');
+  for (const [label, pattern] of [
+    ['Diana’s licence and services', /Diana Morrison, RN[\s\S]{0,180}(?:Botox|Daxxify)[\s\S]{0,180}dermal fillers[\s\S]{0,180}injectable PRF[\s\S]{0,180}IV hydration[\s\S]{0,180}GLP-1/i],
+    ['Amber’s licence and services', /Amber Mingione, Licensed Esthetician[\s\S]{0,180}Procell Microneedling[\s\S]{0,140}topical PRF[\s\S]{0,140}Glo2Facial[\s\S]{0,140}dermaplaning[\s\S]{0,140}BioRePeel/i],
+    ['Brandy’s licence and services', /Brandy, Licensed Esthetician[\s\S]{0,140}facials[\s\S]{0,120}standalone BioRePeel[\s\S]{0,120}facial waxing/i],
+    ['Aundrea’s licence and non-medical services', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,160}makeup[\s\S]{0,120}permanent jewelry[\s\S]{0,100}non-medical/i],
+    ['medical-director role boundary', /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232[\s\S]{0,180}medical direction[\s\S]{0,140}(?:does not|doesn't)[\s\S]{0,100}treatment appointments/i],
+  ]) {
+    assert.match(visibleAnswer, pattern, `FAQ provider answer is missing ${label}.`);
+  }
+  assert.doesNotMatch(visibleAnswer, /service page[\s\S]{0,100}provider directory/i);
+});
+
 // Protect the operational distinctions without freezing a full customer-facing sentence.
 // Voice revisions may change syntax and cadence while these facts and schema parity remain binding.
 test('consultation form explains that an inquiry does not reserve an appointment', () => {
@@ -1097,6 +1130,9 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'carbon-dioxide-rich bubbly environment',
       'does not come from an external stream of oxygen',
       'no downtime',
+      'Amber Mingione, Licensed Esthetician',
+      'Who provides Glo2Facial at House of Rose?',
+      'Meet Amber Mingione, Licensed Esthetician',
       '$225',
       '60 minutes',
     ],
