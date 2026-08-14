@@ -62,14 +62,23 @@ test('case-study treatment links can resolve only to generated public service ro
   }
 });
 
-test('the consented results listing only includes records with generated routes', () => {
+test('public results require consent, a generated route, and the documented image pair', () => {
   const slug = caseStudy.fields.find(({ name }) => name === 'slug');
   const consent = caseStudy.fields.find(({ name }) => name === 'consentGiven');
+  const beforeImage = caseStudy.fields.find(({ name }) => name === 'beforeImage');
+  const afterImage = caseStudy.fields.find(({ name }) => name === 'afterImage');
   assert.match(String(slug?.validation), /required/);
   assert.match(String(consent?.validation), /required/);
+  assert.match(String(beforeImage?.validation), /required/);
+  assert.match(String(afterImage?.validation), /required/);
+
+  for (const query of [ALL_CASE_STUDIES_QUERY, CASE_STUDY_BY_SLUG_QUERY, ALL_CASE_STUDY_SLUGS_QUERY]) {
+    assert.match(query, /consentGiven == true/);
+    assert.match(query, /defined\(beforeImage\.asset\)/);
+    assert.match(query, /defined\(afterImage\.asset\)/);
+  }
 
   for (const query of [ALL_CASE_STUDIES_QUERY, ALL_CASE_STUDY_SLUGS_QUERY]) {
-    assert.match(query, /consentGiven == true/);
     assert.match(query, /defined\(slug\.current\)/);
   }
 });

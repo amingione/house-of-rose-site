@@ -1467,7 +1467,13 @@ export const ALL_LOCAL_AREA_SLUGS_QUERY = /* groq */ `
 
 // ── Case studies (consent-gated) ─────────────────────────────────────────────
 export const ALL_CASE_STUDIES_QUERY = /* groq */ `
-  *[_type == "caseStudy" && consentGiven == true && defined(slug.current)] | order(orderRank asc, _createdAt desc) {
+  *[
+    _type == "caseStudy" &&
+    consentGiven == true &&
+    defined(slug.current) &&
+    defined(beforeImage.asset) &&
+    defined(afterImage.asset)
+  ] | order(orderRank asc, _createdAt desc) {
     _id, title, "slug": slug.current, clientProfile, timeframe, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&
@@ -1481,7 +1487,13 @@ export const ALL_CASE_STUDIES_QUERY = /* groq */ `
 `;
 
 export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "caseStudy" && slug.current == $slug && consentGiven == true][0] {
+  *[
+    _type == "caseStudy" &&
+    slug.current == $slug &&
+    consentGiven == true &&
+    defined(beforeImage.asset) &&
+    defined(afterImage.asset)
+  ][0] {
     _id, title, "slug": slug.current, consentGiven, clientProfile, protocol, timeframe, outcome, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&
@@ -1497,7 +1509,13 @@ export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
-  *[_type == "caseStudy" && consentGiven == true && defined(slug.current)]{ "slug": slug.current }
+  *[
+    _type == "caseStudy" &&
+    consentGiven == true &&
+    defined(slug.current) &&
+    defined(beforeImage.asset) &&
+    defined(afterImage.asset)
+  ]{ "slug": slug.current }
 `;
 
 // ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
