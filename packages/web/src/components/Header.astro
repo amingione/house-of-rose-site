@@ -250,6 +250,11 @@ const linkClass = (path: string) =>
   const mobileMenus = document.querySelectorAll<HTMLDetailsElement>('#mobile-navigation details');
   const pageContent = document.getElementById('main-content');
   const pageFooter = document.querySelector<HTMLElement>('body > footer');
+  let lastFocusedHeaderElement: HTMLElement | null = null;
+
+  document.getElementById('header')?.addEventListener('focusin', (event) => {
+    if (event.target instanceof HTMLElement) lastFocusedHeaderElement = event.target;
+  });
 
   const setBackgroundInert = (inert: boolean): void => {
     if (pageContent) pageContent.inert = inert;
@@ -341,7 +346,48 @@ const linkClass = (path: string) =>
   });
 
   window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
-    if (event.matches) closeMobileNavigation();
+    const currentActiveElement = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+    const menuWasOpen = event.matches
+      ? menuButton?.getAttribute('aria-expanded') === 'true'
+      : Array.from(desktopMenus).some((menu) => menu.open);
+    const activeElement = currentActiveElement === document.body && menuWasOpen
+      ? lastFocusedHeaderElement
+      : currentActiveElement;
+
+    if (event.matches) {
+      const focusWasInMobileNavigation = Boolean(
+        activeElement && (mobileNavigation?.contains(activeElement) || activeElement === menuButton),
+      );
+      const focusedHref = activeElement instanceof HTMLAnchorElement
+        ? activeElement.getAttribute('href')
+        : null;
+      const focusedMobileMenu = activeElement?.closest<HTMLDetailsElement>('#mobile-navigation details');
+
+      closeMobileNavigation();
+
+      if (focusWasInMobileNavigation) {
+        const matchingLink = focusedHref
+          ? Array.from(document.querySelectorAll<HTMLAnchorElement>('#header a[href]')).find(
+            (link) => link.getAttribute('href') === focusedHref && link.getClientRects().length > 0,
+          )
+          : null;
+        const matchingSummary = focusedMobileMenu?.classList.contains('mobile-services')
+          ? document.querySelector<HTMLElement>('.services-menu > summary')
+          : focusedMobileMenu?.classList.contains('mobile-about')
+            ? document.querySelector<HTMLElement>('.about-menu > summary')
+            : null;
+        (matchingLink ?? matchingSummary ?? document.querySelector<HTMLElement>('.brand-link'))?.focus();
+      }
+      return;
+    }
+
+    const focusWasInDesktopMenu = Boolean(
+      activeElement && Array.from(desktopMenus).some((menu) => menu.contains(activeElement)),
+    );
+    for (const menu of desktopMenus) menu.open = false;
+    if (focusWasInDesktopMenu) menuButton?.focus();
   });
 </script>
 
