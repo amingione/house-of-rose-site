@@ -10,6 +10,10 @@ import { getConcernEducation } from '@/lib/concernEducation';
 
 const concerns = alignPublicContent(await sanityFetch<Concern[]>(ALL_CONCERNS_QUERY));
 const concernsBySlug = new Map(concerns.map((concern) => [concern.slug, concern]));
+const concernCards = concerns.map((concern) => ({
+  concern,
+  education: getConcernEducation(concern.slug),
+}));
 const distinctionSpecs = [
   { slug: 'active-acne', relatedSlugs: ['acne-scarring'] },
   { slug: 'dark-circles', relatedSlugs: ['volume-loss'] },
@@ -47,7 +51,7 @@ const concernsListSchema = concerns.length
 
 <BaseLayout
   title="Concern Guides | House of Rose Aesthetics"
-  description="Review House of Rose guides to visible skin and facial concerns, with links to the services currently associated with each one."
+  description="Start with the skin or facial change you notice, learn what can look similar, and find the related House of Rose services in Punta Gorda."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {concernsListSchema && <SchemaMarkup item={concernsListSchema} slot="head" />}
@@ -57,17 +61,25 @@ const concernsListSchema = concerns.length
       <span class="kicker">Concern Guides</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Start with what you notice.</h1>
       <p class="text-ink/80 text-[16px] max-w-[660px] leading-relaxed">
-        Open the guide that most closely matches what you see. It will explain the visible distinctions and show the House of Rose services currently connected to that concern.
+        You do not need the exact term for it. Begin with the change that keeps catching your eye, then use the guide to understand what can look similar and which House of Rose services relate to it.
       </p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-      {concerns.map((c) => (
-        <a href={`/concerns/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
-          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{c.title}</h2>
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">View options</span>
+      {concernCards.map(({ concern, education }) => (
+        <a
+          href={`/concerns/${concern.slug}/`}
+          class="bg-charcoal p-7 group flex min-h-[250px] flex-col transition-colors hover:bg-charcoal-lighter"
+          data-concern-guide-card
+          {...sbObjectId(concern._id)}
+        >
+          <h2 class="font-serif text-[22px] text-ink group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{concern.title}</h2>
+          {education && (
+            <p class="mt-4 text-[14px] leading-[1.75] text-muted">{education.lead}</p>
+          )}
+          <span class="learn-more group-hover:text-gold mt-auto pt-7 inline-block">Read the guide</span>
         </a>
       ))}
       {concerns.length === 0 && (
@@ -105,15 +117,27 @@ const concernsListSchema = concerns.length
   )}
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
-    <div class="max-w-[680px] mx-auto text-center">
+    <div class="max-w-[880px] mx-auto text-center">
       <span class="kicker">Skin analysis and consultation</span>
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Not every concern is easy to name.</h2>
-      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-8 leading-[1.8]">
-        Bring what you have noticed. A skin analysis or consultation can give the conversation a clearer starting point.
+      <p class="text-muted text-[15px] max-w-[620px] mx-auto leading-[1.8]">
+        Bring what you have noticed. The useful next step depends on whether you want a closer look at the skin or a broader conversation about treatment choices.
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <a href="/skin-analysis/" class="btn-outline-gold">Review skin analysis</a>
-        <a href="/consultation/" class="btn-gold">Start a consultation</a>
+      <div class="mt-9 grid gap-px bg-gold-metal/10 text-left md:grid-cols-2">
+        <article class="bg-charcoal-light p-7">
+          <h3 class="font-serif text-[22px] text-ink">Skin analysis gives you a visual baseline.</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            Standard, cross-polarized, and UV photographs can make visible patterns in pigment, pores, texture, fine lines, and sun exposure easier to examine. The images provide a baseline; they do not diagnose a skin condition.
+          </p>
+          <a href="/skin-analysis/" class="learn-more mt-6 inline-block">See how skin analysis works</a>
+        </article>
+        <article class="bg-charcoal-light p-7">
+          <h3 class="font-serif text-[22px] text-ink">A consultation gives you room to talk it through.</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            A consultation gives you room to compare options and ask who provides a service, what it costs, how long it takes, and what recovery may involve before you book.
+          </p>
+          <a href="/consultation/" class="learn-more mt-6 inline-block">Send a consultation inquiry</a>
+        </article>
       </div>
     </div>
   </section>

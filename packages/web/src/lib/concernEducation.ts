@@ -11,10 +11,10 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
   aging: {
     heading: 'What catches your eye first?',
     lead: 'You may notice a rougher surface, uneven color, a line that appears with expression, or less support through one area of the face.',
-    detail: 'Surface treatments, pigment-focused services, neurotoxins, and volume-focused services each begin with a different visible change. Seeing more than one change does not mean every service belongs in the same visit.',
-    distinction: 'Name the change that stands out most: surface, pigment, movement, or volume. A simple photograph or description is enough to start.',
+    detail: 'It is common to notice more than one of those changes at once. Surface treatments, pigment-focused services, neurotoxins, and volume-focused services have different jobs, so “aging” does not have to be reduced to one treatment name.',
+    distinction: 'Look once with your face at rest and once in expression. Notice what stands out most—surface, pigment, movement, or volume—and what you would prefer to leave alone.',
     consultationHeading: 'Bring the change you notice most.',
-    consultationPrompt: 'A photograph or a simple description—roughness, uneven color, an expression line, or less support—gives us a useful place to begin.',
+    consultationPrompt: 'Bring a photograph that looks like you, not a perfectly posed one. Point to the roughness, uneven color, expression line, or area with less support that keeps drawing your eye. It is equally useful to say what you do not want changed.',
   },
   'dark-circles': {
     heading: 'Under-eye darkness may be color, shadow, or both.',
@@ -28,9 +28,9 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
     heading: 'The same area can show more than one kind of line.',
     lead: 'A line may come from repeated facial movement, skin texture, or a change in facial support. Laxity is another visible change, even when it appears nearby.',
     detail: 'House of Rose lists neurotoxins for movement-related lines, fillers for selected volume changes, and resurfacing or device services for surface texture and laxity. The location alone does not tell you which of those changes you are seeing.',
-    distinction: 'Name what you notice most: movement, a surface crease, less volume, or looser skin.',
+    distinction: 'Let your face rest, then make the expression that brings the line out. Notice whether it changes with movement, stays as a surface crease, or sits beside less volume or looser skin.',
     consultationHeading: 'Point to the line or change that bothers you.',
-    consultationPrompt: 'Tell us whether it appears with expression, stays visible at rest, or sits beside a change in texture, volume, or laxity.',
+    consultationPrompt: 'A relaxed photograph and one with expression can show more than a treatment name can. Bring both if they help, and say how much natural movement you want to keep.',
   },
   'acne-scarring': {
     heading: 'Look at the shape and depth of the scar.',
@@ -60,9 +60,9 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
     heading: 'Where does the face look less full or supported?',
     lead: 'Less fullness or support can look like a hollow, fold, or shift in facial shape. A line that appears mainly with expression points to the neurotoxin menu instead.',
     detail: 'House of Rose dermal fillers use manufactured hyaluronic-acid gels. Injectable PRF is prepared from a small sample of your own blood. Botox and Daxxify address movement-related lines.',
-    distinction: 'A hollow, fold, and expression line can appear close together. Describe each one you notice rather than trying to select a product first.',
+    distinction: 'Look straight on and from the side. A hollow, fold, and expression line can appear close together; seeing the face from both angles makes the difference easier to point out.',
     consultationHeading: 'Tell us where the face looks less supported.',
-    consultationPrompt: 'Describe the hollow, fold, or shift in shape that you notice. We can then explain the difference between dermal filler, injectable PRF, and movement-related services.',
+    consultationPrompt: 'Bring a front and side photograph if the change is easier to see there. You do not need to choose between dermal filler, injectable PRF, or a movement-related service before asking what each one actually does.',
   },
   'sun-damage': {
     heading: 'Do spots, uneven color, or a rougher surface stand out most?',
