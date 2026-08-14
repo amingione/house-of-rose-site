@@ -1450,7 +1450,10 @@ export const ALL_CASE_STUDIES_QUERY = /* groq */ `
     consentGiven == true &&
     defined(slug.current) &&
     defined(beforeImage.asset) &&
-    defined(afterImage.asset)
+    defined(afterImage.asset) &&
+    treatment->status in ["live", "actual-menu"] &&
+    defined(treatment->slug.current) &&
+    !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
   ] | order(orderRank asc, _createdAt desc) {
     _id, title, "slug": slug.current, clientProfile, timeframe, _updatedAt,
     "treatment": select(
@@ -1470,7 +1473,10 @@ export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
     slug.current == $slug &&
     consentGiven == true &&
     defined(beforeImage.asset) &&
-    defined(afterImage.asset)
+    defined(afterImage.asset) &&
+    treatment->status in ["live", "actual-menu"] &&
+    defined(treatment->slug.current) &&
+    !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
   ][0] {
     _id, title, "slug": slug.current, consentGiven, clientProfile, protocol, timeframe, outcome, _updatedAt,
     "treatment": select(
@@ -1492,7 +1498,10 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
     consentGiven == true &&
     defined(slug.current) &&
     defined(beforeImage.asset) &&
-    defined(afterImage.asset)
+    defined(afterImage.asset) &&
+    treatment->status in ["live", "actual-menu"] &&
+    defined(treatment->slug.current) &&
+    !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
   ]{ "slug": slug.current }
 `;
 

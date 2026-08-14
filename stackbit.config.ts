@@ -144,6 +144,25 @@ function documentHasAssetReference(
   );
 }
 
+function documentReferenceId(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): string | undefined {
+  const field = document?.fields[fieldName];
+  if (
+    !field ||
+    typeof field !== 'object' ||
+    !('type' in field) ||
+    field.type !== 'reference' ||
+    !('refType' in field) ||
+    field.refType !== 'document' ||
+    !('refId' in field)
+  ) {
+    return undefined;
+  }
+  return typeof field.refId === 'string' && field.refId ? field.refId : undefined;
+}
+
 /**
  * Return the first non-empty value among `names`, or throw listing all of them.
  *
@@ -334,11 +353,25 @@ export default defineStackbitConfig({
     }
 
     if (entry.document.modelName === 'caseStudy') {
+      const treatmentId = documentReferenceId(document, 'treatment');
+      const treatment = treatmentId
+        ? getDocumentById({
+            id: treatmentId,
+            srcType: entry.document.srcType,
+            srcProjectId: entry.document.srcProjectId,
+          })
+        : undefined;
+      const treatmentSlug = documentStringField(treatment, 'slug');
+      const treatmentStatus = documentStringField(treatment, 'status');
       return Boolean(
         slug &&
           documentBooleanField(document, 'consentGiven') === true &&
           documentHasAssetReference(document, 'beforeImage') &&
-          documentHasAssetReference(document, 'afterImage'),
+          documentHasAssetReference(document, 'afterImage') &&
+          treatmentSlug &&
+          treatmentStatus &&
+          PUBLIC_SERVICE_STATUS_SET.has(treatmentStatus) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
       );
     }
 

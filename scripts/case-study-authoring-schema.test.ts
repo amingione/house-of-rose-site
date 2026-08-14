@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { caseStudy } from '../packages/studio/schemas/caseStudy.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_CASE_STUDIES_QUERY,
   ALL_CASE_STUDY_SLUGS_QUERY,
@@ -55,10 +56,20 @@ test('case-study treatment links can resolve only to generated public service ro
 
   assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
   assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(
+    treatment?.options?.filterParams,
+    { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+  );
 
-  for (const query of [ALL_CASE_STUDIES_QUERY, CASE_STUDY_BY_SLUG_QUERY]) {
+  for (const query of [
+    ALL_CASE_STUDIES_QUERY,
+    CASE_STUDY_BY_SLUG_QUERY,
+    ALL_CASE_STUDY_SLUGS_QUERY,
+  ]) {
     assert.match(query, /treatment->status in \["live", "actual-menu"\]/);
     assert.match(query, /defined\(treatment->slug\.current\)/);
+    assert.match(query, /!\(treatment->slug\.current in \[/);
   }
 });
 

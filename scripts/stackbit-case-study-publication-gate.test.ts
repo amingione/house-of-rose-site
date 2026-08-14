@@ -10,6 +10,11 @@ interface CaseStudyOptions {
   consentGiven?: boolean;
   beforeImage?: string;
   afterImage?: string;
+  treatmentId?: string;
+}
+
+interface StackbitDocument {
+  fields: Record<string, unknown>;
 }
 
 function unwrapConfig(value: unknown): StackbitConfigShape {
@@ -24,7 +29,8 @@ const caseStudyDocument = ({
   consentGiven,
   beforeImage,
   afterImage,
-}: CaseStudyOptions) => ({
+  treatmentId,
+}: CaseStudyOptions): StackbitDocument => ({
   fields: {
     ...(slug ? { slug: { type: 'slug', value: slug } } : {}),
     ...(consentGiven === undefined
@@ -36,6 +42,16 @@ const caseStudyDocument = ({
     ...(afterImage
       ? { afterImage: { type: 'reference', refType: 'asset', refId: afterImage } }
       : {}),
+    ...(treatmentId
+      ? { treatment: { type: 'reference', refType: 'document', refId: treatmentId } }
+      : {}),
+  },
+});
+
+const serviceDocument = (slug: string, status: string): StackbitDocument => ({
+  fields: {
+    slug: { type: 'slug', value: slug },
+    status: { type: 'string', value: status },
   },
 });
 
@@ -77,6 +93,18 @@ test('Stackbit exposes only routeable, consented case studies with both image as
       document: documentRef('slug-missing', 'caseStudy'),
     },
     {
+      urlPath: '/results/treatment-missing',
+      document: documentRef('treatment-missing', 'caseStudy'),
+    },
+    {
+      urlPath: '/results/treatment-unavailable',
+      document: documentRef('treatment-unavailable', 'caseStudy'),
+    },
+    {
+      urlPath: '/results/treatment-nonlive',
+      document: documentRef('treatment-nonlive', 'caseStudy'),
+    },
+    {
       urlPath: '/about',
       document: documentRef('aboutPage', 'aboutPage'),
     },
@@ -85,14 +113,25 @@ test('Stackbit exposes only routeable, consented case studies with both image as
     beforeImage: 'image-before-1200x1200-jpg',
     afterImage: 'image-after-1200x1200-jpg',
   };
-  const documents = new Map<string, ReturnType<typeof caseStudyDocument>>([
+  const routeableTreatment = { treatmentId: 'service-routeable' };
+  const documents = new Map<string, StackbitDocument>([
     [
       'consented-complete',
-      caseStudyDocument({ slug: 'consented-complete', consentGiven: true, ...completeImages }),
+      caseStudyDocument({
+        slug: 'consented-complete',
+        consentGiven: true,
+        ...completeImages,
+        ...routeableTreatment,
+      }),
     ],
     [
       'consent-missing',
-      caseStudyDocument({ slug: 'consent-missing', consentGiven: false, ...completeImages }),
+      caseStudyDocument({
+        slug: 'consent-missing',
+        consentGiven: false,
+        ...completeImages,
+        ...routeableTreatment,
+      }),
     ],
     [
       'before-image-missing',
@@ -100,6 +139,7 @@ test('Stackbit exposes only routeable, consented case studies with both image as
         slug: 'before-image-missing',
         consentGiven: true,
         afterImage: completeImages.afterImage,
+        ...routeableTreatment,
       }),
     ],
     [
@@ -108,9 +148,38 @@ test('Stackbit exposes only routeable, consented case studies with both image as
         slug: 'after-image-missing',
         consentGiven: true,
         beforeImage: completeImages.beforeImage,
+        ...routeableTreatment,
       }),
     ],
-    ['slug-missing', caseStudyDocument({ consentGiven: true, ...completeImages })],
+    [
+      'slug-missing',
+      caseStudyDocument({ consentGiven: true, ...completeImages, ...routeableTreatment }),
+    ],
+    [
+      'treatment-missing',
+      caseStudyDocument({ slug: 'treatment-missing', consentGiven: true, ...completeImages }),
+    ],
+    [
+      'treatment-unavailable',
+      caseStudyDocument({
+        slug: 'treatment-unavailable',
+        consentGiven: true,
+        ...completeImages,
+        treatmentId: 'service-unavailable',
+      }),
+    ],
+    [
+      'treatment-nonlive',
+      caseStudyDocument({
+        slug: 'treatment-nonlive',
+        consentGiven: true,
+        ...completeImages,
+        treatmentId: 'service-nonlive',
+      }),
+    ],
+    ['service-routeable', serviceDocument('botox', 'live')],
+    ['service-unavailable', serviceDocument('wellness', 'live')],
+    ['service-nonlive', serviceDocument('future-service', 'proposed')],
   ]);
 
   const filtered = transformSitemap!({
