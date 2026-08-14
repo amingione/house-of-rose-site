@@ -80,12 +80,12 @@ const pageDescription = articleDescription;
   <section class="bg-charcoal-light px-6 py-14">
       <div class="mx-auto grid max-w-[960px] gap-px bg-gold-metal/15 md:grid-cols-2">
         <article class="bg-charcoal p-8 sm:p-10">
-          <span class="kicker">The distinction</span>
+          <span class="kicker">The main difference</span>
           <h2 class="mt-3 font-serif text-[clamp(24px,3vw,34px)] leading-tight text-ink">{publicContent.distinctionHeading}</h2>
           <p class="mt-5 text-[15px] leading-7 text-muted">{publicContent.distinction}</p>
         </article>
         <article class="bg-charcoal p-8 sm:p-10">
-          <span class="kicker">Shared context</span>
+          <span class="kicker">What still matters</span>
           <h2 class="mt-3 font-serif text-[clamp(24px,3vw,34px)] leading-tight text-ink">{publicContent.sharedHeading}</h2>
           <p class="mt-5 text-[15px] leading-7 text-muted">{publicContent.shared}</p>
         </article>
@@ -138,19 +138,19 @@ const pageDescription = articleDescription;
   {comparisonRows.length > 0 && (
     <section class="bg-charcoal py-14 px-6">
       <div class="max-w-[960px] mx-auto overflow-x-auto">
-        <h2 class="sr-only">Side-by-side comparison</h2>
-        <table class="w-full border-collapse text-left">
+        <h2 id="comparison-table-heading" class="sr-only">Side-by-side comparison</h2>
+        <table class="w-full border-collapse text-left" aria-labelledby="comparison-table-heading">
           <thead>
             <tr class="border-b border-gold-metal/20">
-              <th class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-ink/75 font-normal"></th>
-              <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{publicContent.optionALabel}</th>
-              <th class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{publicContent.optionBLabel}</th>
+              <th scope="col" class="py-4 pr-4 text-[11px] tracking-[0.2em] uppercase text-ink/75 font-normal"><span class="sr-only">Comparison point</span></th>
+              <th scope="col" class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{publicContent.optionALabel}</th>
+              <th scope="col" class="py-4 px-4 text-[13px] tracking-[0.08em] text-gold font-medium">{publicContent.optionBLabel}</th>
             </tr>
           </thead>
           <tbody>
             {comparisonRows.map((row) => (
               <tr class="border-b border-ink/5">
-                <td class="py-4 pr-4 text-ink/70 text-[14px] font-medium">{row.attribute}</td>
+                <th scope="row" class="py-4 pr-4 text-ink/70 text-[14px] font-medium">{row.attribute}</th>
                 <td class="py-4 px-4 text-muted text-[14px]">{row.valueA}</td>
                 <td class="py-4 px-4 text-muted text-[14px]">{row.valueB}</td>
               </tr>
@@ -167,7 +167,7 @@ const pageDescription = articleDescription;
       <div class="mx-auto max-w-[960px]">
         <span class="kicker">Sources &amp; limits</span>
         <h2 class="mt-3 max-w-[720px] font-serif text-[clamp(26px,4vw,38px)] leading-tight text-ink">
-          Published evidence, read in context.
+          Where these numbers come from.
         </h2>
         <p class="mt-5 max-w-[760px] text-[15px] leading-7 text-muted">
           The duration figures come from separate studies with different products and study designs. They are not a dose-conversion table, a direct head-to-head trial, or a promise about an individual result.
@@ -191,7 +191,7 @@ const pageDescription = articleDescription;
       <div class="mx-auto max-w-[960px]">
         <span class="kicker">Questions</span>
         <h2 class="mt-3 max-w-[720px] font-serif text-[clamp(26px,4vw,38px)] leading-tight text-ink">
-          What the price and study figures do not tell you.
+          What people ask about these two options.
         </h2>
         <div class="mt-9 divide-y divide-gold-metal/10 border-y border-gold-metal/10">
           {publicFaqs.map((faq) => (
@@ -207,8 +207,8 @@ const pageDescription = articleDescription;
 
   <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Questions about the comparison?</h2>
-      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">Call House of Rose or request a consultation.</p>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Have a question about either service?</h2>
+      <p class="text-muted text-[15px] max-w-[520px] mx-auto mb-8">Call House of Rose or bring the question to a consultation.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         <a href="/consultation/" class="btn-gold">Request a consultation</a>

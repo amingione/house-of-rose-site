@@ -41,12 +41,12 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
       'Both services use microneedling. Morpheus8 adds fractional bipolar radiofrequency; Procell microneedling does not. That is the central difference between them.',
     optionALabel: 'Morpheus8',
     optionBLabel: 'Microneedling',
-    distinctionHeading: 'Where they separate',
+    distinctionHeading: 'Radiofrequency is the dividing line.',
     distinction:
-      'House of Rose lists Morpheus8 for tone, texture, eligible scars, and stretch marks. Microneedling remains the non-radiofrequency option, with Procell Pro, Procell MD, and topical PRF listed separately on the current menu.',
-    sharedHeading: 'What they have in common',
+      'Morpheus8 pairs microneedles with fractional bipolar radiofrequency. The Microneedling page covers the non-radiofrequency appointments: Procell Pro, Procell MD, and Microneedling with topical PRF. House of Rose lists Morpheus8 for tone, texture, eligible scars, and stretch marks.',
+    sharedHeading: 'Both still use microneedling.',
     shared:
-      'Neither name answers every question on its own. Treatment area, settings, and the exact microneedling option still matter, and recovery varies with those details.',
+      'Treatment area and device settings shape the appointment and recovery. The treatment name alone cannot tell you exactly what the next few days will look like.',
     rows: [
       {
         attribute: 'Technology',
@@ -90,19 +90,19 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
   'daxxify-vs-botox': {
     title: 'Daxxify vs. Botox',
     lead:
-      'Daxxify and Botox are two botulinum toxin type A products on the House of Rose Neurotoxin Injections menu. Each is listed at $14 per unit, but the units are product-specific and cannot be compared or converted between products.',
+      'House of Rose offers Daxxify and Botox for movement-related lines. Both are priced at $14 per product-specific unit; the Daxxify appointment is listed at 60 minutes and the Botox appointment at 30 minutes. A unit of one product is not equivalent to a unit of the other, so the matching rate does not predict the same dose or total price.',
     optionALabel: 'Daxxify',
     optionBLabel: 'Botox',
     optionAOverview:
-      'Daxxify is daxibotulinumtoxinA-lanm. The current House of Rose menu lists a 60-minute appointment and a price of $14 per Daxxify unit.',
+      'Daxxify is daxibotulinumtoxinA-lanm. House of Rose lists a 60-minute appointment at $14 per Daxxify unit.',
     optionBOverview:
-      'Botox is onabotulinumtoxinA. The current House of Rose menu lists a 30-minute appointment and a price of $14 per Botox unit.',
-    distinctionHeading: 'The products are not interchangeable',
+      'Botox is onabotulinumtoxinA. House of Rose lists a 30-minute appointment at $14 per Botox unit.',
+    distinctionHeading: 'The matching unit price does not make the products equivalent.',
     distinction:
-      'Botox uses onabotulinumtoxinA in a formulation that includes human albumin. Daxxify uses daxibotulinumtoxinA-lanm with a 35-amino-acid peptide excipient called RTP004. Product choice involves more than matching the number of units.',
-    sharedHeading: 'What the evidence can—and cannot—say',
+      'Botox contains onabotulinumtoxinA in a formulation with human albumin. Daxxify contains daxibotulinumtoxinA-lanm with the 35-amino-acid peptide excipient RTP004. Each label defines potency in units specific to that product, so a unit count cannot be converted from one to the other.',
+    sharedHeading: 'Duration numbers only make sense with their study endpoints.',
     shared:
-      'Separate studies of moderate-to-severe glabellar lines reported different duration endpoints: about 24 weeks for Daxxify in the SAKURA trials and 120 days among day-30 Botox responders in a pooled analysis. Onset was also measured differently. These are not direct head-to-head results, and neither product label establishes one universal downtime period.',
+      'For moderate-to-severe glabellar lines, the Daxxify SAKURA trials reported about 24 weeks to their measured endpoint. A pooled Botox analysis reported 120 days among people who had responded by day 30. Those figures come from separate studies with different definitions rather than one head-to-head test.',
     rows: [
       {
         attribute: 'Active product',
@@ -136,8 +136,8 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
       },
       {
         attribute: 'Downtime evidence',
-        valueA: 'The prescribing information reports adverse reactions, but does not establish one universal downtime period',
-        valueB: 'The prescribing information reports adverse reactions, but does not establish one universal downtime period',
+        valueA: 'The label describes possible adverse reactions and injection-related effects rather than one universal downtime period',
+        valueB: 'The label describes possible adverse reactions and injection-related effects rather than one universal downtime period',
       },
     ],
     sources: [
@@ -164,29 +164,19 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
     ],
     faqs: [
       {
-        question: 'Are Daxxify and Botox units interchangeable?',
+        question: 'Does $14 per unit mean the total price will be the same?',
         answer:
-          'No. The prescribing information for both products states that their potency units are product-specific and cannot be compared or converted between botulinum toxin products.',
+          'The matching rate does not establish the same total. Daxxify and Botox units are product-specific and cannot be converted, and this page does not estimate an individual unit count.',
       },
       {
-        question: 'Does the same $14-per-unit price mean the total price is the same?',
+        question: 'What do the published duration figures actually compare?',
         answer:
-          'No. House of Rose lists both products at $14 per unit, but the units are not equivalent. The per-unit prices do not create a dose-conversion table or establish the same total treatment price.',
+          'They report product-specific glabellar-line study results: about 24 weeks to the measured Daxxify endpoint in SAKURA and 120 days among day-30 Botox responders in a pooled analysis. The studies used different endpoints and were not a head-to-head trial. Individual duration varies.',
       },
       {
-        question: 'Does Daxxify last longer than Botox?',
+        question: 'What do the sources say about onset and downtime?',
         answer:
-          'Separate glabellar-line studies reported different duration endpoints for the two products, but they were not a direct head-to-head trial. The published figures should be read as product-specific study results, and individual duration varies.',
-      },
-      {
-        question: 'How soon do Daxxify and Botox start working?',
-        answer:
-          'In the SAKURA phase 3 trials, the median time to a subject-rated improvement of at least 1 point was 3 days for Daxxify. The Botox Cosmetic label says chemical denervation typically begins 1 to 2 days after injection and increases during the first week. Those are different endpoints, not a direct onset comparison.',
-      },
-      {
-        question: 'Is there a verified downtime difference between Daxxify and Botox?',
-        answer:
-          'No comparable universal downtime period is established by the product labels. Both labels report possible adverse reactions and injection-related effects, so an individual recovery experience should not be inferred from a blanket downtime claim.',
+          'The Daxxify SAKURA trials reported a median 3 days to subject-rated improvement of at least 1 point. The Botox Cosmetic label says chemical denervation typically begins 1 to 2 days after injection and increases during the first week. These are different measures. Both labels describe possible adverse reactions, but neither supplies a universal downtime period.',
       },
     ],
   },

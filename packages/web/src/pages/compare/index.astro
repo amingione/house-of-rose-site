@@ -43,7 +43,7 @@ const comparisonsListSchema = comparisons.length
       <span class="kicker">Compare</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Compare services side by side.</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Each guide puts the treatment technology, current menu facts, evidence limits, and linked service pages in one place.
+        Each guide explains how two services differ, what the available evidence can and cannot establish, and where to read about each appointment in full.
       </p>
     </div>
   </section>
@@ -67,6 +67,33 @@ const comparisonsListSchema = comparisons.length
       {comparisons.length === 0 && (
         <p class="bg-charcoal p-7 text-muted text-[14px]">No comparisons are currently published.</p>
       )}
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,88px)]">
+    <div class="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+      <div>
+        <span class="kicker">Using a comparison</span>
+        <h2 class="mt-3 max-w-[470px] font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+          Two familiar names can hide an important difference.
+        </h2>
+      </div>
+      <div class="max-w-[680px]">
+        <p class="text-[17px] leading-[1.8] text-muted-strong">
+          Look first for the difference that changes the appointment: the material or device being used,
+          the concern it addresses, how pricing is expressed, or what the available evidence actually
+          measures. That is usually more useful than asking which treatment wins.
+        </p>
+        <p class="mt-5 text-[15px] leading-[1.8] text-muted">
+          Each comparison links back to both complete service pages. Read those before booking for the
+          current appointment details, then bring the one difference you still want explained to the
+          practice.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+          <a href="/services/" class="learn-more hover:text-gold">Review all services</a>
+          <a href="/contact/" class="learn-more hover:text-gold">Ask a specific question</a>
+        </div>
+      </div>
     </div>
   </section>
 
