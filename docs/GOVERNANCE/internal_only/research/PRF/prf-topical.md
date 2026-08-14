@@ -144,7 +144,7 @@ applicable disclosure only if a future offer triggers Fla. Stat. 456.062.
 - `/services/prf/` — current topical-versus-injectable PRF hub.
 - `/services/microneedling/` — the one canonical Microneedling service; cross-link the topical PRF adjunct where appropriate.
 - `/cost/prf-microneedling-cost-punta-gorda/` — the one published cost guide.
-- `/services/collections/skin-renewal/` — the collection home.
+- `/services/collections/facials/` — reviewed collection home.
 - `/concerns/fine-lines-laxity/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`, `/concerns/sun-damage/`.
 
 **Where the topical-PRF page should link *out*:**

@@ -167,8 +167,8 @@ all five statements mechanically on every surface.
 
 **Should link IN to a future carboxy page:**
 - `/concerns/dark-circles/` (primary), `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`
-- `/services/glo2facial/` (the "also consider / difference" cross-link — both are oxygenation/glow)
-- `/services/collections/skin-renewal/` (collection hub)
+- `/services/glo2facial/` as a separate service with a different mechanism
+- `/services/collections/facials/` (reviewed collection hub)
 - `/faq/` (add the carboxy Q&As)
 - `/experience/` and `/skin-analysis/` (soft entry points)
 
@@ -176,7 +176,7 @@ all five statements mechanically on every surface.
 - `/services/glo2facial/` (separate current facial with a different mechanism)
 - `/services/microneedling/` only as a separate current service, not a carboxy stack or finish.
 - `/concerns/dark-circles/` (the concern it most serves)
-- `/shop/` brand/product pages for antioxidant/SPF home care
+- Verified antioxidant/SPF home care only if the storefront is enabled again
 - `/faq/` and the verified online GlossGenius appointment for the standalone facial
 
 **Proposed NEW pages (type + slug):**

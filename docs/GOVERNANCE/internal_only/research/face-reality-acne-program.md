@@ -88,7 +88,8 @@ physician's plan when coordinated.
 
 - **Existing:** `/concerns/acne-scarring/` — but this is about **texture aftermath** (scarring), which maps better to microneedling/BioRePeel than to the acne program. The program should link *to* it as the "next step once you're clear."
 - **Existing:** `/concerns/sun-damage/` — partially relevant for **post-inflammatory dark marks / the appearance of post-breakout discoloration**, which mandelic-forward care helps fade.
-- **PROPOSED new concern page — "Active Acne & Breakouts (the appearance of)"** — slug `/concerns/acne-breakouts/` (or `/concerns/active-acne/`). This is distinct from `acne-scarring`: it's about **current/recurring breakouts and congestion**, the primary target of the program. This is the missing hub the program pages should anchor to.
+- **Existing:** `/concerns/active-acne/` — the current hub for recurring visible breakouts and
+  congestion, distinct from the texture aftermath covered by `acne-scarring`.
 - **PROPOSED (optional) new concern page — "Post-Breakout Marks & Discoloration (the appearance of)"** — slug `/concerns/post-inflammatory-marks/` — the dark-mark aftermath that isn't texture/scarring. If not created, fold this into the sun-damage concern.
 
 ---
@@ -171,19 +172,20 @@ product price without current GlossGenius evidence.
 - `/concerns/acne-scarring/` → "before scarring work, get active breakouts under control" link to the program.
 - `/concerns/sun-damage/` → for the appearance of post-breakout dark marks.
 - `/services/biorepeel/` as a separate current surface-resurfacing comparison.
-- `/services/collections/skin-renewal/` (collection: Skin Renewal) → program lives here.
-- `/shop/` Face Reality brand section → cross-link the brand's retail to the program (home care = the retail).
+- `/services/collections/facials/` → reviewed collection path.
+- Verified Face Reality home care only if the storefront is enabled again; do not link dormant product routes.
 - `/faq/`, `/skin-analysis/`, and `/experience/` → general entry points.
 
 **Where the program pages should link *out* (all trailing-slash):**
 - `/services/face-reality-acne-program/` and `/services/acne-bootcamp/` are the two current canonical service routes. The package detail is `/packages/face-reality-12-week-program/`.
 - → `/services/biorepeel/` and `/services/microneedling/` as separate current options for eligible texture concerns.
 - → the proposed `/concerns/acne-breakouts/` hub.
-- → `/shop/` Face Reality product pages for the home-care regimen (specialist-selected).
+- → Specialist-selected Face Reality home care, without a storefront link while retail routes are disabled.
 - → `/skin-analysis/` and contact/booking (call-first, GlossGenius).
 
-**Proposed new pages (type + slug):**
-- **Concern page** — `/concerns/acne-breakouts/` ("Active Acne & Breakouts — the appearance of"). *Highest priority; the missing anchor.*
+**Current and possible supporting pages:**
+- **Existing concern page** — `/concerns/active-acne/`; use this canonical route rather than creating
+  a duplicate breakout concern.
 - **Concern page (optional)** — `/concerns/post-inflammatory-marks/` (post-breakout discoloration).
 - **Cost guide** — `/cost/acne-program-cost-punta-gorda/` ("How Much Does an Acne Program Cost in Punta Gorda?") — honest breakdown of the $899 program vs. single sessions + home care.
 - **Comparison** — `/compare/acne-program-vs-one-off-facials/` — structured program versus one-off facial care, with a clear medical-referral boundary.

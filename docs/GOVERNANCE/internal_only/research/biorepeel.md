@@ -121,7 +121,7 @@ prices unless they first return to GlossGenius.
 **Existing pages that should link INTO the BioRePeel hub (`/services/biorepeel/`):**
 - `/concerns/acne-scarring/`, `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/stretch-marks/` (body variant).
 - `/services/dermaplaning/`, `/services/glo2facial/`, and `/services/microneedling/` as distinct comparison paths.
-- `/services/collections/skin-renewal/` (its collection), `/faq/`, the acne journey from `/services/acne-bootcamp/`.
+- `/services/collections/facials/`, `/faq/`, and the acne journey from `/services/acne-bootcamp/`.
 
 **Where the BioRePeel pages should link OUT:**
 - Canonical BioRePeel page → Brandy and Amber provider profiles plus the current Microneedling page

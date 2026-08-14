@@ -8,7 +8,7 @@ _Sources listed at the end. Pricing truth = local docs + Sanity snapshot only; w
 
 ## 1. The 3-sentence answer
 
-Dermaplaning is a manual exfoliation treatment in which a licensed esthetician uses a sterile, single-use surgical blade to gently sweep away the outermost layer of dead surface skin cells and the fine vellus hair (peach fuzz) on the face — revealing skin that looks instantly smoother, brighter, and camera-ready. Because it clears that dulling layer, it's a favorite "week-of" treatment before weddings, photos, and events, and it lets makeup sit flawlessly and skincare absorb more effectively. At House of Rose in Punta Gorda, dermaplaning is part of Amber's advanced-facial lane and is offered both as a standalone treatment and as a prep step layered before facials, peels, and other resurfacing work.
+Dermaplaning is a manual exfoliation treatment in which a licensed esthetician uses a sterile, single-use surgical blade to gently sweep away the outermost layer of dead surface skin cells and the fine vellus hair (peach fuzz) on the face — revealing skin that looks instantly smoother, brighter, and camera-ready. Because it clears that dulling layer, clients may consider it before weddings, photos, and events, and makeup can sit more evenly afterward. At House of Rose in Punta Gorda, dermaplaning is part of Amber's advanced-facial lane and is offered both as a standalone treatment and as a prep step layered before facials, peels, and other resurfacing work.
 
 ## 2. How it works
 
@@ -113,7 +113,7 @@ with a generic lower bound or discount language.
 
 **How often should I get it?** Because skin turns over roughly every month, most clients maintain the look with a session about once every 4 weeks — which is why we offer a Package of 4. Your provider will individualize the spacing.
 
-**Can I get it before an event or my wedding?** Yes — that's one of its most popular uses. Many clients book it the week of a wedding, photoshoot, or event for a flawless, makeup-ready finish. We'll help you time it (often paired with event makeup).
+**Can I get it before an event or my wedding?** Yes. Clients may book it before a wedding, photoshoot, or event for a smoother makeup surface. Confirm timing with House of Rose, especially when pairing it with event makeup.
 
 **Will it help my makeup go on better?** Yes. Removing dead surface cells and peach fuzz gives foundation a smoother, more even canvas so makeup sits better and looks less "fuzzy."
 
@@ -154,16 +154,16 @@ results claim. Use the applicable disclosure only if a future offer triggers Fla
 
 **Pages that should link *to* dermaplaning (`/services/dermaplaning/`):**
 - `/services/glo2facial/` — cross-link "add Dermaplane Prep for deeper penetration."
-- `/services/collections/skin-renewal/` — dermaplaning is in the Skin Renewal collection.
+- `/services/collections/facials/` — reviewed collection route.
 - The BioRePeel service page and any peel page — "prep with dermaplaning."
 - `/concerns/sun-damage/` and `/concerns/fine-lines-laxity/` — as a surface-smoothing option.
-- `/services/professional-makeup/events/` and `/jane-iredale/` — "book a dermaplane the week of your event for a flawless canvas."
+- `/services/professional-makeup/events/` and `/jane-iredale/` — explain the separate dermaplaning appointment and confirm timing before an event.
 - A future `/packages/dermaplaning-package-of-4/` page (package exists in Sanity but is unpublished/priceless — see GAPS).
 
 **Where the dermaplaning page should link *out*:**
 - `/services/glo2facial/` and `/services/biorepeel/` as separate comparison paths.
 - `/services/facial-waxing/` — the honest "if you want coarse-hair removal, here's waxing" hand-off.
-- `/shop/` (SPF + gentle hydration retail follow-through: Procell, GlyMed+, Skin Script, Face Reality).
+- Verified SPF and hydration products only if the storefront is enabled again.
 - `/faq/` and `/skin-analysis/` (book a consult).
 
 **Proposed new pages (type + slug):**

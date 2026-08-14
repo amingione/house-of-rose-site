@@ -1,8 +1,14 @@
 # Retail Product Lines — Research Brief
 
-Date: 2026-07-13 · Updated 2026-08-04 · Provider lane: **Cross-cutting retail** (sold via `/shop/`; ties to professional home care and post-treatment aftercare across every active lane) · Status: draft for Phase 3/4 consumption · Sources listed at end.
+Date: 2026-07-13 · Updated 2026-08-14 · Provider lane: **Cross-cutting retail research** · Status: dormant while the public storefront is disabled · Sources listed at end.
 
-> **Scope.** This brief is the connective tissue between what House of Rose *does* in the chair and what a client *takes home*. It gives each carried brand a positioning capsule — who it's for, its hero categories, the in-studio treatments it supports as aftercare, and the honest compliance framing for the brand's real (and occasionally non-compliant) product names. It is a **retail-follow-through** brief, not a per-product catalog. All prices come from Sanity (the price source of truth); no price is ever taken from the web.
+> **Publication boundary (2026-08-14).** The storefront is opt-in and remains disabled unless
+> `PUBLIC_SHOP_ENABLED=true`. Stored product records and the route notes below are research inputs, not
+> current public inventory or permission to link `/shop/`. Verify current products with House of Rose,
+> and verify every publishable price through GlossGenius and `ALL-SERVICES-PRICING.MD` before any future
+> storefront re-enablement.
+
+> **Scope.** This brief records historical product-line research and possible treatment-relevant home-care context. It is not a per-product catalog, current stock list, pricing authority, or public-copy model.
 >
 > **Retail truth = Sanity.** The shop groups products by `brand`. Published counts (queried live, `perspective: published`, 2026-07-13): **GlyMed+ 75 · Skin Script 52 · Face Reality 30 · Procell 6 · House of Rose 3 = 166 total.** Distinct brands in the dataset: `face-reality`, `glymed`, `house-of-rose`, `Procell`, `skin-script`. **Jane Iredale is a retained product line but still has 0 individual `product` docs**; `/shop/jane-iredale/` is product education until verified inventory and pricing are added. **`shopBrand` storefront docs = 0** (the shop runs on hardcoded `FALLBACK_BRAND_COPY`). See GAPS.
 
@@ -23,7 +29,7 @@ House of Rose carries five professional, provider-selected retail lines so a tre
 1. **Provider guidance.** Professional lines are dispensed by a licensed esthetician who knows what was done to your skin and can sequence actives (acids, retinol, peptides, growth factors) so they don't collide with a fresh treatment or each other. A drugstore aisle can't do that.
 2. **Formulation & concentration.** Professional lines carry actives at treatment-adjacent strengths in stable delivery systems, and several are built *specifically* for the pre/post-procedure window (Procell's aftercare pair, GlyMed+'s Pre-/Post-Procedural kits). That's the point of buying them where you were treated.
 
-**The pathway, in shape.** Treatment or skin analysis → provider selects a matched home regimen → client buys via `/shop/` → regimen supports and extends the in-chair result → next visit, the provider adjusts. Face Reality is the clearest case: the 12-week Acne Bootcamp *is* biweekly treatments **plus** an adaptive Face Reality home regimen — the home care is half the program.
+**The pathway, in shape.** Treatment or skin analysis → provider selects a relevant home regimen → the client receives current purchase guidance directly from House of Rose → the provider adjusts instructions when needed. Do not send clients to dormant storefront routes.
 
 ---
 
@@ -89,9 +95,9 @@ Organized per brand (the charter's §1–§4 collapsed into one per-brand capsul
 
 ## 4. The retail visit — how a client actually buys
 
-**Where it happens.** Retail runs on **Stripe Elements + Shippo on our own `/checkout` page**, with Sanity as the price source of truth. **No customer-facing copy names the checkout platform** — buttons read like House of Rose (`ctaLabel` is free text for exactly this reason; blank ones fall back to `shopCta.ts` phrase pools). Do not write "buy on [platform]" anywhere.
+**Current state.** The public storefront and checkout are disabled. The architecture below is retained as historical implementation context only; it must not be presented as an active client journey. GlossGenius reconciliation remains the price authority.
 
-**Journey.**
+**Dormant architecture.**
 1. **In-studio** — the provider selects the regimen during/after treatment or a skin analysis; this is the highest-trust sale.
 2. **`/shop/`** — hero → active promotions (`promotion`) → Top Sellers (`isFeatured`) → category filter → per-brand `BrandSpotlight` sections (anchored `#glymed`, `#skin-script`, etc.) → Face Reality 12-Week callout → phone CTA.
 3. **`/shop/[slug]/`** — product detail: add-to-cart, related products from the same brand, `Product` JSON-LD. If `purchaseUrl` is set the CTA points to external checkout; otherwise it links to the detail page (automatic — currently **0 products** have `purchaseUrl`, so everything routes to its own detail page).
@@ -142,7 +148,7 @@ Maps each brand's heroes to existing `/concerns/` slugs (and flags gaps). Frame 
 \* Firming/retinol product *names* trip banned terms — accurate names stay; our descriptive copy must not (see §10).
 
 **Proposed new concern pages (retail-relevant):**
-- **`/concerns/acne/`** (or `/concerns/active-acne/`) — currently only `acne-scarring` exists; Face Reality's core use case (active acne) has no concern page. High value.
+- **`/concerns/active-acne/`** — existing current concern route for Face Reality's active-acne context.
 - **`/concerns/dull-uneven-texture/`** (also proposed in the Procell brief) — Skin Script enzymes + Procell everyday use case.
 - **`/concerns/oily-congested-skin/`** — GlyMed+ (salicylic/BP range) + Face Reality; no page exists.
 
@@ -286,17 +292,19 @@ Licensed Esthetician and Face Reality Certified Acne Specialist** where that cer
 - Concern pages: `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`, `/concerns/dark-circles/`.
 - `/skin-analysis/` (the evidence-based first step that guides the regimen), `/faq/`, `/experience/`.
 
-**Where retail pages should link *out* to:**
-- `/shop/` → per-brand anchors (`/shop#glymed`, `#skin-script`, `#face-reality`, `#Procell`, `#house-of-rose`) and `/shop/[slug]/` detail pages.
+**Where retail pages may link *out* after explicit storefront re-enablement:**
+- Reviewed brand and product routes that pass a fresh inventory, pricing, legal, accessibility, and checkout audit.
 - Back up to the current treatment that the regimen supports (Procell aftercare → `/services/microneedling/`; Face Reality products → `/services/face-reality-acne-program/`).
 - `/skin-analysis/` and `/areas/punta-gorda/`.
 
 **Proposed new pages (type + slug):**
-- **5 `shopBrand` docs** (content, not routes) — `glymed`, `skin-script`, `face-reality`, `Procell`, `house-of-rose` — to replace the hardcoded fallback brand copy with real, compliant, editable storytelling. **Highest-value, lowest-effort win.**
+- **No storefront documents should be created for publication while the storefront flag is disabled.**
 - **Comparison** — `/compare/skin-script-vs-glymed/` ("Skin Script vs GlyMed+: Which Daily Regimen Is Right for You?").
-- **Cost/guide** — `/guides/professional-skincare-vs-drugstore/` (why provider-selected, professional-grade care; compliance-clean).
-- **Concern** — `/concerns/acne/` (active acne — Face Reality's core; currently only `acne-scarring` exists).
-- **Guide** — `/guides/post-treatment-aftercare/` (which products after which treatment — the §7 table as a page).
+- **Comparison** — `/compare/professional-skincare-vs-drugstore/` only after the storefront is enabled
+  and a reviewed comparison overlay exists.
+- **Concern** — use the existing `/concerns/active-acne/` route.
+- **Appointment information** — put verified aftercare on the relevant service or `/experience/`;
+  do not create a separate general-guide route.
 
 ---
 
@@ -319,7 +327,7 @@ Licensed Esthetician and Face Reality Certified Acne Specialist** where that cer
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — treatment pricing, Procell/GlyMed+/Face Reality treatment context, §9 compliance guardrails.
 - `docs/internal_only/services/facials/faceRealityAcneProgram.md` — $899 12-week program, "sold as a program ONLY," Amber Mingione as Face Reality Certified Acne Specialist.
 - `docs/internal_only/services/facials/packagesAdd-ons.md` — current Glo2Facial and Dermaplaning menu boundary; it does not establish a take-home kit or bundled product.
-- `/shop/jane-iredale/` — current product-education page for makeup, skincare, supplements, routine swaps, and provider-confirmed post-treatment timing.
+- The dormant Jane Iredale route and stored product records were consulted as historical research only.
 - `memory/phase1-open-followups.md` — the logged open owner decision on non-compliant product names (keep accurate vs compliant display labels).
 
 **Sanity consulted (published, project 4e7axyi7 / dataset production):**

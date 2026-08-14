@@ -67,7 +67,7 @@ An enzyme exfoliation facial is a gentle, non-abrasive resurfacing treatment tha
 
 House of Rose runs a clear ladder from **relaxing maintenance (Brandy)** up to **corrective/advanced (Amber)**. An enzyme facial is the gentlest rung.
 
-**vs. Dermaplaning** (`/services/dermaplaning/` — a published, standalone service). Dermaplaning is *physical/mechanical*: a sterile blade held at an angle manually shaves off the outermost dead-cell layer **plus vellus "peach-fuzz" hair**, leaving an instant glass-skin smoothness and a flawless makeup canvas. Enzyme exfoliation is *biochemical* — it dissolves dead-cell protein bonds and does **not** remove hair. **Enzyme wins** when skin is reactive/rosacea-prone or the client wants the mildest option; **dermaplaning wins** when the client also wants peach-fuzz removed and a mechanical polish. They pair well: an enzyme softens the surface, and dermaplaning finishes it (the site already lists an enzyme peel as an optional dermaplaning upgrade).
+**vs. Dermaplaning** (`/services/dermaplaning/` — a published, standalone service). Dermaplaning is *physical/mechanical*: a sterile blade held at an angle manually removes the outermost dead-cell layer **plus vellus "peach-fuzz" hair**, leaving a smoother surface for makeup. Enzyme exfoliation is *biochemical* — it loosens surface buildup and does **not** remove hair. Compare the methods by the client's needs rather than declaring a winner. They may be paired when the verified appointment permits it; the current dermaplaning menu includes an enzyme peel upgrade.
 
 **vs. Light chemical peels (AHA/BHA)** (House of Rose offers acid/peel resurfacing largely inside Amber's lane and the Face Reality acne program). A light peel is *acid-driven*: it lowers pH to weaken corneocyte cohesion and reaches deeper than an enzyme (BHA/salicylic is oil-soluble and gets into pores). **Enzyme wins** for sensitive skin, no-downtime maintenance, and first-timers; **a light peel wins** when the client tolerates acids and wants more visible resurfacing of texture, mild pigment, or congestion. An enzyme facial is a sensible **on-ramp** before escalating to acids.
 
@@ -101,7 +101,7 @@ No existing concern page is a strong native fit, which reinforces that this is a
 - **+ Hydrating mask / facial massage** — the relaxing-maintenance experience.
 - **Different provider lanes** — enzyme exfoliation is an unpriced research concept in Brandy's lane; Glo2Facial is a separate $225, 60-minute appointment with Amber Mingione, Licensed Esthetician.
 
-**Retail follow-through (real House of Rose shop brands).** House of Rose carries a deep **Skin Script** professional enzyme line that an in-treatment enzyme facial draws on — e.g. **Coconut Papaya Enzyme** (`/shop/coconut-papaya-enzyme/`), **Blueberry Enzyme** (`/shop/blueberry-enzyme/`), **Cherry Enzyme** (`/shop/cherry-enzyme/`), **Passionfruit Enzyme**, **Lemon Zest Enzyme**, **Eucalyptus Enzyme**, **Jackfruit Enzyme**, **Blue Aqua Enzyme** — plus **GlyMed+** enzyme masques (**Hydrating Masque with Enzymes** `/shop/hydrating-masque-with-enzymes/`, **Chocolate Masque with Enzymes**). For gentle home maintenance between visits, the House of Rose **Smooth Ritual Polish** (`/shop/smooth-ritual-polish/`) and a **mineral SPF** (**Shield Ritual Mineral SPF 30**, `/shop/shield-ritual-spf/`) are the honest, on-brand follow-through. *(Note: many Skin Script enzymes are listed at `price: null` in the snapshot — several are professional/back-bar items; confirm which are retail SKUs before pricing any of them on a service page.)*
+**Dormant product research.** Stored Skin Script, GlyMed+, and House of Rose product records may help identify questions for a future inventory review, but they are not current storefront or pricing authority. Do not publish product URLs, availability, or prices while the storefront is disabled. Confirm any product used during an appointment separately from take-home retail availability.
 
 ---
 
@@ -157,16 +157,18 @@ Do not infer the enzyme price or relative value from Glo2Facial, Microneedling, 
 ## 11. Journey links
 
 **Should link *to* this page (once built):**
-- `/services/` and the **Skin Renewal** collection index (`/services/collections/skin-renewal/`) — list it as the entry-level maintenance facial.
+- `/services/` and the reviewed **Facials** collection (`/services/collections/facials/`) — list it
+  there only after a canonical, current service record exists.
 - `/services/dermaplaning/` — cross-link the enzyme-as-prep/add-on relationship.
-- `/services/glo2facial/` — position enzyme (Brandy) and Glo2Facial (Amber) as the two "start here / glow" doorways at different intensities.
+- `/services/glo2facial/` — compare the two services directly without arranging them as branded
+  entry points or an intensity ladder.
 - `/faq/` — feed the question-shaped items above.
 - Proposed concern pages (below) and the existing `/concerns/sun-damage/` (as *maintenance* support only).
 
 **This page should link *out* to:**
 - `/services/dermaplaning/` and `/services/glo2facial/` as separate surface-service comparisons.
 - `/services/biorepeel/` and `/services/microneedling/` as separate current services, not an escalation ladder.
-- Retail: `/shop/coconut-papaya-enzyme/`, `/shop/blueberry-enzyme/`, `/shop/hydrating-masque-with-enzymes/`, `/shop/smooth-ritual-polish/`, `/shop/shield-ritual-spf/`.
+- Verified retail products only if the storefront is enabled again; do not publish dormant product URLs.
 
 **Proposed new pages (type + slug):**
 - **Service (treatment):** `/services/enzyme-exfoliation-facial/` — the primary build (requires a Sanity `service` doc *and* Brandy pricing).

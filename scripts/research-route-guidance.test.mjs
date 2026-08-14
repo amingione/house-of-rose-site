@@ -1,0 +1,72 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import test from 'node:test';
+
+const researchRoot = new URL('../docs/GOVERNANCE/internal_only/research/', import.meta.url);
+
+const routeGuidanceBriefs = [
+  'C02_CARBOXY_GLO2FACIAL/glo2facial.md',
+  'PRF/prf-injections-ezgel.md',
+  'PRF/prf-topical.md',
+  '_prf-source-library.md',
+  'advanced-skin-imaging.md',
+  'biorepeel.md',
+  'carboxy-therapy.md',
+  'dermaplaning.md',
+  'enzyme-exfoliation.md',
+  'face-reality-acne-program.md',
+  'hydrodermabrasion.md',
+  'light-peels.md',
+  'product-lines.md',
+];
+
+const retiredOrAdHocRoute = new RegExp(
+  [
+    '`/guides/',
+    '`/services/collections/skin-renewal/',
+    '`/services/collections/injectables-aesthetics/',
+    '`/services/microchanneling/',
+    '`/services/prf-microneedling/',
+    '`/packages/prf-microchanneling-journey/',
+  ].join('|'),
+  'i',
+);
+
+test('active research points writers to current canonical routes', () => {
+  for (const relativePath of routeGuidanceBriefs) {
+    const brief = readFileSync(new URL(relativePath, researchRoot), 'utf8');
+    assert.doesNotMatch(
+      brief,
+      retiredOrAdHocRoute,
+      `${relativePath} still recommends a retired redirect or ad-hoc page shape.`,
+    );
+  }
+});
+
+test('active acne research recognizes the generated concern route', () => {
+  for (const relativePath of ['face-reality-acne-program.md', 'product-lines.md']) {
+    const brief = readFileSync(new URL(relativePath, researchRoot), 'utf8');
+    assert.match(brief, /\/concerns\/active-acne\//);
+    assert.doesNotMatch(brief, /only `acne-scarring` exists|missing anchor/i);
+  }
+});
+
+test('dormant storefront research cannot act as current route or price authority', () => {
+  const productLines = readFileSync(new URL('product-lines.md', researchRoot), 'utf8');
+
+  assert.match(productLines, /storefront is opt-in and remains disabled/i);
+  assert.match(productLines, /GlossGenius and `ALL-SERVICES-PRICING\.MD`/);
+  assert.match(productLines, /not[\s\S]{0,80}current public inventory/i);
+  assert.doesNotMatch(productLines, /Sanity \(the price source of truth\)/i);
+});
+
+test('active route guidance does not prescribe retired brand language', () => {
+  for (const relativePath of routeGuidanceBriefs) {
+    const brief = readFileSync(new URL(relativePath, researchRoot), 'utf8');
+    assert.doesNotMatch(
+      brief,
+      /\bflawless\b/i,
+      `${relativePath} still recommends retired outcome language.`,
+    );
+  }
+});

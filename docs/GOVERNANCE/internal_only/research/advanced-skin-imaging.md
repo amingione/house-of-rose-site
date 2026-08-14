@@ -189,21 +189,28 @@ does not need the full block.
 
 **Pages that should link *into* `/skin-analysis/`:**
 - Home `/` — as the marquee "start here" entry point.
-- `/services/` and `/services/collections/skin-renewal/` — "not sure where to start? Begin with skin analysis."
+- `/services/` and `/services/collections/facials/` — link to skin analysis when imaging would answer
+  a real selection question.
 - Every concern page: `/concerns/acne-scarring/`, `/concerns/dark-circles/`, `/concerns/fine-lines-laxity/`, `/concerns/hair-thinning/`, `/concerns/stretch-marks/`, `/concerns/sun-damage/` — each should offer "See your skin first → skin analysis."
-- `/experience/`, `/faq/`, and `/guides/microchanneling-prf/` (as the recommended pre-series step).
-- High-consideration treatment pages: `/services/microneedling/`, `/services/prf-microneedling/`, `/services/glo2facial/`, and `/services/biorepeel/`.
+- `/experience/`, `/faq/`, and `/services/microneedling/` where pre-visit imaging is relevant.
+- High-consideration treatment pages: `/services/microneedling/`, `/services/prf/`,
+  `/services/glo2facial/`, and `/services/biorepeel/`.
 
 **Where `/skin-analysis/` should link *out* to (it's the router):**
 - All six concern pages (already implemented as the concern-chip grid — keep and expand to any new concern pages).
-- Key treatment hubs it routes to: `/services/microchanneling/`, `/services/prf-microneedling/`, `/services/glo2facial/`, `/services/biorepeel/`, `/services/collections/skin-renewal/`, and (via Diana's lane) `/services/collections/injectables-aesthetics/`.
-- Relevant packages: `/packages/prf-microchanneling-journey/`, `/packages/face-reality-12-week-program/`.
+- Current treatment hubs it may route to: `/services/microneedling/`, `/services/prf/`,
+  `/services/glo2facial/`, `/services/biorepeel/`, `/services/collections/facials/`, and
+  `/services/collections/injectables-bio-fillers/`.
+- The reviewed current program route is `/packages/face-reality-12-week-program/`; do not invent a
+  package route from a treatment sequence.
 - Booking/lead: GlossGenius + the on-page lead form (already present).
 
 **Proposed new pages (type + slug):**
 - **New concern pages** (router destinations the M17 reads but the site can't route to yet): `/concerns/pigmentation-melasma/`, `/concerns/redness-rosacea-appearance/`, `/concerns/pores-congestion/`, `/concerns/dehydration-barrier/`.
-- **Comparison** (`comparison`): `/compare/ai-skin-analysis-vs-visual-consultation/` — captures the §5 table for AEO (currently the only comparison on the site is the PRF one).
-- **Process/guide** (like `/guides/microchanneling-prf/`): `/guides/what-ai-skin-analysis-shows/` — a deeper explainer of the light modes and what each reveals.
+- **Comparison** (`comparison`): `/compare/ai-skin-analysis-vs-visual-consultation/` only if a reviewed,
+  materially useful comparison is approved.
+- **Appointment information:** extend `/skin-analysis/` or the relevant service's visit information
+  when more verified detail about the three image views is needed; do not create a separate guide route.
 - Optionally a **Sanity `service` doc** for skin analysis so it appears in service listings and JSON-LD is a first-class `service` rather than only the singleton (decision needed — see gaps).
 
 ---

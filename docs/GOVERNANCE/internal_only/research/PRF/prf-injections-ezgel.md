@@ -132,7 +132,7 @@ do not infer a lower bound or publish the unresolved EZ-Gel figure.
 - `/concerns/dark-circles/` → PRF Under-Eye context.
 - `/concerns/fine-lines-laxity/` → factual injectable PRF comparison only when supported.
 - `/services/prf-under-eyes/` and `/services/prf-injections/` → current injectable PRF paths.
-- `/guides/microchanneling-prf/` → already contrasts topical vs injectable; should link out to Diana's injectable PRF page.
+- `/services/prf/` → current topical-versus-injectable explanation, with links to the injectable PRF paths.
 - `/diana/` (provider card) → her injectable lane.
 - `/faq/` → add injectable-PRF Q&As.
 
@@ -167,7 +167,8 @@ do not infer a lower bound or publish the unresolved EZ-Gel figure.
 - `docs/internal_only/services/Diana/House_of_Rose_Injectable_PRF_Pricing.pdf`, `PRF_Pricing_House_of_Rose.pdf`, `PRF_Treatment_Guide_House_of_Rose.pdf`, `PRF_Brochure_House_of_Rose.pdf` — brand PRF education/pricing; **note: these PDFs still list Hair Restoration and do NOT mention EZ-Gel** (stale vs the consolidated menu / Sanity).
 - `docs/internal_only/services/PRF/compass_artifact_wf-116088fa-…_text_markdown.md` — prior compliance-vetted PRF research package (mechanism, EZ-Gel, timelines, competitive landscape, Florida regulatory).
 - `docs/internal_only/COMPLIANCE-COPY-RULES.md`, `docs/internal_only/research/_prf-source-library.md` — binding compliance + curated PRF source manifest.
-- `packages/web/src/pages/guides/microchanneling-prf.astro` — the model for the topical-vs-injectable framing.
+- `packages/web/src/lib/skinRenewalServiceEducation.ts` — current reviewed topical-versus-injectable
+  PRF framing used by the canonical service routes.
 - `docs/internal_only/services/Diana/filler/PRF_ez-gel.md` — **EMPTY (0 bytes)** — the assigned EZ-Gel primary doc has no content (flagged).
 
 **Sanity docs consulted:** raw legacy PRF price/name fields are not public copy authority during the

@@ -175,7 +175,7 @@ price row, or navigation reference.
 ## 11. Journey links
 
 **Pages that should link *to* a hydrodermabrasion page (once built):**
-- `/services/collections/skin-renewal/` — list hydrodermabrasion alongside Glo2Facial and dermaplaning as the gentle/maintenance option.
+- `/services/collections/facials/` — list it only after a canonical current service record exists.
 - `/services/glo2facial/` — cross-link as "prefer a gentler maintenance glow? See hydrodermabrasion" (and vice-versa), keeping the lane distinction clear.
 - `/services/dermaplaning/` — pairing cross-link.
 - `/faq/` — add hydrodermabrasion Q&As.
@@ -186,9 +186,9 @@ price row, or navigation reference.
 - `/services/glo2facial/` (the advanced signature step-up)
 - `/services/dermaplaning/` (pairing)
 - Historical LED references are not current route authority.
-- `/services/collections/skin-renewal/`
+- `/services/collections/facials/`
 - Separate current comparisons: `/services/microneedling/` and `/services/biorepeel/`.
-- `/shop/` (retail hydration + SPF follow-through)
+- Verified hydration and SPF products only if the storefront is enabled again
 - `/faq/`, `/contact/`, booking (call-first, GlossGenius)
 
 **Proposed new pages (type + slug):**

@@ -178,9 +178,8 @@ Stat. 456.062. A factual appointment row does not need the entire block.
 ## 11. Journey links
 
 **Pages that should link TO the Glo2Facial page:**
-- `/services/` and `/services/collections/skin-renewal/` (it lives in Skin Renewal).
-- `/services/microneedling/` — "ask whether a Glo2Facial finish is appropriate."
-- `/guides/microchanneling-prf/` — as the no-downtime glow alternative / finishing layer.
+- `/services/` and `/services/collections/facials/`.
+- `/services/microneedling/` — compare the appointments directly when the distinction is relevant.
 - `/areas/punta-gorda/` — already serves `glo2facial` in Sanity `localAreas.served`.
 - `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/dark-circles/` — as a gentle, no-downtime option.
 - `/skin-analysis/` and `/faq/` — preparation and common-question guidance.
@@ -190,7 +189,7 @@ Stat. 456.062. A factual appointment row does not need the entire block.
 - `/services/microneedling/` (graduate to correction).
 - `/services/dermaplaning/` and `/services/microneedling/` as separate current comparisons, not Glo2 add-ons.
 - `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`, `/concerns/dark-circles/`.
-- `/areas/punta-gorda/`, `/faq/`, `/shop/` (Skin Script / GlyMed+ / House of Rose home care).
+- `/areas/punta-gorda/` and `/faq/`; link verified home care only if the storefront is enabled again.
 
 **Proposed new pages (type + slug):**
 - **costGuide** → `/cost/glo2facial-cost-punta-gorda/` — "How much does a Glo2Facial cost in Punta Gorda?" (single vs. series, add-ons).

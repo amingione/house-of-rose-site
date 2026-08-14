@@ -182,28 +182,29 @@ generic series framework, and do not use discount framing.
 ## 11. Journey links
 
 **Pages that should link *into* a light-peel page (trailing slashes required):**
-- `/services/collections/skin-renewal/` — the natural home collection.
+- `/services/collections/facials/` — the reviewed collection home, after a canonical current light-peel
+  service exists.
 - `/services/dermaplaning/` — "pairs with / step up from" cross-link.
-- `/services/glo2facial/` — glow/radiance cross-link.
+- `/services/glo2facial/` — a separate facial option with different verified service facts.
 - `/services/biorepeel/` — the "when you want stronger resurfacing" step-up link (and reciprocal "start gentler" link back).
 - `/services/face-reality-acne-program/` and `/services/acne-bootcamp/` — current acne-program paths.
 - `/concerns/sun-damage/` and `/concerns/fine-lines-laxity/` — concern → treatment links.
 - `/skin-analysis/` — the current consultation and imaging route.
-- `/shop/` (Skin Script + GlyMed+ brand anchors) — retail follow-through.
+- Verified Skin Script or GlyMed+ products only if the storefront is enabled again.
 
 **Where a light-peel page should link *out*:**
 - Separate current services → `/services/biorepeel/` and `/services/microneedling/`.
 - Sideways → `/services/dermaplaning/` and `/services/glo2facial/` as current comparisons.
 - Concerns → `/concerns/sun-damage/`, `/concerns/fine-lines-laxity/`.
-- Retail → Skin Script / GlyMed+ product pages under `/shop/`.
+- Retail → verified Skin Script / GlyMed+ products only after storefront re-enablement.
 - `/faq/` and `/skin-analysis/`.
 
 **Proposed new pages (type + slug):**
 - **service (Brandy lane):** `/services/light-peel/` (or `/services/superficial-peel/`) — **the missing hub this brief exists to feed.** Consider a small family: `light-peel` (hub) + optional `enzyme-facial` sibling.
-- **comparison:** `/compare/light-peel-vs-biorepeel/` — the exact "gentle vs. advanced peel" question clients ask; strong AEO fit (only one comparison exists site-wide today).
+- **comparison:** `/compare/light-peel-vs-biorepeel/` only after a reviewed comparison overlay answers a material client question.
 - **comparison (optional):** `/compare/chemical-peel-vs-dermaplaning/` — exfoliation-ladder explainer.
-- **cost guide:** `/cost/chemical-peel-cost-punta-gorda/` — once pricing exists (only one cost guide exists today).
-- **concern:** `/concerns/dullness-uneven-tone/` — the glow-peel's ideal concern home (see §6).
+- **cost guide:** `/cost/chemical-peel-cost-punta-gorda/` only after current GlossGenius pricing is reconciled and a reviewed cost overlay exists.
+- **concern:** `/concerns/dullness-uneven-tone/` only if a reviewed concern overlay is approved (see §6).
 
 ---
 

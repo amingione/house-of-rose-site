@@ -16,8 +16,8 @@ Read `docs/internal_only/COMPLIANCE-COPY-RULES.md` first. Specific to this liter
    PRF (facial injections, plastic surgery, TMJ, scalp). At House of Rose:
    - **Amber's lane = advanced facials, PRF _topical only_, NO injections.**
    - **Diana (RN) = injectable PRF / EZ-Gel, IV, GLP-1.**
-   Any PRF copy must keep this distinction crisp (the existing `/guides/microchanneling-prf/`
-   page is the model: "Amber's PRF is topical only; injectable PRF is RN-led"). Never imply the
+   Any PRF copy must keep this distinction crisp (the current `/services/prf/` hub is the model:
+   "Amber's PRF is topical only; injectable PRF is RN-led"). Never imply the
    topical facial service delivers an injectable study's outcome.
 2. **Exosomes are background science, not a service.** The exosome papers are compliance-sensitive —
    `COMPLIANCE-COPY-RULES.md §2` bans *unsupported exosome/peptide efficacy claims* and *stem-cell*
