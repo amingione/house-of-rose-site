@@ -27,7 +27,7 @@ const fortyFiveMinuteIvs = VERIFIED_IV_MENU.slice(1);
 const fortyFiveMinutePrices = fortyFiveMinuteIvs.map(({ price }) => price);
 
 export const IV_HYDRATION_EDUCATION = {
-  heading: `Six IV options from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))}, with 30- or 45-minute appointments.`,
+  heading: `Six IV appointments from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
   introduction:
     `House of Rose offers one 30-minute base IV and ${fortyFiveMinuteIvs.length} 45-minute base IVs. Published prices run from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
   provider:
@@ -37,25 +37,25 @@ export const IV_HYDRATION_EDUCATION = {
   longerOptions:
     `The other ${fortyFiveMinuteIvs.length} base options are 45-minute appointments priced from $${Math.min(...fortyFiveMinutePrices)} to $${Math.max(...fortyFiveMinutePrices)}.`,
   formulation:
-    'Call House of Rose to confirm current formulations and available add-ons. The appointment names do not provide a complete ingredient list.',
+    'If ingredients or add-ons are part of your decision, call House of Rose before booking. The six appointment names alone do not identify a complete formulation.',
 } as const;
 
 export const IV_HYDRATION_CATEGORY_OVERVIEW = {
-  heading: 'At House of Rose, an IV drip is IV Hydration Therapy.',
-  lead: `IV stands for intravenous: fluid is administered through a vein. House of Rose offers ${VERIFIED_IV_MENU.length} named base options.`,
-  detail: `Use the table to compare each appointment by name, time, and price. ${IV_HYDRATION_EDUCATION.formulation}`,
+  heading: 'IV means intravenous.',
+  lead: `Intravenous means that fluid is administered through a vein. At House of Rose, IV drip appointments are offered as IV Hydration Therapy, with ${VERIFIED_IV_MENU.length} named base options.`,
+  detail: `${IV_HYDRATION_EDUCATION.shorterOption} ${IV_HYDRATION_EDUCATION.longerOptions}`,
 } as const;
 
 export const IV_HYDRATION_FAQS = [
   {
     question: 'Which IV hydration options does House of Rose offer?',
     answer:
-      "The House of Rose menu lists Hydration IV, Immunity IV, Recovery IV, Beauty Glow IV, Reboot (Hangover Recovery) IV, and Myers' Cocktail IV.",
+      "House of Rose offers Hydration IV, Immunity IV, Recovery IV, Beauty Glow IV, Reboot (Hangover Recovery) IV, and Myers' Cocktail IV.",
   },
   {
-    question: 'Do I need to choose an IV option before I call?',
+    question: 'What does IV mean in IV hydration?',
     answer:
-      'No. Use the table to compare the six appointment names, times, and prices. Call House of Rose if you want to ask about the current formulation or available add-ons before choosing an option.',
+      'IV means intravenous: fluid is administered through a vein. House of Rose calls the service IV Hydration Therapy.',
   },
   {
     question: 'Which IV option is 30 minutes?',

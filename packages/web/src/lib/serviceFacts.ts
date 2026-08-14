@@ -29,7 +29,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'body-waxing':
     'Call House of Rose with the body area you want waxed. The seven available body-waxing appointments are shown above.',
   'iv-hydration-therapy':
-    'Compare the six base IV options above. If formulation is part of your decision, call the practice because ingredient lists are not published here.',
+    'If ingredients or add-ons are part of your decision, call House of Rose before booking and ask about the IV appointment you are considering.',
   'prf-injections':
     'Use the consultation to ask about under-eye PRF or PRF Bio-Filler. Topical PRF belongs on the Microneedling page.',
   prf:
