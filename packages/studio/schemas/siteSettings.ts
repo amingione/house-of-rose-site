@@ -32,16 +32,19 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'logo',
-      title: 'Logo',
+      title: 'Logo (not published)',
       type: 'image',
       options: { hotspot: true },
+      readOnly: true,
+      description: 'Stored for source compatibility. The current website entity graph uses the reviewed local monogram asset.',
     }),
     defineField({
       name: 'socialImage',
-      title: 'Default Social Share Image',
+      title: 'Default Social Share Image (not published)',
       type: 'image',
       options: { hotspot: true },
-      description: '1200×630px recommended',
+      readOnly: true,
+      description: 'Stored for source compatibility. The current website uses its reviewed local social-share cover.',
     }),
     defineField({
       name: 'email',

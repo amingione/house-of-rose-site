@@ -358,8 +358,6 @@ export interface SiteSettings {
   siteName: string;
   tagline?: string;
   description?: string;
-  logo?: SanityImage;
-  socialImage?: SanityImage;
   email?: string;
   phone?: string;
   address?: string;
@@ -426,7 +424,6 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
     siteName,
     tagline,
     description,
-    ${IMAGE_FIELDS},
     email,
     phone,
     address,

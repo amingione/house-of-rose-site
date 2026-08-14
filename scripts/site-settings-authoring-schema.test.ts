@@ -33,6 +33,30 @@ test('the archival tagline cannot pose as a live sitewide control', () => {
   assert.match(String(tagline?.description), /do not use a CMS tagline/i);
 });
 
+test('stored brand images cannot pose as the website asset authority', () => {
+  for (const fieldName of ['logo', 'socialImage']) {
+    const field = settingsField(fieldName);
+    assert.equal(field?.readOnly, true);
+    assert.match(String(field?.title), /not published/i);
+    assert.match(String(field?.description), /reviewed local/i);
+  }
+
+  assert.doesNotMatch(SITE_SETTINGS_QUERY, /\b(?:logo|socialImage|image)\s*\{/);
+
+  const layout = readFileSync(
+    new URL('../packages/web/src/layouts/BaseLayout.astro', import.meta.url),
+    'utf8',
+  );
+  assert.match(layout, /defaultOgImage\s*=\s*new URL\('\/images\/socialShareCover\//);
+  assert.doesNotMatch(layout, /settings\?\.(?:logo|socialImage)/);
+
+  const structuredData = readFileSync(
+    new URL('../packages/web/src/lib/structuredData.ts', import.meta.url),
+    'utf8',
+  );
+  assert.match(structuredData, /new URL\('\/logos\/hr-monogram-2026\/monogram-gold-512\.png'/);
+});
+
 test('canonical contact and NAP fields remain operational', () => {
   for (const fieldName of ['email', 'phone', 'address', 'instagramHandle']) {
     assert.notEqual(settingsField(fieldName)?.readOnly, true, `${fieldName} must remain editable.`);
