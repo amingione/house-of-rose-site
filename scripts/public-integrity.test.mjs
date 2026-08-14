@@ -1191,7 +1191,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'no downtime',
       'Amber Mingione, Licensed Esthetician',
       'Who provides Glo2Facial at House of Rose?',
-      'Meet Amber Mingione, Licensed Esthetician',
       '$225',
       '60 minutes',
     ],
@@ -1276,9 +1275,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Advanced Acne Scarring',
       'Duo Gold Spot Upgrade',
       'TCA stands for trichloroacetic acid',
-      'Meet Brandy',
-      'Meet Amber Mingione, Licensed Esthetician',
-      'Compare the Microneedling service',
       'BioRePeel Cl3 Rejuvenation',
       '$250',
       '45 minutes',
@@ -1297,7 +1293,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Amber Mingione, Licensed Esthetician',
       'Injectable PRF',
       'Diana Morrison, RN',
-      'Meet Amber Mingione, Licensed Esthetician',
       'Procell Therapies — Pro',
       '$300',
       'Procell Therapies — MD',
@@ -1374,6 +1369,59 @@ test('priority service pages retain reviewed facts instead of falling back to th
       if (!text.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
     }
   }
+
+  for (const { slug, href, labelTerms } of [
+    {
+      slug: 'glo2facial',
+      href: '/about/providers/amber/',
+      labelTerms: [/\bAmber Mingione\b/i, /\bLicensed Esthetician\b/i],
+    },
+    {
+      slug: 'biorepeel',
+      href: '/about/providers/brandy/',
+      labelTerms: [/\bBrandy\b/i, /\bLicensed Esthetician\b/i],
+    },
+    {
+      slug: 'biorepeel',
+      href: '/about/providers/amber/',
+      labelTerms: [/\bAmber Mingione\b/i, /\bLicensed Esthetician\b/i],
+    },
+    {
+      slug: 'microneedling',
+      href: '/about/providers/amber/',
+      labelTerms: [/\bAmber Mingione\b/i, /\bLicensed Esthetician\b/i],
+    },
+  ]) {
+    const html = readFileSync(path.join(DIST_ROOT, `services/${slug}/index.html`), 'utf8');
+    const section = html.match(
+      /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
+    )?.[1] ?? '';
+    const link = section.match(
+      new RegExp(`<a\\b[^>]*href="${escapeRegExp(href)}"[^>]*>([\\s\\S]*?)<\\/a>`, 'i'),
+    );
+    assert.ok(link, `${slug} education must link ${href}.`);
+    const label = visibleText(link[1]);
+    for (const term of labelTerms) {
+      assert.match(label, term, `${slug} provider link must retain the practitioner's licensed identity.`);
+    }
+  }
+
+  const biorepeelHtml = readFileSync(
+    path.join(DIST_ROOT, 'services/biorepeel/index.html'),
+    'utf8',
+  );
+  const biorepeelEducation = biorepeelHtml.match(
+    /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
+  const microneedlingLink = biorepeelEducation.match(
+    /<a\b[^>]*href="\/services\/microneedling\/"[^>]*>([\s\S]*?)<\/a>/i,
+  );
+  assert.ok(microneedlingLink, 'BioRePeel education must link the Microneedling service.');
+  assert.match(
+    visibleText(microneedlingLink[1]),
+    /\bMicroneedling\b/i,
+    'BioRePeel must identify its Microneedling relationship.',
+  );
 
   const ivEducationHtml = readFileSync(
     path.join(DIST_ROOT, 'services/iv-hydration-therapy/index.html'),
