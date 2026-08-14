@@ -29,7 +29,6 @@ export const TREATMENT_PAGE_FIELDS = /* groq */ `
     performedBy,
     medicalDirection,
     credentialPoints,
-    consultRequired,
     disclaimer
   },
   priceRange {
@@ -71,7 +70,6 @@ export interface TreatmentProviderScope {
   performedBy: PerformedBy;
   medicalDirection?: boolean;
   credentialPoints: string[];
-  consultRequired?: boolean;
   disclaimer: string;
 }
 

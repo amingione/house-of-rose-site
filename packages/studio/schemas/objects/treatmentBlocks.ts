@@ -197,9 +197,11 @@ export const treatmentProviderScope = defineType({
     }),
     defineField({
       name: 'consultRequired',
-      title: 'Consultation Required Before Treatment',
+      title: 'Consultation Required (legacy — not published)',
       type: 'boolean',
-      initialValue: true,
+      readOnly: true,
+      description:
+        'Stored for compatibility only. This field does not control the website or booking flow. Use the service booking mode and verified booking URL for the actual next step.',
     }),
     defineField({
       name: 'disclaimer',

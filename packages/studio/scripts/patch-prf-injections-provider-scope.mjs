@@ -31,7 +31,6 @@ const providerScope = {
   performedBy: 'rn',
   medicalDirection: true,
   credentialPoints: ['Registered nurse (RN)'],
-  consultRequired: true,
   disclaimer: 'Individual outcomes vary.',
 };
 
