@@ -4,8 +4,9 @@ import { defineField, defineType } from 'sanity';
  * Retail brand storefront copy — the story block shown on /shop for each
  * carried line (Procell, GlyMed+, Skin Script, Face Reality, House of Rose).
  *
- * Distinct from `brandProfile` (House of Rose's own brand-voice/strategy doc).
- * This is product-line marketing copy, editable without a code change.
+ * Distinct from the archival, unpublished `brandProfile` compatibility record.
+ * This is product-line marketing copy, editable without a code change; the
+ * retained brand profile is not current voice authority.
  */
 export const shopBrand = defineType({
   name: 'shopBrand',
