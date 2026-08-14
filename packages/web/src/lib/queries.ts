@@ -986,7 +986,7 @@ export const ALL_BLOG_POSTS_QUERY = /* groq */ `
 `;
 
 export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "blogPost" && slug.current == $slug][0] {
+  *[_type == "blogPost" && slug.current == $slug && defined(publishedAt)][0] {
     _id,
     title,
     "slug": slug.current,
