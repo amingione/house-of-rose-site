@@ -50,10 +50,17 @@ test('the visual editor does not advertise disconnected Support copy as a page m
     'utf8',
   );
   const stackbit = readFileSync(new URL('../stackbit.config.ts', import.meta.url), 'utf8');
+  const structure = readFileSync(new URL('../packages/studio/structure.ts', import.meta.url), 'utf8');
+  const schemaIndex = readFileSync(
+    new URL('../packages/studio/schemas/index.ts', import.meta.url),
+    'utf8',
+  );
 
   for (const fieldName of supportPage.fields.map((field) => field.name)) {
     assert.doesNotMatch(route, new RegExp(`data\\.${fieldName}\\b`));
   }
   assert.match(route, /sbObjectId\(data\._id\)/);
   assert.doesNotMatch(stackbit, /supportPage:\s*['"]\/support['"]/);
+  assert.doesNotMatch(structure, /schemaType\(['"]supportPage['"]\)/);
+  assert.match(schemaIndex, /\bsupportPage,/);
 });

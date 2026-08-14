@@ -14,17 +14,7 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
             .documentId('siteSettings')
         ),
 
-      // Singleton — Home Page
-      S.listItem()
-        .title('Home Page')
-        .id('homepage')
-        .child(
-          S.document()
-            .schemaType('homepage')
-            .documentId('homepage')
-        ),
-
-      // Singletons — standalone marketing pages
+      // Active singletons — standalone public pages
       S.listItem()
         .title('Pages')
         .child(
@@ -35,14 +25,10 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
                 .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
               S.listItem().title('Rent a Room Page').id('rentARoom')
                 .child(S.document().schemaType('rentARoom').documentId('rentARoom')),
-              S.listItem().title('Support Page').id('supportPage')
-                .child(S.document().schemaType('supportPage').documentId('supportPage')),
               S.listItem().title('Privacy Policy Page').id('privacyPolicy')
                 .child(S.document().schemaType('privacyPolicy').documentId('privacyPolicy')),
               S.listItem().title('Terms of Service Page').id('termsOfService')
                 .child(S.document().schemaType('termsOfService').documentId('termsOfService')),
-              S.listItem().title('Thank You Page').id('thankYou')
-                .child(S.document().schemaType('thankYou').documentId('thankYou')),
             ])
         ),
 

@@ -29,6 +29,10 @@ test('the public homepage and visual editor agree that Studio copy is disconnect
     new URL('../packages/studio/structure.ts', import.meta.url),
     'utf8',
   );
+  const schemaIndex = readFileSync(
+    new URL('../packages/studio/schemas/index.ts', import.meta.url),
+    'utf8',
+  );
 
   assert.doesNotMatch(route, /HOMEPAGE_QUERY|sanityFetch/);
   assert.match(route, /const treatmentCategories = \[/);
@@ -37,5 +41,6 @@ test('the public homepage and visual editor agree that Studio copy is disconnect
     stackbit,
     /label:\s*['"]Home Page Content['"][\s\S]*?documentId:\s*['"]homepage['"]/,
   );
-  assert.match(structure, /schemaType\(['"]homepage['"]\)/);
+  assert.doesNotMatch(structure, /schemaType\(['"]homepage['"]\)/);
+  assert.match(schemaIndex, /\bhomepage,/);
 });
