@@ -92,7 +92,7 @@
 
 [[redirects]]
   from   = "/packages/the-evergreen-series/"
-  to     = "/packages/prf-under-eye-series-of-3/"
+  to     = "/services/prf-under-eyes/"
   status = 301
 
 [[redirects]]
@@ -267,6 +267,14 @@ from   = "/compare/topical-prf-vs-prf-injections/"
 to     = "/services/prf/"
 status = 301
 
+# The former PRF-vs-PRP comparison is not in the reviewed public comparison
+# allowlist. Preserve its existing public URL without republishing unsupported
+# comparison claims.
+[[redirects]]
+from   = "/compare/prf-vs-prp/"
+to     = "/services/prf/"
+status = 301
+
 [[redirects]]
 from   = "/concerns/hair-thinning/"
 to     = "/skin-analysis/"
@@ -418,7 +426,7 @@ status = 301
 
 [[redirects]]
 from   = "/packages/prf-under-eye-series-of-3/"
-to     = "/services/prf-injections/"
+to     = "/services/prf-under-eyes/"
 status = 301
 
 # Nav restructure to 6 top-level categories — InMode / Facials / Injectables /
