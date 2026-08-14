@@ -102,4 +102,6 @@ neuro, cardiac, diabetes, etc.) per Amber's note.
 - Tier 1 + the facial-esthetics half of Tier 2 can support the current PRF briefs and canonical
   `/services/prf/`, `/services/prf-under-eyes/`, and `/services/prf-injections/` pages. This source
   library does not authorize a new cost guide, comparison, FAQ, or service route.
-- Keep the **topical (Amber) vs injectable (Diana, RN)** split explicit in every derived page.
+- State the **topical (Amber) vs injectable (Diana Morrison, RN)** distinction when copy discusses
+  both uses or could otherwise confuse surface application with injection; do not force it into
+  unrelated copy.
