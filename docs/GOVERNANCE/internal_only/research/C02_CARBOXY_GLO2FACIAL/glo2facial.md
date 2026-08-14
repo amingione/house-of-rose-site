@@ -221,7 +221,7 @@ Maps to these **existing** `/concerns/` slugs:
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical Glo2Facial pricing ($185 / $499 / $885), Glo2Facial Finish (+$95), package framework, compliance guardrails, client journey (gateway positioning). **Primary pricing truth.**
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub; confirms master menu supersedes it.
 - `docs/internal_only/services/facials/glo2facialxGeneo.md` — **empty (0 bytes)** — no topic-specific local content exists (gap).
-- `docs/internal_only/services/facials/packagesAdd-ons.md` — Glo2Facial series/add-on framing; contains a **stale "monthly membership" reference** (dermaplaning) to flag.
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — current menu boundary; verifies one Glo2Facial appointment and does not authorize a series or bundled extras.
 
 **Sanity docs consulted (published snapshot):**
 - Service `glo2facial` — "Glo2Facial," Skin Renewal, 60 min, From $185, standalone, tagline "Oxygenating facial treatment for radiant, hydrated skin."

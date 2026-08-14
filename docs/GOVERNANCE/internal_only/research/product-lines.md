@@ -311,7 +311,7 @@ Several **real manufacturer product names** contain banned terms. These are the 
 - `docs/internal_only/research/PROCELL/procell.md` — Procell serum tiers, recombinant/April-2025 sourcing, the six Procell aftercare SKUs + prices, stem-cell/injected-serum compliance lines.
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — treatment pricing, Procell/GlyMed+/Face Reality treatment context, §9 compliance guardrails.
 - `docs/internal_only/services/facials/faceRealityAcneProgram.md` — $899 12-week program, "sold as a program ONLY," Amber Mingione as Face Reality Certified Acne Specialist.
-- `docs/internal_only/services/facials/packagesAdd-ons.md` — after-care-kit framing per treatment (Procell aftercare serum + sunscreen; growth-factor serum kits).
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — current Glo2Facial and Dermaplaning menu boundary; it does not establish a take-home kit or bundled product.
 - `/shop/jane-iredale/` — current product-education page for makeup, skincare, supplements, routine swaps, and provider-confirmed post-treatment timing.
 - `memory/phase1-open-followups.md` — the logged open owner decision on non-compliant product names (keep accurate vs compliant display labels).
 

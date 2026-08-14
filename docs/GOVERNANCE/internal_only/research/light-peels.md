@@ -211,7 +211,7 @@ Existing `/concerns/` slugs and where a light peel fits (always "for the appeara
 **Local docs read:**
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — Amber's lane menu/pricing; explicitly excludes Brandy's relaxing/maintenance facials; BioRePeel add-on (+$65) and body ($325) reference.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (confirms master menu is canonical).
-- `docs/internal_only/services/facials/packagesAdd-ons.md` — enzyme peel referenced only as a dermaplaning add-on; no light-peel service.
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — current menu boundary; no enzyme-peel or light-peel add-on is established.
 - `docs/internal_only/services/facials/biorepeel.md`, `faceRealityAcneProgram.md` — confirm BioRePeel (Amber, $899 acne program) as separate corrective peels.
 - `docs/internal_only/services/facials/dermaplaning.md`, `glo2facialxGeneo.md`, `hydrodermabrasion.md` — **all empty (0 bytes)** — Brandy-lane basic-facial docs are unwritten.
 - `docs/internal_only/COMPLIANCE-COPY-RULES.md` — binding avoid/say-instead list applied throughout.

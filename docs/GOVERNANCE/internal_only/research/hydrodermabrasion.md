@@ -209,7 +209,7 @@ What will move price once set (for structuring the eventual menu):
 
 **Local docs read (paths):**
 - `docs/internal_only/services/facials/hydrodermabrasion.md` — **empty (0 bytes)**; no content.
-- `docs/internal_only/services/facials/packagesAdd-ons.md` — package/add-on framing (note: contains a stale "monthly membership" reference for dermaplaning — memberships removed 2026-07-07).
+- `docs/internal_only/services/facials/packagesAdd-ons.md` — current menu boundary; it does not establish a hydrodermabrasion package or add-on.
 - `docs/internal_only/services/facials/biorepeel.md`, `docs/internal_only/services/facials/dermaplaning.md` (empty), `docs/internal_only/services/facials/glo2facialxGeneo.md` (empty) — checked for adjacent content; mostly stubs.
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — canonical Amber-lane menu (confirms Glo2Facial From $185; explicitly excludes Brandy's maintenance lane; no hydrodermabrasion price).
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub.
