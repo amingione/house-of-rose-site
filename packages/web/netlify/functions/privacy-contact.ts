@@ -70,7 +70,16 @@ export default async (request: Request): Promise<Response> => {
 		);
 	}
 
-	const formData = await request.formData();
+	let formData: FormData;
+	try {
+		formData = await request.formData();
+	} catch {
+		return renderResponse(
+			"Request Not Sent",
+			"The submitted form could not be read. Please return and try again.",
+			400,
+		);
+	}
 	const submission: PrivacyContactSubmission = {
 		name: getField(formData, "name"),
 		email: getField(formData, "email"),
