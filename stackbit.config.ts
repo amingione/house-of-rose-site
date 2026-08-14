@@ -78,6 +78,33 @@ function documentStringField(
   return typeof field.value === 'string' ? field.value : undefined;
 }
 
+function documentBooleanField(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): boolean | undefined {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object' || !('value' in field)) return undefined;
+  return typeof field.value === 'boolean' ? field.value : undefined;
+}
+
+function documentHasAssetReference(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): boolean {
+  const field = document?.fields[fieldName];
+  return Boolean(
+    field &&
+      typeof field === 'object' &&
+      'type' in field &&
+      field.type === 'reference' &&
+      'refType' in field &&
+      field.refType === 'asset' &&
+      'refId' in field &&
+      typeof field.refId === 'string' &&
+      field.refId,
+  );
+}
+
 /**
  * Return the first non-empty value among `names`, or throw listing all of them.
  *
@@ -233,7 +260,7 @@ export default defineStackbitConfig({
   // Editor sitemap/page picker.
   transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
     if (!('document' in entry)) return true;
-    if (!['comparison', 'blogPost'].includes(entry.document.modelName)) return true;
+    if (!['comparison', 'blogPost', 'caseStudy'].includes(entry.document.modelName)) return true;
 
     const document = getDocumentById({
       id: entry.document.id,
@@ -245,6 +272,15 @@ export default defineStackbitConfig({
     if (entry.document.modelName === 'blogPost') {
       const publishedAt = documentStringField(document, 'publishedAt');
       return Boolean(slug && publishedAt && isReviewedPublicBlogSlug(slug));
+    }
+
+    if (entry.document.modelName === 'caseStudy') {
+      return Boolean(
+        slug &&
+          documentBooleanField(document, 'consentGiven') === true &&
+          documentHasAssetReference(document, 'beforeImage') &&
+          documentHasAssetReference(document, 'afterImage'),
+      );
     }
 
     const status = documentStringField(document, 'status');
