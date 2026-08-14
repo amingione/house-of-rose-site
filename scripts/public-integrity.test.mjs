@@ -1894,9 +1894,20 @@ test('the cost index links each active guide to its related service', () => {
   const file = path.join(DIST_ROOT, 'cost/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
   const html = mainHtml(readFileSync(file, 'utf8'));
+  const text = visibleText(html);
   const failures = expectedServiceLinks
     .filter((href) => !html.includes(`href="${href}"`))
     .map((href) => `missing direct related-service link ${href}`);
+
+  for (const [label, pattern] of [
+    ['payment heading', /How can I pay\?/i],
+    ['accepted cards', /American Express[\s\S]{0,60}Discover[\s\S]{0,60}Mastercard[\s\S]{0,60}Visa/i],
+    ['debit cards and checks', /debit cards[\s\S]{0,60}checks/i],
+    ['pre-visit payment handoff', /(?:due|payment)[\s\S]{0,100}before[\s\S]{0,60}(?:visit|reserve)/i],
+  ]) {
+    if (!pattern.test(text)) failures.push(`missing ${label}`);
+  }
+  if (!html.includes('href="tel:+18449417673"')) failures.push('missing verified payment-question phone link');
 
   assert.equal(failures.length, 0, formatFailures('Cost-index navigation regression', failures));
 });
