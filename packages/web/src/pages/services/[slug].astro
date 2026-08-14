@@ -228,7 +228,9 @@ const serviceFaqSchema = reviewedServiceFaqs
 
 // Service-page titles stay entity-first and do not inherit unreviewed CMS claims
 // or geo modifiers. Geo intent belongs to the localArea page type.
-const pageTitle = `${service.title} | House of Rose Aesthetics`;
+const pageTitle = slug === 'acne-bootcamp'
+  ? 'Face Reality Acne Bootcamp | House of Rose Aesthetics'
+  : `${service.title} | House of Rose Aesthetics`;
 const pageDescription = factualServiceDescription;
 ---
 
