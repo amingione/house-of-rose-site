@@ -16,7 +16,15 @@ const optionFields = (label: string) => [
     readOnly: true,
     description: 'Legacy source field. The reviewed website overlay supplies the public distinction.',
   }),
-  defineField({ name: 'service', title: `${label} — Service`, type: 'reference', to: [{ type: 'service' }] }),
+  defineField({
+    name: 'service',
+    title: `${label} — Service`,
+    type: 'reference',
+    to: [{ type: 'service' }],
+    options: {
+      filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+    },
+  }),
 ];
 
 export const comparison = defineType({

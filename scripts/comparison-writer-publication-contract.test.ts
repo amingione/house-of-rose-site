@@ -3,6 +3,10 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { comparison } from '../packages/studio/schemas/comparison.ts';
+import {
+  ALL_COMPARISONS_QUERY,
+  COMPARISON_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
   scripts?: Record<string, string>;
@@ -58,4 +62,22 @@ test('the active comparison writer requires the canonical public service route b
   assert.ok(serviceGuard >= 0);
   assert.ok(serviceGuard < dryRunBoundary, 'Service route validation must run during dry validation.');
   assert.ok(serviceGuard < createCall, 'Service route validation must run before document creation.');
+});
+
+test('comparison option authoring and projections require routeable public services', () => {
+  const optionA = comparison.fields.find(({ name }) => name === 'optionA');
+  assert.ok(optionA && 'fields' in optionA && Array.isArray(optionA.fields));
+  const serviceReference = optionA.fields.find(({ name }) => name === 'service') as
+    | { options?: { filter?: string } }
+    | undefined;
+  const authoringFilter = serviceReference?.options?.filter ?? '';
+  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
+  assert.match(authoringFilter, /defined\(slug\.current\)/);
+
+  for (const query of [ALL_COMPARISONS_QUERY, COMPARISON_BY_SLUG_QUERY]) {
+    const serviceProjection = query.match(/"service": select\(([\s\S]*?)=> service->/);
+    assert.ok(serviceProjection?.[1], 'The comparison query must guard option service routes.');
+    assert.match(serviceProjection[1], /service->status in \["live", "actual-menu"\]/);
+    assert.match(serviceProjection[1], /defined\(service->slug\.current\)/);
+  }
 });

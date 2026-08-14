@@ -1383,7 +1383,12 @@ export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
 // ── Comparisons ──────────────────────────────────────────────────────────────
 const COMPARISON_OPTION_FIELDS = /* groq */ `
   label, summary, bestFor,
-  "service": select(!(service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => service->{ ${SERVICE_REF_FIELDS} })
+  "service": select(
+    service->status in ["live", "actual-menu"] &&
+    defined(service->slug.current) &&
+    !(service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+    => service->{ ${SERVICE_REF_FIELDS} }
+  )
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
