@@ -44,7 +44,11 @@ test('active research places safeguards with relevant claims instead of every su
 test('active research does not recommend retired glow or escalation framing', () => {
   const biorepeel = readFileSync(new URL('biorepeel.md', researchRoot), 'utf8');
 
-  assert.doesNotMatch(biorepeel, /no-downtime advantage|a true ladder|private studio|RN assistant/i);
+  assert.doesNotMatch(
+    biorepeel,
+    /no-downtime advantage|a true ladder|private studio|RN assistant|provider-split|provider lane|retail follow-through|event-ready|wins when|wins for/i,
+  );
+  assert.match(biorepeel, /do not infer[\s\S]{0,240}downtime[\s\S]{0,160}aftercare/i);
 });
 
 test('active research uses the current practice category and direct language', () => {

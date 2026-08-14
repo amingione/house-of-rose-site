@@ -157,3 +157,25 @@ test('IV research cannot regenerate an outcome funnel or unsupported routes', ()
     /inside-out|wellness rhythm|routine wellness habit|retail follow-through|skin-radiance|dull-tired-skin|wellness-restoration|\/services\/iv-drip\/|\/services\/wellness\/|\/cost\/iv-|\/compare\/iv-/i,
   );
 });
+
+test('BioRePeel research uses the current service, cost, and provider paths', () => {
+  const brief = readFileSync(new URL('biorepeel.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/biorepeel/',
+    '/cost/biorepeel-cost-punta-gorda/',
+    '/services/microneedling/',
+    '/about/providers/brandy/',
+    '/about/providers/amber/',
+    '/contact/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Brandy, Licensed Esthetician/);
+  assert.match(brief, /Amber Mingione, Licensed Esthetician/);
+  assert.doesNotMatch(
+    brief,
+    /Proposed new pages|no BioRePeel cost guide exists|\/concerns\/congestion-and-uneven-texture\/|\/compare\/biorepeel|\/results\/biorepeel/i,
+  );
+});
