@@ -2,6 +2,14 @@ import { defineField, defineType } from 'sanity';
 
 import { validatePublicCopy } from './validation/publicCopy';
 
+type ProviderVisibilityFields = {
+  showOnWebsite?: boolean;
+};
+
+type ProviderSlugValue = {
+  current?: string;
+};
+
 /**
  * Provider — mirrors the Notion "HOUSE OF ROSE: Providers" database.
  * Chain: Provider → Service → Package/Series.
@@ -24,6 +32,13 @@ export const provider = defineType({
       type: 'slug',
       options: { source: 'fullName', maxLength: 80 },
       description: 'Used at /about/providers/[slug]/.',
+      validation: (R) =>
+        R.custom((value: ProviderSlugValue | undefined, context) => {
+          const document = context.document as ProviderVisibilityFields | undefined;
+          return document?.showOnWebsite === true && !value?.current?.trim()
+            ? 'A public provider profile requires a slug.'
+            : true;
+        }),
     }),
     defineField({
       name: 'fullName',

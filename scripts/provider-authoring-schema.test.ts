@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { provider } from '../packages/studio/schemas/provider.ts';
+import { PUBLIC_PROVIDERS_QUERY } from '../packages/web/src/lib/queries.ts';
 
 function providerField(name: string) {
   return provider.fields.find((field) => field.name === name);
@@ -41,4 +42,25 @@ test('provider prompts support substantive profiles without a fixed process temp
   assert.match(String(biography?.description), /depth is welcome/i);
   assert.match(String(biography?.description), /do not force a fixed paragraph count/i);
   assert.match(String(serviceFocus?.description), /verified current public service labels/i);
+});
+
+test('public provider visibility requires the slug used by the public route query', () => {
+  const slug = providerField('slug');
+  assert.equal(typeof slug?.validation, 'function', 'Provider slug must validate public visibility.');
+  assert.match(PUBLIC_PROVIDERS_QUERY, /showOnWebsite\s*==\s*true/);
+  assert.match(PUBLIC_PROVIDERS_QUERY, /defined\(slug\.current\)/);
+
+  let validate: ((value: { current?: string } | undefined, context: { document?: { showOnWebsite?: boolean } }) => true | string) | undefined;
+  const rule = {
+    custom(fn: typeof validate) {
+      validate = fn;
+      return this;
+    },
+  };
+  slug.validation(rule);
+  assert.ok(validate, 'Provider slug validation must expose a custom publication check.');
+
+  assert.match(String(validate(undefined, { document: { showOnWebsite: true } })), /requires a slug/i);
+  assert.equal(validate({ current: 'diana' }, { document: { showOnWebsite: true } }), true);
+  assert.equal(validate(undefined, { document: { showOnWebsite: false } }), true);
 });
