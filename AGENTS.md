@@ -228,7 +228,7 @@ it.
 - Every results claim carries a variance line — R. 64B8-11.001.
 - Banned copy: `pamper`, `indulge`, `amazing`, `attention to detail`, `steady hand`, `exosome`,
   `stem cell`, `guaranteed`, `cure`, `reverse-aging`, `Groupon`, `dermatologist`. No exclamation points.
-- **URLs use trailing slashes.** `/services/prf-microneedling/`.
+- **URLs use trailing slashes.** `/services/prf/`.
 
 ## Working style
 

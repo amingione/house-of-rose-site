@@ -28,7 +28,7 @@ layer.
 | Procell Therapies — MD | 55 min | **$400** | Online |
 | Procell Therapies — Pro | 55 min | **$300** | Online |
 | GlowTox Facial | 1 hr | **$475** | Online |
-| PRF Microneedling — Consultation | 1 hr | **$595** | Online | _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. Site page `/services/prf-microneedling/` updated to "from $595" the same day.)_
+| PRF Microneedling — Consultation | 1 hr | **$595** | Online | _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. Canonical website route: `/services/prf/`.)_
 | Dermaplaning — Facial (standalone) | 50 min | $135 | Online |
 | Dermaplaning — Add-On | 25 min | $45 | Online |
 | CO2 Lift Carboxy — Facial (standalone) | 1 hr | $175 | Online |
@@ -274,7 +274,7 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
 2. 🟡 **PRF pricing raise decided 2026-07-20 was never implemented in GlossGenius** — *the
    attribution half is resolved.* ✅ **Amber confirmed 2026-08-09: the "PRF Microneedling —
    Consultation" $595 line IS her topical PRF + microneedling service, not Diana's injectable.**
-   The website page `/services/prf-microneedling/` now shows "from $595"; the old $450 figure
+   The canonical website page `/services/prf/` shows the current $595 appointment; the old $450 figure
    (2026-07-09 PRF PDF) is dead. What stays open below is Diana's lane only.
    `PRF_Pricing/FINAL-PRICING.md` states Amber gave final approval to raise PRF Under-Eye from
    $495→$550 (series $1,485) and PRF Facial from $595→$650 (series $1,750), with an explicit
