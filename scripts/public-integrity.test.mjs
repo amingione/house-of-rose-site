@@ -102,6 +102,19 @@ const decodeHtmlEntities = (value) => value
   .replace(/&lt;|&#60;|&#x3c;/gi, '<')
   .replace(/&gt;|&#62;|&#x3e;/gi, '>');
 
+const metaContent = (html, expectedName) => {
+  for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = new Map(
+      [...match[0].matchAll(/\b([A-Za-z_:][-\w:.]*)\s*=\s*(["'])([\s\S]*?)\2/g)]
+        .map((attribute) => [attribute[1].toLowerCase(), attribute[3]]),
+    );
+    if (attributes.get('name')?.toLowerCase() === expectedName.toLowerCase()) {
+      return attributes.get('content') ?? '';
+    }
+  }
+  return '';
+};
+
 const visibleText = (html) => decodeHtmlEntities(html)
   .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
   .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
@@ -1611,12 +1624,10 @@ test('indexable public metadata stays within the search-snippet ceiling', () => 
 
   for (const file of publicHtmlFiles) {
     const html = readFileSync(file, 'utf8');
-    const robots = html.match(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '';
+    const robots = metaContent(html, 'robots');
     if (/\bnoindex\b/i.test(robots)) continue;
 
-    const description = decodeHtmlEntities(
-      html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '',
-    );
+    const description = decodeHtmlEntities(metaContent(html, 'description'));
 
     if (!description || description.length > 160) {
       failures.push(`${routeForHtmlFile(file)}: meta description is ${description.length} characters`);
@@ -1624,6 +1635,12 @@ test('indexable public metadata stays within the search-snippet ceiling', () => 
   }
 
   assert.equal(failures.length, 0, formatFailures('Public metadata length regression', failures));
+});
+
+test('metadata parsing preserves apostrophes inside quoted descriptions', () => {
+  const description = "House of Rose's complete 12-week program stays in one description.";
+  const html = `<meta content="${description}" name="description">`;
+  assert.equal(metaContent(html, 'description'), description);
 });
 
 test('service appointment sections give service-specific next-step guidance', () => {
@@ -1887,9 +1904,7 @@ test('cost guides explain the current price structure instead of publishing a ba
     assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
     const html = readFileSync(file, 'utf8');
     const text = visibleText(mainHtml(html));
-    const metaDescription = decodeHtmlEntities(
-      html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '',
-    );
+    const metaDescription = decodeHtmlEntities(metaContent(html, 'description'));
     if (metaDescription.length < 120 || metaDescription.length > 160) {
       failures.push(`${slug}: meta description is ${metaDescription.length} characters`);
     }
@@ -2452,9 +2467,7 @@ test('Face Reality package distinguishes the consultation, complete program, and
   const html = readFileSync(file, 'utf8');
   const main = mainHtml(html);
   const text = visibleText(main);
-  const metaDescription = decodeHtmlEntities(
-    html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '',
-  );
+  const metaDescription = decodeHtmlEntities(metaContent(html, 'description'));
   assert.ok(
     metaDescription.length >= 120 && metaDescription.length <= 160,
     `Face Reality package meta description is ${metaDescription.length} characters.`,
