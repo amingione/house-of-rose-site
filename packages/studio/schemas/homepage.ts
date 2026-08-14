@@ -1,27 +1,27 @@
 import { defineField, defineType } from 'sanity';
 
 /**
- * Singleton for the Home page (/) — migrated from hardcoded index.astro so all
- * copy is editable in the Studio + Netlify Visual Editor. Section feature/
- * background images stay as static asset paths in the template; the 4 service
- * group cards keep an editable `imagePath` string.
+ * Source-compatible singleton for legacy homepage content. The current public
+ * homepage uses reviewed local copy while the voice reset is in effect.
  */
 export const homepage = defineType({
   name: 'homepage',
-  title: 'Home Page',
+  title: 'Home Page (not published)',
   type: 'document',
+  readOnly: true,
+  description: 'Stored for source compatibility. The current homepage uses reviewed website content.',
   __experimental_actions: ['update', 'publish'],
   groups: [
-    { name: 'hero', title: 'Hero' },
-    { name: 'about', title: 'About' },
-    { name: 'approach', title: 'Approach' },
-    { name: 'services', title: 'Services' },
-    { name: 'scan', title: 'Advanced Skin Imaging' },
-    { name: 'homecare', title: 'Home Care' },
-    { name: 'experience', title: 'Experience' },
-    { name: 'local', title: 'Local' },
-    { name: 'finalCta', title: 'Final CTA' },
-    { name: 'seo', title: 'SEO' },
+    { name: 'hero', title: 'Hero (not published)' },
+    { name: 'about', title: 'About (not published)' },
+    { name: 'approach', title: 'Approach (not published)' },
+    { name: 'services', title: 'Services (not published)' },
+    { name: 'scan', title: 'Advanced Skin Imaging (not published)' },
+    { name: 'homecare', title: 'Home Care (not published)' },
+    { name: 'experience', title: 'Experience (not published)' },
+    { name: 'local', title: 'Local (not published)' },
+    { name: 'finalCta', title: 'Final CTA (not published)' },
+    { name: 'seo', title: 'SEO (not published)' },
   ],
   fields: [
     // ── SEO ──
@@ -107,5 +107,5 @@ export const homepage = defineType({
     defineField({ name: 'finalCtaText', title: 'CTA Text', type: 'string', group: 'finalCta' }),
     defineField({ name: 'finalAddressLine', title: 'Address / Hours Line', type: 'text', rows: 2, group: 'finalCta' }),
   ],
-  preview: { prepare: () => ({ title: 'Home Page Content' }) },
+  preview: { prepare: () => ({ title: 'Home Page Content (not published)' }) },
 });
