@@ -25,6 +25,9 @@ const underEyeDisclaimerMatch = underEyeWriterSource.match(
 const underEyeProviderScopeMatch = underEyeWriterSource.match(
   /providerScope:\s*(\{[\s\S]*?\n\s*\}),\n\s*status:/,
 );
+const underEyeDocumentMatch = underEyeWriterSource.match(
+  /const document\s*=\s*(\{[\s\S]*?\n\});/,
+);
 const disclaimerField = treatmentProviderScope.fields.find(({ name }) => name === 'disclaimer');
 
 function validateVarianceNote(value: string): true | string {
@@ -56,4 +59,11 @@ test('the PRF under-eye public-record writer uses a schema-valid variance note',
   assert.ok(underEyeProviderScopeMatch?.[1], 'The PRF under-eye writer must define provider scope.');
   assert.doesNotMatch(underEyeProviderScopeMatch[1], /\bconsultRequired\b/);
   assert.equal(validateVarianceNote(underEyeDisclaimerMatch[1]), true);
+});
+
+test('the PRF under-eye writer does not recreate unresolved timing or hidden-price claims', () => {
+  assert.ok(underEyeDocumentMatch?.[1], 'The PRF under-eye writer must define its document payload.');
+  assert.doesNotMatch(underEyeDocumentMatch[1], /\bduration\s*:/);
+  assert.doesNotMatch(underEyeDocumentMatch[1], /hidden from the client-facing menu/i);
+  assert.match(underEyeDocumentMatch[1], /rackPrice:\s*'\$495'/);
 });

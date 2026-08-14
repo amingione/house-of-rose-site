@@ -27,7 +27,6 @@ const document = {
   bookingUrl:
     'https://houseofrose.glossgenius.com/book?service_token=1000f-7a950500-c694-4a9c-9a25-f98fd4e72e6c',
   bookingVerifiedAt: '2026-08-13',
-  duration: '60 minutes',
   relatedServices: [
     {
       _key: 'prf-injections',
@@ -48,8 +47,7 @@ const document = {
   status: 'actual-menu',
   pricingModel: 'per-session',
   rackPrice: '$495',
-  pricingNotes:
-    'Live GlossGenius price is $495 and hidden from the client-facing menu. Verified 2026-08-13.',
+  pricingNotes: 'Current House of Rose price: $495. Verified against GlossGenius on 2026-08-13.',
   serviceKey: 'prf-under-eyes',
   googleBusinessProfile: {
     enabled: false,
