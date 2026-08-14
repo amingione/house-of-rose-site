@@ -694,7 +694,7 @@ test('navigation and visit guidance speaks to clients rather than internal inven
   const expectations = [
     {
       route: 'services/index.html',
-      required: /appointments[\s\S]{0,120}booked directly[\s\S]{0,120}(?:consultation|call)/i,
+      required: /do not need[\s\S]{0,100}treatment name[\s\S]{0,140}direct booking[\s\S]{0,100}consultation[\s\S]{0,100}phone call/i,
       retired: 'Every service page explains what the appointment involves',
     },
     {
