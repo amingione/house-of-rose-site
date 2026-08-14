@@ -19,15 +19,17 @@ import { defineField } from 'sanity';
 export const treatmentPageFields = [
   defineField({
     name: 'downtime',
-    title: 'Downtime',
+    title: 'Downtime (not published)',
     type: 'treatmentDowntime',
-    description: 'Use only for reviewed, service-specific recovery information. Do not fill this field with a generic estimate.',
+    readOnly: true,
+    description: 'Stored for source compatibility and clinical review. The current public service page does not publish this field.',
   }),
   defineField({
     name: 'aftercare',
-    title: 'Aftercare',
+    title: 'Aftercare (not published)',
     type: 'treatmentAftercare',
-    description: 'Use only for reviewed instructions tied to this exact service. Do not infer a standard protocol.',
+    readOnly: true,
+    description: 'Stored for source compatibility and clinical review. The current public service page does not publish this field.',
   }),
   defineField({
     name: 'providerScope',

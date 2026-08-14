@@ -11,20 +11,6 @@
  */
 
 export const TREATMENT_PAGE_FIELDS = /* groq */ `
-  downtime {
-    level,
-    summary,
-    returnToMakeup,
-    returnToExercise,
-    timeline[] { _key, window, expectation }
-  },
-  aftercare {
-    intro,
-    firstDay,
-    firstWeek,
-    avoid,
-    ongoing
-  },
   providerScope {
     performedBy,
     medicalDirection,
@@ -91,8 +77,6 @@ export interface TreatmentPriceRange {
 
 /** Mixed into the existing `Service` interface in queries.ts. */
 export interface TreatmentPageFields {
-  downtime?: TreatmentDowntime;
-  aftercare?: TreatmentAftercare;
   providerScope?: TreatmentProviderScope;
   priceRange?: TreatmentPriceRange;
   whyQualified?: string[];
