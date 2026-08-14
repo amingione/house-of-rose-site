@@ -879,7 +879,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       {
         label: isBodyMorpheus ? 'The technology' : 'What RF Microneedling means here',
         text: isBodyMorpheus
-          ? 'Morpheus8 Body is the body-focused use of the same InMode RF microneedling platform described on the main Morpheus8 page.'
+          ? 'Morpheus8 Body uses the same InMode platform as Morpheus8 RF Microneedling: microneedles and fractional bipolar radiofrequency are combined in one device. The distinction here is the body-area focus.'
           : 'The Morpheus8 handpiece pairs microneedling with fractional bipolar radiofrequency in the same device.',
       },
       {

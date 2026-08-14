@@ -197,7 +197,7 @@ export const DEVICE_SERVICE_EDUCATION = {
     whatItIs:
       'Morpheus8 Body uses the same InMode platform to combine microneedling with fractional bipolar radiofrequency across selected body areas.',
     whereItFits:
-      'House of Rose lists it for body-skin tone, texture, eligible scars, and stretch marks. The main Morpheus8 page also covers the face, neck and chest, and selected body areas.',
+      'Morpheus8 Body focuses on body-skin tone, texture, eligible scars, and stretch marks across selected body areas. Morpheus8 RF Microneedling covers the face, neck, and chest.',
     menu: {
       bookingMode: 'consultation',
     },
