@@ -98,8 +98,8 @@ is disabled.
   explicitly a working campaign requiring final owner/platform review.
 - [x] Retired Q3 acquisition asset/video renderers — removed because their embedded frames contained
   the rejected offer and voice; the campaign cannot regenerate media from obsolete copy.
-- [x] `scripts/marketing/render-prf-trifold.py` — fail closed until PRF Bio-Filler/EZ Gel identity and
-  brochure claims are reverified; it cannot regenerate the unresolved customer brochure.
+- [x] Unverified PRF brochure sources, renderers, print files, and brochure-only assets — removed so
+  proposed treatment combinations cannot be regenerated or mistaken for approved client material.
 - [x] `/skin-analysis/` remains clean in current rendered output.
 
 ### 🟡 P1 · Retired vocabulary + illegal service names in PUBLISHED Sanity copy — NEEDS AMBER
