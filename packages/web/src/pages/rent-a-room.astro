@@ -179,7 +179,7 @@ const candidates = FALLBACK_CANDIDATES;
     <div class="max-w-[840px] mx-auto">
       <div class="text-center mb-12">
         <span class="kicker">Suite Application</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
+        <h2 id="suite-rental-form-heading" class="font-serif text-[clamp(28px,4vw,40px)] text-ink mt-2">
           Tell us about your work.
         </h2>
         <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4 leading-relaxed">
@@ -198,6 +198,7 @@ const candidates = FALLBACK_CANDIDATES;
 
       <form
         name="suite-rental-application"
+        aria-labelledby="suite-rental-form-heading"
         method="POST"
         action="/.netlify/functions/lead-submit"
         data-netlify="true"
