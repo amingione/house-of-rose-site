@@ -72,7 +72,7 @@ export const WAXING_SERVICE_EDUCATION = {
       },
       {
         label: 'Seven body appointments',
-        text: 'Brandy, Licensed Esthetician provides body waxing for the underarms, bikini line, chest, back, full leg, partial leg, and full arm. Each area has its own price and appointment length.',
+        text: 'Body waxing is available for the underarms, bikini line, chest, back, full leg, partial leg, and full arm. Each area has its own price and appointment length.',
       },
     ],
     faqs: [
@@ -88,7 +88,7 @@ export const WAXING_SERVICE_EDUCATION = {
     links: [
       {
         href: '/about/providers/brandy/',
-        label: 'Meet Brandy, Licensed Esthetician',
+        label: 'Meet Brandy, Licensed Esthetician for Facial Waxing',
       },
     ],
   },
@@ -128,7 +128,7 @@ export const WAXING_SERVICE_EDUCATION = {
     whatItIs:
       'House of Rose books seven body-waxing appointments: underarms, bikini line, chest, back, full leg, partial leg, and full arm.',
     whereItFits:
-      'Brandy, Licensed Esthetician provides Body Waxing, which is arranged by phone. Name the area you want waxed; for legs, specify Full Leg or Partial Leg because they are separate appointments.',
+      'Body Waxing is arranged by phone. Name the area you want waxed; for legs, specify Full Leg or Partial Leg because they are separate appointments.',
     distinctions: [
       {
         label: 'Upper-body areas',
@@ -157,12 +157,6 @@ export const WAXING_SERVICE_EDUCATION = {
       heading: 'Body waxing by area',
       items: BODY_WAXING_ITEMS,
     },
-    links: [
-      {
-        href: '/about/providers/brandy/',
-        label: 'Meet Brandy, Licensed Esthetician',
-      },
-    ],
   },
 } as const satisfies Readonly<
   Record<WaxingServiceEducationSlug, WaxingServiceEducation>
