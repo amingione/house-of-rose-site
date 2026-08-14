@@ -31,6 +31,7 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
+import { isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 
 interface SitemapLink {
   title: string;
@@ -68,6 +69,7 @@ const [
 ]);
 const providers = resolvePublicProviderProfiles(sanityProviders);
 const publicComparisons = filterReviewedPublicComparisons(comparisons);
+const publicBlogPosts = blogPosts.filter((post) => isReviewedPublicBlogSlug(post.slug));
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -175,7 +177,7 @@ const sectionData: SitemapSection[] = [
   },
   {
     title: 'Journal Articles',
-    links: blogPosts.map((post) => ({
+    links: publicBlogPosts.map((post) => ({
       title: post.slug === 'is-morpheus8-safe'
         ? 'Is Morpheus8 Safe? What to Ask Before Treatment'
         : post.title,
