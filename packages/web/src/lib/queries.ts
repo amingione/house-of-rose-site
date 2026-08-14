@@ -1109,15 +1109,24 @@ const PUBLIC_PROVIDER_FIELDS = /* groq */ `
   seo { metaTitle, metaDescription }
 `;
 
+const PUBLIC_PROVIDER_PREDICATE = /* groq */ `
+  showOnWebsite == true &&
+  defined(slug.current) &&
+  coalesce(publicRole, roleCredential, "") != "" &&
+  coalesce(summary, "") != "" &&
+  count(biography) > 0 &&
+  count(serviceFocus) > 0
+`;
+
 export const PUBLIC_PROVIDERS_QUERY = /* groq */ `
-  *[_type == "provider" && showOnWebsite == true && defined(slug.current)]
+  *[_type == "provider" && ${PUBLIC_PROVIDER_PREDICATE}]
     | order(listingOrder asc, publicName asc) {
       ${PUBLIC_PROVIDER_FIELDS}
     }
 `;
 
 export const PUBLIC_PROVIDER_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "provider" && showOnWebsite == true && slug.current == $slug][0] {
+  *[_type == "provider" && slug.current == $slug && ${PUBLIC_PROVIDER_PREDICATE}][0] {
     ${PUBLIC_PROVIDER_FIELDS}
   }
 `;

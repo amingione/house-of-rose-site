@@ -12,13 +12,56 @@ function unwrapConfig(value: unknown): StackbitConfigShape {
   return value as StackbitConfigShape;
 }
 
-const providerDocument = (slug?: string, showOnWebsite?: boolean) => ({
+interface ProviderDocumentOptions {
+  slug?: string;
+  showOnWebsite?: boolean;
+  publicRole?: string;
+  roleCredential?: string;
+  summary?: string;
+  biography?: string[];
+  serviceFocus?: string[];
+}
+
+const providerDocument = ({
+  slug,
+  showOnWebsite,
+  publicRole,
+  roleCredential,
+  summary,
+  biography,
+  serviceFocus,
+}: ProviderDocumentOptions) => ({
   fields: {
     ...(slug ? { slug: { type: 'slug', value: slug } } : {}),
     ...(showOnWebsite === undefined
       ? {}
       : { showOnWebsite: { type: 'boolean', value: showOnWebsite } }),
+    ...(publicRole ? { publicRole: { type: 'string', value: publicRole } } : {}),
+    ...(roleCredential ? { roleCredential: { type: 'string', value: roleCredential } } : {}),
+    ...(summary ? { summary: { type: 'string', value: summary } } : {}),
+    ...(biography ? {
+      biography: {
+        type: 'list',
+        items: biography.map((value) => ({ type: 'string', value })),
+      },
+    } : {}),
+    ...(serviceFocus ? {
+      serviceFocus: {
+        type: 'list',
+        items: serviceFocus.map((value) => ({ type: 'string', value })),
+      },
+    } : {}),
   },
+});
+
+const completeProviderDocument = (overrides: ProviderDocumentOptions = {}) => providerDocument({
+  slug: 'public-provider',
+  showOnWebsite: true,
+  publicRole: 'Licensed Esthetician',
+  summary: 'Verified current practice context.',
+  biography: ['Verified biography paragraph.'],
+  serviceFocus: ['Verified service'],
+  ...overrides,
 });
 
 test('Stackbit exposes only providers with generated public profile routes', async () => {
@@ -51,14 +94,34 @@ test('Stackbit exposes only providers with generated public profile routes', asy
       document: documentRef('provider-missing-slug', 'provider'),
     },
     {
+      urlPath: '/about/providers/missing-summary',
+      document: documentRef('provider-missing-summary', 'provider'),
+    },
+    {
+      urlPath: '/about/providers/missing-biography',
+      document: documentRef('provider-missing-biography', 'provider'),
+    },
+    {
+      urlPath: '/about/providers/missing-service-focus',
+      document: documentRef('provider-missing-service-focus', 'provider'),
+    },
+    {
+      urlPath: '/about/providers/missing-role',
+      document: documentRef('provider-missing-role', 'provider'),
+    },
+    {
       urlPath: '/about',
       document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map([
-    ['provider-public', providerDocument('public-provider', true)] as const,
-    ['provider-hidden', providerDocument('hidden-provider', false)] as const,
-    ['provider-missing-slug', providerDocument(undefined, true)] as const,
+    ['provider-public', completeProviderDocument()] as const,
+    ['provider-hidden', completeProviderDocument({ slug: 'hidden-provider', showOnWebsite: false })] as const,
+    ['provider-missing-slug', completeProviderDocument({ slug: undefined })] as const,
+    ['provider-missing-summary', completeProviderDocument({ slug: 'missing-summary', summary: undefined })] as const,
+    ['provider-missing-biography', completeProviderDocument({ slug: 'missing-biography', biography: [] })] as const,
+    ['provider-missing-service-focus', completeProviderDocument({ slug: 'missing-service-focus', serviceFocus: [] })] as const,
+    ['provider-missing-role', completeProviderDocument({ slug: 'missing-role', publicRole: undefined, roleCredential: undefined })] as const,
   ]);
 
   const filtered = transformSitemap!({

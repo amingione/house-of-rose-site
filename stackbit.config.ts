@@ -114,6 +114,18 @@ function documentBooleanField(
   return typeof field.value === 'boolean' ? field.value : undefined;
 }
 
+function documentHasNonEmptyList(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): boolean {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object') return false;
+
+  if ('items' in field && Array.isArray(field.items)) return field.items.length > 0;
+  if ('value' in field && Array.isArray(field.value)) return field.value.length > 0;
+  return false;
+}
+
 function documentHasAssetReference(
   document: { fields: Record<string, unknown> } | undefined,
   fieldName: string,
@@ -369,7 +381,17 @@ export default defineStackbitConfig({
     }
 
     if (entry.document.modelName === 'provider') {
-      return Boolean(slug && documentBooleanField(document, 'showOnWebsite') === true);
+      const publicRole =
+        documentStringField(document, 'publicRole') ||
+        documentStringField(document, 'roleCredential');
+      return Boolean(
+        slug &&
+          documentBooleanField(document, 'showOnWebsite') === true &&
+          publicRole?.trim() &&
+          documentStringField(document, 'summary')?.trim() &&
+          documentHasNonEmptyList(document, 'biography') &&
+          documentHasNonEmptyList(document, 'serviceFocus'),
+      );
     }
 
     const status = documentStringField(document, 'status');

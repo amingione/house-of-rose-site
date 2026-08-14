@@ -6,9 +6,44 @@ type ProviderVisibilityFields = {
   showOnWebsite?: boolean;
 };
 
+type ProviderPublicProfileFields = ProviderVisibilityFields & {
+  roleCredential?: string;
+  publicRole?: string;
+  summary?: string;
+  biography?: unknown[];
+  serviceFocus?: unknown[];
+};
+
 type ProviderSlugValue = {
   current?: string;
 };
+
+export function validateProviderPublicProfile(
+  value: boolean | undefined,
+  context: { document?: unknown },
+): true | string {
+  if (value !== true) return true;
+
+  const document = context.document as ProviderPublicProfileFields | undefined;
+  const hasText = (candidate: string | undefined) => Boolean(candidate?.trim());
+  const hasTextItems = (candidate: unknown[] | undefined) =>
+    candidate?.some((item) => typeof item === 'string' && item.trim().length > 0) === true;
+
+  if (!hasText(document?.publicRole) && !hasText(document?.roleCredential)) {
+    return 'A public provider profile requires a verified public role or role credential.';
+  }
+  if (!hasText(document?.summary)) {
+    return 'A public provider profile requires a directory summary.';
+  }
+  if (!hasTextItems(document?.biography)) {
+    return 'A public provider profile requires at least one biography paragraph.';
+  }
+  if (!hasTextItems(document?.serviceFocus)) {
+    return 'A public provider profile requires at least one current service focus.';
+  }
+
+  return true;
+}
 
 /**
  * Provider — mirrors the Notion "HOUSE OF ROSE: Providers" database.
@@ -95,6 +130,7 @@ export const provider = defineType({
       type: 'boolean',
       initialValue: false,
       description: 'Publishes this provider in the About directory and creates a public profile route.',
+      validation: (R) => R.custom(validateProviderPublicProfile),
     }),
     defineField({
       name: 'listingOrder',

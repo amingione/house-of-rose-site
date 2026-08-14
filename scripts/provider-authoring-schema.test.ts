@@ -1,8 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { provider } from '../packages/studio/schemas/provider.ts';
-import { PUBLIC_PROVIDERS_QUERY } from '../packages/web/src/lib/queries.ts';
+import {
+  provider,
+  validateProviderPublicProfile,
+} from '../packages/studio/schemas/provider.ts';
+import {
+  PUBLIC_PROVIDER_BY_SLUG_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 function providerField(name: string) {
   return provider.fields.find((field) => field.name === name);
@@ -63,4 +69,39 @@ test('public provider visibility requires the slug used by the public route quer
   assert.match(String(validate(undefined, { document: { showOnWebsite: true } })), /requires a slug/i);
   assert.equal(validate({ current: 'diana' }, { document: { showOnWebsite: true } }), true);
   assert.equal(validate(undefined, { document: { showOnWebsite: false } }), true);
+});
+
+test('public provider visibility requires the content the profile renderer consumes', () => {
+  const completeProfile = {
+    publicRole: 'Licensed Esthetician',
+    summary: 'Verified current practice context.',
+    biography: ['Verified biography paragraph.'],
+    serviceFocus: ['Verified service'],
+  };
+
+  assert.equal(validateProviderPublicProfile(false, { document: {} }), true);
+  assert.equal(validateProviderPublicProfile(true, { document: completeProfile }), true);
+
+  for (const [missingField, expectedMessage] of [
+    ['publicRole', /role/i],
+    ['summary', /summary/i],
+    ['biography', /biography/i],
+    ['serviceFocus', /service focus/i],
+  ] as const) {
+    const incompleteProfile = { ...completeProfile, [missingField]: undefined };
+    assert.match(
+      String(validateProviderPublicProfile(true, { document: incompleteProfile })),
+      expectedMessage,
+    );
+  }
+
+  const visibility = providerField('showOnWebsite');
+  assert.match(String(visibility?.validation), /validateProviderPublicProfile/);
+
+  for (const query of [PUBLIC_PROVIDERS_QUERY, PUBLIC_PROVIDER_BY_SLUG_QUERY]) {
+    assert.match(query, /coalesce\(publicRole, roleCredential, ""\) != ""/);
+    assert.match(query, /coalesce\(summary, ""\) != ""/);
+    assert.match(query, /count\(biography\) > 0/);
+    assert.match(query, /count\(serviceFocus\) > 0/);
+  }
 });
