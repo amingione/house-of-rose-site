@@ -69,6 +69,10 @@ const faqs: readonly PublicFaq[] = [
     ],
   },
   {
+    question: 'What payment methods does House of Rose accept?',
+    answer: 'House of Rose accepts American Express, Discover, Mastercard, Visa, debit cards, and checks.',
+  },
+  {
     question: 'Do you accept walk-ins?',
     answer: 'Yes. Walk-ins are always accepted for waxing and facials. For other services, walk-ins are accepted when the schedule allows. Appointments reserve a specific time; call (844) 941-7673 to check current availability.',
   },
@@ -82,7 +86,7 @@ const faqGroups = [
   {
     kicker: 'Appointments',
     heading: 'Choosing and booking',
-    questions: [faqs[2], faqs[3], faqs[4], faqs[5], faqs[8], faqs[9]],
+    questions: [faqs[2], faqs[3], faqs[4], faqs[5], faqs[8], faqs[9], faqs[10]],
   },
 ] as const;
 const orderedFaqs = faqGroups.flatMap((group) => group.questions);
