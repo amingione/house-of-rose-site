@@ -115,6 +115,11 @@ export const INJECTABLE_SERVICE_EDUCATION = {
     whatItIs: 'House of Rose offers five manufactured hyaluronic-acid gels from Juvéderm and RHA for selected areas of lost facial volume.',
     whereItFits: 'Those areas are the lips, cheeks, and folds. The five products have different published prices and appointment lengths, while the consultation gives you one place to begin.',
     pricingSummary: 'The five dermal filler products range from $650 to $850.',
+    consultation: {
+      name: 'Dermal Filler Consultation',
+      durationMinutes: 60,
+      priceUsd: 300,
+    },
     bookingGuidance:
       'Request the 60-minute, $300 Dermal Filler Consultation and describe where you have noticed a change in volume—lips, cheeks, or folds. You are not expected to arrive with a product name.',
     provider: {

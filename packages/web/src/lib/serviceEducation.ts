@@ -384,7 +384,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               : []),
           ],
       menu: {
-        heading: isNeurotoxin ? 'Consultation, Botox, and Daxxify' : 'Dermal filler products',
+        heading: isNeurotoxin
+          ? 'Consultation, Botox, and Daxxify'
+          : injectable.consultation
+            ? 'Consultation and dermal filler products'
+            : 'Dermal filler products',
         intro: injectable.consultation
           ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary}`
           : injectable.pricingSummary,
