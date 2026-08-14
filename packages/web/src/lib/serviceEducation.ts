@@ -539,7 +539,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? [
             {
               href: '/about/providers/brandy/',
-              label: 'Meet Brandy',
+              label: 'Meet Brandy, Licensed Esthetician',
             },
             {
               href: '/about/providers/amber/',
