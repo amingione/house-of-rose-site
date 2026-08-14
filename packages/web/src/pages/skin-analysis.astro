@@ -25,6 +25,7 @@ interface SkinAnalysisFaq {
 const pageTitle = 'Skin Imaging & Analysis in Punta Gorda | House of Rose';
 const pageDescription =
   'Multi-spectrum skin imaging in Punta Gorda offers a closer look at pigmentation, pores, texture, fine lines, and visible sun exposure.';
+const SKIN_ANALYSIS_PRICE_USD = 65;
 
 const steps: SkinAnalysisStep[] = [
   {
@@ -54,6 +55,10 @@ const concernLinks: SkinAnalysisConcern[] = [
 ];
 
 const faqs: SkinAnalysisFaq[] = [
+  {
+    q: 'How much is a skin analysis at House of Rose?',
+    a: `The Skin Analysis & Consultation appointment is $${SKIN_ANALYSIS_PRICE_USD}.`,
+  },
   {
     q: 'Do I need a skin analysis before treatment?',
     a: 'No. It is not required for every appointment. The analysis can be helpful when you are unsure where to begin or want a clearer baseline before choosing a skin treatment.',
@@ -92,6 +97,7 @@ const serviceSchema = service(
     url: canonicalURL.toString(),
     image: new URL('/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp', siteUrl).toString(),
     serviceType: 'Multi-spectrum skin imaging',
+    minPrice: SKIN_ANALYSIS_PRICE_USD,
     offerUrl: SKIN_ANALYSIS_BOOKING_URL,
   },
   siteUrl,
@@ -289,7 +295,7 @@ const serviceSchema = service(
         Request a skin imaging appointment.
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        The form sends a request and does not hold an appointment time. Use the online booking option when you want to reserve an available time immediately.
+        The Skin Analysis & Consultation appointment is ${SKIN_ANALYSIS_PRICE_USD}. The form sends a request and does not hold an appointment time. Use the online booking option when you want to reserve an available time immediately.
       </p>
       <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
         In studio · Punta Gorda
