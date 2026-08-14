@@ -1,74 +1,78 @@
-# Site Audit — houseofrosefl.com (Aug 2026)
+# Site Audit — Current Source Reconciliation
 
-# Site Audit — [houseofrosefl.com](https://houseofrosefl.com)
+**Original Ahrefs crawl:** 2026-08-03 · **Current source review:** 2026-08-14
 
-**Crawl:** 2026-08-03 · 331 pages crawled · **Health score 98.2** (+1.3 vs 2026-07-27) · 0 broken pages · 4 redirects · 2 blocked\
- Source: Ahrefs Site Audit, project `Houseofrosefl` (verified, GSC-linked). Chat: [[3fc555a5]]
+The original crawl measured a previously deployed catalog. It is useful historical evidence, but its
+product-page counts are not the current implementation queue. Repository state, the active feature
+gates, a fresh build, and route-level verification decide whether a source change is warranted.
 
-The site is technically healthy. Nothing is on fire — 0 broken pages, 0 4XX on internal pages. The remaining issues are content-quality and discoverability gaps concentrated in `/shop/`.
+## Storefront state
 
-## Priority list
+The public shop, cart, checkout entry point, merchant feed, and shop discovery links are temporarily
+disabled unless `PUBLIC_SHOP_ENABLED=true` at build time. `packages/web/netlify.toml` also forces
+`/shop/*`, `/cart/*`, and `/checkout/*` to 404 while that gate is off.
 
-Score = importance (Critical 3 / Warning 2 / Notice 1) × pages × leverage (template 3 / config 2 / per-page 1).
+Consequences:
 
-### Critical
+- Product URLs from the old crawl are not currently indexable public routes.
+- They must not be added to the sitemap or Merchant Center feed while the storefront is disabled.
+- Old product metadata, structured-data, and internal-link counts are not current source defects.
+- Enabling the storefront is an explicit launch decision, not a template cleanup inferred from a
+  historical crawl.
 
-| Issue                     | Pages      | Strategy                                                                                                                  | Score      |
-| ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Image file size too large | 9          | template — compress/convert 5 self-hosted `/images/*.webp` and `.png`; 3 are Sanity CDN URLs fixable with `?w=&q=` params | 81         |
+The product, checkout, shipping, and order source remains in the repository so it can be validated
+before an approved launch. That dormant source must still follow the current factual-copy and direct-
+action rules; it is not permission to publish generated benefits, rotating CTA phrases, or generic
+search text.
 
-Files: `hor-exterior.webp`, `hor-lobby.webp`, `hor-skin-studio.webp`, `welcome-house-of-rose.webp`, two before/after makeup PNGs, three Sanity CDN images. Largest impact on Core Web Vitals / LCP on the homepage.
+## Current public-build evidence
 
-### Warning
+The current verification stack covers the active public build:
 
-| Issue                                  | Pages      | Strategy                                         | Score      |
-| -------------------------------------- | ---------- | ------------------------------------------------ | ---------- |
-| Meta description too short (indexable) | 121        | template — almost all are `/shop/` product pages | 726        |
-| Meta description too long (indexable)  | 11         | per-page                                         | 22         |
-| Missing alt text                       | 11         | per-page                                         | 22         |
-| Page has links to redirect             | 4          | per-page                                         | 8          |
-| 3XX redirect                           | 4          | config                                           | 16         |
-| Noindex page                           | 1          | investigate                                      | 2          |
+- `npm run build:web` generates the static site from the current feature flags and reviewed content.
+- `npm run verify:public-dist` validates JSON-LD parsing and entity IDs, internal anchors, retired-route
+  absence, current metadata ceilings, reviewed service facts, and the 200 KB delivery budget for every
+  locally referenced public image.
+- `npm run verify:visibility` checks the current indexable/noindex plan across emitted HTML.
+- `npm run guard:drift` blocks retired routes, programs, wrong NAP, and prohibited source facts.
+- `npm run ve:check` verifies click-to-edit coverage for Sanity-backed public content.
 
-**Meta descriptions** are the single biggest lever: 121 indexable pages under 110 characters, nearly all `/shop/` product pages (`glymed-beta-gel`, `ultra-hydro-gel`, `atraxi-peptide`, …) plus a few service pages (`/services/facial-waxing/`, `/services/lash-tint/`, `/services/collections/waxing/`). One template change on the product page type — auto-generate from product name + key benefit + brand — fixes most of them.
+These gates replace the old assumptions that a fixed set of oversized images, missing alt fields,
+malformed product schemas, or orphaned product pages remains active. A fresh failing route or test is
+required before changing current source.
 
-**Links to redirect** — 5 internal links hitting a 301/302 instead of the final URL:
+## Storefront re-enable acceptance
 
-* `/services/prf-injections/` and `/services/prf/` → `/concerns/hair-thinning/` (301)
-* `/services/forma-rf-facial/` (×2) and `/services/lumecca-peak-ipl/` → `doi.org` citation links (302, external, safe to leave)
+When Amber explicitly restores `PUBLIC_SHOP_ENABLED=true`, run a new launch audit against that exact
+build rather than reviving the August crawl counts. The acceptance review must cover:
 
-### Notice
+- intended product routes in the sitemap and Merchant Center feed;
+- unique, factual metadata based on reviewed product records rather than one repeated benefit formula;
+- valid Product schema with accurate price, availability, brand, and canonical URL;
+- useful catalog and related-product navigation without manufacturing product claims;
+- image delivery size and alt text for the assets the enabled build actually references;
+- cart, Stripe Elements, live Shippo rate, order, confirmation, and email contracts;
+- the temporary edge 404 rules removed in the same approved launch change.
 
-| Issue                                                  | Pages        | Strategy                                            | Score      |
-| ------------------------------------------------------ | ------------ | --------------------------------------------------- | ---------- |
-| Indexable page not in sitemap                          | 165          | config — `/shop/` pages missing from sitemap.xml    | 330        |
-| Page has only one dofollow internal link (indexable)   | 142          | template — add cross-links / related-product blocks | 426        |
-| Structured data — schema.org validation error          | 124          | template                                            | 248        |
-| Structured data — Google rich results validation error | 124          | template                                            | 248        |
-| Pages to submit to IndexNow                            | 276          | config                                              | 552        |
-| Pages have high AI content levels (indexable)          | 4            | investigate                                         | 4          |
-| External 4XX                                           | 1 (10 links) | config                                              | 2          |
-| External 3XX / HTTP→HTTPS / redirect chain             | 6            | config                                              | —          |
+No historical product count defines the expected launch inventory. The enabled Sanity records and the
+same build's generated routes are the authority.
 
-**Sitemap gap (165 pages)** — the entire `/shop/` catalog is indexable but absent from the sitemap. Cheap config fix, meaningful discovery win.
+## Remaining non-source work
 
-**Thin internal linking (142 pages)** — most product pages have exactly one incoming dofollow link. A "related products" or "shop by concern" block would fix the whole class at once.
+Google Business Profile review, GSC reconnection, and Ahrefs Bot Analytics are authenticated external
+tasks. Deployment parity also requires an authorized deploy followed by the repository's deployment
+verifiers. None of those gaps is corrected by inventing a website edit or changing the external board
+without permission.
 
-**Structured data errors on 124 pages** — likely one malformed schema block in the product template. Fixing the template fixes all 124, and it gates rich-result eligibility (price, availability, ratings in SERP).
+## Authoritative evidence
 
-**External 4XX** — 10 pages link "View Services" to `https://houseofrose.glossgenius.com/services`, which returns **403** to the crawler. Sources include `/services/dermal-fillers/`, `/services/biorepeel/`, `/cost/botox-cost-punta-gorda/`, `/support/`. Likely bot-blocking by GlossGenius rather than a real dead link — worth verifying in a browser, but probably a false positive.
+- Storefront flag: `packages/web/src/lib/features.ts`
+- Edge gate: `packages/web/netlify.toml`
+- Shop and checkout law: `CLAUDE.md` and `docs/CHECKOUT.md`
+- Sitemap/feed gates: `packages/web/src/pages/sitemap.xml.ts` and
+  `packages/web/src/pages/feeds/google-merchant.xml.ts`
+- Public route contracts: `scripts/public-integrity.test.mjs`
+- Visibility contract: `scripts/verify-visibility-plan.mjs`
 
-**High AI content level** — flagged on `/services/body-waxing/`, `/services/soft-glam-event-makeup/`, `/services/glp-1-weight-management/`, and the homepage. Not a penalty signal by itself; worth a human editing pass for voice and specificity.
-
-## Recommended order
-
-1. **Meta descriptions on** `/shop/` — template fix, 121 pages, directly affects CTR.
-2. **Add** `/shop/`** to sitemap.xml** — 165 pages, config change, one file.
-3. **Fix product-page structured data** — one template, 124 pages, unlocks rich results.
-4. **Compress the 9 oversized images** — Core Web Vitals, homepage LCP.
-5. **Internal-linking block on product pages** — 142 pages, medium effort.
-6. Small cleanup: 5 internal redirect links, 11 missing alt texts, 11 long meta descriptions.
-
-## Context caveat
-
-Both `houseofrosefl.com` and competitor `fibbaestheticslaserwellness.com` show zero organic traffic in Ahrefs — normal for a local med spa where discovery runs through Google Maps / local pack. These technical fixes improve the foundation, but **Google Business Profile and local citations remain the higher-leverage lever** for actual patient acquisition.
+The historical crawl should be rerun after an approved deploy or storefront launch. Until then, it is
+not a substitute for present-source evidence.

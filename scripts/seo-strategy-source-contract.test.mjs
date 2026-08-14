@@ -18,12 +18,17 @@ const prfArchitecturePath = new URL(
   '../docs/HRAaudits/letaido-findings/PRF-Content-Briefs-—-4-Pages-2026-08-11.md',
   import.meta.url,
 );
+const siteAuditPath = new URL(
+  '../docs/HRAaudits/letaido-findings/Site-Audit-—-houseofrosefl.com-(Aug-2026)-2026-08-11.md',
+  import.meta.url,
+);
 
 const architecture = readFileSync(architecturePath, 'utf8');
 const competitorStudy = readFileSync(competitorPath, 'utf8');
 const demand = readFileSync(demandPath, 'utf8');
 const prfArchitecture = readFileSync(prfArchitecturePath, 'utf8');
-const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}`;
+const siteAudit = readFileSync(siteAuditPath, 'utf8');
+const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}`;
 
 test('SEO strategy sources cannot reintroduce permanently retired programs', () => {
   assert.doesNotMatch(
@@ -62,4 +67,13 @@ test('PRF strategy reflects current reviewed routes instead of retired briefs', 
     /\bprf is preferred\b|\bno migration risk\b|\bseries of 3 recommended\b|\bresults build over\b/i,
   );
   assert.match(prfArchitecture, /keyword\s+volume is not clinical evidence/i);
+});
+
+test('site-audit strategy follows the active storefront gate instead of old crawl counts', () => {
+  assert.match(siteAudit, /PUBLIC_SHOP_ENABLED=true/i);
+  assert.match(siteAudit, /forces\s+`\/shop\/\*`,\s+`\/cart\/\*`,\s+and\s+`\/checkout\/\*`\s+to\s+404/i);
+  assert.doesNotMatch(siteAudit, /\b(?:121|124|142|165)\b[^\n]{0,100}\b(?:pages?|shop|sitemap|schema|links?)\b/i);
+  assert.doesNotMatch(siteAudit, /\b(?:add|include|submit)\b[^\n]{0,80}`?\/shop\/`?[^\n]{0,80}sitemap/i);
+  assert.doesNotMatch(siteAudit, /compress\s+(?:the\s+)?9\s+oversized images/i);
+  assert.match(siteAudit, /run a new launch audit against that exact\s+build/i);
 });
