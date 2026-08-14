@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
 /**
  * Local Area — AEO page type #5 (local authority, "treatment in {city}").
  * Route: /areas/[slug]. JSON-LD: LocalBusiness (areaServed) + BreadcrumbList + FAQPage.
@@ -24,8 +26,21 @@ export const localArea = defineType({
       options: { source: 'title', maxLength: 96 },
       validation: (R) => R.required(),
     }),
-    defineField({ name: 'city', title: 'City', type: 'string', validation: (R) => R.required() }),
-    defineField({ name: 'region', title: 'Region', type: 'string', initialValue: 'Charlotte County, FL' }),
+    defineField({
+      name: 'city',
+      title: 'City',
+      type: 'string',
+      description: 'Verified community served from the single Punta Gorda practice. This becomes public page and structured-data text.',
+      validation: (R) => R.required().custom(validatePublicCopy),
+    }),
+    defineField({
+      name: 'region',
+      title: 'Region',
+      type: 'string',
+      initialValue: 'Charlotte County, FL',
+      description: 'Verified public region label. Do not use this field to imply another House of Rose location.',
+      validation: (R) => R.custom(validatePublicCopy),
+    }),
     defineField({
       name: 'intro',
       title: 'Intro (not published)',
@@ -53,8 +68,8 @@ export const localArea = defineType({
       name: 'neighborhoods',
       title: 'Neighborhoods / Nearby',
       type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Nearby neighborhoods or towns served from this location.',
+      of: [{ type: 'string', validation: (R) => R.custom(validatePublicCopy) }],
+      description: 'Verified nearby communities shown on the public page. They describe travel to the Punta Gorda practice, not additional locations.',
     }),
     defineField({ name: 'faqs', title: 'FAQs (not published)', type: 'array', of: [{ type: 'faq' }], readOnly: true, description: 'Legacy source field. Public area FAQs and FAQPage schema are generated together from verified practice facts.' }),
     defineField({
@@ -62,7 +77,7 @@ export const localArea = defineType({
       title: 'Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (R) => R.custom(validatePublicCopy) })],
     }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
     defineField({ name: 'seo', title: 'SEO (not published)', type: 'seo', readOnly: true, description: 'Legacy source field. Public metadata is generated from City and the verified Punta Gorda practice location.' }),
