@@ -1,27 +1,11 @@
-import type { AboutPageContent, PublicProviderProfile } from '@/lib/queries';
+import type { PublicProviderProfile } from '@/lib/queries';
 
 /**
- * Build-safe fallbacks for the About launch. Sanity remains primary; these
- * values mirror the seed script so a missing/cold singleton cannot remove the
- * public information architecture during a static build.
+ * Reviewed local About copy and build-safe image fallbacks. Sanity remains the
+ * source for the active image fields only; a missing singleton falls back to
+ * these local assets without changing the public information architecture.
  */
-export const ABOUT_PAGE_FALLBACK: Required<
-  Pick<
-    AboutPageContent,
-    | '_id'
-    | 'indexHeading'
-    | 'indexIntro'
-    | 'indexImageUrl'
-    | 'indexImageAlt'
-    | 'hraHeading'
-    | 'hraIntro'
-    | 'hraParagraphs'
-    | 'hraImageUrl'
-    | 'hraImageAlt'
-    | 'providersHeading'
-    | 'providersIntro'
-  >
-> & Pick<AboutPageContent, 'indexSeo' | 'hraSeo' | 'providersSeo'> = {
+export const ABOUT_PAGE_FALLBACK = {
   _id: 'aboutPage',
   indexHeading: 'About House of Rose',
   indexIntro:

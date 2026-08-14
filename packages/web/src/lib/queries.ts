@@ -937,39 +937,19 @@ export const ALL_BLOG_POST_SLUGS_QUERY = /* groq */ `
 
 export interface AboutPageContent {
   _id?: string;
-  indexHeading?: string;
-  indexIntro?: string;
   indexImageUrl?: string;
   indexImageAlt?: string;
-  hraHeading?: string;
-  hraIntro?: string;
-  hraParagraphs?: string[];
   hraImageUrl?: string;
   hraImageAlt?: string;
-  providersHeading?: string;
-  providersIntro?: string;
-  indexSeo?: { metaTitle?: string; metaDescription?: string };
-  hraSeo?: { metaTitle?: string; metaDescription?: string };
-  providersSeo?: { metaTitle?: string; metaDescription?: string };
 }
 
 export const ABOUT_PAGE_QUERY = /* groq */ `
   *[_type == "aboutPage" && _id == "aboutPage"][0] {
     _id,
-    indexHeading,
-    indexIntro,
     "indexImageUrl": indexImage.asset->url,
     "indexImageAlt": indexImage.alt,
-    hraHeading,
-    hraIntro,
-    hraParagraphs,
     "hraImageUrl": hraImage.asset->url,
-    "hraImageAlt": hraImage.alt,
-    providersHeading,
-    providersIntro,
-    indexSeo { metaTitle, metaDescription },
-    hraSeo { metaTitle, metaDescription },
-    providersSeo { metaTitle, metaDescription }
+    "hraImageAlt": hraImage.alt
   }
 `;
 
