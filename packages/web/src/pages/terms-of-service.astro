@@ -101,7 +101,7 @@ const breadcrumb = breadcrumbList([
 <BaseLayout title={data.seoTitle ?? 'Terms of Service | House of Rose Aesthetics'} description={description}>
   <SchemaMarkup item={breadcrumb} slot="head" />
 
-  <main class="w-full max-w-[100vw] overflow-x-hidden bg-charcoal pt-32 pb-24 px-6" {...annotations}>
+  <div class="w-full max-w-[100vw] overflow-x-hidden bg-charcoal pt-32 pb-24 px-6" {...annotations}>
     <article class="w-full min-w-0 max-w-4xl mx-auto">
       <header class="text-center mb-16">
         <p class="text-xs tracking-[0.3em] uppercase text-gold mb-4">House of Rose Aesthetics LLC</p>
@@ -122,7 +122,7 @@ const breadcrumb = breadcrumbList([
         ))}
       </div>
     </article>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>
