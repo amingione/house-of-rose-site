@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../../web/src/lib/publicConcernContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
 import { treatmentPageFields } from './objects/treatmentPageFields';
 import { validatePublicCopy } from './validation/publicCopy';
@@ -83,7 +84,17 @@ export const service = defineType({
       name: 'concerns',
       title: 'Concerns',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'concern' }] }],
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'concern' }],
+          options: {
+            filter:
+              'status == "live" && defined(slug.current) && !(slug.current in $retiredSlugs)',
+            filterParams: { retiredSlugs: RETIRED_PUBLIC_CONCERN_SLUGS },
+          },
+        },
+      ],
       description: 'Client concerns this treatment addresses (powers /concerns/* router pages).',
     }),
     defineField({

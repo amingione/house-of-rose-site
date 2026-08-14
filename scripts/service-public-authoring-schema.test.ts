@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { service } from '../packages/studio/schemas/service.ts';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../packages/web/src/lib/publicConcernContent.ts';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_SERVICES_QUERY,
@@ -100,6 +101,28 @@ test('related-service authoring only offers relationships the public query can r
   assert.match(relatedProjection[1], /@->status in \["live", "actual-menu"\]/);
   assert.match(relatedProjection[1], /defined\(@->slug\.current\)/);
   assert.match(relatedProjection[1], /!\(@->slug\.current in \[/);
+});
+
+test('concern authoring only offers relationships the public query can render', () => {
+  const concerns = serviceField('concerns') as NestedField | undefined;
+  assert.ok(concerns?.of && Array.isArray(concerns.of));
+
+  const reference = concerns.of[0];
+  const filter = reference?.options?.filter ?? '';
+  assert.match(filter, /status == "live"/);
+  assert.match(filter, /defined\(slug\.current\)/);
+  assert.match(filter, /!\(slug\.current in \$retiredSlugs\)/);
+  assert.deepEqual(reference?.options?.filterParams, {
+    retiredSlugs: RETIRED_PUBLIC_CONCERN_SLUGS,
+  });
+
+  const concernProjection = SERVICE_BY_SLUG_QUERY.match(
+    /"concerns": concerns\[([\s\S]*?)\]->/,
+  );
+  assert.ok(concernProjection?.[1], 'The service query must guard concern links.');
+  assert.match(concernProjection[1], /@->status == "live"/);
+  assert.match(concernProjection[1], /defined\(@->slug\.current\)/);
+  assert.match(concernProjection[1], /!\(@->slug\.current in \[/);
 });
 
 test('service collection authoring and projections require a generated collection route', () => {
