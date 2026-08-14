@@ -31,7 +31,7 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 1. creating a reset-era one-page quick reference after Amber approves the replacement voice, plus a factual logo-use sheet;
 2. completing the logo/export package and production specifications;
-3. turning the five audience segments into research-backed personas;
+3. collecting real client language and behavior before deciding whether personas are useful or how many are warranted;
 4. building lifecycle email, social template, press-kit, and sales-collateral systems;
 5. creating a consent-safe proof library and reusable measurement dashboard; and
 6. retiring or correcting secondary documents that still carry pre–Creative System language or visual assumptions.
@@ -43,7 +43,7 @@ The highest-value work is not another 50–100 page brand book. It is:
 | Mission statement | **Superseded** | Creative System, Book 1 §4 | Do not reuse; replacement requires Amber's approval. |
 | Vision statement | **Superseded** | Creative System, Book 1 §5 | Do not reuse; replacement requires Amber's approval. |
 | Brand values framework | **Superseded** | Creative System, Book 1 §6 | Retained only for provenance. |
-| Target audience personas, 3–5 | **Partial** | Creative System, Book 1 §8 defines five audience segments | Add demographics only where decision-useful; validate triggers, objections, buying criteria, language, channel behavior, and proof needs through real customer research. |
+| Audience research / personas | **Missing** | The Creative System's five audience segments are superseded and do not establish a current audience model | Collect real client language, triggers, objections, buying criteria, channel behavior, and proof needs first. Create personas only if that evidence supports a useful distinction; do not preselect their number or structure. |
 | Competitive analysis | **Partial** | `docs/HRAaudits/letaido-findings/Second-Pass-—-Amber's-Named-Competitors-2026-08-11.md`, Semrush competitor/heatmap audits, SEO demand files | Current material is strong for local search and named competitors, but it is not a single brand-positioning analysis covering experience, offer, proof, message, visual identity, reviews, and market gaps. |
 | Unique value proposition | **Superseded** | Creative System, Book 1 §§1–3 and §10 | The process-led difference was rejected; replacement is being calibrated from Amber's direct examples. |
 | Brand positioning statement | **Superseded** | Creative System, Book 1 §2 | Keep only the verified category “Medical Aesthetics Practice”; the prior positioning prose is archival. |
@@ -179,7 +179,7 @@ The highest-value work is not another 50–100 page brand book. It is:
 
 ### Priority 2 — growth system
 
-1. Research-backed audience personas.
+1. Audience research sufficient to decide whether personas would be useful; do not assume a fixed segment count.
 2. Expanded brand/offer competitive analysis.
 3. Lifecycle email strategy and core flows.
 4. Rolling 90-day content calendar and governed social templates.

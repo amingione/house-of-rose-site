@@ -78,3 +78,16 @@ test('governance preflight does not reinstate the archival brand system', () => 
   assert.match(brandMemory, /must not be read wholesale as a creative brief/);
   assert.match(startHere, /BRAND_MEMORY\.md` are archival voice references during the reset/);
 });
+
+test('the reset-era asset inventory does not mandate personas from rejected audience segments', () => {
+  const assetAudit = readFileSync(
+    join(repositoryRoot, 'docs/GOVERNANCE/BRAND-ASSET-AUDIT.md'),
+    'utf8',
+  );
+
+  assert.match(assetAudit, /collecting real client language and behavior before deciding whether personas are useful/i);
+  assert.match(assetAudit, /do not preselect their number or structure/i);
+  assert.match(assetAudit, /do not assume a fixed segment count/i);
+  assert.doesNotMatch(assetAudit, /turning the five audience segments into research-backed personas/i);
+  assert.doesNotMatch(assetAudit, /Target audience personas, 3–5/i);
+});
