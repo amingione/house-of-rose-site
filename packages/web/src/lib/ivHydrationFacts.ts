@@ -29,7 +29,7 @@ const fortyFiveMinutePrices = fortyFiveMinuteIvs.map(({ price }) => price);
 export const IV_HYDRATION_EDUCATION = {
   heading: `Six IV appointments from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
   introduction:
-    `House of Rose offers one 30-minute base IV and ${fortyFiveMinuteIvs.length} 45-minute base IVs. Published prices run from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
+    `House of Rose offers one 30-minute base IV and ${fortyFiveMinuteIvs.length} 45-minute base IVs, with prices from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
   provider:
     'Diana Morrison, RN provides IV hydration under written physician protocol and medical direction.',
   shorterOption:
