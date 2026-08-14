@@ -4,6 +4,8 @@ import { readFileSync } from 'node:fs';
 import { defineStackbitConfig } from '@stackbit/types';
 import { SanityContentSource } from '@stackbit/cms-sanity';
 
+import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
+
 /**
  * House of Rose — Netlify Visual Editor configuration.
  *
@@ -62,6 +64,18 @@ loadEnvFile('.env.local');
 loadEnvFile('.env');
 
 const PUBLIC_SHOP_ENABLED = process.env.PUBLIC_SHOP_ENABLED === 'true';
+const REVIEWED_PUBLIC_COMPARISON_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_COMPARISON_SLUGS,
+);
+
+function documentStringField(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): string | undefined {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object' || !('value' in field)) return undefined;
+  return typeof field.value === 'string' ? field.value : undefined;
+}
 
 /**
  * Return the first non-empty value among `names`, or throw listing all of them.
@@ -212,4 +226,20 @@ export default defineStackbitConfig({
       urlPath,
     }),
   ),
+
+  // Model extensions keep reviewed comparison documents editable as pages, but
+  // parked or overlay-less records do not have generated public routes. Filter
+  // those records from the Visual Editor sitemap/page picker just as GROQ does.
+  transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
+    if (!('document' in entry) || entry.document.modelName !== 'comparison') return true;
+
+    const document = getDocumentById({
+      id: entry.document.id,
+      srcType: entry.document.srcType,
+      srcProjectId: entry.document.srcProjectId,
+    });
+    const slug = documentStringField(document, 'slug');
+    const status = documentStringField(document, 'status');
+    return status === 'live' && Boolean(slug && REVIEWED_PUBLIC_COMPARISON_SLUG_SET.has(slug));
+  }),
 });
