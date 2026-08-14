@@ -13,6 +13,13 @@ const SMS_TERMS_URL = 'https://houseofrosefl.com/privacy-policy/';
 
 type SubmissionType = 'contact' | 'consultation' | 'suiteRental' | 'skinAnalysis';
 
+const FORM_RETURN_PATHS: Record<SubmissionType, string> = {
+  contact: '/contact/#contact-form-heading',
+  consultation: '/consultation/#consultation',
+  suiteRental: '/rent-a-room/#apply',
+  skinAnalysis: '/skin-analysis/#consultation',
+};
+
 interface LeadSubmissionDocument {
   _id: string;
   _type: 'leadSubmission';
@@ -124,11 +131,51 @@ const getRawCookieValue = (request: Request, name: string): string | undefined =
 const redirect = (request: Request, path: string, status = 303): Response =>
   Response.redirect(new URL(path, request.url), status);
 
-const renderResponse = (message: string, status: number): Response =>
-  new Response(message, {
-    status,
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-  });
+const escapeHtml = (value: string): string =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+const renderResponse = (
+  message: string,
+  status: number,
+  returnPath = '/contact/',
+): Response =>
+  new Response(
+    `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request Not Sent | House of Rose Aesthetics</title>
+    <style>
+      body { margin: 0; background: #fbf6f0; color: #2a2421; font-family: Arial, sans-serif; }
+      main { min-height: 100vh; display: grid; place-items: center; padding: 2rem; box-sizing: border-box; }
+      section { width: min(38rem, 100%); border: 1px solid #ead1cc; background: rgba(255,255,255,.72); padding: clamp(1.5rem, 5vw, 2.5rem); box-sizing: border-box; }
+      h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(2rem, 7vw, 3rem); font-weight: 400; line-height: 1.1; }
+      p { margin: 1rem 0 0; line-height: 1.65; color: #514843; }
+      a { display: inline-block; margin-top: 1.5rem; border: 1px solid #7b303c; padding: .85rem 1rem; color: #7b303c; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; text-underline-offset: .3em; }
+      a:focus-visible { outline: 2px solid #7b303c; outline-offset: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section aria-labelledby="response-title">
+        <h1 id="response-title">Your request was not sent.</h1>
+        <p>${escapeHtml(message)}</p>
+        <a href="${escapeHtml(returnPath)}">Return to the form</a>
+      </section>
+    </main>
+  </body>
+</html>`,
+    {
+      status,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    },
+  );
 
 const getSubmissionType = (formName: string): SubmissionType | null => {
   if (formName === 'contact') {
@@ -227,8 +274,18 @@ const buildDocument = (
 
 export default async (request: Request): Promise<Response> => {
   if (request.method !== 'POST') {
-    return renderResponse('Method Not Allowed', 405);
+    return renderResponse('Use a website form to send your request.', 405);
   }
+
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return renderResponse('The submitted form could not be read. Please return and try again.', 400);
+  }
+  const formName = getValue(formData, 'form-name');
+  const submissionType = getSubmissionType(formName);
+  const returnPath = submissionType ? FORM_RETURN_PATHS[submissionType] : '/contact/';
 
   const projectId = process.env.PUBLIC_SANITY_PROJECT_ID;
   const dataset = process.env.PUBLIC_SANITY_DATASET;
@@ -237,20 +294,15 @@ export default async (request: Request): Promise<Response> => {
 
   if (!projectId || !dataset || !apiVersion || !token) {
     console.error('[lead-submit] Missing Sanity write configuration.');
-    return renderResponse('Lead collection is not configured yet.', 500);
+    return renderResponse('The form is temporarily unavailable. Please try again later.', 500, returnPath);
   }
-
-  const formData = await request.formData();
 
   if (getValue(formData, 'bot-field')) {
     return redirect(request, THANK_YOU_PATH);
   }
 
-  const formName = getValue(formData, 'form-name');
-  const submissionType = getSubmissionType(formName);
-
   if (!submissionType) {
-    return renderResponse('Unknown form submission.', 400);
+    return renderResponse('This form could not be recognized. Please return and try again.', 400, returnPath);
   }
 
   const document = buildDocument(formData, request, submissionType, formName);
@@ -272,30 +324,30 @@ export default async (request: Request): Promise<Response> => {
   }
 
   if (!document.name || !document.email) {
-    return renderResponse('Name and email are required.', 400);
+    return renderResponse('Name and email are required.', 400, returnPath);
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.email)) {
-    return renderResponse('A valid email is required.', 400);
+    return renderResponse('A valid email is required.', 400, returnPath);
   }
 
   if ((submissionType === 'contact' || submissionType === 'consultation') && !document.phone) {
-    return renderResponse('Phone is required.', 400);
+    return renderResponse('Phone is required.', 400, returnPath);
   }
 
   if (submissionType === 'contact') {
     const smsConsent = document.smsConsent;
     const hasPositiveConsent = Boolean(smsConsent?.informational || smsConsent?.marketing);
     if (!smsConsent || (!hasPositiveConsent && !smsConsent.declined)) {
-      return renderResponse('Choose at least one text-message consent option, including “No” if you decline.', 400);
+      return renderResponse('Choose at least one text-message consent option, including “No” if you decline.', 400, returnPath);
     }
     if (hasPositiveConsent && smsConsent.declined) {
-      return renderResponse('Text-message consent choices conflict. Choose consent or decline.', 400);
+      return renderResponse('Text-message consent choices conflict. Choose consent or decline.', 400, returnPath);
     }
   }
 
   if (submissionType === 'suiteRental' && (!document.phone || !document.message || !document.suiteRental?.specialty || !document.suiteRental.yearsExperience || !document.suiteRental.insuranceAcknowledgement)) {
-    return renderResponse('Required suite application fields are missing.', 400);
+    return renderResponse('Required suite application fields are missing.', 400, returnPath);
   }
 
   const client = createClient({
@@ -341,7 +393,7 @@ export default async (request: Request): Promise<Response> => {
       .catch((error: unknown) => console.error('[lead-submit] Email status patch failed:', error));
   } catch (error) {
     console.error('[lead-submit] Sanity create failed:', error);
-    return renderResponse('Your submission could not be saved. Please try again.', 502);
+    return renderResponse('Your submission could not be saved. Please try again.', 502, returnPath);
   }
 
   return redirect(
