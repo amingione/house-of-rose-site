@@ -103,10 +103,6 @@ export const GET: APIRoute = async ({ site }) => {
     lastmod: post.publishedAt?.split('T')[0],
   }));
 
-  // Collection details are navigation-only and noindex. Keep only the category
-  // index in XML; canonical service pages carry the search intent.
-  const collectionIndexPage = { loc: `${baseUrl}/services/collections/`, priority: '0.7', changefreq: 'monthly' };
-
   // Concern pages
   const concernPages = concerns.map((concern) => ({
     loc: `${baseUrl}/concerns/${concern.slug}/`,
@@ -138,7 +134,6 @@ export const GET: APIRoute = async ({ site }) => {
   const allPages: SitemapPage[] = [
     ...staticPages,
     ...servicePages,
-    collectionIndexPage,
     ...concernPages,
     ...packagePages,
     ...blogPages,

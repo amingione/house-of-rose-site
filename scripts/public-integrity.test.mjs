@@ -2719,24 +2719,30 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   }
 });
 
-test('collection detail routes are noindex navigation and stay out of discovery feeds', () => {
+test('collection routes are noindex navigation and stay out of discovery feeds', () => {
   const collectionRoot = path.join(DIST_ROOT, 'services/collections');
-  const detailFiles = readdirSync(collectionRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => ({
-      slug: entry.name,
-      file: path.join(collectionRoot, entry.name, 'index.html'),
-    }))
-    .filter(({ file }) => isFile(file));
+  const routeFiles = [
+    {
+      slug: '',
+      file: path.join(collectionRoot, 'index.html'),
+    },
+    ...readdirSync(collectionRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => ({
+        slug: entry.name,
+        file: path.join(collectionRoot, entry.name, 'index.html'),
+      }))
+      .filter(({ file }) => isFile(file)),
+  ];
   const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
   const compactFeed = readFileSync(path.join(DIST_ROOT, 'llms.txt'), 'utf8');
   const fullFeed = readFileSync(path.join(DIST_ROOT, 'llms-full.txt'), 'utf8');
   const failures = [];
 
-  assert.ok(detailFiles.length > 0, 'No generated collection-detail pages were found.');
-  for (const { slug, file } of detailFiles) {
+  assert.ok(routeFiles.length > 1, 'No generated collection-detail pages were found.');
+  for (const { slug, file } of routeFiles) {
     const html = readFileSync(file, 'utf8');
-    const route = `/services/collections/${slug}/`;
+    const route = slug ? `/services/collections/${slug}/` : '/services/collections/';
     const absoluteUrl = `${SITE_ORIGIN}${route}`;
     if (!/<meta\s+name="robots"\s+content="[^"]*\bnoindex\b[^"]*\bfollow\b/i.test(html)) {
       failures.push(`${relativeToRepo(file)} is missing noindex, follow`);
