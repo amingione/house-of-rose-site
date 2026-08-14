@@ -23,7 +23,6 @@ const walk = (directory) => {
 walk(DIST);
 
 const failures = [];
-const warnings = [];
 const banned = [
   ['membership language', /\b(member pricing|memberships?|rose circle|rose pass)\b/i],
   ['discount campaign language', /\b(groupon|buy 5[, ]+get 1|percentage off)\b/i],
@@ -82,7 +81,7 @@ for (const file of htmlFiles) {
   const description = html.match(/<meta\s+name="description"\s+content="([^"]*)"/i)?.[1]
     ?? html.match(/<meta\s+content="([^"]*)"\s+name="description"/i)?.[1];
   if (!description) failures.push(`${relative}: missing meta description`);
-  else if (description.length < 140 || description.length > 160) warnings.push(`${relative}: meta description is ${description.length} characters`);
+  else if (description.length > 160) failures.push(`${relative}: meta description is ${description.length} characters`);
 
   const canonical = html.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1]
     ?? html.match(/<link\s+href="([^"]+)"\s+rel="canonical"/i)?.[1];
@@ -114,12 +113,6 @@ for (const relative of ['sitemap.xml', 'llms.txt', 'llms-full.txt']) {
   for (const pattern of retiredMembershipRoutes) {
     if (pattern.test(content)) failures.push(`${relative}: contains a retired membership route`);
   }
-}
-
-if (warnings.length) {
-  console.warn(`\nVisibility verification warnings (${warnings.length}):`);
-  for (const warning of warnings.slice(0, 60)) console.warn(`  - ${warning}`);
-  if (warnings.length > 60) console.warn(`  - …and ${warnings.length - 60} more`);
 }
 
 if (failures.length) {
