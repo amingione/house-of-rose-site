@@ -21,7 +21,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'acne-bootcamp':
     'Begin with the $99 Acne Bootcamp Consultation before enrolling in the complete 12-week program.',
   'glp-1-weight-management':
-    'Request the $25 GLP-1 Consultation. Medication choice and ongoing medication pricing are discussed with the practice, not determined by this page.',
+    'The first appointment is a 40-minute, $25 consultation with Diana Morrison, RN. Medication and ongoing program charges are separate; call House of Rose for those prices.',
   'permanent-jewelry':
     'Call House of Rose for the $65, 20-minute fitting. If the chain material or charm matters to you, ask what is available before booking.',
   injectables:
@@ -31,7 +31,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'iv-hydration-therapy':
     'If ingredients or add-ons are part of your decision, call House of Rose before booking and ask about the IV appointment you are considering.',
   'prf-injections':
-    'Use the consultation to ask about under-eye PRF or PRF Bio-Filler. Topical PRF belongs on the Microneedling page.',
+    'Diana Morrison, RN provides two injectable PRF consultations under medical direction: PRF Under-Eye is $495 with appointment length confirmed by phone; PRF Bio-Filler is $899 for 45 minutes. During eligible Microneedling, PRF is applied topically at the skin surface rather than injected.',
   prf:
     'Start with the PRF route that matches the appointment you want: topical PRF with Microneedling, PRF Under Eyes, or PRF Bio-Filler.',
   'injectables-bio-fillers':
