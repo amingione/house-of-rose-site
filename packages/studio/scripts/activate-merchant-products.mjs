@@ -85,11 +85,19 @@ const missingFields = (product) => {
 
 const decisions = products.map((product) => {
   const missing = missingFields(product);
-  const merchantStatus = missing.length === 0 ? 'eligible' : 'incomplete';
+  const explicitlyExcluded = product.merchantStatus === 'excluded';
+  if (explicitlyExcluded && !product.exclusionReason) {
+    throw new Error(`${product._id}: excluded products require an exclusion reason.`);
+  }
+  const merchantStatus = explicitlyExcluded
+    ? 'excluded'
+    : missing.length === 0 ? 'eligible' : 'incomplete';
   const policyClass = policyClassMap[product.policyClass] ?? product.policyClass ?? 'other';
-  const exclusionReason = missing.length === 0
-    ? undefined
-    : `Missing required product data: ${missing.join(', ')}`;
+  const exclusionReason = explicitlyExcluded
+    ? product.exclusionReason
+    : missing.length === 0
+      ? undefined
+      : `Missing required product data: ${missing.join(', ')}`;
   return { product, missing, merchantStatus, policyClass, exclusionReason };
 });
 
