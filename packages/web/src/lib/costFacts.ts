@@ -206,7 +206,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'microneedling-cost-punta-gorda': {
     display: '$300–$400',
-    metaDescription: 'Procell Microneedling is $300 for Pro and $400 for MD. A $50 consultation and separate $595 topical PRF appointment are also listed in Punta Gorda.',
+    metaDescription: 'Procell Microneedling at House of Rose is $300 for Pro and $400 for MD. A $50 consultation and separate $595 topical PRF appointment are listed in Punta Gorda.',
     summary: 'Procell Pro is $300, and Procell MD is $400.',
     answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
     menuHeading: 'Four Microneedling appointments and prices.',
