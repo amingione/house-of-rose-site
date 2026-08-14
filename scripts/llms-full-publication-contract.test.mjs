@@ -52,3 +52,9 @@ test('the full AI feed includes each reviewed AEO route inventory', () => {
   assert.match(source, /filterReviewedPublicComparisons\(comparisons\)/);
   assert.match(source, /getVerifiedCostFact\(guide\.slug\)/);
 });
+
+test('the compact AI feed includes the generated concern-guide inventory', () => {
+  assert.ok(compactSource.includes('ALL_CONCERNS_QUERY'));
+  assert.ok(compactSource.includes('${base}/concerns/'));
+  assert.ok(compactSource.includes('${base}/concerns/${concern.slug}/'));
+});

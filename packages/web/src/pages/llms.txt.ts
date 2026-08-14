@@ -5,12 +5,14 @@ import {
   ALL_SERVICES_QUERY,
   LLMS_FEATURED_TREATMENTS_QUERY,
   ALL_BLOG_POSTS_QUERY,
+  ALL_CONCERNS_QUERY,
   ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
   type Service,
   type BlogPost,
+  type Concern,
   type CostGuide,
   type Comparison,
   type LocalArea,
@@ -33,10 +35,11 @@ const NON_PUBLIC_SERVICE_SLUGS = new Set([
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [services, featuredTreatments, posts, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
+  const [services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<Service[]>(LLMS_FEATURED_TREATMENTS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
+    sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
@@ -60,6 +63,7 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `- [Home](${base}/): House of Rose Aesthetics — a medical aesthetics practice in Punta Gorda, FL`,
     `- [Services](${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, makeup, and permanent-jewelry appointments`,
+    `- [Concern Guides](${base}/concerns/): Observable skin, pigment, texture, movement, and volume questions connected to current services`,
     `- [About](${base}/about/): House of Rose Aesthetics and the people behind the practice`,
     `- [House of Rose Aesthetics](${base}/about/hra/): About the Punta Gorda practice`,
     `- [Providers](${base}/about/providers/): Licence types, service focus, and individual team profiles`,
@@ -107,6 +111,14 @@ export const GET: APIRoute = async ({ site }) => {
       const fact = getVerifiedCostFact(c.slug);
       const price = fact ? ` ${fact.answer}` : '';
       lines.push(`- [${c.title}](${base}/cost/${c.slug}/).${price}`);
+    }
+    lines.push(``);
+  }
+
+  if (concerns.length > 0) {
+    lines.push(`## Concern Guides`, ``);
+    for (const concern of concerns) {
+      lines.push(`- [${concern.title}](${base}/concerns/${concern.slug}/)`);
     }
     lines.push(``);
   }
