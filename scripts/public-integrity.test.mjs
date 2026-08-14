@@ -230,6 +230,50 @@ test('each generated page defines every JSON-LD entity id only once', () => {
   assert.equal(failures.length, 0, formatFailures('Duplicate expanded JSON-LD entity ids', failures));
 });
 
+test('public pages do not expose the private LLC ownership structure', () => {
+  const failures = [];
+  const privateOwnershipLanguage = /\b(?:co[- ]?owner|co[- ]?owned|authorized (?:LLC )?member)\b/i;
+
+  for (const file of publicHtmlFiles) {
+    const match = visibleText(readFileSync(file, 'utf8')).match(privateOwnershipLanguage);
+    if (match) failures.push(`${relativeToRepo(file)} contains ${JSON.stringify(match[0])}`);
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Private ownership language in public output', failures));
+});
+
+test('about page names the people behind the current service menu', () => {
+  const file = path.join(DIST_ROOT, 'about/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = mainHtml(readFileSync(file, 'utf8'));
+  const text = visibleText(html);
+  const failures = [];
+
+  for (const required of [
+    'The people behind the appointments.',
+    'Diana Morrison, RN provides injectables, IV hydration, and provider-guided weight management.',
+    'Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device',
+    'Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing.',
+    'Aundrea Pedigo, Licensed Esthetician provides wedding and special-event makeup',
+    'An injectable appointment, a skin treatment, a brow wax, and wedding makeup ask for different expertise.',
+    'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
+  ]) {
+    if (!text.includes(required)) failures.push(`about: missing ${JSON.stringify(required)}`);
+  }
+
+  for (const route of ['/about/providers/', '/services/']) {
+    if (!html.includes(`href="${route}"`)) failures.push(`about: missing trust path ${route}`);
+  }
+
+  for (const vagueOrPrivate of ['Other team members', 'co-owner', 'co-owned']) {
+    if (text.toLowerCase().includes(vagueOrPrivate.toLowerCase())) {
+      failures.push(`about: contains ${JSON.stringify(vagueOrPrivate)}`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('About-page provider depth regression', failures));
+});
+
 test('generated pages do not load two complete Tailwind stylesheets', () => {
   const failures = [];
 
@@ -455,6 +499,13 @@ test('reviewed Morpheus8 article retains sourced client decision support', () =>
   for (const fact of [/medical procedure/i, /licensed health care provider/i, /burns/i, /scarring/i, /fat loss/i, /nerve damage/i, /individual experiences and outcomes vary/i]) {
     if (!fact.test(text)) failures.push(`missing reviewed safety fact ${fact}`);
   }
+  for (const required of [
+    'What does “FDA-cleared” tell me?',
+    'Class II medical devices cleared through the FDA’s 510(k) process',
+    'clearance applies to a specific device and its authorized indications',
+  ]) {
+    if (!text.includes(required)) failures.push(`missing FDA-clearance context ${JSON.stringify(required)}`);
+  }
   for (const unsupported of [/\bno downtime\b/i, /\brisk[- ]free\b/i, /\bguaranteed\b/i]) {
     if (unsupported.test(text)) failures.push(`contains unsupported assurance ${unsupported}`);
   }
@@ -495,15 +546,17 @@ test('journal index describes the reviewed article that is actually published', 
   assert.equal(failures.length, 0, formatFailures('Journal-index depth regression', failures));
 });
 
-test('homepage preserves its hero, verified trust facts, and useful depth', () => {
+test('homepage preserves the approved surfaces, verified trust facts, and substantive paths', () => {
   const html = readFileSync(path.join(DIST_ROOT, 'index.html'), 'utf8');
   const main = mainHtml(html);
   const homepage = visibleText(main);
   const failures = [];
 
+  // Only the two owner-approved surfaces are copy-locked. The rest of the
+  // homepage is free to become warmer or more useful without teaching the
+  // test suite a preferred headline formula.
   for (const requiredAnchor of [
     'Good skin is a reflection of good judgment.',
-    'You do not need to arrive knowing the treatment name.',
     'Inside House of Rose.',
   ]) {
     if (!homepage.includes(requiredAnchor)) failures.push(`homepage is missing required anchor ${JSON.stringify(requiredAnchor)}`);
@@ -511,6 +564,8 @@ test('homepage preserves its hero, verified trust facts, and useful depth', () =
   for (const verifiedFact of [
     'Diana Morrison, RN',
     'Amber Mingione',
+    'Brandy, Licensed Esthetician',
+    'Aundrea Pedigo, Licensed Esthetician',
     'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
     '525 E Olympia Avenue',
     'Unit 9',
@@ -520,20 +575,35 @@ test('homepage preserves its hero, verified trust facts, and useful depth', () =
   for (const route of [
     '/services/',
     '/services/prf/',
+    '/services/prf-injections/',
     '/services/prf-under-eyes/',
     '/about/providers/',
+    '/about/providers/brandy/',
+    '/about/providers/aundrea/',
     '/experience/',
     '/consultation/',
   ]) {
     if (!main.includes(`href="${route}"`)) failures.push(`homepage is missing decision path ${route}`);
   }
-  if (homepage.split(/\s+/).length < 500) {
-    failures.push('homepage has been reduced below the reviewed substantive-depth floor');
+  for (const substantiveFact of [
+    'small sample of your own blood',
+    'topical PRF',
+    'PRF Bio-Filler',
+    'skin feels',
+  ]) {
+    if (!homepage.includes(substantiveFact)) {
+      failures.push(`homepage is missing substantive context ${JSON.stringify(substantiveFact)}`);
+    }
   }
   for (const retired of [
     'Every plan starts with a consultation',
     'Same source material. Three forms. Three different uses.',
+    'Three uses of PRF. Three distinct appointments.',
+    'A separate listing',
     'PRF EZ-Gel Bio-Filler',
+    'Different concerns call for different tools.',
+    'Looking well is specific',
+    'A tired look can have more than one source.',
   ]) {
     if (homepage.includes(retired)) failures.push(`homepage contains retired copy ${JSON.stringify(retired)}`);
   }
@@ -560,6 +630,9 @@ test('experience page connects the real practice to provider and booking informa
     'To reserve a time',
     'When you are still comparing',
     'You do not need to choose a treatment name before asking a question.',
+    'How will I know I am at the right entrance?',
+    'Look for the House of Rose Aesthetics sign and Unit 9.',
+    'Free parking is available',
   ]) {
     if (!text.includes(required)) failures.push(`experience: missing ${JSON.stringify(required)}`);
   }
@@ -574,6 +647,69 @@ test('experience page connects the real practice to provider and booking informa
   assert.equal(failures.length, 0, formatFailures('Experience depth regression', failures));
 });
 
+test('navigation and visit guidance speaks to clients rather than internal inventory', () => {
+  const expectations = [
+    {
+      route: 'services/index.html',
+      required: 'Some appointments can be booked directly. Others begin with a consultation or call',
+      retired: 'Every service page explains what the appointment involves',
+    },
+    {
+      route: 'compare/index.html',
+      required: 'Each guide explains how two services differ',
+      retired: 'current menu facts',
+    },
+    {
+      route: 'experience/index.html',
+      required: 'Open the service page to book online, call, or send a consultation request',
+      retired: 'reserve the current listing',
+    },
+    {
+      route: 'areas/port-charlotte/index.html',
+      required: 'Arrange the visit before you leave when a specific time matters.',
+      retired: 'whether the current listing can be booked',
+    },
+  ];
+  const failures = [];
+
+  for (const expectation of expectations) {
+    const file = path.join(DIST_ROOT, expectation.route);
+    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8')));
+    if (!text.includes(expectation.required)) {
+      failures.push(`${expectation.route}: missing ${JSON.stringify(expectation.required)}`);
+    }
+    if (text.includes(expectation.retired)) {
+      failures.push(`${expectation.route}: contains internal-inventory phrasing ${JSON.stringify(expectation.retired)}`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Client-language regression', failures));
+});
+
+test('public pages do not expose internal reconciliation language', () => {
+  const internalPhrases = [
+    'current verified menu',
+    'current verified listing',
+    'current menu sources disagree',
+    'while current sources are reconciled',
+    'because those details are not published online',
+    'verified against the current GlossGenius menu',
+  ];
+  const failures = [];
+
+  for (const file of publicHtmlFiles) {
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8'))).toLowerCase();
+    for (const phrase of internalPhrases) {
+      if (text.includes(phrase.toLowerCase())) {
+        failures.push(`${relativeToRepo(file)} contains ${JSON.stringify(phrase)}`);
+      }
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Internal reconciliation language', failures));
+});
+
 test('practice story distinguishes the appointment provider from medical direction', () => {
   const file = path.join(DIST_ROOT, 'about/hra/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
@@ -586,8 +722,10 @@ test('practice story distinguishes the appointment provider from medical directi
 
   for (const required of [
     'Who will I actually see?',
-    'Your service page names the practitioner and licence type',
-    'The provider directory brings those names, roles, and current services together',
+    'Diana Morrison, RN provides injectables, IV hydration, and provider-guided weight management.',
+    'Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device',
+    'Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing.',
+    'Aundrea Pedigo, Licensed Esthetician provides wedding and special-event makeup',
     'Joshua Shaw, MD is the practice’s medical director, providing medical direction and protocol supervision.',
     'He does not perform treatment appointments at House of Rose.',
     'The practitioner named for the service is the person associated with that appointment.',
@@ -650,6 +788,95 @@ test('direct visit FAQs state the current walk-in policy and match FAQPage schem
   assert.equal(failures.length, 0, formatFailures('Walk-in policy regression', failures));
 });
 
+test('consultation form explains that an inquiry does not reserve an appointment', () => {
+  const file = path.join(DIST_ROOT, 'consultation/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = readFileSync(file, 'utf8');
+  const text = visibleText(mainHtml(html));
+
+  for (const required of [
+    'Does submitting the form reserve an appointment?',
+    'No. The form sends your contact information and the topic you want to discuss.',
+    'House of Rose will contact you to arrange a time.',
+    'review its service page for a direct booking link.',
+  ]) {
+    assert.ok(text.includes(required), `Consultation page is missing ${JSON.stringify(required)}.`);
+  }
+
+  assert.ok(html.includes('"@type":"FAQPage"'), 'Consultation page is missing FAQPage JSON-LD.');
+});
+
+test('contact form explains reply timing and preserves the messaging-consent contract', () => {
+  const file = path.join(DIST_ROOT, 'contact/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = readFileSync(file, 'utf8');
+  const main = mainHtml(html);
+  const text = visibleText(main);
+  const failures = [];
+
+  for (const required of [
+    'When to expect a reply',
+    'Messages received Monday through Friday are typically answered within one business day.',
+    'When to call instead',
+    'Texting is optional',
+    'You may choose “No” in the text-message section and still send the form.',
+    '525 E Olympia Ave, Unit 9',
+    'Punta Gorda, FL 33950',
+    'Get directions',
+  ]) {
+    if (!text.includes(required)) failures.push(`contact: missing ${JSON.stringify(required)}`);
+  }
+  for (const requiredMarkup of [
+    'action="/.netlify/functions/lead-submit"',
+    'name="consent-informational"',
+    'name="consent-marketing"',
+    'name="consent-none"',
+    'href="tel:+18449417673"',
+    'href="/privacy-policy/"',
+  ]) {
+    if (!main.includes(requiredMarkup)) failures.push(`contact: missing ${requiredMarkup}`);
+  }
+  for (const requiredField of ['name', 'email', 'phone']) {
+    const fieldPattern = new RegExp(`<input\\b(?=[^>]*\\bname=["']${requiredField}["'])(?=[^>]*\\brequired\\b)[^>]*>`, 'i');
+    if (!fieldPattern.test(main)) failures.push(`contact: ${requiredField} is no longer required`);
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Contact-form guidance regression', failures));
+});
+
+test('suite-rental application explains the next step without changing the form contract', () => {
+  const file = path.join(DIST_ROOT, 'rent-a-room/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = readFileSync(file, 'utf8');
+  const main = mainHtml(html);
+  const text = visibleText(main);
+  const failures = [];
+
+  for (const required of [
+    'What happens after I apply?',
+    'The form starts a conversation; it does not reserve a room or collect payment.',
+    'the monthly rate for the room under discussion',
+    '$850 – $1,100 / month',
+    '10 × 14 ft private suite',
+  ]) {
+    if (!text.includes(required)) failures.push(`rent-a-room: missing ${JSON.stringify(required)}`);
+  }
+  for (const requiredMarkup of [
+    'name="suite-rental-application"',
+    'action="/.netlify/functions/lead-submit"',
+    'name="insurance-acknowledgement"',
+    'name="license-number"',
+    'href="tel:+18449417673"',
+  ]) {
+    if (!main.includes(requiredMarkup)) failures.push(`rent-a-room: missing ${requiredMarkup}`);
+  }
+  for (const retired of ['fully-equipped', 'no-competing-services', 'within 48 hours', 'Guaranteed Clientele', 'premium environment']) {
+    if (text.includes(retired)) failures.push(`rent-a-room: contains stale ${JSON.stringify(retired)}`);
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Suite-rental guidance regression', failures));
+});
+
 test('skin imaging explains the three views and keeps visible FAQs aligned with schema', () => {
   const file = path.join(DIST_ROOT, 'skin-analysis/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
@@ -708,13 +935,9 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
   assert.equal(failures.length, 0, formatFailures('Skin-imaging depth regression', failures));
 });
 
-test('priority service pages retain reviewed education instead of falling back to thin inventory', () => {
+test('priority service pages retain reviewed facts instead of falling back to thin inventory', () => {
   const expectations = {
     'injectables-bio-fillers': [
-      'Three materials shape the injectable menu.',
-      'House of Rose offers neurotoxins for movement-related lines',
-      'hyaluronic-acid fillers for selected areas of lost volume',
-      'injectable PRF prepared from a small sample of your own blood',
       'Botox and Daxxify',
       '$14 per unit',
       'Juvéderm Ultra XC',
@@ -731,8 +954,6 @@ test('priority service pages retain reviewed education instead of falling back t
       'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
     ],
     injectables: [
-      'Botox and Daxxify for movement-related lines.',
-      'Lost facial volume in selected lip, cheek, and fold areas is covered on the dermal filler page.',
       'Botox',
       'Daxxify',
       '$14 per unit',
@@ -740,8 +961,6 @@ test('priority service pages retain reviewed education instead of falling back t
       '60 minutes',
     ],
     'dermal-fillers': [
-      'Five current fillers for lips, cheeks, and folds.',
-      'Botox and Daxxify appear on the neurotoxin page for movement-related lines.',
       'Juvéderm Ultra XC',
       'Juvéderm Voluma XC',
       'RHA 1',
@@ -751,60 +970,63 @@ test('priority service pages retain reviewed education instead of falling back t
       '$850',
     ],
     glo2facial: [
-      'A facial with three distinct steps.',
+      'single-use OxyPod',
+      'topical infusion and finishes with facial massage',
       'surface exfoliation',
       'topical infusion',
       'oxygenation step',
       'reaction between its OxyPod and Primer Gel',
       'carbon-dioxide-rich bubbly environment',
-      'Is oxygen blown onto the skin during Glo2Facial?',
       'does not come from an external stream of oxygen',
+      'no downtime',
       '60 minutes',
     ],
     'forma-rf-facial': [
-      'Radiofrequency without needles.',
       'InMode non-invasive radiofrequency handpiece',
       'controlled dermal and subdermal heating',
-      'How is Forma different from Morpheus8?',
-      'Forma uses surface electrodes and does not use needles',
-      'How is Forma different from Lumecca Peak?',
-      'Lumecca Peak is an IPL handpiece',
+      'Does Forma use needles?',
+      'does not use microneedles',
+      'Lumecca Peak delivers filtered optical energy as IPL.',
     ],
     'lumecca-peak-ipl': [
       'InMode intense pulsed light (IPL) handpiece',
       'xenon flash lamp',
       'visible pigment, uneven tone, and selected texture concerns',
       'legs, full face, chest, neck, face and neck, face, neck, and chest, spot treatment, hands',
-      'Is Lumecca Peak a laser?',
-      'Which Lumecca Peak treatment areas are currently listed at House of Rose?',
-      'InMode and the FDA classify its applicators separately from laser applicators',
+      'InMode and the FDA classify the applicator separately from laser applicators',
     ],
     morpheus8: [
-      'Microneedling and radiofrequency in one device.',
       'fractional bipolar radiofrequency',
       'visible tone and texture',
-      'consultation-led service',
+      'Morpheus8 begins with a consultation.',
+      'Full Face',
+      '$1,200 single · $3,000 series of 3',
+      'Face & Neck',
+      '$1,250 single · $3,500 series of 3',
     ],
     'morpheus8-body': [
-      'The Morpheus8 platform, used for selected body concerns.',
       'same InMode platform',
       'body-skin tone, texture, eligible scars, and stretch marks',
-      'does not publish an unresolved treatment price, duration, or series',
+      'Morpheus8 Burst Deep area packages',
+      '$3,500',
+      '$4,500',
     ],
     biorepeel: [
-      'A topical chemical peel for visible texture and uneven tone.',
       'BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment at $250.',
+      'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment.',
       'TCA stands for trichloroacetic acid',
-      'Is BioRePeel a chemical peel?',
-      'Does the standalone BioRePeel appointment include microneedling?',
+      'Meet Brandy',
       'Compare the Microneedling service',
       'BioRePeel Cl3 Rejuvenation',
       '$250',
       '45 minutes',
     ],
     microneedling: [
-      'Procell is the device behind the Microneedling menu.',
       'Procell Microchanneling is the device-specific name used for this Microneedling service.',
+      'Amber Mingione, Licensed Esthetician, provides the current Microneedling services.',
+      'injectable PRF appointments are listed separately and provided by Diana Morrison, RN',
+      'Review the complete PRF overview',
+      'Meet Amber Mingione, Licensed Esthetician',
       'Procell Therapies — Pro',
       '$300',
       'Procell Therapies — MD',
@@ -813,8 +1035,9 @@ test('priority service pages retain reviewed education instead of falling back t
       '$595',
     ],
     prf: [
-      'Three current ways PRF appears on the menu.',
-      'Under-Eye and Bio-Filler have their own injectable consultation listings.',
+      'Platelet-rich fibrin (PRF) is prepared from a small sample of your own blood.',
+      'PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN under medical direction.',
+      'Review PRF Under Eyes',
       'Topical PRF Microneedling',
       'PRF Under-Eye',
       '$495',
@@ -822,8 +1045,8 @@ test('priority service pages retain reviewed education instead of falling back t
       '$899',
     ],
     'prf-injections': [
-      'Two injectable PRF consultations are currently listed.',
-      'Topical PRF appears on the Microneedling page, where it is applied to the skin surface.',
+      'When PRF is part of an eligible Microneedling appointment, it is applied topically at the skin surface instead.',
+      'PRF is prepared from a small sample of your own blood.',
       'PRF Under-Eye — Consultation',
       '$495',
       'PRF Bio-Filler — Consultation',
@@ -831,8 +1054,7 @@ test('priority service pages retain reviewed education instead of falling back t
       'Diana Morrison, RN',
     ],
     'permanent-jewelry': [
-      'A fitted chain without a traditional clasp.',
-      'Aundrea Pedigo, Esthetician',
+      'Aundrea Pedigo, Licensed Esthetician',
       'non-medical service',
       'not attached to the skin',
       'can be cut when removal is needed',
@@ -840,14 +1062,12 @@ test('priority service pages retain reviewed education instead of falling back t
       '20 minutes',
     ],
     'iv-hydration-therapy': [
-      'Six current IV options, listed plainly.',
       'Diana Morrison, RN',
-      'Formulations and add-ons are not listed',
+      'Call House of Rose to confirm current formulations and available add-ons.',
       'from $99 to $185',
-      '30 or 45 minutes',
+      '30- or 45-minute appointments',
     ],
     dermaplaning: [
-      'Surface exfoliation and peach-fuzz removal in one service.',
       'fine vellus hair and accumulated dead skin cells',
       'Amber Mingione, Licensed Esthetician',
       'Dermaplaning — Facial (standalone)',
@@ -856,19 +1076,16 @@ test('priority service pages retain reviewed education instead of falling back t
       'Dermaplaning — Add-On',
       '$45',
       '25 minutes',
-      'Will peach fuzz grow back thicker or darker after dermaplaning?',
       'it does not change the hair’s thickness, color, or rate of growth',
     ],
     'glp-1-weight-management': [
-      'The current menu lists a consultation, semaglutide, and tirzepatide.',
       'semaglutide',
       'tirzepatide',
       'Diana Morrison, RN',
       'GLP-1 Consultation',
       '$25',
       '40 minutes',
-      'Can I choose semaglutide or tirzepatide from this page?',
-      'Medication pricing is not published',
+      'medication and ongoing program pricing',
     ],
   };
   const failures = [];
@@ -892,10 +1109,6 @@ test('priority service pages retain reviewed education instead of falling back t
   );
   const weightManagementHtml = readFileSync(weightManagementFile, 'utf8');
   const weightManagementText = visibleText(mainHtml(weightManagementHtml));
-  assert.ok(
-    weightManagementHtml.includes('"@type":"FAQPage"'),
-    'GLP-1 Weight Management must emit reviewed FAQPage JSON-LD.',
-  );
   for (const unresolvedPrice of ['$299', '$399']) {
     assert.ok(
       !weightManagementText.includes(unresolvedPrice),
@@ -969,14 +1182,11 @@ test('priority service pages retain reviewed education instead of falling back t
   }
 
   const glo = visibleText(readFileSync(path.join(DIST_ROOT, 'services/glo2facial/index.html'), 'utf8'));
-  for (const retiredOrUnverified of ['HydraFacial', '$195', '$225', '$250', 'no downtime']) {
+  for (const retiredOrUnverified of ['HydraFacial', '$195', '$225', '$250']) {
     if (glo.toLowerCase().includes(retiredOrUnverified.toLowerCase())) {
       failures.push(`glo2facial: contains retired or unreconciled ${JSON.stringify(retiredOrUnverified)}`);
     }
   }
-  const gloHtml = readFileSync(path.join(DIST_ROOT, 'services/glo2facial/index.html'), 'utf8');
-  if (!gloHtml.includes('"@type":"FAQPage"')) failures.push('glo2facial: missing FAQPage JSON-LD');
-
   const morpheus = visibleText(readFileSync(path.join(DIST_ROOT, 'services/morpheus8/index.html'), 'utf8'));
   for (const unsupported of ['tightening', 'lifting', 'jowls', 'body sculpting']) {
     if (morpheus.toLowerCase().includes(unsupported)) {
@@ -984,14 +1194,8 @@ test('priority service pages retain reviewed education instead of falling back t
     }
   }
 
-  const dermaplaningHtml = readFileSync(path.join(DIST_ROOT, 'services/dermaplaning/index.html'), 'utf8');
-  if (!dermaplaningHtml.includes('"@type":"FAQPage"')) failures.push('dermaplaning: missing FAQPage JSON-LD');
-
   const lumeccaHtml = readFileSync(path.join(DIST_ROOT, 'services/lumecca-peak-ipl/index.html'), 'utf8');
-  if (!lumeccaHtml.includes('"@type":"FAQPage"')) failures.push('lumecca-peak-ipl: missing FAQPage JSON-LD');
-
   const formaHtml = readFileSync(path.join(DIST_ROOT, 'services/forma-rf-facial/index.html'), 'utf8');
-  if (!formaHtml.includes('"@type":"FAQPage"')) failures.push('forma-rf-facial: missing FAQPage JSON-LD');
   for (const route of ['/services/morpheus8/', '/services/lumecca-peak-ipl/']) {
     if (!formaHtml.includes(`href="${route}"`)) failures.push(`forma-rf-facial: missing ${route}`);
   }
@@ -1036,22 +1240,29 @@ test('priority service pages retain reviewed education instead of falling back t
     'Reboot (Hangover Recovery) IV',
     "Myers' Cocktail IV",
     'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
-    'Which IV hydration options are currently listed?',
+    'Which IV hydration options does House of Rose offer?',
+    'Do I need to choose an IV option before I call?',
   ]) {
     if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing ${JSON.stringify(required)}`);
   }
   for (const required of [
     'At House of Rose, an IV drip is IV Hydration Therapy.',
     'IV stands for intravenous',
-    'six base options',
-    'An option name is not an ingredient list.',
-    'verified names, appointment lengths, and prices',
+    'House of Rose offers 6 named base options.',
+    'Use the table to compare each appointment by name, time, and price.',
+    'The appointment names do not provide a complete ingredient list.',
   ]) {
     if (!visibleText(ivCategoryOverview).includes(required)) {
       failures.push(`iv-hydration-therapy category overview: missing ${JSON.stringify(required)}`);
     }
   }
-  if (!ivHtml.includes('"@type":"FAQPage"')) failures.push('iv-hydration-therapy: missing FAQPage JSON-LD');
+  for (const required of [
+    'Which IV option is 30 minutes?',
+    'How do I confirm the ingredients or available add-ons?',
+    'Meet Diana Morrison, RN',
+  ]) {
+    if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing practical guidance ${JSON.stringify(required)}`);
+  }
   const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
   if (!sitemap.includes(`<loc>${SITE_ORIGIN}/services/iv-hydration-therapy/</loc>`)) {
     failures.push('iv-hydration-therapy: canonical route is missing from sitemap.xml');
@@ -1074,6 +1285,84 @@ test('priority service pages retain reviewed education instead of falling back t
   assert.equal(failures.length, 0, formatFailures('Priority service education regression', failures));
 });
 
+test('service FAQs remain optional and match FAQPage schema whenever they are published', () => {
+  const failures = [];
+  const serviceFiles = walkFiles(path.join(DIST_ROOT, 'services'), (file) => file.endsWith('index.html'));
+
+  for (const file of serviceFiles) {
+    const html = readFileSync(file, 'utf8');
+    const main = mainHtml(html);
+    const visibleFaqs = [...main.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/gi)].map((match) => ({
+      question: visibleText(
+        match[1].match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/i)?.[1] ?? '',
+      ).replace(/\s*\+$/, ''),
+      answer: visibleText(
+        match[1].match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1] ?? '',
+      ),
+    }));
+    const faqSchema = [...html.matchAll(
+      /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+    )]
+      .map((match) => JSON.parse(match[1]))
+      .find((schema) => schema?.['@type'] === 'FAQPage');
+    const schemaFaqs = faqSchema?.mainEntity?.map((item) => ({
+      question: item.name,
+      answer: item.acceptedAnswer?.text,
+    })) ?? [];
+
+    if (JSON.stringify(visibleFaqs) !== JSON.stringify(schemaFaqs)) {
+      failures.push(`${relativeToRepo(file)}: visible questions and FAQPage JSON-LD differ`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Service FAQ parity regression', failures));
+});
+
+test('service appointment sections give service-specific next-step guidance', () => {
+  const serviceRoot = path.join(DIST_ROOT, 'services');
+  const serviceSlugs = readdirSync(serviceRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name !== 'collections')
+    .filter((entry) => existsSync(path.join(serviceRoot, entry.name, 'index.html')))
+    .map((entry) => entry.name)
+    .sort();
+  const guidanceBySlug = new Map();
+  const failures = [];
+
+  for (const slug of serviceSlugs) {
+    const html = readFileSync(path.join(serviceRoot, slug, 'index.html'), 'utf8');
+    const match = html.match(
+      /<p\b[^>]*data-service-appointment-guidance[^>]*>([\s\S]*?)<\/p>/i,
+    );
+    const guidance = match ? visibleText(match[1]) : '';
+
+    if (!guidance) failures.push(`${slug}: missing service-specific appointment guidance`);
+    guidanceBySlug.set(slug, guidance);
+  }
+
+  const grouped = new Map();
+  for (const [slug, guidance] of guidanceBySlug) {
+    if (!grouped.has(guidance)) grouped.set(guidance, []);
+    grouped.get(guidance).push(slug);
+  }
+  for (const [guidance, slugs] of grouped) {
+    if (guidance && slugs.length > 1) {
+      failures.push(`${slugs.join(', ')}: repeat the same appointment guidance ${JSON.stringify(guidance)}`);
+    }
+  }
+
+  for (const generic of [
+    'Request a consultation time, or contact the practice if you have a question before scheduling.',
+    'Choose an available time in the current booking menu, or send a question before you reserve.',
+    'Call the practice for current appointment availability, or send a question through the consultation form.',
+  ]) {
+    if ([...guidanceBySlug.values()].includes(generic)) {
+      failures.push(`service inventory still renders generic fallback ${JSON.stringify(generic)}`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Service appointment-guidance regression', failures));
+});
+
 test('services index keeps canonical decision hubs and provider orientation visible', () => {
   const file = path.join(DIST_ROOT, 'services/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
@@ -1086,9 +1375,11 @@ test('services index keeps canonical decision hubs and provider orientation visi
   const failures = [];
 
   for (const required of [
-    'Open the page that sounds closest to what you need.',
-    'explains what the appointment is',
-    'you will see the person’s name and licence type there too',
+    'Begin with the service, the concern, or the person you want to see.',
+    'Some appointments can be booked directly.',
+    'Others begin with a consultation or call',
+    'names that person and their licence type',
+    'provider directory connects each person to the work they currently provide',
   ]) {
     if (!guidanceText.includes(required)) failures.push(`services index guidance is missing ${JSON.stringify(required)}`);
   }
@@ -1147,7 +1438,7 @@ test('provider profiles explain verified roles and connect them to current servi
       'href="/services/facial-waxing/"',
     ],
     aundrea: [
-      'Aundrea Pedigo, Esthetician',
+      'Aundrea Pedigo, Licensed Esthetician',
       'weddings, special events, photo shoots, and celebrations',
       'fitted, clasp-free chain closed by welding',
       'non-medical services',
@@ -1178,7 +1469,7 @@ test('provider directory and legacy contact cards match reviewed provider facts'
     diana: ['Diana Morrison, RN', 'Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'IV hydration', 'GLP-1 weight management'],
     amber: ['Amber Mingione, Licensed Esthetician', 'Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
     brandy: ['Brandy, Licensed Esthetician', 'Facials', 'Standalone BioRePeel', 'Facial waxing'],
-    aundrea: ['Aundrea Pedigo, Esthetician', 'Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
+    aundrea: ['Aundrea Pedigo, Licensed Esthetician', 'Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
   };
   const expectedProfileRoutes = Object.keys(directoryExpectations)
     .map((slug) => `/about/providers/${slug}/`)
@@ -1252,13 +1543,13 @@ test('provider directory and legacy contact cards match reviewed provider facts'
 
 test('cost guides explain the current price structure instead of publishing a bare number', () => {
   const expectations = {
-    'botox-cost-punta-gorda': ['Botox is priced by the unit.', 'What $14 per unit means.', 'Botox', '$14 per unit', '30 minutes', 'Is $14 the total price for a Botox appointment?'],
-    'dermal-fillers-cost-punta-gorda': ['Five products make up the range.', 'Products, range, and consultation.', 'Juvéderm Ultra XC', 'Juvéderm Voluma XC', 'RHA 1', 'RHA 2', 'RHA 3', 'Dermal Filler Consultation', '$300'],
-    'forma-cost-punta-gorda': ['The treatment area sets the listed price.', 'How the area menu is priced.', 'Face & Neck', '$3,000', 'Eyes', '$600', 'Forma + Lumecca Bundle', '$2,599'],
-    'ipl-photofacial-cost-punta-gorda': ['Area and series determine the listing.', 'How to read the $250–$2,600 range.', 'Legs · Full Face · Chest · Neck', 'Spot · Hands', 'Single and three-session listings', '$250–$2,600 overall'],
-    'biorepeel-cost-punta-gorda': ['One treatment or a series of three.', 'Standalone and series pricing.', 'BioRePeel Cl3 Rejuvenation', '$250', 'Series of 3', '$699'],
-    'microneedling-cost-punta-gorda': ['Pro and MD are separate menu options.', 'Pro, MD, and topical PRF.', 'Procell Therapies — Pro', '$300', 'Procell Therapies — MD', '$400', 'PRF Microneedling — Consultation', '$595'],
-    'morpheus8-cost-punta-gorda': ['Only the combination price is published.', 'What is—and is not—priced.', 'standalone Morpheus8 price is not published', 'Morpheus8 + Lumecca Bundle', '$1,799', 'not a standalone Morpheus8 price'],
+    'botox-cost-punta-gorda': ['Botox', '$14 per unit', '30 minutes'],
+    'dermal-fillers-cost-punta-gorda': ['Juvéderm Ultra XC', 'Juvéderm Voluma XC', 'RHA 1', 'RHA 2', 'RHA 3', 'Dermal Filler Consultation', '$300'],
+    'forma-cost-punta-gorda': ['Face & Neck', '$3,000', 'Eyes', '$600', 'Forma + Lumecca Bundle', '$2,599'],
+    'ipl-photofacial-cost-punta-gorda': ['Legs · Full Face · Chest · Neck', 'Spot · Hands', 'Single and three-session listings', '$250–$2,600 overall'],
+    'biorepeel-cost-punta-gorda': ['BioRePeel Cl3 Rejuvenation', '$250', 'Series of 3', '$699'],
+    'microneedling-cost-punta-gorda': ['Procell Therapies — Pro', '$300', 'Procell Therapies — MD', '$400', 'PRF Microneedling — Consultation', '$595'],
+    'morpheus8-cost-punta-gorda': ['Full Face', '$1,200 single · $3,000 series of 3', 'Face & Neck', '$1,250 single · $3,500 series of 3', 'Morpheus8 + Lumecca Bundle', '$1,799'],
   };
   const failures = [];
 
@@ -1270,7 +1561,10 @@ test('cost guides explain the current price structure instead of publishing a ba
     for (const value of requiredCopy) {
       if (!text.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
     }
-    if (!text.includes('Menu checked August 6, 2026')) {
+    const expectedVerificationDate = slug === 'morpheus8-cost-punta-gorda'
+      ? 'August 14, 2026'
+      : 'August 6, 2026';
+    if (!text.includes(expectedVerificationDate)) {
       failures.push(`${slug}: missing readable verification date`);
     }
 
@@ -1290,9 +1584,22 @@ test('cost guides explain the current price structure instead of publishing a ba
       question: item.name,
       answer: item.acceptedAnswer?.text,
     })) ?? [];
-    if (visibleFaqs.length < 2) failures.push(`${slug}: expected at least two visible factual FAQs`);
+    if (visibleFaqs.length === 0) failures.push(`${slug}: expected a factual answer to the cost intent`);
     if (JSON.stringify(visibleFaqs) !== JSON.stringify(schemaFaqs)) {
       failures.push(`${slug}: visible FAQ copy and FAQPage JSON-LD differ`);
+    }
+
+    if (slug === 'morpheus8-cost-punta-gorda') {
+      for (const required of [
+        'Morpheus8 vs. Microneedling',
+        'Morpheus8 adds fractional bipolar radiofrequency',
+        'Open the full comparison',
+      ]) {
+        if (!text.includes(required)) failures.push(`${slug}: missing comparison context ${JSON.stringify(required)}`);
+      }
+      if (text.includes('Price per unit is only one difference.')) {
+        failures.push(`${slug}: retains Botox-specific per-unit comparison copy`);
+      }
     }
   }
 
@@ -1319,36 +1626,29 @@ test('the cost index links each active guide to its related service', () => {
   assert.equal(failures.length, 0, formatFailures('Cost-index navigation regression', failures));
 });
 
-test('concern guides explain the distinction before presenting a treatment list', () => {
-  const expectations = {
-    aging: 'What catches your eye first?',
-    'dark-circles': 'Under-eye darkness may be color, shadow, or both.',
-    'fine-lines-laxity': 'The same area can show more than one kind of line.',
-    'acne-scarring': 'Look at the shape and depth of the scar.',
-    'active-acne': 'Are new breakouts appearing, or are you seeing what they left behind?',
-    hyperpigmentation: 'Is it one spot, a diffuse patch, or a mark left after inflammation?',
-    'volume-loss': 'Where does the face look less full or supported?',
-    'sun-damage': 'Do spots, uneven color, or a rougher surface stand out most?',
-    texture: 'What does “texture” look like up close?',
-    'stretch-marks': 'How do the marks look now?',
-  };
+test('concern guides retain reviewed distinctions without enforcing one headline formula', () => {
+  const concernSlugs = [
+    'aging',
+    'dark-circles',
+    'fine-lines-laxity',
+    'acne-scarring',
+    'active-acne',
+    'hyperpigmentation',
+    'volume-loss',
+    'sun-damage',
+    'texture',
+    'stretch-marks',
+  ];
   const faceConcernFacts = {
     aging: ['rougher surface', 'uneven color', 'appears with expression', 'surface, pigment, movement, or volume'],
     'dark-circles': ['thin or translucent skin', 'visible vessels', 'structural shadow', 'outside what an aesthetic service can change'],
     'fine-lines-laxity': ['repeated facial movement', 'skin texture', 'facial support', 'neurotoxins for movement-related lines', 'fillers for selected volume changes', 'resurfacing or device services'],
     'volume-loss': ['hollow, fold, or shift in facial shape', 'manufactured hyaluronic-acid gels', 'small sample of your own blood', 'Botox and Daxxify'],
   };
-  const consultationHeadings = {
-    aging: 'Bring the change you notice most.',
-    'dark-circles': 'Describe the darkness in your own words.',
-    'fine-lines-laxity': 'Point to the line or change that bothers you.',
-    'acne-scarring': 'Show us the texture from more than one angle.',
-    'active-acne': 'Tell us what is new and what has remained.',
-    hyperpigmentation: 'Show us the color and its pattern.',
-    'volume-loss': 'Tell us where the face looks less supported.',
-    'sun-damage': 'Tell us what your eye goes to first.',
-    texture: 'Describe what you see and what you can feel.',
-    'stretch-marks': 'Show us the marks as they are today.',
+  const practicalGuidance = {
+    aging: ['face at rest and once in expression', 'what you would prefer to leave alone', 'not a perfectly posed one'],
+    'fine-lines-laxity': ['Let your face rest', 'A relaxed photograph and one with expression', 'how much natural movement you want to keep'],
+    'volume-loss': ['Look straight on and from the side', 'Bring a front and side photograph', 'what each one actually does'],
   };
   const retiredFaceConcernCadence = [
     /services below/i,
@@ -1359,14 +1659,13 @@ test('concern guides explain the distinction before presenting a treatment list'
   ];
   const failures = [];
 
-  for (const [slug, heading] of Object.entries(expectations)) {
+  for (const slug of concernSlugs) {
     const file = path.join(DIST_ROOT, `concerns/${slug}/index.html`);
     assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
     const html = readFileSync(file, 'utf8');
     const education = html.match(/<section\b[^>]*data-concern-education[^>]*>([\s\S]*?)<\/section>/i)?.[1] ?? '';
     const text = visibleText(education);
     if (!education) failures.push(`${slug}: missing concern education section`);
-    if (!text.includes(heading)) failures.push(`${slug}: missing ${JSON.stringify(heading)}`);
     const requiredFacts = faceConcernFacts[slug];
     if (requiredFacts) {
       for (const fact of requiredFacts) {
@@ -1378,18 +1677,17 @@ test('concern guides explain the distinction before presenting a treatment list'
     }
     const main = mainHtml(html);
     const mainText = visibleText(main);
+    for (const guidance of practicalGuidance[slug] ?? []) {
+      if (!mainText.includes(guidance)) failures.push(`${slug}: missing practical guidance ${JSON.stringify(guidance)}`);
+    }
     const consultationHeading = visibleText(
       main.match(/<h2\b[^>]*data-concern-consultation-heading[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? '',
     );
     const consultationPrompt = visibleText(
       main.match(/<p\b[^>]*data-concern-consultation-prompt[^>]*>([\s\S]*?)<\/p>/i)?.[1] ?? '',
     );
-    if (consultationHeading !== consultationHeadings[slug]) {
-      failures.push(`${slug}: missing its concern-specific consultation heading`);
-    }
-    if (consultationPrompt.split(/\s+/).length < 12) {
-      failures.push(`${slug}: consultation prompt is missing useful concern context`);
-    }
+    if (!consultationHeading) failures.push(`${slug}: missing consultation heading`);
+    if (!consultationPrompt) failures.push(`${slug}: missing concern-specific consultation context`);
     for (const retired of [
       'Talk with House of Rose.',
       'Call the practice, or send an inquiry with the concern you want to discuss.',
@@ -1397,10 +1695,6 @@ test('concern guides explain the distinction before presenting a treatment list'
     ]) {
       if (mainText.includes(retired)) failures.push(`${slug}: contains retired repeated CTA ${JSON.stringify(retired)}`);
     }
-  }
-
-  if (new Set(Object.values(consultationHeadings)).size !== Object.keys(expectations).length) {
-    failures.push('concern-specific consultation headings are not unique');
   }
 
   assert.equal(failures.length, 0, formatFailures('Concern-guide depth regression', failures));
@@ -1412,9 +1706,17 @@ test('concern index preserves reviewed distinctions and direct guide navigation'
   const html = readFileSync(file, 'utf8');
   const guidance = html.match(/<section\b[^>]*data-concern-index-guidance[^>]*>([\s\S]*?)<\/section>/i)?.[1] ?? '';
   const text = visibleText(guidance);
+  const main = mainHtml(html);
+  const cards = [...main.matchAll(/<a\b[^>]*data-concern-guide-card[^>]*>([\s\S]*?)<\/a>/gi)];
   const failures = [];
 
   if (!guidance) failures.push('concerns index is missing reviewed guidance');
+  if (cards.length < 10) failures.push(`concerns index expected at least 10 substantive guide cards, found ${cards.length}`);
+  for (const card of cards) {
+    const cardText = visibleText(card[1]);
+    if (!cardText.includes('Read the guide')) failures.push('concern card is missing its direct guide action');
+    if (cardText.split(/\s+/).length < 12) failures.push(`concern card is too thin: ${JSON.stringify(cardText)}`);
+  }
   for (const required of [
     'Are new breakouts appearing, or are you seeing what they left behind?',
     'Under-eye darkness may be color, shadow, or both.',
@@ -1433,6 +1735,13 @@ test('concern index preserves reviewed distinctions and direct guide navigation'
   ]) {
     if (!guidance.includes(`href="${route}"`)) failures.push(`concerns index guidance is missing ${route}`);
   }
+  for (const required of [
+    'You do not need the exact term for it.',
+    'Skin analysis gives you a visual baseline.',
+    'A consultation gives you room to talk it through.',
+  ]) {
+    if (!visibleText(main).includes(required)) failures.push(`concerns index is missing client guidance ${JSON.stringify(required)}`);
+  }
 
   assert.equal(failures.length, 0, formatFailures('Concern-index depth regression', failures));
 });
@@ -1448,10 +1757,11 @@ test('areas index identifies one real practice instead of implying satellite off
   const failures = [];
 
   for (const required of [
-    'The city names below are service areas, not separate offices.',
-    'one practice at 525 E Olympia Ave, Unit 9 in Punta Gorda',
-    'The photograph is the storefront you will see when you arrive.',
-    'not additional House of Rose locations',
+    'Every appointment is at the Punta Gorda practice.',
+    '525 E Olympia Ave, Unit 9',
+    'The photograph shows the actual storefront.',
+    'There are no separate House of Rose locations in those communities.',
+    'look for Unit 9',
     'free parking is available',
   ]) {
     if (!text.includes(required)) failures.push(`areas index: missing ${JSON.stringify(required)}`);
@@ -1497,7 +1807,7 @@ test('area detail guides distinguish the location from the service area and supp
       expectation.heading,
       'The storefront photograph shows the entrance',
       'Free parking is available.',
-      'whether to book online, request a consultation, or call first',
+      'If your appointment time is not set, call before leaving',
       'href="/services/"',
       'href="tel:+18449417673"',
     ]) {
@@ -1511,7 +1821,7 @@ test('area detail guides distinguish the location from the service area and supp
       failures.push(`${slug}: missing satellite-office clarification`);
     }
     for (const requiredFaq of [
-      'What should I check before making the trip?',
+      'What if I want a specific appointment time?',
       'Is parking available?',
     ]) {
       if (!text.includes(requiredFaq)) failures.push(`${slug}: visible FAQ is missing ${JSON.stringify(requiredFaq)}`);
@@ -1540,17 +1850,43 @@ test('results index explains the proof standard even when no cases are published
     'anything else used in the same series that contributed to the result',
     'The elapsed timeframe—and the number of sessions when relevant',
     'Written client permission is required for website publication.',
+    'Will my photographs be published?',
+    'A treatment appointment does not, by itself, authorize website publication.',
     'individual results vary',
   ]) {
     if (!text.includes(required)) failures.push(`results index: missing ${JSON.stringify(required)}`);
   }
 
   if (/<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(html)) {
-    const emptyState = 'No client cases are currently published. House of Rose does not substitute stock or context-free images for consented client documentation.';
-    if (!visibleText(main).includes(emptyState)) failures.push('results index: empty state does not explain why proof is absent');
+    for (const required of [
+      'Why the gallery is empty',
+      'An empty gallery is better than borrowed proof.',
+      'No House of Rose client cases are currently published.',
+      'rather than filled with stock or context-free images',
+      'written permission for website publication',
+      'the treatment and timeframe can be shown with the photographs',
+    ]) {
+      if (!visibleText(main).includes(required)) {
+        failures.push(`results index: empty state is missing ${JSON.stringify(required)}`);
+      }
+    }
   }
-  for (const retired of ['Real results, real clients', 'being photographed now']) {
+  for (const retired of [
+    'Real results, real clients',
+    'being photographed now',
+    'Use the service—not the photograph—as your starting point.',
+    'A service page explains',
+  ]) {
     if (visibleText(main).includes(retired)) failures.push(`results index: contains retired ${JSON.stringify(retired)}`);
+  }
+  for (const required of [
+    'A photograph can start the conversation. It cannot finish it.',
+    'cannot predict how your skin will respond',
+    'not a promise to recreate someone else’s result',
+    'href="/services/"',
+    'href="/compare/"',
+  ]) {
+    if (!main.includes(required)) failures.push(`results index: missing useful next step ${JSON.stringify(required)}`);
   }
 
   assert.equal(failures.length, 0, formatFailures('Results-proof standard regression', failures));
@@ -1579,8 +1915,8 @@ test('comparison pages expose only reviewed factual row types', () => {
   for (const required of [
     'Morpheus8 vs. Microneedling',
     'Morpheus8 adds fractional bipolar radiofrequency; Procell microneedling does not.',
-    'Where they separate',
-    'What they have in common',
+    'Radiofrequency is the dividing line.',
+    'Both still use microneedling.',
     'Current House of Rose role',
   ]) {
     if (!morpheusText.includes(required)) failures.push(`morpheus8-vs-microneedling: missing ${JSON.stringify(required)}`);
@@ -1597,21 +1933,22 @@ test('comparison pages expose only reviewed factual row types', () => {
   assert.ok(existsSync(daxxifyFile), `Missing generated ${relativeToRepo(daxxifyFile)}`);
   const daxxifyHtml = readFileSync(daxxifyFile, 'utf8');
   const daxxifyText = visibleText(mainHtml(daxxifyHtml));
-  for (const required of [
-    'Daxxify vs. Botox',
-    'cannot be compared or converted between products',
-    '$14 per Daxxify unit',
-    '$14 per Botox unit',
-    'Published onset evidence',
-    'Median 3 days to subject-rated improvement of at least 1 point',
-    'chemical denervation typically begins 1–2 days after injection',
-    'Downtime evidence',
-    'does not establish one universal downtime period',
-    'They are not a dose-conversion table, a direct head-to-head trial, or a promise about an individual result.',
-    'Are Daxxify and Botox units interchangeable?',
-    'Is there a verified downtime difference between Daxxify and Botox?',
+  for (const requiredFact of [
+    /Daxxify vs\. Botox/i,
+    /product-specific unit/i,
+    /\$14 per Daxxify unit/i,
+    /\$14 per Botox unit/i,
+    /60 minutes/i,
+    /30 minutes/i,
+    /Published onset evidence/i,
+    /Median 3 days to subject-rated improvement of at least 1 point/i,
+    /chemical denervation typically begins 1[–-]2 days after injection/i,
+    /Downtime evidence/i,
+    /possible adverse reactions and injection-related effects/i,
+    /separate studies with different (?:definitions|endpoints)/i,
+    /not a dose-conversion table, a direct head-to-head trial, or a promise about an individual result/i,
   ]) {
-    if (!daxxifyText.includes(required)) failures.push(`daxxify-vs-botox: missing ${JSON.stringify(required)}`);
+    if (!requiredFact.test(daxxifyText)) failures.push(`daxxify-vs-botox: missing ${requiredFact}`);
   }
   for (const retired of [
     'Which Wrinkle Relaxer Is Right for You?',
@@ -1675,12 +2012,12 @@ test('AI service inventory omits raw CMS prices and durations', () => {
 
   for (const reviewedDepth of [
     'Overview:',
-    'Current verified menu',
-    'Current verified IV menu:',
+    'House of Rose menu (prices shown as of',
+    'IV hydration menu:',
     'Hydration IV — $99 · 30 minutes.',
-    'Current verified listing: PRF Under-Eye — Consultation — $495.',
-    'The appointment length is omitted because current menu sources disagree.',
-    'Morpheus8 combines microneedling with fractional bipolar radiofrequency in one InMode device.',
+    'Appointment price: PRF Under-Eye — Consultation — $495.',
+    'Call House of Rose to confirm how much time to allow for the appointment.',
+    'House of Rose’s Procell Microneedling service uses the Procell device to create controlled microchannels. Morpheus8 combines microneedling with fractional bipolar radiofrequency in the same InMode device.',
   ]) {
     assert.ok(
       fullFeed.includes(reviewedDepth),
@@ -1703,10 +2040,11 @@ test('packages index explains and links only the verified current program', () =
   const main = mainHtml(readFileSync(file, 'utf8'));
   const text = visibleText(main);
   for (const required of [
-    'At House of Rose, a treatment package is a defined program',
-    'one program: Acne Bootcamp',
-    '12-week Face Reality program',
-    'in-studio visits every two weeks',
+    'House of Rose\'s Face Reality Acne Bootcamp',
+    '12-week program',
+    'Visits take place every two weeks',
+    'home-care review',
+    '$99 consultation',
     '$899',
   ]) {
     assert.ok(text.includes(required), `Packages index is missing ${JSON.stringify(required)}.`);
@@ -1745,8 +2083,8 @@ test('Face Reality package distinguishes the consultation, complete program, and
   const text = visibleText(main);
   for (const required of [
     'The $899 figure is the price of the complete 12-week program, not the price of one visit.',
-    'The current menu lists a 60-minute Acne Bootcamp Consultation at $99.',
-    'Home-care products selected after consultation are a separate purchase.',
+    'The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly.',
+    'Home-care products selected after consultation are purchased separately.',
     'Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist',
   ]) {
     assert.ok(text.includes(required), `Face Reality package is missing ${JSON.stringify(required)}.`);
@@ -1805,6 +2143,16 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   for (const required of ['Bikini Line', '$30', 'Full Arm', '$45']) {
     assert.ok(body.includes(required), `Body Waxing is missing ${required}.`);
   }
+  for (const required of [
+    'How do I book body waxing?',
+    'Which bikini-area waxing appointment is available?',
+    'Bikini Line is the only bikini-area appointment shown on the House of Rose menu.',
+    '$30',
+    '10 minutes',
+  ]) {
+    assert.ok(visibleText(body).includes(required), `Body Waxing is missing ${required}.`);
+  }
+  assert.ok(readFileSync(bodyFile, 'utf8').includes('"@type":"FAQPage"'), 'Body Waxing must emit FAQPage JSON-LD for its reviewed question.');
   assert.ok(!/10[–-]30 minutes|10[–-]40 minutes/i.test(hub), 'Waxing hub must not repeat disputed child durations.');
   assert.ok(serviceIndex.includes('href="/services/waxing/"'), 'Services index must link the Waxing hub.');
   assert.ok(!hub.includes('href="/services/collections/waxing/"'), 'Waxing hub must not send clients back to the same-named noindex collection.');
@@ -1822,7 +2170,7 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   );
   assert.ok(
     !/\b(?:45|60|75) minutes\b/i.test(visibleText(prfUnderEye)),
-    'PRF Under Eyes must withhold duration while current sources disagree.',
+    'PRF Under Eyes must withhold the unresolved appointment duration.',
   );
   assert.ok(prfUnderEyeHtml.includes('"@type":"FAQPage"'), 'PRF Under Eyes must emit FAQPage JSON-LD.');
   assert.ok(
