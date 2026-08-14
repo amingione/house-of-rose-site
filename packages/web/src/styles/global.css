@@ -31,6 +31,13 @@
     line-height: 1.6;
   }
 
+  /* Keep keyboard focus clear of the fixed header and viewport edges when
+     browsers scroll long directories or disclosures to the active control. */
+  :is(a[href], button, summary, [tabindex]:not([tabindex='-1'])) {
+    scroll-margin-block-start: 6rem;
+    scroll-margin-block-end: 6rem;
+  }
+
   /* Keep browser-focused fields clear of the fixed site header, including
      native constraint-validation jumps after an invalid form submission. */
   form :is(input:not([type='hidden']), select, textarea) {
