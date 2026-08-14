@@ -1,1 +1,0 @@
-> See `docs/internal_only/research/hydrodermabrasion.md` for the full treatment brief (candidacy, protocol, pricing context, FAQs, compliance language). This file was an empty placeholder — consolidated 2026-08-01 cleanup; content lives in research/.

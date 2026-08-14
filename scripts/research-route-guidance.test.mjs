@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
 
 const researchRoot = new URL('../docs/GOVERNANCE/internal_only/research/', import.meta.url);
@@ -13,10 +13,7 @@ const routeGuidanceBriefs = [
   'biorepeel.md',
   'carboxy-therapy.md',
   'dermaplaning.md',
-  'enzyme-exfoliation.md',
   'face-reality-acne-program.md',
-  'hydrodermabrasion.md',
-  'light-peels.md',
   'product-lines.md',
 ];
 
@@ -69,4 +66,23 @@ test('active route guidance does not prescribe retired brand language', () => {
       `${relativePath} still recommends retired outcome language.`,
     );
   }
+});
+
+test('unsupported facial concepts do not retain active treatment briefs', () => {
+  for (const relativePath of [
+    'enzyme-exfoliation.md',
+    'hydrodermabrasion.md',
+    'light-peels.md',
+  ]) {
+    assert.equal(
+      existsSync(new URL(relativePath, researchRoot)),
+      false,
+      `${relativePath} must not act as service authority without a current appointment.`,
+    );
+  }
+
+  const currentResearch = routeGuidanceBriefs.map((relativePath) =>
+    readFileSync(new URL(relativePath, researchRoot), 'utf8')).join('\n');
+  assert.doesNotMatch(currentResearch, /\/services\/hydrodermabrasion\//i);
+  assert.doesNotMatch(currentResearch, /\/compare\/(?:glo2facial-vs-hydrodermabrasion|hydrodermabrasion-vs-glo2facial)\//i);
 });

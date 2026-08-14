@@ -45,7 +45,7 @@ Diana also needs a number before she injects into skin we just worked on.
 |---|---|
 | Microneedling · microchanneling · PRF fibrin veil | **14 days** |
 | BioRePeel / TCA / medium peel | **14 days** |
-| Light peel · enzyme · hydrodermabrasion | **7 days** |
+| Light peel · enzyme exfoliation | **7 days** |
 | Glo2Facial · basic facial · dermaplaning | **48 h** |
 | Waxing over the injection site | **48 h** |
 

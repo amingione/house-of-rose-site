@@ -77,7 +77,9 @@ occurrences remain** outside deliberate "this is retired" annotations and the gr
 - [x] `docs/GOOGLE-BUSINESS-PROFILE.md` — brand-law line + Q&A seed.
 - [x] Campaign kit — `meta-ad-copy.md`, `organic-captions.md`, `google-search-ads.csv`,
   `on-site-video-shot-list.md`, `README.md`. **"Private" removed too** because it was inaccurate.
-- [x] Internal briefs — `research/{professional-makeup,hydrodermabrasion,waxing,_audit-report}.md`,
+- [x] Internal briefs — `research/{professional-makeup,waxing,_audit-report}.md`; unsupported
+  Hydrodermabrasion, standalone Enzyme Facial, and generic Light Peel briefs were removed rather than
+  retained as future service instructions.
   `services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md`, `services/PRF_Pricing/{README,homepage-regenerative-repositioning}.md`,
   `pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md`.
 - [x] Studio schema field examples + site copy that taught retired language.

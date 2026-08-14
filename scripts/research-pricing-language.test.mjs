@@ -22,12 +22,9 @@ const activePricingBriefs = [
   'carboxy-therapy.md',
   'dermal-fillers.md',
   'dermaplaning.md',
-  'enzyme-exfoliation.md',
   'face-reality-acne-program.md',
   'glp-1.md',
-  'hydrodermabrasion.md',
   'iv-hydration.md',
-  'light-peels.md',
   'neurotoxins.md',
   'product-lines.md',
 ];

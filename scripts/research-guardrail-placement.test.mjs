@@ -12,10 +12,7 @@ const activeBriefs = [
   'biorepeel.md',
   'dermal-fillers.md',
   'dermaplaning.md',
-  'enzyme-exfoliation.md',
   'glp-1.md',
-  'hydrodermabrasion.md',
-  'light-peels.md',
   'neurotoxins.md',
   'product-lines.md',
 ];
@@ -45,10 +42,8 @@ test('active research places safeguards with relevant claims instead of every su
 });
 
 test('active research does not recommend retired glow or escalation framing', () => {
-  const lightPeels = readFileSync(new URL('light-peels.md', researchRoot), 'utf8');
   const biorepeel = readFileSync(new URL('biorepeel.md', researchRoot), 'utf8');
 
-  assert.doesNotMatch(lightPeels, /naming law:[^\n]*"Glow Peel"/i);
   assert.doesNotMatch(biorepeel, /no-downtime advantage|a true ladder|private studio|RN assistant/i);
 });
 
@@ -57,7 +52,6 @@ test('active research uses the current practice category and direct language', (
     'C02_CARBOXY_GLO2FACIAL/glo2facial.md',
     'advanced-skin-imaging.md',
     'carboxy-therapy.md',
-    'light-peels.md',
   ];
 
   for (const relativePath of briefs) {
