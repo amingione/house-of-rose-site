@@ -52,9 +52,10 @@ Skin/face rejuvenation & PRF-vs-PRP (most relevant to a **facial** service):
 - `2024 Proffer PRP and PRF for face and hair.pdf` — face + hair overview.
 - `2024 Pensato PRF plastic surgery review.pdf` — review (surgical context; use for mechanism only).
 
-Hair / scalp (a distinct potential content pillar — note injectable/scalp = RN-led):
+Hair / scalp (research background only — no current House of Rose appointment):
 - `2024 Chikhalkar Halting hair loss.pdf`, `2024 Mohale alopecia.pdf`, `2024 Sharma female hair loss.pdf`,
   `2024 Shrestha androgenic allopecia study.pdf`, `2024 Sun Hair regrowth with heated PRP.pdf`.
+  These papers do not authorize a House of Rose service, route, provider attribution, or results claim.
 
 Rhinoplasty / surgical (background only — NOT a House of Rose service):
 - `2019 Gode iPRF on Rhinoplasty.pdf`, `2019 Gode Rhinoplasty.pdf`, `2023 Beaudoin rhinoplasty.pdf`,
