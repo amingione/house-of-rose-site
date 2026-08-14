@@ -5,6 +5,7 @@ export interface VerifiedCostFaq {
 
 export interface VerifiedCostFact {
   display: string;
+  metaDescription: string;
   summary: string;
   answer: string;
   menuHeading: string;
@@ -24,6 +25,7 @@ const VERIFIED_AT = '2026-08-06';
 const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'botox-cost-punta-gorda': {
     display: '$14 per unit',
+    metaDescription: 'Botox at House of Rose is $14 per product-specific unit. See the 30-minute listing, why the total varies, and how Daxxify units differ in Punta Gorda.',
     summary: 'Botox is priced at $14 per unit. The total reflects the number of units provided.',
     answer: 'As of August 6, 2026, Botox at House of Rose in Punta Gorda is $14 per unit.',
     menuHeading: 'Botox is priced by the unit.',
@@ -50,6 +52,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'prf-microneedling-cost-punta-gorda': {
     display: '$595',
+    metaDescription: 'Topical PRF Microneedling at House of Rose is $595 for 60 minutes. See why it is separate from injectable PRF appointments in Punta Gorda.',
     summary: 'Topical PRF microneedling is listed at $595.',
     answer: 'As of August 6, 2026, topical PRF microneedling at House of Rose in Punta Gorda is $595.',
     menuHeading: 'Topical PRF has its own listing.',
@@ -62,6 +65,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'dermal-fillers-cost-punta-gorda': {
     display: '$650–$850',
+    metaDescription: 'Dermal fillers at House of Rose in Punta Gorda range from $650 to $850 across five products. The separate 60-minute Dermal Filler Consultation is $300.',
     summary: 'Dermal filler products range from $650 to $850, depending on the product.',
     answer: 'As of August 6, 2026, dermal filler prices at House of Rose in Punta Gorda range from $650 to $850.',
     menuHeading: 'Five products make up the range.',
@@ -93,6 +97,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'forma-cost-punta-gorda': {
     display: '$600–$3,000',
+    metaDescription: 'Forma at House of Rose ranges from $600 to $3,000 by treatment area. Compare six area prices and the separate $2,599 Forma + Lumecca bundle.',
     summary: 'Forma pricing ranges from $600 to $3,000 because each treatment area has its own listed price.',
     answer: 'As of August 6, 2026, Forma prices at House of Rose in Punta Gorda range from $600 to $3,000.',
     menuHeading: 'The treatment area sets the listed price.',
@@ -125,6 +130,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'ipl-photofacial-cost-punta-gorda': {
     display: '$250–$2,600',
+    metaDescription: 'Lumecca Peak IPL at House of Rose in Punta Gorda ranges from $250 to $2,600 by treatment area and single- or three-session selection across eight areas.',
     summary: 'Lumecca Peak IPL pricing ranges from $250 to $2,600 across treatment areas and single- or three-session options.',
     answer: 'As of August 6, 2026, Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600.',
     menuHeading: 'Area and series determine the listing.',
@@ -154,6 +160,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'biorepeel-cost-punta-gorda': {
     display: '$250',
+    metaDescription: 'BioRePeel at House of Rose in Punta Gorda is $250 for one 45-minute appointment or $699 for the Series of 3. See how the two listings differ.',
     summary: 'Standalone BioRePeel is $250. A separate series of three is listed at $699.',
     answer: 'As of August 6, 2026, a standalone BioRePeel at House of Rose in Punta Gorda is $250. A series of three is $699.',
     menuHeading: 'One treatment or a series of three.',
@@ -177,6 +184,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'microneedling-cost-punta-gorda': {
     display: '$300–$400',
+    metaDescription: 'Procell Microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD, both 55 minutes. Topical PRF is a separate $595 appointment.',
     summary: 'Procell Pro is $300, and Procell MD is $400.',
     answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
     menuHeading: 'Pro and MD have their own prices.',
@@ -204,6 +212,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'morpheus8-cost-punta-gorda': {
     display: 'Single treatments from $500',
+    metaDescription: 'Morpheus8 Burst at House of Rose in Punta Gorda ranges from $500 to $1,250 for one treatment and $1,300 to $3,500 for three, depending on treatment area.',
     summary: 'Morpheus8 Burst single treatments range from $500 to $1,250 by area. Three-treatment prices range from $1,300 to $3,500 for the five listed Burst areas.',
     answer: 'As of August 14, 2026, House of Rose lists Morpheus8 Burst single treatments from $500 to $1,250 and three-treatment prices from $1,300 to $3,500, depending on the area.',
     menuHeading: 'Single and three-treatment prices by area.',

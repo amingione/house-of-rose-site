@@ -32,6 +32,7 @@ const treatmentName = guide.treatment?.title ?? 'this treatment';
 const verifiedFact = getVerifiedCostFact(guide.slug);
 const pricingStatement = verifiedFact?.answer
   ?? `Contact House of Rose for the current ${treatmentName} price. This guide links to the related service and contact options below.`;
+const publishedDescription = verifiedFact?.metaDescription ?? pricingStatement;
 const visiblePricingSummary = verifiedFact?.summary
   ?? `The current ${treatmentName} price is available directly from House of Rose.`;
 const dateModified = verifiedFact && (!guide._updatedAt || guide._updatedAt < verifiedFact.verifiedAt)
@@ -68,12 +69,12 @@ const breadcrumb = breadcrumbList([
 ]);
 const faq = faqPage(publishedFaqs);
 const articleSchema = article(
-  { headline: guide.title, description: pricingStatement, url: canonical, dateModified },
+  { headline: guide.title, description: publishedDescription, url: canonical, dateModified },
   site,
 );
 
 const pageTitle = guide.seo?.metaTitle ?? `${guide.title} | House of Rose`;
-const pageDescription = pricingStatement;
+const pageDescription = publishedDescription;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>

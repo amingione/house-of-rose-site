@@ -1569,6 +1569,15 @@ test('cost guides explain the current price structure instead of publishing a ba
     assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
     const html = readFileSync(file, 'utf8');
     const text = visibleText(mainHtml(html));
+    const metaDescription = decodeHtmlEntities(
+      html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '',
+    );
+    if (metaDescription.length < 120 || metaDescription.length > 160) {
+      failures.push(`${slug}: meta description is ${metaDescription.length} characters`);
+    }
+    if (!metaDescription.includes('House of Rose')) {
+      failures.push(`${slug}: meta description is missing the House of Rose entity`);
+    }
     for (const value of requiredCopy) {
       if (!text.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
     }
