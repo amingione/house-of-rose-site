@@ -1310,7 +1310,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'PRF Under-Eye and PRF Bio-Filler',
       'Diana Morrison, RN',
       'under medical direction',
-      'PRF Under Eyes details',
       'Topical PRF Microneedling',
       'PRF Under-Eye',
       '$495',
@@ -1406,6 +1405,22 @@ test('priority service pages retain reviewed facts instead of falling back to th
   const prfOverviewLabel = visibleText(prfOverviewLink[1]);
   for (const term of [/\btopical\b/i, /\binjectable\b/i, /\bPRF\b/i]) {
     assert.match(prfOverviewLabel, term, 'Microneedling must distinguish the topical and injectable PRF relationship.');
+  }
+
+  const prfHtml = readFileSync(
+    path.join(DIST_ROOT, 'services/prf/index.html'),
+    'utf8',
+  );
+  const prfEducation = prfHtml.match(
+    /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
+  const prfUnderEyesLink = prfEducation.match(
+    /<a\b[^>]*href="\/services\/prf-under-eyes\/"[^>]*>([\s\S]*?)<\/a>/i,
+  );
+  assert.ok(prfUnderEyesLink, 'PRF education must link the canonical PRF Under Eyes service.');
+  const prfUnderEyesLabel = visibleText(prfUnderEyesLink[1]);
+  for (const term of [/\bPRF\b/i, /\bUnder[ -]?Eyes?\b/i]) {
+    assert.match(prfUnderEyesLabel, term, 'PRF education must identify the under-eye relationship.');
   }
 
   const weightManagementFile = path.join(
