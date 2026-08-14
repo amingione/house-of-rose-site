@@ -103,40 +103,50 @@ export default async (request: Request): Promise<Response> => {
 	const safeSubject = escapeHtml(submission.subject);
 	const safeMessage = escapeHtml(submission.message).replaceAll("\n", "<br />");
 
-	const resendResponse = await fetch(RESEND_ENDPOINT, {
-		method: "POST",
-		headers: {
-			Authorization: `Bearer ${apiKey}`,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			from,
-			to: [to],
-			reply_to: submission.email,
-			subject: `Privacy Policy Request: ${submission.subject}`,
-			text: [
-				"New privacy policy request",
-				"",
-				`Name: ${submission.name}`,
-				`Email: ${submission.email}`,
-				`Subject: ${submission.subject}`,
-				"",
-				submission.message,
-				"",
-				`Privacy policy: ${PRIVACY_PAGE_URL}`,
-			].join("\n"),
-			html: `<h2>New privacy policy request</h2>
+	let resendResponse: Response;
+	try {
+		resendResponse = await fetch(RESEND_ENDPOINT, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${apiKey}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				from,
+				to: [to],
+				reply_to: submission.email,
+				subject: `Privacy Policy Request: ${submission.subject}`,
+				text: [
+					"New privacy policy request",
+					"",
+					`Name: ${submission.name}`,
+					`Email: ${submission.email}`,
+					`Subject: ${submission.subject}`,
+					"",
+					submission.message,
+					"",
+					`Privacy policy: ${PRIVACY_PAGE_URL}`,
+				].join("\n"),
+				html: `<h2>New privacy policy request</h2>
 <p><strong>Name:</strong> ${safeName}</p>
 <p><strong>Email:</strong> ${safeEmail}</p>
 <p><strong>Subject:</strong> ${safeSubject}</p>
 <p><strong>Message:</strong><br />${safeMessage}</p>
 <p><a href="${PRIVACY_PAGE_URL}">View privacy policy</a></p>`,
-			tags: [
-				{ name: "source", value: "privacy-policy" },
-				{ name: "domain", value: "updates.houseofrosefl.com" },
-			],
-		}),
-	});
+				tags: [
+					{ name: "source", value: "privacy-policy" },
+					{ name: "domain", value: "updates.houseofrosefl.com" },
+				],
+			}),
+		});
+	} catch (error) {
+		console.error("[privacy-contact] Resend network error:", error);
+		return renderResponse(
+			"Message Not Sent",
+			"Privacy support could not send your request. Please try again later.",
+			502,
+		);
+	}
 
 	if (!resendResponse.ok) {
 		const errorBody = await resendResponse.text().catch(() => "(unreadable)");
