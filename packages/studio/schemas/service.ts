@@ -482,8 +482,10 @@ export const service = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
+      title: 'SEO (not published)',
       type: 'seo',
+      readOnly: true,
+      description: 'Legacy source field. Public service metadata comes from reviewed website titles and factual service descriptions.',
     }),
     // ─── Treatment page (downtime, aftercare, provider scope, price range) ────
     ...treatmentPageFields,

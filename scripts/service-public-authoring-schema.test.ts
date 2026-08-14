@@ -111,6 +111,23 @@ test('stored treatment areas cannot pose as reviewed public guidance', () => {
   assert.doesNotMatch(renderer, /service\.treatmentAreas/);
 });
 
+test('stored service SEO cannot pose as reviewed public metadata', () => {
+  const seo = serviceField('seo');
+  assert.equal(seo?.readOnly, true);
+  assert.match(String(seo?.title), /not published/i);
+  assert.match(String(seo?.description), /reviewed website titles and factual service descriptions/i);
+  assert.doesNotMatch(SERVICE_BY_SLUG_QUERY, /"seo":\s*seo\s*\{/);
+
+  const renderer = readFileSync(
+    new URL('../packages/web/src/pages/services/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  assert.doesNotMatch(renderer, /service\.seo/);
+  assert.match(renderer, /pageTitle\s*=([\s\S]*?)service\.title/);
+  assert.match(renderer, /pageDescription\s*=\s*factualServiceDescription/);
+  assert.match(renderer, /<BaseLayout[\s\S]*?title=\{pageTitle\}[\s\S]*?description=\{pageDescription\}/);
+});
+
 test('related-service authoring only offers relationships the public query can render', () => {
   const relatedServices = serviceField('relatedServices') as NestedField | undefined;
   assert.ok(relatedServices?.of && Array.isArray(relatedServices.of));

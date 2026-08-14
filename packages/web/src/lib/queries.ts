@@ -549,7 +549,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     benefits,
     process,
     _updatedAt,
-    "seo": seo { metaTitle, metaDescription },
     ${IMAGE_FIELDS},
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
     "evidenceMedia": evidenceMedia[
