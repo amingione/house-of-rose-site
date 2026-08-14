@@ -29,7 +29,7 @@ interface PrivacyPolicy {
 }
 
 const PRIVACY_POLICY_QUERY = /* groq */ `
-	*[_type == "privacyPolicy"][0]{
+	*[_type == "privacyPolicy" && _id == "privacyPolicy"][0]{
 		_id,
 		seoTitle,
 		seoDescription,

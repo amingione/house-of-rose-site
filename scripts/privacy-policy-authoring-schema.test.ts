@@ -1,7 +1,17 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { privacyPolicy } from '../packages/studio/schemas/privacyPolicy.ts';
+
+const structureSource = readFileSync(
+  new URL('../packages/studio/structure.ts', import.meta.url),
+  'utf8',
+);
+const routeSource = readFileSync(
+  new URL('../packages/web/src/pages/privacy-policy.astro', import.meta.url),
+  'utf8',
+);
 
 function privacyField(name: string) {
   return privacyPolicy.fields.find((field) => field.name === name);
@@ -33,4 +43,17 @@ test('the overridden Privacy Policy update date is preserved without posing as a
   assert.equal(lastUpdated?.readOnly, true);
   assert.match(String(lastUpdated?.title), /not published/i);
   assert.match(String(lastUpdated?.description), /reviewed effective update date/i);
+});
+
+test('the public policy resolves only from the canonical Studio singleton', () => {
+  const canonicalId = structureSource.match(
+    /schemaType\('privacyPolicy'\)\.documentId\('([^']+)'\)/,
+  )?.[1];
+  assert.ok(canonicalId, 'Studio structure must define the Privacy Policy singleton ID.');
+  assert.deepEqual(privacyPolicy.__experimental_actions, ['update', 'publish']);
+
+  const query = routeSource.match(/const PRIVACY_POLICY_QUERY = \/\* groq \*\/ `([\s\S]*?)`;/)?.[1];
+  assert.ok(query, 'The Privacy Policy route must define its Sanity query.');
+  assert.match(query, new RegExp(`_id == "${canonicalId}"`));
+  assert.doesNotMatch(query, /\*\[_type == "privacyPolicy"\]\[0\]/);
 });
