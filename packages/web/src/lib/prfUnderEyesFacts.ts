@@ -13,7 +13,7 @@ export const PRF_UNDER_EYES_FAQS = [
   {
     question: 'Is PRF under eyes the same as dermal filler?',
     answer:
-      'No. PRF is an autologous platelet concentrate prepared from your own blood. Hyaluronic-acid dermal filler is a manufactured injectable gel. Their materials, preparation, and service listings differ.',
+      'No. PRF is an autologous platelet concentrate prepared from your own blood. Hyaluronic-acid dermal filler is a manufactured injectable gel. Their materials and preparation are different, and House of Rose offers them as different consultations.',
   },
   {
     question: 'Is injectable PRF the same as topical PRF with microneedling?',
