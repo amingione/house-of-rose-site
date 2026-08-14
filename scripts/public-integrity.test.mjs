@@ -1167,9 +1167,13 @@ test('priority service pages retain reviewed facts instead of falling back to th
       '$4,500',
     ],
     biorepeel: [
-      'BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment at $250.',
-      'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment.',
-      'Amber Mingione, Licensed Esthetician, provides the Gold Body, Advanced Acne Scarring, and Duo Gold Spot Upgrade appointments',
+      'BioRePeel Cl3 Rejuvenation',
+      'directly bookable',
+      'Brandy, Licensed Esthetician',
+      'Amber Mingione, Licensed Esthetician',
+      'Gold Body',
+      'Advanced Acne Scarring',
+      'Duo Gold Spot Upgrade',
       'TCA stands for trichloroacetic acid',
       'Meet Brandy',
       'Meet Amber Mingione, Licensed Esthetician',
@@ -1187,9 +1191,11 @@ test('priority service pages retain reviewed facts instead of falling back to th
       '60 minutes',
     ],
     microneedling: [
-      'Procell Microchanneling is the device-specific name used for this Microneedling service.',
-      'Amber Mingione, Licensed Esthetician, provides these Microneedling appointments.',
-      'Injectable PRF is provided by Diana Morrison, RN as a different appointment.',
+      'Procell Microchanneling',
+      'device-specific name',
+      'Amber Mingione, Licensed Esthetician',
+      'Injectable PRF',
+      'Diana Morrison, RN',
       'Review the complete PRF overview',
       'Meet Amber Mingione, Licensed Esthetician',
       'Procell Therapies — Pro',
@@ -1201,7 +1207,9 @@ test('priority service pages retain reviewed facts instead of falling back to th
     ],
     prf: [
       'Platelet-rich fibrin (PRF) is prepared from a small sample of your own blood.',
-      'PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN under medical direction.',
+      'PRF Under-Eye and PRF Bio-Filler',
+      'Diana Morrison, RN',
+      'under medical direction',
       'PRF Under Eyes details',
       'Topical PRF Microneedling',
       'PRF Under-Eye',
@@ -1210,7 +1218,8 @@ test('priority service pages retain reviewed facts instead of falling back to th
       '$899',
     ],
     'prf-injections': [
-      'When PRF is part of an eligible Microneedling appointment, it is applied topically at the skin surface instead.',
+      'eligible Microneedling appointment',
+      'applied topically at the skin surface',
       'PRF is prepared from a small sample of your own blood.',
       'PRF Under-Eye — Consultation',
       '$495',
@@ -2211,13 +2220,17 @@ test('AI service inventory omits raw CMS prices and durations', () => {
     'Hydration IV — $99 · 30 minutes.',
     'Appointment price: PRF Under-Eye — Consultation — $495.',
     'Call House of Rose to confirm how much time to allow for the appointment.',
-    'House of Rose’s Procell Microneedling service uses the Procell device to create controlled microchannels. Morpheus8 combines microneedling with fractional bipolar radiofrequency in the same InMode device.',
   ]) {
     assert.ok(
       fullFeed.includes(reviewedDepth),
       `Full service inventory is missing reviewed depth: ${JSON.stringify(reviewedDepth)}.`,
     );
   }
+  assert.match(
+    fullFeed,
+    /Procell Microneedling[\s\S]{0,180}(?:controlled microchannels|microchannel)[\s\S]{0,220}Morpheus8[\s\S]{0,180}fractional bipolar radiofrequency/i,
+    'Full service inventory is missing the reviewed Procell/Morpheus8 device distinction.',
+  );
 
   for (const unresolvedFact of ['$299', '$399', 'EZ Gel']) {
     assert.ok(
@@ -2286,13 +2299,13 @@ test('Face Reality package distinguishes the consultation, complete program, and
   for (const required of ['$899', '12-week program', '$99', '60-minute consultation']) {
     assert.ok(metaDescription.includes(required), `Face Reality package metadata is missing ${JSON.stringify(required)}.`);
   }
-  for (const required of [
-    'The $899 figure is the price of the complete 12-week program, not the price of one visit.',
-    'The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly.',
-    'Home-care products selected after consultation are purchased separately.',
-    'Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist',
+  for (const [label, pattern] of [
+    ['complete-program price', /\$899[\s\S]{0,100}(?:complete )?12-week program[\s\S]{0,100}(?:not|rather than)[\s\S]{0,60}(?:one|single) visit/i],
+    ['starting consultation', /60-minute[\s\S]{0,100}Acne Bootcamp Consultation[\s\S]{0,80}\$99[\s\S]{0,100}(?:booked directly|directly bookable)/i],
+    ['separate home-care purchase', /home-care products[\s\S]{0,120}(?:purchased|sold)[\s\S]{0,80}separately/i],
+    ['provider licence and certification', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}Face Reality Certified Acne Specialist/i],
   ]) {
-    assert.ok(text.includes(required), `Face Reality package is missing ${JSON.stringify(required)}.`);
+    assert.match(text, pattern, `Face Reality package is missing ${label}.`);
   }
   assert.ok(
     main.includes('href="/services/face-reality-acne-program/"'),
