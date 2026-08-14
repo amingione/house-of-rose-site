@@ -54,8 +54,11 @@
 ### 4. Comparison page — *A vs B*
 - **Doc type:** `comparison`
 - **Route:** `/compare/[slug]` (e.g. `procell-pro-vs-md`)
-- **Key fields:** `optionA`/`optionB` (label, summary, bestFor, service ref),
-  `rows[]` (attribute, valueA, valueB), `verdict`, `faqs[]`, `seo`
+- **Active CMS inputs:** `slug`, `status`, `optionA.service`, `optionB.service`, and `orderRank` establish
+  route eligibility, live service relationships, and ordering; public comparison prose comes from the
+  reviewed website overlay
+- **Legacy source fields:** `intro`, option labels/summaries/distinctions, `rows[]`, `verdict`, `faqs[]`,
+  and `seo` remain stored but are read-only in Studio and are not public copy authority
 - **JSON-LD:** `BreadcrumbList` + `Article` + `FAQPage` when reviewed `faqs` are published
 - **GROQ:** `ALL_COMPARISONS_QUERY`, `COMPARISON_BY_SLUG_QUERY`, `ALL_COMPARISON_SLUGS_QUERY`
 
