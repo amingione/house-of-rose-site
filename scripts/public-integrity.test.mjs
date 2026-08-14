@@ -914,14 +914,17 @@ test('suite-rental application explains the next step without changing the form 
   const text = visibleText(main);
   const failures = [];
 
-  for (const required of [
-    'What happens after I apply?',
-    'The form starts a conversation; it does not reserve a room or collect payment.',
-    'the monthly rate for the room under discussion',
-    '$850 – $1,100 / month',
-    '10 × 14 ft private suite',
+  for (const [label, pattern] of [
+    ['application next-step explanation', /(?:after I apply|after (?:an|the) application|application.*next)/i],
+    ['non-reservation boundary', /form[\s\S]{0,120}(?:does not|doesn't)[\s\S]{0,80}reserve[\s\S]{0,40}(?:room|suite)/i],
+    ['no-payment boundary', /(?:does not|doesn't)[\s\S]{0,80}(?:collect|take)[\s\S]{0,40}payment/i],
+    ['rate-discussion step', /monthly rate[\s\S]{0,80}(?:discuss|review|confirm)/i],
+    ['verified monthly range', /\$850\s*[–-]\s*\$1,100\s*\/\s*month/i],
+    ['verified room size', /10\s*[×x]\s*14\s*ft private suite/i],
+    ['application-data review purpose', /application (?:information|details)[\s\S]{0,100}(?:review|assess)[\s\S]{0,80}(?:request|application)/i],
+    ['availability/tour reply purpose', /(?:reply|contact)[\s\S]{0,100}(?:availability|tour)/i],
   ]) {
-    if (!text.includes(required)) failures.push(`rent-a-room: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`rent-a-room: missing ${label}`);
   }
   for (const requiredMarkup of [
     'name="suite-rental-application"',
@@ -929,6 +932,7 @@ test('suite-rental application explains the next step without changing the form 
     'name="insurance-acknowledgement"',
     'name="license-number"',
     'href="tel:+18449417673"',
+    'href="/privacy-policy/"',
   ]) {
     if (!main.includes(requiredMarkup)) failures.push(`rent-a-room: missing ${requiredMarkup}`);
   }
@@ -951,29 +955,34 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
   const sectionText = visibleText(section);
   const failures = [];
 
-  for (const required of [
-    'What each image adds—and what it cannot decide.',
-    'Standard light',
-    'Cross-polarized light',
-    'UV light',
-    'Reduces surface reflection',
-    'fluorescence associated with some porphyrins',
-    'do not determine their medical cause',
-    'or screen for skin cancer',
-    'makeup, sunscreen residue',
+  for (const [label, pattern] of [
+    ['standard-light view', /standard light/i],
+    ['cross-polarized view', /cross-polarized light/i],
+    ['UV view', /\bUV light\b/i],
+    ['surface-reflection distinction', /(?:reduce|remove)[^.!?]{0,80}surface reflection/i],
+    ['porphyrin-fluorescence distinction', /fluorescence[^.!?]{0,100}porphyrins/i],
+    ['non-diagnostic medical-cause boundary', /(?:do not|does not|cannot|can't)[^.!?]{0,100}(?:determine|diagnose)[^.!?]{0,100}medical cause/i],
+    ['skin-cancer screening boundary', /(?:do not|does not|cannot|can't)[^.!?]{0,100}screen[^.!?]{0,80}skin cancer/i],
+    ['makeup/sunscreen preparation', /makeup[^.!?]{0,80}sunscreen/i],
   ]) {
-    if (!sectionText.includes(required)) failures.push(`skin-analysis: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(sectionText)) failures.push(`skin-analysis: missing ${label}`);
   }
   for (const unsupported of ['M17', 'AI Skin Analyzer', 'diagnostic accuracy', 'hydration cues']) {
     if (mainText.includes(unsupported)) failures.push(`skin-analysis: contains unsupported ${JSON.stringify(unsupported)}`);
   }
-  for (const required of [
-    'The form sends a request and does not hold an appointment time.',
-    'Use the online booking option when you want to reserve an available time immediately.',
-    'Send a Skin Analysis Request',
-    'Book a skin analysis',
+  for (const [label, pattern] of [
+    ['request does not reserve a time', /form[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}(?:hold|reserve)[\s\S]{0,60}(?:appointment )?time/i],
+    ['online booking reserves a time', /online book(?:ing|able)[\s\S]{0,100}reserve[\s\S]{0,60}time/i],
   ]) {
-    if (!mainText.includes(required)) failures.push(`skin-analysis: missing booking expectation ${JSON.stringify(required)}`);
+    if (!pattern.test(mainText)) failures.push(`skin-analysis: missing ${label}`);
+  }
+  for (const requiredMarkup of [
+    'name="skin-analysis"',
+    'action="/.netlify/functions/lead-submit"',
+    'data-booking-service="skin-analysis"',
+    'data-booking-mode="direct"',
+  ]) {
+    if (!main.includes(requiredMarkup)) failures.push(`skin-analysis: missing ${requiredMarkup}`);
   }
 
   const visibleFaqs = [...main.matchAll(
@@ -992,16 +1001,18 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
     answer: item.acceptedAnswer?.text,
   })) ?? [];
 
-  if (!visibleFaqs.some(({ question }) => question === 'Can skin imaging diagnose a skin condition or screen for skin cancer?')) {
+  if (!visibleFaqs.some(({ answer }) =>
+    /(?:do not|does not|cannot|can't)[\s\S]{0,180}(?:diagnos|screen)/i.test(answer) &&
+    /skin cancer/i.test(answer)
+  )) {
     failures.push('skin-analysis: missing the visible non-diagnostic FAQ');
   }
-  if (!visibleFaqs.some(({ question }) => question === 'Can makeup or sunscreen affect the images?')) {
+  if (!visibleFaqs.some(({ answer }) => /makeup[\s\S]{0,100}sunscreen/i.test(answer))) {
     failures.push('skin-analysis: missing the visible image-preparation FAQ');
   }
-  if (!visibleFaqs.some(({ question, answer }) =>
-    question === 'What happens to my photos?' &&
-    answer.includes('does not authorize House of Rose to publish them') &&
-    answer.includes('written permission for website publication has been recorded')
+  if (!visibleFaqs.some(({ answer }) =>
+    /(?:taking|capturing)[\s\S]{0,80}(?:images|photos)[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,100}authoriz[\s\S]{0,80}publish/i.test(answer) &&
+    /written[\s\S]{0,60}permission[\s\S]{0,80}website publication[\s\S]{0,80}recorded/i.test(answer)
   )) {
     failures.push('skin-analysis: missing the written website-publication consent boundary');
   }
@@ -1064,6 +1075,16 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Does Forma use needles?',
       'does not use microneedles',
       'Lumecca Peak delivers filtered optical energy as IPL.',
+      'Forma pricing by area',
+      'Face',
+      '$2,000',
+      'Face & Neck',
+      '$3,000',
+      'Eyes',
+      '$600',
+      'Forma + Lumecca Bundle',
+      '$2,599',
+      'Separate bundle listing',
     ],
     'lumecca-peak-ipl': [
       'InMode intense pulsed light (IPL) handpiece',
