@@ -96,8 +96,8 @@ is disabled.
   service differences; no free-service end card.
 - [x] `README.md` — stale legal blocker and nonexistent `meta-ad-copy.md` reference removed; package is
   explicitly a working campaign requiring final owner/platform review.
-- [x] `scripts/marketing/render-local-acquisition-{assets,videos}.mjs` — fail closed while their archived
-  frames still contain the rejected offer and voice; they cannot regenerate campaign media.
+- [x] Retired Q3 acquisition asset/video renderers — removed because their embedded frames contained
+  the rejected offer and voice; the campaign cannot regenerate media from obsolete copy.
 - [x] `scripts/marketing/render-prf-trifold.py` — fail closed until PRF Bio-Filler/EZ Gel identity and
   brochure claims are reverified; it cannot regenerate the unresolved customer brochure.
 - [x] `/skin-analysis/` remains clean in current rendered output.
