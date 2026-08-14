@@ -78,9 +78,9 @@ copy and not a replacement template. Omit the sentence when no specific, support
 
 ---
 
-## 3. Required guardrails — what every plan/treatment surface must carry
+## 3. Context-triggered safeguards
 
-Whenever copy *sells* a package or advanced treatment, it must include:
+Apply each safeguard only when the corresponding public statement appears:
 
 1. **Provider authority.** Marketing must not determine treatment combinations, dosing, intervals, or
    suitability. Name the licensed provider and license type where relevant; use the exact medical-
