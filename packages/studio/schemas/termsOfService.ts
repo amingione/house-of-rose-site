@@ -1,5 +1,15 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
+export function validateTermsPublicCopy(value: string | undefined): true | string {
+  const complianceAwareCopy = value
+    ?.replace(/\bno result is guaranteed\b/gi, 'individual outcomes vary')
+    .replace(/\bnot guaranteed\b/gi, 'not assured');
+
+  return validatePublicCopy(complianceAwareCopy);
+}
+
 /** Singleton legal content for /terms-of-service/. */
 export const termsOfService = defineType({
   name: 'termsOfService',
@@ -11,17 +21,18 @@ export const termsOfService = defineType({
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
-    defineField({ name: 'seoTitle', title: 'SEO Title', type: 'string', group: 'seo' }),
-    defineField({ name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 2, group: 'seo' }),
-    defineField({ name: 'pageTitle', title: 'Page Title', type: 'string', group: 'content' }),
+    defineField({ name: 'seoTitle', title: 'SEO Title', type: 'string', group: 'seo', validation: (R) => R.custom(validateTermsPublicCopy) }),
+    defineField({ name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 2, group: 'seo', validation: (R) => R.custom(validateTermsPublicCopy) }),
+    defineField({ name: 'pageTitle', title: 'Page Title', type: 'string', group: 'content', validation: (R) => R.custom(validateTermsPublicCopy) }),
     defineField({
       name: 'effectiveDate',
       title: 'Effective Date',
       type: 'string',
       group: 'content',
       description: 'Displayed beneath the title, for example “Effective July 11, 2026.”',
+      validation: (R) => R.custom(validateTermsPublicCopy),
     }),
-    defineField({ name: 'intro', title: 'Introduction', type: 'text', rows: 4, group: 'content' }),
+    defineField({ name: 'intro', title: 'Introduction', type: 'text', rows: 4, group: 'content', validation: (R) => R.custom(validateTermsPublicCopy) }),
     defineField({
       name: 'shippingPolicy',
       title: 'Shipping Policy',
@@ -29,6 +40,7 @@ export const termsOfService = defineType({
       rows: 8,
       group: 'content',
       description: 'Canonical policy projected at /shipping-policy/.',
+      validation: (R) => R.custom(validateTermsPublicCopy),
     }),
     defineField({
       name: 'returnPolicy',
@@ -37,6 +49,7 @@ export const termsOfService = defineType({
       rows: 8,
       group: 'content',
       description: 'Canonical policy projected at /return-policy/.',
+      validation: (R) => R.custom(validateTermsPublicCopy),
     }),
     defineField({
       name: 'sections',
@@ -47,13 +60,13 @@ export const termsOfService = defineType({
         {
           type: 'object',
           fields: [
-            defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (rule) => rule.required() }),
+            defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (rule) => rule.required().custom(validateTermsPublicCopy) }),
             defineField({
               name: 'body',
               title: 'Body',
               type: 'text',
               rows: 8,
-              validation: (rule) => rule.required(),
+              validation: (rule) => rule.required().custom(validateTermsPublicCopy),
               description: 'Plain text. Use new lines for list items and include any bullet or number prefixes.',
             }),
           ],
