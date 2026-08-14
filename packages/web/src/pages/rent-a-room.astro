@@ -178,6 +178,15 @@ const candidates = FALLBACK_CANDIDATES;
         </p>
       </div>
 
+      <aside class="mb-10 border-y border-gold-metal/20 py-7" aria-labelledby="application-next-step">
+        <h3 id="application-next-step" class="font-serif text-[22px] text-ink">
+          What happens after I apply?
+        </h3>
+        <p class="mt-3 max-w-[720px] text-[14px] leading-[1.75] text-muted">
+          The form starts a conversation; it does not reserve a room or collect payment. House of Rose will review your information and reply to discuss current availability, the monthly rate for the room under discussion, and whether to schedule a tour.
+        </p>
+      </aside>
+
       <form
         name="suite-rental-application"
         method="POST"
@@ -204,6 +213,7 @@ const candidates = FALLBACK_CANDIDATES;
               id="applicant-name"
               name="name"
               required
+              autocomplete="name"
               class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
               placeholder="Your full name"
             />
@@ -217,6 +227,7 @@ const candidates = FALLBACK_CANDIDATES;
               id="applicant-phone"
               name="phone"
               required
+              autocomplete="tel"
               class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
               placeholder="(555) 123-4567"
             />
@@ -233,6 +244,7 @@ const candidates = FALLBACK_CANDIDATES;
             id="applicant-email"
             name="email"
             required
+            autocomplete="email"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
             placeholder="you@example.com"
           />
@@ -327,7 +339,7 @@ const candidates = FALLBACK_CANDIDATES;
               name="insurance-acknowledgement"
               value="yes"
               required
-              class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold-metal checked:border-gold focus:outline-none transition-colors cursor-pointer"
+              class="mt-1 w-5 h-5 bg-charcoal border-2 border-ink/30 checked:bg-gold-metal checked:border-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold transition-colors cursor-pointer"
             />
             <span class="text-ink/80 text-[14px] leading-relaxed group-hover:text-ink transition-colors">
               I understand that renters are responsible for maintaining their own professional liability insurance policy. *
