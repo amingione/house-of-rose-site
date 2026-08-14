@@ -524,7 +524,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       !(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
       => parentService->{ title, "slug": slug.current }
     ),
-    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && parentService._ref == ^._id] | order(orderRank asc, title asc) {
+    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && parentService._ref == ^._id] | order(orderRank asc, title asc) {
       _id,
       title,
       "slug": slug.current,
@@ -598,7 +598,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       url
     },
     collection->{ title, "slug": slug.current },
-    "relatedServices": relatedServices[@->status in ["live", "actual-menu"] && !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{
+    "relatedServices": relatedServices[@->status in ["live", "actual-menu"] && defined(@->slug.current) && !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{
       _id,
       title,
       "slug": slug.current,

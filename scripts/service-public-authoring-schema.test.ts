@@ -85,6 +85,13 @@ test('related-service authoring only offers relationships the public query can r
   const filter = reference?.options?.filter ?? '';
   assert.match(filter, /status in \["live", "actual-menu"\]/);
   assert.match(filter, /defined\(slug\.current\)/);
+
+  const relatedProjection = SERVICE_BY_SLUG_QUERY.match(
+    /"relatedServices": relatedServices\[([\s\S]*?)\]->/,
+  );
+  assert.ok(relatedProjection?.[1], 'The service query must guard related-service links.');
+  assert.match(relatedProjection[1], /@->status in \["live", "actual-menu"\]/);
+  assert.match(relatedProjection[1], /defined\(@->slug\.current\)/);
 });
 
 test('parent-service authoring and public projections require a routeable public hub', () => {
@@ -112,4 +119,14 @@ test('the public service directory only lists records with generated routes', ()
     assert.match(query, /status in \["live", "actual-menu"\]/);
     assert.match(query, /defined\(slug\.current\)/);
   }
+});
+
+test('service hub child links require generated public routes', () => {
+  const childProjection = SERVICE_BY_SLUG_QUERY.match(
+    /"treatments": \*\[([\s\S]*?)\] \| order/,
+  );
+  assert.ok(childProjection?.[1], 'The service query must guard child-treatment links.');
+  assert.match(childProjection[1], /status in \["live", "actual-menu"\]/);
+  assert.match(childProjection[1], /defined\(slug\.current\)/);
+  assert.match(childProjection[1], /parentService\._ref == \^\._id/);
 });
