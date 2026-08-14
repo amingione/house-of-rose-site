@@ -136,6 +136,9 @@ export const blogPost = defineType({
       title: 'Related Service',
       type: 'reference',
       to: [{ type: 'service' }],
+      options: {
+        filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+      },
       description: 'Link to a service page for the CTA at the bottom of this post',
     }),
     defineField({

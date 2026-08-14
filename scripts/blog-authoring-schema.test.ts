@@ -6,6 +6,7 @@ import {
   PUBLIC_BLOG_CATEGORIES,
   validateBlogPortableText,
 } from '../packages/studio/schemas/blogPost.ts';
+import { BLOG_POST_BY_SLUG_QUERY } from '../packages/web/src/lib/queries.ts';
 
 test('blog Portable Text validation reviews complete paragraph text across decorated spans', () => {
   assert.equal(
@@ -96,4 +97,15 @@ test('blog image alt text uses the shared public-copy guard wherever it renders'
     assert.equal(validate('Treatment room inside House of Rose Aesthetics.'), true);
     assert.match(String(validate('A premium boutique treatment room.')), /retired or prohibited/i);
   }
+});
+
+test('related-service CTAs can resolve only to generated public service routes', () => {
+  const relatedService = blogPost.fields.find(({ name }) => name === 'relatedService');
+  assert.equal(relatedService?.type, 'reference');
+  const authoringFilter = String(relatedService?.options?.filter);
+
+  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
+  assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(BLOG_POST_BY_SLUG_QUERY, /relatedService->status in \["live", "actual-menu"\]/);
+  assert.match(BLOG_POST_BY_SLUG_QUERY, /defined\(relatedService->slug\.current\)/);
 });

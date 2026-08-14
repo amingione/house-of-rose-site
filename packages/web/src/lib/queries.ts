@@ -979,6 +979,8 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
     },
     body,
     "relatedService": select(
+      relatedService->status in ["live", "actual-menu"] &&
+      defined(relatedService->slug.current) &&
       !(relatedService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
         relatedService->{ title, "slug": slug.current, tagline, bookingMode, bookingUrl, bookingVerifiedAt }
     ),
