@@ -35,7 +35,7 @@ The Face Reality Acne Program at House of Rose is a structured, coaching-based p
 - Persistent, recurring, or moderate breakouts (the appearance of blackheads, whiteheads, congestion, papules/pustules) that one-off facials haven't kept ahead of.
 - Someone who wants a **plan and accountability** and is willing to do the home care daily and keep biweekly appointments for ~12 weeks.
 - Sensitive or melanin-rich skin prone to **post-breakout dark marks** — the mandelic-forward, low-irritation approach is designed with these skin types in mind.
-- Body-acne clients (back/chest) who can add the Back/Chest Acne add-on.
+- Clients asking about the back can discuss the current Face Reality Acne Back Peel; the ledger does not list a chest appointment or body add-on.
 
 **Not the right fit / refer out (honest limits)**
 - **Deep, painful cystic or nodular acne**, widespread inflammation, or acne that is actively scarring warrants medical evaluation first because prescription care is outside an esthetician's scope. Refer to an appropriate medical clinician; the program may complement physician-directed care when coordinated.
@@ -61,7 +61,7 @@ The Face Reality Acne Program at House of Rose is a structured, coaching-based p
 
 **Cadence.** Biweekly during the 12-week program, then individualized maintenance (a lighter home-care routine and periodic maintenance treatments) once skin is calmer.
 
-**À la carte alternative.** A client not ready for the full program can start with a single **Acne Peel** session (peel + extractions + LED) or a **Back Treatment** for bacne, then step up into the program.
+**Separate peel appointments.** The current menu also includes Face Reality Acne Peel #1, Acne Peel #2, Bright Skin Peel, and Acne Back Peel. All four are staff-arranged, with online booking off; they are current appointments, not an implied trial step or automatic path into the program.
 
 ---
 
@@ -71,7 +71,7 @@ The Face Reality Acne Program at House of Rose is a structured, coaching-based p
 A single acne facial or peel can leave skin feeling cleaner and looking brighter *that day*, and it's a fine entry point or occasional maintenance. But for **persistent, recurring breakouts**, one-offs rarely hold, because they don't change the daily inputs (pore-clogging products, triggers, an under-supported routine) or adapt over time. The **program wins for stubborn/recurring breakouts** precisely because it combines the daily home-care regimen, the every-two-weeks adjustment, and the coaching — the parts a stand-alone treatment can't deliver. Rule of thumb: **occasional congestion → single Acne Peel; a pattern you keep fighting → the program.**
 
 **Face Reality acne peel vs. BioRePeel vs. light/enzyme peels.**
-- **Face Reality acne peel (in the program)** — an acne-focused professional peel used *within* the coaching framework, paired with extractions and LED and tuned to where the skin is that week. Best when the goal is **active-breakout management as part of a plan**.
+- **Face Reality acne peels** — four current staff-arranged appointments: Acne Peel #1, Acne Peel #2, Bright Skin Peel, and Acne Back Peel. The ledger verifies their names, prices, and durations but does not establish that each includes extractions or LED, so do not import the program visit protocol into the standalone peel descriptions.
 - **BioRePeel** (`/services/biorepeel/`) is a separate TCA-based surface-resurfacing menu with five current appointment choices spanning $250–$699. Use the exact appointment row and provider distinction; do not reduce it to a generic lower bound.
 - **Light/enzyme peels** (Brandy's basic-facial lane) — gentle maintenance exfoliation for glow and mild congestion; not a corrective acne program.
 - **Honest takeaway:** use the **program** for active breakouts and habit change; use **BioRePeel** for the *aftermath* (texture, marks, the appearance of scarring). They can sequence — clear first, resurface later.
@@ -95,9 +95,9 @@ physician's plan when coordinated.
 
 ## 7. Pairings & pathways
 
-- **Try first:** the **consultation + skin analysis** (or a single **Acne Peel** / **Back Treatment** to sample the experience) before committing to the full program.
+- **Current entry points:** the 60-minute Acne Bootcamp Consultation is online-bookable. The four current Face Reality peel appointments are staff-arranged and separate from the 12-week program.
 - **Separate texture questions:** BioRePeel and Microneedling have their own current appointments for eligible texture concerns. Do not prescribe them as the automatic next purchase after Acne Bootcamp.
-- **Body inventory boundary:** the current ledger does not establish a back/chest add-on or standalone back treatment. Do not offer or link either from this brief.
+- **Body inventory boundary:** the current ledger includes the 10-minute, $205 Face Reality Acne Back Peel. It does not establish a chest appointment, Back/Chest Acne Add-On, or a separate Back Treatment — Acne & Texture.
 - **Retail follow-through (Face Reality brand, in our shop):** the home-care regimen *is* the retail. Real products in Sanity (`/shop/[slug]/`) the specialist may build a routine from — always specialist-selected, never self-prescribed:
   - **Cleansers/washes:** Ultra Gentle Gel Cleanser, Barrier Balance Creamy Cleanser, Acne Face & Body Wash, Mandelic (L-Mandelic) Face & Body Wash.
   - **Exfoliating actives:** 5% / 8% / 11% / 15% L-Mandelic Serum; 5% / 10% Glycolic Serum; Acne Face & Body Scrub.
@@ -117,43 +117,50 @@ Current public prices come only from the GlossGenius-backed canonical ledger.
 |---|---|---|
 | **Face Reality consultation** | **$99** · 60 min | `ALL-SERVICES-PRICING.MD` |
 | **Acne Bootcamp — 12-Week Face Reality Program** | **$899** · 60 min | `ALL-SERVICES-PRICING.MD` |
+| **Face Reality Acne Peel #1** | **$135** · 50 min · booking off | `ALL-SERVICES-PRICING.MD` |
+| **Face Reality Acne Peel #2** | **$155** · 45 min · booking off | `ALL-SERVICES-PRICING.MD` |
+| **Face Reality Bright Skin Peel** | **$165** · 45 min · booking off | `ALL-SERVICES-PRICING.MD` |
+| **Face Reality Acne Back Peel** | **$205** · 10 min · booking off | `ALL-SERVICES-PRICING.MD` |
 
 **Price boundary:** the consultation and program are separate purchases. Face Reality home care is
-purchased separately and is not included in either amount. Do not restore historical acne peels,
-back treatments, body add-ons, series, or product prices without current GlossGenius evidence.
+purchased separately and is not included in either amount. The four peel rows above are current but
+not directly bookable online. Do not restore a Back Treatment, body add-on, peel series, or historical
+product price without current GlossGenius evidence.
 
 ---
 
 ## 9. FAQ bank (substantive, compliance-clean)
 
-1. **What is the Face Reality Acne Program?** It's a 12-week, coaching-based program for clearer-looking skin — biweekly in-studio treatments plus a customized daily home-care regimen, led by Amber, a Face Reality Certified Acne Specialist in Punta Gorda. It's a plan and a partnership, not a single facial.
+1. **What is the Face Reality Acne Program?** It's a 12-week, coaching-based program for clearer-looking skin — biweekly in-studio treatments plus a customized daily home-care regimen, led by Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist in Punta Gorda. It's a plan and a partnership, not a single facial.
 2. **Does it cure acne?** No. It is a non-prescription program designed to support clearer-looking skin and better skin habits. Individual outcomes vary; prescription care belongs with an appropriate medical clinician.
 3. **How long does it take to see a difference?** Face Reality's method is designed to show visible improvement in roughly **6–8 weeks**, with more clearing over **3–6 months** — depending heavily on your acne type and how consistently you follow the home care. We don't promise a timeframe.
-4. **Do I have to buy the full program?** The **Bootcamp is sold as the complete program** because the biweekly cadence and adjusted home care are what make it work. If you want to sample the experience first, you can book a single **Acne Peel** or **Back Treatment** and step up from there.
+4. **Do I have to buy the full program?** The **Bootcamp is sold as the complete program** because the biweekly cadence and adjusted home care are what make it work. Four Face Reality peel appointments are also current, separate choices; they are staff-arranged rather than online-bookable and do not include the 12-week program by default.
 5. **What happens at each biweekly visit?** Typically a double cleanse, an enzyme treatment or acne peel, expert extractions of ready congestion, and high-frequency and/or LED — plus a progress check and a tweak to your home-care routine.
 6. **Why does my skin need to be checked every two weeks?** So the specialist can **strengthen your routine in small steps** before your skin gets used to it — but not so fast it gets dry or irritated. That measured adjustment is the heart of the method.
 7. **Is home care really that important?** Yes — honestly, it's the biggest factor. The products and treatments only work if the daily routine is followed. That commitment is the program.
 8. **Will I break out more at first?** Possibly. A temporary **"purge"** in the first few weeks is normal as exfoliation brings existing congestion to the surface faster. It's part of the process, and the program is structured to carry you through it.
 9. **What products will I use?** A personalized set of **Face Reality** products — usually built around alternating **mandelic acid** and **benzoyl peroxide**, plus barrier/hydration support — chosen by the specialist for your acne type, skin type, skin tone, sensitivity, and environment. Never self-prescribe; the routine is specialist-selected.
 10. **Is it safe for sensitive or deeper skin tones?** The mandelic-forward approach is chosen partly because it tends to be **gentler and less likely to trigger dark marks** on sensitive and melanin-rich skin. Candidacy is always confirmed at consultation.
-11. **Can you treat back and chest acne?** Yes — add the **Back/Chest Acne Add-On (+$95)** to the program, or book a stand-alone **Back Treatment — Acne & Texture**.
+11. **Is there a Face Reality option for the back or chest?** The current menu includes a 10-minute Face Reality Acne Back Peel at **$205**, arranged through the practice. It does not list a chest appointment, Back/Chest Acne Add-On, or separate Back Treatment.
 12. **What about acne scars?** Scarring is a **texture** concern and a different path — once your skin is calmer, we can look at **BioRePeel** or **Microneedling — Corrective** for the *appearance of* acne scarring. The acne program focuses on the active breakouts first.
 13. **When should I seek medical care first?** Seek medical evaluation for deep, painful cystic or nodular acne, widespread inflammation, actively scarring acne, or prescription needs. The program is non-prescription and may run alongside physician-directed care.
 14. **I'm on (or considering) Accutane — can I still do the program?** That's a physician's call, and certain treatments are paused around isotretinoin. Bring it up at consultation so we can time things safely.
 15. **What does it cost?** The current menu lists the 60-minute Acne Bootcamp Consultation at **$99**
     and the 60-minute, 12-week program appointment at **$899**. Home-care products are purchased
-    separately. Do not publish older peel or back-treatment prices from this brief.
+    separately. The four staff-arranged peel appointments are Acne Peel #1 at **$135** for 50 minutes,
+    Acne Peel #2 at **$155** for 45 minutes, Bright Skin Peel at **$165** for 45 minutes, and Acne Back
+    Peel at **$205** for 10 minutes.
 
 ---
 
 ## 10. Provider + compliance notes
 
-- **Lane:** Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist provides the current consultation and Acne Bootcamp program. Nothing here is injectable or prescription. Refer prescription needs to an appropriate medical clinician.
+- **Lane:** Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist provides the current consultation, Acne Bootcamp program, and four Face Reality peel appointments. Nothing here is injectable or prescription. Refer prescription needs to an appropriate medical clinician.
 - **NEVER write:** "treats/cures/heals/clears/fixes acne," "acne treatment" as a medical claim, "eliminate/erase breakouts," "guaranteed clear skin," "permanent," "90% success rate," "clinically proven" (Face Reality's own marketing uses "clinically proven Clear Skin Method™" and "visible results in 8 weeks" and a "90% success rate" — **do not repeat these as House of Rose claims**), "FDA-approved."
-- **SAY INSTEAD:** "for the appearance of breakouts," "supports clearer-looking, calmer skin," "designed to," "many clients notice," "a guided program," "a plan and a partnership." State the verified $99 consultation and $899 program prices plainly.
+- **SAY INSTEAD:** "for the appearance of breakouts," "supports clearer-looking, calmer skin," "designed to," "many clients notice," "a guided program," "a plan and a partnership." State the verified appointment name, amount, and duration plainly.
 - **Purge language:** describe the purge honestly and reassuringly, never as a promised sign of success ("purging can happen; it's temporary and part of the process" — not "purging means it's working").
 - **Framing as a differentiator, not a treatment:** lean into **commitment, coaching, and consistency** — the program is a guided journey. This is compliant *and* it's the actual product.
-- **Required guardrails on every surface:** provider confirms final candidacy/combinations at consultation · "not every client is a candidate" · "individual outcomes vary" · refer-out language for severe acne · package/series pricing carries the Fla. Stat. 456.062 disclaimer; identify the licensee performing each service.
+- **Context-triggered safeguards:** wherever Amber is named, use **Amber Mingione, Licensed Esthetician** and add the Face Reality Certified Acne Specialist credential when it informs the program. Add concise individual-variation language to a results claim or consented case, candidacy guidance where it answers a real safety question, the medical-referral boundary where severe or prescription needs arise, and the required Fla. Stat. 456.062 disclosure wherever the prepaid program price is advertised. Do not repeat all four as boilerplate on an unrelated surface.
 - **Consent for before/after:** no before/after imagery without written client consent; any results claim carries "individual results vary." Baseline photos are for internal progress tracking with consent.
 
 ---
@@ -199,7 +206,7 @@ back treatments, body add-ons, series, or product prices without current GlossGe
 
 **Local docs read (paths):**
 - `docs/internal_only/services/facials/faceRealityAcneProgram.md` — $899, 12-week, program-only; Amber = Face Reality Certified Acne Specialist.
-- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — current $99 consultation and $899 program authority.
+- `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — current $99 consultation, $899 program, and four Face Reality peel rows; the peels are booking-off.
 - `docs/internal_only/pricing/advanced-facials-master-menu.md` — historical context only; its additional acne appointments and add-ons are not current commerce authority.
 - `docs/internal_only/pricing/advanced-facials-pricing.md` — deprecated stub (confirmed superseded by master menu).
 
