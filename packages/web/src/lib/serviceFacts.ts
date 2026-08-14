@@ -13,7 +13,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   glo2facial:
     'The standalone Glo2Facial is directly bookable. Send a question first if you want to compare it with another facial.',
   biorepeel:
-    'The standalone face treatment is directly bookable. Send a question first if you are deciding between BioRePeel and another skin service.',
+    'The $250, 45-minute standalone face treatment and $699 Series of 3 are directly bookable. Call House of Rose to discuss Gold Body at $325 for 45 minutes, Advanced Acne Scarring at $450 for 75 minutes, or the Duo Gold Spot Upgrade at $395 for 60 minutes.',
   'dermal-fillers':
     'Request the 60-minute, $300 Dermal Filler Consultation and describe whether the change in volume is at the lips, cheeks, or folds. You do not need to choose among the Juvéderm and RHA products first.',
   'face-reality-acne-program':

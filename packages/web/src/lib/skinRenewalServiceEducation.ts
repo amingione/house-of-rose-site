@@ -4,7 +4,7 @@ export type SkinRenewalServiceEducationSlug =
   | 'prf'
   | 'prf-injections';
 
-export type SkinRenewalBookingMode = 'consultation' | 'direct';
+export type SkinRenewalBookingMode = 'call' | 'consultation' | 'direct';
 
 export interface SkinRenewalMenuFact {
   readonly name: string;
@@ -49,8 +49,8 @@ export interface SkinRenewalServiceEducation {
  * preserve the binding Microneedling/Procell taxonomy and the topical-versus-
  * injectable PRF boundary from the current reviewed research.
  *
- * Unsupported body and neck services, Glo2 combinations, exosomes, recovery,
- * candidacy, protocols, and outcome claims are deliberately absent. The PRF
+ * Unsupported neck services, Glo2 combinations, exosomes, recovery, candidacy,
+ * protocols, and outcome claims are deliberately absent. The PRF
  * Bio-Filler entry is not described as EZ Gel because that identity remains
  * unresolved in the canonical commerce ledger.
  */
@@ -61,13 +61,21 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     whatItIs:
       'BioRePeel is a topical TCA-based chemical peel used for visible surface texture and uneven tone.',
     whereItFits:
-      'At House of Rose, BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment at $250.',
+      'At House of Rose, BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment at $250. Its Series of 3 is also directly bookable; Gold Body, Advanced Acne Scarring, and the Duo Gold Spot Upgrade are provider-arranged appointments.',
     providerStatement:
-      'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment. Amber Mingione, Licensed Esthetician, uses BioRePeel only as an add-on to an eligible advanced skin service.',
+      'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment. She also provides the Series of 3. Amber Mingione, Licensed Esthetician, provides the Gold Body, Advanced Acne Scarring, and Duo Gold Spot Upgrade appointments and uses BioRePeel as an add-on to eligible advanced skin services.',
     distinctions: [
       {
         label: 'What TCA means',
         text: 'TCA stands for trichloroacetic acid, the chemical-peel ingredient named in the BioRePeelCl3 face formulation. The product is applied to the skin rather than injected.',
+      },
+      {
+        label: 'Directly bookable face appointments',
+        text: 'BioRePeel Cl3 Rejuvenation is $250 for 45 minutes. Its Series of 3 is $699 with a 50-minute appointment listing.',
+      },
+      {
+        label: 'Provider-arranged variants',
+        text: 'Gold Body is $325 for 45 minutes, Advanced Acne Scarring is $450 for 75 minutes, and the Duo Gold Spot Upgrade is $395 for 60 minutes. Call House of Rose to discuss these three appointments.',
       },
       {
         label: 'BioRePeel or Microneedling?',
@@ -90,6 +98,27 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
           priceUsd: 699,
           bookingMode: 'direct',
           note: 'Directly bookable series of three.',
+        },
+        {
+          name: 'BioRePeel Gold — Body',
+          durationMinutes: 45,
+          priceUsd: 325,
+          bookingMode: 'call',
+          note: 'Call House of Rose to discuss this body appointment.',
+        },
+        {
+          name: 'BioRePeel Advanced — Acne Scarring',
+          durationMinutes: 75,
+          priceUsd: 450,
+          bookingMode: 'call',
+          note: 'Call House of Rose to discuss this advanced appointment.',
+        },
+        {
+          name: 'BioRePeel Duo — Gold Spot Upgrade',
+          durationMinutes: 60,
+          priceUsd: 395,
+          bookingMode: 'call',
+          note: 'Call House of Rose to discuss this gold spot upgrade.',
         },
       ],
     },

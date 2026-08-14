@@ -455,7 +455,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       kicker: skinRenewal.title,
       heading,
       metaDescription: skinRenewal.slug === 'biorepeel'
-        ? 'BioRePeel at House of Rose: book the $250 standalone peel or the $699 Series of 3 in Punta Gorda.'
+        ? 'Compare five current BioRePeel appointments at House of Rose, including direct face options and provider-arranged body, acne-scarring, and gold spot variants.'
         : skinRenewal.slug === 'microneedling'
           ? 'Procell Microneedling at House of Rose includes Pro, MD, and topical PRF appointments, with current prices and timing.'
           : skinRenewal.slug === 'prf-injections'
@@ -476,7 +476,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               ? 'PRF Under-Eye and PRF Bio-Filler'
               : 'PRF appointments',
         intro: skinRenewal.slug === 'biorepeel'
-          ? 'Book the standalone 45-minute appointment for $250 or the 50-minute Series of 3 for $699.'
+          ? 'The $250 standalone face treatment and $699 Series of 3 are directly bookable. Call House of Rose to discuss Gold Body, Advanced Acne Scarring, or the Duo Gold Spot Upgrade.'
           : skinRenewal.slug === 'prf' || skinRenewal.slug === 'prf-injections'
             ? skinRenewal.slug === 'prf'
               ? 'PRF Microneedling is $595 for 60 minutes; PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
@@ -502,7 +502,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               question: 'Who provides standalone BioRePeel at House of Rose?',
-              answer: 'Brandy, Licensed Esthetician, provides standalone BioRePeel. Amber Mingione, Licensed Esthetician, uses BioRePeel only as an add-on to an eligible advanced skin service.',
+              answer: 'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment and Series of 3. Amber Mingione, Licensed Esthetician, provides the Gold Body, Advanced Acne Scarring, and Duo Gold Spot Upgrade appointments and uses BioRePeel as an add-on to eligible advanced skin services.',
+            },
+            {
+              question: 'Which BioRePeel appointments require a call?',
+              answer: 'Call House of Rose to discuss BioRePeel Gold — Body, BioRePeel Advanced — Acne Scarring, or the BioRePeel Duo — Gold Spot Upgrade. The standalone face treatment and Series of 3 are directly bookable.',
             },
           ]
         : skinRenewal.faqs,
@@ -520,6 +524,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             {
               href: '/about/providers/brandy/',
               label: 'Meet Brandy',
+            },
+            {
+              href: '/about/providers/amber/',
+              label: 'Meet Amber Mingione, Licensed Esthetician',
             },
             {
               href: '/services/microneedling/',
