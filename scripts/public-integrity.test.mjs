@@ -906,6 +906,14 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
   for (const unsupported of ['M17', 'AI Skin Analyzer', 'diagnostic accuracy', 'hydration cues']) {
     if (mainText.includes(unsupported)) failures.push(`skin-analysis: contains unsupported ${JSON.stringify(unsupported)}`);
   }
+  for (const required of [
+    'The form sends a request and does not hold an appointment time.',
+    'Use the online booking option when you want to reserve an available time immediately.',
+    'Send a Skin Analysis Request',
+    'Book a skin analysis',
+  ]) {
+    if (!mainText.includes(required)) failures.push(`skin-analysis: missing booking expectation ${JSON.stringify(required)}`);
+  }
 
   const visibleFaqs = [...main.matchAll(
     /<h3\b[^>]*data-skin-analysis-faq-question[^>]*>([\s\S]*?)<\/h3>\s*<p\b[^>]*data-skin-analysis-faq-answer[^>]*>([\s\S]*?)<\/p>/gi,
