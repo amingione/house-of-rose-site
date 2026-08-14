@@ -134,8 +134,8 @@ any other point-of-sale transaction. Nothing forward-facing changes except the a
 drops from the full price to the deposit.
 
 **Why not a second "Treatment" service line instead?** It was considered — a staff-only, booking-off
-service (same mechanism already used for CO2 Lift Carboxy's add-on and formerly for Rose PRF Fibrin
-Veil) would also work. The deposit model is recommended over it because it requires zero new service
+service (the same mechanism already used for CO2 Lift Carboxy's add-on) would also work. The deposit
+model is recommended over it because it requires zero new service
 creation, matches a pattern GlossGenius already runs cleanly elsewhere in this account, and keeps
 reporting simple (one line per service, not two to reconcile against each other).
 
@@ -289,17 +289,13 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
    Bio-Filler → ADDED $650" on 2026-07-26. The 2026-08-06 export shows no "EZ Gel" line at all —
    only "PRF Bio-Filler — Consultation" $899. Either EZ Gel was renamed and repriced, or it's two
    different things and EZ Gel quietly disappeared. Confirm with Diana.
-4. 🟡 **Rose PRF Fibrin Veil is shelved in GlossGenius** (per Amber, 2026-07-26 — "overpriced... not
-   listed") **but is still a published, live service page on Sanity** (`hor.service.prf-fibrin-veil`,
-   `/services/prf-fibrin-veil/`). The website is advertising something that isn't bookable or priced
-   anywhere. Either unpublish the Sanity page or re-add the service to GlossGenius.
-5. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
+4. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
    different group names) — see the Aundrea section above.
-6. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
+5. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
    $299, $325, $349) before settling at the current, confirmed-live **Pro $300 / MD $400** (Amber's
    2026-07-26 decision, matches the fresh export exactly). This one is resolved — flagging only so
    nobody resurrects an old number from a stale doc.
-7. 🟢 **IV add-ons and most package/series pricing (3x, 6x tiers for facials/microneedling) don't
+6. 🟢 **IV add-ons and most package/series pricing (3x, 6x tiers for facials/microneedling) don't
    appear as separate GlossGenius line items** in this export. If they're still real and bookable,
    they need to exist in GlossGenius directly — this file can only mirror what GlossGenius shows.
 

@@ -118,14 +118,24 @@ test('unsupported facial concepts do not retain active treatment briefs', () => 
 });
 
 test('PRF research cannot regenerate the rejected strategy artifact', () => {
-  assert.equal(
-    existsSync(new URL(
+  for (const retiredArtifact of [
+    new URL(
       'compass_artifact_wf-116088fa-2d44-4fdf-a81e-8886533f95e6_text_markdown.md',
       researchRoot,
-    )),
-    false,
-    'The raw PRF strategy artifact must not remain available as drafting authority.',
-  );
+    ),
+    new URL('PROCELL/prf-procell-education-publish-checklist.md', researchRoot),
+    new URL(
+      '../services/features/PRF/fibrin-veil-protocol.md',
+      researchRoot,
+    ),
+    new URL('../../../../packages/studio/scripts/glossgenius-booking-map.mjs', researchRoot),
+  ]) {
+    assert.equal(
+      existsSync(retiredArtifact),
+      false,
+      `${retiredArtifact.pathname} must not remain available as drafting or publishing authority.`,
+    );
+  }
 
   const prfResearch = [
     'PRF/prf-injections-ezgel.md',
@@ -141,6 +151,12 @@ test('PRF research cannot regenerate the rejected strategy artifact', () => {
     /Proposed new pages|\/concerns\/hair-thinning\/|\/services\/prf-microneedling\/|\/services\/prf-body-treatments\//i,
   );
   assert.match(prfResearch, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+
+  const canonicalPricing = readFileSync(
+    new URL('../services/ALL-SERVICES-PRICING.MD', researchRoot),
+    'utf8',
+  );
+  assert.doesNotMatch(canonicalPricing, /Rose PRF Fibrin Veil|prf-fibrin-veil/i);
 });
 
 test('skin imaging research follows current optional-service and concern routes', () => {
