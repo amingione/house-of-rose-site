@@ -24,6 +24,10 @@ test('the public homepage and visual editor agree that Studio copy is disconnect
     new URL('../packages/web/src/pages/index.astro', import.meta.url),
     'utf8',
   );
+  const queries = readFileSync(
+    new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+    'utf8',
+  );
   const stackbit = readFileSync(new URL('../stackbit.config.ts', import.meta.url), 'utf8');
   const structure = readFileSync(
     new URL('../packages/studio/structure.ts', import.meta.url),
@@ -36,6 +40,8 @@ test('the public homepage and visual editor agree that Studio copy is disconnect
 
   assert.doesNotMatch(route, /HOMEPAGE_QUERY|sanityFetch/);
   assert.match(route, /const treatmentCategories = \[/);
+  assert.doesNotMatch(queries, /HOMEPAGE_QUERY|interface HomePage|interface HomeServiceGroup/);
+  assert.doesNotMatch(queries, /_type\s*==\s*["']homepage["']/);
   assert.doesNotMatch(stackbit, /homepage:\s*['"]\/['"]/);
   assert.doesNotMatch(
     stackbit,
