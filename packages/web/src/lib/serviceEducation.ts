@@ -725,6 +725,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           price: `${formatMorpheus8Price(item.minimumPriceUsd)}–${formatMorpheus8Price(item.maximumPriceUsd)}`,
           note: `Package of ${item.treatmentCount}`,
         })),
+        {
+          name: MORPHEUS8_PRICING.bundle.name,
+          price: formatMorpheus8Price(MORPHEUS8_PRICING.bundle.priceUsd),
+          note: `${MORPHEUS8_PRICING.bundle.treatmentCount} total treatments`,
+        },
       ];
 
   return {
@@ -740,7 +745,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       device.whereItFits,
       isBodyMorpheus
         ? 'Morpheus8 Burst Deep body pricing is organized by area size: 4 × 10 inches or 8 × 11 inches. Both are priced as a series of three; call House of Rose to confirm the appointment length.'
-        : 'House of Rose publishes both a single-treatment price and a series-of-three price for Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Hyperhidrosis is listed separately at $2,200–$2,400 for a package of three. Call the practice to confirm the appointment length.',
+        : 'House of Rose publishes both a single-treatment price and a series-of-three price for Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Hyperhidrosis is listed separately at $2,200–$2,400 for a package of three. The Morpheus8 + Lumecca Bundle is $1,799 for two total treatments. Call the practice to confirm the appointment length.',
     ],
     distinctions: [
       {
@@ -755,6 +760,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each price is for a series of three.'
           : 'Full Face, Face & Neck, Scars, Chest, and Stretch Marks each have a single-treatment price and a series-of-three price. Hyperhidrosis has a separate package-of-three price range.',
       },
+      ...(!isBodyMorpheus
+        ? [
+            {
+              label: 'The separate Lumecca bundle',
+              text: 'The $1,799 Morpheus8 + Lumecca Bundle covers two total treatments. It is listed separately from the standalone Morpheus8 area prices.',
+            },
+          ]
+        : []),
     ],
     menu: {
       heading: isBodyMorpheus
@@ -762,7 +775,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : 'Morpheus8 Burst pricing by area',
       intro: isBodyMorpheus
         ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
-        : 'Five treatment areas have a single-treatment price and a series-of-three price. Hyperhidrosis is listed separately as a package of three.',
+        : 'Five treatment areas have a single-treatment price and a series-of-three price. Hyperhidrosis and the Morpheus8 + Lumecca Bundle are separate package listings.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
@@ -793,6 +806,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           {
             question: 'How is the Morpheus8 Burst Hyperhidrosis package priced?',
             answer: 'The current Hyperhidrosis listing is $2,200–$2,400 for a package of three. Call House of Rose to confirm the appointment length.',
+          },
+          {
+            question: 'What does the $1,799 Morpheus8 + Lumecca Bundle include?',
+            answer: 'The current bundle listing covers two total treatments. It is separate from the standalone Morpheus8 area prices.',
           },
         ],
     faqHeading: isBodyMorpheus
