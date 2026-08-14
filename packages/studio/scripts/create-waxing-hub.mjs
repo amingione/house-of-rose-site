@@ -9,6 +9,7 @@ const HUB_ID = 'service-waxing';
 const COLLECTION_ID = '5ae70d4c-c42e-4824-881e-b6bb4157de7f';
 const BODY_WAXING_ID = '8f3a3755-2633-4bfc-9b04-41696ffba1e1';
 const FACIAL_WAXING_ID = 'service-facial-waxing';
+const PUBLIC_CHILD_STATUSES = new Set(['live', 'actual-menu']);
 
 const apply = process.argv.includes('--apply');
 const token = process.env.SANITY_API_WRITE_TOKEN ?? process.env.SANITY_AUTH_TOKEN ?? process.env.SANITY_TOKEN;
@@ -52,8 +53,19 @@ const current = await client.fetch(
 if (current.hub && current.hub._id !== HUB_ID) {
   throw new Error(`Waxing slug is already owned by ${current.hub._id}; refusing to create a parallel service.`);
 }
-if (current.collection?._id !== COLLECTION_ID || current.children?.length !== 2) {
-  throw new Error('The verified Waxing collection or its two current child services are missing.');
+if (current.collection?._id !== COLLECTION_ID || !current.collection.slug || current.children?.length !== 2) {
+  throw new Error('The verified routeable Waxing collection or its two current child services are missing.');
+}
+
+const unroutableChildren = current.children.filter(
+  (child) => !PUBLIC_CHILD_STATUSES.has(child.status) || !child.slug,
+);
+if (unroutableChildren.length > 0) {
+  throw new Error(
+    `Refusing to link non-public Waxing child services: ${unroutableChildren
+      .map((child) => `${child._id} (${child.status ?? 'no status'}; ${child.slug ?? 'no slug'})`)
+      .join(', ')}`,
+  );
 }
 
 if (!apply) {
