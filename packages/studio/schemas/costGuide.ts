@@ -30,7 +30,10 @@ export const costGuide = defineType({
       title: 'Treatment',
       type: 'reference',
       to: [{ type: 'service' }],
-      description: 'The canonical service hub this cost guide is about.',
+      options: {
+        filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+      },
+      description: 'The canonical public service this cost guide is about.',
     }),
     defineField({
       name: 'answer',

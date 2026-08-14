@@ -1336,7 +1336,12 @@ const SERVICE_REF_FIELDS = /* groq */ `
 export const ALL_COST_GUIDES_QUERY = /* groq */ `
   *[_type == "costGuide" && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit, _updatedAt,
-    "treatment": select(!(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => treatment->{ ${SERVICE_REF_FIELDS} }),
+    "treatment": select(
+      treatment->status in ["live", "actual-menu"] &&
+      defined(treatment->slug.current) &&
+      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+      => treatment->{ ${SERVICE_REF_FIELDS} }
+    ),
     "seo": seo { metaTitle, metaDescription }
   }
 `;
@@ -1345,7 +1350,12 @@ export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
   *[_type == "costGuide" && slug.current == $slug && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})][0] {
     _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit,
     whatsIncluded, costFactors[]{ _key, factor, effect }, faqs[]{ _key, question, answer }, _updatedAt,
-    "treatment": select(!(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) => treatment->{ ${SERVICE_REF_FIELDS} }),
+    "treatment": select(
+      treatment->status in ["live", "actual-menu"] &&
+      defined(treatment->slug.current) &&
+      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+      => treatment->{ ${SERVICE_REF_FIELDS} }
+    ),
     "relatedServices": relatedServices[!(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{ ${SERVICE_REF_FIELDS} },
     "comparisons": *[
       _type == "comparison" &&
