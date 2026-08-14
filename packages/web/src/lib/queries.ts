@@ -69,19 +69,14 @@ const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify([
   'ingrown-hair',
 ]);
 
-const RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify([
-  'prf',
-  'rf-ipl-skin-treatments',
-  'makeup',
-  'lash-services',
-  'advanced-facials',
-  'microchanneling-microneedling',
-  'skin-renewal',
-  'enhancements-add-ons',
-  'acne-bootcamp',
-  'wellness-restoration',
-  'permanent-jewelry',
-]);
+export const REVIEWED_PUBLIC_COLLECTION_SLUGS = [
+  'facials',
+  'injectables-bio-fillers',
+  'inmode',
+  'iv-hydration-therapy',
+  'waxing',
+] as const;
+const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 
 // A package is public only when its package price is represented in the
 // current GlossGenius-backed menu. Other published Sanity records remain
@@ -471,7 +466,7 @@ export const ALL_SERVICES_QUERY = /* groq */ `
     ${IMAGE_FIELDS},
     "collection": select(
       defined(collection->slug.current) &&
-      !(collection->slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ}) =>
+      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
         collection->{ title, "slug": slug.current }
     ),
     "seo": seo { metaTitle, metaDescription }
@@ -610,7 +605,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     },
     "collection": select(
       defined(collection->slug.current) &&
-      !(collection->slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ}) =>
+      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
         collection->{ title, "slug": slug.current }
     ),
     "relatedServices": relatedServices[@->status in ["live", "actual-menu"] && defined(@->slug.current) && !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{
@@ -669,7 +664,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COLLECTIONS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "serviceCollection" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -703,7 +698,7 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
  * titles + slugs only (no images/descriptions) so the nav stays cheap to build.
  */
 export const NAV_COLLECTIONS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "serviceCollection" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -730,7 +725,7 @@ export interface NavCollection {
 }
 
 export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && slug.current == $slug && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})][0] {
+  *[_type == "serviceCollection" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}][0] {
     _id,
     title,
     "slug": slug.current,
@@ -972,7 +967,7 @@ export const ALL_SERVICE_SLUGS_QUERY = /* groq */ `
 `;
 
 export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})]{ "slug": slug.current }
+  *[_type == "serviceCollection" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}]{ "slug": slug.current }
 `;
 
 export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `

@@ -40,18 +40,12 @@ export const service = defineType({
       type: 'reference',
       to: [{ type: 'serviceCollection' }],
       options: {
-        filter: `defined(slug.current) && !(slug.current in [
-          "prf",
-          "rf-ipl-skin-treatments",
-          "makeup",
-          "lash-services",
-          "advanced-facials",
-          "microchanneling-microneedling",
-          "skin-renewal",
-          "enhancements-add-ons",
-          "acne-bootcamp",
-          "wellness-restoration",
-          "permanent-jewelry"
+        filter: `defined(slug.current) && slug.current in [
+          "facials",
+          "injectables-bio-fillers",
+          "inmode",
+          "iv-hydration-therapy",
+          "waxing"
         ])`,
       },
       description: 'Controls where this service appears on the SITE — which /services/collections/ hub page it\'s listed under (e.g. "Facials"). Not the same as Category below, which is internal pricing/reporting only and is never shown to customers.',

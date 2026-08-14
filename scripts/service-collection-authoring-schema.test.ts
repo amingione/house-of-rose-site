@@ -3,9 +3,11 @@ import test from 'node:test';
 
 import { serviceCollection } from '../packages/studio/schemas/serviceCollection.ts';
 import {
+  ALL_COLLECTION_SLUGS_QUERY,
   ALL_COLLECTIONS_QUERY,
   COLLECTION_BY_SLUG_QUERY,
   NAV_COLLECTIONS_QUERY,
+  REVIEWED_PUBLIC_COLLECTION_SLUGS,
 } from '../packages/web/src/lib/queries.ts';
 
 function collectionField(name: string) {
@@ -56,5 +58,22 @@ test('collection navigation only exposes records with generated routes', () => {
     assert.ok(servicesFilter?.[1], 'The collection query must guard linked service routes.');
     assert.match(servicesFilter[1], /status in \["live", "actual-menu"\]/);
     assert.match(servicesFilter[1], /defined\(slug\.current\)/);
+  }
+});
+
+test('collection creation cannot publish without explicit route review', () => {
+  const reviewedSlugSet = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
+  assert.ok(REVIEWED_PUBLIC_COLLECTION_SLUGS.length > 0);
+
+  for (const query of [
+    ALL_COLLECTIONS_QUERY,
+    NAV_COLLECTIONS_QUERY,
+    COLLECTION_BY_SLUG_QUERY,
+    ALL_COLLECTION_SLUGS_QUERY,
+  ]) {
+    assert.ok(
+      query.includes(`slug.current in ${reviewedSlugSet}`),
+      'Every public collection query must fail closed to reviewed routes.',
+    );
   }
 });
