@@ -25,15 +25,15 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'botox-cost-punta-gorda': {
     display: '$14 per unit',
     summary: 'Botox is priced at $14 per unit. The total reflects the number of units provided.',
-    answer: 'Botox at House of Rose in Punta Gorda is $14 per unit. Price verified August 6, 2026.',
+    answer: 'As of August 6, 2026, Botox at House of Rose in Punta Gorda is $14 per unit.',
     menuHeading: 'Botox is priced by the unit.',
     faqHeading: 'What $14 per unit means.',
     verifiedAt: VERIFIED_AT,
-    context: 'Botox and Daxxify are separate neurotoxin listings. This guide covers the current Botox price.',
+    context: 'This guide covers Botox. Daxxify has a separate neurotoxin listing, although both are priced at $14 per unit.',
     faqs: [
       {
         question: 'How much is Botox at House of Rose?',
-        answer: 'Botox at House of Rose in Punta Gorda is $14 per unit. Price verified August 6, 2026.',
+        answer: 'As of August 6, 2026, Botox at House of Rose in Punta Gorda is $14 per unit.',
       },
       {
         question: 'Is $14 the total price for a Botox appointment?',
@@ -41,7 +41,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'Does this Botox guide include Daxxify pricing?',
-        answer: 'No. Botox and Daxxify are separate current menu listings, although both are priced at $14 per unit.',
+        answer: 'No. Botox and Daxxify have separate listings, although both are priced at $14 per unit.',
       },
     ],
     items: [
@@ -51,7 +51,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'prf-microneedling-cost-punta-gorda': {
     display: '$595',
     summary: 'Topical PRF microneedling is listed at $595.',
-    answer: 'Topical PRF microneedling at House of Rose in Punta Gorda is $595. Price verified August 6, 2026.',
+    answer: 'As of August 6, 2026, topical PRF microneedling at House of Rose in Punta Gorda is $595.',
     menuHeading: 'Topical PRF has its own listing.',
     faqHeading: 'The topical PRF price.',
     verifiedAt: VERIFIED_AT,
@@ -62,16 +62,16 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'dermal-fillers-cost-punta-gorda': {
     display: '$650–$850',
-    summary: 'Current dermal filler products range from $650 to $850, depending on the product.',
-    answer: 'Dermal filler prices at House of Rose in Punta Gorda range from $650 to $850. Prices verified August 6, 2026.',
+    summary: 'Dermal filler products range from $650 to $850, depending on the product.',
+    answer: 'As of August 6, 2026, dermal filler prices at House of Rose in Punta Gorda range from $650 to $850.',
     menuHeading: 'Five products make up the range.',
     faqHeading: 'Products, range, and consultation.',
     verifiedAt: VERIFIED_AT,
-    context: 'The current menu lists five Juvéderm and RHA filler products. A consultation is listed separately.',
+    context: 'Five Juvéderm and RHA filler products make up the range. A consultation has its own price.',
     faqs: [
       {
         question: 'What is the published dermal filler price range?',
-        answer: 'Dermal filler prices at House of Rose in Punta Gorda range from $650 to $850. Prices verified August 6, 2026.',
+        answer: 'As of August 6, 2026, dermal filler prices at House of Rose in Punta Gorda range from $650 to $850.',
       },
       {
         question: 'Why do dermal filler prices range from $650 to $850?',
@@ -93,20 +93,20 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'forma-cost-punta-gorda': {
     display: '$600–$3,000',
-    summary: 'Forma pricing ranges from $600 to $3,000 because the current menu is organized by treatment area.',
-    answer: 'Forma prices at House of Rose in Punta Gorda range from $600 to $3,000. Prices verified August 6, 2026.',
+    summary: 'Forma pricing ranges from $600 to $3,000 because each treatment area has its own listed price.',
+    answer: 'As of August 6, 2026, Forma prices at House of Rose in Punta Gorda range from $600 to $3,000.',
     menuHeading: 'The treatment area sets the listed price.',
-    faqHeading: 'How the area menu is priced.',
+    faqHeading: 'How treatment area changes the price.',
     verifiedAt: VERIFIED_AT,
-    context: 'The published range is an area menu, not one variable price for the same appointment. Forma + Lumecca is a separate bundle listing.',
+    context: 'The range spans separately priced treatment areas; it is not one variable price for the same appointment. Forma + Lumecca has its own bundle price.',
     faqs: [
       {
         question: 'What is the published Forma price range?',
-        answer: 'Forma prices at House of Rose in Punta Gorda range from $600 to $3,000. Prices verified August 6, 2026.',
+        answer: 'As of August 6, 2026, Forma prices at House of Rose in Punta Gorda range from $600 to $3,000.',
       },
       {
         question: 'Why do Forma prices vary by treatment area?',
-        answer: 'The current menu assigns a published price to each listed area. Eyes and nasolabial folds are $600; neck and jawline are $1,500; face is $2,000; and face and neck are $3,000.',
+        answer: 'Each listed area has its own price. Eyes and nasolabial folds are $600; neck and jawline are $1,500; face is $2,000; and face and neck are $3,000.',
       },
       {
         question: 'Is the Forma + Lumecca bundle part of the Forma area range?',
@@ -125,16 +125,16 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'ipl-photofacial-cost-punta-gorda': {
     display: '$250–$2,600',
-    summary: 'Lumecca Peak IPL pricing ranges from $250 to $2,600 across the current area and series menu.',
-    answer: 'Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600. Prices verified August 6, 2026.',
+    summary: 'Lumecca Peak IPL pricing ranges from $250 to $2,600 across treatment areas and single- or three-session options.',
+    answer: 'As of August 6, 2026, Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600.',
     menuHeading: 'Area and series determine the listing.',
     faqHeading: 'How to read the $250–$2,600 range.',
     verifiedAt: VERIFIED_AT,
-    context: 'The current menu varies by treatment area and by single-session or three-session listing. The range should not be read as one appointment with a negotiable price.',
+    context: 'Treatment area and single- or three-session selection account for the range. It is not one appointment with a negotiable price.',
     faqs: [
       {
         question: 'What is the published price range for Lumecca Peak IPL?',
-        answer: 'Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600. Prices verified August 6, 2026.',
+        answer: 'As of August 6, 2026, Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600.',
       },
       {
         question: 'What does the Lumecca price range represent?',
@@ -142,7 +142,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'Is $2,600 the price for every Lumecca appointment?',
-        answer: 'No. $2,600 is the upper end of the current area and series menu, not a flat price for every appointment.',
+        answer: 'No. $2,600 is the upper end of the area and series listings, not a flat price for every appointment.',
       },
     ],
     items: [
@@ -155,15 +155,15 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'biorepeel-cost-punta-gorda': {
     display: '$250',
     summary: 'Standalone BioRePeel is $250. A separate series of three is listed at $699.',
-    answer: 'A standalone BioRePeel at House of Rose in Punta Gorda is $250. A separate series of three is $699. Prices verified August 6, 2026.',
+    answer: 'As of August 6, 2026, a standalone BioRePeel at House of Rose in Punta Gorda is $250. A series of three is $699.',
     menuHeading: 'One treatment or a series of three.',
     faqHeading: 'Standalone and series pricing.',
     verifiedAt: VERIFIED_AT,
-    context: 'Standalone treatment and series pricing are separate current menu listings.',
+    context: 'One appointment and the series of three are priced separately.',
     faqs: [
       {
         question: 'How much is BioRePeel at House of Rose?',
-        answer: 'A standalone BioRePeel at House of Rose in Punta Gorda is $250. A separate series of three is $699. Prices verified August 6, 2026.',
+        answer: 'As of August 6, 2026, a standalone BioRePeel at House of Rose in Punta Gorda is $250. A series of three is $699.',
       },
       {
         question: 'What is the difference between the standalone and series prices?',
@@ -177,16 +177,16 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'microneedling-cost-punta-gorda': {
     display: '$300–$400',
-    summary: 'The current Procell microneedling menu lists Pro at $300 and MD at $400.',
-    answer: 'Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD. Prices verified August 6, 2026.',
-    menuHeading: 'Pro and MD are separate menu options.',
+    summary: 'Procell Pro is $300, and Procell MD is $400.',
+    answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
+    menuHeading: 'Pro and MD have their own prices.',
     faqHeading: 'Pro, MD, and topical PRF.',
     verifiedAt: VERIFIED_AT,
     context: 'Topical PRF microneedling is a separate $595 listing and is not included in this two-option range.',
     faqs: [
       {
         question: 'What are the published Procell microneedling prices?',
-        answer: 'Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD. Prices verified August 6, 2026.',
+        answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
       },
       {
         question: 'Does the $300 to $400 range include topical PRF?',
@@ -194,7 +194,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'Is Procell Microchanneling a separate service?',
-        answer: 'No. Procell is the device used for the current Microneedling service; Procell Microchanneling is not a separate public service.',
+        answer: 'No. Procell is the device used for the Microneedling service; Procell Microchanneling is not a separate public service.',
       },
     ],
     items: [
@@ -203,28 +203,43 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     ],
   },
   'morpheus8-cost-punta-gorda': {
-    display: 'No standalone price published',
-    summary: 'A standalone Morpheus8 price is not published in the current menu. The Morpheus8 + Lumecca bundle is listed at $1,799.',
-    answer: 'House of Rose does not publish a standalone Morpheus8 price in the current menu. A Morpheus8 + Lumecca bundle is listed at $1,799. Menu checked August 6, 2026.',
-    menuHeading: 'Only the combination price is published.',
-    faqHeading: 'What is—and is not—priced.',
-    verifiedAt: VERIFIED_AT,
-    context: 'A bundle price is not evidence of a standalone Morpheus8 price, so this guide keeps the distinction explicit.',
+    display: 'Single treatments from $500',
+    summary: 'Morpheus8 Burst single treatments range from $500 to $1,250 by area. Three-treatment prices range from $1,300 to $3,500 for the five listed Burst areas.',
+    answer: 'As of August 14, 2026, House of Rose lists Morpheus8 Burst single treatments from $500 to $1,250 and three-treatment prices from $1,300 to $3,500, depending on the area.',
+    menuHeading: 'Single and three-treatment prices by area.',
+    faqHeading: 'Areas, single treatments, and series pricing.',
+    verifiedAt: '2026-08-14',
+    context: 'The separate $1,799 Morpheus8 + Lumecca price covers two total treatments and is not a standalone Morpheus8 price.',
     faqs: [
       {
-        question: 'Is a standalone Morpheus8 price published?',
-        answer: 'No. House of Rose does not publish a standalone Morpheus8 price in the current menu. Menu checked August 6, 2026.',
+        question: 'What does one Morpheus8 Burst treatment cost?',
+        answer: 'Single-treatment prices are $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
       },
       {
-        question: 'Does the $1,799 bundle price represent Morpheus8 alone?',
-        answer: 'No. $1,799 is the published price for the Morpheus8 + Lumecca Bundle, not a standalone Morpheus8 price.',
+        question: 'What do three Morpheus8 Burst treatments cost?',
+        answer: 'Three-treatment prices are $3,000 for Full Face, $3,500 for Face & Neck, $1,300 for Scars, $1,300 for Chest, and $1,700 for Stretch Marks.',
+      },
+      {
+        question: 'Does the $1,799 price represent Morpheus8 alone?',
+        answer: 'No. $1,799 is the published Morpheus8 + Lumecca bundle price for two total treatments.',
       },
     ],
     items: [
-      { name: 'Morpheus8 + Lumecca Bundle', price: '$1,799' },
+      ...MORPHEUS8_PRICING.burst.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+      })),
+      {
+        name: MORPHEUS8_PRICING.bundle.name,
+        price: `${formatMorpheus8Price(MORPHEUS8_PRICING.bundle.priceUsd)} · ${MORPHEUS8_PRICING.bundle.treatmentCount} total treatments`,
+      },
     ],
   },
 };
 
 export const getVerifiedCostFact = (slug: string): VerifiedCostFact | undefined =>
   VERIFIED_COST_FACTS[slug];
+import {
+  formatMorpheus8Price,
+  MORPHEUS8_PRICING,
+} from '@/lib/morpheus8Pricing';

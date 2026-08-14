@@ -47,9 +47,9 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'lumecca-peak-ipl':
     'Request a consultation and name the treatment area you want to discuss. The eight Lumecca Peak areas are shown above.',
   morpheus8:
-    'Use the consultation to name the face, neck, chest, or body area you want to discuss before choosing a Morpheus8 listing.',
+    'Use the consultation to name the face, neck, chest, scar, or stretch-mark area you want to discuss; the single and three-treatment prices are shown above.',
   'morpheus8-body':
-    'Use the consultation to name the body area and visible concern you want to discuss. No standalone body price or appointment length is published.',
+    'Use the consultation to name the body area and visible concern you want to discuss. Burst Deep small- and large-area package prices are shown above; call to confirm the appointment length.',
   'prf-under-eyes':
     'Request a consultation and describe whether the under-eye concern looks more like color, visible vessels, shadow, or a combination.',
   waxing:

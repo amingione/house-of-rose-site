@@ -7,6 +7,10 @@ import { IV_HYDRATION_EDUCATION } from '@/lib/ivHydrationFacts';
 import { DERMAPLANING_EDUCATION } from '@/lib/dermaplaningEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 import {
+  formatMorpheus8Price,
+  MORPHEUS8_PRICING,
+} from '@/lib/morpheus8Pricing';
+import {
   FACE_REALITY_PROGRAM,
   getFaceRealityServiceEducation,
 } from '@/lib/faceRealityEducation';
@@ -620,6 +624,16 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   }
 
   const isBodyMorpheus = device.slug === 'morpheus8-body';
+  const morpheusMenuItems = isBodyMorpheus
+    ? MORPHEUS8_PRICING.burstDeep.map((item) => ({
+        name: item.name,
+        price: formatMorpheus8Price(item.seriesOfThreePriceUsd),
+        note: item.note,
+      }))
+    : MORPHEUS8_PRICING.burst.map((item) => ({
+        name: item.name,
+        price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+      }));
 
   return {
     kicker: device.title,
@@ -631,8 +645,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       device.whatItIs,
       device.whereItFits,
       isBodyMorpheus
-        ? 'Morpheus8 Body begins with a consultation. Call House of Rose before scheduling to confirm the standalone price, appointment length, and any series information.'
-        : 'Morpheus8 begins with a consultation. Call House of Rose before scheduling to confirm the standalone price and appointment length.',
+        ? 'Morpheus8 Body begins with a consultation. The two Burst Deep area packages are priced below; call House of Rose to confirm the appointment length.'
+        : 'Morpheus8 begins with a consultation. The current standalone and three-treatment prices are shown below; call House of Rose to confirm the appointment length.',
     ],
     distinctions: [
       {
@@ -648,6 +662,16 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           : 'The main Morpheus8 service covers the face, neck and chest as well as selected body areas. Morpheus8 Body uses the same InMode platform and keeps the body-area information together.',
       },
     ],
+    menu: {
+      heading: isBodyMorpheus
+        ? 'Morpheus8 Burst Deep area packages'
+        : 'Morpheus8 Burst pricing by area',
+      intro: isBodyMorpheus
+        ? 'The source lists small and large Burst Deep areas as three-treatment packages.'
+        : 'Each row shows the single-treatment price followed by the three-treatment price.',
+      verifiedAt: MORPHEUS8_PRICING.verifiedAt,
+      items: morpheusMenuItems,
+    },
     faqs: isBodyMorpheus
       ? [
           {
@@ -656,7 +680,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
           {
             question: 'How do I confirm the Morpheus8 Body price and appointment length?',
-            answer: 'Call House of Rose before scheduling to confirm the standalone price, appointment length, and any series information.',
+            answer: 'The Morpheus8 Burst Deep small-area package is $3,500 for three treatments, and the large-area package is $4,500 for three treatments. Call House of Rose to confirm the appointment length.',
           },
         ]
       : [
@@ -667,6 +691,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           {
             question: 'Is Morpheus8 Body a different platform?',
             answer: 'Morpheus8 Body uses the same InMode platform. The body-focused service keeps selected body areas together, while the main Morpheus8 service also covers the face, neck and chest.',
+          },
+          {
+            question: 'What does a standalone Morpheus8 treatment cost?',
+            answer: 'The current Morpheus8 Burst single-treatment prices are $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
           },
         ],
     faqHeading: isBodyMorpheus

@@ -216,6 +216,18 @@ gold). If those tiers are still real, they need to be added to GlossGenius as se
 | Service | Price |
 |---|---|
 | Lumecca Peak IPL Consultation | $50 |
+| Morpheus8 Burst — Full Face — single / 3 | $1,200 / $3,000 |
+| Morpheus8 Burst — Face & Neck — single / 3 | $1,250 / $3,500 |
+| Morpheus8 Burst — Scars — single / 3 | $500 / $1,300 |
+| Morpheus8 Burst — Chest — single / 3 | $500 / $1,300 |
+| Morpheus8 Burst — Stretch Marks — single / 3 | $700 / $1,700 |
+| Morpheus8 Burst — Hyperhidrosis — package of 3 | $2,200–$2,400 |
+| Morpheus8 Burst Deep — Small Area (4 × 10 in) / Large Area (8 × 11 in) — package of 3 | $3,500 / $4,500 |
+| Morpheus8 Resurfacing — Full Face — single / 3 | $750 / $2,000 |
+| Morpheus8 Resurfacing — Face & Neck — single / 3 | $950 / $2,700 |
+| Morpheus8 Prime — Eyes & Mouth — single / 3 | $1,000 / $2,200 |
+| Morpheus8 Prime — Around the Eyes — single / 3 | $450 / $1,200 |
+| Morpheus8 Prime — Around the Mouth — single / 3 | $450 / $1,200 |
 | Morpheus8 + Lumecca Bundle | $1,799 |
 | Vasculaze Max — Small/Medium/Large (Pkg 3) | $550 / $1,100 / $1,650 |
 | Forma + Lumecca Bundle | $2,599 |
@@ -225,10 +237,15 @@ gold). If those tiers are still real, they need to be added to GlossGenius as se
 | Diolaze XL — by area | $350–$3,250 |
 | Fusion Light / Fusion Dark — by area | $350–$3,250 |
 
-*(Full itemized laser matrix — dozens of area-specific prices — lives in `glossgenius-service-catalog.md`
-in the PRICING reference folder; not reproduced line-by-line here to keep this file scannable. This
-entire category was absent from every prior version of this file — it existed in GlossGenius but was
-never documented here before 2026-08-06.)*
+Morpheus8 prices above were restored on 2026-08-14 from
+`packages/web/docs/inmode/Optimas Max Pricing.pdf` after the Morpheus8 page was skipped during the
+earlier extraction. The PDF also recommends approximate add-on amounts for Resurfacing and Prime;
+those approximate add-on figures are not published as exact House of Rose prices.
+
+*(The remaining full itemized laser matrix — dozens of area-specific prices — lives in
+`glossgenius-service-catalog.md` in the PRICING reference folder; it is not reproduced line-by-line
+here to keep this file scannable. This entire category was absent from every prior version of this
+file — it existed in GlossGenius but was never documented here before 2026-08-06.)*
 
 ---
 

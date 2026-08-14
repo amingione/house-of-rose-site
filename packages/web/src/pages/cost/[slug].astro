@@ -31,9 +31,9 @@ const canonical = new URL(Astro.url.pathname, site).toString();
 const treatmentName = guide.treatment?.title ?? 'this treatment';
 const verifiedFact = getVerifiedCostFact(guide.slug);
 const pricingStatement = verifiedFact?.answer
-  ?? `A verified price is not published for ${treatmentName} on this Punta Gorda cost guide.`;
+  ?? `Contact House of Rose for the current ${treatmentName} price. This guide links to the related service and contact options below.`;
 const visiblePricingSummary = verifiedFact?.summary
-  ?? `House of Rose does not publish a verified price for ${treatmentName} on this guide.`;
+  ?? `The current ${treatmentName} price is available directly from House of Rose.`;
 const dateModified = verifiedFact && (!guide._updatedAt || guide._updatedAt < verifiedFact.verifiedAt)
   ? verifiedFact.verifiedAt
   : guide._updatedAt;
@@ -44,7 +44,7 @@ const verifiedAtLabel = verifiedFact
       year: 'numeric',
       timeZone: 'UTC',
     }).format(new Date(`${verifiedFact.verifiedAt}T12:00:00Z`))
-  : 'when this page was last reviewed';
+  : null;
 const publishedFaqs = verifiedFact?.faqs?.length
   ? verifiedFact.faqs
   : [
@@ -53,6 +53,13 @@ const publishedFaqs = verifiedFact?.faqs?.length
         answer: pricingStatement,
       },
     ];
+const primaryComparison = guide.comparisons?.[0];
+const primaryComparisonContent = primaryComparison
+  ? getPublicComparisonContent(primaryComparison.slug)
+  : null;
+const singleComparisonContent = guide.comparisons?.length === 1
+  ? primaryComparisonContent
+  : null;
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -77,14 +84,16 @@ const pageDescription = pricingStatement;
   <div {...sbObjectId(guide._id)}>
   <section class="bg-charcoal pt-32 pb-[clamp(56px,8vw,88px)] px-6">
     <div class="max-w-[860px] mx-auto">
-      <span class="kicker">House of Rose pricing</span>
+      <span class="kicker">What the price means</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6" {...sbFieldPath('title')}>{guide.title}</h1>
       <p class="max-w-[760px] font-serif text-[clamp(23px,3.2vw,32px)] leading-[1.3] text-ink">
         {visiblePricingSummary}
       </p>
-      <p class="mt-6 text-[12px] font-medium uppercase tracking-[0.12em] text-muted">
-        Menu checked {verifiedAtLabel}
-      </p>
+      {verifiedAtLabel && (
+        <p class="mt-6 text-[12px] font-medium uppercase tracking-[0.12em] text-muted">
+          Prices shown as of {verifiedAtLabel}
+        </p>
+      )}
     </div>
   </section>
 
@@ -93,7 +102,7 @@ const pageDescription = pricingStatement;
       <div class="mx-auto max-w-[1080px]">
         <div class="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
           <div>
-            <span class="kicker">Current menu</span>
+            <span class="kicker">What the price covers</span>
             <h2 class="mt-3 font-serif text-[clamp(28px,4vw,42px)] leading-tight text-ink">
               {verifiedFact.menuHeading}
             </h2>
@@ -118,7 +127,7 @@ const pageDescription = pricingStatement;
 
   <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(52px,7vw,76px)]" data-cost-faq>
     <div class="mx-auto max-w-[860px]">
-      <span class="kicker">Pricing questions</span>
+      <span class="kicker">Before you book</span>
       <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
         {verifiedFact?.faqHeading ?? `About the price for ${treatmentName}.`}
       </h2>
@@ -136,12 +145,12 @@ const pageDescription = pricingStatement;
   {guide.treatment && (
     <section class="bg-charcoal-light py-14 px-6">
       <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Treatment details</span>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">About the service</span>
         <div {...sbObjectId(guide.treatment._id)}>
           <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink leading-tight mb-4" {...sbFieldPath('title')}>
             {guide.treatment.title}
           </h2>
-          <a href={`/services/${guide.treatment.slug}/`} class="learn-more">Read about {guide.treatment.title}</a>
+          <a href={`/services/${guide.treatment.slug}/`} class="learn-more">Understand {guide.treatment.title}</a>
         </div>
       </div>
     </section>
@@ -150,15 +159,22 @@ const pageDescription = pricingStatement;
   {guide.comparisons && guide.comparisons.length > 0 && (
     <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-14">
       <div class="mx-auto max-w-[860px]">
-        <span class="kicker">Compare the products</span>
+        <span class="kicker">Related comparison</span>
         <h2 class="mt-3 font-serif text-[clamp(25px,4vw,36px)] leading-tight text-ink">
-          Price per unit is only one difference.
+          {singleComparisonContent ? singleComparisonContent.title : 'Compare related services.'}
         </h2>
+        {singleComparisonContent && (
+          <p class="mt-5 max-w-[760px] text-[15px] leading-[1.75] text-muted">
+            {singleComparisonContent.lead}
+          </p>
+        )}
         <div class="mt-8 divide-y divide-gold-metal/10 border-y border-gold-metal/10">
           {guide.comparisons.map((comparison) => (
             <a href={`/compare/${comparison.slug}/`} class="group flex items-center justify-between gap-6 py-5" {...sbObjectId(comparison._id)}>
               <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold">
-                {getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}
+                {singleComparisonContent
+                  ? 'Open the full comparison'
+                  : getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}
               </span>
               <span class="shrink-0 text-gold" aria-hidden="true">→</span>
             </a>
@@ -170,7 +186,7 @@ const pageDescription = pricingStatement;
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Questions about pricing?</h2>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Want to confirm the current price?</h2>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
         {guide.treatment ? (

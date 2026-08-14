@@ -33,10 +33,10 @@ const guidesListSchema = guides.length
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
-      <span class="kicker">Pricing</span>
+      <span class="kicker">Cost guides</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What does it cost?</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Current House of Rose prices, with the product, treatment-area, or series distinctions that explain the range. When the current menu does not publish a standalone price, the guide says so plainly.
+        See the current price first, then what the number represents: per-unit pricing, a product or treatment-area range, a standalone appointment, a series, or a bundle. When a standalone price is not listed, the guide identifies the published option and links to the service.
       </p>
     </div>
   </section>
@@ -50,16 +50,16 @@ const guidesListSchema = guides.length
             <a href={`/cost/${g.slug}/`} class="group block p-7 pb-5">
               <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
               <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
-                {fact?.display ?? 'No verified price published'}
+                {fact?.display ?? 'Contact House of Rose for the current price'}
               </p>
               {fact?.summary && (
                 <p class="mb-4 text-[14px] leading-[1.7] text-muted">{fact.summary}</p>
               )}
-              <span class="learn-more group-hover:text-gold mt-4 inline-block">View cost guide</span>
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">Understand this price</span>
             </a>
             {g.treatment && (
               <div class="mx-7 border-t border-gold-metal/10 pb-6 pt-4 text-[14px] leading-relaxed text-muted" {...sbObjectId(g.treatment._id)}>
-                <span>Related service: </span>
+                <span>About the service: </span>
                 <a href={`/services/${g.treatment.slug}/`} class="text-ink underline decoration-gold-metal/40 underline-offset-4 hover:text-gold" {...sbFieldPath('title')}>
                   {g.treatment.title}
                 </a>
@@ -77,7 +77,7 @@ const guidesListSchema = guides.length
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
       <p class="text-muted text-[15px] leading-[1.8] mb-6">
-        For guides without a verified price, use the related service page or call House of Rose.
+        Use each guide to understand the published number, then open the related service for treatment details. If a standalone price is not listed, call House of Rose before reserving.
       </p>
       <a href="/services/" class="btn-outline-gold">View services</a>
     </div>
