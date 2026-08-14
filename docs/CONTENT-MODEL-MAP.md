@@ -65,8 +65,11 @@
 ### 5. Local authority page — *treatment in {city}*
 - **Doc type:** `localArea`
 - **Route:** `/areas/[slug]` (+ `/areas` index) (e.g. `punta-gorda`, `port-charlotte`)
-- **Key fields:** `city`, `region`, `intro`, `whyLocal`, `servedServices[]` (refs),
-  `neighborhoods[]`, `faqs[]`, `seo`
+- **Active CMS inputs:** `slug`, `city`, `region`, `servedServices[]`, `neighborhoods[]`, `image`, and
+  `orderRank`; the website constrains routes to its reviewed area inventory and generates public location
+  copy, FAQs, and metadata from verified practice and area facts
+- **Legacy source fields:** `intro`, `whyLocal`, `faqs[]`, and `seo` remain stored but are read-only in
+  Studio and are not public copy authority
 - **JSON-LD:** `LocalBusiness` (with `areaServed`) + `BreadcrumbList` + `FAQPage` when reviewed `faqs` are published
 - **GROQ:** `ALL_LOCAL_AREAS_QUERY`, `LOCAL_AREA_BY_SLUG_QUERY`, `ALL_LOCAL_AREA_SLUGS_QUERY`
 
