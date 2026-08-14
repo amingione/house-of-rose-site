@@ -396,7 +396,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               label: 'Selected facial areas',
-              text: 'House of Rose names lips, cheeks, and folds on this service. Each of the five HA products has its own price and appointment length below.',
+              text: 'House of Rose names lips, cheeks, and folds on this service. The consultation is $300 for 60 minutes; the five HA products range from $650 to $850, with appointment lengths from 30 to 45 minutes.',
             },
             ...(injectable.bookingGuidance
               ? [
