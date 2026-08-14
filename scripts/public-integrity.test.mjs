@@ -656,7 +656,7 @@ test('navigation and visit guidance speaks to clients rather than internal inven
     },
     {
       route: 'compare/index.html',
-      required: 'Each guide explains how two services differ',
+      required: 'A comparison can clarify a difference',
       retired: 'current menu facts',
     },
     {
@@ -987,6 +987,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'carbon-dioxide-rich bubbly environment',
       'does not come from an external stream of oxygen',
       'no downtime',
+      '$225',
       '60 minutes',
     ],
     'forma-rf-facial': [
@@ -1190,7 +1191,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
   }
 
   const glo = visibleText(readFileSync(path.join(DIST_ROOT, 'services/glo2facial/index.html'), 'utf8'));
-  for (const retiredOrUnverified of ['HydraFacial', '$195', '$225', '$250']) {
+  for (const retiredOrUnverified of ['HydraFacial', '$195', '$250']) {
     if (glo.toLowerCase().includes(retiredOrUnverified.toLowerCase())) {
       failures.push(`glo2facial: contains retired or unreconciled ${JSON.stringify(retiredOrUnverified)}`);
     }
