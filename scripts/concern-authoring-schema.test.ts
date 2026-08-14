@@ -37,6 +37,11 @@ test('only the schema public status can generate or enter public concern routes'
     status.options.list.map((option) => option.value),
     ['live', 'parked'],
   );
+  assert.equal(
+    status.initialValue,
+    'parked',
+    'A new concern must require an affirmative decision before it can publish.',
+  );
 
   for (const query of [ALL_CONCERNS_QUERY, CONCERN_BY_SLUG_QUERY, ALL_CONCERN_SLUGS_QUERY]) {
     assert.match(query, /_type == "concern" && status == "live"/);

@@ -11,7 +11,7 @@ export const concern = defineType({
       name: 'status',
       title: 'Public Status',
       type: 'string',
-      initialValue: 'live',
+      initialValue: 'parked',
       options: {
         list: [
           { title: 'Live', value: 'live' },
