@@ -164,7 +164,7 @@ const breadcrumb = breadcrumbList([
 			{sections.map((section, i) => (
 				<>
 					<h2 {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "heading"))}>{section.heading}</h2>
-					<p class="whitespace-pre-line" {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "body"))}>{section.body}</p>
+					<p class="break-words whitespace-pre-line" {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "body"))}>{section.body}</p>
 				</>
 			))}
 		</div>
