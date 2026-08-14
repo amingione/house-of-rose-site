@@ -2360,11 +2360,12 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   const serviceIndexFile = path.join(DIST_ROOT, 'services/index.html');
   const collectionFile = path.join(DIST_ROOT, 'services/collections/waxing/index.html');
   const prfUnderEyeFile = path.join(DIST_ROOT, 'services/prf-under-eyes/index.html');
+  const prfHubFile = path.join(DIST_ROOT, 'services/prf/index.html');
   const sitemapFile = path.join(DIST_ROOT, 'sitemap.xml');
   const compactFeedFile = path.join(DIST_ROOT, 'llms.txt');
   const fullFeedFile = path.join(DIST_ROOT, 'llms-full.txt');
 
-  for (const file of [hubFile, facialFile, bodyFile, serviceIndexFile, collectionFile, prfUnderEyeFile]) {
+  for (const file of [hubFile, facialFile, bodyFile, serviceIndexFile, collectionFile, prfUnderEyeFile, prfHubFile]) {
     assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
   }
 
@@ -2375,6 +2376,7 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   const collection = readFileSync(collectionFile, 'utf8');
   const prfUnderEyeHtml = readFileSync(prfUnderEyeFile, 'utf8');
   const prfUnderEye = mainHtml(prfUnderEyeHtml);
+  const prfHub = mainHtml(readFileSync(prfHubFile, 'utf8'));
   const sitemap = readFileSync(sitemapFile, 'utf8');
   const compactFeed = readFileSync(compactFeedFile, 'utf8');
   const fullFeed = readFileSync(fullFeedFile, 'utf8');
@@ -2420,6 +2422,34 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   }
   assert.ok(!publicInventory.includes('brazilian'), 'Public waxing inventory must not claim Brazilian waxing.');
   assert.ok(prfUnderEye.includes('$495'), 'PRF Under Eyes must publish the verified current listing price.');
+  assert.match(prfUnderEyeHtml, /<title>PRF Under Eyes \| House of Rose Aesthetics<\/title>/i);
+  assert.match(prfUnderEye, /<h1\b[^>]*>\s*PRF Under Eyes\s*<\/h1>/i);
+  for (const schemaType of ['HealthAndBeautyBusiness', 'Service', 'BreadcrumbList', 'MedicalProcedure', 'FAQPage']) {
+    assert.ok(
+      prfUnderEyeHtml.includes(`"@type":"${schemaType}"`),
+      `PRF Under Eyes must emit ${schemaType} structured data.`,
+    );
+  }
+  assert.ok(
+    prfHub.includes('href="/services/prf-under-eyes/"'),
+    'The PRF hub must link the reviewed PRF Under Eyes detail route.',
+  );
+  assert.ok(
+    sitemap.includes(`<loc>${SITE_ORIGIN}/services/prf-under-eyes/</loc>`),
+    'Sitemap is missing the canonical PRF Under Eyes route.',
+  );
+  assert.ok(prfUnderEyeHtml.includes('525 E Olympia Ave'), 'PRF Under Eyes is missing the canonical practice address.');
+  assert.ok(prfUnderEyeHtml.includes('href="tel:+18449417673"'), 'PRF Under Eyes is missing the verified phone CTA.');
+  assert.ok(prfUnderEyeHtml.includes('Diana Morrison, RN'), 'PRF Under Eyes is missing the verified provider attribution.');
+  assert.ok(
+    prfUnderEyeHtml.includes('Medical Director: Joshua Shaw, MD · FL Lic. ME136232'),
+    'PRF Under Eyes is missing the canonical medical-director attribution.',
+  );
+  assert.ok(
+    !prfUnderEye.includes('href="/compare/prf-vs-prp/"')
+      && !prfUnderEye.includes('href="/packages/prf-under-eye-series-of-3/"'),
+    'PRF Under Eyes must not revive retired or unreviewed task destinations.',
+  );
   assert.ok(
     prfUnderEye.includes('PRF Under-Eye — Consultation'),
     'PRF Under Eyes must preserve the exact GlossGenius listing label with the price.',
