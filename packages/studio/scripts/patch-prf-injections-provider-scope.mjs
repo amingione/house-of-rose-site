@@ -32,7 +32,7 @@ const providerScope = {
   medicalDirection: true,
   credentialPoints: ['Registered nurse (RN)'],
   consultRequired: true,
-  disclaimer: 'Individual outcomes vary. This page is general information and is not medical advice.',
+  disclaimer: 'Individual outcomes vary.',
 };
 
 const current = await client.fetch(
