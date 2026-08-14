@@ -654,7 +654,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COLLECTIONS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "serviceCollection" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
@@ -663,6 +663,7 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
     "services": *[
       _type == "service" &&
       status in ["live", "actual-menu"] &&
+      defined(slug.current) &&
       !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
       (kind != "treatment" || !defined(kind)) &&
       references(^._id)
@@ -687,13 +688,14 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
  * titles + slugs only (no images/descriptions) so the nav stays cheap to build.
  */
 export const NAV_COLLECTIONS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[_type == "serviceCollection" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_COLLECTION_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,
     "services": *[
       _type == "service" &&
       status in ["live", "actual-menu"] &&
+      defined(slug.current) &&
       !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
       (kind != "treatment" || !defined(kind)) &&
       references(^._id)
@@ -754,6 +756,7 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
     "services": *[
       _type == "service" &&
       status in ["live", "actual-menu"] &&
+      defined(slug.current) &&
       !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
       (kind != "treatment" || !defined(kind)) &&
       references(^._id)
