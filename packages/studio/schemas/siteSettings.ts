@@ -69,9 +69,10 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'bookingEmail',
-      title: 'Contact Email for Inquiries',
+      title: 'Contact Email for Inquiries (not published)',
       type: 'string',
-      description: 'Used for room-rental and other email inquiry links',
+      readOnly: true,
+      description: 'Stored for source compatibility. Public booking and room-rental email links use the deployment-owned PUBLIC_BOOKING_EMAIL value.',
     }),
     defineField({
       name: 'aiSearchFaqHeading',

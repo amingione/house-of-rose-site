@@ -364,7 +364,6 @@ export interface SiteSettings {
   phone?: string;
   address?: string;
   instagramHandle?: string;
-  bookingEmail?: string;
 }
 
 export interface PortableTextBlock {
@@ -431,8 +430,7 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
     email,
     phone,
     address,
-    instagramHandle,
-    bookingEmail
+    instagramHandle
   }
 `;
 

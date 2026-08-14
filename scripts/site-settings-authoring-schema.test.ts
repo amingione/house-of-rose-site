@@ -34,9 +34,24 @@ test('the archival tagline cannot pose as a live sitewide control', () => {
 });
 
 test('canonical contact and NAP fields remain operational', () => {
-  for (const fieldName of ['email', 'phone', 'address', 'instagramHandle', 'bookingEmail']) {
+  for (const fieldName of ['email', 'phone', 'address', 'instagramHandle']) {
     assert.notEqual(settingsField(fieldName)?.readOnly, true, `${fieldName} must remain editable.`);
   }
+});
+
+test('the deployment-owned booking alias cannot pose as a live Studio control', () => {
+  const bookingEmail = settingsField('bookingEmail');
+  assert.equal(bookingEmail?.readOnly, true);
+  assert.match(String(bookingEmail?.title), /not published/i);
+  assert.match(String(bookingEmail?.description), /PUBLIC_BOOKING_EMAIL/);
+  assert.doesNotMatch(SITE_SETTINGS_QUERY, /\bbookingEmail\b/);
+
+  const rentalRoute = readFileSync(
+    new URL('../packages/web/src/pages/rent-a-room.astro', import.meta.url),
+    'utf8',
+  );
+  assert.match(rentalRoute, /import\.meta\.env\.PUBLIC_BOOKING_EMAIL/);
+  assert.doesNotMatch(rentalRoute, /SITE_SETTINGS_QUERY/);
 });
 
 test('the sitewide structured-data email is format-validated without becoming required', () => {
