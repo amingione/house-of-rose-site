@@ -35,3 +35,32 @@ test('directly published blog fields carry review guidance and validation', () =
     : undefined;
   assert.equal(typeof block?.validation, 'function', 'Portable Text blocks must validate public copy.');
 });
+
+test('blog image alt text uses the shared public-copy guard wherever it renders', () => {
+  const featuredImage = blogPost.fields.find(({ name }) => name === 'featuredImage');
+  assert.ok(featuredImage && 'fields' in featuredImage && Array.isArray(featuredImage.fields));
+  const featuredAlt = featuredImage.fields.find(({ name }) => name === 'alt');
+
+  const body = blogPost.fields.find(({ name }) => name === 'body');
+  assert.ok(body && 'of' in body && Array.isArray(body.of));
+  const bodyImage = body.of.find((member) => member.type === 'image');
+  assert.ok(bodyImage && 'fields' in bodyImage && Array.isArray(bodyImage.fields));
+  const bodyAlt = bodyImage.fields.find(({ name }) => name === 'alt');
+
+  for (const [label, field] of [
+    ['featured image alt', featuredAlt],
+    ['body image alt', bodyAlt],
+  ] as const) {
+    assert.equal(typeof field?.validation, 'function', `${label} must validate public copy.`);
+    assert.match(String(field.validation), /validatePublicCopy/);
+
+    const rule = {
+      custom(fn: (value: string | undefined) => true | string) {
+        return { validate: fn };
+      },
+    };
+    const { validate } = field.validation(rule);
+    assert.equal(validate('Treatment room inside House of Rose Aesthetics.'), true);
+    assert.match(String(validate('A premium boutique treatment room.')), /retired or prohibited/i);
+  }
+});

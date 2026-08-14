@@ -72,7 +72,12 @@ export const blogPost = defineType({
       type: 'image',
       options: { hotspot: true },
       fields: [
-        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
       ],
     }),
     defineField({
@@ -113,7 +118,12 @@ export const blogPost = defineType({
           type: 'image',
           options: { hotspot: true },
           fields: [
-            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              validation: (R) => R.custom(validatePublicCopy),
+            }),
             defineField({ name: 'caption', title: 'Caption', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
           ],
         },
