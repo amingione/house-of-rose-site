@@ -168,7 +168,10 @@ generic series framework, and do not use discount framing.
   variation belongs beside a results claim. Do not require every card, price row, or link to carry all
   three statements.
 - **SW-Florida sun/photoaging context is fair and encouraged** — frame as maintenance + rigorous SPF, never as "treating" sun damage.
-- **Naming law:** use plain, searchable names — "Light Peel," "Superficial Peel," "Brightening Peel," "Glow Peel," "Enzyme Peel." **No botanical/flowery names** (no Petal/Lily/Rose-anything). Do **not** revive any retired "Rose Pass/Circle/Method/Rewards" or membership framing — a light-peel *series/package* (prepaid bundle) is fine; a "pass"/membership is not.
+- **Naming law:** use plain, searchable names such as "Light Peel," "Superficial Peel,"
+  "Brightening Peel," or "Enzyme Peel." Do not use glow/radiance framing or botanical/flowery names.
+  Do **not** revive any retired "Rose Pass/Circle/Method/Rewards" or membership framing — a verified
+  light-peel *series/package* may be named plainly; a "pass" or membership may not.
 
 ---
 

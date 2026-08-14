@@ -17,6 +17,7 @@ const activeBriefs = [
   'hydrodermabrasion.md',
   'light-peels.md',
   'neurotoxins.md',
+  'product-lines.md',
 ];
 
 const blanketRule = new RegExp(
@@ -26,6 +27,7 @@ const blanketRule = new RegExp(
     'every surface must carry',
     'every surface carries',
     'provider-authority language is mandatory on every surface',
+    'required guardrails on every retail surface',
   ].join('|'),
   'i',
 );
@@ -40,4 +42,12 @@ test('active research places safeguards with relevant claims instead of every su
       `${relativePath} must retain a contextual safeguard-placement rule.`,
     );
   }
+});
+
+test('active research does not recommend retired glow or escalation framing', () => {
+  const lightPeels = readFileSync(new URL('light-peels.md', researchRoot), 'utf8');
+  const biorepeel = readFileSync(new URL('biorepeel.md', researchRoot), 'utf8');
+
+  assert.doesNotMatch(lightPeels, /naming law:[^\n]*"Glow Peel"/i);
+  assert.doesNotMatch(biorepeel, /no-downtime advantage|a true ladder|private studio|RN assistant/i);
 });

@@ -134,14 +134,19 @@ prices unless they first return to GlossGenius.
 - **concern** — `/concerns/congestion-and-uneven-texture/` (see §6).
 - **caseStudy** — `/results/biorepeel-[descriptor]/` once before/after photos exist (`/results/` is currently empty).
 
-## 12. Why House of Rose
+## 12. Verified House of Rose distinctions
 
-- **The no-downtime advantage, honestly framed.** BioRePeel gives Punta Gorda / Charlotte County clients real resurfacing without disappearing for a week — ideal for the SW Florida lifestyle (events, boating, snowbird season) where a peeling face isn't an option. We describe it accurately: minimal-to-light flaking, not a miracle.
-- **A true ladder, not one product.** From Brandy's gentle light peels → **Brandy's standalone BioRePeel** → **Amber's BioRePeel add-on on an advanced service** → the advanced acne-scarring protocol (peel + microneedling) → body and gold spot variants, the client is matched to the right depth for their concern by a licensed provider — no upselling into the wrong tool.
-- **Advanced, provider-led, and unhurried.** BioRePeel sits in a genuinely advanced regenerative/corrective menu (Procell, microchanneling, topical PRF, Glo2Facial) that local basic-facial menus don't offer, delivered by an esthetician + RN assistant in a private studio with skin analysis at every consult. Walk-ins are welcome; appointments are recommended to reserve a time.
-- **Locally grounded and compliant.** State the verified Punta Gorda appointment price plainly. Name
-  the responsible licensed provider when relevant, and place individual-variation language beside a
-  results claim rather than turning both into repeated fine print.
+- **Five current appointment choices.** The menu separates a standalone face treatment, a face series
+  of three, Gold Body, Advanced Acne Scarring, and the Duo Gold Spot Upgrade. State the exact current
+  price and appointment time rather than arranging them as an escalation ladder.
+- **The provider depends on the appointment.** Brandy, Licensed Esthetician provides the standalone
+  face treatment and Series of 3. Amber Mingione, Licensed Esthetician provides Gold Body, Advanced
+  Acne Scarring, Duo Gold Spot, and eligible advanced-service add-ons.
+- **A topical peel, not a substitute label for another service.** Explain BioRePeel separately from
+  light peels and Microneedling. Do not prescribe a sequence unless a provider has confirmed one for
+  the client.
+- **Locally grounded and compliant.** State the verified Punta Gorda appointment price plainly. Put
+  individual-variation language beside a results claim rather than turning it into repeated fine print.
 
 ---
 

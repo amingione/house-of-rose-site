@@ -270,7 +270,11 @@ Several **real manufacturer product names** contain banned terms. These are the 
   State a verified product price directly; do not replace it with value-positioning euphemisms.
 - Naming the checkout platform ("Stripe," "buy on…") anywhere customer-facing.
 
-**Required guardrails on every retail surface:** "designed to / supports / helps reveal," "for the appearance of," "many clients notice," "individual results vary," "not every product suits every client," final regimen and candidacy confirmed by the licensed provider at consultation. Amber's **Face Reality Certified Acne Specialist** credential may be stated (it's a real certification, not an outcome claim).
+**Place safeguards where the product claim creates the need:** use appearance language for a visible-
+result claim; put individual-variation language beside a result statement; and address suitability or
+regimen selection where the page gives product-selection guidance. A product name, price, category
+label, or checkout link does not need the whole block. When Amber is named, use **Amber Mingione,
+Licensed Esthetician and Face Reality Certified Acne Specialist** where that certification is relevant.
 
 ---
 
