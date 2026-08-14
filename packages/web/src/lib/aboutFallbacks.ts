@@ -43,17 +43,17 @@ export const ABOUT_PAGE_FALLBACK: Required<
   indexSeo: {
     metaTitle: 'About House of Rose Aesthetics | Punta Gorda, FL',
     metaDescription:
-      'Learn about House of Rose Aesthetics, a Punta Gorda medical aesthetics practice, and meet the team behind the practice.',
+      'House of Rose is a Punta Gorda medical aesthetics practice where named practitioners provide medical, skin, facial, waxing, makeup, and permanent-jewelry appointments.',
   },
   hraSeo: {
     metaTitle: 'House of Rose Aesthetics | About Our Punta Gorda Practice',
     metaDescription:
-      'Read how House of Rose distinguishes skin, injectable, body, IV hydration, and wellness services at its Punta Gorda practice.',
+      'House of Rose brings injectables, IV hydration, weight management, skin treatments, facials, waxing, makeup, and permanent jewelry to one Punta Gorda practice.',
   },
   providersSeo: {
     metaTitle: 'House of Rose Providers | Punta Gorda, FL',
     metaDescription:
-      'Meet the House of Rose Aesthetics team in Punta Gorda and see the services each person currently provides.',
+      'House of Rose provider profiles identify each practitioner’s licence type and current work across medical, skin, facial, waxing, makeup, and permanent-jewelry appointments.',
   },
 };
 
