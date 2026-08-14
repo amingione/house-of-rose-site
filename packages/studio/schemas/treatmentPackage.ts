@@ -80,6 +80,7 @@ export const treatmentPackage = defineType({
       type: 'text',
       rows: 2,
       description: 'Verified public timing or spacing only. Omit when the current booking source does not support it.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'rackPrice',
