@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import { localArea } from '../packages/studio/schemas/localArea.ts';
 import { LOCAL_AREA_BY_SLUG_QUERY } from '../packages/web/src/lib/queries.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 
 const contentModelMap = readFileSync(
   new URL('../docs/CONTENT-MODEL-MAP.md', import.meta.url),
@@ -56,8 +57,13 @@ test('featured service links can resolve only to generated public service routes
 
   assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
   assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(reference.options?.filterParams, {
+    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+  });
   assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServices\[[\s\S]*?@->status in \["live", "actual-menu"\]/);
   assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServices\[[\s\S]*?defined\(@->slug\.current\)/);
+  assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServices\[[\s\S]*?!\(@->slug\.current in \[/);
 });
 
 test('the content model distinguishes active area facts from legacy CMS prose', () => {
