@@ -31,3 +31,26 @@ test('binding BioRePeel rules follow the current provider and commerce authority
     'CLAUDE.md must not describe the current standalone booking option as a series of 4.',
   );
 });
+
+test('binding series rules distinguish protocol material from live appointment inventory', () => {
+  assert.match(
+    claude,
+    /Protocol guidance is not public appointment inventory/i,
+    'CLAUDE.md must not promote manufacturer cadence into a public menu rule.',
+  );
+  assert.match(
+    claude,
+    /GlossGenius-backed ledger lists one BioRePeel Series of 3/i,
+    'The binding rule must preserve the sole current series appointment.',
+  );
+  assert.match(
+    claude,
+    /does not list a\s+Procell, Glo2Facial, or general Microneedling series/i,
+    'The binding rule must keep unsupported series out of public inventory.',
+  );
+  assert.doesNotMatch(
+    claude,
+    /Procell\s*=\s*series|Glo2Facial\s*=\s*\*\*3\/6\*\*|microneedling\s*=\s*\*\*3–6\*\*/i,
+    'Retired series-count shorthand must not return to the governing rules.',
+  );
+});

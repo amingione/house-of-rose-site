@@ -40,8 +40,10 @@ routine copy into a clinical-process manifesto. The real-practice visual standar
 - **Cite the source** for any number/claim I set (which doc/Notion page/URL it came from).
 - **Do NOT normalize across everything. This is the #1 recurring failure.** Different services, providers,
   and platforms legitimately differ — and that difference is usually *correct*, not drift to be "fixed":
-  - **By protocol:** Procell = series of **4** (manufacturer min 4, 6+ scarring); BioRePeel = **4** (mfr 4–6);
-    Glo2Facial = **3/6**; microneedling = **3–6**. Series length is per-treatment, never one house count.
+  - **Protocol guidance is not public appointment inventory.** Manufacturer or clinical source material
+    may discuss treatment cadence, but it does not authorize a House of Rose series, package, or repeat
+    schedule. The current GlossGenius-backed ledger lists one BioRePeel Series of 3; it does not list a
+    Procell, Glo2Facial, or general Microneedling series. Publish only the exact current menu structure.
   - **By provider lane:** the *same treatment* can have *different models* per provider. BioRePeel is
     **add-on only** for Amber's eligible advanced skin services, with no independently verified add-on
     price in the current GlossGenius ledger; Brandy provides the standalone face appointment and Series
