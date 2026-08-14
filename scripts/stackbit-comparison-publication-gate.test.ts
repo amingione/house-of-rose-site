@@ -50,7 +50,7 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map<string, ReturnType<typeof comparisonDocument>>([

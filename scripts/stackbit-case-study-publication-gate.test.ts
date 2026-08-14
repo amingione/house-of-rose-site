@@ -78,7 +78,7 @@ test('Stackbit exposes only routeable, consented case studies with both image as
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const completeImages = {

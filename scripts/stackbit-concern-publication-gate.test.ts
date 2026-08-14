@@ -57,7 +57,7 @@ test('Stackbit exposes only concern guides with generated public routes', async 
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map([

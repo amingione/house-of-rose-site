@@ -52,7 +52,7 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map<string, ReturnType<typeof blogDocument>>([

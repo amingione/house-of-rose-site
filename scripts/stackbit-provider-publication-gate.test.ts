@@ -52,7 +52,7 @@ test('Stackbit exposes only providers with generated public profile routes', asy
     },
     {
       urlPath: '/about',
-      document: documentRef('unrelated-about', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map([

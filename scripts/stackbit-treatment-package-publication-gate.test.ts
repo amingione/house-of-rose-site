@@ -57,7 +57,7 @@ test('Stackbit exposes only live treatment packages with verified public pricing
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map([

@@ -58,7 +58,7 @@ test('Stackbit exposes only reviewed, routeable cost guides', async () => {
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map([

@@ -50,7 +50,7 @@ test('Stackbit exposes only the reviewed public service-collection inventory', a
     },
     {
       urlPath: '/about',
-      document: documentRef('about-page', 'aboutPage'),
+      document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
   const documents = new Map([

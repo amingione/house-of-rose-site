@@ -185,6 +185,7 @@ const SINGLETON_PAGE_ROUTES: Record<string, string> = {
   ...(PUBLIC_SHOP_ENABLED ? { janeIredalePage: '/shop/jane-iredale' } : {}),
   aboutPage: '/about',
 };
+const SINGLETON_PAGE_MODEL_SET = new Set(Object.keys(SINGLETON_PAGE_ROUTES));
 
 const SANITY_PROJECT_ID = requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']);
 const SANITY_DATASET =
@@ -287,6 +288,10 @@ export default defineStackbitConfig({
   // Editor sitemap/page picker.
   transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
     if (!('document' in entry)) return true;
+    if (SINGLETON_PAGE_MODEL_SET.has(entry.document.modelName)) {
+      const canonicalId = entry.document.id.replace(/^drafts\./, '');
+      return canonicalId === entry.document.modelName;
+    }
     if (
       ![
         'comparison',
