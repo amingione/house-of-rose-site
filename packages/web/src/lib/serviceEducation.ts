@@ -545,7 +545,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       kicker: device.title,
       heading: 'What happens during the three-step facial.',
       metaDescription: 'Glo2Facial at House of Rose combines an OxyPod surface pass, topical infusion, and facial massage in a 60-minute, $225 appointment.',
-      paragraphs: [device.whatItIs, device.whereItFits],
+      paragraphs: [
+        device.whatItIs,
+        device.whereItFits,
+        ...(device.provider
+          ? [`${device.provider.publicName} provides the standalone Glo2Facial at House of Rose.`]
+          : []),
+      ],
       distinctions: [
         {
           label: 'Surface exfoliation',
@@ -585,8 +591,24 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           question: 'Does Glo2Facial have downtime?',
           answer: device.recovery ?? 'Ask House of Rose what to expect after the appointment.',
         },
+        ...(device.provider
+          ? [
+              {
+                question: 'Who provides Glo2Facial at House of Rose?',
+                answer: `${device.provider.publicName} provides the standalone 60-minute Glo2Facial.`,
+              },
+            ]
+          : []),
       ],
       faqHeading: 'The three steps and what follows.',
+      links: device.provider
+        ? [
+            {
+              href: device.provider.profilePath,
+              label: `Meet ${device.provider.publicName}`,
+            },
+          ]
+        : undefined,
     };
   }
 

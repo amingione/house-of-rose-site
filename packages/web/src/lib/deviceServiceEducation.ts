@@ -44,6 +44,10 @@ export interface DeviceServiceEducation {
   readonly comparisonToForma?: string;
   readonly needleDistinction?: string;
   readonly currentAreas?: readonly string[];
+  readonly provider?: {
+    readonly publicName: string;
+    readonly profilePath: string;
+  };
   readonly menu: DeviceServiceMenuFacts;
 }
 
@@ -111,6 +115,10 @@ export const DEVICE_SERVICE_EDUCATION = {
       'House of Rose confirms that Glo2Facial has no downtime. You can return to your usual day after the appointment, and your provider will review any recommended aftercare.',
     comparisonToDermaplaning:
       'Both appointments include surface exfoliation, but they use different tools. Dermaplaning uses a specialized blade across the face to remove fine vellus hair and accumulated dead skin cells. Glo2Facial uses a single-use OxyPod with Primer Gel for its surface pass, then continues with topical infusion and facial massage.',
+    provider: {
+      publicName: 'Amber Mingione, Licensed Esthetician',
+      profilePath: '/about/providers/amber/',
+    },
     menu: {
       bookingMode: 'direct',
       duration: '60 minutes',
