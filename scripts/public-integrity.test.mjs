@@ -818,8 +818,8 @@ test('contact form explains reply timing and preserves the messaging-consent con
     'When to expect a reply',
     'Messages received Monday through Friday are typically answered within one business day.',
     'When to call instead',
-    'Texting is optional',
-    'You may choose “No” in the text-message section and still send the form.',
+    'Does a phone number mean text consent?',
+    'Entering a phone number does not, by itself, give permission to send text messages.',
     '525 E Olympia Ave, Unit 9',
     'Punta Gorda, FL 33950',
     'Get directions',
@@ -2149,7 +2149,7 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   for (const required of [
     'How do I book body waxing?',
     'Which bikini-area waxing appointment is available?',
-    'Bikini Line is the only bikini-area appointment shown on the House of Rose menu.',
+    'The available bikini-area appointment is Bikini Line at $30 for 10 minutes.',
     '$30',
     '10 minutes',
   ]) {
