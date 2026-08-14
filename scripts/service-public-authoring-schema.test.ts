@@ -12,9 +12,11 @@ import {
 
 type NestedField = {
   name?: string;
+  description?: string;
   fields?: NestedField[];
   of?: NestedField[];
   options?: { filter?: string; filterParams?: Record<string, unknown> };
+  hidden?: (context: { document?: { kind?: string } }) => boolean;
   validation?: unknown;
 };
 
@@ -122,6 +124,15 @@ test('parent-service authoring and public projections require a routeable public
   assert.match(filter, /kind == "hub"/);
   assert.match(filter, /status in \["live", "actual-menu"\]/);
   assert.match(filter, /defined\(slug\.current\)/);
+  assert.match(filter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(parentService?.options?.filterParams, {
+    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+  });
+  assert.match(parentService?.description ?? '', /public parent breadcrumb and back link/i);
+  assert.equal(typeof parentService?.hidden, 'function');
+  assert.equal(parentService.hidden({ document: { kind: 'hub' } }), true);
+  assert.equal(parentService.hidden({ document: { kind: 'standalone' } }), false);
+  assert.equal(parentService.hidden({ document: { kind: 'treatment' } }), false);
 
   for (const query of [SERVICE_BY_SLUG_QUERY, ALL_SITEMAP_SERVICES_QUERY]) {
     const parentProjection = query.match(/"parentService": select\(([\s\S]*?)=> parentService->/);
@@ -129,6 +140,7 @@ test('parent-service authoring and public projections require a routeable public
     assert.match(parentProjection[1], /parentService->kind == "hub"/);
     assert.match(parentProjection[1], /parentService->status in \["live", "actual-menu"\]/);
     assert.match(parentProjection[1], /defined\(parentService->slug\.current\)/);
+    assert.match(parentProjection[1], /!\(parentService->slug\.current in \[/);
   }
 });
 

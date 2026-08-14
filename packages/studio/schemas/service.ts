@@ -72,10 +72,12 @@ export const service = defineType({
       type: 'reference',
       to: [{ type: 'service' }],
       options: {
-        filter: 'kind == "hub" && status in ["live", "actual-menu"] && defined(slug.current)',
+        filter:
+          'kind == "hub" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
       },
-      description: 'For treatments only: the specific hub SERVICE this treatment belongs under (e.g. "Microneedling — Body" under the "Microneedling" hub). This is a service-to-service link, separate from Collection above (which links to a serviceCollection grouping page).',
-      hidden: ({ document }) => document?.kind !== 'treatment',
+      description: 'For a standalone or treatment that belongs under a hub service. This relationship supplies the public parent breadcrumb and back link; it is separate from Collection above.',
+      hidden: ({ document }) => document?.kind === 'hub',
     }),
     defineField({
       name: 'concerns',
