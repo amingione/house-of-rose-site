@@ -47,7 +47,7 @@ export const FACE_REALITY_PROGRAM = {
   programOnly:
     'Acne Bootcamp brings in-studio visits and daily home care into one 12-week program. The two parts are designed to be followed together rather than booked as unrelated facials.',
   provider:
-    'The program is provided by a licensed esthetician who is a Face Reality Certified Acne Specialist.',
+    'Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Acne Bootcamp Consultation and the complete 12-week program.',
   medicalBoundary:
     'This is a non-prescription esthetics program. Deep, painful, widespread, or actively scarring breakouts need medical evaluation before an esthetics program is considered.',
   packagePriceUsd: 899,
@@ -141,6 +141,10 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
         question: 'Is Acne Bootcamp a single facial?',
         answer:
           'No. Acne Bootcamp is one complete 12-week program. The required 60-minute consultation is booked separately for $99.',
+      },
+      {
+        question: 'Who provides Acne Bootcamp at House of Rose?',
+        answer: FACE_REALITY_PROGRAM.provider,
       },
       {
         question: 'Does the program replace medical acne care?',
