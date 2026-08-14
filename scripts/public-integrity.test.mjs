@@ -2035,9 +2035,11 @@ test('cost guides explain the current price structure instead of publishing a ba
       for (const required of [
         'Morpheus8 vs. Microneedling',
         'Morpheus8 adds fractional bipolar radiofrequency',
-        'Open the full comparison',
       ]) {
         if (!text.includes(required)) failures.push(`${slug}: missing comparison context ${JSON.stringify(required)}`);
+      }
+      if (!html.includes('href="/compare/morpheus8-vs-microneedling/"')) {
+        failures.push(`${slug}: missing canonical Morpheus8 vs. Microneedling comparison link`);
       }
       if (text.includes('Price per unit is only one difference.')) {
         failures.push(`${slug}: retains Botox-specific per-unit comparison copy`);
