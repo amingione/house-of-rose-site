@@ -99,8 +99,10 @@ Dermaplaning + Glo2Facial Package         → treatmentPackage → /packages/[sl
 4. **Source-worthiness over volume.** One specific, verified, consent-backed page beats ten thin
    ones. Include a mechanism, candidacy, contraindication, or timeframe only when it answers the
    page intent and the fact is supported. Do not turn clinical process into the default voice.
-5. **Honest pricing.** Cost pages give ranges and the factors that move them. Don't fabricate exact
-   prices; pull from the service's pricing fields or state "consultation required."
+5. **Honest pricing.** Publish only prices reconciled to the current GlossGenius menu through
+   `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`. Sanity display fields are not
+   commerce authority. If a price structure is unresolved, omit it or say the current price must be
+   confirmed with House of Rose; never infer that a consultation is required.
 6. **Headings should sound natural.** Use a question-shaped `<h2>`/`<h3>` when it reflects something a
    client actually asks and the section answers it directly. Otherwise use a specific editorial
    heading. Do not turn every section into an FAQ or repeat the same question-and-answer cadence across
