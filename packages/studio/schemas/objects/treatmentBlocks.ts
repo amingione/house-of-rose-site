@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from '../validation/publicCopy';
 
 /**
  * Object types backing the four treatment-page blocks that had no home in
@@ -285,7 +286,7 @@ export const treatmentPriceRange = defineType({
       rows: 2,
       description:
         'What moves the number — units, areas, session count. No discount or promotional framing.',
-      validation: (R) => R.max(280),
+      validation: (R) => R.max(280).custom(validatePublicCopy),
     }),
     defineField({
       name: 'verifiedAgainstGlossGenius',
