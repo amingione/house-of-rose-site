@@ -177,7 +177,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: 'Standalone or add-on',
-        intro: 'Book dermaplaning as a standalone facial or as the shorter add-on shown below.',
+        intro: 'The standalone facial is $135 for 50 minutes; the add-on is $45 for 25 minutes.',
         verifiedAt: 'August 6, 2026',
         items: DERMAPLANING_EDUCATION.menu.map((item) => ({
           name: item.name,
@@ -284,7 +284,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       heading: waxing.slug === 'waxing'
         ? 'Eleven area-specific waxing appointments, with two ways to book.'
         : waxing.slug === 'facial-waxing'
-          ? 'Choose the facial-waxing appointment that matches the area.'
+          ? 'Chin, upper lip, and two brow appointments.'
           : 'Seven body areas, each with its own appointment.',
       metaDescription: `${waxing.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [
@@ -425,7 +425,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               ? 'PRF Under-Eye and PRF Bio-Filler'
               : 'PRF appointments',
         intro: skinRenewal.slug === 'biorepeel'
-          ? 'House of Rose offers one standalone BioRePeel face treatment; its price and appointment length are shown below.'
+          ? 'One directly bookable appointment: BioRePeel Cl3 Rejuvenation at $250 for 45 minutes.'
           : skinRenewal.slug === 'prf' || skinRenewal.slug === 'prf-injections'
             ? skinRenewal.slug === 'prf'
               ? 'These appointments show where PRF is used and how each one is booked.'
