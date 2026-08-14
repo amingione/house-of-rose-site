@@ -147,7 +147,6 @@ const patches = products.map((product) => {
     set: {
       sku: product.sku ?? nextSku(brandKey),
       ...(brand ? { brandRef: { _type: 'reference', _ref: brand._id } } : {}),
-      brand: brandKey,
       availability: product.availability ?? (product.inStock === false ? 'out_of_stock' : 'in_stock'),
       shippable: product.shippable ?? product.category !== 'gift-cards',
       condition: product.condition ?? 'new',
