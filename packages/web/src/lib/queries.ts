@@ -6,6 +6,7 @@ import {
 } from './treatmentQueries';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -51,16 +52,7 @@ const REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COS
 
 // Published Sanity records that are not verified as current GlossGenius offerings.
 // Keep them available for reconciliation without exposing them as public services.
-const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify([
-  'microneedling-body',
-  'neck-decollete-extension',
-  'ez-gel-bio-filler',
-  'glo2facial-prf',
-  'glo2facial-procell-md',
-  'glo2facial-procell-pro',
-  'prf-fibrin-veil',
-  'wellness',
-]);
+const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
 
 // Concern routes retired at the edge must not be emitted again from dereferenced
 // service records. The source reference remains in Sanity for reconciliation.

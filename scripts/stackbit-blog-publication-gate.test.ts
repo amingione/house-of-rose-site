@@ -51,8 +51,8 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
       document: documentRef('unreviewed-dated', 'blogPost'),
     },
     {
-      urlPath: '/services/prf/',
-      document: documentRef('service-prf', 'service'),
+      urlPath: '/about/providers/amber-mingione/',
+      document: documentRef('provider-amber', 'provider'),
     },
   ];
   const documents = new Map<string, ReturnType<typeof blogDocument>>([
@@ -68,6 +68,6 @@ test('Stackbit exposes only dated blog posts with reviewed public content', asyn
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    ['/blog/is-morpheus8-safe', '/services/prf/'],
+    ['/blog/is-morpheus8-safe', '/about/providers/amber-mingione/'],
   );
 });

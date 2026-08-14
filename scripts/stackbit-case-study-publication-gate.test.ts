@@ -77,8 +77,8 @@ test('Stackbit exposes only routeable, consented case studies with both image as
       document: documentRef('slug-missing', 'caseStudy'),
     },
     {
-      urlPath: '/services/prf/',
-      document: documentRef('service-prf', 'service'),
+      urlPath: '/about/providers/amber-mingione/',
+      document: documentRef('provider-amber', 'provider'),
     },
   ];
   const completeImages = {
@@ -120,6 +120,6 @@ test('Stackbit exposes only routeable, consented case studies with both image as
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    ['/results/consented-complete', '/services/prf/'],
+    ['/results/consented-complete', '/about/providers/amber-mingione/'],
   );
 });
