@@ -2,74 +2,81 @@
 
 Date: 2026-07-13 · Provider lane: **Amber** (Advanced Facials) · Status: draft for Phase 3/4 consumption · Sources listed at end.
 
-> **Scope note.** This brief covers the **Procell growth-factor / cytokine serum system** used in the branded **Procell Microchanneling** context and the **MD vs Pro** material tiers. House of Rose has one Microneedling service performed with the Procell Therapies device; Procell Microchanneling is not a separate modality. Topical PRF is covered only as an eligible provider-selected adjunct. All prices come from local docs; no price is ever taken from the web.
+> **Scope note.** This brief covers the **Procell growth-factor / cytokine serum system** used in the branded **Procell Microchanneling** context and the **MD vs Pro** material tiers. House of Rose has one Microneedling service performed with the Procell Therapies device; Procell Microchanneling is not a separate modality. Topical PRF is a separate current Microneedling appointment, not a Procell-serum adjunct or combination. Treatment prices come only from the canonical GlossGenius-backed ledger.
 
 ---
 
 ## 1. The 3-sentence answer
 
-Procell serums are professional growth-factor + cytokine serums applied during a Procell Microchanneling treatment — they are the nourishing layer that flows into the freshly created microchannels, not a separate machine or modality. House of Rose offers two tiers: **Procell Pro** (the professional-grade serum — the comfortable, preventative starting point, often chosen by clients under 40 or maintaining results) and **Procell MD** (which carries roughly **twice the growth factors** of Pro — the go-to for clients 40+ and age-related collagen support). Your esthetician Amber selects the tier during a skin analysis and consultation; neither tier is automatically right for every client, and individual outcomes vary.
+Procell Pro and Procell MD use the same Procell Therapies device and differ in the topical Microchannel
+Serum used during the service. The MD serum shares the Pro serum's core formulation and contains twice
+the concentration of growth factors. Current House sources do not assign the serums by age, first-visit
+status, or sensitivity, and do not rank one as broadly better; Amber Mingione, Licensed Esthetician
+provides both appointments.
 
 ---
 
 ## 2. How it works
 
-**Plain English.** A microchanneling treatment uses a precise stamping device to create thousands of tiny, controlled channels in the skin. Those channels do two things: they signal the skin to begin its own renewal-and-collagen process, and they briefly open a path for a topical serum to be delivered into the surface far more effectively than it could sit on intact skin. The **serum is what makes Procell distinctive** — instead of finishing with a generic hydrator, the protocol delivers a concentrated growth-factor + cytokine serum designed to support the skin's recovery and the appearance of firmer, smoother, more even-looking skin as it remodels over the following weeks.
+**Plain English.** The Procell Therapies device creates controlled microchannels during Microneedling.
+The Pro or MD Microchannel Serum is applied topically during the appointment; it is not injected and
+does not create a separate needling service.
 
 **One level deeper.** Growth factors and cytokines are signaling proteins the body naturally uses to coordinate healing and cellular turnover. Procell's serums are built around these proteins plus supporting ingredients (the manufacturer lists cytokines, peptides, and — as of the April 2025 reformulation — DNA-repair enzymes aimed at the visible signs of sun exposure). **Sourcing matters for how we describe them:** historically Procell's growth factors were derived from human bone-marrow mesenchymal stem-cell *cultures* (a conditioned-media approach — the serum contained the proteins the cells secreted, never the cells themselves). As of **April 1, 2025**, Procell reformulated to **recombinant (lab-produced) growth factors** made via microbiological cultures — proteins identical to those in the human body, produced without human or animal tissue, more consistent and more concentrated. **This is the current formula.** Because the serum uses *recombinant* proteins with no cells, DNA, or blood, House of Rose must **never** describe Procell as a "stem-cell serum," "stem-cell treatment," or growth factors being "delivered deep into the skin" — describe it factually as a professional growth-factor + cytokine serum.
 
-The **MD vs Pro difference is concentration, not a different machine or a different treatment.** The manufacturer positions MD as carrying roughly **2× the growth factors** of Pro, with additional supporting ingredients, for faster-supported recovery and more correction; Pro is the professional-grade baseline for maintenance and prevention. Same device, same protocol, same in-chair experience — the difference the client feels is chiefly the serum tier and the treatment plan selected for their skin.
+The **MD vs Pro difference is concentration, not a different machine or a different treatment.** The MD
+serum contains roughly **2× the growth-factor concentration** of Pro. The current reviewed sources do
+not support a faster-recovery claim, a correction hierarchy, or an age-based assignment between them.
 
 ---
 
 ## 3. Who it's for / not for
 
-**A good fit for:**
-- Clients wanting overall **skin-quality** improvement — the appearance of texture, fine lines, enlarged-looking pores, dullness, mild unevenness, and glow.
-- **Pro tier:** first-timers, sensitive skin, under-40 / preventative maintenance, or anyone wanting the most comfortable, predictable-recovery starting point.
-- **MD tier:** clients **40+** or with age-related collagen loss who want more correction from the same visit.
-- Clients who like a **structured, provider-selected protocol** rather than an aggressive one-off.
+**Current House menu distinction:**
+- Procell Pro is a 55-minute appointment at **$300** using the Pro Microchannel Serum.
+- Procell MD is a 55-minute appointment at **$400** using the higher-concentration MD Microchannel Serum.
+- Both use the same Procell Therapies device. No current House source assigns them by age, sensitivity,
+  first-visit status, or a promised degree of correction.
 
 **Not for / postpone / provider review required** (screening guide — the provider makes the actual candidacy call):
 - Active skin infection, active rash or breakout in the area, or a current cold-sore outbreak.
 - Open, inflamed, sunburned, or poorly healed skin — never channel over it.
 - Recent isotretinoin use, a history of keloid scarring, certain autoimmune conditions, immune suppression, uncontrolled diabetes, bleeding/clotting disorders or anticoagulant use, and pregnancy/breastfeeding.
-- Known sensitivity to serum ingredients or numbing agents — flag at consultation.
+- Known sensitivity to serum ingredients — flag before the appointment.
 
-**Honest limits.** The serum tier does not change the *modality's* limits: microchanneling supports the *appearance* of texture and fine lines over a series; it does not remove wrinkles or scars, does not treat active acne, and results develop gradually and vary by person. MD is not "medical" in the sense of being a stronger machine — it is a higher-concentration serum, and it is not automatically the right choice for every client or concern.
+**Honest limits.** The serum tier does not change the *modality's* limits: it does not remove wrinkles or
+scars or treat active acne. MD is not "medical" in the sense of being a stronger machine — it is a
+higher-concentration serum. Do not infer a series, cadence, or outcome hierarchy from that distinction.
 
 ---
 
 ## 4. The visit
 
-**Protocol (step-by-step).**
-1. **Consult & skin analysis** — Amber reviews concerns, skin history, medications, and candidacy, and selects the microneedling treatment plan, **serum tier (Pro or MD)**, area, and any eligible adjuncts.
-2. **Prep** — cleanse; optional dermaplane prep to remove peach fuzz; numbing per house policy.
-3. **Channeling** — a **new single-use cartridge** every session; the device creates controlled microchannels across the treatment area.
-4. **Serum delivery** — the selected Procell serum (Pro or MD) is applied so it flows into the channels as they're created.
-5. **Finish & aftercare** — optional LightStim LED or a Glo2Facial finish to calm and support the skin; written aftercare given.
+**Current visit boundary.** The verified menu consists of a $50, 60-minute consultation; Pro at $300
+for 55 minutes; MD at $400 for 55 minutes; and the separate topical PRF Microneedling appointment at
+$595 for 60 minutes. Those four rows do not authorize an extra preparation step, finish, combined
+appointment, series, repeat cadence, or body appointment. Do not turn an unlisted concept into a visit
+step or option from this brief.
 
-**Sensation & downtime.** Most clients describe the channeling as tolerable pressure/vibration with numbing. Normal short-term recovery can include redness, tightness, dryness, roughness, mild flaking, and occasional pinpoint bleeding. The exact window varies with device, depth, area, and skin — Amber gives written aftercare rather than promising a fixed 24- or 72-hour timeline. Avoid sun, heat, sweat/exercise, and active actives as directed during recovery.
-
-**Retail follow-through.** Procell sells a matched two-step **aftercare** line in Pro and MD strengths (see §7) — Step 1 Cellular Renewal Serum and Step 2 Healing Accelerator — designed to support the skin through the days after channeling.
-
-**Results timeline & cadence.** Early changes commonly appear over **2–6 weeks**; collagen remodeling develops over **weeks to months**. Most corrective goals are planned as a **series of 3–6 visits, ~4–6 weeks apart**, then individualized maintenance. House of Rose frames series as: Single Visit · **Series of 3** (most concerns show visible change by three sessions) · **Series of 6** (the complete corrective course, the realistic standard for body work). Individual results vary.
+**Optional retail, not treatment inventory.** Published Sanity contains six Procell aftercare products.
+They are separate retail records, not included treatment steps, required purchases, or evidence for a
+treatment outcome. See §7 for the current records and prices.
 
 ---
 
 ## 5. Comparisons
 
-### Procell **Pro** vs Procell **MD** (same treatment, different serum tier — when each wins)
+### Procell **Pro** vs Procell **MD** (same device, different topical serum concentration)
 
 | | **Procell Pro** | **Procell MD** |
 |---|---|---|
-| What it is | Professional-grade growth-factor + cytokine serum — the baseline tier | Same category serum with **~2× the growth factors** of Pro + additional supporting ingredients |
-| Best for | Under-40, preventative/maintenance, sensitive skin, first-timers, most comfortable starting point | **40+**, age-related collagen support, clients wanting more correction from the visit |
-| The difference the client feels | Same device, same protocol; a comfortable, predictable channeling visit | Same device, same protocol — the difference is serum concentration and treatment plan, not a "stronger machine" |
+| What it is | Pro Microchannel Serum | MD Microchannel Serum, with **2× the growth-factor concentration** of Pro |
+| Device and service | The same Procell Therapies device and Microneedling service | The same Procell Therapies device and Microneedling service |
 | Current appointment price | **$300** | **$400** |
-| Honest note | Not "weaker" — the right tool for prevention and maintenance | Not automatically right for everyone; higher concentration, provider-selected |
+| Publication boundary | Do not assign it by age, sensitivity, or first-visit status | Do not assign it by age or promise greater correction |
 
-**Rule of thumb:** start with **Pro** to prevent and maintain, or if you're a first-timer/sensitive; choose **MD** when the goal is age-related correction (typically 40+) and you want more from the same appointment. Amber confirms the tier at consultation.
+Do not publish an age-based or first-visit rule of thumb. The supported public distinction is the
+topical serum concentration; it is not a different needling device or service.
 
 ### Procell serum and topical PRF (distinct Microneedling appointments)
 
@@ -92,12 +99,10 @@ different service provided by Diana Morrison, RN.
 ## 6. Concern mapping
 
 Maps to existing `/concerns/` pages:
-- **Fine Lines & Laxity** → `/concerns/fine-lines-laxity/` — the core skin-quality use case; MD tier for 40+.
+- **Fine Lines & Laxity** → `/concerns/fine-lines-laxity/` — a current concern guide; do not use it to assign a Pro or MD serum by age.
 - **Sun Damage** → `/concerns/sun-damage/` — the April-2025 formula adds DNA-repair enzymes aimed at *the visible signs of* sun exposure (describe as "for the appearance of sun spots and uneven tone," never "reverses sun damage").
 - **Acne Scarring** → `/concerns/acne-scarring/` — for the *appearance* of selected scars; the provider determines whether microneedling and an eligible topical plan are appropriate.
-- **Stretch Marks** → `/concerns/stretch-marks/` — body channeling (Procell Microchanneling — Body) for the appearance of mature stretch marks.
-
-**Proposed new concern page:** `/concerns/dull-uneven-texture/` (concern type) — "dullness, enlarged-looking pores, and uneven texture" is Procell's strongest everyday use case and currently has no dedicated concern page.
+- **Stretch Marks** → `/concerns/stretch-marks/` — a current concern guide, but not authority for a Procell body appointment.
 
 ---
 
@@ -108,17 +113,17 @@ consultation, Procell Pro at $300 for 55 minutes, Procell MD at $400 for 55 minu
 Microneedling at $595 for 60 minutes. Do not prescribe a prerequisite, sales ladder, series, body option,
 or add-on unless it appears in current GlossGenius inventory.
 
-**Retail follow-through — the Procell at-home aftercare line (in the shop, brand `Procell`):**
-- **Procell PRO Aftercare Step 1 — Cellular Renewal Serum** (`/shop/Procell-pro-step-1-cellular-renewal-serum/`)
-- **Procell PRO Aftercare Step 2 — Healing Accelerator** (`/shop/Procell-pro-step-2-healing-accelerator/`)
-- **Procell PRO Aftercare Trial Set** (`/shop/Procell-pro-aftercare-trial-set/`)
-- **Procell MD Aftercare Step 1 — Cellular Renewal Serum** (`/shop/Procell-md-step-1-cellular-renewal-serum/`)
-- **Procell MD Aftercare Step 2 — Healing Accelerator** (`/shop/Procell-md-step-2-healing-accelerator/`)
-- **Procell MD Aftercare Trial Set** (`/shop/Procell-md-aftercare-trial-set/`)
+**Optional Procell aftercare retail records (published Sanity checked 2026-08-14):**
+- **Procell PRO Aftercare Step 1 — Cellular Renewal Serum** — $65
+- **Procell PRO Aftercare Step 2 — Healing Accelerator** — $80
+- **Procell PRO Aftercare Trial Set** — $38
+- **Procell MD Aftercare Step 1 — Cellular Renewal Serum** — $140
+- **Procell MD Aftercare Step 2 — Healing Accelerator** — $160
+- **Procell MD Aftercare Trial Set** — $45
 
-Match the aftercare tier to the treatment tier only when that is the verified provider recommendation.
-Do not turn a treatment visit into a required product upsell. (These six products carry no
-`ctaLabel`/`badge`/`purchaseUrl` in Sanity — see GAPS.)
+These products are optional retail inventory. Do not present one as included with treatment, required,
+matched automatically to an appointment, or able to extend a result. The public shop is temporarily
+disabled, so this brief must not direct clients to a `/shop/` route.
 
 ---
 
@@ -139,17 +144,21 @@ series, finish, and add-on figures are not current public inventory.
 **Sanity taxonomy rule:** the canonical record is `microneedling`. Former duplicate and body records
 do not authorize public appointments. Procell Pro and MD remain choices within the current Microneedling menu.
 
-**Retail aftercare prices** (Sanity, cents → USD): Pro Step 1 $65, Pro Step 2 $80, Pro Trial Set $75; MD Step 1 $150, MD Step 2 $160, MD Trial Set $310. (Retail, not treatment pricing.)
+**Retail boundary:** the six optional aftercare prices above come from published Sanity and are not
+treatment prices. The canonical ledger remains the authority for Microneedling appointment prices.
 
 ---
 
 ## 9. FAQ bank (substantive, compliance-clean)
 
 **What's the difference between Procell Pro and Procell MD?**
-Both are professional growth-factor + cytokine serums applied during the same Procell Microchanneling treatment. Procell MD carries roughly twice the growth factors of Pro and is the go-to for clients 40+ and age-related collagen support; Pro is the professional-grade baseline for prevention and maintenance, often chosen under 40 or for a first visit. Your esthetician selects the tier at consultation.
+Both are topical Microchannel Serums used with the same Procell Therapies device during Microneedling.
+The MD serum shares the Pro serum's core formulation and contains twice the concentration of growth
+factors. The serum changes between the appointments; the needling device and service do not.
 
 **Is Procell MD "better" than Pro?**
-Not universally — it's higher concentration, not a stronger machine or a different procedure. Pro is the right tool for prevention and maintenance; MD is the right tool for more age-related correction. The best tier depends on your skin, goals, and candidacy.
+The current sources do not rank one serum as broadly better. MD has a higher growth-factor concentration;
+it is not a stronger machine or a different procedure.
 
 **Is Procell a stem-cell treatment?**
 No. As of April 2025, Procell's serums use **recombinant (lab-produced) growth factors** — proteins identical to those in the body, made without human or animal tissue, with no cells, DNA, or blood in the serum. We describe it accurately as a professional growth-factor + cytokine serum, never as "stem-cell therapy."
@@ -160,23 +169,29 @@ No. The serum is applied topically during the microchanneling protocol; the chan
 **What does the serum actually do?**
 Growth factors and cytokines are signaling proteins the body uses in its natural renewal process. Applied during channeling, the serum is designed to support recovery and the appearance of firmer, smoother, more even-looking skin as it remodels over the following weeks. Outcomes are individual.
 
-**Which tier is right for me if I'm in my 30s?**
-Many clients under 40 start with **Pro** for prevention and maintenance. If you have specific age-related concerns, your provider may recommend **MD**. The consultation and skin analysis decide.
+**Does age determine whether Pro or MD is used?**
+No current House source assigns Pro or MD by age. The verified distinction is the topical serum
+concentration, while both appointments use the same device and Microneedling service.
 
-**Do I have to choose Procell serum or PRF — or can I have both?**
-You can do either or both. Procell serums are a standardized, off-the-shelf growth-factor option with no blood draw; Topical PRF is an autologous boost prepared from your own blood (an upgrade that adds a draw and screening). Both are applied topically during the same channel; your provider will advise.
+**Are Procell serum and topical PRF combined in one appointment?**
+No current GlossGenius appointment combines them. Pro and MD are the two Procell-serum appointments;
+topical PRF Microneedling is a separate $595, 60-minute appointment. None is an add-on to another.
 
 **How many sessions will I need?**
-Most corrective goals are planned as a series of three to six visits, about four to six weeks apart, then individualized maintenance. Your plan depends on your concern, skin history, and how your skin responds. Individual results vary.
+The current GlossGenius menu does not establish a Microneedling series or repeat cadence. Publish the
+four verified appointment rows without inventing a package or schedule.
 
 **What's the downtime?**
 Redness, tightness, dryness, and mild flaking are common short-term; the exact window varies with depth, area, and your skin. You'll get written aftercare — we don't promise a fixed timeline.
 
 **Can Procell help with sun spots and uneven tone?**
-The current formula includes DNA-repair enzymes selected to address the visible signs of sun exposure, so it may help with the appearance of sun spots and uneven tone over a series. It is designed to support skin appearance, not to "reverse" sun damage, and results vary.
+The manufacturer describes DNA-repair enzymes in the current formula, but current House sources do not
+establish a series or a specific outcome claim for sun spots. Do not turn manufacturer positioning into
+a House of Rose result promise.
 
 **Should I buy the Procell aftercare products?**
-The matched at-home line (Cellular Renewal Serum + Healing Accelerator, in Pro and MD strengths) is designed to support your skin through the days after channeling and help extend your results. Match the aftercare tier to your treatment tier; the Trial Set is an easy first step.
+Published Sanity contains six optional Procell aftercare products. They are separate retail inventory,
+not an included treatment step, required purchase, or promise that a result will last longer.
 
 **Can I get Procell on my body, not just my face?**
 Procell Microchanneling — Body is not current GlossGenius-backed inventory. Do not publish body areas,
@@ -187,7 +202,8 @@ prices, series, or availability unless they first appear in
 Procell Microchanneling is the branded Procell name used when discussing the device system or Procell materials within House of Rose's Microneedling service. It is not a separate service category.
 
 **Who performs Procell at House of Rose?**
-Amber, our advanced esthetician (and RN assistant), performs all Procell Microchanneling and topical serum/PRF work. Injectable PRF and injectables are a separate service handled by Diana, our RN.
+Amber Mingione, Licensed Esthetician provides Procell Microneedling and topical PRF Microneedling.
+Injectable PRF is a separate service provided by Diana Morrison, RN.
 
 **Is everyone a candidate?**
 No — not every client is a candidate for every service. Active skin infection, certain medications and conditions, and other factors may mean postponing or choosing a different option. Your provider confirms candidacy at consultation.
@@ -196,21 +212,26 @@ No — not every client is a candidate for every service. Active skin infection,
 
 ## 10. Provider + compliance notes
 
-**Lane:** **Amber** (advanced esthetician + RN assistant). Procell Microchanneling, the Pro/MD serum tiers, and **topical PRF (topical only, never injected)** are all Amber's lane. Injectable PRF, EZ-Gel, and injectables belong to **Diana** (RN) — never blur these.
+**Provider boundary:** Amber Mingione, Licensed Esthetician provides Procell Microneedling and **topical
+PRF Microneedling (topical only, never injected)**. Injectable PRF is separate and is provided by Diana
+Morrison, RN. The current sources do not establish EZ Gel as equivalent to PRF Bio-Filler.
 
-**Confirmed and usable** (per master-menu §9): "**MD = 2× the growth factors of Pro**" and the "**40+ / age-related correction**" positioning are confirmed and may be stated. The **recombinant (lab-made, no cells/DNA/blood), April-2025 reformulation** is the current, accurate sourcing description.
+**Confirmed and usable:** the MD serum contains twice the growth-factor concentration of Pro, and both
+appointments use the same Procell Therapies device. The current reviewed House sources do not establish
+an age-based or outcome-tier selection rule. The **recombinant
+(lab-made, no cells/DNA/blood), April-2025 reformulation** is the current sourcing description.
 
 **Avoid for THIS topic specifically:**
 - "Stem-cell serum," "stem-cell treatment," or any framing of the serum as stem-cell therapy.
 - "Growth factors delivered *deep into* the skin," "injects the serum/PRF," or "FDA-approved" for serum/PRF delivery.
 - Importing Procell's own strong marketing verbs — the manufacturer writes "reverse [sun damage] on the DNA level" and "literally reverse it"; **House of Rose must not** use "reverse," "reverses aging," "erases," "removes," "heals," "cures," or "treats [acne/condition]."
 - Unsupported exosome/peptide efficacy claims.
-- Discount language on a series ("% off," "deal," "sale"). State only a verified current appointment
-  or series price, without value-positioning euphemisms or an invented lower bound.
+- Discount language or an invented package, series, cadence, combined appointment, or lower-bound price.
+  State only a verified current appointment and its exact price.
 
 **Place safeguards where they govern the content:** identify Amber Mingione, Licensed Esthetician when
 naming her; keep single-use-cartridge facts in visit or safety guidance; keep candidacy, material tier,
-and combinations with the provider; and put individual-variation language beside a results claim rather
+  and appointment distinctions with the provider; and put individual-variation language beside a results claim rather
 than forcing a stock phrase into every sentence. Use the applicable disclosure only if a future offer
 triggers Fla. Stat. 456.062.
 
@@ -218,34 +239,28 @@ triggers Fla. Stat. 456.062.
 
 ## 11. Journey links (real slugs, trailing slashes)
 
-**Pages that should link *into* the Procell serum content:**
+**Current public link set:**
 - `/services/microneedling/` — the canonical service page.
 - Body Microneedling is not current public inventory; do not create or link a body route from this brief.
 - `/cost/microneedling-cost-punta-gorda/` — the canonical cost guide.
 - Concern pages: `/concerns/fine-lines-laxity/`, `/concerns/sun-damage/`, `/concerns/acne-scarring/`, `/concerns/stretch-marks/`.
-- Shop: the six Procell product pages under `/shop/` (brand `Procell`).
+- `/services/prf/` — the topical-versus-injectable PRF distinction.
+- `/services/glo2facial/` — a separate surface-facial option, not a Microneedling finish.
+- `/faq/`, `/skin-analysis/`, and `/areas/punta-gorda/` — existing support and local context.
 
-**Where the Procell serum page should link *out* to:**
-- Up to `/services/microneedling/`.
-- Across to `/services/prf/` for the topical-versus-injectable PRF distinction and `/services/glo2facial/` for a separate surface-facial option.
-- To the six `/shop/Procell-*/` aftercare products.
-- To `/faq/`, `/skin-analysis/`, and `/areas/punta-gorda/`.
-
-**Proposed new pages (type + slug):**
-- **Comparison** — `/compare/Procell-pro-vs-md/` ("Procell Pro vs MD: Which Serum Tier Is Right for You?"). Highest-value new page; directly answers the topic's core question.
-- **Cost guide:** use `/cost/microneedling-cost-punta-gorda/`; do not create a separate Procell cost guide.
-- **Concern** — `/concerns/dull-uneven-texture/` (Procell's everyday use case; no page exists).
-- **Case study** — `/results/Procell-microchanneling-texture/` once compliant before/after proof exists (`/results/` is currently empty).
+Keep optional aftercare products out of public journey links while the public shop is disabled. Do not
+create a separate Procell comparison, concern, cost, or case-study route from this brief.
 
 ---
 
-## 12. Why House of Rose
+## 12. Verified House of Rose distinctions
 
-- **A serum tier decided by a licensed provider, not a menu upsell.** Amber picks Pro or MD after a real skin analysis, matched to your age, goals, and skin — not a default add-on.
-- **The current, honest science.** House of Rose uses Procell's **recombinant** growth-factor formula (April 2025) and describes it accurately — growth factors and cytokines, no stem-cell theater, no injected-serum claims.
+- **Two current serum appointments with a concrete distinction.** Amber Mingione, Licensed Esthetician
+  provides Pro and MD Microneedling with the same device; the verified difference is the topical serum
+  concentration, not an age-based sales ladder.
+- **Current material description.** House of Rose uses Procell's **recombinant** growth-factor formula
+  (April 2025) and describes the serum as topical, not injected.
 - **Clear appointment choices.** Pro, MD, and topical PRF Microneedling are separate current appointments; the provider explains their material and preparation differences without imposing a sales ladder.
-- **Locally grounded.** No competitor in Punta Gorda / Charlotte County / SW Florida offers Procell growth-factor channeling; positioning is calibrated for an affluent, value-conscious, 55+-heavy local market.
-- **Honest limits as a feature.** We say "for the appearance of," "individual results vary," and "not every client is a candidate" — and we never promise removal, reversal, or a cure.
 
 ---
 
@@ -256,7 +271,9 @@ triggers Fla. Stat. 456.062.
 - `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — sole current commerce authority for Procell Pro, Procell MD, and topical PRF Microneedling appointment names, prices, durations, and booking modes.
 
 **Sanity docs consulted (published snapshot):**
-- Canonical services: `microneedling`, `microneedling-body`, `prf-microneedling`, and `prf`. The former `microchanneling`, `microneedling-corrective`, and `procell-microchanneling-body` records are migration-history duplicates.
+- Canonical public service: `microneedling`. The `microneedling-body`, `prf-microneedling`,
+  `microchanneling`, `microneedling-corrective`, and `procell-microchanneling-body` records are gated or
+  migration-history records and do not authorize additional public appointments.
 - Products (brand `Procell`): `Procell-pro-step-1-cellular-renewal-serum`, `Procell-pro-step-2-healing-accelerator`, `Procell-pro-aftercare-trial-set`, `Procell-md-step-1-cellular-renewal-serum`, `Procell-md-step-2-healing-accelerator`, `Procell-md-aftercare-trial-set`.
 - Canonical microneedling cost guide, concerns `fine-lines-laxity`, `sun-damage`, `acne-scarring`, and `stretch-marks`; any legacy package slug remains an internal identifier and must not recreate a second service category.
 
