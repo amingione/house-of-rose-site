@@ -1,5 +1,17 @@
-Choose Procell if you want a consistent, no-blood-draw treatment using a professional growth-factor serum to improve texture, pores and overall skin quality.
+# Procell Serum vs Topical PRF — Research Note
 
-Choose PRF if you prefer a more natural, personalized treatment made from your own blood, using your platelets and fibrin to support skin renewal.
+House of Rose uses one canonical Microneedling service performed with the Procell Therapies device.
+Procell Pro, Procell MD, and topical PRF are appointment options within that service, not separate
+needling modalities.
 
-Neither is automatically better—Procell is more convenient and predictable, while PRF is autologous and more regenerative in approach.
+- Procell Pro and Procell MD use the same device. The topical serum differs between those two
+  appointments.
+- PRF Microneedling uses PRF prepared from a small sample of the client's own blood and applied to the
+  skin surface. Injectable PRF is a different service.
+- This note does not rank the options. Public comparison copy should stay with the verified material,
+  preparation, provider, and booking distinctions rather than add value, convenience, or efficacy
+  claims.
+
+Current appointment names, prices, durations, and availability live in
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`. Reviewed website distinctions live
+in `packages/web/src/lib/skinRenewalServiceEducation.ts`.
