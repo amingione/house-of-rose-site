@@ -131,7 +131,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     whereItFits:
       'Procell Microchanneling is the device-specific name used for this Microneedling service.',
     providerStatement:
-      'Amber Mingione, Licensed Esthetician, provides these Microneedling appointments. When PRF is part of an eligible appointment, her role is topical only.',
+      'Amber Mingione, Licensed Esthetician, provides these Microneedling appointments under written physician protocol and medical direction. When PRF is part of an eligible appointment, her role is topical only. Medical Director: Joshua Shaw, MD · FL Lic. ME136232.',
     distinctions: [
       {
         label: 'Procell Pro',
