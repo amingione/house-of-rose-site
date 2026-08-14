@@ -258,6 +258,14 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
         href: '/services/prf-under-eyes/',
         label: 'PRF Under Eyes details',
       },
+      {
+        href: '/about/providers/amber/',
+        label: 'Meet Amber Mingione, Licensed Esthetician',
+      },
+      {
+        href: '/about/providers/diana/',
+        label: 'Meet Diana Morrison, RN',
+      },
     ],
     menu: {
       verifiedAt: '2026-08-06',
