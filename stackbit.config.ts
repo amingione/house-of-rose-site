@@ -5,6 +5,7 @@ import { defineStackbitConfig } from '@stackbit/types';
 import { SanityContentSource } from '@stackbit/cms-sanity';
 
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
+import { isReviewedPublicBlogSlug } from './packages/web/src/lib/publicBlogContent';
 
 /**
  * House of Rose — Netlify Visual Editor configuration.
@@ -227,11 +228,12 @@ export default defineStackbitConfig({
     }),
   ),
 
-  // Model extensions keep reviewed comparison documents editable as pages, but
-  // parked or overlay-less records do not have generated public routes. Filter
-  // those records from the Visual Editor sitemap/page picker just as GROQ does.
+  // Model extensions keep reviewed content editable as pages, but records that
+  // fail the corresponding public route gate must not appear in the Visual
+  // Editor sitemap/page picker.
   transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
-    if (!('document' in entry) || entry.document.modelName !== 'comparison') return true;
+    if (!('document' in entry)) return true;
+    if (!['comparison', 'blogPost'].includes(entry.document.modelName)) return true;
 
     const document = getDocumentById({
       id: entry.document.id,
@@ -239,6 +241,12 @@ export default defineStackbitConfig({
       srcProjectId: entry.document.srcProjectId,
     });
     const slug = documentStringField(document, 'slug');
+
+    if (entry.document.modelName === 'blogPost') {
+      const publishedAt = documentStringField(document, 'publishedAt');
+      return Boolean(slug && publishedAt && isReviewedPublicBlogSlug(slug));
+    }
+
     const status = documentStringField(document, 'status');
     return status === 'live' && Boolean(slug && REVIEWED_PUBLIC_COMPARISON_SLUG_SET.has(slug));
   }),
