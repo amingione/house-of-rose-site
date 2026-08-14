@@ -45,7 +45,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'Is $14 the total price for a Botox appointment?',
-        answer: 'No. $14 is the published price per unit. The total reflects the number of Botox units provided.',
+        answer: 'No. $14 is the price per unit. The total reflects the number of Botox units provided.',
       },
       {
         question: 'How much is a neuromodulator consultation?',
@@ -86,7 +86,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     context: 'Five Juvéderm and RHA filler products make up the range. A consultation has its own price.',
     faqs: [
       {
-        question: 'What is the published dermal filler price range?',
+        question: 'What is the dermal filler price range?',
         answer: 'As of August 6, 2026, dermal filler prices at House of Rose in Punta Gorda range from $650 to $850.',
       },
       {
@@ -118,7 +118,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     context: 'Forma covers six facial areas. Forma Plus covers five body areas. The Forma + Lumecca Bundle has its own $2,599 price.',
     faqs: [
       {
-        question: 'What is the published Forma price range?',
+        question: 'What is the Forma price range?',
         answer: 'As of August 6, 2026, Forma facial-area prices range from $600 to $3,000. Forma Plus body-area prices range from $1,500 to $2,000.',
       },
       {
@@ -156,7 +156,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     context: 'Spot Treatment is $250 for one session. Face, Neck & Chest is $2,600 for three. The $50 Lumecca Peak IPL Consultation is a separate appointment.',
     faqs: [
       {
-        question: 'What is the published price range for Lumecca Peak IPL?',
+        question: 'What is the price range for Lumecca Peak IPL?',
         answer: 'As of August 6, 2026, Lumecca prices at House of Rose in Punta Gorda range from $250 to $2,600.',
       },
       {
@@ -221,7 +221,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
     context: 'Pro and MD can be booked directly. The $50 Procell consultation and $595 topical PRF option are separate 60-minute consultation listings.',
     faqs: [
       {
-        question: 'What are the published Procell microneedling prices?',
+        question: 'What are the Procell microneedling prices?',
         answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
       },
       {
