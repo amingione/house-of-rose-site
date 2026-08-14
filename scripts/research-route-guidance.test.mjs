@@ -51,6 +51,28 @@ test('active acne research recognizes the generated concern route', () => {
   }
 });
 
+test('Face Reality research stays on current routes without inventing a funnel', () => {
+  const brief = readFileSync(new URL('face-reality-acne-program.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/face-reality-acne-program/',
+    '/services/acne-bootcamp/',
+    '/packages/face-reality-12-week-program/',
+    '/concerns/active-acne/',
+    '/services/collections/facials/',
+    '/about/providers/amber/',
+    '/contact/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist/);
+  assert.doesNotMatch(
+    brief,
+    /Proposed new pages|current and possible supporting pages|\/concerns\/(?:post-inflammatory-marks|acne-breakouts)\/|\/cost\/acne-program|\/compare\/acne-program|\/results\/\[slug\]\/|\/shop\//i,
+  );
+});
+
 test('dormant storefront research cannot act as current route or price authority', () => {
   const productLines = readFileSync(new URL('product-lines.md', researchRoot), 'utf8');
 

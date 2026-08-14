@@ -12,6 +12,7 @@ const activeBriefs = [
   'biorepeel.md',
   'dermal-fillers.md',
   'dermaplaning.md',
+  'face-reality-acne-program.md',
   'glp-1.md',
   'neurotoxins.md',
   'product-lines.md',
@@ -85,5 +86,16 @@ test('dermal filler research cannot regenerate a clinical script or cross-sell p
   assert.doesNotMatch(
     fillers,
     /^## (?:The visit|Pairings & pathways|Journey links|Why House of Rose)|retail follow-through|skin analysis.*first|frequently paired|classic "relax \+ restore"/im,
+  );
+});
+
+test('Face Reality research cannot regenerate a clinical script, offer rule, or sales pathway', () => {
+  const faceReality = readFileSync(new URL('face-reality-acne-program.md', researchRoot), 'utf8');
+
+  assert.match(faceReality, /Place safeguards where the content creates the need/i);
+  assert.match(faceReality, /ordinary price does not by itself create a free, discounted, or credited offer/i);
+  assert.doesNotMatch(
+    faceReality,
+    /provider lane|program wins|rule of thumb|pairings & pathways|retail follow-through|the retail closes the loop|clear, then refine|guided journey|purging is expected|titration|mandelic acid|benzoyl peroxide|Accutane|6–8 weeks|3–6 months|72-hour disclosure/i,
   );
 });
