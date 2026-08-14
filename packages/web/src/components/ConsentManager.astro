@@ -67,6 +67,10 @@
     padding-block-end: calc(var(--consent-banner-height, 0px) + 0.5rem);
   }
 
+  html[data-consent-banner-visible] #mobile-navigation > nav {
+    max-height: calc(100dvh - 80px - var(--consent-banner-height, 0px) - 1rem);
+  }
+
   html[data-consent-banner-visible] .fixed.bottom-0:not(#consent-banner) {
     bottom: calc(var(--consent-banner-height, 0px) + 0.5rem);
   }
