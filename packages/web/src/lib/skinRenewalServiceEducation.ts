@@ -211,7 +211,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     slug: 'prf',
     title: 'Platelet-Rich Fibrin (PRF)',
     whatItIs:
-      'Platelet-rich fibrin (PRF) is prepared from a small sample of your own blood. House of Rose uses it topically with Microneedling and in separate injectable PRF appointments.',
+      'Platelet-rich fibrin (PRF) is prepared from a small sample of your own blood. At House of Rose, it can be applied at the skin surface during Microneedling or used in the injectable PRF Under-Eye and PRF Bio-Filler appointments.',
     whereItFits:
       'Topical PRF stays on the skin surface during Microneedling. PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN under medical direction.',
     distinctions: [
@@ -225,14 +225,14 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       },
       {
         label: 'PRF Bio-Filler',
-        text: 'PRF Bio-Filler has its own consultation listing at $899.',
+        text: 'PRF Bio-Filler is a 45-minute injectable consultation at $899, provided by Diana Morrison, RN under medical direction.',
       },
     ],
     faqs: [
       {
         question: 'What is platelet-rich fibrin (PRF)?',
         answer:
-          'PRF is prepared from a small sample of your own blood. At House of Rose, it appears in one topical Microneedling appointment and two separate injectable consultations.',
+          'PRF is prepared from a small sample of your own blood. House of Rose applies it topically during PRF Microneedling and uses it injectably for PRF Under-Eye and PRF Bio-Filler.',
       },
       {
         question: 'What is the difference between topical and injectable PRF at House of Rose?',
@@ -242,7 +242,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       {
         question: 'Is PRF Bio-Filler the same service as PRF Under-Eye?',
         answer:
-          'No. PRF Under-Eye is a $495 injectable consultation with timing confirmed by phone; PRF Bio-Filler is a separate $899, 45-minute injectable consultation.',
+          'No. PRF Under-Eye is a $495 injectable consultation with timing confirmed by phone. PRF Bio-Filler is an injectable consultation at $899 for 45 minutes.',
       },
     ],
     links: [
