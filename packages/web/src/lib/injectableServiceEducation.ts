@@ -19,6 +19,13 @@ export interface InjectableConsultationFact {
   readonly priceUsd: number;
 }
 
+export interface InjectableFollowUpFact {
+  readonly name: string;
+  readonly durationMinutes: number;
+  readonly priceUsd: number;
+  readonly note: string;
+}
+
 export interface InjectableServiceEducation {
   readonly slug: InjectableServiceSlug;
   readonly title: string;
@@ -27,6 +34,7 @@ export interface InjectableServiceEducation {
   readonly pricingSummary: string;
   readonly bookingGuidance?: string;
   readonly consultation?: InjectableConsultationFact;
+  readonly followUp?: InjectableFollowUpFact;
   readonly provider: {
     readonly publicName: string;
     readonly profilePath: string;
@@ -62,6 +70,12 @@ export const INJECTABLE_SERVICE_EDUCATION = {
       name: 'Neuromodulator Consultation',
       durationMinutes: 20,
       priceUsd: 50,
+    },
+    followUp: {
+      name: '2-Week Check-In',
+      durationMinutes: 20,
+      priceUsd: 0,
+      note: 'Post-appointment neuromodulator follow-up.',
     },
     provider: {
       publicName: 'Diana Morrison, RN',

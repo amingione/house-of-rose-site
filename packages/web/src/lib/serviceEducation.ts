@@ -393,12 +393,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ],
       menu: {
         heading: isNeurotoxin
-          ? 'Consultation, Botox, and Daxxify'
+          ? 'Consultation, Botox, Daxxify, and follow-up'
           : injectable.consultation
             ? 'Consultation and dermal filler products'
             : 'Dermal filler products',
-        intro: injectable.consultation
-          ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary}`
+        intro: isNeurotoxin && injectable.consultation && injectable.followUp
+          ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary} The ${injectable.followUp.name} takes ${formatMinutes(injectable.followUp.durationMinutes)} and is ${formatUsd(injectable.followUp.priceUsd)}; it is a post-appointment follow-up.`
+          : injectable.consultation
+            ? `Begin with the ${formatMinutes(injectable.consultation.durationMinutes)}, ${formatUsd(injectable.consultation.priceUsd)} ${injectable.consultation.name}. ${injectable.pricingSummary}`
           : injectable.pricingSummary,
         verifiedAt: 'August 6, 2026',
         items: [
@@ -416,6 +418,16 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             price: formatUsd(product.price.amountUsd, product.price.qualifier),
             duration: formatMinutes(product.durationMinutes),
           })),
+          ...(isNeurotoxin && injectable.followUp
+            ? [
+                {
+                  name: injectable.followUp.name,
+                  price: formatUsd(injectable.followUp.priceUsd),
+                  duration: formatMinutes(injectable.followUp.durationMinutes),
+                  note: injectable.followUp.note,
+                },
+              ]
+            : []),
         ],
       },
       faqs: injectable.faqs,
