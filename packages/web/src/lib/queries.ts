@@ -366,6 +366,15 @@ const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
   !(optionB.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
 `;
 
+const PUBLIC_PROVIDER_PREDICATE = /* groq */ `
+  showOnWebsite == true &&
+  defined(slug.current) &&
+  coalesce(publicRole, roleCredential, "") != "" &&
+  coalesce(summary, "") != "" &&
+  count(biography) > 0 &&
+  count(serviceFocus) > 0
+`;
+
 export const SITE_SETTINGS_QUERY = /* groq */ `
   *[_type == "siteSettings" && _id == "siteSettings"][0] {
     siteName,
@@ -446,7 +455,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     "provider": provider->{
       _id,
       publicName,
-      "profileSlug": select(showOnWebsite == true => slug.current),
+      "profileSlug": select(${PUBLIC_PROVIDER_PREDICATE} => slug.current),
       profileImagePath,
       "profileImageAlt": profileImage.alt
     },
@@ -1001,15 +1010,6 @@ const PUBLIC_PROVIDER_FIELDS = /* groq */ `
   "listingOrder": coalesce(listingOrder, 100),
   medicallyDirected,
   seo { metaTitle, metaDescription }
-`;
-
-const PUBLIC_PROVIDER_PREDICATE = /* groq */ `
-  showOnWebsite == true &&
-  defined(slug.current) &&
-  coalesce(publicRole, roleCredential, "") != "" &&
-  coalesce(summary, "") != "" &&
-  count(biography) > 0 &&
-  count(serviceFocus) > 0
 `;
 
 export const PUBLIC_PROVIDERS_QUERY = /* groq */ `

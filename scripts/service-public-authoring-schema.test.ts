@@ -9,6 +9,8 @@ import {
   ALL_SERVICES_QUERY,
   ALL_SERVICE_SLUGS_QUERY,
   ALL_SITEMAP_SERVICES_QUERY,
+  PUBLIC_PROVIDER_BY_SLUG_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   SERVICE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
@@ -212,6 +214,34 @@ test('parent-service authoring and public projections require a routeable public
     assert.match(parentProjection[1], /defined\(parentService->slug\.current\)/);
     assert.match(parentProjection[1], /!\(parentService->slug\.current in \[/);
   }
+});
+
+test('service provider profile links require the same complete public profile as provider routes', () => {
+  const profileSlugProjection = SERVICE_BY_SLUG_QUERY.match(
+    /"profileSlug": select\(([\s\S]*?)=> slug\.current\)/,
+  );
+  assert.ok(profileSlugProjection?.[1], 'The service query must guard provider profile links.');
+
+  const publicProfileRequirements = [
+    /showOnWebsite == true/,
+    /defined\(slug\.current\)/,
+    /coalesce\(publicRole, roleCredential, ""\) != ""/,
+    /coalesce\(summary, ""\) != ""/,
+    /count\(biography\) > 0/,
+    /count\(serviceFocus\) > 0/,
+  ];
+  for (const requirement of publicProfileRequirements) {
+    assert.match(profileSlugProjection[1], requirement);
+    assert.match(PUBLIC_PROVIDERS_QUERY, requirement);
+    assert.match(PUBLIC_PROVIDER_BY_SLUG_QUERY, requirement);
+  }
+
+  assert.match(SERVICE_BY_SLUG_QUERY, /"provider": provider->\{[\s\S]*?publicName,/);
+  const renderer = readFileSync(
+    new URL('../packages/web/src/components/treatment/ProviderScopeBlock.astro', import.meta.url),
+    'utf8',
+  );
+  assert.match(renderer, /`\/about\/providers\/\$\{verifiedIdentity\.profileSlug\}\/`/);
 });
 
 test('the public service directory only lists records with generated routes', () => {
