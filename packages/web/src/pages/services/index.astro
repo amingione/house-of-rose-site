@@ -49,17 +49,22 @@ const SERVICE_GROUP_SECTIONS: GroupSection[] = [
     title: 'Facials & Skin Care',
     description: 'Browse facials, peels, dermaplaning, microneedling, topical PRF, and the Face Reality Acne Program by the concern or appointment you want to understand.',
     collectionSlugs: ['facials'],
+    contextualLink: {
+      context: 'Surface appointments, Procell Microneedling with its topical PRF option, and the 12-week Face Reality program follow different paths.',
+      href: '/services/collections/facials/',
+      label: 'Use the Facials & Skin Care guide',
+    },
   },
   {
     id: 'wellness-performance-support',
     title: 'IV Hydration & Weight Management',
-    description: 'The IV page shows six current options with their prices and appointment lengths. The weight-management page explains the ongoing medical service and names the RN who provides it.',
+    description: 'IV Hydration offers six base options: one 30-minute appointment and five 45-minute appointments, each with a verified price. Weight Management begins with a $25, 40-minute consultation with Diana Morrison, RN; medication and ongoing program prices are confirmed with the practice.',
     collectionSlugs: ['iv-hydration-therapy'],
   },
   {
     id: 'beauty-grooming',
     title: 'Waxing',
-    description: 'Choose facial waxing for brows, upper lip, or chin. Choose body waxing for areas including underarms, bikini line, arms, legs, back, or chest.',
+    description: 'Facial waxing covers brows, upper lip, and chin. Body waxing includes underarms, bikini line, arms, legs, back, and chest.',
     collectionSlugs: ['waxing'],
   },
 ];
@@ -104,7 +109,7 @@ const unmappedServices = Array.from(
 
 <BaseLayout
   title="Medical Aesthetic Services | House of Rose Punta Gorda, FL"
-  description="Review skin, injectable, facial, IV hydration, and wellness services offered at House of Rose Aesthetics in Punta Gorda, Florida."
+  description="Skin, injectable, facial, IV hydration, weight-management, waxing, and permanent-jewelry services at House of Rose Aesthetics in Punta Gorda."
   preloadImage="/images/optimized/actual-reception-800.webp"
   preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"
   preloadImageSizes="100vw"
@@ -141,17 +146,17 @@ const unmappedServices = Array.from(
   <section data-service-index-guidance class="border-b border-gold-metal/10 bg-charcoal-light px-5 py-[clamp(40px,6vw,64px)] sm:px-6">
     <div class="mx-auto grid max-w-[1280px] gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:items-end lg:gap-16">
       <div class="max-w-[760px]">
-        <p class="kicker mb-4">Using this directory</p>
+        <p class="kicker mb-4">A place to begin</p>
         <h2 class="font-serif text-[clamp(28px,5vw,44px)] leading-tight text-ink">
-          Open the page that sounds closest to what you need.
+          Begin with the service, the concern, or the person you want to see.
         </h2>
         <p class="mt-5 max-w-[700px] text-[15px] leading-7 text-muted">
-          Each service page explains what the appointment is, shows the current menu information we can verify, and gives you the correct way to book or ask a question. When an appointment has an assigned provider, you will see the person’s name and licence type there too.
+          Some appointments can be booked directly. Others begin with a consultation or call because the service itself requires one. When a practitioner is assigned, House of Rose names that person and their licence type before you book.
         </p>
       </div>
       <div class="border-l border-gold-metal/25 pl-6">
         <p class="text-[14px] leading-7 text-muted">
-          Want to know who provides a service before you choose it?
+          Prefer to learn about the people first? The provider directory connects each person to the work they currently provide.
         </p>
         <a href="/about/providers/" class="learn-more mt-4 inline-flex">
           Meet the House of Rose team →
@@ -256,7 +261,7 @@ const unmappedServices = Array.from(
         Book online or speak with House of Rose.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Choose a service now, or call if you want help comparing the options.
+        Book online when you know the appointment you want. Call when two services still sound similar or you would rather talk it through before booking.
       </p>
       <div class="grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
         <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold" data-global-booking data-cta-location="services-index-final">

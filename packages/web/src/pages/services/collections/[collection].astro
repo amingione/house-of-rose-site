@@ -59,6 +59,34 @@ const pageTitle = `${collection.title} Services | House of Rose Aesthetics`;
 const pageDescription = `Directory of ${collection.title} services with links to individual service pages.`;
 const collectionIntroduction = collectionIntroductions[collection.slug]
   ?? `Review the current ${collection.title} services at House of Rose Aesthetics.`;
+const facialPathways = collection.slug === 'facials'
+  ? [
+      {
+        heading: 'Surface appointments',
+        body: 'Dermaplaning uses a specialized blade for fine vellus hair and surface buildup. Glo2Facial combines surface exfoliation, topical infusion, and oxygenation. BioRePeel is the standalone topical TCA-based peel.',
+        links: [
+          { href: '/services/dermaplaning/', label: 'Dermaplaning' },
+          { href: '/services/glo2facial/', label: 'Glo2Facial' },
+          { href: '/services/biorepeel/', label: 'BioRePeel' },
+        ],
+      },
+      {
+        heading: 'Microneedling and topical PRF',
+        body: 'House of Rose Microneedling uses the Procell Therapies device to create controlled microchannels. When PRF is part of an eligible Microneedling appointment, it is applied at the skin surface; the PRF overview also explains the separate injectable routes.',
+        links: [
+          { href: '/services/microneedling/', label: 'Microneedling' },
+          { href: '/services/prf/', label: 'PRF overview' },
+        ],
+      },
+      {
+        heading: 'A 12-week acne program',
+        body: 'Face Reality begins with a consultation, then combines in-studio visits every two weeks with daily home care across the complete 12-week program.',
+        links: [
+          { href: '/services/face-reality-acne-program/', label: 'Face Reality Acne Program' },
+        ],
+      },
+    ]
+  : [];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} noindex>
@@ -78,6 +106,34 @@ const collectionIntroduction = collectionIntroductions[collection.slug]
       <h1 class="font-serif text-5xl text-ink" {...sbFieldPath('title')}>{collection.title}</h1>
       <p class="mt-6 text-[16px] leading-[1.8] text-muted">{collectionIntroduction}</p>
     </header>
+
+    {facialPathways.length > 0 && (
+      <aside class="mt-12 border-y border-walnut/15 py-10" aria-labelledby="facials-pathway-heading">
+        <div class="max-w-2xl">
+          <p class="kicker mb-3">Finding your starting point</p>
+          <h2 id="facials-pathway-heading" class="font-serif text-[clamp(28px,4vw,38px)] text-ink">
+            These appointments are built differently.
+          </h2>
+          <p class="mt-4 text-[15px] leading-7 text-muted">
+            A surface appointment, Procell Microneedling, and the 12-week Face Reality program ask for different kinds of time and home care. The three paths below show what belongs in each.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-px bg-walnut/15 md:grid-cols-3">
+          {facialPathways.map((pathway) => (
+            <article class="bg-bone p-7 sm:p-8">
+              <h3 class="font-serif text-[24px] leading-tight text-ink">{pathway.heading}</h3>
+              <p class="mt-4 text-[14px] leading-7 text-muted">{pathway.body}</p>
+              <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3">
+                {pathway.links.map((link) => (
+                  <a href={link.href} class="learn-more text-[12px] hover:text-olive">{link.label}</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </aside>
+    )}
 
     {collection.services.length === 0 ? (
       <div class="mt-14 border-t border-walnut/15 pt-8">
