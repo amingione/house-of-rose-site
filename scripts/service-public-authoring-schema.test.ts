@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { service } from '../packages/studio/schemas/service.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_SERVICES_QUERY,
   ALL_SERVICE_SLUGS_QUERY,
@@ -13,7 +14,7 @@ type NestedField = {
   name?: string;
   fields?: NestedField[];
   of?: NestedField[];
-  options?: { filter?: string };
+  options?: { filter?: string; filterParams?: Record<string, unknown> };
   validation?: unknown;
 };
 
@@ -85,6 +86,10 @@ test('related-service authoring only offers relationships the public query can r
   const filter = reference?.options?.filter ?? '';
   assert.match(filter, /status in \["live", "actual-menu"\]/);
   assert.match(filter, /defined\(slug\.current\)/);
+  assert.match(filter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(reference?.options?.filterParams, {
+    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+  });
 
   const relatedProjection = SERVICE_BY_SLUG_QUERY.match(
     /"relatedServices": relatedServices\[([\s\S]*?)\]->/,
@@ -92,6 +97,7 @@ test('related-service authoring only offers relationships the public query can r
   assert.ok(relatedProjection?.[1], 'The service query must guard related-service links.');
   assert.match(relatedProjection[1], /@->status in \["live", "actual-menu"\]/);
   assert.match(relatedProjection[1], /defined\(@->slug\.current\)/);
+  assert.match(relatedProjection[1], /!\(@->slug\.current in \[/);
 });
 
 test('service collection authoring and projections require a generated collection route', () => {

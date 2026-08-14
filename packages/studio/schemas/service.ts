@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
 import { treatmentPageFields } from './objects/treatmentPageFields';
 import { validatePublicCopy } from './validation/publicCopy';
 
@@ -254,7 +255,9 @@ export const service = defineType({
           type: 'reference',
           to: [{ type: 'service' }],
           options: {
-            filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+            filter:
+              'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+            filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
           },
         },
       ],
