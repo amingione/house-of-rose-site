@@ -63,8 +63,16 @@ export const treatmentPackage = defineType({
       name: 'servicesIncluded',
       title: 'Services Included',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
-      description: 'The Service documents this package contains (mirrors Notion "Services Included").',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }],
+          options: {
+            filter: 'status in ["live", "actual-menu"] && defined(slug.current)',
+          },
+        },
+      ],
+      description: 'The public, routeable Service documents this package contains (mirrors Notion "Services Included").',
     }),
     defineField({
       name: 'whatsIncluded',

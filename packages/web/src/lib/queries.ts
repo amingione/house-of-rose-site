@@ -1193,7 +1193,11 @@ const PACKAGE_FIELDS = /* groq */ `
   type,
   status,
   "provider": provider->{ title, lane },
-  "servicesIncluded": servicesIncluded[!(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{ _id, title, "slug": slug.current, tagline },
+  "servicesIncluded": servicesIncluded[
+    @->status in ["live", "actual-menu"] &&
+    defined(@->slug.current) &&
+    !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+  ]->{ _id, title, "slug": slug.current, tagline },
   whatsIncluded,
   cadence,
   rackPrice,

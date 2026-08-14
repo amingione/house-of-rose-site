@@ -2,11 +2,18 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { treatmentPackage } from '../packages/studio/schemas/treatmentPackage.ts';
+import {
+  ALL_TREATMENT_PACKAGES_QUERY,
+  TREATMENT_PACKAGE_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 
 const titleField = treatmentPackage.fields.find(({ name }) => name === 'title');
 const cadenceField = treatmentPackage.fields.find(({ name }) => name === 'cadence');
 const rackPriceField = treatmentPackage.fields.find(({ name }) => name === 'rackPrice');
 const imageField = treatmentPackage.fields.find(({ name }) => name === 'image');
+const servicesIncludedField = treatmentPackage.fields.find(({ name }) => name === 'servicesIncluded') as
+  | { of?: Array<{ options?: { filter?: string } }> }
+  | undefined;
 
 test('the published package identity is required and uses the shared public-copy guard', () => {
   assert.equal(typeof titleField?.validation, 'function', 'Package title must validate public copy.');
@@ -79,4 +86,19 @@ test('published package image alt text uses the shared public-copy guard', () =>
   assert.equal(validate(undefined), true);
   assert.equal(validate('Face Reality products used during the 12-week program.'), true);
   assert.match(String(validate('A flawless skin transformation.')), /retired or prohibited/i);
+});
+
+test('package service authoring and projections require routeable public services', () => {
+  const authoringFilter = servicesIncludedField?.of?.[0]?.options?.filter ?? '';
+  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
+  assert.match(authoringFilter, /defined\(slug\.current\)/);
+
+  for (const query of [ALL_TREATMENT_PACKAGES_QUERY, TREATMENT_PACKAGE_BY_SLUG_QUERY]) {
+    const servicesProjection = query.match(
+      /"servicesIncluded": servicesIncluded\[([\s\S]*?)\]->/,
+    );
+    assert.ok(servicesProjection?.[1], 'The package query must guard included-service routes.');
+    assert.match(servicesProjection[1], /@->status in \["live", "actual-menu"\]/);
+    assert.match(servicesProjection[1], /defined\(@->slug\.current\)/);
+  }
 });
