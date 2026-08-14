@@ -656,6 +656,9 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'small sample of your own blood',
     'topical PRF',
     'PRF Bio-Filler',
+    'autologous platelet concentrate',
+    'Hyaluronic-acid dermal filler',
+    'manufactured injectable gel',
     'skin feels',
   ]) {
     if (!homepage.includes(substantiveFact)) {
@@ -671,6 +674,7 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'Different concerns call for different tools.',
     'Looking well is specific',
     'A tired look can have more than one source.',
+    'PRF and dermal filler begin with different materials.',
   ]) {
     if (homepage.includes(retired)) failures.push(`homepage contains retired copy ${JSON.stringify(retired)}`);
   }
