@@ -43,7 +43,6 @@ const set = {
   title: 'Archived pre-reset Daxxify vs. Botox',
   slug: { _type: 'slug', current: 'archived-daxxify-vs-botox-pre-reset' },
   status: 'parked',
-  intro: `Superseded by ${CANONICAL_ID}.`,
 };
 const unset = ['optionA', 'optionB', 'rows', 'verdict', 'faqs', 'seo'];
 
