@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from './validation/publicCopy';
 
 /**
  * Shop promotion / sale banner.
@@ -23,22 +24,23 @@ export const promotion = defineType({
       name: 'headline',
       title: 'Headline',
       type: 'string',
-      description: 'The on-page headline, e.g. "New: Face Reality Restock" or "Procell Home Care, Back in Stock".',
-      validation: (R) => R.required(),
+      description: 'Name the product or inventory update plainly. Do not add urgency, a discount, or a generic benefit line.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'teaser',
       title: 'Teaser Copy',
       type: 'text',
       rows: 3,
-      description: 'A sentence or two of marketable copy — the "why" behind the promo.',
+      description: 'Add specific, verified product context that helps a client understand the item or restock. Avoid a generic sales line.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'ctaLabel',
       title: 'CTA Button Text',
       type: 'string',
-      description: 'Free text — e.g. "Shop the Restock", "See What\'s New", "Get the Set". No platform names.',
-      validation: (R) => R.required(),
+      description: 'Use a short action that makes the destination clear. Do not mention a checkout platform.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'linkType',
@@ -73,7 +75,14 @@ export const promotion = defineType({
       title: 'Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
+      ],
     }),
     defineField({
       name: 'scopeBrand',
