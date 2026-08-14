@@ -497,15 +497,6 @@ documents; its strategy and Book 2 voice rules are archival.
 - **AEO doc types**: `costGuide`, `comparison`, `localArea`, `caseStudy` (+ shared `seo`, `faq`
   objects). Canonical NAP lives in `siteSettings`, mirrored in `structuredData.ts` (`LOCAL_BUSINESS`).
 
-### Site Elevation Prompt Pack
-`docs/GOVERNANCE/internal_only/prompts/site-elevation/` is a historical implementation pack. Its
-writing, CTA, journey, and Sanity-seeding prompts predate the voice reset and must not be run as current
-instructions. It may be consulted only for task inventory or architecture after checking current rules.
-Research briefs live in `docs/GOVERNANCE/internal_only/research/`; source-of-truth for treatment
-facts/pricing is `docs/GOVERNANCE/internal_only/services/**`.
-
----
-
 ## Local Dev
 ```zsh
 # Install (run from repo root)
