@@ -70,7 +70,7 @@ const breadcrumbSchema = breadcrumbList([
 ]);
 
 const pageTitle = `${pkg.title} | Treatment Package`;
-const pageDescription = summary;
+const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescription : summary;
 ---
 
 <BaseLayout

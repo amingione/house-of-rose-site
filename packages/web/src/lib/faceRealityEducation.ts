@@ -38,6 +38,8 @@ export interface FaceRealityServiceEducation {
  */
 export const FACE_REALITY_PROGRAM = {
   packageSlug: 'face-reality-12-week-program',
+  metaDescription:
+    'Face Reality Acne Bootcamp at House of Rose is a $899 12-week program with visits every two weeks. Begin with the separate $99, 60-minute consultation.',
   duration: '12 weeks',
   cadence: 'In-studio visits every two weeks',
   summary:
