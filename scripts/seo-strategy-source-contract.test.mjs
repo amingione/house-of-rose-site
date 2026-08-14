@@ -30,6 +30,10 @@ const seoEditsPath = new URL(
   '../docs/HRAaudits/letaido-findings/HouseOfRose_SEO_Edits.md',
   import.meta.url,
 );
+const cannibalizationPath = new URL(
+  '../docs/HRAaudits/letaido-findings/houseofrosefl-cannibalization-audit.csv',
+  import.meta.url,
+);
 
 const architecture = readFileSync(architecturePath, 'utf8');
 const competitorStudy = readFileSync(competitorPath, 'utf8');
@@ -38,7 +42,8 @@ const prfArchitecture = readFileSync(prfArchitecturePath, 'utf8');
 const siteAudit = readFileSync(siteAuditPath, 'utf8');
 const trendingKeywords = readFileSync(trendingKeywordPath, 'utf8');
 const seoEdits = readFileSync(seoEditsPath, 'utf8');
-const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}\n${seoEdits}`;
+const cannibalization = readFileSync(cannibalizationPath, 'utf8');
+const strategySources = `${architecture}\n${competitorStudy}\n${demand}\n${prfArchitecture}\n${siteAudit}\n${trendingKeywords}\n${seoEdits}\n${cannibalization}`;
 
 test('SEO strategy sources cannot reintroduce permanently retired programs', () => {
   assert.doesNotMatch(
@@ -108,4 +113,28 @@ test('historical SEO observations cannot become assumed copy or unsupported inve
   assert.doesNotMatch(seoEdits, /\/services\/collections\/permanent-jewelry\//i);
   assert.doesNotMatch(seoEdits, /Add ["`“]?Dysport|no clasp, no worries|Book or walk in today/i);
   assert.doesNotMatch(seoEdits, /Ensure every other page on the site links back to the homepage/i);
+});
+
+test('cannibalization guidance reflects current canonical route roles', () => {
+  for (const route of [
+    '/services/prf/',
+    '/services/prf-injections/',
+    '/services/microneedling/',
+    '/services/prf-under-eyes/',
+    '/services/injectables/',
+    '/services/dermal-fillers/',
+    '/services/glo2facial/',
+    '/services/morpheus8/',
+    '/services/morpheus8-body/',
+  ]) {
+    assert.match(cannibalization, new RegExp(route.replaceAll('/', '\\/')));
+  }
+
+  assert.match(cannibalization, /Cost guide,[^\n]+index follow,[^\n]+KEEP while substantive and reconciled/i);
+  assert.match(cannibalization, /Navigation collection,[^\n]+noindex follow/i);
+  assert.doesNotMatch(
+    cannibalization,
+    /\/services\/prf-microneedling\/|\/services\/prf-fibrin-veil\/|\/compare\/prf-vs-prp\/|\/services\/glo2facial-(?:prf|procell)/i,
+  );
+  assert.doesNotMatch(cannibalization, /thin hub|fold content into service page \+ 301|merge - 301/i);
 });

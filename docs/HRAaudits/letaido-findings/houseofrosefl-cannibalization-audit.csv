@@ -1,41 +1,29 @@
-Cluster,Priority,URL,Apparent Target Keyword,US Volume,Referring Domains,Recommendation
-PRF,High,/services/prf-injections/,prf injections,2600,0,KEEP - primary money page
-PRF,High,/services/prf-microneedling/,prf microneedling,1200,0,KEEP - distinct treatment
-PRF,High,/compare/prf-vs-prp/,prf vs prp,1600,0,KEEP - genuine comparison intent
-PRF,High,/services/prf/,prf hub,0,0,Keep as thin hub only; stop targeting prf injections
-PRF,High,/services/prf-fibrin-veil/,prf fibrin veil,0,0,Fold into /services/prf/
-PRF,High,/cost/prf-injections-cost-punta-gorda/,prf injections cost punta gorda,0,0,Fold into service page + 301
-PRF,High,/cost/prf-microneedling-cost-punta-gorda/,prf microneedling cost punta gorda,0,0,Fold into service page + 301
-PRF,High,/compare/topical-prf-vs-prf-injections/,topical prf vs prf injections,0,0,Fold into /services/prf/ FAQ + 301
-PRF,High,/compare/procell-serum-vs-prf/,procell serum vs prf,0,0,Fold into /services/prf/ FAQ + 301
-PRF,High,/compare/prf-injections-vs-ez-gel/,ez gel bio filler,80,0,Low value - fold into FAQ
-Microneedling,High,/services/microneedling/,microneedling punta gorda,0,0,KEEP - primary; target microneedling near me (26000)
-Microneedling,High,/services/collections/microchanneling-microneedling/,microchanneling,6100,0,Demote to navigation only or noindex
-Microneedling,High,/cost/microneedling-cost-punta-gorda/,microneedling cost,5600,0,Fold content into service page + 301
-Microneedling,High,/services/microneedling-body/,body microneedling,150,0,KEEP - distinct treatment
-Microneedling,High,/compare/biorepeel-vs-microneedling/,biorepeel vs microneedling,20,0,Retire into BioRePeel FAQ
-Injectables,High,/services/injectables/,botox punta gorda,20,0,KEEP - primary; target botox near me (85000)
-Injectables,High,/services/collections/injectables-aesthetics/,injectables,0,0,Merge with injectables-bio-fillers
-Injectables,High,/services/collections/injectables-bio-fillers/,injectables bio fillers,0,0,Merge - 301 weaker of the two
-Injectables,High,/compare/daxxify-vs-botox/,daxxify vs botox,8200,0,KEEP + INVEST - best opportunity (KD 0)
-Injectables,High,/compare/botox-vs-filler/,botox vs filler,600,0,KEEP - distinct intent
-Injectables,High,/cost/botox-cost-punta-gorda/,botox cost punta gorda,0,0,Fold into /services/injectables/ + 301
-Injectables,High,/cost/dermal-fillers-cost-punta-gorda/,dermal filler cost,800,0,Fold into /services/injectables/ + 301
-Facials,Medium,/services/collections/facials/,facials punta gorda,0,0,Merge with advanced-facials
-Facials,Medium,/services/collections/advanced-facials/,advanced facials,0,0,Merge - 301 weaker
-Facials,Medium,/services/glo2facial/,glo2facial,1400,0,KEEP - consolidate variants here
-Facials,Medium,/services/glo2facial-prf/,glo2facial prf,0,0,Fold in as option + 301
-Facials,Medium,/services/glo2facial-procell-md/,glo2facial procell md,0,0,Fold in as option + 301
-Facials,Medium,/services/glo2facial-procell-pro/,glo2facial procell pro,0,0,Fold in as option + 301
-Facials,Medium,/services/signature-rose-facial/,signature facial,500,0,KEEP - branded
-Facials,Medium,/services/sculpt-and-lift-facial/,sculpt and lift facial,0,0,KEEP - branded
-Morpheus8,Medium,/services/morpheus8/,morpheus8,54000,0,KEEP - primary; KD 1 - high value
-Morpheus8,Medium,/services/morpheus8-body/,morpheus8 body,600,0,KEEP - distinct treatment
-Morpheus8,Medium,/cost/morpheus8-cost-punta-gorda/,morpheus8 cost,3200,0,Fold in unless substantive unique pricing content
-Morpheus8,Medium,/compare/ultherapy-vs-morpheus8/,ultherapy vs morpheus8,450,0,KEEP - distinct research intent
-Morpheus8,Medium,/blog/is-morpheus8-safe/,is morpheus8 safe,80,0,KEEP - distinct research intent
-Lash,Low,/services/lash-lift/,lash lift,66000,0,KEEP separate - large distinct volume
-Lash,Low,/services/lash-lift-tint/,lash lift and tint,26000,0,KEEP separate - large distinct volume
-Lash,Low,/services/collections/lash-services/,lash services,0,0,Keep as navigation; link down not compete
-Location,Low,/areas/punta-gorda/,med spa punta gorda,0,0,No action - zero local volume to cannibalize
-Location,Low,/,medical aesthetics punta gorda,0,0,No action
+Cluster,Current Role,URL,Indexing,Distinct Intent,Current Action,Verified At
+PRF,Overview hub,/services/prf/,index follow,Topical PRF Microneedling versus injectable PRF paths,KEEP substantive reviewed hub,2026-08-14
+PRF,Injectable service,/services/prf-injections/,index follow,PRF Under-Eye and PRF Bio-Filler injection choices,KEEP canonical injectable route,2026-08-14
+PRF,Topical service,/services/microneedling/,index follow,Procell Microneedling with a separate topical PRF appointment,KEEP canonical microneedling route,2026-08-14
+PRF,Under-eye detail,/services/prf-under-eyes/,index follow,Verified $495 injectable PRF Under-Eye appointment,KEEP canonical under-eye route,2026-08-14
+Microneedling,Service,/services/microneedling/,index follow,Procell Pro and MD topical-serum options plus topical PRF distinction,KEEP canonical service,2026-08-14
+Microneedling,Cost guide,/cost/microneedling-cost-punta-gorda/,index follow,Verified option-level pricing context linked to the service,KEEP while substantive and reconciled,2026-08-14
+Microneedling,Comparison,/compare/morpheus8-vs-microneedling/,index follow,Device and radiofrequency distinction between Morpheus8 and Procell,KEEP reviewed comparison intent,2026-08-14
+InMode,Navigation collection,/services/collections/inmode/,noindex follow,Routes visitors to Morpheus8 Lumecca and Forma without competing,KEEP navigational only,2026-08-14
+Injectables,Neurotoxin service,/services/injectables/,index follow,Botox and Daxxify product-specific unit pricing,KEEP canonical neurotoxin route,2026-08-14
+Injectables,Dermal-filler service,/services/dermal-fillers/,index follow,Five verified hyaluronic-acid filler products plus consultation,KEEP canonical filler route,2026-08-14
+Injectables,Decision hub,/services/injectables-bio-fillers/,index follow,Movement-related lines lost-volume areas and injectable PRF paths,KEEP substantive reviewed hub,2026-08-14
+Injectables,Comparison,/compare/daxxify-vs-botox/,index follow,Product-specific unit and evidence distinctions,KEEP reviewed comparison intent,2026-08-14
+Injectables,Botox cost guide,/cost/botox-cost-punta-gorda/,index follow,Verified Botox price structure and product-unit boundary,KEEP while substantive and reconciled,2026-08-14
+Injectables,Filler cost guide,/cost/dermal-fillers-cost-punta-gorda/,index follow,Verified consultation and five-product price context,KEEP while substantive and reconciled,2026-08-14
+Injectables,Navigation collection,/services/collections/injectables-bio-fillers/,noindex follow,Routes visitors to canonical injectable services without competing,KEEP navigational only,2026-08-14
+Glo2Facial,Service,/services/glo2facial/,index follow,Single verified Geneo Glo2Facial route and appointment,KEEP only canonical Glo2Facial route,2026-08-14
+Facials,Navigation collection,/services/collections/facials/,noindex follow,Routes visitors across verified facial and skin-renewal services,KEEP navigational only,2026-08-14
+Morpheus8,Facial service,/services/morpheus8/,index follow,Burst Resurfacing Prime Hyperhidrosis and Lumecca bundle menu,KEEP canonical main route,2026-08-14
+Morpheus8,Body service,/services/morpheus8-body/,index follow,Burst Deep body-area packages distinct from facial options,KEEP canonical body route,2026-08-14
+Morpheus8,Cost guide,/cost/morpheus8-cost-punta-gorda/,index follow,Verified area family package and bundle pricing context,KEEP while substantive and reconciled,2026-08-14
+Morpheus8,Comparison,/compare/morpheus8-vs-microneedling/,index follow,RF microneedling versus Procell device distinction,KEEP reviewed comparison intent,2026-08-14
+Morpheus8,Journal article,/blog/is-morpheus8-safe/,index follow,FDA source context recovery questions and follow-up boundaries,KEEP reviewed research intent,2026-08-14
+Waxing,Overview hub,/services/waxing/,index follow,Facial and body waxing directory with booking distinctions,KEEP substantive reviewed hub,2026-08-14
+Waxing,Facial service,/services/facial-waxing/,index follow,Four directly bookable facial-area appointments,KEEP canonical facial route,2026-08-14
+Waxing,Body service,/services/body-waxing/,index follow,Seven body-area appointments arranged by phone,KEEP canonical body route,2026-08-14
+Waxing,Navigation collection,/services/collections/waxing/,noindex follow,Routes visitors to the canonical waxing hub and children,KEEP navigational only,2026-08-14
+Location,Local area,/areas/punta-gorda/,index follow,Canonical practice location and visit planning,KEEP localArea role,2026-08-14
+Location,Local area,/areas/port-charlotte/,index follow,Travel guidance to the single Punta Gorda practice,KEEP localArea role,2026-08-14
