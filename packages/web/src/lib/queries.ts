@@ -5,8 +5,11 @@ import {
   type TreatmentProviderAttribution,
 } from './treatmentQueries';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
+import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
+
+export { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -62,13 +65,6 @@ const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify([
   'ingrown-hair',
 ]);
 
-export const REVIEWED_PUBLIC_COLLECTION_SLUGS = [
-  'facials',
-  'injectables-bio-fillers',
-  'inmode',
-  'iv-hydration-therapy',
-  'waxing',
-] as const;
 const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 
 // A package is public only when its package price is represented in the

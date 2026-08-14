@@ -6,6 +6,7 @@ import { SanityContentSource } from '@stackbit/cms-sanity';
 
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
 import { isReviewedPublicBlogSlug } from './packages/web/src/lib/publicBlogContent';
+import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './packages/web/src/lib/publicCollectionContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './packages/web/src/lib/publicLocalAreaContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './packages/web/src/lib/publicServiceContent';
 
@@ -69,6 +70,9 @@ loadEnvFile('.env');
 const PUBLIC_SHOP_ENABLED = process.env.PUBLIC_SHOP_ENABLED === 'true';
 const REVIEWED_PUBLIC_COMPARISON_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_COMPARISON_SLUGS,
+);
+const REVIEWED_PUBLIC_COLLECTION_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_COLLECTION_SLUGS,
 );
 const REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_LOCAL_AREA_SLUGS,
@@ -270,7 +274,7 @@ export default defineStackbitConfig({
   transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
     if (!('document' in entry)) return true;
     if (
-      !['comparison', 'blogPost', 'caseStudy', 'localArea', 'service'].includes(
+      !['comparison', 'blogPost', 'caseStudy', 'localArea', 'service', 'serviceCollection'].includes(
         entry.document.modelName,
       )
     ) {
@@ -310,6 +314,10 @@ export default defineStackbitConfig({
           PUBLIC_SERVICE_STATUS_SET.has(status) &&
           !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(slug),
       );
+    }
+
+    if (entry.document.modelName === 'serviceCollection') {
+      return Boolean(slug && REVIEWED_PUBLIC_COLLECTION_SLUG_SET.has(slug));
     }
 
     const status = documentStringField(document, 'status');
