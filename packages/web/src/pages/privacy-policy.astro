@@ -268,6 +268,11 @@ const breadcrumb = breadcrumbList([
 </script>
 
 <style>
+	#privacy-contact :is(input, textarea):focus-visible {
+		outline: 2px solid #c9a063;
+		outline-offset: 2px;
+	}
+
 	/* Override prose heading colors to match brand */
 	.prose h2 {
 		@apply text-gold font-serif text-2xl mb-4 mt-8;
