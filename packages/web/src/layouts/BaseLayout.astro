@@ -150,7 +150,7 @@ const entityGraph = siteEntityGraph(
     {chrome === 'site' && <Header currentPath={Astro.url.pathname} />}
 
     <!-- Page content -->
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
