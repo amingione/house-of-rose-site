@@ -821,6 +821,8 @@ test('contact form explains reply timing and preserves the messaging-consent con
     'When to call instead',
     'Does a phone number mean text consent?',
     'Entering a phone number does not, by itself, give permission to send text messages.',
+    'Amber Mingione, Licensed Esthetician provides topical PRF with Microneedling.',
+    'Diana Morrison, RN provides injectable PRF consultations.',
     '525 E Olympia Ave, Unit 9',
     'Punta Gorda, FL 33950',
     'Get directions',
@@ -829,6 +831,9 @@ test('contact form explains reply timing and preserves the messaging-consent con
   }
   for (const requiredMarkup of [
     'action="/.netlify/functions/lead-submit"',
+    'value="PRF Microneedling (topical PRF)"',
+    'value="Injectable PRF"',
+    'aria-describedby="service-interest-help"',
     'name="consent-informational"',
     'name="consent-marketing"',
     'name="consent-none"',
@@ -1227,6 +1232,14 @@ test('priority service pages retain reviewed facts instead of falling back to th
   const injectablesHubHtml = readFileSync(path.join(DIST_ROOT, 'services/injectables-bio-fillers/index.html'), 'utf8');
   const injectablesHubEducation = injectablesHubHtml.match(/<section\b[^>]*data-injectables-hub-overview[^>]*>([\s\S]*?)<\/section>/i)?.[1] ?? '';
   const injectablesHubText = visibleText(injectablesHubEducation);
+  for (const required of [
+    '20-minute, $50 Neuromodulator Consultation',
+    '60-minute, $300 Dermal Filler Consultation',
+  ]) {
+    if (!injectablesHubText.includes(required)) {
+      failures.push(`injectables-bio-fillers: missing ${JSON.stringify(required)}`);
+    }
+  }
   for (const unsupported of ['EZ Gel', 'RHA 4', 'Restylane', 'PRF Body Treatments']) {
     if (injectablesHubText.includes(unsupported)) {
       failures.push(`injectables-bio-fillers: contains unsupported ${JSON.stringify(unsupported)}`);
