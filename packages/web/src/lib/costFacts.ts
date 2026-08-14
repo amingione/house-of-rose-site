@@ -31,13 +31,13 @@ const VERIFIED_AT = '2026-08-06';
 const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'botox-cost-punta-gorda': {
     display: '$14 per unit',
-    metaDescription: 'Botox at House of Rose is $14 per product-specific unit. See the 30-minute listing, why the total varies, and how Daxxify units differ in Punta Gorda.',
+    metaDescription: 'Botox at House of Rose is $14 per product-specific unit. Learn why the total varies and how Daxxify units differ in Punta Gorda.',
     summary: 'Botox is priced at $14 per unit. The total reflects the number of units provided.',
     answer: 'As of August 6, 2026, Botox at House of Rose in Punta Gorda is $14 per unit.',
     menuHeading: 'Botox is priced by the unit.',
     faqHeading: 'What $14 per unit means.',
     verifiedAt: VERIFIED_AT,
-    context: 'Botox and Daxxify are separate neurotoxin listings. Both are priced at $14 per product-specific unit, but a unit of one product is not equivalent to a unit of the other.',
+    context: 'Botox and Daxxify are different neurotoxin products. Both are priced at $14 per product-specific unit, but a unit of one product is not equivalent to a unit of the other.',
     faqs: [
       {
         question: 'How much is Botox at House of Rose?',
@@ -49,7 +49,7 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
       {
         question: 'Is Daxxify included in the Botox price?',
-        answer: 'No. Botox and Daxxify have separate listings. Each is priced at $14 per product-specific unit, and the matching rate does not establish the same dose or total price.',
+        answer: 'No. Botox and Daxxify are different products. Each is priced at $14 per product-specific unit, and the matching rate does not establish the same dose or total price.',
       },
     ],
     items: [
