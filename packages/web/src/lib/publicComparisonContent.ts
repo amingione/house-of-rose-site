@@ -46,7 +46,7 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
     optionBLabel: 'Microneedling',
     distinctionHeading: 'Radiofrequency is the dividing line.',
     distinction:
-      'Morpheus8 pairs microneedles with fractional bipolar radiofrequency. The Microneedling page covers the non-radiofrequency appointments: Procell Pro, Procell MD, and Microneedling with topical PRF. House of Rose lists Morpheus8 for tone, texture, eligible scars, and stretch marks.',
+      'Morpheus8 pairs microneedles with fractional bipolar radiofrequency. Procell Pro, Procell MD, and Microneedling with topical PRF are the non-radiofrequency options. Morpheus8 is available for tone, texture, eligible scars, and stretch marks.',
     sharedHeading: 'Both still use microneedling.',
     shared:
       'Treatment area and device settings shape the appointment and recovery. The treatment name alone cannot tell you exactly what the next few days will look like.',
