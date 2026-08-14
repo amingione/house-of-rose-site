@@ -1037,7 +1037,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
     prf: [
       'Platelet-rich fibrin (PRF) is prepared from a small sample of your own blood.',
       'PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN under medical direction.',
-      'Review PRF Under Eyes',
+      'PRF Under Eyes details',
       'Topical PRF Microneedling',
       'PRF Under-Eye',
       '$495',

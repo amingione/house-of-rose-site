@@ -33,7 +33,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'prf-injections':
     'Diana Morrison, RN provides two injectable PRF consultations under medical direction: PRF Under-Eye is $495 with appointment length confirmed by phone; PRF Bio-Filler is $899 for 45 minutes. During eligible Microneedling, PRF is applied topically at the skin surface rather than injected.',
   prf:
-    'Start with the PRF route that matches the appointment you want: topical PRF with Microneedling, PRF Under Eyes, or PRF Bio-Filler.',
+    'For PRF applied at the skin surface, ask about Microneedling with Amber Mingione, Licensed Esthetician. For injectable PRF with Diana Morrison, RN, ask about PRF Under-Eye or PRF Bio-Filler.',
   'injectables-bio-fillers':
     'Describe whether what you notice changes with expression, looks like lost volume at the lips, cheeks, or folds, or involves under-eye color, vessels, or shadow. You do not need to begin with a product name.',
   dermaplaning:

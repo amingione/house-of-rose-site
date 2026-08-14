@@ -206,21 +206,21 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       {
         question: 'Is PRF Bio-Filler the same service as PRF Under-Eye?',
         answer:
-          'No. House of Rose lists PRF Bio-Filler and PRF Under-Eye as separate injectable consultations, with separate prices and booking details below.',
+          'No. PRF Under-Eye is a $495 injectable consultation with timing confirmed by phone; PRF Bio-Filler is a separate $899, 45-minute injectable consultation.',
       },
     ],
     links: [
       {
         href: '/services/microneedling/',
-        label: 'Review topical PRF with Microneedling',
+        label: 'Topical PRF with Microneedling',
       },
       {
         href: '/services/prf-injections/',
-        label: 'Review injectable PRF consultations',
+        label: 'Injectable PRF consultations',
       },
       {
         href: '/services/prf-under-eyes/',
-        label: 'Review PRF Under Eyes',
+        label: 'PRF Under Eyes details',
       },
     ],
     menu: {

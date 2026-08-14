@@ -428,7 +428,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? 'One directly bookable appointment: BioRePeel Cl3 Rejuvenation at $250 for 45 minutes.'
           : skinRenewal.slug === 'prf' || skinRenewal.slug === 'prf-injections'
             ? skinRenewal.slug === 'prf'
-              ? 'These appointments show where PRF is used and how each one is booked.'
+              ? 'PRF Microneedling is $595 for 60 minutes; PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
               : 'PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
             : undefined,
         verifiedAt: 'August 6, 2026',
