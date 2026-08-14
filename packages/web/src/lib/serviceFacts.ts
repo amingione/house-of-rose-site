@@ -47,7 +47,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'lumecca-peak-ipl':
     'Request the $50 consultation and name one of the current treatment areas: legs; full face; chest; neck; face and neck; face, neck, and chest; spot treatment; or hands.',
   morpheus8:
-    'Request a consultation and name the Morpheus8 option and area you want to discuss. Burst covers Full Face, Face & Neck, Scars, Chest, Stretch Marks, and Hyperhidrosis; Resurfacing lists Full Face and Face & Neck; Prime lists Eyes & Mouth, Around the Eyes, and Around the Mouth. Call to confirm the appointment length.',
+    'Request a consultation and name the Morpheus8 option and area you want to discuss. Burst covers Full Face, Face & Neck, Scars, Chest, Stretch Marks, and Hyperhidrosis; Resurfacing is available for Full Face or Face & Neck; Prime is available for Eyes & Mouth, Around the Eyes, or Around the Mouth. Call to confirm the appointment length.',
   'morpheus8-body':
     'When requesting the consultation, name the body area and whether your question is about tone, texture, an eligible scar, or stretch marks. Burst Deep is $3,500 for a 4 × 10-inch area or $4,500 for an 8 × 11-inch area, each as a series of three. Call to confirm the appointment length.',
   'prf-under-eyes':
