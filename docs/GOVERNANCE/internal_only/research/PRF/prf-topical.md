@@ -59,7 +59,7 @@ substitute for the other, and this brief does not authorize a prescribed combina
 - `/services/prf/` — current PRF overview and the $595 topical appointment.
 - `/services/microneedling/` — canonical Microneedling service.
 - `/services/prf-under-eyes/` and `/services/prf-injections/` — current injectable PRF paths.
-- `/cost/prf-microneedling-cost-punta-gorda/` — current cost guide.
+- `/cost/microneedling-cost-punta-gorda/` — current cost guide, including the $595 topical PRF row.
 - `/about/providers/amber/` — Amber Mingione, Licensed Esthetician profile.
 - `/about/providers/diana/` — Diana Morrison, RN profile for injectable PRF.
 
