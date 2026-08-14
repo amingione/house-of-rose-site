@@ -110,7 +110,6 @@ const PAGE_ROUTES: Record<string, string> = {
  * click-to-edit annotated. Keep in sync with CLAUDE.md "Routes" table.
  */
 const SINGLETON_PAGE_ROUTES: Record<string, string> = {
-  homepage: '/',
   contactPage: '/contact',
   supportPage: '/support',
   termsOfService: '/terms-of-service',
@@ -178,14 +177,6 @@ export default defineStackbitConfig({
   // Persistent editor shortcuts for the content and tools used most often.
   // Relative links navigate inside the preview; absolute links open a new tab.
   sidebarButtons: [
-    {
-      label: 'Home Page Content',
-      type: 'document',
-      icon: 'global-objects',
-      documentId: 'homepage',
-      srcType: 'sanity',
-      srcProjectId: SANITY_SOURCE_PROJECT_ID,
-    },
     {
       label: 'Site Settings',
       type: 'document',

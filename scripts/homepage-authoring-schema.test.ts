@@ -19,7 +19,7 @@ test('the locally reviewed homepage remains read-only in Studio without dropping
   }
 });
 
-test('the public homepage and editor mappings agree that Studio copy is disconnected', () => {
+test('the public homepage and visual editor agree that Studio copy is disconnected', () => {
   const route = readFileSync(
     new URL('../packages/web/src/pages/index.astro', import.meta.url),
     'utf8',
@@ -32,6 +32,10 @@ test('the public homepage and editor mappings agree that Studio copy is disconne
 
   assert.doesNotMatch(route, /HOMEPAGE_QUERY|sanityFetch/);
   assert.match(route, /const treatmentCategories = \[/);
-  assert.match(stackbit, /homepage:\s*['"]\/['"]/);
+  assert.doesNotMatch(stackbit, /homepage:\s*['"]\/['"]/);
+  assert.doesNotMatch(
+    stackbit,
+    /label:\s*['"]Home Page Content['"][\s\S]*?documentId:\s*['"]homepage['"]/,
+  );
   assert.match(structure, /schemaType\(['"]homepage['"]\)/);
 });
