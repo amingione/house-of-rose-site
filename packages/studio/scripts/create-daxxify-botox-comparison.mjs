@@ -50,8 +50,12 @@ const current = await client.fetch(
   { serviceId: INJECTABLES_SERVICE_ID, comparisonId: COMPARISON_ID },
 );
 
-if (!current.service || !['live', 'actual-menu'].includes(current.service.status)) {
-  throw new Error('The canonical Neurotoxin Injections service is missing or not public.');
+if (
+  !current.service ||
+  current.service.slug !== 'injectables' ||
+  !['live', 'actual-menu'].includes(current.service.status)
+) {
+  throw new Error('The canonical Neurotoxin Injections service is missing, unroutable, or not public.');
 }
 
 const document = current.comparison && current.comparison._id !== COMPARISON_ID

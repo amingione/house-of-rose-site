@@ -46,3 +46,16 @@ test('the active comparison writer stores only routing and relationship truth', 
   assert.match(sourceDocument, /optionB:\s*option\(\)/);
   assert.match(optionFactory, /service:\s*\{\s*_type:\s*'reference'/);
 });
+
+test('the active comparison writer requires the canonical public service route before creation', () => {
+  assert.match(writerSource, /current\.service\.slug !== 'injectables'/);
+  assert.match(writerSource, /!\['live', 'actual-menu'\]\.includes\(current\.service\.status\)/);
+
+  const serviceGuard = writerSource.indexOf("current.service.slug !== 'injectables'");
+  const dryRunBoundary = writerSource.indexOf('if (!apply)');
+  const createCall = writerSource.indexOf('client.create(document');
+
+  assert.ok(serviceGuard >= 0);
+  assert.ok(serviceGuard < dryRunBoundary, 'Service route validation must run during dry validation.');
+  assert.ok(serviceGuard < createCall, 'Service route validation must run before document creation.');
+});
