@@ -6,10 +6,15 @@ import {
 } from './treatmentQueries';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
 import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
+import {
+  RETIRED_COST_GUIDE_SLUGS,
+  REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
+} from './publicCostGuideContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
 
 export { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
+export { REVIEWED_PUBLIC_COST_GUIDE_SLUGS } from './publicCostGuideContent';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -36,21 +41,7 @@ const RETIRED_COMPARISON_SLUGS = [
 const RETIRED_COMPARISON_SLUGS_GROQ = JSON.stringify(RETIRED_COMPARISON_SLUGS);
 const REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COMPARISON_SLUGS);
 
-const RETIRED_COST_GUIDE_SLUGS = [
-  'procell-microchanneling-cost-punta-gorda',
-  'prf-injections-cost-punta-gorda',
-  'prf-microneedling-cost-punta-gorda',
-] as const;
 const RETIRED_COST_GUIDE_SLUGS_GROQ = JSON.stringify(RETIRED_COST_GUIDE_SLUGS);
-export const REVIEWED_PUBLIC_COST_GUIDE_SLUGS = [
-  'biorepeel-cost-punta-gorda',
-  'botox-cost-punta-gorda',
-  'dermal-fillers-cost-punta-gorda',
-  'forma-cost-punta-gorda',
-  'ipl-photofacial-cost-punta-gorda',
-  'microneedling-cost-punta-gorda',
-  'morpheus8-cost-punta-gorda',
-] as const;
 const REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COST_GUIDE_SLUGS);
 
 // Published Sanity records that are not verified as current GlossGenius offerings.
