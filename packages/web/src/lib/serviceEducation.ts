@@ -206,6 +206,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           href: '/services/facial-waxing/',
           label: 'Facial Waxing by area',
         },
+        {
+          href: '/about/providers/amber/',
+          label: 'Meet Amber Mingione, Licensed Esthetician',
+        },
       ],
     };
   }
