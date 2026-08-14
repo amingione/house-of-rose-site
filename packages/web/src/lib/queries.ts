@@ -446,7 +446,7 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
 `;
 
 export const ALL_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
+  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
     _id,
     title,
     "slug": slug.current,

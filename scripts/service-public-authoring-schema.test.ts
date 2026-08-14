@@ -3,6 +3,8 @@ import test from 'node:test';
 
 import { service } from '../packages/studio/schemas/service.ts';
 import {
+  ALL_SERVICES_QUERY,
+  ALL_SERVICE_SLUGS_QUERY,
   ALL_SITEMAP_SERVICES_QUERY,
   SERVICE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
@@ -98,5 +100,16 @@ test('parent-service authoring and public projections require a routeable public
     assert.match(parentProjection[1], /parentService->kind == "hub"/);
     assert.match(parentProjection[1], /parentService->status in \["live", "actual-menu"\]/);
     assert.match(parentProjection[1], /defined\(parentService->slug\.current\)/);
+  }
+});
+
+test('the public service directory only lists records with generated routes', () => {
+  const slug = serviceField('slug');
+  assert.equal(typeof slug?.validation, 'function', 'Service slugs must remain required.');
+  assert.match(String(slug?.validation), /required/);
+
+  for (const query of [ALL_SERVICES_QUERY, ALL_SERVICE_SLUGS_QUERY]) {
+    assert.match(query, /status in \["live", "actual-menu"\]/);
+    assert.match(query, /defined\(slug\.current\)/);
   }
 });
