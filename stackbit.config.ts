@@ -6,6 +6,7 @@ import { SanityContentSource } from '@stackbit/cms-sanity';
 
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
 import { isReviewedPublicBlogSlug } from './packages/web/src/lib/publicBlogContent';
+import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './packages/web/src/lib/publicLocalAreaContent';
 
 /**
  * House of Rose — Netlify Visual Editor configuration.
@@ -67,6 +68,9 @@ loadEnvFile('.env');
 const PUBLIC_SHOP_ENABLED = process.env.PUBLIC_SHOP_ENABLED === 'true';
 const REVIEWED_PUBLIC_COMPARISON_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_COMPARISON_SLUGS,
+);
+const REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_LOCAL_AREA_SLUGS,
 );
 
 function documentStringField(
@@ -260,7 +264,9 @@ export default defineStackbitConfig({
   // Editor sitemap/page picker.
   transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
     if (!('document' in entry)) return true;
-    if (!['comparison', 'blogPost', 'caseStudy'].includes(entry.document.modelName)) return true;
+    if (!['comparison', 'blogPost', 'caseStudy', 'localArea'].includes(entry.document.modelName)) {
+      return true;
+    }
 
     const document = getDocumentById({
       id: entry.document.id,
@@ -281,6 +287,10 @@ export default defineStackbitConfig({
           documentHasAssetReference(document, 'beforeImage') &&
           documentHasAssetReference(document, 'afterImage'),
       );
+    }
+
+    if (entry.document.modelName === 'localArea') {
+      return Boolean(slug && REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET.has(slug));
     }
 
     const status = documentStringField(document, 'status');

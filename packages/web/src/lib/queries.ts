@@ -5,6 +5,7 @@ import {
   type TreatmentProviderAttribution,
 } from './treatmentQueries';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
+import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -1429,15 +1430,7 @@ export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────
-const CANONICAL_LOCAL_AREA_SLUGS = [
-  'punta-gorda',
-  'port-charlotte',
-  'charlotte-harbor',
-  'babcock-ranch',
-  'burnt-store-marina',
-  'punta-gorda-isles',
-] as const;
-const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(CANONICAL_LOCAL_AREA_SLUGS);
+const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_LOCAL_AREA_SLUGS);
 
 export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}] | order(orderRank asc, title asc) {
