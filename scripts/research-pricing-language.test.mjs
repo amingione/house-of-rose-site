@@ -15,6 +15,7 @@ const collectMarkdown = (directory) =>
 
 const activePricingBriefs = [
   'C02_CARBOXY_GLO2FACIAL/glo2facial.md',
+  'MICRONEEDLING/microneedling.md',
   'PRF/prf-injections-ezgel.md',
   'PRF/prf-topical.md',
   'PROCELL/procell.md',
@@ -87,6 +88,16 @@ test('research mirrors the current high-risk service price facts', () => {
     assert.match(procell, fact);
   }
   assert.doesNotMatch(procell, /\$250|\$325|\$349|\$675|\$875|\$1,200|\$1,560|\$1,675/);
+
+  const microneedling = read('MICRONEEDLING/microneedling.md');
+  for (const row of [
+    /Procell Therapies — Consultation \| \$50 \| 60 minutes \| Consultation/i,
+    /Procell Therapies — Pro \| \$300 \| 55 minutes \| Direct/i,
+    /Procell Therapies — MD \| \$400 \| 55 minutes \| Direct/i,
+    /PRF Microneedling — Consultation \| \$595 \| 60 minutes \| Consultation/i,
+  ]) assert.match(microneedling, row);
+  assert.match(microneedling, /does not support body Microneedling, per-zone body prices, a body series/i);
+  assert.doesNotMatch(microneedling, /\$295|body[^\n]*\$\d/i);
 
   const biorepeel = read('biorepeel.md');
   for (const amount of ['$250', '$699', '$325', '$450', '$395']) {

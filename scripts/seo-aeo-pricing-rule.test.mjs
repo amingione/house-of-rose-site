@@ -28,6 +28,9 @@ test('obsolete provider pricing imports cannot compete with the canonical commer
   for (const relativePath of [
     '../docs/GOVERNANCE/internal_only/services/Diana/Diana_services/Diana_Pricing_Menu_Consolidated.md',
     '../docs/GOVERNANCE/internal_only/services/Diana/Diana_services/Diana_Pricing_GlossGenius_Import.csv',
+    '../docs/GOVERNANCE/internal_only/services/glossgenius_catalog.csv',
+    '../docs/GOVERNANCE/internal_only/research/sanity-services.csv',
+    '../docs/GOVERNANCE/internal_only/booking/GLOSSGENIUS-CATALOG-HANDOFF-2026-08-04.md',
   ]) {
     assert.equal(
       existsSync(new URL(relativePath, import.meta.url)),

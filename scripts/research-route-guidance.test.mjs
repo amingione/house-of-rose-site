@@ -6,6 +6,7 @@ const researchRoot = new URL('../docs/GOVERNANCE/internal_only/research/', impor
 
 const routeGuidanceBriefs = [
   'C02_CARBOXY_GLO2FACIAL/glo2facial.md',
+  'MICRONEEDLING/microneedling.md',
   'PRF/prf-injections-ezgel.md',
   'PRF/prf-topical.md',
   '_prf-source-library.md',
@@ -41,6 +42,27 @@ test('active research points writers to current canonical routes', () => {
       `${relativePath} still recommends a retired redirect or ad-hoc page shape.`,
     );
   }
+});
+
+test('Microneedling research stays on the generated service and decision-support routes', () => {
+  const brief = readFileSync(new URL('MICRONEEDLING/microneedling.md', researchRoot), 'utf8');
+
+  for (const path of [
+    '/services/microneedling/',
+    '/services/prf/',
+    '/cost/microneedling-cost-punta-gorda/',
+    '/compare/morpheus8-vs-microneedling/',
+    '/about/providers/amber/',
+  ]) {
+    assert.match(brief, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  assert.match(brief, /Amber Mingione, Licensed Esthetician/);
+  assert.match(brief, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
+  assert.doesNotMatch(
+    brief,
+    /\/services\/(?:microneedling-body|prf-microneedling|microchanneling|procell-microchanneling-body)\/|EZ-?Gel|provider planning includes|## (?:screening|candidacy)/i,
+  );
 });
 
 test('active acne research recognizes the generated concern route', () => {

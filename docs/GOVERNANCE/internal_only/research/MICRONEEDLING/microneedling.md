@@ -1,120 +1,73 @@
-# Microneedling — Canonical House of Rose Research Brief
+# Microneedling — current research and publication boundaries
 
-**Owner decision:** 2026-08-06
-**Canonical public service:** `Microneedling`
-**House device:** Procell Therapies device
-**Branded context:** `Procell Microchanneling`
+This brief supports factual Microneedling education. It is not a treatment protocol, booking-menu
+script, or source of public voice. Current prices and availability come from
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`; the reviewed website facts live in
+`packages/web/src/lib/skinRenewalServiceEducation.ts`.
 
-## 1. Binding Taxonomy
+## One service, one device-specific name
 
-House of Rose treats microneedling and microchanneling as one service category.
+House of Rose uses **Microneedling** as the service name. The practice performs it with the Procell
+Therapies device. **Procell Microchanneling** is the device-specific name used when the Procell system,
+Pro serum, or MD serum is being discussed; it is not a separate modality or a client-facing choice
+between two needling techniques.
 
-- Use **Microneedling** in generic service, category, route, navigation, pricing-guide, and educational copy.
-- Use **Procell Microchanneling** when the Procell brand, device system, manufacturer materials, or Pro/MD materials are specifically in context.
-- Do not present the two terms as different modalities, different protocols, competing services, or a client-facing either/or decision.
-- Do not recreate “microchanneling vs. microneedling” comparison content.
-- **Morpheus8 RF Microneedling remains separate** because it combines microneedling with radiofrequency technology.
+Morpheus8 is separate because it combines microneedling with fractional radiofrequency.
 
-## 2. Canonical Public Architecture
+## Current GlossGenius-backed appointments
 
-| Purpose | Canonical URL |
-|---|---|
-| Main service | `/services/microneedling/` |
-| Body-area service | `/services/microneedling-body/` |
-| Cost guide | `/cost/microneedling-cost-punta-gorda/` |
-| Topical PRF service | `/services/prf-microneedling/` |
+| Appointment | Price | Duration | Booking structure |
+|---|---:|---:|---|
+| Procell Therapies — Consultation | $50 | 60 minutes | Consultation |
+| Procell Therapies — Pro | $300 | 55 minutes | Direct |
+| Procell Therapies — MD | $400 | 55 minutes | Direct |
+| PRF Microneedling — Consultation | $595 | 60 minutes | Consultation |
 
-Retired duplicate URLs redirect to those canonical pages:
+Pro and MD use the same Procell Therapies device. The verified website distinction is the topical
+serum: Pro uses Pro Microchannel Serum; MD uses the higher-concentration MD Microchannel Serum.
 
-- `/services/microchanneling/` → `/services/microneedling/`
-- `/services/microneedling-corrective/` → `/services/microneedling/`
-- `/services/procell-microchanneling-body/` → `/services/microneedling-body/`
-- `/compare/microchanneling-vs-microneedling/` → `/services/microneedling/`
-- `/cost/procell-microchanneling-cost-punta-gorda/` → `/cost/microneedling-cost-punta-gorda/`
+PRF Microneedling is a distinct appointment in which PRF is prepared from a small sample of the
+client's blood and applied topically at the skin surface. The device does not inject PRF. Injectable
+PRF Under-Eye and PRF Bio-Filler are different appointments provided by Diana Morrison, RN.
 
-## 3. Service Definition
+The current commerce ledger does not support body Microneedling, per-zone body prices, a body series,
+combined Glo2Facial appointments, a Procell series, a neck/décolleté extension, or another standalone
+Microneedling route. Do not publish those as available until they appear in the current GlossGenius
+mirror.
 
-Microneedling creates controlled microchannels as part of a provider-selected skin-renewal treatment. House of Rose performs the service with the Procell Therapies device. When Procell is specifically named, the treatment is called Procell Microchanneling.
+## Provider attribution
 
-Provider planning includes:
+Amber Mingione, Licensed Esthetician, provides Microneedling under written physician protocol and
+medical direction. Her PRF role is topical only.
 
-- treatment area;
-- skin status and health history;
-- candidacy and contraindications;
-- device settings;
-- eligible topical plan;
-- preparation, recovery guidance, and aftercare.
+Medical Director: Joshua Shaw, MD · FL Lic. ME136232
 
-Microneedling may be discussed for the appearance of texture, fine lines, enlarged-looking pores, selected scars, stretch marks, or crepey-looking skin on the face or an approved body area. Outcomes vary, and no result or recovery timeline is guaranteed.
+Do not imply that Joshua Shaw, MD performs the appointment, is on site, or holds a dermatology
+specialty.
 
-## 4. Procell Context
+## Current public routes
 
-Use **Procell Microchanneling** only when the copy actually discusses Procell, such as:
+- Service: `/services/microneedling/`
+- Topical and injectable PRF distinctions: `/services/prf/`
+- Cost guide: `/cost/microneedling-cost-punta-gorda/`
+- Morpheus8 comparison: `/compare/morpheus8-vs-microneedling/`
+- Provider: `/about/providers/amber/`
 
-- the Procell Therapies device or system;
-- Procell manufacturer instructions;
-- Procell Pro or Procell MD materials;
-- Procell aftercare products;
-- a GlossGenius label that uses the Procell name.
+Do not create another Microneedling, Procell, body, material-tier, consultation, or comparison route
+from this brief. Historical URLs are handled by the existing Netlify redirects and unavailable-route
+inventory.
 
-Procell context does not create a second service category. A client booking the verified `Procell Therapies | Consultation` is entering the canonical Microneedling pathway.
+## Copy boundary
 
-## 5. Topical PRF Boundary
+Useful client-facing copy may explain:
 
-Topical PRF may be considered as an adjunct to an eligible microneedling appointment. At House of Rose, Amber’s PRF role is topical only.
+- that Microneedling and Procell Microchanneling name the same House of Rose service;
+- that Pro and MD change the topical serum, not the device;
+- that topical PRF is not injectable PRF;
+- the four verified appointment prices, durations, and booking structures; and
+- the difference between Procell Microneedling and Morpheus8 radiofrequency microneedling.
 
-- PRF is prepared from a small sample of the client’s blood.
-- It is applied to the skin surface.
-- It is not injected by Amber.
-- Do not claim that the device delivers PRF or another product into the skin.
-- Injectable PRF and EZ Gel remain in Diana, RN’s clinical lane.
-
-## 6. Candidacy and Recovery Guardrails
-
-The provider reviews active infection or breakouts in the treatment area, keloid history, recent isotretinoin, blood thinners, pregnancy, recent procedures, and other health factors before confirming treatment. This list supports screening language but does not replace the provider’s current consent, SOP, or clinical judgment.
-
-Temporary redness, mild swelling, tightness, tenderness, dryness, or light flaking may occur. Recovery varies by area, settings, and individual response. Use written provider-selected aftercare rather than fixed recovery promises.
-
-## 7. Pricing and Booking
-
-The verified booking entry point is:
-
-- `Procell Therapies | Consultation`
-- token `1000f-5b4391bb-3d43-40f3-910d-144cf0e46192`
-
-Current internal pricing references include a $295 face figure, Procell material-plan figures, body per-zone figures, and series pricing. These figures must be reconciled as variations inside one Microneedling service before publishing exact prices. They must not be used to recreate separate microneedling and microchanneling modalities.
-
-## 8. Copy Guardrails
-
-Approved framing:
-
-- “Microneedling with the Procell Therapies device”
-- “Procell Microchanneling” when Procell is in context
-- “The Procell-specific name for our microneedling service”
-
-Avoid:
-
-- “microchanneling or microneedling”
-- “microchanneling vs. microneedling”
-- “regular microneedling”
-- “two tools” or “two protocols”
-- claims that one term is gentler, deeper, stronger, cleaner, or better than the other
-- separate public service or cost pages for the two terms
-
-## 9. Source Routing
-
-- Procell manufacturer and material details: `docs/internal_only/research/PROCELL/procell.md`
-- Procell source files: `docs/internal_only/research/PROCELL/Company_files/`
-- Pricing operations: `docs/internal_only/pricing/ALL-SERVICES-PRICING.MD`
-- Booking reconciliation: `docs/internal_only/booking/GLOSSGENIUS-CATALOG-HANDOFF-2026-08-04.md`
-- Compliance: `docs/internal_only/COMPLIANCE-COPY-RULES.md` and `docs/internal_only/compliance/`
-
-## Facts Requiring Verification
-
-- Final public price structure for the base, Pro, MD, extended-area, and body plans.
-- Current provider-approved settings, treatment areas, preparation, aftercare, and series recommendations.
-- Any manufacturer-specific material, concentration, mechanism, or recovery claim before public use.
-
-## Claims Requiring Clinical Approval
-
-All efficacy, mechanism, collagen, pigmentation, scar, laxity, recovery, side-effect, candidacy, and combination-treatment claims beyond the restrained language above.
+Do not turn the page into a screening checklist, treatment protocol, dose or settings guide, fixed
+recovery promise, outcome guarantee, sales ladder, or cross-service plan. Treatment areas, settings,
+preparation, aftercare, contraindications, series recommendations, and individual suitability remain
+provider decisions rather than marketing instructions.
