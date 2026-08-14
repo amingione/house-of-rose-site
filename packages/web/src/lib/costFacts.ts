@@ -206,17 +206,21 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'microneedling-cost-punta-gorda': {
     display: '$300–$400',
-    metaDescription: 'Procell Microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD, both 55 minutes. Topical PRF is a separate $595 appointment.',
+    metaDescription: 'Procell Microneedling is $300 for Pro and $400 for MD. A $50 consultation and separate $595 topical PRF appointment are also listed in Punta Gorda.',
     summary: 'Procell Pro is $300, and Procell MD is $400.',
     answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
-    menuHeading: 'Pro and MD have their own prices.',
-    faqHeading: 'Pro, MD, and topical PRF.',
+    menuHeading: 'Four Microneedling appointments and prices.',
+    faqHeading: 'Pro, MD, consultation, and topical PRF.',
     verifiedAt: VERIFIED_AT,
-    context: 'Topical PRF microneedling is a separate $595 listing and is not included in this two-option range.',
+    context: 'Pro and MD can be booked directly. The $50 Procell consultation and $595 topical PRF option are separate 60-minute consultation listings.',
     faqs: [
       {
         question: 'What are the published Procell microneedling prices?',
         answer: 'As of August 6, 2026, Procell microneedling at House of Rose in Punta Gorda is $300 for Pro and $400 for MD.',
+      },
+      {
+        question: 'How much is a Procell Microneedling consultation?',
+        answer: 'The 60-minute Procell Therapies Consultation is $50. Pro and MD can also be booked directly.',
       },
       {
         question: 'Does the $300 to $400 range include topical PRF?',
@@ -228,8 +232,10 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
     ],
     items: [
+      { name: 'Procell Therapies — Consultation', price: '$50', duration: '60 minutes' },
       { name: 'Procell Therapies — Pro', price: '$300', duration: '55 minutes' },
       { name: 'Procell Therapies — MD', price: '$400', duration: '55 minutes' },
+      { name: 'PRF Microneedling — Consultation', price: '$595', duration: '60 minutes' },
     ],
   },
   'morpheus8-cost-punta-gorda': {
