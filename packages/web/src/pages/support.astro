@@ -14,6 +14,7 @@ const annotations = data._id ? sbObjectId(data._id) : {};
 const fallbackFaqs: FAQ[] = [
   { question: 'How quickly will House of Rose respond?', answer: 'Messages received Monday through Friday are typically answered within one business day. For the fastest help during practice hours, call (844) 941-7673.' },
   { question: 'How do I change or cancel an appointment?', answer: 'Call (844) 941-7673 as soon as your plans change. Any cancellation terms that apply to the appointment will be reviewed with you.' },
+  { question: 'What should I do if I have a question after an appointment?', answer: 'Call (844) 941-7673 during practice hours if you are unsure about aftercare or notice an unexpected change. For a non-urgent question you prefer to send in writing, email info@houseofrosefl.com. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.' },
   { question: 'Where is House of Rose Aesthetics located?', answer: 'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Call (844) 941-7673 if you need help finding the practice.' },
   { question: 'Can you help me compare services?', answer: 'Yes. Call House of Rose or request a consultation and tell us which services you are considering.' },
   { question: 'What are the studio hours?', answer: 'House of Rose Aesthetics is open Monday through Friday from 9:00 AM to 5:00 PM and closed Saturday and Sunday.' },
@@ -33,14 +34,14 @@ const breadcrumb = breadcrumbList([
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   <SchemaMarkup item={breadcrumb} slot="head" />
 
-  <main {...annotations}>
+  <div {...annotations}>
     <section class="bg-charcoal pt-36 pb-20 px-6">
       <div class="max-w-[900px] mx-auto text-center">
         <h1 class="font-serif text-[clamp(38px,7vw,68px)] text-ink leading-[1.05]">
           How can we help?
         </h1>
         <p class="text-ink/80 text-[clamp(16px,2vw,19px)] leading-relaxed max-w-[680px] mx-auto mt-6">
-          Appointment changes, directions, and general questions.
+          Appointment changes, directions, questions after a visit, and general help.
         </p>
       </div>
     </section>
@@ -54,7 +55,7 @@ const breadcrumb = breadcrumbList([
         <div class="grid grid-cols-1 md:grid-cols-3 border-y border-gold-metal/20">
           <article class="min-w-0 py-9 md:pr-8 border-b md:border-b-0 md:border-r border-gold-metal/20">
             <h3 class="font-serif text-[25px] text-gold">Call</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4">For appointment changes or help during practice hours.</p>
+            <p class="text-muted text-[14px] leading-relaxed my-4">For appointment changes, directions, or a question after a visit during practice hours.</p>
             <a href="tel:+18449417673" class="learn-more">(844) 941-7673</a>
           </article>
           <article class="min-w-0 py-9 md:px-8 border-b md:border-b-0 md:border-r border-gold-metal/20">
@@ -63,9 +64,9 @@ const breadcrumb = breadcrumbList([
             <a href="mailto:info@houseofrosefl.com" class="learn-more break-all">info@houseofrosefl.com</a>
           </article>
           <article class="min-w-0 py-9 md:pl-8">
-            <h3 class="font-serif text-[25px] text-gold">Services</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4">Review individual service details and booking links.</p>
-            <a href="/services/" class="learn-more">Browse services</a>
+            <h3 class="font-serif text-[25px] text-gold">After an appointment</h3>
+            <p class="text-muted text-[14px] leading-relaxed my-4">Call during practice hours if you are unsure about aftercare or notice an unexpected change. For a medical emergency, call 911.</p>
+            <a href="tel:+18449417673" class="learn-more">Call (844) 941-7673</a>
           </article>
         </div>
       </div>
@@ -74,7 +75,7 @@ const breadcrumb = breadcrumbList([
     <section class="bg-charcoal py-[clamp(64px,9vw,104px)] px-6">
       <div class="max-w-[900px] mx-auto">
         <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">Support questions.</h2>
-        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-10">Hours, location, appointments, and response times.</p>
+        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-10">Hours, location, appointments, after-visit questions, and response times.</p>
         <div class="divide-y divide-gold-metal/15 border-y border-gold-metal/15">
           {faqs.map((faq) => (
             <details class="group py-6">
@@ -91,10 +92,10 @@ const breadcrumb = breadcrumbList([
 
     <section class="bg-walnut py-16 px-6 text-center">
       <div class="max-w-[700px] mx-auto">
-        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink">Still need help?</h2>
-        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-7">Use the contact form to send the details.</p>
-        <a href="/contact/" class="btn-gold">Contact House of Rose</a>
+        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink">Prefer to write?</h2>
+        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-7">Send a non-urgent question through the contact form. Messages received Monday through Friday are typically answered within one business day.</p>
+        <a href="/contact/" class="btn-gold">Send a message</a>
       </div>
     </section>
-  </main>
+  </div>
 </BaseLayout>

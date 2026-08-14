@@ -82,6 +82,44 @@ import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
         </p>
       </div>
 
+      <div class="mb-10 grid grid-cols-1 gap-5 border-y border-gold-metal/20 py-7 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">When to expect a reply</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            Messages received Monday through Friday are typically answered within one business day.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">When to call instead</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            For a same-day appointment change or faster help during practice hours, call <a href="tel:+18449417673" class="text-gold hover:underline">(844) 941-7673</a>.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">Texting is optional</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            You may choose “No” in the text-message section and still send the form.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">Does this book a time?</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            No. The form sends your question; it does not reserve an appointment. Call <a href="tel:+18449417673" class="text-gold hover:underline">(844) 941-7673</a> if you need help securing a specific time.
+          </p>
+        </div>
+      </div>
+
+      <aside data-contact-after-appointment class="mb-10 border border-gold-metal/20 bg-charcoal px-6 py-7 sm:px-8" aria-labelledby="contact-after-appointment-heading">
+        <span class="kicker">After an appointment</span>
+        <h3 id="contact-after-appointment-heading" class="mt-3 font-serif text-[clamp(23px,3vw,30px)] leading-tight text-ink">
+          If something has changed, call instead of waiting on the form.
+        </h3>
+        <p class="mt-4 max-w-[720px] text-[14px] leading-[1.8] text-muted">
+          If you are unsure about aftercare or notice an unexpected change after a House of Rose appointment, call <a href="tel:+18449417673" class="text-gold hover:underline">(844) 941-7673</a> during practice hours. A non-urgent question can still be sent below. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.
+        </p>
+        <a href="/support/" class="learn-more mt-5">Review support options</a>
+      </aside>
+
       <form
         name="contact"
         method="POST"
