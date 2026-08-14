@@ -39,3 +39,20 @@ test('the guard preserves substantive copy and the exact verified IV service nam
   assert.equal(validatePublicCopy('A consultation reviews medical history before this service.'), true);
   assert.match(String(validatePublicCopy('A premium boutique experience!')), /retired or prohibited/i);
 });
+
+test('the guard rejects every explicitly banned House copy pattern', () => {
+  for (const value of [
+    'Amazing service.',
+    'Attention to detail.',
+    'Known for a steady hand.',
+    'Ask about exosomes.',
+    'Stem-cell facial.',
+    'Cures acne.',
+    'See a skin doctor.',
+    'See a dermatologist.',
+    'Dermatology specialists.',
+    'Available on Groupon.',
+  ]) {
+    assert.match(String(validatePublicCopy(value)), /retired or prohibited/i, value);
+  }
+});
