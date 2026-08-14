@@ -3,18 +3,33 @@ import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_BLOG_POSTS_QUERY,
+  ALL_COMPARISONS_QUERY,
+  ALL_CONCERNS_QUERY,
+  ALL_COST_GUIDES_QUERY,
+  ALL_LOCAL_AREAS_QUERY,
+  ALL_TREATMENT_PACKAGES_QUERY,
   type BlogPost,
+  type Comparison,
+  type Concern,
+  type CostGuide,
+  type LocalArea,
+  type TreatmentPackage,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 import { getServiceEducation } from '@/lib/serviceEducation';
 import { IV_HYDRATION_FAQS, VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
 import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_LISTING } from '@/lib/prfUnderEyesFacts';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
 
-// During the voice reset, this feed intentionally exposes only factual service
-// inventory. Long-form Sanity prose returns after its source copy is approved.
+// During the voice reset, this feed exposes reviewed route inventories and
+// factual service education. Unreviewed long-form Sanity prose stays withheld.
 const SERVICES_FULL_QUERY = /* groq */ `
   *[
     _type == "service" &&
@@ -57,13 +72,19 @@ const NON_PUBLIC_SERVICE_SLUGS = new Set([
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [services, posts] = await Promise.all([
+  const [services, posts, concerns, costGuides, comparisons, localAreas, packages] = await Promise.all([
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
+    sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
+    sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
+    sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
+    sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
+    sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   ]);
   const providers = PROVIDER_PROFILE_FALLBACKS;
   const publicServices = services.filter((service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug));
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
+  const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
   const lines: string[] = [
     `# House of Rose Aesthetics — Medical Aesthetics Practice — Full Content Index`,
@@ -194,6 +215,47 @@ export const GET: APIRoute = async ({ site }) => {
       lines.push(``);
     }
     lines.push(`---`, ``);
+  }
+
+  if (concerns.length > 0) {
+    lines.push(`## Concern Guides`, ``);
+    for (const concern of concerns) {
+      lines.push(`- [${concern.title}](${base}/concerns/${concern.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (costGuides.length > 0) {
+    lines.push(`## Pricing Guides`, ``);
+    for (const guide of costGuides) {
+      const fact = getVerifiedCostFact(guide.slug);
+      lines.push(`- [${guide.title}](${base}/cost/${guide.slug}/)${fact ? ` — ${fact.answer}` : ''}`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (publicComparisons.length > 0) {
+    lines.push(`## Treatment Comparisons`, ``);
+    for (const comparison of publicComparisons) {
+      lines.push(`- [${getPublicComparisonContent(comparison.slug)!.title}](${base}/compare/${comparison.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (localAreas.length > 0) {
+    lines.push(`## Areas Served`, ``);
+    for (const area of localAreas) {
+      lines.push(`- [${area.title}](${base}/areas/${area.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (packages.length > 0) {
+    lines.push(`## Treatment Series & Packages`, ``);
+    for (const treatmentPackage of packages) {
+      lines.push(`- [${treatmentPackage.title}](${base}/packages/${treatmentPackage.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
   }
 
   if (publicPosts.length > 0) {

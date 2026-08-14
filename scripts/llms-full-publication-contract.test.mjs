@@ -34,3 +34,21 @@ test('both AI feeds expose operational and local-authority core routes', () => {
     assert.ok(source.includes(sourceToken), `llms-full.txt is missing ${route}`);
   }
 });
+
+test('the full AI feed includes each reviewed AEO route inventory', () => {
+  const requiredInventories = [
+    ['ALL_CONCERNS_QUERY', '/concerns/${concern.slug}/'],
+    ['ALL_COST_GUIDES_QUERY', '/cost/${guide.slug}/'],
+    ['ALL_COMPARISONS_QUERY', '/compare/${comparison.slug}/'],
+    ['ALL_LOCAL_AREAS_QUERY', '/areas/${area.slug}/'],
+    ['ALL_TREATMENT_PACKAGES_QUERY', '/packages/${treatmentPackage.slug}/'],
+  ];
+
+  for (const [queryName, routeTemplate] of requiredInventories) {
+    assert.ok(source.includes(queryName), `llms-full.txt is missing ${queryName}`);
+    assert.ok(source.includes(routeTemplate), `llms-full.txt is missing ${routeTemplate}`);
+  }
+
+  assert.match(source, /filterReviewedPublicComparisons\(comparisons\)/);
+  assert.match(source, /getVerifiedCostFact\(guide\.slug\)/);
+});
