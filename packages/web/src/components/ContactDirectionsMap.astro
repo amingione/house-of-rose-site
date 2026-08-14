@@ -164,6 +164,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       cooperativeGestures: true,
       attributionControl: false,
     });
+    map.getCanvas().setAttribute('aria-label', 'Directions map to House of Rose Aesthetics');
 
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
     map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
