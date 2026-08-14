@@ -168,7 +168,11 @@ before publishing either number anywhere client-facing.
 
 ---
 
-## Brandy — Basic Facials & Waxing *(room rental — prices her own)*
+## Basic Facials & Waxing
+
+Brandy, Licensed Esthetician is verified for facial waxing. The seven body-waxing rows below are
+current GlossGenius inventory, but the export and reviewed waxing source do not establish a
+body-waxing provider. Do not infer or publish one from this category grouping.
 
 Same facial lineup shown under Amber above is shared/ambiguous in GlossGenius (no provider field in
 the export) — Signature Facial, Skin Reset, Sculpt & Lift, Radiance & Renewal, and Mommy & Me all
