@@ -436,6 +436,11 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     width: 100%;
   }
 
+  .search-host :global(mapbox-search-box button[aria-label='Clear']) {
+    min-width: 24px;
+    min-height: 24px;
+  }
+
   .directions-help {
     @apply text-muted text-[12px] mt-2;
   }
