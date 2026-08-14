@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from './validation/publicCopy';
 
 /**
  * Cost Guide — AEO page type #2 ("How much does ___ cost?").
@@ -15,7 +16,7 @@ export const costGuide = defineType({
       title: 'Title',
       type: 'string',
       description: 'Name the service and cost intent plainly. A natural client question is welcome, but the title does not need to follow one fixed formula.',
-      validation: (R) => R.required(),
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
