@@ -62,7 +62,7 @@ export const FACE_REALITY_PROGRAM = {
     },
     {
       name: 'Acne Bootcamp — 12-Week Program',
-      duration: '12 weeks',
+      duration: '60 minutes',
       priceUsd: 899,
       note: 'The complete program; not sold as individual program visits.',
     },
