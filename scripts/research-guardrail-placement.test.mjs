@@ -99,3 +99,15 @@ test('Face Reality research cannot regenerate a clinical script, offer rule, or 
     /provider lane|program wins|rule of thumb|pairings & pathways|retail follow-through|the retail closes the loop|clear, then refine|guided journey|purging is expected|titration|mandelic acid|benzoyl peroxide|Accutane|6–8 weeks|3–6 months|72-hour disclosure/i,
   );
 });
+
+test('dormant retail research cannot regenerate a treatment-to-product sales ladder', () => {
+  const products = readFileSync(new URL('product-lines.md', researchRoot), 'utf8');
+
+  assert.match(products, /No automatic treatment-to-product pathway/i);
+  assert.match(products, /Storefront restoration is one coordinated release, not a copy toggle/i);
+  assert.match(products, /Place safeguards where the content creates the need/i);
+  assert.doesNotMatch(
+    products,
+    /retail follow-through|natural first (?:professional )?purchase|universal close|retail entry ladder|rule of thumb|when it wins|results you paid for|the retail closes the loop|why house of rose|provider lane/i,
+  );
+});

@@ -44,7 +44,7 @@ test('active research points writers to current canonical routes', () => {
 });
 
 test('active acne research recognizes the generated concern route', () => {
-  for (const relativePath of ['face-reality-acne-program.md', 'product-lines.md']) {
+  for (const relativePath of ['face-reality-acne-program.md']) {
     const brief = readFileSync(new URL(relativePath, researchRoot), 'utf8');
     assert.match(brief, /\/concerns\/active-acne\//);
     assert.doesNotMatch(brief, /only `acne-scarring` exists|missing anchor/i);
@@ -77,9 +77,14 @@ test('dormant storefront research cannot act as current route or price authority
   const productLines = readFileSync(new URL('product-lines.md', researchRoot), 'utf8');
 
   assert.match(productLines, /storefront is opt-in and remains disabled/i);
-  assert.match(productLines, /GlossGenius and `ALL-SERVICES-PRICING\.MD`/);
-  assert.match(productLines, /not[\s\S]{0,80}current public inventory/i);
-  assert.doesNotMatch(productLines, /Sanity \(the price source of truth\)/i);
+  assert.match(productLines, /Netlify currently returns forced 404 responses/i);
+  assert.match(productLines, /Service appointments:[\s\S]{0,120}GlossGenius is commerce truth/i);
+  assert.match(productLines, /Retail products after an approved storefront restoration:[\s\S]{0,120}Sanity owns/i);
+  assert.match(productLines, /stored\s+product document is not proof of current stock or a public offer/i);
+  assert.doesNotMatch(
+    productLines,
+    /Proposed new pages|\/compare\/(?:skin-script|professional-skincare)|\/concerns\/(?:dull-uneven-texture|oily-congested-skin)/i,
+  );
 });
 
 test('active route guidance does not prescribe retired brand language', () => {
