@@ -5,6 +5,7 @@ import { treatmentPackage } from '../packages/studio/schemas/treatmentPackage.ts
 
 const titleField = treatmentPackage.fields.find(({ name }) => name === 'title');
 const cadenceField = treatmentPackage.fields.find(({ name }) => name === 'cadence');
+const imageField = treatmentPackage.fields.find(({ name }) => name === 'image');
 
 test('the published package identity is required and uses the shared public-copy guard', () => {
   assert.equal(typeof titleField?.validation, 'function', 'Package title must validate public copy.');
@@ -42,4 +43,22 @@ test('published package timing uses the shared guard without a process template'
   assert.equal(validate(undefined), true);
   assert.equal(validate('12 weeks, with an in-studio appointment every two weeks.'), true);
   assert.match(String(validate('A premium transformation over 12 weeks.')), /retired or prohibited/i);
+});
+
+test('published package image alt text uses the shared public-copy guard', () => {
+  assert.ok(imageField && 'fields' in imageField && Array.isArray(imageField.fields));
+  const alt = imageField.fields.find(({ name }) => name === 'alt');
+  assert.equal(typeof alt?.validation, 'function', 'Package image alt must validate public copy.');
+  assert.match(String(alt.validation), /validatePublicCopy/);
+
+  const rule = {
+    custom(fn: (value: string | undefined) => true | string) {
+      return { validate: fn };
+    },
+  };
+  const { validate } = alt.validation(rule);
+
+  assert.equal(validate(undefined), true);
+  assert.equal(validate('Face Reality products used during the 12-week program.'), true);
+  assert.match(String(validate('A flawless skin transformation.')), /retired or prohibited/i);
 });

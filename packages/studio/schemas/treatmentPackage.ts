@@ -116,7 +116,14 @@ export const treatmentPackage = defineType({
       title: 'Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
+      ],
     }),
     defineField({
       name: 'orderRank',
