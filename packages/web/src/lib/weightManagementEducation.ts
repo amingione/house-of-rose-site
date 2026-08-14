@@ -34,7 +34,7 @@ export interface WeightManagementEducation {
 export const WEIGHT_MANAGEMENT_EDUCATION = {
   title: 'GLP-1 Weight Management',
   whatItIs:
-    'House of Rose offers medical weight management with semaglutide and tirzepatide. The service begins with a 40-minute GLP-1 Consultation for $25.',
+    'House of Rose offers medical weight management with semaglutide and tirzepatide. The 40-minute GLP-1 Consultation is $25; call House of Rose for medication and ongoing program pricing.',
   plainLanguageDefinition:
     'GLP-1 is short for glucagon-like peptide-1, a hormone involved in appetite regulation. Both medications named by House of Rose act at the GLP-1 receptor.',
   medicationDifference:
