@@ -83,6 +83,8 @@
   let preferencesOpener: HTMLElement | null = null;
 
   const root = document.documentElement;
+  const mainContent = document.getElementById('main-content');
+  const focusMainContent = (): void => mainContent?.focus({ preventScroll: true });
   const clearBannerReserve = (): void => {
     root.removeAttribute('data-consent-banner-visible');
     root.style.removeProperty('--consent-banner-height');
@@ -97,8 +99,12 @@
     root.setAttribute('data-consent-banner-visible', '');
   };
   const closeBanner = (): void => {
+    const dismissedControl = document.activeElement;
     banner?.classList.add('hidden');
     clearBannerReserve();
+    if (dismissedControl instanceof HTMLElement && banner?.contains(dismissedControl)) {
+      focusMainContent();
+    }
   };
   const openPreferences = (): void => {
     preferencesOpener = document.activeElement instanceof HTMLElement
@@ -138,7 +144,11 @@
   dialog?.addEventListener('close', () => {
     const opener = preferencesOpener;
     preferencesOpener = null;
-    if (opener?.isConnected && opener.getClientRects().length > 0) opener.focus();
+    if (opener?.isConnected && opener.getClientRects().length > 0) {
+      opener.focus();
+    } else if (banner?.classList.contains('hidden')) {
+      focusMainContent();
+    }
   });
 
   document.getElementById('consent-reject')?.addEventListener('click', () => {
