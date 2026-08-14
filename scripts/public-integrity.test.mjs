@@ -796,9 +796,10 @@ test('consultation form explains that an inquiry does not reserve an appointment
 
   for (const required of [
     'Does submitting the form reserve an appointment?',
-    'No. The form sends your contact information and the topic you want to discuss.',
-    'House of Rose will contact you to arrange a time.',
-    'review its service page for a direct booking link.',
+    'No. The form starts a consultation request; it does not choose or hold an appointment time.',
+    'House of Rose will contact you to arrange the consultation.',
+    'services available for online booking have a booking option on their page',
+    'consultation-only and phone-first services show the appropriate next step.',
   ]) {
     assert.ok(text.includes(required), `Consultation page is missing ${JSON.stringify(required)}.`);
   }
