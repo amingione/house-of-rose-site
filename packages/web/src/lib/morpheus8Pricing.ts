@@ -5,6 +5,13 @@ export interface Morpheus8PriceItem {
   readonly note?: string;
 }
 
+export interface Morpheus8PackageRangeItem {
+  readonly name: string;
+  readonly minimumPriceUsd: number;
+  readonly maximumPriceUsd: number;
+  readonly treatmentCount: number;
+}
+
 /**
  * House of Rose Morpheus8 pricing confirmed by the owner on 2026-08-14 from:
  * packages/web/docs/inmode/Optimas Max Pricing.pdf, page 2.
@@ -21,6 +28,14 @@ export const MORPHEUS8_PRICING = {
     { name: 'Scars', singlePriceUsd: 500, seriesOfThreePriceUsd: 1300 },
     { name: 'Chest', singlePriceUsd: 500, seriesOfThreePriceUsd: 1300 },
     { name: 'Stretch Marks', singlePriceUsd: 700, seriesOfThreePriceUsd: 1700 },
+  ],
+  burstPackageRanges: [
+    {
+      name: 'Morpheus8 Burst — Hyperhidrosis',
+      minimumPriceUsd: 2200,
+      maximumPriceUsd: 2400,
+      treatmentCount: 3,
+    },
   ],
   burstDeep: [
     {
@@ -42,6 +57,7 @@ export const MORPHEUS8_PRICING = {
 } as const satisfies {
   readonly verifiedAt: string;
   readonly burst: readonly Morpheus8PriceItem[];
+  readonly burstPackageRanges: readonly Morpheus8PackageRangeItem[];
   readonly burstDeep: readonly Morpheus8PriceItem[];
   readonly bundle: {
     readonly name: string;

@@ -715,10 +715,17 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         price: formatMorpheus8Price(item.seriesOfThreePriceUsd),
         note: item.note,
       }))
-    : MORPHEUS8_PRICING.burst.map((item) => ({
-        name: item.name,
-        price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
-      }));
+    : [
+        ...MORPHEUS8_PRICING.burst.map((item) => ({
+          name: item.name,
+          price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+        })),
+        ...MORPHEUS8_PRICING.burstPackageRanges.map((item) => ({
+          name: item.name,
+          price: `${formatMorpheus8Price(item.minimumPriceUsd)}–${formatMorpheus8Price(item.maximumPriceUsd)}`,
+          note: `Package of ${item.treatmentCount}`,
+        })),
+      ];
 
   return {
     kicker: device.title,
@@ -733,7 +740,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       device.whereItFits,
       isBodyMorpheus
         ? 'Morpheus8 Burst Deep body pricing is organized by area size: 4 × 10 inches or 8 × 11 inches. Both are priced as a series of three; call House of Rose to confirm the appointment length.'
-        : 'House of Rose publishes both a single-treatment price and a series-of-three price for Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Call the practice to confirm the appointment length.',
+        : 'House of Rose publishes both a single-treatment price and a series-of-three price for Full Face, Face & Neck, Scars, Chest, and Stretch Marks. Hyperhidrosis is listed separately at $2,200–$2,400 for a package of three. Call the practice to confirm the appointment length.',
     ],
     distinctions: [
       {
@@ -746,7 +753,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         label: 'How the area is priced',
         text: isBodyMorpheus
           ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each price is for a series of three.'
-          : 'Full Face, Face & Neck, Scars, Chest, and Stretch Marks each have a single-treatment price and a series-of-three price.',
+          : 'Full Face, Face & Neck, Scars, Chest, and Stretch Marks each have a single-treatment price and a series-of-three price. Hyperhidrosis has a separate package-of-three price range.',
       },
     ],
     menu: {
@@ -755,7 +762,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : 'Morpheus8 Burst pricing by area',
       intro: isBodyMorpheus
         ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
-        : 'Each treatment area has one price for a single treatment and another for a series of three.',
+        : 'Five treatment areas have a single-treatment price and a series-of-three price. Hyperhidrosis is listed separately as a package of three.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
@@ -782,6 +789,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           {
             question: 'What does a standalone Morpheus8 treatment cost?',
             answer: 'The current Morpheus8 Burst single-treatment prices are $1,200 for Full Face, $1,250 for Face & Neck, $500 for Scars, $500 for Chest, and $700 for Stretch Marks.',
+          },
+          {
+            question: 'How is the Morpheus8 Burst Hyperhidrosis package priced?',
+            answer: 'The current Hyperhidrosis listing is $2,200–$2,400 for a package of three. Call House of Rose to confirm the appointment length.',
           },
         ],
     faqHeading: isBodyMorpheus
