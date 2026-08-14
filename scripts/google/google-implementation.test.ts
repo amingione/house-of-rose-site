@@ -6,6 +6,7 @@ import {
 } from '../../packages/web/netlify/functions/_lib/measurement-receipt';
 import {
   createConsentState,
+  getConsent,
   parseAttributionParameters,
 } from '../../packages/web/src/lib/measurement';
 import {
@@ -32,6 +33,53 @@ test('GPC forces every advertising signal denied without changing analytics choi
   assert.equal(state.ad_personalization, 'denied');
   assert.equal(state.source, 'gpc');
   assert.equal(state.expiresAt, '2027-01-20T12:00:00.000Z');
+});
+
+test('GPC overrides stored advertising grants when consent is read', () => {
+  const localStorageDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
+  const gpcDescriptor = Object.getOwnPropertyDescriptor(globalThis.navigator, 'globalPrivacyControl');
+  const stored = createConsentState(
+    {
+      analytics_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+    },
+    'preferences',
+    false,
+    new Date('2026-08-14T12:00:00.000Z'),
+  );
+
+  try {
+    Object.defineProperty(globalThis, 'localStorage', {
+      configurable: true,
+      value: { getItem: () => JSON.stringify(stored) },
+    });
+    Object.defineProperty(globalThis.navigator, 'globalPrivacyControl', {
+      configurable: true,
+      value: true,
+    });
+
+    const effective = getConsent();
+    assert.equal(effective.analytics_storage, 'granted');
+    assert.equal(effective.ad_storage, 'denied');
+    assert.equal(effective.ad_user_data, 'denied');
+    assert.equal(effective.ad_personalization, 'denied');
+    assert.equal(effective.source, 'gpc');
+    assert.equal(effective.recordedAt, stored.recordedAt);
+    assert.equal(effective.expiresAt, stored.expiresAt);
+  } finally {
+    if (localStorageDescriptor) {
+      Object.defineProperty(globalThis, 'localStorage', localStorageDescriptor);
+    } else {
+      delete (globalThis as { localStorage?: unknown }).localStorage;
+    }
+    if (gpcDescriptor) {
+      Object.defineProperty(globalThis.navigator, 'globalPrivacyControl', gpcDescriptor);
+    } else {
+      delete (globalThis.navigator as { globalPrivacyControl?: boolean }).globalPrivacyControl;
+    }
+  }
 });
 
 test('attribution parser allowlists and bounds click/campaign values', () => {

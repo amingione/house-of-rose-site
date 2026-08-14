@@ -254,7 +254,16 @@ const isConsentState = (value: unknown): value is ConsentStateV1 => {
 export const getConsent = (): ConsentStateV1 => {
   try {
     const parsed: unknown = JSON.parse(localStorage.getItem(CONSENT_STORAGE_KEY) ?? 'null');
-    if (isConsentState(parsed)) return parsed;
+    if (isConsentState(parsed)) {
+      if (navigator.globalPrivacyControl !== true) return parsed;
+      return {
+        ...parsed,
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        source: 'gpc',
+      };
+    }
   } catch {
     // Invalid or unavailable storage falls back to denied.
   }
