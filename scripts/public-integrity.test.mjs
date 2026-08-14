@@ -1062,9 +1062,9 @@ test('priority service pages retain reviewed facts instead of falling back to th
     ],
     'iv-hydration-therapy': [
       'Diana Morrison, RN',
-      'Call House of Rose to confirm current formulations and available add-ons.',
+      'If ingredients or add-ons are part of your decision, call House of Rose before booking.',
       'from $99 to $185',
-      '30- or 45-minute appointments',
+      'one 30-minute base IV and 5 45-minute base IVs',
     ],
     dermaplaning: [
       'fine vellus hair and accumulated dead skin cells',
@@ -1240,16 +1240,18 @@ test('priority service pages retain reviewed facts instead of falling back to th
     "Myers' Cocktail IV",
     'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
     'Which IV hydration options does House of Rose offer?',
-    'Do I need to choose an IV option before I call?',
+    'What does IV mean in IV hydration?',
+    'The six appointment names alone do not identify a complete formulation.',
   ]) {
     if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing ${JSON.stringify(required)}`);
   }
   for (const required of [
-    'At House of Rose, an IV drip is IV Hydration Therapy.',
-    'IV stands for intravenous',
-    'House of Rose offers 6 named base options.',
-    'Use the table to compare each appointment by name, time, and price.',
-    'The appointment names do not provide a complete ingredient list.',
+    'IV means intravenous.',
+    'Intravenous means that fluid is administered through a vein.',
+    'IV drip appointments are offered as IV Hydration Therapy',
+    '6 named base options',
+    'Hydration IV is the 30-minute option at $99.',
+    'The other 5 base options are 45-minute appointments priced from $160 to $185.',
   ]) {
     if (!visibleText(ivCategoryOverview).includes(required)) {
       failures.push(`iv-hydration-therapy category overview: missing ${JSON.stringify(required)}`);
