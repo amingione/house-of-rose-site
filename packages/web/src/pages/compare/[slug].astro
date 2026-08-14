@@ -47,8 +47,7 @@ const b = cmp.optionB;
 const sharedOptionService = a?.service && b?.service && a.service._id === b.service._id
   ? a.service
   : null;
-const comparedOptions = `${publicContent.optionALabel} and ${publicContent.optionBLabel}`;
-const articleDescription = `Side-by-side ${comparedOptions} treatment comparison from House of Rose Aesthetics in Punta Gorda, Florida.`;
+const articleDescription = publicContent.metaDescription;
 const articleSchema = article(
   { headline: publicTitle, description: articleDescription, url: canonical, dateModified: cmp._updatedAt },
   site,

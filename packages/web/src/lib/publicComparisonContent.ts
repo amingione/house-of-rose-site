@@ -6,6 +6,7 @@ export interface PublicComparisonRow {
 
 export interface PublicComparisonContent {
   title: string;
+  metaDescription: string;
   lead: string;
   optionALabel: string;
   optionBLabel: string;
@@ -37,6 +38,8 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
 > = {
   'morpheus8-vs-microneedling': {
     title: 'Morpheus8 vs. Microneedling',
+    metaDescription:
+      'Compare Morpheus8 fractional RF microneedling with non-RF Procell Microneedling at House of Rose, including technology, treatment areas, and recovery limits.',
     lead:
       'Both services use microneedling. Morpheus8 adds fractional bipolar radiofrequency; Procell microneedling does not. That is the central difference between them.',
     optionALabel: 'Morpheus8',
@@ -89,6 +92,8 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
   },
   'daxxify-vs-botox': {
     title: 'Daxxify vs. Botox',
+    metaDescription:
+      'Compare Daxxify and Botox at House of Rose: both are $14 per product-specific unit, with 60- and 30-minute appointments and units that are not interchangeable.',
     lead:
       'House of Rose offers Daxxify and Botox for movement-related lines. Both are priced at $14 per product-specific unit; the Daxxify appointment is listed at 60 minutes and the Botox appointment at 30 minutes. A unit of one product is not equivalent to a unit of the other, so the matching rate does not predict the same dose or total price.',
     optionALabel: 'Daxxify',
