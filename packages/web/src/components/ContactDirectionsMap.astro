@@ -211,7 +211,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
 
     const syncSearchComboboxState = (): void => {
       const combobox = searchHost.querySelector<HTMLInputElement>('[role="combobox"]');
-      if (!combobox || combobox.hasAttribute('aria-expanded')) return;
+      if (!combobox) return;
 
       const controlledId = combobox.getAttribute('aria-controls');
       const results = controlledId ? document.getElementById(controlledId) : null;
@@ -221,16 +221,25 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
         && results.getClientRects().length > 0
         && resultsContainer?.getAttribute('aria-hidden') !== 'true',
       );
-      combobox.setAttribute('aria-expanded', resultsAreVisible ? 'true' : 'false');
+      if (!combobox.hasAttribute('aria-expanded')) {
+        combobox.setAttribute('aria-expanded', resultsAreVisible ? 'true' : 'false');
+      }
+
+      if (resultsContainer?.getAttribute('aria-hidden') === 'true') {
+        resultsContainer.querySelectorAll<HTMLElement>('[tabindex="0"]').forEach((element) => {
+          element.tabIndex = -1;
+        });
+      }
     };
     syncSearchComboboxState();
 
-    // Mapbox manages the state once suggestions open, but its initial render omits
-    // the required combobox attribute. Re-apply only if a runtime render drops it.
+    // Mapbox manages the open state, but its initial render omits the combobox
+    // attribute and closed results can retain a tabbable option. Repair both when
+    // a runtime render drops the required state.
     const searchAccessibilityObserver = new MutationObserver(syncSearchComboboxState);
     searchAccessibilityObserver.observe(searchHost, {
       attributes: true,
-      attributeFilter: ['aria-expanded'],
+      attributeFilter: ['aria-expanded', 'aria-hidden', 'tabindex'],
       childList: true,
       subtree: true,
     });
