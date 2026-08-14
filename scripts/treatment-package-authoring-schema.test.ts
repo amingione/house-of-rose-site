@@ -62,21 +62,29 @@ test('published package timing uses the shared guard without a process template'
   assert.match(String(validate('A premium transformation over 12 weeks.')), /retired or prohibited/i);
 });
 
-test('published package price text uses the shared guard without locking a value', () => {
-  assert.equal(typeof rackPriceField?.validation, 'function', 'Package price must validate public copy.');
-  assert.match(String(rackPriceField.validation), /validatePublicCopy/);
+test('stored package price cannot diverge from the reviewed public package facts', () => {
+  assert.equal(rackPriceField?.readOnly, true);
+  assert.match(String(rackPriceField?.title), /not published/i);
+  assert.match(String(rackPriceField?.description), /reviewed package facts/i);
+  assert.match(String(rackPriceField?.description), /current booking menu/i);
 
-  const rule = {
-    custom(fn: (value: string | undefined) => true | string) {
-      return { validate: fn };
-    },
-  };
-  const { validate } = rackPriceField.validation(rule);
+  for (const query of [ALL_TREATMENT_PACKAGES_QUERY, TREATMENT_PACKAGE_BY_SLUG_QUERY]) {
+    assert.doesNotMatch(query, /\brackPrice\b/);
+  }
 
-  assert.equal(validate(undefined), true);
-  assert.equal(validate('$899'), true);
-  assert.equal(validate('$250–$850'), true);
-  assert.match(String(validate('Premium package — $899!')), /retired or prohibited/i);
+  const card = readFileSync(
+    new URL('../packages/web/src/components/TreatmentPackageCard.astro', import.meta.url),
+    'utf8',
+  );
+  const detail = readFileSync(
+    new URL('../packages/web/src/pages/packages/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  for (const renderer of [card, detail]) {
+    assert.match(renderer, /FACE_REALITY_PROGRAM\.packagePriceUsd/);
+    assert.doesNotMatch(renderer, /pkg\.rackPrice/);
+    assert.doesNotMatch(renderer, /(?:fp|sbFieldPath)\('rackPrice'\)/);
+  }
 });
 
 test('published package image alt text uses the shared public-copy guard', () => {

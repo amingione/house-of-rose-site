@@ -97,9 +97,10 @@ export const treatmentPackage = defineType({
     }),
     defineField({
       name: 'rackPrice',
-      title: 'Rack Price',
+      title: 'Rack Price (not published)',
       type: 'string',
-      description: 'Standard published rate (free text — supports ranges).',
+      readOnly: true,
+      description: 'Stored for source compatibility. Public package prices come from reviewed package facts reconciled to the current booking menu.',
       validation: (R) => R.custom(validatePublicCopy),
     }),
     // ─── Website copy under review ────────────────────────────────────────────

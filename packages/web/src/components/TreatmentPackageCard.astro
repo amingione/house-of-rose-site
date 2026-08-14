@@ -9,6 +9,7 @@ import { urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { TreatmentPackage } from '@/lib/queries';
 import { DEFAULT_PACKAGE_IMAGE } from '@/lib/imageFallbacks';
+import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
 
 interface Props {
   pkg: TreatmentPackage;
@@ -26,7 +27,9 @@ const { pkg, expanded = false, objectId } = Astro.props;
 // Do not publish package amounts that have no matching current GlossGenius
 // line. Acne Bootcamp is the only live package price the canonical export
 // presently corroborates.
-const price = pkg.slug === 'face-reality-12-week-program' ? pkg.rackPrice : undefined;
+const price = pkg.slug === FACE_REALITY_PROGRAM.packageSlug
+  ? `$${FACE_REALITY_PROGRAM.packagePriceUsd}`
+  : undefined;
 const services = pkg.servicesIncluded ?? [];
 // Temporary voice-reset overlay matching the package detail route.
 const timing = pkg.slug === 'glo2facial-series-of-6'
@@ -75,7 +78,7 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
 
     {price && (
       <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4">
-        Package price · <span {...fp('rackPrice')}>{price}</span>
+        Package price · <span>{price}</span>
       </p>
     )}
 

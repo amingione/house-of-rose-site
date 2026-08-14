@@ -1042,7 +1042,6 @@ export interface TreatmentPackage {
   status?: PackageStatus;
   servicesIncluded?: PackageServiceRef[];
   cadence?: string;
-  rackPrice?: string;
   image?: SanityImage;
 }
 
@@ -1058,7 +1057,6 @@ const PACKAGE_FIELDS = /* groq */ `
     !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
   ]->{ _id, title, "slug": slug.current },
   cadence,
-  rackPrice,
   ${IMAGE_FIELDS}
 `;
 
