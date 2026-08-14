@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 /**
- * Wires the treatment-page blocks into packages/web/src/pages/services/[slug].astro.
+ * ARCHIVED: formerly wired generic treatment-page blocks into
+ * packages/web/src/pages/services/[slug].astro.
  *
- *   node scripts/patch-service-page.mjs --dry     # print the diff, write nothing
- *   node scripts/patch-service-page.mjs           # apply
- *
- * Anchor-based and idempotent: every edit is skipped if its marker is already
- * present, and the script exits non-zero if an anchor is missing rather than
- * writing a half-patched file.
+ * The reviewed renderer now deliberately withholds unreviewed CMS downtime and
+ * aftercare prose. Re-running this migration would restore those fields as a
+ * mandatory-looking page template and bypass the voice-reset review boundary.
+ * The implementation remains below only as migration history.
  *
  * `offerSchema` reuses `isVerifiedGlossGeniusBookingUrl()` — the same guard the
  * existing `serviceSchema.offerUrl` uses — so the Offer node never carries a
@@ -17,6 +16,10 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+
+throw new Error(
+  'Archived by the 2026-08-13 voice reset. The current service renderer publishes only reviewed, service-specific recovery and aftercare facts.',
+);
 
 const DRY = process.argv.includes('--dry');
 const TARGET = resolve('packages/web/src/pages/services/[slug].astro');
