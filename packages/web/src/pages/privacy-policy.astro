@@ -90,6 +90,12 @@ const REQUIRED_MEASUREMENT_SECTIONS: PrivacySection[] = [
 	},
 ];
 
+const DIRECTIONS_PRIVACY_SECTION: PrivacySection = {
+	_key: "directions-location",
+	heading: "Directions and Location Access",
+	body: "The directions tool on the Contact page uses Mapbox to display the map, search a starting address, and calculate driving time and distance. If you choose “Use my location,” your browser asks for permission; when granted, your coordinates are sent to Mapbox to calculate the route. You can decline location access and enter a starting address instead, or open Google Maps or Apple Maps without supplying a starting point. The directions tool does not add your starting address or current location to the contact form.",
+};
+
 const sourceSections =
 	data.sections && data.sections.length ? data.sections : FALLBACK_SECTIONS;
 const reservedHeadings = new Set([
@@ -98,6 +104,7 @@ const reservedHeadings = new Set([
 	"click identifiers, retail conversions, and retention",
 	"click identifiers, conversions, and retention",
 	"your privacy choices",
+	"directions and location access",
 ]);
 const sections = [
 	...sourceSections.filter((section) => {
@@ -106,6 +113,7 @@ const sections = [
 	}),
 	FALLBACK_SECTIONS[2],
 	FALLBACK_SECTIONS[3],
+	DIRECTIONS_PRIVACY_SECTION,
 	...REQUIRED_MEASUREMENT_SECTIONS,
 ]
 	.filter((section): section is PrivacySection => Boolean(section))
@@ -116,7 +124,7 @@ const sections = [
 	}));
 
 const pageTitle = data.pageTitle ?? "Privacy Policy";
-const lastUpdated = "Updated August 13, 2026";
+const lastUpdated = "Updated August 14, 2026";
 const intro = alignPublicChannelCopy(
 	(data.intro ??
 		"House of Rose Aesthetics LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging."),
@@ -145,7 +153,7 @@ const breadcrumb = breadcrumbList([
 				House of Rose Aesthetics LLC
 			</p>
 			<h1 class="font-serif text-5xl text-ink" {...sbFieldPath("pageTitle")}>{pageTitle}</h1>
-			<p class="mt-4 text-sm text-ink/75" {...sbFieldPath("lastUpdated")}>{lastUpdated}</p>
+			<p class="mt-4 text-sm text-ink/75">{lastUpdated}</p>
 		</div>
 
 		<div class="prose prose-lg max-w-none text-ink/80">
@@ -155,8 +163,8 @@ const breadcrumb = breadcrumbList([
 
 			{sections.map((section, i) => (
 				<>
-					<h2 {...sbFieldPathParts("sections", i, "heading")}>{section.heading}</h2>
-					<p class="whitespace-pre-line" {...sbFieldPathParts("sections", i, "body")}>{section.body}</p>
+					<h2 {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "heading"))}>{section.heading}</h2>
+					<p class="whitespace-pre-line" {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "body"))}>{section.body}</p>
 				</>
 			))}
 		</div>
