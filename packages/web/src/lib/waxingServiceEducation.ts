@@ -122,7 +122,7 @@ export const WAXING_SERVICE_EDUCATION = {
     whatItIs:
       'House of Rose books seven body-waxing appointments: underarms, bikini line, chest, back, full leg, partial leg, and full arm.',
     whereItFits:
-      'Choose the row that names the area you want waxed. Full Leg and Partial Leg are separate appointments; if you are unsure which row matches your area, call House of Rose before booking.',
+      'Body Waxing is arranged by phone. Name the area you want waxed; for legs, specify Full Leg or Partial Leg because they are separate appointments.',
     distinctions: [
       {
         label: 'Upper-body areas',
@@ -130,21 +130,21 @@ export const WAXING_SERVICE_EDUCATION = {
       },
       {
         label: 'Full or partial leg',
-        text: 'Full Leg and Partial Leg are booked as two different appointments. Call first if you need help understanding which of those two menu names fits your request.',
+        text: 'Full Leg is $65 for 10 minutes; Partial Leg is $45 for 30 minutes. Name the one you want when you call.',
       },
       {
         label: 'Bikini line',
-        text: 'Bikini Line is the only bikini-area appointment shown on the House of Rose menu. It is $30 for 10 minutes.',
+        text: 'The available bikini-area appointment is Bikini Line at $30 for 10 minutes.',
       },
     ],
     faqs: [
       {
         question: 'How do I book body waxing?',
-        answer: 'Call House of Rose and name the body area you want waxed. The seven available appointments, prices, and appointment lengths are shown above.',
+        answer: 'Call House of Rose and name one of the seven available areas: underarms, bikini line, chest, back, full leg, partial leg, or full arm.',
       },
       {
         question: 'Which bikini-area waxing appointment is available?',
-        answer: 'Bikini Line is the only bikini-area appointment shown on the House of Rose menu. It is $30 for 10 minutes.',
+        answer: 'The available bikini-area appointment is Bikini Line at $30 for 10 minutes.',
       },
     ],
     menu: {

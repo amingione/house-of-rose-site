@@ -285,7 +285,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? 'Eleven area-specific waxing appointments, with two ways to book.'
         : waxing.slug === 'facial-waxing'
           ? 'Choose the facial-waxing appointment that matches the area.'
-          : 'Seven body-waxing appointments, each tied to an area.',
+          : 'Seven body areas, each with its own appointment.',
       metaDescription: `${waxing.whatItIs} Available at House of Rose Aesthetics in Punta Gorda.`,
       paragraphs: [
         waxing.whatItIs,
@@ -302,7 +302,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               ? 'Facial prices range from $10–$25; body prices range from $20–$65. Each row includes the appointment length.'
               : waxing.slug === 'facial-waxing'
                 ? 'Each appointment is booked by facial area or brow service.'
-                : 'Choose the exact area row below, or call House of Rose if you are unsure which one matches.',
+                : 'Prices range from $20–$65. Appointment lengths range from 10–40 minutes by area.',
             verifiedAt: 'August 6, 2026',
             items: waxing.menu.items.map((item) => ({
               name: item.name,
@@ -316,7 +316,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       faqHeading: waxing.slug === 'waxing'
         ? 'Online booking for facial waxing; a phone call for body waxing.'
         : waxing.faqs
-          ? 'Choosing an area and making the call.'
+          ? 'Area names, leg appointments, and bikini line.'
           : undefined,
       links: [
         ...(waxing.links ?? []),

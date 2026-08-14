@@ -27,7 +27,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   injectables:
     'At the consultation, point out the lines you notice when you frown, raise your brows, or squint. The Botox and Daxxify details are shown above.',
   'body-waxing':
-    'Call House of Rose with the body area you want waxed. The seven available body-waxing appointments are shown above.',
+    'Call House of Rose and name the body area you want waxed; for legs, specify Full Leg or Partial Leg.',
   'iv-hydration-therapy':
     'If ingredients or add-ons are part of your decision, call House of Rose before booking and ask about the IV appointment you are considering.',
   'prf-injections':
