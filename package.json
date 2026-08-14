@@ -18,8 +18,6 @@
     "verify:structured-data-deployment": "node scripts/verify-structured-data-deployment.mjs",
     "verify:visibility": "node scripts/verify-visibility-plan.mjs",
     "verify:grasshopper": "node scripts/verify-grasshopper-compliance.mjs",
-    "sync:notion": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio",
-    "sync:notion:dry": "node scripts/run-with-env.mjs npm run sync:notion -w packages/studio -- --dry",
     "indexnow": "node scripts/run-with-env.mjs node scripts/indexnow.mjs",
     "indexnow:dry": "node scripts/run-with-env.mjs node scripts/indexnow.mjs --dry",
     "content:daxxify-comparison": "node scripts/run-with-env.mjs node packages/studio/scripts/create-daxxify-botox-comparison.mjs",
