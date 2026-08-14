@@ -522,7 +522,7 @@ const pageDescription = factualServiceDescription;
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
         {renderSplitInjectableSibling && splitInjectableSibling && (
           <article class="service-card group">
-            <a href={`/services/${splitInjectableSibling.slug}/`} class="block" aria-label={`View ${splitInjectableSibling.title}`}>
+            <a href={`/services/${splitInjectableSibling.slug}/`} class="block">
               <span class="service-name">{splitInjectableSibling.title}</span>
               {getServiceCardSummary(splitInjectableSibling.slug) && (
                 <p class="service-desc mt-1">{getServiceCardSummary(splitInjectableSibling.slug)}</p>
@@ -533,7 +533,7 @@ const pageDescription = factualServiceDescription;
         )}
         {visibleRelatedServices.map((related) => (
           <article class="service-card group" {...sbObjectId(related._id)}>
-            <a href={`/services/${related.slug}/`} class="block" aria-label={`View ${related.title}`}>
+            <a href={`/services/${related.slug}/`} class="block">
               {related.image?.asset && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
