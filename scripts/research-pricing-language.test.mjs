@@ -18,6 +18,7 @@ const activePricingBriefs = [
   'PRF/prf-injections-ezgel.md',
   'PRF/prf-topical.md',
   'PROCELL/procell.md',
+  'advanced-skin-imaging.md',
   'biorepeel.md',
   'carboxy-therapy.md',
   'dermal-fillers.md',
@@ -113,6 +114,17 @@ test('injectable and topical PRF research preserves current names and unknowns',
   assert.match(injectable, /Do not call PRF Bio-Filler `EZ-Gel`/i);
   assert.match(injectable, /do not create `\/services\/ez-gel-bio-filler\/`/i);
   assert.doesNotMatch(injectable, /\$650|\$700|\$775|\$800|\$1,700|signature treatment|luxury band/i);
+});
+
+test('skin imaging research preserves the current paid optional appointment', () => {
+  const skinAnalysis = read('advanced-skin-imaging.md');
+
+  assert.match(skinAnalysis, /Skin Analysis & Consultation \| \$65 \| Direct online booking/i);
+  assert.match(skinAnalysis, /it is optional/i);
+  assert.doesNotMatch(
+    skinAnalysis,
+    /complimentary|no-pressure|no price listed|microchanneling from|PRF microneedling from|Glo2Facial from|BioRePeel from/i,
+  );
 });
 
 test('GLP, dermaplaning, fillers, and neurotoxins use exact current structures', () => {

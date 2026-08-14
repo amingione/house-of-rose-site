@@ -1,254 +1,92 @@
-# Advanced Skin Imaging & Analysis — Research Brief
-
-**Date:** 2026-07-13 · **Provider lane:** Cross-cutting front door (routes into Amber / Diana / Brandy pathways — informs a plan, does **not** diagnose) · **Status:** draft for Phase 3/4 consumption · Sources listed at end.
-
-> **Strategic role:** This is the evidence-based **first step** and the **router** for the whole studio. "See your skin before any treatment — no pressure, no commitment." It is not a treatment; it is the front door that turns a vague concern into a sequenced, personalized plan and a baseline you can track. Device: the **M17 AI Skin Analyzer** (a multi-imaging, multi-spectrum analysis system).
->
-> **Naming (2026-08-06):** the client-facing service is **Advanced Skin Imaging & Analysis** — we lead with the imaging, not the AI. `M17 AI Skin Analyzer` is the manufacturer's product name and stays accurate in internal/device references; it is not the service name and does not appear in public copy.
-
----
-
-## 1. The 3-sentence answer
-
-Advanced skin imaging at House of Rose Aesthetics in Punta Gorda is an in-studio, non-invasive imaging step that uses the M17 AI Skin Analyzer to capture your skin under multiple light modes and help evaluate visible patterns — pigmentation, texture, pores, fine lines, redness, hydration cues, and signs of sun exposure — more clearly than a naked-eye look alone. Your provider reviews the images with you and uses them to build a personalized treatment and home-care plan around what your skin is actually showing today, then re-images over time so progress can be compared consistently instead of from memory. It is the evidence-based first step before any treatment — a planning and tracking tool, not a medical diagnosis and not a substitute for evaluation by a licensed medical provider.
-
----
-
-## 2. How it works
-
-**Plain English.** Standard room lighting only shows so much. The M17 photographs your skin under several different kinds of light, and its software organizes those images into a consultation-friendly report. Different light reveals different things: white light shows the surface (lines, pores, visible spots); polarized light reaches just under the surface to make pigmentation and redness easier to see; UV light helps surface sun-related pigment and pore activity that hasn't fully shown up yet. Because the photos are captured the same way each time, your provider gets a clearer, more consistent starting point than eyeballing your skin — and a baseline you can compare against later.
-
-**One level deeper (for the curious).** Multi-spectral facial imaging systems generally combine three capture modes, and the M17 is described publicly as a multi-mode/multi-spectrum device (RGB, polarized, and UV among its modes):
-
-- **White / RGB light** captures the visible spectrum and reveals surface features — fine lines, wrinkle patterns, visible pores, and surface spots.
-- **Cross-polarized light** cuts surface glare and emphasizes *subepidermal* characteristics, so pigmentation and blood-vessel (vascular/redness) patterns become easier to appreciate below the surface.
-- **UV light** uses skin fluorescence: melanin absorbs UV without fluorescing, so areas of concentrated pigment read darker (useful for surfacing sun-related pigment), while porphyrins associated with clogged/acne-prone pores can fluoresce, helping visualize congestion patterns.
-
-The software then organizes what it captures into readable metrics grouped by concern — texture and wrinkle patterns; pores, congestion and porphyrin-related activity; pigmentation, brown spots and melasma-style patterning; redness/visible vascularity; moisture-related patterns and overall balance. Public M17 pages also describe 3D facial mapping with localized zoom, comparison ("baseline vs. follow-up") imaging, and predictive age-trend visualization. Crucially, **standardized capture** — consistent positioning, lighting, and expression — is what makes before/after comparison meaningful; that reproducibility is the real advantage over casual observation.
-
-**Honest mechanism limits.** These are imaging aids, not laboratory instruments. Published reviews of facial imaging note real confounders: makeup, sunscreen residue, and surface contaminants can fluoresce under UV and skew UV readings; unruly hair can interfere with wrinkle detection; and diffuse redness can resist automatic segmentation. That's exactly why the output is **provider-reviewed** and framed as "what we're seeing and why it matters," not an automated verdict.
-
----
-
-## 3. Who it's for / not for
-
-**A strong fit for:**
-- Anyone new to aesthetics who wants an honest starting point before spending money on treatments.
-- Clients weighing several options (e.g., "microchanneling or a peel first?") who want the sequence decided by evidence, not guesswork.
-- Corrective clients — acne-prone skin, pigmentation/melasma-style patterning, texture and pore concerns, early laxity/fine-line concerns — who benefit from a documented baseline.
-- Anyone starting a regenerative series (PRF, microchanneling), a corrective skincare protocol, or an acne program, where tracking change over weeks/months matters.
-- Clients who like to *see* the "before" and measure the "after."
-
-**Not the right expectation for:**
-- Anyone seeking a **diagnosis**. This is aesthetic imaging for planning — it does not diagnose skin disease, and it is not a skin-cancer or mole screening. Any suspicious lesion, changing mole, or medical skin condition should be evaluated by a physician/dermatologist. This is a hard line.
-- Clients expecting the scan itself to change their skin — it's a planning and tracking tool, not a treatment.
-- Anyone unwilling to remove makeup/SPF for capture (residue skews UV readings; a clean face gives the truest images).
-
-**Honest limits (a feature, not a weakness):** the analysis reflects visible and near-surface patterns on the day it's taken; results are provider-interpreted; not every finding leads to a treatment, and sometimes the honest recommendation is "keep doing what's working" or "start with home care." Individual outcomes vary, and final candidacy and treatment combinations are confirmed by the licensed provider at consultation.
-
----
-
-## 4. The visit
-
-**Step by step.**
-1. **Conversation first.** The appointment opens with a discussion of your skin history, concerns, and goals — the scan serves the conversation, not the reverse.
-2. **Capture.** You'll remove makeup/SPF as needed. The provider captures standardized images under the M17's multiple light modes in controlled in-studio lighting. Image capture itself takes only a few minutes.
-3. **Review together.** The provider walks you through what the imaging is showing across the concern categories (texture/lines, pores/congestion, pigment/sun-related cues, redness, hydration cues), in plain terms — what it is, and why it matters for you.
-4. **Plan.** You leave with a personalized, sequenced plan: which concern to address first, which in-studio treatment(s) and home-care steps make sense, and a realistic timeline. The plan may be staged based on your priorities and budget.
-5. **Baseline saved.** The images become your baseline so future scans can be compared side-by-side to track change.
-
-**Sensation / downtime.** Completely non-invasive — no needles, no product, no discomfort, **zero downtime**. You can be photographed and return to your day immediately.
-
-**Aftercare.** None required. Reapply SPF (which you removed for capture) before heading outdoors — a good habit the scan itself often reinforces.
-
-**Results timeline.** The *deliverable* is immediate — a clear read and a plan, same visit. The *value compounds over time*: because the baseline is standardized, follow-up scans (commonly aligned to a treatment series or every few months of a corrective protocol) let you and your provider compare progress consistently rather than from memory.
-
-**Cadence.** Once as the front-door step before starting; then periodically to track — e.g., at series milestones or every 3–6 months during active corrective work. (Cadence is provider-guided, not a fixed schedule.)
-
----
-
-## 5. Comparisons (honest)
-
-### Advanced skin imaging vs. a standard visual consultation
-| | Standard visual consult | Advanced skin imaging (M17) |
-|---|---|---|
-| What's assessed | What's visible in room light, plus provider experience | Surface **and** near-surface patterns via white/polarized/UV modes |
-| Sub-surface & UV | Not visible | Cross-polarized surfaces pigment/redness; UV surfaces sun-related pigment & porphyrin/congestion cues |
-| Consistency | Subjective; can vary visit to visit and provider to provider | Standardized, repeatable capture |
-| Baseline / tracking | From memory or casual photos | A stored, comparable baseline for side-by-side before/after |
-| Client understanding | Verbal explanation | You *see* what's being described — recommendations are easier to trust |
-
-**When the visual consult is enough:** for a simple, single-service booking where you already know what you want, a conversation may be all you need — the scan is optional, never mandatory. **What the imaging adds:** clarity on what's below the surface, a quantified-feeling baseline, and a stronger foundation for comparison over time. The value isn't "more technology" — it's *more clarity, more personalization, and more confidence in the plan you choose.*
-
-### It's the router, not a rival treatment
-Advanced skin imaging does not compete with microchanneling, microneedling, PRF, peels, Glo2Facial, facials, or injectables — **it feeds the decision between them.** It's the step that answers "which of these, in what order, for me?" So the honest framing on every comparison is: the scan comes *first*, then routes you to the right treatment and the right provider (see §6). Think of it as the map, not one of the roads.
-
----
-
-## 6. Concern mapping — THIS IS THE ROUTER
-
-The skin-analysis page should map to **every** concern page and hand off to the correct treatment + provider lane. Existing concern slugs (all live): `acne-scarring`, `dark-circles`, `fine-lines-laxity`, `hair-thinning`, `stretch-marks`, `sun-damage`.
-
-| Concern (existing slug) | What the scan surfaces | Routes to → treatment | Provider lane |
-|---|---|---|---|
-| **Sun damage** → `/concerns/sun-damage/` | UV/pigment cues, brown spots, uneven tone, photoaging patterns | Peels (BioRePeel, acne peel), Microneedling, corrective home care, SPF | Amber (advanced facials) · Brandy (light peels/maintenance) |
-| **Fine lines & laxity** → `/concerns/fine-lines-laxity/` | Wrinkle/texture patterns, surface crepiness, early laxity | Microchanneling, PRF microneedling, Glo2Facial, LED; injectables where appropriate | Amber (facials/PRF **topical only**) · Diana (tox/filler) |
-| **Acne scarring** → `/concerns/acne-scarring/` | Texture depressions, pore/congestion patterns, porphyrin-related activity, PIH-style pigment | Microchanneling, PRF microneedling, BioRePeel (incl. advanced acne-scarring), Face Reality acne program | Amber · Face Reality protocol |
-| **Dark circles & under-eyes** → `/concerns/dark-circles/` | Under-eye pigment vs. vascular vs. texture cues (helps distinguish likely driver) | PRF under-eye series, EZ-Gel/injectables where indicated | Amber (PRF topical) · Diana (injectable PRF/EZ-Gel) |
-| **Stretch marks** → `/concerns/stretch-marks/` | Textural/tone irregularity on body zones (via spot/localized capture) | Microneedling body, PRF body, Procell microchanneling body | Amber |
-| **Hair thinning** → `/concerns/hair-thinning/` | Scalp/hair follicle read via the M17 handpiece attachment | Scalp-focused regenerative pathways / referral within lane | Amber (topical) · Diana (injectable PRF) — provider-confirmed |
-
-**Routing note (compliance):** the scan *suggests where to look*; the licensed provider confirms candidacy, the treatment, and whether it belongs in Amber's, Diana's, or Brandy's lane. PRF is **topical only with Amber** and **injectable only with Diana** — the scan must never be copy-framed as "prescribing" an injection.
-
-**Proposed new concern pages** (would give the router more destinations; all currently missing): `/concerns/pigmentation-melasma/`, `/concerns/redness-rosacea-appearance/`, `/concerns/pores-congestion/`, `/concerns/dehydration-barrier/`. Flag these as Phase-4 candidates — the M17 explicitly reads all four, but there's nowhere to route them today.
-
----
-
-## 7. Pairings & pathways
-
-**What it stacks with (it precedes everything):**
-- **Before a Microneedling series** — the scan sets the baseline the series is measured against. The provider may select an eligible Procell material plan or topical PRF adjunct inside the same Microneedling service.
-- **Before a corrective skincare protocol** — Face Reality acne program, acne bootcamp, BioRePeel series: the scan documents the "before" and re-scans mark milestones. → `/packages/face-reality-12-week-program/`, `/packages/biorepeel-series-of-4/`.
-- **Before deciding facial vs. facial** — Glo2Facial vs. peel vs. maintenance facial: the scan sequences them.
-- **Alongside injectable consults** — the scan informs the aesthetic picture Diana works from (it does not diagnose or prescribe).
-
-**Try first:** the analysis *is* the "try first." It's the recommended opening move for anyone unsure where to start.
-
-**Retail follow-through (name real shop brands):** because the scan surfaces pigment, congestion, redness, and hydration cues, it routes naturally into home-care from the brands House of Rose already carries — **Face Reality** (acne-prone/congestion), **Procell** (post-procedure/regenerative support), **GlyMed+** and **Skin Script** (correction, exfoliation, brightening for pigment/texture), and **House of Rose** own-brand. Home care is often the honest first recommendation for milder findings; frame it as "supports your plan," never as a cure.
-
----
-
-## 8. Cost factors
-
-**Positioning (from local docs + live surface):** Advanced skin imaging is presented as the **front-door consultation/planning step**, not a standalone priced treatment. There is **no price listed** for it anywhere in the local pricing docs, the live `/skin-analysis/` page, or the published Sanity content. The master menu references it only as part of the consultation process ("final pricing is confirmed after **consultation & skin analysis**"). The live page's CTA is a lead form and a GlossGenius booking link — no fee, no product SKU.
-
-**What this means for copy:** treat it as the complimentary/no-pressure first step ("see your skin before you decide anything — no pressure, no commitment," which is already the live CTA voice). **Do not invent a price.** If House of Rose later decides to charge for it or credit a scan fee toward a treatment, that becomes a Sanity/pricing-doc decision — flag as a gap, do not assume.
-
-**What *does* move cost is what the scan routes you into** — the treatment prices live on each service page (e.g., microchanneling from $250, PRF microneedling from $425, Glo2Facial from $185, BioRePeel from $295 — all "from," provider-confirmed). Those numbers belong on the treatment pages, not here; the analysis page should link out to them, not quote them.
-
----
-
-## 9. FAQ bank (substantive, compliance-clean)
-
-1. **What is Advanced Skin Imaging & Analysis?** It's a non-invasive in-studio imaging step at House of Rose that uses the M17 AI Skin Analyzer to photograph your skin under multiple light modes, so your provider can see visible and near-surface patterns more clearly and build your treatment plan around what your skin is actually showing.
-
-2. **Do I need a skin analysis before treatment?** Not for every appointment. But it gives your provider a clearer baseline and helps recommend treatments in the right order, so you invest in what's most likely to support your goals. It's the recommended first step if you're unsure where to start.
-
-3. **Does it diagnose skin conditions or skin cancer?** No. It's an aesthetic planning and tracking tool, not a medical diagnosis and not a skin-cancer screening. If you notice a changing mole or a medical skin concern, please see a physician or dermatologist.
-
-4. **What does the scanner look for?** It helps evaluate visible and near-surface patterns — pigmentation and sun-related cues, texture and fine lines, pores and congestion, redness, and hydration cues. Your provider reviews the images with you and uses them for planning.
-
-5. **How is this different from a regular consultation?** A standard consult relies on what's visible in room light plus provider experience. The imaging adds multiple light modes (including UV and polarized views), a more consistent read, and a stored baseline you can compare against over time — so recommendations are clearer and easier to trust.
-
-6. **Does it hurt? Is there downtime?** No, on both counts. It's completely non-invasive — no needles, no product, no downtime. You can return to your day right away.
-
-7. **How long does it take?** Image capture takes only a few minutes. The valuable part is the conversation afterward, where your provider walks you through what the images show and outlines a plan together.
-
-8. **Can it track my before-and-after progress?** Yes. Because images are captured the same way each time, the scan creates a baseline that can be compared over time — especially useful for regenerative series, corrective skincare, acne care, and pigmentation work.
-
-9. **Do I need to take my makeup off?** Yes — a clean face gives the truest read, since makeup and sunscreen residue can affect the UV images. We'll let you know what to remove.
-
-10. **What happens to my photos?** Your images are kept private and used only to inform your personal plan. They aren't shared or published without your explicit permission.
-
-11. **Is there a fee for the skin analysis?** It's offered as the first step in planning your care with House of Rose — pricing for any treatments it leads to is confirmed with your provider afterward. (Confirm current fee policy with the studio.)
-
-12. **Will you push me to book something?** No. The point is clarity, not pressure. Sometimes the honest recommendation is home care, or "keep doing what's working." You leave with a plan and no obligation.
-
-13. **Can it tell me exactly what treatment I need?** It helps *guide* the decision, but the licensed provider confirms your candidacy, the right treatment, and the right sequence at consultation. Not every client is a candidate for every treatment, and individual outcomes vary.
-
-14. **Which treatments does it usually lead to?** It depends on what your skin shows. Common paths include Microneedling for texture and fine lines, peels or Glo2Facial for pigmentation and sun-related cues, corrective programs for acne, and — where appropriate — an injectable consult with our RN. Topical PRF may be considered as an adjunct; the scan routes you to the right lane.
-
-15. **Is the M17 a medical imaging device?** No. It's an aesthetic skin-imaging system used to support cosmetic consultation and planning — not medical imaging, and not a substitute for evaluation by a licensed medical provider.
-
----
-
-## 10. Provider + compliance notes
-
-**Whose lane:** cross-cutting **front door**. It is *performed within* whichever consultation you're in and **routes** to the right provider — Amber (advanced facials, PRF **topical only**), Diana (injectables, IV, GLP-1), Brandy (basic/maintenance facials, facial waxing). The scan itself does not "belong" to one lane; the *destination* does. Never let the copy imply the analysis prescribes an injectable — that decision is Diana's, at consultation.
-
-**Place safeguards where the capability creates the need:** when explaining what the scan evaluates,
-state that it supports cosmetic consultation and is not medical diagnosis. Treatment recommendations
-belong with the licensed provider wherever the copy discusses next steps. Use candidacy and outcome-
-variation language only when making a candidacy or results claim; a booking link or factual device label
-does not need the full block.
-
-**Phrases to AVOID for this topic specifically:**
-- ❌ "diagnoses," "detects disease," "detects/screens for skin cancer," "detects melanoma" (the web literature mentions melanoma-detection claims for other devices — **do not import them**).
-- ❌ "medical imaging," "medical-grade diagnostic," "clinical diagnosis."
-- ❌ "guaranteed results," "erases/eliminates," "anti-aging," "turn back the clock," "age-defying."
-- ❌ Any specific "analyzes X indicators / X concerns" count unless the studio's own M17 manual confirms it — the source PDF explicitly flags that public seller pages disagree ("18 analysis images" vs "18+5+1 dimensions"). Say **"multiple skin concerns across multiple imaging modes."**
-- ❌ "about a minute" as a hard timing claim (source PDF flags it as unverified). Say **"only a few minutes."**
-- ❌ "FDA-approved" / "clinically proven" (not verified for this device).
-- ❌ Any specific AI "database size" claim (source PDF flags it unverified).
-
-**SAY INSTEAD:** "helps us see / evaluate," "designed to," "supports personalized recommendations," "helps guide your plan," "for the appearance of," "many clients notice," "evidence-based first step," "see your skin." Positioning stays **squarely aesthetic**.
-
----
-
-## 11. Journey links
-
-**Pages that should link *into* `/skin-analysis/`:**
-- Home `/` — as the marquee "start here" entry point.
-- `/services/` and `/services/collections/facials/` — link to skin analysis when imaging would answer
-  a real selection question.
-- Every concern page: `/concerns/acne-scarring/`, `/concerns/dark-circles/`, `/concerns/fine-lines-laxity/`, `/concerns/hair-thinning/`, `/concerns/stretch-marks/`, `/concerns/sun-damage/` — each should offer "See your skin first → skin analysis."
-- `/experience/`, `/faq/`, and `/services/microneedling/` where pre-visit imaging is relevant.
-- High-consideration treatment pages: `/services/microneedling/`, `/services/prf/`,
-  `/services/glo2facial/`, and `/services/biorepeel/`.
-
-**Where `/skin-analysis/` should link *out* to (it's the router):**
-- All six concern pages (already implemented as the concern-chip grid — keep and expand to any new concern pages).
-- Current treatment hubs it may route to: `/services/microneedling/`, `/services/prf/`,
-  `/services/glo2facial/`, `/services/biorepeel/`, `/services/collections/facials/`, and
-  `/services/collections/injectables-bio-fillers/`.
-- The reviewed current program route is `/packages/face-reality-12-week-program/`; do not invent a
-  package route from a treatment sequence.
-- Booking/lead: GlossGenius + the on-page lead form (already present).
-
-**Proposed new pages (type + slug):**
-- **New concern pages** (router destinations the M17 reads but the site can't route to yet): `/concerns/pigmentation-melasma/`, `/concerns/redness-rosacea-appearance/`, `/concerns/pores-congestion/`, `/concerns/dehydration-barrier/`.
-- **Comparison** (`comparison`): `/compare/ai-skin-analysis-vs-visual-consultation/` only if a reviewed,
-  materially useful comparison is approved.
-- **Appointment information:** extend `/skin-analysis/` or the relevant service's visit information
-  when more verified detail about the three image views is needed; do not create a separate guide route.
-- Optionally a **Sanity `service` doc** for skin analysis so it appears in service listings and JSON-LD is a first-class `service` rather than only the singleton (decision needed — see gaps).
-
----
-
-## 12. Verified House of Rose use
-
-- **Three image types.** The current analysis uses natural, polarized, and UV views to document
-  different visible skin features for the consultation.
-- **A routing tool, not a diagnosis.** The images may support a home-care discussion or a handoff to a
-  relevant provider. They do not diagnose a condition or prescribe an injectable.
-- **Provider identity stays explicit.** Name Amber Mingione, Licensed Esthetician; Diana Morrison, RN;
-  or Brandy, Licensed Esthetician when that person is part of the recommendation.
-- **A repeatable baseline.** Standardized images can be compared over time when follow-up imaging is
-  relevant. Do not turn that comparison into a promised outcome.
-- **Locally grounded.** Advanced skin imaging is available at the House of Rose practice in **Punta
-  Gorda**, serving Charlotte County and Southwest Florida. Keep walk-in and appointment guidance in
-  the direct visit FAQ rather than treating it as positioning copy.
-- **Copy boundary.** Describe the analysis as support for cosmetic consultation and treatment
-  planning. Do not call it medical diagnosis or promise that it selects a particular service.
-
----
-
-## Sources
-
-**Local docs read (primary truth):**
-- The former local M17 specification summary and researched PDF are not present in the current
-  repository. Treat enumerated device specifications as unverified until they are checked against the
-  studio's manual or current manufacturer documentation.
-- `docs/internal_only/pricing/advanced-facials-master-menu.md` — confirms skin analysis is part of the consultation, no standalone price; treatment "from" prices.
-
-**Sanity content consulted (published snapshot):**
-- Concerns: `acne-scarring`, `dark-circles`, `fine-lines-laxity`, `hair-thinning`, `stretch-marks`, `sun-damage`.
-- Collections: `skin-renewal`, `injectables-aesthetics`, `wellness-restoration`, `beauty-enhancements`.
-- Services (routing targets): `microchanneling`, `prf-microneedling`, `glo2facial`, `biorepeel`, plus PRF/Procell body + injectable services.
-- Packages: `face-reality-12-week-program`, `biorepeel-series-of-4`, and Microneedling-series records. Any legacy package slug containing `microchanneling` is an internal identifier only and must not create a separate public service.
-- Live singleton: `skinAnalysis` (`/skin-analysis/`) — current hero/steps/looks-at/concern-chips/FAQ; no price; lead form + GlossGenius CTA.
-
-**Web sources (mechanism/framing only — no prices, no medical claims imported):**
-- PMC review, "The mechanism and application of computer-assisted full facial skin imaging systems" (`pmc.ncbi.nlm.nih.gov/articles/PMC10988667/`) — peer-reviewed; authoritative on white/polarized/UV light modes, quantified parameters, standardized before/after tracking, and imaging limitations (makeup/hair/erythema confounders).
-- Canfield Scientific VISIA (`canfieldsci.com/imaging-systems/visia-complexion-analysis/`) — manufacturer of the reference multi-spectral facial imaging system; corroborates surface-vs-subsurface capture and complexion metrics.
-- General multi-spectral skin-imaging explainers (VISIA-class) for the visual-consult-vs-imaging framing — used only for §5 comparison logic, not for claims or pricing.
+# Advanced Skin Imaging & Analysis — Current Research Brief
+
+> **Reviewed:** 2026-08-14
+> **Purpose:** factual source material for `/skin-analysis/`. This is research, not public copy, a
+> diagnostic protocol, or permission to create additional routes.
+
+## Current House of Rose facts
+
+| Appointment | Public price | Booking |
+|---|---:|---|
+| Skin Analysis & Consultation | $65 | Direct online booking |
+
+Advanced Skin Imaging & Analysis photographs the skin under three lighting views: standard,
+cross-polarized, and UV. The images make visible patterns easier to examine and provide a consistent
+visual baseline. They do not determine the medical cause of a pattern, diagnose a condition, screen
+for skin cancer, or select a treatment.
+
+The public service name is `Advanced Skin Imaging & Analysis`. Do not lead with a manufacturer model,
+AI claim, database size, score, or indicator count. No current owner source establishes those details
+as public decision facts.
+
+## What each image adds
+
+- **Standard light** records the visible surface, including texture, pores, fine lines, and spots seen
+  in ordinary light.
+- **Cross-polarized light** reduces surface reflection so pigment and redness patterns are easier to
+  examine beside the standard photograph.
+- **UV light** adds a fluorescence-based view. Concentrated pigment may appear darker, and
+  fluorescence associated with some porphyrins may be visible.
+
+Compare the views with one another. No single image explains the cause of a visible pattern. Hair,
+facial expression, makeup, sunscreen residue, and other material on the skin can affect what appears.
+Taking the photographs takes a few minutes; the rest of the appointment is used to review them and
+answer the client's questions.
+
+## Public-use boundaries
+
+- State the verified **$65** price plainly. It is a paid appointment.
+- Do not make skin imaging a mandatory first step, front door, router, funnel, or prerequisite for
+  another service. The current page says it is optional and useful when a client is unsure where to
+  begin or wants a clearer baseline.
+- Do not say the analysis builds, sequences, prescribes, or personalizes a treatment plan. The images
+  support a conversation; a licensed provider makes any later treatment decision.
+- Do not infer the provider from internal staffing responsibilities. Name a practitioner only when a
+  current owner source verifies that person for the appointment, and include the required licence type.
+- Do not claim diagnosis, disease detection, cancer screening, medical imaging, clinical proof,
+  automated certainty, or treatment-selection accuracy.
+- Do not publish a fixed re-imaging cadence or promise measurable treatment progress. A later image may
+  be compared with the baseline when follow-up imaging is relevant.
+- Do not use this brief to advertise a concern route or service absent from the current public
+  inventory.
+- Do not import historical treatment prices, packages, add-ons, home-care sales paths, or proposed
+  concern pages into the appointment.
+- Place safeguards where the capability creates the need: the non-diagnostic boundary belongs beside
+  the image explanation, while treatment authority belongs beside any discussion of next steps.
+
+## Client questions the page should answer
+
+1. **What does the appointment cost?** The Skin Analysis & Consultation appointment is $65.
+2. **Is it required before treatment?** No. It may be useful when a client is unsure where to begin or
+   wants a visual baseline.
+3. **Does it hurt?** No needles or treatment products are used to take the photographs.
+4. **How long does image capture take?** A few minutes; the appointment also includes reviewing the
+   photographs and answering questions.
+5. **Can it diagnose a condition?** No. It records visible patterns and cannot determine their medical
+   cause or screen for skin cancer. Medical skin concerns require an appropriately licensed medical
+   provider.
+6. **Can makeup or sunscreen affect the images?** Yes. Residue and other material can change what
+   appears, particularly in a UV image.
+7. **Can House of Rose publish the images?** Not from appointment consent alone. Website publication
+   requires separately recorded written permission.
+
+## Canonical public paths
+
+- `/skin-analysis/` — the appointment, direct booking action, lead form, visible FAQs, and structured
+  data.
+- `/services/` — current service directory.
+- `/concerns/fine-lines-laxity/`, `/concerns/acne-scarring/`, `/concerns/sun-damage/`,
+  `/concerns/dark-circles/`, `/concerns/stretch-marks/`, and `/concerns/texture/` — the six reviewed
+  concern links currently shown on the page.
+
+Use trailing slashes. Do not require every concern or service page to link back to skin analysis, and
+do not create a comparison, service duplicate, local-area page, or additional concern from this brief
+alone.
+
+## Sources and authority
+
+1. `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — current $65 appointment.
+2. `packages/web/src/pages/skin-analysis.astro` — reviewed public name, three views, purpose,
+   limitations, privacy boundary, direct-booking action, and FAQ answers.
+3. `packages/web/src/lib/booking.ts` — verified direct booking URL.
+4. `docs/SEO-AEO-PLAYBOOK.md` and `docs/CONTENT-MODEL-MAP.md` — route and structured-data rules.

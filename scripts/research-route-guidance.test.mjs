@@ -112,3 +112,27 @@ test('PRF research cannot regenerate the rejected strategy artifact', () => {
   );
   assert.match(prfResearch, /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232/);
 });
+
+test('skin imaging research follows current optional-service and concern routes', () => {
+  const brief = readFileSync(new URL('advanced-skin-imaging.md', researchRoot), 'utf8');
+
+  for (const slug of [
+    'fine-lines-laxity',
+    'acne-scarring',
+    'sun-damage',
+    'dark-circles',
+    'stretch-marks',
+    'texture',
+  ]) {
+    assert.match(brief, new RegExp(`/concerns/${slug}/`));
+  }
+
+  assert.doesNotMatch(
+    brief,
+    /\/concerns\/(?:hair-thinning|pigmentation-melasma|redness-rosacea-appearance|pores-congestion|dehydration-barrier)\//i,
+  );
+  assert.doesNotMatch(
+    brief,
+    /provider lane|first step and the router|front-door consultation|dermatologist|EZ-?Gel|PRF body|body PRF/i,
+  );
+});
