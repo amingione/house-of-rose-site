@@ -65,6 +65,7 @@ const research = ({
 const services = [
   {
     documentId: 'service-morpheus8',
+    slug: 'morpheus8',
     title: 'Morpheus8 RF Microneedling',
     evidenceMedia: [
       media({
@@ -82,6 +83,7 @@ const services = [
   },
   {
     documentId: 'service-lumecca-peak-ipl',
+    slug: 'lumecca-peak-ipl',
     title: 'Lumecca Peak IPL Photofacial',
     evidenceMedia: [
       media({
@@ -112,6 +114,7 @@ const services = [
   },
   {
     documentId: 'service-forma-rf-facial',
+    slug: 'forma-rf-facial',
     title: 'Forma RF Facial',
     fieldUpdates: {
       'faqs[_key=="areas"].answer':
@@ -315,7 +318,7 @@ async function apply() {
     `drafts.${service.documentId}`,
   ]);
   const existingDocuments = await client.fetch(
-    '*[_id in $ids]{_id, _type, title, status}',
+    '*[_id in $ids]{_id, _type, title, "slug":slug.current, status}',
     { ids: managedIds },
   );
   const existingById = new Map(existingDocuments.map((document) => [document._id, document]));
@@ -326,6 +329,10 @@ async function apply() {
     assert(
       ['live', 'actual-menu'].includes(published.status),
       `${service.title} is not currently public.`,
+    );
+    assert(
+      published.slug === service.slug,
+      `${service.documentId} resolves to ${published.slug ?? 'no slug'}, not ${service.slug}.`,
     );
   }
 
