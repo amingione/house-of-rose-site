@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from './validation/publicCopy';
 
 /**
  * Case Study — AEO page type #6 (before/after proof).
@@ -14,8 +15,8 @@ export const caseStudy = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'e.g. "PRF Microneedling — Texture & Skin Quality, 3 Sessions".',
-      validation: (R) => R.required(),
+      description: 'Name the treatment and documented subject specifically. Do not turn the case into a promotional result headline.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -50,10 +51,36 @@ export const caseStudy = defineType({
       fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
       validation: (R) => R.required(),
     }),
-    defineField({ name: 'clientProfile', title: 'Client Profile', type: 'string', description: 'De-identified, e.g. "Woman, 40s, sun damage". No PII.' }),
-    defineField({ name: 'protocol', title: 'Protocol', type: 'text', rows: 3, description: 'What was done — sessions, products, add-ons.' }),
-    defineField({ name: 'timeframe', title: 'Timeframe', type: 'string', description: 'e.g. "12 weeks, 3 sessions".' }),
-    defineField({ name: 'outcome', title: 'Outcome', type: 'text', rows: 3, description: 'Honest result — no guarantees, no medical claims.' }),
+    defineField({
+      name: 'clientProfile',
+      title: 'Client Profile',
+      type: 'string',
+      description: 'De-identified facts that help interpret the case. Include no PII and omit demographics that are not relevant.',
+      validation: (R) => R.custom(validatePublicCopy),
+    }),
+    defineField({
+      name: 'protocol',
+      title: 'Protocol',
+      type: 'text',
+      rows: 3,
+      description: 'Record the verified services, session count, and any concurrent products or add-ons that contributed. Include enough context to interpret the photographs; do not narrate a generic treatment process.',
+      validation: (R) => R.custom(validatePublicCopy),
+    }),
+    defineField({
+      name: 'timeframe',
+      title: 'Timeframe',
+      type: 'string',
+      description: 'State the documented interval and session count, such as “12 weeks · 3 sessions.”',
+      validation: (R) => R.custom(validatePublicCopy),
+    }),
+    defineField({
+      name: 'outcome',
+      title: 'Outcome',
+      type: 'text',
+      rows: 5,
+      description: 'Describe only the observable documented change and any context needed to understand it. Do not promise repeatability, overstate causation, or reduce the case to a generic benefit line.',
+      validation: (R) => R.custom(validatePublicCopy),
+    }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
     defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
   ],
