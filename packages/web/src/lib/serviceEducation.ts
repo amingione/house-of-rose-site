@@ -732,11 +732,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'Facial radiofrequency through surface electrodes.',
-      metaDescription: 'Compare House of Rose Forma facial and Forma Plus body-area prices from $600 to $3,000, plus the separate $2,599 Forma + Lumecca bundle.',
+      metaDescription: 'Compare six Forma facial-area prices from $600 to $3,000, five Forma Plus body-area prices from $1,500 to $2,000, and the $2,599 Forma + Lumecca bundle.',
       paragraphs: [
         device.whatItIs,
         device.whereItFits,
-        'House of Rose also lists Forma Plus separately for the abdomen, arms, inner-outer thighs, lower back, and knees.',
+        'For body areas, House of Rose offers Forma Plus for the abdomen, arms, inner-outer thighs, lower back, and knees.',
       ],
       distinctions: [
         {
@@ -754,8 +754,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ...(bundle
           ? [
               {
-                label: 'How Forma pricing is organized',
-                text: `Forma has six facial-area prices. Forma Plus has five separate body-area prices. The ${formatUsd(bundle.priceUsd)} Forma + Lumecca option is a separate bundle listing.`,
+                label: 'Face, body, or bundle',
+                text: `Forma facial-area prices run from $600 to $3,000. Forma Plus body-area prices run from $1,500 to $2,000. The Forma + Lumecca Bundle is ${formatUsd(bundle.priceUsd)}.`,
               },
             ]
           : []),
@@ -764,8 +764,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? {
             heading: 'Forma and Forma Plus pricing by area',
             intro: bundle
-              ? `Six facial-area listings and five Forma Plus body-area listings range from $600 to $3,000. ${bundle.name} is listed separately at ${formatUsd(bundle.priceUsd)}.`
-              : 'Each Forma and Forma Plus treatment area has its own listed price.',
+              ? `Forma has six facial-area prices from $600 to $3,000. Forma Plus has five body-area prices from $1,500 to $2,000. ${bundle.name} is ${formatUsd(bundle.priceUsd)}.`
+              : 'The price follows the facial or body area being treated.',
             verifiedAt: 'August 6, 2026',
             items: [
               ...areaPrices.map((item) => ({
@@ -781,7 +781,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
                     {
                       name: bundle.name,
                       price: formatUsd(bundle.priceUsd),
-                      note: 'Separate bundle listing',
+                      note: 'Bundle price',
                     },
                   ]
                 : []),
@@ -801,16 +801,16 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? [
               {
                 question: 'Why do Forma and Forma Plus prices range from $600 to $3,000?',
-                answer: 'Forma has six separately priced facial areas: face, neck, face and neck, eyes, jawline, and nasolabial folds. Forma Plus has five separately priced body areas: abdomen, arms, inner-outer thighs, lower back, and knees.',
+                answer: 'Forma facial areas are face, neck, face and neck, eyes, jawline, and nasolabial folds, with prices from $600 to $3,000. Forma Plus body areas are abdomen, arms, inner-outer thighs, lower back, and knees, with prices from $1,500 to $2,000.',
               },
               {
                 question: `Is the ${formatUsd(bundle.priceUsd)} Forma + Lumecca Bundle part of the area-price range?`,
-                answer: `No. ${bundle.name} is a separate bundle listing priced at ${formatUsd(bundle.priceUsd)}.`,
+                answer: `No. The $600–$3,000 range belongs to the Forma and Forma Plus area prices. ${bundle.name} has its own ${formatUsd(bundle.priceUsd)} price.`,
               },
             ]
           : []),
       ],
-      faqHeading: 'Technology, facial and body areas, and the separate bundle.',
+      faqHeading: 'Technology, facial and body areas, and the bundle.',
       links: [
         {
           href: '/services/morpheus8/',
