@@ -33,7 +33,7 @@ const comparisonsListSchema = comparisons.length
 
 <BaseLayout
   title="Treatment Comparisons | House of Rose Aesthetics"
-  description="View side-by-side treatment comparisons from House of Rose Aesthetics in Punta Gorda, Florida, with links to each service page."
+  description="Compare how selected House of Rose services differ by technology, material, purpose, appointment facts, and the limits of available evidence."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {comparisonsListSchema && <SchemaMarkup item={comparisonsListSchema} slot="head" />}
@@ -43,7 +43,7 @@ const comparisonsListSchema = comparisons.length
       <span class="kicker">Compare</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Compare services side by side.</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Each guide explains how two services differ, what the available evidence can and cannot establish, and where to read about each appointment in full.
+        Each guide separates the technology or material, the concern being discussed, the appointment facts, and the limits of available evidence. A comparison can clarify a difference; it cannot decide that one service fits every person.
       </p>
     </div>
   </section>
@@ -85,12 +85,12 @@ const comparisonsListSchema = comparisons.length
           measures. That is usually more useful than asking which treatment wins.
         </p>
         <p class="mt-5 text-[15px] leading-[1.8] text-muted">
-          Each comparison links back to both complete service pages. Read those before booking for the
-          current appointment details, then bring the one difference you still want explained to the
-          practice.
+          Confirm the individual service when the provider, appointment length, published price, or booking
+          path matters. When the remaining question is about the technology, material, or evidence, bring
+          that exact point to the practice.
         </p>
         <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
-          <a href="/services/" class="learn-more hover:text-gold">Review all services</a>
+          <a href="/services/" class="learn-more hover:text-gold">See current appointment details</a>
           <a href="/contact/" class="learn-more hover:text-gold">Ask a specific question</a>
         </div>
       </div>
