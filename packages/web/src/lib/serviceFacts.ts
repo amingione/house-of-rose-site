@@ -43,7 +43,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   'facial-waxing':
     'Book Facial Waxing online by selecting Chin at $10 for 30 minutes, Upper Lip at $10 for 10 minutes, Eyebrows at $15 for 10 minutes, or Eyebrow Shape, Trim & Wax at $25 for 25 minutes.',
   'forma-rf-facial':
-    'Call House of Rose with the area you want to discuss: face, neck, face and neck, eyes, jawline, or nasolabial folds. Forma delivers radiofrequency through surface electrodes without microneedles; Morpheus8 is RF microneedling, and Lumecca Peak is IPL for pigment-related questions.',
+    'Call House of Rose with the area you want to discuss. Forma covers face, neck, face and neck, eyes, jawline, and nasolabial folds; Forma Plus covers abdomen, arms, inner-outer thighs, lower back, and knees. Forma delivers radiofrequency through surface electrodes without microneedles; Morpheus8 is RF microneedling, and Lumecca Peak is IPL for pigment-related questions.',
   'lumecca-peak-ipl':
     'Request the $50 consultation and name one of the current treatment areas: legs; full face; chest; neck; face and neck; face, neck, and chest; spot treatment; or hands.',
   morpheus8:
