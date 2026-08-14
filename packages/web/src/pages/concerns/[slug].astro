@@ -32,7 +32,7 @@ const concernEducation = slug ? getConcernEducation(slug) : undefined;
 
 const pageTitle = `${concern.title} | House of Rose Aesthetics`;
 const pageDescription = concernEducation
-  ? concernEducation.lead
+  ? concernEducation.metaDescription ?? concernEducation.lead
   : `See the House of Rose Aesthetics services currently associated with ${concern.title.toLowerCase()} in Punta Gorda, Florida.`;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';

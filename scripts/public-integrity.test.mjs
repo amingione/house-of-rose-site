@@ -1584,26 +1584,24 @@ test('service FAQs remain optional and match FAQPage schema whenever they are pu
   assert.equal(failures.length, 0, formatFailures('Service FAQ parity regression', failures));
 });
 
-test('service detail metadata stays within the search-snippet contract', () => {
-  const serviceRoot = path.join(DIST_ROOT, 'services');
+test('indexable public metadata stays within the search-snippet ceiling', () => {
   const failures = [];
 
-  for (const entry of readdirSync(serviceRoot, { withFileTypes: true })) {
-    if (!entry.isDirectory() || entry.name === 'collections') continue;
-    const file = path.join(serviceRoot, entry.name, 'index.html');
-    if (!existsSync(file)) continue;
-
+  for (const file of publicHtmlFiles) {
     const html = readFileSync(file, 'utf8');
+    const robots = html.match(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '';
+    if (/\bnoindex\b/i.test(robots)) continue;
+
     const description = decodeHtmlEntities(
       html.match(/<meta\b(?=[^>]*\bname=["']description["'])[^>]*\bcontent=["']([^"']*)["'][^>]*>/i)?.[1] ?? '',
     );
 
     if (!description || description.length > 160) {
-      failures.push(`${entry.name}: meta description is ${description.length} characters`);
+      failures.push(`${routeForHtmlFile(file)}: meta description is ${description.length} characters`);
     }
   }
 
-  assert.equal(failures.length, 0, formatFailures('Service metadata length regression', failures));
+  assert.equal(failures.length, 0, formatFailures('Public metadata length regression', failures));
 });
 
 test('service appointment sections give service-specific next-step guidance', () => {

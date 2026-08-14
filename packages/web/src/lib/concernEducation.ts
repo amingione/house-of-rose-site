@@ -1,6 +1,7 @@
 export interface ConcernEducation {
   heading: string;
   lead: string;
+  metaDescription?: string;
   detail: string;
   distinction: string;
   consultationHeading: string;
@@ -59,6 +60,7 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
   'volume-loss': {
     heading: 'Where does the face look less full or supported?',
     lead: 'Less fullness or support can look like a hollow, fold, or shift in facial shape. A line that appears mainly with expression points to the neurotoxin menu instead.',
+    metaDescription: 'Less facial fullness can look like a hollow, fold, or change in shape. Expression-related lines point to a different neurotoxin conversation.',
     detail: 'House of Rose dermal fillers use manufactured hyaluronic-acid gels. Injectable PRF is prepared from a small sample of your own blood. Botox and Daxxify address movement-related lines.',
     distinction: 'Look straight on and from the side. A hollow, fold, and expression line can appear close together; seeing the face from both angles makes the difference easier to point out.',
     consultationHeading: 'Tell us where the face looks less supported.',
