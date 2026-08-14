@@ -6,6 +6,14 @@ export interface DeviceServiceMenuFacts {
   readonly bookingMode: DeviceServiceBookingMode;
   readonly duration?: string;
   readonly priceUsd?: number;
+  readonly areaPrices?: readonly {
+    readonly name: string;
+    readonly priceUsd: number;
+  }[];
+  readonly bundle?: {
+    readonly name: string;
+    readonly priceUsd: number;
+  };
   readonly consultation?: {
     readonly name: string;
     readonly priceUsd: number;
@@ -66,6 +74,18 @@ export const DEVICE_SERVICE_EDUCATION = {
       'Forma delivers radiofrequency through electrodes at the skin surface and does not use microneedles. Morpheus8 is the InMode service that combines microneedling with fractional radiofrequency.',
     menu: {
       bookingMode: 'call',
+      areaPrices: [
+        { name: 'Face', priceUsd: 2000 },
+        { name: 'Neck', priceUsd: 1500 },
+        { name: 'Face & Neck', priceUsd: 3000 },
+        { name: 'Eyes', priceUsd: 600 },
+        { name: 'Jawline', priceUsd: 1500 },
+        { name: 'Nasolabial Folds', priceUsd: 600 },
+      ],
+      bundle: {
+        name: 'Forma + Lumecca Bundle',
+        priceUsd: 2599,
+      },
     },
   },
   glo2facial: {

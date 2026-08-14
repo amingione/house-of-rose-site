@@ -49,7 +49,7 @@ export interface ServiceEducationContent {
 }
 
 const formatUsd = (amountUsd: number, qualifier?: 'per unit'): string =>
-  `$${amountUsd}${qualifier ? ` ${qualifier}` : ''}`;
+  `$${amountUsd.toLocaleString('en-US')}${qualifier ? ` ${qualifier}` : ''}`;
 
 const formatMinutes = (durationMinutes: number): string =>
   `${durationMinutes} minutes`;
@@ -665,10 +665,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   }
 
   if (device.slug === 'forma-rf-facial') {
+    const areaPrices = device.menu.areaPrices ?? [];
+    const bundle = device.menu.bundle;
+
     return {
       kicker: device.title,
       heading: 'Facial radiofrequency through surface electrodes.',
-      metaDescription: 'Forma at House of Rose delivers facial radiofrequency through surface electrodes. Compare its role with Morpheus8 and Lumecca Peak IPL.',
+      metaDescription: 'Forma at House of Rose delivers facial radiofrequency through surface electrodes. Compare six area prices from $600 to $3,000 and the separate $2,599 Forma + Lumecca bundle.',
       paragraphs: [device.whatItIs, device.whereItFits],
       distinctions: [
         {
@@ -683,7 +686,39 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           label: 'When visible pigment is the question',
           text: 'Lumecca Peak is the InMode IPL handpiece House of Rose lists for visible pigment, uneven tone, and selected texture concerns.',
         },
+        ...(bundle
+          ? [
+              {
+                label: 'How Forma pricing is organized',
+                text: `Face, neck, face and neck, eyes, jawline, and nasolabial folds each have a separate listed price. The ${formatUsd(bundle.priceUsd)} Forma + Lumecca option is a separate bundle listing.`,
+              },
+            ]
+          : []),
       ],
+      menu: areaPrices.length > 0
+        ? {
+            heading: 'Forma pricing by area',
+            intro: bundle
+              ? `Six area listings range from $600 to $3,000. ${bundle.name} is listed separately at ${formatUsd(bundle.priceUsd)}.`
+              : 'Each Forma treatment area has its own listed price.',
+            verifiedAt: 'August 6, 2026',
+            items: [
+              ...areaPrices.map((item) => ({
+                name: item.name,
+                price: formatUsd(item.priceUsd),
+              })),
+              ...(bundle
+                ? [
+                    {
+                      name: bundle.name,
+                      price: formatUsd(bundle.priceUsd),
+                      note: 'Separate bundle listing',
+                    },
+                  ]
+                : []),
+            ],
+          }
+        : undefined,
       faqs: [
         {
           question: 'Does Forma use needles?',
@@ -693,8 +728,20 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           question: 'How do Forma, Morpheus8, and Lumecca Peak differ?',
           answer: 'Forma delivers radiofrequency through surface electrodes. Morpheus8 combines microneedling with fractional radiofrequency. Lumecca Peak delivers filtered optical energy as IPL.',
         },
+        ...(bundle
+          ? [
+              {
+                question: 'Why do Forma prices range from $600 to $3,000?',
+                answer: 'The range covers six separately priced areas: face, neck, face and neck, eyes, jawline, and nasolabial folds. It is not one variable price for the same appointment.',
+              },
+              {
+                question: `Is the ${formatUsd(bundle.priceUsd)} Forma + Lumecca Bundle part of the area-price range?`,
+                answer: `No. ${bundle.name} is a separate bundle listing priced at ${formatUsd(bundle.priceUsd)}.`,
+              },
+            ]
+          : []),
       ],
-      faqHeading: 'One useful distinction: how each device delivers energy.',
+      faqHeading: 'Technology, treatment areas, and the separate bundle.',
       links: [
         {
           href: '/services/morpheus8/',
