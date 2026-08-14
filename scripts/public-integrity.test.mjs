@@ -918,6 +918,25 @@ test('privacy requests remain distinct from browser consent choices', () => {
   }
 });
 
+test('shared form confirmation routes time-sensitive and emergency needs safely', () => {
+  const file = path.join(DIST_ROOT, 'thank-you/index.html');
+  assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+  const html = readFileSync(file, 'utf8');
+  const text = visibleText(mainHtml(html));
+
+  for (const [label, pattern] of [
+    ['same-day appointment change', /same-day appointment change/i],
+    ['unexpected post-appointment change', /unexpected change[\s\S]{0,100}House of Rose appointment/i],
+    ['practice-hours phone handoff', /\(844\) 941-7673[\s\S]{0,120}Monday through Friday[\s\S]{0,80}9 AM[–-]5 PM ET/i],
+    ['routine-reply exception', /instead of waiting[\s\S]{0,80}routine reply/i],
+    ['emergency boundary', /medical emergency[\s\S]{0,80}(?:call 911|emergency care)/i],
+  ]) {
+    assert.match(text, pattern, `Thank-you page is missing ${label}.`);
+  }
+  assert.match(html, /<meta\s+name="robots"\s+content="[^"]*noindex[^"]*nofollow/i);
+  assert.ok(html.includes('href="tel:+18449417673"'), 'Thank-you page is missing the verified phone link.');
+});
+
 test('suite-rental application explains the next step without changing the form contract', () => {
   const file = path.join(DIST_ROOT, 'rent-a-room/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
@@ -1150,12 +1169,22 @@ test('priority service pages retain reviewed facts instead of falling back to th
     biorepeel: [
       'BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment at $250.',
       'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment.',
+      'Amber Mingione, Licensed Esthetician, provides the Gold Body, Advanced Acne Scarring, and Duo Gold Spot Upgrade appointments',
       'TCA stands for trichloroacetic acid',
       'Meet Brandy',
+      'Meet Amber Mingione, Licensed Esthetician',
       'Compare the Microneedling service',
       'BioRePeel Cl3 Rejuvenation',
       '$250',
       '45 minutes',
+      'BioRePeel Gold — Body',
+      '$325',
+      'BioRePeel Advanced — Acne Scarring',
+      '$450',
+      '75 minutes',
+      'BioRePeel Duo — Gold Spot Upgrade',
+      '$395',
+      '60 minutes',
     ],
     microneedling: [
       'Procell Microchanneling is the device-specific name used for this Microneedling service.',
