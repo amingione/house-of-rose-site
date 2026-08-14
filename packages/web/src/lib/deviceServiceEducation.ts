@@ -10,6 +10,10 @@ export interface DeviceServiceMenuFacts {
     readonly name: string;
     readonly priceUsd: number;
   }[];
+  readonly formaPlusAreaPrices?: readonly {
+    readonly name: string;
+    readonly priceUsd: number;
+  }[];
   readonly singleAndSeriesPrices?: readonly {
     readonly name: string;
     readonly singlePriceUsd: number;
@@ -90,6 +94,13 @@ export const DEVICE_SERVICE_EDUCATION = {
         { name: 'Eyes', priceUsd: 600 },
         { name: 'Jawline', priceUsd: 1500 },
         { name: 'Nasolabial Folds', priceUsd: 600 },
+      ],
+      formaPlusAreaPrices: [
+        { name: 'Abdomen', priceUsd: 2000 },
+        { name: 'Arms', priceUsd: 2000 },
+        { name: 'Inner-Outer Thighs', priceUsd: 2000 },
+        { name: 'Lower Back', priceUsd: 1750 },
+        { name: 'Knees', priceUsd: 1500 },
       ],
       bundle: {
         name: 'Forma + Lumecca Bundle',

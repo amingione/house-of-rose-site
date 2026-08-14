@@ -714,13 +714,18 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
 
   if (device.slug === 'forma-rf-facial') {
     const areaPrices = device.menu.areaPrices ?? [];
+    const formaPlusAreaPrices = device.menu.formaPlusAreaPrices ?? [];
     const bundle = device.menu.bundle;
 
     return {
       kicker: device.title,
       heading: 'Facial radiofrequency through surface electrodes.',
-      metaDescription: 'Forma RF Facial at House of Rose in Punta Gorda uses surface electrodes. Compare six area prices from $600 to $3,000 and the separate $2,599 bundle.',
-      paragraphs: [device.whatItIs, device.whereItFits],
+      metaDescription: 'Compare House of Rose Forma facial and Forma Plus body-area prices from $600 to $3,000, plus the separate $2,599 Forma + Lumecca bundle.',
+      paragraphs: [
+        device.whatItIs,
+        device.whereItFits,
+        'House of Rose also lists Forma Plus separately for the abdomen, arms, inner-outer thighs, lower back, and knees.',
+      ],
       distinctions: [
         {
           label: 'At the facial surface',
@@ -738,21 +743,25 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? [
               {
                 label: 'How Forma pricing is organized',
-                text: `Face, neck, face and neck, eyes, jawline, and nasolabial folds each have a separate listed price. The ${formatUsd(bundle.priceUsd)} Forma + Lumecca option is a separate bundle listing.`,
+                text: `Forma has six facial-area prices. Forma Plus has five separate body-area prices. The ${formatUsd(bundle.priceUsd)} Forma + Lumecca option is a separate bundle listing.`,
               },
             ]
           : []),
       ],
       menu: areaPrices.length > 0
         ? {
-            heading: 'Forma pricing by area',
+            heading: 'Forma and Forma Plus pricing by area',
             intro: bundle
-              ? `Six area listings range from $600 to $3,000. ${bundle.name} is listed separately at ${formatUsd(bundle.priceUsd)}.`
-              : 'Each Forma treatment area has its own listed price.',
+              ? `Six facial-area listings and five Forma Plus body-area listings range from $600 to $3,000. ${bundle.name} is listed separately at ${formatUsd(bundle.priceUsd)}.`
+              : 'Each Forma and Forma Plus treatment area has its own listed price.',
             verifiedAt: 'August 6, 2026',
             items: [
               ...areaPrices.map((item) => ({
                 name: item.name,
+                price: formatUsd(item.priceUsd),
+              })),
+              ...formaPlusAreaPrices.map((item) => ({
+                name: `Forma Plus — ${item.name}`,
                 price: formatUsd(item.priceUsd),
               })),
               ...(bundle
@@ -779,8 +788,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ...(bundle
           ? [
               {
-                question: 'Why do Forma prices range from $600 to $3,000?',
-                answer: 'The range covers six separately priced areas: face, neck, face and neck, eyes, jawline, and nasolabial folds. It is not one variable price for the same appointment.',
+                question: 'Why do Forma and Forma Plus prices range from $600 to $3,000?',
+                answer: 'Forma has six separately priced facial areas: face, neck, face and neck, eyes, jawline, and nasolabial folds. Forma Plus has five separately priced body areas: abdomen, arms, inner-outer thighs, lower back, and knees.',
               },
               {
                 question: `Is the ${formatUsd(bundle.priceUsd)} Forma + Lumecca Bundle part of the area-price range?`,
@@ -789,7 +798,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             ]
           : []),
       ],
-      faqHeading: 'Technology, treatment areas, and the separate bundle.',
+      faqHeading: 'Technology, facial and body areas, and the separate bundle.',
       links: [
         {
           href: '/services/morpheus8/',
