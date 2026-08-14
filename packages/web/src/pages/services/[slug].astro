@@ -60,7 +60,9 @@ const verifiedDuration = slug ? getVerifiedServiceDuration(slug) : undefined;
 const suppressHeroDuration = new Set(['injectables', 'microneedling', 'morpheus8', 'prf', 'prf-injections', 'prf-under-eyes']).has(slug ?? '');
 const displayDuration = suppressHeroDuration ? undefined : verifiedDuration ?? service.duration;
 const getChildTreatmentDuration = (childSlug: string, fallback?: string): string | undefined =>
-  childSlug === 'prf-under-eyes' ? undefined : getVerifiedServiceDuration(childSlug) ?? fallback;
+  ['injectables', 'prf-under-eyes'].includes(childSlug)
+    ? undefined
+    : getVerifiedServiceDuration(childSlug) ?? fallback;
 // Reviewed education owns the current facts for covered pages. Keep stale or
 // ambiguous Sanity price strings out of the hero and structured data.
 const displayServicePrice = serviceEducation ? undefined : service.price;
