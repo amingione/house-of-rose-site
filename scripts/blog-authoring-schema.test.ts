@@ -6,6 +6,7 @@ import {
   PUBLIC_BLOG_CATEGORIES,
   validateBlogPortableText,
 } from '../packages/studio/schemas/blogPost.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
   ALL_BLOG_POSTS_QUERY,
   ALL_BLOG_POST_SLUGS_QUERY,
@@ -110,8 +111,13 @@ test('related-service CTAs can resolve only to generated public service routes',
 
   assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
   assert.match(authoringFilter, /defined\(slug\.current\)/);
+  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
+  assert.deepEqual(relatedService?.options?.filterParams, {
+    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+  });
   assert.match(BLOG_POST_BY_SLUG_QUERY, /relatedService->status in \["live", "actual-menu"\]/);
   assert.match(BLOG_POST_BY_SLUG_QUERY, /defined\(relatedService->slug\.current\)/);
+  assert.match(BLOG_POST_BY_SLUG_QUERY, /!\(relatedService->slug\.current in \[/);
 });
 
 test('all public blog queries require published records with generated routes', () => {
