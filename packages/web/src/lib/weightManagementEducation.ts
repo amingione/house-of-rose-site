@@ -44,7 +44,7 @@ export const WEIGHT_MANAGEMENT_EDUCATION = {
   consultationRole:
     'The $25 covers the 40-minute consultation with Diana Morrison, RN. It does not include medication or ongoing program charges.',
   pricing:
-    'Call House of Rose for medication and ongoing program pricing. The verified public price is $25 for the consultation.',
+    'The 40-minute consultation is $25. Call House of Rose for medication and ongoing program pricing.',
   consultation: {
     name: 'GLP-1 Consultation',
     durationMinutes: 40,
