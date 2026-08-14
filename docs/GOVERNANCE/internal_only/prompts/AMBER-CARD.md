@@ -16,14 +16,15 @@ gate (`scripts/visual-editing/check-coverage.mjs`) skips it automatically. No
 allow-list entry or `data-sb-*` annotations required.
 
 ## Editing the contact details
-Change the values **in two places** and keep them identical:
+Start NAP changes in Sanity `siteSettings` and the canonical facts in `CLAUDE.md`. Then mirror the
+approved values in both static card files and keep them identical:
 1. The `const` block at the top of `amber.astro` (`PHONE_E164`, `EMAIL`, address, etc.).
 2. `public/amber.vcf` (the actual contact file phones import).
 
 ## NAP — canonical (source of truth = Sanity `siteSettings`)
 - Phone: **(844) 941-7673** → E.164 `+18449417673` (spells ROSE)
-- Email: **amber@houseofrosefl.com**
-- Address: **525 E. Olympia Ave. Unit 9, Punta Gorda, FL 33950** — note **"Unit 9"**,
+- Email: **info@houseofrosefl.com**
+- Address: **525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950** — note **"Unit 9"**,
   never "Suite/F" (the Canva card prints "Suite 9"; the site follows the
   canonical `Unit 9` for local-SEO consistency).
 
