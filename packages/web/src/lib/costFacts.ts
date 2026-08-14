@@ -31,13 +31,13 @@ const VERIFIED_AT = '2026-08-06';
 const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   'botox-cost-punta-gorda': {
     display: '$14 per unit',
-    metaDescription: 'Botox at House of Rose is $14 per product-specific unit. Learn why the total varies and how Daxxify units differ in Punta Gorda.',
+    metaDescription: 'Botox is $14 per unit at House of Rose in Punta Gorda. The 20-minute consultation is $50; Daxxify is also $14 per product-specific unit.',
     summary: 'Botox is priced at $14 per unit. The total reflects the number of units provided.',
     answer: 'As of August 6, 2026, Botox at House of Rose in Punta Gorda is $14 per unit.',
-    menuHeading: 'Botox is priced by the unit.',
-    faqHeading: 'What $14 per unit means.',
+    menuHeading: 'Botox, Daxxify, and the consultation.',
+    faqHeading: 'What each listed price means.',
     verifiedAt: VERIFIED_AT,
-    context: 'Botox and Daxxify are different neurotoxin products. Both are priced at $14 per product-specific unit, but a unit of one product is not equivalent to a unit of the other.',
+    context: 'The 20-minute Neuromodulator Consultation is $50. Botox and Daxxify are both $14 per product-specific unit, but their units cannot be compared or converted.',
     faqs: [
       {
         question: 'How much is Botox at House of Rose?',
@@ -48,12 +48,18 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
         answer: 'No. $14 is the published price per unit. The total reflects the number of Botox units provided.',
       },
       {
+        question: 'How much is a neuromodulator consultation?',
+        answer: 'The 20-minute Neuromodulator Consultation is $50. Botox or Daxxify treatment is priced separately by the number of product-specific units provided.',
+      },
+      {
         question: 'Is Daxxify included in the Botox price?',
         answer: 'No. Botox and Daxxify are different products. Each is priced at $14 per product-specific unit, and the matching rate does not establish the same dose or total price.',
       },
     ],
     items: [
+      { name: 'Neuromodulator Consultation', price: '$50', duration: '20 minutes' },
       { name: 'Botox', price: '$14 per unit', duration: '30 minutes' },
+      { name: 'Daxxify', price: '$14 per unit', duration: '60 minutes' },
     ],
   },
   'prf-microneedling-cost-punta-gorda': {
