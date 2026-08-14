@@ -9,6 +9,9 @@ import { breadcrumbList } from '@/lib/structuredData';
 const studies = await sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
+const resultsDescription = studies.length > 0
+  ? 'Consented before-and-after treatment cases from House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary.'
+  : 'House of Rose publishes before-and-after treatment cases only with written client consent. No client cases are currently published.';
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -18,7 +21,7 @@ const breadcrumb = breadcrumbList([
 
 <BaseLayout
   title="Before & After Results | House of Rose Aesthetics"
-  description="Consented before-and-after treatment cases from House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary."
+  description={resultsDescription}
   noindex={studies.length === 0}
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
