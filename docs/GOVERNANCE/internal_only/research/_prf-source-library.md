@@ -1,8 +1,9 @@
 # PRF Source Library — curated manifest for facial-aesthetics content
 
 > **Date catalogued:** 2026-07-12
-> **Provided by:** Amber (owner) — two personal research libraries in `~/Documents/`.
-> **Purpose:** the *single curated index* of PRF source material for Phase 2 research agents.
+> **Source:** Amber Mingione, Licensed Esthetician — two personal research libraries in `~/Documents/`.
+> **Purpose:** the *single curated evidence index* supporting the current PRF briefs. This index does
+> not authorize public facts, appointments, provider attribution, or routes.
 > Amber's note: these folders hold an enormous amount of clinical PRF literature; **much of
 > it is dental / oral-surgery / implant / sinus / orthopedic and does NOT pertain to facial
 > aesthetics — skip it.** This manifest pre-triages the library down to the ~50 facial-relevant
@@ -94,7 +95,7 @@ orthodontics, orthopedics, osteonecrosis, osteoporosis, dentin grafting, oro-ant
 course handouts, billing-code images, and all disease-specific exosome folders (cancers, COVID,
 neuro, cardiac, diabetes, etc.) per Amber's note.
 
-## How Phase 2 should use this
+## How current research work should use this
 
 - These are Amber's **private files**, not committed to the repo — reference by absolute path; do
   not copy PDFs into the repo. Extract verified facts into the existing briefs under
