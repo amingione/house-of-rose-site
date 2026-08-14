@@ -1022,8 +1022,8 @@ test('priority service pages retain reviewed facts instead of falling back to th
     ],
     microneedling: [
       'Procell Microchanneling is the device-specific name used for this Microneedling service.',
-      'Amber Mingione, Licensed Esthetician, provides the current Microneedling services.',
-      'injectable PRF appointments are listed separately and provided by Diana Morrison, RN',
+      'Amber Mingione, Licensed Esthetician, provides these Microneedling appointments.',
+      'Injectable PRF is provided by Diana Morrison, RN as a different appointment.',
       'Review the complete PRF overview',
       'Meet Amber Mingione, Licensed Esthetician',
       'Procell Therapies — Pro',
