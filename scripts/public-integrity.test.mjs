@@ -1637,9 +1637,21 @@ test('priority service pages retain reviewed facts instead of falling back to th
   for (const required of [
     'Which IV option is 30 minutes?',
     'How do I confirm the ingredients or available add-ons?',
-    'Meet Diana Morrison, RN',
   ]) {
     if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing practical guidance ${JSON.stringify(required)}`);
+  }
+  const ivProviderLink = mainHtml(ivHtml).match(
+    /<a\b[^>]*href="\/about\/providers\/diana\/"[^>]*>([\s\S]*?)<\/a>/i,
+  );
+  if (!ivProviderLink) {
+    failures.push('iv-hydration-therapy: missing Diana Morrison provider profile link');
+  } else {
+    const ivProviderLabel = visibleText(ivProviderLink[1]);
+    for (const term of [/\bDiana Morrison\b/i, /\bRN\b/i]) {
+      if (!term.test(ivProviderLabel)) {
+        failures.push('iv-hydration-therapy: provider link omits Diana Morrison, RN identity');
+      }
+    }
   }
   const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
   if (!sitemap.includes(`<loc>${SITE_ORIGIN}/services/iv-hydration-therapy/</loc>`)) {
