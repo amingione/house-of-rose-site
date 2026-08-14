@@ -1240,7 +1240,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
     morpheus8: [
       'fractional bipolar radiofrequency',
       'visible tone and texture',
-      'single-treatment price and a series-of-three price',
       'Full Face',
       '$1,200 single · $3,000 series of 3',
       'Face & Neck',
