@@ -68,7 +68,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Diana Morrison, RN, provides the injectable, IV hydration, and medical weight-management services at House of Rose Aesthetics.',
     biography: [
-      'Diana’s injectable work includes Botox and Daxxify for movement-related lines, hyaluronic-acid dermal fillers for selected areas of lost volume, and the current injectable PRF appointments.',
+      'Her injectable work includes Botox and Daxxify for movement-related lines, hyaluronic-acid dermal fillers for selected areas of lost volume, and the current injectable PRF appointments.',
       'She also provides IV hydration and the GLP-1 weight-management program. These services are performed under written physician protocol and medical direction.',
     ],
     serviceFocus: ['Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'PRF Bio-Filler', 'IV hydration', 'GLP-1 weight management'],
@@ -91,8 +91,8 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Amber Mingione, Licensed Esthetician, focuses on skin-surface, texture, and selected device services.',
     biography: [
-      'Amber’s current menu includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel when used as an add-on to an eligible advanced service.',
-      'When PRF is part of Amber’s work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides the injectable PRF appointments.',
+      'Her current menu includes Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel when used as an add-on to an eligible advanced service.',
+      'When PRF is part of her work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides the injectable PRF appointments.',
     ],
     serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
     imageUrl: '/images/providers/amber-profile-1122.webp',
@@ -114,7 +114,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Brandy is a Licensed Esthetician providing facials, standalone BioRePeel, and facial waxing at House of Rose Aesthetics.',
     biography: [
-      'Brandy provides facials, standalone peels, and facial waxing. Standalone BioRePeel is booked with Brandy; Amber uses BioRePeel only as an add-on to an eligible advanced service.',
+      'Her current work includes facials, standalone peels, and facial waxing. Standalone BioRePeel is booked with Brandy, Licensed Esthetician; Amber Mingione, Licensed Esthetician uses BioRePeel only as an add-on to an eligible advanced service.',
       'Facial waxing is booked separately for brows, the upper lip, and the chin, including a distinct brow shape, trim, and wax appointment.',
     ],
     serviceFocus: ['Facials', 'Standalone BioRePeel', 'Facial waxing'],
@@ -136,7 +136,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Aundrea Pedigo, Licensed Esthetician, provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics.',
     biography: [
-      'Aundrea provides makeup for weddings, special events, photo shoots, and celebrations, with work ranging from soft event makeup to full glam.',
+      'Her makeup work includes weddings, special events, photo shoots, and celebrations, ranging from soft event makeup to full glam.',
       'She also provides permanent jewelry: a fitted, clasp-free chain closed by welding and removable by cutting when needed. Makeup artistry and permanent jewelry are non-medical services.',
     ],
     serviceFocus: ['Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
