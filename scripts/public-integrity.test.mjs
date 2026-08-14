@@ -1505,6 +1505,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Volume has more than one product.',
       'Neurotoxin injections are a separate service category',
       'not the volume category',
+      'House of Rose names lips, cheeks, and folds on this service.',
     ],
   };
 
