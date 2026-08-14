@@ -103,21 +103,21 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
   },
   'forma-cost-punta-gorda': {
     display: '$600–$3,000',
-    metaDescription: 'Forma at House of Rose ranges from $600 to $3,000 by treatment area. Compare six area prices and the separate $2,599 Forma + Lumecca bundle.',
-    summary: 'Forma pricing ranges from $600 to $3,000 because each treatment area has its own listed price.',
-    answer: 'As of August 6, 2026, Forma prices at House of Rose in Punta Gorda range from $600 to $3,000.',
-    menuHeading: 'The treatment area sets the listed price.',
-    faqHeading: 'How treatment area changes the price.',
+    metaDescription: 'Forma at House of Rose ranges from $600 to $3,000 across six facial and five Forma Plus body areas, plus a $2,599 Lumecca bundle.',
+    summary: 'Forma has six facial-area prices from $600 to $3,000. Forma Plus has five body-area prices from $1,500 to $2,000.',
+    answer: 'As of August 6, 2026, Forma and Forma Plus prices at House of Rose in Punta Gorda range from $600 to $3,000 across eleven treatment areas.',
+    menuHeading: 'Forma and Forma Plus pricing by area.',
+    faqHeading: 'Face, body, and bundle prices.',
     verifiedAt: VERIFIED_AT,
-    context: 'The range spans separately priced treatment areas; it is not one variable price for the same appointment. Forma + Lumecca has its own bundle price.',
+    context: 'Forma covers six facial areas. Forma Plus covers five body areas. The Forma + Lumecca Bundle has its own $2,599 price.',
     faqs: [
       {
         question: 'What is the published Forma price range?',
-        answer: 'As of August 6, 2026, Forma prices at House of Rose in Punta Gorda range from $600 to $3,000.',
+        answer: 'As of August 6, 2026, Forma facial-area prices range from $600 to $3,000. Forma Plus body-area prices range from $1,500 to $2,000.',
       },
       {
-        question: 'Why do Forma prices vary by treatment area?',
-        answer: 'Each listed area has its own price. Eyes and nasolabial folds are $600; neck and jawline are $1,500; face is $2,000; and face and neck are $3,000.',
+        question: 'Which body areas have Forma Plus prices?',
+        answer: 'Forma Plus is $2,000 for the abdomen, arms, or inner-outer thighs; $1,750 for the lower back; and $1,500 for the knees.',
       },
       {
         question: 'Is the Forma + Lumecca bundle part of the Forma area range?',
@@ -125,13 +125,18 @@ const VERIFIED_COST_FACTS: Readonly<Record<string, VerifiedCostFact>> = {
       },
     ],
     items: [
-      { name: 'Face', price: '$2,000' },
-      { name: 'Neck', price: '$1,500' },
-      { name: 'Face & Neck', price: '$3,000' },
-      { name: 'Eyes', price: '$600' },
-      { name: 'Jawline', price: '$1,500' },
-      { name: 'Nasolabial Folds', price: '$600' },
-      { name: 'Forma + Lumecca Bundle', price: '$2,599' },
+      ...DEVICE_SERVICE_EDUCATION['forma-rf-facial'].menu.areaPrices.map((item) => ({
+        name: `Forma — ${item.name}`,
+        price: formatMorpheus8Price(item.priceUsd),
+      })),
+      ...DEVICE_SERVICE_EDUCATION['forma-rf-facial'].menu.formaPlusAreaPrices.map((item) => ({
+        name: `Forma Plus — ${item.name}`,
+        price: formatMorpheus8Price(item.priceUsd),
+      })),
+      {
+        name: DEVICE_SERVICE_EDUCATION['forma-rf-facial'].menu.bundle.name,
+        price: formatMorpheus8Price(DEVICE_SERVICE_EDUCATION['forma-rf-facial'].menu.bundle.priceUsd),
+      },
     ],
   },
   'ipl-photofacial-cost-punta-gorda': {
