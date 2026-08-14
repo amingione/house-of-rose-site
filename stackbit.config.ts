@@ -163,6 +163,30 @@ function documentReferenceId(
   return typeof field.refId === 'string' && field.refId ? field.refId : undefined;
 }
 
+function documentNestedReferenceId(
+  document: { fields: Record<string, unknown> } | undefined,
+  objectFieldName: string,
+  referenceFieldName: string,
+): string | undefined {
+  const objectField = document?.fields[objectFieldName];
+  if (
+    !objectField ||
+    typeof objectField !== 'object' ||
+    !('type' in objectField) ||
+    objectField.type !== 'object' ||
+    !('fields' in objectField) ||
+    !objectField.fields ||
+    typeof objectField.fields !== 'object' ||
+    Array.isArray(objectField.fields)
+  ) {
+    return undefined;
+  }
+  return documentReferenceId(
+    { fields: objectField.fields as Record<string, unknown> },
+    referenceFieldName,
+  );
+}
+
 /**
  * Return the first non-empty value among `names`, or throw listing all of them.
  *
@@ -428,6 +452,30 @@ export default defineStackbitConfig({
     }
 
     const status = documentStringField(document, 'status');
-    return status === 'live' && Boolean(slug && REVIEWED_PUBLIC_COMPARISON_SLUG_SET.has(slug));
+    const comparisonServiceIds = ['optionA', 'optionB'].map((optionName) =>
+      documentNestedReferenceId(document, optionName, 'service'),
+    );
+    const comparisonServicesRouteable = comparisonServiceIds.every((serviceId) => {
+      if (!serviceId) return false;
+      const service = getDocumentById({
+        id: serviceId,
+        srcType: entry.document.srcType,
+        srcProjectId: entry.document.srcProjectId,
+      });
+      const serviceSlug = documentStringField(service, 'slug');
+      const serviceStatus = documentStringField(service, 'status');
+      return Boolean(
+        serviceSlug &&
+          serviceStatus &&
+          PUBLIC_SERVICE_STATUS_SET.has(serviceStatus) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(serviceSlug),
+      );
+    });
+    return Boolean(
+      status === 'live' &&
+        slug &&
+        REVIEWED_PUBLIC_COMPARISON_SLUG_SET.has(slug) &&
+        comparisonServicesRouteable,
+    );
   }),
 });

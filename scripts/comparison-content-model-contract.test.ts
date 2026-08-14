@@ -3,6 +3,12 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { comparison } from '../packages/studio/schemas/comparison.ts';
+import {
+  ALL_COMPARISONS_QUERY,
+  ALL_COMPARISON_SLUGS_QUERY,
+  COMPARISON_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 
 const contentModelMap = readFileSync(
   new URL('../docs/CONTENT-MODEL-MAP.md', import.meta.url),
@@ -46,12 +52,30 @@ test('the comparison schema and detail route enforce that documented ownership s
         `${optionName}.${legacyField} must remain read-only.`,
       );
     }
-    assert.equal(
-      option.fields.find((candidate) => candidate.name === 'service')?.type,
-      'reference',
-      `${optionName}.service must remain an active service relationship.`,
-    );
+    const service = option.fields.find((candidate) => candidate.name === 'service');
+    assert.equal(service?.type, 'reference', `${optionName}.service must remain active.`);
+    assert.match(String(service?.validation), /required/);
+    assert.match(String(service?.options?.filter), /status in \["live", "actual-menu"\]/);
+    assert.match(String(service?.options?.filter), /defined\(slug\.current\)/);
+    assert.match(String(service?.options?.filter), /!\(slug\.current in \$unavailableSlugs\)/);
+    assert.deepEqual(service?.options?.filterParams, {
+      unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+    });
   }
 
   assert.match(comparisonRoute, /getPublicComparisonContent\(cmp\.slug\)/);
+});
+
+test('every public comparison query requires both option services to have generated routes', () => {
+  for (const query of [
+    ALL_COMPARISONS_QUERY,
+    COMPARISON_BY_SLUG_QUERY,
+    ALL_COMPARISON_SLUGS_QUERY,
+  ]) {
+    for (const optionName of ['optionA', 'optionB']) {
+      assert.match(query, new RegExp(`${optionName}\\.service->status in \\\["live", "actual-menu"\\\]`));
+      assert.match(query, new RegExp(`defined\\(${optionName}\\.service->slug\\.current\\)`));
+      assert.match(query, new RegExp(`!\\(${optionName}\\.service->slug\\.current in \\\[`));
+    }
+  }
 });

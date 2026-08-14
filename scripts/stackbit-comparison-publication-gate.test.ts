@@ -12,7 +12,43 @@ function unwrapConfig(value: unknown): StackbitConfigShape {
   return value as StackbitConfigShape;
 }
 
-const comparisonDocument = (slug: string, status: string) => ({
+interface StackbitDocument {
+  fields: Record<string, unknown>;
+}
+
+const comparisonDocument = (
+  slug: string,
+  status: string,
+  optionAServiceId?: string,
+  optionBServiceId?: string,
+): StackbitDocument => ({
+  fields: {
+    slug: { type: 'slug', value: slug },
+    status: { type: 'string', value: status },
+    ...(optionAServiceId
+      ? {
+          optionA: {
+            type: 'object',
+            fields: {
+              service: { type: 'reference', refType: 'document', refId: optionAServiceId },
+            },
+          },
+        }
+      : {}),
+    ...(optionBServiceId
+      ? {
+          optionB: {
+            type: 'object',
+            fields: {
+              service: { type: 'reference', refType: 'document', refId: optionBServiceId },
+            },
+          },
+        }
+      : {}),
+  },
+});
+
+const serviceDocument = (slug: string, status: string): StackbitDocument => ({
   fields: {
     slug: { type: 'slug', value: slug },
     status: { type: 'string', value: status },
@@ -49,14 +85,59 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
       document: documentRef('unreviewed-live', 'comparison'),
     },
     {
+      urlPath: '/compare/missing-service-reference',
+      document: documentRef('reviewed-missing-service', 'comparison'),
+    },
+    {
+      urlPath: '/compare/unavailable-service-reference',
+      document: documentRef('reviewed-unavailable-service', 'comparison'),
+    },
+    {
+      urlPath: '/compare/nonlive-service-reference',
+      document: documentRef('reviewed-nonlive-service', 'comparison'),
+    },
+    {
       urlPath: '/about',
       document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
-  const documents = new Map<string, ReturnType<typeof comparisonDocument>>([
-    ['reviewed-live', comparisonDocument('daxxify-vs-botox', 'live')],
-    ['reviewed-parked', comparisonDocument('morpheus8-vs-microneedling', 'parked')],
-    ['unreviewed-live', comparisonDocument('unreviewed-device-comparison', 'live')],
+  const routeableServices = ['service-a', 'service-b'] as const;
+  const documents = new Map<string, StackbitDocument>([
+    ['reviewed-live', comparisonDocument('daxxify-vs-botox', 'live', ...routeableServices)],
+    [
+      'reviewed-parked',
+      comparisonDocument('morpheus8-vs-microneedling', 'parked', ...routeableServices),
+    ],
+    [
+      'unreviewed-live',
+      comparisonDocument('unreviewed-device-comparison', 'live', ...routeableServices),
+    ],
+    [
+      'reviewed-missing-service',
+      comparisonDocument('morpheus8-vs-microneedling', 'live', 'service-a'),
+    ],
+    [
+      'reviewed-unavailable-service',
+      comparisonDocument(
+        'morpheus8-vs-microneedling',
+        'live',
+        'service-a',
+        'service-unavailable',
+      ),
+    ],
+    [
+      'reviewed-nonlive-service',
+      comparisonDocument(
+        'morpheus8-vs-microneedling',
+        'live',
+        'service-a',
+        'service-nonlive',
+      ),
+    ],
+    ['service-a', serviceDocument('injectables', 'live')],
+    ['service-b', serviceDocument('morpheus8', 'actual-menu')],
+    ['service-unavailable', serviceDocument('wellness', 'live')],
+    ['service-nonlive', serviceDocument('future-service', 'proposed')],
   ]);
 
   const filtered = transformSitemap!({

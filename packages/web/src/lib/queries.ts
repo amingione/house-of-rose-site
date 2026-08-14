@@ -1380,6 +1380,15 @@ export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── Comparisons ──────────────────────────────────────────────────────────────
+const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
+  optionA.service->status in ["live", "actual-menu"] &&
+  defined(optionA.service->slug.current) &&
+  !(optionA.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
+  optionB.service->status in ["live", "actual-menu"] &&
+  defined(optionB.service->slug.current) &&
+  !(optionB.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+`;
+
 const COMPARISON_OPTION_FIELDS = /* groq */ `
   label, summary, bestFor,
   "service": select(
@@ -1391,7 +1400,13 @@ const COMPARISON_OPTION_FIELDS = /* groq */ `
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})] | order(orderRank asc, title asc) {
+  *[
+    _type == "comparison" &&
+    status == "live" &&
+    slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
+    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+    ${COMPARISON_ROUTEABLE_OPTIONS}
+  ] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, intro, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -1400,7 +1415,14 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
 `;
 
 export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})][0] {
+  *[
+    _type == "comparison" &&
+    status == "live" &&
+    slug.current == $slug &&
+    slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
+    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+    ${COMPARISON_ROUTEABLE_OPTIONS}
+  ][0] {
     _id, title, "slug": slug.current, intro, verdict, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
     "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
@@ -1411,7 +1433,14 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
 `;
 
 export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
-  *[_type == "comparison" && status == "live" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})]{ "slug": slug.current }
+  *[
+    _type == "comparison" &&
+    status == "live" &&
+    defined(slug.current) &&
+    slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
+    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+    ${COMPARISON_ROUTEABLE_OPTIONS}
+  ]{ "slug": slug.current }
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────
