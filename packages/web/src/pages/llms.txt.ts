@@ -62,7 +62,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Services](${base}/services/): Current skin, injectable, body, IV hydration, and wellness services`,
     `- [About](${base}/about/): House of Rose Aesthetics and the people behind the practice`,
     `- [House of Rose Aesthetics](${base}/about/hra/): About the Punta Gorda practice`,
-    `- [Providers](${base}/about/providers/): Verified roles, service focus, and individual team profiles`,
+    `- [Providers](${base}/about/providers/): Licence types, service focus, and individual team profiles`,
     `- [Consultation](${base}/consultation/): Information about current skin, injectable, IV hydration, and wellness services`,
     `- [Skin Imaging & Analysis](${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
     `- [Treatment Series & Packages](${base}/packages/): Current package pages and their included services`,

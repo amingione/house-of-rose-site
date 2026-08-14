@@ -8,7 +8,7 @@ const files = {
   publicCopy: 'packages/web/src/lib/publicCopy.ts',
   handler: 'packages/web/netlify/functions/lead-submit.ts',
   schema: 'packages/studio/schemas/leadSubmission.ts',
-  runbook: 'docs/internal_only/compliance/grasshopper-toll-free-guidelines.md',
+  runbook: 'docs/GOVERNANCE/internal_only/compliance/grasshopper-toll-free-guidelines.md',
 };
 
 const sources = Object.fromEntries(

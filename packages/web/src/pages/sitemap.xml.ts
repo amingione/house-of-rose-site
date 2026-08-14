@@ -26,6 +26,13 @@ import { isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import { filterReviewedPublicComparisons } from '@/lib/publicComparisonContent';
 import { SHOP_ENABLED } from '@/lib/features';
 
+interface SitemapPage {
+  loc: string;
+  priority: string;
+  changefreq: string;
+  lastmod?: string;
+}
+
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
 
@@ -42,44 +49,42 @@ export const GET: APIRoute = async ({ site }) => {
   ]);
   const providers = resolvePublicProviderProfiles(sanityProviders);
 
-  const now = new Date().toISOString().split('T')[0];
-
   const shopPages = SHOP_ENABLED
     ? [
-        { loc: `${baseUrl}/shop/jane-iredale/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-        { loc: `${baseUrl}/shop/`, priority: '0.6', changefreq: 'monthly', lastmod: now },
+        { loc: `${baseUrl}/shop/jane-iredale/`, priority: '0.7', changefreq: 'monthly' },
+        { loc: `${baseUrl}/shop/`, priority: '0.6', changefreq: 'monthly' },
       ]
     : [];
 
   // Static pages — all use trailing-slash canonical URLs
   const staticPages = [
-    { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly', lastmod: now },
-    { loc: `${baseUrl}/services/`, priority: '0.9', changefreq: 'weekly', lastmod: now },
-    { loc: `${baseUrl}/concerns/`, priority: '0.8', changefreq: 'weekly', lastmod: now },
-    { loc: `${baseUrl}/about/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/about/hra/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/about/providers/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/consultation/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/blog/`, priority: '0.8', changefreq: 'weekly', lastmod: now },
-    { loc: `${baseUrl}/experience/`, priority: '0.8', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/faq/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/support/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/cost/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/compare/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/areas/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/`, priority: '1.0', changefreq: 'weekly' },
+    { loc: `${baseUrl}/services/`, priority: '0.9', changefreq: 'weekly' },
+    { loc: `${baseUrl}/concerns/`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${baseUrl}/about/`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${baseUrl}/about/hra/`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${baseUrl}/about/providers/`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${baseUrl}/consultation/`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${baseUrl}/blog/`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${baseUrl}/experience/`, priority: '0.8', changefreq: 'monthly' },
+    { loc: `${baseUrl}/faq/`, priority: '0.7', changefreq: 'monthly' },
+    { loc: `${baseUrl}/support/`, priority: '0.7', changefreq: 'monthly' },
+    { loc: `${baseUrl}/cost/`, priority: '0.7', changefreq: 'monthly' },
+    { loc: `${baseUrl}/compare/`, priority: '0.7', changefreq: 'monthly' },
+    { loc: `${baseUrl}/areas/`, priority: '0.7', changefreq: 'monthly' },
     ...(caseStudies.length > 0
-      ? [{ loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly', lastmod: now }]
+      ? [{ loc: `${baseUrl}/results/`, priority: '0.7', changefreq: 'monthly' }]
       : []),
-    { loc: `${baseUrl}/packages/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/skin-analysis/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
+    { loc: `${baseUrl}/packages/`, priority: '0.7', changefreq: 'monthly' },
+    { loc: `${baseUrl}/skin-analysis/`, priority: '0.7', changefreq: 'monthly' },
     ...shopPages,
-    { loc: `${baseUrl}/sitemap/`, priority: '0.5', changefreq: 'weekly', lastmod: now },
-    { loc: `${baseUrl}/contact/`, priority: '0.7', changefreq: 'yearly', lastmod: now },
-    { loc: `${baseUrl}/rent-a-room/`, priority: '0.7', changefreq: 'monthly', lastmod: now },
-    { loc: `${baseUrl}/privacy-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
-    { loc: `${baseUrl}/terms-of-service/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
-    { loc: `${baseUrl}/shipping-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
-    { loc: `${baseUrl}/return-policy/`, priority: '0.3', changefreq: 'yearly', lastmod: now },
+    { loc: `${baseUrl}/sitemap/`, priority: '0.5', changefreq: 'weekly' },
+    { loc: `${baseUrl}/contact/`, priority: '0.7', changefreq: 'yearly' },
+    { loc: `${baseUrl}/rent-a-room/`, priority: '0.7', changefreq: 'monthly' },
+    { loc: `${baseUrl}/privacy-policy/`, priority: '0.3', changefreq: 'yearly' },
+    { loc: `${baseUrl}/terms-of-service/`, priority: '0.3', changefreq: 'yearly' },
+    { loc: `${baseUrl}/shipping-policy/`, priority: '0.3', changefreq: 'yearly' },
+    { loc: `${baseUrl}/return-policy/`, priority: '0.3', changefreq: 'yearly' },
   ];
 
   // Service pages — include hub, standalone, and treatment pages.
@@ -87,7 +92,7 @@ export const GET: APIRoute = async ({ site }) => {
     loc: `${baseUrl}/services/${service.slug}/`,
     priority: '0.8',
     changefreq: 'monthly',
-    lastmod: service._updatedAt ? service._updatedAt.split('T')[0] : now,
+    lastmod: service._updatedAt?.split('T')[0],
   }));
 
   // Blog post pages
@@ -95,19 +100,18 @@ export const GET: APIRoute = async ({ site }) => {
     loc: `${baseUrl}/blog/${post.slug}/`,
     priority: '0.7',
     changefreq: 'monthly',
-    lastmod: post.publishedAt ? post.publishedAt.split('T')[0] : now,
+    lastmod: post.publishedAt?.split('T')[0],
   }));
 
   // Collection details are navigation-only and noindex. Keep only the category
   // index in XML; canonical service pages carry the search intent.
-  const collectionIndexPage = { loc: `${baseUrl}/services/collections/`, priority: '0.7', changefreq: 'monthly', lastmod: now };
+  const collectionIndexPage = { loc: `${baseUrl}/services/collections/`, priority: '0.7', changefreq: 'monthly' };
 
   // Concern pages
   const concernPages = concerns.map((concern) => ({
     loc: `${baseUrl}/concerns/${concern.slug}/`,
     priority: '0.7',
     changefreq: 'monthly',
-    lastmod: now,
   }));
 
   // Package pages
@@ -115,25 +119,23 @@ export const GET: APIRoute = async ({ site }) => {
     loc: `${baseUrl}/packages/${pkg.slug}/`,
     priority: '0.7',
     changefreq: 'monthly',
-    lastmod: now,
   }));
 
   // AEO page types
-  const costPages = costGuides.map((c) => ({ loc: `${baseUrl}/cost/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
-  const comparePages = filterReviewedPublicComparisons(comparisons).map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt ? c._updatedAt.split('T')[0] : now }));
-  const areaPages = localAreas.map((a) => ({ loc: `${baseUrl}/areas/${a.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: a._updatedAt ? a._updatedAt.split('T')[0] : now }));
-  const resultPages = caseStudies.map((cs) => ({ loc: `${baseUrl}/results/${cs.slug}/`, priority: '0.6', changefreq: 'monthly', lastmod: cs._updatedAt ? cs._updatedAt.split('T')[0] : now }));
+  const costPages = costGuides.map((c) => ({ loc: `${baseUrl}/cost/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt?.split('T')[0] }));
+  const comparePages = filterReviewedPublicComparisons(comparisons).map((c) => ({ loc: `${baseUrl}/compare/${c.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: c._updatedAt?.split('T')[0] }));
+  const areaPages = localAreas.map((a) => ({ loc: `${baseUrl}/areas/${a.slug}/`, priority: '0.7', changefreq: 'monthly', lastmod: a._updatedAt?.split('T')[0] }));
+  const resultPages = caseStudies.map((cs) => ({ loc: `${baseUrl}/results/${cs.slug}/`, priority: '0.6', changefreq: 'monthly', lastmod: cs._updatedAt?.split('T')[0] }));
   const providerPages = providers.map((provider) => ({
     loc: `${baseUrl}/about/providers/${provider.slug}/`,
     priority: '0.7',
     changefreq: 'monthly',
-    lastmod: now,
   }));
 
   // Keep the XML sitemap focused on high-value hubs and editorial pages.
   // Product detail pages are intentionally omitted so the catalog does not
   // crowd out the service architecture when the shop is enabled.
-  const allPages = [
+  const allPages: SitemapPage[] = [
     ...staticPages,
     ...servicePages,
     collectionIndexPage,
@@ -154,8 +156,7 @@ ${allPages
   .map(
     (page) => `  <url>
     <loc>${page.loc}</loc>
-    <lastmod>${page.lastmod}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
+${page.lastmod ? `    <lastmod>${page.lastmod}</lastmod>\n` : ''}    <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`
   )

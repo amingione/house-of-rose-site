@@ -93,7 +93,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Services** (${base}/services/): Current skin, injectable, body, IV hydration, and wellness services`,
     `- **About** (${base}/about/): House of Rose Aesthetics and the people behind the practice`,
     `- **House of Rose Aesthetics** (${base}/about/hra/): About the practice and its Punta Gorda location`,
-    `- **Providers** (${base}/about/providers/): Verified roles, service focus, and individual team profiles`,
+    `- **Providers** (${base}/about/providers/): Licence types, service focus, and individual team profiles`,
     `- **Consultation** (${base}/consultation/): Information about current skin, injectable, IV hydration, and wellness services`,
     `- **Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
     `- **Treatment Series & Packages** (${base}/packages/): Current package pages and their included services`,
@@ -144,7 +144,7 @@ export const GET: APIRoute = async ({ site }) => {
         }
 
         if (education.menu) {
-          lines.push(``, `Current verified menu (${education.menu.verifiedAt}):`);
+          lines.push(``, `House of Rose menu (prices shown as of ${education.menu.verifiedAt}):`);
           if (education.menu.intro) lines.push(education.menu.intro);
           for (const item of education.menu.items) {
             const appointmentFacts = [item.price, item.duration].filter(Boolean).join(' · ');
@@ -164,7 +164,7 @@ export const GET: APIRoute = async ({ site }) => {
       }
 
       if (s.slug === 'iv-hydration-therapy') {
-        lines.push(``, `Current verified IV menu:`);
+        lines.push(``, `IV hydration menu:`);
         for (const item of VERIFIED_IV_MENU) {
           lines.push(`- ${item.name} — $${item.price} · ${item.durationMinutes} minutes.`);
         }
@@ -177,8 +177,8 @@ export const GET: APIRoute = async ({ site }) => {
       if (s.slug === 'prf-under-eyes') {
         lines.push(
           ``,
-          `Current verified listing: ${PRF_UNDER_EYES_LISTING.name} — ${PRF_UNDER_EYES_LISTING.price}.`,
-          `The appointment length is omitted because current menu sources disagree.`,
+          `Appointment price: ${PRF_UNDER_EYES_LISTING.name} — ${PRF_UNDER_EYES_LISTING.price}.`,
+          `Call House of Rose to confirm how much time to allow for the appointment.`,
           ``,
           `Common questions:`,
         );
