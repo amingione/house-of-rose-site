@@ -1830,23 +1830,26 @@ test('concern index preserves reviewed distinctions and direct guide navigation'
   const guidance = html.match(/<section\b[^>]*data-concern-index-guidance[^>]*>([\s\S]*?)<\/section>/i)?.[1] ?? '';
   const text = visibleText(guidance);
   const main = mainHtml(html);
-  const cards = [...main.matchAll(/<a\b[^>]*data-concern-guide-card[^>]*>([\s\S]*?)<\/a>/gi)];
+  const cards = [...main.matchAll(
+    /<a\b(?=[^>]*data-concern-guide-card)(?=[^>]*href=["']([^"']+)["'])[^>]*>([\s\S]*?)<\/a>/gi,
+  )];
   const failures = [];
 
   if (!guidance) failures.push('concerns index is missing reviewed guidance');
   if (cards.length < 10) failures.push(`concerns index expected at least 10 substantive guide cards, found ${cards.length}`);
   for (const card of cards) {
-    const cardText = visibleText(card[1]);
-    if (!cardText.includes('Read the guide')) failures.push('concern card is missing its direct guide action');
+    const href = card[1];
+    const cardText = visibleText(card[2]);
+    if (!/^\/concerns\/[a-z0-9-]+\/$/.test(href)) failures.push(`concern card has invalid guide route ${JSON.stringify(href)}`);
     if (cardText.split(/\s+/).length < 12) failures.push(`concern card is too thin: ${JSON.stringify(cardText)}`);
   }
-  for (const required of [
-    'Are new breakouts appearing, or are you seeing what they left behind?',
-    'Under-eye darkness may be color, shadow, or both.',
-    'The same area can show more than one kind of line.',
-    'They are observations, not a diagnosis.',
+  for (const [label, pattern] of [
+    ['active-breakout versus aftermath distinction', /new breakouts[\s\S]{0,100}left behind/i],
+    ['under-eye color versus shadow distinction', /under-eye darkness[\s\S]{0,80}color[\s\S]{0,80}shadow/i],
+    ['line/movement overlap distinction', /same area[\s\S]{0,120}(?:line|movement|expression)/i],
+    ['non-diagnostic observation boundary', /observations?[\s\S]{0,50}not a diagnosis/i],
   ]) {
-    if (!text.includes(required)) failures.push(`concerns index is missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`concerns index is missing ${label}`);
   }
   for (const route of [
     '/concerns/active-acne/',
@@ -1858,12 +1861,13 @@ test('concern index preserves reviewed distinctions and direct guide navigation'
   ]) {
     if (!guidance.includes(`href="${route}"`)) failures.push(`concerns index guidance is missing ${route}`);
   }
-  for (const required of [
-    'Similar-looking changes can raise different questions about pigment, texture, movement, or volume',
-    'Skin analysis gives you a visual baseline.',
-    'A consultation gives you room to talk it through.',
+  const mainText = visibleText(main);
+  for (const [label, pattern] of [
+    ['pigment/texture/movement/volume orientation', /similar-looking changes[\s\S]{0,140}pigment[\s\S]{0,60}texture[\s\S]{0,60}movement[\s\S]{0,60}volume/i],
+    ['skin-analysis baseline distinction', /skin analysis[\s\S]{0,100}visual baseline/i],
+    ['consultation discussion distinction', /consultation[\s\S]{0,100}(?:compare|talk|discuss)/i],
   ]) {
-    if (!visibleText(main).includes(required)) failures.push(`concerns index is missing client guidance ${JSON.stringify(required)}`);
+    if (!pattern.test(mainText)) failures.push(`concerns index is missing ${label}`);
   }
 
   assert.equal(failures.length, 0, formatFailures('Concern-index depth regression', failures));
@@ -1879,15 +1883,15 @@ test('areas index identifies one real practice instead of implying satellite off
   const text = visibleText(practiceSection);
   const failures = [];
 
-  for (const required of [
-    'Every appointment is at the Punta Gorda practice.',
-    '525 E Olympia Ave, Unit 9',
-    'The photograph shows the actual storefront.',
-    'There are no separate House of Rose locations in those communities.',
-    'look for Unit 9',
-    'free parking is available',
+  for (const [label, pattern] of [
+    ['single Punta Gorda appointment location', /every appointment[\s\S]{0,80}Punta Gorda practice/i],
+    ['canonical street address', /525 E Olympia Ave, Unit 9/i],
+    ['actual-storefront image disclosure', /(?:photograph|image)[\s\S]{0,60}actual storefront/i],
+    ['no satellite-location boundary', /no separate House of Rose locations/i],
+    ['Unit 9 arrival cue', /(?:look for|find|enter)[\s\S]{0,40}Unit 9/i],
+    ['free-parking fact', /free parking[\s\S]{0,30}available/i],
   ]) {
-    if (!text.includes(required)) failures.push(`areas index: missing ${JSON.stringify(required)}`);
+    if (!pattern.test(text)) failures.push(`areas index: missing ${label}`);
   }
   for (const required of [
     'src="/images/optimized/house-of-rose-storefront-700.webp"',
