@@ -651,7 +651,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? [
               {
                 label: 'How treatment pricing is organized',
-                text: `Separate treatment listings range from $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')} to $${treatmentPriceRange.maximumUsd.toLocaleString('en-US')}, based on ${treatmentPriceRange.basis}. The ${formatUsd(consultation.priceUsd)} consultation is priced separately.`,
+                text: `Single sessions range from $250 to $950 by area. A series of three ranges from $800 to $2,600 by area. The ${formatUsd(consultation.priceUsd)} consultation is its own appointment.`,
               },
             ]
           : []),
@@ -659,13 +659,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       menu: consultation && singleAndSeriesPrices.length > 0
         ? {
             heading: 'Consultation and Lumecca Peak pricing by area',
-            intro: `The ${formatUsd(consultation.priceUsd)} consultation is priced separately. Each of the eight treatment areas has a single-session price and a three-session price.`,
+            intro: `The consultation is ${formatUsd(consultation.priceUsd)}. For each of the eight treatment areas, compare one session with a series of three.`,
             verifiedAt: 'August 6, 2026',
             items: [
               {
                 name: consultation.name,
                 price: formatUsd(consultation.priceUsd),
-                note: 'Starting consultation',
+                note: 'Consultation appointment',
               },
               ...singleAndSeriesPrices.map((item) => ({
                 name: item.name,
@@ -701,7 +701,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? [
               {
                 question: `What does the $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')}–$${treatmentPriceRange.maximumUsd.toLocaleString('en-US')} Lumecca Peak range mean?`,
-                answer: `The range covers eight separate treatment areas, each with a single-session price and a three-session price. The ${formatUsd(consultation.priceUsd)} consultation is priced separately.`,
+                answer: `The low end is one Spot Treatment at $250. The high end is a series of three for Face, Neck & Chest at $2,600. Single sessions across all eight areas range from $250 to $950; three-session prices range from $800 to $2,600. The consultation is ${formatUsd(consultation.priceUsd)}.`,
               },
             ]
           : []),
