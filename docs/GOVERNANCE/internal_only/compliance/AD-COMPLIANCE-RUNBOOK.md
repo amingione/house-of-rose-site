@@ -160,7 +160,8 @@ reflects the true last-aired date.
 
 ## 5. Google review solicitation policy
 
-**Adopted rule: solicit every client, or solicit none. No middle option.**
+**Adopted rule: choose recipients by objective criteria unrelated to expected sentiment, and ask
+neutrally.**
 
 16 CFR § 255.2(e)(11) treats selectively inviting only satisfied customers — while merely thanking
 less-pleased ones for their feedback — as potentially unfair or deceptive where it skews posted reviews
@@ -170,16 +171,19 @@ practice the FTC describes, however well-intentioned.
 
 **Operating rules.**
 
-1. **Same request, same timing, every client.** Identical script, identical channel, identical interval after the appointment. No provider discretion at the moment of asking.
+1. **Neutral selection and request.** Use objective, sentiment-independent criteria to decide who
+   receives a request. Timing and channel may vary for operational reasons, but never because a client
+   seems more likely to leave a positive review. Do not ask for a positive rating or specific content.
 2. **No sentiment gating.** No satisfaction survey that determines who gets the review link. No "would you recommend us?" fork.
 3. **No incentives** — no discounts, credits, entries or gifts for a review. An incentive is a material connection requiring disclosure under § 255.5, and it corrupts the sample.
 4. **No filtering of who is asked** by outcome, spend, or how the visit went.
 5. **Never suppress, hide, or ask for removal** of a truthful negative review. Respond publicly and professionally instead.
-6. **Automate it** so it cannot be applied selectively. A rule that depends on a person remembering to be even-handed will not stay even-handed.
+6. **Use automation when it reduces selective application.** A documented neutral manual process is
+   also acceptable.
 
-**If it is impossible to ask everyone** — e.g. clients with no email on file — ask no one in that
-channel rather than ask the reachable subset, unless reachability is genuinely unrelated to sentiment.
-Document the basis either way.
+**If a channel cannot reach every client** — e.g. clients with no email on file — it may still be used
+when reachability is genuinely unrelated to sentiment. Document the objective basis and do not use
+reachability to screen for likely positive reviewers.
 
 **Responding to complaints:** never confirm, deny, or reference an individual's status as a client, or
 any clinical detail, in a public reply. Respond generically and move the conversation to a private
