@@ -91,7 +91,7 @@ covers ad-copy use before running it, since Allergan does enforce.
 | # | Trigger | Fix |
 |---|---|---|
 | 1 | **Bidding** prescription drug terms without certification | Negative-keyword them; bid generic terms instead. Copy and landing pages are fine uncertified — see above |
-| 2 | **A sitelink or CTA that goes nowhere** — Google's Misrepresentation policy, and it can suspend outright | Click every sitelink before launch. Never promise a page that doesn't exist yet (this is why the "Our Pricing" sitelink can't ship until the pricing page does) |
+| 2 | **A sitelink or CTA that goes nowhere** — Google's Misrepresentation policy, and it can suspend outright | Click every sitelink before launch. Never promise a page that does not exist, and confirm the label matches the destination's current rendered content |
 | 3 | **Unsubstantiated claims** — "eliminate wrinkles," "permanent," "guaranteed results," "reverse aging" | Use "designed to," "supports," "helps improve the appearance of." Your own `COMPLIANCE-COPY-RULES.md` §2 already bans these — same list works here |
 | 4 | **Before/after imagery** in ads or extensions | Don't run it. Also an FTC problem (`AD-COMPLIANCE-RUNBOOK.md` §3) — a disclaimer does not fix it |
 | 5 | **Implying a credential you don't hold** — "dermatologist," "skin doctor," "medical clinic," "board certified" | Never in copy. See below on the keyword-vs-copy line |
@@ -148,8 +148,9 @@ Walk-Ins Welcome
 Punta Gorda, FL
 ```
 
-**Sitelinks** — only ones whose pages exist today. Verify each before launch. Do **not** add a pricing
-sitelink until a pricing page exists.
+**Sitelinks** — only ones whose pages exist today. Verify each before launch. The current cost-guide
+index is `/cost/`; a pricing sitelink still requires a final label that matches its rendered content
+and a successful prelaunch click-through check.
 
 **Negative keywords:**
 
