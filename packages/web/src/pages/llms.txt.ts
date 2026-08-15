@@ -141,6 +141,14 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(``);
   }
 
+  if (caseStudies.length > 0) {
+    lines.push(`## Results`, ``);
+    for (const study of caseStudies) {
+      lines.push(`- [${study.title}](${base}/results/${study.slug}/)`);
+    }
+    lines.push(``);
+  }
+
   if (publicPosts.length > 0) {
     lines.push(`## Journal Articles`, ``);
     for (const p of publicPosts) {

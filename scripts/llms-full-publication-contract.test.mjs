@@ -94,3 +94,17 @@ test('the compact AI feed includes the generated concern-guide inventory', () =>
   assert.ok(compactSource.includes('${base}/concerns/'));
   assert.ok(compactSource.includes('${base}/concerns/${concern.slug}/'));
 });
+
+test('both AI feeds include each generated case-study route', () => {
+  for (const feedSource of [compactSource, source]) {
+    assert.ok(feedSource.includes('ALL_CASE_STUDIES_QUERY'));
+    assert.match(feedSource, /sanityFetch<CaseStudy\[\]>\(ALL_CASE_STUDIES_QUERY\)/);
+    assert.ok(feedSource.includes('${base}/results/${study.slug}/'));
+  }
+
+  assert.match(
+    compactSource,
+    /\.\.\.\(caseStudies\.length > 0[\s\S]*?\$\{base\}\/results\//,
+    'The compact Results hub must remain conditional on a public case-study inventory.',
+  );
+});

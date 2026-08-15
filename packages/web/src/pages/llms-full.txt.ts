@@ -8,6 +8,7 @@ import {
   ALL_COST_GUIDES_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
+  ALL_CASE_STUDIES_QUERY,
   SITE_SETTINGS_QUERY,
   type BlogPost,
   type Comparison,
@@ -15,6 +16,7 @@ import {
   type CostGuide,
   type LocalArea,
   type TreatmentPackage,
+  type CaseStudy,
   type SiteSettings,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
@@ -57,7 +59,7 @@ interface ServiceFull {
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages] = await Promise.all([
+  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages, caseStudies] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
@@ -66,6 +68,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
+    sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
   ]);
   const siteFacts = resolvePublicSiteFacts(settings);
   const providers = PROVIDER_PROFILE_FALLBACKS;
@@ -115,6 +118,9 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Shipping Policy** (${base}/shipping-policy/): Contiguous U.S. shipping timing and carrier-rate details`,
     `- **Return Policy** (${base}/return-policy/): Eligibility, reporting windows, return shipping, and refund timing`,
     `- **Areas We Serve** (${base}/areas/): Punta Gorda, Port Charlotte & Southwest Florida`,
+    ...(caseStudies.length > 0
+      ? [`- **Results** (${base}/results/): Consented before-and-after cases`]
+      : []),
     `- **Sitemap** (${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
     ``,
     `---`,
@@ -240,6 +246,14 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`## Treatment Series & Packages`, ``);
     for (const treatmentPackage of packages) {
       lines.push(`- [${treatmentPackage.title}](${base}/packages/${treatmentPackage.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (caseStudies.length > 0) {
+    lines.push(`## Results`, ``);
+    for (const study of caseStudies) {
+      lines.push(`- [${study.title}](${base}/results/${study.slug}/)`);
     }
     lines.push(``, `---`, ``);
   }
