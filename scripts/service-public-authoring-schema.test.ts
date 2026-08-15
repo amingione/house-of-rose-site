@@ -137,6 +137,37 @@ test('the archival service tagline cannot pose as a live control', () => {
   assert.doesNotMatch(servicesIndexSource, /tagline=\{service\.tagline\}/);
 });
 
+test('review-only service prose cannot enter the public detail payload', () => {
+  const reviewOnlyFields = ['description', 'whoItsFor', 'benefits', 'process'] as const;
+
+  for (const fieldName of reviewOnlyFields) {
+    const field = serviceField(fieldName);
+    assert.match(String(field?.title), /review/i);
+  }
+  assert.match(String(serviceField('description')?.description), /public renderer withholds/i);
+
+  const querySource = readFileSync(
+    new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+    'utf8',
+  );
+  const serviceType = querySource.match(/export interface Service extends[^\{]*\{([\s\S]*?)\n\}/)?.[1];
+  assert.ok(serviceType);
+
+  for (const fieldName of reviewOnlyFields) {
+    const fieldPattern = new RegExp(`\\b${fieldName}\\b`);
+    assert.doesNotMatch(serviceType, fieldPattern);
+    assert.doesNotMatch(SERVICE_BY_SLUG_QUERY, fieldPattern);
+  }
+
+  const renderer = readFileSync(
+    new URL('../packages/web/src/pages/services/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  assert.match(renderer, /getServiceEducation\(slug\)/);
+  assert.match(renderer, /serviceEducation\?\.metaDescription/);
+  assert.doesNotMatch(renderer, /service\.(?:description|whoItsFor|benefits|process)\b/);
+});
+
 test('stored service FAQs cannot pose as the reviewed public FAQ source', () => {
   const faqs = serviceField('faqs');
   assert.equal(faqs?.readOnly, true);

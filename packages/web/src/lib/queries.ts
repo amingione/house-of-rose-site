@@ -185,12 +185,8 @@ export interface Service extends TreatmentPageFields {
   bookingMode?: BookingMode;
   bookingUrl?: string;
   bookingVerifiedAt?: string;
-  description?: string;
-  whoItsFor?: string;
   concerns?: ServiceConcern[];
-  benefits?: string[];
   treatmentAreas?: TreatmentArea[];
-  process?: string[];
   faqs?: FAQ[];
   image?: SanityImage;
   gallery?: SanityImage[];
@@ -506,8 +502,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     bookingMode,
     bookingUrl,
     bookingVerifiedAt,
-    description,
-    whoItsFor,
     "concerns": concerns[
       @->status == "live" &&
       defined(@->slug.current) &&
@@ -518,8 +512,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       "slug": slug.current,
       intro
     },
-    benefits,
-    process,
     _updatedAt,
     ${IMAGE_FIELDS},
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
