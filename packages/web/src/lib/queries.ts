@@ -1405,34 +1405,6 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
   ]{ "slug": slug.current }
 `;
 
-// ── FAQ aggregate — /faq ─────────────────────────────────────────────────────
-export interface FaqGroup {
-  _id: string;
-  source: string;
-  slug: string;
-  type: 'service' | 'costGuide' | 'comparison' | 'localArea';
-  faqs: FAQ[];
-}
-
-export const FAQ_AGGREGATE_QUERY = /* groq */ `
-  *[
-    (
-      (_type == "service" && status in ["live", "actual-menu"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})) ||
-      (_type == "costGuide" && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})) ||
-      (_type == "comparison" && status == "live" && slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} && !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})) ||
-      (_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ})
-    ) &&
-    count(faqs) > 0
-  ]
-    | order(_type asc, title asc) {
-      _id,
-      "source": title,
-      "slug": slug.current,
-      "type": _type,
-      faqs[]{ _key, question, answer }
-    }
-`;
-
 // ── Jane Iredale product education — /shop/jane-iredale/ ─────────────────────
 
 export interface LinkRef {

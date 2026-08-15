@@ -20,11 +20,18 @@ test('legacy AI-search FAQ fields are retained but unavailable for Studio author
   }
 });
 
-test('the unused AI FAQ query cannot suggest a live publication path', async () => {
+test('stored CMS FAQs cannot suggest a live aggregate publication path', async () => {
   const querySource = await readFile(
     new URL('../packages/web/src/lib/queries.ts', import.meta.url),
     'utf8',
   );
+  const faqRoute = await readFile(
+    new URL('../packages/web/src/pages/faq.astro', import.meta.url),
+    'utf8',
+  );
 
   assert.doesNotMatch(querySource, /AI_SEARCH_FAQ_QUERY|AiSearchFaqSection|CANONICAL_AI_FAQ_ANSWERS/);
+  assert.doesNotMatch(querySource, /FAQ_AGGREGATE_QUERY|FaqGroup/);
+  assert.match(faqRoute, /const faqs:\s*readonly PublicFaq\[\]\s*=\s*\[/);
+  assert.doesNotMatch(faqRoute, /sanityFetch|FAQ_AGGREGATE_QUERY/);
 });
