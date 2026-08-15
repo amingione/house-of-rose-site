@@ -1177,11 +1177,35 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
   const html = readFileSync(file, 'utf8');
   const main = mainHtml(html);
   const mainText = visibleText(main);
+  const overview = main.match(
+    /<section\b[^>]*data-skin-analysis-overview[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
+  const overviewText = visibleText(overview);
   const section = main.match(
     /<section\b[^>]*data-skin-imaging-views[^>]*>([\s\S]*?)<\/section>/i,
   )?.[1] ?? '';
   const sectionText = visibleText(section);
+  const workflow = main.match(
+    /<section\b[^>]*data-skin-analysis-steps[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
   const failures = [];
+
+  for (const [label, pattern] of [
+    ['verified price', /\$65\b/],
+    ['three imaging views', /standard[^.!?]{0,50}cross-polarized[^.!?]{0,50}UV/i],
+    ['short image capture', /taking the images takes a few minutes/i],
+    ['optional appointment boundary', /optional[^.!?]{0,40}not required/i],
+    ['visual baseline and non-diagnostic boundary', /visual baseline[^.!?]{0,50}not a medical diagnosis/i],
+  ]) {
+    if (!pattern.test(overviewText)) failures.push(`skin-analysis overview: missing ${label}`);
+  }
+  const workflowSteps = workflow.match(/data-skin-analysis-step\b/gi) ?? [];
+  if (workflowSteps.length !== 2) {
+    failures.push(`skin-analysis workflow: expected 2 steps, found ${workflowSteps.length}`);
+  }
+  if (/Three lighting views/i.test(workflow)) {
+    failures.push('skin-analysis workflow: repeats the three-view explanation');
+  }
 
   for (const [label, pattern] of [
     ['standard-light view', /standard light/i],
