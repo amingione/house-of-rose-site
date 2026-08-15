@@ -38,16 +38,11 @@ footer's `Explore` column, plus a link out from `/about/providers/aundrea/`. Kep
 the homepage leads with "Medical Aesthetics Practice" per the Creative System, and Events is deliberately a
 separate, clearly-labeled non-medical line, not a hero CTA competing with it.
 
-**If/when this gets built for real**, recommended implementation:
-- One new Sanity document type, `eventPage` (slug-based, not four singletons) with `kind: hub | bridal |
-  birthday | collaborate` — reuses one schema instead of four near-duplicates, consistent with
-  `content-modeling-best-practices`.
-- Routes: `packages/web/src/pages/events/index.astro` + `packages/web/src/pages/events/[slug].astro`,
-  mirroring the `experience.astro` / `skin-analysis.astro` Sanity-singleton-with-fallback pattern already
-  in use.
-- JSON-LD: `Service`/`Offer` on Bridal + Birthday (referencing Aundrea as a `Person`/provider), plain
-  `WebPage` or `ContactPage` on Collaborate.
-- Trailing-slash convention (`/events/bridal/`, not `/events/bridal`) per the site's URL rule.
+**If/when this is approved for implementation**, the mockup does not authorize a new schema or route.
+First map each approved page to one of the seven canonical types in `docs/SEO-AEO-PLAYBOOK.md` and
+`docs/CONTENT-MODEL-MAP.md`, then use that type's documented route, structured-data, sitemap, and
+internal-linking contract. A genuinely new type requires owner approval and updates to both binding
+documents before implementation.
 
 ## What's grounded in real sources vs. proposed
 
