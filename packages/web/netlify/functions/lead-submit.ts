@@ -166,9 +166,20 @@ const renderResponse = (
       <section aria-labelledby="response-title">
         <h1 id="response-title">Your request was not sent.</h1>
         <p>${escapeHtml(message)}</p>
-        <a href="${escapeHtml(returnPath)}">Return to the form</a>
+        <a id="return-to-form" href="${escapeHtml(returnPath)}">Return to the form</a>
       </section>
     </main>
+    <script>
+      const returnLink = document.getElementById('return-to-form');
+      returnLink?.addEventListener('click', (event) => {
+        if (!document.referrer) return;
+        const referrer = new URL(document.referrer);
+        const destination = new URL(returnLink.href);
+        if (referrer.origin !== location.origin || referrer.pathname !== destination.pathname) return;
+        event.preventDefault();
+        history.back();
+      });
+    </script>
   </body>
 </html>`,
     {
