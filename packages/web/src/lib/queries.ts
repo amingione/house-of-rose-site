@@ -222,11 +222,8 @@ export interface Concern {
   _id: string;
   title: string;
   slug: string;
-  intro?: string;
-  image?: SanityImage;
   treatments?: Service[];
   comparisons?: ServiceComparison[];
-  seo?: { metaTitle?: string; metaDescription?: string };
 }
 
 export interface ServiceCollection {
@@ -840,9 +837,7 @@ export const ALL_CONCERNS_QUERY = /* groq */ `
   *[_type == "concern" && status == "live" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id,
     title,
-    "slug": slug.current,
-    intro,
-    ${IMAGE_FIELDS}
+    "slug": slug.current
   }
 `;
 
@@ -851,9 +846,6 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
     _id,
     title,
     "slug": slug.current,
-    intro,
-    ${IMAGE_FIELDS},
-    "seo": seo { metaTitle, metaDescription },
     "treatments": *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && ^._id in concerns[]._ref] | order(orderRank asc, title asc) [0...4] {
       _id,
       title,
