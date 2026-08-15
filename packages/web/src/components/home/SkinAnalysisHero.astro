@@ -363,6 +363,10 @@ const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
   }
 
   @media (max-width: 639px) {
+    .scan-stage:has(.comparison-range:focus-visible) {
+      overflow: visible;
+    }
+
     .scan-stage {
       min-height: 840px;
     }
