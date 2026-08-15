@@ -93,8 +93,9 @@ no dark hero gets a solid, legible header for free — no per-page flag.**
 4. No text below **11px**, and no tracking above **0.26em** on uppercase micro-type.
    (10px @ 0.4em was unreadable regardless of colour.)
 5. Never set a text colour below ~70% opacity — the alpha eats the contrast budget.
-6. `btn-outline-white` is ivory-on-transparent: **dark surfaces only**. On light, use
-   `btn-outline-gold`.
+6. `btn-outline-white` and `btn-outline-gold` both use ivory text and borders on transparent
+   backgrounds: **dark surfaces only**. Neither is a light-surface fallback; any future light-surface
+   variant must be independently contrast-tested before use.
 
 ## Verifying
 
