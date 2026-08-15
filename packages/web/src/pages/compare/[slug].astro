@@ -136,7 +136,10 @@ const pageDescription = articleDescription;
 
   {comparisonRows.length > 0 && (
     <section class="bg-charcoal py-14 px-6">
-      <div class="max-w-[960px] mx-auto overflow-x-auto">
+      <div
+        class="mx-auto max-w-[960px] overflow-x-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        tabindex="0"
+      >
         <h2 id="comparison-table-heading" class="sr-only">Side-by-side comparison</h2>
         <table class="w-full border-collapse text-left" aria-labelledby="comparison-table-heading">
           <thead>
