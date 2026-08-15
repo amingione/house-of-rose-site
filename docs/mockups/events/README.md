@@ -99,6 +99,6 @@ services. Cart-style language would claim a checkout capability that doesn't exi
 ## Suggested next step
 
 Review the four mockups, resolve the flags above (especially the Event Makeup price conflict — that's a
-GlossGenius data-hygiene issue independent of this project), then say the word and this gets built as real
-Astro routes + a Sanity `eventPage` schema, wired into nav, sitemap, and JSON-LD like every other page type
-on the site.
+GlossGenius data-hygiene issue independent of this project), then map each approved idea to an existing
+canonical page type before implementation. If no current type fits, obtain owner approval and update the
+binding page-type and content-model documents before creating a schema or route.
