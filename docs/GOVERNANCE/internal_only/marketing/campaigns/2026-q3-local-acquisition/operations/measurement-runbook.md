@@ -18,7 +18,7 @@ Qualification does not determine medical or treatment candidacy. That remains wi
 ## Response workflow
 
 - During studio hours, acknowledge new leads as soon as possible and record the first-contact time.
-- Use the contact method the person requested. If no preference is captured, begin with a concise text or email and offer a call.
+- Use the contact method the person requested when that channel is available. If no preference is captured, begin with a concise email and offer a call. Do not initiate a text message until Grasshopper SMS is active and the lead record contains informational-message consent.
 - Do not request detailed medical history over Meta, email, or ordinary text messaging.
 - Record contact attempt, response, service interest, consultation status, and booking outcome.
 - After two unanswered attempts over three business days, close the outreach loop politely; do not pressure.
@@ -33,8 +33,9 @@ Suggested first reply:
 | --- | --- | --- |
 | `generate_lead` | Successful lead submission and thank-you state | Yes |
 | `phone_click` | Tap on a `tel:` link | No |
-| `sms_click` | Tap on an `sms:` link | No |
 | `booking_click` | Click to the verified GlossGenius booking domain | No |
+
+`sms_click` becomes applicable only after Grasshopper SMS is active and an approved public `sms:` link ships.
 
 Never send names, emails, phone numbers, form messages, or health details to analytics events.
 
