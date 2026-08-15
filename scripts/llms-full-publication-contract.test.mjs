@@ -37,6 +37,32 @@ test('the full AI feed emits links only for generated public service routes', ()
   );
 });
 
+test('the compact AI feed shares the generated-route service authority', () => {
+  assert.match(
+    compactSource,
+    /import \{ UNAVAILABLE_PUBLIC_SERVICE_SLUGS \} from '@\/lib\/publicServiceContent'/,
+  );
+  assert.match(
+    compactSource,
+    /const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>\(UNAVAILABLE_PUBLIC_SERVICE_SLUGS\)/,
+  );
+  assert.match(
+    compactSource,
+    /sanityFetch<Service\[\]>\(ALL_SERVICES_QUERY\)/,
+    'The compact feed must retain the public service query predicate.',
+  );
+  assert.match(
+    compactSource,
+    /sanityFetch<Service\[\]>\(LLMS_FEATURED_TREATMENTS_QUERY\)/,
+    'The compact feed must retain the featured-treatment query predicate.',
+  );
+  assert.match(
+    compactSource,
+    /\.filter\(\(service\) => !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET\.has\(service\.slug\)\)/,
+  );
+  assert.doesNotMatch(compactSource, /const NON_PUBLIC_SERVICE_SLUGS\b/);
+});
+
 test('both AI feeds expose operational and local-authority core routes', () => {
   for (const route of ['/faq/', '/support/', '/terms-of-service/', '/areas/']) {
     const sourceToken = `\${base}${route}`;

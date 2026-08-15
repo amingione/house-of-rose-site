@@ -27,13 +27,10 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
 import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 
-const NON_PUBLIC_SERVICE_SLUGS = new Set([
-  'microneedling-body',
-  'neck-decollete-extension',
-  'ez-gel-bio-filler',
-]);
+const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
@@ -52,7 +49,7 @@ export const GET: APIRoute = async ({ site }) => {
   const siteFacts = resolvePublicSiteFacts(settings);
   const providers = PROVIDER_PROFILE_FALLBACKS;
   const publicServices = [...services, ...featuredTreatments]
-    .filter((service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug))
+    .filter((service) => !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(service.slug))
     .filter((service, index, allServices) => allServices.findIndex(({ slug }) => slug === service.slug) === index);
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
