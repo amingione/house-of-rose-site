@@ -2,7 +2,7 @@
 
 > Practical guide. Google Ads suspension is a **different risk** from Florida board discipline — different
 > rulebook, different enforcer, different consequences. This file covers only Google. Florida rules live in
-> `FL-ADVERTISING-LAW.md`.
+> this directory's `README.md` and `COMPLIANCE-COPY-RULES.md`.
 >
 > Verified 2026-07-26 against Google's published advertising policies.
 
@@ -81,8 +81,8 @@ customers actually read them.
 
 ### Florida still governs *what you say* about them
 
-Google permitting the word is not the end of it. Your own `COMPLIANCE-COPY-RULES.md` and
-`FL-ADVERTISING-LAW.md` still apply to the claims around it — no guarantees, no "permanent," no
+Google permitting the word is not the end of it. This directory's `README.md` and
+`COMPLIANCE-COPY-RULES.md` still apply to the claims around it — no guarantees, no "permanent," no
 uniform-result promises, provider attribution present. And **Botox® is Allergan's registered trademark**:
 Google's trademark policy generally permits authorized-provider use, but confirm your provider agreement
 covers ad-copy use before running it, since Allergan does enforce.
@@ -96,7 +96,7 @@ covers ad-copy use before running it, since Allergan does enforce.
 | 1 | **Bidding** prescription drug terms without certification | Negative-keyword them; bid generic terms instead. Copy and landing pages are fine uncertified — see above |
 | 2 | **A sitelink or CTA that goes nowhere** — Google's Misrepresentation policy, and it can suspend outright | Click every sitelink before launch. Never promise a page that doesn't exist yet (this is why the "Our Pricing" sitelink can't ship until the pricing page does) |
 | 3 | **Unsubstantiated claims** — "eliminate wrinkles," "permanent," "guaranteed results," "reverse aging" | Use "designed to," "supports," "helps improve the appearance of." Your own `COMPLIANCE-COPY-RULES.md` §2 already bans these — same list works here |
-| 4 | **Before/after imagery** in ads or extensions | Don't run it. Also an FTC problem (`FL-ADVERTISING-LAW.md` §1.6) — a disclaimer does not fix it |
+| 4 | **Before/after imagery** in ads or extensions | Don't run it. Also an FTC problem (`AD-COMPLIANCE-RUNBOOK.md` §3) — a disclaimer does not fix it |
 | 5 | **Implying a credential you don't hold** — "dermatologist," "skin doctor," "medical clinic," "board certified" | Never in copy. See below on the keyword-vs-copy line |
 | 6 | **Health-condition targeting** — Google's personalized advertising policy prohibits targeting users by inferred medical condition | Don't build audiences around conditions (acne, hair loss, obesity). Geo + demographic only |
 | 7 | Landing page mismatch — ad promises something the page doesn't deliver | Ad message and page headline should obviously correspond |
