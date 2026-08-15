@@ -206,19 +206,16 @@ Automatically created assets off. Auto-apply recommendations off.
 - [ ] No before/after imagery in any asset
 - [ ] DKI off · automatically created assets off · auto-apply off
 - [ ] Provider callout present
-- [ ] **Landing page § 456.062 issue resolved** — see below
+- [ ] No free, discounted, or credited service offer unless the exact approved § 456.062 disclosure appears in both the ad unit and landing page
 
-### The one Florida item that touches this ad
+### Florida offer check
 
-If your ad points at `/skin-analysis/`, that page currently advertises a **"Complimentary"** consultation,
-which triggers Fla. Stat. § 456.062 and needs the 72-hour disclosure block. Two ways to close it — either
-is fine:
+The current `/skin-analysis/` page and Q3 Google ad copy carry no free, discounted, or credited service
+offer. Do not add one from this guide. A future offer requires the exact approved § 456.062 disclosure
+in the ad unit itself and on the landing page.
 
-- **Add the block** to the page (`FL-ADVERTISING-LAW.md` §5.1 — one component, ready to paste), or
-- **Remove the word "Complimentary"** from the page, which removes the trigger.
-
-This is a Florida requirement, not a Google one — Google will not suspend you for it. But it is one small
-edit and it is the last thing standing between the page and a clean ad.
+This is a Florida requirement rather than a Google Ads certification rule. Follow the current compliance
+README and primary law; this guide does not supply or authorize disclosure text.
 
 ---
 
