@@ -732,7 +732,7 @@ test('navigation and visit guidance speaks to clients rather than internal inven
   const expectations = [
     {
       route: 'services/index.html',
-      required: /different questions[\s\S]{0,240}service page[\s\S]{0,100}appointment details[\s\S]{0,120}book online[\s\S]{0,100}consultation[\s\S]{0,80}call/i,
+      required: /moving line[\s\S]{0,120}lost fullness[\s\S]{0,120}uneven color[\s\S]{0,120}rough texture[\s\S]{0,240}service page[\s\S]{0,100}appointment details[\s\S]{0,120}book online[\s\S]{0,100}consultation[\s\S]{0,80}call/i,
       retired: 'Every service page explains what the appointment involves',
     },
     {
@@ -820,6 +820,19 @@ test('service and concern pages do not turn product-choice reassurance into a te
   }
 
   assert.equal(failures.length, 0, formatFailures('Product-choice copy regression', failures));
+});
+
+test('public pages state concrete distinctions instead of repeating different-question copy', () => {
+  const failures = [];
+
+  for (const file of publicHtmlFiles) {
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8'))).toLowerCase();
+    if (text.includes('different question')) {
+      failures.push(`${relativeToRepo(file)}: contains the repeated different-question formula`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Concrete-distinction copy regression', failures));
 });
 
 test('public pages do not expose internal reconciliation language', () => {
@@ -1886,8 +1899,8 @@ test('services index keeps canonical decision hubs and provider orientation visi
   const failures = [];
 
   for (const [label, pattern] of [
-    ['observable distinctions', /movement[\s\S]{0,80}lost volume[\s\S]{0,80}pigment[\s\S]{0,80}texture/i],
-    ['observation-to-service handoff', /different questions[\s\S]{0,240}service page[\s\S]{0,100}appointment details/i],
+    ['observable distinctions', /moving line[\s\S]{0,80}lost fullness[\s\S]{0,80}uneven color[\s\S]{0,80}rough texture/i],
+    ['observation-to-service handoff', /separate services[\s\S]{0,240}service page[\s\S]{0,100}appointment details/i],
     ['booking-path distinction', /book online[\s\S]{0,80}consultation[\s\S]{0,80}call/i],
     ['provider licence transparency', /provider directory[\s\S]{0,80}licence type/i],
   ]) {

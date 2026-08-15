@@ -366,8 +366,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         injectable.whatItIs,
         injectable.whereItFits,
         isNeurotoxin
-          ? 'Dermal fillers address a different question: selected areas of lost volume in the lips, cheeks, and folds.'
-          : 'Botox and Daxxify address a different question: lines related to facial movement.',
+          ? 'Dermal fillers address selected areas of lost volume in the lips, cheeks, and folds.'
+          : 'Botox and Daxxify address lines related to facial movement.',
         injectable.provider.statement,
       ],
       distinctions: isNeurotoxin
