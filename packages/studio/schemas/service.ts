@@ -17,6 +17,12 @@ function validateEnabledGoogleBusinessCopy(value: string | undefined, parent: un
   return validatePublicCopy(value);
 }
 
+export function validatePublicServicePrice(value: string | undefined): true | string {
+  return value && /^\s*(?:from|starting at|investment)\b/i.test(value)
+    ? 'Enter the verified amount or explicit range without From, Starting at, or Investment framing.'
+    : true;
+}
+
 export const service = defineType({
   name: 'service',
   title: 'Service',
@@ -108,8 +114,8 @@ export const service = defineType({
       name: 'price',
       title: 'Price',
       type: 'string',
-      description: 'Starting-at price shown on the site (e.g., "From $399"). Leave empty for consult-only services.',
-      validation: (R) => R.custom(validatePublicCopy),
+      description: 'Enter the verified exact amount or explicit range (for example, "$399" or "$399–$499"). Leave empty for consult-only services.',
+      validation: (R) => R.custom(validatePublicCopy).custom(validatePublicServicePrice),
     }),
     defineField({
       name: 'bookingMode',

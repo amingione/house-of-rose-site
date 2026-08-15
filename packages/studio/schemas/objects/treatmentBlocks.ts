@@ -254,7 +254,7 @@ export const treatmentPriceRange = defineType({
       name: 'maxPrice',
       title: 'Maximum Price (USD)',
       type: 'number',
-      description: 'Leave empty for a single starting-at price.',
+      description: 'Leave empty when the verified menu has one exact price.',
       validation: (R) =>
         R.min(0).custom((value, context) => {
           const min = (context.parent as { minPrice?: number } | undefined)?.minPrice;
@@ -299,7 +299,7 @@ export const treatmentPriceRange = defineType({
   preview: {
     select: { min: 'minPrice', max: 'maxPrice', unit: 'unit' },
     prepare: ({ min, max, unit }: { min?: number; max?: number; unit?: string }) => ({
-      title: max && max !== min ? `$${min}–$${max}` : `From $${min}`,
+      title: max && max !== min ? `$${min}–$${max}` : `$${min}`,
       subtitle: `per ${unit ?? 'session'}`,
     }),
   },
