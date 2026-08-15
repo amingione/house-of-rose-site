@@ -284,6 +284,14 @@ test('about page names the people behind the current service menu', () => {
     }
   }
 
+  for (const retired of [
+    'A service name is only part of the answer.',
+    'follow their established provider roles and physician protocols',
+    'See services and booking paths',
+  ]) {
+    if (text.includes(retired)) failures.push(`about: contains retired institutional copy ${JSON.stringify(retired)}`);
+  }
+
   assert.equal(failures.length, 0, formatFailures('About-page provider depth regression', failures));
 });
 
