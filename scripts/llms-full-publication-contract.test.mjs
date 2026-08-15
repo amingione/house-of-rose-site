@@ -95,6 +95,15 @@ test('the compact AI feed includes the generated concern-guide inventory', () =>
   assert.ok(compactSource.includes('${base}/concerns/${concern.slug}/'));
 });
 
+test('the compact AI feed includes each generated treatment-package route', () => {
+  assert.ok(compactSource.includes('ALL_TREATMENT_PACKAGES_QUERY'));
+  assert.match(
+    compactSource,
+    /sanityFetch<TreatmentPackage\[\]>\(ALL_TREATMENT_PACKAGES_QUERY\)/,
+  );
+  assert.ok(compactSource.includes('${base}/packages/${treatmentPackage.slug}/'));
+});
+
 test('both AI feeds include each generated case-study route', () => {
   for (const feedSource of [compactSource, source]) {
     assert.ok(feedSource.includes('ALL_CASE_STUDIES_QUERY'));

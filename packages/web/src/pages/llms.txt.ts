@@ -10,6 +10,7 @@ import {
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
+  ALL_TREATMENT_PACKAGES_QUERY,
   SITE_SETTINGS_QUERY,
   type Service,
   type BlogPost,
@@ -18,6 +19,7 @@ import {
   type Comparison,
   type LocalArea,
   type CaseStudy,
+  type TreatmentPackage,
   type SiteSettings,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
@@ -35,7 +37,7 @@ const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(UNAVAILABLE_PUBLIC_S
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [settings, services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
+  const [settings, services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies, packages] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<Service[]>(LLMS_FEATURED_TREATMENTS_QUERY),
@@ -45,6 +47,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
+    sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   ]);
   const siteFacts = resolvePublicSiteFacts(settings);
   const providers = PROVIDER_PROFILE_FALLBACKS;
@@ -137,6 +140,14 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`## Areas Served`, ``);
     for (const a of localAreas) {
       lines.push(`- [${a.city}](${base}/areas/${a.slug}/)`);
+    }
+    lines.push(``);
+  }
+
+  if (packages.length > 0) {
+    lines.push(`## Treatment Series & Packages`, ``);
+    for (const treatmentPackage of packages) {
+      lines.push(`- [${treatmentPackage.title}](${base}/packages/${treatmentPackage.slug}/)`);
     }
     lines.push(``);
   }
