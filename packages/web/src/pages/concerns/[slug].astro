@@ -108,8 +108,8 @@ const treatmentList = concern.treatments?.length
                 href={`/compare/${comparison.slug}/`}
                 class="group flex items-center justify-between gap-6 py-5"
               >
-                <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold" {...(!getPublicComparisonContent(comparison.slug) ? sbFieldPath('title') : {})}>
-                  {getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}
+                <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold">
+                  {getPublicComparisonContent(comparison.slug)!.title}
                 </span>
                 <span class="shrink-0 text-gold" aria-hidden="true">→</span>
               </a>

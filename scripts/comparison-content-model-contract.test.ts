@@ -7,6 +7,9 @@ import {
   ALL_COMPARISONS_QUERY,
   ALL_COMPARISON_SLUGS_QUERY,
   COMPARISON_BY_SLUG_QUERY,
+  CONCERN_BY_SLUG_QUERY,
+  COST_GUIDE_BY_SLUG_QUERY,
+  SERVICE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 
@@ -22,6 +25,11 @@ const querySource = readFileSync(
   new URL('../packages/web/src/lib/queries.ts', import.meta.url),
   'utf8',
 );
+const comparisonBacklinkRenderers = [
+  '../packages/web/src/pages/services/[slug].astro',
+  '../packages/web/src/pages/concerns/[slug].astro',
+  '../packages/web/src/pages/cost/[slug].astro',
+].map((relativePath) => readFileSync(new URL(relativePath, import.meta.url), 'utf8'));
 
 const field = (name: string) => comparison.fields.find((candidate) => candidate.name === name);
 
@@ -106,6 +114,34 @@ test('public comparison payloads expose routing relationships, not overlay-owned
     assert.doesNotMatch(query, /\bintro\b|\bverdict\b|\brows\s*\[\]|\bfaqs\s*\[\]|"seo"\s*:/);
     assert.doesNotMatch(query, /\blabel\s*,|\bsummary\s*,|\bbestFor\s*,/);
     assert.match(query, /"service":\s*select\(/);
+  }
+});
+
+test('comparison backlinks expose route identity and render reviewed overlay titles only', () => {
+  const serviceComparisonType = querySource.match(
+    /export interface ServiceComparison \{([\s\S]*?)\n\}/,
+  )?.[1];
+
+  assert.ok(serviceComparisonType);
+  assert.match(serviceComparisonType, /\b_id:\s*string/);
+  assert.match(serviceComparisonType, /\bslug:\s*string/);
+  assert.doesNotMatch(serviceComparisonType, /\btitle\??:|\bintro\??:/);
+
+  for (const query of [SERVICE_BY_SLUG_QUERY, CONCERN_BY_SLUG_QUERY, COST_GUIDE_BY_SLUG_QUERY]) {
+    const backlinkProjection = query.match(
+      /"comparisons": \*\[[\s\S]*?\]\s*\|\s*order\([\s\S]*?\)\s*(?:\[[^\]]+\]\s*)?\{([\s\S]*?)\n\s*\}/,
+    )?.[1];
+    assert.ok(backlinkProjection, 'Each public backlink query must retain an inspectable projection.');
+    assert.match(backlinkProjection, /\b_id\b/);
+    assert.match(backlinkProjection, /"slug":\s*slug\.current/);
+    assert.doesNotMatch(backlinkProjection, /\btitle\b|\bintro\b/);
+    assert.match(query, /slug\.current in \[/);
+    assert.match(query, /!\(slug\.current in \[/);
+  }
+
+  for (const renderer of comparisonBacklinkRenderers) {
+    assert.match(renderer, /getPublicComparisonContent\(comparison\.slug\)!\.title/);
+    assert.doesNotMatch(renderer, /comparison\.(?:title|intro)\b/);
   }
 });
 

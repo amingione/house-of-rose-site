@@ -175,7 +175,7 @@ const pageDescription = publishedDescription;
               <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold">
                 {singleComparisonContent
                   ? 'Open the full comparison'
-                  : getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}
+                  : getPublicComparisonContent(comparison.slug)!.title}
               </span>
               <span class="shrink-0 text-gold" aria-hidden="true">→</span>
             </a>

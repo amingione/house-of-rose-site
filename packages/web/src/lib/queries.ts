@@ -204,9 +204,7 @@ export interface Service extends TreatmentPageFields {
 /** A comparison that contextually references a service as either option. */
 export interface ServiceComparison {
   _id: string;
-  title: string;
   slug: string;
-  intro?: string;
 }
 
 export interface SitemapService {
@@ -569,9 +567,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
     ] | order(orderRank asc, title asc) {
       _id,
-      title,
-      "slug": slug.current,
-      intro
+      "slug": slug.current
     },
     ${TREATMENT_PAGE_FIELDS}
   }
@@ -821,7 +817,6 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
       )
     ] | order(orderRank asc, title asc) [0...3] {
       _id,
-      title,
       "slug": slug.current
     }
   }
@@ -1159,7 +1154,7 @@ export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
       defined(^.treatment._ref) &&
       (optionA.service._ref == ^.treatment._ref || optionB.service._ref == ^.treatment._ref)
     ] | order(orderRank asc, title asc) [0...2] {
-      _id, title, "slug": slug.current, intro
+      _id, "slug": slug.current
     },
     "seo": seo { metaTitle, metaDescription }
   }

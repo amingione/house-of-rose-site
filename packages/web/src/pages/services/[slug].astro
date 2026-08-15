@@ -486,7 +486,7 @@ const pageDescription = factualServiceDescription;
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10 mt-8">
           {service.comparisons.map((comparison) => (
             <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(comparison._id)}>
-              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{getPublicComparisonContent(comparison.slug)?.title ?? comparison.title}</h3>
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{getPublicComparisonContent(comparison.slug)!.title}</h3>
               <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the comparison</span>
             </a>
           ))}
