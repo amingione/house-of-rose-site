@@ -711,7 +711,7 @@ test('experience page connects the real practice to provider and booking informa
   for (const [label, pattern] of [
     ['real practice photographs', /storefront[\s\S]{0,100}reception[\s\S]{0,100}IV suite[\s\S]{0,120}treatment room[\s\S]{0,100}(?:not stock|actual|real)/i],
     ['booking and comparison distinction', /(?:reserve|book)[\s\S]{0,180}(?:compare|consultation|question)/i],
-    ['no treatment-name prerequisite', /(?:do not|don’t|don't)[\s\S]{0,80}(?:need|have)[\s\S]{0,100}treatment name/i],
+    ['question-to-service handoff', /(?:question|inquiry)[\s\S]{0,140}(?:relevant service|practitioner)/i],
     ['Unit 9 entrance guidance', /House of Rose Aesthetics sign[\s\S]{0,80}Unit 9/i],
     ['free parking', /free parking/i],
   ]) {
@@ -732,7 +732,7 @@ test('navigation and visit guidance speaks to clients rather than internal inven
   const expectations = [
     {
       route: 'services/index.html',
-      required: /do not need[\s\S]{0,100}treatment name[\s\S]{0,140}direct booking[\s\S]{0,100}consultation[\s\S]{0,100}phone call/i,
+      required: /different questions[\s\S]{0,240}service page[\s\S]{0,100}appointment details[\s\S]{0,120}book online[\s\S]{0,100}consultation[\s\S]{0,80}call/i,
       retired: 'Every service page explains what the appointment involves',
     },
     {
@@ -766,6 +766,40 @@ test('navigation and visit guidance speaks to clients rather than internal inven
   }
 
   assert.equal(failures.length, 0, formatFailures('Client-language regression', failures));
+});
+
+test('orientation pages do not repeat the treatment-name reassurance formula', () => {
+  const retiredFormulas = [
+    'You do not have to sort out the menu first.',
+    'You do not need to translate the change into a treatment name.',
+    'you do not need a treatment name or a self-diagnosis',
+    'you do not need to choose a treatment name first',
+    'guessing at a treatment name',
+    'You do not need to choose a treatment name before asking a question.',
+    'You do not need a consultation to browse first.',
+    'You are not expected to speak in treatment names.',
+  ];
+  const failures = [];
+
+  for (const route of [
+    'about/index.html',
+    'services/index.html',
+    'concerns/index.html',
+    'support/index.html',
+    'experience/index.html',
+    'consultation/index.html',
+  ]) {
+    const file = path.join(DIST_ROOT, route);
+    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8')));
+    for (const retired of retiredFormulas) {
+      if (text.toLowerCase().includes(retired.toLowerCase())) {
+        failures.push(`${route}: contains repeated formula ${JSON.stringify(retired)}`);
+      }
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Orientation-copy regression', failures));
 });
 
 test('public pages do not expose internal reconciliation language', () => {
@@ -1833,8 +1867,8 @@ test('services index keeps canonical decision hubs and provider orientation visi
 
   for (const [label, pattern] of [
     ['observable distinctions', /movement[\s\S]{0,80}lost volume[\s\S]{0,80}pigment[\s\S]{0,80}texture/i],
-    ['no treatment-name prerequisite', /do not need[\s\S]{0,80}treatment name/i],
-    ['booking-path distinction', /direct booking[\s\S]{0,80}consultation[\s\S]{0,80}phone call/i],
+    ['observation-to-service handoff', /different questions[\s\S]{0,240}service page[\s\S]{0,100}appointment details/i],
+    ['booking-path distinction', /book online[\s\S]{0,80}consultation[\s\S]{0,80}call/i],
     ['provider licence transparency', /provider directory[\s\S]{0,80}licence type/i],
   ]) {
     if (!pattern.test(guidanceText)) failures.push(`services index guidance is missing ${label}`);
