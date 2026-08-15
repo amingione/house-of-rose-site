@@ -40,16 +40,17 @@ Exact and phrase match:
 
 ### Ad group: Injectables
 
-Use only while Botox, Daxxify, and filler remain currently bookable:
+Use only while the advertised injectable services remain currently bookable. Unless current Google
+Restricted Drug Terms certification is verified for this account, keep keyword targeting generic:
 
 - `[injectables near me]`
 - `"injectables punta gorda"`
-- `[botox punta gorda]`
-- `"botox near me"`
-- `[daxxify near me]`
-- `"daxxify punta gorda"`
 - `[dermal fillers near me]`
 - `"dermal fillers punta gorda"`
+
+Add `botox`, `dysport`, `daxxify`, `xeomin`, `jeuveau`, `juvederm`, `restylane`, and `sculptra` as
+negative keywords so phrase match cannot target restricted drug terms without certification. Brand
+names may remain in otherwise compliant ad copy and on landing pages.
 
 ### Ad group: Advanced Skin
 
