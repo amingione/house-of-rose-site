@@ -93,9 +93,9 @@ Review search terms daily for the first seven days. Add negatives only when the 
 
 ### Ad set
 
-- **Name:** `20mi | 35+ | Broad | All Genders`
+- **Name:** `20mi | Adults | Broad | All Genders`
 - **Location:** 20-mile radius around the studio; people living in or recently in the location, using the narrowest available residency setting.
-- **Age:** 35–65+.
+- **Age:** 18–65+.
 - **Gender:** all.
 - **Detailed targeting:** none at launch.
 - **Do not target:** medical conditions, insecurities, diagnoses, medication use, weight status, or inferred treatment candidacy.
