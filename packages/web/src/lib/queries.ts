@@ -169,7 +169,6 @@ export interface ServiceConcern {
   _id: string;
   title: string;
   slug: string;
-  intro?: string;
 }
 
 export interface Service extends TreatmentPageFields {
@@ -483,8 +482,7 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     ]->{
       _id,
       title,
-      "slug": slug.current,
-      intro
+      "slug": slug.current
     },
     _updatedAt,
     ${IMAGE_FIELDS},

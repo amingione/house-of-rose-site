@@ -256,6 +256,37 @@ test('concern authoring only offers relationships the public query can render', 
   assert.match(concernProjection[1], /@->status == "live"/);
   assert.match(concernProjection[1], /defined\(@->slug\.current\)/);
   assert.match(concernProjection[1], /!\(@->slug\.current in \[/);
+
+  const querySource = readFileSync(
+    new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+    'utf8',
+  );
+  const serviceConcernType = querySource.match(
+    /export interface ServiceConcern \{([\s\S]*?)\n\}/,
+  )?.[1];
+  assert.ok(serviceConcernType);
+  for (const activeField of ['_id', 'title', 'slug']) {
+    assert.match(serviceConcernType, new RegExp(`\\b${activeField}\\??:`));
+  }
+  assert.doesNotMatch(serviceConcernType, /\bintro\??:/);
+
+  const concernFields = SERVICE_BY_SLUG_QUERY.match(
+    /"concerns": concerns\[[\s\S]*?\]->\{([\s\S]*?)\n\s*\},/,
+  )?.[1];
+  assert.ok(concernFields, 'The service query must retain an inspectable concern projection.');
+  assert.match(concernFields, /\b_id\b/);
+  assert.match(concernFields, /\btitle\b/);
+  assert.match(concernFields, /"slug":\s*slug\.current/);
+  assert.doesNotMatch(concernFields, /\bintro\b/);
+
+  const renderer = readFileSync(
+    new URL('../packages/web/src/pages/services/[slug].astro', import.meta.url),
+    'utf8',
+  );
+  assert.match(renderer, /service\.concerns\.map/);
+  assert.match(renderer, /concern\.title/);
+  assert.match(renderer, /`\/concerns\/\$\{concern\.slug\}\/`/);
+  assert.doesNotMatch(renderer, /concern\.intro\b/);
 });
 
 test('service collection authoring and projections require a generated collection route', () => {
