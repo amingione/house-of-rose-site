@@ -10,6 +10,7 @@ import {
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
+  SITE_SETTINGS_QUERY,
   type Service,
   type BlogPost,
   type Concern,
@@ -17,6 +18,7 @@ import {
   type Comparison,
   type LocalArea,
   type CaseStudy,
+  type SiteSettings,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
@@ -25,6 +27,7 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
+import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 
 const NON_PUBLIC_SERVICE_SLUGS = new Set([
   'microneedling-body',
@@ -35,7 +38,8 @@ const NON_PUBLIC_SERVICE_SLUGS = new Set([
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
+  const [settings, services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies] = await Promise.all([
+    sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<Service[]>(LLMS_FEATURED_TREATMENTS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
@@ -45,6 +49,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
   ]);
+  const siteFacts = resolvePublicSiteFacts(settings);
   const providers = PROVIDER_PROFILE_FALLBACKS;
   const publicServices = [...services, ...featuredTreatments]
     .filter((service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug))
@@ -53,19 +58,19 @@ export const GET: APIRoute = async ({ site }) => {
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
   const lines: string[] = [
-    `# House of Rose Aesthetics`,
+    `# ${siteFacts.siteName}`,
     ``,
-    `> House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, offering skin treatments, Microneedling, PRF, injectables, IV hydration, wellness services, and professional home care.`,
+    `> ${siteFacts.siteName} is a medical aesthetics practice in Punta Gorda, Florida, offering skin treatments, Microneedling, PRF, injectables, IV hydration, wellness services, and professional home care.`,
     ``,
-    `House of Rose is located at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Phone: (844) 941-7673. Email: info@houseofrosefl.com. Serving Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.`,
+    `${siteFacts.shortName} is located at ${siteFacts.address}. Phone: ${siteFacts.phone}. Email: ${siteFacts.email}. Serving Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles.`,
     ``,
     `## Core Pages`,
     ``,
-    `- [Home](${base}/): House of Rose Aesthetics — a medical aesthetics practice in Punta Gorda, FL`,
+    `- [Home](${base}/): ${siteFacts.siteName} — a medical aesthetics practice in Punta Gorda, FL`,
     `- [Services](${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, makeup, and permanent-jewelry appointments`,
     `- [Concern Guides](${base}/concerns/): Observable skin, pigment, texture, movement, and volume questions connected to current services`,
-    `- [About](${base}/about/): House of Rose Aesthetics and the people behind the practice`,
-    `- [House of Rose Aesthetics](${base}/about/hra/): About the Punta Gorda practice`,
+    `- [About](${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
+    `- [${siteFacts.siteName}](${base}/about/hra/): About the Punta Gorda practice`,
     `- [Providers](${base}/about/providers/): Licence types, service focus, and individual team profiles`,
     `- [Consultation](${base}/consultation/): Request a conversation about a concern or treatment options; submitting the form does not reserve a time`,
     `- [Skin Imaging & Analysis](${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
@@ -150,15 +155,15 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Business Details`,
     ``,
-    `- **Name:** House of Rose Aesthetics`,
+    `- **Name:** ${siteFacts.siteName}`,
     `- **Category:** Medical Aesthetics Practice`,
-    `- **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950`,
-    `- **Phone:** (844) 941-7673`,
-    `- **Email:** info@houseofrosefl.com`,
+    `- **Address:** ${siteFacts.address}`,
+    `- **Phone:** ${siteFacts.phone}`,
+    `- **Email:** ${siteFacts.email}`,
     `- **Services menu:** https://houseofrose.glossgenius.com/services`,
     `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
     `- **Opened:** June 15, 2026`,
-    `- **Instagram:** @house.of.rose.aesthetics`,
+    `- **Instagram:** @${siteFacts.instagramHandle}`,
     `- **Facebook:** https://www.facebook.com/hofraesthetics`,
     `- **Service Area:** Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, Punta Gorda Isles`,
   );

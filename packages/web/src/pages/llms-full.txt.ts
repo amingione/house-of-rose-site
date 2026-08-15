@@ -8,12 +8,14 @@ import {
   ALL_COST_GUIDES_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
+  SITE_SETTINGS_QUERY,
   type BlogPost,
   type Comparison,
   type Concern,
   type CostGuide,
   type LocalArea,
   type TreatmentPackage,
+  type SiteSettings,
 } from '@/lib/queries';
 import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
@@ -28,6 +30,7 @@ import {
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
+import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 
 // During the voice reset, this feed exposes reviewed route inventories and
 // factual service education. Unreviewed long-form Sanity prose stays withheld.
@@ -54,7 +57,8 @@ interface ServiceFull {
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [services, posts, concerns, costGuides, comparisons, localAreas, packages] = await Promise.all([
+  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages] = await Promise.all([
+    sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
@@ -63,29 +67,30 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   ]);
+  const siteFacts = resolvePublicSiteFacts(settings);
   const providers = PROVIDER_PROFILE_FALLBACKS;
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
   const lines: string[] = [
-    `# House of Rose Aesthetics — Medical Aesthetics Practice — Full Content Index`,
+    `# ${siteFacts.siteName} — Medical Aesthetics Practice — Full Content Index`,
     ``,
     `> Medical aesthetics in Punta Gorda, Florida.`,
     ``,
     `## About`,
     ``,
-    `House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. Services include skin treatments, injectables, body treatments, IV hydration, wellness care, and professional home care.`,
+    `${siteFacts.siteName} is a medical aesthetics practice at ${siteFacts.addressWithExpandedRegion}. Services include skin treatments, injectables, body treatments, IV hydration, wellness care, and professional home care.`,
     ``,
-    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Call (844) 941-7673 for help choosing a service or arranging a visit.`,
+    `${siteFacts.shortName} serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Call ${siteFacts.phone} for help choosing a service or arranging a visit.`,
     ``,
     `**Contact:**`,
-    `- Phone: (844) 941-7673`,
-    `- Email: info@houseofrosefl.com`,
+    `- Phone: ${siteFacts.phone}`,
+    `- Email: ${siteFacts.email}`,
     `- Services menu: https://houseofrose.glossgenius.com/services`,
-    `- Address: 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950`,
+    `- Address: ${siteFacts.address}`,
     `- Hours: Monday–Friday 9:00 AM–5:00 PM`,
     `- Opened: June 15, 2026`,
-    `- Instagram: https://www.instagram.com/house.of.rose.aesthetics/`,
+    `- Instagram: ${siteFacts.instagramUrl}`,
     `- Facebook: https://www.facebook.com/hofraesthetics`,
     ``,
     `---`,
@@ -94,8 +99,8 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `- **Home** (${base}/): Overview of the practice, current services, and booking`,
     `- **Services** (${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, makeup, and permanent-jewelry appointments`,
-    `- **About** (${base}/about/): House of Rose Aesthetics and the people behind the practice`,
-    `- **House of Rose Aesthetics** (${base}/about/hra/): About the practice and its Punta Gorda location`,
+    `- **About** (${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
+    `- **${siteFacts.siteName}** (${base}/about/hra/): About the practice and its Punta Gorda location`,
     `- **Providers** (${base}/about/providers/): Licence types, service focus, and individual team profiles`,
     `- **Consultation** (${base}/consultation/): Request a conversation about a concern or treatment options; submitting the form does not reserve a time`,
     `- **Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
@@ -254,13 +259,13 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push(
     `## Identity & Public Facts`,
     ``,
-    `House of Rose Aesthetics is the canonical business name. The lead public category is "Medical Aesthetics Practice." "Med spa" and "medical spa" are acceptable supporting terms in metadata, SEO, and discovery contexts because the Google Business Profile category is Medical spa.`,
+    `${siteFacts.siteName} is the canonical business name. The lead public category is "Medical Aesthetics Practice." "Med spa" and "medical spa" are acceptable supporting terms in metadata, SEO, and discovery contexts because the Google Business Profile category is Medical spa.`,
     ``,
-    `Common brand variants: House of Rose and Rose Aesthetics. Address: 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Phone: (844) 941-7673.`,
+    `Common brand variants: House of Rose and Rose Aesthetics. Address: ${siteFacts.address}. Phone: ${siteFacts.phone}.`,
     ``,
     `## Service Scope`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. The public service inventory includes skin procedures, PRF, injectables, facials, IV hydration, and wellness services.`,
+    `${siteFacts.siteName} serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. The public service inventory includes skin procedures, PRF, injectables, facials, IV hydration, and wellness services.`,
   );
 
   return new Response(lines.join('\n'), {
