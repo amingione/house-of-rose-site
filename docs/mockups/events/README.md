@@ -58,7 +58,9 @@ separate, clearly-labeled non-medical line, not a hero CTA competing with it.
   unconflicted figure).
 - Everyday Makeup: 25 min, **$85** — same source.
 - Permanent Jewelry: **$65** flat line in GlossGenius — same source, but flagged (see below).
-- Voice, palette, typography, CTA language — Creative System Books 2–4.
+- Palette and typography — the implemented site tokens and components plus Creative System Book 4's
+  visual standards. The mockup's voice and CTA language are unapproved; current user direction and the
+  binding voice-reset rules govern any future build.
 
 **Flagged — do not publish as-is:**
 1. 🟡 **"Event Makeup" has two conflicting GlossGenius prices ($150 vs. $85 under different group names)**
