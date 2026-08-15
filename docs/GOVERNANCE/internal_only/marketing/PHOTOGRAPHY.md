@@ -45,8 +45,9 @@ imagery.
 
 ## The grade
 
-Warm-ivory editorial, matched to the Tailwind palette (ivory `#F4ECDC`, gold
-`#C9A24B`, walnut `#3E2C20`). Order matters:
+Warm-ivory editorial, matched to the implemented Tailwind/CSS palette: ivory `#F1EDE5`,
+on-dark gold `#E2D3B2`, decorative bronze `#8A6A43`, and walnut `#241B17`. Treat
+`packages/web/tailwind.config.ts` and `packages/web/src/styles/global.css` as the authority. Order matters:
 
 1. **White balance** — illuminant estimated from the brightest 10% of pixels (the
    walls and ceiling, which we know are meant to be white) and neutralised at 85%
