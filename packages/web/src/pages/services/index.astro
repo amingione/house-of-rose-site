@@ -2,10 +2,12 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_COLLECTIONS_QUERY, ALL_SERVICES_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
 import { sbObjectField } from '@/lib/visualEditing';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
 // Collections come from Sanity (`serviceCollection`); this page rolls them up
@@ -105,15 +107,41 @@ const unmappedServices = Array.from(
   new Map([...collectionUnmappedServices, ...standaloneServices].map((service) => [service.slug, service])).values(),
 );
 
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const pageTitle = 'Medical Aesthetic Services | House of Rose Punta Gorda, FL';
+const pageDescription = 'Skin, injectable, facial, IV hydration, weight-management, waxing, and permanent-jewelry services at House of Rose Aesthetics in Punta Gorda.';
+const directorySchema = itemListPage(
+  {
+    name: 'House of Rose Services',
+    description: pageDescription,
+    url: canonical,
+    items: allServices.map((service) => ({
+      name: service.title,
+      url: new URL(`/services/${service.slug}/`, site).toString(),
+    })),
+  },
+  site,
+);
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: canonical },
+]);
+
 ---
 
 <BaseLayout
-  title="Medical Aesthetic Services | House of Rose Punta Gorda, FL"
-  description="Skin, injectable, facial, IV hydration, weight-management, waxing, and permanent-jewelry services at House of Rose Aesthetics in Punta Gorda."
+  title={pageTitle}
+  description={pageDescription}
   preloadImage="/images/optimized/actual-reception-800.webp"
   preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"
   preloadImageSizes="100vw"
+  structuredPageType="CollectionPage"
+  structuredPageMainEntityId={`${canonical}#itemlist`}
 >
+  <SchemaMarkup item={directorySchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
   <!-- Hero -->
   <Hero
     title="Services at House of Rose."
