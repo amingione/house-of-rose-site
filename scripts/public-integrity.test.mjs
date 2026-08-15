@@ -1075,6 +1075,7 @@ test('consultation form explains that an inquiry does not reserve an appointment
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
   const html = readFileSync(file, 'utf8');
   const main = mainHtml(html);
+  const pageText = visibleText(main);
   const visibleQuestions = [...main.matchAll(
     /<(h3|span)\b[^>]*data-visit-faq-question[^>]*>([\s\S]*?)<\/\1>/gi,
   )].map((match) => visibleText(match[2]));
@@ -1099,6 +1100,17 @@ test('consultation form explains that an inquiry does not reserve an appointment
   );
 
   assert.ok(reservationFaq, 'Consultation page is missing the form-reservation FAQ.');
+  for (const [label, pattern] of [
+    ['comparison purpose', /compare two options/i],
+    ['practical questions', /price, timing, and recovery/i],
+    ['single-question path', /one direct question[\s\S]{0,80}without asking for a larger plan/i],
+    ['leave-alone preference', /what you want to leave alone/i],
+  ]) {
+    assert.match(pageText, pattern, `Consultation page is missing ${label}.`);
+  }
+  for (const retired of ['One direct question is enough.', 'It is equally useful to say']) {
+    assert.ok(!pageText.includes(retired), `Consultation page contains retired copy ${JSON.stringify(retired)}.`);
+  }
   for (const [label, pattern] of [
     ['request does not reserve a time', /consultation request[\s\S]{0,140}(?:does not|doesn't)[\s\S]{0,100}(?:hold|reserve)[\s\S]{0,60}(?:time|appointment)/i],
     ['practice arranges the consultation', /House of Rose[\s\S]{0,80}(?:contact|call|reach)[\s\S]{0,100}(?:arrange|schedule)[\s\S]{0,40}consultation/i],
