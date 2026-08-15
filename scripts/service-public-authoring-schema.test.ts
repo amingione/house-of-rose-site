@@ -53,6 +53,10 @@ function assertSharedGuard(field: NestedField | undefined, label: string): void 
   assert.match(String(validation), /validatePublicCopy/);
 }
 
+function assertRequired(field: NestedField | undefined, label: string): void {
+  assert.match(String(field?.validation), /\.required\(\)/, `${label} must remain required.`);
+}
+
 test('directly published service identity text uses the shared public-copy guard', () => {
   for (const fieldName of ['title', 'price', 'duration']) {
     assertSharedGuard(serviceField(fieldName), fieldName);
@@ -73,12 +77,83 @@ test('approved evidence editorial copy is guarded without rewriting source citat
   const evidenceFields = nestedObjectFields('evidenceMedia');
   const evidenceImage = evidenceFields.find((field) => field.name === 'image');
   assert.ok(evidenceImage?.fields && Array.isArray(evidenceImage.fields));
-  assertSharedGuard(evidenceImage.fields.find((field) => field.name === 'alt'), 'evidence image alt');
+  assertRequired(evidenceImage, 'evidence image');
+  const evidenceImageAlt = evidenceImage.fields.find((field) => field.name === 'alt');
+  assertRequired(evidenceImageAlt, 'evidence image alt');
+  assertSharedGuard(evidenceImageAlt, 'evidence image alt');
 
+  for (const fieldName of ['kind', 'title', 'caption', 'sourceCredit']) {
+    assertRequired(evidenceFields.find((field) => field.name === fieldName), `evidence ${fieldName}`);
+  }
   for (const fieldName of ['title', 'caption']) {
-    assertSharedGuard(evidenceFields.find((field) => field.name === fieldName), `evidence ${fieldName}`);
+    assertSharedGuard(
+      evidenceFields.find((field) => field.name === fieldName),
+      `evidence ${fieldName}`,
+    );
   }
   assert.doesNotMatch(String(evidenceFields.find((field) => field.name === 'sourceCredit')?.validation), /validatePublicCopy/);
+
+  for (const queryGuard of [
+    /kind in \["device", "before-after"\]/,
+    /defined\(image\.asset->url\)/,
+    /coalesce\(image\.alt, ""\) != ""/,
+    /coalesce\(title, ""\) != ""/,
+    /coalesce\(caption, ""\) != ""/,
+    /coalesce\(sourceCredit, ""\) != ""/,
+    /usageApproved == true/,
+    /kind != "before-after" \|\| consentConfirmed == true/,
+  ]) {
+    assert.match(SERVICE_BY_SLUG_QUERY, queryGuard);
+  }
+
+  type EvidenceFixture = {
+    kind?: string;
+    imageUrl?: string;
+    imageAlt?: string;
+    title?: string;
+    caption?: string;
+    sourceCredit?: string;
+    usageApproved?: boolean;
+    consentConfirmed?: boolean;
+  };
+  const isPublicEvidence = (item: EvidenceFixture) =>
+    ['device', 'before-after'].includes(item.kind ?? '') &&
+    Boolean(item.imageUrl) &&
+    Boolean(item.imageAlt) &&
+    Boolean(item.title) &&
+    Boolean(item.caption) &&
+    Boolean(item.sourceCredit) &&
+    item.usageApproved === true &&
+    (item.kind !== 'before-after' || item.consentConfirmed === true);
+  const completeDevice: EvidenceFixture = {
+    kind: 'device',
+    imageUrl: 'https://cdn.sanity.io/example.webp',
+    imageAlt: 'Device applicator',
+    title: 'Device',
+    caption: 'Manufacturer-supplied device image.',
+    sourceCredit: 'Manufacturer',
+    usageApproved: true,
+  };
+  const completeResult: EvidenceFixture = {
+    ...completeDevice,
+    kind: 'before-after',
+    consentConfirmed: true,
+  };
+  assert.equal(isPublicEvidence(completeDevice), true);
+  assert.equal(isPublicEvidence(completeResult), true);
+
+  for (const invalid of [
+    { ...completeDevice, kind: 'unknown' },
+    { ...completeDevice, imageUrl: undefined },
+    { ...completeDevice, imageAlt: undefined },
+    { ...completeDevice, title: undefined },
+    { ...completeDevice, caption: undefined },
+    { ...completeDevice, sourceCredit: undefined },
+    { ...completeDevice, usageApproved: false },
+    { ...completeResult, consentConfirmed: false },
+  ]) {
+    assert.equal(isPublicEvidence(invalid), false);
+  }
 
   const researchFields = nestedObjectFields('researchReferences');
   for (const fieldName of ['summary', 'limitations']) {

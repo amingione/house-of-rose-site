@@ -506,6 +506,12 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
     ${IMAGE_FIELDS},
     "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
     "evidenceMedia": evidenceMedia[
+      kind in ["device", "before-after"] &&
+      defined(image.asset->url) &&
+      coalesce(image.alt, "") != "" &&
+      coalesce(title, "") != "" &&
+      coalesce(caption, "") != "" &&
+      coalesce(sourceCredit, "") != "" &&
       usageApproved == true &&
       (kind != "before-after" || consentConfirmed == true)
     ] {
