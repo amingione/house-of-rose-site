@@ -81,11 +81,17 @@ This inverts the migration order. Google blocks a property move when the source 
 
 Get this backwards and you'll spend an afternoon convinced Google is broken.
 
-### 🟠 P1 — Container quality: **Urgent**
+### 🟠 P1 — Container diagnostic requires a live recheck
 
-Diagnostics flags *"Additional domains detected for configuration."* Google's own suggested fix is to modify the **Google Ads - Conversion Linker** tag.
+On 2026-07-28, diagnostics flagged *"Additional domains detected for configuration"* and suggested
+reviewing the **Google Ads - Conversion Linker** tag. That dated warning does not establish which
+domains are involved now or prove that attribution is leaking. Current site code accepts booking URLs
+only on `houseofrose.glossgenius.com`, and the current campaign measurement runbook classifies
+`booking_click` as a supporting event; a verified `generate_lead` is the primary conversion.
 
-Translation: your tag is firing on domains the container doesn't know about, so link decoration isn't happening there and **conversion attribution is leaking**. Given your booking flow runs on GlossGenius, the likely missing domains are `app.glossgenius.com` and the apex/`www` pair. For a med spa where the booking *is* the conversion, this is the highest-value measurement fix on the list.
+Reopen the live diagnostic and reproduce the current outbound booking flow before changing the linker.
+Configure only domains observed in the current journey that require cross-domain link decoration, then
+confirm the result in preview and diagnostics.
 
 ### 🟠 P1 — Google tag gateway: **Incomplete**
 
@@ -109,8 +115,10 @@ You built a first-party gateway at the Netlify edge (`/metrics/` → `gtm-nsdkjf
 ### Phase 0 — Freeze
 - [ ] Do **not** complete the Google Ads onboarding at `ocid=8429806518`. Build that PMax campaign inside the existing Ads account instead.
 
-### Phase 1 — Fix the leaks (highest value, lowest risk)
-- [ ] GTM → container diagnostics → **Configure your domains** → add `houseofrosefl.com`, `www.houseofrosefl.com`, and your GlossGenius booking domain to the Conversion Linker. Preview, then Submit.
+### Phase 1 — Verify and resolve live diagnostics
+- [ ] GTM → container diagnostics → reproduce the current booking journey using the verified
+  `houseofrose.glossgenius.com` destination. Add only domains that the live diagnostic and actual
+  redirect flow establish as necessary for cross-domain measurement. Preview, then Submit.
 - [ ] Finish **Google tag gateway** setup on the Google tag (account `6352389737` → Admin → Google tag gateway).
 - [ ] GA4 → Data streams → Redact data → enable **URL query parameter keys**.
 
