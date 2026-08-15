@@ -33,12 +33,14 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
+import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from '@/lib/publicCollectionContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
 import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 
 // During the voice reset, this feed exposes reviewed route inventories and
 // factual service education. Unreviewed long-form Sanity prose stays withheld.
 const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
+const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 const SERVICES_FULL_QUERY = /* groq */ `
   *[
     _type == "service" &&
@@ -48,7 +50,11 @@ const SERVICES_FULL_QUERY = /* groq */ `
   ] | order(orderRank asc, title asc) {
     title,
     "slug": slug.current,
-    collection->{ title }
+    "collection": select(
+      defined(collection->slug.current) &&
+      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
+        collection->{ title }
+    )
   }
 `;
 

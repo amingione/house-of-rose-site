@@ -37,6 +37,32 @@ test('the full AI feed emits links only for generated public service routes', ()
   );
 });
 
+test('the full AI feed exposes only reviewed public service collections', () => {
+  const query = source.match(
+    /const SERVICES_FULL_QUERY = \/\* groq \*\/ `([\s\S]*?)`;/,
+  )?.[1];
+
+  assert.ok(query, 'The full AI feed service query must remain inspectable.');
+  assert.match(
+    source,
+    /import \{ REVIEWED_PUBLIC_COLLECTION_SLUGS \} from '@\/lib\/publicCollectionContent'/,
+  );
+  assert.match(
+    source,
+    /const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON\.stringify\(REVIEWED_PUBLIC_COLLECTION_SLUGS\)/,
+  );
+  assert.match(query, /defined\(collection->slug\.current\)/);
+  assert.match(
+    query,
+    /collection->slug\.current in \$\{REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ\}/,
+  );
+  assert.doesNotMatch(
+    query,
+    /"collection"\s*:\s*collection->\{\s*title\s*\}/,
+    'An unreviewed collection relationship must not become public AI-feed taxonomy.',
+  );
+});
+
 test('the compact AI feed shares the generated-route service authority', () => {
   assert.match(
     compactSource,
