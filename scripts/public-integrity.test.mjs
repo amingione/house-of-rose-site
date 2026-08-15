@@ -663,7 +663,9 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'autologous platelet concentrate',
     'Hyaluronic-acid dermal filler',
     'manufactured injectable gel',
-    'skin feels',
+    'four-person medical aesthetics practice',
+    'makeup artistry',
+    'permanent jewelry',
   ]) {
     if (!homepage.includes(substantiveFact)) {
       failures.push(`homepage is missing substantive context ${JSON.stringify(substantiveFact)}`);
@@ -672,6 +674,10 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
   for (const retired of [
     'Good skin is a reflection of good judgment.',
     'Knowing what not to do matters more.',
+    'You do not need to arrive knowing the treatment name.',
+    'If the concern is clearer than the treatment name',
+    'You do not need to name it before you ask about it',
+    'Know what you want—or tell us what you are still figuring out.',
     'Every plan starts with a consultation',
     'Same source material. Three forms. Three different uses.',
     'Three uses of PRF. Three distinct appointments.',
