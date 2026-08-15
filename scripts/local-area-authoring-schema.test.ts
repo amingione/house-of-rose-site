@@ -3,7 +3,10 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { localArea } from '../packages/studio/schemas/localArea.ts';
-import { LOCAL_AREA_BY_SLUG_QUERY } from '../packages/web/src/lib/queries.ts';
+import {
+  ALL_LOCAL_AREAS_QUERY,
+  LOCAL_AREA_BY_SLUG_QUERY,
+} from '../packages/web/src/lib/queries.ts';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 
 const contentModelMap = readFileSync(
@@ -14,6 +17,15 @@ const areaRoute = readFileSync(
   new URL('../packages/web/src/pages/areas/[slug].astro', import.meta.url),
   'utf8',
 );
+const querySource = readFileSync(
+  new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+  'utf8',
+);
+const localAreaConsumers = [
+  '../packages/web/src/pages/llms.txt.ts',
+  '../packages/web/src/pages/llms-full.txt.ts',
+  '../packages/web/src/pages/sitemap.astro',
+].map((relativePath) => readFileSync(new URL(relativePath, import.meta.url), 'utf8'));
 
 function areaField(name: string) {
   return localArea.fields.find((field) => field.name === name);
@@ -95,4 +107,32 @@ test('the content model distinguishes active area facts from legacy CMS prose', 
   }
   assert.match(areaRoute, /const localIntro =/);
   assert.match(areaRoute, /const localFaqs =/);
+});
+
+test('public area payloads and indexes use active location facts only', () => {
+  const localAreaType = querySource.match(
+    /export interface LocalArea \{([\s\S]*?)\n\}/,
+  )?.[1];
+
+  assert.ok(localAreaType);
+  for (const activeField of ['_id', 'slug', 'city', 'region', 'servedServices', 'neighborhoods', 'image', '_updatedAt']) {
+    assert.match(localAreaType, new RegExp(`\\b${activeField}\\??:`));
+  }
+  for (const nonPublicField of ['title', 'intro', 'whyLocal', 'faqs', 'seo']) {
+    assert.doesNotMatch(
+      localAreaType,
+      new RegExp(`\\b${nonPublicField}\\??:`),
+      `${nonPublicField} must not remain in the public LocalArea type.`,
+    );
+  }
+
+  assert.doesNotMatch(ALL_LOCAL_AREAS_QUERY, /\bintro\b|"seo"\s*:/);
+  assert.match(ALL_LOCAL_AREAS_QUERY, /order\([^)]*\)\s*\{\s*_id,\s*"slug"/);
+  assert.doesNotMatch(LOCAL_AREA_BY_SLUG_QUERY, /\bintro\b|\bwhyLocal\b|\bfaqs\s*\[\]|"seo"\s*:/);
+  assert.match(LOCAL_AREA_BY_SLUG_QUERY, /\]\[0\]\s*\{\s*_id,\s*"slug"/);
+
+  for (const consumer of localAreaConsumers) {
+    assert.match(consumer, /(?:area|a)\.city/);
+    assert.doesNotMatch(consumer, /(?:area|a)\.title/);
+  }
 });

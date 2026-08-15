@@ -245,7 +245,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (localAreas.length > 0) {
     lines.push(`## Areas Served`, ``);
     for (const area of localAreas) {
-      lines.push(`- [${area.title}](${base}/areas/${area.slug}/)`);
+      lines.push(`- [${area.city}](${base}/areas/${area.slug}/)`);
     }
     lines.push(``, `---`, ``);
   }

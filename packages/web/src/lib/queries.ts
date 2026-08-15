@@ -1154,18 +1154,13 @@ export interface Comparison {
 // 5. Local area — /areas/[slug]
 export interface LocalArea {
   _id: string;
-  title: string;
   slug: string;
   city: string;
   region?: string;
-  intro: string;
-  whyLocal?: string;
   servedServices?: ServiceRef[];
   neighborhoods?: string[];
-  faqs?: FAQ[];
   image?: SanityImage;
   _updatedAt?: string;
-  seo?: SeoMeta;
 }
 
 // 6. Case study (before/after) — /results/[slug]
@@ -1293,23 +1288,20 @@ const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_LOCAL_ARE
 
 export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}] | order(orderRank asc, title asc) {
-    _id, title, "slug": slug.current, city, region, intro, _updatedAt,
-    ${IMAGE_FIELDS},
-    "seo": seo { metaTitle, metaDescription }
+    _id, "slug": slug.current, city, region, _updatedAt,
+    ${IMAGE_FIELDS}
   }
 `;
 
 export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current == $slug && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}][0] {
-    _id, title, "slug": slug.current, city, region, intro, whyLocal, neighborhoods, _updatedAt,
+    _id, "slug": slug.current, city, region, neighborhoods, _updatedAt,
     "servedServices": servedServices[
       @->status in ["live", "actual-menu"] &&
       defined(@->slug.current) &&
       !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
     ]->{ ${SERVICE_REF_FIELDS} },
-    faqs[]{ _key, question, answer },
-    ${IMAGE_FIELDS},
-    "seo": seo { metaTitle, metaDescription }
+    ${IMAGE_FIELDS}
   }
 `;
 
