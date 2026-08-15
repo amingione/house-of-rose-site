@@ -5,12 +5,14 @@ import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { SHOP_ENABLED } from '@/lib/features';
+import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
 
 interface Props {
   currentPath?: string;
+  siteFacts: PublicSiteFacts;
 }
 
-const { currentPath = '/' } = Astro.props;
+const { currentPath = '/', siteFacts } = Astro.props;
 const [collections, sanityProviders] = await Promise.all([
   sanityFetch<NavCollection[]>(NAV_COLLECTIONS_QUERY),
   sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
@@ -26,7 +28,7 @@ const linkClass = (path: string) =>
 
 <header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-soft-black/95 backdrop-blur-md">
   <div class="mx-auto flex h-20 max-w-[1440px] items-center gap-5 px-5 sm:px-8">
-    <a href="/" class="brand-link shrink-0" aria-label="House of Rose Aesthetics home">
+    <a href="/" class="brand-link shrink-0" aria-label={`${siteFacts.siteName} home`}>
       <img
         src="/logos/house-of-rose-monogram/hr-logo-gold.webp"
         alt=""
@@ -97,12 +99,12 @@ const linkClass = (path: string) =>
         <div class="about-panel absolute right-0 top-[calc(100%+14px)] w-[420px] border border-ivory/15 bg-bone p-7 shadow-[0_24px_70px_rgba(0,0,0,0.52)]">
           <a href="/about/" class="group block border-b border-ivory/10 pb-5">
             <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">About</p>
-            <p class="mt-2 font-serif text-[25px] text-ink group-hover:text-gold">House of Rose</p>
+            <p class="mt-2 font-serif text-[25px] text-ink group-hover:text-gold">{siteFacts.shortName}</p>
           </a>
           <div class="grid grid-cols-[0.78fr_1.22fr] gap-7 pt-5">
             <a href="/about/hra/" class="group block">
               <p class="text-[12px] font-semibold text-ink group-hover:text-gold">The practice</p>
-              <p class="mt-2 text-[12px] leading-relaxed text-muted">House of Rose in Punta Gorda.</p>
+              <p class="mt-2 text-[12px] leading-relaxed text-muted">{siteFacts.shortName} in Punta Gorda.</p>
             </a>
             <section aria-label="Providers">
               <p class="text-[12px] font-semibold text-ink">

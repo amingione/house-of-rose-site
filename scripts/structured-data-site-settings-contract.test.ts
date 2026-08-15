@@ -129,10 +129,19 @@ test('BaseLayout and local-area rendering share the normalized Site Settings aut
     new URL('../packages/web/src/components/Footer.astro', import.meta.url),
     'utf8',
   );
+  const header = readFileSync(
+    new URL('../packages/web/src/components/Header.astro', import.meta.url),
+    'utf8',
+  );
 
   assert.match(layout, /const siteFacts = resolvePublicSiteFacts\(settings\)/);
   assert.match(layout, /siteFacts,/);
+  assert.match(layout, /<Header currentPath=\{Astro\.url\.pathname\} siteFacts=\{siteFacts\} \/>/);
   assert.match(layout, /<Footer siteFacts=\{siteFacts\} \/>/);
+
+  assert.match(header, /aria-label=\{`\$\{siteFacts\.siteName\} home`\}/);
+  assert.match(header, /\{siteFacts\.shortName\}/);
+  assert.doesNotMatch(header, /House of Rose/);
 
   assert.match(footer, /\{siteFacts\.siteName\}/);
   assert.match(footer, /const addressMatch = siteFacts\.address\.match/);

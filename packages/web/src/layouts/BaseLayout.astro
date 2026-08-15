@@ -155,7 +155,7 @@ const entityGraph = siteEntityGraph(
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
-    {chrome === 'site' && <Header currentPath={Astro.url.pathname} />}
+    {chrome === 'site' && <Header currentPath={Astro.url.pathname} siteFacts={siteFacts} />}
 
     <!-- Page content -->
     <main id="main-content" tabindex="-1">
