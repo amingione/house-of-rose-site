@@ -2417,7 +2417,7 @@ test('area detail guides distinguish the location from the service area and supp
   assert.equal(failures.length, 0, formatFailures('Area-detail trip-planning regression', failures));
 });
 
-test('results index explains the proof standard even when no cases are published', () => {
+test('results index keeps the empty state concise and reserves proof guidance for published cases', () => {
   const file = path.join(DIST_ROOT, 'results/index.html');
   assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
   const html = readFileSync(file, 'utf8');
@@ -2429,22 +2429,9 @@ test('results index explains the proof standard even when no cases are published
   const mainText = visibleText(main);
   const failures = [];
 
-  if (!standard) failures.push('results index: missing proof-standard section');
-  for (const [label, pattern] of [
-    ['comparable-photo conditions', /same distance[\s\S]{0,40}crop[\s\S]{0,40}angle[\s\S]{0,40}lighting[\s\S]{0,40}background/i],
-    ['no result-changing edits', /(?:retouching|editing)[\s\S]{0,80}(?:must not|cannot|can't)[\s\S]{0,80}(?:change|alter)[\s\S]{0,60}(?:apparent )?result/i],
-    ['concurrent-treatment context', /treatment[\s\S]{0,120}(?:anything else|other service|add-on)[\s\S]{0,120}(?:contributed|used)[\s\S]{0,60}result/i],
-    ['timeframe and session context', /(?:elapsed )?timeframe[\s\S]{0,100}(?:number of )?sessions/i],
-    ['written publication permission', /written[\s\S]{0,60}(?:client )?permission[\s\S]{0,80}website publication/i],
-    ['appointment is not publication consent', /treatment appointment[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}authoriz[\s\S]{0,80}(?:website )?publication/i],
-    ['individual-variation boundary', /individual (?:results|outcomes) vary/i],
-    ['documented example is not a forecast', /documented example[\s\S]{0,80}not a forecast/i],
-    ['photographs cannot predict an outcome', /photographs? alone[\s\S]{0,100}(?:cannot|can't)[\s\S]{0,100}(?:outcome|result)/i],
-  ]) {
-    if (!pattern.test(text)) failures.push(`results index: missing ${label}`);
-  }
-
-  if (/<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(html)) {
+  const isEmpty = /<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(html);
+  if (isEmpty) {
+    if (standard) failures.push('results index: empty state should not render proof-standard guidance');
     for (const [label, pattern] of [
       ['no currently published client cases', /No House of Rose client cases[\s\S]{0,60}currently published/i],
       ['no stock/context-free stand-ins', /(?:stock|borrowed)[\s\S]{0,100}context-free images/i],
@@ -2455,6 +2442,21 @@ test('results index explains the proof standard even when no cases are published
       if (!pattern.test(mainText)) {
         failures.push(`results index: empty state is missing ${label}`);
       }
+    }
+  } else {
+    if (!standard) failures.push('results index: published cases are missing proof-standard guidance');
+    for (const [label, pattern] of [
+      ['comparable-photo conditions', /same distance[\s\S]{0,40}crop[\s\S]{0,40}angle[\s\S]{0,40}lighting[\s\S]{0,40}background/i],
+      ['no result-changing edits', /(?:retouching|editing)[\s\S]{0,80}(?:must not|cannot|can't)[\s\S]{0,80}(?:change|alter)[\s\S]{0,60}(?:apparent )?result/i],
+      ['concurrent-treatment context', /treatment[\s\S]{0,120}(?:anything else|other service|add-on)[\s\S]{0,120}(?:contributed|used)[\s\S]{0,60}result/i],
+      ['timeframe and session context', /(?:elapsed )?timeframe[\s\S]{0,100}(?:number of )?sessions/i],
+      ['written publication permission', /written[\s\S]{0,60}(?:client )?permission[\s\S]{0,80}website publication/i],
+      ['appointment is not publication consent', /treatment appointment[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}authoriz[\s\S]{0,80}(?:website )?publication/i],
+      ['individual-variation boundary', /individual (?:results|outcomes) vary/i],
+      ['documented example is not a forecast', /documented example[\s\S]{0,80}not a forecast/i],
+      ['photographs cannot predict an outcome', /photographs? alone[\s\S]{0,100}(?:cannot|can't)[\s\S]{0,100}(?:outcome|result)/i],
+    ]) {
+      if (!pattern.test(text)) failures.push(`results index: missing ${label}`);
     }
   }
   for (const retired of [
@@ -2469,15 +2471,19 @@ test('results index explains the proof standard even when no cases are published
     /<section\b[^>]*data-results-next-step[^>]*>([\s\S]*?)<\/section>/i,
   )?.[1] ?? '';
   const nextStepText = visibleText(nextStep);
-  for (const [label, pattern] of [
-    ['photo starts but cannot finish the conversation', /photograph[\s\S]{0,80}(?:start|begin)[\s\S]{0,80}conversation[\s\S]{0,80}(?:cannot|can't|does not)[\s\S]{0,50}finish/i],
-    ['individual response cannot be predicted', /(?:cannot|can't)[\s\S]{0,80}predict[\s\S]{0,80}(?:skin|response)/i],
-    ['no promise to recreate another result', /not a promise[\s\S]{0,100}recreate[\s\S]{0,100}(?:someone else|another person)/i],
-  ]) {
-    if (!pattern.test(nextStepText)) failures.push(`results index: missing ${label}`);
-  }
-  for (const href of ['/services/', '/compare/']) {
-    if (!nextStep.includes(`href="${href}"`)) failures.push(`results index: next step is missing ${href}`);
+  if (isEmpty) {
+    if (nextStep) failures.push('results index: empty state should not render result-interpretation guidance');
+  } else {
+    for (const [label, pattern] of [
+      ['photo starts but cannot finish the conversation', /photograph[\s\S]{0,80}(?:start|begin)[\s\S]{0,80}conversation[\s\S]{0,80}(?:cannot|can't|does not)[\s\S]{0,50}finish/i],
+      ['individual response cannot be predicted', /(?:cannot|can't)[\s\S]{0,80}predict[\s\S]{0,80}(?:skin|response)/i],
+      ['no promise to recreate another result', /not a promise[\s\S]{0,100}recreate[\s\S]{0,100}(?:someone else|another person)/i],
+    ]) {
+      if (!pattern.test(nextStepText)) failures.push(`results index: missing ${label}`);
+    }
+    for (const href of ['/services/', '/compare/']) {
+      if (!nextStep.includes(`href="${href}"`)) failures.push(`results index: next step is missing ${href}`);
+    }
   }
 
   assert.equal(failures.length, 0, formatFailures('Results-proof standard regression', failures));
