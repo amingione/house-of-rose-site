@@ -2345,6 +2345,7 @@ test('concern guides retain reviewed distinctions without enforcing one headline
     aging: ['rougher surface', 'uneven color', 'appears with expression', 'surface, pigment, movement, or volume'],
     'dark-circles': ['thin or translucent skin', 'visible vessels', 'structural shadow', 'outside what an aesthetic service can change'],
     'fine-lines-laxity': ['repeated facial movement', 'skin texture', 'facial support', 'neurotoxins for movement-related lines', 'fillers for selected volume changes', 'resurfacing or device services'],
+    hyperpigmentation: ['brown spot', 'broader area of uneven color', 'after a breakout', 'pattern and history differ'],
     'volume-loss': ['hollow, fold, or shift in facial shape', 'manufactured hyaluronic-acid gels', 'small sample of your own blood', 'Botox and Daxxify'],
   };
   const practicalGuidance = {

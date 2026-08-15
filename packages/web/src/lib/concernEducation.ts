@@ -52,7 +52,7 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
   hyperpigmentation: {
     heading: 'Is it one spot, a diffuse patch, or a mark left after inflammation?',
     lead: 'Uneven pigment can differ in depth, pattern, trigger, and response to light-based or exfoliating treatments.',
-    detail: 'A brown spot, a broader area of uneven color, and discoloration after a breakout may look similar at first glance. The visible pattern and what preceded it give the provider more useful information than the word “pigmentation” alone.',
+    detail: 'A brown spot, a broader area of uneven color, and discoloration after a breakout may look similar at first glance. Their pattern and history differ, even when all three are described as “pigmentation.”',
     distinction: 'Notice whether the color is isolated or spread out, and whether it followed a breakout, irritation, or time in the sun.',
     consultationHeading: 'Show us the color and its pattern.',
     consultationPrompt: 'Tell us whether you see a single spot, a diffuse patch, or discoloration left after inflammation—and when you first noticed it.',
