@@ -10,6 +10,46 @@ export function validateTermsPublicCopy(value: string | undefined): true | strin
   return validatePublicCopy(complianceAwareCopy);
 }
 
+const TERMS_MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+] as const;
+
+export function validateTermsEffectiveDate(value: string | undefined): true | string {
+  const publicCopyResult = validateTermsPublicCopy(value);
+  if (publicCopyResult !== true) return publicCopyResult;
+
+  const trimmed = value?.trim();
+  if (!trimmed) return true;
+
+  const match = trimmed.match(
+    /^Effective (January|February|March|April|May|June|July|August|September|October|November|December) ([1-9]|[12]\d|3[01]), (\d{4})\.?$/,
+  );
+  if (!match) {
+    return 'Use the displayed legal-date format “Effective Month D, YYYY”.';
+  }
+
+  const [, monthName, dayText, yearText] = match;
+  const monthIndex = TERMS_MONTHS.indexOf(monthName as (typeof TERMS_MONTHS)[number]);
+  const day = Number(dayText);
+  const year = Number(yearText);
+  const date = new Date(Date.UTC(year, monthIndex, day));
+
+  return date.getUTCFullYear() === year && date.getUTCMonth() === monthIndex && date.getUTCDate() === day
+    ? true
+    : 'Enter a real calendar date.';
+}
+
 /** Singleton legal content for /terms-of-service/. */
 export const termsOfService = defineType({
   name: 'termsOfService',
@@ -30,7 +70,7 @@ export const termsOfService = defineType({
       type: 'string',
       group: 'content',
       description: 'Displayed beneath the title, for example “Effective July 11, 2026.”',
-      validation: (R) => R.custom(validateTermsPublicCopy),
+      validation: (R) => R.custom(validateTermsEffectiveDate),
     }),
     defineField({ name: 'intro', title: 'Introduction', type: 'text', rows: 4, group: 'content', validation: (R) => R.custom(validateTermsPublicCopy) }),
     defineField({
