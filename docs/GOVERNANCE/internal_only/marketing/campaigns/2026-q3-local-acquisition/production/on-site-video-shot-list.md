@@ -65,7 +65,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 
 **Length:** 15–25 seconds  
 **Speaker:** Diana, RN  
-**Destination:** `/services/injectables/`
+**Destination:** `/services/injectables-bio-fillers/`
 
 ### Spoken script
 
