@@ -125,10 +125,11 @@ so an uncertified med spa bidding `botox punta gorda` is targeting terms it isn'
 
 ---
 
-## A starter ad you can actually run
+## Policy-safe campaign setup
 
-Safe by construction: no prescription names, no credential implication, no free/discounted offer (so no
-§ 456.062 block is needed in the ad), no claims requiring substantiation.
+The controls below address restricted terms and campaign settings. They do not authorize campaign
+voice, headlines, descriptions, or treatment claims. Use current reviewed campaign assets and
+landing-page facts, then apply these controls before launch.
 
 **Ad group: Skin & sun damage** — phrase/exact keywords. **No prescription drug terms in the keyword
 list** — that is the part requiring certification. Brand names may appear in the *copy* if you want them.
@@ -139,30 +140,6 @@ list** — that is the part requiring certification. Brand names may appear in t
 "microneedling punta gorda"             "facial punta gorda"
 "skin analysis punta gorda"             "med spa punta gorda"
 "medical spa punta gorda"               "aesthetics punta gorda"
-```
-
-**Headlines (15)** — generic set below. If you want brand pull you may swap in e.g. "Botox & Dysport
-Available" or "Wrinkle Relaxers & Fillers": Google permits prescription terms in copy uncertified, and the
-Florida claim rules still apply:
-
-```
-Sun Damage & Age Spots          Punta Gorda Skin Studio
-Advanced Skin Treatments        See Your Skin First
-Skin Analysis & Imaging         Texture, Tone & Pigment
-A Plan Built For Your Skin      Microneedling & Peels
-House of Rose Aesthetics        Walk-Ins Welcome
-Punta Gorda, FL                 Book A Skin Analysis
-Provider-Led Consultations      Florida Sun Damage Care
-Advanced Aesthetics & Wellness
-```
-
-**Descriptions (4):**
-
-```
-Skin imaging and a provider review, so your plan is built around what your skin is actually showing.
-Texture, tone, pigment and sun damage — addressed in sequence, not sold from a menu.
-Advanced aesthetics and wellness in Punta Gorda. Walk-ins welcome; appointments recommended.
-Candidacy is determined by your provider at consultation. Not every client is a candidate.
 ```
 
 **Callout extensions:**
