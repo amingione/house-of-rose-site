@@ -174,5 +174,5 @@ export function formatPriceRange(range: TreatmentPriceRange): string {
   if (range.maxPrice != null && range.maxPrice !== range.minPrice) {
     return `${money(range.minPrice)}–${money(range.maxPrice)} ${unit}`;
   }
-  return `From ${money(range.minPrice)} ${unit}`;
+  return `${money(range.minPrice)} ${unit}`;
 }
