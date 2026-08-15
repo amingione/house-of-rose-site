@@ -18,6 +18,10 @@ const comparisonRoute = readFileSync(
   new URL('../packages/web/src/pages/compare/[slug].astro', import.meta.url),
   'utf8',
 );
+const querySource = readFileSync(
+  new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+  'utf8',
+);
 
 const field = (name: string) => comparison.fields.find((candidate) => candidate.name === name);
 
@@ -64,6 +68,45 @@ test('the comparison schema and detail route enforce that documented ownership s
   }
 
   assert.match(comparisonRoute, /getPublicComparisonContent\(cmp\.slug\)/);
+});
+
+test('public comparison payloads expose routing relationships, not overlay-owned copy', () => {
+  const comparisonType = querySource.match(
+    /export interface Comparison \{([\s\S]*?)\n\}/,
+  )?.[1];
+  const comparisonOptionType = querySource.match(
+    /export interface ComparisonOption \{([\s\S]*?)\n\}/,
+  )?.[1];
+
+  assert.ok(comparisonType);
+  assert.ok(comparisonOptionType);
+  assert.match(comparisonType, /\b_id:\s*string/);
+  assert.match(comparisonType, /\bslug:\s*string/);
+  assert.match(comparisonType, /\b_updatedAt\?/);
+  assert.match(comparisonType, /\boptionA\?/);
+  assert.match(comparisonType, /\boptionB\?/);
+  assert.match(comparisonOptionType, /\bservice\?/);
+
+  for (const legacyField of ['title', 'intro', 'rows', 'verdict', 'faqs', 'seo']) {
+    assert.doesNotMatch(
+      comparisonType,
+      new RegExp(`\\b${legacyField}\\??:`),
+      `${legacyField} must not remain in the public Comparison type.`,
+    );
+  }
+  for (const legacyField of ['label', 'summary', 'bestFor']) {
+    assert.doesNotMatch(
+      comparisonOptionType,
+      new RegExp(`\\b${legacyField}\\??:`),
+      `${legacyField} must not remain in the public ComparisonOption type.`,
+    );
+  }
+
+  for (const query of [ALL_COMPARISONS_QUERY, COMPARISON_BY_SLUG_QUERY]) {
+    assert.doesNotMatch(query, /\bintro\b|\bverdict\b|\brows\s*\[\]|\bfaqs\s*\[\]|"seo"\s*:/);
+    assert.doesNotMatch(query, /\blabel\s*,|\bsummary\s*,|\bbestFor\s*,/);
+    assert.match(query, /"service":\s*select\(/);
+  }
 });
 
 test('every public comparison query requires both option services to have generated routes', () => {

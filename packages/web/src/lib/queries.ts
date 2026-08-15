@@ -1140,31 +1140,15 @@ export interface CostGuide {
 
 // 4. Comparison — /compare/[slug]
 export interface ComparisonOption {
-  label: string;
-  summary?: string;
-  bestFor?: string;
   service?: ServiceRef;
-}
-
-export interface ComparisonRow {
-  _key?: string;
-  attribute: string;
-  valueA?: string;
-  valueB?: string;
 }
 
 export interface Comparison {
   _id: string;
-  title: string;
   slug: string;
-  intro: string;
   optionA?: ComparisonOption;
   optionB?: ComparisonOption;
-  rows?: ComparisonRow[];
-  verdict?: string;
-  faqs?: FAQ[];
   _updatedAt?: string;
-  seo?: SeoMeta;
 }
 
 // 5. Local area — /areas/[slug]
@@ -1256,7 +1240,6 @@ export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
 
 // ── Comparisons ──────────────────────────────────────────────────────────────
 const COMPARISON_OPTION_FIELDS = /* groq */ `
-  label, summary, bestFor,
   "service": select(
     service->status in ["live", "actual-menu"] &&
     defined(service->slug.current) &&
@@ -1273,10 +1256,9 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
     !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
     ${COMPARISON_ROUTEABLE_OPTIONS}
   ] | order(orderRank asc, title asc) {
-    _id, title, "slug": slug.current, intro, _updatedAt,
+    _id, "slug": slug.current, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
-    "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
-    "seo": seo { metaTitle, metaDescription }
+    "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} }
   }
 `;
 
@@ -1289,12 +1271,9 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
     !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
     ${COMPARISON_ROUTEABLE_OPTIONS}
   ][0] {
-    _id, title, "slug": slug.current, intro, verdict, _updatedAt,
+    _id, "slug": slug.current, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
-    "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} },
-    rows[]{ _key, attribute, valueA, valueB },
-    faqs[]{ _key, question, answer },
-    "seo": seo { metaTitle, metaDescription }
+    "optionB": optionB{ ${COMPARISON_OPTION_FIELDS} }
   }
 `;
 
