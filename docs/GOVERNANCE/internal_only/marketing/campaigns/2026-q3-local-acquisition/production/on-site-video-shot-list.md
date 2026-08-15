@@ -44,7 +44,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 - 8–14s: speaker plus treatment-room details; on-screen text: `ACTUAL HOUSE OF ROSE SPACES`
 - End frame: logo, `(844) 941-7673`, `houseofrosefl.com/experience/`
 
-## Video 2 — See your skin first
+## Video 2 — Three views of the skin
 
 **Length:** 15–25 seconds  
 **Speaker:** Amber Mingione, Licensed Esthetician
@@ -56,7 +56,7 @@ The supplied still photographs are sufficient for launch statics and motion-stil
 
 ### Edit
 
-- 0–4s: Amber on camera; on-screen text: `SEE YOUR SKIN FIRST`
+- 0–4s: Amber on camera; on-screen text: `THREE VIEWS OF THE SKIN`
 - 4–10s: analysis device and privacy-safe screen B-roll; text: `A CLEARER BASELINE`
 - 10–17s: privacy-safe screen detail; text: `NON-DIAGNOSTIC SKIN IMAGING`
 - End frame: `ADVANCED SKIN IMAGING · PUNTA GORDA`
