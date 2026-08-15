@@ -19,7 +19,17 @@ test('the full AI feed emits links only for generated public service routes', ()
   assert.ok(query, 'The full AI feed service query must remain inspectable.');
   assert.match(query, /status in \["live", "actual-menu"\]/);
   assert.match(query, /defined\(slug\.current\)/);
-  assert.match(query, /!\(slug\.current in \[/);
+  assert.match(query, /!\(slug\.current in \$\{UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ\}\)/);
+  assert.match(
+    source,
+    /import \{ UNAVAILABLE_PUBLIC_SERVICE_SLUGS \} from '@\/lib\/publicServiceContent'/,
+  );
+  assert.match(
+    source,
+    /const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON\.stringify\(UNAVAILABLE_PUBLIC_SERVICE_SLUGS\)/,
+  );
+  assert.doesNotMatch(source, /const NON_PUBLIC_SERVICE_SLUGS\b/);
+  assert.doesNotMatch(source, /services\.filter\(\(service\) => !NON_PUBLIC_SERVICE_SLUGS\.has/);
   assert.match(
     source,
     /URL: \$\{base\}\/services\/\$\{s\.slug\}\//,

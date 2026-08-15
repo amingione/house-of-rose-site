@@ -27,24 +27,17 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
 
 // During the voice reset, this feed exposes reviewed route inventories and
 // factual service education. Unreviewed long-form Sanity prose stays withheld.
+const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
 const SERVICES_FULL_QUERY = /* groq */ `
   *[
     _type == "service" &&
     status in ["live", "actual-menu"] &&
     defined(slug.current) &&
-    !(slug.current in [
-      "microneedling-body",
-      "neck-decollete-extension",
-      "ez-gel-bio-filler",
-      "glo2facial-prf",
-      "glo2facial-procell-md",
-      "glo2facial-procell-pro",
-      "prf-fibrin-veil",
-      "wellness"
-    ])
+    !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
   ] | order(orderRank asc, title asc) {
     title,
     "slug": slug.current,
@@ -57,17 +50,6 @@ interface ServiceFull {
   slug: string;
   collection?: { title: string };
 }
-
-const NON_PUBLIC_SERVICE_SLUGS = new Set([
-  'microneedling-body',
-  'neck-decollete-extension',
-  'ez-gel-bio-filler',
-  'glo2facial-prf',
-  'glo2facial-procell-md',
-  'glo2facial-procell-pro',
-  'prf-fibrin-veil',
-  'wellness',
-]);
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
@@ -82,7 +64,6 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   ]);
   const providers = PROVIDER_PROFILE_FALLBACKS;
-  const publicServices = services.filter((service) => !NON_PUBLIC_SERVICE_SLUGS.has(service.slug));
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
@@ -147,9 +128,9 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`---`, ``);
   }
 
-  if (publicServices.length > 0) {
+  if (services.length > 0) {
     lines.push(`## Services`, ``);
-    for (const s of publicServices) {
+    for (const s of services) {
       const education = getServiceEducation(s.slug);
       const cardSummary = getServiceCardSummary(s.slug);
       lines.push(`### ${s.title}`);
