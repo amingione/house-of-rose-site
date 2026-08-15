@@ -4,6 +4,11 @@ How `/shop` and `/shop/[slug]` work, what's Sanity-editable vs. code, and the
 one hard rule for CTA copy. Written 2026-07-11 when the shop was rebuilt with
 promotions, categories, top sellers, and per-brand storefronts.
 
+**Current publication boundary:** this architecture is retained but the storefront is dormant.
+`PUBLIC_SHOP_ENABLED=true` controls source and build exposure; the temporary Netlify 404 rules for
+`/shop/*` and `/checkout/*` must also be deliberately removed before restoration. This document does
+not authorize publishing products, promotions, cart, or checkout.
+
 ## The hard rule: never name the checkout platform
 
 Checkout runs on **Stripe Elements + Shippo, on our own `/checkout` page** — see
