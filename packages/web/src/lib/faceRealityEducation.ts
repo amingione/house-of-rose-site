@@ -106,7 +106,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
     whatItIs:
       'House of Rose offers a 60-minute Acne Bootcamp Consultation, the complete 12-week Acne Bootcamp program, and four Face Reality peel appointments. The consultation begins the program conversation; the peels can be arranged with the staff outside Acne Bootcamp.',
     whyTheStructureMatters:
-      'The consultation gives you and the esthetician time to discuss what is happening now, the home-care purchase, and whether you want to continue into the 12-week program. A Face Reality peel can also be arranged without joining Acne Bootcamp.',
+      'The 60-minute consultation covers what is happening now, the separately purchased home care, and whether you want to continue into the complete 12-week program. Face Reality peel appointments can also be arranged separately from Acne Bootcamp.',
     distinctions: [
       {
         label: 'The consultation',

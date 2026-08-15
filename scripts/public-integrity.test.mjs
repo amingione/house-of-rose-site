@@ -878,8 +878,11 @@ test('public decision guidance names the action instead of repeating gives-you-t
 
   for (const file of publicHtmlFiles) {
     const text = visibleText(mainHtml(readFileSync(file, 'utf8'))).toLowerCase();
-    if (text.includes('gives you time')) {
+    if (/gives you(?: and [^.]{1,80})? time/.test(text)) {
       failures.push(`${relativeToRepo(file)}: contains the repeated gives-you-time formula`);
+    }
+    if (text.includes('gives the practice what it needs')) {
+      failures.push(`${relativeToRepo(file)}: describes the client as supplying practice requirements`);
     }
   }
 
