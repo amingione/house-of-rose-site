@@ -254,6 +254,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
 
     let originMarker: Marker | undefined;
     let routeRequest: AbortController | undefined;
+    let geolocationRequestId = 0;
 
     const mapReady = new Promise<void>((resolve) => {
       if (map.loaded()) {
@@ -363,11 +364,14 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       const label = feature.properties.full_address
         || feature.properties.name
         || 'your starting point';
+      geolocationRequestId += 1;
       void drawRoute([longitude, latitude], label);
     });
 
     searchBox.addEventListener('clear', () => {
+      geolocationRequestId += 1;
       routeRequest?.abort();
+      locationButton?.removeAttribute('aria-busy');
       originMarker?.remove();
       originMarker = undefined;
       if (map.getLayer(ROUTE_LAYER_ID)) map.removeLayer(ROUTE_LAYER_ID);
@@ -388,15 +392,18 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
         return;
       }
 
+      const requestId = ++geolocationRequestId;
       setStatus('Finding your current location…', 'loading');
       locationButton.setAttribute('aria-busy', 'true');
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          if (requestId !== geolocationRequestId) return;
           const origin: [number, number] = [position.coords.longitude, position.coords.latitude];
           searchBox.value = 'Current location';
           void drawRoute(origin, 'your current location');
         },
         () => {
+          if (requestId !== geolocationRequestId) return;
           locationButton.removeAttribute('aria-busy');
           setStatus(
             'We could not access your location. Enter a starting address instead.',
