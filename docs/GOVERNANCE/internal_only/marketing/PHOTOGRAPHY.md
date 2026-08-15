@@ -104,10 +104,3 @@ cd packages/web && grep -rhoE '/(images|logos)/[A-Za-z0-9._/-]+\.(png|jpg|jpeg|w
 ```
 
 Worth wiring into CI. It would have caught all seven.
-
-## Open item — hor-exterior has no real photo
-
-`hor-exterior.webp` (used on `/contact` and `/experience`) still isn't a photo of
-the actual storefront — no exterior shot exists yet. Worth shooting, especially
-for GBP consistency and the locally-grounded requirement in
-`docs/SEO-AEO-PLAYBOOK.md`.
