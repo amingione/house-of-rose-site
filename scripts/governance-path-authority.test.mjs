@@ -89,6 +89,23 @@ test('governance preflight does not reinstate the archival brand system', () => 
   assert.match(startHere, /BRAND_MEMORY\.md` are archival voice references during the reset/);
 });
 
+test('brand memory does not retain the rejected judgment hypothesis as current voice', () => {
+  assert.match(brandMemory, /### Rejected voice hypothesis — 2026-08-13/);
+  assert.match(
+    brandMemory,
+    /Current working copy should[\s\S]{0,160}concrete services, real people, real spaces, and direct client language/,
+  );
+
+  for (const staleCurrentDirection of [
+    /### Direct voice calibration — 2026-08-13/,
+    /\| Defensible difference \| Discernment, restraint, and knowing what not to do\. \| `\[TESTING\]`/,
+    /Retain the discernment direction/,
+    /`\[DECIDED\]` for discernment/,
+  ]) {
+    assert.doesNotMatch(brandMemory, staleCurrentDirection);
+  }
+});
+
 test('the reset-era asset inventory does not mandate personas from rejected audience segments', () => {
   const assetAudit = readFileSync(
     join(repositoryRoot, 'docs/GOVERNANCE/BRAND-ASSET-AUDIT.md'),
