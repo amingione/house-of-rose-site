@@ -2,6 +2,41 @@ import { defineField, defineType } from 'sanity';
 
 import { validatePublicCopy } from './validation/publicCopy';
 
+export function validatePublicPhone(value?: string): true | string {
+  const trimmed = value?.trim();
+  if (!trimmed) return true;
+  if (!/^[\d\s()+.-]+$/.test(trimmed)) {
+    return 'Enter a US phone number using digits and conventional phone punctuation.';
+  }
+
+  const digits = trimmed.replace(/\D/g, '');
+  return digits.length === 10 || (digits.length === 11 && digits.startsWith('1'))
+    ? true
+    : 'Enter a 10-digit US phone number, optionally prefixed with 1.';
+}
+
+export function validatePublicAddress(value?: string): true | string {
+  const normalized = value
+    ?.trim()
+    .replace(/\s*[\r\n]+\s*/g, ', ')
+    .replace(/[\t ]+/g, ' ');
+  if (!normalized) return true;
+
+  return /^.+,\s*[^,]+,\s*[A-Z]{2}\s+\d{5}(?:-\d{4})?$/i.test(normalized)
+    ? true
+    : 'Enter a street address, city, two-letter state, and ZIP code.';
+}
+
+export function validateInstagramHandle(value?: string): true | string {
+  const trimmed = value?.trim();
+  if (!trimmed) return true;
+
+  return /^[A-Za-z0-9_](?:[A-Za-z0-9_]|\.(?!\.)){0,28}[A-Za-z0-9_]$/.test(trimmed) ||
+    /^[A-Za-z0-9_]$/.test(trimmed)
+    ? true
+    : 'Enter a valid Instagram handle without @, spaces, a URL, or leading, trailing, or consecutive periods.';
+}
+
 export const siteSettings = defineType({
   name: 'siteSettings',
   title: 'Site Settings',
@@ -57,18 +92,23 @@ export const siteSettings = defineType({
       name: 'phone',
       title: 'Phone',
       type: 'string',
+      description: 'Public business phone used in sitewide structured data, area guidance, and AI feeds.',
+      validation: (R) => R.custom(validatePublicPhone),
     }),
     defineField({
       name: 'address',
       title: 'Address',
       type: 'text',
       rows: 2,
+      description: 'Public street address used in sitewide structured data, area guidance, and AI feeds.',
+      validation: (R) => R.custom(validatePublicAddress),
     }),
     defineField({
       name: 'instagramHandle',
       title: 'Instagram Handle',
       type: 'string',
       description: 'Without the @ symbol',
+      validation: (R) => R.custom(validateInstagramHandle),
     }),
     defineField({
       name: 'bookingEmail',

@@ -2,7 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
-import { siteSettings } from '../packages/studio/schemas/siteSettings.ts';
+import {
+  siteSettings,
+  validateInstagramHandle,
+  validatePublicAddress,
+  validatePublicPhone,
+} from '../packages/studio/schemas/siteSettings.ts';
 import { SITE_SETTINGS_QUERY } from '../packages/web/src/lib/queries.ts';
 
 const structureSource = readFileSync(
@@ -66,6 +71,71 @@ test('stored brand images cannot pose as the website asset authority', () => {
 test('canonical contact and NAP fields remain operational', () => {
   for (const fieldName of ['email', 'phone', 'address', 'instagramHandle']) {
     assert.notEqual(settingsField(fieldName)?.readOnly, true, `${fieldName} must remain editable.`);
+  }
+});
+
+test('public NAP and social controls reject malformed values without becoming required', () => {
+  for (const [fieldName, validator] of [
+    ['phone', validatePublicPhone],
+    ['address', validatePublicAddress],
+    ['instagramHandle', validateInstagramHandle],
+  ] as const) {
+    const field = settingsField(fieldName);
+    assert.equal(typeof field?.validation, 'function', `${fieldName} must validate its public format.`);
+
+    let customCalls = 0;
+    const validatedRule = { fieldName };
+    const rule = {
+      custom(receivedValidator: unknown) {
+        customCalls += 1;
+        assert.equal(receivedValidator, validator, `${fieldName} must use its semantic validator.`);
+        return validatedRule;
+      },
+      required() {
+        assert.fail(`${fieldName} must remain optional.`);
+      },
+    };
+
+    assert.equal(field.validation(rule), validatedRule);
+    assert.equal(customCalls, 1);
+  }
+
+  for (const empty of [undefined, '', '   ']) {
+    assert.equal(validatePublicPhone(empty), true);
+    assert.equal(validatePublicAddress(empty), true);
+    assert.equal(validateInstagramHandle(empty), true);
+  }
+
+  for (const phone of ['(844) 941-7673', '+1 844.941.7673', '844-941-7673']) {
+    assert.equal(validatePublicPhone(phone), true, `${phone} should be accepted.`);
+  }
+  for (const phone of ['844-941-767', '+44 20 7946 0958', 'call 844-941-7673']) {
+    assert.notEqual(validatePublicPhone(phone), true, `${phone} should be rejected.`);
+  }
+
+  for (const address of [
+    '525 E Olympia Ave, Unit 9\nPunta Gorda, FL 33950',
+    '525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950',
+    '100 Main St, Port Charlotte, FL 33952-1234',
+  ]) {
+    assert.equal(validatePublicAddress(address), true, `${address} should be accepted.`);
+  }
+  for (const address of ['525 E Olympia Ave', 'Punta Gorda, Florida', 'Punta Gorda, FL']) {
+    assert.notEqual(validatePublicAddress(address), true, `${address} should be rejected.`);
+  }
+
+  for (const handle of ['house.of.rose.aesthetics', 'house_of_rose', 'houseofrose']) {
+    assert.equal(validateInstagramHandle(handle), true, `${handle} should be accepted.`);
+  }
+  for (const handle of [
+    '@house.of.rose.aesthetics',
+    'https://instagram.com/houseofrose',
+    'house of rose',
+    '.',
+    'name..part',
+    'name.',
+  ]) {
+    assert.notEqual(validateInstagramHandle(handle), true, `${handle} should be rejected.`);
   }
 });
 
