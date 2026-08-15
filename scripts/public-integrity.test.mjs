@@ -756,6 +756,11 @@ test('navigation and visit guidance speaks to clients rather than internal inven
       required: /(?:arrange|reserve|set)[\s\S]{0,100}(?:visit|appointment|time)[\s\S]{0,120}(?:before you leave|before leaving)/i,
       retired: 'whether the current listing can be booked',
     },
+    {
+      route: 'faq/index.html',
+      required: /call[\s\S]{0,100}send a message[\s\S]{0,120}consultation/i,
+      retired: 'Choose the kind of help you need.',
+    },
   ];
   const failures = [];
 
