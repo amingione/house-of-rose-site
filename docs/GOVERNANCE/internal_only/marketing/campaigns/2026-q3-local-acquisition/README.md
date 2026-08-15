@@ -12,9 +12,8 @@ This package contains local campaign inputs for House of Rose Aesthetics in Punt
 - **Goal:** qualified inquiries and booked appointments.
 - **Audience:** adults within 20 miles of 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
 - **Core message:** different concerns call for different services; see the practice and review the current menu.
-- **Brand point of view:** good aesthetics depends on judgment, including knowing when two similar-looking concerns are not the same.
 - **Primary CTA:** Review current services.
-- **Paid destinations:** `/skin-analysis/`, `/services/injectables/`, `/services/glo2facial/`, and `/services/microneedling/`.
+- **Paid destinations:** `/skin-analysis/`, `/services/injectables-bio-fillers/`, `/services/glo2facial/`, and `/services/microneedling/`.
 
 ## Launch package
 
@@ -33,7 +32,7 @@ This package contains local campaign inputs for House of Rose Aesthetics in Punt
 | 02 | Skin analysis | Standard, cross-polarized, and UV imaging | Current device and service facts | `/skin-analysis/` |
 | 03 | Skin concerns | Texture, pigment, pores, and sun exposure differ | Current concern and service relationships | `/services/` |
 | 04 | Microneedling | Procell Therapies device | Current service and device | `/services/microneedling/` |
-| 05 | Injectables | Movement, volume, and injectable PRF differ | Current injectable services | `/services/injectables/` |
+| 05 | Injectables | Movement, volume, and injectable PRF differ | Current injectable services | `/services/injectables-bio-fillers/` |
 | 06 | Provider identity | Diana Morrison, RN | Verified provider record and portrait | `/about/providers/diana/` |
 
 ## Source and compliance record
