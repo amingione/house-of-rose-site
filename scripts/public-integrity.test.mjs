@@ -709,7 +709,7 @@ test('experience page connects the real practice to provider and booking informa
   }
 
   for (const [label, pattern] of [
-    ['real practice photographs', /storefront[\s\S]{0,100}reception[\s\S]{0,100}IV suite[\s\S]{0,120}treatment room[\s\S]{0,100}(?:not stock|actual|real)/i],
+    ['real practice photographs', /photographs above show[\s\S]{0,100}storefront[\s\S]{0,100}reception[\s\S]{0,100}IV suite[\s\S]{0,120}treatment room/i],
     ['booking and comparison distinction', /(?:reserve|book)[\s\S]{0,180}(?:compare|consultation|question)/i],
     ['question-to-service handoff', /(?:question|inquiry)[\s\S]{0,140}(?:relevant service|practitioner)/i],
     ['Unit 9 entrance guidance', /House of Rose Aesthetics sign[\s\S]{0,80}Unit 9/i],
@@ -717,7 +717,13 @@ test('experience page connects the real practice to provider and booking informa
   ]) {
     if (!pattern.test(text)) failures.push(`experience: missing ${label}`);
   }
-  for (const retired of ['See the room. Then review the service.', 'What clients can expect']) {
+  for (const retired of [
+    'See the room. Then review the service.',
+    'What clients can expect',
+    'whose work is not interchangeable',
+    'Start with a consultation',
+    'which service page or practitioner to start with',
+  ]) {
     if (text.includes(retired)) failures.push(`experience: contains retired ${JSON.stringify(retired)}`);
   }
 
