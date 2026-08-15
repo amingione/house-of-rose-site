@@ -12,7 +12,10 @@ import {
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
 } from './publicCostGuideContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
-import { PUBLIC_PROVIDER_DIGITAL_CARD_PATHS } from './publicProviderContent';
+import {
+  PUBLIC_PROVIDER_DIGITAL_CARD_PATHS,
+  PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS,
+} from './publicProviderContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
 import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './publicTreatmentPackageContent';
 
@@ -57,6 +60,9 @@ const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify(RETIRED_PUBLIC_CONCERN_
 
 const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 const PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ = JSON.stringify(PUBLIC_PROVIDER_DIGITAL_CARD_PATHS);
+const PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS_GROQ = JSON.stringify(
+  PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS,
+);
 const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_LOCAL_AREA_SLUGS);
 
 // A package is public only when its package price is represented in the
@@ -459,7 +465,9 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       _id,
       publicName,
       "profileSlug": select(${PUBLIC_PROVIDER_PREDICATE} => slug.current),
-      profileImagePath,
+      "profileImagePath": select(
+        profileImagePath in ${PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS_GROQ} => profileImagePath
+      ),
       "profileImageAlt": profileImage.alt
     },
     "parentService": select(
@@ -961,7 +969,10 @@ const PUBLIC_PROVIDER_FIELDS = /* groq */ `
   summary,
   biography,
   serviceFocus,
-  "imageUrl": coalesce(profileImage.asset->url, profileImagePath),
+  "imageUrl": coalesce(
+    profileImage.asset->url,
+    select(profileImagePath in ${PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS_GROQ} => profileImagePath)
+  ),
   "imageAlt": profileImage.alt,
   "digitalCardPath": select(
     digitalCardPath in ${PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ} => digitalCardPath

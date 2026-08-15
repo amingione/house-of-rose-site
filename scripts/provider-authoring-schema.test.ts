@@ -6,12 +6,17 @@ import { fileURLToPath } from 'node:url';
 import {
   provider,
   validateProviderDigitalCardPath,
+  validateProviderProfileImagePath,
   validateProviderPublicProfile,
 } from '../packages/studio/schemas/provider.ts';
-import { PUBLIC_PROVIDER_DIGITAL_CARDS } from '../packages/web/src/lib/publicProviderContent.ts';
+import {
+  PUBLIC_PROVIDER_DIGITAL_CARDS,
+  PUBLIC_PROVIDER_STATIC_PROFILE_IMAGES,
+} from '../packages/web/src/lib/publicProviderContent.ts';
 import {
   PUBLIC_PROVIDER_BY_SLUG_QUERY,
   PUBLIC_PROVIDERS_QUERY,
+  SERVICE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
 function providerField(name: string) {
@@ -147,4 +152,47 @@ test('provider digital-card links are limited to generated public routes before 
   );
   assert.match(renderer, /href=\{profile\.digitalCardPath\}/);
   assert.match(renderer, /sameAs:\s*profile\.digitalCardPath/);
+});
+
+test('provider static image fallbacks are limited to generated public assets before projection', () => {
+  const profileImagePath = providerField('profileImagePath');
+  assert.equal(typeof profileImagePath?.validation, 'function');
+  assert.match(String(profileImagePath?.validation), /validateProviderProfileImagePath/);
+  assert.deepEqual(
+    profileImagePath && 'options' in profileImagePath && profileImagePath.options && 'list' in profileImagePath.options
+      ? profileImagePath.options.list
+      : undefined,
+    PUBLIC_PROVIDER_STATIC_PROFILE_IMAGES.map(({ title, path }) => ({ title, value: path })),
+  );
+
+  assert.equal(validateProviderProfileImagePath(undefined), true);
+  for (const { path } of PUBLIC_PROVIDER_STATIC_PROFILE_IMAGES) {
+    assert.equal(validateProviderProfileImagePath(path), true);
+    assert.ok(
+      existsSync(`${repoRoot}/packages/web/public${path}`),
+      `${path} must be a generated public asset.`,
+    );
+  }
+
+  for (const invalidPath of [
+    '/images/providers/Aundrea.webp',
+    '/images/providers/../private.webp',
+    'https://example.com/provider.webp',
+    '/images/providers/missing.webp',
+  ]) {
+    assert.match(String(validateProviderProfileImagePath(invalidPath)), /existing generated provider profile image/i);
+  }
+
+  const pathInventory = JSON.stringify(
+    PUBLIC_PROVIDER_STATIC_PROFILE_IMAGES.map(({ path }) => path),
+  );
+  for (const query of [PUBLIC_PROVIDERS_QUERY, PUBLIC_PROVIDER_BY_SLUG_QUERY]) {
+    assert.ok(query.includes(pathInventory), 'Provider profile queries must use the shared static-image inventory.');
+    assert.match(query, /select\(profileImagePath in .* => profileImagePath\)/s);
+  }
+  assert.ok(SERVICE_BY_SLUG_QUERY.includes(pathInventory));
+  assert.match(
+    SERVICE_BY_SLUG_QUERY,
+    /"profileImagePath":\s*select\(\s*profileImagePath in .* => profileImagePath\s*\)/s,
+  );
 });
