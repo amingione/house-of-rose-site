@@ -1,4 +1,5 @@
 import type { PublicProviderProfile } from '@/lib/queries';
+import { getPublicProviderDigitalCardPath } from '@/lib/publicProviderContent';
 
 /**
  * Reviewed local About copy and build-safe image fallbacks. Sanity remains the
@@ -58,7 +59,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     serviceFocus: ['Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'PRF Bio-Filler', 'IV hydration', 'GLP-1 weight management'],
     imageUrl: '/images/providers/diana-profile-1122.webp',
     imageAlt: 'Diana Morrison, RN, at House of Rose Aesthetics',
-    digitalCardPath: '/diana/',
+    digitalCardPath: getPublicProviderDigitalCardPath('diana'),
     listingOrder: 10,
     medicallyDirected: true,
     seo: {
@@ -81,7 +82,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
     imageUrl: '/images/providers/amber-profile-1122.webp',
     imageAlt: 'Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics',
-    digitalCardPath: '/amber/',
+    digitalCardPath: getPublicProviderDigitalCardPath('amber'),
     listingOrder: 20,
     medicallyDirected: true,
     seo: {
@@ -104,7 +105,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     serviceFocus: ['Facials', 'Standalone BioRePeel', 'Facial waxing'],
     imageUrl: '/images/providers/brandy-profile-1122.webp',
     imageAlt: 'Brandy, Licensed Esthetician at House of Rose Aesthetics',
-    digitalCardPath: '/brandy/',
+    digitalCardPath: getPublicProviderDigitalCardPath('brandy'),
     listingOrder: 30,
     seo: {
       metaTitle: 'Brandy, Licensed Esthetician | House of Rose',

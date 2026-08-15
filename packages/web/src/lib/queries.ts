@@ -12,6 +12,7 @@ import {
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
 } from './publicCostGuideContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './publicLocalAreaContent';
+import { PUBLIC_PROVIDER_DIGITAL_CARD_PATHS } from './publicProviderContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
 import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './publicTreatmentPackageContent';
 
@@ -55,6 +56,7 @@ const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_
 const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify(RETIRED_PUBLIC_CONCERN_SLUGS);
 
 const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
+const PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ = JSON.stringify(PUBLIC_PROVIDER_DIGITAL_CARD_PATHS);
 
 // A package is public only when its package price is represented in the
 // current GlossGenius-backed menu. Other published Sanity records remain
@@ -944,7 +946,9 @@ const PUBLIC_PROVIDER_FIELDS = /* groq */ `
   serviceFocus,
   "imageUrl": coalesce(profileImage.asset->url, profileImagePath),
   "imageAlt": profileImage.alt,
-  digitalCardPath,
+  "digitalCardPath": select(
+    digitalCardPath in ${PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ} => digitalCardPath
+  ),
   "listingOrder": coalesce(listingOrder, 100),
   medicallyDirected,
   seo { metaTitle, metaDescription }
