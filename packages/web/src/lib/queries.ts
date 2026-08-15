@@ -801,6 +801,7 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
       defined(slug.current) &&
       slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
       !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+      ${COMPARISON_ROUTEABLE_OPTIONS} &&
       (
         (
           optionA.service->status in ["live", "actual-menu"] &&
@@ -1149,6 +1150,7 @@ export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
       defined(slug.current) &&
       slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
       !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
+      ${COMPARISON_ROUTEABLE_OPTIONS} &&
       defined(^.treatment._ref) &&
       (optionA.service._ref == ^.treatment._ref || optionB.service._ref == ^.treatment._ref)
     ] | order(orderRank asc, title asc) [0...2] {
