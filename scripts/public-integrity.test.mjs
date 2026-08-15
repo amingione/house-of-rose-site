@@ -2602,6 +2602,7 @@ test('results index keeps the empty state concise and reserves proof guidance fo
     'being photographed now',
     'Use the service—not the photograph—as your starting point.',
     'A service page explains',
+    'An empty gallery is better than borrowed proof.',
   ]) {
     if (mainText.includes(retired)) failures.push(`results index: contains retired ${JSON.stringify(retired)}`);
   }
