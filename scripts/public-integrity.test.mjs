@@ -784,16 +784,19 @@ test('orientation pages do not repeat the treatment-name reassurance formula', (
     'You do not need to choose a treatment name before asking a question.',
     'You do not need a consultation to browse first.',
     'You are not expected to speak in treatment names.',
+    'start with a treatment name',
   ];
   const failures = [];
 
   for (const route of [
+    'index.html',
     'about/index.html',
     'services/index.html',
     'concerns/index.html',
     'support/index.html',
     'experience/index.html',
     'consultation/index.html',
+    'faq/index.html',
   ]) {
     const file = path.join(DIST_ROOT, route);
     assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
