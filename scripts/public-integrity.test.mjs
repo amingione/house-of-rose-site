@@ -873,6 +873,19 @@ test('public pages state concrete distinctions instead of repeating different-qu
   assert.equal(failures.length, 0, formatFailures('Concrete-distinction copy regression', failures));
 });
 
+test('public decision guidance names the action instead of repeating gives-you-time copy', () => {
+  const failures = [];
+
+  for (const file of publicHtmlFiles) {
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8'))).toLowerCase();
+    if (text.includes('gives you time')) {
+      failures.push(`${relativeToRepo(file)}: contains the repeated gives-you-time formula`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Decision-guidance copy regression', failures));
+});
+
 test('public pages use the named GLP-1 service instead of provider-guided category language', () => {
   const failures = [];
 
