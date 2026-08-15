@@ -570,6 +570,11 @@ const pageDescription = factualServiceDescription;
             See pricing details
           </a>
         )}
+        {service.localAreas?.map((area) => (
+          <a href={`/areas/${area.slug}/`} class="learn-more hover:text-gold">
+            {area.city}
+          </a>
+        ))}
         <a href={serviceDirectoryPath} class="learn-more hover:text-gold">
           {serviceDirectoryLabel}
         </a>

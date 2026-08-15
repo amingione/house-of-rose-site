@@ -57,6 +57,7 @@ const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify(RETIRED_PUBLIC_CONCERN_
 
 const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 const PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ = JSON.stringify(PUBLIC_PROVIDER_DIGITAL_CARD_PATHS);
+const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_LOCAL_AREA_SLUGS);
 
 // A package is public only when its package price is represented in the
 // current GlossGenius-backed menu. Other published Sanity records remain
@@ -173,6 +174,12 @@ export interface ServiceConcern {
   slug: string;
 }
 
+export interface ServiceLocalArea {
+  _id: string;
+  city: string;
+  slug: string;
+}
+
 export interface Service extends TreatmentPageFields {
   _id: string;
   title: string;
@@ -198,6 +205,7 @@ export interface Service extends TreatmentPageFields {
   contextualServices?: Service[];
   costGuides?: CostGuide[];
   comparisons?: ServiceComparison[];
+  localAreas?: ServiceLocalArea[];
   _updatedAt?: string;
   seo?: { metaTitle?: string; metaDescription?: string };
 }
@@ -567,6 +575,15 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
     ] | order(orderRank asc, title asc) {
       _id,
+      "slug": slug.current
+    },
+    "localAreas": *[
+      _type == "localArea" &&
+      slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ} &&
+      ^._id in servedServices[]._ref
+    ] | order(orderRank asc, city asc) {
+      _id,
+      city,
       "slug": slug.current
     },
     ${TREATMENT_PAGE_FIELDS}
@@ -1219,8 +1236,6 @@ export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
 `;
 
 // ── Local areas ──────────────────────────────────────────────────────────────
-const CANONICAL_LOCAL_AREA_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_LOCAL_AREA_SLUGS);
-
 export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}] | order(orderRank asc, title asc) {
     _id, "slug": slug.current, city, region, _updatedAt,
