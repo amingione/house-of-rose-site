@@ -1,23 +1,50 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
 import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
+import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 
 // Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
 // emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
 
 const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
 const heroImage = '/images/optimized/actual-welcome-1400.webp';
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const pageTitle = 'Treatment Packages in Punta Gorda, FL';
+const pageDescription = "House of Rose's Face Reality Acne Bootcamp begins with a $99 consultation; the complete 12-week program is $899 with in-studio visits every two weeks.";
+const packagesSchema = itemListPage(
+  {
+    name: 'Treatment Packages',
+    description: pageDescription,
+    url: canonical,
+    items: packages.map((pkg) => ({
+      name: pkg.title,
+      url: new URL(`/packages/${pkg.slug}/`, site).toString(),
+    })),
+  },
+  site,
+);
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Treatment Packages', item: canonical },
+]);
 ---
 
 <BaseLayout
-  title="Treatment Packages in Punta Gorda, FL"
-  description="House of Rose's Face Reality Acne Bootcamp begins with a $99 consultation; the complete 12-week program is $899 with in-studio visits every two weeks."
+  title={pageTitle}
+  description={pageDescription}
   preloadImage={heroImage}
+  structuredPageType="CollectionPage"
+  structuredPageMainEntityId={`${canonical}#itemlist`}
 >
+  <SchemaMarkup item={packagesSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
   <Hero
     title="Treatment Packages"
     kicker="House of Rose Aesthetics"
