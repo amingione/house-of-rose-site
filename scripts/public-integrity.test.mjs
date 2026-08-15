@@ -903,10 +903,9 @@ test('practice story distinguishes the appointment provider from medical directi
   assert.equal(failures.length, 0, formatFailures('Practice-accountability regression', failures));
 });
 
-test('direct visit FAQs state the current walk-in policy and match FAQPage schema', () => {
+test('the current walk-in policy has one direct public answer', () => {
   const expectations = {
     faq: 'Do you accept walk-ins?',
-    consultation: 'Do you take walk-ins?',
   };
   const failures = [];
 
@@ -948,6 +947,19 @@ test('direct visit FAQs state the current walk-in policy and match FAQPage schem
     if (JSON.stringify(visibleFaqs) !== JSON.stringify(schemaFaqs)) {
       failures.push(`${route}: visible FAQ copy and FAQPage JSON-LD differ`);
     }
+  }
+
+  for (const route of ['consultation', 'areas/punta-gorda', 'areas/port-charlotte', 'experience']) {
+    const file = path.join(DIST_ROOT, route, 'index.html');
+    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8')));
+    if (/walk-ins are always accepted|other services, walk-ins are accepted/i.test(text)) {
+      failures.push(`${route}: repeats the full walk-in policy outside the canonical FAQ`);
+    }
+  }
+  const experienceHtml = readFileSync(path.join(DIST_ROOT, 'experience/index.html'), 'utf8');
+  if (!/href="\/faq\/"[^>]*>current walk-in policy<\/a>/i.test(experienceHtml)) {
+    failures.push('experience: missing the canonical walk-in policy link');
   }
 
   assert.equal(failures.length, 0, formatFailures('Walk-in policy regression', failures));
