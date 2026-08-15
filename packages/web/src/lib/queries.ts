@@ -1147,26 +1147,11 @@ export interface ServiceRef {
   bookingVerifiedAt?: string;
 }
 
-// 2. Cost guide — /cost/[slug]
-export interface CostFactor {
-  _key?: string;
-  factor: string;
-  effect: string;
-}
-
 export interface CostGuide {
   _id: string;
   title: string;
   slug: string;
   treatment?: ServiceRef;
-  answer: string;
-  priceLow?: number;
-  priceHigh?: number;
-  priceUnit?: string;
-  costFactors?: CostFactor[];
-  whatsIncluded?: string;
-  faqs?: FAQ[];
-  relatedServices?: ServiceRef[];
   comparisons?: ServiceComparison[];
   _updatedAt?: string;
   seo?: SeoMeta;
@@ -1249,7 +1234,7 @@ const COST_GUIDE_ROUTEABLE_TREATMENT = /* groq */ `
 
 export const ALL_COST_GUIDES_QUERY = /* groq */ `
   *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ}) && ${COST_GUIDE_ROUTEABLE_TREATMENT}] | order(orderRank asc, title asc) {
-    _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit, _updatedAt,
+    _id, title, "slug": slug.current, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&
       defined(treatment->slug.current) &&
@@ -1262,15 +1247,13 @@ export const ALL_COST_GUIDES_QUERY = /* groq */ `
 
 export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
   *[_type == "costGuide" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ}) && ${COST_GUIDE_ROUTEABLE_TREATMENT}][0] {
-    _id, title, "slug": slug.current, answer, priceLow, priceHigh, priceUnit,
-    whatsIncluded, costFactors[]{ _key, factor, effect }, faqs[]{ _key, question, answer }, _updatedAt,
+    _id, title, "slug": slug.current, _updatedAt,
     "treatment": select(
       treatment->status in ["live", "actual-menu"] &&
       defined(treatment->slug.current) &&
       !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
       => treatment->{ ${SERVICE_REF_FIELDS} }
     ),
-    "relatedServices": relatedServices[!(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{ ${SERVICE_REF_FIELDS} },
     "comparisons": *[
       _type == "comparison" &&
       status == "live" &&

@@ -21,6 +21,23 @@ const treatmentField = costGuide.fields.find(({ name }) => name === 'treatment')
     }
   | undefined;
 
+const querySource = readFileSync(
+  new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+  'utf8',
+);
+const detailRouteSource = readFileSync(
+  new URL('../packages/web/src/pages/cost/[slug].astro', import.meta.url),
+  'utf8',
+);
+const compactFeedSource = readFileSync(
+  new URL('../packages/web/src/pages/llms.txt.ts', import.meta.url),
+  'utf8',
+);
+const fullFeedSource = readFileSync(
+  new URL('../packages/web/src/pages/llms-full.txt.ts', import.meta.url),
+  'utf8',
+);
+
 test('the public cost-guide title is required and uses the shared public-copy guard', () => {
   assert.equal(typeof titleField?.validation, 'function', 'Cost-guide title must validate public copy.');
   assert.match(String(titleField.validation), /required/);
@@ -123,4 +140,39 @@ test('cost-guide creation cannot publish without a reviewed factual overlay', ()
       `${slug} must have a reviewed cost-fact overlay before it can publish.`,
     );
   }
+});
+
+test('legacy cost copy stays stored but cannot enter public queries or price surfaces', () => {
+  const legacyFieldNames = [
+    'answer',
+    'priceLow',
+    'priceHigh',
+    'priceUnit',
+    'costFactors',
+    'whatsIncluded',
+    'faqs',
+    'relatedServices',
+  ] as const;
+
+  for (const fieldName of legacyFieldNames) {
+    const field = costGuide.fields.find(({ name }) => name === fieldName);
+    assert.equal(field?.readOnly, true, `${fieldName} must remain a read-only compatibility field.`);
+    assert.match(String(field?.title), /not published/i);
+  }
+
+  const costGuideInterface = querySource.match(
+    /export interface CostGuide \{([\s\S]*?)\n\}/,
+  )?.[1];
+  assert.ok(costGuideInterface, 'The public CostGuide type must remain declared.');
+
+  for (const fieldName of legacyFieldNames) {
+    const fieldPattern = new RegExp(`\\b${fieldName}\\b`);
+    assert.doesNotMatch(costGuideInterface, fieldPattern);
+    assert.doesNotMatch(ALL_COST_GUIDES_QUERY, fieldPattern);
+    assert.doesNotMatch(COST_GUIDE_BY_SLUG_QUERY, fieldPattern);
+  }
+
+  assert.match(detailRouteSource, /getVerifiedCostFact\(\w+\.slug\)/);
+  assert.match(compactFeedSource, /getVerifiedCostFact\(\w+\.slug\)/);
+  assert.match(fullFeedSource, /getVerifiedCostFact\(\w+\.slug\)/);
 });
