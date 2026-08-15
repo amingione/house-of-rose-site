@@ -666,6 +666,8 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'four-person medical aesthetics practice',
     'makeup artistry',
     'permanent jewelry',
+    'provider, appointment length, current price',
+    'book online, call, or send an inquiry',
   ]) {
     if (!homepage.includes(substantiveFact)) {
       failures.push(`homepage is missing substantive context ${JSON.stringify(substantiveFact)}`);
@@ -688,6 +690,7 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'Looking well is specific',
     'A tired look can have more than one source.',
     'PRF and dermal filler begin with different materials.',
+    'These four visits sit beyond the skin and injectable starting points above.',
   ]) {
     if (homepage.includes(retired)) failures.push(`homepage contains retired copy ${JSON.stringify(retired)}`);
   }
