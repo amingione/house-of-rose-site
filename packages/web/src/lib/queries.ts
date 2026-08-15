@@ -1072,11 +1072,8 @@ export interface ServiceRef {
   _id: string;
   title: string;
   slug: string;
-  price?: number | string;
-  duration?: string;
   bookingMode?: BookingMode;
   bookingUrl?: string;
-  bookingVerifiedAt?: string;
 }
 
 export interface CostGuide {
@@ -1133,7 +1130,7 @@ export interface CaseStudy {
 }
 
 const SERVICE_REF_FIELDS = /* groq */ `
-  _id, title, "slug": slug.current, price, duration, bookingMode, bookingUrl, bookingVerifiedAt
+  _id, title, "slug": slug.current, bookingMode, bookingUrl
 `;
 
 // ── Cost guides ──────────────────────────────────────────────────────────────
