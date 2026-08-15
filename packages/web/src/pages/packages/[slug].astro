@@ -135,7 +135,7 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
         <div class="bg-charcoal p-7 md:p-9">
           <h3 class="font-serif text-[24px] leading-tight text-ink">What the consultation covers.</h3>
           <p class="mt-4 text-[15px] leading-[1.75] text-muted">
-            The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly. It gives you and Amber Mingione, Licensed Esthetician, time to discuss what your skin is doing now, the separate home-care purchase, and whether you want to continue into the complete 12-week program.
+            The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly. It gives you and Amber Mingione, Licensed Esthetician, time to discuss what your skin is doing now, the home care purchased for the program, and whether you want to continue into the complete 12 weeks.
           </p>
         </div>
         <div class="bg-charcoal p-7 md:p-9">
@@ -150,9 +150,9 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
       </div>
 
       <aside data-face-reality-medical-boundary class="mx-auto mt-6 max-w-[1120px] border border-gold-metal/15 bg-charcoal-light px-7 py-8 md:px-9">
-        <span class="kicker">An important distinction</span>
+        <span class="kicker">When to seek medical care</span>
         <h3 class="mt-3 font-serif text-[clamp(24px,3.5vw,34px)] leading-tight text-ink">
-          When medical evaluation comes first.
+          Some breakouts need medical evaluation first.
         </h3>
         <p class="mt-4 max-w-[780px] text-[15px] leading-[1.8] text-muted">
           {FACE_REALITY_PROGRAM.medicalBoundary}
@@ -197,16 +197,16 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
     <div class="max-w-[840px] mx-auto text-center">
       <span class="kicker">{isFaceRealityProgram ? 'First appointment' : 'Questions'}</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        {isFaceRealityProgram ? 'The consultation does not enroll you in the program.' : `Ask about ${pkg.title}.`}
+        {isFaceRealityProgram ? 'Begin with the Acne Bootcamp Consultation.' : `Ask about ${pkg.title}.`}
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
         {isFaceRealityProgram
-          ? 'The consultation is a separate, directly bookable 60-minute appointment priced at $99. If you continue, the complete 12-week program is $899, and its home-care products are purchased separately.'
+          ? 'The directly bookable consultation lasts 60 minutes and costs $99. If you continue, the complete 12-week program is $899; home-care products are purchased separately.'
           : 'Call us or request a consultation.'}
       </p>
       <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10">
         {isFaceRealityProgram
-          ? 'Program enrollment and timing are confirmed after the consultation. Individual outcomes vary.'
+          ? 'The program and its timing are confirmed after the consultation. Individual outcomes vary.'
           : 'Package availability and timing are confirmed when you contact the practice. Individual outcomes vary.'}
       </p>
       <div class="flex gap-3 justify-center flex-wrap">

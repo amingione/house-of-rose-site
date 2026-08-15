@@ -2641,12 +2641,12 @@ test('packages index explains and links only the verified current program', () =
     '12-week program',
     'Visits take place every two weeks',
     'home-care review',
-    '$99 consultation',
     '$899',
   ]) {
     assert.ok(text.includes(required), `Packages index is missing ${JSON.stringify(required)}.`);
   }
   for (const [label, pattern] of [
+    ['consultation price', /\$99[\s\S]{0,40}(?:Acne Bootcamp )?Consultation/i],
     ['provider licence and certification', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}Face Reality Certified Acne Specialist[\s\S]{0,180}(?:consultation|12-week program)/i],
     ['non-prescription esthetics boundary', /non-prescription esthetics program/i],
     ['medical-evaluation threshold', /deep[\s\S]{0,40}painful[\s\S]{0,40}widespread[\s\S]{0,80}actively scarring[\s\S]{0,140}medical evaluation/i],
@@ -2700,7 +2700,7 @@ test('Face Reality package distinguishes the consultation, complete program, and
     assert.match(metaDescription, pattern, `Face Reality package metadata is missing ${label}.`);
   }
   for (const [label, pattern] of [
-    ['complete-program price', /\$899[\s\S]{0,100}(?:complete )?12-week program[\s\S]{0,100}(?:not|rather than)[\s\S]{0,60}(?:one|single) visit/i],
+    ['complete-program price', /\$899[\s\S]{0,100}(?:complete )?12-week program/i],
     ['starting consultation', /60-minute[\s\S]{0,100}Acne Bootcamp Consultation[\s\S]{0,80}\$99[\s\S]{0,100}(?:booked directly|directly bookable)/i],
     ['separate home-care purchase', /home-care products[\s\S]{0,120}(?:purchased|sold)[\s\S]{0,80}separately/i],
     ['provider licence and certification', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}Face Reality Certified Acne Specialist/i],
@@ -2715,6 +2715,13 @@ test('Face Reality package distinguishes the consultation, complete program, and
     main.includes('href="/about/providers/amber/"'),
     'Face Reality package must link Amber’s verified provider profile.',
   );
+  for (const retiredFormula of [
+    'built around more than one visit',
+    'rather than booked as unrelated facials',
+    'does not enroll you in the program',
+  ]) {
+    assert.ok(!text.toLowerCase().includes(retiredFormula), `Face Reality package retains ${JSON.stringify(retiredFormula)}.`);
+  }
 });
 
 test('waxing hub is a factual directory and PRF under-eye uses reviewed public facts', () => {
