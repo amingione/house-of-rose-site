@@ -1691,6 +1691,24 @@ test('priority service pages retain reviewed facts instead of falling back to th
       failures.push(`morpheus8: contains unsupported positioning ${JSON.stringify(unsupported)}`);
     }
   }
+  const morpheusHtml = readFileSync(path.join(DIST_ROOT, 'services/morpheus8/index.html'), 'utf8');
+  const morpheusEducation = morpheusHtml.match(
+    /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
+  )?.[1] ?? '';
+  const morpheusFaqCount = morpheusEducation.match(/<details\b/gi)?.length ?? 0;
+  if (morpheusFaqCount !== 3) {
+    failures.push(`morpheus8: expected 3 decision-support FAQs, found ${morpheusFaqCount}`);
+  }
+  for (const repeatedPriceQuestion of [
+    'What are the Morpheus8 Burst single-treatment prices?',
+    'How is Morpheus8 Resurfacing priced?',
+    'How is Morpheus8 Prime priced?',
+    'How is the Morpheus8 Burst Hyperhidrosis package priced?',
+  ]) {
+    if (morpheusEducation.includes(repeatedPriceQuestion)) {
+      failures.push(`morpheus8: repeats the price table as FAQ copy ${JSON.stringify(repeatedPriceQuestion)}`);
+    }
+  }
 
   const lumeccaHtml = readFileSync(path.join(DIST_ROOT, 'services/lumecca-peak-ipl/index.html'), 'utf8');
   const formaHtml = readFileSync(path.join(DIST_ROOT, 'services/forma-rf-facial/index.html'), 'utf8');
