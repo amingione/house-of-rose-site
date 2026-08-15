@@ -57,7 +57,7 @@ Review Microneedling at houseofrosefl.com/services/microneedling/. Individual ou
 
 Movement-related lines and volume loss are different concerns. House of Rose offers neurotoxin, dermal filler, and injectable PRF services in Punta Gorda.
 
-Review the injectable service menu at houseofrosefl.com/services/collections/injectables-bio-fillers/. Individual outcomes vary.
+Review the injectable service menu at houseofrosefl.com/services/injectables-bio-fillers/. Individual outcomes vary.
 
 `#PuntaGordaInjectables #BotoxPuntaGorda #Daxxify #DermalFillers #HouseOfRoseAesthetics`
 
