@@ -12,6 +12,7 @@ import ConsentManager from '@/components/ConsentManager.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { SEO } from 'astro-seo';
 import { siteEntityGraph, type StructuredPageType } from '@/lib/structuredData';
+import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 import { formatSeoTitle } from '@/lib/seo';
 import { SHOP_ENABLED } from '@/lib/features';
 
@@ -32,8 +33,9 @@ interface Props {
   structuredPageMainEntityId?: string;
 }
 
-const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
-const siteName = settings?.siteName ?? 'House of Rose Aesthetics';
+const settings = await sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY);
+const siteFacts = resolvePublicSiteFacts(settings);
+const siteName = siteFacts.siteName;
 
 const {
   title = siteName,
@@ -76,7 +78,7 @@ const entityGraph = siteEntityGraph(
     description,
     image: socialImage,
     imageAlt: socialImageAlt,
-    email: settings?.email,
+    siteFacts,
     pageType: structuredPageType,
     mainEntityId: structuredPageMainEntityId,
   },

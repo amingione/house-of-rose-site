@@ -9,6 +9,7 @@
  */
 
 import type { FAQ } from '@/lib/queries';
+import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
 
 // ─── Canonical business facts (NAP) — single source for JSON-LD ────────────────
 
@@ -61,39 +62,69 @@ export type JsonLd = Record<string, unknown>;
 
 // ─── Shared graph fragments ────────────────────────────────────────────────────
 
-function providerNode(siteUrl: string): JsonLd {
-  const baseUrl = new URL('/', siteUrl).toString();
-  return {
-    '@type': 'HealthAndBeautyBusiness',
-    '@id': `${baseUrl}#business`,
-    name: LOCAL_BUSINESS.name,
-    alternateName: [...BUSINESS_ALTERNATE_NAMES],
-    foundingDate: LOCAL_BUSINESS.foundingDate,
-    keywords: BUSINESS_CATEGORIES.join(', '),
-    url: baseUrl,
-    telephone: LOCAL_BUSINESS.telephone,
-    sameAs: [...BUSINESS_PROFILES],
-    address: {
+export function structuredTelephone(siteFacts?: PublicSiteFacts): string {
+  const digits = siteFacts?.phone.replace(/\D/g, '') ?? '';
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith('1')) return `+${digits}`;
+  return LOCAL_BUSINESS.telephone;
+}
+
+function structuredAddress(siteFacts?: PublicSiteFacts): JsonLd {
+  const match = siteFacts?.address.match(
+    /^(.+),\s*([^,]+),\s*([A-Z]{2})\s+(\d{5}(?:-\d{4})?)$/i,
+  );
+  if (!match) {
+    return {
       '@type': 'PostalAddress',
       streetAddress: LOCAL_BUSINESS.streetAddress,
       addressLocality: LOCAL_BUSINESS.addressLocality,
       addressRegion: LOCAL_BUSINESS.addressRegion,
       postalCode: LOCAL_BUSINESS.postalCode,
       addressCountry: LOCAL_BUSINESS.addressCountry,
-    },
+    };
+  }
+
+  const [, streetAddress, addressLocality, addressRegion, postalCode] = match;
+  return {
+    '@type': 'PostalAddress',
+    streetAddress,
+    addressLocality,
+    addressRegion: addressRegion.toUpperCase(),
+    postalCode,
+    addressCountry: LOCAL_BUSINESS.addressCountry,
   };
 }
 
-function websiteNode(siteUrl: string): JsonLd {
+function businessProfiles(siteFacts?: PublicSiteFacts): string[] {
+  return [siteFacts?.instagramUrl ?? BUSINESS_PROFILES[0], BUSINESS_PROFILES[1]];
+}
+
+function providerNode(siteUrl: string, siteFacts?: PublicSiteFacts): JsonLd {
   const baseUrl = new URL('/', siteUrl).toString();
+  return {
+    '@type': 'HealthAndBeautyBusiness',
+    '@id': `${baseUrl}#business`,
+    name: siteFacts?.siteName ?? LOCAL_BUSINESS.name,
+    alternateName: [...BUSINESS_ALTERNATE_NAMES],
+    foundingDate: LOCAL_BUSINESS.foundingDate,
+    keywords: BUSINESS_CATEGORIES.join(', '),
+    url: baseUrl,
+    telephone: structuredTelephone(siteFacts),
+    sameAs: businessProfiles(siteFacts),
+    address: structuredAddress(siteFacts),
+  };
+}
+
+function websiteNode(siteUrl: string, siteFacts?: PublicSiteFacts): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  const businessName = siteFacts?.siteName ?? LOCAL_BUSINESS.name;
   return {
     '@type': 'WebSite',
     '@id': `${baseUrl}#website`,
     url: baseUrl,
-    name: LOCAL_BUSINESS.name,
+    name: businessName,
     alternateName: [...BUSINESS_ALTERNATE_NAMES],
-    description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
+    description: `${businessName} is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.`,
     keywords: BUSINESS_CATEGORIES.join(', '),
     inLanguage: 'en-US',
     publisher: { '@id': `${baseUrl}#business` },
@@ -119,6 +150,7 @@ export interface SiteEntityGraphInput {
   image: string;
   imageAlt?: string;
   email?: string;
+  siteFacts?: PublicSiteFacts;
   pageType?: StructuredPageType;
   mainEntityId?: string;
 }
@@ -133,11 +165,13 @@ export type StructuredPageType = 'WebPage' | 'CollectionPage' | 'ProfilePage';
 export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): JsonLd {
   const baseUrl = new URL('/', siteUrl).toString();
   const pageUrl = new URL(input.url, baseUrl).toString();
+  const businessName = input.siteFacts?.siteName ?? LOCAL_BUSINESS.name;
   const business = {
-    ...providerNode(baseUrl),
-    description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida.',
-    ...(input.email && { email: input.email }),
+    ...providerNode(baseUrl, input.siteFacts),
+    description: `${businessName} is a medical aesthetics practice in Punta Gorda, Florida.`,
+    ...((input.siteFacts?.email ?? input.email) && {
+      email: input.siteFacts?.email ?? input.email,
+    }),
     // Google wants an actual logo here, not a social card. `og.png` is the
     // 1200x630 share image; the square monogram is the real mark.
     logo: {
@@ -147,7 +181,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
       contentUrl: new URL('/logos/hr-monogram-2026/monogram-gold-512.png', baseUrl).toString(),
       width: 512,
       height: 512,
-      caption: LOCAL_BUSINESS.name,
+      caption: businessName,
     },
     image: { '@id': `${baseUrl}#logo` },
     geo: {
@@ -183,7 +217,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
     '@context': 'https://schema.org',
     '@graph': [
       business,
-      websiteNode(baseUrl),
+      websiteNode(baseUrl, input.siteFacts),
       {
         '@type': 'ImageObject',
         '@id': `${pageUrl}#primaryimage`,
@@ -403,36 +437,36 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
  * `areaServed` into the global service-area array. This node asserts the business's
  * presence *for this specific city*.
  */
-export function localBusiness(input: { url: string; areaName?: string; image?: string }): JsonLd {
+export function localBusiness(input: {
+  url: string;
+  areaName?: string;
+  image?: string;
+  siteFacts?: PublicSiteFacts;
+}): JsonLd {
   const baseUrl = new URL('/', input.url).toString();
+  const address = structuredAddress(input.siteFacts);
+  const businessName = input.siteFacts?.siteName ?? LOCAL_BUSINESS.name;
   return {
     '@context': 'https://schema.org',
     '@type': 'HealthAndBeautyBusiness',
     '@id': `${input.url}#localbusiness`,
-    name: LOCAL_BUSINESS.name,
+    name: businessName,
     alternateName: [...BUSINESS_ALTERNATE_NAMES],
     foundingDate: LOCAL_BUSINESS.foundingDate,
-    description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
+    description: `${businessName} is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.`,
     keywords: BUSINESS_CATEGORIES.join(', '),
     url: baseUrl,
-    telephone: LOCAL_BUSINESS.telephone,
-    sameAs: [...BUSINESS_PROFILES],
+    telephone: structuredTelephone(input.siteFacts),
+    ...(input.siteFacts?.email && { email: input.siteFacts.email }),
+    sameAs: businessProfiles(input.siteFacts),
     ...(input.image && { image: input.image }),
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: LOCAL_BUSINESS.streetAddress,
-      addressLocality: LOCAL_BUSINESS.addressLocality,
-      addressRegion: LOCAL_BUSINESS.addressRegion,
-      postalCode: LOCAL_BUSINESS.postalCode,
-      addressCountry: LOCAL_BUSINESS.addressCountry,
-    },
+    address,
     geo: {
       '@type': 'GeoCoordinates',
       latitude: LOCAL_BUSINESS.latitude,
       longitude: LOCAL_BUSINESS.longitude,
     },
-    areaServed: input.areaName ?? `${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion}`,
+    areaServed: input.areaName ?? `${String(address.addressLocality)}, ${String(address.addressRegion)}`,
     hasMap: BUSINESS_URLS.map,
     currenciesAccepted: 'USD',
     paymentAccepted: 'American Express, Discover, Mastercard, Visa, Debit Card, Check',
