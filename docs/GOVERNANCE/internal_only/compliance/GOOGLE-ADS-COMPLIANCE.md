@@ -64,20 +64,17 @@ Drug Term Personalization Certification**.
 your client list to build a lookalike for an injectables campaign without that certification. Plain geo +
 demographic targeting is unaffected.
 
-### So what do you actually do?
+### Certification boundary
 
-**Option A — write the brand names, bid generic terms. No certification, launch today.**
-Put "Botox" and "Juvéderm" in headlines and on the landing page where they help you convert. Bid on
-`wrinkle treatment punta gorda`, `injectables punta gorda`, `med spa punta gorda`, `sun damage treatment
-punta gorda`. **Negative-keyword the prescription brand terms** so phrase match can't drift you into
-targeting them uncertified.
+Without restricted-drug-term certification, keep prescription brand and ingredient terms out of the
+keyword targets and add them as negatives so broad or phrase match cannot select them. For a campaign
+targeting the United States, those terms may still appear in ads and landing pages when the surrounding
+copy complies with current Google policy and applicable law.
 
-**Option B — get certified, then bid the brand terms too.** LegitScript accreditation (~$495 to apply,
-~$1,950–$2,950/yr) plus Google healthcare certification, 4–8 weeks. Worth it only if brand-term volume
-justifies it. At ~100/mo for "botox punta gorda," **it probably doesn't yet.** Revisit if you scale.
-
-**Start with A.** It's free, it's immediate, and it keeps your strongest converting words in the ad where
-customers actually read them.
+Before considering prescription-term keyword targeting, verify the current Google application rules and
+whether any third-party accreditation applies to the exact business model. This guide does not establish
+eligibility, cost, timeline, or a business case for certification. Neither path authorizes launch; the
+current compliance README and `AD-COMPLIANCE-RUNBOOK.md` gates still apply.
 
 ### Florida still governs *what you say* about them
 
