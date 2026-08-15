@@ -80,10 +80,10 @@ Never send names, emails, phone numbers, form messages, or health details to ana
 
 ## Reporting hierarchy
 
-1. Booked consultations.
-2. Cost per booked consultation.
+1. Booked appointments.
+2. Cost per booked appointment.
 3. Qualified leads and cost per qualified lead.
-4. Lead-to-consultation rate.
+4. Lead-to-appointment rate.
 5. Response time.
 6. Supporting diagnostics: search relevance, landing-page engagement, CTR, CPC, form completion, and creative fatigue.
 
