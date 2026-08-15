@@ -60,7 +60,7 @@ export const WEIGHT_MANAGEMENT_EDUCATION = {
     {
       question: 'Are semaglutide and tirzepatide the same medication?',
       answer:
-        'No. Semaglutide is a GLP-1 receptor agonist. Tirzepatide is a dual GIP and GLP-1 receptor agonist. House of Rose names both medications and does not ask you to choose one before the consultation.',
+        'No. Semaglutide is a GLP-1 receptor agonist. Tirzepatide is a dual GIP and GLP-1 receptor agonist.',
     },
     {
       question: 'What does the $25 GLP-1 consultation price cover?',

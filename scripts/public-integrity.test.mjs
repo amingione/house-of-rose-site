@@ -802,6 +802,26 @@ test('orientation pages do not repeat the treatment-name reassurance formula', (
   assert.equal(failures.length, 0, formatFailures('Orientation-copy regression', failures));
 });
 
+test('service and concern pages do not turn product-choice reassurance into a template', () => {
+  const retiredFormulas = [
+    'You do not need to choose',
+    'does not ask you to choose',
+    'without choosing a product',
+  ];
+  const failures = [];
+
+  for (const file of publicHtmlFiles) {
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8'))).toLowerCase();
+    for (const retired of retiredFormulas) {
+      if (text.includes(retired.toLowerCase())) {
+        failures.push(`${relativeToRepo(file)}: contains repeated product-choice formula ${JSON.stringify(retired)}`);
+      }
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Product-choice copy regression', failures));
+});
+
 test('public pages do not expose internal reconciliation language', () => {
   const internalPhrases = [
     'current verified menu',
@@ -2183,7 +2203,7 @@ test('concern guides retain reviewed distinctions without enforcing one headline
   const practicalGuidance = {
     aging: ['face at rest and once in expression', 'what you would prefer to leave alone', 'not a perfectly posed one'],
     'fine-lines-laxity': ['Let your face rest', 'A relaxed photograph and one with expression', 'how much natural movement you want to keep'],
-    'volume-loss': ['Look straight on and from the side', 'Bring a front and side photograph', 'what each one actually does'],
+    'volume-loss': ['Look straight on and from the side', 'Bring a front and side photograph', 'a hollow, a fold, or a line that changes with expression'],
   };
   const retiredFaceConcernCadence = [
     /services below/i,

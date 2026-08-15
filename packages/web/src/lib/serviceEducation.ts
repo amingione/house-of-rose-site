@@ -121,7 +121,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   if (slug === 'glp-1-weight-management') {
     return {
       kicker: WEIGHT_MANAGEMENT_EDUCATION.title,
-      heading: 'You do not need to choose between semaglutide and tirzepatide before the consultation.',
+      heading: 'Semaglutide and tirzepatide work through different receptors.',
       metaDescription: 'House of Rose offers a $25 GLP-1 weight-management consultation with Diana Morrison, RN in Punta Gorda. Compare semaglutide and tirzepatide.',
       paragraphs: [
         WEIGHT_MANAGEMENT_EDUCATION.whatItIs,

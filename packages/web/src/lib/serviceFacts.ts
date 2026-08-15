@@ -15,7 +15,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   biorepeel:
     'The $250, 45-minute standalone face treatment and $699 Series of 3 are directly bookable. Call House of Rose to discuss Gold Body at $325 for 45 minutes, Advanced Acne Scarring at $450 for 75 minutes, or the Duo Gold Spot Upgrade at $395 for 60 minutes.',
   'dermal-fillers':
-    'Request the 60-minute, $300 Dermal Filler Consultation and describe whether the change in volume is at the lips, cheeks, or folds. You do not need to choose among the Juvéderm and RHA products first.',
+    'Request the 60-minute, $300 Dermal Filler Consultation and describe whether the change in volume is at the lips, cheeks, or folds.',
   'face-reality-acne-program':
     'The $99 Acne Bootcamp Consultation is booked separately from the complete $899, 12-week Face Reality program. Home-care products are also a separate purchase.',
   'acne-bootcamp':

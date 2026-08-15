@@ -23,7 +23,7 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
     detail: 'A color change and a hollow can sit in the same place without calling for the same approach. Some under-eye concerns also sit outside what an aesthetic service can change.',
     distinction: 'The first useful distinction is what you can see: pigment, visible vessels, structural shadow, or more than one.',
     consultationHeading: 'Describe the darkness in your own words.',
-    consultationPrompt: 'Tell us whether it looks more like color, visible vessels, hollowing, or shadow. You do not need to choose an under-eye treatment first.',
+    consultationPrompt: 'Tell us whether it looks more like color, visible vessels, hollowing, or shadow.',
   },
   'fine-lines-laxity': {
     heading: 'The same area can show more than one kind of line.',
@@ -64,7 +64,7 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
     detail: 'House of Rose dermal fillers use manufactured hyaluronic-acid gels. Injectable PRF is prepared from a small sample of your own blood. Botox and Daxxify address movement-related lines.',
     distinction: 'Look straight on and from the side. A hollow, fold, and expression line can appear close together; seeing the face from both angles makes the difference easier to point out.',
     consultationHeading: 'Tell us where the face looks less supported.',
-    consultationPrompt: 'Bring a front and side photograph if the change is easier to see there. You do not need to choose between dermal filler, injectable PRF, or a movement-related service before asking what each one actually does.',
+    consultationPrompt: 'Bring a front and side photograph if the change is easier to see there. Point to whether it looks like a hollow, a fold, or a line that changes with expression.',
   },
   'sun-damage': {
     heading: 'Do spots, uneven color, or a rougher surface stand out most?',
