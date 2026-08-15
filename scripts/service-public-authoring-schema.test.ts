@@ -6,9 +6,20 @@ import { service } from '../packages/studio/schemas/service.ts';
 import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../packages/web/src/lib/publicConcernContent.ts';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 import {
+  ALL_CASE_STUDIES_QUERY,
+  ALL_COLLECTIONS_QUERY,
+  ALL_COMPARISONS_QUERY,
+  ALL_COST_GUIDES_QUERY,
   ALL_SERVICES_QUERY,
   ALL_SERVICE_SLUGS_QUERY,
   ALL_SITEMAP_SERVICES_QUERY,
+  BLOG_POST_BY_SLUG_QUERY,
+  CASE_STUDY_BY_SLUG_QUERY,
+  COLLECTION_BY_SLUG_QUERY,
+  COMPARISON_BY_SLUG_QUERY,
+  CONCERN_BY_SLUG_QUERY,
+  COST_GUIDE_BY_SLUG_QUERY,
+  LOCAL_AREA_BY_SLUG_QUERY,
   PUBLIC_PROVIDER_BY_SLUG_QUERY,
   PUBLIC_PROVIDERS_QUERY,
   SERVICE_BY_SLUG_QUERY,
@@ -82,6 +93,48 @@ test('the archival service tagline cannot pose as a live control', () => {
   const tagline = serviceField('tagline');
   assert.equal(tagline?.readOnly, true);
   assert.match(String(tagline?.title), /not published/i);
+
+  const publicServiceQueries = [
+    ALL_SERVICES_QUERY,
+    SERVICE_BY_SLUG_QUERY,
+    ALL_COLLECTIONS_QUERY,
+    COLLECTION_BY_SLUG_QUERY,
+    CONCERN_BY_SLUG_QUERY,
+    BLOG_POST_BY_SLUG_QUERY,
+    ALL_COST_GUIDES_QUERY,
+    COST_GUIDE_BY_SLUG_QUERY,
+    ALL_COMPARISONS_QUERY,
+    COMPARISON_BY_SLUG_QUERY,
+    LOCAL_AREA_BY_SLUG_QUERY,
+    ALL_CASE_STUDIES_QUERY,
+    CASE_STUDY_BY_SLUG_QUERY,
+  ];
+
+  for (const query of publicServiceQueries) {
+    assert.doesNotMatch(query, /\btagline\b/);
+  }
+
+  const querySource = readFileSync(
+    new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+    'utf8',
+  );
+  const serviceType = querySource.match(/export interface Service extends[^\{]*\{([\s\S]*?)\n\}/)?.[1];
+  const serviceRefType = querySource.match(/export interface ServiceRef \{([\s\S]*?)\n\}/)?.[1];
+  assert.ok(serviceType);
+  assert.ok(serviceRefType);
+  assert.doesNotMatch(serviceType, /\btagline\b/);
+  assert.doesNotMatch(serviceRefType, /\btagline\b/);
+
+  const cardSource = readFileSync(
+    new URL('../packages/web/src/components/ServiceCard.astro', import.meta.url),
+    'utf8',
+  );
+  const servicesIndexSource = readFileSync(
+    new URL('../packages/web/src/pages/services/index.astro', import.meta.url),
+    'utf8',
+  );
+  assert.doesNotMatch(cardSource, /\btagline\b/);
+  assert.doesNotMatch(servicesIndexSource, /tagline=\{service\.tagline\}/);
 });
 
 test('stored service FAQs cannot pose as the reviewed public FAQ source', () => {

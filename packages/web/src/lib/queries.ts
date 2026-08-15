@@ -180,7 +180,6 @@ export interface Service extends TreatmentPageFields {
   provider?: TreatmentProviderAttribution;
   parentService?: { title: string; slug: string };
   treatments?: Service[];
-  tagline?: string;
   duration?: string;
   price?: number | string;
   bookingMode?: BookingMode;
@@ -418,7 +417,6 @@ export const ALL_SERVICES_QUERY = /* groq */ `
     title,
     "slug": slug.current,
     kind,
-    tagline,
     duration,
     price,
     bookingMode,
@@ -496,7 +494,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       _id,
       title,
       "slug": slug.current,
-      tagline,
       price,
       duration,
       bookingMode,
@@ -504,7 +501,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       bookingVerifiedAt,
       ${IMAGE_FIELDS}
     },
-    tagline,
     price,
     duration,
     bookingMode,
@@ -563,7 +559,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       _id,
       title,
       "slug": slug.current,
-      tagline,
       bookingMode,
       bookingUrl,
       bookingVerifiedAt,
@@ -581,7 +576,6 @@ export const SERVICE_BY_SLUG_QUERY = /* groq */ `
       _id,
       title,
       "slug": slug.current,
-      tagline,
       bookingMode,
       bookingUrl,
       bookingVerifiedAt,
@@ -634,7 +628,6 @@ export const ALL_COLLECTIONS_QUERY = /* groq */ `
       title,
       "slug": slug.current,
       kind,
-      tagline,
       duration,
       price,
       bookingMode,
@@ -693,7 +686,6 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
         _id,
         title,
         "slug": slug.current,
-        tagline,
         duration,
         bookingMode,
         bookingUrl,
@@ -726,7 +718,6 @@ export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
       _id,
       title,
       "slug": slug.current,
-      tagline,
       duration,
       price,
       bookingMode,
@@ -875,7 +866,6 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
       _id,
       title,
       "slug": slug.current,
-      tagline,
       price,
       duration,
       bookingMode,
@@ -959,7 +949,7 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
       relatedService->status in ["live", "actual-menu"] &&
       defined(relatedService->slug.current) &&
       !(relatedService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
-        relatedService->{ title, "slug": slug.current, tagline, bookingMode, bookingUrl, bookingVerifiedAt }
+        relatedService->{ title, "slug": slug.current, bookingMode, bookingUrl, bookingVerifiedAt }
     ),
     "seo": seo { metaTitle, metaDescription },
     "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
@@ -1139,7 +1129,6 @@ export interface ServiceRef {
   _id: string;
   title: string;
   slug: string;
-  tagline?: string;
   price?: number | string;
   duration?: string;
   bookingMode?: BookingMode;
@@ -1222,7 +1211,7 @@ export interface CaseStudy {
 }
 
 const SERVICE_REF_FIELDS = /* groq */ `
-  _id, title, "slug": slug.current, tagline, price, duration, bookingMode, bookingUrl, bookingVerifiedAt
+  _id, title, "slug": slug.current, price, duration, bookingMode, bookingUrl, bookingVerifiedAt
 `;
 
 // ── Cost guides ──────────────────────────────────────────────────────────────
