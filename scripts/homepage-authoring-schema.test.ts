@@ -40,6 +40,8 @@ test('the public homepage and visual editor agree that Studio copy is disconnect
 
   assert.doesNotMatch(route, /HOMEPAGE_QUERY|sanityFetch/);
   assert.match(route, /const treatmentCategories = \[/);
+  assert.match(route, /href: '\/services\/injectables-bio-fillers\/'/);
+  assert.doesNotMatch(route, /href: '\/services\/collections\/injectables-bio-fillers\/'/);
   assert.doesNotMatch(queries, /HOMEPAGE_QUERY|interface HomePage|interface HomeServiceGroup/);
   assert.doesNotMatch(queries, /_type\s*==\s*["']homepage["']/);
   assert.doesNotMatch(stackbit, /homepage:\s*['"]\/['"]/);
