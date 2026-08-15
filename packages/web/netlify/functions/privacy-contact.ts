@@ -45,9 +45,20 @@ const renderResponse = (title: string, message: string, status: number): Respons
 			<section>
 				<h1>${escapeHtml(title)}</h1>
 				<p>${escapeHtml(message)}</p>
-				<a href="/privacy-policy/#privacy-contact">Return to privacy policy</a>
+				<a id="return-to-privacy" href="/privacy-policy/#privacy-contact">Return to privacy policy</a>
 			</section>
 		</main>
+		<script>
+			const returnLink = document.getElementById('return-to-privacy');
+			returnLink?.addEventListener('click', (event) => {
+				if (!document.referrer) return;
+				const referrer = new URL(document.referrer);
+				const destination = new URL(returnLink.href);
+				if (referrer.origin !== location.origin || referrer.pathname !== destination.pathname) return;
+				event.preventDefault();
+				history.back();
+			});
+		</script>
 	</body>
 </html>`,
 		{
