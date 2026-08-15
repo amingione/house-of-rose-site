@@ -100,7 +100,7 @@ channel.
 
 > House of Rose Aesthetics is a four-person medical aesthetics practice in Punta Gorda, Florida.
 > Current services include skin and device treatments, facials, injectables, IV hydration,
-> provider-guided weight management, waxing, makeup artistry, and permanent jewelry. Some appointments
+> GLP-1 Weight Management, waxing, makeup artistry, and permanent jewelry. Some appointments
 > book online; others begin with a consultation or phone call. The practice is at 525 E Olympia Ave,
 > Unit 9, and the current services menu is available online.
 
@@ -162,7 +162,7 @@ Seed only real questions a prospective client would ask. Keep the owner answer d
 **What services does House of Rose offer?**
 
 > The current menu includes skin treatments, facials, injectables, body treatments, IV hydration,
-> weight-management care, waxing, and permanent jewelry. Review the online services menu for current
+> GLP-1 weight management, waxing, and permanent jewelry. Review the online services menu for current
 > availability.
 
 **Do you take walk-ins?**
