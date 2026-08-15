@@ -42,8 +42,10 @@ document and use only the still-approved visual standards.
   **Stale = anything presenting any of them as a current offering.**
 - **Botanical names — dead:** Lily, Iris, Hydrangea, Magnolia, Porcelain Petal, Gilded Lily, Lumière,
   Camellia Peel, Clarity Session. Use plain, searchable names.
-- **Advanced Skin Imaging & Analysis = the client draw-in** — hero CTA + main-nav item +
-  lead-capture form on `/skin-analysis/`. Keep and feature it.
+- **Advanced Skin Imaging & Analysis is an optional paid appointment.** Keep its current
+  `/skin-analysis/` route and navigation availability. It may be useful when a client is unsure where
+  to begin or wants a visual baseline; do not make it a mandatory front door, funnel, prerequisite,
+  or prescribed homepage hero CTA.
 - **AI framing — RETIRED (2026-08-06):** the service is **Advanced Skin Imaging & Analysis**. We lead
   with the multi-spectrum imaging (standard / cross-polarized / UV), not the AI. → **Stale = "AI Skin
   Analysis," "AI-assisted," "AI skin scanner," "AI scan," "AI-powered" anywhere in client-facing copy,
