@@ -25,7 +25,7 @@ line. Copy this table into the campaign folder at launch and date each sign-off.
 | G7 | Consultation fee and credit terms approved and retained outside this repository | Amber + counsel | Executed policy or counsel-approved terms | ☐ |
 | G8 | Google: DKI off, automatically created assets off | Amber | Settings screenshots (§2.1) | ☐ |
 | G9 | Meta: Advantage+ creative enhancements and text variations off | Amber | Settings screenshots (§2.2) | ☐ |
-| G10 | Every image cleared for sourcing — model labelled, or client consent + material-connection disclosure on file | Amber + counsel | Per-asset log (§3) | ☐ |
+| G10 | Every image cleared for sourcing — anyone presented as an actual client or consumer is the actual consumer, or the ad clearly discloses otherwise; client consent and any material-connection disclosure are on file | Amber + counsel | Per-asset log (§3) | ☐ |
 | G11 | No before/after imagery running, or counsel has cleared it | Counsel | Written clearance | ☐ |
 | G12 | Every sitelink and CTA reaches content that actually exists | Amber | Click-through test log | ☐ |
 | G13 | Negative keyword list applied | Amber | Google Ads export | ☐ |
@@ -111,7 +111,7 @@ client; § 255.5(a) requires disclosure of material connections, including free 
 |---|---|
 | `asset_file` | Filename or asset ID |
 | `subject_type` | `stock` · `staff` · `real_client` · `no_person` |
-| `label_required` | Visible **"Model"** label required for `stock` and `staff` |
+| `label_required` | Context-based: if stock, an actor or staff is presented as an actual client, consumer or testimonialist, use the actual consumer or clearly disclose that the person is not the actual consumer. Ordinary staff shown in a verified staff role is not labelled **"Model"**. |
 | `consent_on_file` | Written authorisation — required for `real_client` |
 | `material_connection` | Whether the person received free or discounted services; if yes, disclosure text and its placement |
 | `before_after` | `yes` / `no`. If `yes` → **blocked pending counsel clearance** |
