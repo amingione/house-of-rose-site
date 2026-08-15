@@ -49,7 +49,12 @@ const directorySchema = itemListPage(
 );
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  structuredPageType="CollectionPage"
+  structuredPageMainEntityId={`${canonical}#itemlist`}
+>
   <SchemaMarkup item={directorySchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
 

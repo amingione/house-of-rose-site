@@ -154,6 +154,8 @@ const personSchema = personProfile(
   preloadImage={detailImage}
   preloadImageSrcset={detailImageSrcset}
   preloadImageSizes="(max-width: 1023px) 100vw, 47vw"
+  structuredPageType="ProfilePage"
+  structuredPageMainEntityId={`${canonical}#person`}
 >
   <SchemaMarkup item={personSchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />

@@ -119,7 +119,11 @@ export interface SiteEntityGraphInput {
   image: string;
   imageAlt?: string;
   email?: string;
+  pageType?: StructuredPageType;
+  mainEntityId?: string;
 }
+
+export type StructuredPageType = 'WebPage' | 'CollectionPage' | 'ProfilePage';
 
 /**
  * Shared entity graph emitted by BaseLayout on every standard page. Stable
@@ -189,7 +193,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
         representativeOfPage: true,
       },
       {
-        '@type': 'WebPage',
+        '@type': input.pageType ?? 'WebPage',
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
         name: input.name,
@@ -198,6 +202,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
         isPartOf: { '@id': `${baseUrl}#website` },
         about: { '@id': `${baseUrl}#business` },
         primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+        ...(input.mainEntityId && { mainEntity: { '@id': input.mainEntityId } }),
       },
     ],
   };

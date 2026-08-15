@@ -11,7 +11,7 @@ import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
 import ConsentManager from '@/components/ConsentManager.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { SEO } from 'astro-seo';
-import { siteEntityGraph } from '@/lib/structuredData';
+import { siteEntityGraph, type StructuredPageType } from '@/lib/structuredData';
 import { formatSeoTitle } from '@/lib/seo';
 import { SHOP_ENABLED } from '@/lib/features';
 
@@ -28,6 +28,8 @@ interface Props {
   noindex?: boolean;
   nofollow?: boolean;
   chrome?: 'site' | 'landing';
+  structuredPageType?: StructuredPageType;
+  structuredPageMainEntityId?: string;
 }
 
 const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
@@ -46,6 +48,8 @@ const {
   noindex = false,
   nofollow = false,
   chrome = 'site',
+  structuredPageType = 'WebPage',
+  structuredPageMainEntityId,
 } = Astro.props;
 
 const gtmId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_GTM_ID;
@@ -73,6 +77,8 @@ const entityGraph = siteEntityGraph(
     image: socialImage,
     imageAlt: socialImageAlt,
     email: settings?.email,
+    pageType: structuredPageType,
+    mainEntityId: structuredPageMainEntityId,
   },
   siteURL.toString(),
 );
