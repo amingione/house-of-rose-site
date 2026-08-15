@@ -195,7 +195,7 @@ channel.
 | Weekly | Confirm every sitelink and CTA still resolves |
 | Monthly, after week 4 | Rendered-ad audit; retention sweep (§4) |
 | Monthly | Confirm § 456.062 block still present on every live surface — a CMS edit or a Sanity publish can silently remove it |
-| Quarterly | Re-verify statutes and rules in `FL-ADVERTISING-LAW.md` §1 against primary sources; update the change log |
+| Quarterly | Re-verify the cited statutes and rules against current primary sources; update the active compliance documents and change log |
 | Quarterly | Re-confirm the § 464.012 protocol covers the current service menu — the menu changes more often than the protocol |
 | **Annually, and by 2027-11-30** | **Re-verify Dr. Shaw's Florida licence — ME136232 expires 2028-01-31.** Every ad carrying his name and licence number becomes a misrepresentation the day it lapses. Set the reminder 60 days out |
 | On any credential, license, ownership or medical-director change | **Stop advertising.** Re-run gates G2–G6 before resuming |
