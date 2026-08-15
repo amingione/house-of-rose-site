@@ -102,7 +102,7 @@ Review search terms daily for the first seven days. Add negatives only when the 
 
 ### Rotation
 
-- **Days 1–7:** 01A Local Proof, 02A See Your Skin First, 04A Skin Quality.
+- **Days 1–7:** 01A Local Proof, 02A Three Views of the Skin, 04A Skin Quality.
 - **Days 8–14:** retain the best qualified-lead producer; rotate in 03A Studio, 05A Injectables, and 06A Provider Voice.
 - **After day 14:** test the higher-intent Instant Form only if fewer than three verified website leads exist and tracking has been reconfirmed.
 - **Retargeting:** wait until Meta reports an eligible audience. Do not split the initial $30/day across prospecting and retargeting.

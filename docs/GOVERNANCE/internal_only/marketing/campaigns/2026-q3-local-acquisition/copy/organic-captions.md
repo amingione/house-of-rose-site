@@ -31,7 +31,7 @@ View current services through the link in bio or call (844) 941-7673.
 
 `#PuntaGorda #CharlotteCountyFL #HouseOfRoseAesthetics #PuntaGordaFlorida`
 
-### See your skin first
+### Three views of the skin
 
 Texture, pigment, pores, and visible sun exposure are not the same concern.
 
