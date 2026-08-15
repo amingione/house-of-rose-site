@@ -18,7 +18,7 @@ line. Copy this table into the campaign folder at launch and date each sign-off.
 | G2b | Naming rights — **check the Guardian agreement**; only seek separate consent if that clause is silent | Amber | Agreement clause reference, or signed consent if needed | ☐ |
 | G2c | Florida DOH licence status confirmed clear and unencumbered | Amber | DOH lookup screenshot, dated | ☐ |
 | G2d | Wherever he appears, the title **"Medical Director"** is present | Amber | Rendered page | ☐ |
-| G3 | Provider attribution present on every ad unit and in the landing-page **body** | Amber | Rendered previews, all units | ☐ |
+| G3 | Ads and landing-page bodies for medically directed services carry the exact attribution `Medical Director: Joshua Shaw, MD · FL Lic. ME136232`; other ads carry provider attribution only when a practitioner is named or the role is material | Amber | Rendered previews for each triggered unit | ☐ |
 | G4 | License type stated for every named practitioner | Amber | Copy review checklist | ☐ |
 | G5 | § 400.9905(4)(g) exemption position documented; certificate decision made | Counsel | Written legal opinion on file | ☐ |
 | G6 | § 464.012 supervising-physician protocol current and covering **every advertised service** | Amber + medical director | Signed, dated protocol | ☐ |
@@ -63,7 +63,7 @@ responsible for advertising placed through agents and corporate entities — an 
 | Dynamic Search Ads | **Do not use** | Campaign type | Headlines are generated from page content |
 | Broad match | **Avoid** in the skin/derm ad group | Keyword match types | Phrase and exact only; broad match invites credential-adjacent queries |
 | Location targeting | **Presence: people in your targeted locations** | Campaign → Locations | "Presence or interest" serves people researching from out of state |
-| Provider attribution | **Callout extension** | Assets → Callouts | Not subject to headline character limits |
+| Provider attribution | **Use a reviewed placement that carries the complete required line; do not rely on a callout for the canonical medical-director attribution** | Ad or asset level, scoped to the relevant ad group | [Google limits callout text to 25 characters](https://support.google.com/google-ads/answer/6079510), so the canonical line does not fit. Confirm the complete attribution in the rendered preview. |
 
 **Keyword vs. copy — the line that matters.** Bidding on `dermatologist` is defensible: it is a generic
 category term and a keyword bid is not itself an advertisement under 64B8-11.001(3). Putting
@@ -96,7 +96,7 @@ Auditing the *settings* is not auditing the *output*. Check what actually served
 
 1. Google Ads → Ads & assets → filter to served combinations; review every rendered headline/description permutation.
 2. Meta Ads Manager → Ad previews → every placement (Feed, Stories, Reels, Audience Network).
-3. Confirm on each: no credential or specialty implication; provider attribution intact; § 456.062 block intact wherever the offer appears.
+3. Confirm on each: no credential or specialty implication; provider or medical-director attribution intact wherever G3 or G4 triggers it; § 456.062 block intact wherever the offer appears.
 4. **Screenshot the rendered output and file it** with the week's date. An audit you cannot evidence did not happen.
 5. Log the result in §4's archive log with `asset_type = audit`.
 
