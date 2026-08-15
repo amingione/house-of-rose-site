@@ -1,17 +1,39 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_BLOG_POSTS_QUERY, type BlogPost } from '@/lib/queries';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 import { alignPublicContent } from '@/lib/publicCopy';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
+import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 
 const posts = alignPublicContent(await sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY))
   .filter((post) => isReviewedPublicBlogSlug(post.slug));
 const heroImage = '/images/optimized/actual-welcome-800.webp';
 const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const pageTitle = 'Treatment Journal | House of Rose Aesthetics';
+const pageDescription = 'Reviewed House of Rose treatment articles with linked sources, clear limitations, and current service context.';
+const journalSchema = itemListPage(
+  {
+    name: 'House of Rose Treatment Journal',
+    description: pageDescription,
+    url: canonical,
+    items: posts.map((post) => ({
+      name: getPublicBlogTitle(post),
+      url: new URL(`/blog/${post.slug}/`, site).toString(),
+    })),
+  },
+  site,
+);
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Journal', item: canonical },
+]);
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -24,12 +46,17 @@ function formatDate(iso: string) {
 ---
 
 <BaseLayout
-  title="Treatment Journal | House of Rose Aesthetics"
-  description="Reviewed House of Rose treatment articles with linked sources, clear limitations, and current service context."
+  title={pageTitle}
+  description={pageDescription}
   preloadImage={heroImage}
   preloadImageSrcset={heroImageSrcset}
   preloadImageSizes="100vw"
+  structuredPageType="CollectionPage"
+  structuredPageMainEntityId={`${canonical}#itemlist`}
 >
+  <SchemaMarkup item={journalSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
   <Hero
     title="Treatment questions, answered with sources."
     kicker="The Journal"
