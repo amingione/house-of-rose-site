@@ -950,6 +950,14 @@ test('practice story distinguishes the appointment provider from medical directi
   if (!visibleText(html).includes('Medical Director: Joshua Shaw, MD · FL Lic. ME136232')) {
     failures.push('about/hra: missing canonical medical-director attribution');
   }
+  for (const genericPositioning of [
+    /roles? give(?:s)? the practice range/i,
+    /together, they have made room/i,
+  ]) {
+    if (genericPositioning.test(visibleText(html))) {
+      failures.push('about/hra: retains generic range positioning instead of naming provider roles');
+    }
+  }
   for (const misleading of ['Joshua Shaw treats', 'Joshua Shaw performs', 'on-site medical director']) {
     if (text.includes(misleading)) failures.push(`about/hra: contains misleading ${JSON.stringify(misleading)}`);
   }
