@@ -835,6 +835,19 @@ test('public pages state concrete distinctions instead of repeating different-qu
   assert.equal(failures.length, 0, formatFailures('Concrete-distinction copy regression', failures));
 });
 
+test('public pages use the named GLP-1 service instead of provider-guided category language', () => {
+  const failures = [];
+
+  for (const file of publicHtmlFiles) {
+    const text = visibleText(mainHtml(readFileSync(file, 'utf8'))).toLowerCase();
+    if (/provider[ -]guided (?:glp-1 )?weight management/.test(text)) {
+      failures.push(`${relativeToRepo(file)}: contains provider-guided weight-management wording`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('GLP-1 naming regression', failures));
+});
+
 test('public pages do not expose internal reconciliation language', () => {
   const internalPhrases = [
     'current verified menu',
