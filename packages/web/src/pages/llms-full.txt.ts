@@ -9,6 +9,7 @@ import {
   ALL_LOCAL_AREAS_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
   ALL_CASE_STUDIES_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   SITE_SETTINGS_QUERY,
   type BlogPost,
   type Comparison,
@@ -17,9 +18,10 @@ import {
   type LocalArea,
   type TreatmentPackage,
   type CaseStudy,
+  type PublicProviderProfile,
   type SiteSettings,
 } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
@@ -59,7 +61,7 @@ interface ServiceFull {
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages, caseStudies] = await Promise.all([
+  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages, caseStudies, sanityProviders] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
@@ -69,9 +71,10 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
+    sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
   const siteFacts = resolvePublicSiteFacts(settings);
-  const providers = PROVIDER_PROFILE_FALLBACKS;
+  const providers = resolvePublicProviderProfiles(sanityProviders);
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
 

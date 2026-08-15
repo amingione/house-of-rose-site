@@ -11,6 +11,7 @@ import {
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
+  PUBLIC_PROVIDERS_QUERY,
   SITE_SETTINGS_QUERY,
   type Service,
   type BlogPost,
@@ -20,9 +21,10 @@ import {
   type LocalArea,
   type CaseStudy,
   type TreatmentPackage,
+  type PublicProviderProfile,
   type SiteSettings,
 } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import {
@@ -37,7 +39,7 @@ const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(UNAVAILABLE_PUBLIC_S
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [settings, services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies, packages] = await Promise.all([
+  const [settings, services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<Service[]>(ALL_SERVICES_QUERY),
     sanityFetch<Service[]>(LLMS_FEATURED_TREATMENTS_QUERY),
@@ -48,9 +50,10 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
+    sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
   const siteFacts = resolvePublicSiteFacts(settings);
-  const providers = PROVIDER_PROFILE_FALLBACKS;
+  const providers = resolvePublicProviderProfiles(sanityProviders);
   const publicServices = [...services, ...featuredTreatments]
     .filter((service) => !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(service.slug))
     .filter((service, index, allServices) => allServices.findIndex(({ slug }) => slug === service.slug) === index);
