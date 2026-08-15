@@ -39,7 +39,7 @@ const CONCERN_EDUCATION: Readonly<Record<string, ConcernEducation>> = {
     detail: 'A narrow depression, a broader edge, and a rolling change in texture do not present the same way. Active breakouts add a separate question because they describe what is happening now, not only the texture left behind.',
     distinction: 'When you look from the front and from the side, notice whether the texture appears narrow, broad-edged, rolling, or mixed.',
     consultationHeading: 'Show us the texture from more than one angle.',
-    consultationPrompt: 'A clear photograph from the front and side—and a note about any breakouts still appearing—helps us understand both the scar shape and what is active now.',
+    consultationPrompt: 'Bring clear front and side photographs, plus a note about any breakouts that are still appearing. The two angles show the scar shape; the note separates active breakouts from established texture.',
   },
   'active-acne': {
     heading: 'Are new breakouts appearing, or are you seeing what they left behind?',

@@ -2350,6 +2350,7 @@ test('concern guides retain reviewed distinctions without enforcing one headline
   const practicalGuidance = {
     aging: ['face at rest and once in expression', 'what you would prefer to leave alone', 'not a perfectly posed one'],
     'fine-lines-laxity': ['Let your face rest', 'A relaxed photograph and one with expression', 'how much natural movement you want to keep'],
+    'acne-scarring': ['front and side photographs', 'two angles show the scar shape', 'separates active breakouts from established texture'],
     'volume-loss': ['Look straight on and from the side', 'Bring a front and side photograph', 'a hollow, a fold, or a line that changes with expression'],
   };
   const retiredFaceConcernCadence = [
