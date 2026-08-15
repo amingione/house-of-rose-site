@@ -811,6 +811,35 @@ test('orientation pages do not repeat the treatment-name reassurance formula', (
   assert.equal(failures.length, 0, formatFailures('Orientation-copy regression', failures));
 });
 
+test('orientation pages do not repeat generic observation prompts', () => {
+  const retiredPrompts = [
+    'what you notice matters',
+    'bring what you have noticed',
+    'tell us what you notice',
+  ];
+  const failures = [];
+
+  for (const route of [
+    'index.html',
+    'services/index.html',
+    'concerns/index.html',
+    'support/index.html',
+    'experience/index.html',
+    'consultation/index.html',
+    'faq/index.html',
+  ]) {
+    const file = path.join(DIST_ROOT, route);
+    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+    const html = readFileSync(file, 'utf8').toLowerCase();
+
+    for (const prompt of retiredPrompts) {
+      if (html.includes(prompt)) failures.push(`${route}: ${prompt}`);
+    }
+  }
+
+  assert.deepEqual(failures, []);
+});
+
 test('service and concern pages do not turn product-choice reassurance into a template', () => {
   const retiredFormulas = [
     'You do not need to choose',
