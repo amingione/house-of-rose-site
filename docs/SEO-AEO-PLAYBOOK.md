@@ -80,7 +80,7 @@ PRF Microneedling in Punta Gorda          → localArea  → /areas/prf-micronee
 Procell Pro vs MD                         → comparison → /compare/procell-pro-vs-md
 How Much Does PRF Treatment Cost?         → costGuide  → /cost/prf-treatment-cost
 Best Facial for Dull Skin Before an Event → blogPost / service hub (intent-led)
-Dermaplaning + Glo2Facial Package         → treatmentPackage → /packages/[slug]
+Face Reality 12-Week Program              → treatmentPackage → /packages/face-reality-12-week-program/
 ```
 
 ---

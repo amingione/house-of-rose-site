@@ -59,6 +59,16 @@ test('active governance documents reference the current governance tree', () => 
   );
 });
 
+test('the SEO playbook uses a current package instead of inventing a service combination', () => {
+  const playbook = readFileSync(join(repositoryRoot, 'docs/SEO-AEO-PLAYBOOK.md'), 'utf8');
+
+  assert.match(
+    playbook,
+    /Face Reality 12-Week Program\s+→ treatmentPackage → \/packages\/face-reality-12-week-program\//,
+  );
+  assert.doesNotMatch(playbook, /Dermaplaning \+ Glo2Facial Package/);
+});
+
 test('governance preflight does not reinstate the archival brand system', () => {
   assert.match(governanceInstructions, /Use[\s\S]*BRAND_MEMORY\.md[\s\S]*selectively/);
   assert.match(governanceInstructions, /not a creative brief/);
