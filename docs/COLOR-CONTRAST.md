@@ -39,9 +39,9 @@ Resolves through the `--hr-gold` CSS variable and **flips automatically** by sur
 
 Use for: `text-gold`, `border-gold`, `outline-gold`.
 
-### 2. `gold-metal` — fixed metallic leaf `#C9A24B`
-Never text. It *is* the surface. Always paired with `text-ink` (7.84:1).
-Use for: `bg-gold-metal` fills, hairline rules, low-opacity decorative borders.
+### 2. `gold-metal` — fixed decorative bronze `#8A6A43`
+Use for hairline rules and low-opacity decorative fills or borders, not as a solid background behind
+text. The current `text-ink` pairing is only 4.26:1 and does not meet the body/small-text target.
 
 > ⚠️ **Never write `text-gold-metal`** — that reintroduces the 2:1 failure.
 
@@ -88,7 +88,8 @@ no dark hero gets a solid, legible header for free — no per-page flag.**
 ## Rules for new work
 
 1. Dark background? → add `.on-dark`. Page-top dark hero? → also `.hero-dark`.
-2. Gold as text/border → `text-gold` / `border-gold`. Gold as a fill → `bg-gold-metal` + `text-ink`.
+2. Gold as text/border → `text-gold` / `border-gold`. Keep `bg-gold-metal` decorative; do not place
+   text directly on it.
 3. Secondary text → `text-muted`. **Never hardcode a hex** (`text-[#999]` etc.).
 4. No text below **11px**, and no tracking above **0.26em** on uppercase micro-type.
    (10px @ 0.4em was unreadable regardless of colour.)
