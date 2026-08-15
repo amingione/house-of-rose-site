@@ -125,9 +125,25 @@ test('BaseLayout and local-area rendering share the normalized Site Settings aut
     new URL('../packages/web/src/pages/areas/[slug].astro', import.meta.url),
     'utf8',
   );
+  const footer = readFileSync(
+    new URL('../packages/web/src/components/Footer.astro', import.meta.url),
+    'utf8',
+  );
 
   assert.match(layout, /const siteFacts = resolvePublicSiteFacts\(settings\)/);
   assert.match(layout, /siteFacts,/);
+  assert.match(layout, /<Footer siteFacts=\{siteFacts\} \/>/);
+
+  assert.match(footer, /\{siteFacts\.siteName\}/);
+  assert.match(footer, /const addressMatch = siteFacts\.address\.match/);
+  assert.match(footer, /\{addressLine1\}/);
+  assert.match(footer, /addressLine2 &&/);
+  assert.match(footer, /const phoneHref = `tel:\$\{structuredTelephone\(siteFacts\)\}`/);
+  assert.match(footer, /href=\{phoneHref\}/);
+  assert.match(footer, /\{siteFacts\.phone\}/);
+  assert.doesNotMatch(footer, /525 E Olympia/);
+  assert.doesNotMatch(footer, /tel:\+18449417673/);
+  assert.doesNotMatch(footer, />\(844\) 941-7673</);
 
   assert.match(areaRoute, /sanityFetch<SiteSettings \| null>\(SITE_SETTINGS_QUERY\)/);
   assert.match(areaRoute, /const siteFacts = resolvePublicSiteFacts\(settings\)/);

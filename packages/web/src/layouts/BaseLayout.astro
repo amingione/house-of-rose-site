@@ -162,7 +162,7 @@ const entityGraph = siteEntityGraph(
       <slot />
     </main>
 
-    {chrome === 'site' && <Footer />}
+    {chrome === 'site' && <Footer siteFacts={siteFacts} />}
 
     <!-- Cart UI remains outside main so it does not interfere with page landmarks. -->
     {chrome === 'site' && SHOP_ENABLED && <CartDrawer />}
