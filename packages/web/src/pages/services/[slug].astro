@@ -241,6 +241,7 @@ const pageDescription = factualServiceDescription;
   preloadImage={heroImage}
   preloadImageSrcset={heroImageSrcset}
   preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
+  structuredPageMainEntityId={`${canonicalURL.toString()}#service`}
 >
   <!-- Structured Data for SEO -->
   <SchemaMarkup item={serviceSchema} slot="head" />
