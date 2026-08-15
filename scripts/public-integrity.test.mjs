@@ -616,14 +616,10 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
   const homepage = visibleText(main);
   const failures = [];
 
-  // Only the two owner-approved surfaces are copy-locked. The rest of the
-  // homepage is free to become warmer or more useful without teaching the
-  // test suite a preferred headline formula.
-  for (const requiredAnchor of [
-    'Good skin is a reflection of good judgment.',
-    'Inside House of Rose.',
-  ]) {
-    if (!homepage.includes(requiredAnchor)) failures.push(`homepage is missing required anchor ${JSON.stringify(requiredAnchor)}`);
+  // Preserve the named practice section without teaching the test suite a
+  // preferred hero formula or restoring the rejected judgment/restraint voice.
+  if (!homepage.includes('Inside House of Rose.')) {
+    failures.push('homepage is missing the named practice section');
   }
   for (const verifiedFact of [
     'Diana Morrison, RN',
@@ -666,6 +662,8 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     }
   }
   for (const retired of [
+    'Good skin is a reflection of good judgment.',
+    'Knowing what not to do matters more.',
     'Every plan starts with a consultation',
     'Same source material. Three forms. Three different uses.',
     'Three uses of PRF. Three distinct appointments.',
