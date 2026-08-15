@@ -53,7 +53,7 @@
 
 ### 4. Comparison page — *A vs B*
 - **Doc type:** `comparison`
-- **Route:** `/compare/[slug]` (e.g. `procell-pro-vs-md`)
+- **Route:** `/compare/[slug]` (e.g. `daxxify-vs-botox`)
 - **Active CMS inputs:** `slug`, `status`, `optionA.service`, `optionB.service`, and `orderRank` establish
   route eligibility, live service relationships, and ordering; public comparison prose comes from the
   reviewed website overlay

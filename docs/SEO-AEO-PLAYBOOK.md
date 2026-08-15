@@ -61,7 +61,7 @@ supporting page types documented in the map.
    → aggregated at `/faq`; service, cost, and comparison pages add their own `faqs` only when they
    answer real questions not already handled clearly in the page body.
 4. **Comparison page** — *"A vs B"* decisions framed neutrally and expertly.
-   → `comparison` doc, `/compare/[slug]`. E.g. *Procell Pro vs MD*.
+   → `comparison` doc, `/compare/[slug]`. E.g. *Daxxify vs Botox*.
 5. **Local authority page** — locally grounded information for a city/area.
    → `localArea` doc, `/areas/[slug]`. E.g. *PRF Microneedling in Punta Gorda*.
 6. **Before/after / proof page** — real outcomes, protocol, timeframe (with consent).
@@ -77,7 +77,7 @@ These are the kinds of pages this framework is built to produce — slugs are il
 
 ```
 PRF Microneedling in Punta Gorda          → localArea  → /areas/prf-microneedling-punta-gorda
-Procell Pro vs MD                         → comparison → /compare/procell-pro-vs-md
+Daxxify vs Botox                          → comparison → /compare/daxxify-vs-botox
 How Much Does PRF Treatment Cost?         → costGuide  → /cost/prf-treatment-cost
 Best Facial for Dull Skin Before an Event → blogPost / service hub (intent-led)
 Face Reality 12-Week Program              → treatmentPackage → /packages/face-reality-12-week-program/
