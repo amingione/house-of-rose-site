@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { serviceCollection } from '../packages/studio/schemas/serviceCollection.ts';
@@ -9,6 +10,17 @@ import {
   NAV_COLLECTIONS_QUERY,
   REVIEWED_PUBLIC_COLLECTION_SLUGS,
 } from '../packages/web/src/lib/queries.ts';
+
+const querySource = readFileSync(
+  new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+  'utf8',
+);
+const collectionRenderers = [
+  '../packages/web/src/pages/services/index.astro',
+  '../packages/web/src/pages/services/collections/index.astro',
+  '../packages/web/src/pages/services/collections/[collection].astro',
+  '../packages/web/src/pages/sitemap.astro',
+].map((relativePath) => readFileSync(new URL(relativePath, import.meta.url), 'utf8'));
 
 function collectionField(name: string) {
   return serviceCollection.fields.find((field) => field.name === name);
@@ -25,6 +37,7 @@ test('the public collection title uses the shared public-copy guard', () => {
 test('disconnected collection editorial fields are preserved but not presented as publishing controls', () => {
   const disconnectedFields = [
     'description',
+    'image',
     'presentation',
     'headline',
     'intro',
@@ -41,6 +54,55 @@ test('disconnected collection editorial fields are preserved but not presented a
     assert.equal(field?.readOnly, true, `${fieldName} must remain source-compatible but read-only.`);
     assert.match(String(field?.title), /not published/i, `${fieldName} must be labeled accurately.`);
     assert.match(String(field?.description), /(?:legacy|does not|instead|retained)/i);
+  }
+});
+
+test('public collection payloads expose route identity and current services, not legacy page content', () => {
+  const collectionType = querySource.match(
+    /export interface ServiceCollection \{([\s\S]*?)\n\}/,
+  )?.[1];
+
+  assert.ok(collectionType);
+  for (const activeField of ['_id', 'title', 'slug', 'services']) {
+    assert.match(collectionType, new RegExp(`\\b${activeField}\\??:`));
+  }
+
+  const nonPublicFields = [
+    'description',
+    'image',
+    'presentation',
+    'headline',
+    'intro',
+    'featuredServices',
+    'customizationTitle',
+    'customizationIntro',
+    'customizations',
+    'closingTitle',
+    'closingBody',
+  ];
+  for (const fieldName of nonPublicFields) {
+    assert.doesNotMatch(
+      collectionType,
+      new RegExp(`\\b${fieldName}\\??:`),
+      `${fieldName} must not remain in the public ServiceCollection type.`,
+    );
+  }
+
+  for (const query of [ALL_COLLECTIONS_QUERY, COLLECTION_BY_SLUG_QUERY]) {
+    const collectionProjection = query.split('"services":')[0];
+    for (const fieldName of nonPublicFields) {
+      assert.doesNotMatch(
+        collectionProjection,
+        new RegExp(`\\b${fieldName}\\b`),
+        `${fieldName} must not remain in the top-level public collection projection.`,
+      );
+    }
+  }
+
+  for (const renderer of collectionRenderers) {
+    for (const fieldName of nonPublicFields) {
+      assert.doesNotMatch(renderer, new RegExp(`collection\\.${fieldName}\\b`));
+    }
   }
 });
 

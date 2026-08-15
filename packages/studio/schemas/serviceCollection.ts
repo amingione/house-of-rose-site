@@ -31,9 +31,11 @@ export const serviceCollection = defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Image (not published)',
       type: 'image',
       options: { hotspot: true },
+      readOnly: true,
+      description: 'Legacy source asset retained with the collection. Current public category pages do not render a collection image.',
       fields: [
         defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
       ],
