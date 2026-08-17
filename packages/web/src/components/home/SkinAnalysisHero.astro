@@ -1,0 +1,450 @@
+---
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+import { LOCAL_BUSINESS } from '@/lib/structuredData';
+
+interface Props {
+  title: string;
+  description: string;
+  location: string;
+  primaryCta: string;
+  secondaryCta: string;
+}
+
+const { title, description, location, primaryCta, secondaryCta } = Astro.props;
+const phoneDisplay = '(844) 941-7673';
+const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
+---
+
+<section class="on-dark overflow-hidden bg-soft-black pt-20">
+  <div class="mx-auto max-w-[1536px] px-3 pt-3 sm:px-5 sm:pt-5">
+    <div
+      class="scan-stage relative isolate min-h-[780px] overflow-hidden border border-ivory/15 bg-soft-black sm:min-h-[800px] lg:h-[min(760px,calc(100svh-112px))] lg:min-h-[660px]"
+      data-scan-stage
+      style="--comparison-position: 50%;"
+    >
+      <div
+        class="hero-media absolute inset-y-0 right-0 z-[1] overflow-hidden"
+        role="img"
+        aria-label="Skin imaging visualization showing two analysis views"
+      >
+        <video
+          class="scan-video absolute inset-0 h-full w-full object-cover"
+          data-scan-video
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          poster="/images/hero/treatment-scan-poster.webp"
+          aria-hidden="true"
+        >
+          <source src="/images/hero/treatment-scan-intro-optimized.mp4" type="video/mp4" />
+        </video>
+
+        <div class="comparison-images absolute inset-0" data-comparison-images aria-hidden="true">
+          <img
+            src="/images/hero/treatment-comparison-after.webp"
+            alt=""
+            width="941"
+            height="1672"
+            decoding="async"
+            aria-hidden="true"
+            class="comparison-image absolute inset-0 h-full w-full object-cover"
+          />
+          <div class="comparison-before absolute inset-0" aria-hidden="true">
+            <img
+              src="/images/hero/treatment-comparison-before.webp"
+              alt=""
+              width="941"
+              height="1672"
+              decoding="async"
+              aria-hidden="true"
+              class="comparison-image absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="scan-scrim pointer-events-none absolute inset-0 z-[2]" aria-hidden="true"></div>
+
+      <div
+        class="comparison-interaction pointer-events-none absolute inset-y-0 right-0 z-[5] opacity-0"
+        data-comparison-interaction
+        aria-hidden="true"
+      >
+        <div class="comparison-divider pointer-events-none absolute bottom-0 top-0" aria-hidden="true">
+          <span class="comparison-grip absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2"></span>
+        </div>
+        <input
+          class="comparison-range absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
+          data-comparison-range
+          type="range"
+          min="3"
+          max="97"
+          value="50"
+          step="1"
+          aria-label="Drag to compare the two skin visualization states"
+          aria-valuetext="Comparison divider at 50 percent"
+          disabled
+        />
+      </div>
+
+      <div class="hero-content pointer-events-none relative z-10 flex min-h-[780px] flex-col px-7 pb-7 pt-12 sm:min-h-[800px] sm:px-12 sm:pb-9 sm:pt-16 lg:h-full lg:min-h-0 lg:px-[clamp(48px,5vw,76px)] lg:pb-10 lg:pt-10">
+        <div class="hero-copy my-auto max-w-[700px] py-8 lg:py-0">
+          <h1 class="hero-title font-serif text-[clamp(46px,5vw,68px)] leading-[0.98] tracking-[-0.03em] text-ivory">
+            {title.split('\n').map((line) => (
+              <span class="block">{line}{' '}</span>
+            ))}
+          </h1>
+
+          <p class="hero-description mt-7 max-w-[590px] text-[15px] leading-[1.7] text-muted-strong sm:text-[17px] sm:leading-[1.75]">
+            {description}
+          </p>
+
+          <div class="hero-ctas mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={GLOSSGENIUS_SERVICES_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-gold pointer-events-auto sm:min-w-[220px]"
+              data-global-booking
+              data-cta-location="homepage-hero"
+            >
+              {primaryCta}
+            </a>
+            <a href="/services/" class="btn-outline-white pointer-events-auto sm:min-w-[190px]" data-cta-location="homepage-hero-services">
+              {secondaryCta}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid border-x border-b border-ivory/15 text-[12px] sm:grid-cols-3">
+      <div class="px-6 py-4 sm:px-8 sm:py-5">
+        <p class="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Practice</p>
+        <p class="mt-1.5 text-muted-strong">Medical Aesthetics Practice</p>
+      </div>
+      <div class="border-t border-ivory/15 px-6 py-4 sm:border-l sm:border-t-0 sm:px-8 sm:py-5">
+        <p class="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Location</p>
+        <p class="mt-1.5 text-muted-strong">{location}</p>
+      </div>
+      <a href={phoneHref} class="group flex items-center justify-between border-t border-ivory/15 px-6 py-4 text-muted-strong hover:text-ivory sm:border-l sm:border-t-0 sm:px-8 sm:py-5" data-cta-location="homepage-hero-call">
+        <span>
+          <span class="block text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Call</span>
+          <span class="mt-1.5 block">{phoneDisplay}</span>
+        </span>
+        <span class="text-lg transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const scanStages = document.querySelectorAll<HTMLElement>('[data-scan-stage]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (const stage of scanStages) {
+    if (stage.dataset.scanBound === 'true') continue;
+    stage.dataset.scanBound = 'true';
+
+    const video = stage.querySelector<HTMLVideoElement>('[data-scan-video]');
+    const images = stage.querySelector<HTMLElement>('[data-comparison-images]');
+    const interaction = stage.querySelector<HTMLElement>('[data-comparison-interaction]');
+    const range = stage.querySelector<HTMLInputElement>('[data-comparison-range]');
+    if (!video || !images || !interaction || !range) continue;
+
+    const updateComparison = (value: number): void => {
+      const boundedValue = Math.min(97, Math.max(3, value));
+      stage.style.setProperty('--comparison-position', `${boundedValue}%`);
+      range.setAttribute('aria-valuetext', `Comparison divider at ${boundedValue} percent`);
+    };
+
+    let isDragging = false;
+
+    const updateFromPointer = (clientX: number): void => {
+      const bounds = interaction.getBoundingClientRect();
+      if (bounds.width <= 0) return;
+
+      const percentage = ((clientX - bounds.left) / bounds.width) * 100;
+      const nextValue = Math.round(Math.min(97, Math.max(3, percentage)));
+      range.value = String(nextValue);
+      updateComparison(nextValue);
+    };
+
+    const stopDragging = (event: PointerEvent): void => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (interaction.hasPointerCapture(event.pointerId)) {
+        interaction.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    const revealComparison = (): void => {
+      if (stage.classList.contains('is-comparison-ready')) return;
+      stage.classList.add('is-comparison-ready');
+      images.setAttribute('aria-hidden', 'false');
+      interaction.setAttribute('aria-hidden', 'false');
+      range.disabled = false;
+      updateComparison(Number(range.value));
+    };
+
+    range.addEventListener('input', () => updateComparison(Number(range.value)));
+    range.addEventListener('keydown', (event) => {
+      const currentValue = Number(range.value);
+      const nextValue = event.key === 'ArrowLeft' || event.key === 'ArrowDown'
+        ? currentValue - 1
+        : event.key === 'ArrowRight' || event.key === 'ArrowUp'
+          ? currentValue + 1
+          : event.key === 'Home'
+            ? 3
+            : event.key === 'End'
+              ? 97
+              : null;
+
+      if (nextValue === null) return;
+
+      event.preventDefault();
+      range.value = String(Math.min(97, Math.max(3, nextValue)));
+      updateComparison(Number(range.value));
+    });
+    interaction.addEventListener('pointerdown', (event) => {
+      if (range.disabled || !event.isPrimary || event.button !== 0) return;
+
+      isDragging = true;
+      interaction.setPointerCapture(event.pointerId);
+      range.focus({ preventScroll: true });
+      updateFromPointer(event.clientX);
+      event.preventDefault();
+    });
+    interaction.addEventListener('pointermove', (event) => {
+      if (!isDragging || !event.isPrimary) return;
+
+      updateFromPointer(event.clientX);
+      event.preventDefault();
+    });
+    interaction.addEventListener('pointerup', stopDragging);
+    interaction.addEventListener('pointercancel', stopDragging);
+    video.addEventListener('ended', revealComparison, { once: true });
+    video.addEventListener('error', revealComparison, { once: true });
+
+    updateComparison(Number(range.value));
+
+    if (prefersReducedMotion) {
+      video.pause();
+      revealComparison();
+      continue;
+    }
+
+    video.currentTime = 0;
+    const playback = video.play();
+    if (playback) playback.catch(revealComparison);
+  }
+</script>
+
+<style>
+  .hero-media,
+  .comparison-interaction {
+    left: 42%;
+  }
+
+  .hero-media {
+    background: #e8e2da;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+  }
+
+  .scan-video,
+  .comparison-image {
+    object-position: center 38%;
+  }
+
+  .scan-video {
+    opacity: 1;
+    transition: opacity 700ms ease;
+  }
+
+  .comparison-images {
+    opacity: 0;
+    transition: opacity 700ms ease;
+  }
+
+  .comparison-before {
+    clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+  }
+
+  .comparison-interaction {
+    cursor: ew-resize;
+    touch-action: pan-y;
+    transition: opacity 500ms 260ms ease;
+    user-select: none;
+  }
+
+  .comparison-divider {
+    left: var(--comparison-position);
+    width: 2px;
+    transform: translateX(-1px);
+    background: #f1ede5;
+    box-shadow: 0 0 0 1px rgb(23 22 20 / 0.25), 0 0 18px rgb(23 22 20 / 0.32);
+  }
+
+  .comparison-grip {
+    width: 34px;
+    height: 48px;
+    border: 1px solid rgb(241 237 229 / 0.92);
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 42% 50%, #f1ede5 0 1.5px, transparent 2px),
+      radial-gradient(circle at 58% 50%, #f1ede5 0 1.5px, transparent 2px),
+      rgb(23 22 20 / 0.76);
+    box-shadow: 0 6px 22px rgb(0 0 0 / 0.28);
+    backdrop-filter: blur(8px);
+  }
+
+  .comparison-range {
+    appearance: none;
+    pointer-events: none;
+  }
+
+  .comparison-range:focus-visible {
+    opacity: 0;
+    outline: none;
+  }
+
+  .comparison-interaction:has(.comparison-range:focus-visible) .comparison-grip {
+    outline: 2px solid #e2d3b2;
+    outline-offset: 3px;
+  }
+
+  .scan-stage.is-comparison-ready .scan-video {
+    opacity: 0;
+  }
+
+  .scan-stage.is-comparison-ready .comparison-images,
+  .scan-stage.is-comparison-ready .comparison-interaction {
+    opacity: 1;
+  }
+
+  .scan-stage.is-comparison-ready .comparison-interaction {
+    pointer-events: auto;
+  }
+
+  .scan-scrim {
+    background:
+      linear-gradient(90deg, rgb(7 7 6 / 0.99) 0%, rgb(7 7 6 / 0.96) 33%, rgb(7 7 6 / 0.62) 47%, rgb(7 7 6 / 0.08) 72%),
+      linear-gradient(180deg, transparent 55%, rgb(7 7 6 / 0.38) 100%);
+  }
+
+  @media (max-width: 1023px) {
+    .hero-media,
+    .comparison-interaction {
+      left: 0;
+    }
+
+    .hero-media {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .scan-video,
+    .comparison-image {
+      object-position: center 12%;
+    }
+
+    .scan-scrim {
+      background:
+        linear-gradient(180deg, rgb(7 7 6 / 0.22) 0%, rgb(7 7 6 / 0.42) 34%, rgb(7 7 6 / 0.91) 64%, rgb(7 7 6 / 0.99) 100%),
+        linear-gradient(90deg, rgb(7 7 6 / 0.5) 0%, rgb(7 7 6 / 0.06) 100%);
+    }
+
+    .comparison-grip {
+      top: 20%;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .scan-stage:has(.comparison-range:focus-visible) {
+      overflow: visible;
+    }
+
+    .scan-stage {
+      min-height: 840px;
+    }
+
+    .hero-media,
+    .comparison-interaction {
+      bottom: auto;
+      height: 320px;
+    }
+
+    .scan-video,
+    .comparison-image {
+      object-position: center 18%;
+    }
+
+    .scan-scrim {
+      background:
+        linear-gradient(180deg, rgb(7 7 6 / 0.08) 0, rgb(7 7 6 / 0.12) 230px, rgb(7 7 6 / 0.96) 320px, #070706 100%),
+        linear-gradient(90deg, rgb(7 7 6 / 0.28) 0%, transparent 50%, rgb(7 7 6 / 0.12) 100%);
+    }
+
+    .hero-content {
+      min-height: 840px;
+      padding: 352px 20px 24px;
+    }
+
+    .hero-copy {
+      margin-block: 0;
+      padding-block: 0;
+    }
+
+    .hero-title {
+      font-size: 40px;
+      line-height: 0.96;
+    }
+
+    .hero-description {
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .hero-ctas {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .hero-ctas > a {
+      min-width: 0;
+      flex: 1 1 0;
+      padding-inline: 10px;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .comparison-grip {
+      top: 50%;
+    }
+  }
+
+  @media (max-width: 359px) {
+    .scan-stage,
+    .hero-content {
+      min-height: 900px;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scan-video,
+    .comparison-images,
+    .comparison-interaction {
+      transition: none;
+    }
+  }
+</style>

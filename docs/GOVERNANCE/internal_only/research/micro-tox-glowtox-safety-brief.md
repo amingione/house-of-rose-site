@@ -1,51 +1,83 @@
-# Micro-Tox / GlowTox — Safety, Scope & Content Brief
+# GlowTox Facial and Micro-Tox — Current Inventory and Claims Boundary
 
-**Date:** 2026-07-13  
-**Status:** Internal research only — **not approved for a public service page, package, booking description, or protocol**  
-**Clinical lane if approved:** Diana, RN / medical director. Not Amber's advanced-facial lane.
+**Reconciled:** 2026-08-14
 
-## Decision summary
+**Purpose:** active supporting research for one current GlossGenius appointment and the claims that
+must not be inferred from its name. This brief is not public copy and does not authorize a provider
+attribution, treatment protocol, service combination, public name, or route.
 
-The existing GlossGenius listing, local menu notes, Obsidian note, and ChatGPT conversation all use "GlowTox" or "Micro-Tox" inconsistently. They must not be used to market a facial that applies Daxxify topically, mixes it into PRF or another glide product, or stamps/needles it through the skin.
+**Commerce authority:**
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`
 
-If House of Rose elects to offer an intradermal microdroplet neurotoxin treatment, it must be developed as a **separate, clinician-directed injectable service**. Use beyond Daxxify's labeled intramuscular glabellar-line use is off-label and requires medical-director approval, a prescriber/injector SOP, product-specific consent, screening, adverse-event plan, applicable Florida scope/delegation review, and confirmed pricing. It is not a microchanneling add-on.
+## Direct answer
 
-## What can be retained from the source material
+GlossGenius currently lists **GlowTox Facial** as a **60-minute, $475, online-bookable appointment**.
+Amber confirmed on August 7, 2026 that the appointment is live with no clinical hold. The older $425
+figure, series price, and instructions to pause the appointment are superseded.
 
-- **Keep the distinction:** topical PRF and injectable neurotoxin are different treatment conversations with different provider lanes.
-- **Keep PRF language conservative:** fresh autologous PRF may be applied **topically** during or after an appropriate needling protocol. Do not claim a device places PRF in the skin, at a depth, or into a named layer.
-- **Keep the fibrin-mask idea internal:** a polymerized PRF/fibrin recovery step may be evaluated only through a written, clinician-approved protocol.
-- **Keep prep choices conditional:** dermaplaning or a non-RF facial-prep step may be considered only when the provider selects it. Do not advertise a fixed same-day stack. RF, ultrasound, and any energy-based step require device-specific training and medical-director approval before being combined with needling.
+That ledger row establishes current booking inventory only. It does not establish:
 
-## What must not be reused
+- a canonical public service route or an approved replacement name;
+- public provider attribution;
+- the product, dose, technique, treatment area, or clinical protocol;
+- a topical, needling, microchanneling, PRF, fibrin, or device-delivery combination;
+- a package, series, add-on, result, recovery claim, or client-selection rule.
 
-- "Topical Daxxify," Daxxify as a glide, or a Daxxify/HA/antioxidant cocktail.
-- Needling, stamping, rolling, or microinfusion language that says a device delivers Daxxify, PRF, or any other product into the skin.
-- A universal dose, dilution, injection map, depth, device technique, or a conversion from another toxin's units.
-- "Zero downtime," instant pore shrinking, redness elimination, oil control, airbrushed skin, camera-ready results, or any guaranteed outcome.
-- The term "sticky bone" as a facial treatment, or claims that a facial fibrin mask has a proven retention time, release profile, recovery benefit, or LED/occlusion sequence.
-- Stem-cell claims for Procell, PRF, or any treatment.
+The current public-copy validator blocks `GlowTox` while the service-name and redirect question remains
+unresolved, and current source and generated output have no canonical GlowTox or Micro-Tox service route.
+Do not turn a live booking row into an ad hoc public page, silently rename the appointment, or add a
+redirect without the owner-approved canonical record and migration plan.
 
-## Product and FDA guardrails
+## Micro-Tox is not current inventory
 
-Current Daxxify labeling identifies Daxxify as a prescription product for **intramuscular use** and the temporary improvement of moderate-to-severe adult glabellar lines. Its units are product-specific and not interchangeable with other botulinum toxin products. The labeling also requires one patient and one injection session per vial, with unused solution discarded. It does not support topical, intradermal, full-face microdroplet, mixed-cocktail, or device-delivery marketing. [Daxxify prescribing information](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3aaa6e14-a3f7-4fb2-b9f9-d3a9c3ae1f74)
+`Micro-Tox` does not appear in the current GlossGenius-backed ledger. Do not use it as a synonym for
+GlowTox Facial, create it as a separate service, or use this report to advertise an intradermal
+microdroplet neurotoxin treatment.
 
-The FDA states that microneedling devices are not approved to deliver cosmetics, topical medications, drugs, vitamin solutions, or blood products into the skin, and it has not reviewed the safety or effectiveness of combinations with another product. This applies to both a topical PRF narrative and any proposed toxin combination. [FDA microneedling guidance](https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices)
+The former Diana attribution was not supported by the current reviewed public modules and has been
+removed. The ledger's menu grouping is not sufficient authority for a public practitioner statement.
+Any future attribution must use a verified practitioner name with the required licence type.
 
-## Florida and operational gate
+## Daxxify label boundary
 
-Do not treat a class or device certification as scope authorization. The Florida Board of Cosmetology rule covers the boundary around skin perforation, injections, and medical devices; the Board's rule and declaratory-statement process should be reviewed with the medical director and Florida counsel before a protocol is adopted. [Florida rule 61G5-18.00015](https://flrules.org/gateway/ruleno.asp?id=61G5-18.00015) · [DBPR declaratory statements](https://www2.myfloridalicense.com/cosmetology/declaratory-statements/)
+Current Daxxify prescribing information identifies it as a prescription botulinum toxin product for
+intramuscular use and the temporary improvement of moderate-to-severe adult glabellar lines. Its units
+are product-specific and are not interchangeable with other botulinum toxin products. The label does
+not establish topical Daxxify, an intradermal full-face microdroplet service, a mixed cocktail, or
+device-assisted product delivery as a House of Rose offering.
 
-## Required decisions before this becomes content
+Do not publish a dose, dilution, injection map, depth, device technique, unit conversion, or off-label
+claim from this report.
 
-1. Confirm whether the current `$475` GlossGenius **GlowTox Facial** listing should be paused, renamed, or retained as a separate medical injectable service. The older master-menu price of `$425` and its series price are not reconciled.
-2. Obtain a medical-director-approved Daxxify-specific SOP and consent if an off-label Micro-Tox service is to be offered.
-3. Confirm the provider, facility, supervision/delegation, product handling, documentation, follow-up, and emergency/escalation plan.
-4. Obtain PRF-system/manufacturer and clinical approval for any fibrin recovery-mask experiment before it is sold, demonstrated, or described to clients.
-5. Only then create one canonical **service** draft under Diana's lane (consult-only at first), with contextual links from injectables/neurotoxins—not a header link and not a combined needling package.
+## Microneedling product-delivery boundary
 
-## Website-ready wording only after approval
+FDA patient guidance states that microneedling devices have not been evaluated for delivering
+cosmetics, topical medications, vitamin solutions, drugs, or blood products into the skin, and that
+the agency has not reviewed the safety or effectiveness of combining microneedling with another
+product. Do not say that Microneedling injects, infuses, stamps, drives, or delivers Daxxify, PRF, a
+glide product, or another material into a specified skin layer.
 
-> Micro-Tox is a clinician-directed injectable treatment discussion for clients exploring a skin-quality-focused neurotoxin plan. Diana, RN determines whether it is appropriate after a clinical consultation. It is separate from microchanneling, microneedling, and topical PRF; treatment details, candidacy, and outcomes are individualized.
+This evidence does not authorize or describe a GlowTox protocol. It only sets a claims boundary for
+future source review.
 
-This wording is intentionally non-procedural. Do not publish it until the approval gate above is complete.
+## Do not republish from this brief
+
+- topical Daxxify, Daxxify as a glide, or a Daxxify/PRF/HA/antioxidant cocktail;
+- a fixed facial-prep step, needling combination, fibrin mask, LED sequence, or recovery protocol;
+- `Micro-Tox` as a current appointment, public service name, or synonym for GlowTox Facial;
+- a universal candidate profile, treatment dose, series, interval, or outcome;
+- instant pore shrinking, redness elimination, oil control, airbrushed skin, fixed downtime, or a
+  guaranteed result;
+- a new service, comparison, package, concern, or cost route.
+
+## Sources
+
+1. `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — current GlossGenius-backed
+   appointment name, duration, price, online booking status, and August 7 owner ruling that no hold
+   exists.
+2. `packages/studio/schemas/validation/publicCopy.ts` — current public-copy name guard; it is not
+   commerce or clinical authority.
+3. [Daxxify prescribing information](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3aaa6e14-a3f7-4fb2-b9f9-d3a9c3ae1f74)
+   — labeled route, indication, and product-specific unit boundary.
+4. [FDA, Microneedling Devices](https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices)
+   — product-delivery and combination-review limitations.

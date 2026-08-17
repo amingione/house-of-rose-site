@@ -142,12 +142,14 @@ const patches = products.map((product) => {
   const brandKey = normalizeBrand(product.brand);
   const brand = brandByKey.get(brandKey);
   const policy = classify(product);
+  const candidateSku = product.sku ?? nextSku(brandKey);
   return {
     id: product._id,
+    existingSku: product.sku,
+    sku: candidateSku,
     set: {
-      sku: product.sku ?? nextSku(brandKey),
+      ...(product.sku ? {} : { sku: candidateSku }),
       ...(brand ? { brandRef: { _type: 'reference', _ref: brand._id } } : {}),
-      brand: brandKey,
       availability: product.availability ?? (product.inStock === false ? 'out_of_stock' : 'in_stock'),
       shippable: product.shippable ?? product.category !== 'gift-cards',
       condition: product.condition ?? 'new',
@@ -166,9 +168,16 @@ const patches = products.map((product) => {
 
 for (const patch of patches) {
   const assigned = ledger.assignments[patch.id];
-  if (assigned) patch.set.sku = assigned;
+  if (!assigned) continue;
+  if (patch.existingSku && patch.existingSku !== assigned) {
+    throw new Error(
+      `${patch.id}: immutable SKU ${patch.existingSku} conflicts with ledger assignment ${assigned}.`,
+    );
+  }
+  patch.sku = assigned;
+  if (!patch.existingSku) patch.set.sku = assigned;
 }
-const newAssignments = Object.fromEntries(patches.map((patch) => [patch.id, patch.set.sku]));
+const newAssignments = Object.fromEntries(patches.map((patch) => [patch.id, patch.sku]));
 const missingFromLedger = patches.filter((patch) => !ledger.assignments[patch.id]);
 
 const readiness = products.map((product) => {

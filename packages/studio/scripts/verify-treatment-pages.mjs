@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 /**
- * Fails the build when a live service is missing a required treatment-page block.
+ * Checks live service pages for factual, credential, claims, and pricing risk.
  *
  *   node packages/studio/scripts/verify-treatment-pages.mjs
  *   node packages/studio/scripts/verify-treatment-pages.mjs --warn   # report, exit 0
  *
- * Wire into `guard:drift` or as a prebuild step. The point is that the schema
- * keeps these fields optional (so no existing document breaks), and completeness
- * is enforced here instead — at the moment it actually matters, which is publish.
+ * Optional public blocks remain optional until reviewed, service-specific facts
+ * exist. This verifier must not pressure editors to fill gaps with generic copy.
  *
  * Checks, in order of severity:
- *   BLOCKING  — live service with no providerScope, or providerScope with no disclaimer
+ *   BLOCKING  — an invalid supplied provider-scope variance note
  *   BLOCKING  — a staff or owner name found in client-facing copy
  *   BLOCKING  — banned voice or compliance language
  *   BLOCKING  — a public price (priceRange, price, or a dollar figure in copy).
@@ -18,7 +17,7 @@
  *               decision 2026-07-24, reaffirmed 2026-08-11). GlossGenius is
  *               commerce truth and stays internal; `pricingNotes` (never
  *               rendered) is the only permitted home for figures.
- *   WARNING   — live service missing downtime, aftercare, or whyQualified
+ *   WARNING   — medically directed service with no medical-director attribution
  */
 
 import { createClient } from '@sanity/client';
@@ -70,8 +69,6 @@ const BANNED_PHRASES = [
   { term: 'groupon', why: 'compliance — discount framing' },
 ];
 
-const REQUIRED_BLOCKS = ['downtime', 'aftercare', 'whyQualified'];
-
 const QUERY = /* groq */ `
 *[_type == "service" && status in ["live", "actual-menu"]]{
   _id, title, "slug": slug.current, tagline,
@@ -92,7 +89,7 @@ function collectText(doc) {
     ...(doc.faqQuestions ?? []),
     doc.downtime?.summary,
     doc.aftercare?.intro,
-      ...(doc.providerScope?.credentialPoints ?? []),
+    ...(doc.providerScope?.credentialPoints ?? []),
   ]
     .filter(Boolean)
     .join(' \n ')
@@ -108,10 +105,13 @@ async function main() {
     const label = `${doc.title} (/services/${doc.slug}/)`;
     const text = collectText(doc);
 
-    if (!doc.providerScope) {
-      blocking.push(`${label} — no providerScope. Every live treatment must state who performs it.`);
-    } else if (!doc.providerScope.disclaimer?.trim()) {
-      blocking.push(`${label} — providerScope has no results disclaimer (FL Rule 64B8-11.001).`);
+    const varianceNote = doc.providerScope?.disclaimer?.trim();
+    if (/\bcandidacy is determined at consultation\b/i.test(varianceNote ?? '') ||
+        /\bthis page is general information and is not medical advice\b/i.test(varianceNote ?? '')) {
+      blocking.push(`${label} — providerScope contains retired generic disclaimer boilerplate.`);
+    }
+    if (varianceNote && !/\bindividual (?:outcomes?|results?) var(?:y|ies)\b/i.test(varianceNote)) {
+      blocking.push(`${label} — providerScope variance note does not state that individual outcomes vary.`);
     }
 
     // Prices are NEVER displayed on the website (pricing-confidentiality decision,
@@ -158,12 +158,6 @@ async function main() {
         blocking.push(`${label} — banned phrase "${term}" (${why}).`);
       }
     }
-
-    for (const block of REQUIRED_BLOCKS) {
-      const value = doc[block];
-      const empty = value == null || (Array.isArray(value) && value.length === 0);
-      if (empty) warnings.push(`${label} — missing ${block}.`);
-    }
   }
 
   const red = '\u001b[31m';
@@ -172,7 +166,7 @@ async function main() {
   const dim = '\u001b[2m';
   const reset = '\u001b[0m';
 
-  console.log(`\n  Treatment page verification — ${services.length} live services\n`);
+  console.log(`\n  Service page verification — ${services.length} live services\n`);
 
   if (blocking.length > 0) {
     console.log(`${red}  ${blocking.length} blocking issue(s):${reset}\n`);
@@ -187,7 +181,7 @@ async function main() {
   }
 
   if (blocking.length === 0 && warnings.length === 0) {
-    console.log(`${green}  All live treatment pages complete.${reset}\n`);
+    console.log(`${green}  All live service pages pass the configured checks.${reset}\n`);
   }
 
   if (blocking.length > 0 && !WARN_ONLY) {

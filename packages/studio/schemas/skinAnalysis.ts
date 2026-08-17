@@ -2,26 +2,27 @@ import { defineField, defineType } from 'sanity';
 
 /**
  * Singleton for the Advanced Skin Imaging & Analysis page (/skin-analysis) — migrated from the
- * hardcoded skin-analysis.astro so all copy is editable in the Studio + Netlify
- * Visual Editor. Section background/feature images stay as static asset paths in
- * the template. The concern-link slugs are fixed routes and stay in the template;
- * only their labels are editable here.
+ * hardcoded skin-analysis.astro. The current public route uses a reviewed local
+ * sequence and concern-link set rather than the legacy fields below. Retain those
+ * fields for source compatibility, but do not present them as active authoring.
  */
 export const skinAnalysis = defineType({
   name: 'skinAnalysis',
-  title: 'Advanced Skin Imaging & Analysis Page',
+  title: 'Advanced Skin Imaging & Analysis Page (not published)',
   type: 'document',
+  readOnly: true,
+  description: 'Stored for source compatibility. The current /skin-analysis/ route uses reviewed website content.',
   __experimental_actions: ['update', 'publish'],
   groups: [
-    { name: 'hero', title: 'Hero' },
-    { name: 'whatItIs', title: 'What It Is' },
-    { name: 'howItWorks', title: 'How It Works' },
-    { name: 'lookAt', title: 'What We Look At' },
-    { name: 'whyItMatters', title: 'Why It Matters' },
-    { name: 'toPlan', title: 'From Analysis to Plan' },
-    { name: 'faq', title: 'FAQ' },
-    { name: 'cta', title: 'Final CTA' },
-    { name: 'seo', title: 'SEO' },
+    { name: 'hero', title: 'Hero (not published)' },
+    { name: 'whatItIs', title: 'What It Is (not published)' },
+    { name: 'howItWorks', title: 'How It Works (not published)' },
+    { name: 'lookAt', title: 'What We Look At (not published)' },
+    { name: 'whyItMatters', title: 'Why It Matters (not published)' },
+    { name: 'toPlan', title: 'From Analysis to Plan (not published)' },
+    { name: 'faq', title: 'FAQ (not published)' },
+    { name: 'cta', title: 'Final CTA (not published)' },
+    { name: 'seo', title: 'SEO (not published)' },
   ],
   fields: [
     // ── SEO ──
@@ -42,13 +43,15 @@ export const skinAnalysis = defineType({
     defineField({ name: 'whatPara2', title: 'Paragraph 2', type: 'text', rows: 4, group: 'whatItIs' }),
 
     // ── How It Works ──
-    defineField({ name: 'howKicker', title: 'Kicker', type: 'string', group: 'howItWorks' }),
-    defineField({ name: 'howHeading', title: 'Heading', type: 'string', group: 'howItWorks' }),
+    defineField({ name: 'howKicker', title: 'Kicker', type: 'string', group: 'howItWorks', hidden: true }),
+    defineField({ name: 'howHeading', title: 'Heading', type: 'string', group: 'howItWorks', hidden: true }),
     defineField({
       name: 'steps',
       title: 'Steps',
       type: 'array',
       group: 'howItWorks',
+      hidden: true,
+      description: 'Legacy source field. The reviewed public page does not publish this numbered process sequence.',
       of: [
         {
           type: 'object',
@@ -82,14 +85,15 @@ export const skinAnalysis = defineType({
     defineField({ name: 'whyPara', title: 'Paragraph', type: 'text', rows: 4, group: 'whyItMatters' }),
 
     // ── From Analysis to Plan ──
-    defineField({ name: 'planKicker', title: 'Kicker', type: 'string', group: 'toPlan' }),
-    defineField({ name: 'planHeading', title: 'Heading', type: 'string', group: 'toPlan' }),
-    defineField({ name: 'planPara', title: 'Paragraph', type: 'text', rows: 3, group: 'toPlan' }),
+    defineField({ name: 'planKicker', title: 'Kicker', type: 'string', group: 'toPlan', hidden: true }),
+    defineField({ name: 'planHeading', title: 'Heading', type: 'string', group: 'toPlan', hidden: true }),
+    defineField({ name: 'planPara', title: 'Paragraph', type: 'text', rows: 3, group: 'toPlan', hidden: true }),
     defineField({
       name: 'concernLinks',
       title: 'Concern Links',
       type: 'array',
       group: 'toPlan',
+      hidden: true,
       of: [
         {
           type: 'object',
@@ -131,5 +135,5 @@ export const skinAnalysis = defineType({
     defineField({ name: 'ctaPrimaryText', title: 'Primary CTA Text', type: 'string', group: 'cta' }),
     defineField({ name: 'ctaSecondaryText', title: 'Secondary CTA Text', type: 'string', group: 'cta' }),
   ],
-  preview: { prepare: () => ({ title: 'Advanced Skin Imaging & Analysis Page Content' }) },
+  preview: { prepare: () => ({ title: 'Advanced Skin Imaging & Analysis Page Content (not published)' }) },
 });

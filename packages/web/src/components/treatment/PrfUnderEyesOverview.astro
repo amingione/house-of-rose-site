@@ -1,0 +1,115 @@
+---
+import {
+  PRF_UNDER_EYES_EVIDENCE,
+  PRF_UNDER_EYES_FAQS,
+  PRF_UNDER_EYES_LISTING,
+} from '@/lib/prfUnderEyesFacts';
+---
+
+<section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+  <div class="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
+    <div>
+      <span class="kicker">The under-eye area</span>
+      <h2 class="mt-3 max-w-[660px] font-serif text-[clamp(32px,5vw,52px)] leading-[1.08] text-ink">
+        Dark circles can be color, visible vessels, or shadow.
+      </h2>
+    </div>
+    <div class="space-y-5 text-[17px] leading-[1.75] text-muted-strong">
+      <p>
+        What reads as a dark circle can come from pigment, thin or translucent skin, visible vessels,
+        shadowing from a tear trough, or more than one of those factors at once.
+      </p>
+      <p>
+        Injectable PRF may enter the conversation when hollowing or visible shadowing contributes to
+        the concern. Pigment and visible vessels describe something else, even when they appear in the
+        same area.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(56px,8vw,96px)]">
+  <div class="mx-auto max-w-[1180px]">
+    <span class="kicker">Injectable PRF at House of Rose</span>
+    <div class="mt-5 grid gap-10 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+          An injectable prepared from your own blood.
+        </h2>
+        <p class="mt-6 text-[17px] leading-[1.75] text-muted-strong">
+          PRF stands for platelet-rich fibrin. It is prepared from a small sample of your own blood.
+          House of Rose provides PRF Under-Eye as an injectable service with Diana Morrison, RN under
+          written physician protocol and medical direction.
+        </p>
+      </div>
+      <div class="border-l border-gold-metal/20 pl-7 sm:pl-10">
+        <h3 class="font-serif text-[25px] text-ink">Topical PRF appears with Microneedling.</h3>
+        <p class="mt-4 text-[16px] leading-[1.75] text-muted">
+          During eligible Microneedling, PRF is applied to the skin surface with Amber Mingione,
+          Licensed Esthetician. Under-eye PRF is injected by Diana Morrison, RN under medical direction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+  <div class="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[1fr_0.8fr] lg:gap-24">
+    <div>
+      <span class="kicker">PRF and filler</span>
+      <h2 class="mt-3 font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+        PRF comes from your blood. Filler is hyaluronic-acid gel.
+      </h2>
+      <p class="mt-6 max-w-[680px] text-[17px] leading-[1.75] text-muted-strong">
+        PRF is an autologous platelet concentrate prepared from your own blood. Hyaluronic-acid dermal
+        filler is a manufactured injectable gel. Their materials and preparation are different, and
+        House of Rose offers them as different consultations.
+      </p>
+      <p class="mt-5 max-w-[680px] text-[17px] leading-[1.75] text-muted-strong">
+        Published research on injectable PRF in facial aesthetics is promising, but preparation methods
+        vary and the number of high-quality clinical trials remains limited. The two sources below cover
+        autologous platelet concentrates in facial aesthetics and the different causes of under-eye darkness.
+      </p>
+    </div>
+    <aside class="border border-gold-metal/20 p-7 sm:p-9" aria-label="PRF under-eye appointment price">
+      <span class="block text-[11px] uppercase tracking-[0.28em] text-gold">Appointment price</span>
+      <p class="mt-5 font-serif text-[38px] leading-none text-ink">{PRF_UNDER_EYES_LISTING.price}</p>
+      <p class="mt-4 text-[15px] leading-relaxed text-muted-strong">{PRF_UNDER_EYES_LISTING.name}</p>
+      <p class="mt-5 text-[12px] leading-relaxed text-muted">
+        Price shown as of August 13, 2026. Call House of Rose to confirm how much time to allow for the
+        appointment.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(56px,8vw,96px)]">
+  <div class="mx-auto max-w-[960px]">
+    <span class="kicker">Questions</span>
+    <h2 class="mt-3 font-serif text-[clamp(30px,4vw,44px)] text-ink">Material, route, under-eye darkness, and price.</h2>
+    <div class="mt-10 divide-y divide-gold-metal/15 border-y border-gold-metal/15">
+      {PRF_UNDER_EYES_FAQS.map((faq) => (
+        <details class="group py-6">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-serif text-[21px] leading-snug text-ink">
+            <span>{faq.question}</span>
+            <span class="mt-1 text-gold transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[780px] pt-4 text-[15px] leading-[1.75] text-muted-strong">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+    <div class="mt-10 border-l border-gold-metal/25 pl-6 text-[12px] leading-[1.7] text-muted">
+      <p class="uppercase tracking-[0.2em] text-gold">Evidence notes</p>
+      <ul class="mt-3 space-y-2">
+        {PRF_UNDER_EYES_EVIDENCE.map((source) => (
+          <li>
+            <a href={source.url} rel="noreferrer" class="underline decoration-gold-metal/40 underline-offset-4 hover:text-ink">
+              {source.title}
+            </a>
+            <span> · {source.publication}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

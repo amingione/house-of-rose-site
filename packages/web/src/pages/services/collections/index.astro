@@ -1,92 +1,100 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { ALL_COLLECTIONS_QUERY, type ServiceCollection } from '@/lib/queries';
-import { getCollectionFallbackImage } from '@/lib/imageFallbacks';
-import ServiceCard from '@/components/ServiceCard.astro';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
 
-const collections = alignPublicContent(await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY));
+const collectionIntroductions: Readonly<Record<string, string>> = {
+  inmode: 'Microneedling with radiofrequency, intense pulsed light, and radiofrequency without needling.',
+  'injectables-bio-fillers': 'Neurotoxins for movement-related lines, fillers for selected lip, cheek, and fold volume, and injectable PRF.',
+  'iv-hydration-therapy': 'Six current IV hydration options and the GLP-1 Weight Management service.',
+  facials: 'Facials, exfoliation, microneedling, topical PRF, and structured acne care.',
+  waxing: 'Facial and body waxing organized by treatment area.',
+};
+
+const collections = await sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Services', item: `${site}services/` },
-  { name: 'Collections', item: canonical },
+  { name: 'Categories', item: canonical },
 ]);
 const collectionsListSchema = collections.length
   ? itemList(
-      collections.map((col) => ({
-        name: col.title,
-        url: new URL(`/services/collections/${col.slug}/`, site).toString(),
+      collections.map((collection) => ({
+        name: collection.title,
+        url: new URL(`/services/collections/${collection.slug}/`, site).toString(),
       })),
-      'Service Collections',
+      'Service Categories',
     )
   : null;
 ---
 
 <BaseLayout
-  title="Service Collections | House of Rose Aesthetics, Punta Gorda FL"
-  description="Browse House of Rose services by category, including skin renewal, injectables, wellness, facial waxing, and corrective facial care in Punta Gorda."
+  title="Service Categories | House of Rose Aesthetics"
+  description="House of Rose services grouped into facials and skin care, injectables, InMode treatments, IV hydration and weight management, and waxing."
+  noindex
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {collectionsListSchema && <SchemaMarkup item={collectionsListSchema} slot="head" />}
-  <section class="py-24 max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <p class="kicker mb-4">Browse by Category</p>
-      <h1 class="font-serif text-5xl text-ink">Find the Right Place to Start</h1>
-    </div>
+
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <header class="max-w-2xl">
+      <p class="kicker mb-4">Services</p>
+      <h1 class="font-serif text-5xl text-ink">Services grouped by the kind of appointment.</h1>
+      <p class="mt-5 leading-relaxed text-muted">
+        House of Rose keeps related appointments together in five groups. Some book directly; others begin with a consultation or phone call. Open an individual treatment for its appointment details and next step.
+      </p>
+    </header>
 
     {collections.length === 0 ? (
-      <p class="text-center text-muted">Collections coming soon.</p>
+      <p class="mt-16 border-t border-walnut/15 pt-8 text-muted">No service categories are currently listed.</p>
     ) : (
-      <div class="space-y-24">
-        {collections.map((col) => (
-          <div {...sbObjectId(col._id)}>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
-              <div class="aspect-[4/3] overflow-hidden bg-charcoal-lighter">
-                  <img
-                    src={col.image ? urlFor(col.image).width(800).height(600).fit('crop').url() : getCollectionFallbackImage(col.slug)}
-                    alt={col.image?.alt ?? col.title}
-                    width={800}
-                    height={600}
-                    loading="lazy"
-                    decoding="async"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              <div>
-                <h2 class="font-serif text-4xl text-ink mb-4" {...sbFieldPath('title')}>{col.title}</h2>
-                {col.description && (
-                  <p class="text-muted leading-relaxed mb-6" {...sbFieldPath('description')}>{col.description}</p>
-                )}
-                <a href={`/services/collections/${col.slug}/`} class="btn-outline-gold">
-                  View collection
-                </a>
-              </div>
-            </div>
-            {col.services.length > 0 && (
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {col.services.map((svc) => (
-                  <ServiceCard
-                    title={svc.title}
-                    slug={svc.slug}
-                    tagline={svc.tagline}
-                    image={svc.image}
-                    bookingMode={svc.bookingMode}
-                    bookingUrl={svc.bookingUrl}
-                    objectId={svc._id}
-                  />
-                ))}
-              </div>
+      <ul class="mt-16 grid gap-px bg-walnut/15 md:grid-cols-2" aria-label="Service categories">
+        {collections.map((collection) => (
+          <li class="bg-bone p-8 sm:p-10" {...sbObjectId(collection._id)}>
+            <h2 class="font-serif text-3xl text-ink">
+              <a
+                href={`/services/collections/${collection.slug}/`}
+                class="transition-colors hover:text-olive"
+                {...sbFieldPath('title')}
+              >
+                {collection.title}
+              </a>
+            </h2>
+            <p class="mt-4 text-[14px] leading-relaxed text-muted">
+              {collectionIntroductions[collection.slug] ?? `Related ${collection.title} appointments at House of Rose.`}
+            </p>
+
+            {collection.services.length > 0 && (
+              <ul class="mt-7 divide-y divide-walnut/10 border-t border-walnut/15" aria-label={`${collection.title} services`}>
+                {collection.services.map((service) => {
+                  const summary = getServiceCardSummary(service.slug);
+                  return (
+                    <li {...sbObjectId(service._id)}>
+                      <a
+                        href={`/services/${service.slug}/`}
+                        class="group block py-4"
+                      >
+                        <span class="inline-flex items-baseline gap-2 text-[14px] font-medium leading-relaxed text-muted-strong transition-colors group-hover:text-olive" {...sbFieldPath('title')}>
+                          <span>{service.title}</span>
+                          <span aria-hidden="true">→</span>
+                        </span>
+                        {summary && <span class="mt-1 block text-[13px] leading-relaxed text-muted">{summary}</span>}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     )}
   </section>
 </BaseLayout>

@@ -1,17 +1,24 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { sanityFetch, urlFor } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_LOCAL_AREA_SLUGS_QUERY,
   LOCAL_AREA_BY_SLUG_QUERY,
+  SITE_SETTINGS_QUERY,
   type LocalArea,
+  type SiteSettings,
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import BookingLink from '@/components/BookingLink.astro';
-import { breadcrumbList, faqPage, localBusiness } from '@/lib/structuredData';
+import {
+  breadcrumbList,
+  faqPage,
+  localBusiness,
+  structuredTelephone,
+} from '@/lib/structuredData';
 import { DEFAULT_AREA_IMAGE } from '@/lib/imageFallbacks';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -19,66 +26,133 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const areaData = await sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug });
+const [areaData, settings] = await Promise.all([
+  sanityFetch<LocalArea>(LOCAL_AREA_BY_SLUG_QUERY, { slug }),
+  sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
+]);
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!areaData) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
 
-const area: LocalArea = alignPublicContent(areaData);
+const area: LocalArea = areaData;
+const siteFacts = resolvePublicSiteFacts(settings);
+const phoneHref = `tel:${structuredTelephone(siteFacts)}`;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
-const heroImage = area.image?.asset?.url ?? DEFAULT_AREA_IMAGE;
+const heroImage = area.image
+  ? urlFor(area.image).width(1400).height(778).fit('crop').format('webp').quality(82).url()
+  : DEFAULT_AREA_IMAGE;
+const heroImageSrcset = area.image
+  ? `${urlFor(area.image).width(800).height(444).fit('crop').format('webp').quality(82).url()} 800w, ${heroImage} 1400w`
+  : undefined;
+const socialImage = area.image
+  ? urlFor(area.image).width(1200).height(630).fit('crop').format('webp').quality(82).url()
+  : DEFAULT_AREA_IMAGE;
+const socialImageWidth = area.image ? 1200 : 1000;
+const socialImageHeight = area.image ? 630 : 1333;
+const heroImageWidth = area.image ? 1400 : 1000;
+const heroImageHeight = area.image ? 778 : 1333;
+const heroImageAlt = area.image?.alt?.trim()
+  || (area.image
+    ? 'House of Rose Aesthetics in Punta Gorda, Florida'
+    : 'House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda');
+const practiceAddress = siteFacts.address;
+const isPuntaGorda = area.city.toLowerCase() === 'punta gorda';
+const localHeading = isPuntaGorda
+  ? 'Medical aesthetics in Punta Gorda.'
+  : `Medical aesthetics near ${area.city}.`;
+const localIntro = isPuntaGorda
+  ? `${siteFacts.siteName} is a medical aesthetics practice located at ${practiceAddress}.`
+  : `${siteFacts.siteName} serves ${area.city} from its practice at ${practiceAddress}.`;
+const localFaqs = [
+  {
+    question: isPuntaGorda
+      ? `Is this the ${siteFacts.shortName} practice location?`
+      : `Is there a ${siteFacts.shortName} location in ${area.city}?`,
+    answer: isPuntaGorda
+      ? `Yes. This is our one ${siteFacts.shortName} practice at ${practiceAddress}. The Unit 9 storefront is pictured on this website.`
+      : `No. ${siteFacts.shortName} has one practice, at ${practiceAddress}. Appointments for clients coming from ${area.city} take place there.`,
+  },
+  {
+    question: 'What if I want a specific appointment time?',
+    answer: `Arrange the visit before you leave when a specific time matters. Booking paths vary by service: some appointments can be reserved online, while others begin with a call or consultation request. Call ${siteFacts.phone} if you are unsure which applies.`,
+  },
+  {
+    question: 'Is parking available?',
+    answer: 'Yes. Free parking is available at the Punta Gorda practice.',
+  },
+  {
+    question: 'Where can I get directions from my starting address?',
+    answer: `The practice is at ${practiceAddress}. The directions tool accepts a starting address or your current location, shows estimated driving time and distance, and can open the route in Google Maps or Apple Maps.`,
+  },
+];
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Areas We Serve', item: `${site}areas/` },
-  { name: area.title, item: canonical },
+  { name: area.city, item: canonical },
 ]);
-const business = localBusiness({ url: canonical, areaName: `${area.city}, ${area.region ?? 'FL'}`, image: heroImage });
-const faq = faqPage(area.faqs ?? []);
+const business = localBusiness({
+  url: canonical,
+  areaName: `${area.city}, ${area.region ?? 'FL'}`,
+  image: socialImage,
+  siteFacts,
+});
+const faq = faqPage(localFaqs);
 
-const pageTitle = area.seo?.metaTitle ?? `${area.title} | House of Rose`;
-const pageDescription = area.seo?.metaDescription ?? area.intro;
+const pageTitle = isPuntaGorda
+  ? `Medical Aesthetics in Punta Gorda, FL | ${siteFacts.shortName}`
+  : `Medical Aesthetics Near ${area.city}, FL | ${siteFacts.shortName}`;
+const pageDescription = localIntro;
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} image={heroImage}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={socialImage}
+  imageAlt={heroImageAlt}
+  imageWidth={socialImageWidth}
+  imageHeight={socialImageHeight}
+  preloadImage={heroImage}
+  preloadImageSrcset={heroImageSrcset}
+  preloadImageSizes="100vw"
+  structuredPageMainEntityId={`${canonical}#localbusiness`}
+>
   <SchemaMarkup item={business} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
   {faq && <SchemaMarkup item={faq} slot="head" />}
 
   <div {...sbObjectId(area._id)}>
-  <section
-    class="on-dark hero-dark relative w-full min-h-[44vh] flex items-end bg-walnut pt-32 pb-12 px-6"
-    style={`background-image: url(${heroImage}); background-size: cover; background-position: center;`}
-  >
+  <section class="on-dark hero-dark relative w-full min-h-[44vh] flex items-end overflow-hidden bg-walnut pt-32 pb-12 px-6">
+    <img
+      src={heroImage}
+      srcset={heroImageSrcset}
+      sizes="100vw"
+      alt={heroImageAlt}
+      width={heroImageWidth}
+      height={heroImageHeight}
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
     <div class="relative z-10 max-w-[960px] mx-auto w-full">
       <span class="kicker"><span {...sbFieldPath('city')}>{area.city}</span>{area.region ? ' · ' : ''}{area.region && <span {...sbFieldPath('region')}>{area.region}</span>}</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ivory leading-tight mt-3 mb-5" {...sbFieldPath('title')}>{area.title}</h1>
-      <p class="text-ivory/85 text-[17px] max-w-[640px] leading-relaxed" {...sbFieldPath('intro')}>{area.intro}</p>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ivory leading-tight mt-3 mb-5">{localHeading}</h1>
+      <p class="text-ivory/85 text-[17px] max-w-[640px] leading-relaxed">{localIntro}</p>
     </div>
   </section>
-
-  {area.whyLocal && (
-    <section class="bg-charcoal-light py-14 px-6">
-      <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Why House of Rose</span>
-        <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line" {...sbFieldPath('whyLocal')}>{area.whyLocal}</p>
-      </div>
-    </section>
-  )}
 
   {area.servedServices && area.servedServices.length > 0 && (
     <section class="bg-charcoal py-14 px-6">
       <div class="max-w-[1280px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Popular in {area.city}</span>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Services to review</span>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {area.servedServices.map((s) => (
             <article class="bg-charcoal p-7 group transition-colors hover:bg-charcoal-lighter" {...sbObjectId(s._id)}>
               <h2 class="font-serif text-[20px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{s.title}</h2>
-              {s.tagline && <p class="text-muted text-[13px] leading-[1.6] mb-3" {...sbFieldPath('tagline')}>{s.tagline}</p>}
-              {s.price && <p class="text-ink/70 text-[12px] tracking-[0.16em] uppercase" {...sbFieldPath('price')}>{s.price}</p>}
               <div class="mt-5 flex flex-wrap items-center gap-4">
                 <a href={`/services/${s.slug}/`} class="learn-more group-hover:text-gold">Learn about {s.title}</a>
                 <BookingLink
@@ -87,6 +161,7 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
                   bookingUrl={s.bookingUrl}
                   location="area_service_card"
                   class="service-booking-link"
+                  accessibleContext={s.title}
                 />
               </div>
             </article>
@@ -99,35 +174,41 @@ const pageDescription = area.seo?.metaDescription ?? area.intro;
   {area.neighborhoods && area.neighborhoods.length > 0 && (
     <section class="bg-charcoal-light py-12 px-6">
       <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Also Serving Nearby</span>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Nearby communities</span>
         <p class="text-muted text-[14px] leading-relaxed">{area.neighborhoods.join(' · ')}</p>
       </div>
     </section>
   )}
 
-  {area.faqs && area.faqs.length > 0 && (
-    <section class="bg-charcoal py-14 px-6">
-      <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
-        <div class="space-y-6">
-          {area.faqs.map((f, i) => (
-            <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
-            </div>
-          ))}
-        </div>
+  <section class="bg-charcoal py-14 px-6">
+    <div class="max-w-[860px] mx-auto">
+      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Local information</span>
+      <div class="space-y-6">
+        {localFaqs.map((f) => (
+          <div class="border-b border-ink/5 pb-6">
+            <h2 class="text-ink text-[17px] font-medium mb-3">{f.question}</h2>
+            <p class="text-muted text-[14px] leading-relaxed">{f.answer}</p>
+          </div>
+        ))}
       </div>
-    </section>
-  )}
+    </div>
+  </section>
 
-  <section class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
-    <div class="max-w-[860px] mx-auto text-center">
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Book your visit from {area.city}</h2>
-      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — a short drive from {area.city}.</p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="/services/" class="btn-gold">Explore Services</a>
+  <section data-area-visit-planning class="bg-charcoal-light py-12 px-6 border-t border-gold-metal/10">
+    <div class="max-w-[860px] mx-auto grid gap-8 md:grid-cols-[1.35fr_1fr] md:items-center">
+      <div>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-3">Plan the visit</span>
+        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-4">
+          {isPuntaGorda ? `${siteFacts.shortName} is in Unit 9.` : `Your appointment is in Punta Gorda.`}
+        </h2>
+        <p class="text-muted text-[15px] leading-relaxed max-w-[590px]">
+          The storefront photograph shows the entrance at {practiceAddress}. Free parking is available. If your appointment time is not set, call before leaving; the booking path varies by service.
+        </p>
+      </div>
+      <div class="flex gap-3 md:justify-end flex-wrap">
+        <a href="/contact/" class="btn-outline-gold">Get directions</a>
+        <a href="/services/" class="btn-outline-gold">Review services</a>
+        <a href={phoneHref} class="btn-gold">Call {siteFacts.phone}</a>
       </div>
     </div>
   </section>

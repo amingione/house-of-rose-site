@@ -5,9 +5,10 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COST_GUIDES_QUERY, type CostGuide } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getVerifiedCostFact } from '@/lib/costFacts';
+import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 
-const guides = alignPublicContent(await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY));
+const guides = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -22,26 +23,21 @@ const guidesListSchema = guides.length
     )
   : null;
 
-const formatRange = (g: CostGuide): string | null => {
-  if (g.priceLow == null || g.priceHigh == null) return null;
-  const unit = g.priceUnit ? ` ${g.priceUnit}` : '';
-  return `$${g.priceLow}–$${g.priceHigh}${unit}`;
-};
 ---
 
 <BaseLayout
   title="Treatment Cost Guides | House of Rose Aesthetics, Punta Gorda FL"
-  description="Honest pricing for advanced aesthetics in Punta Gorda, FL — what PRF, microneedling, injectables, and more actually cost, and the factors that move the price."
+  description="Compare current House of Rose prices for Botox, fillers, Forma, Lumecca, Microneedling, BioRePeel, and Morpheus8, with the facts behind each amount."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {guidesListSchema && <SchemaMarkup item={guidesListSchema} slot="head" />}
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
-      <span class="kicker">Pricing</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What advanced aesthetics cost in Punta Gorda</h1>
+      <span class="kicker">Cost guides</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What does it cost?</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Straight answers on how treatments at House of Rose are priced — what's included, and the factors that shape your investment. Your exact pricing is confirmed at your consultation.
+        See the current price first, then what the number represents: per-unit pricing, a product or treatment-area range, a standalone appointment, a series, or a bundle. When a standalone price is not listed, the guide identifies what is available and links to the service.
       </p>
     </div>
   </section>
@@ -49,28 +45,67 @@ const formatRange = (g: CostGuide): string | null => {
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
       {guides.map((g) => {
-        const range = formatRange(g);
+        const fact = getVerifiedCostFact(g.slug);
         return (
-          <a href={`/cost/${g.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
-            <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
-            {range && <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{range}</p>}
-            {g.answer && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('answer')}>{g.answer}</p>}
-            <span class="learn-more group-hover:text-gold mt-4 inline-block">See the guide</span>
-          </a>
+          <article class="bg-charcoal transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
+            <a href={`/cost/${g.slug}/`} class="group block p-7 pb-5">
+              <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
+              <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
+                {fact?.display ?? 'Contact House of Rose for the current price'}
+              </p>
+              {fact?.summary && (
+                <p class="mb-4 text-[14px] leading-[1.7] text-muted">{fact.summary}</p>
+              )}
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">Understand this price</span>
+            </a>
+            {g.treatment && (
+              <div class="mx-7 border-t border-gold-metal/10 pb-6 pt-4 text-[14px] leading-relaxed text-muted" {...sbObjectId(g.treatment._id)}>
+                <span>About the service: </span>
+                <a href={`/services/${g.treatment.slug}/`} class="text-ink underline decoration-gold-metal/40 underline-offset-4 hover:text-gold" {...sbFieldPath('title')}>
+                  {g.treatment.title}
+                </a>
+              </div>
+            )}
+          </article>
         );
       })}
       {guides.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Cost guides are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No cost guides are published.</p>
       )}
+    </div>
+  </section>
+
+  <section data-cost-payment class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-10">
+    <div class="mx-auto grid max-w-[960px] gap-5 md:grid-cols-[0.7fr_1.3fr] md:items-start md:gap-12">
+      <div>
+        <span class="kicker">Payment</span>
+        <h2 class="mt-3 font-serif text-[clamp(26px,4vw,36px)] leading-tight text-ink">How can I pay?</h2>
+      </div>
+      <p class="text-[15px] leading-[1.8] text-muted">
+        House of Rose accepts American Express, Discover, Mastercard, Visa, debit cards, and checks. If you need to confirm whether anything is due before your visit, call <a href="tel:+18449417673" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">(844) 941-7673</a> before you reserve.
+      </p>
     </div>
   </section>
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <p class="text-muted text-[15px] leading-[1.8] mb-6">
-        Not sure which treatment fits your budget and goals? Start with in-studio advanced skin imaging — it maps your concerns to the right plan before you commit.
+      <span class="kicker">If two prices do not match</span>
+      <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
+        Check the live booking menu before you reserve.
+      </h2>
+      <p class="mx-auto mt-5 max-w-[640px] text-muted text-[15px] leading-[1.8]">
+        GlossGenius is the live House of Rose booking menu. It shows the services and prices currently listed for booking, while these guides explain those amounts in context. If a guide and the booking menu ever differ, use the booking menu and call House of Rose before reserving so the appointment and price can be confirmed.
       </p>
-      <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a
+          href={GLOSSGENIUS_SERVICES_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-global-booking
+          class="btn-gold"
+        >Open the booking menu</a>
+        <a href="tel:+18449417673" class="btn-outline-gold">Call (844) 941-7673</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

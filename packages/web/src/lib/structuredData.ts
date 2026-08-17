@@ -9,6 +9,7 @@
  */
 
 import type { FAQ } from '@/lib/queries';
+import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
 
 // ─── Canonical business facts (NAP) — single source for JSON-LD ────────────────
 
@@ -50,61 +51,80 @@ export const BUSINESS_SERVICE_AREAS = [
   'Punta Gorda Isles',
 ] as const;
 
-/**
- * Topical `keywords` for the LocalBusiness/MedicalBusiness JSON-LD — NOT a mirror of the live
- * Google Business Profile category stack, despite the overlapping vocabulary.
- *
- * The live GBP stack is only THREE categories (`Medical spa` primary, `Facial spa`, `Skin care
- * clinic`) as of 2026-08-01. The last two entries here describe real offerings — retail skincare,
- * and the B-12 / IV / GLP-1 wellness lane — so they are accurate as keywords even while absent
- * from GBP. **This divergence is intentional; do not "sync" the two.** If Amber adds those two
- * categories to GBP (open question in CLAUDE.md), they converge on their own.
- */
+/** Verified live Google Business Profile categories as of 2026-08-01. */
 export const BUSINESS_CATEGORIES = [
   'Medical spa',
   'Facial spa',
   'Skin care clinic',
-  'Health and beauty shop',
-  'Vitamin & supplements store',
 ] as const;
 
 export type JsonLd = Record<string, unknown>;
 
 // ─── Shared graph fragments ────────────────────────────────────────────────────
 
-function providerNode(siteUrl: string): JsonLd {
-  const baseUrl = new URL('/', siteUrl).toString();
-  return {
-    '@type': 'HealthAndBeautyBusiness',
-    '@id': `${baseUrl}#business`,
-    name: LOCAL_BUSINESS.name,
-    alternateName: [...BUSINESS_ALTERNATE_NAMES],
-    foundingDate: LOCAL_BUSINESS.foundingDate,
-    keywords: BUSINESS_CATEGORIES.join(', '),
-    url: baseUrl,
-    telephone: LOCAL_BUSINESS.telephone,
-    sameAs: [...BUSINESS_PROFILES],
-    address: {
+export function structuredTelephone(siteFacts?: PublicSiteFacts): string {
+  const digits = siteFacts?.phone.replace(/\D/g, '') ?? '';
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith('1')) return `+${digits}`;
+  return LOCAL_BUSINESS.telephone;
+}
+
+function structuredAddress(siteFacts?: PublicSiteFacts): JsonLd {
+  const match = siteFacts?.address.match(
+    /^(.+),\s*([^,]+),\s*([A-Z]{2})\s+(\d{5}(?:-\d{4})?)$/i,
+  );
+  if (!match) {
+    return {
       '@type': 'PostalAddress',
       streetAddress: LOCAL_BUSINESS.streetAddress,
       addressLocality: LOCAL_BUSINESS.addressLocality,
       addressRegion: LOCAL_BUSINESS.addressRegion,
       postalCode: LOCAL_BUSINESS.postalCode,
       addressCountry: LOCAL_BUSINESS.addressCountry,
-    },
+    };
+  }
+
+  const [, streetAddress, addressLocality, addressRegion, postalCode] = match;
+  return {
+    '@type': 'PostalAddress',
+    streetAddress,
+    addressLocality,
+    addressRegion: addressRegion.toUpperCase(),
+    postalCode,
+    addressCountry: LOCAL_BUSINESS.addressCountry,
   };
 }
 
-function websiteNode(siteUrl: string): JsonLd {
+function businessProfiles(siteFacts?: PublicSiteFacts): string[] {
+  return [siteFacts?.instagramUrl ?? BUSINESS_PROFILES[0], BUSINESS_PROFILES[1]];
+}
+
+function providerNode(siteUrl: string, siteFacts?: PublicSiteFacts): JsonLd {
   const baseUrl = new URL('/', siteUrl).toString();
+  return {
+    '@type': 'HealthAndBeautyBusiness',
+    '@id': `${baseUrl}#business`,
+    name: siteFacts?.siteName ?? LOCAL_BUSINESS.name,
+    alternateName: [...BUSINESS_ALTERNATE_NAMES],
+    foundingDate: LOCAL_BUSINESS.foundingDate,
+    keywords: BUSINESS_CATEGORIES.join(', '),
+    url: baseUrl,
+    telephone: structuredTelephone(siteFacts),
+    sameAs: businessProfiles(siteFacts),
+    address: structuredAddress(siteFacts),
+  };
+}
+
+function websiteNode(siteUrl: string, siteFacts?: PublicSiteFacts): JsonLd {
+  const baseUrl = new URL('/', siteUrl).toString();
+  const businessName = siteFacts?.siteName ?? LOCAL_BUSINESS.name;
   return {
     '@type': 'WebSite',
     '@id': `${baseUrl}#website`,
     url: baseUrl,
-    name: LOCAL_BUSINESS.name,
+    name: businessName,
     alternateName: [...BUSINESS_ALTERNATE_NAMES],
-    description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
+    description: `${businessName} is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.`,
     keywords: BUSINESS_CATEGORIES.join(', '),
     inLanguage: 'en-US',
     publisher: { '@id': `${baseUrl}#business` },
@@ -130,7 +150,12 @@ export interface SiteEntityGraphInput {
   image: string;
   imageAlt?: string;
   email?: string;
+  siteFacts?: PublicSiteFacts;
+  pageType?: StructuredPageType;
+  mainEntityId?: string;
 }
+
+export type StructuredPageType = 'WebPage' | 'CollectionPage' | 'ProfilePage';
 
 /**
  * Shared entity graph emitted by BaseLayout on every standard page. Stable
@@ -140,11 +165,13 @@ export interface SiteEntityGraphInput {
 export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): JsonLd {
   const baseUrl = new URL('/', siteUrl).toString();
   const pageUrl = new URL(input.url, baseUrl).toString();
+  const businessName = input.siteFacts?.siteName ?? LOCAL_BUSINESS.name;
   const business = {
-    ...providerNode(baseUrl),
-    description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida. Walk-ins welcome; appointments recommended to reserve a time.',
-    ...(input.email && { email: input.email }),
+    ...providerNode(baseUrl, input.siteFacts),
+    description: `${businessName} is a medical aesthetics practice in Punta Gorda, Florida.`,
+    ...((input.siteFacts?.email ?? input.email) && {
+      email: input.siteFacts?.email ?? input.email,
+    }),
     // Google wants an actual logo here, not a social card. `og.png` is the
     // 1200x630 share image; the square monogram is the real mark.
     logo: {
@@ -154,7 +181,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
       contentUrl: new URL('/logos/hr-monogram-2026/monogram-gold-512.png', baseUrl).toString(),
       width: 512,
       height: 512,
-      caption: LOCAL_BUSINESS.name,
+      caption: businessName,
     },
     image: { '@id': `${baseUrl}#logo` },
     geo: {
@@ -190,7 +217,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
     '@context': 'https://schema.org',
     '@graph': [
       business,
-      websiteNode(baseUrl),
+      websiteNode(baseUrl, input.siteFacts),
       {
         '@type': 'ImageObject',
         '@id': `${pageUrl}#primaryimage`,
@@ -200,7 +227,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
         representativeOfPage: true,
       },
       {
-        '@type': 'WebPage',
+        '@type': input.pageType ?? 'WebPage',
         '@id': `${pageUrl}#webpage`,
         url: pageUrl,
         name: input.name,
@@ -209,6 +236,7 @@ export function siteEntityGraph(input: SiteEntityGraphInput, siteUrl: string): J
         isPartOf: { '@id': `${baseUrl}#website` },
         about: { '@id': `${baseUrl}#business` },
         primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+        ...(input.mainEntityId && { mainEntity: { '@id': input.mainEntityId } }),
       },
     ],
   };
@@ -237,7 +265,7 @@ export function personProfile(input: PersonProfileInput, siteUrl: string): JsonL
     jobTitle: input.jobTitle,
     url: input.url,
     ...(input.description && { description: input.description }),
-    mainEntityOfPage: { '@type': 'ProfilePage', '@id': `${input.url}#webpage`, url: input.url },
+    mainEntityOfPage: { '@id': `${input.url}#webpage` },
     worksFor: { '@id': `${baseUrl}#business` },
     ...(input.email && { email: input.email }),
     ...(input.telephone && { telephone: input.telephone }),
@@ -256,34 +284,20 @@ export interface ItemListPageInput {
 
 /** Directory/index page with an ordered list of linked public profiles. */
 export function itemListPage(input: ItemListPageInput, siteUrl: string): JsonLd {
-  const baseUrl = new URL('/', siteUrl).toString();
+  void siteUrl;
   return {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'CollectionPage',
-        '@id': `${input.url}#webpage`,
-        url: input.url,
-        name: input.name,
-        description: input.description,
-        inLanguage: 'en-US',
-        isPartOf: { '@id': `${baseUrl}#website` },
-        about: { '@id': `${baseUrl}#business` },
-        mainEntity: { '@id': `${input.url}#itemlist` },
-      },
-      {
-        '@type': 'ItemList',
-        '@id': `${input.url}#itemlist`,
-        name: input.name,
-        numberOfItems: input.items.length,
-        itemListElement: input.items.map((item, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: item.name,
-          url: item.url,
-        })),
-      },
-    ],
+    '@type': 'ItemList',
+    '@id': `${input.url}#itemlist`,
+    name: input.name,
+    description: input.description,
+    numberOfItems: input.items.length,
+    itemListElement: input.items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: item.url,
+    })),
   };
 }
 
@@ -324,7 +338,7 @@ export function webPage(input: WebPageInput, siteUrl: string): JsonLd {
   };
 }
 
-export function faqPage(faqs: Pick<FAQ, 'question' | 'answer'>[]): JsonLd | null {
+export function faqPage(faqs: readonly Pick<FAQ, 'question' | 'answer'>[]): JsonLd | null {
   if (!faqs || faqs.length === 0) return null;
   return {
     '@context': 'https://schema.org',
@@ -353,12 +367,12 @@ export function article(input: ArticleInput, siteUrl: string): JsonLd {
     '@id': `${input.url}#article`,
     headline: input.headline,
     ...(input.description && { description: input.description }),
-    mainEntityOfPage: { '@type': 'WebPage', '@id': input.url },
+    mainEntityOfPage: { '@id': `${input.url}#webpage` },
     ...(input.image && { image: input.image }),
     ...(input.datePublished && { datePublished: input.datePublished }),
     ...(input.dateModified && { dateModified: input.dateModified }),
-    author: providerNode(siteUrl),
-    publisher: providerNode(siteUrl),
+    author: { '@id': `${new URL('/', siteUrl).toString()}#business` },
+    publisher: { '@id': `${new URL('/', siteUrl).toString()}#business` },
   };
 }
 
@@ -384,7 +398,7 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
     '@id': `${input.url}#service`,
     name: input.name,
     description: input.description ?? '',
-    provider: providerNode(siteUrl),
+    provider: { '@id': `${new URL('/', siteUrl).toString()}#business` },
     url: input.url,
     ...(input.image && { image: input.image }),
     serviceType: input.serviceType ?? input.name,
@@ -423,36 +437,36 @@ export function service(input: ServiceInput, siteUrl: string): JsonLd {
  * `areaServed` into the global service-area array. This node asserts the business's
  * presence *for this specific city*.
  */
-export function localBusiness(input: { url: string; areaName?: string; image?: string }): JsonLd {
+export function localBusiness(input: {
+  url: string;
+  areaName?: string;
+  image?: string;
+  siteFacts?: PublicSiteFacts;
+}): JsonLd {
   const baseUrl = new URL('/', input.url).toString();
+  const address = structuredAddress(input.siteFacts);
+  const businessName = input.siteFacts?.siteName ?? LOCAL_BUSINESS.name;
   return {
     '@context': 'https://schema.org',
     '@type': 'HealthAndBeautyBusiness',
     '@id': `${input.url}#localbusiness`,
-    name: LOCAL_BUSINESS.name,
+    name: businessName,
     alternateName: [...BUSINESS_ALTERNATE_NAMES],
     foundingDate: LOCAL_BUSINESS.foundingDate,
-    description:
-      'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
+    description: `${businessName} is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.`,
     keywords: BUSINESS_CATEGORIES.join(', '),
     url: baseUrl,
-    telephone: LOCAL_BUSINESS.telephone,
-    sameAs: [...BUSINESS_PROFILES],
+    telephone: structuredTelephone(input.siteFacts),
+    ...(input.siteFacts?.email && { email: input.siteFacts.email }),
+    sameAs: businessProfiles(input.siteFacts),
     ...(input.image && { image: input.image }),
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: LOCAL_BUSINESS.streetAddress,
-      addressLocality: LOCAL_BUSINESS.addressLocality,
-      addressRegion: LOCAL_BUSINESS.addressRegion,
-      postalCode: LOCAL_BUSINESS.postalCode,
-      addressCountry: LOCAL_BUSINESS.addressCountry,
-    },
+    address,
     geo: {
       '@type': 'GeoCoordinates',
       latitude: LOCAL_BUSINESS.latitude,
       longitude: LOCAL_BUSINESS.longitude,
     },
-    areaServed: input.areaName ?? `${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion}`,
+    areaServed: input.areaName ?? `${String(address.addressLocality)}, ${String(address.addressRegion)}`,
     hasMap: BUSINESS_URLS.map,
     currenciesAccepted: 'USD',
     paymentAccepted: 'American Express, Discover, Mastercard, Visa, Debit Card, Check',
@@ -608,6 +622,7 @@ export interface BlogPostingInput {
 
 /** BlogPosting node for journal articles. Author/publisher resolve to the canonical business. */
 export function blogPosting(input: BlogPostingInput, siteUrl: string): JsonLd {
+  const businessId = `${new URL('/', siteUrl).toString()}#business`;
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -615,13 +630,13 @@ export function blogPosting(input: BlogPostingInput, siteUrl: string): JsonLd {
     headline: input.headline,
     ...(input.description && { description: input.description }),
     url: input.url,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${input.url}#webpage` },
+    mainEntityOfPage: { '@id': `${input.url}#webpage` },
     ...(input.image && { image: input.image }),
     ...(input.datePublished && { datePublished: input.datePublished }),
     ...(input.dateModified && { dateModified: input.dateModified }),
     ...(input.readingTimeMinutes && { timeRequired: `PT${input.readingTimeMinutes}M` }),
-    author: providerNode(siteUrl),
-    publisher: providerNode(siteUrl),
+    author: { '@id': businessId },
+    publisher: { '@id': businessId },
   };
 }
 

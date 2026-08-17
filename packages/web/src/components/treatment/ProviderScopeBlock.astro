@@ -1,13 +1,19 @@
 ---
-import { sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
-import { performedByLabel, type TreatmentProviderScope } from '@/lib/treatmentQueries';
+import { sbFieldPath, sbObjectField } from '@/lib/visualEditing';
+import {
+  performedByLabel,
+  verifiedProviderIdentity,
+  type TreatmentProviderAttribution,
+  type TreatmentProviderScope,
+} from '@/lib/treatmentQueries';
 
 interface Props {
   providerScope: TreatmentProviderScope;
+  provider?: TreatmentProviderAttribution;
   treatmentName: string;
 }
 
-const { providerScope, treatmentName } = Astro.props;
+const { providerScope, provider, treatmentName } = Astro.props;
 
 /**
  * Two statutory requirements are met here, not one.
@@ -26,44 +32,68 @@ const { providerScope, treatmentName } = Astro.props;
  */
 const MEDICAL_DIRECTOR = 'Medical Director: Joshua Shaw, MD · FL Lic. ME136232';
 
-const scopeLine = providerScope.medicalDirection
-  ? `${performedByLabel(providerScope.performedBy)}, under written physician protocol and medical direction`
-  : performedByLabel(providerScope.performedBy);
+const verifiedIdentity = verifiedProviderIdentity(provider, providerScope.performedBy);
+const namedProvider = verifiedIdentity?.publicName;
+const providerLabel = namedProvider ?? performedByLabel(providerScope.performedBy);
+const providerNameAnnotation = provider && namedProvider === provider.publicName?.trim()
+  ? sbObjectField(provider._id, 'publicName')
+  : {};
+const profilePath = namedProvider && verifiedIdentity?.profileSlug
+  ? `/about/providers/${verifiedIdentity.profileSlug}/`
+  : undefined;
+const optimizedProfileImages: Readonly<Record<string, string>> = {
+  amber: '/images/providers/amber-profile-1122.webp',
+  brandy: '/images/providers/brandy-profile-1122.webp',
+  diana: '/images/providers/diana-profile-1122.webp',
+};
+const providerImagePath = verifiedIdentity?.profileSlug
+  ? optimizedProfileImages[verifiedIdentity.profileSlug] ?? provider?.profileImagePath
+  : provider?.profileImagePath;
+const scopeSuffix = providerScope.medicalDirection
+  ? ' under written physician protocol and medical direction.'
+  : '.';
 ---
 
 <div>
-  <span class="kicker">Who Performs It</span>
+  <span class="kicker">Provider</span>
   <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-5">
-    Who performs {treatmentName} at House of Rose?
+    Who provides {treatmentName}.
   </h2>
 
-  <p class="text-ink text-[17px] leading-[1.7] mb-7" {...sbFieldPath('providerScope.performedBy')}>
-    {scopeLine}.
+  <p
+    class="text-ink text-[17px] leading-[1.7] mb-7"
+    {...(!namedProvider ? sbFieldPath('providerScope.performedBy') : {})}
+  >
+    {profilePath ? (
+      <a
+        href={profilePath}
+        class="underline decoration-gold-metal/50 underline-offset-4 hover:text-gold transition-colors"
+        {...providerNameAnnotation}
+      >
+        {providerLabel}
+      </a>
+    ) : namedProvider ? (
+      <span {...providerNameAnnotation}>{providerLabel}</span>
+    ) : (
+      providerLabel
+    )}{scopeSuffix}
   </p>
-
-  <ul class="space-y-3 mb-8">
-    {providerScope.credentialPoints.map((point, i) => (
-      <li class="flex gap-3 text-muted text-[15px] leading-relaxed">
-        <span class="text-gold mt-0.5 shrink-0" aria-hidden="true">✦</span>
-        <span {...sbFieldPathParts('providerScope.credentialPoints', i)}>{point}</span>
-      </li>
-    ))}
-  </ul>
-
-  {providerScope.consultRequired !== false && (
-    <p class="text-muted text-[14px] leading-relaxed mb-7 border-l border-gold-metal/40 pl-5 py-1">
-      A consultation is completed before treatment to confirm you are a candidate.
-    </p>
-  )}
 
   {providerScope.medicalDirection && (
     <p class="text-muted text-[13px] leading-relaxed mb-5">{MEDICAL_DIRECTOR}</p>
   )}
-
-  <p
-    class="text-muted/70 text-[12px] leading-[1.7] pt-6 border-t border-gold-metal/10"
-    {...sbFieldPath('providerScope.disclaimer')}
-  >
-    {providerScope.disclaimer}
-  </p>
 </div>
+
+{providerImagePath && (
+  <figure class="overflow-hidden border border-gold-metal/15 bg-charcoal-light">
+    <img
+      src={providerImagePath}
+      alt={provider?.profileImageAlt ?? `${providerLabel} at House of Rose Aesthetics`}
+      width="1122"
+      height="1402"
+      loading="lazy"
+      decoding="async"
+      class="aspect-[4/5] h-full w-full object-cover"
+    />
+  </figure>
+)}

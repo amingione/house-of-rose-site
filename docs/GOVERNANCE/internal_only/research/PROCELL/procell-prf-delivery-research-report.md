@@ -1,179 +1,123 @@
-# Procell, Topical PRF & Needling: Client-Education Research Report
+# Procell Serums and Topical PRF — Current Evidence and Publication Boundaries
 
-**Purpose.** This is a research and copy-development document for House of Rose Aesthetics in Punta Gorda, Florida. It distinguishes established information from manufacturer positioning and from topics that should be discussed only in consultation. It is not a substitute for a provider's assessment, device instructions for use, or Florida scope-of-practice requirements.
+**Reconciled:** 2026-08-14
 
-## Executive summary: the client-ready answer
+**Purpose:** active supporting research for the canonical House of Rose Microneedling service. This
+report preserves the device, material, and regulatory distinctions that are useful for public education.
+It does not create a protocol, service combination, appointment, series, body treatment, or route.
 
-House of Rose offers one **Microneedling** service, performed with the Procell Therapies device. When the Procell brand, device system, or manufacturer materials are specifically in context, the branded name is **Procell Microchanneling**. This does not create a second modality or a client-facing device choice; the provider selects the area, settings, and eligible topical plan after consultation.
+**Commerce authority:**
+`docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`
 
-Topical PRF is an autologous adjunct made from the client's own blood and applied on the surface during a needling treatment. It is distinct from PRF injections and from Procell's proprietary topical products. It may be a good fit for a client who values an autologous approach, but it adds a blood draw, cost, and clinical screening. It should never be described as FDA-approved for delivery through microneedling, as the FDA specifically states that microneedling devices are not authorized to deliver blood products, medicines, vitamins, or cosmetics into skin.
+**Reviewed public-fact authority:**
+`packages/web/src/lib/skinRenewalServiceEducation.ts`
 
-Results are individual. A series is common, and improvement develops gradually as skin remodels; no treatment should promise a particular degree of improvement or a permanent result.
+## Direct answer
 
----
+House of Rose performs Microneedling with the Procell Therapies device. **Procell Microchanneling** is
+the device-specific name used when the Procell system or its Pro and MD Microchannel Serums are in
+context; it is not a second service or a client-facing device choice.
 
-## 1. Procell MD vs Procell Pro
-
-### What can be said with confidence
-
-Procell is a branded professional microchanneling system. The brand describes its modality as “microchanneling” and presents it as a form of collagen-induction treatment. At a practical level, a Procell visit should be explained by the treatment plan—not by broad marketing language: the provider prepares the skin, uses a new single-use cartridge, follows the selected device settings and topical protocol, then gives recovery instructions.
-
-The labels **“MD”** and **“Pro”** need one final operational verification before they are used in public copy. Current public manufacturer pages do not provide a clear, stable comparison of their clinical indications, serum ingredients, depth settings, or outcome claims. Internal notes also use the labels inconsistently. Do **not** market one as a stronger, deeper, medical, or superior version of the other without the current manufacturer product sheet/IFU and ingredient panel in hand.
-
-### Safe client-facing wording until the products are verified
-
-> “Your Procell protocol is selected after a skin and candidacy review. We will explain the device setting, topical product, expected recovery, and why that option fits your goals before treatment.”
-
-### Required provider verification before publishing an MD-versus-Pro comparison
-
-1. Confirm the exact product names, current label/IFU, lot tracking, and intended use with the authorized Procell representative.
-2. Obtain the current full ingredient lists and contraindications for each topical product. Do not repeat a “growth factor,” “stem cell,” peptide, or exosome claim unless it is documented by the manufacturer and has been approved for the exact marketing context.
-3. Confirm whether the difference is a **serum**, **device/cartridge**, **professional credential**, or **in-house treatment tier**. These are not interchangeable.
-4. Document the house protocol: treatment areas, needle-depth ranges by area, numbing policy, single-use cartridge procedure, aftercare, and escalation plan.
-5. Have the licensed provider approve the final comparison and all candidate language.
-
-### Suggested decision language once verified
-
-Use an answer-first structure: “Both are Procell microchanneling protocols. The difference is the topical protocol and/or treatment plan selected for your skin; neither is automatically right for every concern.” Then state only the confirmed difference, the expected recovery, and the appropriate client profile. Avoid “medical grade,” “clinically proven,” “regenerates,” “repairs DNA,” “stem-cell,” or guaranteed-result language.
-
----
-
-## 2. Procell topical protocol vs topical PRF during microneedling
-
-| Question | Procell topical protocol | Topical PRF adjunct |
-| --- | --- | --- |
-| What it is | A manufacturer-specified professional topical used as part of a Procell protocol. | A blood-derived preparation made from the client's own sample and applied topically as part of the visit. |
-| What the visit adds | Product selection and ingredient screening. | Blood draw, centrifugation/preparation, additional clinical screening, and time. |
-| Best discussion for | Clients who prefer a streamlined branded protocol and whose ingredient history fits the verified product. | Clients interested in an autologous adjunct and who are appropriate for the blood draw and needling protocol. |
-| What cannot be promised | That a proprietary topical will outperform another option for every client. | That PRF will be delivered to a specified skin layer, replace injections, or produce a guaranteed result. |
-| Important compliance note | Use only verified, approved product language. | Describe it as **topically applied PRF**. Do not say the device injects it or delivers it into the skin. |
-
-### The evidence, in plain language
-
-Small studies of fluid PRF used alone or alongside needling for atrophic acne scars report encouraging outcomes, but protocols, preparation methods, participant groups, and outcome measures vary. That makes it inappropriate to promise that topical PRF is better than microneedling alone for every person or concern. Evidence for injectable PRF, PRP, laser combinations, and topical PRF cannot simply be treated as the same evidence.
-
-**Important regulatory distinction:** FDA information for patients says microneedling devices are not approved for delivery of blood products—including PRP—into the skin. For House of Rose, keep the description precise: PRF is prepared from the client's own blood and applied topically during the protocol; Amber's PRF offering is topical only, not injected. Final protocol, candidacy, and local regulatory compliance are confirmed by the licensed provider.
-
-### Client decision prompts
-
-- Do you want to avoid a blood draw, or are you comfortable with it?
-- Have you reacted to topical products, numbing agents, or adhesives before?
-- Are you taking blood thinners, have a bleeding/clotting history, or have a health or medication change that needs provider review?
-- Is your main goal overall texture, the appearance of fine lines, a scar concern, or a body area? The answer affects the protocol more than a product label does.
-- Can you follow the aftercare and avoid sun/heat/exercise as directed during recovery?
-
----
-
-## 3. Microneedling naming rule
-
-### The client-facing rule
-
-Use **Microneedling** for the generic service. Use **Procell Microchanneling** only when Procell is specifically being discussed. Do not compare the terms, ask clients to choose between them, or imply that House of Rose offers a second needling device or modality.
-
-The service name alone does not establish candidacy, settings, topical products, expected recovery, or likely results. Those details come from the provider-selected treatment plan.
-
-### What neither term should imply
-
-- A cure for acne, rosacea, eczema, hair loss, or another medical condition.
-- Erasure of scars or stretch marks.
-- A safe protocol for every skin tone, medication history, or active skin issue.
-- Permission to use an at-home roller in place of a professionally screened treatment.
-
----
-
-## 4. Facial and body treatment concerns, realistic series, and decision factors
-
-| Concern | How needling-based treatment may help | Typical planning conversation | Important limitation |
-| --- | --- | --- | --- |
-| Fine lines, crepey-looking texture, and overall skin quality | May support smoother-looking texture and a more refined appearance as collagen remodeling occurs. | Often a series of 3–6 sessions, commonly spaced about 4–6 weeks apart, then individualized maintenance. | Results develop over weeks to months; no guarantee of wrinkle removal. |
-| Enlarged-looking pores, dullness, and uneven texture | May help improve the appearance of texture and luminosity. | Start with a skin analysis and skincare/SPF review; choose a conservative first protocol when appropriate. | Pore size is not permanently changed. |
-| Atrophic acne-scar appearance | May improve the appearance of selected shallow or rolling scars as part of a personalized plan. | Often several sessions; deep ice-pick, tethered, hypertrophic, or keloid-prone scars need a clinician's assessment and may need a different approach. | It does not treat active acne or guarantee scar correction. |
-| Surgical or traumatic scar appearance | May be considered only after the scar is mature enough and the treating clinician approves the area. | Timing, scar type, history of abnormal scarring, and skin tone matter. | Do not needle an open, infected, irritated, or poorly healed area. |
-| Stretch marks | May help improve the visible texture and color variation of mature stretch marks on appropriate body areas. | A body zone is assessed separately; a series is usually more realistic than a single session. | Stretch marks are not “removed,” and response varies by age, color, location, and skin biology. |
-| Neck and décolleté | May be considered with a deliberately conservative setting and aftercare plan. | Confirm sun exposure, sensitivities, and whether the product/protocol is intended for the area. | These areas can be more reactive and are not automatically treated like facial skin. |
-
-### What “how many treatments?” should sound like
-
-“Most corrective goals call for a series, often three to six visits about four to six weeks apart. Your provider may recommend fewer, more, or a different option after reviewing the concern, skin history, and recovery response. Outcomes are individual and depend on your skin, candidacy, and consistency.”
-
-Do not publish a body-treatment count, depth, or PRF recommendation as a universal rule. Those decisions require the licensed provider's review of the area, contraindications, and local regulations.
-
----
-
-## 5. Candidacy, recovery, and safety: client-facing essentials
-
-### What a normal short-term recovery can include
-
-Redness, tightness, dryness, roughness, itching, peeling, tenderness, bruising, pinpoint bleeding, or crusting can occur after microneedling. The exact recovery window varies with the device, depth, area, skin, and protocol. The provider should give written aftercare rather than promising a fixed 24- or 72-hour timeline.
-
-### When to postpone or seek provider review
-
-The FDA advises careful screening for active skin infection, active rash, current cold sore outbreak, uncontrolled diabetes, immune suppression, bleeding/clotting disorders, anticoagulant use, recent isotretinoin use, a history of keloid scarring, certain autoimmune conditions, pregnancy/breastfeeding, planned sun exposure, and allergies to materials or topicals. This is a screening guide, not an exhaustive list. A provider must make the actual candidacy decision.
-
-### House standards to make visible in the consultation
-
-- A trained provider confirms candidacy, contraindications, area, device setting, topical choice, and aftercare.
-- A new single-use cartridge is used for every client and every treatment session.
-- Never needle sunburned, actively inflamed, infected, or open skin.
-- Clients should report increasing pain, spreading redness, drainage, fever, or another concerning symptom promptly so the provider can direct appropriate care.
-- Final treatment combinations and candidacy are confirmed by the licensed provider based on candidacy, contraindications, and local regulations.
-
----
-
-## 6. Website-ready FAQ copy
-
-### What does Procell Microchanneling mean?
-
-Procell Microchanneling is the branded Procell context for the Microneedling service performed with the Procell Therapies device. It is not a separate service category.
-
-### Is topical PRF the same as PRF injections?
-
-No. Topical PRF is applied on the surface during the needling protocol. PRF injections are a separate medical procedure. At House of Rose, Amber's PRF treatment is topical only; injectable PRF is evaluated and performed separately by the appropriate licensed provider.
-
-### Does topical PRF get injected through the microchannels?
-
-No. We describe PRF accurately as a topical adjunct applied during the protocol. The FDA states that microneedling devices are not authorized for delivery of blood products or topical products into the skin.
-
-### How many sessions will I need for scars or stretch marks?
-
-Most corrective concerns are planned as a series, often three to six sessions about four to six weeks apart. Your plan depends on the type and age of the concern, treatment area, skin history, recovery response, and candidacy. Individual results vary.
-
-### Can microneedling remove wrinkles, scars, or stretch marks?
-
-No treatment should promise removal. Needling-based treatments may help improve the *appearance* of texture, fine lines, selected scars, and stretch marks over time, but outcomes vary and some concerns need a different treatment approach.
-
----
-
-## 7. Copy rules and implementation checklist
-
-### Use
-
-- “Designed to support smoother-looking texture and skin quality.”
-- “For the appearance of fine lines, uneven texture, selected scars, and stretch marks on appropriate areas.”
-- “Topically applied PRF prepared from your own blood.”
-- “A personalized series may be recommended after consultation.”
-- “Outcomes are individual and depend on your skin, candidacy, and consistency.”
-
-### Do not use
-
-- “Stem-cell serum,” “stem-cell treatment,” “growth factors delivered deep into the skin,” “injects PRF,” or “FDA-approved PRF microneedling.”
-- “Erases scars,” “removes stretch marks,” “reverses aging,” “heals,” “treats acne,” or a guaranteed downtime/result claim.
-- Unverified claims that Procell MD or Procell Pro is more powerful, deeper, medical, superior, or better for a named condition.
-
-### Before a page goes live
-
-1. Verify the final Procell product names, device information, intended areas, and ingredients with the current manufacturer documentation.
-2. Have the licensed provider approve topical-PRF candidacy, blood-draw workflow, consent, infection-control documentation, and escalation protocol.
-3. Keep the retired microchanneling-versus-microneedling comparison parked and redirect its former route to `/services/microneedling/`.
-4. Link educational content to the canonical Microneedling service page, canonical cost guide, FAQ hub, and Punta Gorda local-area page.
-5. Run the House of Rose compliance checklist: no guarantee, reverse-aging, disease-treatment, unsupported exosome/peptide, or unsupported product-delivery claim.
-
----
-
-## Sources reviewed
-
-1. [U.S. Food & Drug Administration: Microneedling Devices](https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices) — authorized uses, risks, patient screening, cartridge safety, and the limitation on delivery of cosmetics, drugs, vitamins, or blood products through microneedling devices. Accessed July 10, 2026.
-2. [FDA: Regulatory Considerations for Microneedling Products](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/regulatory-considerations-microneedling-products) — regulatory context for device versus cosmetic claims.
-3. [Diab et al., *Fluid Platelet-Rich Fibrin Versus Platelet-Rich Plasma in Combination With Needling in Atrophic Acne Scars*](https://pmc.ncbi.nlm.nih.gov/articles/PMC10205840/) — a clinical study; informative but not a basis for universal outcome claims or an equivalence claim between all PRF protocols.
-4. [Procell Therapies](https://Procelltherapies.com/) — manufacturer overview of Procell microchanneling. Product-tier differences require current manufacturer documentation before publication.
-5. House of Rose internal service context in Notion: **Procell Microchanneling** and **Amber—Advanced Facials & Skin Renewal**. Treated as operational context only; outdated memberships, pricing, and unsupported “stem-cell” phrasing were intentionally excluded.
+Pro and MD use the same needling device. The verified difference is the topical serum: the MD serum
+shares the Pro serum's core formulation and contains twice the concentration of growth factors. Current
+House sources do not assign the serums by age, first-visit status, sensitivity, or a promised degree of
+correction, and do not rank one as broadly better.
+
+Topical PRF Microneedling is a separate appointment. PRF is prepared from a small sample of the
+client's own blood and applied to the skin surface during Microneedling. It is not combined with the
+Pro or MD serum appointments and is not injected. Injectable PRF is a separate service.
+
+## Current House of Rose appointments
+
+| Appointment | Duration | Price | Booking |
+|---|---:|---:|---|
+| Procell Therapies — Consultation | 60 minutes | **$50** | Online-bookable consultation |
+| Procell Therapies — Pro | 55 minutes | **$300** | Direct online booking |
+| Procell Therapies — MD | 55 minutes | **$400** | Direct online booking |
+| PRF Microneedling — Consultation | 60 minutes | **$595** | Online-bookable consultation |
+
+These are four distinct current rows. The ledger does not establish a Pro-plus-PRF combination,
+upgrade, add-on, finish, package, series, repeat cadence, or body appointment. Do not infer one from
+manufacturer material, clinical literature, a gated Sanity record, or an older internal document.
+
+## Provider and service boundary
+
+Amber Mingione, Licensed Esthetician provides Pro and MD Microneedling under written physician protocol
+and medical direction. Her PRF role is topical only. Diana Morrison, RN provides injectable PRF as a
+different service.
+
+Medical Director: Joshua Shaw, MD · FL Lic. ME136232
+
+Do not imply that Joshua Shaw, MD performs treatment or is on site. Do not describe Amber as providing
+PRF injections, and do not turn Diana Morrison, RN's injectable appointments into evidence for the
+topical Microneedling appointment.
+
+## What the FDA source establishes
+
+FDA patient guidance distinguishes the authorized uses of a microneedling device from delivery claims.
+The agency states that microneedling devices have not been evaluated for delivering cosmetics, topical
+medications, vitamin solutions, drugs, or blood products into the skin. Public House of Rose copy must
+therefore describe Procell serum and PRF as **topically applied**. It must not say the device injects,
+infuses, drives, or delivers either material into a specified skin layer, and must not describe topical
+PRF Microneedling as FDA-approved product delivery.
+
+This is a claims boundary, not a statement that topical PRF and injectable PRF are equivalent. The
+current House menu and reviewed module keep them separate.
+
+## What the research does not establish for House of Rose
+
+The cited fluid-PRF study concerns a particular research protocol and participant group. It does not
+establish that every PRF preparation, injectable PRF, PRP, topical PRF, or combined procedure has the
+same evidence. It also does not create a House of Rose appointment or authorize an outcome claim.
+
+Manufacturer material can support verified device or product identity. It cannot set House of Rose
+inventory, price, booking mode, provider responsibility, treatment cadence, route, or public voice.
+Those facts must come from the canonical ledger and reviewed local module.
+
+Do not publish from this report:
+
+- a recommended client profile for Pro versus MD;
+- a Procell-serum-plus-PRF combination or choice funnel;
+- body, neck, or décolleté Microneedling inventory;
+- a package, series count, interval, maintenance plan, preparation step, finish, or recovery promise;
+- a claim that one material is stronger, deeper, medical-grade, superior, or more effective;
+- a disease-treatment, scar-removal, stretch-mark-removal, guaranteed-result, or permanent-result claim;
+- a new comparison, concern, cost, package, case-study, or service route.
+
+## Current route contract
+
+- Canonical service: `/services/microneedling/`
+- Current topical-versus-injectable PRF explanation: `/services/prf/`
+- Current cost guide: `/cost/microneedling-cost-punta-gorda/`
+- Current provider profile: `/about/providers/amber/`
+- General questions: `/contact/`
+
+Do not create `/services/prf-microneedling/`, a body route, or a Pro-versus-MD comparison from this
+report. A historical or gated Sanity slug does not make a route public.
+
+## Publication checklist
+
+- Preserve all four appointment names, durations, prices, and booking distinctions exactly.
+- Keep Pro and MD on the same Procell Therapies device and limit the distinction to the verified serum
+  concentration fact.
+- Keep topical PRF separate from Pro and MD and separate from injectable PRF.
+- Use Amber Mingione, Licensed Esthetician and Diana Morrison, RN wherever those practitioners are named.
+- Use the canonical routes above with trailing slashes.
+- Omit any treatment, protocol, claim, or route that current House authority does not establish.
+
+## Sources
+
+1. `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` — current GlossGenius-backed
+   appointment names, durations, prices, and booking modes.
+2. `packages/web/src/lib/skinRenewalServiceEducation.ts` — reviewed public device, material, provider,
+   medical-direction, and topical-versus-injectable distinctions.
+3. [U.S. Food and Drug Administration, Microneedling Devices](https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices)
+   — device uses, risks, patient-screening context, single-use cartridge guidance, and the product-delivery
+   limitation. Accessed July 10, 2026.
+4. [FDA, Regulatory Considerations for Microneedling Products](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/regulatory-considerations-microneedling-products)
+   — device-versus-product regulatory context.
+5. [Diab et al., *Fluid Platelet-Rich Fibrin Versus Platelet-Rich Plasma in Combination With Needling
+   in Atrophic Acne Scars*](https://pmc.ncbi.nlm.nih.gov/articles/PMC10205840/) — protocol-specific
+   research that must not be generalized into a House of Rose outcome, equivalence, or inventory claim.
+6. [Procell Therapies](https://procelltherapies.com/) — manufacturer identity and device context only;
+   never House of Rose price, inventory, provider, route, or outcome authority.

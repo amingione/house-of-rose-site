@@ -6,65 +6,138 @@ import { ALL_CONCERNS_QUERY, type Concern } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { alignPublicContent } from '@/lib/publicCopy';
+import { getConcernEducation } from '@/lib/concernEducation';
 
 const concerns = alignPublicContent(await sanityFetch<Concern[]>(ALL_CONCERNS_QUERY));
+const concernsBySlug = new Map(concerns.map((concern) => [concern.slug, concern]));
+const concernCards = concerns.map((concern) => ({
+  concern,
+  education: getConcernEducation(concern.slug),
+}));
+const distinctionSpecs = [
+  { slug: 'active-acne', relatedSlugs: ['acne-scarring'] },
+  { slug: 'dark-circles', relatedSlugs: ['volume-loss'] },
+  { slug: 'fine-lines-laxity', relatedSlugs: ['texture', 'volume-loss'] },
+] as const;
+const distinctions = distinctionSpecs.flatMap(({ slug, relatedSlugs }) => {
+  const concern = concernsBySlug.get(slug);
+  const education = getConcernEducation(slug);
+  if (!concern || !education) return [];
+
+  return [{
+    concern,
+    heading: education.heading,
+    lead: education.lead,
+    related: relatedSlugs.flatMap((relatedSlug) => {
+      const relatedConcern = concernsBySlug.get(relatedSlug);
+      return relatedConcern ? [relatedConcern] : [];
+    }),
+  }];
+});
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
-  { name: 'What We Treat', item: canonical },
+  { name: 'Concern Guides', item: canonical },
 ]);
 const concernsListSchema = concerns.length
   ? itemList(
       concerns.map((c) => ({ name: c.title, url: new URL(`/concerns/${c.slug}/`, site).toString() })),
-      'Skin & Aesthetic Concerns We Treat',
+      'Concern Guides from House of Rose Aesthetics',
     )
   : null;
 ---
 
 <BaseLayout
-  title="What We Treat — Skin & Aesthetic Concerns | House of Rose, Punta Gorda FL"
-  description="Acne scars, fine lines, dark spots, under-eyes, volume loss, texture, and more. See the concerns House of Rose treats in Punta Gorda and the treatments matched to each."
+  title="Concern Guides | House of Rose Aesthetics"
+  description="Compare visible changes in pigment, texture, movement, and volume, then find related House of Rose concern guides and services in Punta Gorda."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {concernsListSchema && <SchemaMarkup item={concernsListSchema} slot="head" />}
 
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
-      <span class="kicker">What We Treat</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Start with your concern</h1>
-      <p class="text-ink/80 text-[16px] max-w-[660px] leading-relaxed">
-        Every concern has more than one path. Find yours below and see the treatments at House of Rose matched to it — then we map the plan at your consultation.
+      <span class="kicker">Concern Guides</span>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Skin changes can look similar without being the same.</h1>
+      <p class="text-ink/80 text-[16px] max-w-[760px] leading-relaxed">
+        A shadow that stays in every light, a patch of uneven color, texture that catches makeup, and a line that appears with expression can come from pigment, texture, movement, or volume. The guides show how those visible patterns differ before you compare related services.
       </p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-      {concerns.map((c) => (
-        <a href={`/concerns/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
-          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{c.title}</h2>
-          {c.intro && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('intro')}>{c.intro}</p>}
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">See treatments</span>
+      {concernCards.map(({ concern, education }) => (
+        <a
+          href={`/concerns/${concern.slug}/`}
+          class="bg-charcoal p-7 group flex min-h-[250px] flex-col transition-colors hover:bg-charcoal-lighter"
+          data-concern-guide-card
+          {...sbObjectId(concern._id)}
+        >
+          <h2 class="font-serif text-[22px] text-ink group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{concern.title}</h2>
+          {education && (
+            <p class="mt-4 text-[14px] leading-[1.75] text-muted">{education.lead}</p>
+          )}
+          <span class="learn-more group-hover:text-gold mt-auto pt-7 inline-block">Read the guide</span>
         </a>
       ))}
       {concerns.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Concern guides are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No concern guides are currently available.</p>
       )}
     </div>
   </section>
 
+  {distinctions.length > 0 && (
+    <section data-concern-index-guidance class="border-y border-gold-metal/10 bg-charcoal px-6 py-[clamp(48px,7vw,76px)]">
+      <div class="mx-auto max-w-[1280px]">
+        <div class="mb-10 max-w-[680px]">
+          <span class="kicker">Useful distinctions</span>
+          <h2 class="mt-2 font-serif text-[clamp(26px,4vw,40px)] leading-tight text-ink">Some concerns overlap in the mirror.</h2>
+          <p class="mt-4 text-[15px] leading-[1.8] text-muted">
+            These examples show what to notice before opening the related guides. They are observations, not a diagnosis.
+          </p>
+        </div>
+        <div class="grid gap-px bg-gold-metal/10 md:grid-cols-3">
+          {distinctions.map(({ concern, heading, lead, related }) => (
+            <article class="bg-charcoal-light p-7">
+              <h3 class="font-serif text-[22px] leading-snug text-ink">{heading}</h3>
+              <p class="mt-4 text-[14px] leading-[1.75] text-muted">{lead}</p>
+              <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+                <a href={`/concerns/${concern.slug}/`} class="learn-more">{concern.title}</a>
+                {related.map((relatedConcern) => (
+                  <a href={`/concerns/${relatedConcern.slug}/`} class="learn-more">{relatedConcern.title}</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
-    <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Not Sure Where To Start?</span>
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Let your skin tell us.</h2>
-      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-8 leading-[1.8]">
-        In-studio advanced skin imaging reads your skin and maps it to the right treatments — the clearest first step before you book.
+    <div class="max-w-[880px] mx-auto text-center">
+      <span class="kicker">Skin analysis and consultation</span>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mt-2 mb-5">Photographs or a conversation?</h2>
+      <p class="text-muted text-[15px] max-w-[620px] mx-auto leading-[1.8]">
+        Choose Skin Analysis for multi-spectrum photographs and a visual baseline. Use a consultation to ask about services, providers, prices, timing, and recovery.
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
-        <a href="/services/" class="btn-gold">Explore Services</a>
+      <div class="mt-9 grid gap-px bg-gold-metal/10 text-left md:grid-cols-2">
+        <article class="bg-charcoal-light p-7">
+          <h3 class="font-serif text-[22px] text-ink">Skin analysis records three views.</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            Standard, cross-polarized, and UV photographs can make visible patterns in pigment, pores, texture, fine lines, and sun exposure easier to examine. The images provide a baseline; they do not diagnose a skin condition.
+          </p>
+          <a href="/skin-analysis/" class="learn-more mt-6 inline-block">See how skin analysis works</a>
+        </article>
+        <article class="bg-charcoal-light p-7">
+          <h3 class="font-serif text-[22px] text-ink">A consultation is for questions before booking.</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            Compare options and ask who provides a service, what it costs, how long it takes, and what recovery may involve.
+          </p>
+          <a href="/consultation/" class="learn-more mt-6 inline-block">Send a consultation inquiry</a>
+        </article>
       </div>
     </div>
   </section>

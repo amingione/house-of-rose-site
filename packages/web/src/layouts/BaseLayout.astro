@@ -1,7 +1,7 @@
 ---
 import '@/styles/global.css';
 import { sanityFetch } from '@/lib/sanity';
-import { SITE_SETTINGS_QUERY, ALL_SERVICES_QUERY, type SiteSettings, type Service } from '@/lib/queries';
+import { SITE_SETTINGS_QUERY, type SiteSettings } from '@/lib/queries';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CartDrawer from '@/components/shop/CartDrawer.astro';
@@ -11,37 +11,47 @@ import ConsentBootstrap from '@/components/ConsentBootstrap.astro';
 import ConsentManager from '@/components/ConsentManager.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { SEO } from 'astro-seo';
-import { siteEntityGraph } from '@/lib/structuredData';
+import { siteEntityGraph, type StructuredPageType } from '@/lib/structuredData';
+import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 import { formatSeoTitle } from '@/lib/seo';
+import { SHOP_ENABLED } from '@/lib/features';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   preloadImage?: string;
   preloadImageSrcset?: string;
   preloadImageSizes?: string;
   noindex?: boolean;
   nofollow?: boolean;
   chrome?: 'site' | 'landing';
+  structuredPageType?: StructuredPageType;
+  structuredPageMainEntityId?: string;
 }
 
-const settings = await sanityFetch<SiteSettings>(SITE_SETTINGS_QUERY);
-const services = await sanityFetch<Service[]>(ALL_SERVICES_QUERY);
-const siteName = settings?.siteName ?? 'House of Rose Aesthetics';
+const settings = await sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY);
+const siteFacts = resolvePublicSiteFacts(settings);
+const siteName = siteFacts.siteName;
 
 const {
   title = siteName,
   description = settings?.description ?? 'House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
   image,
   imageAlt,
+  imageWidth,
+  imageHeight,
   preloadImage,
   preloadImageSrcset,
   preloadImageSizes,
   noindex = false,
   nofollow = false,
   chrome = 'site',
+  structuredPageType = 'WebPage',
+  structuredPageMainEntityId,
 } = Astro.props;
 
 const gtmId = import.meta.env.DEV ? undefined : import.meta.env.PUBLIC_GTM_ID;
@@ -55,11 +65,11 @@ const openAIAdsPixelId = import.meta.env.DEV ? undefined : import.meta.env.PUBLI
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL(Astro.url.pathname, siteURL);
-const defaultOgImage = new URL('/images/socialShareCover/HOUSE-OF-ROSE-FL.webp', siteURL).toString();
+const defaultOgImage = new URL('/images/socialShareCover/house-of-rose-social-1942.webp', siteURL).toString();
 const socialImage = image ? new URL(image, siteURL).toString() : defaultOgImage;
 const socialImageAlt = imageAlt ?? `${siteName} in Punta Gorda, Florida`;
-const socialImageWidth = image ? 1200 : 1942;
-const socialImageHeight = image ? 630 : 809;
+const socialImageWidth = image ? imageWidth ?? 1200 : 1942;
+const socialImageHeight = image ? imageHeight ?? 630 : 809;
 const pageTitle = formatSeoTitle(title, siteName);
 const entityGraph = siteEntityGraph(
   {
@@ -68,7 +78,9 @@ const entityGraph = siteEntityGraph(
     description,
     image: socialImage,
     imageAlt: socialImageAlt,
-    email: settings?.email,
+    siteFacts,
+    pageType: structuredPageType,
+    mainEntityId: structuredPageMainEntityId,
   },
   siteURL.toString(),
 );
@@ -123,7 +135,6 @@ const entityGraph = siteEntityGraph(
         imageAlt: socialImageAlt,
       }}
     />
-    <script is:inline type="text/javascript" src="//script.crazyegg.com/pages/scripts/0133/4876.js" async="async"></script>
     <SchemaMarkup item={entityGraph} />
     <ConsentBootstrap />
     <script
@@ -144,17 +155,17 @@ const entityGraph = siteEntityGraph(
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
-    {chrome === 'site' && <Header currentPath={Astro.url.pathname} />}
+    {chrome === 'site' && <Header currentPath={Astro.url.pathname} siteFacts={siteFacts} />}
 
     <!-- Page content -->
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
-    {chrome === 'site' && <Footer services={services.map(s => ({ title: s.title, slug: s.slug }))} />}
+    {chrome === 'site' && <Footer siteFacts={siteFacts} />}
 
     <!-- Cart UI remains outside main so it does not interfere with page landmarks. -->
-    {chrome === 'site' && <CartDrawer />}
+    {chrome === 'site' && SHOP_ENABLED && <CartDrawer />}
 
     <LeadAnalytics />
     <ConsentManager />

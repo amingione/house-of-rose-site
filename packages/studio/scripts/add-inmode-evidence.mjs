@@ -27,6 +27,7 @@ const media = ({
   title,
   caption,
   sourceCredit,
+  consentConfirmed,
 }) => ({
   _key: key,
   _type: 'object',
@@ -37,7 +38,7 @@ const media = ({
   caption,
   sourceCredit,
   usageApproved: true,
-  ...(kind === 'before-after' ? { consentConfirmed: true } : {}),
+  ...(typeof consentConfirmed === 'boolean' ? { consentConfirmed } : {}),
 });
 
 const research = ({
@@ -64,6 +65,7 @@ const research = ({
 const services = [
   {
     documentId: 'service-morpheus8',
+    slug: 'morpheus8',
     title: 'Morpheus8 RF Microneedling',
     evidenceMedia: [
       media({
@@ -73,7 +75,7 @@ const services = [
         alt: 'Morpheus8 Burst radiofrequency microneedling handpiece',
         title: 'Morpheus8 Burst Technology',
         caption:
-          'The Morpheus8 handpiece combines controlled microneedling with fractional bipolar radiofrequency. Treatment depth, energy, and area are selected for the individualized plan.',
+          'The Morpheus8 handpiece combines microneedling with fractional bipolar radiofrequency.',
         sourceCredit: 'InMode manufacturer media',
       }),
     ],
@@ -81,6 +83,7 @@ const services = [
   },
   {
     documentId: 'service-lumecca-peak-ipl',
+    slug: 'lumecca-peak-ipl',
     title: 'Lumecca Peak IPL Photofacial',
     evidenceMedia: [
       media({
@@ -90,18 +93,8 @@ const services = [
         alt: 'Lumecca Peak intense pulsed light handpiece',
         title: 'Lumecca Peak IPL Technology',
         caption:
-          'Lumecca Peak delivers customizable pulses of broad-spectrum light. The planned area, skin assessment, recent sun exposure, and candidacy guide treatment settings.',
+          'Lumecca Peak is an intense pulsed light device used for selected pigment and tone concerns.',
         sourceCredit: 'InMode manufacturer media',
-      }),
-      media({
-        key: 'lumecca-face-example',
-        kind: 'before-after',
-        filename: 'Lumecca-Peak-Before-and-After.png',
-        alt: 'Manufacturer-provided Lumecca Peak IPL facial before and after example',
-        title: 'Visible Tone and Discoloration Example',
-        caption:
-          'A manufacturer-provided example illustrating visible change in facial discoloration and overall tone after Lumecca IPL. This is not a House of Rose client.',
-        sourceCredit: 'Manufacturer-provided treatment example; attribution embedded in image',
       }),
     ],
     researchReferences: [
@@ -121,10 +114,11 @@ const services = [
   },
   {
     documentId: 'service-forma-rf-facial',
+    slug: 'forma-rf-facial',
     title: 'Forma RF Facial',
     fieldUpdates: {
       'faqs[_key=="areas"].answer':
-        'House of Rose considers Forma for eligible areas of the face, cheeks, lower face, and neck. Your consultation confirms whether the area and crepey-texture concern fit the treatment.',
+        'Forma may be used on the face, cheeks, lower face, and neck. Available treatment areas are listed in the current services menu.',
     },
     evidenceMedia: [
       media({
@@ -134,7 +128,7 @@ const services = [
         alt: 'Forma temperature-controlled radiofrequency facial handpiece',
         title: 'Forma Facial RF Technology',
         caption:
-          'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose considers eligible areas of the face and neck after consultation.',
+          'The Forma handpiece delivers radiofrequency while monitoring skin temperature in real time.',
         sourceCredit: 'InMode manufacturer media',
       }),
     ],
@@ -157,6 +151,7 @@ const services = [
 ];
 
 const excludedPublicFiles = [
+  'Lumecca-Peak-Before-and-After.png',
   'Forma-and-Plus.png',
   'Forma-Before-and-After.png',
   'KhloeKardashian.png',
@@ -323,7 +318,7 @@ async function apply() {
     `drafts.${service.documentId}`,
   ]);
   const existingDocuments = await client.fetch(
-    '*[_id in $ids]{_id, _type, title, status}',
+    '*[_id in $ids]{_id, _type, title, "slug":slug.current, status}',
     { ids: managedIds },
   );
   const existingById = new Map(existingDocuments.map((document) => [document._id, document]));
@@ -334,6 +329,10 @@ async function apply() {
     assert(
       ['live', 'actual-menu'].includes(published.status),
       `${service.title} is not currently public.`,
+    );
+    assert(
+      published.slug === service.slug,
+      `${service.documentId} resolves to ${published.slug ?? 'no slug'}, not ${service.slug}.`,
     );
   }
 

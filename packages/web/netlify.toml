@@ -92,7 +92,7 @@
 
 [[redirects]]
   from   = "/packages/the-evergreen-series/"
-  to     = "/packages/prf-under-eye-series-of-3/"
+  to     = "/services/prf-under-eyes/"
   status = 301
 
 [[redirects]]
@@ -169,7 +169,17 @@ status = 301
 
 [[redirects]]
 from   = "/concerns/enlarged-pored/"
-to     = "/concerns/enlarged-pores/"
+to     = "/concerns/"
+status = 301
+
+[[redirects]]
+from   = "/concerns/enlarged-pores/"
+to     = "/concerns/"
+status = 301
+
+[[redirects]]
+from   = "/concerns/ingrown-hair/"
+to     = "/concerns/"
 status = 301
 
 [[redirects]]
@@ -179,6 +189,13 @@ status = 301
 
 [[redirects]]
 from   = "/compare/prf-injections-vs-ez-gel/"
+to     = "/services/prf-injections/"
+status = 301
+
+# The /services/collections/prf/ serviceCollection doc was an orphaned duplicate
+# of the real PRF hub — zero valid members, dead weight. Removed 2026-08-12.
+[[redirects]]
+from   = "/services/collections/prf/"
 to     = "/services/prf/"
 status = 301
 
@@ -189,6 +206,16 @@ status = 301
 
 [[redirects]]
 from   = "/compare/Procell-vs-topical-prf/"
+to     = "/services/prf/"
+status = 301
+
+[[redirects]]
+from   = "/compare/procell-serum-vs-prf/"
+to     = "/services/prf/"
+status = 301
+
+[[redirects]]
+from   = "/compare/procell-vs-topical-prf/"
 to     = "/services/prf/"
 status = 301
 
@@ -207,7 +234,22 @@ status = 301
 
 [[redirects]]
 from   = "/services/procell-microchanneling-body/"
-to     = "/services/microneedling-body/"
+to     = "/services/microneedling/"
+status = 301
+
+[[redirects]]
+from   = "/services/microneedling-body/"
+to     = "/services/microneedling/"
+status = 301
+
+[[redirects]]
+from   = "/services/neck-decollete-extension/"
+to     = "/services/microneedling/"
+status = 301
+
+[[redirects]]
+from   = "/services/ez-gel-bio-filler/"
+to     = "/services/prf/"
 status = 301
 
 [[redirects]]
@@ -222,6 +264,14 @@ status = 301
 
 [[redirects]]
 from   = "/compare/topical-prf-vs-prf-injections/"
+to     = "/services/prf/"
+status = 301
+
+# The former PRF-vs-PRP comparison is not in the reviewed public comparison
+# allowlist. Preserve its existing public URL without republishing unsupported
+# comparison claims.
+[[redirects]]
+from   = "/compare/prf-vs-prp/"
 to     = "/services/prf/"
 status = 301
 
@@ -328,6 +378,57 @@ from   = "/services/biorepeel-body/"
 to     = "/services/biorepeel/"
 status = 301
 
+# PRF combo/pairing variants consolidated into the core PRF hub page —
+# Sanity carries core modalities only, not every bookable pairing
+# (owner direction, 2026-08-13).
+[[redirects]]
+from   = "/services/prf-microneedling/"
+to     = "/services/prf/"
+status = 301
+
+[[redirects]]
+from   = "/services/prf-body-treatments/"
+to     = "/services/prf/"
+status = 301
+
+[[redirects]]
+from   = "/services/prf-fibrin-veil/"
+to     = "/services/prf/"
+status = 301
+
+[[redirects]]
+from   = "/cost/prf-injections-cost-punta-gorda/"
+to     = "/services/prf-injections/"
+status = 301
+
+[[redirects]]
+from   = "/cost/prf-microneedling-cost-punta-gorda/"
+to     = "/services/prf/"
+status = 301
+
+# Package records without a matching current GlossGenius package line are not
+# public offerings. Preserve their useful destination without advertising the
+# unsupported package or price.
+[[redirects]]
+from   = "/packages/dermaplaning-package-of-4/"
+to     = "/services/dermaplaning/"
+status = 301
+
+[[redirects]]
+from   = "/packages/glo2facial-series-of-3/"
+to     = "/services/glo2facial/"
+status = 301
+
+[[redirects]]
+from   = "/packages/glo2facial-series-of-6/"
+to     = "/services/glo2facial/"
+status = 301
+
+[[redirects]]
+from   = "/packages/prf-under-eye-series-of-3/"
+to     = "/services/prf-under-eyes/"
+status = 301
+
 # Nav restructure to 6 top-level categories — InMode / Facials / Injectables /
 # IV Hydration Therapy / Makeup & Lashes / Waxing (owner direction, 2026-08-01).
 # Old collection pages retired or renamed; redirect to their new home.
@@ -373,13 +474,57 @@ status = 301
 
 [[redirects]]
 from   = "/services/collections/wellness-restoration/"
-to     = "/services/collections/injectables-bio-fillers/"
+to     = "/services/collections/iv-hydration-therapy/"
+status = 301
+
+[[redirects]]
+from   = "/services/wellness/"
+to     = "/services/collections/iv-hydration-therapy/"
 status = 301
 
 [[redirects]]
 from   = "/services/collections/permanent-jewelry/"
 to     = "/services/permanent-jewelry/"
 status = 301
+
+# TEMPORARY — public shop disabled. The source, Sanity schemas, and checkout
+# implementation remain intact. Remove these forced 404s and set
+# PUBLIC_SHOP_ENABLED=true to restore the storefront.
+[[redirects]]
+from   = "/shop"
+to     = "/404.html"
+status = 404
+force  = true
+
+[[redirects]]
+from   = "/shop/*"
+to     = "/404.html"
+status = 404
+force  = true
+
+[[redirects]]
+from   = "/checkout"
+to     = "/404.html"
+status = 404
+force  = true
+
+[[redirects]]
+from   = "/checkout/*"
+to     = "/404.html"
+status = 404
+force  = true
+
+[[redirects]]
+from   = "/order-confirmed"
+to     = "/404.html"
+status = 404
+force  = true
+
+[[redirects]]
+from   = "/order-confirmed/*"
+to     = "/404.html"
+status = 404
+force  = true
 
 # 404 fallback for unknown routes (Astro static output)
 [[redirects]]

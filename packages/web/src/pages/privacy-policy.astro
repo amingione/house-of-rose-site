@@ -2,43 +2,16 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SchemaMarkup from "@/components/SchemaMarkup.astro";
 import { sanityFetch } from "@/lib/sanity";
+import {
+	PRIVACY_POLICY_QUERY,
+	type PrivacyPolicy,
+	type PrivacySection,
+} from "@/lib/queries";
 import { sbObjectId, sbFieldPath, sbFieldPathParts } from "@/lib/visualEditing";
-import { webPage, breadcrumbList } from "@/lib/structuredData";
+import { breadcrumbList } from "@/lib/structuredData";
 import { alignPublicChannelCopy } from "@/lib/publicCopy";
 
 const privacySupportEmail = "support@updates.houseofrosefl.com";
-
-// ─── Privacy Policy content from Sanity (singleton) ─────────────────────────────
-// Falls back to the original hardcoded copy if a field is empty, so there's no
-// regression and nothing is lost. Section bodies are plain text (rendered with
-// whitespace-pre-line) — list bullets/numbers live inside the text.
-interface PrivacySection {
-	_key: string;
-	heading: string;
-	body: string;
-}
-
-interface PrivacyPolicy {
-	_id?: string;
-	seoTitle?: string;
-	seoDescription?: string;
-	pageTitle?: string;
-	lastUpdated?: string;
-	intro?: string;
-	sections?: PrivacySection[];
-}
-
-const PRIVACY_POLICY_QUERY = /* groq */ `
-	*[_type == "privacyPolicy"][0]{
-		_id,
-		seoTitle,
-		seoDescription,
-		pageTitle,
-		lastUpdated,
-		intro,
-		sections[]{ _key, heading, body }
-	}
-`;
 
 const data =
 	(await sanityFetch<PrivacyPolicy | null>(PRIVACY_POLICY_QUERY)) ??
@@ -76,7 +49,7 @@ const REQUIRED_MEASUREMENT_SECTIONS: PrivacySection[] = [
 	{
 		_key: "measurement",
 		heading: "Website Measurement and Advertising",
-		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 to understand consented website activity, and Google Ads, Meta Pixel, and OpenAI Ads measurement tools to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Meta Pixel, OpenAI Ads measurement, and Ahrefs Analytics do not activate until the applicable analytics or advertising permission is granted.",
+		body: "We use Google Tag Manager to control measurement tags, Google Analytics 4 and Crazy Egg to understand consented website activity, and Google Ads, Meta Pixel, and OpenAI Ads measurement tools to measure advertising performance. With your permission, these services may use cookies or similar technologies and process device, browser, page, campaign, and interaction information. Google tags may also send limited consent-aware, cookieless signals when storage is denied. Crazy Egg, Meta Pixel, OpenAI Ads measurement, and Ahrefs Analytics do not activate until the applicable analytics or advertising permission is granted.",
 	},
 	{
 		_key: "attribution",
@@ -90,6 +63,12 @@ const REQUIRED_MEASUREMENT_SECTIONS: PrivacySection[] = [
 	},
 ];
 
+const DIRECTIONS_PRIVACY_SECTION: PrivacySection = {
+	_key: "directions-location",
+	heading: "Directions and Location Access",
+	body: "The directions tool on the Contact page uses Mapbox to display the map, search a starting address, and calculate driving time and distance. If you choose “Use my location,” your browser asks for permission; when granted, your coordinates are sent to Mapbox to calculate the route. You can decline location access and enter a starting address instead, or open Google Maps or Apple Maps without supplying a starting point. The directions tool does not add your starting address or current location to the contact form.",
+};
+
 const sourceSections =
 	data.sections && data.sections.length ? data.sections : FALLBACK_SECTIONS;
 const reservedHeadings = new Set([
@@ -98,6 +77,7 @@ const reservedHeadings = new Set([
 	"click identifiers, retail conversions, and retention",
 	"click identifiers, conversions, and retention",
 	"your privacy choices",
+	"directions and location access",
 ]);
 const sections = [
 	...sourceSections.filter((section) => {
@@ -106,6 +86,7 @@ const sections = [
 	}),
 	FALLBACK_SECTIONS[2],
 	FALLBACK_SECTIONS[3],
+	DIRECTIONS_PRIVACY_SECTION,
 	...REQUIRED_MEASUREMENT_SECTIONS,
 ]
 	.filter((section): section is PrivacySection => Boolean(section))
@@ -116,7 +97,7 @@ const sections = [
 	}));
 
 const pageTitle = data.pageTitle ?? "Privacy Policy";
-const lastUpdated = data.lastUpdated ?? "Effective July 26, 2026";
+const lastUpdated = "Updated August 14, 2026";
 const intro = alignPublicChannelCopy(
 	(data.intro ??
 		"House of Rose Aesthetics LLC respects your privacy. This policy explains how we handle customer information, including information connected to SMS messaging."),
@@ -131,10 +112,6 @@ const pageMetaDescription = alignPublicChannelCopy(
 	data.seoDescription ??
 	"House of Rose Aesthetics LLC privacy policy, data sharing practices, and messaging terms and conditions.",
 );
-const webPageSchema = webPage(
-	{ name: pageTitle, description: pageMetaDescription, url: canonical },
-	site,
-);
 const breadcrumb = breadcrumbList([
 	{ name: "Home", item: site },
 	{ name: "Privacy Policy", item: canonical },
@@ -142,7 +119,6 @@ const breadcrumb = breadcrumbList([
 ---
 
 <BaseLayout title={pageMetaTitle} description={pageMetaDescription}>
-	<SchemaMarkup item={webPageSchema} slot="head" />
 	<SchemaMarkup item={breadcrumb} slot="head" />
 	<section class="bg-charcoal py-24 max-w-4xl mx-auto px-6" {...oid}>
 		<div class="text-center mb-16">
@@ -150,7 +126,7 @@ const breadcrumb = breadcrumbList([
 				House of Rose Aesthetics LLC
 			</p>
 			<h1 class="font-serif text-5xl text-ink" {...sbFieldPath("pageTitle")}>{pageTitle}</h1>
-			<p class="mt-4 text-sm text-ink/75" {...sbFieldPath("lastUpdated")}>{lastUpdated}</p>
+			<p class="mt-4 text-sm text-ink/75">{lastUpdated}</p>
 		</div>
 
 		<div class="prose prose-lg max-w-none text-ink/80">
@@ -160,29 +136,35 @@ const breadcrumb = breadcrumbList([
 
 			{sections.map((section, i) => (
 				<>
-					<h2 {...sbFieldPathParts("sections", i, "heading")}>{section.heading}</h2>
-					<p class="whitespace-pre-line" {...sbFieldPathParts("sections", i, "body")}>{section.body}</p>
+					<h2 {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "heading"))}>{section.heading}</h2>
+					<p class="break-words whitespace-pre-line" {...(section._key === DIRECTIONS_PRIVACY_SECTION._key ? {} : sbFieldPathParts("sections", i, "body"))}>{section.body}</p>
 				</>
 			))}
 		</div>
 
 		<form
 			id="privacy-contact"
+			aria-labelledby="privacy-request-heading"
 			method="post"
 			action="/.netlify/functions/privacy-contact"
-			class="mt-12 border border-gold-metal/20 bg-charcoal-light p-6 shadow-sm"
+			class="mt-12 scroll-mt-24 border border-gold-metal/20 bg-charcoal-light p-6 shadow-sm"
 		>
 			<div class="mb-6">
 				<p class="text-xs tracking-[0.3em] uppercase text-gold mb-2">
 					Privacy Support
 				</p>
-				<h2 class="font-serif text-3xl text-ink">
+				<h2 id="privacy-request-heading" class="font-serif text-3xl text-ink">
 					Send a Privacy Request
 				</h2>
 				<p class="mt-3 text-sm leading-relaxed text-ink/70">
-					This form is handled through Resend and forwards privacy
-					messages to House of Rose at info@houseofrosefl.com.
+					Use this form for a privacy question or request that needs a reply. Sending it does not change your optional website measurement preferences.
 				</p>
+				<p class="mt-3 text-sm leading-relaxed text-ink/70">
+					This mailbox is not monitored for appointment changes or questions after a visit. For those, call <a href="tel:+18449417673" class="text-gold underline underline-offset-2">(844) 941-7673</a> during practice hours or review the <a href="/support/" class="text-gold underline underline-offset-2">support options</a>. If you believe you are having a medical emergency, call 911 or seek emergency care.
+				</p>
+				<button id="privacy-form-choices" type="button" class="btn-outline-gold mt-5">
+					Review privacy choices
+				</button>
 			</div>
 
 			<div class="grid gap-5 md:grid-cols-2">
@@ -252,7 +234,18 @@ const breadcrumb = breadcrumbList([
 	</section>
 </BaseLayout>
 
+<script>
+	document.getElementById("privacy-form-choices")?.addEventListener("click", () => {
+		window.dispatchEvent(new CustomEvent("hor:open-consent"));
+	});
+</script>
+
 <style>
+	#privacy-contact :is(input, textarea):focus-visible {
+		outline: 2px solid #c9a063;
+		outline-offset: 2px;
+	}
+
 	/* Override prose heading colors to match brand */
 	.prose h2 {
 		@apply text-gold font-serif text-2xl mb-4 mt-8;

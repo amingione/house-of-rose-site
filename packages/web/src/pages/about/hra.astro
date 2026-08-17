@@ -4,17 +4,17 @@ import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ABOUT_PAGE_QUERY, type AboutPageContent } from '@/lib/queries';
 import { ABOUT_PAGE_FALLBACK } from '@/lib/aboutFallbacks';
-import { breadcrumbList, webPage } from '@/lib/structuredData';
-import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
+import { breadcrumbList } from '@/lib/structuredData';
+import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
-const heading = content?.hraHeading ?? ABOUT_PAGE_FALLBACK.hraHeading;
-const intro = content?.hraIntro ?? ABOUT_PAGE_FALLBACK.hraIntro;
-const paragraphs = content?.hraParagraphs?.length ? content.hraParagraphs : ABOUT_PAGE_FALLBACK.hraParagraphs;
+// Working voice reset: copy stays local until Amber approves it for Sanity.
+const heading = ABOUT_PAGE_FALLBACK.hraHeading;
+const intro = 'A Punta Gorda medical aesthetics practice where medical services, esthetic skin care, and a small group of related services share one address and a clearly named team.';
 const imageUrl = content?.hraImageUrl ?? ABOUT_PAGE_FALLBACK.hraImageUrl;
 const imageAlt = content?.hraImageAlt ?? ABOUT_PAGE_FALLBACK.hraImageAlt;
-const title = content?.hraSeo?.metaTitle ?? ABOUT_PAGE_FALLBACK.hraSeo?.metaTitle;
-const description = content?.hraSeo?.metaDescription ?? ABOUT_PAGE_FALLBACK.hraSeo?.metaDescription;
+const title = ABOUT_PAGE_FALLBACK.hraSeo?.metaTitle;
+const description = ABOUT_PAGE_FALLBACK.hraSeo?.metaDescription;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -23,7 +23,6 @@ const breadcrumb = breadcrumbList([
   { name: 'About', item: new URL('/about/', site).toString() },
   { name: 'House of Rose Aesthetics', item: canonical },
 ]);
-const pageSchema = webPage({ name: heading, description: description ?? intro, url: canonical }, site);
 ---
 
 <BaseLayout
@@ -33,7 +32,6 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
   imageAlt={imageAlt}
   preloadImage={imageUrl}
 >
-  <SchemaMarkup item={pageSchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
 
   <div {...(content?._id ? sbObjectId(content._id) : {})}>
@@ -41,54 +39,93 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
       <div class="flex items-center px-6 py-[clamp(64px,9vw,112px)] sm:px-10 lg:px-[clamp(56px,7vw,108px)]">
         <div class="max-w-[650px]">
           <p class="kicker">Medical Aesthetics Practice</p>
-          <h1 class="font-serif text-[clamp(42px,6vw,72px)] leading-[0.98] text-ink" {...sbFieldPath('hraHeading')}>
+          <h1 class="font-serif text-[clamp(42px,6vw,72px)] leading-[0.98] text-ink">
             {heading}
           </h1>
-          <p class="mt-8 text-[18px] leading-[1.8] text-muted-strong" {...sbFieldPath('hraIntro')}>
+          <p class="mt-8 text-[18px] leading-[1.8] text-muted-strong">
             {intro}
-          </p>
-          <p class="mt-8 text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">
-            Medical Aesthetics. Thoughtfully Practiced.
           </p>
         </div>
       </div>
       <div class="min-h-[440px] bg-limestone lg:min-h-full">
-        <img src={imageUrl} alt={imageAlt} width="1400" height="1000" class="h-full w-full object-cover" fetchpriority="high" />
+        <img
+          src={imageUrl}
+          alt={imageAlt}
+          width="1400"
+          height="1000"
+          class="h-full w-full object-cover"
+          fetchpriority="high"
+          {...(content?._id ? sbFieldPath('hraImage') : {})}
+        />
       </div>
     </section>
 
     <section class="border-y border-walnut/10 bg-breath px-6 py-[clamp(64px,9vw,112px)]">
       <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
         <div>
-          <p class="kicker">How the practice works</p>
-          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">A plan before a procedure.</h2>
+          <p class="kicker">The practice</p>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">Medical and esthetic services, with clear roles.</h2>
         </div>
-        <div class="space-y-6 text-[16px] leading-[1.85] text-muted">
-          {paragraphs.map((paragraph, index) => (
-            <p {...sbFieldPathParts('hraParagraphs', index)}>{paragraph}</p>
-          ))}
+        <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
+          <p>
+            Diana Morrison, RN works in injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician works in esthetic skin care, including Microneedling with the Procell Therapies device, Glo2Facial, and dermaplaning.
+          </p>
+          <p>
+            Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides makeup and permanent jewelry.
+          </p>
         </div>
       </div>
     </section>
 
     <section class="px-6 py-[clamp(56px,8vw,96px)]">
       <div class="mx-auto max-w-[1120px]">
-        <div class="grid gap-px bg-walnut/15 md:grid-cols-3">
-          <article class="bg-bone p-8">
-            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">01</p>
-            <h2 class="mt-4 font-serif text-[25px] text-ink">Assessment before recommendation</h2>
-            <p class="mt-4 text-[14px] leading-[1.8] text-muted">Goals, history, timing, and candidacy guide the next conversation.</p>
+        <div class="grid gap-px bg-walnut/15 md:grid-cols-2">
+          <article class="bg-bone p-8 sm:p-10">
+            <h2 class="font-serif text-[27px] text-ink">Medical services</h2>
+            <p class="mt-5 max-w-[470px] text-[15px] leading-[1.8] text-muted">
+              Diana Morrison, RN, provides injectable, IV hydration, and weight-management services. Medically directed skin treatments are also offered within the practice’s established provider roles.
+            </p>
           </article>
-          <article class="bg-bone p-8">
-            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">02</p>
-            <h2 class="mt-4 font-serif text-[25px] text-ink">Clear expectations</h2>
-            <p class="mt-4 text-[14px] leading-[1.8] text-muted">Preparation, downtime, aftercare, and follow-up are explained when they matter.</p>
+          <article class="bg-bone p-8 sm:p-10">
+            <h2 class="font-serif text-[27px] text-ink">Esthetic and related services</h2>
+            <p class="mt-5 max-w-[470px] text-[15px] leading-[1.8] text-muted">
+              Amber Mingione, Licensed Esthetician, works in esthetic skin care, alongside licensed estheticians providing facial and waxing services. Makeup artistry and permanent jewelry have their own place on the menu.
+            </p>
           </article>
-          <article class="bg-bone p-8">
-            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">03</p>
-            <h2 class="mt-4 font-serif text-[25px] text-ink">Continuity over trends</h2>
-            <p class="mt-4 text-[14px] leading-[1.8] text-muted">Recommendations are considered in the context of a longer-term plan.</p>
-          </article>
+        </div>
+
+        <div data-practice-accountability class="mt-[clamp(56px,8vw,88px)] grid gap-10 border-t border-walnut/15 pt-[clamp(44px,6vw,68px)] lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+          <div>
+            <p class="kicker">People and oversight</p>
+            <h2 class="font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+              Who will I actually see?
+            </h2>
+          </div>
+          <div class="space-y-5 text-[16px] leading-[1.85] text-muted">
+            <p>
+              House of Rose appointments are provided by a small, named team:
+            </p>
+            <ul class="grid gap-4 border-y border-walnut/15 py-6 sm:grid-cols-2">
+              <li>
+                <strong class="text-muted-strong">Diana Morrison, RN</strong> provides injectables, IV hydration, and GLP-1 weight management.
+              </li>
+              <li>
+                <strong class="text-muted-strong">Amber Mingione, Licensed Esthetician</strong> provides Microneedling with the Procell Therapies device, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an add-on to an eligible service.
+              </li>
+              <li>
+                <strong class="text-muted-strong">Brandy, Licensed Esthetician</strong> provides facials, standalone BioRePeel, and facial waxing.
+              </li>
+              <li>
+                <strong class="text-muted-strong">Aundrea Pedigo, Licensed Esthetician</strong> provides wedding and special-event makeup, photo-shoot makeup, and permanent jewelry.
+              </li>
+            </ul>
+            <p>
+              Joshua Shaw, MD is the practice’s medical director, providing medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with that appointment.
+            </p>
+            <p>
+              The storefront, reception area, and treatment rooms shown on this site are the actual spaces at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950.
+            </p>
+          </div>
         </div>
 
         <div class="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-walnut/15 pt-8">
@@ -97,7 +134,7 @@ const pageSchema = webPage({ name: heading, description: description ?? intro, u
           </p>
           <div class="flex flex-wrap gap-3">
             <a href="/about/providers/" class="btn-outline-gold">Meet the providers</a>
-            <a href="/experience/" class="btn-gold">What to expect</a>
+            <a href="/experience/" class="btn-gold">See the practice</a>
           </div>
         </div>
       </div>

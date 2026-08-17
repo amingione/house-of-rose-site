@@ -16,15 +16,17 @@ side-by-side visual editing. It sits **on top of** the existing Sanity project
 | Piece | Location | Purpose |
 |-------|----------|---------|
 | Editor config | `stackbit.config.ts` (repo root) | Connects the editor to Sanity, maps page types → routes, runs Astro in the editor container |
-| Sidebar shortcuts | `stackbit.config.ts` → `sidebarButtons` | Opens homepage content, site settings, the skin-analysis preview, Sanity Studio, and the Netlify project |
+| Sidebar shortcuts | `stackbit.config.ts` → `sidebarButtons` | Opens site settings, the skin-analysis preview, Sanity Studio, and the Netlify project |
 | Dev deps | root `devDependencies` | `@stackbit/cli`, `@stackbit/cms-sanity`, `@stackbit/types` — dev-only, never imported by the site |
-| Script | `npm run dev:visual` | `stackbit dev` (runs the local visual editor on `:3000`) |
+| Script | `npm run dev:visual` | Starts Astro on `:3000` and the local Stackbit editor/proxy on `:8090` |
 | Annotation helper | `packages/web/src/lib/visualEditing.ts` | `data-sb-*` helpers for inline click-to-edit |
 | Env vars | `.env.example` → `.env.local` | `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_STUDIO_URL`, `SANITY_ACCESS_TOKEN` |
 
-### Page model → route map
+### Page model → route maps
 
-Mirrors the `CLAUDE.md` Routes table. Defined once in `stackbit.config.ts` (`PAGE_ROUTES`):
+The editor promotes only document types whose fields currently affect a public route. Slug-backed
+models live in `PAGE_ROUTES`; active fixed-route singletons live in `SINGLETON_PAGE_ROUTES`.
+Registered Sanity schemas that are absent from both maps remain data models, not editable public pages.
 
 | Sanity type | Route |
 |-------------|-------|
@@ -37,8 +39,18 @@ Mirrors the `CLAUDE.md` Routes table. Defined once in `stackbit.config.ts` (`PAG
 | `caseStudy` | `/results/{slug}` |
 | `blogPost` | `/blog/{slug}` |
 | `treatmentPackage` | `/packages/{slug}` |
+| `provider` | `/about/providers/{slug}` |
+| `product` | `/shop/{slug}` only when `PUBLIC_SHOP_ENABLED=true` |
 
-Add a new page-backed document type by adding one line to `PAGE_ROUTES`.
+| Active singleton type | Route |
+|-----------------------|-------|
+| `aboutPage` | `/about` |
+| `privacyPolicy` | `/privacy-policy` |
+| `termsOfService` | `/terms-of-service` |
+| `rentARoom` | `/rent-a-room` |
+| `janeIredalePage` | `/shop/jane-iredale` only when `PUBLIC_SHOP_ENABLED=true` |
+
+Add a mapping only when the corresponding document fields are genuinely rendered on that route.
 
 ---
 
@@ -64,21 +76,12 @@ Add a new page-backed document type by adding one line to `PAGE_ROUTES`.
    npm run dev:visual
    ```
 
-   This launches the Stackbit dev server on `http://localhost:3000`. It starts the
-   Astro dev server inside the editor container via the configured `devCommand`
-   (which reuses `scripts/run-with-env.mjs`, so `PUBLIC_SANITY_*` load exactly as
-   in `npm run dev:web`). The editor shows the live site with a Pages panel,
-   Content panel, and the sitemap navigator.
-
-> Port note: `stackbit dev` serves the **editor** on `http://localhost:3000`
-> (its default) — this is the origin you open, and the one registered in Sanity
-> CORS, so do **not** override it with `--port`. The `--port` flag changes the
-> editor port, **not** the Astro preview port; passing `--port 4321` moves the
-> editor onto an origin Sanity CORS doesn't allow, which breaks content
-> loading/saving. The Astro preview runs on a separate port that Stackbit
-> assigns itself and injects into the `devCommand` via the `{PORT}` placeholder,
-> so you never set it by hand. If `3000` is already in use, free it (or pass
-> `--port <free-port>` **and** add that origin to Sanity CORS).
+   The local orchestrator starts Astro on `http://localhost:3000`, then starts the
+   Stackbit editor/proxy on `http://localhost:8090`. Open the
+   `http://localhost:8090/_stackbit` URL printed by the command. The configured
+   `devCommand` is for the cloud Visual Editor container; local startup is owned
+   by `scripts/visual-editing/dev-visual.mjs`. If either port is occupied, stop
+   the conflicting process before retrying rather than passing an ad-hoc port.
 
 ---
 
@@ -243,57 +246,37 @@ Re-install manually with `node scripts/visual-editing/install-git-hook.mjs`.
   production bundle and static output are unchanged.
 - Visual Editor writes go to the **same** Sanity dataset (`production`). Consider a
   separate dataset or draft workflow before giving many editors write access.
-- `PAGE_ROUTES` in `stackbit.config.ts` is the source of truth for page types —
-  `ve:sync` keeps it honest against `CLAUDE.md`'s Routes table.
+- `PAGE_ROUTES` owns slug-routed page models and `SINGLETON_PAGE_ROUTES` owns
+  fixed-route page models. A registered schema is not enough to enter either map:
+  the public renderer must actually consume the document's fields. `ve:sync`
+  checks the slug-routed map against dynamic routes and GROQ types.
 
 ---
 
-## Phase 3 — hardcoded pages migrated into Sanity ✅ DONE
+## Singleton publication boundaries during the voice reset
 
-All formerly-hardcoded pages are now Sanity-backed singletons (schema deployed,
-content seeded + published to `production`, pages rewired with Sanity-first +
-original-copy fallbacks, and annotated). Edit them in Studio → **Home Page** /
-**Pages**:
+The migration-era records remain registered and stored, but registration does not make their prose
+public or editable. The current renderer contract is:
 
-| Page | Sanity type (singleton `_id`) |
-|------|-------------------------------|
-| `/` | `homepage` |
-| `/contact` | `contactPage` (form untouched) |
-| `/support/` | `supportPage` |
-| `/privacy-policy` | `privacyPolicy` |
-| `/terms-of-service/` | `termsOfService` |
-| `/rent-a-room` | `rentARoom` (form untouched) |
-| `/skin-analysis` | `skinAnalysis` |
-| `/thank-you` | `thankYou` |
+| Public route | Singleton record | Current publication boundary | Visual Editor page model |
+|--------------|------------------|------------------------------|--------------------------|
+| `/` | `homepage` | Reviewed local copy; stored CMS prose is archival/read-only | No |
+| `/contact/` | `contactPage` | Reviewed local copy and form; stored CMS prose is archival/read-only | No |
+| `/support/` | `supportPage` | Reviewed local copy and FAQs; query identity may annotate the region, but stored prose is not rendered | No |
+| `/privacy-policy/` | `privacyPolicy` | Active canonical singleton plus reviewed local form/channel guidance | Yes |
+| `/terms-of-service/` | `termsOfService` | Active canonical singleton with reviewed fallbacks | Yes |
+| `/rent-a-room/` | `rentARoom` | Only `roomSpecs` is an active CMS copy source; the rest is reviewed local copy | Yes |
+| `/skin-analysis/` | `skinAnalysis` | Reviewed local copy and form; stored CMS prose is archival/read-only | No |
+| `/thank-you/` | `thankYou` | Reviewed local confirmation; query identity may annotate the region, but stored prose is not rendered | No |
+| `/about/` | `aboutPage` | Active canonical singleton for the About index and practice story | Yes |
 
-Every site page now passes `npm run ve:check` (0 missing). Singletons are edited
-via the Studio **Pages** group and inline on the live preview; they intentionally
-aren't in `PAGE_ROUTES` (that map is for slug-routed document types only).
+Disabled storefront singletons become page models only behind `PUBLIC_SHOP_ENABLED=true`. The Studio structure exposes the active
+singleton sources; disconnected records remain schema-registered so stored data is preserved without
+presenting it as live page copy.
 
-<details><summary>Original migration plan (for reference / future pages)</summary>
-
-Several pages once rendered hardcoded content in `.astro`: `index` (homepage),
-`contact`, `privacy-policy`, `rent-a-room`, `skin-analysis`, `thank-you`.
-
-Plan (each page is a vertical slice):
-
-1. **Model** — add a Sanity schema. A reusable `page` document (hero + Portable
-   Text body + flexible sections) covers the simple pages (`privacy-policy`,
-   `rent-a-room`, `skin-analysis`, `thank-you`, `contact`); `homepage` gets a
-   bespoke singleton.
-2. **Deploy schema** — `npm run deploy:studio` (or `sanity deploy` in
-   `packages/studio`).
-3. **Seed content** — a migration script (`packages/studio/scripts/seed-*.ts`
-   using `@sanity/client` `createOrReplace`) ports the current hardcoded copy into
-   documents so nothing is lost.
-4. **Rewire** — replace the page's hardcoded constants with a `sanityFetch`, then
-   annotate per the rules above.
-5. **Verify** — `npm run ve:check` (coverage), `npm run dev:visual` (preview).
-
-Steps 2–3 and the final build **must run on your machine** (the Studio deploy +
-content seed write to the live `production` dataset and need the Sanity CLI/login).
-
-</details>
+Every Sanity-backed renderer still has to pass `npm run ve:check`. That coverage gate proves that
+rendered CMS fields are annotated; it does not imply that every registered schema should be promoted
+to a page model.
 
 ---
 

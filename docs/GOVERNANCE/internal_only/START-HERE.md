@@ -1,102 +1,105 @@
 # House of Rose — Where To Look (start here)
 
 **Purpose:** one map so "which folder has the real answer" never has to be re-figured-out. If a doc
-isn't listed below as canonical, treat it as either research/staging or dead — don't draft from it.
-Built 2026-08-01 during the full local + Notion cleanup pass; keep this updated when you add or retire a doc.
+isn't listed below as canonical, treat it as research, staging, or history rather than drafting from it.
+Built 2026-08-01 during the full local + Notion cleanup pass; updated 2026-08-13 for the voice reset and
+the move into `docs/GOVERNANCE/`.
 
 ---
 
-## 1. Brand voice, positioning, visual identity, marketing, client-facing copy → **House of Rose Creative System v1.0**
+## 1. Voice, positioning, and customer-facing copy → current user direction + reset rules
 
-**Canonical and binding, issued 2026-07-30.** Wired into `CLAUDE.md` (Rule #0 verification order + its own
-section) and `AGENTS.md` on 2026-08-01, so every agent inherits it. **It outranks every older brand doc
-here, in Notion, and in the vault.** It does *not* outrank statute (`compliance/`) or operational fact
-(pricing, provider lanes, service names). Lives in two mirrored places — same content, pick whichever's convenient:
+Amber rejected the Claude-developed voice on 2026-08-13. `AGENTS.md` and `CLAUDE.md` contain the
+binding reset rules. The latest explicit user approval governs new voice work.
 
-- **Local:** `docs/House_of_Rose_Creative_System/` — 7 numbered .docx files + `House_of_Rose_Creative_System_MASTER.md` (the one to paste from) + `.pdf` reference copy.
-- **Notion:** House of Rose HQ → 7 pages (Creative Bible, Brand Voice & Copy Standards, Social & Profile Bios, Visual Standards, AI Creative Rules & Prompt Library, Marketing System, Content Approval Checklist) + `00_README_House_of_Rose_Creative_System`.
+`docs/GOVERNANCE/House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md` and
+`docs/GOVERNANCE/BRAND_MEMORY.md` are archival voice references during the reset. Do not use their
+prior positioning, prose, biographies, templates, taglines, campaign language, or strategy as a tonal
+model. They remain usable only for verified business and service facts, compliance boundaries,
+credentials, consent, NAP, operational constraints, and the still-approved visual standards. Facts in
+either archival file must be checked against the current owner document below before use.
 
-Which book answers what: **1** positioning/vocabulary/retired language · **2** voice, writing rules,
-claim tiers, copy templates · **3** canonical business info, approved bios, GBP/FB/IG/directory/website
-copy · **4** photography, video, color, type, visual blacklist · **5** the AI context block + prompt
-library + AI may/may-not · **6** Meta, Google Ads, GBP, SEO, landing pages, measurement · **7** the
-publish preflight.
+Category language remains **Medical Aesthetics Practice** as the lead descriptor. `Medical spa` is the
+GBP category and may support meta/SEO copy; never deny it and never lead with it. The retired and
+controlled-use language lists in `AGENTS.md` remain binding.
 
-Category language: **Medical Aesthetics Practice** (lead descriptor). "Medical spa" is allowed in meta/GBP/SEO, never denied. Retired: luxury, premium, boutique, guest, physician-informed, pamper, glow/radiance, memberships, flowery service names. Full retired-language list is in the Creative Bible §12 and Brand Voice & Copy Standards §4.
+Do not draft from any Notion page prefixed `ARCHIVED - DO NOT USE`.
 
-⚠️ **The descriptor sweep is not done.** Published copy (`llms-full.txt.ts` most urgently, plus
-`llms.txt.ts`, `queries.ts`, Sanity, GBP, campaign copy) still leads with "advanced aesthetics &
-wellness studio." Tracked as P0 in `docs/DRIFT-CLEANUP-CHECKLIST.md` — needs Amber's go-ahead.
+## 2. Compliance and legal claims → `docs/GOVERNANCE/internal_only/compliance/`
 
-**Do not draft brand voice from:** any Notion page prefixed `ARCHIVED - DO NOT USE`, or `docs/GOOGLE-BUSINESS-PROFILE.md`'s older example copy (flagged inline, not deleted).
+Start with `docs/GOVERNANCE/internal_only/compliance/README.md`. The statutory material in this folder
+wins wherever it touches public copy, offers, prices, credentials, or advertising.
 
-## 2. Compliance / legal claim language → `docs/internal_only/COMPLIANCE-COPY-RULES.md`
+Use `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` for approved-vs-avoid claim
+language. Compliance rules are active; any voice examples inherited from the rejected system are not.
 
-Voice + claims rules (what you can't say, what to say instead). For statutory/paid-ad/toll-free rules, `docs/internal_only/compliance/` wins if the two conflict — start at `docs/internal_only/compliance/README.md`.
+## 3. Pricing → `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`
 
-## 3. Pricing → `docs/internal_only/services/ALL-SERVICES-PRICING.MD` — ⚠️ SEE CONFLICT BELOW
+GlossGenius is commerce truth. The canonical file above is its staging mirror; Sanity is display and
+Notion is strategy/competitive context. The old duplicate-pricing conflict is closed: no sibling
+`pricing/ALL-SERVICES-PRICING.MD` exists. Do not recreate one or reopen the resolved conflict.
 
-This is the file `CLAUDE.md` and `docs/PRICING-RECONCILIATION-2026-07-23.md` both name as canonical (mirrors GlossGenius, the actual commerce truth). **However:** `docs/internal_only/pricing/ALL-SERVICES-PRICING.MD` — a different, newer, more detailed file with the *same name* in a sibling folder — was last edited today and was not reconciled into the canonical file. **These two files currently disagree and one needs to be retired into the other. This needs your call — see the summary message for the exact question.**
+## 4. Treatment research → `docs/GOVERNANCE/internal_only/research/`
 
-Everything else in `docs/internal_only/pricing/` (`GG-PRICE-FINALIZE.md`, `advanced-facials-master-menu.md`, `PROFESSIONAL-MAKEUP-PRICING-COMP.md`) is legitimate working/reference material, not menus — keep.
+One brief per treatment holds sourced protocol, manufacturer, and compliance research. Research
+supports facts and claims; it is not House of Rose voice. Current public routes live in
+`docs/CONTENT-MODEL-MAP.md`, and current prices live in the canonical pricing ledger above. Historical
+underscore-prefixed audits are not route, inventory, or pricing authority.
 
-## 4. Treatment research (facts, protocol, compliance-vetted copy) → `docs/internal_only/research/`
+## 5. Provider-specific service detail → `docs/GOVERNANCE/internal_only/services/`
 
-One file per treatment (`biorepeel.md`, `dermaplaning.md`, `neurotoxins.md`, etc.) — these are the deep, current, compliance-reviewed briefs. `docs/internal_only/services/facials/*.md` used to duplicate a few of these as empty/near-empty stubs; they now just point back to research/ (fixed 2026-08-01).
+Provider and service subfolders hold working detail by lane. Verify customer-facing service names,
+availability, and prices against the canonical GlossGenius mirror before use.
 
-Files prefixed `_` (`_gaps.md`, `_index.md`, `_pricing-catalog.md`, `_service-taxonomy.md`, `_sanity-collection-restructure.md`, `_site-inventory.md`) are the meta/tracking layer for the site-elevation project — `_gaps.md` in particular is the live punch list of unresolved conflicts.
+## 6. NAP, hours, GBP categories, and attributes
 
-## 5. Provider-specific service/pricing detail → `docs/internal_only/services/<Provider>/`
+Use `CLAUDE.md` for canonical NAP and current policy, then cross-check platform detail in
+`docs/GOOGLE-BUSINESS-PROFILE.md` and the Notion `BUSINESS-PROFILE-GBP` record.
 
-`Diana/`, `PRF_Pricing/`, `microchanneling/`, `waxing/`, `makeup/`, `facials/` — organized final-ish copy per lane. `glossgenius_catalog.csv` is the raw GG export (refresh whenever GG changes).
+Resolved facts retained from the 2026-08-01 live-profile check:
 
-## 6. NAP, hours, GBP categories/attributes → `CLAUDE.md` (repo root) + `docs/GOOGLE-BUSINESS-PROFILE.md` + Notion `BUSINESS-PROFILE-GBP`
+- Opened June 15, 2026.
+- Google chat cannot be connected because Google retired the feature on July 31, 2024.
+- The description on Google was recorded as the live external state. It now belongs to the rejected
+  pre-reset voice and is not approved as a tonal model; the working replacement in
+  `docs/GOOGLE-BUSINESS-PROFILE.md` still requires Amber's approval before posting.
 
-✅ **Resolved 2026-08-01** (Amber supplied the live profile). The earlier claim that
-`docs/GOOGLE-BUSINESS-PROFILE.md` §3 disagreed with the Creative System's approved GBP description was a
-**false alarm** — §3, Creative System Book 3 §3, and the live Google description are **byte-identical
-(731 chars)**. Also settled: **opened June 15, 2026** (Google confirms it), and **Google chat cannot be
-connected** — Google killed the feature on 2024-07-31.
+The live profile had three categories, not the five older documents claimed. Treat every additional
+category as a proposal requiring a current profile check, operational support, and Amber's decision.
+Do not cite a five-category stack; see `CLAUDE.md` and `docs/GOOGLE-BUSINESS-PROFILE.md`.
 
-⚠️ **Still open:** the live profile carries **3 categories**, not the 5 every doc claimed. `Health and
-beauty shop` and `Vitamin & supplements store` are missing, which strands the GLP-1/B-12/IV service items
-that `GOOGLE-BUSINESS-PROFILE.md` §4B files under the latter. Amber's call.
+## 7. Drift and cleanup status → `docs/DRIFT-CLEANUP-CHECKLIST.md`
 
-## 7. What's already been cleaned up / what's still open → `docs/DRIFT-CLEANUP-CHECKLIST.md`
+Check the running regression list before reporting a newly discovered issue. It may already be tracked
+or closed.
 
-The running regression list (banned terms, walk-in policy, membership teardown, Notion duplicates). Check this before re-flagging something as "found a problem" — it may already be tracked.
+## 8. SEO/AEO and page architecture
 
-## 8. SEO/AEO strategy → `docs/SEO-AEO-PLAYBOOK.md` + `docs/CONTENT-MODEL-MAP.md`
+- `docs/SEO-AEO-PLAYBOOK.md` — intent-led page types, writing rules, publish checklist.
+- `docs/CONTENT-MODEL-MAP.md` — doc type, route, JSON-LD, GROQ, and supporting identity/utility pages.
 
-## 9. Checkout/commerce architecture → `docs/CHECKOUT.md` · Shop → `docs/SHOP-ARCHITECTURE.md` · Visual editing → `docs/VISUAL-EDITING.md`
+These documents govern page shape and structured-data wiring, not brand voice.
 
-## 10. Vendor reference material (not brand copy) → `docs/marketing/Face Reality/`
+## 9. Commerce and visual-editing architecture
 
-Face Reality's own protocol docs, SDS sheets, product images, client handouts — supplier material, not House of Rose voice. Leave as-is; don't draft brand copy from it.
+- Checkout: `docs/CHECKOUT.md`
+- Shop: `docs/SHOP-ARCHITECTURE.md`
+- Visual editing: `docs/VISUAL-EDITING.md`
+
+## 10. Vendor reference material → `docs/GOVERNANCE/internal_only/marketing/Face Reality/`
+
+This folder contains supplier protocol documents, SDS files, product images, and client handouts. It is
+vendor reference, not House of Rose copy.
 
 ---
 
-## Archived 2026-08-01 (do not use, kept only as history)
+## Historical cleanup record
 
-**Notion:**
-- `ARCHIVED - DO NOT USE - BRAND_VOICE` and `ARCHIVED - DO NOT USE - BRAND VOICE` (duplicate twins, both pre-Creative-System)
-- `ARCHIVED - DO NOT USE - BUSINESS-PROFILE-GBP (April draft)`
-- `Canonical Business Profile`, `Business-Profile`, `NAP-CANONICAL` — already self-marked superseded/archived before this pass
-- The surviving `BUSINESS-PROFILE-GBP` (July 28 live-facts page) was trimmed — ~400 lines of superseded draft content (Rose Method™, member rates, wrong hours) removed, keeping only the live snapshot
+The August 1 cleanup archived duplicate Notion brand/profile pages, removed the redundant Creative
+System zip and stray `.DS_Store` files, and converted empty treatment stubs into references to the
+research briefs. Those actions are history, not an instruction to revive the archived voice system.
 
-**Local:**
-- `docs/House_of_Rose_Creative_System/House_of_Rose_Creative_System_v1.0.zip` — deleted (redundant with the extracted files sitting next to it)
-- 60 stray `.DS_Store` files — deleted
-- `docs/internal_only/services/facials/dermaplaning.md`, `hydrodermabrasion.md`, `biorepeel.md`, `faceRealityAcneProgram.md` — were empty/near-empty stubs, now point to their research/ equivalent
-- Retired-language fixes: `docs/GOOGLE-BUSINESS-PROFILE.md` ("luxury play," "boutique," "guests," rose emoji), `docs/internal_only/COMPLIANCE-COPY-RULES.md` ("premium positioning"), `docs/marketing/campaigns/2026-q3-local-acquisition/README.md` ("Luxury angle")
-
-**Obsidian vault (`House of Rose/`):**
-- `07-Market Insight/branding Guidelines/HofR brand voice creation prompt.md` — marked archived (built on the retired "luxury boutique, appointment-only, premium" positioning)
-- `Brand Development Engine/` (wrong NAP, botanical names) — already moved to `.trash/` in an earlier pass, confirmed still there
-
-## Still open — needs Amber, not further automated cleanup
-
-1. **The two `ALL-SERVICES-PRICING.MD` files disagree** (§3 above) — pick a winner.
-2. **`docs/GOOGLE-BUSINESS-PROFILE.md` §3 vs. the Creative System's approved GBP description disagree** — confirm what's actually live on Google.
-3. Obsidian vault still has scattered older pricing/reference files outside this repo (e.g. `0_TASKS/Diana_Pricing_Reconciliation.numbers`) and `HoR-ops/docs/PRF-LIBRARY.md` sits outside both — worth a follow-up pass once #1 is resolved, so there's one pricing answer to point everything at instead of three.
-4. 2 duplicate `GROWTH-SYSTEM-REPORT` Notion pages (Jun 5 / Aug 1) both still use "physician-informed luxury med spa positioning" language — not yet reconciled against the Creative System (lower priority: point-in-time reports, not active guidance).
+Older pricing and growth-system material may still exist outside this repository in the Obsidian vault
+or duplicate Notion reports. It is not authoritative. If it is reviewed later, reconcile facts toward
+GlossGenius and the current owner documents above; do not reconcile its voice toward the archived
+Creative System.

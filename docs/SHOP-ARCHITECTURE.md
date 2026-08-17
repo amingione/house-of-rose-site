@@ -4,6 +4,11 @@ How `/shop` and `/shop/[slug]` work, what's Sanity-editable vs. code, and the
 one hard rule for CTA copy. Written 2026-07-11 when the shop was rebuilt with
 promotions, categories, top sellers, and per-brand storefronts.
 
+**Current publication boundary:** this architecture is retained but the storefront is dormant.
+`PUBLIC_SHOP_ENABLED=true` controls source and build exposure; the temporary Netlify 404 rules for
+`/shop/*` and `/checkout/*` must also be deliberately removed before restoration. This document does
+not authorize publishing products, promotions, cart, or checkout.
+
 ## The hard rule: never name the checkout platform
 
 Checkout runs on **Stripe Elements + Shippo, on our own `/checkout` page** — see
@@ -27,7 +32,7 @@ leaves `ctaLabel` blank.
 |---|---|---|
 | `product` | A retail item. `price` (cents) + `inStock` make it buyable in the native cart; `weightOz`/`shippable` drive live shipping rates; `purchaseUrl` is now the ESCAPE HATCH for items we don't sell ourselves; `ctaLabel` (custom button text), `badge` (ribbon tag), `isFeatured` (Top Sellers rail) | Yes |
 | `promotion` | A sale/announcement banner. Links internal (a promo page, a product, or a `/shop#brandKey` anchor) or external (checkout). Date-windowed and brand/category-scoped, both optional | Yes |
-| `shopBrand` | Per-carried-brand storefront copy (Procell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. **Not** the same as `brandProfile`, which is House of Rose's own brand-voice/strategy document | Yes |
+| `shopBrand` | Per-carried-brand storefront copy (Procell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. **Not** the same as the archival, unpublished `brandProfile` compatibility record; that record is not current voice authority. | Yes |
 
 If a brand has products but no `shopBrand` document yet, `shop.astro` falls
 back to hardcoded intro copy (`FALLBACK_BRAND_COPY`) so the page never looks

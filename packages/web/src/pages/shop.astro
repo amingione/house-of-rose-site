@@ -16,6 +16,7 @@ import {
   type ProductBrand,
 } from '@/lib/queries';
 import { toCanonicalProduct } from '@/lib/productContract';
+import { SHOP_ENABLED } from '@/lib/features';
 
 const [products, promotions, shopBrands] = await Promise.all([
   sanityFetch<Product[]>(ALL_PRODUCTS_QUERY),
@@ -28,15 +29,15 @@ const [products, promotions, shopBrands] = await Promise.all([
 // real brand story content in the Studio.
 const FALLBACK_BRAND_COPY: Record<ProductBrand, string> = {
   procell:
-    'The aftercare system for Procell Microchanneling. Growth-factor serums in two strengths — MD for clients in active treatment series, PRO for maintenance — because what you apply at home determines how far your in-studio results go.',
+    'Aftercare products associated with eligible Procell Microchanneling appointments. Ask which formulation, if any, applies to your visit.',
   glymed:
-    'Professional pharmaceutical-grade skincare we prescribe around treatment cycles: barrier repair after peels, glycolic renewal between visits, recovery care, and the daily SPF that protects everything else.',
+    'Professional skincare for cleansing, hydration, exfoliation, barrier support, and daily sun protection.',
   'skin-script':
-    'Approachable, results-driven daily care — clean formulations at honest prices. Where most clients start, and what most routines are built on.',
+    'Cleansers, moisturizers, exfoliants, masks, and daily-care products across a range of skin concerns.',
   'face-reality':
-    'The #1 professional acne line, and the backbone of our Face Reality 12-Week Program. Mandelic and glycolic serums, benzoyl peroxide treatments, gentle cleansers, and barrier care — matched to your acne type and adjusted as your skin responds.',
+    'The home-care line used with the Face Reality 12-Week Program. Product selection is reviewed as part of that program.',
   'house-of-rose':
-    'House of Rose exclusives — the pieces we couldn\'t find anywhere else, so we made them ourselves.',
+    'House of Rose home-care products currently available through the practice.',
 };
 
 const BRAND_ORDER: ProductBrand[] = ['procell', 'glymed', 'skin-script', 'face-reality', 'house-of-rose'];
@@ -64,19 +65,20 @@ const resolveShopBrand = (id: ProductBrand): ShopBrand => {
 const orderingOptions = [
   {
     title: 'In Studio',
-    body: 'Browse the shelf at your next visit — your provider will match products to your active treatment plan.',
+    body: 'Browse current products during your visit and ask which ones are appropriate for you.',
   },
   {
     title: 'Reserve & Pick Up',
-    body: 'Call and we\'ll confirm when your products can be wrapped and ready at the front desk.',
+    body: 'Call to confirm availability and arrange pickup at the practice.',
   },
   {
     title: 'We\'ll Ship It',
-    body: 'Out of town or out of product? We ship anywhere in the U.S. — call us and it\'s on its way.',
+    body: 'Call to ask whether the product is available for shipping within the United States.',
   },
 ];
 
-const heroImage = '/images/welcome-house-of-rose.webp';
+const heroImage = '/images/optimized/actual-welcome-800.webp';
+const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
 const measurementItems = products.map((product, index) => {
   const canonical = toCanonicalProduct(product);
   return {
@@ -97,6 +99,10 @@ const measurementItems = products.map((product, index) => {
   description="Shop professional skincare selected by House of Rose, including procell aftercare, GlyMed+, Skin Script, Face Reality, and gift cards."
   image={heroImage}
   preloadImage={heroImage}
+  preloadImageSrcset={heroImageSrcset}
+  preloadImageSizes="100vw"
+  noindex={!SHOP_ENABLED}
+  nofollow={!SHOP_ENABLED}
 >
   <Hero
     title="Professional skincare for real routines."
@@ -105,6 +111,10 @@ const measurementItems = products.map((product, index) => {
     size="small"
     showCTA={false}
     backgroundImage={heroImage}
+    backgroundSrcset={heroImageSrcset}
+    backgroundSizes="100vw"
+    backgroundWidth={1400}
+    backgroundHeight={1050}
     imageAlt="Professional skincare products selected by House of Rose Aesthetics"
   />
 
@@ -172,7 +182,6 @@ const measurementItems = products.map((product, index) => {
       </div>
       <div class="text-center">
         <a href="tel:+18449417673" class="btn-gold">Call to Order — (844) 941-7673</a>
-        <p class="text-muted text-[12px] mt-5">Bundle clients receive preferred pricing on full-size products — mention it when you order.</p>
       </div>
     </div>
   </section>

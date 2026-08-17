@@ -1,12 +1,13 @@
 BEGIN:VCARD
 VERSION:3.0
 N:Morrison;Diana;;;RN
-FN:Diana Morrison, RN
+FN:Diana Morrison\, RN
 ORG:House of Rose Aesthetics
-TITLE:Aesthetic Nurse Injector
+TITLE:Registered Nurse\, Aesthetic Nurse Injector
 TEL;TYPE=CELL,VOICE:+18449417673
-EMAIL;TYPE=INTERNET,WORK:diana@houseofrosefl.com
-URL:https://houseofrosefl.com
-ADR;TYPE=WORK:;;525 E. Olympia Ave. Unit 9;Punta Gorda;FL;33950;USA
-NOTE:Registered Nurse & Aesthetic Nurse Injector at House of Rose Aesthetics. Services: Neurotoxins, Dermal Fillers, PRF EZ Gel, IV Hydration Therapy, Vitamin Injections, GLP-1, Skin Analysis.
+EMAIL;TYPE=INTERNET,WORK:info@houseofrosefl.com
+URL:https://houseofrosefl.com/about/providers/diana/
+ADR;TYPE=WORK:;;525 E Olympia Ave\, Unit 9;Punta Gorda;FL;33950;USA
+NOTE:Current work: Neurotoxins\, Dermal Fillers\, Injectable PRF\, PRF
+ Bio-Filler\, IV Hydration Therapy\, GLP-1 Weight Management.
 END:VCARD

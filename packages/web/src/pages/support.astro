@@ -1,28 +1,21 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { SUPPORT_PAGE_QUERY, type FAQ, type SupportPage } from '@/lib/queries';
+import type { FAQ } from '@/lib/queries';
 import { breadcrumbList, faqPage } from '@/lib/structuredData';
-import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
 
-const data = (await sanityFetch<SupportPage | null>(SUPPORT_PAGE_QUERY)) ?? {};
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL('/support/', site).toString();
-const annotations = data._id ? sbObjectId(data._id) : {};
 
 const fallbackFaqs: FAQ[] = [
-  { question: 'How quickly will House of Rose respond?', answer: 'Messages received Monday through Friday are typically answered within one business day. For the fastest help during studio hours, call (844) 941-7673.' },
-  { question: 'How do I change or cancel an appointment?', answer: 'Call (844) 941-7673 as soon as your plans change. The House of Rose team can review your appointment and explain any timing or cancellation terms that apply.' },
-  { question: 'Where is House of Rose Aesthetics located?', answer: 'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Walk-ins are welcome, and appointments are recommended for guaranteed timing.' },
-  { question: 'Can you help me choose which service to book?', answer: 'Yes. Start with a consultation or advanced skin imaging when you are unsure which service fits your goals. Final recommendations and candidacy are confirmed by the appropriate provider.' },
+  { question: 'How quickly will House of Rose respond?', answer: 'Messages received Monday through Friday are typically answered within one business day. For the fastest help during practice hours, call (844) 941-7673.' },
+  { question: 'How do I change or cancel an appointment?', answer: 'Call (844) 941-7673 as soon as your plans change. Any cancellation terms that apply to the appointment will be reviewed with you.' },
+  { question: 'What should I do if I have a question after an appointment?', answer: 'Call (844) 941-7673 during practice hours if you are unsure about aftercare or notice an unexpected change. For a non-urgent question you prefer to send in writing, email info@houseofrosefl.com. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.' },
+  { question: 'Where is House of Rose Aesthetics located?', answer: 'House of Rose Aesthetics is at 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Call (844) 941-7673 if you need help finding the practice.' },
+  { question: 'Can you help me compare services?', answer: 'Yes. Name the services you are weighing and how much recovery fits your schedule. Call (844) 941-7673 for a direct question, or request a consultation when you want time to compare options before booking.' },
   { question: 'What are the studio hours?', answer: 'House of Rose Aesthetics is open Monday through Friday from 9:00 AM to 5:00 PM and closed Saturday and Sunday.' },
 ];
-const faqs = (data.faqs?.length ? data.faqs : fallbackFaqs).map((faq) => ({
-  ...faq,
-  answer: alignPublicChannelCopy(faq.answer),
-}));
+const faqs = fallbackFaqs;
 const faqSchema = faqPage(faqs);
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -31,20 +24,20 @@ const breadcrumb = breadcrumbList([
 ---
 
 <BaseLayout
-  title={data.seoTitle ?? 'Customer Support | House of Rose Aesthetics'}
-  description={alignPublicChannelCopy(data.seoDescription ?? 'Get appointment, booking, and visit support from House of Rose Aesthetics in Punta Gorda, FL. Call (844) 941-7673 or email info@houseofrosefl.com.')}
+  title="Contact & Appointment Help | House of Rose Aesthetics"
+  description="Get appointment and visit help from House of Rose Aesthetics in Punta Gorda, Florida. Call (844) 941-7673 or email info@houseofrosefl.com."
 >
   {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   <SchemaMarkup item={breadcrumb} slot="head" />
 
-  <main {...annotations}>
+  <div>
     <section class="bg-charcoal pt-36 pb-20 px-6">
       <div class="max-w-[900px] mx-auto text-center">
-        <h1 class="font-serif text-[clamp(38px,7vw,68px)] text-ink leading-[1.05]" {...sbFieldPath('heroTitle')}>
-          {data.heroTitle ?? 'How can we help?'}
+        <h1 class="font-serif text-[clamp(38px,7vw,68px)] text-ink leading-[1.05]">
+          How can we help?
         </h1>
-        <p class="text-ink/80 text-[clamp(16px,2vw,19px)] leading-relaxed max-w-[680px] mx-auto mt-6" {...sbFieldPath('heroDescription')}>
-          {data.heroDescription ?? 'Get clear answers about appointments, booking, and visiting House of Rose Aesthetics in Punta Gorda.'}
+        <p class="text-ink/80 text-[clamp(16px,2vw,19px)] leading-relaxed max-w-[680px] mx-auto mt-6">
+          Appointment changes, directions, questions after a visit, and general help.
         </p>
       </div>
     </section>
@@ -52,24 +45,24 @@ const breadcrumb = breadcrumbList([
     <section class="bg-charcoal-light py-[clamp(64px,9vw,104px)] px-6">
       <div class="max-w-[1120px] mx-auto">
         <div class="max-w-[700px] mb-12">
-          <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink" {...sbFieldPath('contactHeading')}>{data.contactHeading ?? 'Choose the easiest way to reach us'}</h2>
-          <p class="text-muted text-[15px] leading-relaxed mt-4" {...sbFieldPath('contactIntro')}>{data.contactIntro ?? 'Our team can help with appointment questions, booking changes, directions, and choosing a sensible first visit.'}</p>
+          <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">Contact House of Rose.</h2>
+          <p class="text-muted text-[15px] leading-relaxed mt-4">Call for appointment changes. Email for general questions.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 border-y border-gold-metal/20">
           <article class="min-w-0 py-9 md:pr-8 border-b md:border-b-0 md:border-r border-gold-metal/20">
-            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('callTitle')}>{alignPublicChannelCopy(data.callTitle ?? 'Call')}</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('callBody')}>{alignPublicChannelCopy(data.callBody ?? 'Best for appointment changes or questions that need a quick answer during studio hours.')}</p>
-            <a href="tel:+18449417673" class="learn-more" {...sbFieldPath('callCta')}>{data.callCta ?? '(844) 941-7673'}</a>
+            <h3 class="font-serif text-[25px] text-gold">Call</h3>
+            <p class="text-muted text-[14px] leading-relaxed my-4">For appointment changes, directions, or a question after a visit during practice hours.</p>
+            <a href="tel:+18449417673" class="learn-more">(844) 941-7673</a>
           </article>
           <article class="min-w-0 py-9 md:px-8 border-b md:border-b-0 md:border-r border-gold-metal/20">
-            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('emailTitle')}>{data.emailTitle ?? 'Send an email'}</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('emailBody')}>{data.emailBody ?? 'A good choice for general questions or details you would like to share in writing.'}</p>
-            <a href="mailto:info@houseofrosefl.com" class="learn-more break-all" {...sbFieldPath('emailCta')}>{data.emailCta ?? 'info@houseofrosefl.com'}</a>
+            <h3 class="font-serif text-[25px] text-gold">Email</h3>
+            <p class="text-muted text-[14px] leading-relaxed my-4">For general questions or information you prefer to send in writing.</p>
+            <a href="mailto:info@houseofrosefl.com" class="learn-more break-all">info@houseofrosefl.com</a>
           </article>
           <article class="min-w-0 py-9 md:pl-8">
-            <h3 class="font-serif text-[25px] text-gold" {...sbFieldPath('bookingTitle')}>Services menu</h3>
-            <p class="text-muted text-[14px] leading-relaxed my-4" {...sbFieldPath('bookingBody')}>{alignPublicChannelCopy(data.bookingBody ?? 'Browse current services, then call if you would like help reserving a time.')}</p>
-            <a href="/services/" class="learn-more" {...sbFieldPath('bookingCta')}>Explore services</a>
+            <h3 class="font-serif text-[25px] text-gold">After an appointment</h3>
+            <p class="text-muted text-[14px] leading-relaxed my-4">Call during practice hours if you are unsure about aftercare or notice an unexpected change. For a medical emergency, call 911.</p>
+            <a href="tel:+18449417673" class="learn-more">Call (844) 941-7673</a>
           </article>
         </div>
       </div>
@@ -77,16 +70,16 @@ const breadcrumb = breadcrumbList([
 
     <section class="bg-charcoal py-[clamp(64px,9vw,104px)] px-6">
       <div class="max-w-[900px] mx-auto">
-        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink" {...sbFieldPath('faqHeading')}>{data.faqHeading ?? 'Frequently asked support questions'}</h2>
-        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-10" {...sbFieldPath('faqIntro')}>{data.faqIntro ?? 'Quick answers for common appointment and studio questions.'}</p>
+        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">Support questions.</h2>
+        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-10">Hours, location, appointments, after-visit questions, and response times.</p>
         <div class="divide-y divide-gold-metal/15 border-y border-gold-metal/15">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq) => (
             <details class="group py-6">
               <summary class="text-ink text-[17px] font-medium cursor-pointer list-none flex items-center justify-between gap-6">
-                <span {...sbFieldPathParts('faqs', index, 'question')}>{faq.question}</span>
+                <span>{faq.question}</span>
                 <span class="text-gold text-[22px] font-light group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
               </summary>
-              <p class="text-muted text-[14px] leading-relaxed max-w-[760px] pt-4 pr-10" {...sbFieldPathParts('faqs', index, 'answer')}>{faq.answer}</p>
+              <p class="text-muted text-[14px] leading-relaxed max-w-[760px] pt-4 pr-10">{faq.answer}</p>
             </details>
           ))}
         </div>
@@ -95,10 +88,10 @@ const breadcrumb = breadcrumbList([
 
     <section class="bg-walnut py-16 px-6 text-center">
       <div class="max-w-[700px] mx-auto">
-        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink" {...sbFieldPath('ctaHeading')}>{data.ctaHeading ?? 'Need help with something else?'}</h2>
-        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-7" {...sbFieldPath('ctaBody')}>{data.ctaBody ?? 'Send us a note and the House of Rose team will point you in the right direction.'}</p>
-        <a href="/contact/" class="btn-gold" {...sbFieldPath('ctaText')}>{data.ctaText ?? 'Contact House of Rose'}</a>
+        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink">Prefer to write?</h2>
+        <p class="text-muted text-[15px] leading-relaxed mt-4 mb-7">Send a non-urgent question through the contact form. Messages received Monday through Friday are typically answered within one business day.</p>
+        <a href="/contact/" class="btn-gold">Send a message</a>
       </div>
     </section>
-  </main>
+  </div>
 </BaseLayout>

@@ -12,6 +12,7 @@
     "packageJson": {
       "dependencies": [
         "npm:@astrojs/sitemap@^3.7.3",
+        "npm:@playwright/test@^1.62.1",
         "npm:@stackbit/cli@~0.3.136",
         "npm:@stackbit/cms-sanity@~0.2.93",
         "npm:@stackbit/types@^2.1.15",
@@ -26,6 +27,7 @@
       "packages/studio": {
         "packageJson": {
           "dependencies": [
+            "npm:@sanity/client@^6.29.1",
             "npm:@sanity/eslint-config-studio@6",
             "npm:@sanity/vision@^6.1.0",
             "npm:react-dom@^19.2.7",
@@ -44,14 +46,13 @@
             "npm:@astrojs/tailwind@^6.0.2",
             "npm:@mapbox/search-js-web@^1.5.1",
             "npm:@netlify/edge-functions@^3.0.8",
-            "npm:@polgubau/astro-reveal@^1.0.2",
             "npm:@portabletext/to-html@^5.0.2",
             "npm:@sanity/client@^6.22.2",
             "npm:@sanity/image-url@^1.1.0",
             "npm:@sanity/webhook@^4.0.4",
             "npm:@stripe/stripe-js@^9.9.0",
-            "npm:@swup/astro@^1.8.0",
             "npm:@tailwindcss/typography@~0.5.15",
+            "npm:@types/geojson@^7946.0.16",
             "npm:@types/node@^25.6.0",
             "npm:astro-seo-schema@^5.2.0",
             "npm:astro-seo@^1.1.0",

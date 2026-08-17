@@ -1,19 +1,32 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch } from '@/lib/sanity';
+import { sanityFetch, urlFor } from '@/lib/sanity';
 import { ABOUT_PAGE_QUERY, PUBLIC_PROVIDERS_QUERY, type AboutPageContent, type PublicProviderProfile } from '@/lib/queries';
-import { ABOUT_PAGE_FALLBACK, PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import {
+  ABOUT_PAGE_FALLBACK,
+  getProviderProfileVoiceOverlay,
+  PROVIDER_PROFILE_FALLBACKS,
+  resolvePublicProviderProfiles,
+} from '@/lib/aboutFallbacks';
 import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
-const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
-const heading = content?.providersHeading ?? ABOUT_PAGE_FALLBACK.providersHeading;
-const intro = content?.providersIntro ?? ABOUT_PAGE_FALLBACK.providersIntro;
-const title = content?.providersSeo?.metaTitle ?? ABOUT_PAGE_FALLBACK.providersSeo?.metaTitle;
-const description = content?.providersSeo?.metaDescription ?? ABOUT_PAGE_FALLBACK.providersSeo?.metaDescription;
+const providers = resolvePublicProviderProfiles(sanityProviders);
+const sanityProviderSlugs = new Set(sanityProviders.map((provider) => provider.slug));
+const verifiedProvidersBySlug = new Map(PROVIDER_PROFILE_FALLBACKS.map((provider) => [provider.slug, provider]));
+const heading = 'The people behind House of Rose.';
+const intro = 'You should be able to see who provides what before you book. Diana Morrison, RN provides injectables, IV hydration, and medical weight-management appointments. Amber Mingione, Licensed Esthetician works with Microneedling, topical PRF, Glo2Facial, and dermaplaning. Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides makeup artistry and permanent jewelry.';
+const title = ABOUT_PAGE_FALLBACK.providersSeo?.metaTitle;
+const description = ABOUT_PAGE_FALLBACK.providersSeo?.metaDescription;
+
+const isSanityImage = (source: string): boolean => source.startsWith('https://cdn.sanity.io/images/');
+const providerImage = (source: string, width: number, height: number): string =>
+  isSanityImage(source)
+    ? urlFor(source).width(width).height(height).fit('crop').format('webp').quality(82).url()
+    : source;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -36,7 +49,12 @@ const directorySchema = itemListPage(
 );
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  structuredPageType="CollectionPage"
+  structuredPageMainEntityId={`${canonical}#itemlist`}
+>
   <SchemaMarkup item={directorySchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
 
@@ -44,10 +62,10 @@ const directorySchema = itemListPage(
     <section class="px-6 pb-[clamp(52px,7vw,80px)] pt-32">
       <div class="mx-auto max-w-[980px] text-center">
         <p class="kicker">Providers</p>
-        <h1 class="font-serif text-[clamp(40px,6vw,68px)] leading-[1.02] text-ink" {...sbFieldPath('providersHeading')}>
+        <h1 class="font-serif text-[clamp(40px,6vw,68px)] leading-[1.02] text-ink">
           {heading}
         </h1>
-        <p class="mx-auto mt-7 max-w-[720px] text-[17px] leading-[1.8] text-muted" {...sbFieldPath('providersIntro')}>
+        <p class="mx-auto mt-7 max-w-[720px] text-[17px] leading-[1.8] text-muted">
           {intro}
         </p>
       </div>
@@ -59,16 +77,21 @@ const directorySchema = itemListPage(
           <a
             href={`/about/providers/${provider.slug}/`}
             class="provider-card group grid overflow-hidden border-t border-walnut/20 bg-bone sm:grid-cols-[0.9fr_1.1fr]"
-            {...(sanityProviders.length > 0 ? sbObjectId(provider._id) : {})}
+            {...(sanityProviderSlugs.has(provider.slug) ? sbObjectId(provider._id) : {})}
           >
             {provider.imageUrl ? (
               <div class="aspect-[4/5] overflow-hidden bg-limestone sm:aspect-auto">
                 <img
-                  src={provider.imageUrl}
-                  alt={provider.imageAlt ?? provider.publicName}
+                  src={providerImage(provider.imageUrl, 720, 900)}
+                  srcset={isSanityImage(provider.imageUrl)
+                    ? `${providerImage(provider.imageUrl, 480, 600)} 480w, ${providerImage(provider.imageUrl, 720, 900)} 720w, ${providerImage(provider.imageUrl, 960, 1200)} 960w`
+                    : undefined}
+                  sizes="(max-width: 639px) calc(100vw - 48px), 280px"
+                  alt={verifiedProvidersBySlug.get(provider.slug)?.imageAlt ?? provider.imageAlt ?? provider.publicName}
                   width="720"
                   height="900"
                   loading="lazy"
+                  decoding="async"
                   class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
                 />
               </div>
@@ -82,16 +105,50 @@ const directorySchema = itemListPage(
             )}
             <div class="flex flex-col justify-between p-7 sm:p-8">
               <div>
-                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold" {...sbFieldPath('publicRole')}>{provider.publicRole}</p>
-                <h2 class="mt-4 font-serif text-[clamp(28px,4vw,38px)] leading-tight text-ink group-hover:text-olive" {...sbFieldPath('publicName')}>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold" {...(verifiedProvidersBySlug.has(provider.slug) ? {} : sbFieldPath('publicRole'))}>{provider.publicRole}</p>
+                <h2 class="mt-4 font-serif text-[clamp(28px,4vw,38px)] leading-tight text-ink group-hover:text-olive" {...(verifiedProvidersBySlug.has(provider.slug) ? {} : sbFieldPath('publicName'))}>
                   {provider.publicName}
                 </h2>
-                <p class="mt-5 text-[14px] leading-[1.8] text-muted" {...sbFieldPath('summary')}>{provider.summary}</p>
+                <p class="mt-5 text-[14px] leading-[1.8] text-muted">
+                  {getProviderProfileVoiceOverlay(provider.slug)?.summary ?? provider.summary}
+                </p>
+                {provider.serviceFocus.length > 0 && (
+                  <div class="mt-6 border-t border-walnut/10 pt-5">
+                    <p class="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold">Current work</p>
+                    <ul class="mt-3 flex flex-wrap gap-x-3 gap-y-2 text-[12px] leading-relaxed text-muted">
+                      {provider.serviceFocus.map((focus) => (
+                        <li>{focus}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
               <span class="learn-more mt-8">Read profile <span aria-hidden="true">→</span></span>
             </div>
           </a>
         ))}
+      </div>
+    </section>
+
+    <section data-provider-role-clarity class="px-6 py-[clamp(52px,7vw,80px)]">
+      <div class="mx-auto grid max-w-[1080px] gap-10 border-y border-walnut/15 py-[clamp(38px,5vw,56px)] lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+        <div>
+          <p class="kicker">Who you will see</p>
+          <h2 class="mt-3 font-serif text-[clamp(28px,4vw,42px)] leading-tight text-ink">
+            The practitioner and medical director have different roles.
+          </h2>
+        </div>
+        <div class="space-y-5 text-[15px] leading-[1.8] text-muted">
+          <p>
+            When a service has an assigned practitioner, that person’s name and licence type appear with the service. That is the person associated with the appointment.
+          </p>
+          <p>
+            Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. Makeup artistry and permanent jewelry are non-medical services.
+          </p>
+          <p class="border-t border-walnut/15 pt-5 text-[13px] font-semibold tracking-[0.03em] text-muted-strong">
+            Medical Director: Joshua Shaw, MD · FL Lic. ME136232
+          </p>
+        </div>
       </div>
     </section>
   </div>

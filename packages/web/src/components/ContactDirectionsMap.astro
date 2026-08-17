@@ -164,6 +164,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       cooperativeGestures: true,
       attributionControl: false,
     });
+    map.getCanvas().setAttribute('aria-label', 'Directions map to House of Rose Aesthetics');
 
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
     map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
@@ -173,10 +174,17 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       '<strong>House of Rose Aesthetics</strong><br>525 E Olympia Ave, Unit 9<br>Punta Gorda, FL 33950',
     );
 
-    new mapboxgl.Marker({ color: '#3F4D3A' })
+    const destinationMarker = new mapboxgl.Marker({ color: '#3F4D3A' })
       .setLngLat(DESTINATION)
       .setPopup(popup)
       .addTo(map);
+    const destinationMarkerElement = destinationMarker.getElement();
+    destinationMarkerElement.setAttribute('aria-label', 'House of Rose Aesthetics location');
+    destinationMarkerElement.addEventListener('keydown', (event) => {
+      if (event.key !== ' ') return;
+      event.preventDefault();
+      if (!event.repeat) destinationMarker.togglePopup();
+    });
 
     const searchBox = new MapboxSearchBox();
     searchBox.accessToken = accessToken;
@@ -209,8 +217,44 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     // TypeScript reject it as a generic Node. Keep the boundary cast local.
     searchHost.appendChild(searchBox as unknown as HTMLElement);
 
+    const syncSearchComboboxState = (): void => {
+      const combobox = searchHost.querySelector<HTMLInputElement>('[role="combobox"]');
+      if (!combobox) return;
+
+      const controlledId = combobox.getAttribute('aria-controls');
+      const results = controlledId ? document.getElementById(controlledId) : null;
+      const resultsContainer = results?.closest<HTMLElement>('[aria-hidden]');
+      const resultsAreVisible = Boolean(
+        results
+        && results.getClientRects().length > 0
+        && resultsContainer?.getAttribute('aria-hidden') !== 'true',
+      );
+      if (!combobox.hasAttribute('aria-expanded')) {
+        combobox.setAttribute('aria-expanded', resultsAreVisible ? 'true' : 'false');
+      }
+
+      if (resultsContainer?.getAttribute('aria-hidden') === 'true') {
+        resultsContainer.querySelectorAll<HTMLElement>('[tabindex="0"]').forEach((element) => {
+          element.tabIndex = -1;
+        });
+      }
+    };
+    syncSearchComboboxState();
+
+    // Mapbox manages the open state, but its initial render omits the combobox
+    // attribute and closed results can retain a tabbable option. Repair both when
+    // a runtime render drops the required state.
+    const searchAccessibilityObserver = new MutationObserver(syncSearchComboboxState);
+    searchAccessibilityObserver.observe(searchHost, {
+      attributes: true,
+      attributeFilter: ['aria-expanded', 'aria-hidden', 'tabindex'],
+      childList: true,
+      subtree: true,
+    });
+
     let originMarker: Marker | undefined;
     let routeRequest: AbortController | undefined;
+    let geolocationRequestId = 0;
 
     const mapReady = new Promise<void>((resolve) => {
       if (map.loaded()) {
@@ -230,7 +274,13 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       originLabel: string,
     ): Promise<void> => {
       routeRequest?.abort();
-      routeRequest = new AbortController();
+      const request = new AbortController();
+      routeRequest = request;
+      originMarker?.remove();
+      originMarker = undefined;
+      if (map.getLayer(ROUTE_LAYER_ID)) map.removeLayer(ROUTE_LAYER_ID);
+      if (map.getSource(ROUTE_SOURCE_ID)) map.removeSource(ROUTE_SOURCE_ID);
+      updateExternalLinks(root);
       setStatus(`Calculating the drive from ${originLabel}…`, 'loading');
       locationButton?.setAttribute('aria-busy', 'true');
 
@@ -243,7 +293,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
         url.searchParams.set('steps', 'false');
         url.searchParams.set('access_token', accessToken);
 
-        const response = await fetch(url, { signal: routeRequest.signal });
+        const response = await fetch(url, { signal: request.signal });
         if (!response.ok) throw new Error(`Directions request failed (${response.status})`);
 
         const result = (await response.json()) as DirectionsResponse;
@@ -276,10 +326,10 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
           });
         }
 
-        originMarker?.remove();
         originMarker = new mapboxgl.Marker({ color: '#7A5C2A', scale: 0.8 })
           .setLngLat(origin)
           .addTo(map);
+        originMarker.getElement().setAttribute('aria-label', `Route starting point: ${originLabel}`);
 
         const bounds = new mapboxgl.LngLatBounds(origin, origin).extend(DESTINATION);
         map.fitBounds(bounds, {
@@ -300,7 +350,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
           'error',
         );
       } finally {
-        locationButton?.removeAttribute('aria-busy');
+        if (routeRequest === request) locationButton?.removeAttribute('aria-busy');
       }
     };
 
@@ -314,16 +364,24 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
       const label = feature.properties.full_address
         || feature.properties.name
         || 'your starting point';
+      geolocationRequestId += 1;
       void drawRoute([longitude, latitude], label);
     });
 
     searchBox.addEventListener('clear', () => {
+      geolocationRequestId += 1;
       routeRequest?.abort();
+      locationButton?.removeAttribute('aria-busy');
       originMarker?.remove();
       originMarker = undefined;
       if (map.getLayer(ROUTE_LAYER_ID)) map.removeLayer(ROUTE_LAYER_ID);
       if (map.getSource(ROUTE_SOURCE_ID)) map.removeSource(ROUTE_SOURCE_ID);
-      map.flyTo({ center: DESTINATION, zoom: 14.6 });
+      const resetView = { center: DESTINATION, zoom: 14.6 } as const;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        map.jumpTo(resetView);
+      } else {
+        map.flyTo(resetView);
+      }
       updateExternalLinks(root);
       setStatus(DESTINATION_ADDRESS, 'idle');
     });
@@ -334,15 +392,18 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
         return;
       }
 
+      const requestId = ++geolocationRequestId;
       setStatus('Finding your current location…', 'loading');
       locationButton.setAttribute('aria-busy', 'true');
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          if (requestId !== geolocationRequestId) return;
           const origin: [number, number] = [position.coords.longitude, position.coords.latitude];
           searchBox.value = 'Current location';
           void drawRoute(origin, 'your current location');
         },
         () => {
+          if (requestId !== geolocationRequestId) return;
           locationButton.removeAttribute('aria-busy');
           setStatus(
             'We could not access your location. Enter a starting address instead.',
@@ -356,6 +417,7 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     document.addEventListener(
       'astro:before-swap',
       () => {
+        searchAccessibilityObserver.disconnect();
         routeRequest?.abort();
         map.remove();
       },
@@ -409,12 +471,17 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
     width: 100%;
   }
 
+  .search-host :global(mapbox-search-box button[aria-label='Clear']) {
+    min-width: 24px;
+    min-height: 24px;
+  }
+
   .directions-help {
     @apply text-muted text-[12px] mt-2;
   }
 
   .location-button {
-    @apply inline-flex items-center justify-center gap-2 min-h-[52px] px-5 border border-gold text-gold text-[12px] font-medium tracking-[0.14em] uppercase transition-colors hover:bg-gold-metal hover:border-gold-metal hover:text-ink;
+    @apply inline-flex items-center justify-center gap-2 min-h-[52px] px-5 border border-gold text-gold text-[12px] font-medium tracking-[0.14em] uppercase transition-colors hover:bg-gold-700 hover:border-gold-700 hover:text-ivory;
   }
 
   .location-button svg {
@@ -436,12 +503,12 @@ const accessToken = import.meta.env.PUBLIC_MAPBOX_ACCESS_TOKEN?.trim();
   }
 
   .route-status[data-state='success'] {
-    @apply border-green/40 text-green-deep;
+    @apply border-green-sage/50 text-green-sage;
   }
 
   .route-status[data-state='error'] {
-    color: #8b2e24;
-    border-color: rgb(139 46 36 / 0.35);
+    color: #f87171;
+    border-color: rgb(248 113 113 / 0.45);
   }
 
   .map-frame {

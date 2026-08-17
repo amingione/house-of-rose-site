@@ -1,38 +1,39 @@
 <div
   id="consent-banner"
-  class="fixed inset-x-3 bottom-3 z-[120] mx-auto hidden max-w-[920px] border border-walnut/15 bg-bone/95 p-4 shadow-[0_18px_60px_rgba(58,43,36,0.22)] backdrop-blur-md sm:p-5"
+  class="fixed inset-x-2 bottom-2 z-[120] mx-auto hidden max-w-[860px] border border-ivory/15 bg-charcoal/95 p-2.5 shadow-[0_12px_36px_rgba(24,18,15,0.28)] backdrop-blur-md sm:p-3"
   role="region"
   aria-label="Privacy choices"
 >
-  <div class="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-    <div>
-      <h2 class="font-serif text-[20px] text-ink">Your privacy choices</h2>
-      <p class="mt-1 max-w-[600px] text-[13px] leading-relaxed text-muted">
-        Optional analytics help us improve the site. Advertising measurement stays off unless you allow it; form messages and service interests are not shared with advertising platforms.
-      </p>
-      <a class="mt-1 inline-block text-[12px] text-gold underline underline-offset-4" href="/privacy-policy/">
-        Read the Privacy Policy
-      </a>
-    </div>
-    <div class="grid grid-cols-2 gap-2 sm:flex md:max-w-[390px] md:justify-end">
-      <button id="consent-reject" type="button" class="btn-outline-gold min-h-[44px] px-4">Reject optional</button>
-      <button id="consent-manage" type="button" class="btn-outline-gold min-h-[44px] px-4">Preferences</button>
-      <button id="consent-accept" type="button" class="btn-gold col-span-2 min-h-[44px] px-5">Accept optional</button>
+  <div class="grid gap-2.5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-4">
+    <p class="max-w-[560px] text-[11px] leading-[1.5] text-ivory/75 sm:text-[12px]">
+        Optional measurement is off. Review your choices or keep it off.
+        <a class="ml-1 whitespace-nowrap text-gold underline underline-offset-4" href="/privacy-policy/">
+          Privacy policy
+        </a>
+    </p>
+    <div class="grid grid-cols-2 gap-1.5 sm:min-w-[196px] sm:gap-2">
+      <button id="consent-reject" type="button" aria-label="Keep off optional analytics and advertising measurement" class="btn-outline-gold min-h-[40px] px-2 text-[10px] sm:text-[11px]">Keep off</button>
+      <button id="consent-manage" type="button" class="btn-outline-gold min-h-[40px] px-2 text-[10px] sm:text-[11px]">Review</button>
     </div>
   </div>
 </div>
 
 <dialog
   id="consent-dialog"
+  aria-labelledby="consent-dialog-title"
   class="m-auto w-[min(560px,calc(100%-2rem))] border border-gold-metal/40 bg-breath p-0 text-ink shadow-2xl backdrop:bg-charcoal/70"
 >
   <form method="dialog" id="consent-preferences" class="p-6 sm:p-8">
     <div class="flex items-start justify-between gap-5">
       <div>
-        <h2 class="font-serif text-[26px]">Manage privacy preferences</h2>
+        <h2 id="consent-dialog-title" class="font-serif text-[26px]">Manage privacy preferences</h2>
         <p class="mt-2 text-[13px] leading-relaxed text-muted">Necessary storage is always active for security, checkout, and your privacy selection.</p>
       </div>
-      <button value="cancel" aria-label="Close preferences" class="text-2xl leading-none text-muted">×</button>
+      <button
+        value="cancel"
+        aria-label="Close preferences"
+        class="inline-flex min-h-12 min-w-12 shrink-0 items-center justify-center text-2xl leading-none text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+      >×</button>
     </div>
 
     <div class="mt-7 divide-y divide-gold-metal/20 border-y border-gold-metal/20">
@@ -57,6 +58,24 @@
   </form>
 </dialog>
 
+<style is:global>
+  html[data-consent-banner-visible] {
+    scroll-padding-block-end: calc(var(--consent-banner-height, 0px) + 0.5rem);
+  }
+
+  html[data-consent-banner-visible] body {
+    padding-block-end: calc(var(--consent-banner-height, 0px) + 0.5rem);
+  }
+
+  html[data-consent-banner-visible] #mobile-navigation > nav {
+    max-height: calc(100dvh - 80px - var(--consent-banner-height, 0px) - 1rem);
+  }
+
+  html[data-consent-banner-visible] .fixed.bottom-0:not(#consent-banner) {
+    bottom: calc(var(--consent-banner-height, 0px) + 0.5rem);
+  }
+</style>
+
 <script>
   import { applyConsent, getConsent, hasStoredConsent } from '@/lib/measurement';
 
@@ -65,9 +84,36 @@
   const analytics = document.getElementById('consent-analytics') as HTMLInputElement | null;
   const advertising = document.getElementById('consent-advertising') as HTMLInputElement | null;
   const gpcNote = document.getElementById('consent-gpc-note');
+  let preferencesOpener: HTMLElement | null = null;
 
-  const closeBanner = (): void => banner?.classList.add('hidden');
+  const root = document.documentElement;
+  const mainContent = document.getElementById('main-content');
+  const focusMainContent = (): void => mainContent?.focus({ preventScroll: true });
+  const clearBannerReserve = (): void => {
+    root.removeAttribute('data-consent-banner-visible');
+    root.style.removeProperty('--consent-banner-height');
+  };
+  const syncBannerReserve = (): void => {
+    if (!banner || banner.classList.contains('hidden')) {
+      clearBannerReserve();
+      return;
+    }
+
+    root.style.setProperty('--consent-banner-height', `${Math.ceil(banner.getBoundingClientRect().height)}px`);
+    root.setAttribute('data-consent-banner-visible', '');
+  };
+  const closeBanner = (): void => {
+    const dismissedControl = document.activeElement;
+    banner?.classList.add('hidden');
+    clearBannerReserve();
+    if (dismissedControl instanceof HTMLElement && banner?.contains(dismissedControl)) {
+      focusMainContent();
+    }
+  };
   const openPreferences = (): void => {
+    preferencesOpener = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     const current = getConsent();
     if (analytics) analytics.checked = current.analytics_storage === 'granted';
     if (advertising) {
@@ -78,14 +124,35 @@
     dialog?.showModal();
   };
 
-  document.getElementById('consent-accept')?.addEventListener('click', () => {
-    applyConsent({
-      analytics_storage: 'granted',
-      ad_storage: 'granted',
-      ad_user_data: 'granted',
-      ad_personalization: 'granted',
-    }, 'banner');
-    closeBanner();
+  const visibleDialogControls = (): HTMLElement[] => Array.from(
+    dialog?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ) ?? [],
+  ).filter((element) => element.getClientRects().length > 0);
+
+  dialog?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab' || !dialog.open) return;
+
+    const controls = visibleDialogControls();
+    const first = controls.at(0);
+    const last = controls.at(-1);
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  });
+
+  dialog?.addEventListener('close', () => {
+    const opener = preferencesOpener;
+    preferencesOpener = null;
+    if (opener?.isConnected && opener.getClientRects().length > 0) {
+      opener.focus();
+    } else if (banner?.classList.contains('hidden')) {
+      focusMainContent();
+    }
   });
 
   document.getElementById('consent-reject')?.addEventListener('click', () => {
@@ -113,5 +180,15 @@
     dialog?.close();
   });
 
-  if (!hasStoredConsent()) banner?.classList.remove('hidden');
+  if (!hasStoredConsent()) {
+    banner?.classList.remove('hidden');
+    syncBannerReserve();
+  } else {
+    clearBannerReserve();
+  }
+
+  if (banner && typeof ResizeObserver !== 'undefined') {
+    const bannerResizeObserver = new ResizeObserver(syncBannerReserve);
+    bannerResizeObserver.observe(banner);
+  }
 </script>

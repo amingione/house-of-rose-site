@@ -6,40 +6,51 @@ NOT Next.js. NOT React. NOT Medusa. NOT Vendure.
 
 Read `CLAUDE.md` before any work.
 
-## 📕 Brand, marketing & client-facing content — the Creative System is the source of truth
+## 📕 Brand, marketing & client-facing content — voice reset rules
 
-**`docs/House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md`** — House of Rose
-Creative System **v1.0 (issued 2026-07-30)**. Seven books in one file: Creative Bible, Brand Voice &
-Copy Standards, Social & Profile Bios, Visual Standards, AI Creative Rules & Prompt Library, Marketing
-System, Content Approval Checklist. The `.docx`/`.pdf` siblings are the same content styled for Notion
-and print — not a second version.
+> **VOICE RESET IN EFFECT — 2026-08-13.** Amber explicitly rejected the current
+> Claude-developed brand voice. Until she approves a replacement, do **not** use the
+> Creative System, `BRAND_MEMORY.md`, current website copy, or prior AI-authored brand
+> documents as a tonal model or as evidence of her taste. They may still be used for
+> verified business facts, service facts, medical/compliance boundaries, NAP, consent,
+> provider credentials, and operational constraints. New public copy must remain factual
+> and compliant, but it must not imitate the current clinical/institutional cadence.
+> Draft voice work requires Amber's approval before broad website or Sanity rollout.
 
-**Read the relevant book BEFORE writing or editing anything a customer will see** — website copy, Sanity
-content, service descriptions, meta titles/descriptions, ads, captions, bios, email, image or video
-prompts. **It outranks every older brand doc in this repo, in Notion, and in the Obsidian vault** — it
-explicitly replaces the earlier "luxury med spa / boutique spa / beauty destination" framing. It does
-**not** outrank statute (`docs/internal_only/compliance/`) or operational fact (pricing, provider lanes,
-service names — see `CLAUDE.md` Rule #0).
+**`docs/GOVERNANCE/House_of_Rose_Creative_System/House_of_Rose_Creative_System_MASTER.md`** is an
+archival reference during the reset. Use it only for verified business facts, compliance boundaries,
+provider credentials, consent requirements, NAP, and the still-approved visual standards. Its prior
+positioning, voice rules, biographies, templates, taglines, campaign language, and strategy are
+`[SUPERSEDED]` and must not be copied, paraphrased, or treated as evidence of Amber's taste.
 
 Enforced on every content task:
 
 1. **Category language is "Medical Aesthetics Practice"** — the lead public descriptor. `Medical spa`
    stays the GBP platform category and is fine in meta/SEO/supporting copy; never denied, never the lead.
    "Advanced aesthetics & wellness studio" is now supporting language only, not the lead.
-2. **Retired language is banned** (Book 1 §12) — luxury/luxe/premium as self-description, boutique as
+2. **Retired language is banned** — luxury/luxe/premium as self-description, boutique as
    category, glow, radiance, timeless beauty, flawless, ageless, pamper, indulge, treat yourself,
    best version of yourself, turn back time, instant transformation, pain-free, "no downtime" (unless
    true for that exact procedure and reviewed), guaranteed results.
 3. **Controlled-use words are rationed** — skin rejuvenation, evidence-based, advanced, personalized,
    customized, restore, confidence. Accurate, necessary, and never repeated across a page.
-4. **AI may not** invent a protocol, infer provider scope, fill a gap with a "typical" assumption, write
-   a guarantee, fabricate before/after imagery, reviews or credentials, or claim "FDA approved,"
-   "clinically proven," "pain-free," or "no downtime" without approved support (Book 5 §3).
-5. **Label output** as Draft / Facts requiring verification / Claims requiring clinical approval /
-   Assets still needed (Book 5 §3), and **run the Book 7 §1 Fast Preflight before anything publishes.**
-6. **Visuals follow Book 4** — real House of Rose environment, real skin and hands, accurate equipment.
+4. **AI is a creative collaborator.** It is encouraged to originate bold concepts, hooks, names,
+   narratives, metaphors, campaigns, scripts, layouts, and art direction. The boundary is truth, not
+   imagination: AI may not present invented business or clinical facts, credentials, reviews, patient
+   evidence, or outcomes as real, or make a clinical decision.
+5. **Use review notes only when they are relevant.** Flag an unresolved factual assertion, a new or
+   materially changed clinical claim, a fictional concept, or a missing asset; do not force the same
+   four boilerplate labels onto every creative draft. Run factual, compliance, and visual preflight
+   before publishing; do not use the superseded voice checklist as a creative test.
+6. **Visuals follow the still-approved visual standards** — real House of Rose environment, real skin
+   and hands, accurate equipment.
    The visual blacklist (no perfect AI models, flowers as spa shorthand, splashes, glitter, gold foil,
    pink gradients, soft-focus glamour, blue LED rooms, cursive) is binding on generated imagery too.
+7. **The voice reset is not a brevity mandate.** Do not remove verified, client-useful substance merely
+   to make a page shorter or safer-looking. Preserve concrete treatment distinctions, real practice
+   character, proof, useful answers, and persuasive reasons to choose House of Rose. Edit out unsupported
+   claims, repetition, clichés, and the rejected process cadence; replace weak copy with better copy
+   instead of reducing every page to headings, links, and disclaimers.
 
 ## Marketing / SEO / AEO — MANDATORY when touching customer-facing content
 
@@ -47,30 +58,34 @@ This site is built for **Answer Engine Optimization** (AI Overviews, ChatGPT/Per
 local authority, not just keyword SEO. Before creating or editing any public page or content
 document, read:
 
-- **Creative System Book 6 (Marketing System)** — marketing strategy, funnel, Meta + Google Ads
-  structure, GBP, SEO principles, landing-page rules, measurement. **Wins on strategy.**
+- The Creative System's prior marketing voice and campaign strategy are archival during the reset.
+  Preserve only verified platform facts, measurement definitions, and compliance controls.
 - `docs/SEO-AEO-PLAYBOOK.md` — the 7 page types, writing rules, the publish checklist. **Wins on this
   repo's page types and structured data.**
 - `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc type → route → JSON-LD → GROQ query.
-- `docs/internal_only/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
+- `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
   no reverse-aging / guarantees / stem-cell / cure-disease / Groupon / unsupported exosome-peptide claims).
-- `docs/internal_only/compliance/` — the statutory layer. **Wins over all of the above where they touch.**
-- `docs/internal_only/START-HERE.md` — the "which folder holds the real answer" map.
+- `docs/GOVERNANCE/internal_only/compliance/` — the statutory layer. **Wins over all of the above where they touch.**
+- `docs/GOVERNANCE/internal_only/START-HERE.md` — the "which folder holds the real answer" map.
 
 Hard rules (inherited by every task):
-1. Every content page is one of the **7 canonical page types** — never invent ad-hoc page shapes.
+1. Every new intent-led treatment/SEO page uses one of the **7 canonical page types** — never invent
+   an ad-hoc search-content shape. Identity, legal, booking, and utility routes keep their documented
+   supporting page types in `docs/CONTENT-MODEL-MAP.md`.
 2. Every new content page **MUST ship valid JSON-LD** via `src/lib/structuredData.ts`
    (never hand-roll schema objects in pages).
-3. **Answer-first, entity-clear, locally grounded** copy (Punta Gorda / Charlotte County / SW FL).
+3. **Clear early, entity-specific, locally grounded** copy (Punta Gorda / Charlotte County / SW FL).
+   The page should answer its main intent promptly, but do not force every opening or heading into the
+   same answer-first/question-first formula.
 4. Use real NAP only (canonical in `siteSettings` + `structuredData.ts`) — invent nothing.
 5. No orphan pages: wire internal links + `sitemap.xml.ts` + `llms.txt.ts`.
 6. New page-type doc types: shared `seo` + `faq` objects, registered in `schemas/index.ts`,
    listed under the Marketing / SEO group in `structure.ts`.
 7. **Compliance is non-negotiable** — "med spa / medical spa" is **allowed but never leads** (never deny
    being one, avoid "day spa"); the lead descriptor is **"Medical Aesthetics Practice"** per the Creative
-   System. No guarantees, reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported
-   exosome/peptide claims. Follow `docs/internal_only/COMPLIANCE-COPY-RULES.md` on every customer-facing
-   surface, and `docs/internal_only/compliance/` wherever statute applies.
+   reset rules. No guarantees, reverse-aging, stem-cell, cure/treat-disease, Groupon/discount, or unsupported
+   exosome/peptide claims. Follow `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` on every customer-facing
+   surface, and `docs/GOVERNANCE/internal_only/compliance/` wherever statute applies.
 
 ## Framework Rules
 - Pages are `.astro` files — use Astro component syntax
@@ -90,7 +105,8 @@ Hard rules (inherited by every task):
 - Schemas live in `packages/studio/schemas/`
 - Studio structure is in `packages/studio/structure.ts`
 - `siteSettings` is a singleton — document ID is `'siteSettings'`
-- Never call Medusa, Vendure, Stripe, or Shippo from this project
+- Never call Medusa or Vendure. Stripe and Shippo access stays in the existing server-side checkout
+  functions documented in `docs/CHECKOUT.md`; never call either directly from Astro pages or browser code.
 
 ## File Placement
 ```
@@ -111,15 +127,16 @@ packages/studio/
 ```
 
 ## Never Do
-- Import from Medusa, Vendure, Shippo, or FAS-specific libs
+- Import from Medusa, Vendure, or FAS-specific libs; import Shippo only inside the documented
+  server-side checkout functions
 - Use `any` types
 - Add React state/effects to pages (add a component island only if interactivity is required)
 - Commit `.env.local` or `.env`
-- Draft brand copy, ad copy, or an image prompt from a doc that predates **2026-07-30** without checking
-  it against the Creative System first — most of the older material carries the retired luxury/boutique
-  positioning. Anything in Notion prefixed `ARCHIVED - DO NOT USE` is off-limits entirely.
+- Use the Creative System, `BRAND_MEMORY.md`, current website copy, or any prior AI-authored document
+  as a tonal model during the voice reset. Anything in Notion prefixed `ARCHIVED - DO NOT USE` is
+  off-limits entirely.
 - Invent a service, device, ingredient, protocol, credential, downtime figure, review, or testimonial —
-  ask for source material instead (Creative System Book 5 §3).
+  ask for source material instead and follow `CLAUDE.md` Rule #0.
 
 ---
 
@@ -135,7 +152,7 @@ Minimum read set before any customer-facing or compliance-adjacent work:
 | `CLAUDE.md` | Entity structure, medical direction, NAP, statutory copy rules |
 | `docs/SEO-AEO-PLAYBOOK.md` | The 7 page types + the JSON-LD contract per type |
 | `docs/CONTENT-MODEL-MAP.md` | page type → doc type → route → JSON-LD → query |
-| `docs/internal_only/services/ALL-SERVICES-PRICING.MD` | The only prices that exist |
+| `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` | The only prices that exist |
 
 If a rule is stated in one of these, **follow it as written**. Do not re-derive it, do not reason around
 it, do not upgrade it into an open question.
@@ -194,7 +211,7 @@ The 2026-07-23 pricing reconciliation existed because contradicting docs had mul
 it.
 
 - **Update the doc that already owns the topic.** Architecture → `CLAUDE.md` / `CONTENT-MODEL-MAP.md`.
-  Prices → `docs/internal_only/services/ALL-SERVICES-PRICING.MD`. Nothing else.
+  Prices → `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`. Nothing else.
 - A new `.md` is justified only when no existing doc covers the subject. "I want to explain my reasoning"
   is not a subject.
 - Never write a doc whose main content is open questions, TBDs, or a decision matrix for Amber. Apply
@@ -211,7 +228,7 @@ it.
 - Every results claim carries a variance line — R. 64B8-11.001.
 - Banned copy: `pamper`, `indulge`, `amazing`, `attention to detail`, `steady hand`, `exosome`,
   `stem cell`, `guaranteed`, `cure`, `reverse-aging`, `Groupon`, `dermatologist`. No exclamation points.
-- **URLs use trailing slashes.** `/services/prf-microneedling/`.
+- **URLs use trailing slashes.** `/services/prf/`.
 
 ## Working style
 

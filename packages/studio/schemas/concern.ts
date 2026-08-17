@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
 export const concern = defineType({
   name: 'concern',
   title: 'Concern',
@@ -9,7 +11,7 @@ export const concern = defineType({
       name: 'status',
       title: 'Public Status',
       type: 'string',
-      initialValue: 'live',
+      initialValue: 'parked',
       options: {
         list: [
           { title: 'Live', value: 'live' },
@@ -23,7 +25,8 @@ export const concern = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (R) => R.required(),
+      description: 'Public concern-guide name. Use a specific, recognizable concern rather than a campaign phrase.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -34,16 +37,19 @@ export const concern = defineType({
     }),
     defineField({
       name: 'intro',
-      title: 'Intro',
+      title: 'Intro (not published)',
       type: 'text',
       rows: 4,
-      description: 'Short framing paragraph shown at the top of the concern page',
+      readOnly: true,
+      description: 'Legacy source field. Public concern guidance comes from the reviewed website education for each guide.',
     }),
     defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Image (not published)',
       type: 'image',
       options: { hotspot: true },
+      readOnly: true,
+      description: 'Legacy source asset retained with the record. Current concern pages do not render a concern image.',
       fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
     }),
     defineField({
@@ -53,13 +59,10 @@ export const concern = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
-      type: 'object',
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string' }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2 }),
-      ],
-      options: { collapsed: true },
+      title: 'SEO (not published)',
+      type: 'seo',
+      readOnly: true,
+      description: 'Legacy source field. Current concern metadata is generated from the public title and reviewed website education.',
     }),
   ],
   preview: {

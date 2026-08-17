@@ -11,25 +11,10 @@
  */
 
 export const TREATMENT_PAGE_FIELDS = /* groq */ `
-  downtime {
-    level,
-    summary,
-    returnToMakeup,
-    returnToExercise,
-    timeline[] { _key, window, expectation }
-  },
-  aftercare {
-    intro,
-    firstDay,
-    firstWeek,
-    avoid,
-    ongoing
-  },
   providerScope {
     performedBy,
     medicalDirection,
     credentialPoints,
-    consultRequired,
     disclaimer
   },
   priceRange {
@@ -71,8 +56,16 @@ export interface TreatmentProviderScope {
   performedBy: PerformedBy;
   medicalDirection?: boolean;
   credentialPoints: string[];
-  consultRequired?: boolean;
   disclaimer: string;
+}
+
+/** Public provider identity projected from the referenced Sanity provider. */
+export interface TreatmentProviderAttribution {
+  _id: string;
+  publicName?: string;
+  profileSlug?: string | null;
+  profileImagePath?: string;
+  profileImageAlt?: string;
 }
 
 export interface TreatmentPriceRange {
@@ -84,8 +77,6 @@ export interface TreatmentPriceRange {
 
 /** Mixed into the existing `Service` interface in queries.ts. */
 export interface TreatmentPageFields {
-  downtime?: TreatmentDowntime;
-  aftercare?: TreatmentAftercare;
   providerScope?: TreatmentProviderScope;
   priceRange?: TreatmentPriceRange;
   whyQualified?: string[];
@@ -94,7 +85,7 @@ export interface TreatmentPageFields {
 // ─── Display helpers ──────────────────────────────────────────────────────────
 
 const DOWNTIME_LABELS: Record<DowntimeLevel, string> = {
-  none: 'No downtime',
+  none: 'None listed',
   minimal: 'Minimal downtime',
   moderate: 'Moderate downtime',
   significant: 'Planned downtime',
@@ -114,6 +105,58 @@ export function performedByLabel(performedBy: PerformedBy): string {
   return PERFORMED_BY_LABELS[performedBy];
 }
 
+export interface VerifiedProviderIdentity {
+  publicName: string;
+  profileSlug?: string;
+}
+
+const REVIEWED_PROVIDER_IDENTITIES: Readonly<
+  Record<string, VerifiedProviderIdentity & { performedBy: Exclude<PerformedBy, 'either'> }>
+> = {
+  'provider-diana': {
+    publicName: 'Diana Morrison, RN',
+    profileSlug: 'diana',
+    performedBy: 'rn',
+  },
+  'provider-amber': {
+    publicName: 'Amber Mingione, Licensed Esthetician',
+    profileSlug: 'amber',
+    performedBy: 'esthetician',
+  },
+  'provider-brandy': {
+    publicName: 'Brandy, Licensed Esthetician',
+    profileSlug: 'brandy',
+    performedBy: 'esthetician',
+  },
+};
+
+/**
+ * Returns a named provider only when the identity and licence type agree with
+ * the service scope. Exact reviewed House of Rose identities cover the known
+ * partial Sanity records; unfamiliar providers must carry a licence-bearing
+ * public name before they can replace the safe generic scope label.
+ */
+export function verifiedProviderIdentity(
+  provider: TreatmentProviderAttribution | undefined,
+  performedBy: PerformedBy,
+): VerifiedProviderIdentity | undefined {
+  if (!provider || performedBy === 'either') return undefined;
+
+  const reviewed = REVIEWED_PROVIDER_IDENTITIES[provider._id];
+  if (reviewed?.performedBy === performedBy) {
+    return { publicName: reviewed.publicName, profileSlug: reviewed.profileSlug };
+  }
+
+  const publicName = provider?.publicName?.trim();
+  const hasMatchingLicence = performedBy === 'rn'
+    ? /,\s*RN$/i.test(publicName ?? '')
+    : /,\s*(?:Licensed\s+)?Esthetician$/i.test(publicName ?? '');
+
+  return publicName && hasMatchingLicence
+    ? { publicName, profileSlug: provider.profileSlug ?? undefined }
+    : undefined;
+}
+
 const PRICE_UNIT_LABELS: Record<PriceUnit, string> = {
   session: 'per session',
   unit: 'per unit',
@@ -131,5 +174,5 @@ export function formatPriceRange(range: TreatmentPriceRange): string {
   if (range.maxPrice != null && range.maxPrice !== range.minPrice) {
     return `${money(range.minPrice)}–${money(range.maxPrice)} ${unit}`;
   }
-  return `From ${money(range.minPrice)} ${unit}`;
+  return `${money(range.minPrice)} ${unit}`;
 }

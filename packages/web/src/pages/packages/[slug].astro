@@ -10,7 +10,7 @@ import {
   type TreatmentPackage,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -25,13 +25,27 @@ const packageData = await sanityFetch<TreatmentPackage>(TREATMENT_PACKAGE_BY_SLU
 if (!packageData) {
   throw new Error(`[packages/[slug]] No treatment package found in Sanity for slug "${slug}"`);
 }
-const pkg = alignPublicContent(packageData);
+const pkg = packageData;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const summary = pkg.outcome ?? pkg.whatsIncluded ?? '';
 const services = pkg.servicesIncluded ?? [];
-const price = pkg.rackPrice;
+// GlossGenius is commerce truth. The current export corroborates only the
+// Acne Bootcamp package price; other live Sanity package amounts stay hidden
+// until their corresponding commerce line exists and is reconciled.
+const isFaceRealityProgram = pkg.slug === FACE_REALITY_PROGRAM.packageSlug;
+const price = isFaceRealityProgram ? `$${FACE_REALITY_PROGRAM.packagePriceUsd}` : undefined;
+const serviceNames = services.map((service) => service.title).join(', ');
+const summary = isFaceRealityProgram
+  ? `${FACE_REALITY_PROGRAM.summary} The complete program is $${FACE_REALITY_PROGRAM.packagePriceUsd}.`
+  : serviceNames
+  ? `${pkg.title} includes ${serviceNames}.`
+  : `${pkg.title} at House of Rose Aesthetics in Punta Gorda, Florida.`;
+// Temporary voice-reset overlay: keep the factual duration without rendering
+// the superseded marketing language stored on this live package.
+const timing = pkg.slug === 'glo2facial-series-of-6'
+  ? 'Several months.'
+  : pkg.cadence;
 const packageImage = pkg.image
   ? urlFor(pkg.image).width(1920).height(1080).fit('crop').url()
   : DEFAULT_PACKAGE_IMAGE;
@@ -55,8 +69,10 @@ const breadcrumbSchema = breadcrumbList([
   { name: pkg.title, item: canonicalURL.toString() },
 ]);
 
-const pageTitle = `${pkg.title} | Treatment Series`;
-const pageDescription = summary;
+const pageTitle = isFaceRealityProgram
+  ? 'Acne Bootcamp: 12-Week Face Reality Program'
+  : `${pkg.title} | Treatment Package`;
+const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescription : summary;
 ---
 
 <BaseLayout
@@ -77,23 +93,78 @@ const pageDescription = summary;
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10"></div>
     <div class="relative z-10 max-w-[1280px] mx-auto px-6 pb-12 w-full">
       <a href="/packages/" class="inline-flex items-center gap-2 text-ivory/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
-        <span class="text-lg">←</span> All Packages
+        <span class="text-lg">←</span> All packages
       </a>
-      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">Treatment Series</span>
+      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">Treatment package</span>
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
         {pkg.title}
       </h1>
-      {summary && <p class="mt-4 text-ivory/75 text-[15px] max-w-[640px] leading-relaxed" {...sbFieldPath(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{summary}</p>}
       {price && (
-        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase" {...sbFieldPath('rackPrice')}>{price}</p>
+        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase">
+          Package price · <span>{price}</span>
+        </p>
       )}
     </div>
   </section>
 
-  <!-- What's Included -->
+  {isFaceRealityProgram && (
+    <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(52px,7vw,80px)] md:px-12">
+      <div class="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div>
+          <span class="kicker">The program</span>
+          <h2 class="mt-3 font-serif text-[clamp(30px,5vw,46px)] leading-tight text-ink">
+            What the $899 represents.
+          </h2>
+          <p class="mt-5 max-w-[540px] text-[16px] leading-[1.75] text-muted-strong">
+            {FACE_REALITY_PROGRAM.programOnly} The $899 figure is the price of the complete 12-week program, not the price of one visit.
+          </p>
+          <a href="/services/face-reality-acne-program/" class="learn-more mt-7 inline-block hover:text-gold">
+            Consultation and program details
+          </a>
+        </div>
+        <div class="border-y border-gold-metal/15">
+          {FACE_REALITY_PROGRAM.packageDetails.map((detail) => (
+            <p class="border-b border-gold-metal/10 py-6 text-[15px] leading-[1.7] text-muted last:border-b-0">
+              {detail}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <div class="mx-auto mt-12 grid max-w-[1120px] gap-px overflow-hidden border border-gold-metal/10 bg-gold-metal/10 md:grid-cols-2">
+        <div class="bg-charcoal p-7 md:p-9">
+          <h3 class="font-serif text-[24px] leading-tight text-ink">What the consultation covers.</h3>
+          <p class="mt-4 text-[15px] leading-[1.75] text-muted">
+            The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly. You and Amber Mingione, Licensed Esthetician, discuss what your skin is doing now, the home care purchased for the program, and whether you want to continue into the complete 12 weeks.
+          </p>
+        </div>
+        <div class="bg-charcoal p-7 md:p-9">
+          <h3 class="font-serif text-[24px] leading-tight text-ink">Who provides the program.</h3>
+          <p class="mt-4 text-[15px] leading-[1.75] text-muted">
+            Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Face Reality program at House of Rose in Punta Gorda.
+          </p>
+          <a href="/about/providers/amber/" class="learn-more mt-5 inline-block hover:text-gold">
+            Meet Amber Mingione, Licensed Esthetician
+          </a>
+        </div>
+      </div>
+
+      <aside data-face-reality-medical-boundary class="mx-auto mt-6 max-w-[1120px] border border-gold-metal/15 bg-charcoal-light px-7 py-8 md:px-9">
+        <span class="kicker">When to seek medical care</span>
+        <h3 class="mt-3 font-serif text-[clamp(24px,3.5vw,34px)] leading-tight text-ink">
+          Some breakouts need medical evaluation first.
+        </h3>
+        <p class="mt-4 max-w-[780px] text-[15px] leading-[1.8] text-muted">
+          {FACE_REALITY_PROGRAM.medicalBoundary}
+        </p>
+      </aside>
+    </section>
+  )}
+
+  <!-- Included services -->
   {services.length > 0 && (
     <section class="bg-charcoal py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
-      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What's Included</span>
+      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Included services</span>
       <div class="space-y-px bg-gold-metal/10">
         {services.map((service, index) => (
           <div class="bg-charcoal p-7 flex gap-6" {...(service._id ? sbObjectId(service._id) : {})}>
@@ -104,9 +175,6 @@ const pageDescription = summary;
               <a href={`/services/${service.slug}/`} class="font-serif text-[20px] text-ink hover:text-gold transition-colors" {...(service._id ? sbFieldPath('title') : {})}>
                 {service.title}
               </a>
-              {service.tagline && (
-                <p class="text-muted text-[14px] leading-relaxed mt-2" {...(service._id ? sbFieldPath('tagline') : {})}>{service.tagline}</p>
-              )}
             </div>
           </div>
         ))}
@@ -114,50 +182,39 @@ const pageDescription = summary;
     </section>
   )}
 
-  {pkg.whatsIncluded && services.length === 0 && (
-    <section class="bg-charcoal py-16 px-6 md:px-12 max-w-[960px] mx-auto">
-      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-6">What's Included</span>
-      <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line" {...sbFieldPath('whatsIncluded')}>{pkg.whatsIncluded}</p>
-    </section>
-  )}
-
-  <!-- Cadence + Positioning -->
-  {(pkg.cadence || pkg.positioning) && (
-    <section class="bg-charcoal-light grid grid-cols-1 md:grid-cols-2 gap-12 py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
-      {pkg.cadence && (
-        <div>
-          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Sequencing &amp; Cadence</span>
-          <p class="text-ink/80 text-[15px] leading-relaxed" {...sbFieldPath('cadence')}>{pkg.cadence}</p>
-        </div>
-      )}
-      {pkg.positioning && (
-        <div>
-          <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Planning Approach</span>
-          <p class="text-muted text-[15px] leading-relaxed italic" {...sbFieldPath('positioning')}>{pkg.positioning}</p>
-        </div>
-      )}
+  <!-- Commitment -->
+  {timing && (
+    <section class="bg-charcoal-light py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
+      <div class="max-w-[640px]">
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">Timing</span>
+        <p class="text-ink/80 text-[15px] leading-relaxed" {...sbFieldPath('cadence')}>{timing}</p>
+      </div>
     </section>
   )}
 
   <!-- Booking CTA -->
   <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Before You Book</span>
+      <span class="kicker">{isFaceRealityProgram ? 'First appointment' : 'Questions'}</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Is {pkg.title} a good fit for you?
+        {isFaceRealityProgram ? 'Begin with the Acne Bootcamp Consultation.' : `Ask about ${pkg.title}.`}
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
-        Talk with the appropriate provider about candidacy, current investment, and the timing between visits before you commit to the series.
+        {isFaceRealityProgram
+          ? 'The directly bookable consultation lasts 60 minutes and costs $99. If you continue, the complete 12-week program is $899; home-care products are purchased separately.'
+          : 'Call us or request a consultation.'}
       </p>
-      {pkg.candidacyNote && (
-        <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10" {...sbFieldPath('candidacyNote')}>{pkg.candidacyNote}</p>
-      )}
+      <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10">
+        {isFaceRealityProgram
+          ? 'The program and its timing are confirmed after the consultation. Individual outcomes vary.'
+          : 'Package availability and timing are confirmed when you contact the practice. Individual outcomes vary.'}
+      </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
-        <a href="/consultation/" class="btn-gold">
-          Request a Consultation
+        <a href={isFaceRealityProgram ? '/services/face-reality-acne-program/' : '/consultation/'} class="btn-gold">
+          {isFaceRealityProgram ? 'See consultation booking' : 'Request a Consultation'}
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

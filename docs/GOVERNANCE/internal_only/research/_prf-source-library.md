@@ -1,8 +1,9 @@
 # PRF Source Library — curated manifest for facial-aesthetics content
 
 > **Date catalogued:** 2026-07-12
-> **Provided by:** Amber (owner) — two personal research libraries in `~/Documents/`.
-> **Purpose:** the *single curated index* of PRF source material for Phase 2 research agents.
+> **Source:** Amber Mingione, Licensed Esthetician — two personal research libraries in `~/Documents/`.
+> **Purpose:** the *single curated evidence index* supporting the current PRF briefs. This index does
+> not authorize public facts, appointments, provider attribution, or routes.
 > Amber's note: these folders hold an enormous amount of clinical PRF literature; **much of
 > it is dental / oral-surgery / implant / sinus / orthopedic and does NOT pertain to facial
 > aesthetics — skip it.** This manifest pre-triages the library down to the ~50 facial-relevant
@@ -10,14 +11,14 @@
 
 ## Compliance guardrails when turning any of this into site copy (BINDING)
 
-Read `docs/internal_only/COMPLIANCE-COPY-RULES.md` first. Specific to this literature:
+Read `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` first. Specific to this literature:
 
 1. **Topical vs injectable is a hard line.** Most of these papers study **injected / microneedled**
    PRF (facial injections, plastic surgery, TMJ, scalp). At House of Rose:
    - **Amber's lane = advanced facials, PRF _topical only_, NO injections.**
-   - **Diana (RN) = injectable PRF / EZ-Gel, IV, GLP-1.**
-   Any PRF copy must keep this distinction crisp (the existing `/guides/microchanneling-prf/`
-   page is the model: "Amber's PRF is topical only; injectable PRF is RN-led"). Never imply the
+   - **Diana Morrison, RN = injectable PRF, IV hydration, and GLP-1.**
+   Any PRF copy must keep this distinction crisp (the current `/services/prf/` hub is the model:
+   "Amber's PRF is topical only; injectable PRF is RN-led"). Never imply the
    topical facial service delivers an injectable study's outcome.
 2. **Exosomes are background science, not a service.** The exosome papers are compliance-sensitive —
    `COMPLIANCE-COPY-RULES.md §2` bans *unsupported exosome/peptide efficacy claims* and *stem-cell*
@@ -26,7 +27,8 @@ Read `docs/internal_only/COMPLIANCE-COPY-RULES.md` first. Specific to this liter
 3. **No medical overclaiming.** This is clinical/surgical literature (wound healing, ulcers, bone).
    Facial aesthetics copy describes *appearance* outcomes only — "for the appearance of," "supports,"
    "designed to," "many clients notice." Never "treats/cures/heals" a condition.
-4. **Pricing never comes from research** — only from `docs/internal_only/services/**` and Sanity.
+4. **Pricing never comes from research** — only from
+   `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`, which mirrors current GlossGenius.
 
 ---
 
@@ -51,9 +53,10 @@ Skin/face rejuvenation & PRF-vs-PRP (most relevant to a **facial** service):
 - `2024 Proffer PRP and PRF for face and hair.pdf` — face + hair overview.
 - `2024 Pensato PRF plastic surgery review.pdf` — review (surgical context; use for mechanism only).
 
-Hair / scalp (a distinct potential content pillar — note injectable/scalp = RN-led):
+Hair / scalp (research background only — no current House of Rose appointment):
 - `2024 Chikhalkar Halting hair loss.pdf`, `2024 Mohale alopecia.pdf`, `2024 Sharma female hair loss.pdf`,
   `2024 Shrestha androgenic allopecia study.pdf`, `2024 Sun Hair regrowth with heated PRP.pdf`.
+  These papers do not authorize a House of Rose service, route, provider attribution, or results claim.
 
 Rhinoplasty / surgical (background only — NOT a House of Rose service):
 - `2019 Gode iPRF on Rhinoplasty.pdf`, `2019 Gode Rhinoplasty.pdf`, `2023 Beaudoin rhinoplasty.pdf`,
@@ -92,10 +95,14 @@ orthodontics, orthopedics, osteonecrosis, osteoporosis, dentin grafting, oro-ant
 course handouts, billing-code images, and all disease-specific exosome folders (cancers, COVID,
 neuro, cardiac, diabetes, etc.) per Amber's note.
 
-## How Phase 2 should use this
+## How current research work should use this
 
 - These are Amber's **private files**, not committed to the repo — reference by absolute path; do
-  not copy PDFs into the repo. Extract facts into `docs/internal_only/research/prf-*.md` briefs (per the pack).
-- Tier 1 + the facial-esthetics half of Tier 2 are the primary inputs for the **PRF service hub,
-  the PRF cost guide, the PRF-vs-microchanneling comparison, and PRF FAQ** content.
-- Keep the **topical (Amber) vs injectable (Diana, RN)** split explicit in every derived page.
+  not copy PDFs into the repo. Extract verified facts into the existing briefs under
+  `docs/GOVERNANCE/internal_only/research/PRF/`; do not create parallel research documents.
+- Tier 1 + the facial-esthetics half of Tier 2 can support the current PRF briefs and canonical
+  `/services/prf/`, `/services/prf-under-eyes/`, and `/services/prf-injections/` pages. This source
+  library does not authorize a new cost guide, comparison, FAQ, or service route.
+- State the **topical (Amber) vs injectable (Diana Morrison, RN)** distinction when copy discusses
+  both uses or could otherwise confuse surface application with injection; do not force it into
+  unrelated copy.

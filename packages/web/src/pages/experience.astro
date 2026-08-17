@@ -1,151 +1,188 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
-import { EXPERIENCE_CONTENT_QUERY, type ExperienceContent } from '@/lib/queries';
 
-const experienceContent = await sanityFetch<ExperienceContent>(EXPERIENCE_CONTENT_QUERY);
+const heroImage = '/images/optimized/actual-welcome-800.webp';
+const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
 ---
 
 <BaseLayout
-  title="The House of Rose Experience | Advanced Aesthetics, Punta Gorda FL"
-  description={experienceContent?.heroSubtitle ?? "See what to expect before, during, and after a visit to House of Rose Aesthetics in Punta Gorda."}
-  preloadImage="/images/welcome-house-of-rose.webp"
+  title="Inside the Practice"
+  description="See the actual House of Rose storefront and rooms in Punta Gorda, meet the providers, and find booking and Unit 9 arrival information."
+  preloadImage={heroImage}
+  preloadImageSrcset={heroImageSrcset}
+  preloadImageSizes="100vw"
 >
   <!-- Hero -->
   <Hero
-    title={experienceContent?.heroTitle ?? "The Experience"}
-    kicker="What to Expect"
-    description={experienceContent?.heroSubtitle}
+    title="Inside House of Rose."
+    kicker="The practice"
+    description="See the actual storefront, reception, and treatment rooms, meet the providers, and find practical details for booking and arrival."
     size="small"
-    backgroundImage="/images/welcome-house-of-rose.webp"
+    backgroundImage={heroImage}
+    backgroundSrcset={heroImageSrcset}
+    backgroundSizes="100vw"
+    backgroundWidth={1400}
+    backgroundHeight={1050}
     imageAlt="The House of Rose Aesthetics reception and waiting area"
   />
 
-  {experienceContent && (
-  <div {...(experienceContent._id ? sbObjectId(experienceContent._id) : {})}>
-  <!-- Story Section -->
-    <section class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
-      <div class="p-[clamp(38px,6vw,76px)]">
-        <span class="kicker">Our Story</span>
-        <h2 class="font-serif text-[clamp(22px,3vw,33px)] text-ink leading-tight mb-5" {...sbFieldPath('storyHeading')}>
-          {experienceContent.storyHeading ?? "Where Beauty Blooms Within."}
-        </h2>
-        {experienceContent.storyParagraph1 && (
-          <p class="text-muted text-[15px] leading-relaxed mb-3" {...sbFieldPath('storyParagraph1')}>
-            {experienceContent.storyParagraph1}
-          </p>
-        )}
-        {experienceContent.storyParagraph2 && (
-          <p class="text-muted text-[15px] leading-relaxed" {...sbFieldPath('storyParagraph2')}>
-            {experienceContent.storyParagraph2}
-          </p>
-        )}
-      </div>
-      <div class="relative min-h-[330px] bg-charcoal-lighter">
-        <img
-          src="/images/optimized/actual-reception-1400.webp"
-          alt="The reception and waiting area inside House of Rose Aesthetics"
-          class="w-full h-full object-cover"
-          width="800"
-          height="600"
-          loading="lazy"
-        />
-      </div>
-    </section>
-
-  <!-- The House of Rose Standard -->
-  {experienceContent.standards && experienceContent.standards.length > 0 && (
-    <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
-      <div class="max-w-[960px] mx-auto text-center mb-16">
-        <span class="kicker">Our Commitment</span>
-        <h2 class="font-serif text-[32px] text-ink mt-2">
-          The House of Rose Standard
-        </h2>
-      </div>
-
-      <div class="max-w-[1120px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-        {experienceContent.standards.map((standard, i) => (
-          <div class="text-center">
-            <p class="text-ink text-[17px] font-medium mb-3 tracking-wide" {...sbFieldPathParts('standards', i, 'title')}>
-              {standard.title}
-            </p>
-            <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('standards', i, 'description')}>
-              {standard.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  )}
-
-  <!-- Visit timeline -->
-  {experienceContent?.journeySteps && experienceContent.journeySteps.length > 0 && (
-    <section class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6">
-      <div class="max-w-[960px] mx-auto text-center mb-16">
-        <span class="kicker">Step by Step</span>
-        <h2 class="font-serif text-[32px] text-ink mt-2">
-          What Your Visit Looks Like
-        </h2>
-      </div>
-
-      <div class="max-w-[1120px] mx-auto">
-        <div class="relative">
-          <!-- Timeline Line - Desktop (centered) -->
-          <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gold-metal/20 transform -translate-x-1/2 hidden md:block"></div>
-
-          <!-- Timeline Line - Mobile (left-aligned) -->
-          <div class="absolute left-6 top-0 bottom-0 w-px bg-gold-metal/20 md:hidden"></div>
-
-          <!-- Steps -->
-          <div class="space-y-16">
-            {experienceContent.journeySteps.map((step, index) => (
-              <div class={`relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center ${index % 2 === 0 ? '' : 'md:grid-flow-dense'}`}>
-                {/* Content */}
-                <div class={`pl-16 md:pl-0 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:col-start-2 md:pl-12'}`}>
-                  <p class="text-gold text-[48px] font-serif mb-2">
-                    {String(step.step).padStart(2, '0')}
-                  </p>
-                  <h3 class="text-ink text-[22px] font-medium mb-3 tracking-wide" {...sbFieldPathParts('journeySteps', index, 'title')}>
-                    {step.title}
-                  </h3>
-                  <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('journeySteps', index, 'description')}>
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Timeline Dot - Desktop (centered) */}
-                <div class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2 w-3 h-3 bg-gold-metal rounded-full border-4 border-charcoal z-10"></div>
-
-                {/* Timeline Dot - Mobile (left-aligned) */}
-                <div class="flex md:hidden absolute left-6 top-0 transform -translate-x-1/2 w-3 h-3 bg-gold-metal rounded-full border-4 border-charcoal z-10"></div>
-              </div>
-            ))}
-          </div>
+  <!-- Actual practice photography -->
+  <section class="bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+    <div class="mx-auto max-w-[1280px]">
+      <span class="kicker">The practice</span>
+      <h2 class="mt-2 font-serif text-[clamp(30px,4vw,44px)] text-ink leading-tight">
+        525 E Olympia Avenue, Unit 9.
+      </h2>
+      <p class="mt-5 max-w-[620px] text-muted text-[15px] leading-relaxed">
+        The storefront, IV hydration suite, and treatment room shown here are the actual House of Rose spaces.
+      </p>
+      <div class="mt-10 grid gap-5 lg:grid-cols-[0.74fr_1.26fr]">
+        <figure class="border border-gold-metal/15 bg-charcoal-light">
+          <img
+            src="/images/optimized/house-of-rose-storefront-700.webp"
+            srcset="/images/optimized/house-of-rose-storefront-700.webp 700w, /images/optimized/house-of-rose-storefront-1000.webp 1000w"
+            sizes="(max-width: 1023px) 100vw, 37vw"
+            alt="The House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda"
+            width="1000"
+            height="1333"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[3/4] h-auto w-full object-cover"
+          />
+          <figcaption class="border-t border-gold-metal/15 px-5 py-4 text-[12px] tracking-[0.08em] text-muted">
+            The storefront · Unit 9
+          </figcaption>
+        </figure>
+        <div class="grid gap-5">
+          <figure class="border border-gold-metal/15 bg-charcoal-light">
+            <img
+              src="/images/optimized/actual-iv-suite-800.webp"
+              srcset="/images/optimized/actual-iv-suite-800.webp 800w, /images/optimized/actual-iv-suite-1400.webp 1400w"
+              sizes="(max-width: 1023px) 100vw, 63vw"
+              alt="The IV hydration suite inside House of Rose Aesthetics"
+              width="1400"
+              height="1120"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[5/4] h-auto w-full object-cover"
+            />
+            <figcaption class="border-t border-gold-metal/15 px-5 py-4 text-[12px] tracking-[0.08em] text-muted">
+              The IV hydration suite
+            </figcaption>
+          </figure>
+          <figure class="border border-gold-metal/15 bg-charcoal-light">
+            <img
+              src="/images/optimized/actual-facial-suite-800.webp"
+              srcset="/images/optimized/actual-facial-suite-800.webp 800w, /images/optimized/actual-facial-suite-1400.webp 1400w"
+              sizes="(max-width: 1023px) 100vw, 63vw"
+              alt="A treatment room inside House of Rose Aesthetics"
+              width="1400"
+              height="1050"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/3] h-auto w-full object-cover"
+            />
+            <figcaption class="border-t border-gold-metal/15 px-5 py-4 text-[12px] tracking-[0.08em] text-muted">
+              A treatment room
+            </figcaption>
+          </figure>
         </div>
       </div>
-    </section>
-  )}
-  </div>
-  )}
+    </div>
+  </section>
+
+  <!-- Decision support -->
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,96px)]">
+    <div class="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+      <div>
+        <span class="kicker">Before the appointment</span>
+        <h2 class="mt-2 max-w-[520px] font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+          The rooms are real. Each appointment has a person behind it.
+        </h2>
+      </div>
+      <div class="max-w-[620px]">
+        <p class="text-[16px] leading-[1.8] text-muted-strong">
+          House of Rose is one practice at one address. The photographs above show the storefront,
+          reception, IV suite, and treatment room you will see here. Diana Morrison, RN provides
+          injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides
+          Microneedling, Glo2Facial, dermaplaning, and BioRePeel add-ons.
+        </p>
+        <p class="mt-5 text-[15px] leading-[1.8] text-muted">
+          Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing.
+          Aundrea Pedigo, Licensed Esthetician provides makeup artistry and permanent jewelry. Direct
+          online booking is available for some services. When it is not, call or send an inquiry and
+          the practice can point you to the relevant service or practitioner.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+          <a href="/consultation/" class="learn-more hover:text-gold">Request a consultation</a>
+          <a href="/about/providers/" class="learn-more hover:text-gold">Review providers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment information -->
+  <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
+    <div class="mx-auto max-w-[1120px]">
+      <span class="kicker">Your visit</span>
+      <h2 class="mt-2 font-serif text-[clamp(30px,4vw,44px)] text-ink">
+        Booking and arrival.
+      </h2>
+      <p class="mt-5 max-w-[680px] text-[16px] leading-[1.8] text-muted-strong">
+        Appointment options vary by service. If you plan to arrive without a reservation, check the
+        current policy before you travel.
+      </p>
+      <div class="mt-10 grid border-y border-walnut/15 lg:grid-cols-3">
+        <article class="py-8 lg:pr-8">
+          <h3 class="font-serif text-[26px] text-ink">To reserve a time</h3>
+          <p class="mt-4 max-w-[500px] text-[15px] leading-[1.75] text-muted">
+            Online booking is available for some services; others require a consultation request or
+            phone call. Arrange the appointment before you travel when you want a specific time.
+          </p>
+        </article>
+        <article class="border-t border-walnut/15 py-8 lg:border-l lg:border-t-0 lg:px-8">
+          <h3 class="font-serif text-[26px] text-ink">Before arriving without a reservation</h3>
+          <p class="mt-4 max-w-[500px] text-[15px] leading-[1.75] text-muted">
+            Read the <a href="/faq/" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">current walk-in policy</a>, or call <a href="tel:+18449417673" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">(844) 941-7673</a>
+            for today’s availability before you travel.
+          </p>
+        </article>
+        <article class="border-t border-walnut/15 py-8 lg:border-l lg:border-t-0 lg:pl-8">
+          <h3 class="font-serif text-[26px] text-ink">When you are still comparing</h3>
+          <p class="mt-4 max-w-[500px] text-[15px] leading-[1.75] text-muted">
+            Send an inquiry or call with the concern or services you want to discuss. House of Rose
+            can tell you which service page to read or which practitioner handles that appointment.
+          </p>
+        </article>
+      </div>
+      <aside class="mt-8 border border-gold-metal/15 bg-charcoal px-6 py-6 sm:px-8" aria-labelledby="finding-house-of-rose">
+        <h3 id="finding-house-of-rose" class="font-serif text-[23px] text-ink">
+          How will I know I am at the right entrance?
+        </h3>
+        <p class="mt-3 max-w-[760px] text-[14px] leading-[1.75] text-muted">
+          Look for the House of Rose Aesthetics sign and Unit 9. The storefront photograph above shows the actual entrance at 525 E Olympia Avenue. Free parking is available; call <a href="tel:+18449417673" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">(844) 941-7673</a> if you have trouble locating the practice.
+        </p>
+      </aside>
+    </div>
+  </section>
 
   <!-- Contact CTA -->
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Plan Your Visit</span>
+      <span class="kicker">Visit House of Rose</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Have questions before you book?
+        Book online or call House of Rose.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Call us to talk through your options, or review the services menu if you already know which service you want.
+        Call if you want to speak with the practice before choosing a time.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
         </a>
         <a href="/services/" class="btn-gold">
-          Explore Services
+          View services
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

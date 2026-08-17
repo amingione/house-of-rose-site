@@ -1,99 +1,135 @@
 import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
 import {
-  ALL_COLLECTIONS_QUERY,
   ALL_BLOG_POSTS_QUERY,
-  AI_SEARCH_FAQ_QUERY,
+  ALL_COMPARISONS_QUERY,
+  ALL_CONCERNS_QUERY,
+  ALL_COST_GUIDES_QUERY,
+  ALL_LOCAL_AREAS_QUERY,
+  ALL_TREATMENT_PACKAGES_QUERY,
+  ALL_CASE_STUDIES_QUERY,
   PUBLIC_PROVIDERS_QUERY,
-  type ServiceCollection,
+  SITE_SETTINGS_QUERY,
   type BlogPost,
-  type AiSearchFaqSection,
+  type Comparison,
+  type Concern,
+  type CostGuide,
+  type LocalArea,
+  type TreatmentPackage,
+  type CaseStudy,
   type PublicProviderProfile,
+  type SiteSettings,
 } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
+import { getVerifiedCostFact } from '@/lib/costFacts';
+import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+import { getServiceEducation } from '@/lib/serviceEducation';
+import { IV_HYDRATION_FAQS, VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_LISTING } from '@/lib/prfUnderEyesFacts';
+import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
+import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from '@/lib/publicCollectionContent';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
+import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 
-// Full service detail query for llms-full
+// During the voice reset, this feed exposes reviewed route inventories and
+// factual service education. Unreviewed long-form Sanity prose stays withheld.
+const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
+const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 const SERVICES_FULL_QUERY = /* groq */ `
-  *[_type == "service" && status == "live"] | order(orderRank asc, title asc) {
+  *[
+    _type == "service" &&
+    status in ["live", "actual-menu"] &&
+    defined(slug.current) &&
+    !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+  ] | order(orderRank asc, title asc) {
     title,
     "slug": slug.current,
-    tagline,
-    description,
-    whoItsFor,
-    process,
-    price,
-    duration,
-    "faqs": faqs[] { question, answer },
-    collection->{ title }
+    "collection": select(
+      defined(collection->slug.current) &&
+      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
+        collection->{ title }
+    )
   }
 `;
 
 interface ServiceFull {
   title: string;
   slug: string;
-  tagline?: string;
-  description?: string;
-  whoItsFor?: string;
-  process?: string[];
-  price?: number | string;
-  duration?: string;
-  faqs?: { question: string; answer: string }[];
   collection?: { title: string };
 }
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [services, collections, posts, aiSearchFaq, sanityProviders] = await Promise.all([
+  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages, caseStudies, sanityProviders] = await Promise.all([
+    sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
-    sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
-    sanityFetch<AiSearchFaqSection | null>(AI_SEARCH_FAQ_QUERY),
+    sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
+    sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
+    sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
+    sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
+    sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
+    sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
     sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
-  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+  const siteFacts = resolvePublicSiteFacts(settings);
+  const providers = resolvePublicProviderProfiles(sanityProviders);
+  const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
+  const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
   const lines: string[] = [
-    `# House of Rose Aesthetics — Medical Aesthetics Practice — Full Content Index`,
+    `# ${siteFacts.siteName} — Medical Aesthetics Practice — Full Content Index`,
     ``,
-    `> Medical Aesthetics. Thoughtfully Practiced.`,
+    `> Medical aesthetics in Punta Gorda, Florida.`,
     ``,
     `## About`,
     ``,
-    `House of Rose Aesthetics is a medical aesthetics practice at 525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950. The practice provides individualized facial, body, skin, injectable, wellness, and maintenance care through consultation, assessment, and treatment planning. Patients can ask questions, compare appropriate options, and choose care with preparation, aftercare, and natural-looking goals in mind.`,
+    `${siteFacts.siteName} is a medical aesthetics practice at ${siteFacts.addressWithExpandedRegion}. Services include skin treatments, injectables, body treatments, IV hydration, wellness care, and professional home care.`,
     ``,
-    `House of Rose serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Visits are focused and unhurried, and walk-ins are welcome — waxing and facials always accept walk-ins, and other services (including injectables) are fit in whenever the schedule allows. Call (844) 941-7673 to book ahead.`,
+    `${siteFacts.shortName} serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. Call ${siteFacts.phone} for help choosing a service or arranging a visit.`,
     ``,
     `**Contact:**`,
-    `- Phone: (844) 941-7673`,
-    `- Email: info@houseofrosefl.com`,
+    `- Phone: ${siteFacts.phone}`,
+    `- Email: ${siteFacts.email}`,
     `- Services menu: https://houseofrose.glossgenius.com/services`,
-    `- Address: 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950`,
+    `- Address: ${siteFacts.address}`,
     `- Hours: Monday–Friday 9:00 AM–5:00 PM`,
     `- Opened: June 15, 2026`,
-    `- Instagram: https://www.instagram.com/house.of.rose.aesthetics/`,
+    `- Instagram: ${siteFacts.instagramUrl}`,
     `- Facebook: https://www.facebook.com/hofraesthetics`,
     ``,
     `---`,
     ``,
     `## Site Pages`,
     ``,
-    `- **Home** (${base}/): Overview of services, brand philosophy, and booking`,
-    `- **Services** (${base}/services/): Full menu of treatments across regenerative aesthetics, injectables, skin health, and wellness`,
-    `- **About** (${base}/about/): House of Rose Aesthetics and the people behind the practice`,
-    `- **House of Rose Aesthetics** (${base}/about/hra/): The practice method, standards, and Punta Gorda location`,
-    `- **Providers** (${base}/about/providers/): Verified roles, service focus, and individual team profiles`,
-    `- **Consultation** (${base}/consultation/): An overview of regenerative skin renewal, targeted face and body modalities, skin maintenance, IV hydration, and provider-guided weight support`,
-    `- **Advanced Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum imaging for pigmentation, texture, pores, fine lines, hydration cues, sun damage, and evidence-led treatment planning`,
-    `- **Treatment Series & Packages** (${base}/packages/): Verified treatment series and compatible service combinations`,
-    `- **Experience** (${base}/experience/): What clients can expect before, during, and after an unhurried visit`,
-    `- **Contact** (${base}/contact/): Directions, phone, email, and booking`,
-    `- **Rent a Suite** (${base}/rent-a-room/): Private treatment room rentals starting at $850/month for licensed aestheticians, massage therapists, and permanent makeup artists`,
-    `- **Journal** (${base}/blog/): Articles on wellness, beauty, and living well in Southwest Florida`,
+    `- **Home** (${base}/): Overview of the practice, current services, and booking`,
+    `- **Services** (${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, makeup, and permanent-jewelry appointments`,
+    `- **About** (${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
+    `- **${siteFacts.siteName}** (${base}/about/hra/): About the practice and its Punta Gorda location`,
+    `- **Providers** (${base}/about/providers/): Licence types, service focus, and individual team profiles`,
+    `- **Consultation** (${base}/consultation/): Request a conversation about a concern or treatment options; submitting the form does not reserve a time`,
+    `- **Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
+    `- **Treatment Series & Packages** (${base}/packages/): The current Face Reality 12-week program and its separately booked consultation`,
+    `- **Experience** (${base}/experience/): Actual storefront, treatment rooms, providers, and visit information`,
+    `- **Contact** (${base}/contact/): Directions, phone, email, response timing, appointment questions, and the general inquiry form`,
+    `- **Rent a Suite** (${base}/rent-a-room/): Treatment room rental information for eligible licensed professionals`,
+    `- **Journal** (${base}/blog/): Reviewed treatment articles with linked sources and clearly stated limitations`,
+    `- **FAQ** (${base}/faq/): Answers about treatments, pricing, and what to expect`,
+    `- **Support** (${base}/support/): Appointment changes, after-visit questions, directions, practice hours, and emergency guidance`,
+    `- **Terms of Service** (${base}/terms-of-service/): Terms for website use, appointments, communications, and online product orders`,
     `- **Shipping Policy** (${base}/shipping-policy/): Contiguous U.S. shipping timing and carrier-rate details`,
     `- **Return Policy** (${base}/return-policy/): Eligibility, reporting windows, return shipping, and refund timing`,
+    `- **Areas We Serve** (${base}/areas/): Punta Gorda, Port Charlotte & Southwest Florida`,
+    ...(caseStudies.length > 0
+      ? [`- **Results** (${base}/results/): Consented before-and-after cases`]
+      : []),
     `- **Sitemap** (${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
     ``,
     `---`,
@@ -105,57 +141,76 @@ export const GET: APIRoute = async ({ site }) => {
     for (const provider of providers) {
       lines.push(`### ${provider.publicName}`);
       lines.push(`URL: ${base}/about/providers/${provider.slug}/`);
-      lines.push(`Role: ${provider.publicRole}`, ``, provider.summary, ``);
-      for (const paragraph of provider.biography) lines.push(paragraph, ``);
+      lines.push(`Role: ${provider.publicRole}`, ``);
       if (provider.serviceFocus.length > 0) lines.push(`Service focus: ${provider.serviceFocus.join(', ')}`, ``);
       if (provider.medicallyDirected) lines.push(`Medical Director: Joshua Shaw, MD · FL Lic. ME136232`, ``);
     }
     lines.push(`---`, ``);
   }
 
-  if (aiSearchFaq?.faqs?.length) {
-    lines.push(`## Frequently Asked Questions`, ``);
-    if (aiSearchFaq.intro) lines.push(alignPublicChannelCopy(aiSearchFaq.intro), ``);
-    for (const faq of aiSearchFaq.faqs) {
-      lines.push(`### ${alignPublicChannelCopy(faq.question)}`, ``, alignPublicChannelCopy(faq.answer), ``);
-    }
-    lines.push(`---`, ``);
-  }
-
-  if (collections.length > 0) {
-    lines.push(`## Service Collections`, ``);
-    for (const col of collections) {
-      lines.push(`### ${col.title}`);
-      lines.push(`URL: ${base}/services/collections/${col.slug}/`);
-      if (col.description) lines.push(alignPublicChannelCopy(col.description));
-      if (col.services?.length > 0) {
-        lines.push(`Services in this collection: ${col.services.map(s => s.title).join(', ')}`);
-      }
-      lines.push(``);
-    }
-    lines.push(`---`, ``);
-  }
-
   if (services.length > 0) {
-    lines.push(`## Services — Full Detail`, ``);
+    lines.push(`## Services`, ``);
     for (const s of services) {
+      const education = getServiceEducation(s.slug);
+      const cardSummary = getServiceCardSummary(s.slug);
       lines.push(`### ${s.title}`);
       lines.push(`URL: ${base}/services/${s.slug}/`);
       if (s.collection) lines.push(`Collection: ${s.collection.title}`);
-      if (s.tagline) lines.push(`Tagline: ${alignPublicChannelCopy(s.tagline)}`);
-      if (s.price) lines.push(`Price: ${s.price}`);
-      if (s.duration) lines.push(`Duration: ${s.duration}`);
-      if (s.description) lines.push(``, alignPublicChannelCopy(s.description));
-      if (s.whoItsFor) lines.push(``, `**Who it's for:** ${alignPublicChannelCopy(s.whoItsFor)}`);
-      if (s.process?.length) {
-        lines.push(``, `**The Process:**`);
-        s.process.forEach((step, i) => lines.push(`${i + 1}. ${alignPublicChannelCopy(step)}`));
+      const duration = getVerifiedServiceDuration(s.slug);
+      if (duration) lines.push(`Duration: ${duration}`);
+
+      if (education) {
+        lines.push(``, `Overview:`);
+        for (const paragraph of education.paragraphs) lines.push(paragraph);
+
+        if (education.distinctions && education.distinctions.length > 0) {
+          lines.push(``, `Key details:`);
+          for (const distinction of education.distinctions) {
+            lines.push(`- **${distinction.label}:** ${distinction.text}`);
+          }
+        }
+
+        if (education.menu) {
+          lines.push(``, `House of Rose menu (prices shown as of ${education.menu.verifiedAt}):`);
+          if (education.menu.intro) lines.push(education.menu.intro);
+          for (const item of education.menu.items) {
+            const appointmentFacts = [item.price, item.duration].filter(Boolean).join(' · ');
+            const itemNote = item.note ? ` ${item.note}` : '';
+            lines.push(`- ${item.name}${appointmentFacts ? ` — ${appointmentFacts}` : ''}.${itemNote}`);
+          }
+        }
+
+        if (education.faqs && education.faqs.length > 0) {
+          lines.push(``, `Common questions:`);
+          for (const faq of education.faqs) {
+            lines.push(`- **${faq.question}** ${faq.answer}`);
+          }
+        }
+      } else if (cardSummary) {
+        lines.push(`Summary: ${cardSummary}`);
       }
-      if (s.faqs?.length) {
-        lines.push(``, `**FAQs:**`);
-        for (const faq of s.faqs) {
-          lines.push(``, `Q: ${alignPublicChannelCopy(faq.question)}`);
-          lines.push(`A: ${alignPublicChannelCopy(faq.answer)}`);
+
+      if (s.slug === 'iv-hydration-therapy') {
+        lines.push(``, `IV hydration menu:`);
+        for (const item of VERIFIED_IV_MENU) {
+          lines.push(`- ${item.name} — $${item.price} · ${item.durationMinutes} minutes.`);
+        }
+        lines.push(``, `Current IV questions:`);
+        for (const faq of IV_HYDRATION_FAQS) {
+          lines.push(`- **${faq.question}** ${faq.answer}`);
+        }
+      }
+
+      if (s.slug === 'prf-under-eyes') {
+        lines.push(
+          ``,
+          `Appointment price: ${PRF_UNDER_EYES_LISTING.name} — ${PRF_UNDER_EYES_LISTING.price}.`,
+          `Call House of Rose to confirm how much time to allow for the appointment.`,
+          ``,
+          `Common questions:`,
+        );
+        for (const faq of PRF_UNDER_EYES_FAQS) {
+          lines.push(`- **${faq.question}** ${faq.answer}`);
         }
       }
       lines.push(``);
@@ -163,29 +218,77 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`---`, ``);
   }
 
-  if (posts.length > 0) {
+  if (concerns.length > 0) {
+    lines.push(`## Concern Guides`, ``);
+    for (const concern of concerns) {
+      lines.push(`- [${concern.title}](${base}/concerns/${concern.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (costGuides.length > 0) {
+    lines.push(`## Pricing Guides`, ``);
+    for (const guide of costGuides) {
+      const fact = getVerifiedCostFact(guide.slug);
+      lines.push(`- [${guide.title}](${base}/cost/${guide.slug}/)${fact ? ` — ${fact.answer}` : ''}`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (publicComparisons.length > 0) {
+    lines.push(`## Treatment Comparisons`, ``);
+    for (const comparison of publicComparisons) {
+      lines.push(`- [${getPublicComparisonContent(comparison.slug)!.title}](${base}/compare/${comparison.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (localAreas.length > 0) {
+    lines.push(`## Areas Served`, ``);
+    for (const area of localAreas) {
+      lines.push(`- [${area.city}](${base}/areas/${area.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (packages.length > 0) {
+    lines.push(`## Treatment Series & Packages`, ``);
+    for (const treatmentPackage of packages) {
+      lines.push(`- [${treatmentPackage.title}](${base}/packages/${treatmentPackage.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (caseStudies.length > 0) {
+    lines.push(`## Results`, ``);
+    for (const study of caseStudies) {
+      lines.push(`- [${study.title}](${base}/results/${study.slug}/)`);
+    }
+    lines.push(``, `---`, ``);
+  }
+
+  if (publicPosts.length > 0) {
     lines.push(`## Journal Articles`, ``);
-    for (const p of posts) {
-      lines.push(`### ${p.title}`);
+    for (const p of publicPosts) {
+      lines.push(`### ${getPublicBlogTitle(p)}`);
       lines.push(`URL: ${base}/blog/${p.slug}/`);
       if (p.publishedAt) lines.push(`Published: ${p.publishedAt.split('T')[0]}`);
       if (p.category) lines.push(`Category: ${p.category}`);
-      if (p.excerpt) lines.push(``, p.excerpt);
       lines.push(``);
     }
     lines.push(`---`, ``);
   }
 
   lines.push(
-    `## Brand Voice & Positioning`,
+    `## Identity & Public Facts`,
     ``,
-    `House of Rose speaks like a capable medical aesthetics practice with time to explain its reasoning: clear, restrained, specific, and human. Copy should explain what a service is, how candidacy is evaluated, and what preparation, recovery, aftercare, or maintenance may involve without hype or guarantees. Lead with "Medical Aesthetics Practice." "Med spa" and "medical spa" are acceptable supporting terms in metadata, SEO, and discovery contexts because the Google Business Profile category is Medical spa, but they are not the lead brand description.`,
+    `${siteFacts.siteName} is the canonical business name. The lead public category is "Medical Aesthetics Practice." "Med spa" and "medical spa" are acceptable supporting terms in metadata, SEO, and discovery contexts because the Google Business Profile category is Medical spa.`,
     ``,
-    `Canonical brand: House of Rose Aesthetics. Common brand variants: House of Rose and Rose Aesthetics. Category: Medical Aesthetics Practice. Signature line: Medical Aesthetics. Thoughtfully Practiced.`,
+    `Common brand variants: House of Rose and Rose Aesthetics. Address: ${siteFacts.address}. Phone: ${siteFacts.phone}.`,
     ``,
-    `## Positioning`,
+    `## Service Scope`,
     ``,
-    `House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. PRF is one of the practice's core services, alongside skin procedures, injectables, facials, and wellness support. Walk-ins are welcome; appointments are recommended to reserve a time.`,
+    `${siteFacts.siteName} serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles. The public service inventory includes skin procedures, PRF, injectables, facials, IV hydration, and wellness services.`,
   );
 
   return new Response(lines.join('\n'), {

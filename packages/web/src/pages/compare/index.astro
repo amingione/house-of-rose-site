@@ -2,12 +2,17 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { sbObjectId } from '@/lib/visualEditing';
 import { ALL_COMPARISONS_QUERY, type Comparison } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
 
-const comparisons = alignPublicContent(await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY));
+const comparisons = filterReviewedPublicComparisons(
+  await sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
+);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
@@ -17,15 +22,18 @@ const breadcrumb = breadcrumbList([
 ]);
 const comparisonsListSchema = comparisons.length
   ? itemList(
-      comparisons.map((c) => ({ name: c.title, url: new URL(`/compare/${c.slug}/`, site).toString() })),
+      comparisons.map((c) => ({
+        name: getPublicComparisonContent(c.slug)!.title,
+        url: new URL(`/compare/${c.slug}/`, site).toString(),
+      })),
       'Treatment Comparisons',
     )
   : null;
 ---
 
 <BaseLayout
-  title="Treatment Comparisons | House of Rose Aesthetics, Punta Gorda FL"
-  description="Clear comparisons of PRF, microneedling, injectables, and other treatments to help you prepare for a consultation at House of Rose in Punta Gorda, FL."
+  title="Treatment Comparisons | House of Rose Aesthetics"
+  description="Compare how selected House of Rose services differ by technology, material, purpose, appointment facts, and the limits of available evidence."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {comparisonsListSchema && <SchemaMarkup item={comparisonsListSchema} slot="head" />}
@@ -33,37 +41,75 @@ const comparisonsListSchema = comparisons.length
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Compare</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Two treatments, side by side</h1>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Compare services side by side.</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        When two treatments could both work, the right choice comes down to your skin, your goals, and your downtime. These neutral comparisons lay out the differences so you can decide with your provider.
+        Each guide separates the technology or material, the concern being discussed, the appointment facts, and the limits of available evidence. A comparison can clarify a difference; it cannot decide that one service fits every person.
       </p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
-      {comparisons.map((c) => (
-        <a href={`/compare/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
-          <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{c.title}</h2>
-          {c.optionA?.label && c.optionB?.label && (
-            <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{c.optionA.label} vs {c.optionB.label}</p>
-          )}
-          {c.intro && <p class="text-muted text-[14px] leading-relaxed line-clamp-3" {...sbFieldPath('intro')}>{c.intro}</p>}
-          <span class="learn-more group-hover:text-gold mt-4 inline-block">Compare them</span>
-        </a>
-      ))}
+    <div class:list={[
+      'max-w-[1280px] mx-auto grid grid-cols-1 gap-px bg-gold-metal/10',
+      comparisons.length > 1 && 'sm:grid-cols-2',
+    ]}>
+      {comparisons.map((c) => {
+        const publicContent = getPublicComparisonContent(c.slug)!;
+        return (
+          <a href={`/compare/${c.slug}/`} class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(c._id)}>
+            <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors">{publicContent.title}</h2>
+            <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">{publicContent.optionALabel} vs {publicContent.optionBLabel}</p>
+            <p class="mt-4 max-w-[620px] text-[14px] leading-6 text-muted">{publicContent.lead}</p>
+            <span class="learn-more group-hover:text-gold mt-4 inline-block">View comparison</span>
+          </a>
+        );
+      })}
       {comparisons.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">Comparisons are coming soon.</p>
+        <p class="bg-charcoal p-7 text-muted text-[14px]">No comparisons are currently published.</p>
       )}
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(56px,8vw,88px)]">
+    <div class="mx-auto grid max-w-[1120px] gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+      <div>
+        <span class="kicker">Using a comparison</span>
+        <h2 class="mt-3 max-w-[470px] font-serif text-[clamp(30px,4vw,44px)] leading-tight text-ink">
+          Two familiar names can hide an important difference.
+        </h2>
+      </div>
+      <div class="max-w-[680px]">
+        <p class="text-[17px] leading-[1.8] text-muted-strong">
+          Look first for the difference that changes the appointment: the material or device being used,
+          the concern it addresses, how pricing is expressed, or what the available evidence actually
+          measures. That is usually more useful than asking which treatment wins.
+        </p>
+        <p class="mt-5 text-[15px] leading-[1.8] text-muted">
+          Confirm the individual service when the provider, appointment length, price, or booking
+          path matters. When the remaining question is about the technology, material, or evidence, bring
+          that exact point to the practice.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+          <a href="/services/" class="learn-more hover:text-gold">See current appointment details</a>
+          <a href="/contact/" class="learn-more hover:text-gold">Ask a specific question</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <p class="text-muted text-[15px] leading-[1.8] mb-6">
-        Still weighing your options? In-studio advanced skin imaging reads your skin first, so the comparison that matters most for you rises to the top.
+      <span class="kicker">When the pair is not listed</span>
+      <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
+        Bring the two names. Ask what changes the appointment.
+      </h2>
+      <p class="mx-auto mt-5 max-w-[640px] text-muted text-[15px] leading-[1.8]">
+        Two services may sound comparable while differing in material or device, the concern under discussion, provider, appointment length, the way price is calculated, and the recovery information available. If the exact pair is not covered here, bring both names to House of Rose rather than treating one as a substitute for the other.
       </p>
-      <a href="/skin-analysis/" class="btn-outline-gold">Start with a skin analysis</a>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/services/" class="btn-outline-gold">Find a service</a>
+        <a href="/contact/" class="btn-gold">Ask about two options</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

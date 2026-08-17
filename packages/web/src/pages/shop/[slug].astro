@@ -13,8 +13,11 @@ import {
 } from '@/lib/queries';
 import { product as productJsonLd } from '@/lib/structuredData';
 import { toCanonicalProduct } from '@/lib/productContract';
+import { SHOP_ENABLED } from '@/lib/features';
 
 export async function getStaticPaths() {
+  if (!SHOP_ENABLED) return [];
+
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_PRODUCT_SLUGS_QUERY);
   return slugs.map(({ slug }) => ({ params: { slug } }));
 }
@@ -42,7 +45,7 @@ const formatPrice = (cents?: number): string =>
 // `purchaseUrl` is now the ESCAPE HATCH, not the default — see docs/CHECKOUT.md.
 const canBuy = canonicalProduct.purchasable;
 const hasCheckout = Boolean(product.purchaseUrl);
-// Add-to-cart is an action → say what it does. purchaseUrl is a link → evocative is fine.
+// Each control names its actual action; purchaseUrl remains an external shopping link.
 const ctaLabel = canBuy
   ? getAddToCartCta(product)
   : hasCheckout

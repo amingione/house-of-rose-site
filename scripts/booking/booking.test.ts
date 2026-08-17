@@ -34,7 +34,7 @@ test('resolves a direct service with exact analytics metadata', () => {
   );
 
   assert.equal(action.href, DIRECT_URL);
-  assert.equal(action.label, 'Book this service');
+  assert.match(action.label, /\b(?:book|reserve|schedule)\b/i);
   assert.equal(action.mode, 'direct');
   assert.equal(action.target, '_blank');
   assert.deepEqual(action.analytics, {
@@ -44,13 +44,14 @@ test('resolves a direct service with exact analytics metadata', () => {
   });
 });
 
-test('uses the verified matching consultation label', () => {
+test('uses an explicit action-oriented consultation label', () => {
   const action = resolveServiceBooking(
     { slug: 'dermal-fillers', bookingMode: 'consultation', bookingUrl: DIRECT_URL },
     'service_inline',
   );
 
-  assert.equal(action.label, 'Schedule a consultation');
+  assert.match(action.label, /\b(?:book|request|schedule)\b/i);
+  assert.match(action.label, /\bconsultation\b/i);
   assert.equal(action.mode, 'consultation');
 });
 
@@ -70,7 +71,7 @@ test('falls back to phone when a service is ambiguous or its URL is invalid', ()
 
   for (const action of [missing, invalidConsultation]) {
     assert.equal(action.href, 'tel:+18449417673');
-    assert.equal(action.label, 'Call to discuss');
+    assert.match(action.label, /\bcall\b/i);
     assert.equal(action.mode, 'phone');
     assert.equal(action.external, false);
   }

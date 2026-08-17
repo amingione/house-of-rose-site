@@ -1,23 +1,28 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import BookingLink from '@/components/BookingLink.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { sanityFetch } from '@/lib/sanity';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import {
   ALL_COLLECTION_SLUGS_QUERY,
   COLLECTION_BY_SLUG_QUERY,
   type ServiceCollection,
 } from '@/lib/queries';
-import {
-  getCollectionFallbackImage,
-  getCuratedServiceImage,
-  getCuratedServiceImageAlt,
-  getInModeDeviceImage,
-  getServiceFallbackImage,
-} from '@/lib/imageFallbacks';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+
+const collectionIntroductions: Readonly<Record<string, string>> = {
+  inmode:
+    'Morpheus8 delivers radiofrequency through microneedles, Lumecca Peak uses intense pulsed light, and Forma delivers radiofrequency through surface electrodes. They use different forms of energy delivery and have separate appointment paths.',
+  'injectables-bio-fillers':
+    'Lines that appear with facial movement belong to the neurotoxin conversation. Lost volume in selected lips, cheeks, and folds belongs to the dermal-filler conversation. Injectable PRF uses a blood-derived material and has separate under-eye and bio-filler consultations.',
+  'iv-hydration-therapy':
+    'This category includes six IV hydration appointments and the GLP-1 Weight Management program. IV hydration and GLP-1 weight management are distinct medical services with different appointment and pricing structures.',
+  facials:
+    'This group includes surface exfoliation, dermaplaning, Glo2Facial, Procell Microneedling, topical PRF, BioRePeel, and the 12-week Face Reality Acne Program.',
+  waxing:
+    'House of Rose books facial and body waxing by area, from brows, upper lip, and chin to underarms, bikini line, arms, legs, back, and chest.',
+};
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COLLECTION_SLUGS_QUERY);
@@ -25,681 +30,141 @@ export async function getStaticPaths() {
 }
 
 const { collection: slug } = Astro.params;
-const collectionData = await sanityFetch<ServiceCollection>(COLLECTION_BY_SLUG_QUERY, { slug });
+const collection = await sanityFetch<ServiceCollection>(COLLECTION_BY_SLUG_QUERY, { slug });
 
 // Never `return Astro.redirect()` from a prerendered route — it breaks the static build.
 // Slugs come from getStaticPaths, so a miss is a data bug: fail loudly.
-if (!collectionData) {
+if (!collection) {
   throw new Error(`[collections/[collection]] No collection found in Sanity for slug "${slug}"`);
 }
-const collection = alignPublicContent(collectionData);
-const collectionImage = getCollectionFallbackImage(collection.slug);
-const isEditorial = collection.presentation === 'editorial';
-const editorialHeroImage = collection.slug === 'advanced-facials'
-    ? '/images/optimized/actual-reception-1400.webp'
-    : collectionImage;
-const editorialDefaults = {
-  headline: 'Advanced facials, customized to your skin',
-  intro:
-    'At House of Rose, you do not choose from a maze of preset combinations. We begin with your skin, goals, timing, and candidacy—then customize the facial with the modalities that make sense for you.',
-  customizationTitle: 'How can your facial be customized?',
-  customizationIntro:
-    'These are not separate facial packages. Your provider recommends only what fits your skin and treatment plan.',
-  closingTitle: 'Not sure where to start?',
-  closingBody:
-    'Call House of Rose and tell us what you want to improve. We will help you choose a sensible next step.',
-};
-const editorialFallbackImages: Record<string, string> = {
-  glo2facial: '/images/optimized/glo2facial-company-600.webp',
-  biorepeel: '/images/optimized/biorepeel-products-800.webp',
-};
-const editorialFallbackSummaries: Record<string, string> = {
-  glo2facial:
-    'Oxygenation, exfoliation, and infusion for visible hydration and healthier-looking skin with little interruption to your day.',
-  biorepeel:
-    'A provider-selected resurfacing peel considered for visible tone, texture, and clarity.',
-};
-const editorialFeatures = collection.featuredServices?.filter((item) => item.service) ?? [];
-const featuredStartingPoints: NonNullable<ServiceCollection['featuredServices']> = editorialFeatures.length > 0
-  ? editorialFeatures
-  : collection.services
-      .filter((service) => service.slug in editorialFallbackImages)
-      .map((service) => ({
-        _key: service._id,
-        service,
-        image: undefined,
-        summary: editorialFallbackSummaries[service.slug],
-        linkLabel: `Explore ${service.title}`,
-      }));
-const editorialCustomizations = collection.customizations?.length
-  ? collection.customizations
-  : [
-      {
-        _key: 'dermaplaning-led',
-        title: 'Dermaplaning + LED',
-        description: 'Surface prep and calming light support.',
-      },
-      {
-        _key: 'procell',
-        title: 'Procell Microchanneling',
-        description: 'A corrective option considered when visible texture is the priority.',
-      },
-      {
-        _key: 'topical-prf',
-        title: 'Topical PRF',
-        description: 'A provider-selected adjunct to an appropriate needling treatment.',
-      },
-      {
-        _key: 'targeted-peel',
-        title: 'Targeted peel options',
-        description: 'Selected by skin, treatment area, and candidacy.',
-      },
-    ];
-const isRfIplCollection = collection.slug === 'rf-ipl-skin-treatments';
-const inModeDevices = isRfIplCollection
-  ? collection.services
-      .map((service) => ({
-        title: service.title,
-        src: getInModeDeviceImage(service.slug),
-      }))
-      .filter((device): device is { title: string; src: string } => Boolean(device.src))
-  : [];
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Services', item: `${site}services/` },
-  { name: 'Collections', item: `${site}services/collections/` },
+  { name: 'Categories', item: `${site}services/collections/` },
   { name: collection.title, item: canonical },
 ]);
-const serviceListSchema = collection.services?.length
+const serviceListSchema = collection.services.length
   ? itemList(
-      collection.services.map((svc) => ({
-        name: svc.title,
-        url: new URL(`/services/${svc.slug}/`, site).toString(),
+      collection.services.map((service) => ({
+        name: service.title,
+        url: new URL(`/services/${service.slug}/`, site).toString(),
       })),
-      collection.title,
+      `${collection.title} Services`,
     )
   : null;
-const pageTitle = `${collection.title} in Punta Gorda, FL | House of Rose`;
+const pageTitle = `${collection.title} Services | House of Rose Aesthetics`;
+const pageDescription = `${collection.title} appointments at House of Rose, grouped with their individual treatment and booking details.`;
+const collectionIntroduction = collectionIntroductions[collection.slug]
+  ?? `Related ${collection.title} appointments at House of Rose keep their own treatment and booking details.`;
+const facialPathways = collection.slug === 'facials'
+  ? [
+      {
+        heading: 'Surface appointments',
+        body: 'Dermaplaning uses a specialized blade for fine vellus hair and surface buildup. Glo2Facial combines surface exfoliation, topical infusion, and oxygenation. BioRePeel is the standalone topical TCA-based peel.',
+        links: [
+          { href: '/services/dermaplaning/', label: 'Dermaplaning' },
+          { href: '/services/glo2facial/', label: 'Glo2Facial' },
+          { href: '/services/biorepeel/', label: 'BioRePeel' },
+        ],
+      },
+      {
+        heading: 'Microneedling and topical PRF',
+        body: 'House of Rose Microneedling uses the Procell Therapies device to create controlled microchannels. When PRF is part of an eligible Microneedling appointment, it is applied at the skin surface; the PRF overview also explains the separate injectable routes.',
+        links: [
+          { href: '/services/microneedling/', label: 'Microneedling' },
+          { href: '/services/prf/', label: 'PRF overview' },
+        ],
+      },
+      {
+        heading: 'A 12-week acne program',
+        body: 'Face Reality begins with a consultation, then combines in-studio visits every two weeks with daily home care across the complete 12-week program.',
+        links: [
+          { href: '/services/face-reality-acne-program/', label: 'Face Reality Acne Program' },
+        ],
+      },
+    ]
+  : [];
 ---
 
-<BaseLayout
-  title={pageTitle}
-  description={collection.description ?? `Explore ${collection.title} services at House of Rose Aesthetics in Punta Gorda, FL, and compare the available treatment options.`}
-  image={editorialHeroImage}
-  preloadImage={editorialHeroImage}
->
+<BaseLayout title={pageTitle} description={pageDescription} noindex>
   <SchemaMarkup item={breadcrumb} slot="head" />
   {serviceListSchema && <SchemaMarkup item={serviceListSchema} slot="head" />}
-  {isEditorial ? (
-    <div class="editorial-collection" {...sbObjectId(collection._id)}>
-      <section class="editorial-hero">
-        <div class="editorial-hero__copy">
-          <h1 {...sbFieldPath('headline')}>
-            {collection.headline ?? editorialDefaults.headline}
-          </h1>
-          <p {...sbFieldPath('intro')}>
-            {collection.intro ?? editorialDefaults.intro}
-          </p>
-          <div class="editorial-hero__actions">
-            <a href="tel:+18449417673" class="btn-gold">Call for a consultation</a>
-            <a href="/contact/" class="editorial-text-link">Walk-ins welcome for facials</a>
-          </div>
-        </div>
-        <div class="editorial-hero__media">
-          <img
-            src={editorialHeroImage}
-            alt="The reception and waiting area inside House of Rose Aesthetics"
-            width={1536}
-            height={1024}
-            class="h-full w-full object-cover"
-          />
-        </div>
-      </section>
 
-      <section id="starting-points" class="editorial-starting">
-        <div class="editorial-shell">
-          <h2>Where should your advanced facial begin?</h2>
-          <p class="editorial-section-intro">
-            Start with the treatment that best matches the result you want now. We can refine the details together.
-          </p>
+  <section class="mx-auto max-w-4xl px-6 py-24" {...sbObjectId(collection._id)}>
+    <a
+      href="/services/collections/"
+      class="text-xs uppercase tracking-widest text-gold hover:underline"
+    >
+      ← All categories
+    </a>
 
-          <div class="editorial-treatments">
-            {featuredStartingPoints.map((item, index) => {
-              const curatedItemImage = getCuratedServiceImage(item.service.slug);
-              const itemImage = curatedItemImage ?? (item.image
-                ? urlFor(item.image).width(900).height(1125).fit('crop').url()
-                : editorialFallbackImages[item.service.slug] ?? getServiceFallbackImage(item.service.slug));
-              return (
-                <article class="editorial-treatment">
-                  <div class="editorial-treatment__media">
-                    <img
-                      src={itemImage}
-                      alt={curatedItemImage
-                        ? getCuratedServiceImageAlt(item.service.slug)
-                        : item.image?.alt ?? `${item.service.title} treatment at House of Rose Aesthetics`}
-                      width={900}
-                      height={1125}
-                      decoding="async"
-                      class="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div class="editorial-treatment__copy">
-                    <h3 {...sbObjectId(item.service._id)} {...sbFieldPath('title')}>
-                      {item.service.title}
-                    </h3>
-                    <p {...sbFieldPathParts('featuredServices', index, 'summary')}>
-                      {item.summary ?? item.service.tagline}
-                    </p>
-                    <a
-                      href={`/services/${item.service.slug}/`}
-                      class="editorial-text-link"
-                      {...sbFieldPathParts('featuredServices', index, 'linkLabel')}
-                    >
-                      {item.linkLabel ?? `Explore ${item.service.title}`}
-                    </a>
-                    <BookingLink
-                      slug={item.service.slug}
-                      bookingMode={item.service.bookingMode}
-                      bookingUrl={item.service.bookingUrl}
-                      location="collection-featured-service"
-                      class="service-booking-link"
-                    />
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    <header class="mt-12 max-w-2xl">
+      <p class="kicker mb-4">Service category</p>
+      <h1 class="font-serif text-5xl text-ink" {...sbFieldPath('title')}>{collection.title}</h1>
+      <p class="mt-6 text-[16px] leading-[1.8] text-muted">{collectionIntroduction}</p>
+    </header>
 
-      <section class="editorial-customization on-dark">
-        <div class="editorial-shell editorial-customization__layout">
-          <div class="editorial-customization__intro">
-            <h2 {...sbFieldPath('customizationTitle')}>
-              {collection.customizationTitle ?? editorialDefaults.customizationTitle}
-            </h2>
-            <p {...sbFieldPath('customizationIntro')}>
-              {collection.customizationIntro ?? editorialDefaults.customizationIntro}
-            </p>
-          </div>
-          <ol class="editorial-customization__list">
-            {editorialCustomizations.map((item, index) => (
-              <li>
-                <span class="editorial-customization__number">{String(index + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3 {...sbFieldPathParts('customizations', index, 'title')}>{item.title}</h3>
-                  <p {...sbFieldPathParts('customizations', index, 'description')}>{item.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-        <p class="editorial-guardrail">
-          Not every client is a candidate for every service. Final treatment combinations and candidacy are
-          confirmed by your licensed provider based on candidacy, contraindications, and local regulations.
-          Outcomes are individual and depend on your skin, candidacy, and consistency.
-        </p>
-      </section>
-
-      <section class="editorial-closing">
-        <div class="editorial-closing__media" aria-hidden="true">
-          <img
-            src="/images/optimized/actual-welcome-1400.webp"
-            alt=""
-            width={960}
-            height={720}
-            decoding="async"
-            class="h-full w-full object-cover"
-          />
-        </div>
-        <div class="editorial-closing__copy">
-          <h2 {...sbFieldPath('closingTitle')}>
-            {collection.closingTitle ?? editorialDefaults.closingTitle}
+    {facialPathways.length > 0 && (
+      <aside class="mt-12 border-y border-walnut/15 py-10" aria-labelledby="facials-pathway-heading">
+        <div class="max-w-2xl">
+          <p class="kicker mb-3">Finding your starting point</p>
+          <h2 id="facials-pathway-heading" class="font-serif text-[clamp(28px,4vw,38px)] text-ink">
+            Surface services, Microneedling, and a 12-week program.
           </h2>
-          <p {...sbFieldPath('closingBody')}>
-            {collection.closingBody ?? editorialDefaults.closingBody}
+          <p class="mt-4 text-[15px] leading-7 text-muted">
+            These appointments are not interchangeable. Surface appointments stay at the skin surface, Procell Microneedling creates controlled microchannels, and Face Reality combines visits every two weeks with daily home care across a complete program.
           </p>
-          <a href="tel:+18449417673" class="btn-gold">Call (844) 941-7673</a>
         </div>
-      </section>
-    </div>
-  ) : (
-  <section class="py-24 max-w-6xl mx-auto px-6" {...sbObjectId(collection._id)}>
-    <div class="mb-4">
-      <a href="/services/collections/" class="text-xs tracking-widest uppercase text-gold hover:underline">
-        ← All Collections
-      </a>
-    </div>
 
-    {inModeDevices.length > 0 ? (
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-        {inModeDevices.map((device) => (
-          <figure class="bg-[#f3efe8] border border-gold-metal/15 p-6 sm:p-8">
-            <div class="h-[280px] sm:h-[340px] flex items-center justify-center">
-              <img
-                src={device.src}
-                alt={`${device.title} treatment device`}
-                width={628}
-                height={1000}
-                class="w-full h-full object-contain"
-              />
-            </div>
-            <figcaption class="font-serif text-center text-lg text-ink mt-4">
-              {device.title}
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    ) : (
-      <div class="aspect-[21/9] overflow-hidden bg-charcoal-lighter mb-12">
-        <img
-          src={collectionImage}
-          alt={collection.title}
-          width={1600}
-          height={685}
-          class="w-full h-full object-cover"
-        />
-      </div>
+        <div class="mt-8 grid gap-px bg-walnut/15 md:grid-cols-3">
+          {facialPathways.map((pathway) => (
+            <article class="bg-bone p-7 sm:p-8">
+              <h3 class="font-serif text-[24px] leading-tight text-ink">{pathway.heading}</h3>
+              <p class="mt-4 text-[14px] leading-7 text-muted">{pathway.body}</p>
+              <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3">
+                {pathway.links.map((link) => (
+                  <a href={link.href} class="learn-more text-[12px] hover:text-olive">{link.label}</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </aside>
     )}
-
-    <div class="max-w-2xl mb-16">
-      <h1 class="font-serif text-5xl text-ink mb-4" {...sbFieldPath('title')}>{collection.title}</h1>
-      {collection.description && (
-        <p class="text-xl text-muted leading-relaxed" {...sbFieldPath('description')}>{collection.description}</p>
-      )}
-    </div>
 
     {collection.services.length === 0 ? (
-      <p class="text-muted">Services coming soon.</p>
+      <div class="mt-14 border-t border-walnut/15 pt-8">
+        <p class="text-muted">No individual service pages are currently linked to this category.</p>
+        <a href="/services/" class="learn-more mt-5 inline-flex">View all services</a>
+      </div>
     ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {collection.services.map((svc) => {
-          const inModeDeviceImage = getInModeDeviceImage(svc.slug);
-          const curatedImage = getCuratedServiceImage(svc.slug);
+      <ul class="mt-14 divide-y divide-walnut/15 border-y border-walnut/15" aria-label={`${collection.title} services`}>
+        {collection.services.map((service) => {
+          const summary = getServiceCardSummary(service.slug);
           return (
-          <article class="group bg-breath overflow-hidden border border-gold-metal/15" {...sbObjectId(svc._id)}>
-            <a href={`/services/${svc.slug}/`} class:list={[
-              'aspect-[3/2] overflow-hidden',
-              inModeDeviceImage ? 'bg-[#f3efe8] p-6' : 'bg-charcoal-lighter',
-            ]}>
-                <img
-                  src={inModeDeviceImage ?? curatedImage ?? (svc.image ? urlFor(svc.image).width(600).height(400).fit('crop').url() : getServiceFallbackImage(svc.slug))}
-                  alt={inModeDeviceImage || curatedImage
-                    ? getCuratedServiceImageAlt(svc.slug)
-                    : svc.image?.alt ?? svc.title}
-                  width={600}
-                  height={400}
-                  loading="lazy"
-                  decoding="async"
-                  class:list={[
-                    'w-full h-full group-hover:scale-105 transition-transform duration-500',
-                    inModeDeviceImage ? 'object-contain' : 'object-cover',
-                  ]}
-                />
+            <li {...sbObjectId(service._id)}>
+              <a
+                href={`/services/${service.slug}/`}
+                class="group grid gap-3 py-7 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-8"
+              >
+                <span>
+                  <span
+                    class="block font-serif text-[clamp(22px,3vw,30px)] leading-tight text-ink transition-colors group-hover:text-olive"
+                    {...sbFieldPath('title')}
+                  >
+                    {service.title}
+                  </span>
+                  {summary && <span class="mt-2 block text-[14px] leading-relaxed text-muted">{summary}</span>}
+                </span>
+                <span class="shrink-0 text-gold" aria-hidden="true">→</span>
               </a>
-            <div class="p-6">
-              <h2 class="font-serif text-xl text-ink mb-2" {...sbFieldPath('title')}>
-                <a href={`/services/${svc.slug}/`} class="hover:text-gold transition-colors">{svc.title}</a>
-              </h2>
-              {svc.tagline && <p class="text-sm text-muted leading-relaxed mb-4" {...sbFieldPath('tagline')}>{svc.tagline}</p>}
-              <div class="flex items-center justify-between">
-                {svc.duration && <span class="text-xs text-muted" {...sbFieldPath('duration')}>{svc.duration}</span>}
-                {svc.price && <span class="text-sm font-medium text-gold" {...sbFieldPath('price')}>{svc.price}</span>}
-              </div>
-              <div class="mt-5 flex flex-wrap items-center gap-4">
-                <a href={`/services/${svc.slug}/`} class="learn-more inline-flex mt-0">Learn about {svc.title}</a>
-                <BookingLink
-                  slug={svc.slug}
-                  bookingMode={svc.bookingMode}
-                  bookingUrl={svc.bookingUrl}
-                  location="collection-service-card"
-                  class="service-booking-link"
-                />
-              </div>
-            </div>
-          </article>
+            </li>
           );
         })}
-      </div>
+      </ul>
     )}
   </section>
-  )}
 </BaseLayout>
-
-<style>
-  .editorial-collection {
-    background: #f8f4ec;
-    color: #14110f;
-  }
-
-  .editorial-shell {
-    width: min(1180px, calc(100% - 48px));
-    margin-inline: auto;
-  }
-
-  .editorial-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    min-height: min(700px, calc(100vh - 80px));
-    border-bottom: 1px solid rgba(201, 162, 75, 0.24);
-  }
-
-  .editorial-hero__copy {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: clamp(64px, 8vw, 126px) clamp(32px, 5vw, 72px);
-  }
-
-  .editorial-hero h1 {
-    max-width: 590px;
-    font-family: Baskerville, Georgia, 'Times New Roman', serif;
-    font-size: clamp(44px, 4.8vw, 68px);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
-    text-wrap: balance;
-  }
-
-  .editorial-hero__copy > p {
-    max-width: 590px;
-    margin-top: 30px;
-    color: rgb(var(--hr-muted));
-    font-size: clamp(16px, 1.4vw, 19px);
-    line-height: 1.75;
-  }
-
-  .editorial-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 22px 28px;
-    margin-top: 38px;
-  }
-
-  .editorial-text-link {
-    display: inline-block;
-    padding-block: 5px;
-    border-bottom: 1px solid rgba(122, 92, 42, 0.55);
-    color: rgb(var(--hr-gold));
-    font-size: 13px;
-    line-height: 1.4;
-    transition: border-color 180ms ease, color 180ms ease;
-  }
-
-  .editorial-text-link:hover {
-    border-color: currentColor;
-    color: #48361a;
-  }
-
-  .editorial-hero__media {
-    min-height: 520px;
-    overflow: hidden;
-    background: #eadfcB;
-  }
-
-  .editorial-hero__media img {
-    object-position: 52% center;
-  }
-
-  .editorial-starting {
-    padding: clamp(76px, 9vw, 132px) 0;
-  }
-
-  .editorial-starting h2,
-  .editorial-customization h2,
-  .editorial-closing h2 {
-    font-family: Baskerville, Georgia, 'Times New Roman', serif;
-    font-size: clamp(36px, 4.4vw, 58px);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-  }
-
-  .editorial-section-intro {
-    max-width: 640px;
-    margin-top: 18px;
-    color: rgb(var(--hr-muted));
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  .editorial-treatments {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: clamp(44px, 6vw, 72px);
-    border-top: 1px solid rgba(201, 162, 75, 0.34);
-    border-bottom: 1px solid rgba(201, 162, 75, 0.34);
-  }
-
-  .editorial-treatment {
-    display: grid;
-    grid-template-columns: minmax(205px, 0.92fr) minmax(210px, 1.08fr);
-    align-items: center;
-    gap: clamp(24px, 2.5vw, 36px);
-    padding: clamp(32px, 3vw, 46px);
-  }
-
-  .editorial-treatment + .editorial-treatment {
-    border-left: 1px solid rgba(201, 162, 75, 0.34);
-  }
-
-  .editorial-treatment__media {
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: #eadfcb;
-  }
-
-  .editorial-treatment__copy h3 {
-    font-family: Baskerville, Georgia, 'Times New Roman', serif;
-    font-size: clamp(30px, 3vw, 43px);
-    line-height: 1.05;
-  }
-
-  .editorial-treatment__copy p {
-    margin-top: 18px;
-    color: rgb(var(--hr-muted));
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  .editorial-treatment__copy .editorial-text-link {
-    margin-top: 24px;
-  }
-
-  .editorial-customization {
-    padding: clamp(78px, 9vw, 126px) 0 52px;
-    background: #3e2c20;
-    color: #f4ecdc;
-  }
-
-  .editorial-customization__layout {
-    display: grid;
-    grid-template-columns: minmax(360px, 0.85fr) minmax(500px, 1.15fr);
-    gap: clamp(64px, 7vw, 100px);
-    align-items: start;
-  }
-
-  .editorial-customization__intro p {
-    max-width: 390px;
-    margin-top: 28px;
-    color: rgb(var(--hr-muted));
-    font-size: 15px;
-    line-height: 1.8;
-  }
-
-  .editorial-customization__list {
-    border-top: 1px solid rgba(231, 214, 168, 0.28);
-  }
-
-  .editorial-customization__list li {
-    display: grid;
-    grid-template-columns: 42px 1fr;
-    gap: 22px;
-    padding: 24px 0 25px;
-    border-bottom: 1px solid rgba(231, 214, 168, 0.28);
-  }
-
-  .editorial-customization__number {
-    padding-top: 4px;
-    color: rgb(var(--hr-gold));
-    font-family: Georgia, serif;
-    font-size: 15px;
-  }
-
-  .editorial-customization__list h3 {
-    color: #f4ecdc;
-    font-size: 23px;
-    line-height: 1.2;
-  }
-
-  .editorial-customization__list p {
-    margin-top: 5px;
-    color: rgb(var(--hr-muted));
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .editorial-guardrail {
-    width: min(1180px, calc(100% - 48px));
-    margin: 42px auto 0;
-    padding-top: 22px;
-    border-top: 1px solid rgba(231, 214, 168, 0.16);
-    color: rgba(244, 236, 220, 0.65);
-    font-size: 12px;
-    line-height: 1.75;
-  }
-
-  .editorial-closing {
-    display: grid;
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    min-height: 520px;
-  }
-
-  .editorial-closing__media {
-    overflow: hidden;
-    min-height: 420px;
-    background: #eadfcb;
-  }
-
-  .editorial-closing__media img {
-    object-position: center 55%;
-  }
-
-  .editorial-closing__copy {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: clamp(64px, 8vw, 116px);
-  }
-
-  .editorial-closing__copy p {
-    max-width: 520px;
-    margin: 24px 0 34px;
-    color: rgb(var(--hr-muted));
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
-  @media (max-width: 1040px) {
-    .editorial-hero {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    }
-
-    .editorial-hero__copy {
-      padding-inline: clamp(28px, 5vw, 64px);
-    }
-
-    .editorial-treatments {
-      grid-template-columns: 1fr;
-    }
-
-    .editorial-treatment + .editorial-treatment {
-      border-top: 1px solid rgba(201, 162, 75, 0.34);
-      border-left: 0;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .editorial-shell,
-    .editorial-guardrail {
-      width: min(100% - 32px, 1180px);
-    }
-
-    .editorial-hero,
-    .editorial-closing {
-      grid-template-columns: 1fr;
-      min-height: 0;
-    }
-
-    .editorial-hero__copy {
-      padding: 116px 20px 52px;
-    }
-
-    .editorial-hero h1 {
-      font-size: clamp(42px, 13vw, 58px);
-      line-height: 1;
-    }
-
-    .editorial-hero__copy > p {
-      margin-top: 24px;
-      font-size: 16px;
-    }
-
-    .editorial-hero__actions {
-      align-items: flex-start;
-      flex-direction: column;
-      margin-top: 30px;
-    }
-
-    .editorial-hero__media {
-      min-height: 430px;
-      aspect-ratio: 4 / 5;
-    }
-
-    .editorial-hero__media img {
-      object-position: 56% center;
-    }
-
-    .editorial-starting {
-      padding-block: 72px;
-    }
-
-    .editorial-treatment {
-      grid-template-columns: 1fr;
-      padding-inline: 0;
-    }
-
-    .editorial-treatment__media {
-      aspect-ratio: 4 / 5;
-    }
-
-    .editorial-customization {
-      padding-top: 72px;
-    }
-
-    .editorial-customization__layout {
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
-    .editorial-customization__list li {
-      grid-template-columns: 34px 1fr;
-      gap: 14px;
-    }
-
-    .editorial-closing__media {
-      width: 100%;
-      min-width: 0;
-      min-height: 0;
-      aspect-ratio: 4 / 3;
-    }
-
-    .editorial-closing__copy {
-      padding: 64px 20px 72px;
-    }
-  }
-</style>

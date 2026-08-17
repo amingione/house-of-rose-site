@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_COST_GUIDE_SLUGS_QUERY,
   COST_GUIDE_BY_SLUG_QUERY,
@@ -10,7 +10,8 @@ import {
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getVerifiedCostFact } from '@/lib/costFacts';
+import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COST_GUIDE_SLUGS_QUERY);
@@ -22,31 +23,58 @@ const guideData = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug 
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!guideData) throw new Error(`[cost/[slug]] No cost guide found in Sanity for slug "${slug}"`);
-const guide = alignPublicContent(guideData);
+const guide = guideData;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
-const priceRange =
-  guide.priceLow != null && guide.priceHigh != null
-    ? `$${guide.priceLow.toLocaleString()}–$${guide.priceHigh.toLocaleString()}${guide.priceUnit ? ` ${guide.priceUnit}` : ''}`
-    : guide.priceLow != null
-      ? `From $${guide.priceLow.toLocaleString()}${guide.priceUnit ? ` ${guide.priceUnit}` : ''}`
-      : null;
+const treatmentName = guide.treatment?.title ?? 'this treatment';
+const verifiedFact = getVerifiedCostFact(guide.slug);
+const pricingStatement = verifiedFact?.answer
+  ?? `Contact House of Rose for the current ${treatmentName} price. This guide links to the related service and contact options below.`;
+const publishedDescription = verifiedFact?.metaDescription ?? pricingStatement;
+const visiblePricingSummary = verifiedFact?.summary
+  ?? `The current ${treatmentName} price is available directly from House of Rose.`;
+const dateModified = verifiedFact && (!guide._updatedAt || guide._updatedAt < verifiedFact.verifiedAt)
+  ? verifiedFact.verifiedAt
+  : guide._updatedAt;
+const verifiedAtLabel = verifiedFact
+  ? new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      timeZone: 'UTC',
+    }).format(new Date(`${verifiedFact.verifiedAt}T12:00:00Z`))
+  : null;
+const publishedFaqs = verifiedFact?.faqs?.length
+  ? verifiedFact.faqs
+  : [
+      {
+        question: `What price is published for ${treatmentName}?`,
+        answer: pricingStatement,
+      },
+    ];
+const primaryComparison = guide.comparisons?.[0];
+const primaryComparisonContent = primaryComparison
+  ? getPublicComparisonContent(primaryComparison.slug)
+  : null;
+const singleComparisonContent = guide.comparisons?.length === 1
+  ? primaryComparisonContent
+  : null;
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Pricing', item: `${site}cost/` },
   { name: guide.title, item: canonical },
 ]);
-const faq = faqPage(guide.faqs ?? []);
+const faq = faqPage(publishedFaqs);
 const articleSchema = article(
-  { headline: guide.title, description: guide.answer, url: canonical, dateModified: guide._updatedAt },
+  { headline: guide.title, description: publishedDescription, url: canonical, dateModified },
   site,
 );
 
 const pageTitle = guide.seo?.metaTitle ?? `${guide.title} | House of Rose`;
-const pageDescription = guide.seo?.metaDescription ?? guide.answer;
+const pageDescription = publishedDescription;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -55,54 +83,102 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
   {faq && <SchemaMarkup item={faq} slot="head" />}
 
   <div {...sbObjectId(guide._id)}>
-  <section class="bg-charcoal pt-32 pb-12 px-6">
+  <section class="bg-charcoal pt-32 pb-[clamp(56px,8vw,88px)] px-6">
     <div class="max-w-[860px] mx-auto">
-      <span class="kicker">Pricing Guide</span>
+      <span class="kicker">What the price means</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6" {...sbFieldPath('title')}>{guide.title}</h1>
-      <p class="text-ink/85 text-[17px] leading-relaxed" {...sbFieldPath('answer')}>{guide.answer}</p>
-      {priceRange && (
-        <p class="mt-6 inline-block border border-gold-metal/40 text-gold text-[15px] tracking-[0.08em] px-5 py-3">
-          Typical range: <span class="font-medium">{priceRange}</span>
+      <p class="max-w-[760px] font-serif text-[clamp(23px,3.2vw,32px)] leading-[1.3] text-ink">
+        {visiblePricingSummary}
+      </p>
+      {verifiedAtLabel && (
+        <p class="mt-6 text-[12px] font-medium uppercase tracking-[0.12em] text-muted">
+          Prices shown as of {verifiedAtLabel}
         </p>
       )}
     </div>
   </section>
 
-  {guide.costFactors && guide.costFactors.length > 0 && (
-    <section class="bg-charcoal-light py-14 px-6">
-      <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">What Affects the Cost</span>
-        <div class="space-y-6">
-          {guide.costFactors.map((f, i) => (
-            <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[18px] font-medium mb-2" {...sbFieldPathParts('costFactors', i, 'factor')}>{f.factor}</h2>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('costFactors', i, 'effect')}>{f.effect}</p>
-            </div>
-          ))}
+  {verifiedFact?.items && verifiedFact.items.length > 0 && (
+    <section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(52px,7vw,80px)]">
+      <div class="mx-auto max-w-[1080px]">
+        <div class="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <div>
+            <span class="kicker">What the price covers</span>
+            <h2 class="mt-3 font-serif text-[clamp(28px,4vw,42px)] leading-tight text-ink">
+              {verifiedFact.menuHeading}
+            </h2>
+            {verifiedFact.context && (
+              <p class="mt-5 text-[15px] leading-[1.75] text-muted">{verifiedFact.context}</p>
+            )}
+          </div>
+          <div class="grid gap-px bg-gold-metal/15 sm:grid-cols-2">
+            {verifiedFact.items.map((item) => (
+              <article class="bg-charcoal p-6 sm:p-7">
+                <h3 class="font-serif text-[21px] leading-snug text-ink">{item.name}</h3>
+                <p class="mt-4 text-[13px] font-semibold tracking-[0.06em] text-gold">
+                  {item.price}{item.duration && <span class="mx-2 text-muted">·</span>}{item.duration}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   )}
 
-  {guide.whatsIncluded && (
-    <section class="bg-charcoal py-14 px-6">
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(52px,7vw,76px)]" data-cost-faq>
+    <div class="mx-auto max-w-[860px]">
+      <span class="kicker">Before you book</span>
+      <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
+        {verifiedFact?.faqHeading ?? `About the price for ${treatmentName}.`}
+      </h2>
+      <div class="mt-8 divide-y divide-gold-metal/10 border-y border-gold-metal/10">
+        {publishedFaqs.map((item) => (
+          <article class="py-6 first:pt-0 last:pb-0">
+            <h3 class="font-serif text-[21px] leading-snug text-ink" data-cost-faq-question>{item.question}</h3>
+            <p class="mt-3 text-[15px] leading-[1.75] text-muted" data-cost-faq-answer>{item.answer}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {guide.treatment && (
+    <section class="bg-charcoal-light py-14 px-6">
       <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">What's Included</span>
-        <p class="text-ink/80 text-[15px] leading-relaxed whitespace-pre-line" {...sbFieldPath('whatsIncluded')}>{guide.whatsIncluded}</p>
+        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-4">About the service</span>
+        <div {...sbObjectId(guide.treatment._id)}>
+          <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink leading-tight mb-4" {...sbFieldPath('title')}>
+            {guide.treatment.title}
+          </h2>
+          <a href={`/services/${guide.treatment.slug}/`} class="learn-more">Understand {guide.treatment.title}</a>
+        </div>
       </div>
     </section>
   )}
 
-  {guide.faqs && guide.faqs.length > 0 && (
-    <section class="bg-charcoal-light py-14 px-6">
-      <div class="max-w-[860px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">Common Questions</span>
-        <div class="space-y-6">
-          {guide.faqs.map((f, i) => (
-            <div class="border-b border-ink/5 pb-6">
-              <h2 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{f.question}</h2>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{f.answer}</p>
-            </div>
+  {guide.comparisons && guide.comparisons.length > 0 && (
+    <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-14">
+      <div class="mx-auto max-w-[860px]">
+        <span class="kicker">Related comparison</span>
+        <h2 class="mt-3 font-serif text-[clamp(25px,4vw,36px)] leading-tight text-ink">
+          {singleComparisonContent ? singleComparisonContent.title : 'Compare related services.'}
+        </h2>
+        {singleComparisonContent && (
+          <p class="mt-5 max-w-[760px] text-[15px] leading-[1.75] text-muted">
+            {singleComparisonContent.lead}
+          </p>
+        )}
+        <div class="mt-8 divide-y divide-gold-metal/10 border-y border-gold-metal/10">
+          {guide.comparisons.map((comparison) => (
+            <a href={`/compare/${comparison.slug}/`} class="group flex items-center justify-between gap-6 py-5" {...sbObjectId(comparison._id)}>
+              <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold">
+                {singleComparisonContent
+                  ? 'Open the full comparison'
+                  : getPublicComparisonContent(comparison.slug)!.title}
+              </span>
+              <span class="shrink-0 text-gold" aria-hidden="true">→</span>
+            </a>
           ))}
         </div>
       </div>
@@ -111,16 +187,9 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[860px] mx-auto text-center">
-      {guide.treatment && (
-        <a href={`/services/${guide.treatment.slug}/`} class="learn-more inline-block mb-8">
-          ← Explore {guide.treatment.title}
-        </a>
-      )}
-      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Ask about your exact investment</h2>
-      <p class="text-muted text-[15px] max-w-[440px] mx-auto mb-8">Pricing can change with the treatment area and plan. Call or request a consultation to confirm what applies to you.</p>
+      <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Want to confirm the current price?</h2>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="/skin-analysis/" class="btn-outline-gold">Start With Skin Analysis</a>
         {guide.treatment ? (
           <BookingLink
             slug={guide.treatment.slug}
@@ -130,7 +199,7 @@ const pageDescription = guide.seo?.metaDescription ?? guide.answer;
             class="btn-gold"
           />
         ) : (
-          <a href="/consultation/" class="btn-gold">Request a Consultation</a>
+          <a href="/consultation/" class="btn-gold">Request a consultation</a>
         )}
       </div>
     </div>

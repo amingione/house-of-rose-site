@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { TERMS_OF_SERVICE_QUERY, type TermsOfService, type TermsSection } from '@/lib/queries';
-import { breadcrumbList, webPage } from '@/lib/structuredData';
+import { breadcrumbList } from '@/lib/structuredData';
 import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
 
 const data = (await sanityFetch<TermsOfService | null>(TERMS_OF_SERVICE_QUERY)) ?? {};
@@ -32,7 +32,7 @@ const fallbackSections: TermsSection[] = [
   {
     _key: 'information',
     heading: 'Educational information is not medical advice',
-    body: 'Website content is provided for general educational and informational purposes. It is not medical advice, a diagnosis, or a substitute for an individual consultation with an appropriately licensed professional. Not every person is a candidate for every service. Final recommendations, candidacy, contraindications, treatment details, and aftercare are determined by the appropriate provider. Seek emergency care or call 911 for a medical emergency; do not use this website or ordinary studio messaging for emergency care.',
+    body: 'Website content is provided for general educational and informational purposes. It is not medical advice, a diagnosis, or a substitute for an individual consultation with an appropriately licensed professional. Not every person is a candidate for every service. Final recommendations, candidacy, contraindications, treatment details, and aftercare are determined by the appropriate provider. Seek emergency care or call 911 for a medical emergency; do not use this website or routine communications with the practice for emergency care.',
   },
   {
     _key: 'appointments',
@@ -92,7 +92,6 @@ const fallbackSections: TermsSection[] = [
 ];
 
 const sections = data.sections?.length ? data.sections : fallbackSections;
-const pageSchema = webPage({ name: pageTitle, description, url: canonical }, site);
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Terms of Service', item: canonical },
@@ -100,10 +99,9 @@ const breadcrumb = breadcrumbList([
 ---
 
 <BaseLayout title={data.seoTitle ?? 'Terms of Service | House of Rose Aesthetics'} description={description}>
-  <SchemaMarkup item={pageSchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
 
-  <main class="w-full max-w-[100vw] overflow-x-hidden bg-charcoal pt-32 pb-24 px-6" {...annotations}>
+  <div class="w-full max-w-[100vw] overflow-x-hidden bg-charcoal pt-32 pb-24 px-6" {...annotations}>
     <article class="w-full min-w-0 max-w-4xl mx-auto">
       <header class="text-center mb-16">
         <p class="text-xs tracking-[0.3em] uppercase text-gold mb-4">House of Rose Aesthetics LLC</p>
@@ -124,7 +122,7 @@ const breadcrumb = breadcrumbList([
         ))}
       </div>
     </article>
-  </main>
+  </div>
 </BaseLayout>
 
 <style>

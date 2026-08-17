@@ -19,7 +19,13 @@ layer.
 
 ---
 
-## Amber — Advanced Facials & Microneedling
+## Advanced Facials, Microneedling & Peels
+
+This pricing group is not a provider map. Amber Mingione, Licensed Esthetician is verified for
+Glo2Facial, Procell Microneedling including topical PRF, dermaplaning, CO2 Lift Carboxy, the three
+BioRePeel specialty variants, Face Reality peels, and Acne Bootcamp. Brandy, Licensed Esthetician
+provides the standalone BioRePeel face appointment and Series of 3. The current reviewed sources do
+not establish a provider for GlowTox Facial or the five shared facial appointments below.
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
@@ -28,7 +34,7 @@ layer.
 | Procell Therapies — MD | 55 min | **$400** | Online |
 | Procell Therapies — Pro | 55 min | **$300** | Online |
 | GlowTox Facial | 1 hr | **$475** | Online |
-| PRF Microneedling — Consultation | 1 hr | **$595** | Online _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. ⚠️ 2026-08-11: prices are NEVER displayed on the website — pricing-confidentiality decision, reaffirmed by Amber; the site page directs to consultation and this figure stays internal.)_ |
+| PRF Microneedling — Consultation | 1 hr | **$595** | Online _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. Canonical website route: `/services/prf/`. ⚠️ 2026-08-11: prices are NEVER displayed on the website — pricing-confidentiality decision, reaffirmed by Amber; the page directs to consultation and this figure stays internal.)_ |
 | Dermaplaning — Facial (standalone) | 50 min | $135 | Online |
 | Dermaplaning — Add-On | 25 min | $45 | Online |
 | CO2 Lift Carboxy — Facial (standalone) | 1 hr | $175 | Online |
@@ -39,7 +45,7 @@ layer.
 | Radiance & Renewal Facial | 1 hr 15 min | $200 | Online |
 | Mommy & Me Facial | 1 hr | $150 | Online |
 
-**Chemical peels (Amber/Face Reality lane):**
+**Chemical peels:**
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
@@ -99,45 +105,17 @@ Notion the same day)*:
 |---|---|---|
 | PRF Under-Eye — Consultation | 1 hr 15 min | **$495** |
 | PRF Bio-Filler — Consultation | 45 min | **$899** ⚠️ see open item — was "EZ Gel Bio-Filler $650" per 2026-07-26 log |
-| PRF Microneedling — Consultation | 1 hr | **$595** |
 | PRF Body Treatments — Consultation | 1 hr | $3,500 |
 
-### ⚠️ INTERNAL ONLY — never customer-facing — how these four "Consultation" bookings should actually work
+### PRF booking and provider boundary
 
-**Amber's question, 2026-08-07:** these four are all booked as "Consultation" in GlossGenius but the
-price shown is the full treatment price, not a small intake fee — that's confusing to structure
-internally. Here's the reasoning and the recommended fix.
+The rows above mirror current GlossGenius names and prices. They do not authorize a deposit, a
+balance-at-checkout workflow, a future price, or a second treatment listing. Make any commerce change
+in GlossGenius first, then rebuild this ledger from the current menu.
 
-**Why "Consultation" is the right public label — don't change this part.** PRF/injectable-adjacent
-treatments legitimately can't be blind-booked online: candidacy, zone, and product amount have to be
-assessed in person first. So the client-facing booking type staying "Consultation" is correct and
-should not change. The confusion is that GlossGenius is currently charging the *full treatment price*
-at that consultation-booking step, which conflates two different things — the intake/gate, and the
-actual treatment charge.
-
-**Recommended structure: deposit-to-hold + balance-at-checkout.** This isn't a new mechanism — it's
-the exact same pattern already live elsewhere in this same GlossGenius account (BioRePeel® Cl3
-Rejuvenation charges a $50 deposit against its $250 price; Signature Makeup Services charges a $50
-deposit against its $85 price). Apply it here:
-
-| Service | Public booking (unchanged) | Deposit to hold (new) | Real balance charged in-office |
-|---|---|---|---|
-| PRF Under-Eye — Consultation | Stays "Consultation," online-bookable | $50 (matches her other consult fees) | $495 today — or $550 if the 2026-07-20 raise is finally pushed live (see open item below) |
-| PRF Microneedling — Consultation | Same | $50 | $595 |
-| PRF Bio-Filler — Consultation | Same | $50 | $899 — pending the EZ Gel naming question below |
-| PRF Body Treatments — Consultation | Same | $50 | **Not a fixed number** — quoted at consult based on zone(s)/scope. The $3,500 shown publicly should be understood internally as a "starting at" placeholder, never a flat charge. |
-
-**What this requires in GlossGenius:** no new service listings, nothing else goes public. Just (1) set
-each of these four to deposit-based booking with the deposit amount above, and (2) collect the real
-balance as a normal checkout line once the provider confirms the treatment plan that visit — same as
-any other point-of-sale transaction. Nothing forward-facing changes except the amount shown at booking
-drops from the full price to the deposit.
-
-**Why not a second "Treatment" service line instead?** It was considered — a staff-only, booking-off
-service (same mechanism already used for CO2 Lift Carboxy's add-on and formerly for Rose PRF Fibrin
-Veil) would also work. The deposit model is recommended over it because it requires zero new service
-creation, matches a pattern GlossGenius already runs cleanly elsewhere in this account, and keeps
-reporting simple (one line per service, not two to reconcile against each other).
+PRF Microneedling — Consultation appears once in the advanced-facial section above. It is the $595,
+60-minute topical PRF appointment with Amber Mingione, Licensed Esthetician, not a Diana injectable
+PRF appointment.
 
 **IV Hydration Therapy:**
 
@@ -168,7 +146,11 @@ before publishing either number anywhere client-facing.
 
 ---
 
-## Brandy — Basic Facials & Waxing *(room rental — prices her own)*
+## Basic Facials & Waxing
+
+Brandy, Licensed Esthetician is verified for facial waxing. The seven body-waxing rows below are
+current GlossGenius inventory, but the export and reviewed waxing source do not establish a
+body-waxing provider. Do not infer or publish one from this category grouping.
 
 Same facial lineup shown under Amber above is shared/ambiguous in GlossGenius (no provider field in
 the export) — Signature Facial, Skin Reset, Sculpt & Lift, Radiance & Renewal, and Mommy & Me all
@@ -216,6 +198,18 @@ gold). If those tiers are still real, they need to be added to GlossGenius as se
 | Service | Price |
 |---|---|
 | Lumecca Peak IPL Consultation | $50 |
+| Morpheus8 Burst — Full Face — single / 3 | $1,200 / $3,000 |
+| Morpheus8 Burst — Face & Neck — single / 3 | $1,250 / $3,500 |
+| Morpheus8 Burst — Scars — single / 3 | $500 / $1,300 |
+| Morpheus8 Burst — Chest — single / 3 | $500 / $1,300 |
+| Morpheus8 Burst — Stretch Marks — single / 3 | $700 / $1,700 |
+| Morpheus8 Burst — Hyperhidrosis — package of 3 | $2,200–$2,400 |
+| Morpheus8 Burst Deep — Small Area (4 × 10 in) / Large Area (8 × 11 in) — package of 3 | $3,500 / $4,500 |
+| Morpheus8 Resurfacing — Full Face — single / 3 | $750 / $2,000 |
+| Morpheus8 Resurfacing — Face & Neck — single / 3 | $950 / $2,700 |
+| Morpheus8 Prime — Eyes & Mouth — single / 3 | $1,000 / $2,200 |
+| Morpheus8 Prime — Around the Eyes — single / 3 | $450 / $1,200 |
+| Morpheus8 Prime — Around the Mouth — single / 3 | $450 / $1,200 |
 | Morpheus8 + Lumecca Bundle | $1,799 |
 | Vasculaze Max — Small/Medium/Large (Pkg 3) | $550 / $1,100 / $1,650 |
 | Forma + Lumecca Bundle | $2,599 |
@@ -225,10 +219,15 @@ gold). If those tiers are still real, they need to be added to GlossGenius as se
 | Diolaze XL — by area | $350–$3,250 |
 | Fusion Light / Fusion Dark — by area | $350–$3,250 |
 
-*(Full itemized laser matrix — dozens of area-specific prices — lives in `glossgenius-service-catalog.md`
-in the PRICING reference folder; not reproduced line-by-line here to keep this file scannable. This
-entire category was absent from every prior version of this file — it existed in GlossGenius but was
-never documented here before 2026-08-06.)*
+Morpheus8 prices above were restored on 2026-08-14 from
+`packages/web/docs/inmode/Optimas Max Pricing.pdf` after the Morpheus8 page was skipped during the
+earlier extraction. The PDF also recommends approximate add-on amounts for Resurfacing and Prime;
+those approximate add-on figures are not published as exact House of Rose prices.
+
+*(The remaining full itemized laser matrix — dozens of area-specific prices — lives in
+`glossgenius-service-catalog.md` in the PRICING reference folder; it is not reproduced line-by-line
+here to keep this file scannable. This entire category was absent from every prior version of this
+file — it existed in GlossGenius but was never documented here before 2026-08-06.)*
 
 ---
 
@@ -254,36 +253,31 @@ never documented here before 2026-08-06.)*
    `GG-PRICE-FINALIZE.md`) carried a "clinical hold" note requiring separate sign-off before this could
    be sold. **Amber's ruling, 2026-08-07: that hold was never a real constraint — struck from every
    doc it appeared in.** GlowTox Facial is confirmed live and bookable at $475, full stop.
-2. 🟡 **PRF pricing raise decided 2026-07-20 was never implemented in GlossGenius** — *the
-   attribution half is resolved.* ✅ **Amber confirmed 2026-08-09: the "PRF Microneedling —
-   Consultation" $595 line IS her topical PRF + microneedling service, not Diana's injectable.**
-   The old $450 figure (2026-07-09 PRF PDF) is dead. **Prices are never displayed on the website**
-   (2026-07-24 pricing-confidentiality decision, reaffirmed by Amber 2026-08-11) — the page
-   directs to consultation; $595 stays internal, quoted at booking. What stays open below is Diana's lane only.
-   `PRF_Pricing/FINAL-PRICING.md` states Amber gave final approval to raise PRF Under-Eye from
-   $495→$550 (series $1,485) and PRF Facial from $595→$650 (series $1,750), with an explicit
-   instruction to update GlossGenius "first." The 2026-08-06 export still shows PRF Under-Eye at
-   $495, and there's no clearly matching "PRF Facial Rejuvenation (1 Area)" line in GlossGenius at
-   all — only "PRF Microneedling Consultation" $595, which the naming suggests may actually be
-   Amber's *topical* PRF Skin Renewal service, not Diana's *injectable* PRF Facial Rejuvenation.
-   Two separate questions: (a) was the $550/$650 raise ever pushed live, and (b) does Diana's
-   injectable "PRF Facial Rejuvenation (1 Area)" currently exist as its own bookable GlossGenius
-   line at all?
+2. 🟡 **Diana's proposed PRF pricing raise was never implemented in GlossGenius; the topical
+   attribution is resolved.** ✅ **Amber confirmed 2026-08-09: the "PRF Microneedling —
+   Consultation" $595 line is her topical PRF + microneedling service, not Diana's injectable.**
+   The canonical website page is `/services/prf/`; it carries **no price**, because prices are never
+   displayed on the website (2026-07-24 pricing-confidentiality decision, reaffirmed by Amber
+   2026-08-11) — the page directs to consultation and the $595 figure stays internal, quoted at
+   booking. The old $450 figure (2026-07-09 PRF PDF) is dead.
+   `PRF_Pricing/FINAL-PRICING.md` records approval to raise Diana's PRF Under-Eye from $495→$550
+   (series $1,485) and a proposed PRF Facial from $595→$650 (series $1,750), with an explicit
+   instruction to update GlossGenius first. The 2026-08-06 export still shows PRF Under-Eye at $495
+   and no separate "PRF Facial Rejuvenation (1 Area)" appointment. Within the facial PRF inventory,
+   Diana's current GlossGenius-backed rows therefore remain PRF Under-Eye at $495 and PRF Bio-Filler
+   at $899. Do not publish the proposed $550/$650 prices, either series, or a separate injectable PRF
+   Facial Rejuvenation appointment unless GlossGenius is updated first and this ledger is rebuilt.
 3. 🟡 **EZ Gel Bio-Filler vs. PRF Bio-Filler.** `GG-PRICE-FINALIZE.md`'s change log says "EZ Gel
    Bio-Filler → ADDED $650" on 2026-07-26. The 2026-08-06 export shows no "EZ Gel" line at all —
    only "PRF Bio-Filler — Consultation" $899. Either EZ Gel was renamed and repriced, or it's two
    different things and EZ Gel quietly disappeared. Confirm with Diana.
-4. 🟡 **Rose PRF Fibrin Veil is shelved in GlossGenius** (per Amber, 2026-07-26 — "overpriced... not
-   listed") **but is still a published, live service page on Sanity** (`hor.service.prf-fibrin-veil`,
-   `/services/prf-fibrin-veil/`). The website is advertising something that isn't bookable or priced
-   anywhere. Either unpublish the Sanity page or re-add the service to GlossGenius.
-5. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
+4. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
    different group names) — see the Aundrea section above.
-6. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
+5. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
    $299, $325, $349) before settling at the current, confirmed-live **Pro $300 / MD $400** (Amber's
    2026-07-26 decision, matches the fresh export exactly). This one is resolved — flagging only so
    nobody resurrects an old number from a stale doc.
-7. 🟢 **IV add-ons and most package/series pricing (3x, 6x tiers for facials/microneedling) don't
+6. 🟢 **IV add-ons and most package/series pricing (3x, 6x tiers for facials/microneedling) don't
    appear as separate GlossGenius line items** in this export. If they're still real and bookable,
    they need to exist in GlossGenius directly — this file can only mirror what GlossGenius shows.
 

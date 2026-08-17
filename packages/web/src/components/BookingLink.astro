@@ -11,6 +11,7 @@ interface Props {
   location: string;
   class?: string;
   label?: string;
+  accessibleContext?: string;
 }
 
 const {
@@ -20,16 +21,19 @@ const {
   location,
   class: className = 'btn-gold',
   label,
+  accessibleContext,
 } = Astro.props;
 const action = resolveServiceBooking({ slug, bookingMode, bookingUrl }, location);
+const visibleLabel = label ?? action.label;
 ---
 
 <a
   href={action.href}
   class={className}
+  aria-label={accessibleContext ? `${visibleLabel}: ${accessibleContext}` : undefined}
   target={action.target}
   rel={action.rel}
   {...action.analytics}
 >
-  {label ?? action.label}
+  {visibleLabel}
 </a>

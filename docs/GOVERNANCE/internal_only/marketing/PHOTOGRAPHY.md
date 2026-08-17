@@ -45,8 +45,9 @@ imagery.
 
 ## The grade
 
-Warm-ivory editorial, matched to the Tailwind palette (ivory `#F4ECDC`, gold
-`#C9A24B`, walnut `#3E2C20`). Order matters:
+Warm-ivory editorial, matched to the implemented Tailwind/CSS palette: ivory `#F1EDE5`,
+on-dark gold `#E2D3B2`, decorative bronze `#8A6A43`, and walnut `#241B17`. Treat
+`packages/web/tailwind.config.ts` and `packages/web/src/styles/global.css` as the authority. Order matters:
 
 1. **White balance** — illuminant estimated from the brightest 10% of pixels (the
    walls and ceiling, which we know are meant to be white) and neutralised at 85%
@@ -54,7 +55,8 @@ Warm-ivory editorial, matched to the Tailwind palette (ivory `#F4ECDC`, gold
    full, because we *want* residual warmth.
 2. **Highlight rolloff** — Reinhard shoulder so blown ceilings and lamp hotspots
    regain texture instead of clipping to flat white.
-3. **Filmic S-curve** — shadows lifted (a spa reads open and airy, never crushed).
+3. **Filmic S-curve** — shadows lifted enough to keep the real practice open and legible,
+   without crushing clinical or architectural detail.
 4. **CLAHE** on the L channel only — shape and depth without touching colour.
 5. **Chroma denoise** — YCrCb split, Cr/Cb smoothed hard, **Y left alone**. iPhone
    indoor noise is almost entirely chroma speckle; this kills it at no cost to
@@ -70,10 +72,12 @@ biased bright — the photos are built to survive that overlay.
 
 ## Cropping policy
 
-Grading fixes colour. It does **not** fix content. Every export is pre-cropped to
-remove the amateur tells: plastic-wrapped treatment beds, wall outlets, light
-switches, dangling cords, ceiling tiles, exit signs. Some source frames get cut
-entirely for this reason. If you add a photo, crop it to the same standard.
+Grading fixes colour. It does **not** fix content. Crop only incidental clutter that
+distracts from the subject, such as loose cords or unrelated disposable packaging.
+Do not crop or retouch required safety features, clinically relevant setup, or
+recognizable details of the real House of Rose merely to make the room look staged.
+If a source frame cannot remain accurate and useful after a reasonable crop, do not
+publish that frame.
 
 ## Fixed in this pass
 
@@ -101,10 +105,3 @@ cd packages/web && grep -rhoE '/(images|logos)/[A-Za-z0-9._/-]+\.(png|jpg|jpeg|w
 ```
 
 Worth wiring into CI. It would have caught all seven.
-
-## Open item — hor-exterior has no real photo
-
-`hor-exterior.webp` (used on `/contact` and `/experience`) still isn't a photo of
-the actual storefront — no exterior shot exists yet. Worth shooting, especially
-for GBP consistency and the locally-grounded requirement in
-`docs/SEO-AEO-PLAYBOOK.md`.

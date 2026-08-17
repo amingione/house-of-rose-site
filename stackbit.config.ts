@@ -4,6 +4,18 @@ import { readFileSync } from 'node:fs';
 import { defineStackbitConfig } from '@stackbit/types';
 import { SanityContentSource } from '@stackbit/cms-sanity';
 
+import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
+import { isReviewedPublicBlogSlug } from './packages/web/src/lib/publicBlogContent';
+import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './packages/web/src/lib/publicCollectionContent';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from './packages/web/src/lib/publicConcernContent';
+import {
+  RETIRED_COST_GUIDE_SLUGS,
+  REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
+} from './packages/web/src/lib/publicCostGuideContent';
+import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './packages/web/src/lib/publicLocalAreaContent';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './packages/web/src/lib/publicServiceContent';
+import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './packages/web/src/lib/publicTreatmentPackageContent';
+
 /**
  * House of Rose — Netlify Visual Editor configuration.
  *
@@ -61,6 +73,146 @@ function loadEnvFile(file: string): void {
 loadEnvFile('.env.local');
 loadEnvFile('.env');
 
+const PUBLIC_SHOP_ENABLED = process.env.PUBLIC_SHOP_ENABLED === 'true';
+const REVIEWED_PUBLIC_COMPARISON_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_COMPARISON_SLUGS,
+);
+const REVIEWED_PUBLIC_COLLECTION_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_COLLECTION_SLUGS,
+);
+const RETIRED_PUBLIC_CONCERN_SLUG_SET = new Set<string>(RETIRED_PUBLIC_CONCERN_SLUGS);
+const REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
+);
+const RETIRED_COST_GUIDE_SLUG_SET = new Set<string>(RETIRED_COST_GUIDE_SLUGS);
+const REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET = new Set<string>(
+  REVIEWED_PUBLIC_LOCAL_AREA_SLUGS,
+);
+const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(
+  UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
+);
+const VERIFIED_TREATMENT_PACKAGE_SLUG_SET = new Set<string>(
+  VERIFIED_TREATMENT_PACKAGE_SLUGS,
+);
+const PUBLIC_SERVICE_STATUS_SET = new Set(['live', 'actual-menu']);
+
+function documentStringField(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): string | undefined {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object' || !('value' in field)) return undefined;
+  return typeof field.value === 'string' ? field.value : undefined;
+}
+
+function documentBooleanField(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): boolean | undefined {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object' || !('value' in field)) return undefined;
+  return typeof field.value === 'boolean' ? field.value : undefined;
+}
+
+function documentHasNonEmptyList(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): boolean {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object') return false;
+
+  if ('items' in field && Array.isArray(field.items)) return field.items.length > 0;
+  if ('value' in field && Array.isArray(field.value)) return field.value.length > 0;
+  return false;
+}
+
+function documentReferenceIds(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): string[] {
+  const field = document?.fields[fieldName];
+  if (!field || typeof field !== 'object' || !('items' in field) || !Array.isArray(field.items)) {
+    return [];
+  }
+  return field.items.flatMap((item) => {
+    if (
+      !item ||
+      typeof item !== 'object' ||
+      !('type' in item) ||
+      item.type !== 'reference' ||
+      !('refType' in item) ||
+      item.refType !== 'document' ||
+      !('refId' in item) ||
+      typeof item.refId !== 'string' ||
+      !item.refId
+    ) {
+      return [];
+    }
+    return [item.refId];
+  });
+}
+
+function documentHasAssetReference(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): boolean {
+  const field = document?.fields[fieldName];
+  return Boolean(
+    field &&
+      typeof field === 'object' &&
+      'type' in field &&
+      field.type === 'reference' &&
+      'refType' in field &&
+      field.refType === 'asset' &&
+      'refId' in field &&
+      typeof field.refId === 'string' &&
+      field.refId,
+  );
+}
+
+function documentReferenceId(
+  document: { fields: Record<string, unknown> } | undefined,
+  fieldName: string,
+): string | undefined {
+  const field = document?.fields[fieldName];
+  if (
+    !field ||
+    typeof field !== 'object' ||
+    !('type' in field) ||
+    field.type !== 'reference' ||
+    !('refType' in field) ||
+    field.refType !== 'document' ||
+    !('refId' in field)
+  ) {
+    return undefined;
+  }
+  return typeof field.refId === 'string' && field.refId ? field.refId : undefined;
+}
+
+function documentNestedReferenceId(
+  document: { fields: Record<string, unknown> } | undefined,
+  objectFieldName: string,
+  referenceFieldName: string,
+): string | undefined {
+  const objectField = document?.fields[objectFieldName];
+  if (
+    !objectField ||
+    typeof objectField !== 'object' ||
+    !('type' in objectField) ||
+    objectField.type !== 'object' ||
+    !('fields' in objectField) ||
+    !objectField.fields ||
+    typeof objectField.fields !== 'object' ||
+    Array.isArray(objectField.fields)
+  ) {
+    return undefined;
+  }
+  return documentReferenceId(
+    { fields: objectField.fields as Record<string, unknown> },
+    referenceFieldName,
+  );
+}
+
 /**
  * Return the first non-empty value among `names`, or throw listing all of them.
  *
@@ -96,7 +248,7 @@ const PAGE_ROUTES: Record<string, string> = {
   caseStudy: '/results/{slug}',
   blogPost: '/blog/{slug}',
   treatmentPackage: '/packages/{slug}',
-  product: '/shop/{slug}',
+  ...(PUBLIC_SHOP_ENABLED ? { product: '/shop/{slug}' } : {}),
   provider: '/about/providers/{slug}',
 };
 
@@ -108,18 +260,13 @@ const PAGE_ROUTES: Record<string, string> = {
  * click-to-edit annotated. Keep in sync with CLAUDE.md "Routes" table.
  */
 const SINGLETON_PAGE_ROUTES: Record<string, string> = {
-  homepage: '/',
-  contactPage: '/contact',
-  supportPage: '/support',
   termsOfService: '/terms-of-service',
   privacyPolicy: '/privacy-policy',
   rentARoom: '/rent-a-room',
-  skinAnalysis: '/skin-analysis',
-  thankYou: '/thank-you',
-  experienceContent: '/experience',
-  janeIredalePage: '/shop/jane-iredale',
+  ...(PUBLIC_SHOP_ENABLED ? { janeIredalePage: '/shop/jane-iredale' } : {}),
   aboutPage: '/about',
 };
+const SINGLETON_PAGE_MODEL_SET = new Set(Object.keys(SINGLETON_PAGE_ROUTES));
 
 const SANITY_PROJECT_ID = requireEnv(['SANITY_PROJECT_ID', 'PUBLIC_SANITY_PROJECT_ID']);
 const SANITY_DATASET =
@@ -177,14 +324,6 @@ export default defineStackbitConfig({
   // Relative links navigate inside the preview; absolute links open a new tab.
   sidebarButtons: [
     {
-      label: 'Home Page Content',
-      type: 'document',
-      icon: 'global-objects',
-      documentId: 'homepage',
-      srcType: 'sanity',
-      srcProjectId: SANITY_SOURCE_PROJECT_ID,
-    },
-    {
       label: 'Site Settings',
       type: 'document',
       icon: 'tools',
@@ -224,4 +363,184 @@ export default defineStackbitConfig({
       urlPath,
     }),
   ),
+
+  // Model extensions keep reviewed content editable as pages, but records that
+  // fail the corresponding public route gate must not appear in the Visual
+  // Editor sitemap/page picker.
+  transformSitemap: ({ sitemap, getDocumentById }) => sitemap.filter((entry) => {
+    if (!('document' in entry)) return true;
+    if (SINGLETON_PAGE_MODEL_SET.has(entry.document.modelName)) {
+      const canonicalId = entry.document.id.replace(/^drafts\./, '');
+      return canonicalId === entry.document.modelName;
+    }
+    if (
+      ![
+        'comparison',
+        'blogPost',
+        'caseStudy',
+        'concern',
+        'localArea',
+        'service',
+        'serviceCollection',
+        'costGuide',
+        'treatmentPackage',
+        'provider',
+      ].includes(entry.document.modelName)
+    ) {
+      return true;
+    }
+
+    const document = getDocumentById({
+      id: entry.document.id,
+      srcType: entry.document.srcType,
+      srcProjectId: entry.document.srcProjectId,
+    });
+    const slug = documentStringField(document, 'slug');
+
+    if (entry.document.modelName === 'blogPost') {
+      const publishedAt = documentStringField(document, 'publishedAt');
+      return Boolean(
+        slug &&
+          publishedAt &&
+          documentHasNonEmptyList(document, 'body') &&
+          isReviewedPublicBlogSlug(slug),
+      );
+    }
+
+    if (entry.document.modelName === 'caseStudy') {
+      const treatmentId = documentReferenceId(document, 'treatment');
+      const treatment = treatmentId
+        ? getDocumentById({
+            id: treatmentId,
+            srcType: entry.document.srcType,
+            srcProjectId: entry.document.srcProjectId,
+          })
+        : undefined;
+      const treatmentSlug = documentStringField(treatment, 'slug');
+      const treatmentStatus = documentStringField(treatment, 'status');
+      return Boolean(
+        slug &&
+          documentBooleanField(document, 'consentGiven') === true &&
+          documentHasAssetReference(document, 'beforeImage') &&
+          documentHasAssetReference(document, 'afterImage') &&
+          treatmentSlug &&
+          treatmentStatus &&
+          PUBLIC_SERVICE_STATUS_SET.has(treatmentStatus) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
+      );
+    }
+
+    if (entry.document.modelName === 'concern') {
+      const status = documentStringField(document, 'status');
+      return Boolean(slug && status === 'live' && !RETIRED_PUBLIC_CONCERN_SLUG_SET.has(slug));
+    }
+
+    if (entry.document.modelName === 'localArea') {
+      return Boolean(slug && REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET.has(slug));
+    }
+
+    if (entry.document.modelName === 'service') {
+      const status = documentStringField(document, 'status');
+      return Boolean(
+        slug &&
+          status &&
+          PUBLIC_SERVICE_STATUS_SET.has(status) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(slug),
+      );
+    }
+
+    if (entry.document.modelName === 'serviceCollection') {
+      return Boolean(slug && REVIEWED_PUBLIC_COLLECTION_SLUG_SET.has(slug));
+    }
+
+    if (entry.document.modelName === 'costGuide') {
+      const treatmentId = documentReferenceId(document, 'treatment');
+      const treatment = treatmentId
+        ? getDocumentById({
+            id: treatmentId,
+            srcType: entry.document.srcType,
+            srcProjectId: entry.document.srcProjectId,
+          })
+        : undefined;
+      const treatmentSlug = documentStringField(treatment, 'slug');
+      const treatmentStatus = documentStringField(treatment, 'status');
+      return Boolean(
+        slug &&
+          REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET.has(slug) &&
+          !RETIRED_COST_GUIDE_SLUG_SET.has(slug) &&
+          treatmentSlug &&
+          treatmentStatus &&
+          PUBLIC_SERVICE_STATUS_SET.has(treatmentStatus) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
+      );
+    }
+
+    if (entry.document.modelName === 'treatmentPackage') {
+      const status = documentStringField(document, 'status');
+      const hasRouteableService = documentReferenceIds(document, 'servicesIncluded').some(
+        (serviceId) => {
+          const service = getDocumentById({
+            id: serviceId,
+            srcType: entry.document.srcType,
+            srcProjectId: entry.document.srcProjectId,
+          });
+          const serviceSlug = documentStringField(service, 'slug');
+          const serviceStatus = documentStringField(service, 'status');
+          return Boolean(
+            serviceSlug &&
+              serviceStatus &&
+              PUBLIC_SERVICE_STATUS_SET.has(serviceStatus) &&
+              !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(serviceSlug),
+          );
+        },
+      );
+      return Boolean(
+        slug &&
+          status === 'live' &&
+          VERIFIED_TREATMENT_PACKAGE_SLUG_SET.has(slug) &&
+          hasRouteableService,
+      );
+    }
+
+    if (entry.document.modelName === 'provider') {
+      const publicRole =
+        documentStringField(document, 'publicRole') ||
+        documentStringField(document, 'roleCredential');
+      return Boolean(
+        slug &&
+          documentBooleanField(document, 'showOnWebsite') === true &&
+          publicRole?.trim() &&
+          documentStringField(document, 'summary')?.trim() &&
+          documentHasNonEmptyList(document, 'biography') &&
+          documentHasNonEmptyList(document, 'serviceFocus'),
+      );
+    }
+
+    const status = documentStringField(document, 'status');
+    const comparisonServiceIds = ['optionA', 'optionB'].map((optionName) =>
+      documentNestedReferenceId(document, optionName, 'service'),
+    );
+    const comparisonServicesRouteable = comparisonServiceIds.every((serviceId) => {
+      if (!serviceId) return false;
+      const service = getDocumentById({
+        id: serviceId,
+        srcType: entry.document.srcType,
+        srcProjectId: entry.document.srcProjectId,
+      });
+      const serviceSlug = documentStringField(service, 'slug');
+      const serviceStatus = documentStringField(service, 'status');
+      return Boolean(
+        serviceSlug &&
+          serviceStatus &&
+          PUBLIC_SERVICE_STATUS_SET.has(serviceStatus) &&
+          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(serviceSlug),
+      );
+    });
+    return Boolean(
+      status === 'live' &&
+        slug &&
+        REVIEWED_PUBLIC_COMPARISON_SLUG_SET.has(slug) &&
+        comparisonServicesRouteable,
+    );
+  }),
 });

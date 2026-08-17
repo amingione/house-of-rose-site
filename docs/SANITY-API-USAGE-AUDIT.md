@@ -13,7 +13,10 @@
 | Local dev (`npm run dev:web` + Visual Editor from residential IPs) | ~30,000 | 11% |
 | Bots hitting image CDN (AhrefsBot etc.) | ~1,100 | <1% |
 
-99.96% of requests hit the **uncached live API** (`4e7axyi7.api.sanity.io`); this is expected given `useCdn: false` (kept deliberately — CDN staleness broke fresh publishes; see `packages/web/src/lib/sanity.ts`).
+99.96% of requests in this audit window hit the **uncached live API**
+(`4e7axyi7.api.sanity.io`) because `useCdn: false` was the configuration at the time. The current client
+defaults to the Sanity CDN and uses the live API only when `SANITY_USE_CDN=false`; see
+`packages/web/src/lib/sanity.ts`.
 
 ## Cause 1 — Studio 401 retry storm (66,551 requests, pure waste)
 
@@ -39,7 +42,9 @@ A static build is one Node process reading one content snapshot — the same que
 
 **Fix (shipped in this commit):** `sanityFetch()` in `packages/web/src/lib/sanity.ts` now memoizes query+params → promise for the lifetime of a production build. Global queries collapse from ~200+ calls to **1 call each**; per-slug queries collapse to one call per slug. Expected build cost: **~1,700 → under ~150 requests** (dominated by unique per-slug fetches). Dev (`astro dev`, Netlify Visual Editor) is deliberately uncached so edits stay live.
 
-`useCdn: false` was **not** changed — the staleness reason documented in the file stands. If API-request quota ever becomes the binding constraint again, moving *build* fetches to the CDN is the next lever, but it trades freshness on webhook-triggered rebuilds.
+The client was later changed to default build reads to the CDN. When a webhook-triggered build must
+bypass CDN staleness, use `SANITY_USE_CDN=false` for that build rather than changing the default for all
+builds.
 
 ## Cause 3 — Long Visual Editor / dev sessions
 

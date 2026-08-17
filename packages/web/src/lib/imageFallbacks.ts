@@ -2,27 +2,46 @@
 // or an appropriate manufacturer/device asset. Never reintroduce generic models or
 // generated treatment scenes here: this module feeds cards, heroes, social images,
 // collections, packages, and empty Sanity image fields across the site.
-const ACTUAL_RECEPTION_IMAGE = '/images/optimized/actual-reception-1400.webp';
+const ACTUAL_RECEPTION_IMAGE = '/images/optimized/actual-reception-1400-light.webp';
 const ACTUAL_WELCOME_IMAGE = '/images/optimized/actual-welcome-1400.webp';
 const ACTUAL_IV_SUITE_IMAGE = '/images/optimized/actual-iv-suite-1400.webp';
 const ACTUAL_STOREFRONT_IMAGE = '/images/optimized/actual-storefront-1000.webp';
+const ACTUAL_FACIAL_SUITE_IMAGE = '/images/optimized/actual-facial-suite-1400.webp';
+const ACTUAL_MICRONEEDLING_ROOM_IMAGE = '/images/optimized/actual-microneedling-room-1400.webp';
+const ACTUAL_MORPHEUS8_ROOM_IMAGE = '/images/optimized/actual-morpheus8-room-1400-light.webp';
 const GLO2_COMPANY_IMAGE = '/images/optimized/glo2facial-company-600.webp';
 const GLO2_RESULT_IMAGE = '/images/optimized/glo2facial-before-after-1400.webp';
 const PROCELL_HOUSE_IMAGE = '/images/optimized/procell-house-of-rose-800.webp';
 const BIOREPEEL_PRODUCT_IMAGE = '/images/optimized/biorepeel-products-800.webp';
-const DERMAL_FILLER_IMAGE = '/images/optimized/dermal-fillers-800.webp';
 const INMODE_DEVICE_IMAGES: Record<string, string> = {
-  morpheus8: '/images/optimized/morpheus8-device-800.webp',
-  'morpheus8-body': '/images/inmode/Morpheus8-Burst-Deep-body.png',
+  morpheus8: ACTUAL_MORPHEUS8_ROOM_IMAGE,
+  'morpheus8-body': ACTUAL_MORPHEUS8_ROOM_IMAGE,
   'lumecca-peak-ipl': '/images/optimized/lumecca-device-800.webp',
   'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
 };
 
+// The services directory is stricter than a treatment-page hero. A card image
+// must identify the actual device or setting at a glance; an empty treatment
+// room is omitted instead of being repeated beside unrelated services.
+const SERVICE_CARD_IMAGES: Record<string, string> = {
+  morpheus8: '/images/inmode/morpheus8-burst-device.webp',
+  'lumecca-peak-ipl': '/images/inmode/lumecca-peak-device.webp',
+  'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
+  injectables: '/images/generated/service-cards/neurotoxin-treatment-setup.webp',
+  'dermal-fillers': '/images/generated/service-cards/dermal-filler-treatment-setup.webp',
+  'iv-hydration-therapy': ACTUAL_IV_SUITE_IMAGE,
+  'glp-1-weight-management': '/images/generated/service-cards/glp1-consultation-setup.webp',
+  glo2facial: '/images/generated/service-cards/glo2facial-treatment-setup.webp',
+  dermaplaning: '/images/generated/service-cards/dermaplaning-treatment-setup.webp',
+  'facial-waxing': '/images/generated/service-cards/facial-waxing-treatment-setup.webp',
+  'body-waxing': '/images/generated/service-cards/body-waxing-treatment-setup.webp',
+};
+
 const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
-  'morpheus8-device': '/images/inmode/Morpheus8-Burst.png',
-  'lumecca-device': '/images/inmode/Lumecca-Peak.png',
+  'morpheus8-device': '/images/inmode/morpheus8-burst-device.webp',
+  'lumecca-device': '/images/inmode/lumecca-peak-device.webp',
   'lumecca-face-example':
-    '/images/inmode/Lumecca-Peak-Before-and-After.png',
+    '/images/inmode/lumecca-peak-before-after.webp',
   'forma-device': '/images/inmode/Forma-handpiece-space.png',
 };
 
@@ -39,17 +58,19 @@ export const DEFAULT_JOURNAL_IMAGE = ACTUAL_WELCOME_IMAGE;
 export const DEFAULT_AREA_IMAGE = ACTUAL_STOREFRONT_IMAGE;
 
 const SERVICE_IMAGES: Record<string, string> = {
-  injectables: ACTUAL_RECEPTION_IMAGE,
-  'dermal-fillers': DERMAL_FILLER_IMAGE,
-  'ez-gel-bio-filler': ACTUAL_RECEPTION_IMAGE,
-  'injectables-bio-fillers': DERMAL_FILLER_IMAGE,
-  'prf-injections': ACTUAL_RECEPTION_IMAGE,
+  injectables: ACTUAL_FACIAL_SUITE_IMAGE,
+  'dermal-fillers': ACTUAL_FACIAL_SUITE_IMAGE,
+  'ez-gel-bio-filler': ACTUAL_FACIAL_SUITE_IMAGE,
+  'injectables-bio-fillers': ACTUAL_FACIAL_SUITE_IMAGE,
+  'prf-injections': ACTUAL_FACIAL_SUITE_IMAGE,
+  'prf-under-eyes': ACTUAL_FACIAL_SUITE_IMAGE,
   'iv-hydration-therapy': ACTUAL_IV_SUITE_IMAGE,
   'glp-1-weight-management': ACTUAL_RECEPTION_IMAGE,
   wellness: ACTUAL_IV_SUITE_IMAGE,
-  'body-waxing': ACTUAL_WELCOME_IMAGE,
-  'facial-waxing': ACTUAL_WELCOME_IMAGE,
-  dermaplaning: ACTUAL_WELCOME_IMAGE,
+  'body-waxing': ACTUAL_FACIAL_SUITE_IMAGE,
+  'facial-waxing': ACTUAL_FACIAL_SUITE_IMAGE,
+  waxing: ACTUAL_FACIAL_SUITE_IMAGE,
+  dermaplaning: ACTUAL_FACIAL_SUITE_IMAGE,
   'face-reality-acne-program': FACE_REALITY_SYSTEM_IMAGE,
   'acne-bootcamp': FACE_REALITY_SYSTEM_IMAGE,
   'face-reality-acne-treatment': FACE_REALITY_SYSTEM_IMAGE,
@@ -58,31 +79,41 @@ const SERVICE_IMAGES: Record<string, string> = {
   'glo2facial-prf': GLO2_COMPANY_IMAGE,
   'glo2facial-procell-md': PROCELL_HOUSE_IMAGE,
   'glo2facial-procell-pro': PROCELL_HOUSE_IMAGE,
-  'back-treatment': ACTUAL_WELCOME_IMAGE,
-  'lightstim-led-therapy': ACTUAL_WELCOME_IMAGE,
-  prf: ACTUAL_RECEPTION_IMAGE,
-  'prf-fibrin-veil': ACTUAL_RECEPTION_IMAGE,
-  'prf-microneedling': PROCELL_HOUSE_IMAGE,
-  microneedling: PROCELL_HOUSE_IMAGE,
-  'microneedling-body': PROCELL_HOUSE_IMAGE,
-  'prf-body-treatments': ACTUAL_RECEPTION_IMAGE,
+  'back-treatment': ACTUAL_FACIAL_SUITE_IMAGE,
+  'lightstim-led-therapy': ACTUAL_FACIAL_SUITE_IMAGE,
+  prf: ACTUAL_FACIAL_SUITE_IMAGE,
+  'prf-fibrin-veil': ACTUAL_FACIAL_SUITE_IMAGE,
+  'prf-microneedling': ACTUAL_MICRONEEDLING_ROOM_IMAGE,
+  microneedling: ACTUAL_MICRONEEDLING_ROOM_IMAGE,
+  'microneedling-body': ACTUAL_MICRONEEDLING_ROOM_IMAGE,
+  'prf-body-treatments': ACTUAL_FACIAL_SUITE_IMAGE,
   morpheus8: INMODE_DEVICE_IMAGES.morpheus8,
-  'morpheus8-body': '/images/inmode/Morpheus8-Burst-Deep-body.png',
+  'morpheus8-body': INMODE_DEVICE_IMAGES['morpheus8-body'],
   'lumecca-peak-ipl': INMODE_DEVICE_IMAGES['lumecca-peak-ipl'],
   'forma-rf-facial': INMODE_DEVICE_IMAGES['forma-rf-facial'],
   biorepeel: BIOREPEEL_PRODUCT_IMAGE,
   'biorepeel-body': BIOREPEEL_PRODUCT_IMAGE,
   'biorepeel-advanced-acne-scarring': BIOREPEEL_PRODUCT_IMAGE,
   'biorepeel-gold-spot-treatment': BIOREPEEL_PRODUCT_IMAGE,
-  'neck-decollete-extension': ACTUAL_WELCOME_IMAGE,
+  'neck-decollete-extension': ACTUAL_FACIAL_SUITE_IMAGE,
 };
 
 export const getServiceFallbackImage = (slug: string): string =>
   SERVICE_IMAGES[slug] ?? DEFAULT_SERVICE_IMAGE;
 
+// ACTUAL_FACIAL_SUITE_IMAGE is mapped to over a dozen unrelated services above —
+// it's real House of Rose photography, but it documents nothing treatment-specific.
+// Fine as a hero background (every page needs some image), not fine as a "curated"
+// card photo: showing the same empty room for dermaplaning, PRF, and waxing side by
+// side reads as filler, not documentation. Card contexts should show no photo at all
+// rather than imply this generic room is specific to the treatment.
+const GENERIC_FILLER_IMAGES = new Set<string>([ACTUAL_FACIAL_SUITE_IMAGE]);
+
 /** A deliberately selected real-practice, treatment, or accurate device image. */
-export const getCuratedServiceImage = (slug: string): string | undefined =>
-  SERVICE_IMAGES[slug];
+export const getCuratedServiceImage = (slug: string): string | undefined => {
+  const image = SERVICE_IMAGES[slug];
+  return image && !GENERIC_FILLER_IMAGES.has(image) ? image : undefined;
+};
 
 /**
  * Describe what the curated asset actually shows. Some assets are manufacturer
@@ -92,30 +123,48 @@ export const getCuratedServiceImageAlt = (slug: string): string => {
   if (slug === 'glo2facial' || slug === 'glo2facial-prf') {
     return 'Glo2Facial company treatment overview showing the handpiece and treatment steps';
   }
-  if (slug.startsWith('glo2facial-procell') || slug.includes('microneedling')) {
+  if (slug.startsWith('glo2facial-procell')) {
     return 'Procell Therapies products photographed at House of Rose Aesthetics';
   }
-  if (slug === 'morpheus8') return 'Morpheus8 Burst RF microneedling handpiece';
-  if (slug === 'morpheus8-body') return 'Morpheus8 Burst Deep body treatment handpiece';
+  if (slug === 'prf-microneedling' || slug === 'microneedling' || slug === 'microneedling-body') {
+    return 'The microneedling treatment room inside House of Rose Aesthetics';
+  }
+  if (slug === 'morpheus8' || slug === 'morpheus8-body') {
+    return 'The Morpheus8 treatment room inside House of Rose Aesthetics';
+  }
   if (slug === 'lumecca-peak-ipl') return 'Lumecca Peak IPL treatment handpiece';
   if (slug === 'forma-rf-facial') return 'Forma radiofrequency facial handpiece';
   if (slug.startsWith('biorepeel')) return 'BioRePeelCl3 professional peel vials';
-  if (slug === 'dermal-fillers' || slug === 'injectables-bio-fillers') {
-    return 'Dermal filler product information';
-  }
   if (slug.includes('acne')) return 'Face Reality Clear Skin System products';
   if (slug === 'iv-hydration-therapy' || slug === 'wellness') {
     return 'IV hydration treatment suite inside House of Rose Aesthetics';
   }
-  if (['body-waxing', 'facial-waxing', 'dermaplaning', 'neck-decollete-extension', 'back-treatment', 'lightstim-led-therapy'].includes(slug)) {
-    return 'Welcome area inside House of Rose Aesthetics';
+  if (
+    [
+      'injectables',
+      'dermal-fillers',
+      'ez-gel-bio-filler',
+      'injectables-bio-fillers',
+      'prf-injections',
+      'prf-under-eyes',
+      'prf',
+      'prf-fibrin-veil',
+      'prf-body-treatments',
+      'body-waxing',
+      'facial-waxing',
+      'waxing',
+      'dermaplaning',
+      'neck-decollete-extension',
+      'back-treatment',
+      'lightstim-led-therapy',
+    ].includes(slug)
+  ) {
+    return 'A treatment suite inside House of Rose Aesthetics';
   }
   return 'Reception area inside House of Rose Aesthetics';
 };
 
 const CONTAINED_SERVICE_IMAGES = new Set([
-  'morpheus8',
-  'morpheus8-body',
   'lumecca-peak-ipl',
   'forma-rf-facial',
 ]);
@@ -123,6 +172,50 @@ const CONTAINED_SERVICE_IMAGES = new Set([
 /** Transparent manufacturer handpieces need breathing room instead of an object-cover crop. */
 export const serviceImageUsesContain = (slug: string): boolean =>
   CONTAINED_SERVICE_IMAGES.has(slug);
+
+const CONTAINED_SERVICE_CARD_IMAGES = new Set([
+  'morpheus8',
+  'lumecca-peak-ipl',
+  'forma-rf-facial',
+]);
+
+/** Exact device or real-practice image approved for the services directory. */
+export const getServiceCardImage = (slug: string): string | undefined =>
+  SERVICE_CARD_IMAGES[slug];
+
+export const getServiceCardImageAlt = (slug: string): string => {
+  if (slug === 'morpheus8') return 'Morpheus8 Burst RF microneedling handpiece';
+  if (slug === 'lumecca-peak-ipl') return 'Lumecca Peak IPL handpiece';
+  if (slug === 'forma-rf-facial') return 'Forma radiofrequency handpiece';
+  if (slug === 'injectables') {
+    return 'Illustrative neurotoxin appointment setup with sealed syringes, gauze, gloves, and a mapping pencil';
+  }
+  if (slug === 'dermal-fillers') {
+    return 'Illustrative dermal filler appointment setup with sealed instruments, gauze, gloves, and a handheld mirror';
+  }
+  if (slug === 'iv-hydration-therapy') {
+    return 'IV hydration suite inside House of Rose Aesthetics';
+  }
+  if (slug === 'glp-1-weight-management') {
+    return 'Illustrative GLP-1 consultation setup with a scale, blood pressure cuff, measuring tape, and intake clipboard';
+  }
+  if (slug === 'glo2facial') {
+    return 'Illustrative Glo2Facial appointment setup with a treatment handpiece and sealed single-use tip';
+  }
+  if (slug === 'dermaplaning') {
+    return 'Illustrative dermaplaning appointment setup with sealed single-use tools, gauze, cleanser, and headband';
+  }
+  if (slug === 'facial-waxing') {
+    return 'Illustrative facial waxing setup with hard wax, narrow applicators, brow tools, and gloves';
+  }
+  if (slug === 'body-waxing') {
+    return 'Illustrative body waxing setup with hard wax, wide applicators, clean linens, and gloves';
+  }
+  return '';
+};
+
+export const serviceCardImageUsesContain = (slug: string): boolean =>
+  CONTAINED_SERVICE_CARD_IMAGES.has(slug);
 
 export const getInModeDeviceImage = (slug: string): string | undefined =>
   INMODE_DEVICE_IMAGES[slug];
@@ -133,12 +226,14 @@ export const getInModeEvidenceImage = (key: string): string | undefined =>
 export const getCollectionFallbackImage = (slug: string): string => {
   const value = slug.toLowerCase();
   if (value.includes('microchannel') || value.includes('microneedl')) {
-    return PROCELL_HOUSE_IMAGE;
+    return ACTUAL_MICRONEEDLING_ROOM_IMAGE;
   }
-  if (value.includes('inject')) return ACTUAL_RECEPTION_IMAGE;
+  if (value.includes('inject') || value.includes('prf')) return ACTUAL_FACIAL_SUITE_IMAGE;
   if (value.includes('wellness') || value.includes('iv')) return ACTUAL_IV_SUITE_IMAGE;
   if (value.includes('acne')) return FACE_REALITY_SYSTEM_IMAGE;
-  if (value.includes('skin') || value.includes('facial')) return ACTUAL_WELCOME_IMAGE;
+  if (value.includes('skin') || value.includes('facial') || value.includes('wax')) {
+    return ACTUAL_FACIAL_SUITE_IMAGE;
+  }
   return DEFAULT_COLLECTION_IMAGE;
 };
 

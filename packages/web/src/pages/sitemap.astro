@@ -23,9 +23,15 @@ import {
   type TreatmentPackage,
   type PublicProviderProfile,
 } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
+import { SHOP_ENABLED } from '@/lib/features';
+import {
+  filterReviewedPublicComparisons,
+  getPublicComparisonContent,
+} from '@/lib/publicComparisonContent';
+import { isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 
 interface SitemapLink {
   title: string;
@@ -61,7 +67,9 @@ const [
   sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
 ]);
-const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
+const providers = resolvePublicProviderProfiles(sanityProviders);
+const publicComparisons = filterReviewedPublicComparisons(comparisons);
+const publicBlogPosts = blogPosts.filter((post) => isReviewedPublicBlogSlug(post.slug));
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -77,21 +85,22 @@ const corePages: SitemapLink[] = [
   { title: 'House of Rose Aesthetics', href: '/about/hra/' },
   { title: 'Providers', href: '/about/providers/' },
   { title: 'Services', href: '/services/' },
-  {
-    title: 'Consultation',
-    href: '/consultation/',
-    note: 'Advanced aesthetics & wellness',
-  },
+  { title: 'Consultation', href: '/consultation/' },
   { title: 'Service Collections', href: '/services/collections/' },
   { title: 'Treatment Series & Packages', href: '/packages/' },
   { title: 'Advanced Skin Imaging & Analysis', href: '/skin-analysis/' },
-  { title: 'Shop', href: '/shop/' },
-  { title: 'Jane Iredale Products', href: '/shop/jane-iredale/' },
+  ...(SHOP_ENABLED
+    ? [
+        { title: 'Shop', href: '/shop/' },
+        { title: 'Jane Iredale Products', href: '/shop/jane-iredale/' },
+      ]
+    : []),
   { title: 'Experience', href: '/experience/' },
   { title: 'Journal', href: '/blog/' },
   { title: 'FAQ', href: '/faq/' },
+  { title: 'Support', href: '/support/' },
   { title: 'Areas We Serve', href: '/areas/' },
-  { title: 'Results', href: '/results/' },
+  ...(caseStudies.length > 0 ? [{ title: 'Results', href: '/results/' }] : []),
   { title: 'Contact', href: '/contact/' },
   { title: 'Rent a Suite', href: '/rent-a-room/' },
 ];
@@ -121,6 +130,7 @@ const sectionData: SitemapSection[] = [
     links: collections.map((collection) => ({
       title: collection.title,
       href: `/services/collections/${collection.slug}/`,
+      note: 'Collection',
     })),
   },
   {
@@ -146,15 +156,15 @@ const sectionData: SitemapSection[] = [
   },
   {
     title: 'Comparisons',
-    links: comparisons.map((comparison) => ({
-      title: comparison.title,
+    links: publicComparisons.map((comparison) => ({
+      title: getPublicComparisonContent(comparison.slug)!.title,
       href: `/compare/${comparison.slug}/`,
     })),
   },
   {
     title: 'Areas',
     links: localAreas.map((area) => ({
-      title: area.title,
+      title: area.city,
       href: `/areas/${area.slug}/`,
     })),
   },
@@ -168,8 +178,10 @@ const sectionData: SitemapSection[] = [
   },
   {
     title: 'Journal Articles',
-    links: blogPosts.map((post) => ({
-      title: post.title,
+    links: publicBlogPosts.map((post) => ({
+      title: post.slug === 'is-morpheus8-safe'
+        ? 'Is Morpheus8 Safe? What to Ask Before Treatment'
+        : post.title,
       href: `/blog/${post.slug}/`,
     })),
   },
@@ -189,7 +201,7 @@ const sectionData: SitemapSection[] = [
 
 <BaseLayout
   title="Sitemap | House of Rose Aesthetics"
-  description="HTML sitemap for House of Rose Aesthetics in Punta Gorda, FL, with links to services, treatment packages, concerns, guides, locations, results, and site resources."
+  description="Browse House of Rose services, packages, concerns, cost and comparison guides, local pages, results, and site resources in Punta Gorda."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
 
@@ -200,7 +212,7 @@ const sectionData: SitemapSection[] = [
         Explore House of Rose
       </h1>
       <p class="text-ink/75 text-[16px] leading-relaxed max-w-[680px]">
-        A complete HTML index of public House of Rose pages for clients, search crawlers, and answer engines.
+        An index of public House of Rose pages.
       </p>
     </div>
   </section>

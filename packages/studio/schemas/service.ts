@@ -1,5 +1,27 @@
 import { defineField, defineType } from 'sanity';
+import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../../web/src/lib/publicConcernContent';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
 import { treatmentPageFields } from './objects/treatmentPageFields';
+import { validatePublicCopy } from './validation/publicCopy';
+
+type GoogleBusinessProfileFields = {
+  enabled?: boolean;
+};
+
+function validateEnabledGoogleBusinessCopy(value: string | undefined, parent: unknown): true | string {
+  const { enabled } = (parent as GoogleBusinessProfileFields | undefined) ?? {};
+  if (enabled && !value?.trim()) {
+    return 'Required when this service is included in the GBP manifest.';
+  }
+
+  return validatePublicCopy(value);
+}
+
+export function validatePublicServicePrice(value: string | undefined): true | string {
+  return value && /^\s*(?:from|starting at|investment)\b/i.test(value)
+    ? 'Enter the verified amount or explicit range without From, Starting at, or Investment framing.'
+    : true;
+}
 
 export const service = defineType({
   name: 'service',
@@ -10,7 +32,8 @@ export const service = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (R) => R.required(),
+      description: 'Verified public service name used in page titles, navigation, cards, and structured data.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -24,6 +47,15 @@ export const service = defineType({
       title: 'Collection (website grouping page)',
       type: 'reference',
       to: [{ type: 'serviceCollection' }],
+      options: {
+        filter: `defined(slug.current) && slug.current in [
+          "facials",
+          "injectables-bio-fillers",
+          "inmode",
+          "iv-hydration-therapy",
+          "waxing"
+        ])`,
+      },
       description: 'Controls where this service appears on the SITE — which /services/collections/ hub page it\'s listed under (e.g. "Facials"). Not the same as Category below, which is internal pricing/reporting only and is never shown to customers.',
     }),
     defineField({
@@ -46,27 +78,44 @@ export const service = defineType({
       title: 'Parent Service (hub — not the same as Collection)',
       type: 'reference',
       to: [{ type: 'service' }],
-      description: 'For treatments only: the specific hub SERVICE this treatment belongs under (e.g. "Microneedling — Body" under the "Microneedling" hub). This is a service-to-service link, separate from Collection above (which links to a serviceCollection grouping page).',
-      hidden: ({ document }) => document?.kind !== 'treatment',
+      options: {
+        filter:
+          'kind == "hub" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+      },
+      description: 'For a standalone or treatment that belongs under a hub service. This relationship supplies the public parent breadcrumb and back link; it is separate from Collection above.',
+      hidden: ({ document }) => document?.kind === 'hub',
     }),
     defineField({
       name: 'concerns',
       title: 'Concerns',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'concern' }] }],
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'concern' }],
+          options: {
+            filter:
+              'status == "live" && defined(slug.current) && !(slug.current in $retiredSlugs)',
+            filterParams: { retiredSlugs: RETIRED_PUBLIC_CONCERN_SLUGS },
+          },
+        },
+      ],
       description: 'Client concerns this treatment addresses (powers /concerns/* router pages).',
     }),
     defineField({
       name: 'tagline',
-      title: 'Tagline',
+      title: 'Tagline (not published)',
       type: 'string',
-      description: 'Short one-liner shown on cards and listings',
+      readOnly: true,
+      description: 'Stored for source compatibility. Public service cards use reviewed factual summaries during the voice reset.',
     }),
     defineField({
       name: 'price',
       title: 'Price',
       type: 'string',
-      description: 'Starting-at price shown on the site (e.g., "From $399"). Leave empty for consult-only services.',
+      description: 'Enter the verified exact amount or explicit range (for example, "$399" or "$399–$499"). Leave empty for consult-only services.',
+      validation: (R) => R.custom(validatePublicCopy).custom(validatePublicServicePrice),
     }),
     defineField({
       name: 'bookingMode',
@@ -87,7 +136,9 @@ export const service = defineType({
         R.custom((value, context) => {
           const document = context.document as { status?: string } | undefined;
           return document?.status === 'live' || document?.status === 'actual-menu'
-            ? value || 'Live and actual-menu services require a booking action.'
+            ? value
+              ? true
+              : 'Live and actual-menu services require a booking action.'
             : true;
         }),
     }),
@@ -134,7 +185,9 @@ export const service = defineType({
         R.custom((value, context) => {
           const document = context.document as { status?: string } | undefined;
           return document?.status === 'live' || document?.status === 'actual-menu'
-            ? value || 'Verify the booking action before publishing this service.'
+            ? value
+              ? true
+              : 'Verify the booking action before publishing this service.'
             : true;
         }),
     }),
@@ -143,34 +196,36 @@ export const service = defineType({
       title: 'Duration',
       type: 'string',
       description: 'Typical appointment length (e.g., "60–90 minutes")',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Service Summary (review)',
       type: 'text',
       rows: 5,
-      description: 'Full description shown on the service detail page ("What It Is")',
+      description: 'Stored source copy. The public renderer withholds it until voice and claims are reviewed.',
     }),
     defineField({
       name: 'whoItsFor',
-      title: 'Who It\'s For',
+      title: 'Concern / Suitability Notes (review)',
       type: 'text',
       rows: 3,
-      description: 'Target audience and ideal candidates for this service',
+      description: 'Factual concern or suitability notes for review. Do not write an aspirational customer profile.',
     }),
     defineField({
       name: 'benefits',
-      title: 'Client Benefits',
+      title: 'Verified Service Facts (review)',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Short, client-facing benefits shown as scannable cards on the service page.',
+      description: 'Specific, source-backed facts that help a client understand the service. Useful detail is welcome; repetition and unsupported outcomes are not.',
       validation: (R) => R.max(8),
     }),
     defineField({
       name: 'treatmentAreas',
-      title: 'Treatment Areas',
+      title: 'Treatment Areas (not published)',
       type: 'array',
-      description: 'Areas that may be considered and the visible concerns addressed there.',
+      readOnly: true,
+      description: 'Legacy source field. Public treatment-area guidance comes from reviewed website education, not this stored array.',
       of: [
         {
           type: 'object',
@@ -183,10 +238,10 @@ export const service = defineType({
             }),
             defineField({
               name: 'focus',
-              title: 'Appearance Focus',
+              title: 'Visible Concern / Use',
               type: 'text',
               rows: 2,
-              description: 'Describe appearance goals without making a disease-treatment or guaranteed-result claim.',
+              description: 'State the verified visible concern or use for this area. Do not write an outcome promise.',
               validation: (R) => R.required(),
             }),
           ],
@@ -199,35 +254,35 @@ export const service = defineType({
     }),
     defineField({
       name: 'process',
-      title: 'The Process',
+      title: 'Appointment Facts (review)',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'Step-by-step process list (e.g., "Skin cleanse and prep")',
+      description: 'Only verified visit facts a client needs. Do not use a process list as brand positioning.',
     }),
     defineField({
       name: 'faqs',
-      title: 'FAQs',
+      title: 'FAQs (not published)',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({ name: 'question', title: 'Question', type: 'string', validation: (R) => R.required() }),
-            defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3, validation: (R) => R.required() }),
-          ],
-          preview: {
-            select: { title: 'question', subtitle: 'answer' },
-          },
-        },
-      ],
-      description: 'Common questions about this service',
+      readOnly: true,
+      of: [{ type: 'faq' }],
+      description: 'Legacy source field. Public service FAQs and FAQPage schema come from reviewed website education, not this stored array.',
     }),
     defineField({
       name: 'relatedServices',
       title: 'Related Services',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
-      description: 'Services to show in the "Related Services" section',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }],
+          options: {
+            filter:
+              'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+            filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+          },
+        },
+      ],
+      description: 'Public, routeable services to show in the "Related Services" section.',
       validation: (R) => R.max(3),
     }),
     defineField({
@@ -236,7 +291,7 @@ export const service = defineType({
       type: 'image',
       options: { hotspot: true },
       fields: [
-        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
       ],
     }),
     defineField({
@@ -249,7 +304,7 @@ export const service = defineType({
           type: 'image',
           options: { hotspot: true },
           fields: [
-            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+            defineField({ name: 'alt', title: 'Alt Text', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
           ],
         },
       ],
@@ -287,7 +342,7 @@ export const service = defineType({
                   name: 'alt',
                   title: 'Alt Text',
                   type: 'string',
-                  validation: (R) => R.required(),
+                  validation: (R) => R.required().custom(validatePublicCopy),
                 }),
               ],
               validation: (R) => R.required(),
@@ -296,14 +351,14 @@ export const service = defineType({
               name: 'title',
               title: 'Client-Facing Title',
               type: 'string',
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'caption',
               title: 'Client-Facing Caption',
               type: 'text',
               rows: 3,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'sourceCredit',
@@ -393,14 +448,14 @@ export const service = defineType({
               title: 'What It Suggests',
               type: 'text',
               rows: 3,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'limitations',
               title: 'Important Limitations',
               type: 'text',
               rows: 3,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
             }),
             defineField({
               name: 'url',
@@ -433,8 +488,10 @@ export const service = defineType({
     }),
     defineField({
       name: 'seo',
-      title: 'SEO',
+      title: 'SEO (not published)',
       type: 'seo',
+      readOnly: true,
+      description: 'Legacy source field. Public service metadata comes from reviewed website titles and factual service descriptions.',
     }),
     // ─── Treatment page (downtime, aftercare, provider scope, price range) ────
     ...treatmentPageFields,
@@ -510,8 +567,27 @@ export const service = defineType({
       fields: [
         defineField({ name: 'enabled', title: 'Include in GBP Manifest', type: 'boolean', initialValue: false }),
         defineField({ name: 'categoryId', title: 'Google Service Category / Group ID', type: 'string' }),
-        defineField({ name: 'displayName', title: 'Approved Display Name', type: 'string', validation: (R) => R.max(140) }),
-        defineField({ name: 'description', title: 'Approved GBP Description', type: 'text', rows: 4, validation: (R) => R.max(300) }),
+        defineField({
+          name: 'displayName',
+          title: 'Approved Display Name',
+          type: 'string',
+          description: 'Exact public service name for the review-only GBP manifest.',
+          validation: (R) => [
+            R.max(140),
+            R.custom((value, context) => validateEnabledGoogleBusinessCopy(value, context.parent)),
+          ],
+        }),
+        defineField({
+          name: 'description',
+          title: 'Approved GBP Description',
+          type: 'text',
+          rows: 4,
+          description: 'Concrete, source-supported service information for external review before posting.',
+          validation: (R) => [
+            R.max(300),
+            R.custom((value, context) => validateEnabledGoogleBusinessCopy(value, context.parent)),
+          ],
+        }),
         defineField({
           name: 'priceMode',
           title: 'Price Mode',

@@ -35,7 +35,10 @@
       "Bash(curl -s \"https://4e7axyi7.api.sanity.io/v2025-04-26/data/query/production?query=%2A%5B_type%3D%3D%22leadSubmission%22%5D%5B0%5D._id\")",
       "Bash(curl -s -w \"\\\\nHTTP_STATUS:%{http_code}\\\\n\" \"https://4e7axyi7.api.sanity.io/v2025-04-26/data/query/production?query=%2A%5B_type%3D%3D%22leadSubmission%22%5D%5B0%5D._id\")",
       "Bash(git log *)",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(netlify env:list --json --context production)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{try{const j=JSON.parse\\(d\\);console.log\\(Object.keys\\(j\\).join\\('\\\\n'\\)\\)}catch\\(e\\){console.log\\('PARSE FAIL:',d.slice\\(0,800\\)\\)}}\\)\")",
+      "Bash(node -e ' *)"
     ]
   },
   "enabledMcpjsonServers": [

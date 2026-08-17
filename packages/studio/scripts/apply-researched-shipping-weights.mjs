@@ -12,6 +12,7 @@ import { createClient } from '@sanity/client';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 const apply = process.argv.includes('--apply');
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -162,17 +163,17 @@ if (conflicts.length > 0) {
   throw new Error(`Catalog/evidence reconciliation failed:\n${conflicts.join('\n')}`);
 }
 
-const alreadyCurrent = patches.filter(({ product, record }) =>
-  product.weightLb === record.weightLb &&
-  product.mpn === record.manufacturerSku &&
-  product.identifierExists === true &&
-  product.shippingWeightEvidence?.sourceUrl === record.sourceUrl &&
-  product.shippingWeightEvidence?.verifiedAt === record.verifiedAt
-).length;
+const pendingPatches = patches.filter(({ product, set }) =>
+  product.weightLb !== set.weightLb ||
+  product.mpn !== set.mpn ||
+  product.identifierExists !== set.identifierExists ||
+  !isDeepStrictEqual(product.shippingWeightEvidence, set.shippingWeightEvidence)
+);
+const alreadyCurrent = patches.length - pendingPatches.length;
 
-if (apply && patches.length > alreadyCurrent) {
+if (apply && pendingPatches.length > 0) {
   let transaction = client.transaction();
-  for (const { product, set } of patches) {
+  for (const { product, set } of pendingPatches) {
     transaction = transaction.patch(product._id, (patch) =>
       patch.ifRevisionId(product._rev).set(set),
     );
@@ -200,7 +201,7 @@ console.log(JSON.stringify({
       .map((brand) => [brand, records.filter((record) => record.brand === brand).length]),
   ),
   alreadyCurrent,
-  toApply: patches.length - alreadyCurrent,
+  toApply: pendingPatches.length,
   manufacturerIdentifiersToSet: patches.filter(({ product }) => !product.mpn).length,
   readback,
   note: 'No merchantStatus values were changed.',

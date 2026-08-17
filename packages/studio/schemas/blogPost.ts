@@ -1,4 +1,32 @@
 import { defineField, defineType } from 'sanity';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { validatePublicCopy } from './validation/publicCopy';
+
+export const validateBlogPortableText = (value: unknown): true | string => {
+  if (!value || typeof value !== 'object' || !('children' in value)) return true;
+
+  const { children } = value as { children?: unknown };
+  if (!Array.isArray(children)) return true;
+
+  const text = children
+    .map((child) => {
+      if (!child || typeof child !== 'object' || !('text' in child)) return '';
+      const childText = (child as { text?: unknown }).text;
+      return typeof childText === 'string' ? childText : '';
+    })
+    .join('');
+
+  return validatePublicCopy(text);
+};
+
+export const PUBLIC_BLOG_CATEGORIES = [
+  'Skin Rejuvenation',
+  'IV Hydration',
+  'Provider-Guided Weight Management',
+  'Injectables',
+  'Wellness',
+  'Local Guide',
+] as const;
 
 export const blogPost = defineType({
   name: 'blogPost',
@@ -9,7 +37,7 @@ export const blogPost = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (R) => R.required().max(100),
+      validation: (R) => R.required().max(100).custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -29,24 +57,17 @@ export const blogPost = defineType({
       title: 'Category',
       type: 'string',
       options: {
-        list: [
-          { title: 'Skin Rejuvenation', value: 'Skin Rejuvenation' },
-          { title: 'IV Hydration', value: 'IV Hydration' },
-          { title: 'Hormone Optimization', value: 'Hormone Optimization' },
-          { title: 'GLP-1 Weight Loss', value: 'GLP-1 Weight Loss' },
-          { title: 'Injectables', value: 'Injectables' },
-          { title: 'Wellness', value: 'Wellness' },
-          { title: 'Local Guide', value: 'Local Guide' },
-        ],
+        list: PUBLIC_BLOG_CATEGORIES.map((value) => ({ title: value, value })),
       },
+      validation: (R) => R.custom(validatePublicCopy).valid(...PUBLIC_BLOG_CATEGORIES),
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
       rows: 3,
-      description: 'Short summary shown in blog listing (also used as meta description if SEO field is empty)',
-      validation: (R) => R.max(200),
+      description: 'Listing summary and fallback metadata. Name the article’s specific subject naturally; do not reduce it to a generic benefit line.',
+      validation: (R) => R.max(200).custom(validatePublicCopy),
     }),
     defineField({
       name: 'featuredImage',
@@ -54,16 +75,24 @@ export const blogPost = defineType({
       type: 'image',
       options: { hotspot: true },
       fields: [
-        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
       ],
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'array',
+      description: 'Write a substantive, source-backed article in a natural voice. Use sections that help the reader; do not force a consultation, candidacy, process, or answer-first template.',
+      validation: (R) => R.required().min(1),
       of: [
         {
           type: 'block',
+          validation: (R) => R.custom(validateBlogPortableText),
           styles: [
             { title: 'Normal', value: 'normal' },
             { title: 'H2', value: 'h2' },
@@ -93,8 +122,13 @@ export const blogPost = defineType({
           type: 'image',
           options: { hotspot: true },
           fields: [
-            defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
-            defineField({ name: 'caption', title: 'Caption', type: 'string' }),
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              validation: (R) => R.custom(validatePublicCopy),
+            }),
+            defineField({ name: 'caption', title: 'Caption', type: 'string', validation: (R) => R.custom(validatePublicCopy) }),
           ],
         },
       ],
@@ -104,17 +138,17 @@ export const blogPost = defineType({
       title: 'Related Service',
       type: 'reference',
       to: [{ type: 'service' }],
+      options: {
+        filter:
+          'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+      },
       description: 'Link to a service page for the CTA at the bottom of this post',
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'object',
-      options: { collapsed: true },
-      fields: [
-        defineField({ name: 'metaTitle', title: 'Meta Title', type: 'string', validation: (R) => R.max(60) }),
-        defineField({ name: 'metaDescription', title: 'Meta Description', type: 'text', rows: 2, validation: (R) => R.max(160) }),
-      ],
+      type: 'seo',
     }),
   ],
   orderings: [

@@ -22,7 +22,9 @@ function getSiteUrl() {
 }
 
 export default defineConfig({
-  integrations: [tailwind()],
+  // global.css owns Tailwind's base/components/utilities. Disable the integration's
+  // automatic base.css injection so every route does not download Tailwind twice.
+  integrations: [tailwind({ applyBaseStyles: false })],
   output: 'static',
   site: getSiteUrl(),
   // Netlify Visual Editor proxies Vite's HMR websocket through this dedicated

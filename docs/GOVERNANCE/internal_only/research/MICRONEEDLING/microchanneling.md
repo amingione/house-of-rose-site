@@ -6,8 +6,8 @@ House of Rose does not treat microchanneling and microneedling as separate servi
 
 Use these sources going forward:
 
-- Canonical service research: `docs/internal_only/research/MICRONEEDLING/microneedling.md`
-- Procell manufacturer and material research: `docs/internal_only/research/PROCELL/procell.md`
-- Procell source files: `docs/internal_only/research/PROCELL/Company_files/`
+- Canonical service research: `docs/GOVERNANCE/internal_only/research/MICRONEEDLING/microneedling.md`
+- Procell manufacturer and material research: `docs/GOVERNANCE/internal_only/research/PROCELL/procell.md`
+- Procell source files: `docs/GOVERNANCE/internal_only/research/PROCELL/Company_files/`
 
 Do not recreate separate service pages, comparison pages, pricing categories, or “which modality” decision copy for these two terms.

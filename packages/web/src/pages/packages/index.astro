@@ -1,26 +1,54 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentPackageCard from '@/components/TreatmentPackageCard.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { ALL_TREATMENT_PACKAGES_QUERY, type TreatmentPackage } from '@/lib/queries';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
+import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 
 // Visual Editor: inline click-to-edit is delegated to <TreatmentPackageCard>, which
 // emits the sbObjectId / sbFieldPath annotations when passed `objectId={pkg._id}`.
 
-const packages = alignPublicContent(await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY));
+const packages = await sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY);
 const heroImage = '/images/optimized/actual-welcome-1400.webp';
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonical = new URL(Astro.url.pathname, site).toString();
+const pageTitle = 'Treatment Packages in Punta Gorda, FL';
+const pageDescription = "House of Rose's Face Reality Acne Bootcamp begins with a $99 consultation; the complete 12-week program is $899 with in-studio visits every two weeks.";
+const packagesSchema = itemListPage(
+  {
+    name: 'Treatment Packages',
+    description: pageDescription,
+    url: canonical,
+    items: packages.map((pkg) => ({
+      name: pkg.title,
+      url: new URL(`/packages/${pkg.slug}/`, site).toString(),
+    })),
+  },
+  site,
+);
+const breadcrumb = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Treatment Packages', item: canonical },
+]);
 ---
 
 <BaseLayout
-  title="Treatment Series & Packages in Punta Gorda, FL"
-  description="Explore verified treatment series and packages at House of Rose in Punta Gorda. Your provider confirms candidacy, sequencing, and current investment."
+  title={pageTitle}
+  description={pageDescription}
   preloadImage={heroImage}
+  structuredPageType="CollectionPage"
+  structuredPageMainEntityId={`${canonical}#itemlist`}
 >
+  <SchemaMarkup item={packagesSchema} slot="head" />
+  <SchemaMarkup item={breadcrumb} slot="head" />
+
   <Hero
-    title="Treatment Series & Packages"
-    kicker="Consultation-Led Planning"
+    title="Treatment Packages"
+    kicker="House of Rose Aesthetics"
+    description="See the Face Reality consultation, 12-week schedule, program price, and home-care purchase in one place."
     size="small"
     backgroundImage={heroImage}
     imageAlt="A treatment room at House of Rose Aesthetics"
@@ -28,15 +56,40 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
 
   <section class="bg-charcoal py-[clamp(48px,7vw,88px)] px-6">
     <div class="max-w-[1280px] mx-auto">
-      <div class="max-w-[700px] mb-12">
-        <span class="kicker">Series &amp; Combinations</span>
+      <div class="max-w-[700px] mb-10">
+        <span class="kicker">The current program</span>
         <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-4">
-          When more than one visit makes sense.
+          Acne Bootcamp follows the skin across 12 weeks.
         </h2>
-        <p class="text-muted text-[15px] leading-[1.75]">
-          Some goals call for a series, while others benefit from compatible services used together. Your provider will confirm candidacy, timing, and the current investment before you begin.
-        </p>
+        <div class="space-y-4 text-muted text-[15px] leading-[1.75]">
+          <p>
+            Acne can look different from one visit to the next. House of Rose's Face Reality Acne Bootcamp connects the consultation, in-studio appointments, and home-care review across 12 weeks.
+          </p>
+          <p>
+            The $99, 60-minute Acne Bootcamp Consultation is the first appointment and can be booked directly. Visits take place every two weeks. The complete 12-week program is $899 and includes its in-studio visits; home-care products are purchased separately.
+          </p>
+          <a href="/services/face-reality-acne-program/" class="learn-more inline-flex items-center gap-1">
+            See the Face Reality consultation and program <span>→</span>
+          </a>
+        </div>
       </div>
+
+      <aside data-package-provider-safety class="mb-12 grid gap-px border border-gold-metal/10 bg-gold-metal/10 md:grid-cols-2" aria-label="Face Reality provider and medical boundary">
+        <div class="bg-charcoal p-7 sm:p-8">
+          <span class="kicker">Provider</span>
+          <h3 class="mt-3 font-serif text-[24px] leading-tight text-ink">Who provides the program?</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the Acne Bootcamp Consultation and the complete 12-week program.
+          </p>
+        </div>
+        <div class="bg-charcoal p-7 sm:p-8">
+          <span class="kicker">When to seek medical care</span>
+          <h3 class="mt-3 font-serif text-[24px] leading-tight text-ink">Some breakouts need medical evaluation first.</h3>
+          <p class="mt-4 text-[14px] leading-[1.75] text-muted">
+            {FACE_REALITY_PROGRAM.medicalBoundary}
+          </p>
+        </div>
+      </aside>
 
       {packages.length > 0 ? (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -45,7 +98,7 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
           ))}
         </div>
       ) : (
-        <p class="text-muted text-[14px]">No treatment series are currently published. Call us if you would like help choosing a place to start.</p>
+        <p class="text-muted text-[14px]">No treatment packages are currently published.</p>
       )}
     </div>
   </section>
@@ -53,19 +106,19 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
   <!-- Booking CTA -->
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Questions About a Package?</span>
+      <span class="kicker">First appointment</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Talk through the schedule before you commit.
+        Begin with the $99 Acne Bootcamp Consultation.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Review your goals, candidacy, timing, and what each visit includes with the appropriate provider.
+        This 60-minute appointment can be booked directly. Call House of Rose if you want to ask about the visit schedule, program price, or home-care purchase before beginning.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
+        <a href="/packages/face-reality-12-week-program/" class="btn-gold">
+          See the complete 12-week program
+        </a>
         <a href="tel:+18449417673" class="btn-outline-gold">
           (844) 941-7673
-        </a>
-        <a href="/consultation/" class="btn-gold">
-          Request a Consultation
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

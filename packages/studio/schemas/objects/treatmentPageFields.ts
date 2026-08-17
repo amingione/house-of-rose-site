@@ -12,23 +12,24 @@ import { defineField } from 'sanity';
  *     ...treatmentPageFields,
  *   ],
  *
- * Everything here is additive and optional at the schema level, so no existing
- * document is invalidated. Completeness is enforced at build time instead —
- * see `packages/studio/scripts/verify-treatment-pages.mjs`, which fails the build
- * when a service with `status: "live"` is missing a required block.
+ * Everything here is additive and optional at the schema level. A block belongs
+ * on a public page only when House of Rose has reviewed, service-specific facts
+ * for it; an empty template is not evidence and must not become generic copy.
  */
 export const treatmentPageFields = [
   defineField({
     name: 'downtime',
-    title: 'Downtime',
+    title: 'Downtime (not published)',
     type: 'treatmentDowntime',
-    description: 'Recovery expectation. Required for every live treatment.',
+    readOnly: true,
+    description: 'Stored for source compatibility and clinical review. The current public service page does not publish this field.',
   }),
   defineField({
     name: 'aftercare',
-    title: 'Aftercare',
+    title: 'Aftercare (not published)',
     type: 'treatmentAftercare',
-    description: 'Client-facing aftercare. Required for every live treatment.',
+    readOnly: true,
+    description: 'Stored for source compatibility and clinical review. The current public service page does not publish this field.',
   }),
   defineField({
     name: 'providerScope',
@@ -47,11 +48,11 @@ export const treatmentPageFields = [
   }),
   defineField({
     name: 'whyQualified',
-    title: 'Why House of Rose',
+    title: 'Practice / Equipment Facts (review)',
     type: 'array',
     of: [{ type: 'string' }],
     description:
-      'Specific, checkable reasons this practice is the right place for this treatment. Device, certification, protocol, setting. No generic trust language — "attention to detail" and "steady hands" are rejected on review.',
+      'Specific, checkable device, credential, protocol, or setting facts. Do not write comparative quality claims or generic trust language.',
     validation: (R) => R.max(5),
   }),
 ];

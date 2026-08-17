@@ -1,15 +1,16 @@
 import { defineField, defineType } from 'sanity';
+import { validatePublicCopy } from '../validation/publicCopy';
 
 /**
  * Object types backing the four treatment-page blocks that had no home in
  * `service`: downtime, aftercare, provider scope, and price range.
  *
  * Compliance constraints encoded here on purpose:
- *  - No House of Rose staff or owner names anywhere client-facing. Scope is
- *    described by licensure and delegation, never by person.
- *  - Every page that shows an outcome must carry a results-variance line
- *    (FL Board of Medicine Rule 64B8-11.001). `treatmentProviderScope.disclaimer`
- *    is required for that reason.
+ *  - A named practitioner must include the license type. This object records
+ *    scope; the service's provider reference supplies the verified public name.
+ *  - Every page that shows an outcome must carry a service-specific results-
+ *    variance line (FL Board of Medicine Rule 64B8-11.001). Pages without an
+ *    outcome claim do not need generic disclaimer copy.
  *  - Price is display-only. GlossGenius remains commerce truth; this mirrors it.
  */
 
@@ -27,8 +28,8 @@ export const treatmentDowntime = defineType({
       description: 'Drives the badge on the page and the recovery signal in search results.',
       options: {
         list: [
-          { title: 'None — return to normal activity immediately', value: 'none' },
-          { title: 'Minimal — makeup-ready same or next day', value: 'minimal' },
+          { title: 'None — exact procedure must be reviewed', value: 'none' },
+          { title: 'Minimal — use the approved service-specific summary', value: 'minimal' },
           { title: 'Moderate — visible redness or texture for several days', value: 'moderate' },
           { title: 'Significant — plan around social and work commitments', value: 'significant' },
         ],
@@ -59,9 +60,9 @@ export const treatmentDowntime = defineType({
     }),
     defineField({
       name: 'timeline',
-      title: 'Recovery Timeline',
+      title: 'Recovery by Time Window',
       type: 'array',
-      description: 'Sequential milestones. Keep to what is typical, not best case.',
+      description: 'Approved time-window facts for this exact service. Do not fill every window or turn recovery into a required narrative.',
       of: [
         {
           type: 'object',
@@ -75,7 +76,7 @@ export const treatmentDowntime = defineType({
             }),
             defineField({
               name: 'expectation',
-              title: 'What to Expect',
+              title: 'Observable Guidance',
               type: 'text',
               rows: 2,
               validation: (R) => R.required(),
@@ -102,14 +103,14 @@ export const treatmentAftercare = defineType({
   name: 'treatmentAftercare',
   title: 'Aftercare',
   type: 'object',
-  description: 'Client-facing aftercare. Mirrors the clinical protocol but written for a client, not a provider.',
+  description: 'Reviewed instructions for this exact service. Leave the object absent when no approved client guidance exists.',
   fields: [
     defineField({
       name: 'intro',
       title: 'Aftercare Intro',
       type: 'text',
       rows: 2,
-      description: 'One or two sentences framing why aftercare determines the result.',
+      description: 'One or two factual sentences explaining why the instructions matter for this service.',
       validation: (R) => R.max(300),
     }),
     defineField({
@@ -162,7 +163,7 @@ export const treatmentProviderScope = defineType({
   title: 'Provider Qualifications',
   type: 'object',
   description:
-    'Who performs this treatment and under what authority. Describe licensure only — never a staff or owner name.',
+    'Who performs this treatment and under what authority. Record licensure here; use the service provider reference for a verified public name and license type.',
   fields: [
     defineField({
       name: 'performedBy',
@@ -184,7 +185,7 @@ export const treatmentProviderScope = defineType({
       type: 'boolean',
       initialValue: false,
       description:
-        'Required true for injectables, IV therapy, weight management, and any device that breaches the epidermis (FL Rule 61G5-18.00015 excludes microneedling from esthetician scope regardless of naming).',
+        'Required true for injectables, IV therapy, weight management, microneedling, microchanneling, and other services delivered under the practice’s written physician protocol.',
     }),
     defineField({
       name: 'credentialPoints',
@@ -197,20 +198,32 @@ export const treatmentProviderScope = defineType({
     }),
     defineField({
       name: 'consultRequired',
-      title: 'Consultation Required Before Treatment',
+      title: 'Consultation Required (legacy — not published)',
       type: 'boolean',
-      initialValue: true,
+      readOnly: true,
+      description:
+        'Stored for compatibility only. This field does not control the website or booking flow. Use the service booking mode and verified booking URL for the actual next step.',
     }),
     defineField({
       name: 'disclaimer',
-      title: 'Results Disclaimer',
+      title: 'Service-Specific Variance Note',
       type: 'text',
       rows: 2,
-      initialValue:
-        'Individual results vary. Candidacy is determined at consultation. This page is general information and is not medical advice.',
       description:
-        'Required on every treatment page (FL Board of Medicine Rule 64B8-11.001). Do not remove.',
-      validation: (R) => R.required(),
+        'Use only when this service publishes an outcome claim. State that individual outcomes vary without adding generic consultation, candidacy, or medical-advice boilerplate.',
+      validation: (R) =>
+        R.custom((value) => {
+          if (!value) return true;
+          if (/\bcandidacy is determined at consultation\b/i.test(value)) {
+            return 'Remove the retired candidacy/consultation boilerplate and keep only a service-specific variance note.';
+          }
+          if (/\bthis page is general information and is not medical advice\b/i.test(value)) {
+            return 'Remove the generic medical-advice boilerplate and keep only a service-specific variance note.';
+          }
+          return /\bindividual (?:outcomes?|results?) var(?:y|ies)\b/i.test(value)
+            ? true
+            : 'A published variance note must state that individual outcomes or results vary.';
+        }),
     }),
   ],
   preview: {
@@ -241,7 +254,7 @@ export const treatmentPriceRange = defineType({
       name: 'maxPrice',
       title: 'Maximum Price (USD)',
       type: 'number',
-      description: 'Leave empty for a single starting-at price.',
+      description: 'Leave empty when the verified menu has one exact price.',
       validation: (R) =>
         R.min(0).custom((value, context) => {
           const min = (context.parent as { minPrice?: number } | undefined)?.minPrice;
@@ -273,7 +286,7 @@ export const treatmentPriceRange = defineType({
       rows: 2,
       description:
         'What moves the number — units, areas, session count. No discount or promotional framing.',
-      validation: (R) => R.max(280),
+      validation: (R) => R.max(280).custom(validatePublicCopy),
     }),
     defineField({
       name: 'verifiedAgainstGlossGenius',
@@ -286,7 +299,7 @@ export const treatmentPriceRange = defineType({
   preview: {
     select: { min: 'minPrice', max: 'maxPrice', unit: 'unit' },
     prepare: ({ min, max, unit }: { min?: number; max?: number; unit?: string }) => ({
-      title: max && max !== min ? `$${min}–$${max}` : `From $${min}`,
+      title: max && max !== min ? `$${min}–$${max}` : `$${min}`,
       subtitle: `per ${unit ?? 'session'}`,
     }),
   },

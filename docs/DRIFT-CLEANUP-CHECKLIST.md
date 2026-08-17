@@ -1,8 +1,9 @@
 # Drift-Cleanup Checklist — House of Rose
 
-**Updated:** 2026-08-01 · **Source of truth:** `docs/House_of_Rose_Creative_System/` (brand voice,
-positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity `siteSettings` +
-`docs/GOOGLE-BUSINESS-PROFILE.md` (NAP/GBP facts)
+**Updated:** 2026-08-13 · **Source of truth:** current owner direction + `CLAUDE.md` (repo root) +
+Sanity `siteSettings` + `docs/GOOGLE-BUSINESS-PROFILE.md` (NAP/GBP facts). The Creative System is
+archival for voice during the active reset; cross-check any historical fact against its current owner
+document and use only the still-approved visual standards.
 **Purpose:** eliminate outdated information and stop drift back to earlier versions of the brand.
 
 ## Current canon (enforce this)
@@ -19,22 +20,20 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
   `Facial spa` and `Skin care clinic` secondary. `Health and beauty shop` and
   `Vitamin & supplements store` are **NOT on the profile** — older docs listed them as live and were
   wrong. → **Stale = any doc asserting a five-category stack is live.**
-  _(Exception: `structuredData.ts`'s `BUSINESS_CATEGORIES` legitimately keeps all five — it is a
-  JSON-LD `keywords` list describing real offerings, not a GBP mirror. Do not sync it.)_
-- **Visit policy:** walk-ins welcome; appointments recommended to reserve a time. GBP planning attribute:
-  **Appointment not required**.
+- **Visit policy:** keep the GBP planning attribute **Appointment not required** while the current policy
+  is active. State the details only in the direct visit FAQ or when a customer asks; do not repeat them as
+  general marketing copy.
 - **Phone SMS:** not enabled while Grasshopper verification is pending. Use call, email, contact-form,
-  walk-in, and services-menu CTAs; do not advertise texting as an active channel.
+  and services-menu CTAs; do not advertise texting as an active channel.
 - **GlossGenius:** `https://houseofrose.glossgenius.com/services` is the services/menu link, not a primary
   online-booking-button CTA.
-- **Lead descriptor — `Medical Aesthetics Practice`** (Creative System v1.0, Book 1 §2 / Book 3 §1,
-  binding 2026-08-01). "Advanced aesthetics & wellness" is demoted to supporting/SEO phrasing.
+- **Lead descriptor — `Medical Aesthetics Practice`** (current reset rule in `AGENTS.md` / `CLAUDE.md`).
+  "Advanced aesthetics & wellness" is demoted to supporting/SEO phrasing.
   → **Stale = any doc that instructs "lead with advanced aesthetics & wellness studio."**
-  ⚠️ **The published sweep is NOT done** — see the open item at the bottom of this file.
 - **Med spa — ON, "allow, don't lead":** "med spa / medical spa" is allowed in meta, GBP, SEO, and
   supporting copy; **never deny being a med spa**; "day spa" is off-limits. → **Stale = any "we are NOT
   a med spa" denial, or "med spa" used as the lead brand descriptor.**
-- **Retired language — banned** (Creative System Book 1 §12): luxury / luxe / **premium** / boutique as
+- **Retired language — banned** (current reset rule in `AGENTS.md` / `CLAUDE.md`): luxury / luxe / **premium** / boutique as
   self-description, glow, radiance, timeless beauty, flawless, ageless, pamper, indulge, treat yourself,
   reveal your beauty, best version of yourself, turn back time, instant transformation, pain-free,
   blanket "no downtime," guaranteed results. → **Stale = any of these in live copy or as an AI instruction.**
@@ -43,8 +42,10 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
   **Stale = anything presenting any of them as a current offering.**
 - **Botanical names — dead:** Lily, Iris, Hydrangea, Magnolia, Porcelain Petal, Gilded Lily, Lumière,
   Camellia Peel, Clarity Session. Use plain, searchable names.
-- **Advanced Skin Imaging & Analysis = the client draw-in** — hero CTA + main-nav item +
-  lead-capture form on `/skin-analysis/`. Keep and feature it.
+- **Advanced Skin Imaging & Analysis is an optional paid appointment.** Keep its current
+  `/skin-analysis/` route and navigation availability. It may be useful when a client is unsure where
+  to begin or wants a visual baseline; do not make it a mandatory front door, funnel, prerequisite,
+  or prescribed homepage hero CTA.
 - **AI framing — RETIRED (2026-08-06):** the service is **Advanced Skin Imaging & Analysis**. We lead
   with the multi-spectrum imaging (standard / cross-polarized / UV), not the AI. → **Stale = "AI Skin
   Analysis," "AI-assisted," "AI skin scanner," "AI scan," "AI-powered" anywhere in client-facing copy,
@@ -69,7 +70,7 @@ positioning, approved copy, visual direction) + `CLAUDE.md` (repo root) + Sanity
 ## Open — the real remaining drift
 
 ### ✅ DONE 2026-08-01 · Lead-descriptor sweep — `Medical Aesthetics Practice`
-The Creative System (v1.0, 2026-07-30) makes **`Medical Aesthetics Practice`** the lead public descriptor.
+The current reset rules make **`Medical Aesthetics Practice`** the lead public descriptor.
 Swept across governing docs, shipping source, campaign copy, and internal briefs. Verified: **zero
 occurrences remain** outside deliberate "this is retired" annotations and the grep-guard list.
 
@@ -77,24 +78,33 @@ occurrences remain** outside deliberate "this is retired" annotations and the gr
 - [x] Sanity — **verified clean**; the descriptor does not appear in any published document.
 - [x] `docs/GOOGLE-BUSINESS-PROFILE.md` — brand-law line + Q&A seed.
 - [x] Campaign kit — `meta-ad-copy.md`, `organic-captions.md`, `google-search-ads.csv`,
-  `on-site-video-shot-list.md`, `README.md`. **"Private" removed too** — it contradicts the walk-in policy.
-- [x] Internal briefs — `research/{professional-makeup,hydrodermabrasion,waxing,_audit-report}.md`,
+  `on-site-video-shot-list.md`, `README.md`. **"Private" removed too** because it was inaccurate.
+- [x] Internal briefs — `research/{professional-makeup,waxing}.md`; unsupported
+  Hydrodermabrasion, standalone Enzyme Facial, and generic Light Peel briefs were removed rather than
+  retained as future service instructions.
   `services/makeup/PROFESSIONAL-MAKEUP-BUILD-PLAN.md`, `services/PRF_Pricing/{README,homepage-regenerative-repositioning}.md`,
   `pricing/PROFESSIONAL-MAKEUP-PRICING-COMP.md`.
 - [x] Studio schema field examples + site copy that taught retired language.
 
-### 🛑 P0 · § 456.062 — the Q3 campaign kit cannot publish as written
-Every ad unit in `docs/marketing/campaigns/2026-q3-local-acquisition/` advertised a **"complimentary"**
-consultation with **no 72-hour disclosure in the ad unit**. `copy/google-search-ads.csv` was formatted for
-direct upload with "Complimentary Consultation" as a headline.
+### ✅ DONE 2026-08-13 · § 456.062 campaign-source cleanup
+The Q3 acquisition kit formerly advertised a free consultation without the required disclosure. The
+offer and all price implications are now removed from the current campaign source. The same pass also
+removed the rejected process-heavy voice, the unsupported `private` framing, recurring walk-in copy,
+the retired `/services/microchanneling/` destination, and a suggested text-message response while SMS
+is disabled.
 
-- [x] `google-search-ads.csv` — the word removed (RSA headlines can't carry the block); now advertises the
-  consultation with no price claim, which takes it outside § 456.062.
-- [x] `on-site-video-shot-list.md` — same fix.
-- [ ] **`meta-ad-copy.md` (4 units), `organic-captions.md` (5 units), `README.md` CTA still say
-  "complimentary."** Amber must either obtain the approved disclosure copy + counsel sign-off, or drop
-  the word. **Statutory text must not be improvised** — see `CLAUDE.md`.
-- [ ] `/skin-analysis/` on the live site has the same exposure wherever it says "complimentary."
+- [x] `copy/google-search-ads.csv` — rebuilt around verified service distinctions, current routes, NAP,
+  and direct CTAs; no free-service or price claim.
+- [x] `copy/organic-captions.md` — rebuilt as a factual platform bank with verified provider identity.
+- [x] `production/on-site-video-shot-list.md` — scripts now show the real practice, imaging modes, and
+  service differences; no free-service end card.
+- [x] `README.md` — stale legal blocker and nonexistent `meta-ad-copy.md` reference removed; package is
+  explicitly a working campaign requiring final owner/platform review.
+- [x] Retired Q3 acquisition asset/video renderers — removed because their embedded frames contained
+  the rejected offer and voice; the campaign cannot regenerate media from obsolete copy.
+- [x] Unverified PRF brochure sources, renderers, print files, and brochure-only assets — removed so
+  proposed treatment combinations cannot be regenerated or mistaken for approved client material.
+- [x] `/skin-analysis/` remains clean in current rendered output.
 
 ### 🟡 P1 · Retired vocabulary + illegal service names in PUBLISHED Sanity copy — NEEDS AMBER
 Audited 2026-08-01 across 61 published docs: **23 service documents carry 68 retired-term instances**
@@ -111,8 +121,8 @@ Three separate problems, in order of cost to fix:
    ranking those pages hold. **Do not rename without deciding the redirect plan.**
 3. **Body copy** — "lit-from-within glow" (the exact retired phrase), "walk out glowing," etc.
 
-⚠️ **The 9 `no downtime` instances need clinical review, not a copy edit.** The Creative System permits
-the phrase when it is true for that exact procedure and reviewed. It is plausibly accurate for Glo2Facial
+⚠️ **The 9 `no downtime` instances need clinical review, not a copy edit.** Current rules permit
+the phrase only when it is true for that exact procedure and reviewed. It is plausibly accurate for Glo2Facial
 and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
 
 ### P0 · Wrong NAP (always drift)
@@ -121,8 +131,8 @@ and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
 - [x] **DONE (2026-07-07)** `01_INBOX/competitor_analysis/GROWTH-SYSTEM-REPORT.md:14` — ZIP → **33950**.
 
 ### P0 · Stale "not a med spa" denials
-- [ ] `01_INBOX/Guidelines/HofR brand voice creation prompt.md` (~70, ~683) — soften the blanket
-  anti-"med spa" framing to anti-**discount** (premium positioning is still valid; the med-spa ban is not).
+- [ ] `01_INBOX/Guidelines/HofR brand voice creation prompt.md` (~70, ~683) — archive it; do not
+  revise it into a current voice prompt. Preserve the discount prohibition in current governance only.
 - [ ] Any other vault/Notion line that explicitly **denies** being a med spa.
 
 ### P1 · Botanical names still in copy
@@ -148,8 +158,10 @@ and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
   (retired). "House of Rose HQ" and "The Rose Method™" pages need updating too.
 
 ### P1 · Secondary docs still describing the membership model
-- [ ] `docs/internal_only/COMPLIANCE-COPY-RULES.md` §1, `docs/VISUAL-EDITING.md`, `docs/GOOGLE-BUSINESS-PROFILE.md` — remove Rose Circle / membership /
-  Rose Method framing (they don't affect the build, but they're drift bait).
+- [x] `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` names retired membership
+  terms only to prohibit them; those compliance references are intentional and must not be scrubbed.
+- [ ] Review `docs/VISUAL-EDITING.md` and `docs/GOOGLE-BUSINESS-PROFILE.md` separately for any language
+  that presents a retired membership as current.
 
 ### P2 · Archive / quarantine (low risk if isolated)
 - [ ] `08-Memberships…/Collagen Banking offer.md` (vault) — retitle or delete (dead program name).
@@ -181,7 +193,7 @@ Auto-flag these **banned "current-offering" strings** (mirrors FAS drift discipl
 `Rose Rewards` · `Rose Method` · `Rose Pass` · `appointment-only` · `walk-ins not offered` ·
 old IG `houseofrosefl` · old Facebook vanity URL · opening `July 9, 2026`
 
-**Retired brand language — grep these too** (Creative System Book 1 §12; banned as pillars, hooks, or AI
+**Retired brand language — grep these too** (current reset rules; banned as pillars, hooks, or AI
 instructions, *not* in competitor/keyword research):
 
 `luxury` · `luxe` · `premium` (self-description) · `boutique` · `glow` · `glowing` · `radiance` ·

@@ -1,0 +1,141 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import test from 'node:test';
+
+import { serviceCollection } from '../packages/studio/schemas/serviceCollection.ts';
+import {
+  ALL_COLLECTION_SLUGS_QUERY,
+  ALL_COLLECTIONS_QUERY,
+  COLLECTION_BY_SLUG_QUERY,
+  NAV_COLLECTIONS_QUERY,
+  REVIEWED_PUBLIC_COLLECTION_SLUGS,
+} from '../packages/web/src/lib/queries.ts';
+
+const querySource = readFileSync(
+  new URL('../packages/web/src/lib/queries.ts', import.meta.url),
+  'utf8',
+);
+const collectionRenderers = [
+  '../packages/web/src/pages/services/index.astro',
+  '../packages/web/src/pages/services/collections/index.astro',
+  '../packages/web/src/pages/services/collections/[collection].astro',
+  '../packages/web/src/pages/sitemap.astro',
+].map((relativePath) => readFileSync(new URL(relativePath, import.meta.url), 'utf8'));
+
+function collectionField(name: string) {
+  return serviceCollection.fields.find((field) => field.name === name);
+}
+
+test('the public collection title uses the shared public-copy guard', () => {
+  const title = collectionField('title');
+
+  assert.equal(typeof title?.validation, 'function');
+  assert.match(String(title?.validation), /validatePublicCopy/);
+  assert.match(String(title?.description), /public category name/i);
+});
+
+test('disconnected collection editorial fields are preserved but not presented as publishing controls', () => {
+  const disconnectedFields = [
+    'description',
+    'image',
+    'presentation',
+    'headline',
+    'intro',
+    'featuredServices',
+    'customizationTitle',
+    'customizationIntro',
+    'customizations',
+    'closingTitle',
+    'closingBody',
+  ];
+
+  for (const fieldName of disconnectedFields) {
+    const field = collectionField(fieldName);
+    assert.equal(field?.readOnly, true, `${fieldName} must remain source-compatible but read-only.`);
+    assert.match(String(field?.title), /not published/i, `${fieldName} must be labeled accurately.`);
+    assert.match(String(field?.description), /(?:legacy|does not|instead|retained)/i);
+  }
+});
+
+test('public collection payloads expose route identity and current services, not legacy page content', () => {
+  const collectionType = querySource.match(
+    /export interface ServiceCollection \{([\s\S]*?)\n\}/,
+  )?.[1];
+
+  assert.ok(collectionType);
+  for (const activeField of ['_id', 'title', 'slug', 'services']) {
+    assert.match(collectionType, new RegExp(`\\b${activeField}\\??:`));
+  }
+
+  const nonPublicFields = [
+    'description',
+    'image',
+    'presentation',
+    'headline',
+    'intro',
+    'featuredServices',
+    'customizationTitle',
+    'customizationIntro',
+    'customizations',
+    'closingTitle',
+    'closingBody',
+  ];
+  for (const fieldName of nonPublicFields) {
+    assert.doesNotMatch(
+      collectionType,
+      new RegExp(`\\b${fieldName}\\??:`),
+      `${fieldName} must not remain in the public ServiceCollection type.`,
+    );
+  }
+
+  for (const query of [ALL_COLLECTIONS_QUERY, COLLECTION_BY_SLUG_QUERY]) {
+    const collectionProjection = query.split('"services":')[0];
+    for (const fieldName of nonPublicFields) {
+      assert.doesNotMatch(
+        collectionProjection,
+        new RegExp(`\\b${fieldName}\\b`),
+        `${fieldName} must not remain in the top-level public collection projection.`,
+      );
+    }
+  }
+
+  for (const renderer of collectionRenderers) {
+    for (const fieldName of nonPublicFields) {
+      assert.doesNotMatch(renderer, new RegExp(`collection\\.${fieldName}\\b`));
+    }
+  }
+});
+
+test('collection navigation only exposes records with generated routes', () => {
+  const slug = collectionField('slug');
+  assert.equal(typeof slug?.validation, 'function', 'Collection slugs must remain required.');
+  assert.match(String(slug?.validation), /required/);
+
+  for (const query of [ALL_COLLECTIONS_QUERY, NAV_COLLECTIONS_QUERY]) {
+    assert.match(query, /_type == "serviceCollection" && defined\(slug\.current\)/);
+  }
+
+  for (const query of [ALL_COLLECTIONS_QUERY, NAV_COLLECTIONS_QUERY, COLLECTION_BY_SLUG_QUERY]) {
+    const servicesFilter = query.match(/"services": \*\[([\s\S]*?)\] \| order/);
+    assert.ok(servicesFilter?.[1], 'The collection query must guard linked service routes.');
+    assert.match(servicesFilter[1], /status in \["live", "actual-menu"\]/);
+    assert.match(servicesFilter[1], /defined\(slug\.current\)/);
+  }
+});
+
+test('collection creation cannot publish without explicit route review', () => {
+  const reviewedSlugSet = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
+  assert.ok(REVIEWED_PUBLIC_COLLECTION_SLUGS.length > 0);
+
+  for (const query of [
+    ALL_COLLECTIONS_QUERY,
+    NAV_COLLECTIONS_QUERY,
+    COLLECTION_BY_SLUG_QUERY,
+    ALL_COLLECTION_SLUGS_QUERY,
+  ]) {
+    assert.ok(
+      query.includes(`slug.current in ${reviewedSlugSet}`),
+      'Every public collection query must fail closed to reviewed routes.',
+    );
+  }
+});

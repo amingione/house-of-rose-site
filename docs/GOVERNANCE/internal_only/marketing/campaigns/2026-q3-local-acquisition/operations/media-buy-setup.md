@@ -40,16 +40,17 @@ Exact and phrase match:
 
 ### Ad group: Injectables
 
-Use only while Botox, Daxxify, and filler remain currently bookable:
+Use only while the advertised injectable services remain currently bookable. Unless current Google
+Restricted Drug Terms certification is verified for this account, keep keyword targeting generic:
 
 - `[injectables near me]`
 - `"injectables punta gorda"`
-- `[botox punta gorda]`
-- `"botox near me"`
-- `[daxxify near me]`
-- `"daxxify punta gorda"`
 - `[dermal fillers near me]`
 - `"dermal fillers punta gorda"`
+
+Add `botox`, `dysport`, `daxxify`, `xeomin`, `jeuveau`, `juvederm`, `restylane`, and `sculptra` as
+negative keywords so phrase match cannot target restricted drug terms without certification. Brand
+names may remain in otherwise compliant ad copy and on landing pages.
 
 ### Ad group: Advanced Skin
 
@@ -73,9 +74,9 @@ Review search terms daily for the first seven days. Add negatives only when the 
 - Business name: House of Rose Aesthetics.
 - Call asset: (844) 941-7673, scheduled Monday–Friday, 9:00 AM–5:00 PM.
 - Location asset: connect the verified Google Business Profile.
-- Sitelinks: Skin Analysis, Injectables, Glo2Facial, Procell Microchanneling.
-- Callouts: Private Appointments; Punta Gorda Studio; Consultation First; Provider-Led Care.
-- Structured snippet header: Services. Values: Skin Analysis, Glo2Facial, Procell, Injectables.
+- Sitelinks: Skin Analysis, Injectables, Glo2Facial, Microneedling.
+- Callouts: Punta Gorda Practice; Current Service Menu; 525 E Olympia Ave; Call House of Rose.
+- Structured snippet header: Services. Values: Skin Analysis, Glo2Facial, Microneedling, Injectables.
 - Image assets: use the text-free files from the Google export folder only.
 
 ## Meta
@@ -92,16 +93,16 @@ Review search terms daily for the first seven days. Add negatives only when the 
 
 ### Ad set
 
-- **Name:** `20mi | 35+ | Broad | All Genders`
+- **Name:** `20mi | Adults | Broad | All Genders`
 - **Location:** 20-mile radius around the studio; people living in or recently in the location, using the narrowest available residency setting.
-- **Age:** 35–65+.
+- **Age:** 18–65+.
 - **Gender:** all.
 - **Detailed targeting:** none at launch.
 - **Do not target:** medical conditions, insecurities, diagnoses, medication use, weight status, or inferred treatment candidacy.
 
 ### Rotation
 
-- **Days 1–7:** 01A Local Proof, 02A See Your Skin First, 04A Skin Quality.
+- **Days 1–7:** 01A Local Proof, 02A Three Views of the Skin, 04A Skin Quality.
 - **Days 8–14:** retain the best qualified-lead producer; rotate in 03A Studio, 05A Injectables, and 06A Provider Voice.
 - **After day 14:** test the higher-intent Instant Form only if fewer than three verified website leads exist and tracking has been reconfirmed.
 - **Retargeting:** wait until Meta reports an eligible audience. Do not split the initial $30/day across prospecting and retargeting.

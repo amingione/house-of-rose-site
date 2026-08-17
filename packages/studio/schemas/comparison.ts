@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
 
 /**
  * Comparison — AEO page type #4 ("A vs B").
@@ -6,10 +7,28 @@ import { defineField, defineType } from 'sanity';
  * See docs/CONTENT-MODEL-MAP.md.
  */
 const optionFields = (label: string) => [
-  defineField({ name: 'label', title: `${label} — Label`, type: 'string', validation: (R) => R.required() }),
-  defineField({ name: 'summary', title: `${label} — Summary`, type: 'text', rows: 3 }),
-  defineField({ name: 'bestFor', title: `${label} — Best For`, type: 'text', rows: 2 }),
-  defineField({ name: 'service', title: `${label} — Service`, type: 'reference', to: [{ type: 'service' }] }),
+  defineField({ name: 'label', title: `${label} — Label (not published)`, type: 'string', readOnly: true, description: 'Legacy source field. The reviewed website overlay supplies the public label.' }),
+  defineField({ name: 'summary', title: `${label} — Summary (not published)`, type: 'text', rows: 3, readOnly: true, description: 'Legacy source field. The reviewed website overlay supplies the public overview.' }),
+  defineField({
+    name: 'bestFor',
+    title: `${label} — Verified Distinction (not published)`,
+    type: 'text',
+    rows: 2,
+    readOnly: true,
+    description: 'Legacy source field. The reviewed website overlay supplies the public distinction.',
+  }),
+  defineField({
+    name: 'service',
+    title: `${label} — Service`,
+    type: 'reference',
+    to: [{ type: 'service' }],
+    options: {
+      filter:
+        'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+      filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+    },
+    validation: (R) => R.required(),
+  }),
 ];
 
 export const comparison = defineType({
@@ -19,9 +38,9 @@ export const comparison = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Internal Title',
       type: 'string',
-      description: 'e.g. "Procell Pro vs MD: Which Material Plan Is Right for You?"',
+      description: 'Identifies this record in Studio. The reviewed website overlay supplies the public title.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -43,39 +62,48 @@ export const comparison = defineType({
         ],
         layout: 'radio',
       },
+      description: 'Live makes the record eligible for routing; it cannot publish without a matching reviewed website overlay.',
       validation: (R) => R.required(),
     }),
     defineField({
       name: 'intro',
-      title: 'Direct Answer / Intro',
+      title: 'Intro (not published)',
       type: 'text',
       rows: 3,
-      description: 'Answer-first: state the short version of who should pick which, then explain.',
-      validation: (R) => R.required(),
+      readOnly: true,
+      description: 'Legacy source field. The reviewed website overlay supplies the public introduction.',
     }),
     defineField({ name: 'optionA', title: 'Option A', type: 'object', fields: optionFields('Option A') }),
     defineField({ name: 'optionB', title: 'Option B', type: 'object', fields: optionFields('Option B') }),
     defineField({
       name: 'rows',
-      title: 'Comparison Rows',
+      title: 'Comparison Rows (not published)',
       type: 'array',
+      readOnly: true,
       of: [
         {
           type: 'object',
           fields: [
-            defineField({ name: 'attribute', title: 'Attribute', type: 'string', validation: (R) => R.required() }),
+            defineField({ name: 'attribute', title: 'Attribute', type: 'string' }),
             defineField({ name: 'valueA', title: 'Option A', type: 'string' }),
             defineField({ name: 'valueB', title: 'Option B', type: 'string' }),
           ],
           preview: { select: { title: 'attribute', subtitle: 'valueA' } },
         },
       ],
-      description: 'Attribute-by-attribute comparison (downtime, results timeline, cost, etc.).',
+      description: 'Legacy source field. The reviewed website overlay supplies the public comparison table.',
     }),
-    defineField({ name: 'verdict', title: 'The Verdict', type: 'text', rows: 4 }),
-    defineField({ name: 'faqs', title: 'FAQs', type: 'array', of: [{ type: 'faq' }] }),
+    defineField({
+      name: 'verdict',
+      title: 'Summary (not published)',
+      type: 'text',
+      rows: 4,
+      readOnly: true,
+      description: 'Legacy source field. The reviewed website overlay supplies the public summary.',
+    }),
+    defineField({ name: 'faqs', title: 'FAQs (not published)', type: 'array', of: [{ type: 'faq' }], readOnly: true, description: 'Legacy source field. Public FAQs and FAQPage schema come from the reviewed website overlay.' }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
-    defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
+    defineField({ name: 'seo', title: 'SEO (not published)', type: 'seo', readOnly: true, description: 'Legacy source field. The reviewed website overlay supplies current public metadata.' }),
   ],
   preview: { select: { title: 'title' } },
 });

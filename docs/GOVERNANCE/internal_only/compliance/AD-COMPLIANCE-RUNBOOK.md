@@ -18,14 +18,14 @@ line. Copy this table into the campaign folder at launch and date each sign-off.
 | G2b | Naming rights — **check the Guardian agreement**; only seek separate consent if that clause is silent | Amber | Agreement clause reference, or signed consent if needed | ☐ |
 | G2c | Florida DOH licence status confirmed clear and unencumbered | Amber | DOH lookup screenshot, dated | ☐ |
 | G2d | Wherever he appears, the title **"Medical Director"** is present | Amber | Rendered page | ☐ |
-| G3 | Provider attribution present on every ad unit and in the landing-page **body** | Amber | Rendered previews, all units | ☐ |
+| G3 | Ads and landing-page bodies for medically directed services carry the exact attribution `Medical Director: Joshua Shaw, MD · FL Lic. ME136232`; other ads carry provider attribution only when a practitioner is named or the role is material | Amber | Rendered previews for each triggered unit | ☐ |
 | G4 | License type stated for every named practitioner | Amber | Copy review checklist | ☐ |
 | G5 | § 400.9905(4)(g) exemption position documented; certificate decision made | Counsel | Written legal opinion on file | ☐ |
 | G6 | § 464.012 supervising-physician protocol current and covering **every advertised service** | Amber + medical director | Signed, dated protocol | ☐ |
 | G7 | Consultation fee and credit terms approved and retained outside this repository | Amber + counsel | Executed policy or counsel-approved terms | ☐ |
 | G8 | Google: DKI off, automatically created assets off | Amber | Settings screenshots (§2.1) | ☐ |
 | G9 | Meta: Advantage+ creative enhancements and text variations off | Amber | Settings screenshots (§2.2) | ☐ |
-| G10 | Every image cleared for sourcing — model labelled, or client consent + material-connection disclosure on file | Amber + counsel | Per-asset log (§3) | ☐ |
+| G10 | Every image cleared for sourcing — anyone presented as an actual client or consumer is the actual consumer, or the ad clearly discloses otherwise; client consent and any material-connection disclosure are on file | Amber + counsel | Per-asset log (§3) | ☐ |
 | G11 | No before/after imagery running, or counsel has cleared it | Counsel | Written clearance | ☐ |
 | G12 | Every sitelink and CTA reaches content that actually exists | Amber | Click-through test log | ☐ |
 | G13 | Negative keyword list applied | Amber | Google Ads export | ☐ |
@@ -63,7 +63,7 @@ responsible for advertising placed through agents and corporate entities — an 
 | Dynamic Search Ads | **Do not use** | Campaign type | Headlines are generated from page content |
 | Broad match | **Avoid** in the skin/derm ad group | Keyword match types | Phrase and exact only; broad match invites credential-adjacent queries |
 | Location targeting | **Presence: people in your targeted locations** | Campaign → Locations | "Presence or interest" serves people researching from out of state |
-| Provider attribution | **Callout extension** | Assets → Callouts | Not subject to headline character limits |
+| Provider attribution | **Use a reviewed placement that carries the complete required line; do not rely on a callout for the canonical medical-director attribution** | Ad or asset level, scoped to the relevant ad group | [Google limits callout text to 25 characters](https://support.google.com/google-ads/answer/6079510), so the canonical line does not fit. Confirm the complete attribution in the rendered preview. |
 
 **Keyword vs. copy — the line that matters.** Bidding on `dermatologist` is defensible: it is a generic
 category term and a keyword bid is not itself an advertisement under 64B8-11.001(3). Putting
@@ -96,7 +96,7 @@ Auditing the *settings* is not auditing the *output*. Check what actually served
 
 1. Google Ads → Ads & assets → filter to served combinations; review every rendered headline/description permutation.
 2. Meta Ads Manager → Ad previews → every placement (Feed, Stories, Reels, Audience Network).
-3. Confirm on each: no credential or specialty implication; provider attribution intact; § 456.062 block intact wherever the offer appears.
+3. Confirm on each: no credential or specialty implication; provider or medical-director attribution intact wherever G3 or G4 triggers it; § 456.062 block intact wherever the offer appears.
 4. **Screenshot the rendered output and file it** with the week's date. An audit you cannot evidence did not happen.
 5. Log the result in §4's archive log with `asset_type = audit`.
 
@@ -111,7 +111,7 @@ client; § 255.5(a) requires disclosure of material connections, including free 
 |---|---|
 | `asset_file` | Filename or asset ID |
 | `subject_type` | `stock` · `staff` · `real_client` · `no_person` |
-| `label_required` | Visible **"Model"** label required for `stock` and `staff` |
+| `label_required` | Context-based: if stock, an actor or staff is presented as an actual client, consumer or testimonialist, use the actual consumer or clearly disclose that the person is not the actual consumer. Ordinary staff shown in a verified staff role is not labelled **"Model"**. |
 | `consent_on_file` | Written authorisation — required for `real_client` |
 | `material_connection` | Whether the person received free or discounted services; if yes, disclosure text and its placement |
 | `before_after` | `yes` / `no`. If `yes` → **blocked pending counsel clearance** |
@@ -160,7 +160,8 @@ reflects the true last-aired date.
 
 ## 5. Google review solicitation policy
 
-**Adopted rule: solicit every client, or solicit none. No middle option.**
+**Adopted rule: choose recipients by objective criteria unrelated to expected sentiment, and ask
+neutrally.**
 
 16 CFR § 255.2(e)(11) treats selectively inviting only satisfied customers — while merely thanking
 less-pleased ones for their feedback — as potentially unfair or deceptive where it skews posted reviews
@@ -170,16 +171,19 @@ practice the FTC describes, however well-intentioned.
 
 **Operating rules.**
 
-1. **Same request, same timing, every client.** Identical script, identical channel, identical interval after the appointment. No provider discretion at the moment of asking.
+1. **Neutral selection and request.** Use objective, sentiment-independent criteria to decide who
+   receives a request. Timing and channel may vary for operational reasons, but never because a client
+   seems more likely to leave a positive review. Do not ask for a positive rating or specific content.
 2. **No sentiment gating.** No satisfaction survey that determines who gets the review link. No "would you recommend us?" fork.
 3. **No incentives** — no discounts, credits, entries or gifts for a review. An incentive is a material connection requiring disclosure under § 255.5, and it corrupts the sample.
 4. **No filtering of who is asked** by outcome, spend, or how the visit went.
 5. **Never suppress, hide, or ask for removal** of a truthful negative review. Respond publicly and professionally instead.
-6. **Automate it** so it cannot be applied selectively. A rule that depends on a person remembering to be even-handed will not stay even-handed.
+6. **Use automation when it reduces selective application.** A documented neutral manual process is
+   also acceptable.
 
-**If it is impossible to ask everyone** — e.g. clients with no email on file — ask no one in that
-channel rather than ask the reachable subset, unless reachability is genuinely unrelated to sentiment.
-Document the basis either way.
+**If a channel cannot reach every client** — e.g. clients with no email on file — it may still be used
+when reachability is genuinely unrelated to sentiment. Document the objective basis and do not use
+reachability to screen for likely positive reviewers.
 
 **Responding to complaints:** never confirm, deny, or reference an individual's status as a client, or
 any clinical detail, in a public reply. Respond generically and move the conversation to a private
@@ -195,7 +199,7 @@ channel.
 | Weekly | Confirm every sitelink and CTA still resolves |
 | Monthly, after week 4 | Rendered-ad audit; retention sweep (§4) |
 | Monthly | Confirm § 456.062 block still present on every live surface — a CMS edit or a Sanity publish can silently remove it |
-| Quarterly | Re-verify statutes and rules in `FL-ADVERTISING-LAW.md` §1 against primary sources; update the change log |
+| Quarterly | Re-verify the cited statutes and rules against current primary sources; update the active compliance documents and change log |
 | Quarterly | Re-confirm the § 464.012 protocol covers the current service menu — the menu changes more often than the protocol |
 | **Annually, and by 2027-11-30** | **Re-verify Dr. Shaw's Florida licence — ME136232 expires 2028-01-31.** Every ad carrying his name and licence number becomes a misrepresentation the day it lapses. Set the reminder 60 days out |
 | On any credential, license, ownership or medical-director change | **Stop advertising.** Re-run gates G2–G6 before resuming |
@@ -215,9 +219,9 @@ Campaign or framework version reviewed: `[VERSION / COMMIT]` · Date: `[DATE]`
 | `[NAME, FIRM]` | Florida healthcare attorney | § 400.9905(4)(g) position · § 456.062 trigger and placement · 64B8-11.001 · 16 CFR § 255 image and endorsement exposure · fee policy sufficiency | | |
 | Amber Mingione | Owner | Gates G1–G15 evidenced | | |
 
-**Reviewed files:** `docs/internal_only/compliance/README.md` ·
-`docs/internal_only/compliance/GOOGLE-ADS-COMPLIANCE.md` ·
-`docs/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` · the shipping ad copy · the strategy document ·
+**Reviewed files:** `docs/GOVERNANCE/internal_only/compliance/README.md` ·
+`docs/GOVERNANCE/internal_only/compliance/GOOGLE-ADS-COMPLIANCE.md` ·
+`docs/GOVERNANCE/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` · the shipping ad copy · the strategy document ·
 the current external legal source packet supplied to the reviewers.
 
 ---

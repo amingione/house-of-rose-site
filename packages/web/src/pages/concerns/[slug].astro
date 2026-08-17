@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import ConcernEducation from '@/components/concerns/ConcernEducation.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
@@ -10,7 +11,8 @@ import {
   CONCERN_BY_SLUG_QUERY,
   type Concern,
 } from '@/lib/queries';
-import { alignPublicContent } from '@/lib/publicCopy';
+import { getConcernEducation } from '@/lib/concernEducation';
+import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_CONCERN_SLUGS_QUERY);
@@ -25,16 +27,19 @@ const concernData = await sanityFetch<Concern>(CONCERN_BY_SLUG_QUERY, { slug });
 if (!concernData) {
   throw new Error(`[concerns/[slug]] No concern found in Sanity for slug "${slug}"`);
 }
-const concern = alignPublicContent(concernData);
+const concern = concernData;
+const concernEducation = slug ? getConcernEducation(slug) : undefined;
 
-const pageTitle = concern.seo?.metaTitle ?? `${concern.title} Treatments in Punta Gorda, FL | House of Rose`;
-const pageDescription = concern.seo?.metaDescription ?? concern.intro ?? '';
+const pageTitle = `${concern.title} | House of Rose Aesthetics`;
+const pageDescription = concernEducation
+  ? concernEducation.metaDescription ?? concernEducation.lead
+  : `See the House of Rose Aesthetics services currently associated with ${concern.title.toLowerCase()} in Punta Gorda, Florida.`;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
-  { name: 'Services', item: `${site}services/` },
+  { name: 'Concern Guides', item: `${site}concerns/` },
   { name: concern.title, item: canonical },
 ]);
 const treatmentList = concern.treatments?.length
@@ -43,7 +48,7 @@ const treatmentList = concern.treatments?.length
         name: t.title,
         url: new URL(`/services/${t.slug}/`, site).toString(),
       })),
-      `Treatments for ${concern.title}`,
+      `Service options for ${concern.title}`,
     )
   : null;
 ---
@@ -55,33 +60,31 @@ const treatmentList = concern.treatments?.length
   <!-- Hero -->
   <section class="bg-charcoal pt-36 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
-      <a href="/services/" class="inline-flex items-center gap-2 text-ink/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
-        <span class="text-lg">←</span> All Services
+      <a href="/concerns/" class="inline-flex items-center gap-2 text-ink/75 text-[11px] tracking-[0.2em] uppercase mb-4 hover:text-gold transition-colors">
+        <span class="text-lg">←</span> All Concern Guides
       </a>
-      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">What We Treat</span>
+      <span class="block text-[11px] font-medium tracking-[0.26em] uppercase text-gold mb-3">Concern Guide</span>
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ink mb-6" {...sbFieldPath('title')}>
         {concern.title}
       </h1>
-      {concern.intro && (
-        <p class="text-muted text-[15px] leading-[1.8] max-w-[680px]" {...sbFieldPath('intro')}>{concern.intro}</p>
-      )}
     </div>
   </section>
+
+  {concernEducation && <ConcernEducation content={concernEducation} />}
 
   <!-- Matching treatments -->
   {concern.treatments && concern.treatments.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
       <div class="max-w-[1280px] mx-auto">
-        <span class="kicker">Your Options</span>
+        <span class="kicker">Services</span>
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
-          Treatments for {concern.title.toLowerCase()}
+          Related to {concern.title.toLowerCase()}
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {concern.treatments.map((t) => (
             <ServiceCard
               title={t.title}
               slug={t.slug}
-              tagline={t.tagline}
               image={t.image}
               bookingMode={t.bookingMode}
               bookingUrl={t.bookingUrl}
@@ -93,21 +96,45 @@ const treatmentList = concern.treatments?.length
     </section>
   )}
 
-  <!-- CTA -->
-  <section class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
-    <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Not Sure Which Is Right?</span>
-      <h2 class="font-serif text-[clamp(26px,4.5vw,40px)] text-ink leading-tight mt-2 mb-5">
-        Start with a consultation.
+  {concern.comparisons && concern.comparisons.length > 0 && (
+    <section class="bg-charcoal px-6 py-[clamp(44px,6vw,68px)] border-t border-gold-metal/10">
+      <div class="mx-auto max-w-[960px]">
+        <span class="kicker">Compare</span>
+        <h2 class="mt-2 font-serif text-[clamp(24px,4vw,36px)] text-ink">Related comparisons</h2>
+        <ul class="mt-8 divide-y divide-gold-metal/10 border-y border-gold-metal/10">
+          {concern.comparisons.map((comparison) => (
+            <li {...sbObjectId(comparison._id)}>
+              <a
+                href={`/compare/${comparison.slug}/`}
+                class="group flex items-center justify-between gap-6 py-5"
+              >
+                <span class="font-serif text-[clamp(19px,3vw,25px)] text-ink group-hover:text-gold">
+                  {getPublicComparisonContent(comparison.slug)!.title}
+                </span>
+                <span class="shrink-0 text-gold" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(48px,6vw,68px)]">
+    <div class="mx-auto max-w-[760px] text-center">
+      <span class="kicker">Questions</span>
+      <h2 data-concern-consultation-heading class="mt-3 font-serif text-[clamp(26px,4vw,38px)] leading-tight text-ink">
+        {concernEducation?.consultationHeading ?? `Ask about ${concern.title.toLowerCase()}.`}
       </h2>
-      <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        More than one service may be considered. A consultation can help narrow the options around your goals, timing, and candidacy.
+      <p data-concern-consultation-prompt class="mx-auto mt-5 max-w-[590px] text-[15px] leading-[1.75] text-muted">
+        {concernEducation?.consultationPrompt ?? `Call the practice, or send an inquiry about ${concern.title.toLowerCase()}.`}
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+18449417673" class="btn-outline-gold">(844) 941-7673</a>
-        <a href="/consultation/" class="btn-gold">Start a consultation</a>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/consultation/" class="btn-gold">Send an inquiry</a>
+        <a href="tel:+18449417673" class="btn-outline-gold">Call (844) 941-7673</a>
       </div>
     </div>
   </section>
+
   </div>
 </BaseLayout>

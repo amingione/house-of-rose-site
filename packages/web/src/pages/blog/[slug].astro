@@ -13,10 +13,14 @@ import { toHTML } from '@portabletext/to-html';
 import { blogPosting, breadcrumbList } from '@/lib/structuredData';
 import { DEFAULT_JOURNAL_IMAGE } from '@/lib/imageFallbacks';
 import { alignPublicContent } from '@/lib/publicCopy';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_BLOG_POST_SLUGS_QUERY);
-  return slugs.map(({ slug }) => ({ params: { slug } }));
+  return slugs
+    .filter(({ slug }) => isReviewedPublicBlogSlug(slug))
+    .map(({ slug }) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
@@ -31,11 +35,20 @@ const post = alignPublicContent(postData);
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const pageTitle = post.seo?.metaTitle ?? `${post.title} | House of Rose`;
-const pageDescription = post.seo?.metaDescription ?? post.excerpt ?? '';
+const isMorpheusSafetyArticle = slug === 'is-morpheus8-safe';
+const publicTitle = getPublicBlogTitle(post);
+const pageTitle = isMorpheusSafetyArticle
+  ? `${publicTitle} | House of Rose`
+  : (post.seo?.metaTitle ?? `${post.title} | House of Rose`);
+const pageDescription = isMorpheusSafetyArticle
+  ? 'What to verify before Morpheus8: provider credentials, treatment area, settings, recovery, possible complications, and follow-up in Punta Gorda.'
+  : (post.seo?.metaDescription ?? post.excerpt ?? '');
 const heroImage = post.featuredImage
   ? urlFor(post.featuredImage).width(1920).height(1080).fit('crop').url()
   : DEFAULT_JOURNAL_IMAGE;
+const relatedServiceSummary = post.relatedService
+  ? getServiceCardSummary(post.relatedService.slug)
+  : undefined;
 
 const publishedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
   month: 'long',
@@ -43,7 +56,40 @@ const publishedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
   year: 'numeric',
 });
 
-const bodyHTML = post.body
+const morpheusSafetyArticle = `
+  <p><strong>Short answer:</strong> Morpheus8 is a medical procedure. Whether a particular plan is reasonable cannot be decided from the device name, an online photograph, or a promise about downtime. The useful questions are concrete: who is performing it, what area is being treated, how depth and energy are chosen, what can happen during recovery, and how the practice responds if healing does not follow the expected course.</p>
+  <h2>Why the safety conversation matters</h2>
+  <p>Morpheus8 combines microneedles with radiofrequency energy. In October 2025, the FDA notified patients and providers that burns, scarring, fat loss, disfigurement, and nerve damage had been reported with certain uses of RF microneedling devices. The notice did not say that every procedure causes these outcomes. It advised clients to seek a licensed health care provider with RF microneedling training and experience, discuss benefits and risks, and ask which device will be used.</p>
+  <h2>What does “FDA-cleared” tell me?</h2>
+  <p>RF microneedling devices are Class II medical devices cleared through the FDA’s 510(k) process. That clearance applies to a specific device and its authorized indications; it does not decide whether every treatment area, depth, energy setting, or use is appropriate for every person. Ask which device would be used, which area is proposed, and how that use relates to the device’s authorized labeling.</p>
+  <h2>Make the proposed plan specific</h2>
+  <p>The device name alone does not explain what would happen at an appointment. A useful consultation should cover the exact area, how depth and energy would be chosen, and whether your health history, medications, current skin condition, or recent procedures change what can be done. Depth and energy can vary by area and person; a one-setting explanation is not enough.</p>
+  <h2>Questions to take into the consultation</h2>
+  <ul>
+    <li>Who will perform the procedure, and what is their licence type?</li>
+    <li>What training and experience do they have with RF microneedling?</li>
+    <li>Which area will be treated, and why is Morpheus8 being considered for it?</li>
+    <li>How will the treatment depth and energy be selected?</li>
+    <li>Which short-term effects are expected, and which changes should prompt a call?</li>
+    <li>If I am concerned afterward, how do I reach the practice and who evaluates the response?</li>
+    <li>What are the reasonable alternatives, including doing nothing now?</li>
+  </ul>
+  <h2>Recovery needs more than a number of days</h2>
+  <p>A day count alone is an incomplete recovery explanation. Ask which short-term effects are expected for the proposed area, what aftercare is required, and which changes should prompt a call to the practice or medical care. Individual experiences and outcomes vary.</p>
+  <h2>What an online story can—and cannot—tell you</h2>
+  <p>A post may give you a question worth asking. It usually cannot show the person's health history, exact device and cartridge, treatment area, settings, technique, or follow-up. A photograph alone cannot establish what caused another person's outcome or predict yours. Persistent, worsening, or unexpected symptoms need evaluation by a licensed health care provider.</p>
+  <h2>How this applies at House of Rose</h2>
+  <p>House of Rose lists <a href="/services/morpheus8/">Morpheus8 RF Microneedling</a> as a consultation-only service performed under medical direction. Before scheduling treatment, confirm the practitioner’s name, licence type, and RF microneedling experience. The conversation should also cover the proposed area, alternatives, recovery, and how to reach the practice with a concern afterward.</p>
+  <h2>Primary sources</h2>
+  <ul>
+    <li><a href="https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication" rel="noopener noreferrer">FDA safety communication on certain uses of RF microneedling</a>, issued October 15, 2025.</li>
+    <li><a href="https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices" rel="noopener noreferrer">FDA patient information about microneedling devices</a>.</li>
+  </ul>
+`;
+
+const bodyHTML = isMorpheusSafetyArticle
+  ? morpheusSafetyArticle
+  : post.body
   ? toHTML(post.body, {
       components: {
         types: {
@@ -69,7 +115,7 @@ const bodyHTML = post.body
 
 const blogPostingSchema = blogPosting(
   {
-    headline: post.title,
+    headline: publicTitle,
     description: pageDescription,
     url: canonicalURL.toString(),
     image: post.featuredImage
@@ -84,7 +130,7 @@ const blogPostingSchema = blogPosting(
 const breadcrumbSchema = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Journal', item: new URL('/blog/', site).toString() },
-  { name: post.title, item: canonicalURL.toString() },
+  { name: publicTitle, item: canonicalURL.toString() },
 ]);
 ---
 
@@ -111,8 +157,11 @@ const breadcrumbSchema = breadcrumbList([
       {post.category && (
         <span class="block text-gold text-[11px] font-medium tracking-[0.26em] uppercase mb-3" {...sbFieldPath('category')}>{post.category}</span>
       )}
-      <h1 class="font-serif text-[clamp(28px,5vw,48px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
-        {post.title}
+      <h1
+        class="font-serif text-[clamp(28px,5vw,48px)] leading-tight font-normal text-ivory"
+        {...(isMorpheusSafetyArticle ? {} : sbFieldPath('title'))}
+      >
+        {publicTitle}
       </h1>
       <div class="flex items-center gap-4 mt-4 text-muted text-[12px] tracking-[0.1em]">
         <time datetime={post.publishedAt}>{publishedDate}</time>
@@ -127,31 +176,43 @@ const breadcrumbSchema = breadcrumbList([
   <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6">
     <div class="max-w-[800px] mx-auto">
 
-      {post.excerpt && (
+      {post.excerpt && !isMorpheusSafetyArticle && (
         <p class="text-muted text-[17px] leading-relaxed italic mb-10 border-l-2 border-gold-metal/40 pl-5" {...sbFieldPath('excerpt')}>
           {post.excerpt}
         </p>
       )}
 
-      {bodyHTML ? (
-        <div
-          {...sbFieldPath('body')}
-          class="prose prose-invert prose-lg max-w-none
-            prose-headings:font-serif prose-headings:font-normal prose-headings:text-ink
-            prose-h2:text-[clamp(22px,3vw,30px)] prose-h2:mt-12 prose-h2:mb-4
-            prose-h3:text-[clamp(18px,2.5vw,24px)] prose-h3:mt-8 prose-h3:mb-3
-            prose-p:text-muted-strong prose-p:text-[16px] prose-p:leading-[1.85]
-            prose-a:text-gold prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-ink prose-strong:font-medium
-            prose-blockquote:border-l-2 prose-blockquote:border-gold-metal/40 prose-blockquote:text-muted-strong prose-blockquote:not-italic
-            prose-ul:text-muted-strong prose-ol:text-muted-strong
-            prose-li:text-[15px] prose-li:leading-relaxed
-            prose-img:rounded-none prose-img:my-10
-            prose-figcaption:text-muted-strong prose-figcaption:text-center prose-figcaption:text-[12px] prose-figcaption:mt-2"
-          set:html={bodyHTML}
-        />
-      ) : (
-        <p class="text-muted text-[15px]">Content coming soon.</p>
+      <div
+        {...(isMorpheusSafetyArticle ? {} : sbFieldPath('body'))}
+        data-reviewed-morpheus-safety={isMorpheusSafetyArticle ? 'true' : undefined}
+        class="prose prose-invert prose-lg max-w-none
+          prose-headings:font-serif prose-headings:font-normal prose-headings:text-ink
+          prose-h2:text-[clamp(22px,3vw,30px)] prose-h2:mt-12 prose-h2:mb-4
+          prose-h3:text-[clamp(18px,2.5vw,24px)] prose-h3:mt-8 prose-h3:mb-3
+          prose-p:text-muted-strong prose-p:text-[16px] prose-p:leading-[1.85]
+          prose-a:text-gold prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-ink prose-strong:font-medium
+          prose-blockquote:border-l-2 prose-blockquote:border-gold-metal/40 prose-blockquote:text-muted-strong prose-blockquote:not-italic
+          prose-ul:text-muted-strong prose-ol:text-muted-strong
+          prose-li:text-[15px] prose-li:leading-relaxed
+          prose-img:rounded-none prose-img:my-10
+          prose-figcaption:text-muted-strong prose-figcaption:text-center prose-figcaption:text-[12px] prose-figcaption:mt-2"
+        set:html={bodyHTML}
+      />
+
+      {isMorpheusSafetyArticle && (
+        <aside data-article-follow-up class="mt-12 border border-gold-metal/20 bg-charcoal-light px-6 py-7 sm:px-8">
+          <span class="kicker">If this is about your appointment</span>
+          <h2 class="mt-3 font-serif text-[clamp(23px,3vw,30px)] leading-tight text-ink">
+            A safety article should not be your only point of contact.
+          </h2>
+          <p class="mt-4 text-[15px] leading-[1.8] text-muted">
+            If you are unsure about aftercare or notice an unexpected change after a House of Rose appointment, call <a href="tel:+18449417673" class="text-gold underline underline-offset-2">(844) 941-7673</a> during practice hours. For a non-urgent question you prefer to send in writing, email <a href="mailto:info@houseofrosefl.com" class="text-gold underline underline-offset-2">info@houseofrosefl.com</a>. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.
+          </p>
+          <a href="/support/" class="mt-5 inline-flex text-[12px] font-medium tracking-[0.12em] uppercase text-gold hover:underline">
+            See contact and support options
+          </a>
+        </aside>
       )}
 
     </div>
@@ -161,16 +222,21 @@ const breadcrumbSchema = breadcrumbList([
   {post.relatedService && (
     <section class="bg-charcoal-light py-14 px-6 border-t border-ink/5">
       <div class="max-w-[680px] mx-auto text-center">
-        <span class="kicker">Related Service</span>
+        <span class="kicker">Before you schedule</span>
         <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-ink mt-2 mb-3">
           {post.relatedService.title}
         </h2>
-        {post.relatedService.tagline && (
-          <p class="text-muted text-[15px] mb-6">{post.relatedService.tagline}</p>
+        <p class="mx-auto max-w-[620px] text-[15px] leading-[1.8] text-muted">
+          {isMorpheusSafetyArticle
+            ? 'Morpheus8 is consultation-only at House of Rose. Ask who would perform it, which area and device settings are under discussion, what recovery may involve, what alternatives exist, and how to reach the practice afterward—before deciding whether to schedule treatment.'
+            : `If ${post.relatedService.title} is the service you are considering, the practical questions are who provides it, what it costs, how long the appointment takes, and whether it is available for direct booking or begins with a consultation.`}
+        </p>
+        {relatedServiceSummary && (
+          <p class="mt-4 text-[13px] font-medium tracking-[0.04em] text-muted-strong">{relatedServiceSummary}</p>
         )}
-        <div class="flex gap-3 justify-center flex-wrap">
+        <div class="mt-7 flex gap-3 justify-center flex-wrap">
           <a href={`/services/${post.relatedService.slug}/`} class="btn-outline-gold">
-            Learn More
+            Read service details
           </a>
           <BookingLink
             slug={post.relatedService.slug}

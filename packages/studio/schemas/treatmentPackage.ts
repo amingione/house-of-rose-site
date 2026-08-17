@@ -1,10 +1,12 @@
 import { defineField, defineType } from 'sanity';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { validatePublicCopy } from './validation/publicCopy';
 
 /**
  * Treatment Package — mirrors the Notion "HOUSE OF ROSE: Packages & Series" database.
  * Operational fields (Type, Status, Provider, Services Included, Founding/Rack pricing,
- * Cadence) match Notion; marketing fields (outcome, positioning, candidacyNote, image)
- * are website-only enrichment.
+ * Cadence) match Notion; legacy website-copy fields remain for source compatibility
+ * while their public voice is under review.
  */
 export const treatmentPackage = defineType({
   name: 'treatmentPackage',
@@ -15,7 +17,7 @@ export const treatmentPackage = defineType({
       name: 'title',
       title: 'Package',
       type: 'string',
-      validation: (R) => R.required(),
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -31,7 +33,7 @@ export const treatmentPackage = defineType({
       options: {
         list: [
           { title: 'Series', value: 'series' },
-          { title: 'Journey', value: 'journey' },
+          { title: 'Program', value: 'journey' },
           { title: 'Combo / Add-On Bundle', value: 'combo' },
         ],
         layout: 'radio',
@@ -49,68 +51,94 @@ export const treatmentPackage = defineType({
         ],
         layout: 'radio',
       },
+      description: 'Live makes the record eligible for publication; the website also requires a verified package slug before it can generate a public route.',
       initialValue: 'proposed',
     }),
     defineField({
       name: 'provider',
-      title: 'Provider',
+      title: 'Provider (internal — not published)',
       type: 'reference',
       to: [{ type: 'provider' }],
+      description: 'Operational Notion mirror only. Public package pages use reviewed provider attribution rather than this internal relationship.',
     }),
     defineField({
       name: 'servicesIncluded',
       title: 'Services Included',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
-      description: 'The Service documents this package contains (mirrors Notion "Services Included").',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'service' }],
+          options: {
+            filter:
+              'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+            filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+          },
+        },
+      ],
+      description: 'The public, routeable Service documents this package contains (mirrors Notion "Services Included").',
+      validation: (R) => R.min(1),
     }),
     defineField({
       name: 'whatsIncluded',
-      title: "What's Included",
+      title: "What's Included (not published)",
       type: 'text',
       rows: 3,
-      description: 'Plain-language summary of what the package contains.',
+      readOnly: true,
+      description: 'Legacy source field. Public package contents come from the Services Included references and reviewed package overlay.',
     }),
     defineField({
       name: 'cadence',
-      title: 'Cadence',
+      title: 'Timing',
       type: 'text',
       rows: 2,
-      description: 'Experience-level timing/sequencing; clinical specifics defer to the provider.',
+      description: 'Verified public timing or spacing only. Omit when the current booking source does not support it.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
     defineField({
       name: 'rackPrice',
-      title: 'Rack Price',
+      title: 'Rack Price (not published)',
       type: 'string',
-      description: 'Standard published rate (free text — supports ranges).',
+      readOnly: true,
+      description: 'Stored for source compatibility. Public package prices come from reviewed package facts reconciled to the current booking menu.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
-    // ─── Website-only marketing enrichment ───────────────────────────────────
+    // ─── Website copy under review ────────────────────────────────────────────
     defineField({
       name: 'outcome',
-      title: 'Ideal Outcome (website)',
+      title: 'Public Summary (not published)',
       type: 'text',
       rows: 2,
-      description: 'Responsible, non-guaranteeing language. The visible/emotional result.',
+      readOnly: true,
+      description: 'Legacy source field. The current public package pages do not render this copy.',
     }),
     defineField({
       name: 'positioning',
-      title: 'Positioning Angle (website)',
+      title: 'Display Notes (review)',
       type: 'text',
       rows: 2,
+      description: 'Internal display notes only. Do not draft a positioning angle or public sales line here.',
     }),
     defineField({
       name: 'candidacyNote',
-      title: 'Candidacy Note (website)',
+      title: 'Suitability Note (not published)',
       type: 'string',
-      initialValue:
-        'Final treatment combinations are confirmed by your licensed provider based on candidacy, contraindications, and local regulations.',
+      readOnly: true,
+      description: 'Legacy source field. The current public package pages do not render a generic suitability section.',
     }),
     defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
       options: { hotspot: true },
-      fields: [defineField({ name: 'alt', title: 'Alt Text', type: 'string' })],
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          validation: (R) => R.custom(validatePublicCopy),
+        }),
+      ],
     }),
     defineField({
       name: 'orderRank',

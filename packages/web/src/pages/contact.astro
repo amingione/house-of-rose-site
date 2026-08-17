@@ -2,102 +2,58 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import ContactDirectionsMap from '@/components/ContactDirectionsMap.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
-
-// ─── Contact content from Sanity (singleton) ───────────────────────────────────
-// Each field falls back to the original hardcoded copy, so there's no regression
-// when the document is empty. The lead form + SMS-consent block are NOT modeled.
-interface ContactPage {
-  _id?: string;
-  seoTitle?: string;
-  seoDescription?: string;
-  heroKicker?: string;
-  heroTitle?: string;
-  heroDescription?: string;
-  phoneLabel?: string;
-  phoneNumber?: string;
-  phoneHours?: string;
-  bookLabel?: string;
-  bookLinkText?: string;
-  bookNote?: string;
-  visitLabel?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  formKicker?: string;
-  formHeading?: string;
-  formIntro?: string;
-  mapKicker?: string;
-  mapHeading?: string;
-  mapCtaText?: string;
-}
-
-const CONTACT_PAGE_QUERY = /* groq */ `*[_type == "contactPage"][0]{
-  _id,
-  seoTitle, seoDescription,
-  heroKicker, heroTitle, heroDescription,
-  phoneLabel, phoneNumber, phoneHours,
-  bookLabel, bookLinkText, bookNote,
-  visitLabel, addressLine1, addressLine2,
-  formKicker, formHeading, formIntro,
-  mapKicker, mapHeading, mapCtaText
-}`;
-
-const data = (await sanityFetch<ContactPage | null>(CONTACT_PAGE_QUERY)) ?? ({} as ContactPage);
-const oid = data._id ? sbObjectId(data._id) : {};
-const alignedCopy = (value: string | undefined, fallback: string): string =>
-  alignPublicChannelCopy(value ?? fallback);
-const servicesLabel = 'Services Menu';
-const servicesLinkText = 'View Services';
 ---
 
 <BaseLayout
-  title={alignedCopy(data.seoTitle, "Contact House of Rose | Advanced Aesthetics, Punta Gorda FL")}
-  description={alignedCopy(data.seoDescription, "Contact House of Rose in Punta Gorda, FL. Call (844) 941-7673, review the services menu, or stop by — 525 E Olympia Ave, Unit 9.")}
+  title="Contact House of Rose Aesthetics | Punta Gorda, FL"
+  description="Call House of Rose Aesthetics, send a message, view current services, or get directions to 525 E Olympia Ave, Unit 9 in Punta Gorda."
 >
-  <div {...oid}>
   <!-- Hero -->
   <Hero
-    title={data.heroTitle ?? "Contact Us"}
-    kicker={data.heroKicker ?? "Questions Are Welcome"}
-    description={alignedCopy(data.heroDescription, "Call, review the services menu, or send us a message. We'll help you figure out who to see and what to book.")}
+    title="Contact House of Rose."
+    kicker="Punta Gorda"
+    description="Call, send a message, or view the services menu."
     size="small"
     backgroundImage="/images/optimized/actual-storefront-1000.webp"
     imageAlt="The entrance to House of Rose Aesthetics in Punta Gorda"
-    titleField="heroTitle"
-    kickerField="heroKicker"
-    descriptionField="heroDescription"
   />
 
   <!-- Contact Information -->
   <section class="bg-charcoal py-16 px-6">
-    <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
       <!-- Phone -->
       <div class="text-center">
-        <span class="kicker" {...sbFieldPath('phoneLabel')}>{data.phoneLabel ?? "Call Us"}</span>
-        <a href="tel:+18449417673" class="block text-ink text-[20px] hover:text-gold transition-colors mt-3" {...sbFieldPath('phoneNumber')}>
-          {data.phoneNumber ?? "(844) 941-7673"}
+        <span class="kicker">Call</span>
+        <a href="tel:+18449417673" class="block text-ink text-[20px] hover:text-gold transition-colors mt-3">
+          (844) 941-7673
         </a>
-        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('phoneHours')}>{data.phoneHours ?? "Mon–Fri, 9AM–5PM ET"}</p>
+        <p class="text-muted text-[13px] mt-2">Monday–Friday, 9 AM–5 PM ET</p>
+      </div>
+
+      <!-- Email -->
+      <div class="text-center">
+        <span class="kicker">Email</span>
+        <a href="mailto:info@houseofrosefl.com" class="block text-ink text-[18px] hover:text-gold transition-colors mt-3 break-all">
+          info@houseofrosefl.com
+        </a>
+        <p class="text-muted text-[13px] mt-2">General questions and appointment help</p>
       </div>
 
       <!-- View Services -->
       <div class="text-center">
-        <span class="kicker" {...sbFieldPath('bookLabel')}>{servicesLabel}</span>
+        <span class="kicker">Services</span>
         <a
           href="/services/"
           class="block text-ink text-[20px] hover:text-gold transition-colors mt-3"
-          {...sbFieldPath('bookLinkText')}
         >
-          {servicesLinkText.replace('View', 'Explore')}
+          View services
         </a>
-        <p class="text-muted text-[13px] mt-2" {...sbFieldPath('bookNote')}>Review current services anytime</p>
+        <p class="text-muted text-[13px] mt-2">Review services before you book</p>
       </div>
 
       <!-- Location -->
       <div class="text-center">
-        <span class="kicker" {...sbFieldPath('visitLabel')}>{data.visitLabel ?? "Visit Us"}</span>
+        <span class="kicker">Visit</span>
         <address class="not-italic mt-3">
           <a
             href="https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950"
@@ -105,8 +61,8 @@ const servicesLinkText = 'View Services';
             rel="noopener noreferrer"
             class="block text-ink text-[17px] hover:text-gold transition-colors leading-relaxed"
           >
-            <span {...sbFieldPath('addressLine1')}>{data.addressLine1 ?? "525 E Olympia Ave, Unit 9"}</span><br />
-            <span {...sbFieldPath('addressLine2')}>{data.addressLine2 ?? "Punta Gorda, FL 33950"}</span>
+            <span>525 E Olympia Ave, Unit 9</span><br />
+            <span>Punta Gorda, FL 33950</span>
           </a>
         </address>
       </div>
@@ -117,14 +73,52 @@ const servicesLinkText = 'View Services';
   <section class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6">
     <div class="max-w-[840px] mx-auto">
       <div class="text-center mb-12">
-        <span class="kicker" {...sbFieldPath('formKicker')}>{data.formKicker ?? "Send a Message"}</span>
-        <h2 class="font-serif text-[clamp(28px,4vw,38px)] text-ink mt-2" {...sbFieldPath('formHeading')}>
-          {data.formHeading ?? "How can we help?"}
+        <span class="kicker">Send a message</span>
+        <h2 id="contact-form-heading" class="font-serif text-[clamp(28px,4vw,38px)] text-ink mt-2">
+          What would you like to ask?
         </h2>
-        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4" {...sbFieldPath('formIntro')}>
-          {data.formIntro ?? "Tell us what you're considering or what you need help with. A member of the team will follow up."}
+        <p class="text-muted text-[15px] max-w-[560px] mx-auto mt-4">
+          Include the service you are considering, or simply tell us what prompted the question.
         </p>
       </div>
+
+      <div class="mb-10 grid grid-cols-1 gap-5 border-y border-gold-metal/20 py-7 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">When to expect a reply</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            Messages received Monday through Friday are typically answered within one business day.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">When to call instead</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            For a same-day appointment change or faster help during practice hours, call <a href="tel:+18449417673" class="text-gold underline underline-offset-2">(844) 941-7673</a>.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">Does a phone number mean text consent?</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            No. Entering a phone number does not, by itself, give permission to send text messages. Choose “No” in the text-message section if you do not want texts; you can still send the form.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-[19px] text-ink">Does this book a time?</h3>
+          <p class="mt-2 text-[13px] leading-[1.7] text-muted">
+            No. The form sends your question; it does not reserve an appointment. Call <a href="tel:+18449417673" class="text-gold underline underline-offset-2">(844) 941-7673</a> if you need help securing a specific time.
+          </p>
+        </div>
+      </div>
+
+      <aside data-contact-after-appointment class="mb-10 border border-gold-metal/20 bg-charcoal px-6 py-7 sm:px-8" aria-labelledby="contact-after-appointment-heading">
+        <span class="kicker">After an appointment</span>
+        <h3 id="contact-after-appointment-heading" class="mt-3 font-serif text-[clamp(23px,3vw,30px)] leading-tight text-ink">
+          If something has changed, call instead of waiting on the form.
+        </h3>
+        <p class="mt-4 max-w-[720px] text-[14px] leading-[1.8] text-muted">
+          If you are unsure about aftercare or notice an unexpected change after a House of Rose appointment, call <a href="tel:+18449417673" class="text-gold underline underline-offset-2">(844) 941-7673</a> during practice hours. A non-urgent question can still be sent below. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.
+        </p>
+        <a href="/support/" class="learn-more mt-5">Review support options</a>
+      </aside>
 
       <form
         name="contact"
@@ -133,14 +127,15 @@ const servicesLinkText = 'View Services';
         data-netlify="true"
         netlify-honeypot="bot-field"
         class="space-y-6"
+        aria-labelledby="contact-form-heading"
       >
         <input type="hidden" name="form-name" value="contact" />
         <input type="hidden" name="source-page" value="/contact/" />
 
         <!-- Honeypot for spam prevention -->
-        <p class="hidden">
+        <p class="hidden" aria-hidden="true">
           <label>
-            Don't fill this out if you're human: <input name="bot-field" />
+            Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" />
           </label>
         </p>
 
@@ -154,6 +149,7 @@ const servicesLinkText = 'View Services';
             id="name"
             name="name"
             required
+            autocomplete="name"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
             placeholder="Your full name"
           />
@@ -169,6 +165,8 @@ const servicesLinkText = 'View Services';
             id="email"
             name="email"
             required
+            autocomplete="email"
+            inputmode="email"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
             placeholder="your.email@example.com"
           />
@@ -184,11 +182,11 @@ const servicesLinkText = 'View Services';
             id="phone"
             name="phone"
             required
-            pattern="[0-9]{10}"
+            autocomplete="tel"
+            inputmode="tel"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
             placeholder="(555) 123-4567"
           />
-          <p class="text-muted text-[12px] mt-1.5">10 digits, no dashes or spaces</p>
         </div>
 
         <!-- Message -->
@@ -199,17 +197,24 @@ const servicesLinkText = 'View Services';
           <select
             id="service-interest"
             name="service-interest"
+            aria-describedby="service-interest-help"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
           >
             <option value="General question">General question</option>
             <option value="Advanced Skin Imaging &amp; Analysis">Advanced Skin Imaging &amp; Analysis</option>
             <option value="Microneedling">Microneedling</option>
-            <option value="Topical PRF">Topical PRF</option>
+            <option value="PRF Microneedling (topical PRF)">PRF Microneedling (topical PRF)</option>
+            <option value="Injectable PRF">Injectable PRF</option>
             <option value="Glo2Facial">Glo2Facial</option>
             <option value="Dermaplaning">Dermaplaning</option>
             <option value="Injectables">Injectables</option>
-            <option value="Wellness">Wellness</option>
+            <option value="IV Hydration">IV Hydration</option>
+            <option value="GLP-1 Weight Management">GLP-1 Weight Management</option>
+            <option value="Waxing">Waxing</option>
           </select>
+          <p id="service-interest-help" class="mt-2 text-[12px] leading-[1.65] text-muted">
+            Amber Mingione, Licensed Esthetician provides topical PRF with Microneedling. Diana Morrison, RN provides injectable PRF consultations. Choose “General question” if you are unsure which one you mean.
+          </p>
         </div>
 
         <!-- Message -->
@@ -238,6 +243,9 @@ const servicesLinkText = 'View Services';
           </legend>
 
           <div id="sms-consent-disclosure" class="space-y-3 text-muted text-[13px] leading-relaxed">
+            <p class="text-[15px] text-ink">
+              <strong>Texting is optional.</strong> You can choose “No” below and still submit this form.
+            </p>
             <p>
               House of Rose Aesthetics LLC would like your consent to send informational and/or marketing text message
               communications from +18449417673 to your mobile number listed above. Informational messages may
@@ -252,7 +260,7 @@ const servicesLinkText = 'View Services';
             <p>
               We do not share your mobile opt-in information with anyone. Our
               privacy policy and messaging terms and conditions are available at
-              <a href="/privacy-policy/" class="text-gold hover:underline">https://houseofrosefl.com/privacy-policy/</a>
+              <a href="/privacy-policy/" class="text-gold underline underline-offset-2">https://houseofrosefl.com/privacy-policy/</a>
               for more information.
             </p>
           </div>
@@ -291,7 +299,7 @@ const servicesLinkText = 'View Services';
             </label>
           </div>
 
-          <p id="sms-consent-error" class="mt-3 text-[12px] text-red-700" aria-live="polite"></p>
+          <p id="sms-consent-error" class="mt-3 text-[12px] text-red-400" aria-live="polite"></p>
         </fieldset>
 
         <!-- Submit Button -->
@@ -305,7 +313,7 @@ const servicesLinkText = 'View Services';
         </div>
 
         <p class="text-muted text-[12px] mt-4">
-          * Required fields. By submitting this form, you agree to our <a href="/privacy-policy/" class="text-gold hover:underline">privacy policy</a>.
+          * Required fields. By submitting this form, you agree to our <a href="/privacy-policy/" class="text-gold underline underline-offset-2">privacy policy</a>.
         </p>
       </form>
     </div>
@@ -315,16 +323,18 @@ const servicesLinkText = 'View Services';
   <section class="bg-charcoal py-16 px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="text-center mb-8">
-        <span class="kicker" {...sbFieldPath('mapKicker')}>{data.mapKicker ?? "Find Us"}</span>
-        <h2 class="font-serif text-[32px] text-ink mt-2" {...sbFieldPath('mapHeading')}>
-          {data.mapHeading ?? "Directions"}
+        <span class="kicker">The practice</span>
+        <h2 class="font-serif text-[32px] text-ink mt-2">
+          525 E Olympia Avenue, Unit 9
         </h2>
+        <p class="mx-auto mt-4 max-w-[680px] text-[14px] leading-[1.75] text-muted">
+          “Use my location” asks your browser for location access so the map can calculate a route. You can enter a starting address instead, or open Google Maps or Apple Maps without providing a starting point.
+        </p>
       </div>
 
-      <ContactDirectionsMap ctaText={data.mapCtaText ?? "Get Directions"} />
+      <ContactDirectionsMap ctaText="Get directions" />
     </div>
   </section>
-  </div>
 </BaseLayout>
 
 <style>
@@ -338,6 +348,7 @@ const servicesLinkText = 'View Services';
 
   /* Focus states for form inputs */
   input:focus,
+  select:focus,
   textarea:focus,
   input[type="checkbox"]:focus {
     outline: 2px solid #C9A063;

@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { validatePublicCopy } from './validation/publicCopy';
+
 /**
  * Singleton for the Privacy Policy page (/privacy-policy) — migrated from the
  * hardcoded privacy-policy.astro so all legal copy is editable in the Studio +
@@ -22,17 +24,18 @@ export const privacyPolicy = defineType({
   ],
   fields: [
     // ── SEO ──
-    defineField({ name: 'seoTitle', title: 'SEO Title', type: 'string', group: 'seo' }),
-    defineField({ name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 2, group: 'seo' }),
+    defineField({ name: 'seoTitle', title: 'SEO Title', type: 'string', group: 'seo', validation: (R) => R.custom(validatePublicCopy) }),
+    defineField({ name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 2, group: 'seo', validation: (R) => R.custom(validatePublicCopy) }),
 
     // ── Page-level content ──
-    defineField({ name: 'pageTitle', title: 'Page Title', type: 'string', group: 'content' }),
+    defineField({ name: 'pageTitle', title: 'Page Title', type: 'string', group: 'content', validation: (R) => R.custom(validatePublicCopy) }),
     defineField({
       name: 'lastUpdated',
-      title: 'Last Updated',
+      title: 'Last Updated (not published)',
       type: 'string',
       group: 'content',
-      description: 'Optional — e.g. "Updated June 2026". Shown above the intro if set.',
+      readOnly: true,
+      description: 'Legacy source field. The current public policy uses the reviewed effective update date in the website code.',
     }),
     defineField({
       name: 'intro',
@@ -41,6 +44,7 @@ export const privacyPolicy = defineType({
       rows: 3,
       group: 'content',
       description: 'Lead paragraph shown under the title.',
+      validation: (R) => R.custom(validatePublicCopy),
     }),
 
     // ── Body sections ──
@@ -53,13 +57,13 @@ export const privacyPolicy = defineType({
         {
           type: 'object',
           fields: [
-            defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (R) => R.required() }),
+            defineField({ name: 'heading', title: 'Heading', type: 'string', validation: (R) => R.required().custom(validatePublicCopy) }),
             defineField({
               name: 'body',
               title: 'Body',
               type: 'text',
               rows: 6,
-              validation: (R) => R.required(),
+              validation: (R) => R.required().custom(validatePublicCopy),
               description: 'Plain text. Use new lines for list items (include any "•" or "1." prefix).',
             }),
           ],

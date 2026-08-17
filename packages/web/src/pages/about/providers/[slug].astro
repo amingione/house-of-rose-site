@@ -1,28 +1,131 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch } from '@/lib/sanity';
+import { sanityFetch, urlFor } from '@/lib/sanity';
 import { PUBLIC_PROVIDERS_QUERY, type PublicProviderProfile } from '@/lib/queries';
-import { PROVIDER_PROFILE_FALLBACKS } from '@/lib/aboutFallbacks';
+import {
+  getProviderProfileVoiceOverlay,
+  PROVIDER_PROFILE_FALLBACKS,
+  resolvePublicProviderProfiles,
+} from '@/lib/aboutFallbacks';
 import { breadcrumbList, personProfile } from '@/lib/structuredData';
 import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
 
 export async function getStaticPaths() {
   const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
-  const providers = sanityProviders.length > 0 ? sanityProviders : PROVIDER_PROFILE_FALLBACKS;
-  return providers.map((profile) => ({ params: { slug: profile.slug }, props: { profile } }));
+  const providers = resolvePublicProviderProfiles(sanityProviders);
+  const sanityProviderSlugs = new Set(sanityProviders.map((profile) => profile.slug));
+  return providers.map((profile) => ({
+    params: { slug: profile.slug },
+    props: { profile, sanityBacked: sanityProviderSlugs.has(profile.slug) },
+  }));
 }
 
 interface Props {
   profile: PublicProviderProfile;
+  sanityBacked: boolean;
 }
 
-const { profile } = Astro.props;
+const { profile, sanityBacked } = Astro.props;
+const voiceOverlay = getProviderProfileVoiceOverlay(profile.slug);
+const verifiedFallback = PROVIDER_PROFILE_FALLBACKS.find((candidate) => candidate.slug === profile.slug);
+const summary = voiceOverlay?.summary ?? profile.summary;
+const biography = voiceOverlay?.biography ?? profile.biography;
+const serviceFocus = verifiedFallback?.serviceFocus ?? profile.serviceFocus;
+const publicImageAlt = verifiedFallback?.imageAlt ?? profile.imageAlt;
+const summaryAttrs = voiceOverlay ? {} : sbFieldPath('summary');
+const biographyAttrs = (index: number) => voiceOverlay ? {} : sbFieldPathParts('biography', index);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
-const title = profile.seo?.metaTitle ?? `${profile.publicName} | House of Rose Aesthetics`;
-const description = profile.seo?.metaDescription ?? profile.summary;
-const absoluteImage = profile.imageUrl ? new URL(profile.imageUrl, site).toString() : undefined;
+const title = verifiedFallback?.seo?.metaTitle ?? profile.seo?.metaTitle ?? `${profile.publicName} | House of Rose Aesthetics`;
+const description = voiceOverlay?.metaDescription ?? profile.seo?.metaDescription ?? summary;
+const isSanityProfileImage = profile.imageUrl?.startsWith('https://cdn.sanity.io/images/') ?? false;
+const profileImage = (width: number, height: number): string | undefined =>
+  profile.imageUrl && isSanityProfileImage
+    ? urlFor(profile.imageUrl).width(width).height(height).fit('crop').format('webp').quality(82).url()
+    : profile.imageUrl;
+const detailImage = profileImage(980, 1225);
+const detailImageSrcset = profile.imageUrl && isSanityProfileImage
+  ? `${profileImage(560, 700)} 560w, ${profileImage(800, 1000)} 800w, ${detailImage} 980w`
+  : undefined;
+const socialImage = profile.imageUrl && isSanityProfileImage
+  ? urlFor(profile.imageUrl).width(1200).height(630).fit('crop').format('webp').quality(82).url()
+  : profile.imageUrl;
+const absoluteImage = socialImage ? new URL(socialImage, site).toString() : undefined;
+const serviceFocusLinks: Readonly<Record<string, string>> = {
+  Neuromodulators: '/services/injectables/',
+  'Dermal fillers': '/services/dermal-fillers/',
+  'Injectable PRF': '/services/prf-injections/',
+  'PRF Bio-Filler': '/services/prf-injections/',
+  'IV hydration': '/services/iv-hydration-therapy/',
+  'GLP-1 weight management': '/services/glp-1-weight-management/',
+  'Microneedling with the Procell Therapies device': '/services/microneedling/',
+  'Topical PRF': '/services/microneedling/',
+  Glo2Facial: '/services/glo2facial/',
+  Dermaplaning: '/services/dermaplaning/',
+  'BioRePeel add-on': '/services/biorepeel/',
+  Facials: '/services/#skin-health-corrective-care',
+  'Standalone BioRePeel': '/services/biorepeel/',
+  'Facial waxing': '/services/facial-waxing/',
+  'Permanent jewelry': '/services/permanent-jewelry/',
+};
+interface ProviderClosingLink {
+  readonly href: string;
+  readonly label: string;
+}
+
+interface ProviderClosing {
+  readonly heading: string;
+  readonly body: string;
+  readonly links: readonly ProviderClosingLink[];
+}
+
+const providerClosings: Readonly<Record<string, ProviderClosing>> = {
+  diana: {
+    heading: 'Medical appointments with Diana Morrison, RN.',
+    body: 'She provides neurotoxin and dermal-filler appointments, injectable PRF consultations, six IV hydration options, and GLP-1 weight management. These are distinct medical appointments with their own pricing and booking paths.',
+    links: [
+      { href: '/services/injectables-bio-fillers/', label: 'Injectables & Bio-Fillers' },
+      { href: '/services/iv-hydration-therapy/', label: 'IV Hydration' },
+      { href: '/services/glp-1-weight-management/', label: 'Weight Management' },
+    ],
+  },
+  amber: {
+    heading: 'Looking for a skin service with Amber Mingione, Licensed Esthetician?',
+    body: 'Her current work includes Procell Microneedling, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an eligible add-on.',
+    links: [
+      { href: '/services/microneedling/', label: 'Microneedling' },
+      { href: '/services/glo2facial/', label: 'Glo2Facial' },
+      { href: '/services/dermaplaning/', label: 'Dermaplaning' },
+    ],
+  },
+  brandy: {
+    heading: 'Looking for a facial or waxing appointment with Brandy, Licensed Esthetician?',
+    body: 'She provides facials, standalone BioRePeel, and facial waxing. BioRePeel is a standalone face appointment; facial waxing is booked by area for the brows, upper lip, or chin. For another facial, contact House of Rose with the appointment you want to discuss.',
+    links: [
+      { href: '/services/biorepeel/', label: 'BioRePeel' },
+      { href: '/services/facial-waxing/', label: 'Facial Waxing' },
+      { href: '/contact/', label: 'Ask about facials' },
+    ],
+  },
+  aundrea: {
+    heading: 'Looking for makeup artistry or permanent jewelry?',
+    body: 'Permanent jewelry is a 20-minute appointment that begins with a call to House of Rose. Wedding, event, and photo-shoot makeup begin with a message that includes the date and occasion.',
+    links: [
+      { href: 'tel:+18449417673', label: 'Call about Permanent Jewelry' },
+      { href: '/contact/', label: 'Ask about makeup artistry' },
+      { href: '/services/permanent-jewelry/', label: 'Permanent Jewelry details' },
+    ],
+  },
+};
+const providerClosing = providerClosings[profile.slug] ?? {
+  heading: `Ask about an appointment with ${profile.publicName}.`,
+  body: 'Choose a listed service when online booking is available. For a consultation-only or phone-first appointment, contact House of Rose with the service name and provider.',
+  links: [
+    { href: '/services/', label: 'View current services' },
+    { href: '/contact/', label: 'Ask House of Rose' },
+  ],
+};
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'About', item: new URL('/about/', site).toString() },
@@ -35,8 +138,8 @@ const personSchema = personProfile(
     jobTitle: profile.publicRole,
     url: canonical,
     image: absoluteImage,
-    description: profile.summary,
-    knowsAbout: profile.serviceFocus,
+    description: summary,
+    knowsAbout: serviceFocus,
     sameAs: profile.digitalCardPath ? [new URL(profile.digitalCardPath, site).toString()] : undefined,
   },
   site,
@@ -46,23 +149,31 @@ const personSchema = personProfile(
 <BaseLayout
   title={title}
   description={description}
-  image={profile.imageUrl}
-  imageAlt={profile.imageAlt}
-  preloadImage={profile.imageUrl}
+  image={socialImage}
+  imageAlt={publicImageAlt}
+  preloadImage={detailImage}
+  preloadImageSrcset={detailImageSrcset}
+  preloadImageSizes="(max-width: 1023px) 100vw, 47vw"
+  structuredPageType="ProfilePage"
+  structuredPageMainEntityId={`${canonical}#person`}
 >
   <SchemaMarkup item={personSchema} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
 
-  <div {...sbObjectId(profile._id)}>
+  <div {...(sanityBacked ? sbObjectId(profile._id) : {})}>
     <section class="grid min-h-[680px] pt-20 lg:grid-cols-[0.94fr_1.06fr]">
       {profile.imageUrl ? (
         <div class="min-h-[460px] bg-limestone lg:min-h-full">
           <img
-            src={profile.imageUrl}
-            alt={profile.imageAlt ?? profile.publicName}
+            src={detailImage}
+            srcset={detailImageSrcset}
+            sizes="(max-width: 1023px) 100vw, 47vw"
+            alt={publicImageAlt ?? profile.publicName}
             width="980"
             height="1225"
             class="h-full w-full object-cover object-top"
+            loading="eager"
+            decoding="async"
             fetchpriority="high"
           />
         </div>
@@ -77,14 +188,14 @@ const personSchema = personProfile(
 
       <div class="flex items-center px-6 py-[clamp(64px,9vw,112px)] sm:px-10 lg:px-[clamp(56px,7vw,108px)]">
         <div class="max-w-[650px]">
-          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold" {...sbFieldPath('publicRole')}>
+          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold" {...(verifiedFallback ? {} : sbFieldPath('publicRole'))}>
             {profile.publicRole}
           </p>
-          <h1 class="mt-5 font-serif text-[clamp(42px,6vw,70px)] leading-[1.02] text-ink" {...sbFieldPath('publicName')}>
+          <h1 class="mt-5 font-serif text-[clamp(42px,6vw,70px)] leading-[1.02] text-ink" {...(verifiedFallback ? {} : sbFieldPath('publicName'))}>
             {profile.publicName}
           </h1>
-          <p class="mt-7 text-[17px] leading-[1.8] text-muted-strong" {...sbFieldPath('summary')}>
-            {profile.summary}
+          <p class="mt-7 text-[17px] leading-[1.8] text-muted-strong" {...summaryAttrs}>
+            {summary}
           </p>
           <div class="mt-9 flex flex-wrap gap-3">
             <a href="/about/providers/" class="btn-gold">Meet the full team</a>
@@ -98,10 +209,10 @@ const personSchema = personProfile(
       <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-20">
         <article>
           <p class="kicker">Profile</p>
-          <h2 class="font-serif text-[clamp(30px,4vw,44px)] text-ink">Meet {profile.publicName.split(',')[0]}</h2>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] text-ink">Meet {profile.publicName}</h2>
           <div class="mt-7 space-y-6 text-[16px] leading-[1.85] text-muted">
-            {profile.biography.map((paragraph, index) => (
-              <p {...sbFieldPathParts('biography', index)}>{paragraph}</p>
+            {biography.map((paragraph, index) => (
+              <p {...biographyAttrs(index)}>{paragraph}</p>
             ))}
           </div>
         </article>
@@ -109,8 +220,14 @@ const personSchema = personProfile(
         <aside class="border-t border-walnut/20 pt-7">
           <h2 class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">Service focus</h2>
           <ul class="mt-5 divide-y divide-walnut/10 border-b border-walnut/10">
-            {profile.serviceFocus.map((focus, index) => (
-              <li class="py-4 text-[15px] text-muted-strong" {...sbFieldPathParts('serviceFocus', index)}>{focus}</li>
+            {serviceFocus.map((focus, index) => (
+              <li class="py-4 text-[15px] text-muted-strong" {...(verifiedFallback ? {} : sbFieldPathParts('serviceFocus', index))}>
+                {serviceFocusLinks[focus] ? (
+                  <a href={serviceFocusLinks[focus]} class="underline decoration-walnut/25 underline-offset-4 transition-colors hover:text-gold">
+                    {focus}
+                  </a>
+                ) : focus}
+              </li>
             ))}
           </ul>
           {profile.slug === 'aundrea' && (
@@ -125,13 +242,17 @@ const personSchema = personProfile(
       </div>
     </section>
 
-    <section class="px-6 py-[clamp(52px,7vw,80px)]">
+    <section data-provider-closing class="px-6 py-[clamp(52px,7vw,80px)]">
       <div class="mx-auto flex max-w-[960px] flex-col items-center text-center">
-        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">Start with the service you want to understand.</h2>
-        <p class="mt-5 max-w-[620px] text-[15px] leading-[1.8] text-muted">
-          Review current services and what each appointment involves before choosing a time.
+        <h2 class="font-serif text-[clamp(28px,4vw,42px)] text-ink">{providerClosing.heading}</h2>
+        <p class="mt-5 max-w-[620px] text-[15px] leading-[1.75] text-muted">
+          {providerClosing.body}
         </p>
-        <a href="/services/" class="btn-gold mt-8">Explore services</a>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          {providerClosing.links.map((link, index) => (
+            <a href={link.href} class={index === 0 ? 'btn-gold' : 'btn-outline-gold'}>{link.label}</a>
+          ))}
+        </div>
       </div>
     </section>
   </div>

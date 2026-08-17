@@ -1,7 +1,7 @@
 ---
 /**
  * Treatment package / series card.
- * Used on the packages listing page and (expanded) on the package detail page.
+ * Used on the packages listing page and in expanded package contexts.
  * Mirrors the Notion "Packages & Series" model — services are real Service refs.
  */
 
@@ -9,10 +9,11 @@ import { urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { TreatmentPackage } from '@/lib/queries';
 import { DEFAULT_PACKAGE_IMAGE } from '@/lib/imageFallbacks';
+import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
 
 interface Props {
   pkg: TreatmentPackage;
-  /** Render full detail: service rationale, cadence, positioning, pricing, candidacy. */
+  /** Render the factual timing commitment alongside package contents and pricing. */
   expanded?: boolean;
   /**
    * Sanity _id of the package this card represents. When provided, the card is
@@ -23,8 +24,17 @@ interface Props {
 }
 
 const { pkg, expanded = false, objectId } = Astro.props;
-const headline = pkg.outcome ?? pkg.whatsIncluded ?? '';
-const price = pkg.rackPrice;
+// Do not publish package amounts that have no matching current GlossGenius
+// line. Acne Bootcamp is the only live package price the canonical export
+// presently corroborates.
+const price = pkg.slug === FACE_REALITY_PROGRAM.packageSlug
+  ? `$${FACE_REALITY_PROGRAM.packagePriceUsd}`
+  : undefined;
+const services = pkg.servicesIncluded ?? [];
+// Temporary voice-reset overlay matching the package detail route.
+const timing = pkg.slug === 'glo2facial-series-of-6'
+  ? 'Several months.'
+  : pkg.cadence;
 const imageSrc = pkg.image
   ? urlFor(pkg.image).width(640).height(480).fit('crop').url()
   : DEFAULT_PACKAGE_IMAGE;
@@ -40,50 +50,49 @@ const fp = (path: string) => (objectId ? sbFieldPath(path) : {});
         alt={pkg.image?.alt ?? pkg.title}
         width={640}
         height={480}
+        loading="lazy"
+        decoding="async"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
     </div>
 
   <div class="px-6 pb-6">
     <h3 class="font-serif text-2xl text-ink mb-2" {...fp('title')}>{pkg.title}</h3>
-    {headline && <p class="text-muted text-sm leading-relaxed mb-4" {...fp(pkg.outcome ? 'outcome' : 'whatsIncluded')}>{headline}</p>}
 
-    {pkg.servicesIncluded && pkg.servicesIncluded.length > 0 && (
+    {services.length > 0 && (
       <ul class="space-y-1.5 mb-5">
-        {pkg.servicesIncluded.map((service) => (
+        {services.map((service) => (
           <li class="text-sm text-muted" {...(objectId && service._id ? sbObjectId(service._id) : {})}>
             <span class="text-ink" {...(objectId && service._id ? sbFieldPath('title') : {})}>{service.title}</span>
-            {expanded && service.tagline && (
-              <span class="text-muted" {...(objectId && service._id ? sbFieldPath('tagline') : {})}> — {service.tagline}</span>
-            )}
           </li>
         ))}
       </ul>
     )}
 
-    {expanded && pkg.cadence && (
+    {expanded && timing && (
       <p class="text-sm text-muted mb-3">
-        <span class="text-gold uppercase tracking-wide text-xs">Cadence</span><br />
-        <span {...fp('cadence')}>{pkg.cadence}</span>
+        <span class="text-gold uppercase tracking-wide text-xs">Timing</span><br />
+        <span {...fp('cadence')}>{timing}</span>
       </p>
-    )}
-    {expanded && pkg.positioning && (
-      <p class="text-sm text-muted italic mb-5" {...fp('positioning')}>{pkg.positioning}</p>
     )}
 
     {price && (
-      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4" {...fp('rackPrice')}>{price}</p>
+      <p class="text-ink/80 text-[12px] tracking-[0.16em] uppercase mb-4">
+        Package price · <span>{price}</span>
+      </p>
     )}
 
     <a
       href={`/packages/${pkg.slug}/`}
       class="learn-more text-gold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-200"
     >
-      {expanded ? 'Review this series' : 'View details'} <span>→</span>
+      View details <span>→</span>
     </a>
 
-    {expanded && pkg.candidacyNote && (
-      <p class="text-[11px] text-muted leading-relaxed mt-5" {...fp('candidacyNote')}>{pkg.candidacyNote}</p>
+    {expanded && (
+      <p class="text-[11px] text-muted leading-relaxed mt-5">
+        Package availability and timing are confirmed when you contact the practice. Individual outcomes vary.
+      </p>
     )}
   </div>
 </article>

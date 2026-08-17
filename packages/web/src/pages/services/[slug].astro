@@ -11,21 +11,28 @@ import {
   getServiceResultImages,
   serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
-import { sbObjectId, sbFieldPath, sbFieldPathParts } from '@/lib/visualEditing';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
   ALL_SERVICE_SLUGS_QUERY,
   SERVICE_BY_SLUG_QUERY,
   type Service,
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
-import DowntimeBlock from '@/components/treatment/DowntimeBlock.astro';
-import AftercareBlock from '@/components/treatment/AftercareBlock.astro';
 import ProviderScopeBlock from '@/components/treatment/ProviderScopeBlock.astro';
 import PriceRangeBlock from '@/components/treatment/PriceRangeBlock.astro';
-import WhyHouseOfRose from '@/components/treatment/WhyHouseOfRose.astro';
+import InjectablesHubOverview from '@/components/treatment/InjectablesHubOverview.astro';
+import IvHydrationMenu from '@/components/treatment/IvHydrationMenu.astro';
+import PrfUnderEyesOverview from '@/components/treatment/PrfUnderEyesOverview.astro';
+import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
 import { medicalProcedure, treatmentOffer } from '@/lib/structuredData.treatment';
-import { alignPublicContent } from '@/lib/publicCopy';
-import { isVerifiedGlossGeniusBookingUrl } from '@/lib/booking';
+import { isVerifiedGlossGeniusBookingUrl, resolveServiceBooking } from '@/lib/booking';
+import { getServiceCardSummary } from '@/lib/serviceCardContent';
+import { getServiceAppointmentGuidance, getVerifiedServiceDuration } from '@/lib/serviceFacts';
+import { getVerifiedCostFact } from '@/lib/costFacts';
+import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_META_DESCRIPTION } from '@/lib/prfUnderEyesFacts';
+import { IV_HYDRATION_FAQS } from '@/lib/ivHydrationFacts';
+import { getServiceEducation } from '@/lib/serviceEducation';
+import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
@@ -43,9 +50,61 @@ if (!serviceData) {
   throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
 }
 
-const service: Service = alignPublicContent(serviceData, {
-  allowNoDowntime: slug === 'glo2facial',
-});
+const service: Service = serviceData;
+const publicTagline = slug ? getServiceCardSummary(slug) : undefined;
+const serviceEducation = slug ? getServiceEducation(slug) : undefined;
+const verifiedDuration = slug ? getVerifiedServiceDuration(slug) : undefined;
+// The product-specific neurotoxin durations are shown in the reviewed menu below.
+// Current sources disagree on PRF under-eye duration, and Morpheus8 has no verified
+// standalone appointment length. Do not collapse any of those into one hero figure.
+const suppressHeroDuration = new Set(['injectables', 'microneedling', 'morpheus8', 'prf', 'prf-injections', 'prf-under-eyes']).has(slug ?? '');
+const displayDuration = suppressHeroDuration ? undefined : verifiedDuration ?? service.duration;
+const getChildTreatmentDuration = (childSlug: string, fallback?: string): string | undefined =>
+  ['injectables', 'prf-under-eyes'].includes(childSlug)
+    ? undefined
+    : getVerifiedServiceDuration(childSlug) ?? fallback;
+// Reviewed education owns the current facts for covered pages. Keep stale or
+// ambiguous Sanity price strings out of the hero and structured data.
+const displayServicePrice = serviceEducation ? undefined : service.price;
+const splitInjectableSlugs = new Set(['injectables', 'dermal-fillers']);
+const splitInjectableSibling = slug === 'injectables'
+  ? { slug: 'dermal-fillers', title: 'Dermal Fillers' }
+  : slug === 'dermal-fillers'
+    ? { slug: 'injectables', title: 'Neurotoxin Injections' }
+    : undefined;
+const childTreatmentSlugs = new Set((service.treatments ?? []).map((treatment) => treatment.slug));
+const visibleRelatedServices = [
+  ...(service.relatedServices ?? []),
+  ...(service.contextualServices ?? []),
+]
+  .filter((related): related is Service => Boolean(related?.slug))
+  .filter((related) => related.slug !== service.slug)
+  .filter((related) => !childTreatmentSlugs.has(related.slug))
+  .filter((related) => !splitInjectableSibling || splitInjectableSlugs.has(related.slug))
+  .filter((related, index, services) => services.findIndex(({ slug: relatedSlug }) => relatedSlug === related.slug) === index)
+  .slice(0, 3);
+const renderSplitInjectableSibling = splitInjectableSibling
+  && !visibleRelatedServices.some((related) => related.slug === splitInjectableSibling.slug);
+const hasRelatedServices = visibleRelatedServices.length > 0 || Boolean(renderSplitInjectableSibling);
+const collectionSlug = service.collection?.slug;
+const collectionTitle = service.collection?.title;
+const hasDistinctCollectionDirectory = collectionSlug
+  && collectionSlug !== 'permanent-jewelry'
+  && collectionSlug !== service.slug;
+const serviceDirectoryPath = hasDistinctCollectionDirectory
+  ? `/services/collections/${collectionSlug}/`
+  : '/services/';
+const serviceDirectoryLabel = hasDistinctCollectionDirectory && collectionTitle
+  ? `View ${collectionTitle}`
+  : 'View all services';
+const verifiedCostGuide = service.costGuides?.find((guide) => getVerifiedCostFact(guide.slug));
+// Recovery and aftercare are medical-support copy, not general marketing copy.
+// The current Sanity records do not carry source or clinical-review provenance,
+// so they remain stored for review but do not render or enter structured data.
+// The published Glo2 range contains retired combination prices and conflicts
+// with the current GlossGenius standalone price. Omit it until commerce truth
+// and Sanity are reconciled.
+const reviewedPriceRange = serviceEducation ? undefined : service.priceRange;
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -53,33 +112,44 @@ const canonicalURL = new URL(Astro.url.pathname, site);
 const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
 const curatedImage = slug ? getCuratedServiceImage(slug) : undefined;
 const curatedImageAlt = slug ? getCuratedServiceImageAlt(slug) : service.image?.alt ?? service.title;
+const fallbackImageAlt = slug ? getCuratedServiceImageAlt(slug) : 'A treatment room inside House of Rose Aesthetics';
 const containHeroImage = slug ? serviceImageUsesContain(slug) : false;
 const socialImage = curatedImage
   ? new URL(curatedImage, site).toString()
   : service.image?.asset
-  ? urlFor(service.image).width(1200).height(630).fit('crop').auto('format').quality(82).url()
+  ? urlFor(service.image).width(1200).height(630).fit('crop').format('webp').quality(82).url()
   : fallbackImage
     ? new URL(fallbackImage, site).toString()
     : undefined;
 const heroImage = curatedImage ?? (service.image?.asset
-  ? urlFor(service.image).width(1600).height(1200).fit('crop').auto('format').url()
-  : fallbackImage ?? '/images/optimized/actual-reception-1400.webp');
+  ? urlFor(service.image).width(1600).height(1200).fit('crop').format('webp').quality(80).url()
+  : fallbackImage ?? '/images/optimized/actual-reception-1400-light.webp');
+const serviceImage = service.image;
+const heroImageSrcset = !curatedImage && serviceImage?.asset
+  ? [800, 1200, 1600]
+      .map((width) => `${urlFor(serviceImage).width(width).height(Math.round(width * 0.75)).fit('crop').format('webp').quality(80).url()} ${width}w`)
+      .join(', ')
+  : undefined;
 const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
 
 // Approved brand or House of Rose result photography, populated only where documented.
 const resultImages = slug ? getServiceResultImages(slug) : [];
 const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'face-reality-acne-treatment'].includes(slug ?? '');
 
-const priceMatch = service.price ? String(service.price).match(/\d[\d,]*(?:\.\d+)?/) : null;
+const priceMatch = displayServicePrice ? String(displayServicePrice).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
+const factualServiceDescription = slug === 'prf-under-eyes'
+  ? PRF_UNDER_EYES_META_DESCRIPTION
+  : serviceEducation?.metaDescription
+    ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {
     name: service.title,
-    description: service.description ?? service.tagline ?? undefined,
+    description: factualServiceDescription,
     url: canonicalURL.toString(),
     image: socialImage,
-    serviceType: service.tagline ?? service.title,
+    serviceType: service.title,
     minPrice: priceNumber,
     offerUrl: isVerifiedGlossGeniusBookingUrl(service.bookingUrl) ? service.bookingUrl : undefined,
   },
@@ -100,47 +170,68 @@ const breadcrumbSchema = breadcrumbList([
   { name: service.title, item: canonicalURL.toString() },
 ]);
 
-const faqSchema = faqPage(service.faqs ?? []);
 // Treatment-specific structured data. Emitted alongside the generic Service node —
 // MedicalProcedure is what local health-intent surfaces actually read.
 
 const verifiedBookingUrl = isVerifiedGlossGeniusBookingUrl(service.bookingUrl)
   ? service.bookingUrl
   : undefined;
+const bookingAction = resolveServiceBooking(service, 'service-page-copy');
+const reviewedAppointmentGuidance = slug ? getServiceAppointmentGuidance(slug) : undefined;
+const secondaryAction = bookingAction.mode === 'consultation'
+  ? { href: '/contact/', label: 'Contact the practice' }
+  : { href: '/consultation/', label: 'Ask a question' };
+const finalHeading = bookingAction.mode === 'direct'
+  ? `Reserve ${service.title}.`
+  : bookingAction.mode === 'consultation'
+    ? `Talk with the practice about ${service.title}.`
+    : `Ask about ${service.title}.`;
+const finalCopy = reviewedAppointmentGuidance ?? (bookingAction.mode === 'direct'
+  ? 'Choose an available time in the current booking menu, or send a question before you reserve.'
+  : bookingAction.mode === 'consultation'
+    ? 'Request a consultation time, or contact the practice if you have a question before scheduling.'
+    : 'Call the practice for current appointment availability, or send a question through the consultation form.');
 
 const procedureSchema = service.providerScope
   ? medicalProcedure(
       {
         name: service.title,
-        description: service.description ?? service.tagline ?? undefined,
+        description: factualServiceDescription,
         url: canonicalURL.toString(),
         image: socialImage,
         procedureType: service.providerScope.medicalDirection
           ? 'PercutaneousProcedure'
           : 'NoninvasiveProcedure',
-        bodyLocation: service.treatmentAreas?.map((a) => a.area),
-        downtime: service.downtime,
-        aftercare: service.aftercare,
-        providerScope: service.providerScope,
-        priceRange: service.priceRange,
-        bookingUrl: verifiedBookingUrl,
       },
-      site,
     )
   : null;
 
-const offerSchema = service.priceRange
+const offerSchema = reviewedPriceRange
   ? treatmentOffer({
       url: canonicalURL.toString(),
       name: service.title,
-      priceRange: service.priceRange,
+      priceRange: reviewedPriceRange,
       bookingUrl: verifiedBookingUrl,
     })
   : null;
 
+const reviewedServiceFaqs = serviceEducation?.faqs
+  ?? (slug === 'prf-under-eyes'
+    ? PRF_UNDER_EYES_FAQS
+    : slug === 'iv-hydration-therapy'
+      ? IV_HYDRATION_FAQS
+      : undefined);
+const serviceFaqSchema = reviewedServiceFaqs
+  ? faqPage(reviewedServiceFaqs.map(({ question, answer }) => ({ question, answer })))
+  : null;
 
-const pageTitle = service.seo?.metaTitle ?? `${service.title} in Punta Gorda, FL | House of Rose`;
-const pageDescription = service.seo?.metaDescription ?? service.tagline ?? service.description ?? '';
+
+// Service-page titles stay entity-first and do not inherit unreviewed CMS claims
+// or geo modifiers. Geo intent belongs to the localArea page type.
+const pageTitle = slug === 'acne-bootcamp'
+  ? 'Face Reality Acne Bootcamp | House of Rose Aesthetics'
+  : `${service.title} | House of Rose Aesthetics`;
+const pageDescription = factualServiceDescription;
 ---
 
 <BaseLayout
@@ -148,13 +239,16 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   description={pageDescription}
   image={socialImage}
   preloadImage={heroImage}
+  preloadImageSrcset={heroImageSrcset}
+  preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
+  structuredPageMainEntityId={`${canonicalURL.toString()}#service`}
 >
   <!-- Structured Data for SEO -->
   <SchemaMarkup item={serviceSchema} slot="head" />
   <SchemaMarkup item={breadcrumbSchema} slot="head" />
-  {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
   {procedureSchema && <SchemaMarkup item={procedureSchema} slot="head" />}
   {offerSchema && <SchemaMarkup item={offerSchema} slot="head" />}
+  {serviceFaqSchema && <SchemaMarkup item={serviceFaqSchema} slot="head" />}
 
   <script
     slot="head"
@@ -169,44 +263,45 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   />
   {/* Visual Editor: all editable copy below belongs to this service document */}
   <div {...sbObjectId(service._id)}>
-  <!-- Answer-first service hero: the image is semantic and immediately discoverable for LCP. -->
+  <!-- Service hero: the image is semantic and immediately discoverable for LCP. -->
   <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
     <div class="mx-auto grid max-w-[1440px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)]">
-      <div class="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
-        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-8 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline">
+      <div class="flex flex-col justify-center px-5 py-9 sm:px-10 sm:py-12 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
+        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-6 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline sm:mb-8">
           <span aria-hidden="true">←</span> {service.parentService ? service.parentService.title : 'All services'}
         </a>
         <span class="kicker">Medical Aesthetics Practice</span>
-        <h1 class="max-w-[720px] font-serif text-[clamp(38px,6vw,68px)] leading-[1.04] text-ink" {...sbFieldPath('title')}>
+        <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink" {...sbFieldPath('title')}>
           {service.title}
         </h1>
-        {service.tagline && (
-          <p class="mt-6 max-w-[620px] text-[clamp(17px,2vw,20px)] leading-[1.65] text-muted-strong" {...sbFieldPath('tagline')}>
-            {service.tagline}
+        {publicTagline && (
+          <p class="mt-6 max-w-[620px] text-[clamp(17px,2vw,20px)] leading-[1.65] text-muted-strong">
+            {publicTagline}
           </p>
         )}
-        {(service.price || service.duration) && (
+        {(displayServicePrice || displayDuration) && (
           <p class="mt-5 text-[13px] font-medium tracking-[0.08em] text-muted">
-            {service.price && <span {...sbFieldPath('price')}>{service.price}</span>}{service.price && service.duration && <span class="mx-2 text-gold">·</span>}{service.duration && <span {...sbFieldPath('duration')}>{service.duration}</span>}
+            {displayServicePrice && <span {...sbFieldPath('price')}>{displayServicePrice}</span>}{displayServicePrice && displayDuration && <span class="mx-2 text-gold">·</span>}{verifiedDuration
+              ? <span>{verifiedDuration}</span>
+              : displayDuration && <span {...sbFieldPath('duration')}>{displayDuration}</span>}
           </p>
         )}
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="mt-7 grid gap-3 sm:flex sm:flex-wrap">
           <BookingLink
             slug={service.slug}
             bookingMode={service.bookingMode}
             bookingUrl={service.bookingUrl}
             location="service-hero"
           />
-          <a href="/consultation/" class="btn-outline-gold">Talk through my options</a>
+          <a href={secondaryAction.href} class="btn-outline-gold">{secondaryAction.label}</a>
         </div>
-        <p class="mt-5 max-w-[560px] text-[13px] leading-relaxed text-muted">
-          A consultation confirms candidacy, timing, and the treatment plan that fits your goals.
-        </p>
       </div>
-      <figure class="relative min-h-[420px] overflow-hidden bg-limestone lg:min-h-full">
+      <figure class="relative min-h-[300px] overflow-hidden bg-limestone sm:min-h-[420px] lg:min-h-full">
         <img
           src={heroImage}
-          alt={curatedImage ? curatedImageAlt : service.image?.alt ?? `${service.title} at House of Rose Aesthetics`}
+          srcset={heroImageSrcset}
+          sizes="(max-width: 1023px) 100vw, 55vw"
+          alt={curatedImage ? curatedImageAlt : service.image?.alt ?? fallbackImageAlt}
           width="1600"
           height="1200"
           fetchpriority="high"
@@ -220,18 +315,9 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </div>
   </section>
 
-  <!-- Answer-first treatment overview -->
-  <section class="bg-charcoal py-16 px-6">
-    <div class="max-w-[960px] mx-auto">
-      <span class="kicker">Treatment Overview</span>
-      <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-5">
-        What is {service.title}?
-      </h2>
-      <p class="text-ink/80 text-[16px] leading-[1.8]" {...sbFieldPath('description')}>
-        {service.description ?? service.tagline ?? ''}
-      </p>
-    </div>
-  </section>
+  {serviceEducation && <ServiceEducation content={serviceEducation} />}
+
+  {slug === 'injectables-bio-fillers' && <InjectablesHubOverview />}
 
   <TreatmentEvidence
     serviceTitle={service.title}
@@ -239,18 +325,16 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     research={service.researchReferences}
   />
 
+  {slug === 'prf-under-eyes' && <PrfUnderEyesOverview />}
+
   <!-- Concern-to-treatment paths -->
   {service.concerns && service.concerns.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto">
-        <span class="kicker">Start With What You See</span>
-        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mt-2 mb-4">
-          Could {service.title} be right for your concerns?
+        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mb-4">
+          Related concerns
         </h2>
-        <p class="text-muted text-[15px] leading-relaxed max-w-[720px] mb-10">
-          This treatment may be considered when one or more of these visible concerns match your goals. A consultation confirms whether the technology, timing, and treatment area are appropriate for you.
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
           {service.concerns.map((concern) => (
             <a
               href={`/concerns/${concern.slug}/`}
@@ -260,8 +344,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
               <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>
                 {concern.title}
               </h3>
-              {concern.intro && <p class="text-muted text-[14px] leading-relaxed">{concern.intro}</p>}
-              <span class="learn-more group-hover:text-gold mt-4 inline-block">Explore This Concern</span>
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">View concern</span>
             </a>
           ))}
         </div>
@@ -269,101 +352,16 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
-  <!-- Benefits and treatment areas -->
-  {(service.benefits?.length || service.treatmentAreas?.length) && (
-    <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
-      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-        {service.benefits && service.benefits.length > 0 && (
-          <div>
-            <span class="kicker">Why Clients Choose It</span>
-            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
-              What benefits can {service.title} support?
-            </h2>
-            <ul class="space-y-3">
-              {service.benefits.map((benefit, i) => (
-                <li class="flex gap-3 text-muted text-[15px] leading-relaxed" {...sbFieldPathParts('benefits', i)}>
-                  <span class="text-gold mt-0.5" aria-hidden="true">✦</span>
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {service.treatmentAreas && service.treatmentAreas.length > 0 && (
-          <div>
-            <span class="kicker">Treatment Areas</span>
-            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
-              Where can {service.title} be used?
-            </h2>
-            <div class="space-y-4">
-              {service.treatmentAreas.map((item, i) => (
-                <div class="border-l border-gold-metal/40 pl-5 py-1">
-                  <h3 class="text-ink text-[16px] font-medium mb-1" {...sbFieldPathParts('treatmentAreas', i, 'area')}>
-                    {item.area}
-                  </h3>
-                  <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('treatmentAreas', i, 'focus')}>
-                    {item.focus}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </section>
-  )}
-
-  <!-- Experience and candidacy -->
-  {(service.process?.length || service.whoItsFor) && (
-    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
-      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-        {service.process && service.process.length > 0 && (
-          <div>
-            <span class="kicker">Your Visit</span>
-            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
-              What should you expect from {service.title}?
-            </h2>
-            <ol class="space-y-4">
-              {service.process.map((step, i) => (
-                <li class="grid grid-cols-[32px_1fr] gap-3 text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('process', i)}>
-                  <span class="font-serif text-gold text-[18px]">{String(i + 1).padStart(2, '0')}</span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        )}
-        {service.whoItsFor && (
-          <div>
-            <span class="kicker">Candidacy</span>
-            <h2 class="font-serif text-[clamp(25px,3.6vw,36px)] text-ink mt-2 mb-7">
-              Who is a candidate for {service.title}?
-            </h2>
-            <p class="text-muted text-[15px] leading-[1.8]" {...sbFieldPath('whoItsFor')}>{service.whoItsFor}</p>
-            <p class="text-muted/80 text-[13px] leading-relaxed mt-6 border-t border-gold-metal/20 pt-5">
-              Not every client is a candidate for every service. Final treatment combinations and candidacy are confirmed by your licensed provider based on candidacy, contraindications, and local regulations. Outcomes are individual and depend on your skin, candidacy, and consistency.
-            </p>
-          </div>
-        )}
-      </div>
-    </section>
-  )}
-
-  <!-- Downtime and investment -->
-  {(service.downtime || service.priceRange) && (
+  <!-- Reviewed investment data only; recovery claims remain suppressed pending source review. -->
+  {reviewedPriceRange && (
     <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20">
-        {service.downtime && (
-          <DowntimeBlock downtime={service.downtime} treatmentName={service.title} />
-        )}
-        {service.priceRange && (
-          <PriceRangeBlock
-            priceRange={service.priceRange}
-            slug={service.slug}
-            bookingMode={service.bookingMode}
-            bookingUrl={service.bookingUrl}
-          />
-        )}
+        <PriceRangeBlock
+          priceRange={reviewedPriceRange}
+          slug={service.slug}
+          bookingMode={service.bookingMode}
+          bookingUrl={service.bookingUrl}
+        />
       </div>
     </section>
   )}
@@ -372,11 +370,20 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto">
         <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Gallery</span>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          class:list={[
+            'grid gap-4',
+            galleryImages.length === 1
+              ? 'grid-cols-1 max-w-[480px]'
+              : galleryImages.length === 2
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-[820px]'
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
+          ]}
+        >
           {galleryImages.map((img) => (
             <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
               <img
-                src={urlFor(img).width(900).height(1200).auto('format').quality(82).url()}
+                src={urlFor(img).width(900).height(1200).format('webp').quality(82).url()}
                 alt={img.alt ?? service.title}
                 width="900"
                 height="1200"
@@ -410,7 +417,7 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
             : 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3',
         ]}>
           {resultImages.map((img) => (
-            <figure class="bg-ivory border border-gold-metal/20 overflow-hidden">
+            <figure class="bg-charcoal-light border border-gold-metal/20 overflow-hidden">
               <img
                 src={img.src}
                 alt={img.alt}
@@ -436,9 +443,8 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   {service.treatments && service.treatments.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
       <div class="max-w-[1280px] mx-auto">
-        <span class="kicker">Treatments</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-10">
-          Choose your protocol
+        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mb-10">
+          Treatments
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
@@ -446,12 +452,15 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
               <h3 class="font-serif text-[22px] text-ink mb-2" {...sbFieldPath('title')}>
                 <a href={`/services/${t.slug}/`} class="hover:text-gold transition-colors">{t.title}</a>
               </h3>
-              {t.tagline && <p class="text-muted text-[14px] leading-[1.65] mb-4" {...sbFieldPath('tagline')}>{t.tagline}</p>}
-              <p class="text-ink/70 text-[12px] tracking-[0.08em]">
-                {t.price}{t.price && t.duration && <span class="text-gold mx-2">·</span>}{t.duration}
-              </p>
+              {getServiceCardSummary(t.slug) && (
+                <p class="text-muted text-[14px] leading-[1.65] mb-4">{getServiceCardSummary(t.slug)}</p>
+              )}
+              {slug !== 'waxing' && (t.price || getChildTreatmentDuration(t.slug, t.duration)) && (
+                <p class="text-ink/70 text-[12px] tracking-[0.08em]">
+                  {t.price}{t.price && getChildTreatmentDuration(t.slug, t.duration) && <span class="text-gold mx-2">·</span>}{getChildTreatmentDuration(t.slug, t.duration)}
+                </p>
+              )}
               <div class="mt-5 flex flex-wrap gap-4 items-center">
-                <a href={`/services/${t.slug}/`} class="learn-more inline-flex mt-0">Learn about {t.title}</a>
                 <BookingLink
                   slug={t.slug}
                   bookingMode={t.bookingMode}
@@ -471,19 +480,15 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
   {service.comparisons && service.comparisons.length > 0 && (
     <section class="bg-charcoal py-16 px-6">
       <div class="max-w-[1280px] mx-auto">
-        <span class="kicker">Compare Your Options</span>
+        <span class="kicker">Compare</span>
         <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mt-2 mb-4">
-          See how this treatment fits your goals
+          Put the differences side by side.
         </h2>
-        <p class="text-muted text-[15px] leading-relaxed max-w-[680px] mb-10">
-          When more than one approach may fit, these clear comparisons can help you prepare for a more informed consultation.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10 mt-8">
           {service.comparisons.map((comparison) => (
             <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(comparison._id)}>
-              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{comparison.title}</h3>
-              <p class="text-muted text-[14px] leading-relaxed">{comparison.intro}</p>
-              <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the Comparison</span>
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{getPublicComparisonContent(comparison.slug)!.title}</h3>
+              <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the comparison</span>
             </a>
           ))}
         </div>
@@ -491,60 +496,49 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
     </section>
   )}
 
-  {service.whyQualified && service.whyQualified.length > 0 && (
-    <WhyHouseOfRose
-      whyQualified={service.whyQualified}
-      treatmentName={service.title}
-    />
-  )}
-
-  <!-- FAQs -->
-  {service.faqs && service.faqs.length > 0 && (
-    <section class="bg-charcoal-light py-16 px-6">
-      <div class="max-w-[960px] mx-auto">
-        <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 text-center">
-          Common Questions
-        </span>
-        <div class="space-y-6">
-          {service.faqs.map((faq, i) => (
-            <div class="border-b border-ink/5 pb-6">
-              <h3 class="text-ink text-[17px] font-medium mb-3" {...sbFieldPathParts('faqs', i, 'question')}>{faq.question}</h3>
-              <p class="text-muted text-[14px] leading-relaxed" {...sbFieldPathParts('faqs', i, 'answer')}>{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Aftercare and provider qualifications -->
-  {(service.aftercare || service.providerScope) && (
+  <!-- Verified provider scope and medical-direction attribution. -->
+  {service.providerScope && (
     <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-20">
-        {service.aftercare && (
-          <AftercareBlock aftercare={service.aftercare} treatmentName={service.title} />
-        )}
-        {service.providerScope && (
-          <ProviderScopeBlock providerScope={service.providerScope} treatmentName={service.title} />
-        )}
+        <ProviderScopeBlock
+          providerScope={service.providerScope}
+          provider={service.provider}
+          treatmentName={service.title}
+        />
       </div>
     </section>
   )}
 
+  {slug === 'iv-hydration-therapy' && <IvHydrationMenu />}
+
   <!-- Related Services -->
-  {service.relatedServices && service.relatedServices.filter(Boolean).length > 0 && (
-    <section class="bg-charcoal py-16 px-6">
-      <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8 max-w-[1280px] mx-auto">
-        Related Services
-      </span>
-      <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-        {service.relatedServices.filter(Boolean).map((related) => (
+  <section class="bg-charcoal py-16 px-6">
+    <div class="max-w-[1280px] mx-auto">
+      {hasRelatedServices && (
+      <h2 class="mb-8 font-serif text-[clamp(24px,4vw,36px)] text-ink">
+        {splitInjectableSibling ? 'Related injectable service' : 'Related services'}
+      </h2>
+      )}
+      {hasRelatedServices && (
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
+        {renderSplitInjectableSibling && splitInjectableSibling && (
+          <article class="service-card group">
+            <a href={`/services/${splitInjectableSibling.slug}/`} class="block">
+              <span class="service-name">{splitInjectableSibling.title}</span>
+              {getServiceCardSummary(splitInjectableSibling.slug) && (
+                <p class="service-desc mt-1">{getServiceCardSummary(splitInjectableSibling.slug)}</p>
+              )}
+              <span class="learn-more group-hover:text-gold">View {splitInjectableSibling.title}</span>
+            </a>
+          </article>
+        )}
+        {visibleRelatedServices.map((related) => (
           <article class="service-card group" {...sbObjectId(related._id)}>
-            <a href={`/services/${related.slug}/`} class="block" aria-label={`Learn about ${related.title}`}>
+            <a href={`/services/${related.slug}/`} class="block">
               {related.image?.asset && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
-                    src={urlFor(related.image).width(400).height(400).fit('crop').auto('format').quality(80).url()}
+                    src={urlFor(related.image).width(400).height(400).fit('crop').format('webp').quality(80).url()}
                     alt={related.image.alt ?? related.title}
                     width={400}
                     height={400}
@@ -555,8 +549,10 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
                 </div>
               )}
               <span class="service-name" {...sbFieldPath('title')}>{related.title}</span>
-              {related.tagline && <p class="service-desc mt-1" {...sbFieldPath('tagline')}>{related.tagline}</p>}
-              <span class="learn-more group-hover:text-gold">Learn more</span>
+              {getServiceCardSummary(related.slug) && (
+                <p class="service-desc mt-1">{getServiceCardSummary(related.slug)}</p>
+              )}
+              <span class="learn-more group-hover:text-gold">View {related.title}</span>
             </a>
             <BookingLink
               slug={related.slug}
@@ -568,44 +564,50 @@ const pageDescription = service.seo?.metaDescription ?? service.tagline ?? servi
           </article>
         ))}
       </div>
-    </section>
-  )}
+      )}
+      <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+        {verifiedCostGuide && (
+          <a href={`/cost/${verifiedCostGuide.slug}/`} class="learn-more hover:text-gold">
+            See pricing details
+          </a>
+        )}
+        {service.localAreas?.map((area) => (
+          <a href={`/areas/${area.slug}/`} class="learn-more hover:text-gold">
+            {area.city}
+          </a>
+        ))}
+        <a href={serviceDirectoryPath} class="learn-more hover:text-gold">
+          {serviceDirectoryLabel}
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Consultation CTA -->
   <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Questions Before You Book?</span>
+      <span class="kicker">Appointments</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Is {service.title} the right next step?
+        {finalHeading}
       </h2>
-      <p class="text-muted text-[15px] max-w-[560px] mx-auto mb-10 leading-relaxed">
-        Call to discuss your goals and arrange a consultation, or review the current services menu. Walk-ins are welcome when the schedule allows; an appointment is recommended to reserve a time.
+      <p data-service-appointment-guidance class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
+        {finalCopy}
       </p>
-      <div class="flex gap-3 justify-center flex-wrap">
+      <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
         <BookingLink
           slug={service.slug}
           bookingMode={service.bookingMode}
           bookingUrl={service.bookingUrl}
           location="service-final-cta"
         />
-        <a href="/consultation/" class="btn-outline-gold">
-          Talk Through My Options
+        <a href={secondaryAction.href} class="btn-outline-gold">
+          {secondaryAction.label}
         </a>
-        <a href="/skin-analysis/" class="btn-outline-gold">Start With Skin Analysis</a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950
       </p>
     </div>
   </section>
-  <div class="service-mobile-booking lg:hidden">
-    <BookingLink
-      slug={service.slug}
-      bookingMode={service.bookingMode}
-      bookingUrl={service.bookingUrl}
-      location="service-mobile-bar"
-      class="btn-gold w-full"
-    />
-  </div>
   </div>
 </BaseLayout>

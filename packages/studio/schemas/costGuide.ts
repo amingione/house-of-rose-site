@@ -1,4 +1,6 @@
 import { defineField, defineType } from 'sanity';
+import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { validatePublicCopy } from './validation/publicCopy';
 
 /**
  * Cost Guide — AEO page type #2 ("How much does ___ cost?").
@@ -14,8 +16,8 @@ export const costGuide = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'Question-shaped, e.g. "How Much Does PRF Microneedling Cost in Punta Gorda?"',
-      validation: (R) => R.required(),
+      description: 'Name the service and cost intent plainly. A natural client question is welcome, but the title does not need to follow one fixed formula.',
+      validation: (R) => R.required().custom(validatePublicCopy),
     }),
     defineField({
       name: 'slug',
@@ -29,22 +31,30 @@ export const costGuide = defineType({
       title: 'Treatment',
       type: 'reference',
       to: [{ type: 'service' }],
-      description: 'The canonical service hub this cost guide is about.',
+      options: {
+        filter:
+          'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
+        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
+      },
+      description: 'The canonical public service this cost guide is about.',
+      validation: (R) => R.required(),
     }),
     defineField({
       name: 'answer',
-      title: 'Direct Answer',
+      title: 'Direct Answer (not published)',
       type: 'text',
       rows: 3,
-      description: 'Answer-first paragraph — lead with the price range in plain language.',
-      validation: (R) => R.required(),
+      readOnly: true,
+      description: 'Legacy source field. Public cost copy and matching structured data come from the reviewed cost-facts overlay in the website code.',
     }),
-    defineField({ name: 'priceLow', title: 'Price — Low', type: 'number', description: 'Low end of the typical range (USD).' }),
-    defineField({ name: 'priceHigh', title: 'Price — High', type: 'number', description: 'High end of the typical range (USD).' }),
+    defineField({ name: 'priceLow', title: 'Price — Low (not published)', type: 'number', readOnly: true, description: 'Legacy source field. Current public prices come from the reviewed cost-facts overlay.' }),
+    defineField({ name: 'priceHigh', title: 'Price — High (not published)', type: 'number', readOnly: true, description: 'Legacy source field. Current public prices come from the reviewed cost-facts overlay.' }),
     defineField({
       name: 'priceUnit',
-      title: 'Price Unit',
+      title: 'Price Unit (not published)',
       type: 'string',
+      readOnly: true,
+      description: 'Legacy source field. Current public price units come from the reviewed cost-facts overlay.',
       options: {
         list: [
           { title: 'Per session', value: 'per session' },
@@ -53,12 +63,12 @@ export const costGuide = defineType({
           { title: 'Per program', value: 'per program' },
         ],
       },
-      initialValue: 'per session',
     }),
     defineField({
       name: 'costFactors',
-      title: 'What Affects the Cost',
+      title: 'What Affects the Cost (not published)',
       type: 'array',
+      readOnly: true,
       of: [
         {
           type: 'object',
@@ -69,16 +79,17 @@ export const costGuide = defineType({
           preview: { select: { title: 'factor', subtitle: 'effect' } },
         },
       ],
-      description: 'The honest variables that move the price (areas treated, sessions, add-ons, etc.).',
+      description: 'Legacy source field. The current public cost page does not publish this CMS section.',
     }),
-    defineField({ name: 'whatsIncluded', title: "What's Included", type: 'text', rows: 4 }),
-    defineField({ name: 'faqs', title: 'FAQs', type: 'array', of: [{ type: 'faq' }] }),
+    defineField({ name: 'whatsIncluded', title: "What's Included (not published)", type: 'text', rows: 4, readOnly: true, description: 'Legacy source field. The current public cost page does not publish this CMS section.' }),
+    defineField({ name: 'faqs', title: 'FAQs (not published)', type: 'array', of: [{ type: 'faq' }], readOnly: true, description: 'Legacy source field. Public cost FAQs and FAQPage schema come from the same reviewed cost-facts overlay.' }),
     defineField({
       name: 'relatedServices',
-      title: 'Related Services',
+      title: 'Related Services (not published)',
       type: 'array',
+      readOnly: true,
+      description: 'Legacy source field. The public page links the canonical treatment and reviewed comparisons instead.',
       of: [{ type: 'reference', to: [{ type: 'service' }] }],
-      validation: (R) => R.max(3),
     }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
     defineField({ name: 'seo', title: 'SEO', type: 'seo' }),

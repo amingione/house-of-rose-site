@@ -2,7 +2,7 @@
 
 > Practical guide. Google Ads suspension is a **different risk** from Florida board discipline — different
 > rulebook, different enforcer, different consequences. This file covers only Google. Florida rules live in
-> `FL-ADVERTISING-LAW.md`.
+> this directory's `README.md` and `COMPLIANCE-COPY-RULES.md`.
 >
 > Verified 2026-07-26 against Google's published advertising policies.
 
@@ -64,25 +64,22 @@ Drug Term Personalization Certification**.
 your client list to build a lookalike for an injectables campaign without that certification. Plain geo +
 demographic targeting is unaffected.
 
-### So what do you actually do?
+### Certification boundary
 
-**Option A — write the brand names, bid generic terms. No certification, launch today.**
-Put "Botox" and "Juvéderm" in headlines and on the landing page where they help you convert. Bid on
-`wrinkle treatment punta gorda`, `injectables punta gorda`, `med spa punta gorda`, `sun damage treatment
-punta gorda`. **Negative-keyword the prescription brand terms** so phrase match can't drift you into
-targeting them uncertified.
+Without restricted-drug-term certification, keep prescription brand and ingredient terms out of the
+keyword targets and add them as negatives so broad or phrase match cannot select them. For a campaign
+targeting the United States, those terms may still appear in ads and landing pages when the surrounding
+copy complies with current Google policy and applicable law.
 
-**Option B — get certified, then bid the brand terms too.** LegitScript accreditation (~$495 to apply,
-~$1,950–$2,950/yr) plus Google healthcare certification, 4–8 weeks. Worth it only if brand-term volume
-justifies it. At ~100/mo for "botox punta gorda," **it probably doesn't yet.** Revisit if you scale.
-
-**Start with A.** It's free, it's immediate, and it keeps your strongest converting words in the ad where
-customers actually read them.
+Before considering prescription-term keyword targeting, verify the current Google application rules and
+whether any third-party accreditation applies to the exact business model. This guide does not establish
+eligibility, cost, timeline, or a business case for certification. Neither path authorizes launch; the
+current compliance README and `AD-COMPLIANCE-RUNBOOK.md` gates still apply.
 
 ### Florida still governs *what you say* about them
 
-Google permitting the word is not the end of it. Your own `COMPLIANCE-COPY-RULES.md` and
-`FL-ADVERTISING-LAW.md` still apply to the claims around it — no guarantees, no "permanent," no
+Google permitting the word is not the end of it. This directory's `README.md` and
+`COMPLIANCE-COPY-RULES.md` still apply to the claims around it — no guarantees, no "permanent," no
 uniform-result promises, provider attribution present. And **Botox® is Allergan's registered trademark**:
 Google's trademark policy generally permits authorized-provider use, but confirm your provider agreement
 covers ad-copy use before running it, since Allergan does enforce.
@@ -94,9 +91,9 @@ covers ad-copy use before running it, since Allergan does enforce.
 | # | Trigger | Fix |
 |---|---|---|
 | 1 | **Bidding** prescription drug terms without certification | Negative-keyword them; bid generic terms instead. Copy and landing pages are fine uncertified — see above |
-| 2 | **A sitelink or CTA that goes nowhere** — Google's Misrepresentation policy, and it can suspend outright | Click every sitelink before launch. Never promise a page that doesn't exist yet (this is why the "Our Pricing" sitelink can't ship until the pricing page does) |
+| 2 | **A sitelink or CTA that goes nowhere** — Google's Misrepresentation policy, and it can suspend outright | Click every sitelink before launch. Never promise a page that does not exist, and confirm the label matches the destination's current rendered content |
 | 3 | **Unsubstantiated claims** — "eliminate wrinkles," "permanent," "guaranteed results," "reverse aging" | Use "designed to," "supports," "helps improve the appearance of." Your own `COMPLIANCE-COPY-RULES.md` §2 already bans these — same list works here |
-| 4 | **Before/after imagery** in ads or extensions | Don't run it. Also an FTC problem (`FL-ADVERTISING-LAW.md` §1.6) — a disclaimer does not fix it |
+| 4 | **Before/after imagery** in ads or extensions | Don't run it. Also an FTC problem (`AD-COMPLIANCE-RUNBOOK.md` §3) — a disclaimer does not fix it |
 | 5 | **Implying a credential you don't hold** — "dermatologist," "skin doctor," "medical clinic," "board certified" | Never in copy. See below on the keyword-vs-copy line |
 | 6 | **Health-condition targeting** — Google's personalized advertising policy prohibits targeting users by inferred medical condition | Don't build audiences around conditions (acne, hair loss, obesity). Geo + demographic only |
 | 7 | Landing page mismatch — ad promises something the page doesn't deliver | Ad message and page headline should obviously correspond |
@@ -125,10 +122,11 @@ so an uncertified med spa bidding `botox punta gorda` is targeting terms it isn'
 
 ---
 
-## A starter ad you can actually run
+## Policy-safe campaign setup
 
-Safe by construction: no prescription names, no credential implication, no free/discounted offer (so no
-§ 456.062 block is needed in the ad), no claims requiring substantiation.
+The controls below address restricted terms and campaign settings. They do not authorize campaign
+voice, headlines, descriptions, or treatment claims. Use current reviewed campaign assets and
+landing-page facts, then apply these controls before launch.
 
 **Ad group: Skin & sun damage** — phrase/exact keywords. **No prescription drug terms in the keyword
 list** — that is the part requiring certification. Brand names may appear in the *copy* if you want them.
@@ -141,30 +139,6 @@ list** — that is the part requiring certification. Brand names may appear in t
 "medical spa punta gorda"               "aesthetics punta gorda"
 ```
 
-**Headlines (15)** — generic set below. If you want brand pull you may swap in e.g. "Botox & Dysport
-Available" or "Wrinkle Relaxers & Fillers": Google permits prescription terms in copy uncertified, and the
-Florida claim rules still apply:
-
-```
-Sun Damage & Age Spots          Punta Gorda Skin Studio
-Advanced Skin Treatments        See Your Skin First
-Skin Analysis & Imaging         Texture, Tone & Pigment
-A Plan Built For Your Skin      Microneedling & Peels
-House of Rose Aesthetics        Walk-Ins Welcome
-Punta Gorda, FL                 Book A Skin Analysis
-Provider-Led Consultations      Florida Sun Damage Care
-Advanced Aesthetics & Wellness
-```
-
-**Descriptions (4):**
-
-```
-Skin imaging and a provider review, so your plan is built around what your skin is actually showing.
-Texture, tone, pigment and sun damage — addressed in sequence, not sold from a menu.
-Advanced aesthetics and wellness in Punta Gorda. Walk-ins welcome; appointments recommended.
-Candidacy is determined by your provider at consultation. Not every client is a candidate.
-```
-
 **Callout extensions:**
 
 ```
@@ -174,8 +148,9 @@ Walk-Ins Welcome
 Punta Gorda, FL
 ```
 
-**Sitelinks** — only ones whose pages exist today. Verify each before launch. Do **not** add a pricing
-sitelink until a pricing page exists.
+**Sitelinks** — only ones whose pages exist today. Verify each before launch. The current cost-guide
+index is `/cost/`; a pricing sitelink still requires a final label that matches its rendered content
+and a successful prelaunch click-through check.
 
 **Negative keywords:**
 
@@ -206,19 +181,16 @@ Automatically created assets off. Auto-apply recommendations off.
 - [ ] No before/after imagery in any asset
 - [ ] DKI off · automatically created assets off · auto-apply off
 - [ ] Provider callout present
-- [ ] **Landing page § 456.062 issue resolved** — see below
+- [ ] No free, discounted, or credited service offer unless the exact approved § 456.062 disclosure appears in both the ad unit and landing page
 
-### The one Florida item that touches this ad
+### Florida offer check
 
-If your ad points at `/skin-analysis/`, that page currently advertises a **"Complimentary"** consultation,
-which triggers Fla. Stat. § 456.062 and needs the 72-hour disclosure block. Two ways to close it — either
-is fine:
+The current `/skin-analysis/` page and Q3 Google ad copy carry no free, discounted, or credited service
+offer. Do not add one from this guide. A future offer requires the exact approved § 456.062 disclosure
+in the ad unit itself and on the landing page.
 
-- **Add the block** to the page (`FL-ADVERTISING-LAW.md` §5.1 — one component, ready to paste), or
-- **Remove the word "Complimentary"** from the page, which removes the trigger.
-
-This is a Florida requirement, not a Google one — Google will not suspend you for it. But it is one small
-edit and it is the last thing standing between the page and a clean ad.
+This is a Florida requirement rather than a Google Ads certification rule. Follow the current compliance
+README and primary law; this guide does not supply or authorize disclosure text.
 
 ---
 

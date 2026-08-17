@@ -14,6 +14,7 @@ import {
 } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { brand, breadcrumbList, faqPage } from '@/lib/structuredData';
+import { SHOP_ENABLED } from '@/lib/features';
 
 const PHONE_DISPLAY = '(844) 941-7673';
 const PHONE_TEL = 'tel:+18449417673';
@@ -171,7 +172,14 @@ const brandLd = brand({
 const faqLd = faqPage(faqs);
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription} image={pageImage} preloadImage={pageImage}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={pageImage}
+  preloadImage={pageImage}
+  noindex={!SHOP_ENABLED}
+  nofollow={!SHOP_ENABLED}
+>
   <SchemaMarkup item={brandLd} slot="head" />
   <SchemaMarkup item={breadcrumb} slot="head" />
   {faqLd && <SchemaMarkup item={faqLd} slot="head" />}

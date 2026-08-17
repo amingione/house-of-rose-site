@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found | House of Rose Aesthetics"
+  description="The requested page could not be found."
+  noindex={true}
+>
+  <section class="flex min-h-[70vh] items-center bg-charcoal px-6 pb-24 pt-32">
+    <div class="mx-auto w-full max-w-[760px] text-center">
+      <p class="kicker">404</p>
+      <h1 class="mt-3 font-serif text-[clamp(38px,7vw,64px)] leading-tight text-ink">
+        This page could not be found.
+      </h1>
+      <p class="mx-auto mt-6 max-w-[560px] text-[16px] leading-[1.8] text-muted">
+        The address may have changed, or the page may no longer be available.
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a href="/services/" class="btn-gold">View services</a>
+        <a href="/" class="btn-outline-gold">Return home</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

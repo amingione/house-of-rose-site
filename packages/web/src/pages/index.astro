@@ -1,169 +1,290 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
-import { HOMEPAGE_QUERY, type HomePage } from '@/lib/queries';
-import { alignPublicChannelCopy } from '@/lib/publicCopy';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
-
-const hp = (await sanityFetch<HomePage | null>(HOMEPAGE_QUERY)) ?? ({} as HomePage);
-const oid = hp._id ? sbObjectId(hp._id) : {};
-const safe = (value: string | undefined, fallback: string): string =>
-  alignPublicChannelCopy(value?.trim() || fallback);
+import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
+import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import { PERMANENT_JEWELRY_EDUCATION } from '@/lib/permanentJewelryEducation';
+import { SKIN_RENEWAL_SERVICE_EDUCATION } from '@/lib/skinRenewalServiceEducation';
+import { WAXING_SERVICE_EDUCATION } from '@/lib/waxingServiceEducation';
+import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 
 const phoneDisplay = '(844) 941-7673';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
-const heroTitle = safe(hp.heroTitle, 'Medical Aesthetics.\nThoughtfully Practiced.');
+const localVisitText = 'Open Monday through Friday, 9 AM–5 PM.';
+const [topicalPrf, underEyePrf, bioFillerPrf] = SKIN_RENEWAL_SERVICE_EDUCATION.prf.menu.items;
+const hydrationIv = VERIFIED_IV_MENU[0];
+const fortyFiveMinuteIvPrices = VERIFIED_IV_MENU.slice(1).map(({ price }) => price);
 
-const practiceStandards = [
+const broaderPracticeServices = [
   {
-    title: 'Selection',
-    body: 'Indication, candidacy, and the desired degree of change determine what belongs on the table.',
+    label: 'IV hydration',
+    title: `${VERIFIED_IV_MENU.length} options, with the details visible`,
+    body: `${hydrationIv.name} is ${hydrationIv.durationMinutes} minutes at $${hydrationIv.price}. The other five appointments are 45 minutes and range from $${Math.min(...fortyFiveMinuteIvPrices)} to $${Math.max(...fortyFiveMinuteIvPrices)}. Diana Morrison, RN provides the IV appointments.`,
+    href: '/services/iv-hydration-therapy/',
+    cta: 'See the IV menu',
   },
   {
-    title: 'Sequencing',
-    body: 'Corrective work, maintenance, home care, and recovery need an order that makes sense together.',
+    label: 'Weight management',
+    title: 'A conversation before a program',
+    body: `The ${WEIGHT_MANAGEMENT_EDUCATION.consultation.durationMinutes}-minute GLP-1 consultation with Diana Morrison, RN is $${WEIGHT_MANAGEMENT_EDUCATION.consultation.priceUsd}. Medication and ongoing program costs are confirmed directly with the practice.`,
+    href: '/services/glp-1-weight-management/',
+    cta: 'Read about the consultation',
   },
   {
-    title: 'Expectations',
-    body: 'Preparation, limitations, temporary downtime, and aftercare are discussed before they become surprises.',
+    label: 'Waxing',
+    title: 'Facial and body appointments by area',
+    body: `Waxing is booked by area across ${WAXING_SERVICE_EDUCATION.waxing.menu.items.length} appointments. Four cover the chin, upper lip, and brows; seven cover underarms, bikini line, chest, back, full leg, partial leg, and full arm.`,
+    href: '/services/waxing/',
+    cta: 'See all 11 appointments',
   },
   {
-    title: 'Continuity',
-    body: 'Documentation, reassessment, and maintenance keep the work accountable over time.',
+    label: 'Permanent jewelry',
+    title: 'Fitted in person and closed without a clasp',
+    body: `Aundrea Pedigo, Licensed Esthetician fits the chain and joins its ends by welding. The ${PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes}-minute non-medical appointment is $${PERMANENT_JEWELRY_EDUCATION.menu.priceUsd}; the chain can be cut when removal is needed.`,
+    href: '/services/permanent-jewelry/',
+    cta: 'Read about permanent jewelry',
   },
 ] as const;
+
+// Working voice reset: body copy stays local until the owner approves it for Sanity.
+// This prevents the previous CMS-authored cadence from leaking back into the preview.
+const treatmentCategories = [
+  {
+    label: 'Skin',
+    title: 'Is it roughness, visible pores, or uneven color?',
+    body: 'Maybe makeup catches on roughness, pores seem more visible, or a patch of uneven color keeps drawing your eye. Facials, peels, microneedling, and light-based treatments each work differently.',
+    href: '/services/collections/facials/',
+    cta: 'Explore skin treatments',
+  },
+  {
+    label: 'Injectables',
+    title: 'Notice what changes when your face moves',
+    body: 'A line that appears when you frown or squint is a different concern from lost fullness in the lips, cheeks, or folds. Botox and Daxxify address movement; hyaluronic-acid fillers add selected volume.',
+    href: '/services/injectables-bio-fillers/',
+    cta: 'Explore injectables',
+  },
+  {
+    label: 'Skin analysis',
+    title: 'See more than ordinary light reveals',
+    body: 'Multi-spectrum imaging adds another view of visible pigment, texture, pores, and sun exposure. The photographs are reviewed with you as a baseline; they do not make a diagnosis.',
+    href: '/skin-analysis/',
+    cta: 'See how skin analysis works',
+  },
+] as const;
+
 ---
 
 <BaseLayout
-  title={hp.seoTitle ?? 'House of Rose | Medical Aesthetics in Punta Gorda'}
-  description={hp.seoDescription ?? 'Explore skin treatments, injectables, facials, body treatments, IV hydration, wellness services, and professional skincare at House of Rose in Punta Gorda.'}
-  preloadImage="/images/optimized/actual-reception-1400.webp"
-  preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
+  title="House of Rose | Medical Aesthetics in Punta Gorda"
+  description="Explore skin treatments, injectables, facials, body services, IV hydration, and GLP-1 weight management at House of Rose in Punta Gorda."
+  preloadImage="/images/hero/treatment-scan-poster.webp"
   preloadImageSizes="100vw"
 >
-  <div {...oid}>
-    <section class="on-dark relative isolate overflow-hidden bg-soft-black pt-20">
-      <div class="relative min-h-[720px] sm:min-h-[740px] lg:h-[calc(100svh-80px)] lg:min-h-[680px] lg:max-h-[800px]">
-        <img
-          src="/images/optimized/actual-reception-1400.webp"
-          srcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400.webp 1400w"
-          sizes="100vw"
-          alt="The reception area inside House of Rose Aesthetics in Punta Gorda"
-          width="1400"
-          height="1050"
-          fetchpriority="high"
-          decoding="sync"
-          class="absolute inset-0 h-full w-full object-cover object-[38%_center] lg:object-[52%_center]"
-        />
-        <div class="home-hero-scrim absolute inset-0" aria-hidden="true"></div>
+  <div>
+    <SkinAnalysisHero
+      title={'A Punta Gorda practice with\nmore than one reason to visit.'}
+      description={'House of Rose offers skin care, injectables, IV hydration, weight management, waxing, makeup, and permanent jewelry in one Punta Gorda practice.'}
+      location="Punta Gorda, Florida"
+      primaryCta="Book an appointment"
+      secondaryCta="Explore services"
+    />
 
-        <div class="relative mx-auto flex h-full min-h-[720px] max-w-[1440px] items-end px-6 pb-10 pt-16 sm:min-h-[740px] sm:px-10 sm:pb-12 lg:min-h-[680px] lg:px-[clamp(48px,6.5vw,96px)] lg:pb-14">
-          <div class="w-full">
-            <div class="max-w-[980px]">
-              <div class="flex items-center gap-4">
-                <span class="h-px w-10 bg-gold-metal sm:w-14" aria-hidden="true"></span>
-                <span class="kicker mb-0 text-ivory" {...sbFieldPath('heroKicker')}>
-                  {safe(hp.heroKicker, 'House of Rose Aesthetics')}
-                </span>
-              </div>
-
-              <h1 class="mt-5 max-w-[960px] font-serif text-[clamp(46px,7vw,88px)] leading-[0.94] tracking-[-0.025em] text-ivory">
-                {heroTitle.split('\n').map((line) => (
-                  <span class="block">{line}</span>
-                ))}
-              </h1>
-
-              <p class="mt-6 max-w-[680px] text-[15px] leading-[1.65] text-muted-strong sm:mt-7 sm:text-[clamp(16px,1.5vw,19px)] sm:leading-[1.7]" {...sbFieldPath('heroDescription')}>
-                {safe(hp.heroDescription, 'Skin health, injectables, facial and body treatments, IV hydration, and wellness care—considered in the context of candidacy, timing, recovery, and the degree of change you actually want.')}
-              </p>
-
-              <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[218px]" data-global-booking data-cta-location="homepage-hero">
-                  {safe(hp.heroCtaPrimaryText, 'Book an appointment')}
-                </a>
-                <a href="/services/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-hero-services">
-                  {safe(hp.heroCtaSecondaryText, 'View services')}
-                </a>
-              </div>
-            </div>
-
-            <div class="mt-8 grid max-w-[900px] grid-cols-2 border-y border-ivory/30 text-[12px] sm:mt-10 sm:grid-cols-[1.15fr_1fr_auto] sm:items-stretch">
-              <div class="py-4 pr-3 sm:pr-6">
-                <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Practice</p>
-                <p class="mt-1.5 font-semibold text-ivory">Medical Aesthetics Practice</p>
-              </div>
-              <div class="border-l border-ivory/20 py-4 pl-3 sm:px-6">
-                <p class="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Location</p>
-                <p class="mt-1.5 font-semibold text-ivory" {...sbFieldPath('heroSubtitle')}>
-                  {safe(hp.heroSubtitle, 'Punta Gorda, Florida')}
-                </p>
-              </div>
-              <a href={phoneHref} class="group col-span-2 flex items-center justify-between gap-8 border-t border-ivory/20 py-4 font-semibold text-ivory sm:col-span-1 sm:border-l sm:border-t-0 sm:pl-6" data-cta-location="homepage-hero-call">
-                Call {phoneDisplay}
-                <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-              </a>
-            </div>
+    <section class="bg-bone px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[0.84fr_1.16fr] lg:gap-24">
+        <div>
+          <span class="kicker">A local practice</span>
+          <h2 class="max-w-[570px] font-serif text-[clamp(40px,5.5vw,64px)] leading-[1.02] tracking-[-0.02em] text-ink">
+            Four people, one Punta Gorda storefront.
+          </h2>
+        </div>
+        <div class="max-w-[680px] lg:pt-12">
+          <p class="font-serif text-[clamp(25px,3vw,34px)] leading-[1.25] text-ink">
+            The menu ranges from injectables and IV hydration to facials, waxing, makeup artistry, and permanent jewelry.
+          </p>
+          <p class="mt-7 text-[17px] leading-[1.8] text-muted">
+            House of Rose is a four-person medical aesthetics practice in Punta Gorda. Medical, esthetic, and non-medical appointments share one address.
+          </p>
+          <p class="mt-5 text-[17px] leading-[1.8] text-muted">
+            The provider pages name the people behind those appointments. The service pages explain what each visit involves and whether to book online, call, or send an inquiry.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-walnut/15 pt-7 text-[13px] font-semibold">
+            <a href="/about/hra/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Learn about the practice</a>
+            <a href="/about/providers/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Meet the providers</a>
           </div>
         </div>
       </div>
     </section>
+
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
       <div class="mx-auto max-w-[1240px]">
-        <div class="grid gap-8 border-b border-walnut/15 pb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
-            <span class="kicker" {...sbFieldPath('servicesKicker')}>{safe(hp.servicesKicker, 'A considered range')}</span>
-            <h2 class="max-w-[650px] font-serif text-[clamp(36px,5vw,58px)] leading-[1.02] tracking-[-0.02em] text-ink" {...sbFieldPath('servicesHeading')}>
-              {safe(hp.servicesHeading, 'Different treatments. One standard of judgment.')}
-            </h2>
-          </div>
-          <p class="max-w-[600px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('servicesIntro')}>
-            {safe(hp.servicesIntro, 'Corrective work, maintenance care, and wellness services can belong in the same practice without being treated as interchangeable. Each has its own indication, obligations, and place in a longer view.')}
+        <div class="border-b border-walnut/15 pb-10">
+          <span class="kicker">Skin, movement, and imaging</span>
+          <h2 class="max-w-[850px] font-serif text-[clamp(36px,5vw,58px)] leading-[1.02] tracking-[-0.02em] text-ink">
+            What do you keep noticing?
+          </h2>
+          <p class="mt-6 max-w-[760px] text-[17px] leading-[1.8] text-muted">
+            The useful detail may be roughness in certain light, a patch of uneven color, a line that appears when you smile, or a change in fullness. That detail helps narrow the services worth reading about.
           </p>
         </div>
 
         <div class="mt-8 grid border border-walnut/15 lg:grid-cols-3">
-          <a href="/services/" class="group flex min-h-[310px] flex-col justify-between bg-olive p-7 text-ivory transition-colors hover:bg-green-deep sm:p-9" data-cta-location="homepage-scope-services">
-            <div>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-ivory/75">Treatment menu</p>
-              <h3 class="mt-5 max-w-[290px] font-serif text-[32px] leading-[1.08] text-ivory">See the full scope of the practice.</h3>
-              <p class="mt-5 max-w-[320px] text-[15px] leading-[1.7] text-ivory/85">
-                Review skin procedures, facials, injectables, body treatments, IV hydration, wellness care, and professional skincare.
-              </p>
-            </div>
-            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold">
-              View all services <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-            </span>
-          </a>
+          {treatmentCategories.map((category, index) => (
+            <a
+              href={category.href}
+              class:list={[
+                'group flex min-h-[330px] flex-col justify-between p-7 transition-colors sm:p-9',
+                index === 0
+                  ? 'bg-olive text-ivory hover:bg-green-deep'
+                  : 'border-t border-walnut/15 bg-bone hover:bg-limestone/35 lg:border-l lg:border-t-0',
+              ]}
+              data-cta-location={`homepage-category-${category.label.toLowerCase().replaceAll(' ', '-')}`}
+            >
+              <div>
+                <p class:list={['text-[11px] font-semibold uppercase tracking-[0.14em]', index === 0 ? 'text-ivory/90' : 'text-gold']}>
+                  {category.label}
+                </p>
+                <h3 class:list={['mt-5 max-w-[320px] font-serif text-[31px] leading-[1.08]', index === 0 ? 'text-ivory' : 'text-ink']}>
+                  {category.title}
+                </h3>
+                <p class:list={['mt-5 max-w-[340px] text-[15px] leading-[1.7]', index === 0 ? 'text-ivory/90' : 'text-muted']}>
+                  {category.body}
+                </p>
+              </div>
+              <span class:list={['mt-8 inline-flex items-center gap-3 text-[13px] font-semibold', index === 0 ? 'text-ivory' : 'text-ink']}>
+                {category.cta} <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              </span>
+            </a>
+          ))}
+        </div>
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-walnut/15 pt-7">
+          <p class="max-w-[680px] text-[14px] leading-[1.7] text-muted">
+            The complete menu also includes body services, IV hydration, GLP-1 weight management, waxing, makeup, and permanent jewelry.
+          </p>
+          <a href="/services/" class="learn-more mt-0">Browse the complete menu <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
 
-          <a href="/skin-analysis/" class="group flex min-h-[310px] flex-col justify-between border-t border-walnut/15 bg-bone p-7 transition-colors hover:bg-limestone/35 sm:p-9 lg:border-l lg:border-t-0">
-            <div>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Skin analysis</p>
-              <h3 class="mt-5 max-w-[300px] font-serif text-[32px] leading-[1.08] text-ink" {...sbFieldPath('scanHeading')}>
-                {safe(hp.scanHeading, 'A more detailed view of the skin.')}
-              </h3>
-              <p class="mt-5 max-w-[330px] text-[15px] leading-[1.7] text-muted" {...sbFieldPath('scanPara1')}>
-                {safe(hp.scanPara1, 'Multi-spectrum imaging adds context around texture, hydration, pores, pigmentation, fine lines, and visible sun exposure before treatment is considered.')}
-              </p>
-            </div>
-            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-walnut">
-              {safe(hp.scanCtaPrimaryText, 'Review skin analysis')} <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-            </span>
-          </a>
+    <section class="bg-bone px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto max-w-[1240px]">
+        <div class="grid gap-10 border-b border-walnut/15 pb-11 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
+          <div>
+            <span class="kicker">Beyond skin and injectables</span>
+            <h2 class="max-w-[610px] font-serif text-[clamp(38px,5.5vw,60px)] leading-[1.02] tracking-[-0.02em] text-ink">
+              One address. Several very different appointments.
+            </h2>
+          </div>
+          <div class="max-w-[690px] lg:pt-8">
+            <p class="font-serif text-[clamp(23px,3vw,32px)] leading-[1.25] text-ink">
+              A skin appointment, an IV, a brow wax, and a fitted piece of jewelry are four very different reasons to walk through the same door.
+            </p>
+            <p class="mt-6 text-[16px] leading-[1.8] text-muted">
+              Each service page names the provider, appointment length, current price, and whether to book online, call, or send an inquiry.
+            </p>
+          </div>
+        </div>
 
-          <a href="/consultation/" class="group flex min-h-[310px] flex-col justify-between border-t border-walnut/15 bg-bone p-7 transition-colors hover:bg-limestone/35 sm:p-9 lg:border-l lg:border-t-0" data-cta-location="homepage-scope-consultation">
-            <div>
-              <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Professional guidance</p>
-              <h3 class="mt-5 max-w-[290px] font-serif text-[32px] leading-[1.08] text-ink">When the decision is not obvious.</h3>
-              <p class="mt-5 max-w-[330px] text-[15px] leading-[1.7] text-muted">
-                A consultation is useful when several approaches could apply, treatment order matters, or recovery time changes the decision.
-              </p>
-            </div>
-            <span class="mt-8 inline-flex items-center gap-3 text-[13px] font-semibold text-walnut">
-              Request guidance <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-            </span>
-          </a>
+        <div class="grid border-b border-walnut/15 md:grid-cols-2">
+          {broaderPracticeServices.map((service, index) => (
+            <article
+              class:list={[
+                'flex min-h-[315px] flex-col justify-between py-9 md:p-10',
+                index > 0 ? 'border-t border-walnut/15' : '',
+                index % 2 === 1 ? 'md:border-l md:border-walnut/15' : '',
+                index > 1 ? 'md:border-t' : 'md:border-t-0',
+              ]}
+            >
+              <div>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">{service.label}</p>
+                <h3 class="mt-5 max-w-[480px] font-serif text-[30px] leading-[1.08] text-ink">{service.title}</h3>
+                <p class="mt-5 max-w-[500px] text-[15px] leading-[1.75] text-muted">{service.body}</p>
+              </div>
+              <a href={service.href} class="mt-8 inline-flex text-[13px] font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">
+                {service.cta}
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto max-w-[1240px]">
+        <div class="grid gap-10 border-b border-ivory/20 pb-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
+          <div>
+            <span class="kicker">Platelet-rich fibrin</span>
+            <h2 class="max-w-[570px] font-serif text-[clamp(38px,5.5vw,60px)] leading-[1.02] tracking-[-0.02em] text-ivory">
+              PRF is used topically or by injection.
+            </h2>
+          </div>
+          <div class="max-w-[690px] lg:pt-8">
+            <p class="font-serif text-[clamp(23px,3vw,32px)] leading-[1.25] text-ivory">
+              PRF is a platelet concentrate prepared from a small sample of your own blood. The way it is used changes what the appointment is for.
+            </p>
+            <p class="mt-6 text-[16px] leading-[1.8] text-ivory/72">
+              At House of Rose, topical PRF is used with microneedling, while under-eye PRF and PRF Bio-Filler are injectable appointments provided by Diana Morrison, RN.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid divide-y divide-ivory/15 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+          <article class="py-9 lg:pr-9">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">With microneedling</p>
+            <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">Topical PRF with microneedling</h3>
+            <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
+              PRF is applied to the skin surface during an eligible microneedling service. It is not injected.
+            </p>
+            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
+              {topicalPrf.durationMinutes} minutes · ${topicalPrf.priceUsd}
+            </p>
+            <a href="/services/microneedling/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
+              Microneedling with topical PRF
+            </a>
+          </article>
+          <article class="py-9 lg:px-9">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Under-eye appointment</p>
+            <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">Injectable PRF</h3>
+            <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
+              Diana Morrison, RN provides the under-eye PRF appointment.
+            </p>
+            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
+              ${underEyePrf.priceUsd} · Call to confirm the appointment length
+            </p>
+            <a href="/services/prf-under-eyes/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
+              Read about PRF under eyes
+            </a>
+          </article>
+          <article class="py-9 lg:pl-9">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Bio-Filler appointment</p>
+            <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">PRF Bio-Filler</h3>
+            <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
+              Diana Morrison, RN provides PRF Bio-Filler as an injectable appointment.
+            </p>
+            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
+              {bioFillerPrf.durationMinutes} minutes · ${bioFillerPrf.priceUsd}
+            </p>
+            <a href="/services/prf-injections/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
+              Injectable PRF appointments
+            </a>
+          </article>
+        </div>
+
+        <div class="grid gap-7 border-t border-ivory/20 pt-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div class="max-w-[780px]">
+            <h3 class="font-serif text-[25px] text-ivory">PRF and dermal filler use different materials.</h3>
+            <p class="mt-3 text-[15px] leading-[1.75] text-ivory/72">
+              PRF is an autologous platelet concentrate. Hyaluronic-acid dermal filler is a manufactured injectable gel. The material, preparation, and purpose of the appointment all differ.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-x-7 gap-y-3 text-[13px] font-semibold">
+            <a href="/services/prf/" class="text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
+              Explore PRF
+            </a>
+            <a href="/services/dermal-fillers/" class="text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
+              Dermal Fillers
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -185,54 +306,100 @@ const practiceStandards = [
         </figure>
 
         <div>
-          <span class="kicker" {...sbFieldPath('aboutKicker')}>{safe(hp.aboutKicker, 'House of Rose')}</span>
-          <h2 class="font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink" {...sbFieldPath('aboutHeading')}>
-            {safe(hp.aboutHeading, 'Independent by design. Accountable in practice.')}
+          <span class="kicker">The detail matters</span>
+          <h2 class="font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink">
+            Bring us the thing you keep seeing in the mirror.
           </h2>
-          <div class="mt-7 max-w-[620px] space-y-5 text-[17px] leading-[1.75] text-muted">
-            <p {...sbFieldPath('aboutPara1')}>
-              {safe(hp.aboutPara1, 'House of Rose was designed for focused, personal care without the pace of a high-volume treatment floor. The rooms feel collected and residential; the work remains organized, documented, and clinically grounded.')}
+          <div class="mt-7 max-w-[650px] space-y-5 text-[17px] leading-[1.75] text-muted">
+            <p>
+              An under-eye shadow can come from pigment, thin skin, hollowing, or a combination. Facial lines may reflect movement, volume, texture, or all three. Two concerns that look similar in a photograph may point toward different services.
             </p>
-            <p {...sbFieldPath('aboutPara2')}>
-              {safe(hp.aboutPara2, 'Recommendations come with a rationale. So do preparation, limitations, downtime, aftercare, and the point at which reassessment makes more sense than simply adding another procedure.')}
+            <p>
+              Point to it in the mirror, bring the photograph where it shows up, or simply describe when you notice it most. Those details give the conversation somewhere useful to begin.
             </p>
           </div>
 
           <div class="mt-9 flex flex-wrap gap-x-7 gap-y-3 border-t border-walnut/15 pt-7 text-[13px] font-semibold">
-            <a href="/experience/" class="text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">See the practice</a>
-            <a href="/services/" class="text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">Review the work</a>
+            <a href="/concerns/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Explore concerns</a>
+            <a href="/compare/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Compare options</a>
+            <a href="/skin-analysis/" class="text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">Skin Analysis</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,120px)]">
-      <div class="mx-auto max-w-[1240px]">
-        <div class="grid gap-7 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-          <div>
-            <span class="kicker" {...sbFieldPath('approachKicker')}>{safe(hp.approachKicker, 'What the standard requires')}</span>
-            <h2 class="max-w-[660px] font-serif text-[clamp(38px,5vw,60px)] leading-[1.03] tracking-[-0.02em] text-ivory" {...sbFieldPath('approachHeading')}>
-              {safe(hp.approachHeading, 'A recommendation should survive a harder question: why this, for you, now?')}
-            </h2>
-          </div>
-          <p class="max-w-[590px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('approachPara1')}>
-            {safe(hp.approachPara1, 'The answer may involve treatment history, candidacy, timing, tolerance for downtime, and the desired degree of change. A device name alone is not an answer.')}
+    <section class="on-dark bg-green-deep px-6 py-[clamp(72px,9vw,120px)]">
+      <div class="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-20">
+        <div class="max-w-[560px]">
+          <span class="kicker">The people</span>
+          <h2 class="font-serif text-[clamp(40px,5.5vw,62px)] leading-[1.02] tracking-[-0.02em] text-ivory">
+            Who you trust with your face matters.
+          </h2>
+          <p class="mt-7 text-[17px] leading-[1.8] text-ivory/78">
+            Know who provides your appointment before you book it. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, makeup artistry, and permanent jewelry.
           </p>
+          <div class="mt-7 grid gap-3 border-t border-ivory/20 pt-6 text-[13px] leading-[1.6]">
+            <a href="/about/providers/brandy/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
+              <span>
+                <strong class="font-semibold">Brandy, Licensed Esthetician</strong><br />
+                <span class="text-ivory/80 group-hover:text-gold">Facials · Standalone BioRePeel · Facial waxing</span>
+              </span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="/about/providers/aundrea/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
+              <span>
+                <strong class="font-semibold">Aundrea Pedigo, Licensed Esthetician</strong><br />
+                <span class="text-ivory/80 group-hover:text-gold">Makeup artistry · Permanent jewelry</span>
+              </span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="mt-7 border-t border-ivory/20 pt-6 text-[14px] leading-[1.75] text-ivory/72">
+            Medical direction and the person providing your appointment are different roles. Joshua Shaw, MD provides medical direction and protocol supervision; he does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with your appointment.
+          </p>
+          <p class="mt-7 border-t border-ivory/20 pt-6 text-[13px] font-semibold tracking-[0.02em] text-ivory">
+            Medical Director: Joshua Shaw, MD · FL Lic. ME136232
+          </p>
+          <a href="/about/providers/" class="btn-outline-white mt-9">Meet the House of Rose team</a>
         </div>
 
-        <ol class="mt-14 grid border-y border-ivory/20 md:grid-cols-4">
-          {practiceStandards.map((step, index) => (
-            <li class="relative min-h-[250px] border-b border-ivory/20 px-6 py-8 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 lg:px-7">
-              <p class="text-[11px] font-semibold tracking-[0.12em] text-gold">{String(index + 1).padStart(2, '0')}</p>
-              <h3 class="mt-5 font-serif text-[27px] leading-tight text-ivory">{step.title}</h3>
-              <p class="mt-4 max-w-[250px] text-[14px] leading-[1.7] text-muted">{step.body}</p>
-            </li>
-          ))}
-        </ol>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a href="/about/providers/diana/" class="group block border border-ivory/20 bg-ink/15 p-3">
+            <div class="aspect-[4/5] overflow-hidden bg-ink/20">
+              <img
+                src="/images/providers/diana-profile-1122.webp"
+                alt="Diana Morrison, RN, at House of Rose Aesthetics"
+                width="1122"
+                height="1402"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+            <div class="px-2 pb-2 pt-5">
+              <h3 class="font-serif text-[25px] text-ivory">Diana Morrison, RN</h3>
+              <p class="mt-2 text-[12px] uppercase tracking-[0.12em] text-ivory/95">Registered Nurse</p>
+            </div>
+          </a>
 
-        <p class="mt-10 max-w-[760px] font-serif text-[22px] leading-[1.55] text-ivory" {...sbFieldPath('approachClosing')}>
-          {safe(hp.approachClosing, 'More treatment is not the standard. Better judgment is.')}
-        </p>
+          <a href="/about/providers/amber/" class="group block border border-ivory/20 bg-ink/15 p-3 sm:translate-y-10">
+            <div class="aspect-[4/5] overflow-hidden bg-ink/20">
+              <img
+                src="/images/providers/amber-profile-1122.webp"
+                alt="Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics"
+                width="1122"
+                height="1402"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+            <div class="px-2 pb-2 pt-5">
+              <h3 class="font-serif text-[25px] text-ivory">Amber Mingione, Licensed Esthetician</h3>
+              <p class="mt-2 text-[12px] uppercase tracking-[0.12em] text-ivory/95">Licensed Esthetician</p>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -240,27 +407,24 @@ const practiceStandards = [
       <div class="mx-auto max-w-[1240px]">
         <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <span class="kicker" {...sbFieldPath('expKicker')}>{safe(hp.expKicker, 'Inside House of Rose')}</span>
-            <h2 class="max-w-[690px] font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink" {...sbFieldPath('expHeading')}>
-              {safe(hp.expHeading, 'The rooms are considered. The care has to be more than that.')}
+            <span class="kicker">The practice</span>
+            <h2 class="max-w-[690px] font-serif text-[clamp(36px,5vw,56px)] leading-[1.03] tracking-[-0.02em] text-ink">
+              Inside House of Rose.
             </h2>
           </div>
-          <div class="max-w-[590px] space-y-4 text-[16px] leading-[1.75] text-muted">
-            <p {...sbFieldPath('expPara1')}>
-              {safe(hp.expPara1, 'A beautiful environment can make an appointment more comfortable; it cannot substitute for sound decisions, precise communication, or responsible follow-through.')}
-            </p>
-            <p {...sbFieldPath('expPara2')}>
-              {safe(hp.expPara2, 'These are the actual House of Rose spaces—photographed as they are, because the practice should be recognizable before you walk through the door.')}
+          <div class="max-w-[590px] text-[16px] leading-[1.75] text-muted">
+            <p>
+              These are the actual treatment rooms and storefront at 525 E Olympia Avenue in Punta Gorda.
             </p>
           </div>
         </div>
 
         <div class="mt-12 grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
           <figure>
-            <div class="relative aspect-[5/6] overflow-hidden bg-limestone">
+            <div class="relative aspect-[3/4] overflow-hidden bg-limestone">
               <img
-                src="/images/optimized/actual-storefront-1000.webp"
-                srcset="/images/optimized/actual-storefront-700.webp 700w, /images/optimized/actual-storefront-1000.webp 1000w"
+                src="/images/optimized/house-of-rose-storefront-1000.webp"
+                srcset="/images/optimized/house-of-rose-storefront-700.webp 700w, /images/optimized/house-of-rose-storefront-1000.webp 1000w"
                 sizes="(max-width: 1023px) 100vw, 42vw"
                 alt="The House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda"
                 width="1000"
@@ -271,8 +435,8 @@ const practiceStandards = [
               />
             </div>
             <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
-              <span>The House of Rose storefront</span>
-              <span class="font-semibold text-walnut">Unit 9</span>
+              <span>525 E Olympia Avenue</span>
+              <span class="font-semibold text-ink">Unit 9</span>
             </figcaption>
           </figure>
 
@@ -292,7 +456,7 @@ const practiceStandards = [
             </div>
             <figcaption class="mt-4 flex items-baseline justify-between gap-4 border-t border-walnut/15 pt-3 text-[13px] text-muted">
               <span>A treatment suite inside the practice</span>
-              <a href="/experience/" class="font-semibold text-walnut underline decoration-walnut/30 underline-offset-4 hover:text-olive">Explore the experience</a>
+              <a href="/experience/" class="font-semibold text-ink underline decoration-ink/30 underline-offset-4 hover:text-gold">See inside</a>
             </figcaption>
           </figure>
         </div>
@@ -303,15 +467,15 @@ const practiceStandards = [
       <div class="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-20">
         <div>
           <span class="kicker">Appointments &amp; inquiries</span>
-          <h2 class="max-w-[700px] font-serif text-[clamp(40px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ivory" {...sbFieldPath('finalHeading')}>
-            {safe(hp.finalHeading, 'Book directly—or bring us the decision you are still working through.')}
+          <h2 class="max-w-[700px] font-serif text-[clamp(40px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ivory">
+            Book the appointment—or start a conversation.
           </h2>
-          <p class="mt-6 max-w-[650px] text-[17px] leading-[1.75] text-muted" {...sbFieldPath('finalPara')}>
-            {safe(hp.finalPara, 'Reserve a known service through the booking menu. If the choice depends on candidacy, timing, or competing priorities, send an inquiry or call us.')}
+          <p class="mt-6 max-w-[650px] text-[17px] leading-[1.75] text-muted">
+            Reserve a listed service online. For a question or help comparing the current options, send an inquiry or call the practice.
           </p>
           <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[210px]" data-global-booking data-cta-location="homepage-final" {...sbFieldPath('finalCtaText')}>
-              {safe(hp.finalCtaText, 'Book a service')}
+            <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[210px]" data-global-booking data-cta-location="homepage-final">
+              Book a service
             </a>
             <a href="/consultation/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-final-inquiry">Send an inquiry</a>
           </div>
@@ -321,14 +485,14 @@ const practiceStandards = [
         </div>
 
         <div class="border border-ivory/25 p-7 sm:p-9">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold" {...sbFieldPath('localKicker')}>
-            {safe(hp.localKicker, 'Visit')}
+          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+            Visit
           </p>
-          <h3 class="mt-4 font-serif text-[32px] leading-tight text-ivory" {...sbFieldPath('localHeading')}>
-            {safe(hp.localHeading, 'A focused practice in Southwest Florida.')}
+          <h3 class="mt-4 font-serif text-[32px] leading-tight text-ivory">
+            House of Rose Aesthetics in Punta Gorda.
           </h3>
-          <p class="mt-5 text-[15px] leading-[1.7] text-muted" {...sbFieldPath('localPara1')}>
-            {safe(hp.localPara1, 'Open Monday through Friday, 9 AM–5 PM. Walk-ins are welcome when the schedule allows; an appointment reserves your time.')}
+          <p class="mt-5 text-[15px] leading-[1.7] text-muted">
+            {localVisitText}
           </p>
           <address class="mt-7 border-t border-ivory/20 pt-6 not-italic text-[14px] leading-[1.8] text-muted-strong">
             {LOCAL_BUSINESS.streetAddress}<br />
@@ -343,19 +507,3 @@ const practiceStandards = [
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .home-hero-scrim {
-    background:
-      linear-gradient(180deg, rgba(23, 22, 20, 0.28) 0%, rgba(23, 22, 20, 0.52) 42%, rgba(23, 22, 20, 0.92) 100%),
-      linear-gradient(90deg, rgba(23, 22, 20, 0.7) 0%, rgba(23, 22, 20, 0.3) 100%);
-  }
-
-  @media (min-width: 1024px) {
-    .home-hero-scrim {
-      background:
-        linear-gradient(180deg, rgba(23, 22, 20, 0.12) 45%, rgba(23, 22, 20, 0.62) 100%),
-        linear-gradient(90deg, rgba(23, 22, 20, 0.96) 0%, rgba(23, 22, 20, 0.82) 35%, rgba(23, 22, 20, 0.34) 66%, rgba(23, 22, 20, 0.08) 100%);
-    }
-  }
-</style>
