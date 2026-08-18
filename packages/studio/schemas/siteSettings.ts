@@ -90,9 +90,16 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: 'phone',
-      title: 'Phone',
+      title: 'Primary Public Phone',
       type: 'string',
-      description: 'Public business phone used in sitewide structured data, area guidance, and AI feeds.',
+      description: 'Primary local business phone used in canonical NAP, structured data, area guidance, and AI feeds.',
+      validation: (R) => R.custom(validatePublicPhone),
+    }),
+    defineField({
+      name: 'supportPhone',
+      title: 'Toll-Free Advertising & Online Support Phone',
+      type: 'string',
+      description: 'Separate toll-free line for advertising, carrier-required SMS disclosures, and online/order support. This is not the primary public NAP.',
       validation: (R) => R.custom(validatePublicPhone),
     }),
     defineField({

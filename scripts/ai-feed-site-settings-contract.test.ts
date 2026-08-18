@@ -17,7 +17,7 @@ test('AI feeds resolve canonical identity and NAP from the exact Site Settings s
     assert.match(source, /sanityFetch<SiteSettings \| null>\(SITE_SETTINGS_QUERY\)/);
     assert.match(source, /resolvePublicSiteFacts\(settings\)/);
     assert.doesNotMatch(source, /525 E Olympia Ave/);
-    assert.doesNotMatch(source, /\(844\) 941-7673/);
+    assert.doesNotMatch(source, /\(941\) 400-0165/);
     assert.doesNotMatch(source, /info@houseofrosefl\.com/);
     assert.doesNotMatch(source, /house\.of\.rose\.aesthetics/);
   }
@@ -27,7 +27,8 @@ test('AI-feed site facts remain one-line and preserve the current public output 
   const facts = resolvePublicSiteFacts({
     siteName: ' House of Rose Aesthetics ',
     address: '525 E Olympia Ave, Unit 9\nPunta Gorda, FL 33950',
-    phone: ' (844) 941-7673 ',
+    phone: ' (941) 400-0165 ',
+    supportPhone: ' (844) 941-7673 ',
     email: ' info@houseofrosefl.com ',
     instagramHandle: '@house.of.rose.aesthetics',
   });
@@ -35,7 +36,8 @@ test('AI-feed site facts remain one-line and preserve the current public output 
   assert.deepEqual(facts, {
     siteName: 'House of Rose Aesthetics',
     shortName: 'House of Rose',
-    phone: '(844) 941-7673',
+    phone: '(941) 400-0165',
+    supportPhone: '(844) 941-7673',
     email: 'info@houseofrosefl.com',
     address: '525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950',
     addressWithExpandedRegion: '525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950',
@@ -52,7 +54,8 @@ test('AI-feed site facts keep current build-safe values when the singleton is un
   assert.deepEqual(resolvePublicSiteFacts(null), {
     siteName: 'House of Rose Aesthetics',
     shortName: 'House of Rose',
-    phone: '(844) 941-7673',
+    phone: '(941) 400-0165',
+    supportPhone: '(844) 941-7673',
     email: 'info@houseofrosefl.com',
     address: '525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950',
     addressWithExpandedRegion: '525 E Olympia Ave, Unit 9, Punta Gorda, Florida 33950',

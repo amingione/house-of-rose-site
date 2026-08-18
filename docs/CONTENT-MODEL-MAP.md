@@ -124,7 +124,7 @@ Authoritative values live in Sanity `siteSettings` and are mirrored in
 
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
-- **Phone:** (844) 941-7673 · **Geo:** 26.9298, −82.0454
+- **Primary phone:** (941) 400-0165 · **Toll-free advertising/online support:** (844) 941-7673 · **Geo:** 26.9298, −82.0454
 - **Booking:** https://houseofrose.glossgenius.com/services
 - **Service area:** Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch,
   Burnt Store Marina, Punta Gorda Isles — Charlotte County & SW Florida

@@ -1010,7 +1010,7 @@ test('the current walk-in policy has one direct public answer', () => {
       ['waxing and facial walk-ins', /walk-ins[\s\S]{0,100}(?:always|accepted)[\s\S]{0,100}waxing[\s\S]{0,60}facials|waxing[\s\S]{0,60}facials[\s\S]{0,100}walk-ins/i],
       ['schedule-dependent other services', /other services[\s\S]{0,120}schedule allows/i],
       ['appointment reserves a time', /appointments?[\s\S]{0,80}reserve[\s\S]{0,60}(?:specific )?time/i],
-      ['availability phone number', /\(844\) 941-7673/i],
+      ['availability phone number', /\(941\) 400-0165/i],
     ]) {
       if (!pattern.test(answer)) failures.push(`${route}: walk-in answer is missing ${label}`);
     }
@@ -1159,6 +1159,7 @@ test('contact form explains reply timing and preserves the messaging-consent con
     'name="consent-informational"',
     'name="consent-marketing"',
     'name="consent-none"',
+    'href="tel:+19414000165"',
     'href="tel:+18449417673"',
     'href="/privacy-policy/"',
   ]) {
@@ -1253,7 +1254,7 @@ test('suite-rental application explains the next step without changing the form 
     'action="/.netlify/functions/lead-submit"',
     'name="insurance-acknowledgement"',
     'name="license-number"',
-    'href="tel:+18449417673"',
+    'href="tel:+19414000165"',
     'href="/privacy-policy/"',
   ]) {
     if (!main.includes(requiredMarkup)) failures.push(`rent-a-room: missing ${requiredMarkup}`);
@@ -2198,7 +2199,7 @@ test('provider directory and legacy contact cards match reviewed provider facts'
     for (const required of [
       `href="/${slug}.vcf"`,
       `href="/about/providers/${slug}/"`,
-      '(844) 941-7673',
+      '(941) 400-0165',
       '525 E Olympia Ave, Unit 9',
       'Punta Gorda, FL 33950',
     ]) {
@@ -2206,7 +2207,7 @@ test('provider directory and legacy contact cards match reviewed provider facts'
     }
     for (const required of [
       'ORG:House of Rose Aesthetics',
-      'TEL;TYPE=CELL,VOICE:+18449417673',
+      'TEL;TYPE=CELL,VOICE:+19414000165',
       'EMAIL;TYPE=INTERNET,WORK:info@houseofrosefl.com',
       `URL:https://houseofrosefl.com/about/providers/${slug}/`,
       'ADR;TYPE=WORK:;;525 E Olympia Ave\\, Unit 9;Punta Gorda;FL;33950;USA',
@@ -2338,7 +2339,7 @@ test('the cost index links each active guide to its related service', () => {
   ]) {
     if (!pattern.test(text)) failures.push(`missing ${label}`);
   }
-  if (!html.includes('href="tel:+18449417673"')) failures.push('missing verified payment-question phone link');
+  if (!html.includes('href="tel:+19414000165"')) failures.push('missing verified payment-question phone link');
 
   assert.equal(failures.length, 0, formatFailures('Cost-index navigation regression', failures));
 });
@@ -2532,7 +2533,7 @@ test('area detail guides distinguish the location from the service area and supp
       'Free parking is available.',
       'If your appointment time is not set, call before leaving',
       'href="/services/"',
-      'href="tel:+18449417673"',
+      'href="tel:+19414000165"',
     ]) {
       const haystack = required.startsWith('href=') ? visitPlanning : visibleText(visitPlanning);
       if (!haystack.includes(required)) failures.push(`${slug}: missing ${JSON.stringify(required)}`);
@@ -2963,7 +2964,7 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
     'Sitemap is missing the canonical PRF Under Eyes route.',
   );
   assert.ok(prfUnderEyeHtml.includes('525 E Olympia Ave'), 'PRF Under Eyes is missing the canonical practice address.');
-  assert.ok(prfUnderEyeHtml.includes('href="tel:+18449417673"'), 'PRF Under Eyes is missing the verified phone CTA.');
+  assert.ok(prfUnderEyeHtml.includes('href="tel:+19414000165"'), 'PRF Under Eyes is missing the verified phone CTA.');
   assert.ok(prfUnderEyeHtml.includes('Diana Morrison, RN'), 'PRF Under Eyes is missing the verified provider attribution.');
   assert.ok(
     prfUnderEyeHtml.includes('Medical Director: Joshua Shaw, MD · FL Lic. ME136232'),

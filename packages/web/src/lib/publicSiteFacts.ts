@@ -2,7 +2,8 @@ import type { SiteSettings } from './queries';
 
 const FALLBACK_SITE_FACTS = {
   siteName: 'House of Rose Aesthetics',
-  phone: '(844) 941-7673',
+  phone: '(941) 400-0165',
+  supportPhone: '(844) 941-7673',
   email: 'info@houseofrosefl.com',
   address: '525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950',
   instagramHandle: 'house.of.rose.aesthetics',
@@ -21,6 +22,7 @@ export interface PublicSiteFacts {
   siteName: string;
   shortName: string;
   phone: string;
+  supportPhone: string;
   email: string;
   address: string;
   addressWithExpandedRegion: string;
@@ -45,6 +47,7 @@ export function resolvePublicSiteFacts(
     siteName,
     shortName: siteName.replace(/\s+Aesthetics$/, ''),
     phone: oneLine(settings?.phone, FALLBACK_SITE_FACTS.phone),
+    supportPhone: oneLine(settings?.supportPhone, FALLBACK_SITE_FACTS.supportPhone),
     email: oneLine(settings?.email, FALLBACK_SITE_FACTS.email),
     address,
     addressWithExpandedRegion: address.replace(/, FL (\d{5}(?:-\d{4})?)$/, ', Florida $1'),

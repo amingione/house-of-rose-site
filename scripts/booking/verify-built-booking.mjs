@@ -59,7 +59,7 @@ for (const file of await collectHtml(DIST_DIR)) {
     if (serviceSlug !== undefined) {
       const mode = getAttribute(tag, 'data-booking-mode');
       const location = getAttribute(tag, 'data-cta-location');
-      const isPhone = mode === 'phone' && href === 'tel:+18449417673';
+      const isPhone = mode === 'phone' && href === 'tel:+19414000165';
       const isExact =
         (mode === 'direct' || mode === 'consultation') &&
         href.startsWith(ACTIVE_BOOKING_PREFIX) &&

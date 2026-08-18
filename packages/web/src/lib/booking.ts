@@ -1,7 +1,7 @@
 export const GLOSSGENIUS_HOST = 'houseofrose.glossgenius.com';
 export const GLOSSGENIUS_SERVICES_URL = `https://${GLOSSGENIUS_HOST}/services`;
 export const SKIN_ANALYSIS_BOOKING_URL = `https://${GLOSSGENIUS_HOST}/book?service_token=1000f-ad93f96c-64b0-4a51-959b-4301ca28039c`;
-export const PRACTICE_PHONE_HREF = 'tel:+18449417673';
+export const PRACTICE_PHONE_HREF = 'tel:+19414000165';
 
 export type BookingMode = 'direct' | 'consultation' | 'phone';
 

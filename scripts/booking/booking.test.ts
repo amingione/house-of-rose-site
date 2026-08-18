@@ -70,7 +70,7 @@ test('falls back to phone when a service is ambiguous or its URL is invalid', ()
   );
 
   for (const action of [missing, invalidConsultation]) {
-    assert.equal(action.href, 'tel:+18449417673');
+    assert.equal(action.href, 'tel:+19414000165');
     assert.match(action.label, /\bcall\b/i);
     assert.equal(action.mode, 'phone');
     assert.equal(action.external, false);
