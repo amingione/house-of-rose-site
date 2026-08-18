@@ -8,7 +8,7 @@
  * terms as *retired / historical*.
  *
  * Banned = things that must never appear as CURRENT in shipping code:
- *   - Wrong NAP:            33982 (zip), 7376 (phone)
+ *   - Wrong NAP:            33982 (zip), 7376 (toll-free typo)
  *   - Retired routes/ids:   /memberships, /rose-circle, /plans route, membershipsPage,
  *                           roseCirclePage, MembershipTiers, membershipGroup,
  *                           PUBLIC_MEMBERSHIPS/REGENERATIVE_PLANS queries
@@ -46,7 +46,7 @@ const TEXT_EXT = new Set([
 /** Each rule: human label + regex (case-insensitive unless it's a digit string). */
 const RULES = [
   { label: 'Wrong ZIP (use 33950)', re: /33982/ },
-  { label: 'Wrong phone fragment (use …7673)', re: /\b\d{3}[-.\s]?\d{3}[-.\s]?7376\b|\)\s?\d{3}[-.\s]?7376|7376\b(?=[^0-9])/ },
+  { label: 'Wrong toll-free phone fragment (use …7673)', re: /\b\d{3}[-.\s]?\d{3}[-.\s]?7376\b|\)\s?\d{3}[-.\s]?7376|7376\b(?=[^0-9])/ },
   { label: 'Wrong legal name (use House of Rose Aesthetics LLC)', re: /House of Rose LLC(?!", "House of Rose Aesthetics LLC")/ },
   { label: 'Retired route /memberships', re: /\/memberships(\/|"|'|`|\b)/ },
   { label: 'Retired route /rose-circle', re: /\/rose-circle(\/|"|'|`|\b)/ },

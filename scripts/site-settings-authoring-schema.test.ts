@@ -69,7 +69,7 @@ test('stored brand images cannot pose as the website asset authority', () => {
 });
 
 test('canonical contact and NAP fields remain operational', () => {
-  for (const fieldName of ['email', 'phone', 'address', 'instagramHandle']) {
+  for (const fieldName of ['email', 'phone', 'supportPhone', 'address', 'instagramHandle']) {
     assert.notEqual(settingsField(fieldName)?.readOnly, true, `${fieldName} must remain editable.`);
   }
 });
@@ -77,6 +77,7 @@ test('canonical contact and NAP fields remain operational', () => {
 test('public NAP and social controls reject malformed values without becoming required', () => {
   for (const [fieldName, validator] of [
     ['phone', validatePublicPhone],
+    ['supportPhone', validatePublicPhone],
     ['address', validatePublicAddress],
     ['instagramHandle', validateInstagramHandle],
   ] as const) {
@@ -106,10 +107,10 @@ test('public NAP and social controls reject malformed values without becoming re
     assert.equal(validateInstagramHandle(empty), true);
   }
 
-  for (const phone of ['(844) 941-7673', '+1 844.941.7673', '844-941-7673']) {
+  for (const phone of ['(941) 400-0165', '+1 941.400.0165', '941-400-0165', '(844) 941-7673']) {
     assert.equal(validatePublicPhone(phone), true, `${phone} should be accepted.`);
   }
-  for (const phone of ['844-941-767', '+44 20 7946 0958', 'call 844-941-7673']) {
+  for (const phone of ['941-400-016', '+44 20 7946 0958', 'call 941-400-0165']) {
     assert.notEqual(validatePublicPhone(phone), true, `${phone} should be rejected.`);
   }
 

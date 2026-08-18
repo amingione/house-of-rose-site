@@ -22,7 +22,7 @@ approved values in both static card files and keep them identical:
 2. `public/amber.vcf` (the actual contact file phones import).
 
 ## NAP — canonical (source of truth = Sanity `siteSettings`)
-- Phone: **(844) 941-7673** → E.164 `+18449417673` (spells ROSE)
+- Phone: **(941) 400-0165** → E.164 `+19414000165`
 - Email: **info@houseofrosefl.com**
 - Address: **525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950** — note **"Unit 9"**,
   never "Suite/F" (the Canva card prints "Suite 9"; the site follows the

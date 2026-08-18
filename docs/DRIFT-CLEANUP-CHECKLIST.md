@@ -9,8 +9,9 @@ document and use only the still-approved visual standards.
 ## Current canon (enforce this)
 
 - **NAP:** House of Rose Aesthetics · 525 E Olympia Ave, **Unit 9**, Punta Gorda, FL **33950** ·
-  **(844) 941-7673** / `+18449417673` · **info@houseofrosefl.com**.
-  _Never:_ ZIP `33982`, phone `…7376`, "Ste/Suite". `book@houseofrosefl.com` is a confirmed live
+  **(941) 400-0165** / `+19414000165` · **info@houseofrosefl.com**. The separate toll-free
+  **(844) 941-7673** / `+18449417673` remains the advertising and online-support line, not public NAP.
+  _Never:_ ZIP `33982`, toll-free typo `…7376`, "Ste/Suite". `book@houseofrosefl.com` is a confirmed live
   alias, but use it only for rental/booking `mailto:` links—not public NAP.
 - **Hours / opening:** Mon–Fri **9:00 AM–5:00 PM** · Sat–Sun closed · opened **June 15, 2026**.
 - **Social:** Instagram `house.of.rose.aesthetics` · Facebook `https://www.facebook.com/hofraesthetics`.

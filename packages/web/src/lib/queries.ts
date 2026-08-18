@@ -329,6 +329,7 @@ export interface SiteSettings {
   description?: string;
   email?: string;
   phone?: string;
+  supportPhone?: string;
   address?: string;
   instagramHandle?: string;
 }
@@ -391,6 +392,7 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
     description,
     email,
     phone,
+    supportPhone,
     address,
     instagramHandle
   }

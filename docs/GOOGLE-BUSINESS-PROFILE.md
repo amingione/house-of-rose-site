@@ -4,6 +4,7 @@
 
 _Status: live · Opened June 15, 2026_
 _Last profile verification recorded: 2026-08-01_
+_Owner-directed primary-phone change recorded: 2026-08-17_
 
 > **VOICE RESET — 2026-08-13.** This document records verified profile operations. The former
 > paste-ready descriptions, service copy, Q&A, posts, review scripts, keyword-stuffing tactics, and
@@ -33,7 +34,8 @@ city, holds a specialty, or should adopt a Google category.
 |---|---|
 | Business name | `House of Rose Aesthetics` |
 | Address | `525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950` |
-| Phone | `(844) 941-7673` |
+| Primary public phone | `(941) 400-0165` |
+| Toll-free advertising/online support | `(844) 941-7673` |
 | Website | `https://houseofrosefl.com/` |
 | Services menu | `https://houseofrose.glossgenius.com/services` |
 | Hours | Monday–Friday, 9 AM–5 PM; Saturday–Sunday closed |
@@ -242,6 +244,8 @@ Suggested critical-review reply:
 > Thank you for telling us, [Name]. Please call the practice at (844) 941-7673 so we can speak with you
 > directly.
 
+This response intentionally uses the toll-free online-support line rather than the primary local NAP number.
+
 Do not add treatment details, health information, search keywords, emojis, or promotional language to
 a reply. Never incentivize a review.
 
@@ -250,7 +254,7 @@ a reply. Never incentivize a review.
 Keep this exact NAP across Apple Business Connect, Bing Places, Yelp, Facebook, Instagram, and other
 current listings:
 
-`House of Rose Aesthetics · 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 · (844) 941-7673`
+`House of Rose Aesthetics · 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 · (941) 400-0165`
 
 Verify the listing before recording it as aligned. Do not mark all citations complete from a source-code
 search.

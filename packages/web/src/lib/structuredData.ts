@@ -17,7 +17,7 @@ export const LOCAL_BUSINESS = {
   name: 'House of Rose Aesthetics',
   legalName: 'HOUSE OF ROSE AESTHETICS LLC',
   foundingDate: '2026-06-15',
-  telephone: '+18449417673',
+  telephone: '+19414000165',
   streetAddress: '525 E Olympia Ave, Unit 9',
   addressLocality: 'Punta Gorda',
   addressRegion: 'FL',

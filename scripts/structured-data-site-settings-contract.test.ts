@@ -39,7 +39,8 @@ function siteNodes(siteFacts: ReturnType<typeof resolvePublicSiteFacts>) {
 test('production-shaped Site Settings drive sitewide and local-area NAP without output drift', () => {
   const siteFacts = resolvePublicSiteFacts({
     siteName: 'House of Rose Aesthetics',
-    phone: '(844) 941-7673',
+    phone: '(941) 400-0165',
+    supportPhone: '(844) 941-7673',
     email: 'info@houseofrosefl.com',
     address: '525 E Olympia Ave, Unit 9\nPunta Gorda, FL 33950',
     instagramHandle: 'house.of.rose.aesthetics',
@@ -66,7 +67,7 @@ test('production-shaped Site Settings drive sitewide and local-area NAP without 
 
   for (const business of [siteBusiness, areaBusiness]) {
     assert.equal(business.name, siteFacts.siteName);
-    assert.equal(business.telephone, '+18449417673');
+    assert.equal(business.telephone, '+19414000165');
     assert.equal(business.email, siteFacts.email);
     assert.deepEqual(business.address, expectedAddress);
     assert.deepEqual(business.sameAs, expectedProfiles);
@@ -101,7 +102,7 @@ test('malformed editor phone and address values fail closed in structured data',
     'Updated Practice Name is a medical aesthetics practice in Punta Gorda, Florida, serving Charlotte County and Southwest Florida.',
   );
   assert.equal(business.email, 'contact@example.com');
-  assert.equal(business.telephone, '+18449417673');
+  assert.equal(business.telephone, '+19414000165');
   assert.deepEqual(business.address, {
     '@type': 'PostalAddress',
     streetAddress: '525 E Olympia Ave, Unit 9',
@@ -151,8 +152,8 @@ test('BaseLayout and local-area rendering share the normalized Site Settings aut
   assert.match(footer, /href=\{phoneHref\}/);
   assert.match(footer, /\{siteFacts\.phone\}/);
   assert.doesNotMatch(footer, /525 E Olympia/);
-  assert.doesNotMatch(footer, /tel:\+18449417673/);
-  assert.doesNotMatch(footer, />\(844\) 941-7673</);
+  assert.doesNotMatch(footer, /tel:\+19414000165/);
+  assert.doesNotMatch(footer, />\(941\) 400-0165</);
 
   assert.match(areaRoute, /sanityFetch<SiteSettings \| null>\(SITE_SETTINGS_QUERY\)/);
   assert.match(areaRoute, /const siteFacts = resolvePublicSiteFacts\(settings\)/);
@@ -167,6 +168,6 @@ test('BaseLayout and local-area rendering share the normalized Site Settings aut
   assert.match(areaRoute, /Medical Aesthetics in Punta Gorda, FL \| \$\{siteFacts\.shortName\}/);
   assert.match(areaRoute, /localBusiness\(\{[\s\S]*?siteFacts,/);
   assert.doesNotMatch(areaRoute, /const practiceAddress = ['"]/);
-  assert.doesNotMatch(areaRoute, /href="tel:\+18449417673"/);
-  assert.doesNotMatch(areaRoute, />Call \(844\) 941-7673</);
+  assert.doesNotMatch(areaRoute, /href="tel:\+19414000165"/);
+  assert.doesNotMatch(areaRoute, />Call \(941\) 400-0165</);
 });

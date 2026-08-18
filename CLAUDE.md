@@ -269,7 +269,8 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 ## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
-- **Phone:** (844) 941-7673 — spells **ROSE**; E.164 `+18449417673`; **never `7376`**
+- **Primary public phone / canonical NAP:** (941) 400-0165; E.164 `+19414000165`.
+- **Toll-free advertising + online-support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. Keep this number on advertising, carrier-required SMS disclosures, and online/order support surfaces. Do not use it as the primary public NAP.
 - **Email:** info@houseofrosefl.com (primary) · book@houseofrosefl.com (**live alias** → routes to primary; confirmed with Amber 2026-08-01) — _use `info@` in public NAP, GBP, schema, and footer; `book@` is valid only as the booking/`mailto:` destination (`PUBLIC_BOOKING_EMAIL`). Supersedes the earlier "`book@` was never a real address" rule — that is now **false**, do not act on it or re-remove `book@` from env files or booking links._
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed. **Pickup hours are the same** (Mon–Fri 9–5); Sat/Sun pickup not set.
 - **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · **opened June 15, 2026** _(confirmed 2026-08-01 against the live Google Business Profile — this settles the June 15 vs July 9 question; **June 15 is correct**, July 9 is dead.)_
@@ -278,7 +279,7 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **GBP categories — 3 live, verified 2026-08-01:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`. Other categories are proposals until a new profile check and owner decision; see `docs/GOOGLE-BUSINESS-PROFILE.md`. Do not cite a five-category stack.
 - **GBP services link:** https://houseofrose.glossgenius.com/services
 - **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). **The lead prose descriptor is `Medical Aesthetics Practice`** under the current voice-reset rules — _not_ "advanced aesthetics & wellness studio", which is supporting/SEO language only.
-- **Phone SMS:** not enabled while Grasshopper verification is pending. Do not invite customers to text until activation is confirmed.
+- **Phone SMS:** not enabled on the toll-free line while Grasshopper verification is pending. Do not invite customers to text until activation is confirmed.
 - **GBP CTA:** call; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
 
 ## Providers & Team (memory — never re-ask)
