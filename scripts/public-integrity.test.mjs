@@ -663,7 +663,6 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'autologous platelet concentrate',
     'Hyaluronic-acid dermal filler',
     'manufactured injectable gel',
-    'four-person medical aesthetics practice',
     'makeup artistry',
     'permanent jewelry',
     'provider, appointment length, current price',
@@ -691,6 +690,9 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'A tired look can have more than one source.',
     'PRF and dermal filler begin with different materials.',
     'These four visits sit beyond the skin and injectable starting points above.',
+    "You're a person here, not an appointment slot.",
+    'House of Rose was built for real conversations, not a packed schedule.',
+    'Every recommendation comes with the reasoning behind it',
   ]) {
     if (homepage.includes(retired)) failures.push(`homepage contains retired copy ${JSON.stringify(retired)}`);
   }
