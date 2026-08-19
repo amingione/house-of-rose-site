@@ -31,6 +31,9 @@ import { costGuide } from './costGuide';
 import { comparison } from './comparison';
 import { localArea } from './localArea';
 import { caseStudy } from './caseStudy';
+// Social content pipeline — see docs/SOCIAL-CONTENT-PIPELINE.md
+import { socialAsset } from './socialAsset';
+import { socialPost } from './socialPost';
 
 export const schemaTypes = [
   // Shared objects
@@ -69,4 +72,7 @@ export const schemaTypes = [
   comparison,
   localArea,
   caseStudy,
+  // Social content pipeline — see docs/SOCIAL-CONTENT-PIPELINE.md
+  socialAsset,
+  socialPost,
 ];
