@@ -32,14 +32,18 @@ export interface FaceRealityServiceEducation {
  * Reviewed public facts for the current Face Reality program.
  *
  * Program structure and provider certification come from the complete Face
- * Reality research brief. Prices and current menu names mirror the August 6,
- * 2026 GlossGenius reconciliation in ALL-SERVICES-PRICING.MD. Outcome
- * timelines, product protocols, and unsupported medical claims are omitted.
+ * Reality research brief. Current menu names mirror the August 6, 2026
+ * GlossGenius reconciliation in ALL-SERVICES-PRICING.MD. `priceUsd` figures
+ * are retained here for internal/GlossGenius paste-ready use only — per the
+ * 2026-08-20 binding rule in CLAUDE.md, House of Rose pricing is never
+ * public, so no public renderer may read `priceUsd` or print a dollar
+ * amount. Outcome timelines, product protocols, and unsupported medical
+ * claims are omitted.
  */
 export const FACE_REALITY_PROGRAM = {
   packageSlug: 'face-reality-12-week-program',
   metaDescription:
-    'House of Rose offers a $99, 60-minute Acne Bootcamp Consultation and an $899 12-week Face Reality program with visits every two weeks.',
+    'House of Rose offers a 60-minute Acne Bootcamp Consultation and a 12-week Face Reality program. Ask about current pricing when you book.',
   duration: '12 weeks',
   cadence: 'In-studio visits every two weeks',
   summary:
@@ -110,22 +114,22 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
     distinctions: [
       {
         label: 'The consultation',
-        text: 'The first appointment is a 60-minute consultation at $99. You can book it directly.',
+        text: 'The first appointment is a 60-minute consultation. You can book it directly; ask about current pricing when you book.',
       },
       {
         label: 'The complete program',
-        text: 'The complete program is $899 and runs for 12 weeks, with in-studio visits every two weeks and daily home care between visits.',
+        text: 'The complete program runs for 12 weeks, with in-studio visits every two weeks and daily home care between visits. Ask about current pricing when you book.',
       },
       {
         label: 'Face Reality peels',
-        text: 'Four Face Reality peels are arranged through House of Rose: Acne Peel #1 at $135, Acne Peel #2 at $155, Bright Skin Peel at $165, and Acne Back Peel at $205.',
+        text: 'Four Face Reality peels are arranged through House of Rose: Acne Peel #1, Acne Peel #2, Bright Skin Peel, and Acne Back Peel, each priced separately.',
       },
     ],
     faqs: [
       {
         question: 'Is the Acne Bootcamp Consultation the complete program?',
         answer:
-          'No. The 60-minute consultation is $99. The complete 12-week program is $899 and includes its in-studio visits; home-care products are an additional purchase.',
+          'No. The 60-minute consultation is a separate, directly bookable appointment. The complete 12-week program includes its in-studio visits; home-care products are an additional purchase. Ask about current pricing when you book.',
       },
       {
         question: 'Who provides the Face Reality Acne Program?',
@@ -143,7 +147,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       },
     ],
     menuHeading: 'Consultation, 12-week program, and Face Reality peels',
-    menuIntro: 'Book the $99 consultation directly. The complete program is $899, and all four Face Reality peels are arranged with House of Rose because online booking is unavailable.',
+    menuIntro: 'Book the consultation directly. The complete program and all four Face Reality peels are separately listed; the peels are arranged with House of Rose because online booking is unavailable. Ask about current pricing when you book.',
     menuOrder: [0, 1, 2, 3, 4, 5],
   },
   'acne-bootcamp': {
@@ -173,7 +177,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       {
         question: 'Is Acne Bootcamp a single facial?',
         answer:
-          'No. Acne Bootcamp is one complete 12-week program. Begin with the directly bookable 60-minute consultation, priced at $99.',
+          'No. Acne Bootcamp is one complete 12-week program. Begin with the directly bookable 60-minute consultation; ask about current pricing when you book.',
       },
       {
         question: 'Who provides Acne Bootcamp at House of Rose?',
@@ -186,7 +190,7 @@ export const FACE_REALITY_SERVICE_EDUCATION = {
       },
     ],
     menuHeading: 'The 12-week program and consultation',
-    menuIntro: 'The $899 program includes in-studio visits every two weeks across 12 weeks. Home-care products are an additional purchase; begin with the directly bookable $99, 60-minute consultation.',
+    menuIntro: 'The complete program includes in-studio visits every two weeks across 12 weeks. Home-care products are an additional purchase; begin with the directly bookable 60-minute consultation. Ask about current pricing when you book.',
     menuOrder: [1, 0],
   },
 } as const satisfies Readonly<Record<FaceRealityServiceSlug, FaceRealityServiceEducation>>;

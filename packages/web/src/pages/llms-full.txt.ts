@@ -171,10 +171,14 @@ export const GET: APIRoute = async ({ site }) => {
         }
 
         if (education.menu) {
-          lines.push(``, `House of Rose menu (prices shown as of ${education.menu.verifiedAt}):`);
+          // House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+          // "Public website pricing is NEVER permitted"). This header intentionally
+          // does not claim "prices shown" — `item.price` is never populated by any
+          // public serviceEducation entry, and this loop never reads it.
+          lines.push(``, `House of Rose menu (verified as of ${education.menu.verifiedAt}):`);
           if (education.menu.intro) lines.push(education.menu.intro);
           for (const item of education.menu.items) {
-            const appointmentFacts = [item.price, item.duration].filter(Boolean).join(' · ');
+            const appointmentFacts = [item.duration].filter(Boolean).join(' · ');
             const itemNote = item.note ? ` ${item.note}` : '';
             lines.push(`- ${item.name}${appointmentFacts ? ` — ${appointmentFacts}` : ''}.${itemNote}`);
           }
@@ -193,7 +197,7 @@ export const GET: APIRoute = async ({ site }) => {
       if (s.slug === 'iv-hydration-therapy') {
         lines.push(``, `IV hydration menu:`);
         for (const item of VERIFIED_IV_MENU) {
-          lines.push(`- ${item.name} — $${item.price} · ${item.durationMinutes} minutes.`);
+          lines.push(`- ${item.name} — ${item.durationMinutes} minutes. Ask about current pricing when you book.`);
         }
         lines.push(``, `Current IV questions:`);
         for (const faq of IV_HYDRATION_FAQS) {
@@ -204,8 +208,8 @@ export const GET: APIRoute = async ({ site }) => {
       if (s.slug === 'prf-under-eyes') {
         lines.push(
           ``,
-          `Appointment price: ${PRF_UNDER_EYES_LISTING.name} — ${PRF_UNDER_EYES_LISTING.price}.`,
-          `Call House of Rose to confirm how much time to allow for the appointment.`,
+          `Appointment: ${PRF_UNDER_EYES_LISTING.name}.`,
+          `Call House of Rose to confirm how much time to allow for the appointment and to ask about current pricing.`,
           ``,
           `Common questions:`,
         );

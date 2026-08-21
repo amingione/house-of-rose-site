@@ -454,12 +454,15 @@ test('retired PRF cluster routes resolve one hop to reviewed canonical services'
     'small sample of your own blood',
     'Topical PRF Microneedling',
     'PRF Under-Eye',
-    '$495',
     'PRF Bio-Filler',
-    '$899',
+    'Ask about current pricing when you book.',
   ]) {
     assert.ok(hub.includes(reviewedFact), `PRF hub is missing substantive reviewed fact ${JSON.stringify(reviewedFact)}.`);
   }
+
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar amount
+  // may appear anywhere in the PRF hub's reviewed-facts section.
+  assert.ok(!/\$\d/.test(hub), 'PRF hub must not render a dollar-amount price.');
 });
 
 test('the indexable concerns hub appears exactly once in the XML sitemap', () => {
@@ -1244,7 +1247,7 @@ test('suite-rental application explains the next step without changing the form 
     ['non-reservation boundary', /form[\s\S]{0,120}(?:does not|doesn't)[\s\S]{0,80}reserve[\s\S]{0,40}(?:room|suite)/i],
     ['no-payment boundary', /(?:does not|doesn't)[\s\S]{0,80}(?:collect|take)[\s\S]{0,40}payment/i],
     ['rate-discussion step', /monthly rate[\s\S]{0,80}(?:discuss|review|confirm)/i],
-    ['verified monthly range', /\$850\s*[–-]\s*\$1,100\s*\/\s*month/i],
+    ['no public monthly rate; ask-at-application CTA', /ask about current pricing when you apply/i],
     ['verified room size', /10\s*[×x]\s*14\s*ft private suite/i],
     ['application-data review purpose', /application (?:information|details)[\s\S]{0,100}(?:review|assess)[\s\S]{0,80}(?:request|application)/i],
     ['availability/tour reply purpose', /(?:reply|contact)[\s\S]{0,100}(?:availability|tour)/i],
@@ -1288,7 +1291,7 @@ test('skin imaging explains the three views and keeps visible FAQs aligned with 
   const failures = [];
 
   for (const [label, pattern] of [
-    ['verified price', /\$65\b/],
+    ['no public price; ask-at-booking CTA', /ask about current pricing/i],
     ['three imaging views', /standard[^.!?]{0,50}cross-polarized[^.!?]{0,50}UV/i],
     ['short image capture', /taking the images takes a few minutes/i],
     ['optional appointment boundary', /optional[^.!?]{0,40}not required/i],
@@ -1376,23 +1379,22 @@ test('priority service pages retain reviewed facts instead of falling back to th
   const expectations = {
     'injectables-bio-fillers': [
       'Botox and Daxxify',
-      '$14 per unit',
+      'priced per unit',
       'Juvéderm Ultra XC',
       'Juvéderm Voluma XC',
       'RHA 1',
       'RHA 2',
       'RHA 3',
-      '$650–$850',
+      'each of the five products is priced separately',
       'two distinct consultations',
-      'PRF Under-Eye at $495',
-      'PRF Bio-Filler at $899',
+      'each priced separately',
       'Diana Morrison, RN',
       'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
     ],
     injectables: [
       'Botox',
       'Daxxify',
-      '$14 per unit',
+      'priced per unit',
       '30 minutes',
       '60 minutes',
     ],
@@ -1402,8 +1404,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'RHA 1',
       'RHA 2',
       'RHA 3',
-      '$650',
-      '$850',
+      'each priced separately',
     ],
     glo2facial: [
       'single-use OxyPod',
@@ -1417,7 +1418,7 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'no downtime',
       'Amber Mingione, Licensed Esthetician',
       'Who provides Glo2Facial at House of Rose?',
-      '$225',
+      'Ask about current pricing when you book.',
       '60 minutes',
     ],
     'forma-rf-facial': [
@@ -1426,23 +1427,18 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Does Forma use needles?',
       'does not use microneedles',
       'Lumecca Peak delivers filtered optical energy as IPL.',
-      'Forma and Forma Plus pricing by area',
+      'Forma and Forma Plus areas',
       'Face',
-      '$2,000',
       'Face & Neck',
-      '$3,000',
       'Eyes',
-      '$600',
       'Forma Plus — Abdomen',
       'Forma Plus — Arms',
       'Forma Plus — Inner-Outer Thighs',
       'Forma Plus — Lower Back',
-      '$1,750',
       'Forma Plus — Knees',
-      '$1,500',
       'Forma + Lumecca Bundle',
-      '$2,599',
       'Bundle price',
+      'Ask about current pricing when you book.',
     ],
     'lumecca-peak-ipl': [
       'InMode intense pulsed light (IPL) handpiece',
@@ -1451,46 +1447,40 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'legs, full face, chest, neck, face and neck, face, neck, and chest, spot treatment, hands',
       'InMode and the FDA classify the applicator separately from laser applicators',
       'Lumecca Peak IPL Consultation',
-      '$50',
       'Consultation appointment',
-      '$850 single · $2,400 series of 3',
-      '$500 single · $1,200 series of 3',
-      '$500 single · $1,300 series of 3',
-      '$350 single · $900 series of 3',
-      '$800 single · $2,000 series of 3',
-      '$950 single · $2,600 series of 3',
-      '$250 single · $800 series of 3',
+      'Single session or series of 3',
+      'Legs',
+      'Full Face',
+      'Chest',
+      'Neck',
+      'Face & Neck',
+      'Face, Neck & Chest',
+      'Spot Treatment',
       'Hands',
     ],
     morpheus8: [
       'fractional bipolar radiofrequency',
       'visible tone and texture',
       'Full Face',
-      '$1,200 single · $3,000 series of 3',
       'Face & Neck',
-      '$1,250 single · $3,500 series of 3',
+      'Single treatment or series of 3',
       'Morpheus8 Resurfacing — Full Face',
-      '$750 single · $2,000 series of 3',
       'Morpheus8 Resurfacing — Face & Neck',
-      '$950 single · $2,700 series of 3',
       'Morpheus8 Prime — Eyes & Mouth',
-      '$1,000 single · $2,200 series of 3',
       'Morpheus8 Prime — Around the Eyes',
-      '$450 single · $1,200 series of 3',
       'Morpheus8 Prime — Around the Mouth',
       'Morpheus8 Burst — Hyperhidrosis',
-      '$2,200–$2,400',
       'Package of 3',
       'Morpheus8 + Lumecca Bundle',
-      '$1,799',
       '2 total treatments',
     ],
     'morpheus8-body': [
       'same InMode platform',
       'body-skin tone, texture, eligible scars, and stretch marks',
       'Morpheus8 Burst Deep area packages',
-      '$3,500',
-      '$4,500',
+      '4 × 10-inch area',
+      '8 × 11-inch area',
+      'Series of 3',
     ],
     biorepeel: [
       'BioRePeel Cl3 Rejuvenation',
@@ -1502,15 +1492,11 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Duo Gold Spot Upgrade',
       'TCA stands for trichloroacetic acid',
       'BioRePeel Cl3 Rejuvenation',
-      '$250',
       '45 minutes',
       'BioRePeel Gold — Body',
-      '$325',
       'BioRePeel Advanced — Acne Scarring',
-      '$450',
       '75 minutes',
       'BioRePeel Duo — Gold Spot Upgrade',
-      '$395',
       '60 minutes',
     ],
     microneedling: [
@@ -1520,11 +1506,8 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'Injectable PRF',
       'Diana Morrison, RN',
       'Procell Therapies — Pro',
-      '$300',
       'Procell Therapies — MD',
-      '$400',
       'PRF Microneedling — Consultation',
-      '$595',
     ],
     prf: [
       'Platelet-rich fibrin (PRF) is prepared from a small sample of your own blood.',
@@ -1533,41 +1516,37 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'under medical direction',
       'Topical PRF Microneedling',
       'PRF Under-Eye',
-      '$495',
       'PRF Bio-Filler',
-      '$899',
+      'Ask about current pricing when you book.',
     ],
     'prf-injections': [
       'eligible Microneedling appointment',
       'applied topically at the skin surface',
       'PRF is prepared from a small sample of your own blood.',
       'PRF Under-Eye — Consultation',
-      '$495',
       'PRF Bio-Filler — Consultation',
-      '$899',
       'Diana Morrison, RN',
+      'Ask about current pricing when you book.',
     ],
     'permanent-jewelry': [
       'Aundrea Pedigo, Licensed Esthetician',
       'non-medical service',
       'not attached to the skin',
       'can be cut when removal is needed',
-      '$65',
+      'ask about current pricing when you book',
       '20 minutes',
     ],
     'iv-hydration-therapy': [
       'Diana Morrison, RN',
-      'from $99 to $185',
+      'each priced separately',
       'one 30-minute base IV and 5 45-minute base IVs',
     ],
     dermaplaning: [
       'fine vellus hair and accumulated dead skin cells',
       'Amber Mingione, Licensed Esthetician',
       'Dermaplaning — Facial (standalone)',
-      '$135',
       '50 minutes',
       'Dermaplaning — Add-On',
-      '$45',
       '25 minutes',
       'it does not change the hair’s thickness, color, or rate of growth',
     ],
@@ -1576,7 +1555,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'tirzepatide',
       'Diana Morrison, RN',
       'GLP-1 Consultation',
-      '$25',
       '40 minutes',
       'medication and ongoing program pricing',
     ],
@@ -1832,12 +1810,19 @@ test('priority service pages retain reviewed facts instead of falling back to th
   const injectablesHubEducation = injectablesHubHtml.match(/<section\b[^>]*data-injectables-hub-overview[^>]*>([\s\S]*?)<\/section>/i)?.[1] ?? '';
   const injectablesHubText = visibleText(injectablesHubEducation);
   for (const required of [
-    '20-minute, $50 Neuromodulator Consultation',
-    '60-minute, $300 Dermal Filler Consultation',
+    '20-minute Neuromodulator Consultation',
+    'Botox and Daxxify are both priced per unit',
+    '60-minute Dermal Filler Consultation',
+    'each of the five products is priced separately',
   ]) {
     if (!injectablesHubText.includes(required)) {
       failures.push(`injectables-bio-fillers: missing ${JSON.stringify(required)}`);
     }
+  }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear anywhere in the injectables hub overview.
+  if (/\$\d/.test(injectablesHubText)) {
+    failures.push('injectables-bio-fillers: renders a dollar-amount price.');
   }
   for (const unsupported of ['EZ Gel', 'RHA 4', 'Restylane', 'PRF Body Treatments']) {
     if (injectablesHubText.includes(unsupported)) {
@@ -1872,12 +1857,17 @@ test('priority service pages retain reviewed facts instead of falling back to th
     'Intravenous means that fluid is administered through a vein.',
     'IV drip appointments are offered as IV Hydration Therapy',
     '6 named base options',
-    'Hydration IV is the 30-minute option at $99.',
-    'The other 5 base options are 45-minute appointments priced from $160 to $185.',
+    'Hydration IV is the 30-minute option.',
+    'The other 5 base options are 45-minute appointments, each priced separately.',
   ]) {
     if (!visibleText(ivCategoryOverview).includes(required)) {
       failures.push(`iv-hydration-therapy category overview: missing ${JSON.stringify(required)}`);
     }
+  }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear anywhere in the IV category overview.
+  if (/\$\d/.test(visibleText(ivCategoryOverview))) {
+    failures.push('iv-hydration-therapy category overview: renders a dollar-amount price.');
   }
   for (const required of [
     'Which IV option is 30 minutes?',
@@ -1918,15 +1908,20 @@ test('priority service pages retain reviewed facts instead of falling back to th
     if (!faceRealityHtml.includes(required)) failures.push(`face-reality-acne-program: missing ${JSON.stringify(required)}`);
   }
   for (const [label, pattern] of [
-    ['Acne Peel #1', /Face Reality Acne Peel #1[\s\S]{0,80}\$135[\s\S]{0,40}50 minutes/i],
-    ['Acne Peel #2', /Face Reality Acne Peel #2[\s\S]{0,80}\$155[\s\S]{0,40}45 minutes/i],
-    ['Bright Skin Peel', /Face Reality Bright Skin Peel[\s\S]{0,80}\$165[\s\S]{0,40}45 minutes/i],
-    ['Acne Back Peel', /Face Reality Acne Back Peel[\s\S]{0,80}\$205[\s\S]{0,40}10 minutes/i],
+    ['Acne Peel #1', /Face Reality Acne Peel #1[\s\S]{0,80}50 minutes/i],
+    ['Acne Peel #2', /Face Reality Acne Peel #2[\s\S]{0,80}45 minutes/i],
+    ['Bright Skin Peel', /Face Reality Bright Skin Peel[\s\S]{0,80}45 minutes/i],
+    ['Acne Back Peel', /Face Reality Acne Back Peel[\s\S]{0,80}10 minutes/i],
   ]) {
     if (!pattern.test(faceRealityText)) failures.push(`face-reality-acne-program: missing exact ${label} row`);
   }
   if (!/online booking is unavailable/i.test(faceRealityText)) {
     failures.push('face-reality-acne-program: missing staff-arranged peel booking boundary');
+  }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear anywhere on the Face Reality service page.
+  if (/\$\d/.test(faceRealityText)) {
+    failures.push('face-reality-acne-program: renders a dollar-amount price.');
   }
 
   const bootcampHtml = mainHtml(readFileSync(path.join(DIST_ROOT, 'services/acne-bootcamp/index.html'), 'utf8'));
@@ -2221,34 +2216,40 @@ test('provider directory and legacy contact cards match reviewed provider facts'
 
 test('cost guides explain the current price structure instead of publishing a bare number', () => {
   const expectations = {
-    'botox-cost-punta-gorda': ['Botox', '$14 per unit', '30 minutes'],
-    'dermal-fillers-cost-punta-gorda': ['Juvéderm Ultra XC', 'Juvéderm Voluma XC', 'RHA 1', 'RHA 2', 'RHA 3', 'Dermal Filler Consultation', '$300'],
-    'forma-cost-punta-gorda': ['Face & Neck', '$3,000', 'Eyes', '$600', 'Forma + Lumecca Bundle', '$2,599'],
+    'botox-cost-punta-gorda': ['Botox', 'Daxxify', 'priced per unit', '30 minutes'],
+    'dermal-fillers-cost-punta-gorda': ['Juvéderm Ultra XC', 'Juvéderm Voluma XC', 'RHA 1', 'RHA 2', 'RHA 3', 'Dermal Filler Consultation', 'each with its own price'],
+    'forma-cost-punta-gorda': ['Forma — Face & Neck', 'Forma — Eyes', 'Forma Plus — Abdomen', 'Forma + Lumecca Bundle', 'prices by treatment area'],
     'ipl-photofacial-cost-punta-gorda': [
-      'Lumecca Peak IPL Consultation', '$50',
-      'Legs', '$850 single · $2,400 series of 3',
-      'Full Face', '$500 single · $1,200 series of 3',
-      'Chest', '$500 single · $1,300 series of 3',
-      'Neck', '$350 single · $900 series of 3',
-      'Face & Neck', '$800 single · $2,000 series of 3',
-      'Face, Neck & Chest', '$950 single · $2,600 series of 3',
-      'Spot Treatment', '$250 single · $800 series of 3',
-      'Hands', '$350 single · $900 series of 3',
+      'Lumecca Peak IPL Consultation',
+      'Legs — single session or series of 3',
+      'Full Face — single session or series of 3',
+      'Chest — single session or series of 3',
+      'Neck — single session or series of 3',
+      'Face & Neck — single session or series of 3',
+      'Face, Neck & Chest — single session or series of 3',
+      'Spot Treatment — single session or series of 3',
+      'Hands — single session or series of 3',
     ],
-    'biorepeel-cost-punta-gorda': ['BioRePeel Cl3 Rejuvenation', '$250', 'Series of 3', '$699'],
-    'microneedling-cost-punta-gorda': ['Procell Therapies — Pro', '$300', 'Procell Therapies — MD', '$400', 'PRF Microneedling — Consultation', '$595'],
+    'biorepeel-cost-punta-gorda': [
+      'BioRePeel Cl3 Rejuvenation',
+      'BioRePeel Cl3 Rejuvenation — Series of 3',
+      'BioRePeel Gold — Body',
+      'BioRePeel Advanced — Acne Scarring',
+      'BioRePeel Duo — Gold Spot Upgrade',
+    ],
+    'microneedling-cost-punta-gorda': ['Procell Therapies — Consultation', 'Procell Therapies — Pro', 'Procell Therapies — MD', 'PRF Microneedling — Consultation'],
     'morpheus8-cost-punta-gorda': [
-      'Full Face', '$1,200 single · $3,000 series of 3',
-      'Face & Neck', '$1,250 single · $3,500 series of 3',
-      'Morpheus8 Burst — Hyperhidrosis', '$2,200–$2,400 · package of 3',
-      'Morpheus8 Resurfacing — Full Face', '$750 single · $2,000 series of 3',
-      'Morpheus8 Resurfacing — Face & Neck', '$950 single · $2,700 series of 3',
-      'Morpheus8 Prime — Eyes & Mouth', '$1,000 single · $2,200 series of 3',
-      'Morpheus8 Prime — Around the Eyes', '$450 single · $1,200 series of 3',
-      'Morpheus8 Prime — Around the Mouth', '$450 single · $1,200 series of 3',
-      'Morpheus8 Burst Deep — Small Area', '$3,500 · 4 × 10-inch area · Series of 3',
-      'Morpheus8 Burst Deep — Large Area', '$4,500 · 8 × 11-inch area · Series of 3',
-      'Morpheus8 + Lumecca Bundle', '$1,799 · 2 total treatments',
+      'Full Face — single or series of 3',
+      'Face & Neck — single or series of 3',
+      'Morpheus8 Burst — Hyperhidrosis — package of 3',
+      'Morpheus8 Resurfacing — Full Face — single or series of 3',
+      'Morpheus8 Resurfacing — Face & Neck — single or series of 3',
+      'Morpheus8 Prime — Eyes & Mouth — single or series of 3',
+      'Morpheus8 Prime — Around the Eyes — single or series of 3',
+      'Morpheus8 Prime — Around the Mouth — single or series of 3',
+      'Morpheus8 Burst Deep — Small Area',
+      'Morpheus8 Burst Deep — Large Area',
+      'Morpheus8 + Lumecca Bundle — 2 total treatments',
     ],
   };
   const failures = [];
@@ -2267,6 +2268,11 @@ test('cost guides explain the current price structure instead of publishing a ba
     }
     for (const value of requiredCopy) {
       if (!text.includes(value)) failures.push(`${slug}: missing ${JSON.stringify(value)}`);
+    }
+    // House of Rose pricing is never public (binding 2026-08-20). No dollar
+    // amount may appear anywhere on a cost guide.
+    if (/\$\d/.test(text)) {
+      failures.push(`${slug}: renders a dollar-amount price.`);
     }
     const expectedVerificationDate = slug === 'morpheus8-cost-punta-gorda'
       ? 'August 14, 2026'
@@ -2677,8 +2683,8 @@ test('comparison pages expose only reviewed factual row types', () => {
   for (const requiredFact of [
     /Daxxify vs\. Botox/i,
     /product-specific unit/i,
-    /\$14 per Daxxify unit/i,
-    /\$14 per Botox unit/i,
+    /priced per Daxxify unit/i,
+    /priced per Botox unit/i,
     /60 minutes/i,
     /30 minutes/i,
     /Published onset evidence/i,
@@ -2702,6 +2708,11 @@ test('comparison pages expose only reviewed factual row types', () => {
   }
   if (/\bno downtime\b/i.test(daxxifyText)) {
     failures.push('daxxify-vs-botox: contains an unsupported no-downtime claim');
+  }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear on the Daxxify vs. Botox comparison.
+  if (/\$\d/.test(daxxifyText)) {
+    failures.push('daxxify-vs-botox: renders a dollar-amount price.');
   }
   if (!daxxifyHtml.includes('"@type":"FAQPage"')) failures.push('daxxify-vs-botox: missing FAQPage JSON-LD');
   if (!daxxifyHtml.includes('"@type":"Article"')) failures.push('daxxify-vs-botox: missing Article JSON-LD');
@@ -2753,17 +2764,21 @@ test('AI service inventory omits raw CMS prices and durations', () => {
 
   for (const reviewedDepth of [
     'Overview:',
-    'House of Rose menu (prices shown as of',
+    'House of Rose menu (verified as of',
     'IV hydration menu:',
-    'Hydration IV — $99 · 30 minutes.',
-    'Appointment price: PRF Under-Eye — Consultation — $495.',
-    'Call House of Rose to confirm how much time to allow for the appointment.',
+    'Hydration IV — 30 minutes. Ask about current pricing when you book.',
+    'Appointment: PRF Under-Eye — Consultation.',
+    'Call House of Rose to confirm how much time to allow for the appointment and to ask about current pricing.',
   ]) {
     assert.ok(
       fullFeed.includes(reviewedDepth),
       `Full service inventory is missing reviewed depth: ${JSON.stringify(reviewedDepth)}.`,
     );
   }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear in either AI feed.
+  assert.ok(!/\$\d/.test(compactFeed), 'Compact service inventory contains a dollar-amount price.');
+  assert.ok(!/\$\d/.test(fullFeed), 'Full service inventory contains a dollar-amount price.');
   assert.match(
     fullFeed,
     /Procell Microneedling[\s\S]{0,180}(?:controlled microchannels|microchannel)[\s\S]{0,220}Morpheus8[\s\S]{0,180}fractional bipolar radiofrequency/i,
@@ -2789,18 +2804,21 @@ test('packages index explains and links only the verified current program', () =
     '12-week program',
     'Visits take place every two weeks',
     'home-care review',
-    '$899',
+    'Ask about current pricing when you book.',
   ]) {
     assert.ok(text.includes(required), `Packages index is missing ${JSON.stringify(required)}.`);
   }
   for (const [label, pattern] of [
-    ['consultation price', /\$99[\s\S]{0,40}(?:Acne Bootcamp )?Consultation/i],
+    ['consultation duration', /60-minute Acne Bootcamp Consultation/i],
     ['provider licence and certification', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}Face Reality Certified Acne Specialist[\s\S]{0,180}(?:consultation|12-week program)/i],
     ['non-prescription esthetics boundary', /non-prescription esthetics program/i],
     ['medical-evaluation threshold', /deep[\s\S]{0,40}painful[\s\S]{0,40}widespread[\s\S]{0,80}actively scarring[\s\S]{0,140}medical evaluation/i],
   ]) {
     assert.match(text, pattern, `Packages index is missing ${label}.`);
   }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear on the packages index.
+  assert.ok(!/\$\d/.test(text), 'Packages index renders a dollar-amount price.');
 
   const packageRoutes = [...new Set(
     extractHrefAttributes(main, true)
@@ -2840,21 +2858,24 @@ test('Face Reality package distinguishes the consultation, complete program, and
     `Face Reality package meta description is ${metaDescription.length} characters.`,
   );
   for (const [label, pattern] of [
-    ['program price', /\$899/],
     ['program length', /12-week(?: Face Reality)? program/i],
-    ['consultation price', /\$99/],
     ['consultation length', /60-minute(?: Acne Bootcamp)? Consultation/i],
+    ['pricing CTA', /ask about current pricing when you book/i],
   ]) {
     assert.match(metaDescription, pattern, `Face Reality package metadata is missing ${label}.`);
   }
   for (const [label, pattern] of [
-    ['complete-program price', /\$899[\s\S]{0,100}(?:complete )?12-week program/i],
-    ['starting consultation', /60-minute[\s\S]{0,100}Acne Bootcamp Consultation[\s\S]{0,80}\$99[\s\S]{0,100}(?:booked directly|directly bookable)/i],
+    ['complete-program framing', /program price covers the complete 12-week program/i],
+    ['starting consultation', /60-minute[\s\S]{0,100}Acne Bootcamp Consultation can be booked directly/i],
     ['separate home-care purchase', /home-care products[\s\S]{0,120}(?:purchased|sold)[\s\S]{0,80}separately/i],
     ['provider licence and certification', /Amber Mingione, Licensed Esthetician[\s\S]{0,100}Face Reality Certified Acne Specialist/i],
   ]) {
     assert.match(text, pattern, `Face Reality package is missing ${label}.`);
   }
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear on the Face Reality package page or its metadata.
+  assert.ok(!/\$\d/.test(metaDescription), 'Face Reality package meta description renders a dollar-amount price.');
+  assert.ok(!/\$\d/.test(text), 'Face Reality package renders a dollar-amount price.');
   assert.ok(
     main.includes('href="/services/face-reality-acne-program/"'),
     'Face Reality package must link the related service overview.',
@@ -2922,22 +2943,25 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
       && visibleText(hub).includes('underarms, bikini line, chest, back, full leg, partial leg, and full arm'),
     'Waxing hub must identify the verified areas in each service lane.',
   );
-  for (const required of ['Eyebrow Shape, Trim &amp; Wax', '$25', '25 minutes']) {
+  for (const required of ['Eyebrow Shape, Trim &amp; Wax', '25 minutes']) {
     assert.ok(facial.includes(required), `Facial Waxing is missing ${required}.`);
   }
-  for (const required of ['Bikini Line', '$30', 'Full Arm', '$45']) {
+  for (const required of ['Bikini Line', 'Full Arm', '30 minutes']) {
     assert.ok(body.includes(required), `Body Waxing is missing ${required}.`);
   }
   for (const required of [
     'How do I book body waxing?',
     'Which bikini-area waxing appointment is available?',
-    'The available bikini-area appointment is Bikini Line at $30 for 10 minutes.',
-    '$30',
+    'The available bikini-area appointment is Bikini Line, a 10-minute appointment.',
     '10 minutes',
   ]) {
     assert.ok(visibleText(body).includes(required), `Body Waxing is missing ${required}.`);
   }
   assert.ok(readFileSync(bodyFile, 'utf8').includes('"@type":"FAQPage"'), 'Body Waxing must emit FAQPage JSON-LD for its reviewed question.');
+  // House of Rose pricing is never public (binding 2026-08-20). No dollar
+  // amount may appear on either waxing service page.
+  assert.ok(!/\$\d/.test(facial), 'Facial Waxing renders a dollar-amount price.');
+  assert.ok(!/\$\d/.test(body), 'Body Waxing renders a dollar-amount price.');
   assert.ok(!/10[–-]30 minutes|10[–-]40 minutes/i.test(hub), 'Waxing hub must not repeat disputed child durations.');
   assert.ok(serviceIndex.includes('href="/services/waxing/"'), 'Services index must link the Waxing hub.');
   assert.ok(!hub.includes('href="/services/collections/waxing/"'), 'Waxing hub must not send clients back to the same-named noindex collection.');
@@ -2948,7 +2972,9 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
     assert.ok(sitemap.includes(`<loc>${SITE_ORIGIN}${route}</loc>`), `Sitemap is missing ${route}`);
   }
   assert.ok(!publicInventory.includes('brazilian'), 'Public waxing inventory must not claim Brazilian waxing.');
-  assert.ok(prfUnderEye.includes('$495'), 'PRF Under Eyes must publish the verified current listing price.');
+  // House of Rose pricing is never public (binding 2026-08-20) — PRF Under
+  // Eyes must not publish a dollar-amount price anywhere on the page.
+  assert.ok(!/\$\d/.test(prfUnderEye), 'PRF Under Eyes must not render a dollar-amount price.');
   assert.match(prfUnderEyeHtml, /<title>PRF Under Eyes \| House of Rose Aesthetics<\/title>/i);
   assert.match(prfUnderEye, /<h1\b[^>]*>\s*PRF Under Eyes\s*<\/h1>/i);
   for (const schemaType of ['HealthAndBeautyBusiness', 'Service', 'BreadcrumbList', 'MedicalProcedure', 'FAQPage']) {
@@ -2979,7 +3005,7 @@ test('waxing hub is a factual directory and PRF under-eye uses reviewed public f
   );
   assert.ok(
     prfUnderEye.includes('PRF Under-Eye — Consultation'),
-    'PRF Under Eyes must preserve the exact GlossGenius listing label with the price.',
+    'PRF Under Eyes must preserve the exact GlossGenius listing label.',
   );
   assert.ok(
     !/\b(?:45|60|75) minutes\b/i.test(visibleText(prfUnderEye)),
@@ -3034,4 +3060,45 @@ test('collection routes are noindex navigation and stay out of discovery feeds',
   }
 
   assert.equal(failures.length, 0, formatFailures('Collection discovery/cannibalization drift', failures));
+});
+
+test('no public page, AI feed, or sitemap renders a House of Rose service/treatment price (binding 2026-08-20)', () => {
+  // House of Rose pricing is never public — no service page, cost guide,
+  // comparison, FAQ, package page, provider card, meta description, JSON-LD,
+  // or AI feed may render a dollar amount. See CLAUDE.md "Public website
+  // pricing is NEVER permitted."
+  //
+  // Scope note: the retail shop/checkout flow (Sanity `product` pricing via
+  // Stripe Elements) is intentionally out of scope. Retail goods need a
+  // displayed price to function, the shop ships behind `PUBLIC_SHOP_ENABLED`
+  // (currently off), and the owner's directive was specifically about
+  // service/treatment pricing, not retail products. `/shop/*` and
+  // `/checkout/*` routes are excluded below. Every BaseLayout page renders
+  // its content inside `<main id="main-content">`, with `<CartDrawer>`
+  // placed after `<Footer>` and outside `<main>` — scoping to `mainHtml()`
+  // (the same helper every other test in this file uses) means a live cart
+  // subtotal can never produce a false failure here, with no fragile
+  // nested-<div> regex required.
+  const failures = [];
+
+  for (const file of publicHtmlFiles) {
+    const route = routeForHtmlFile(file);
+    if (route.startsWith('/shop/') || route === '/shop' || route.startsWith('/checkout')) continue;
+
+    const html = readFileSync(file, 'utf8');
+    const text = visibleText(mainHtml(html));
+    if (/\$\d/.test(text)) {
+      failures.push(`${relativeToRepo(file)} (${route}): renders a dollar-amount price`);
+    }
+  }
+
+  const compactFeed = readFileSync(path.join(DIST_ROOT, 'llms.txt'), 'utf8');
+  const fullFeed = readFileSync(path.join(DIST_ROOT, 'llms-full.txt'), 'utf8');
+  if (/\$\d/.test(compactFeed)) failures.push('llms.txt renders a dollar-amount price');
+  if (/\$\d/.test(fullFeed)) failures.push('llms-full.txt renders a dollar-amount price');
+
+  const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
+  if (/\$\d/.test(sitemap)) failures.push('sitemap.xml renders a dollar-amount price');
+
+  assert.equal(failures.length, 0, formatFailures('House of Rose pricing must never be public', failures));
 });

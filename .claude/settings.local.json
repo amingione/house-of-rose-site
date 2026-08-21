@@ -38,7 +38,9 @@
       "Bash(git check-ignore *)",
       "Bash(netlify env:list --json --context production)",
       "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{try{const j=JSON.parse\\(d\\);console.log\\(Object.keys\\(j\\).join\\('\\\\n'\\)\\)}catch\\(e\\){console.log\\('PARSE FAIL:',d.slice\\(0,800\\)\\)}}\\)\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(sed -n '1,50p' ~/mcp-servers/notion-mcp/notion_mcp.py | sed -E 's/\\(ntn_\\)[A-Za-z0-9]*/\\\\1<redacted>/g' | cat -n | sed -n '1,50p')",
+      "Read(//Users/ambermingione/mcp-servers/notion-mcp/**)"
     ]
   },
   "enabledMcpjsonServers": [

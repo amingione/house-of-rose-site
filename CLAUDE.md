@@ -101,8 +101,20 @@ copy and must not be used as evidence of Amber's taste.
   premium as self-description, **boutique** as category language, **glow / glowing / glow from within**,
   **radiance / radiant**, timeless beauty, flawless, ageless, **pamper**, **indulge**, treat yourself,
   reveal your beauty, best version of yourself, anti-aging miracle, turn back time, instant
-  transformation, **pain-free**, **"no downtime"** (unless factually true for that exact procedure *and*
-  clinically reviewed), **guaranteed results**.
+  transformation, **pain-free** (pain is subjective — describe the actual sensation instead),
+  **guaranteed results**.
+- **Downtime is a factual claim, not marketing language — state it accurately per procedure.**
+  "No downtime" is correct and *should* be used where it is true. Do not route accurate downtime copy
+  to "clinical review"; check the manufacturer or clinical source and write what is true.
+  **Downtime ≠ aftercare restrictions.** A treatment can truthfully have no downtime *and* carry short
+  behavioural limits — neurotoxin has no recovery period *and* a 4-hour-upright / 24-hour-no-strenuous-
+  exercise rule. Both belong in the copy; neither cancels the other.
+  _Verified 2026-08-20 — do not re-litigate:_ **genuinely none** — Glo2Facial (manufacturer + dermatology
+  practice consensus; note there are no OxyGeneo tolerability trials in PubMed, so provider consensus is
+  the evidence base), IV hydration, neurotoxin injections, and the GLP-1 injection itself.
+  **Genuinely has downtime** — dermal fillers (swelling and bruising; plan two weeks before a
+  photographed event) and the Face Reality program (purging phase, roughly weeks three to six).
+  The live copy already draws this line correctly per service.
 - **Controlled-use language** — only when accurate, necessary, and not repeated: skin rejuvenation,
   evidence-based, advanced, personalized, customized, restore/restorative, confidence.
 - **AI is a creative collaborator:** it should originate concepts, hooks, names, narratives,
@@ -139,8 +151,13 @@ copy and must not be used as evidence of Amber's taste.
    **names break the naming law** (`Luxury Facial`, `Royal Rose Facial`, `Luxe Rose Facial`,
    `Signature Rose Facial`, `Signature Facial`, `Lunch Time Glow`, `Glowtox Facial`). Three of those
    **slugs are URLs** (`/services/luxury-facial/`, `/lunch-time-glow/`, `/glowtox-facial/`) — renaming
-   needs a 301 plan and costs existing ranking. The 9 `no downtime` instances need **clinical review per
-   service**, not a copy edit. Sized and itemized in `docs/DRIFT-CLEANUP-CHECKLIST.md` (P1).
+   needs a 301 plan and costs existing ranking. Sized and itemized in `docs/DRIFT-CLEANUP-CHECKLIST.md` (P1).
+
+**Closed 2026-08-20 — verified against manufacturer and clinical sources, do not re-open:**
+- ~~The 9 `no downtime` instances need per-service clinical review~~ — **done, and the rule itself was
+  wrong.** "No downtime" was listed as retired marketing language gated behind "clinical review," which
+  flagged copy that was already accurate and pushed the work back to Amber instead of resolving it. Some
+  treatments genuinely have no downtime. Verified per procedure and replaced with the factual rule above.
 
 **Closed 2026-08-01 — verified, do not re-open:**
 - ~~Lead-descriptor sweep~~ — **done.** Governing docs, shipping source, campaign kit, and internal briefs
@@ -155,6 +172,40 @@ copy and must not be used as evidence of Amber's taste.
   Any "July 9, 2026" reference is dead drift (already grep-banned in the drift checklist).
 - ~~Google chat not configured~~ — **not a config gap.** Google discontinued Business Profile chat
   entirely on 2024-07-31; there is nothing to connect. See `docs/GOOGLE-BUSINESS-PROFILE.md` §2.
+
+---
+
+## ⚠️ Public website pricing is NEVER permitted (binding — 2026-08-20)
+House of Rose pricing must never appear on any public surface of houseofrosefl.com. This corrects
+a live incident where InMode Forma/Forma Plus pricing (and, on inspection, Morpheus8, Lumecca Peak
+IPL, Botox, Daxxify, dermal fillers, BioRePeel, and Procell pricing) was rendering in plain dollar
+amounts across service pages, `/cost/*` guides, `/packages/*`, `/compare/*`, the homepage, structured
+data, and both `llms.txt`/`llms-full.txt` AI feeds. This directive **supersedes** any prior language
+in this file (including the "Two-Menu Content Architecture" section below) that described pricing as
+appropriate "decision support" for the website menu — pricing belongs on neither menu publicly.
+
+- **No public page, component, meta description, JSON-LD (`Offer`/`AggregateOffer`), AI feed, or
+  sitemap may render a dollar amount.** This includes `service.priceRange`/`service.price` from
+  Sanity — `PriceRangeBlock.astro` and `services/[slug].astro` are hardened to never read or format
+  that field into visible or structured output, regardless of what a future Sanity record contains.
+- **Every CTA where a price used to appear is replaced with a consultation/booking prompt** — the
+  standard phrasing across the site is "Ask about current pricing when you book." Never substitute
+  vague inflated language ("starting at," "investment," "free," "complimentary" — the last two also
+  risk triggering the § 456.062 disclosure requirement described in the compliance docs below).
+- **Numeric price data may still exist in source as internal-only data** (e.g. `priceUsd` fields in
+  `deviceServiceEducation.ts`, `morpheus8Pricing.ts`) for internal ops / GlossGenius paste-ready doc
+  generation — but no file under `packages/web/src/pages/**` or a public component may format that
+  data with a `$` or otherwise disclose it. Treat any new component or page touching these modules as
+  a place to re-verify this boundary, not assume it's already covered.
+- **Retail shop/checkout pricing is a separate, permitted context** — `/shop/*`, `/checkout`, and
+  cart components display real product prices because Stripe Elements needs a displayed price to
+  function (see Checkout section below). This rule concerns service/treatment pricing only.
+- **Regression guard:** `scripts/public-integrity.test.mjs` ("no public page, AI feed, or sitemap
+  renders a House of Rose service/treatment price") crawls the full `packages/web/dist/` build plus
+  both `llms*.txt` feeds and fails the build if any `/\$\d/` pattern appears outside the shop/checkout
+  scope. `scripts/treatment-price-publication-contract.test.ts` separately asserts the Sanity
+  `priceRange` disclosure path is structurally unreachable. Run both before shipping any change to a
+  service page, cost guide, or the pricing-adjacent lib files listed above.
 
 ---
 
@@ -573,14 +624,18 @@ facts and compliance limits apply to both.
 **Sanity = the customer-facing WEBSITE menu (houseofrosefl.com).**
 - Clear, substantive decision support that helps a client understand the service without a sales script
   or a repeated answer-first template.
-- Depth is proportional to the service: keep verified treatment facts, recovery, pricing, provider scope,
-  and evidence; suppress stale promotional fields until their voice and claims are reviewed.
+- Depth is proportional to the service: keep verified treatment facts, recovery, provider scope, and
+  evidence; suppress stale promotional fields until their voice and claims are reviewed. **Pricing is
+  the one exception — see "Public website pricing is NEVER permitted" above. Never render a dollar
+  amount on the website menu; every pricing CTA redirects to consultation/booking.**
 - SEO/AEO: keyword-optimized from real research (Semrush + Ahrefs, run with agents in parallel), local
   market comps (Punta Gorda / Charlotte County / SW FL), gap-filling vs local competitors, and internal
   interlinking across related services / concerns / cost / compare pages.
 - Sanity fields remain the source records, but a renderer may temporarily withhold unreviewed tagline,
   description, whoItsFor, FAQ, process, or SEO prose during the voice reset.
-- Publish only prices reconciled to the current GlossGenius menu; omit unresolved price structures.
+- **Never publish a price, reconciled or not** — see "Public website pricing is NEVER permitted" above.
+  Reconciling a price against the current GlossGenius menu is still required for internal ops and
+  GlossGenius paste-ready docs; it is never a reason to render that price on the website.
   Internal staffing lanes remain private, while verified provider attribution may be public under the
   rule below.
 

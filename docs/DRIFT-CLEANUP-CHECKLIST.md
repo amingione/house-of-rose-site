@@ -122,9 +122,13 @@ Three separate problems, in order of cost to fix:
    ranking those pages hold. **Do not rename without deciding the redirect plan.**
 3. **Body copy** — "lit-from-within glow" (the exact retired phrase), "walk out glowing," etc.
 
-⚠️ **The 9 `no downtime` instances need clinical review, not a copy edit.** Current rules permit
-the phrase only when it is true for that exact procedure and reviewed. It is plausibly accurate for Glo2Facial
-and doubtful for Lumecca IPL and BioRePeel. **Ask the provider per service.**
+✅ **RESOLVED 2026-08-20 — `no downtime` is a factual claim to be checked per procedure. It is not a
+copy edit and not a provider question.** Verified against manufacturer and clinical sources:
+**genuinely none** — Glo2Facial, IV hydration, neurotoxin injections, and the GLP-1 injection itself.
+**Genuinely has downtime** — Lumecca IPL (pigment darkens 5–7 days on the face, 10–14 on the body),
+Morpheus8, dermal fillers, and the Face Reality purging phase. The published copy and
+`scripts/public-integrity.test.mjs` already draw this line correctly per page — the Glo2Facial test
+*requires* the phrase, the Morpheus8 and Lumecca tests forbid it. See the downtime rule in `CLAUDE.md`.
 
 ### P0 · Wrong NAP (always drift)
 - [x] **DONE (2026-07-07)** `03_PLANS/HofR Mockups/…/SETUP-INSTRUCTIONS.md:125` — fixed to

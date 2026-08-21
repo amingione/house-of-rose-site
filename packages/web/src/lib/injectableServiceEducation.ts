@@ -65,7 +65,7 @@ export const INJECTABLE_SERVICE_EDUCATION = {
     title: 'Neurotoxin Injections',
     whatItIs: 'House of Rose offers Botox and Daxxify for expression lines created by facial movement.',
     whereItFits: 'The clearest clue is what happens when you frown, raise your brows, or squint: a movement-related line appears or becomes deeper.',
-    pricingSummary: 'Both products are priced at $14 per unit.',
+    pricingSummary: 'Both products are priced per unit. Ask about current pricing when you book.',
     consultation: {
       name: 'Neuromodulator Consultation',
       durationMinutes: 20,
@@ -84,8 +84,8 @@ export const INJECTABLE_SERVICE_EDUCATION = {
     },
     faqs: [
       {
-        question: 'Is $14 per unit the complete appointment price?',
-        answer: 'No. $14 is the rate for each unit of Botox or Daxxify, not a flat appointment total. The appointment total depends on the number of units administered.',
+        question: 'Is the per-unit rate the complete appointment price?',
+        answer: 'No. The per-unit rate is the price for each unit of Botox or Daxxify, not a flat appointment total. The appointment total depends on the number of units administered.',
       },
       {
         question: 'Are Botox and Daxxify units interchangeable?',
@@ -127,15 +127,15 @@ export const INJECTABLE_SERVICE_EDUCATION = {
     slug: 'dermal-fillers',
     title: 'Dermal Fillers',
     whatItIs: 'House of Rose offers five manufactured hyaluronic-acid gels from Juvéderm and RHA for selected areas of lost facial volume.',
-    whereItFits: 'Those areas are the lips, cheeks, and folds. The five products have different prices and appointment lengths; the $300 consultation does not require you to choose one in advance.',
-    pricingSummary: 'The five dermal filler products range from $650 to $850.',
+    whereItFits: 'Those areas are the lips, cheeks, and folds. The five products have different prices and appointment lengths; the consultation does not require you to choose one in advance.',
+    pricingSummary: 'The five dermal filler products are priced separately. Ask about current pricing when you book.',
     consultation: {
       name: 'Dermal Filler Consultation',
       durationMinutes: 60,
       priceUsd: 300,
     },
     bookingGuidance:
-      'Request the 60-minute, $300 Dermal Filler Consultation and describe where you have noticed a change in volume—lips, cheeks, or folds. You are not expected to arrive with a product name.',
+      'Request the 60-minute Dermal Filler Consultation and describe where you have noticed a change in volume—lips, cheeks, or folds. You are not expected to arrive with a product name.',
     provider: {
       publicName: 'Diana Morrison, RN',
       profilePath: '/about/providers/diana/',
@@ -152,7 +152,7 @@ export const INJECTABLE_SERVICE_EDUCATION = {
       },
       {
         question: 'Do I need to choose a filler product before the consultation?',
-        answer: 'No. Describe the area you want to discuss—lips, cheeks, or folds. The Dermal Filler Consultation is 60 minutes at $300; each of the five filler products has its own price and appointment length.',
+        answer: 'No. Describe the area you want to discuss—lips, cheeks, or folds. The Dermal Filler Consultation is 60 minutes; each of the five filler products has its own price and appointment length.',
       },
     ],
     links: [

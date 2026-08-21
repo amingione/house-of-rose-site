@@ -62,6 +62,16 @@ export interface DeviceServiceEducation {
  * has been reconciled between GlossGenius and the repository pricing ledger.
  * The same standard applies to a consultation used as the starting appointment.
  *
+ * INTERNAL-ONLY PRICING DATA (binding 2026-08-20, see CLAUDE.md "Public website
+ * pricing is NEVER permitted"): the `priceUsd` / `singlePriceUsd` /
+ * `seriesOfThreePriceUsd` numeric fields below are retained for internal
+ * ops / GlossGenius paste-ready doc generation only. No file under
+ * `packages/web/src/pages/**` or a public component may format these numbers
+ * with a "$" or otherwise render a dollar amount. Public consumers
+ * (`serviceEducation.ts`, `costFacts.ts`, and their renderers) read only
+ * `name`, area labels, and structural facts (single vs. series, area count)
+ * from this module — never the numeric prices themselves.
+ *
  * Forma and Lumecca Peak identities are cross-checked against InMode product
  * descriptions and FDA documentation. The FDA separates Forma's non-invasive
  * RF applicators, Morpheus8's fractional RF applicators, and Lumecca's IPL

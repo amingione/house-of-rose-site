@@ -31,7 +31,7 @@ export const PERMANENT_JEWELRY_EDUCATION: PermanentJewelryEducation = {
   whatItIs:
     'Permanent jewelry is a chain fitted in person and closed without a traditional clasp. At House of Rose, it is a non-medical service.',
   appointment:
-    'The fitting and closure happen during one appointment: the chain is fitted to the wearer, then its ends are joined by welding. The appointment is $65 and takes 20 minutes.',
+    'The fitting and closure happen during one appointment: the chain is fitted to the wearer, then its ends are joined by welding. The appointment takes 20 minutes; ask about current pricing when you book.',
   fitAndClosure:
     'The weld closes the chain so a traditional clasp is not needed. Clasp-free describes how the jewelry closes; it is not attached to the skin.',
   permanenceAndRemoval:

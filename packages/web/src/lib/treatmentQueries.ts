@@ -166,6 +166,11 @@ const PRICE_UNIT_LABELS: Record<PriceUnit, string> = {
   program: 'program',
 };
 
+// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+// "Public website pricing is NEVER permitted"). No public renderer calls this
+// helper — `PriceRangeBlock.astro` was hardened to never format `priceRange`
+// as a dollar amount. Retained only for potential internal/admin tooling;
+// do not wire it into any file under `packages/web/src/pages/**`.
 export function formatPriceRange(range: TreatmentPriceRange): string {
   const unit = PRICE_UNIT_LABELS[range.unit];
   const money = (n: number) =>

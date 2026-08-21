@@ -63,9 +63,11 @@ const getChildTreatmentDuration = (childSlug: string, fallback?: string): string
   ['injectables', 'prf-under-eyes'].includes(childSlug)
     ? undefined
     : getVerifiedServiceDuration(childSlug) ?? fallback;
-// Reviewed education owns the current facts for covered pages. Keep stale or
-// ambiguous Sanity price strings out of the hero and structured data.
-const displayServicePrice = serviceEducation ? undefined : service.price;
+// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+// "Public website pricing is NEVER permitted"). This supersedes the prior
+// serviceEducation-only suppression: no service page may render `service.price`
+// or `service.priceRange`, regardless of whether reviewed education exists.
+const displayServicePrice = undefined;
 const splitInjectableSlugs = new Set(['injectables', 'dermal-fillers']);
 const splitInjectableSibling = slug === 'injectables'
   ? { slug: 'dermal-fillers', title: 'Dermal Fillers' }
@@ -101,10 +103,10 @@ const verifiedCostGuide = service.costGuides?.find((guide) => getVerifiedCostFac
 // Recovery and aftercare are medical-support copy, not general marketing copy.
 // The current Sanity records do not carry source or clinical-review provenance,
 // so they remain stored for review but do not render or enter structured data.
-// The published Glo2 range contains retired combination prices and conflicts
-// with the current GlossGenius standalone price. Omit it until commerce truth
-// and Sanity are reconciled.
-const reviewedPriceRange = serviceEducation ? undefined : service.priceRange;
+// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+// "Public website pricing is NEVER permitted"). This supersedes the prior
+// serviceEducation-only suppression: `service.priceRange` is never read here.
+const reviewedPriceRange = undefined;
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -136,6 +138,9 @@ const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
 const resultImages = slug ? getServiceResultImages(slug) : [];
 const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'face-reality-acne-treatment'].includes(slug ?? '');
 
+// displayServicePrice is always undefined (House of Rose pricing is never public,
+// binding 2026-08-20) — priceMatch/priceNumber therefore always resolve to null,
+// which keeps serviceJsonLd()'s priceSpecification out of the public JSON-LD.
 const priceMatch = displayServicePrice ? String(displayServicePrice).match(/\d[\d,]*(?:\.\d+)?/) : null;
 const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
 const factualServiceDescription = slug === 'prf-under-eyes'
@@ -352,7 +357,10 @@ const pageDescription = factualServiceDescription;
     </section>
   )}
 
-  <!-- Reviewed investment data only; recovery claims remain suppressed pending source review. -->
+  <!-- House of Rose pricing is never public (binding 2026-08-20) — reviewedPriceRange
+       is always undefined above, so this block never renders. Left in place as a
+       structural no-op rather than deleted, since PriceRangeBlock itself is hardened
+       to never print a literal price if it is ever reintroduced. -->
   {reviewedPriceRange && (
     <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20">

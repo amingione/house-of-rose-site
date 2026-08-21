@@ -6,10 +6,7 @@ import { PERMANENT_JEWELRY_EDUCATION } from '@/lib/permanentJewelryEducation';
 import { IV_HYDRATION_EDUCATION } from '@/lib/ivHydrationFacts';
 import { DERMAPLANING_EDUCATION } from '@/lib/dermaplaningEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
-import {
-  formatMorpheus8Price,
-  MORPHEUS8_PRICING,
-} from '@/lib/morpheus8Pricing';
+import { MORPHEUS8_PRICING } from '@/lib/morpheus8Pricing';
 import {
   FACE_REALITY_PROGRAM,
   getFaceRealityServiceEducation,
@@ -17,6 +14,11 @@ import {
 
 export interface ServiceEducationItem {
   name: string;
+  /**
+   * Optional structural note (e.g. "Priced per unit", "Single session or
+   * series of 3"). Never a dollar amount — House of Rose pricing is never
+   * public. See CLAUDE.md "Public website pricing is NEVER permitted."
+   */
   price?: string;
   duration?: string;
   note?: string;
@@ -48,9 +50,6 @@ export interface ServiceEducationContent {
   }[];
 }
 
-const formatUsd = (amountUsd: number, qualifier?: 'per unit'): string =>
-  `$${amountUsd.toLocaleString('en-US')}${qualifier ? ` ${qualifier}` : ''}`;
-
 const formatMinutes = (durationMinutes: number): string =>
   `${durationMinutes} minutes`;
 
@@ -62,8 +61,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       kicker: faceReality.title,
       heading: faceReality.heading,
       metaDescription: faceReality.slug === 'acne-bootcamp'
-        ? 'Acne Bootcamp at House of Rose: a $99 consultation or the $899 Face Reality 12-week program with in-studio visits and home care.'
-        : 'Face Reality at House of Rose includes a $99 consultation, the $899 12-week program, and four staff-arranged peels from $135 to $205.',
+        ? 'Acne Bootcamp at House of Rose: a consultation or the complete Face Reality 12-week program. Ask about current pricing when you book.'
+        : 'Face Reality at House of Rose includes a consultation, the 12-week program, and four staff-arranged peels. Ask about current pricing when you book.',
       paragraphs: [
         faceReality.whatItIs,
         faceReality.whyTheStructureMatters,
@@ -79,7 +78,6 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           if (!item) throw new Error(`Invalid Face Reality menu index: ${index}`);
           return {
             name: item.name,
-            price: formatUsd(item.priceUsd),
             duration: item.duration,
             note: item.note,
           };
@@ -122,7 +120,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: WEIGHT_MANAGEMENT_EDUCATION.title,
       heading: 'Semaglutide and tirzepatide work through different receptors.',
-      metaDescription: 'House of Rose offers a $25 GLP-1 weight-management consultation with Diana Morrison, RN in Punta Gorda. Compare semaglutide and tirzepatide.',
+      metaDescription: 'House of Rose offers a GLP-1 consultation with Diana Morrison, RN in Punta Gorda. Compare semaglutide and tirzepatide, and ask about current pricing.',
       paragraphs: [
         WEIGHT_MANAGEMENT_EDUCATION.whatItIs,
         WEIGHT_MANAGEMENT_EDUCATION.provider,
@@ -137,7 +135,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           text: WEIGHT_MANAGEMENT_EDUCATION.medicationDifference,
         },
         {
-          label: 'What the $25 covers',
+          label: 'What the consultation covers',
           text: WEIGHT_MANAGEMENT_EDUCATION.consultationRole,
         },
         {
@@ -147,7 +145,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: WEIGHT_MANAGEMENT_EDUCATION.consultation.name,
-        intro: 'The 40-minute consultation with Diana Morrison, RN is $25. Call House of Rose for medication and ongoing program pricing.',
+        intro: 'The 40-minute consultation with Diana Morrison, RN has its own listing. Call House of Rose for medication and ongoing program pricing.',
         verifiedAt: new Date(`${WEIGHT_MANAGEMENT_EDUCATION.consultation.verifiedAt}T00:00:00Z`).toLocaleDateString('en-US', {
           month: 'long',
           day: 'numeric',
@@ -157,13 +155,12 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         items: [
           {
             name: WEIGHT_MANAGEMENT_EDUCATION.consultation.name,
-            price: formatUsd(WEIGHT_MANAGEMENT_EDUCATION.consultation.priceUsd),
             duration: formatMinutes(WEIGHT_MANAGEMENT_EDUCATION.consultation.durationMinutes),
           },
         ],
       },
       faqs: WEIGHT_MANAGEMENT_EDUCATION.faqs,
-      faqHeading: 'The two medications, the $25 consultation, and who you meet.',
+      faqHeading: 'The two medications, the consultation, and who you meet.',
       links: [
         {
           href: '/about/providers/diana/',
@@ -177,7 +174,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: DERMAPLANING_EDUCATION.title,
       heading: 'Surface exfoliation and peach-fuzz removal in one service.',
-      metaDescription: 'Dermaplaning at House of Rose removes fine facial hair and surface buildup. Compare the $135 standalone service and $45 add-on.',
+      metaDescription: 'Dermaplaning at House of Rose removes fine facial hair and surface buildup. Compare the standalone service and add-on. Ask about current pricing.',
       paragraphs: [DERMAPLANING_EDUCATION.whatItIs, DERMAPLANING_EDUCATION.whereItFits],
       distinctions: [
         {
@@ -191,11 +188,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: 'Standalone or add-on',
-        intro: 'The standalone facial is $135 for 50 minutes; the add-on is $45 for 25 minutes.',
+        intro: 'The standalone facial is 50 minutes; the add-on is 25 minutes. Ask about current pricing when you book.',
         verifiedAt: 'August 6, 2026',
         items: DERMAPLANING_EDUCATION.menu.map((item) => ({
           name: item.name,
-          price: formatUsd(item.priceUsd),
           duration: formatMinutes(item.durationMinutes),
         })),
       },
@@ -218,7 +214,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: 'IV Hydration Therapy',
       heading: IV_HYDRATION_EDUCATION.heading,
-      metaDescription: 'Compare six IV hydration options by appointment length and price, and meet the RN who provides them at House of Rose Aesthetics in Punta Gorda.',
+      metaDescription: 'Compare six IV hydration options by appointment length at House of Rose in Punta Gorda, and meet the RN who provides them. Ask about current pricing.',
       paragraphs: [
         IV_HYDRATION_EDUCATION.introduction,
         IV_HYDRATION_EDUCATION.provider,
@@ -250,7 +246,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: PERMANENT_JEWELRY_EDUCATION.title,
       heading: 'A fitted chain without a traditional clasp.',
-      metaDescription: 'Permanent jewelry at House of Rose is a fitted, clasp-free chain appointment in Punta Gorda. The 20-minute fitting is $65.',
+      metaDescription: 'Permanent jewelry at House of Rose is a fitted, clasp-free chain appointment in Punta Gorda. The fitting takes 20 minutes. Ask about current pricing.',
       paragraphs: [
         PERMANENT_JEWELRY_EDUCATION.whatItIs,
         PERMANENT_JEWELRY_EDUCATION.appointment,
@@ -268,7 +264,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: 'The fitting appointment',
-        intro: 'The fitting is $65 and takes 20 minutes. If the chain material or charm matters to you, call before booking to ask what is available.',
+        intro: 'The fitting takes 20 minutes. If the chain material or charm matters to you, call before booking to ask what is available and about current pricing.',
         verifiedAt: new Date(`${PERMANENT_JEWELRY_EDUCATION.menu.verifiedAt}T00:00:00Z`).toLocaleDateString('en-US', {
           month: 'long',
           day: 'numeric',
@@ -278,7 +274,6 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         items: [
           {
             name: PERMANENT_JEWELRY_EDUCATION.menu.name,
-            price: formatUsd(PERMANENT_JEWELRY_EDUCATION.menu.priceUsd),
             duration: formatMinutes(PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes),
           },
         ],
@@ -305,10 +300,10 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? 'Chin, upper lip, and two brow appointments.'
           : 'Seven body areas, each with its own appointment.',
       metaDescription: waxing.slug === 'waxing'
-        ? 'Compare 11 facial and body waxing appointments at House of Rose in Punta Gorda, including current areas, prices, timing, and booking paths.'
+        ? 'Compare 11 facial and body waxing appointments at House of Rose in Punta Gorda, including current areas and timing. Ask about current pricing.'
         : waxing.slug === 'facial-waxing'
-          ? 'Facial waxing at House of Rose includes chin, upper lip, and two brow appointments, with prices from $10 to $25.'
-          : 'Body waxing at House of Rose includes seven area-specific appointments, with current prices from $20 to $65.',
+          ? 'Facial waxing at House of Rose includes chin, upper lip, and two brow appointments. Ask about current pricing when you book.'
+          : 'Body waxing at House of Rose includes seven area-specific appointments. Ask about current pricing when you book.',
       paragraphs: [
         waxing.whatItIs,
         waxing.whereItFits,
@@ -321,14 +316,13 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? {
             heading: waxing.menu.heading,
             intro: waxing.slug === 'waxing'
-              ? 'Facial prices range from $10–$25; body prices range from $20–$65. Each row includes the appointment length.'
+              ? 'Each row includes the appointment length. Ask about current pricing by area when you book.'
               : waxing.slug === 'facial-waxing'
                 ? 'Each appointment is booked by facial area or brow service.'
-                : 'Prices range from $20–$65. Appointment lengths range from 10–40 minutes by area.',
+                : 'Appointment lengths range from 10–40 minutes by area. Ask about current pricing when you book.',
             verifiedAt: 'August 6, 2026',
             items: waxing.menu.items.map((item) => ({
               name: item.name,
-              price: formatUsd(item.priceUsd),
               duration: formatMinutes(item.durationMinutes),
               note: waxing.slug === 'waxing' ? item.category : undefined,
             })),
@@ -360,8 +354,8 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ? 'Botox and Daxxify for movement-related lines.'
         : 'Five hyaluronic-acid fillers for lips, cheeks, and folds.',
       metaDescription: isNeurotoxin
-        ? 'Botox and Daxxify at House of Rose are $14 per product-specific unit. A 20-minute Neuromodulator Consultation is $50.'
-        : 'Compare five hyaluronic-acid fillers from $650 to $850 at House of Rose, plus the $300 Dermal Filler Consultation.',
+        ? 'Botox and Daxxify at House of Rose are priced per product-specific unit, with a separate 20-minute Neuromodulator Consultation. Ask about current pricing.'
+        : 'Compare five hyaluronic-acid fillers at House of Rose, plus the Dermal Filler Consultation. Ask about current pricing when you book.',
       paragraphs: [
         injectable.whatItIs,
         injectable.whereItFits,
@@ -376,7 +370,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               ? [
                   {
                     label: 'The consultation',
-                    text: `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. Treatment is priced separately by the number of product-specific units administered.`,
+                    text: `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and has its own listing. Treatment is priced separately by the number of product-specific units administered.`,
                   },
                 ]
               : []),
@@ -386,7 +380,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               label: 'Per-unit pricing',
-              text: 'Botox and Daxxify are each $14 per unit, not one flat appointment price. The appointment total depends on the number of units administered, and the two products’ units cannot be compared or converted.',
+              text: 'Botox and Daxxify are each priced per unit, not as one flat appointment price. The appointment total depends on the number of units administered, and the two products’ units cannot be compared or converted.',
             },
           ]
         : [
@@ -396,7 +390,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             },
             {
               label: 'Selected facial areas',
-              text: 'The 60-minute, $300 consultation covers changes in volume at the lips, cheeks, or folds. The five HA products range from $650 to $850, with appointment lengths from 30 to 45 minutes.',
+              text: 'The 60-minute consultation covers changes in volume at the lips, cheeks, or folds. The five HA products have appointment lengths from 30 to 45 minutes, each priced separately.',
             },
             ...(injectable.bookingGuidance
               ? [
@@ -414,31 +408,29 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
             ? 'Consultation and dermal filler products'
             : 'Dermal filler products',
         intro: isNeurotoxin && injectable.consultation && injectable.followUp
-          ? `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. ${injectable.pricingSummary} The ${injectable.followUp.name} takes ${formatMinutes(injectable.followUp.durationMinutes)} and is ${formatUsd(injectable.followUp.priceUsd)}; it is a post-appointment follow-up.`
+          ? `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)}. ${injectable.pricingSummary} The ${injectable.followUp.name} takes ${formatMinutes(injectable.followUp.durationMinutes)}; it is a post-appointment follow-up. Ask about current pricing when you book.`
           : injectable.consultation
-            ? `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)} and ${formatUsd(injectable.consultation.priceUsd)}. ${injectable.pricingSummary}`
-          : injectable.pricingSummary,
+            ? `The ${injectable.consultation.name} is ${formatMinutes(injectable.consultation.durationMinutes)}. ${injectable.pricingSummary} Ask about current pricing when you book.`
+          : `${injectable.pricingSummary} Ask about current pricing when you book.`,
         verifiedAt: 'August 6, 2026',
         items: [
           ...(injectable.consultation
             ? [
                 {
                   name: injectable.consultation.name,
-                  price: formatUsd(injectable.consultation.priceUsd),
                   duration: formatMinutes(injectable.consultation.durationMinutes),
                 },
               ]
             : []),
           ...injectable.products.map((product) => ({
             name: product.name,
-            price: formatUsd(product.price.amountUsd, product.price.qualifier),
             duration: formatMinutes(product.durationMinutes),
+            note: product.price.qualifier === 'per unit' ? 'Priced per unit' : undefined,
           })),
           ...(isNeurotoxin && injectable.followUp
             ? [
                 {
                   name: injectable.followUp.name,
-                  price: formatUsd(injectable.followUp.priceUsd),
                   duration: formatMinutes(injectable.followUp.durationMinutes),
                   note: injectable.followUp.note,
                 },
@@ -448,7 +440,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       },
       faqs: injectable.faqs,
       faqHeading: isNeurotoxin
-        ? 'Price, product units, and the detail that helps when you ask.'
+        ? 'Product units and the detail that helps when you ask.'
         : 'What the products share, what filler addresses, and the consultation.',
       links: injectable.links,
     };
@@ -471,12 +463,12 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       kicker: skinRenewal.title,
       heading,
       metaDescription: skinRenewal.slug === 'biorepeel'
-        ? 'Compare five current BioRePeel appointments at House of Rose, including direct face options and provider-arranged body, acne-scarring, and gold spot variants.'
+        ? 'Compare five current BioRePeel appointments at House of Rose, including direct face options and provider-arranged body variants. Ask about current pricing.'
         : skinRenewal.slug === 'microneedling'
-          ? 'Procell Microneedling at House of Rose includes Pro, MD, and topical PRF appointments, with current prices and timing.'
+          ? 'Procell Microneedling at House of Rose includes Pro, MD, and topical PRF appointments. Ask about current pricing when you book.'
           : skinRenewal.slug === 'prf-injections'
-            ? 'PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN at House of Rose.'
-            : 'Compare topical PRF with Microneedling and injectable PRF appointments at House of Rose in Punta Gorda.',
+            ? 'PRF Under-Eye and PRF Bio-Filler are injectable consultations provided by Diana Morrison, RN at House of Rose. Ask about current pricing when you book.'
+            : 'Compare topical PRF with Microneedling and injectable PRF appointments at House of Rose in Punta Gorda. Ask about current pricing.',
       paragraphs: [
         skinRenewal.whatItIs,
         skinRenewal.whereItFits,
@@ -492,16 +484,15 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
               ? 'PRF Under-Eye and PRF Bio-Filler'
               : 'PRF appointments',
         intro: skinRenewal.slug === 'biorepeel'
-          ? 'The $250 standalone face treatment and $699 Series of 3 are directly bookable. Call House of Rose to discuss Gold Body, Advanced Acne Scarring, or the Duo Gold Spot Upgrade.'
+          ? 'The standalone face treatment and Series of 3 are directly bookable. Call House of Rose to discuss Gold Body, Advanced Acne Scarring, or the Duo Gold Spot Upgrade. Ask about current pricing when you book.'
           : skinRenewal.slug === 'prf' || skinRenewal.slug === 'prf-injections'
             ? skinRenewal.slug === 'prf'
-              ? 'PRF Microneedling is $595 for 60 minutes; PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
-              : 'PRF Under-Eye is $495 with timing confirmed by phone; PRF Bio-Filler is $899 for 45 minutes.'
+              ? 'PRF Microneedling is a 60-minute listing; PRF Under-Eye has timing confirmed by phone; PRF Bio-Filler is 45 minutes. Ask about current pricing when you book.'
+              : 'PRF Under-Eye has timing confirmed by phone; PRF Bio-Filler is 45 minutes. Ask about current pricing when you book.'
             : undefined,
         verifiedAt: 'August 6, 2026',
         items: skinRenewal.menu.items.map((item) => ({
           name: item.name,
-          price: `$${item.priceUsd}`,
           duration: item.durationMinutes ? `${item.durationMinutes} minutes` : undefined,
           note: item.note,
         })),
@@ -560,7 +551,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'What happens during the three-step facial.',
-      metaDescription: 'Glo2Facial at House of Rose combines an OxyPod surface pass, topical infusion, and facial massage in a 60-minute, $225 appointment.',
+      metaDescription: 'Glo2Facial at House of Rose combines an OxyPod surface pass, topical infusion, and facial massage in a 60-minute appointment. Ask about pricing.',
       paragraphs: [
         device.whatItIs,
         device.whereItFits,
@@ -584,12 +575,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ],
       menu: {
         heading: 'Standalone Glo2Facial',
-        intro: 'The 60-minute Glo2Facial is directly bookable at $225.',
+        intro: 'The 60-minute Glo2Facial is directly bookable. Ask about current pricing when you book.',
         verifiedAt: 'August 14, 2026',
         items: [
           {
             name: 'Glo2Facial',
-            price: device.menu.priceUsd ? formatUsd(device.menu.priceUsd) : undefined,
             duration: device.menu.duration,
           },
         ],
@@ -631,13 +621,12 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   if (device.slug === 'lumecca-peak-ipl') {
     const areaList = device.currentAreas?.join(', ') ?? '';
     const consultation = device.menu.consultation;
-    const treatmentPriceRange = device.menu.treatmentPriceRange;
     const singleAndSeriesPrices = device.menu.singleAndSeriesPrices ?? [];
 
     return {
       kicker: device.title,
       heading: 'Filtered light for visible pigment and uneven tone.',
-      metaDescription: 'Lumecca Peak IPL at House of Rose uses filtered optical energy. Compare the $50 consultation and exact single- or three-session prices across eight areas.',
+      metaDescription: 'Lumecca Peak IPL at House of Rose uses filtered optical energy. Compare the consultation and single- or three-session options. Ask about pricing.',
       paragraphs: [
         device.whatItIs,
         `${device.whereItFits} House of Rose books it for ${areaList}.`,
@@ -651,43 +640,39 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           label: 'Where House of Rose offers it',
           text: `Appointments are organized by treatment area: ${areaList}.`,
         },
-        ...(treatmentPriceRange && consultation
+        ...(consultation
           ? [
               {
                 label: 'How treatment pricing is organized',
-                text: `Single sessions range from $250 to $950 by area. A series of three ranges from $800 to $2,600 by area. The ${formatUsd(consultation.priceUsd)} consultation is its own appointment.`,
+                text: `Pricing varies by area and by whether you choose a single session or a series of three. The consultation is its own separate appointment.`,
               },
             ]
           : []),
       ],
       menu: consultation && singleAndSeriesPrices.length > 0
         ? {
-            heading: 'Consultation and Lumecca Peak pricing by area',
-            intro: `The consultation is ${formatUsd(consultation.priceUsd)}. For each of the eight treatment areas, compare one session with a series of three.`,
+            heading: 'Consultation and Lumecca Peak options by area',
+            intro: `The consultation is its own listing. For each of the eight treatment areas, compare one session with a series of three. Ask about current pricing when you book.`,
             verifiedAt: 'August 6, 2026',
             items: [
               {
                 name: consultation.name,
-                price: formatUsd(consultation.priceUsd),
                 note: 'Consultation appointment',
               },
               ...singleAndSeriesPrices.map((item) => ({
                 name: item.name,
-                price: `${formatUsd(item.singlePriceUsd)} single · ${formatUsd(item.seriesOfThreePriceUsd)} series of 3`,
+                note: 'Single session or series of 3',
               })),
             ],
           }
         : consultation
           ? {
               heading: 'Lumecca Peak consultation',
-              intro: treatmentPriceRange
-                ? `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Separate treatment listings range from $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')} to $${treatmentPriceRange.maximumUsd.toLocaleString('en-US')}, based on ${treatmentPriceRange.basis}.`
-                : `The ${formatUsd(consultation.priceUsd)} consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed.`,
+              intro: `The consultation is the starting appointment. Treatment pricing is separate and depends on the area being discussed. Ask about current pricing when you book.`,
               verifiedAt: 'August 6, 2026',
               items: [
                 {
                   name: consultation.name,
-                  price: formatUsd(consultation.priceUsd),
                 },
               ],
             }
@@ -701,11 +686,11 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           question: 'Which areas can I ask about for Lumecca Peak at House of Rose?',
           answer: `House of Rose offers Lumecca Peak for ${areaList}. The service is booked by treatment area.`,
         },
-        ...(treatmentPriceRange && consultation
+        ...(consultation
           ? [
               {
-                question: `What does the $${treatmentPriceRange.minimumUsd.toLocaleString('en-US')}–$${treatmentPriceRange.maximumUsd.toLocaleString('en-US')} Lumecca Peak range mean?`,
-                answer: `The low end is one Spot Treatment at $250. The high end is a series of three for Face, Neck & Chest at $2,600. Single sessions across all eight areas range from $250 to $950; three-session prices range from $800 to $2,600. The consultation is ${formatUsd(consultation.priceUsd)}.`,
+                question: `Why does Lumecca Peak pricing vary?`,
+                answer: `Pricing depends on the treatment area and whether you choose a single session or a series of three. The consultation is a separate appointment. Ask about current pricing when you book.`,
               },
             ]
           : []),
@@ -736,7 +721,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     return {
       kicker: device.title,
       heading: 'Facial radiofrequency through surface electrodes.',
-      metaDescription: 'Compare six Forma facial-area prices from $600 to $3,000, five Forma Plus body-area prices from $1,500 to $2,000, and the $2,599 Forma + Lumecca bundle.',
+      metaDescription: 'Compare six Forma facial areas, five Forma Plus body areas, and the Forma + Lumecca bundle at House of Rose. Ask about current pricing when you book.',
       paragraphs: [
         device.whatItIs,
         device.whereItFits,
@@ -759,32 +744,29 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           ? [
               {
                 label: 'Face, body, or bundle',
-                text: `Forma facial-area prices run from $600 to $3,000. Forma Plus body-area prices run from $1,500 to $2,000. The Forma + Lumecca Bundle is ${formatUsd(bundle.priceUsd)}.`,
+                text: `Forma prices by facial area. Forma Plus prices by body area. The Forma + Lumecca Bundle is its own separate listing.`,
               },
             ]
           : []),
       ],
       menu: areaPrices.length > 0
         ? {
-            heading: 'Forma and Forma Plus pricing by area',
+            heading: 'Forma and Forma Plus areas',
             intro: bundle
-              ? `Forma has six facial-area prices from $600 to $3,000. Forma Plus has five body-area prices from $1,500 to $2,000. ${bundle.name} is ${formatUsd(bundle.priceUsd)}.`
-              : 'The price follows the facial or body area being treated.',
+              ? `Forma has six facial areas. Forma Plus has five body areas. ${bundle.name} is a separate bundle listing. Ask about current pricing when you book.`
+              : 'The price follows the facial or body area being treated. Ask about current pricing when you book.',
             verifiedAt: 'August 6, 2026',
             items: [
               ...areaPrices.map((item) => ({
                 name: item.name,
-                price: formatUsd(item.priceUsd),
               })),
               ...formaPlusAreaPrices.map((item) => ({
                 name: `Forma Plus — ${item.name}`,
-                price: formatUsd(item.priceUsd),
               })),
               ...(bundle
                 ? [
                     {
                       name: bundle.name,
-                      price: formatUsd(bundle.priceUsd),
                       note: 'Bundle price',
                     },
                   ]
@@ -804,12 +786,12 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         ...(bundle
           ? [
               {
-                question: 'Why do Forma and Forma Plus prices range from $600 to $3,000?',
-                answer: 'Forma facial areas are face, neck, face and neck, eyes, jawline, and nasolabial folds, with prices from $600 to $3,000. Forma Plus body areas are abdomen, arms, inner-outer thighs, lower back, and knees, with prices from $1,500 to $2,000.',
+                question: 'Why does Forma pricing vary by area?',
+                answer: 'Forma facial areas are face, neck, face and neck, eyes, jawline, and nasolabial folds. Forma Plus body areas are abdomen, arms, inner-outer thighs, lower back, and knees. Each area is priced separately.',
               },
               {
-                question: `Is the ${formatUsd(bundle.priceUsd)} Forma + Lumecca Bundle part of the area-price range?`,
-                answer: `No. The $600–$3,000 range belongs to the Forma and Forma Plus area prices. ${bundle.name} has its own ${formatUsd(bundle.priceUsd)} price.`,
+                question: `Is the Forma + Lumecca Bundle part of the area pricing?`,
+                answer: `No. Area pricing belongs to the Forma and Forma Plus listings. ${bundle.name} has its own separate listing.`,
               },
             ]
           : []),
@@ -832,30 +814,27 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   const morpheusMenuItems = isBodyMorpheus
     ? MORPHEUS8_PRICING.burstDeep.map((item) => ({
         name: item.name,
-        price: formatMorpheus8Price(item.seriesOfThreePriceUsd),
         note: item.note,
       }))
     : [
         ...MORPHEUS8_PRICING.burst.map((item) => ({
           name: item.name,
-          price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+          note: 'Single treatment or series of 3',
         })),
         ...MORPHEUS8_PRICING.resurfacing.map((item) => ({
           name: item.name,
-          price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+          note: 'Single treatment or series of 3',
         })),
         ...MORPHEUS8_PRICING.prime.map((item) => ({
           name: item.name,
-          price: `${formatMorpheus8Price(item.singlePriceUsd)} single · ${formatMorpheus8Price(item.seriesOfThreePriceUsd)} series of 3`,
+          note: 'Single treatment or series of 3',
         })),
         ...MORPHEUS8_PRICING.burstPackageRanges.map((item) => ({
           name: item.name,
-          price: `${formatMorpheus8Price(item.minimumPriceUsd)}–${formatMorpheus8Price(item.maximumPriceUsd)}`,
           note: `Package of ${item.treatmentCount}`,
         })),
         {
           name: MORPHEUS8_PRICING.bundle.name,
-          price: formatMorpheus8Price(MORPHEUS8_PRICING.bundle.priceUsd),
           note: `${MORPHEUS8_PRICING.bundle.treatmentCount} total treatments`,
         },
       ];
@@ -866,14 +845,14 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       ? 'RF microneedling for selected body areas.'
       : 'Microneedling and fractional radiofrequency, together.',
     metaDescription: isBodyMorpheus
-      ? 'Morpheus8 Body at House of Rose combines microneedling with fractional radiofrequency for selected body areas, priced as series of three.'
-      : 'Morpheus8 at House of Rose combines microneedling with fractional radiofrequency. Compare Burst, Resurfacing, and Prime single or series pricing.',
+      ? 'Morpheus8 Body at House of Rose combines microneedling with fractional radiofrequency for selected body areas. Ask about current pricing.'
+      : 'Morpheus8 at House of Rose combines microneedling with fractional radiofrequency. Compare Burst, Resurfacing, and Prime options. Ask about pricing.',
     paragraphs: [
       device.whatItIs,
       device.whereItFits,
       isBodyMorpheus
         ? 'Morpheus8 Burst Deep body pricing is organized by area size: 4 × 10 inches or 8 × 11 inches. Both are priced as a series of three; call House of Rose to confirm the appointment length.'
-        : 'Current prices are listed below by option and area. Call House of Rose to confirm the appointment length.',
+        : 'Current options are listed below by option and area. Call House of Rose to confirm the appointment length and current pricing.',
     ],
     distinctions: [
       {
@@ -885,17 +864,17 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       {
         label: isBodyMorpheus ? 'How the area is priced' : 'Compared with Procell Microneedling',
         text: isBodyMorpheus
-          ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each price is for a series of three.'
+          ? 'The Small Area package covers 4 × 10 inches; the Large Area package covers 8 × 11 inches. Each is priced as a series of three.'
           : device.comparisonToProcell ?? 'Morpheus8 combines microneedling with fractional bipolar radiofrequency in one InMode device.',
       },
     ],
     menu: {
       heading: isBodyMorpheus
         ? 'Morpheus8 Burst Deep area packages'
-        : 'Morpheus8 pricing by option and area',
+        : 'Morpheus8 options by option and area',
       intro: isBodyMorpheus
-        ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both prices cover a series of three.'
-        : 'Burst, Resurfacing, and Prime are each priced by area for one treatment or a series of three. Hyperhidrosis is a package of three; the Morpheus8 + Lumecca option is a two-treatment bundle.',
+        ? 'Small Area is 4 × 10 inches; Large Area is 8 × 11 inches. Both are priced as a series of three. Ask about current pricing when you book.'
+        : 'Burst, Resurfacing, and Prime are each organized by area for one treatment or a series of three. Hyperhidrosis is a package of three; the Morpheus8 + Lumecca option is a two-treatment bundle. Ask about current pricing when you book.',
       verifiedAt: MORPHEUS8_PRICING.verifiedAt,
       items: morpheusMenuItems,
     },
@@ -907,7 +886,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
           {
             question: 'How are Morpheus8 Body areas priced?',
-            answer: 'The Morpheus8 Burst Deep small-area package is $3,500 for three treatments, and the large-area package is $4,500 for three treatments. Call House of Rose to confirm the appointment length.',
+            answer: 'The Morpheus8 Burst Deep small-area and large-area packages are each priced as a series of three. Call House of Rose to confirm the appointment length and current pricing.',
           },
         ]
       : [
@@ -921,7 +900,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
           {
             question: 'How is the Morpheus8 menu organized?',
-            answer: 'Burst, Resurfacing, and Prime list one-treatment and three-treatment prices by area. Hyperhidrosis is a package of three, and the Morpheus8 + Lumecca Bundle covers two total treatments. The menu above lists each current price.',
+            answer: 'Burst, Resurfacing, and Prime list one-treatment and three-treatment options by area. Hyperhidrosis is a package of three, and the Morpheus8 + Lumecca Bundle covers two total treatments. Ask about current pricing when you book.',
           },
         ],
     faqHeading: isBodyMorpheus
@@ -941,7 +920,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
       : [
           {
             href: '/services/morpheus8-body/',
-            label: 'See Morpheus8 Body area pricing',
+            label: 'See Morpheus8 Body area options',
           },
           {
             href: '/compare/morpheus8-vs-microneedling/',

@@ -77,7 +77,11 @@ const WARN_RULES = [
   { label: 'Retired beauty language (glow/radiance/flawless/ageless/timeless beauty)', re: /\b(glow|glowing|radiance|radiant|flawless|ageless)\b|timeless beauty/i },
   { label: 'Retired spa language (pamper/indulge/treat yourself)', re: /\b(pamper(ing|ed)?|indulge|indulgent)\b|treat yourself/i },
   { label: 'Retired outcome language (transformation/turn back time/best version)', re: /instant transformation|turn back (?:the )?(?:time|clock)|best version of yourself|reveal your beauty/i },
-  { label: 'Unqualified claim (pain-free / blanket "no downtime" / guaranteed results)', re: /\bpain[- ]free\b|\bno downtime\b|guaranteed results/i },
+  // "No downtime" is a FACT, not marketing language, so this is warn-only and is often correct.
+  // Check it against the per-procedure list in CLAUDE.md before touching it: it is TRUE for Glo2Facial,
+  // IV hydration, neurotoxin and the GLP-1 injection, and an overclaim for Lumecca, Morpheus8, fillers
+  // and the Face Reality purging phase. Never "fix" a true statement to silence this warning.
+  { label: 'Claim to check against the per-procedure downtime list in CLAUDE.md (pain-free / "no downtime" / guaranteed results)', re: /\bpain[- ]free\b|\bno downtime\b|guaranteed results/i },
   { label: 'Superseded lead descriptor (lead is "Medical Aesthetics Practice")', re: /lead with ["'“]?advanced aesthetics/i },
 ];
 
@@ -107,6 +111,25 @@ const WARN_EXEMPT = [
  * The reason is required: a bare marker exempts nothing.
  */
 const REVIEWED_EXCEPTION = /drift-guard-ok:\s*\S+/;
+
+/**
+ * House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+ * "Public website pricing is NEVER permitted"). This flags any `$<digit>`
+ * pattern in shipping source outside the permitted retail shop/checkout
+ * context (Stripe Elements needs a displayed product price to function —
+ * see CLAUDE.md "Checkout"). This is a fast, pre-build signal; the
+ * authoritative check is `scripts/public-integrity.test.mjs`'s dist-crawl
+ * test, which catches any price that reaches the actual built HTML/AI feeds
+ * regardless of which source file it came from.
+ */
+const PRICE_RE = /\$\d/;
+// Exempt: (1) retail shop/checkout/cart source — a real product price is required
+// for Stripe Elements to function, see CLAUDE.md "Checkout"; (2) Sanity Studio
+// schemas — the CMS admin authoring UI (packages/studio/schemas/**) is not a
+// public surface of houseofrosefl.com, so help text, preview labels, and price-
+// filter option lists there are legitimate (this is where Amber enters and
+// reviews internal price data, per CLAUDE.md's Two-Menu architecture).
+const PRICE_EXEMPT_PATH_RE = /[\\/](shop|checkout)[\\/]|checkout\.astro$|cart|^packages\/studio\/schemas\//i;
 
 // Historical membership URLs must be hard-not-found responses. A homepage
 // redirect keeps the retired URLs alive in GSC as redirecting pages.
@@ -155,6 +178,14 @@ function scanFile(file) {
       }
     }
     const reviewed = REVIEWED_EXCEPTION.test(text) || REVIEWED_EXCEPTION.test(lines[i - 1] ?? '');
+    if (PRICE_RE.test(text) && !PRICE_EXEMPT_PATH_RE.test(rel) && !reviewed) {
+      hits.push({
+        file: rel,
+        line: i + 1,
+        label: 'Public dollar-amount price (House of Rose pricing is never public)',
+        text: text.trim().slice(0, 120),
+      });
+    }
     const publicCopyDetector = rel.endsWith('packages/web/src/lib/publicCopy.ts')
       && (/\.replace\(/.test(text) || /\.match\(/.test(text) || /^\s*\//.test(text) || /^\s*\? \/\\b/.test(text));
     const studioCopyValidator = rel.endsWith('packages/studio/schemas/validation/publicCopy.ts')

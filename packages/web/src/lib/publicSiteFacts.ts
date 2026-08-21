@@ -50,6 +50,7 @@ export function resolvePublicSiteFacts(
     supportPhone: oneLine(settings?.supportPhone, FALLBACK_SITE_FACTS.supportPhone),
     email: oneLine(settings?.email, FALLBACK_SITE_FACTS.email),
     address,
+    // drift-guard-ok: regex backreference ($1 = captured ZIP), not a dollar amount
     addressWithExpandedRegion: address.replace(/, FL (\d{5}(?:-\d{4})?)$/, ', Florida $1'),
     instagramHandle,
     instagramUrl: `https://www.instagram.com/${instagramHandle}/`,

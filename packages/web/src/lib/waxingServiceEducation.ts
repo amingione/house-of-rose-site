@@ -102,15 +102,15 @@ export const WAXING_SERVICE_EDUCATION = {
     distinctions: [
       {
         label: 'Brow wax',
-        text: 'Eyebrows is the 10-minute, $15 appointment.',
+        text: 'Eyebrows is the 10-minute brow-wax appointment.',
       },
       {
         label: 'Shape, trim, and wax',
-        text: 'Eyebrow Shape, Trim & Wax is the 25-minute, $25 appointment.',
+        text: 'Eyebrow Shape, Trim & Wax is the 25-minute appointment that adds shaping and trimming.',
       },
       {
         label: 'Upper lip and chin',
-        text: 'Upper Lip is $10 for 10 minutes. Chin is $10 for 30 minutes.',
+        text: 'Upper Lip is 10 minutes. Chin is 30 minutes. Each is priced separately.',
       },
     ],
     menu: {
@@ -136,11 +136,11 @@ export const WAXING_SERVICE_EDUCATION = {
       },
       {
         label: 'Full or partial leg',
-        text: 'Full Leg is $65 for 10 minutes; Partial Leg is $45 for 30 minutes. Name the one you want when you call.',
+        text: 'Full Leg is 10 minutes; Partial Leg is 30 minutes. Name the one you want when you call, and ask about current pricing.',
       },
       {
         label: 'Bikini line',
-        text: 'The available bikini-area appointment is Bikini Line at $30 for 10 minutes.',
+        text: 'The available bikini-area appointment is Bikini Line, a 10-minute appointment.',
       },
     ],
     faqs: [
@@ -150,7 +150,7 @@ export const WAXING_SERVICE_EDUCATION = {
       },
       {
         question: 'Which bikini-area waxing appointment is available?',
-        answer: 'The available bikini-area appointment is Bikini Line at $30 for 10 minutes.',
+        answer: 'The available bikini-area appointment is Bikini Line, a 10-minute appointment.',
       },
     ],
     menu: {

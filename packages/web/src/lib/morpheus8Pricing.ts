@@ -19,6 +19,14 @@ export interface Morpheus8PackageRangeItem {
  * The exact Resurfacing and Prime single/series prices below are also retained
  * in the canonical pricing ledger. Approximate add-on recommendations from the
  * PDF remain unpublished because they are not exact House of Rose menu prices.
+ *
+ * INTERNAL-ONLY PRICING DATA (binding 2026-08-20, see CLAUDE.md "Public website
+ * pricing is NEVER permitted"): the numeric prices in `MORPHEUS8_PRICING` and
+ * the `formatMorpheus8Price` helper below are for internal ops / GlossGenius
+ * paste-ready doc generation only. No file under `packages/web/src/pages/**`
+ * or a public component may call `formatMorpheus8Price` or otherwise render
+ * these numbers as a dollar amount. Public consumers read only `name` and
+ * structural notes (single vs. series, package size) from this module.
  */
 export const MORPHEUS8_PRICING = {
   verifiedAt: 'August 14, 2026',

@@ -51,7 +51,7 @@ const guidesListSchema = guides.length
             <a href={`/cost/${g.slug}/`} class="group block p-7 pb-5">
               <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
               <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
-                {fact?.display ?? 'Contact House of Rose for the current price'}
+                {fact?.display ?? 'Contact House of Rose for current pricing'}
               </p>
               {fact?.summary && (
                 <p class="mb-4 text-[14px] leading-[1.7] text-muted">{fact.summary}</p>

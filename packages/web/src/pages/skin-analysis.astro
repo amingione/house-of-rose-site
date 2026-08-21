@@ -25,7 +25,6 @@ interface SkinAnalysisFaq {
 const pageTitle = 'Skin Imaging & Analysis in Punta Gorda | House of Rose';
 const pageDescription =
   'Multi-spectrum skin imaging in Punta Gorda offers a closer look at pigmentation, pores, texture, fine lines, and visible sun exposure.';
-const SKIN_ANALYSIS_PRICE_USD = 65;
 
 const steps: SkinAnalysisStep[] = [
   {
@@ -52,7 +51,7 @@ const concernLinks: SkinAnalysisConcern[] = [
 const faqs: SkinAnalysisFaq[] = [
   {
     q: 'How much is a skin analysis at House of Rose?',
-    a: `The Skin Analysis & Consultation appointment is $${SKIN_ANALYSIS_PRICE_USD}.`,
+    a: `Ask about current pricing when you book the Skin Analysis & Consultation appointment.`,
   },
   {
     q: 'Do I need a skin analysis before treatment?',
@@ -92,7 +91,9 @@ const serviceSchema = service(
     url: canonicalURL.toString(),
     image: new URL('/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp', siteUrl).toString(),
     serviceType: 'Multi-spectrum skin imaging',
-    minPrice: SKIN_ANALYSIS_PRICE_USD,
+    // House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+    // "Public website pricing is NEVER permitted"). No minPrice is passed here,
+    // so the resulting Offer carries a booking URL only, never priceSpecification.
     offerUrl: SKIN_ANALYSIS_BOOKING_URL,
   },
   siteUrl,
@@ -130,10 +131,10 @@ const serviceSchema = service(
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
       <span class="kicker">The appointment</span>
       <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
-        A $65 appointment with three views.
+        A short appointment with three views.
       </h2>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        The Skin Analysis & Consultation appointment records standard, cross-polarized, and UV photographs. Taking the images takes a few minutes; the rest of the visit is used to review what appears in them.
+        The Skin Analysis & Consultation appointment records standard, cross-polarized, and UV photographs. Taking the images takes a few minutes; the rest of the visit is used to review what appears in them. Ask about current pricing when you book.
       </p>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]">
         Skin imaging is optional—not required before another service. The photographs provide a consistent visual baseline, not a medical diagnosis.
@@ -266,7 +267,7 @@ const serviceSchema = service(
         Request a skin imaging appointment.
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        The Skin Analysis & Consultation appointment is ${SKIN_ANALYSIS_PRICE_USD}. The form sends a request and does not hold an appointment time. Use the online booking option when you want to reserve an available time immediately.
+        Ask about current pricing when you book the Skin Analysis & Consultation appointment. The form sends a request and does not hold an appointment time. Use the online booking option when you want to reserve an available time immediately.
       </p>
       <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
         In studio · Punta Gorda

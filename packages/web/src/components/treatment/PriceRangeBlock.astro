@@ -1,8 +1,14 @@
 ---
-import { sbFieldPath } from '@/lib/visualEditing';
-import { formatPriceRange, type TreatmentPriceRange } from '@/lib/treatmentQueries';
+import type { TreatmentPriceRange } from '@/lib/treatmentQueries';
 import BookingLink from '@/components/BookingLink.astro';
 import type { BookingMode } from '@/lib/booking';
+
+// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+// "Public website pricing is NEVER permitted"). This component intentionally
+// never formats or renders `priceRange` as a dollar amount — even if a future
+// caller passes one in — and shows a consultation/booking CTA instead. The
+// `priceRange` prop is accepted only so existing callers keep type-checking;
+// its value is not read for display.
 
 interface Props {
   priceRange: TreatmentPriceRange;
@@ -11,7 +17,7 @@ interface Props {
   bookingUrl?: string;
 }
 
-const { priceRange, slug, bookingMode, bookingUrl } = Astro.props;
+const { slug, bookingMode, bookingUrl } = Astro.props;
 ---
 
 <div>
@@ -20,15 +26,9 @@ const { priceRange, slug, bookingMode, bookingUrl } = Astro.props;
     What does it cost?
   </h2>
 
-  <p class="font-serif text-[clamp(30px,4.5vw,44px)] text-ivory leading-none mb-4" {...sbFieldPath('priceRange')}>
-    {formatPriceRange(priceRange)}
+  <p class="text-muted text-[15px] leading-[1.8] mb-7 max-w-[54ch]">
+    Pricing is confirmed at booking or during a consultation. Ask about current pricing when you book.
   </p>
-
-  {priceRange.note && (
-    <p class="text-muted text-[15px] leading-[1.8] mb-7 max-w-[54ch]" {...sbFieldPath('priceRange.note')}>
-      {priceRange.note}
-    </p>
-  )}
 
   <BookingLink
     slug={slug}

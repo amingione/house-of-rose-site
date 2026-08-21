@@ -30,14 +30,13 @@ const pkg = packageData;
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const services = pkg.servicesIncluded ?? [];
-// GlossGenius is commerce truth. The current export corroborates only the
-// Acne Bootcamp package price; other live Sanity package amounts stay hidden
-// until their corresponding commerce line exists and is reconciled.
+// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md).
+// This page names the package and its structure; current pricing is
+// confirmed by phone or at booking, never rendered here.
 const isFaceRealityProgram = pkg.slug === FACE_REALITY_PROGRAM.packageSlug;
-const price = isFaceRealityProgram ? `$${FACE_REALITY_PROGRAM.packagePriceUsd}` : undefined;
 const serviceNames = services.map((service) => service.title).join(', ');
 const summary = isFaceRealityProgram
-  ? `${FACE_REALITY_PROGRAM.summary} The complete program is $${FACE_REALITY_PROGRAM.packagePriceUsd}.`
+  ? `${FACE_REALITY_PROGRAM.summary} Ask about current pricing when you book.`
   : serviceNames
   ? `${pkg.title} includes ${serviceNames}.`
   : `${pkg.title} at House of Rose Aesthetics in Punta Gorda, Florida.`;
@@ -99,11 +98,6 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
       <h1 class="font-serif text-[clamp(32px,6vw,56px)] leading-tight font-normal text-ivory" {...sbFieldPath('title')}>
         {pkg.title}
       </h1>
-      {price && (
-        <p class="mt-3 text-ivory/70 text-[13px] tracking-[0.18em] uppercase">
-          Package price · <span>{price}</span>
-        </p>
-      )}
     </div>
   </section>
 
@@ -113,10 +107,10 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
         <div>
           <span class="kicker">The program</span>
           <h2 class="mt-3 font-serif text-[clamp(30px,5vw,46px)] leading-tight text-ink">
-            What the $899 represents.
+            What the program price represents.
           </h2>
           <p class="mt-5 max-w-[540px] text-[16px] leading-[1.75] text-muted-strong">
-            {FACE_REALITY_PROGRAM.programOnly} The $899 figure is the price of the complete 12-week program, not the price of one visit.
+            {FACE_REALITY_PROGRAM.programOnly} The program price covers the complete 12-week program, not one visit. Ask about current pricing when you book.
           </p>
           <a href="/services/face-reality-acne-program/" class="learn-more mt-7 inline-block hover:text-gold">
             Consultation and program details
@@ -135,7 +129,7 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
         <div class="bg-charcoal p-7 md:p-9">
           <h3 class="font-serif text-[24px] leading-tight text-ink">What the consultation covers.</h3>
           <p class="mt-4 text-[15px] leading-[1.75] text-muted">
-            The 60-minute Acne Bootcamp Consultation is $99 and can be booked directly. You and Amber Mingione, Licensed Esthetician, discuss what your skin is doing now, the home care purchased for the program, and whether you want to continue into the complete 12 weeks.
+            The 60-minute Acne Bootcamp Consultation can be booked directly. You and Amber Mingione, Licensed Esthetician, discuss what your skin is doing now, the home care purchased for the program, and whether you want to continue into the complete 12 weeks. Ask about current pricing when you book.
           </p>
         </div>
         <div class="bg-charcoal p-7 md:p-9">
@@ -201,7 +195,7 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
         {isFaceRealityProgram
-          ? 'The directly bookable consultation lasts 60 minutes and costs $99. If you continue, the complete 12-week program is $899; home-care products are purchased separately.'
+          ? 'The directly bookable consultation lasts 60 minutes. If you continue, the complete 12-week program includes its in-studio visits; home-care products are purchased separately. Ask about current pricing when you book.'
           : 'Call us or request a consultation.'}
       </p>
       <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10">

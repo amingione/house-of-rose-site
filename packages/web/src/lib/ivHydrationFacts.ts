@@ -3,7 +3,10 @@
  * GlossGenius-backed menu in ALL-SERVICES-PRICING.MD.
  *
  * Formulations and add-ons are intentionally absent: the canonical menu does
- * not verify their ingredients or current bookability.
+ * not verify their ingredients or current bookability. Per the 2026-08-20
+ * binding rule in CLAUDE.md, House of Rose pricing is never public —
+ * `price` below is retained for internal/GlossGenius paste-ready use only
+ * and must never be read by a public renderer or formatted with a "$".
  */
 export interface VerifiedIvMenuItem {
   name: string;
@@ -24,18 +27,17 @@ export const VERIFIED_IV_MENU = [
 
 const hydrationIv = VERIFIED_IV_MENU[0];
 const fortyFiveMinuteIvs = VERIFIED_IV_MENU.slice(1);
-const fortyFiveMinutePrices = fortyFiveMinuteIvs.map(({ price }) => price);
 
 export const IV_HYDRATION_EDUCATION = {
-  heading: `Six IV appointments from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
+  heading: `Six IV appointments, each with its own price.`,
   introduction:
-    `House of Rose offers one 30-minute base IV and ${fortyFiveMinuteIvs.length} 45-minute base IVs, with prices from $${Math.min(...VERIFIED_IV_MENU.map(({ price }) => price))} to $${Math.max(...VERIFIED_IV_MENU.map(({ price }) => price))}.`,
+    `House of Rose offers one 30-minute base IV and ${fortyFiveMinuteIvs.length} 45-minute base IVs, each priced separately. Ask about current pricing when you book.`,
   provider:
     'Diana Morrison, RN provides IV hydration under written physician protocol and medical direction.',
   shorterOption:
-    `${hydrationIv.name} is the 30-minute option at $${hydrationIv.price}.`,
+    `${hydrationIv.name} is the 30-minute option.`,
   longerOptions:
-    `The other ${fortyFiveMinuteIvs.length} base options are 45-minute appointments priced from $${Math.min(...fortyFiveMinutePrices)} to $${Math.max(...fortyFiveMinutePrices)}.`,
+    `The other ${fortyFiveMinuteIvs.length} base options are 45-minute appointments, each priced separately.`,
   formulation:
     'If ingredients or add-ons are part of your decision, call House of Rose before booking. The six appointment names alone do not identify a complete formulation.',
 } as const;

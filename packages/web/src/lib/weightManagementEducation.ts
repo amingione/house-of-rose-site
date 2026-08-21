@@ -25,16 +25,17 @@ export interface WeightManagementEducation {
 /**
  * Narrow public facts for the current medical weight-management service.
  * The separate consultation is fully reconciled against the 2026-08-06
- * GlossGenius mirror. Medication prices remain omitted because that source does
- * not establish whether $299/$399 are first-visit or ongoing charges. No dose,
- * outcome, medication-selection, or prescriber assumption belongs here. The
- * receptor distinction follows the current FDA prescribing information and the
- * reviewed internal GLP-1 research brief.
+ * GlossGenius mirror. Per the 2026-08-20 binding rule in CLAUDE.md, House of
+ * Rose pricing is never public — `priceUsd` below is retained for
+ * internal/GlossGenius paste-ready use only and must never be read by a
+ * public renderer. No dose, outcome, medication-selection, or prescriber
+ * assumption belongs here. The receptor distinction follows the current FDA
+ * prescribing information and the reviewed internal GLP-1 research brief.
  */
 export const WEIGHT_MANAGEMENT_EDUCATION = {
   title: 'GLP-1 Weight Management',
   whatItIs:
-    'House of Rose offers medical weight management with semaglutide and tirzepatide. The 40-minute GLP-1 Consultation is $25; call House of Rose for medication and ongoing program pricing.',
+    'House of Rose offers medical weight management with semaglutide and tirzepatide. The 40-minute GLP-1 Consultation has its own listing; call House of Rose for medication and ongoing program pricing.',
   plainLanguageDefinition:
     'GLP-1 is short for glucagon-like peptide-1, a hormone involved in appetite regulation. Both medications named by House of Rose act at the GLP-1 receptor.',
   medicationDifference:
@@ -42,9 +43,9 @@ export const WEIGHT_MANAGEMENT_EDUCATION = {
   provider:
     'Your appointment is with Diana Morrison, RN. She provides the House of Rose service under written physician protocol and medical direction; Joshua Shaw, MD oversees the protocol rather than seeing clients for these appointments.',
   consultationRole:
-    'The $25 covers the 40-minute consultation with Diana Morrison, RN. It does not include medication or ongoing program charges.',
+    'The 40-minute consultation with Diana Morrison, RN has its own listing. It does not include medication or ongoing program charges.',
   pricing:
-    'The 40-minute consultation is $25. Call House of Rose for medication and ongoing program pricing.',
+    'The 40-minute consultation is its own listing. Call House of Rose for medication and ongoing program pricing.',
   consultation: {
     name: 'GLP-1 Consultation',
     durationMinutes: 40,
@@ -63,9 +64,9 @@ export const WEIGHT_MANAGEMENT_EDUCATION = {
         'No. Semaglutide is a GLP-1 receptor agonist. Tirzepatide is a dual GIP and GLP-1 receptor agonist.',
     },
     {
-      question: 'What does the $25 GLP-1 consultation price cover?',
+      question: 'What does the GLP-1 consultation price cover?',
       answer:
-        'It covers the 40-minute consultation with Diana Morrison, RN. Medication and ongoing program charges are separate.',
+        'It covers the 40-minute consultation with Diana Morrison, RN. Medication and ongoing program charges are separate. Ask about current pricing when you book.',
     },
     {
       question: 'Who provides GLP-1 weight management at House of Rose?',
@@ -75,7 +76,7 @@ export const WEIGHT_MANAGEMENT_EDUCATION = {
     {
       question: 'How do I confirm medication and ongoing program costs?',
       answer:
-        'Call House of Rose for those prices. Medication and ongoing program charges are separate from the $25 consultation.',
+        'Call House of Rose for those prices. Medication and ongoing program charges are separate from the consultation.',
     },
   ],
 } as const satisfies WeightManagementEducation;

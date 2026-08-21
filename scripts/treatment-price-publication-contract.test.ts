@@ -46,7 +46,16 @@ test('a genuine low and high price remains an explicit range', () => {
   assert.equal(offer.price, undefined);
 });
 
-test('the visible block and JSON-LD use the same reviewed price-range authority', () => {
+// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
+// "Public website pricing is NEVER permitted"). `formatPriceRange` and
+// `treatmentOffer` remain as generic, pure formatting helpers (useful for
+// internal ops / GlossGenius paste-ready docs, per the repo's Two-Menu
+// architecture) and are exercised directly above — but neither may be wired
+// to a real value on any public route. This test asserts the disclosure
+// boundary at both call sites: the component never prints a formatted price,
+// and the one route that used to read a Sanity price hardcodes it to
+// `undefined` so the JSON-LD `Offer`/`AggregateOffer` branch can never fire.
+test('the visible price block and the service-page JSON-LD never disclose a price', () => {
   const component = readFileSync(
     new URL('../packages/web/src/components/treatment/PriceRangeBlock.astro', import.meta.url),
     'utf8',
@@ -56,7 +65,16 @@ test('the visible block and JSON-LD use the same reviewed price-range authority'
     'utf8',
   );
 
-  assert.match(component, /formatPriceRange\(priceRange\)/);
-  assert.match(route, /<PriceRangeBlock[\s\S]*?priceRange=\{reviewedPriceRange\}/);
-  assert.match(route, /treatmentOffer\(\{[\s\S]*?priceRange:\s*reviewedPriceRange/);
+  // PriceRangeBlock must never call formatPriceRange (or otherwise format its
+  // `priceRange` prop) into visible copy — it accepts the prop only to keep
+  // existing callers type-checking and shows a booking CTA instead.
+  assert.doesNotMatch(component, /formatPriceRange\(/);
+  assert.match(component, /Ask about current pricing when you book/i);
+
+  // The route must hardcode reviewedPriceRange to undefined — never read
+  // `service.priceRange` — so both <PriceRangeBlock> and treatmentOffer()
+  // are structurally unreachable with a real price.
+  assert.match(route, /const reviewedPriceRange = undefined;/);
+  assert.doesNotMatch(route, /const reviewedPriceRange = service\.priceRange/);
+  assert.match(route, /const offerSchema = reviewedPriceRange\s*\n?\s*\?\s*treatmentOffer/);
 });

@@ -61,7 +61,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     whatItIs:
       'BioRePeel is a topical TCA-based chemical peel used for visible surface texture and uneven tone.',
     whereItFits:
-      'At House of Rose, BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment at $250. Its Series of 3 is also directly bookable; Gold Body, Advanced Acne Scarring, and the Duo Gold Spot Upgrade are provider-arranged appointments.',
+      'At House of Rose, BioRePeel Cl3 Rejuvenation is a directly bookable, 45-minute standalone face treatment. Its Series of 3 is also directly bookable; Gold Body, Advanced Acne Scarring, and the Duo Gold Spot Upgrade are provider-arranged appointments.',
     providerStatement:
       'Brandy, Licensed Esthetician, provides the standalone BioRePeel face appointment. She also provides the Series of 3. Amber Mingione, Licensed Esthetician, provides the Gold Body, Advanced Acne Scarring, and Duo Gold Spot Upgrade appointments and uses BioRePeel as an add-on to eligible advanced skin services.',
     distinctions: [
@@ -71,11 +71,11 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       },
       {
         label: 'Directly bookable face appointments',
-        text: 'BioRePeel Cl3 Rejuvenation is $250 for 45 minutes. Its Series of 3 is $699 with a 50-minute appointment listing.',
+        text: 'BioRePeel Cl3 Rejuvenation is 45 minutes. Its Series of 3 is a separate 50-minute appointment listing.',
       },
       {
         label: 'Provider-arranged variants',
-        text: 'Gold Body is $325 for 45 minutes, Advanced Acne Scarring is $450 for 75 minutes, and the Duo Gold Spot Upgrade is $395 for 60 minutes. Call House of Rose to discuss these three appointments.',
+        text: 'Gold Body is 45 minutes, Advanced Acne Scarring is 75 minutes, and the Duo Gold Spot Upgrade is 60 minutes. Call House of Rose to discuss these three appointments and current pricing.',
       },
       {
         label: 'BioRePeel or Microneedling?',
@@ -225,7 +225,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       },
       {
         label: 'PRF Bio-Filler',
-        text: 'PRF Bio-Filler is a 45-minute injectable consultation at $899, provided by Diana Morrison, RN under medical direction.',
+        text: 'PRF Bio-Filler is a 45-minute injectable consultation provided by Diana Morrison, RN under medical direction.',
       },
     ],
     faqs: [
@@ -242,7 +242,7 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
       {
         question: 'Is PRF Bio-Filler the same service as PRF Under-Eye?',
         answer:
-          'No. PRF Under-Eye is a $495 injectable consultation with timing confirmed by phone. PRF Bio-Filler is an injectable consultation at $899 for 45 minutes.',
+          'No. PRF Under-Eye is an injectable consultation with timing confirmed by phone. PRF Bio-Filler is a separate injectable consultation scheduled for 45 minutes.',
       },
     ],
     links: [
@@ -303,11 +303,11 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     distinctions: [
       {
         label: 'PRF Under Eyes',
-        text: 'The PRF Under-Eye consultation is $495. Call House of Rose to confirm how much time to allow for the appointment.',
+        text: 'The PRF Under-Eye consultation is its own listing. Call House of Rose to confirm how much time to allow for the appointment and current pricing.',
       },
       {
         label: 'PRF Bio-Filler',
-        text: 'The PRF Bio-Filler consultation is 45 minutes and priced at $899.',
+        text: 'The PRF Bio-Filler consultation is 45 minutes and has its own separate listing.',
       },
       {
         label: 'When PRF is topical',
@@ -316,8 +316,8 @@ export const SKIN_RENEWAL_SERVICE_EDUCATION = {
     ],
     faqs: [
       {
-        question: 'How much time and cost should I allow for each consultation?',
-        answer: 'PRF Under-Eye is a $495 consultation; call House of Rose to confirm the appointment length. PRF Bio-Filler is an $899 consultation scheduled for 45 minutes.',
+        question: 'How much time should I allow for each consultation?',
+        answer: 'PRF Under-Eye is a consultation with timing confirmed by phone; call House of Rose to confirm the appointment length. PRF Bio-Filler is a consultation scheduled for 45 minutes. Ask about current pricing when you book.',
       },
       {
         question: 'Where does PRF come from?',

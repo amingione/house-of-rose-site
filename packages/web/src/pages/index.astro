@@ -14,20 +14,19 @@ const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
 const localVisitText = 'Open Monday through Friday, 9 AM–5 PM.';
 const [topicalPrf, underEyePrf, bioFillerPrf] = SKIN_RENEWAL_SERVICE_EDUCATION.prf.menu.items;
 const hydrationIv = VERIFIED_IV_MENU[0];
-const fortyFiveMinuteIvPrices = VERIFIED_IV_MENU.slice(1).map(({ price }) => price);
 
 const broaderPracticeServices = [
   {
     label: 'IV hydration',
     title: `${VERIFIED_IV_MENU.length} options, with the details visible`,
-    body: `${hydrationIv.name} is ${hydrationIv.durationMinutes} minutes at $${hydrationIv.price}. The other five appointments are 45 minutes and range from $${Math.min(...fortyFiveMinuteIvPrices)} to $${Math.max(...fortyFiveMinuteIvPrices)}. Diana Morrison, RN provides the IV appointments.`,
+    body: `${hydrationIv.name} is ${hydrationIv.durationMinutes} minutes. The other five appointments are 45 minutes, each priced separately. Diana Morrison, RN provides the IV appointments. Ask about current pricing when you book.`,
     href: '/services/iv-hydration-therapy/',
     cta: 'See the IV menu',
   },
   {
     label: 'Weight management',
     title: 'A conversation before a program',
-    body: `The ${WEIGHT_MANAGEMENT_EDUCATION.consultation.durationMinutes}-minute GLP-1 consultation with Diana Morrison, RN is $${WEIGHT_MANAGEMENT_EDUCATION.consultation.priceUsd}. Medication and ongoing program costs are confirmed directly with the practice.`,
+    body: `The ${WEIGHT_MANAGEMENT_EDUCATION.consultation.durationMinutes}-minute GLP-1 consultation with Diana Morrison, RN has its own listing. Medication and ongoing program costs are confirmed directly with the practice.`,
     href: '/services/glp-1-weight-management/',
     cta: 'Read about the consultation',
   },
@@ -41,7 +40,7 @@ const broaderPracticeServices = [
   {
     label: 'Permanent jewelry',
     title: 'Fitted in person and closed without a clasp',
-    body: `Aundrea Pedigo, Licensed Esthetician fits the chain and joins its ends by welding. The ${PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes}-minute non-medical appointment is $${PERMANENT_JEWELRY_EDUCATION.menu.priceUsd}; the chain can be cut when removal is needed.`,
+    body: `Aundrea Pedigo, Licensed Esthetician fits the chain and joins its ends by welding. The ${PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes}-minute non-medical appointment has its own listing; the chain can be cut when removal is needed. Ask about current pricing when you book.`,
     href: '/services/permanent-jewelry/',
     cta: 'Read about permanent jewelry',
   },
@@ -210,7 +209,7 @@ const treatmentCategories = [
               PRF is applied to the skin surface during an eligible microneedling service. It is not injected.
             </p>
             <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
-              {topicalPrf.durationMinutes} minutes · ${topicalPrf.priceUsd}
+              {topicalPrf.durationMinutes} minutes · ask about current pricing
             </p>
             <a href="/services/microneedling/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
               Microneedling with topical PRF
@@ -223,7 +222,7 @@ const treatmentCategories = [
               Diana Morrison, RN provides the under-eye PRF appointment.
             </p>
             <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
-              ${underEyePrf.priceUsd} · Call to confirm the appointment length
+              Call to confirm the appointment length and current pricing
             </p>
             <a href="/services/prf-under-eyes/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
               Read about PRF under eyes
@@ -236,7 +235,7 @@ const treatmentCategories = [
               Diana Morrison, RN provides PRF Bio-Filler as an injectable appointment.
             </p>
             <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
-              {bioFillerPrf.durationMinutes} minutes · ${bioFillerPrf.priceUsd}
+              {bioFillerPrf.durationMinutes} minutes · ask about current pricing
             </p>
             <a href="/services/prf-injections/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
               Injectable PRF appointments

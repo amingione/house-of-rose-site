@@ -115,9 +115,11 @@ const pageDescription = publishedDescription;
             {verifiedFact.items.map((item) => (
               <article class="bg-charcoal p-6 sm:p-7">
                 <h3 class="font-serif text-[21px] leading-snug text-ink">{item.name}</h3>
-                <p class="mt-4 text-[13px] font-semibold tracking-[0.06em] text-gold">
-                  {item.price}{item.duration && <span class="mx-2 text-muted">·</span>}{item.duration}
-                </p>
+                {item.duration && (
+                  <p class="mt-4 text-[13px] font-semibold tracking-[0.06em] text-gold">
+                    {item.duration}
+                  </p>
+                )}
               </article>
             ))}
           </div>
