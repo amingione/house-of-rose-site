@@ -1,0 +1,304 @@
+---
+/**
+ * /aundrea/ — Aundrea Pedigo digital business card (tap-to-share contact page).
+ *
+ * Mirrors /amber/, /diana/, and /brandy/ — same standalone black-and-gold card, no site
+ * Header/Footer, `Person` JSON-LD, and a "Save Contact" button that opens
+ * Contacts prefilled (downloads /aundrea.vcf served inline as text/vcard — see
+ * netlify.toml).
+ *
+ * NAP follows the canonical siteSettings source of truth (Unit 9, 33950,
+ * +19414000165).
+ */
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
+import { personProfile } from '@/lib/structuredData';
+
+const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
+const canonicalURL = new URL('/aundrea/', siteURL).toString();
+const ogImage = new URL('/images/providers/aundrea-profile-1122.webp', siteURL).toString();
+
+const PHONE_E164 = '+19414000165';
+const PHONE_DISPLAY = '(941) 400-0165';
+const EMAIL = 'info@houseofrosefl.com';
+const WEBSITE = 'houseofrosefl.com';
+const ADDRESS_LINE1 = '525 E Olympia Ave, Unit 9';
+const ADDRESS_LINE2 = 'Punta Gorda, FL 33950';
+const MAPS_URL =
+  'https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950';
+
+const personLd = personProfile({
+  name: 'Aundrea Pedigo, Licensed Esthetician',
+  jobTitle: 'Licensed Esthetician',
+  telephone: PHONE_E164,
+  email: EMAIL,
+  url: canonicalURL,
+  image: ogImage,
+  knowsAbout: [
+    'Bridal Makeup',
+    'Event Makeup',
+    'Everyday Makeup',
+  ],
+}, siteURL.toString());
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>Aundrea Pedigo, Licensed Esthetician | House of Rose</title>
+    <meta
+      name="description"
+      content="Contact Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics in Punta Gorda, Florida."
+    />
+    <meta property="og:title" content="Aundrea Pedigo, Licensed Esthetician | House of Rose" />
+    <meta
+      property="og:description"
+      content="Contact details for Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics."
+    />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="profile" />
+    <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold-192.png" />
+    <SchemaMarkup item={personLd} />
+
+    <style>
+      :root {
+        --gold: #c9a24b;
+        --gold-soft: #e7d6a8;
+        --gold-line: rgba(201, 162, 75, 0.45);
+        --ink: #0b0b0c;
+        --panel: #161514;
+        --txt: #f4ecdc;
+        --muted: #b9ad96;
+        --serif: Baskerville, Georgia, 'Times New Roman', serif;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: var(--serif);
+        color: var(--txt);
+        background:
+          radial-gradient(130% 90% at 50% -10%, #1c1b19 0%, #000 62%);
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 440px;
+        background:
+          linear-gradient(180deg, #141312 0%, #0a0a0a 100%);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65);
+        position: relative;
+      }
+
+      .card::after {
+        content: '';
+        position: absolute;
+        right: -60px; bottom: -40px;
+        width: 320px; height: 320px;
+        background: url('/images/banner/background/background-rose.webp') no-repeat center / contain;
+        opacity: 0.10;
+        filter: grayscale(1) brightness(1.3);
+        pointer-events: none;
+      }
+
+      .avatar {
+        margin: 26px auto 0;
+        width: 128px; height: 128px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid var(--gold);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.55), 0 0 0 6px rgba(201,162,75,0.10);
+      }
+      .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+      .crest {
+        position: relative;
+        margin: 18px 18px 0;
+        padding: 28px 24px 30px;
+        text-align: center;
+        border: 1px solid var(--gold-line);
+        border-radius: 14px;
+        background:
+          radial-gradient(120% 120% at 50% 0%, rgba(201,162,75,0.08), transparent 60%);
+      }
+      .crest img { width: 72px; height: auto; display: block; margin: 0 auto; }
+      .wordmark {
+        margin-top: 18px;
+        font-weight: 700;
+        font-size: clamp(26px, 7vw, 34px);
+        letter-spacing: 0.14em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+      .sub-box {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 6px 18px;
+        border: 1px solid var(--gold-line);
+        font-size: 11px;
+        letter-spacing: 0.42em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+      }
+
+      .identity { position: relative; padding: 30px 28px 6px; }
+      .name {
+        font-weight: 700;
+        font-size: clamp(26px, 7vw, 32px);
+        letter-spacing: 0.12em;
+        color: var(--gold-soft);
+        text-transform: uppercase;
+      }
+      .role {
+        margin-top: 6px;
+        font-size: 12px;
+        letter-spacing: 0.26em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      .rows { position: relative; padding: 22px 28px 4px; display: grid; gap: 4px; }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 8px;
+        border-radius: 10px;
+        color: var(--txt);
+        text-decoration: none;
+        transition: background 0.15s ease;
+      }
+      .row:hover, .row:active { background: rgba(201,162,75,0.07); }
+      .row .ico {
+        flex: 0 0 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--gold-line);
+        border-radius: 50%;
+        color: var(--gold);
+      }
+      .row .ico svg { width: 17px; height: 17px; }
+      .row .val { font-size: 15px; letter-spacing: 0.02em; line-height: 1.35; }
+      .row .val small { display: block; color: var(--muted); font-size: 13px; }
+
+      .actions { padding: 18px 28px 6px; display: grid; gap: 12px; }
+      .save {
+        appearance: none; cursor: pointer; border: none;
+        display: block; width: 100%; padding: 17px;
+        border-radius: 12px; text-align: center; text-decoration: none;
+        font-family: var(--serif); font-weight: 700;
+        font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: #1a1206;
+        background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+        box-shadow: 0 10px 26px rgba(201,162,75,0.28);
+      }
+      .save:active { transform: translateY(1px); }
+      .book {
+        display: block; width: 100%; padding: 16px;
+        border-radius: 12px; text-align: center; text-decoration: none;
+        font-weight: 700; font-size: 13px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--gold-soft);
+        border: 1px solid var(--gold-line);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .meta { position: relative; padding: 24px 28px 34px; text-align: center; }
+      .divider {
+        display: flex; align-items: center; justify-content: center;
+        gap: 14px; margin-bottom: 16px; color: var(--gold);
+      }
+      .divider::before, .divider::after {
+        content: ''; height: 1px; width: 54px; background: var(--gold-line);
+      }
+      .services { font-size: 13px; letter-spacing: 0.04em; color: var(--txt); line-height: 1.9; }
+      .services b {
+        display: block; margin-bottom: 6px; color: var(--gold-soft);
+        font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 700;
+      }
+      .creds {
+        margin-top: 18px; font-size: 10.5px; letter-spacing: 0.22em;
+        color: var(--muted); text-transform: uppercase; line-height: 2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <div class="avatar">
+        <img src="/images/providers/aundrea-card-256.webp" alt="Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics" width="128" height="128" decoding="async" />
+      </div>
+
+      <header class="crest">
+        <img src="/logos/house-of-rose-monogram/hr-monogram-gold-192.webp" alt="House of Rose Aesthetics monogram" width="96" height="110" decoding="async" />
+        <div class="wordmark">House of Rose</div>
+        <div class="sub-box">Aesthetics</div>
+      </header>
+
+      <section class="identity">
+        <h1 class="name">Aundrea Pedigo, Licensed Esthetician</h1>
+        <p class="role">Licensed Esthetician</p>
+      </section>
+
+      <nav class="rows" aria-label="Contact methods">
+        <a class="row" href={`tel:${PHONE_E164}`}>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span class="val">{PHONE_DISPLAY}</span>
+        </a>
+
+        <a class="row" href={`mailto:${EMAIL}`}>
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </span>
+          <span class="val">{EMAIL}</span>
+        </a>
+
+        <a class="row" href="https://houseofrosefl.com" target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
+          <span class="val">{WEBSITE}</span>
+        </a>
+
+        <a class="row" href={MAPS_URL} target="_blank" rel="noopener">
+          <span class="ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="val">{ADDRESS_LINE1}<small>{ADDRESS_LINE2}</small></span>
+        </a>
+      </nav>
+
+      <div class="actions">
+        <a class="save" id="saveBtn" href="/aundrea.vcf">Save Contact</a>
+        <a class="book" href="/about/providers/aundrea/">View Full Profile</a>
+        <a class="book" href={`tel:${PHONE_E164}`}>Call House of Rose</a>
+      </div>
+
+      <footer class="meta">
+        <div class="divider" aria-hidden="true">✦</div>
+        <div class="services">
+          <b>Current Work</b>
+          Bridal Makeup · Event Makeup · Everyday Makeup
+        </div>
+        <div class="creds">
+          Licensed Esthetician
+        </div>
+      </footer>
+    </main>
+    <KlaviyoOnsite />
+  </body>
+</html>

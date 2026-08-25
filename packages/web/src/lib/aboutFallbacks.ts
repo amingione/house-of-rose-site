@@ -28,17 +28,17 @@ export const ABOUT_PAGE_FALLBACK = {
   indexSeo: {
     metaTitle: 'About House of Rose Aesthetics | Punta Gorda, FL',
     metaDescription:
-      'Meet the named practitioners behind medical, skin, facial, waxing, makeup, and permanent-jewelry appointments at House of Rose in Punta Gorda.',
+      'Meet the named practitioners behind medical, skin, facial, waxing, and makeup appointments at House of Rose in Punta Gorda.',
   },
   hraSeo: {
     metaTitle: 'House of Rose Aesthetics | About Our Punta Gorda Practice',
     metaDescription:
-      'House of Rose brings injectables, IV hydration, weight management, skin treatments, facials, waxing, makeup, and permanent jewelry to Punta Gorda.',
+      'House of Rose brings injectables, IV hydration, weight management, skin treatments, facials, waxing, and makeup to Punta Gorda.',
   },
   providersSeo: {
     metaTitle: 'House of Rose Providers | Punta Gorda, FL',
     metaDescription:
-      'Meet the House of Rose team, with each practitioner’s licence type and current medical, skin, facial, waxing, makeup, and permanent-jewelry work.',
+      'Meet the House of Rose team, with each practitioner’s licence type and current medical, skin, facial, waxing, and makeup work.',
   },
 };
 
@@ -117,20 +117,22 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     _id: 'provider-aundrea',
     slug: 'aundrea',
     publicName: 'Aundrea Pedigo, Licensed Esthetician',
-    publicRole: 'Licensed Esthetician · Makeup Artist · Permanent Jewelry Artist',
+    publicRole: 'Licensed Esthetician · Makeup Artist',
     summary:
-      'Aundrea Pedigo, Licensed Esthetician, provides professional makeup artistry and permanent jewelry at House of Rose Aesthetics.',
+      'Aundrea Pedigo, Licensed Esthetician, provides professional makeup artistry at House of Rose Aesthetics.',
     biography: [
-      'Her makeup work includes weddings, special events, photo shoots, and celebrations, ranging from soft event makeup to full glam.',
-      'She also provides permanent jewelry: a fitted, clasp-free chain closed by welding and removable by cutting when needed. Makeup artistry and permanent jewelry are non-medical services.',
+      'Her makeup work covers bridal appointments, events and celebrations, photo shoots, and everyday wear, ranging from soft daytime makeup to full glam.',
+      'A bridal appointment runs longer than an event appointment because it is built around the schedule of the day. Makeup artistry is a non-medical service.',
     ],
-    serviceFocus: ['Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
+    serviceFocus: ['Bridal makeup', 'Event makeup', 'Everyday makeup'],
+    imageUrl: '/images/providers/aundrea-profile-1122.webp',
     imageAlt: 'Aundrea Pedigo, Licensed Esthetician, at House of Rose Aesthetics',
+    digitalCardPath: getPublicProviderDigitalCardPath('aundrea'),
     listingOrder: 40,
     seo: {
       metaTitle: 'Aundrea Pedigo, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Aundrea Pedigo, Licensed Esthetician provides makeup artistry and permanent jewelry at House of Rose in Punta Gorda; both are non-medical services.',
+        'Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup at House of Rose in Punta Gorda; makeup artistry is a non-medical service.',
     },
   },
 ];

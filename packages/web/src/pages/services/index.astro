@@ -102,7 +102,16 @@ const mappedSlugs = new Set(SERVICE_GROUP_SECTIONS.flatMap((s) => s.collectionSl
 const collectionUnmappedServices = collections
   .filter((c) => !mappedSlugs.has(c.slug))
   .flatMap((collection) => directoryServices(collection.services));
-const standaloneServices = allServices.filter((service) => service.slug === 'permanent-jewelry');
+// Non-medical services whose collections are not yet reviewed for a public
+// collection page (see REVIEWED_PUBLIC_COLLECTION_SLUGS). They are still live,
+// bookable appointments, so they are listed here directly rather than becoming
+// orphan pages reachable only from the sitemap.
+const STANDALONE_SERVICE_SLUGS = new Set([
+  'bridal-makeup',
+  'event-makeup',
+  'everyday-makeup',
+]);
+const standaloneServices = allServices.filter((service) => STANDALONE_SERVICE_SLUGS.has(service.slug));
 const unmappedServices = Array.from(
   new Map([...collectionUnmappedServices, ...standaloneServices].map((service) => [service.slug, service])).values(),
 );
@@ -110,7 +119,7 @@ const unmappedServices = Array.from(
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const pageTitle = 'Medical Aesthetic Services | House of Rose Punta Gorda, FL';
-const pageDescription = 'Skin, injectable, facial, IV hydration, weight-management, waxing, and permanent-jewelry services at House of Rose Aesthetics in Punta Gorda.';
+const pageDescription = 'Skin, injectable, facial, IV hydration, weight-management, waxing, and makeup services at House of Rose Aesthetics in Punta Gorda.';
 const directorySchema = itemListPage(
   {
     name: 'House of Rose Services',
@@ -146,7 +155,7 @@ const breadcrumb = breadcrumbList([
   <Hero
     title="Services at House of Rose."
     kicker="Punta Gorda, Florida"
-    description="Browse skin treatments, injectables, facials, IV hydration, weight management, waxing, and permanent jewelry."
+    description="Browse skin treatments, injectables, facials, IV hydration, weight management, waxing, and makeup."
     size="small"
     backgroundImage="/images/optimized/actual-reception-1400-light.webp"
     backgroundSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"

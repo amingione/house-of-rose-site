@@ -110,7 +110,7 @@ export const GET: APIRoute = async ({ site }) => {
     `## Site Pages`,
     ``,
     `- **Home** (${base}/): Overview of the practice, current services, and booking`,
-    `- **Services** (${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, makeup, and permanent-jewelry appointments`,
+    `- **Services** (${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, and makeup appointments`,
     `- **About** (${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
     `- **${siteFacts.siteName}** (${base}/about/hra/): About the practice and its Punta Gorda location`,
     `- **Providers** (${base}/about/providers/): Licence types, service focus, and individual team profiles`,

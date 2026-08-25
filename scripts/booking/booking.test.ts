@@ -8,9 +8,12 @@ import {
 
 const DIRECT_URL =
   'https://houseofrose.glossgenius.com/book?service_token=verified-token';
+const CURRENT_DIRECT_URL =
+  'https://houseofrose.glossgenius.com/services?service_token=verified-token';
 
-test('accepts only the active GlossGenius host and exact booking route', () => {
+test('accepts both active GlossGenius service-booking routes', () => {
   assert.equal(isVerifiedGlossGeniusBookingUrl(DIRECT_URL), true);
+  assert.equal(isVerifiedGlossGeniusBookingUrl(CURRENT_DIRECT_URL), true);
   assert.equal(
     isVerifiedGlossGeniusBookingUrl(
       'https://houseofrosefl.glossgenius.com/book?service_token=verified-token',
@@ -29,11 +32,11 @@ test('accepts only the active GlossGenius host and exact booking route', () => {
 
 test('resolves a direct service with exact analytics metadata', () => {
   const action = resolveServiceBooking(
-    { slug: 'biorepeel', bookingMode: 'direct', bookingUrl: DIRECT_URL },
+    { slug: 'biorepeel', bookingMode: 'direct', bookingUrl: CURRENT_DIRECT_URL },
     'service_hero',
   );
 
-  assert.equal(action.href, DIRECT_URL);
+  assert.equal(action.href, CURRENT_DIRECT_URL);
   assert.match(action.label, /\b(?:book|reserve|schedule)\b/i);
   assert.equal(action.mode, 'direct');
   assert.equal(action.target, '_blank');

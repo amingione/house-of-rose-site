@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const DIST_DIR = path.resolve('packages/web/dist');
 const ACTIVE_MENU_URL = 'https://houseofrose.glossgenius.com/services';
-const ACTIVE_BOOKING_PREFIX = 'https://houseofrose.glossgenius.com/book?';
+const ACTIVE_BOOKING_PATHS = new Set(['/book', '/services']);
 const RETIRED_PATHS = new Set([
   '/aundrea/',
   '/services/professional-makeup/',
@@ -60,10 +60,19 @@ for (const file of await collectHtml(DIST_DIR)) {
       const mode = getAttribute(tag, 'data-booking-mode');
       const location = getAttribute(tag, 'data-cta-location');
       const isPhone = mode === 'phone' && href === 'tel:+19414000165';
-      const isExact =
-        (mode === 'direct' || mode === 'consultation') &&
-        href.startsWith(ACTIVE_BOOKING_PREFIX) &&
-        new URL(href).searchParams.has('service_token');
+      let isExact = false;
+      if (mode === 'direct' || mode === 'consultation') {
+        try {
+          const url = new URL(href);
+          isExact =
+            url.protocol === 'https:' &&
+            url.hostname === 'houseofrose.glossgenius.com' &&
+            ACTIVE_BOOKING_PATHS.has(url.pathname) &&
+            Boolean(url.searchParams.get('service_token')?.trim());
+        } catch {
+          isExact = false;
+        }
+      }
       if (!isPhone && !isExact) {
         failures.push(`${route}: ${serviceSlug} has an invalid contextual ${mode} action: ${href}`);
       }

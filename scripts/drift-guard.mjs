@@ -137,9 +137,9 @@ const RETIRED_ROUTE_CONFIGS = [
   '/memberships/*',
   '/rose-circle/*',
   '/plans/*',
-  '/aundrea/*',
-  '/aundrea.vcf',
   '/services/professional-makeup/*',
+  '/services/permanent-jewelry/*',
+  '/services/collections/permanent-jewelry/*',
 ];
 
 /** @type {{file:string, line:number, label:string, text:string}[]} */

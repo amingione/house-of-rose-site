@@ -47,7 +47,7 @@ test('Stackbit exposes only services with generated public routes', async () => 
       document: documentRef('service-live', 'service'),
     },
     {
-      urlPath: '/services/permanent-jewelry',
+      urlPath: '/services/actual-menu-service',
       document: documentRef('service-actual-menu', 'service'),
     },
     {
@@ -66,7 +66,7 @@ test('Stackbit exposes only services with generated public routes', async () => 
   ];
   const documents = new Map([
     ['service-live', serviceDocument('prf', 'live')] as const,
-    ['service-actual-menu', serviceDocument('permanent-jewelry', 'actual-menu')] as const,
+    ['service-actual-menu', serviceDocument('actual-menu-service', 'actual-menu')] as const,
     ['service-proposed', serviceDocument('proposed-service', 'proposed')] as const,
     ['service-missing-slug', serviceDocument(undefined, 'live')] as const,
     ...UNAVAILABLE_PUBLIC_SERVICE_SLUGS.map((slug) => [
@@ -83,6 +83,6 @@ test('Stackbit exposes only services with generated public routes', async () => 
 
   assert.deepEqual(
     filtered.map(({ urlPath }) => urlPath),
-    ['/services/prf', '/services/permanent-jewelry', '/areas/punta-gorda'],
+    ['/services/prf', '/services/actual-menu-service', '/areas/punta-gorda'],
   );
 });

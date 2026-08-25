@@ -70,7 +70,7 @@ export const GET: APIRoute = async ({ site }) => {
     `## Core Pages`,
     ``,
     `- [Home](${base}/): ${siteFacts.siteName} — a medical aesthetics practice in Punta Gorda, FL`,
-    `- [Services](${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, makeup, and permanent-jewelry appointments`,
+    `- [Services](${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, and makeup appointments`,
     `- [Concern Guides](${base}/concerns/): Observable skin, pigment, texture, movement, and volume questions connected to current services`,
     `- [About](${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
     `- [${siteFacts.siteName}](${base}/about/hra/): About the Punta Gorda practice`,

@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { isVerifiedGlossGeniusBookingUrl } from '../../web/src/lib/booking';
 import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../../web/src/lib/publicConcernContent';
 import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
 import { treatmentPageFields } from './objects/treatmentPageFields';
@@ -147,7 +148,7 @@ export const service = defineType({
       title: 'GlossGenius Direct Booking Link',
       type: 'url',
       description:
-        'For direct or consultation actions, use https://houseofrose.glossgenius.com/book?service_token=… Leave empty when the booking action is phone.',
+        'For direct or consultation actions, paste the matching link copied from GlossGenius. Supported links use /book or /services with a service_token. Leave empty when the booking action is phone.',
       validation: (R) =>
         R.custom((value, context) => {
           const document = context.document as {
@@ -163,17 +164,9 @@ export const service = defineType({
           }
           if (!value) return true;
 
-          try {
-            const url = new URL(value);
-            return url.protocol === 'https:' &&
-              url.hostname === 'houseofrose.glossgenius.com' &&
-              url.pathname === '/book' &&
-              Boolean(url.searchParams.get('service_token')?.trim())
-              ? true
-              : 'Use the active House of Rose /book URL with a service_token.';
-          } catch {
-            return 'Enter a valid GlossGenius booking URL.';
-          }
+          return isVerifiedGlossGeniusBookingUrl(value)
+            ? true
+            : 'Use the House of Rose GlossGenius /book or /services URL with a service_token.';
         }),
     }),
     defineField({

@@ -40,7 +40,7 @@ test('service discovery presents separate education and exact booking actions', 
   await expect(directAction).toBeVisible();
   await expect(directAction).toHaveAttribute(
     'href',
-    /https:\/\/houseofrose\.glossgenius\.com\/book\?service_token=.+/,
+    /https:\/\/houseofrose\.glossgenius\.com\/(?:book|services)\?service_token=.+/,
   );
   await expect(directAction).not.toHaveAttribute(
     'href',
@@ -57,7 +57,7 @@ test('service detail keeps exact booking visible without horizontal overflow', a
   await expect(actions.first()).toHaveAttribute('data-booking-mode', 'direct');
   await expect(actions.first()).toHaveAttribute(
     'href',
-    /https:\/\/houseofrose\.glossgenius\.com\/book\?service_token=.+/,
+    /https:\/\/houseofrose\.glossgenius\.com\/(?:book|services)\?service_token=.+/,
   );
 
   if (testInfo.project.name !== 'desktop') {

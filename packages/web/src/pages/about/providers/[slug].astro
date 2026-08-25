@@ -67,7 +67,6 @@ const serviceFocusLinks: Readonly<Record<string, string>> = {
   Facials: '/services/#skin-health-corrective-care',
   'Standalone BioRePeel': '/services/biorepeel/',
   'Facial waxing': '/services/facial-waxing/',
-  'Permanent jewelry': '/services/permanent-jewelry/',
 };
 interface ProviderClosingLink {
   readonly href: string;
@@ -109,12 +108,12 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
     ],
   },
   aundrea: {
-    heading: 'Looking for makeup artistry or permanent jewelry?',
-    body: 'Permanent jewelry is a 20-minute appointment that begins with a call to House of Rose. Wedding, event, and photo-shoot makeup begin with a message that includes the date and occasion.',
+    heading: 'Looking for bridal, event, or everyday makeup?',
+    body: 'Each makeup appointment begins with a call or a message that includes the date and the occasion. Bridal is booked as a longer appointment because it is timed to the schedule of the day.',
     links: [
-      { href: 'tel:+19414000165', label: 'Call about Permanent Jewelry' },
-      { href: '/contact/', label: 'Ask about makeup artistry' },
-      { href: '/services/permanent-jewelry/', label: 'Permanent Jewelry details' },
+      { href: '/services/bridal-makeup/', label: 'Bridal Makeup' },
+      { href: '/services/event-makeup/', label: 'Event Makeup' },
+      { href: '/contact/', label: 'Ask about makeup' },
     ],
   },
 };
@@ -231,7 +230,7 @@ const personSchema = personProfile(
             ))}
           </ul>
           {profile.slug === 'aundrea' && (
-            <p class="mt-6 text-[13px] leading-[1.7] text-muted">Makeup artistry and permanent jewelry are non-medical services.</p>
+            <p class="mt-6 text-[13px] leading-[1.7] text-muted">Makeup artistry is a non-medical service.</p>
           )}
           {profile.medicallyDirected && (
             <p class="mt-7 border-t border-walnut/10 pt-6 text-[13px] font-semibold leading-[1.7] text-muted-strong">

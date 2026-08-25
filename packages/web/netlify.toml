@@ -74,6 +74,13 @@
     Content-Type        = "text/vcard; charset=utf-8"
     Content-Disposition = "inline; filename=\"Brandy.vcf\""
 
+# vCard — same inline behavior for Aundrea's card (/aundrea/).
+[[headers]]
+  for = "/aundrea.vcf"
+  [headers.values]
+    Content-Type        = "text/vcard; charset=utf-8"
+    Content-Disposition = "inline; filename=\"AundreaPedigo.vcf\""
+
 # Botanical → industry-standard treatmentPackage slug renames (2026-07-01)
 [[redirects]]
   from   = "/packages/the-bridal-bloom/"
@@ -108,19 +115,21 @@
   status = 301
 
 [[redirects]]
-  from   = "/aundrea/*"
-  to     = "/404.html"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from   = "/aundrea.vcf"
-  to     = "/404.html"
-  status = 404
-  force  = true
-
-[[redirects]]
   from   = "/services/professional-makeup/*"
+  to     = "/404.html"
+  status = 404
+  force  = true
+
+# Permanent jewelry retired from the website entirely 2026-08-25 (Amber).
+# Hard 404 rather than a redirect so search engines drop the historical URLs.
+[[redirects]]
+  from   = "/services/permanent-jewelry/*"
+  to     = "/404.html"
+  status = 404
+  force  = true
+
+[[redirects]]
+  from   = "/services/collections/permanent-jewelry/*"
   to     = "/404.html"
   status = 404
   force  = true

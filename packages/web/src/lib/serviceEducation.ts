@@ -2,7 +2,6 @@ import { getDeviceServiceEducation } from '@/lib/deviceServiceEducation';
 import { getInjectableServiceEducation } from '@/lib/injectableServiceEducation';
 import { getSkinRenewalServiceEducation } from '@/lib/skinRenewalServiceEducation';
 import { getWaxingServiceEducation } from '@/lib/waxingServiceEducation';
-import { PERMANENT_JEWELRY_EDUCATION } from '@/lib/permanentJewelryEducation';
 import { IV_HYDRATION_EDUCATION } from '@/lib/ivHydrationFacts';
 import { DERMAPLANING_EDUCATION } from '@/lib/dermaplaningEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
@@ -237,53 +236,6 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         {
           href: '/about/providers/diana/',
           label: 'Meet Diana Morrison, RN',
-        },
-      ],
-    };
-  }
-
-  if (slug === 'permanent-jewelry') {
-    return {
-      kicker: PERMANENT_JEWELRY_EDUCATION.title,
-      heading: 'A fitted chain without a traditional clasp.',
-      metaDescription: 'Permanent jewelry at House of Rose is a fitted, clasp-free chain appointment in Punta Gorda. The fitting takes 20 minutes. Ask about current pricing.',
-      paragraphs: [
-        PERMANENT_JEWELRY_EDUCATION.whatItIs,
-        PERMANENT_JEWELRY_EDUCATION.appointment,
-        `${PERMANENT_JEWELRY_EDUCATION.provider.publicName} provides the fitting as the practice’s ${PERMANENT_JEWELRY_EDUCATION.provider.role}.`,
-      ],
-      distinctions: [
-        {
-          label: 'How the chain closes',
-          text: PERMANENT_JEWELRY_EDUCATION.fitAndClosure,
-        },
-        {
-          label: 'What “permanent” means',
-          text: PERMANENT_JEWELRY_EDUCATION.permanenceAndRemoval,
-        },
-      ],
-      menu: {
-        heading: 'The fitting appointment',
-        intro: 'The fitting takes 20 minutes. If the chain material or charm matters to you, call before booking to ask what is available and about current pricing.',
-        verifiedAt: new Date(`${PERMANENT_JEWELRY_EDUCATION.menu.verifiedAt}T00:00:00Z`).toLocaleDateString('en-US', {
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric',
-          timeZone: 'UTC',
-        }),
-        items: [
-          {
-            name: PERMANENT_JEWELRY_EDUCATION.menu.name,
-            duration: formatMinutes(PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes),
-          },
-        ],
-      },
-      faqs: PERMANENT_JEWELRY_EDUCATION.faqs,
-      faqHeading: 'The clasp-free closure, explained.',
-      links: [
-        {
-          href: PERMANENT_JEWELRY_EDUCATION.provider.profilePath,
-          label: `Meet ${PERMANENT_JEWELRY_EDUCATION.provider.publicName}`,
         },
       ],
     };

@@ -1,5 +1,4 @@
 const VERIFIED_SERVICE_DURATIONS: Readonly<Record<string, string>> = {
-  'permanent-jewelry': '20 minutes',
   'iv-hydration-therapy': '30–45 minutes',
   'dermal-fillers': '30–45 minutes',
   'facial-waxing': '10–30 minutes by area',
@@ -24,8 +23,12 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
     'Book the Acne Bootcamp Consultation to discuss the complete 12-week program and its separately purchased home care. Ask about current pricing when you book.',
   'glp-1-weight-management':
     'The first appointment is a 40-minute consultation with Diana Morrison, RN. Medication and ongoing program charges are separate; call House of Rose for those prices.',
-  'permanent-jewelry':
-    'Call House of Rose for the 20-minute fitting. If the chain material or charm matters to you, ask what is available before booking.',
+  'bridal-makeup':
+    'Call House of Rose to schedule the two-hour bridal appointment with Aundrea Pedigo, Licensed Esthetician. Have the ceremony time and the photographer\u2019s start time ready \u2014 the appointment is built backwards from them. Ask about a trial if the look is not yet decided.',
+  'event-makeup':
+    'Call House of Rose for the 45-minute application with Aundrea Pedigo, Licensed Esthetician. Say what the event is, how far toward full glam you want to go, and whether photographs will be taken in daylight or under flash.',
+  'everyday-makeup':
+    'Call House of Rose for the 25-minute daytime application with Aundrea Pedigo, Licensed Esthetician. Mention if you want the steps talked through as a lesson, and bring the products you already use so they can be worked into the routine.',
   injectables:
     'The 20-minute Neuromodulator Consultation with Diana Morrison, RN is for describing which lines appear or deepen when you frown, raise your brows, or squint. Botox and Daxxify are each priced per unit; the treatment appointment total depends on the number of units administered.',
   'body-waxing':

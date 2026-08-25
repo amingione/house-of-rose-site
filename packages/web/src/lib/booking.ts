@@ -3,6 +3,8 @@ export const GLOSSGENIUS_SERVICES_URL = `https://${GLOSSGENIUS_HOST}/services`;
 export const SKIN_ANALYSIS_BOOKING_URL = `https://${GLOSSGENIUS_HOST}/book?service_token=1000f-ad93f96c-64b0-4a51-959b-4301ca28039c`;
 export const PRACTICE_PHONE_HREF = 'tel:+19414000165';
 
+const GLOSSGENIUS_BOOKING_PATHS = new Set(['/book', '/services']);
+
 export type BookingMode = 'direct' | 'consultation' | 'phone';
 
 export interface ServiceBookingSource {
@@ -33,7 +35,7 @@ export const isVerifiedGlossGeniusBookingUrl = (value: string | undefined): bool
     return (
       url.protocol === 'https:' &&
       url.hostname === GLOSSGENIUS_HOST &&
-      url.pathname === '/book' &&
+      GLOSSGENIUS_BOOKING_PATHS.has(url.pathname) &&
       Boolean(url.searchParams.get('service_token')?.trim())
     );
   } catch {

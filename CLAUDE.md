@@ -337,7 +337,11 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **Amber** — esthetician + RN assistant. Lane: **Advanced Facials** (Microneedling with the Procell Therapies device, Glo2Facial, PRF topical, Procell MD/Pro materials, BioRePeel, dermaplaning, carboxy). Use **Procell Microchanneling** only in explicit Procell context; it is not a separate service from Microneedling. PRF **topical only, no injections**. **Amber uses BioRePeel only as an add-on to an eligible advanced skin service; no independent add-on price is verified in the current GlossGenius ledger, and she does not provide standalone BioRePeel.** Standalone BioRePeel is Brandy's.
 - **Diana** (RN) — Lane: **Injectables** (tox/filler/PRF injections), **IV Hydration**, and the **GLP-1** program.
 - **Brandy** — Lane: **Basic Facials & Peels** (relaxing/maintenance: enzyme exfoliation, hydrodermabrasion, light peels) plus **facial waxing**. Rents a room. **Brandy provides standalone BioRePeel** (the face appointment and Series of 3) — the standalone peel is hers, not Amber's.
-- **Aundrea** — **Professional makeup artistry and permanent jewelry** (weddings, special events, photoshoots, and celebrations). These are non-medical services. Public provider copy was restored by Amber on 2026-08-06.
+- **Aundrea** (Aundrea Pedigo, Licensed Esthetician) — Lane: **Professional makeup artistry ONLY** —
+  the three live GlossGenius appointments are **Bridal Makeup**, **Event Makeup**, and **Everyday
+  Makeup**. Non-medical service. Public provider copy was restored by Amber on 2026-08-06.
+  Her `/aundrea/` tap-to-share card, provider profile, and the three makeup service pages all went
+  live 2026-08-25.
 
 ⚠️ **Ownership structure ("Co-Owner") is PRIVATE — never public-facing (binding — 2026-08-13).** Amber and Diana
 are both authorized LLC members per Sunbiz (see Florida Advertising Law section above), but that fact must never
@@ -346,6 +350,22 @@ appear in customer-facing copy: not in `publicRole`/title strings, bios, meta de
 customer-facing surface (including a seed script that could regenerate it), remove it — don't just fix the live
 page and leave the source it came from. Swept clean 2026-08-13: `aboutFallbacks.ts`, `amber.astro`, `diana.astro`,
 homepage, and `about/index.astro`; the obsolete provider seed was removed.
+
+## Permanent Jewelry — REMOVED FROM THE WEBSITE (binding — 2026-08-25)
+Amber removed permanent jewelry from houseofrosefl.com **entirely**. Do not re-add the service page,
+the collection, homepage rails, provider attribution, schema, AI-feed lines, or menu prose. The slug
+sits in `UNAVAILABLE_PUBLIC_SERVICE_SLUGS`, and `/services/permanent-jewelry/*` plus
+`/services/collections/permanent-jewelry/*` are forced `404`s in `packages/web/netlify.toml` so search
+engines drop the historical URLs. The `permanentJewelryEducation.ts` module was deleted.
+
+- This **supersedes** the earlier same-day decision to keep it live without a named provider. If you
+  find that intermediate state described anywhere, it is stale.
+- ⚠️ The Sanity `service` document was **deleted** (the unpublish call removed it outright), not just
+  unpublished. The `serviceCollection` record was unpublished and survives as a draft.
+- The removal was scoped to the **website**. Whether it is still sold in person or listed on
+  GlossGenius is Amber's call and is not recorded here.
+
+---
 
 ## Memberships — NOT OFFERED
 House of Rose does **not** offer memberships. None exist, none are in the site or Studio, none are

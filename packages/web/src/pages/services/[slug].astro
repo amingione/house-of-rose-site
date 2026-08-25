@@ -12,6 +12,7 @@ import {
   serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from '@/lib/publicCollectionContent';
 import {
   ALL_SERVICE_SLUGS_QUERY,
   SERVICE_BY_SLUG_QUERY,
@@ -90,8 +91,11 @@ const renderSplitInjectableSibling = splitInjectableSibling
 const hasRelatedServices = visibleRelatedServices.length > 0 || Boolean(renderSplitInjectableSibling);
 const collectionSlug = service.collection?.slug;
 const collectionTitle = service.collection?.title;
+// A collection only earns a directory link when it actually renders a public
+// page, i.e. its slug is on REVIEWED_PUBLIC_COLLECTION_SLUGS. Otherwise the link
+// would 404 (this is what the retired permanent-jewelry special case guarded).
 const hasDistinctCollectionDirectory = collectionSlug
-  && collectionSlug !== 'permanent-jewelry'
+  && REVIEWED_PUBLIC_COLLECTION_SLUGS.includes(collectionSlug as typeof REVIEWED_PUBLIC_COLLECTION_SLUGS[number])
   && collectionSlug !== service.slug;
 const serviceDirectoryPath = hasDistinctCollectionDirectory
   ? `/services/collections/${collectionSlug}/`

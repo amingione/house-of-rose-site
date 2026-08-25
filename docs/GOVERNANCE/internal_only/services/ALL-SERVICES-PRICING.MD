@@ -23,9 +23,10 @@ layer.
 
 This pricing group is not a provider map. Amber Mingione, Licensed Esthetician is verified for
 Glo2Facial, Procell Microneedling including topical PRF, dermaplaning, CO2 Lift Carboxy, the three
-BioRePeel specialty variants, Face Reality peels, and Acne Bootcamp. Brandy, Licensed Esthetician
-provides the standalone BioRePeel face appointment and Series of 3. The current reviewed sources do
-not establish a provider for GlowTox Facial or the five shared facial appointments below.
+BioRePeel specialty variants, Face Reality peels, and Acne Bootcamp. Brandy Case, Licensed
+Esthetician provides the standalone BioRePeel face appointment and Series of 3 and the Radiance &
+Renewal Facial. The current reviewed sources do not establish a provider for GlowTox Facial or the
+three shared facial appointments below.
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
@@ -41,7 +42,6 @@ not establish a provider for GlowTox Facial or the five shared facial appointmen
 | CO2 Lift Carboxy — Add-On | 30 min | $100 | Staff-added only (booking OFF by design) |
 | Signature Facial | 45 min | $120 | Online |
 | Skin Reset Facial | 50 min | $140 | Online |
-| Sculpt & Lift Facial | 1 hr | $180 | No |
 | Radiance & Renewal Facial | 1 hr 15 min | $200 | Online |
 | Mommy & Me Facial | 1 hr | $150 | Online |
 
@@ -68,7 +68,7 @@ not establish a provider for GlowTox Facial or the five shared facial appointmen
 
 ⚠️ **Not currently priced as separate GlossGenius line items** (present in older docs / Sanity as
 distinct services, but no matching current GlossGenius entry found in the 2026-08-06 export):
-Glo2Facial + Procell MD/Pro/PRF combos, Procell Series of 4, Microneedling — Body, Procell
+Glo2Facial + Procell MD/Pro/PRF combos, Procell Series of 3, Microneedling — Body, Procell
 Microchanneling — Body, PRF Body Treatments (see Diana section — GlossGenius has a $3,500
 "PRF Body Treatments Consultation" but no per-zone body-microneedling pricing), Neck & Décolleté
 Extension, LightStim standalone, Exosome Infusion. If these are still offered, they need to be
@@ -84,7 +84,7 @@ added to GlossGenius with real prices before they can be called "live" anywhere.
 |---|---|---|
 | Botox | 30 min | **$14/unit** |
 | Daxxify | 1 hr | **$14/unit** |
-| Neuromodulator Consultation | 20 min | $50 |
+| Neuromodulator Consultation | 20 min | $0 |
 | 2-Week Check-in | 20 min | $0 |
 
 **Dermal Fillers** *(RHA 4 and Restylane removed 2026-08-06 — confirmed never offered; corrected in
@@ -103,9 +103,10 @@ Notion the same day)*:
 
 | Service | Duration | Price |
 |---|---|---|
-| PRF Under-Eye — Consultation | 1 hr 15 min | **$495** |
-| PRF Bio-Filler — Consultation | 45 min | **$899** ⚠️ see open item — was "EZ Gel Bio-Filler $650" per 2026-07-26 log |
-| PRF Body Treatments — Consultation | 1 hr | $3,500 |
+| PRF Consultation| 1 hr 15 min | **$0** |
+| PRF Under-Eye  | 1 hr 15 min | **$495** |
+| PRF Bio-Filler Consultation | 45 min | **0-**
+| PRF Bio-Filler — Consultation | 45 min | **$899**
 
 ### PRF booking and provider boundary
 
@@ -140,9 +141,7 @@ export. Confirm they're still bookable before quoting.)*
 | Semaglutide | 15 min | **$299** |
 | GLP-1 Consultation | 40 min | $25 |
 
-⚠️ Structured very differently from the old "$225+/mo Semaglutide · $325+/mo Tirzepatide" figure —
-confirm with Diana whether $299/$399 is the ongoing monthly price or a first-visit/consult price
-before publishing either number anywhere client-facing.
+
 
 ---
 
@@ -152,10 +151,10 @@ Brandy, Licensed Esthetician is verified for facial waxing. The seven body-waxin
 current GlossGenius inventory, but the export and reviewed waxing source do not establish a
 body-waxing provider. Do not infer or publish one from this category grouping.
 
-Same facial lineup shown under Amber above is shared/ambiguous in GlossGenius (no provider field in
-the export) — Signature Facial, Skin Reset, Sculpt & Lift, Radiance & Renewal, and Mommy & Me all
-plausibly belong to either lane depending on how GlossGenius is configured. Listed once above; don't
-duplicate.
+The 2026-08-06 export did not include provider assignments for the facial lineup. A live
+GlossGenius account check on 2026-08-25 confirms Radiance & Renewal Facial is assigned to Brandy
+Case. Signature Facial, Skin Reset, and Mommy & Me remain shared/ambiguous and are listed once above;
+do not duplicate them.
 
 | Service | Duration | Price |
 |---|---|---|
@@ -173,7 +172,10 @@ duplicate.
 
 ---
 
-## Aundrea — Makeup & Permanent Jewelry *(non-medical)*
+## Aundrea — Makeup *(non-medical)*
+
+**Aundrea provides makeup only (confirmed by Amber 2026-08-25).** She no longer provides permanent
+jewelry; that service moved to its own section below. Do not re-attribute it to her.
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
@@ -181,15 +183,36 @@ duplicate.
 | Bridal Makeup | 2 hr | $175 | No |
 | Everyday Makeup | 25 min | $85 | No |
 | Signature Makeup Services — Event Makeup | 2 hr 40 min | $85 ($50 deposit) | No |
-| Permanent Jewelry | 20 min | $65 | No |
 
 ⚠️ Two different "Event Makeup" prices exist in GlossGenius right now ($150 under "Event Makeup" vs.
 $85 under "Signature Makeup Services") — this looks like an uncleaned duplicate inside GlossGenius
 itself, not a documentation error. Needs a decision on which one is correct and removal of the other.
+The duplicate's group name also breaks the naming law ("Signature"), so removing it fixes two problems.
 
-⚠️ Permanent Jewelry shows one flat $65 line — the full price list PDF in this folder's pricing
-archive has per-material, per-length tiers (bracelet/anklet/necklace in gold-filled/sterling/solid
-gold). If those tiers are still real, they need to be added to GlossGenius as separate line items.
+These three are live on the website as of 2026-08-25 (`/services/bridal-makeup/`,
+`/services/event-makeup/`, `/services/everyday-makeup/`). No price is published — every CTA is
+"call the practice". They are **not** directly bookable in GlossGenius, so `bookingMode` is `phone`.
+
+---
+
+## Permanent Jewelry — REMOVED FROM THE WEBSITE (2026-08-25)
+
+🛑 **Retired from houseofrosefl.com entirely on Amber's instruction (2026-08-25).** This supersedes
+the 2026-08-25 "keep it live, drop the named provider" decision earlier the same day.
+
+What was done: the slug is in `UNAVAILABLE_PUBLIC_SERVICE_SLUGS`, `/services/permanent-jewelry/*` and
+`/services/collections/permanent-jewelry/*` are forced 404s in `packages/web/netlify.toml` (so search
+engines drop the URLs), the education module was deleted, and every mention was removed from the
+homepage, `/services/`, `/about/*`, the provider profiles, and both AI feeds.
+
+⚠️ **The Sanity service document was deleted, not unpublished** — the unpublish call removed it
+outright. The `serviceCollection` record was unpublished normally and still exists as a draft. If the
+service is ever revived it has to be re-authored from scratch; the last known content is in this
+file's git history and in commit `76c73e3f`-era exports.
+
+❓ **Open: does the practice still sell it off-website?** This removal was scoped to the website. If
+it is also off the GlossGenius menu, delete the listing there too; if it is still bookable in person,
+that is fine and simply is not advertised online.
 
 ---
 
@@ -273,6 +296,13 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
    different things and EZ Gel quietly disappeared. Confirm with Diana.
 4. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
    different group names) — see the Aundrea section above.
+4b. ⬜ **Permanent Jewelry duration conflict (20 min vs 35 min) is now moot for the website** — the
+   page no longer exists, so nothing is rendered publicly. It still matters if the service is sold in
+   person; confirm the real duration before re-listing it anywhere.
+4c. ✅ **Permanent Jewelry — resolved by removal.** Aundrea went makeup-only, and Amber then chose to
+   remove the service from the website entirely (2026-08-25). Superseded items 4b and the earlier
+   "keep it unattributed" decision. The only remaining question is whether it also comes off
+   GlossGenius — see the Permanent Jewelry section above.
 5. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
    $299, $325, $349) before settling at the current, confirmed-live **Pro $300 / MD $400** (Amber's
    2026-07-26 decision, matches the fresh export exactly). This one is resolved — flagging only so

@@ -4,7 +4,6 @@ import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
 import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
 import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
-import { PERMANENT_JEWELRY_EDUCATION } from '@/lib/permanentJewelryEducation';
 import { SKIN_RENEWAL_SERVICE_EDUCATION } from '@/lib/skinRenewalServiceEducation';
 import { WAXING_SERVICE_EDUCATION } from '@/lib/waxingServiceEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
@@ -36,13 +35,6 @@ const broaderPracticeServices = [
     body: `Waxing is booked by area across ${WAXING_SERVICE_EDUCATION.waxing.menu.items.length} appointments. Four cover the chin, upper lip, and brows; seven cover underarms, bikini line, chest, back, full leg, partial leg, and full arm.`,
     href: '/services/waxing/',
     cta: 'See all 11 appointments',
-  },
-  {
-    label: 'Permanent jewelry',
-    title: 'Fitted in person and closed without a clasp',
-    body: `Aundrea Pedigo, Licensed Esthetician fits the chain and joins its ends by welding. The ${PERMANENT_JEWELRY_EDUCATION.menu.durationMinutes}-minute non-medical appointment has its own listing; the chain can be cut when removal is needed. Ask about current pricing when you book.`,
-    href: '/services/permanent-jewelry/',
-    cta: 'Read about permanent jewelry',
   },
 ] as const;
 
@@ -83,7 +75,7 @@ const treatmentCategories = [
   <div>
     <SkinAnalysisHero
       title={'A Punta Gorda practice with\nmore than one reason to visit.'}
-      description={'House of Rose offers skin care, injectables, IV hydration, weight management, waxing, makeup, and permanent jewelry in one Punta Gorda practice.'}
+      description={'House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice.'}
       location="Punta Gorda, Florida"
       primaryCta="Book an appointment"
       secondaryCta="Explore services"
@@ -132,7 +124,7 @@ const treatmentCategories = [
         </div>
         <div class="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-walnut/15 pt-7">
           <p class="max-w-[680px] text-[14px] leading-[1.7] text-muted">
-            The complete menu also includes body services, IV hydration, GLP-1 weight management, waxing, makeup, and permanent jewelry.
+            The complete menu also includes body services, IV hydration, GLP-1 weight management, waxing, and makeup.
           </p>
           <a href="/services/" class="learn-more mt-0">Browse the complete menu <span aria-hidden="true">→</span></a>
         </div>
@@ -309,7 +301,7 @@ const treatmentCategories = [
             Who you trust with your face matters.
           </h2>
           <p class="mt-7 text-[17px] leading-[1.8] text-ivory/78">
-            Know who provides your appointment before you book it. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, makeup artistry, and permanent jewelry.
+            Know who provides your appointment before you book it. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, and makeup artistry.
           </p>
           <div class="mt-7 grid gap-3 border-t border-ivory/20 pt-6 text-[13px] leading-[1.6]">
             <a href="/about/providers/brandy/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
@@ -322,7 +314,7 @@ const treatmentCategories = [
             <a href="/about/providers/aundrea/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
               <span>
                 <strong class="font-semibold">Aundrea Pedigo, Licensed Esthetician</strong><br />
-                <span class="text-ivory/80 group-hover:text-gold">Makeup artistry · Permanent jewelry</span>
+                <span class="text-ivory/80 group-hover:text-gold">Bridal · Event · Everyday makeup</span>
               </span>
               <span aria-hidden="true">→</span>
             </a>

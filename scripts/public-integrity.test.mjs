@@ -266,7 +266,7 @@ test('about page names the people behind the current service menu', () => {
     ['Diana’s licence and scope', /Diana Morrison, RN[\s\S]{0,180}injectables[\s\S]{0,100}IV hydration[\s\S]{0,120}weight management/i],
     ['Amber’s licence and Procell scope', /Amber Mingione, Licensed Esthetician[\s\S]{0,180}Microneedling[\s\S]{0,100}Procell/i],
     ['Brandy’s licence and scope', /Brandy, Licensed Esthetician[\s\S]{0,160}facials[\s\S]{0,100}BioRePeel[\s\S]{0,100}facial waxing/i],
-    ['Aundrea’s licence and scope', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,180}(?:wedding|special-event)[\s\S]{0,100}makeup/i],
+    ['Aundrea’s licence and scope', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,180}(?:bridal|event)[\s\S]{0,100}makeup/i],
   ]) {
     if (!pattern.test(text)) failures.push(`about: missing ${label}`);
   }
@@ -667,7 +667,6 @@ test('homepage preserves the approved surfaces, verified trust facts, and substa
     'Hyaluronic-acid dermal filler',
     'manufactured injectable gel',
     'makeup artistry',
-    'permanent jewelry',
     'provider, appointment length, current price',
     'book online, call, or send an inquiry',
   ]) {
@@ -952,7 +951,7 @@ test('practice story distinguishes the appointment provider from medical directi
     ['Diana’s licence and scope', /Diana Morrison, RN[\s\S]{0,180}injectables[\s\S]{0,100}IV hydration[\s\S]{0,120}weight management/i],
     ['Amber’s licence and Procell scope', /Amber Mingione, Licensed Esthetician[\s\S]{0,180}Microneedling[\s\S]{0,100}Procell/i],
     ['Brandy’s licence and scope', /Brandy, Licensed Esthetician[\s\S]{0,160}facials[\s\S]{0,100}BioRePeel[\s\S]{0,100}facial waxing/i],
-    ['Aundrea’s licence and scope', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,180}(?:wedding|special-event)[\s\S]{0,100}makeup/i],
+    ['Aundrea’s licence and scope', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,180}(?:bridal|event)[\s\S]{0,100}makeup/i],
     ['medical direction role', /Joshua Shaw, MD[\s\S]{0,140}medical director[\s\S]{0,140}(?:medical direction|protocol supervision)/i],
     ['medical director is not the treatment provider', /(?:does not|doesn't)[\s\S]{0,100}(?:perform|provide)[\s\S]{0,100}treatment appointments/i],
     ['named practitioner is associated with the appointment', /practitioner named[\s\S]{0,120}(?:associated with|provides)[\s\S]{0,80}appointment/i],
@@ -1065,7 +1064,7 @@ test('FAQ provider answer names verified practitioners instead of narrating the 
     ['Diana’s licence and services', /Diana Morrison, RN[\s\S]{0,180}(?:Botox|Daxxify)[\s\S]{0,180}dermal fillers[\s\S]{0,180}injectable PRF[\s\S]{0,180}IV hydration[\s\S]{0,180}GLP-1/i],
     ['Amber’s licence and services', /Amber Mingione, Licensed Esthetician[\s\S]{0,180}Procell Microneedling[\s\S]{0,140}topical PRF[\s\S]{0,140}Glo2Facial[\s\S]{0,140}dermaplaning[\s\S]{0,140}BioRePeel/i],
     ['Brandy’s licence and services', /Brandy, Licensed Esthetician[\s\S]{0,140}facials[\s\S]{0,120}standalone BioRePeel[\s\S]{0,120}facial waxing/i],
-    ['Aundrea’s licence and non-medical services', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,160}makeup[\s\S]{0,120}permanent jewelry[\s\S]{0,100}non-medical/i],
+    ['Aundrea’s licence and non-medical services', /Aundrea Pedigo, Licensed Esthetician[\s\S]{0,160}bridal[\s\S]{0,80}event[\s\S]{0,80}everyday makeup[\s\S]{0,120}non-medical/i],
     ['medical-director role boundary', /Medical Director: Joshua Shaw, MD · FL Lic\. ME136232[\s\S]{0,180}medical direction[\s\S]{0,140}(?:does not|doesn't)[\s\S]{0,100}treatment appointments/i],
   ]) {
     assert.match(visibleAnswer, pattern, `FAQ provider answer is missing ${label}.`);
@@ -1527,14 +1526,6 @@ test('priority service pages retain reviewed facts instead of falling back to th
       'PRF Bio-Filler — Consultation',
       'Diana Morrison, RN',
       'Ask about current pricing when you book.',
-    ],
-    'permanent-jewelry': [
-      'Aundrea Pedigo, Licensed Esthetician',
-      'non-medical service',
-      'not attached to the skin',
-      'can be cut when removal is needed',
-      'ask about current pricing when you book',
-      '20 minutes',
     ],
     'iv-hydration-therapy': [
       'Diana Morrison, RN',
@@ -2109,10 +2100,9 @@ test('provider profiles explain verified roles and connect them to current servi
     ],
     aundrea: [
       'Aundrea Pedigo, Licensed Esthetician',
-      'weddings, special events, photo shoots, and celebrations',
-      'fitted, clasp-free chain closed by welding',
-      'non-medical services',
-      'href="/services/permanent-jewelry/"',
+      'bridal appointments, events and celebrations, photo shoots, and everyday wear',
+      'built around the schedule of the day',
+      'non-medical service',
     ],
   };
   const failures = [];
@@ -2142,7 +2132,7 @@ test('provider directory and legacy contact cards match reviewed provider facts'
     diana: ['Diana Morrison, RN', 'Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'IV hydration', 'GLP-1 weight management'],
     amber: ['Amber Mingione, Licensed Esthetician', 'Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
     brandy: ['Brandy, Licensed Esthetician', 'Facials', 'Standalone BioRePeel', 'Facial waxing'],
-    aundrea: ['Aundrea Pedigo, Licensed Esthetician', 'Wedding makeup', 'Special-event makeup', 'Photo-shoot makeup', 'Permanent jewelry'],
+    aundrea: ['Aundrea Pedigo, Licensed Esthetician', 'Bridal makeup', 'Event makeup', 'Everyday makeup'],
   };
   const expectedProfileRoutes = Object.keys(directoryExpectations)
     .map((slug) => `/about/providers/${slug}/`)

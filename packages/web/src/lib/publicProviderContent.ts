@@ -2,12 +2,14 @@ export const PUBLIC_PROVIDER_DIGITAL_CARDS = [
   { slug: 'amber', title: 'Amber', path: '/amber/' },
   { slug: 'diana', title: 'Diana', path: '/diana/' },
   { slug: 'brandy', title: 'Brandy', path: '/brandy/' },
+  { slug: 'aundrea', title: 'Aundrea', path: '/aundrea/' },
 ] as const;
 
 export const PUBLIC_PROVIDER_STATIC_PROFILE_IMAGES = [
   { slug: 'amber', title: 'Amber profile', path: '/images/providers/amber-profile-1122.webp' },
   { slug: 'brandy', title: 'Brandy profile', path: '/images/providers/brandy-profile-1122.webp' },
   { slug: 'diana', title: 'Diana profile', path: '/images/providers/diana-profile-1122.webp' },
+  { slug: 'aundrea', title: 'Aundrea profile', path: '/images/providers/aundrea-profile-1122.webp' },
 ] as const;
 
 export const PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS =
