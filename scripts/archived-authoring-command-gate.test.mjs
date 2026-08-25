@@ -34,7 +34,6 @@ test('reviewed active content commands remain available', () => {
   for (const name of [
     'content:daxxify-comparison',
     'content:daxxify-legacy-archive',
-    'content:prf-injections-scope',
   ]) {
     assert.equal(typeof scripts[name], 'string', `${name} should remain available`);
   }

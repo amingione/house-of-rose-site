@@ -68,7 +68,7 @@ supporting page types documented in the map.
    → `caseStudy` doc, `/results/[slug]` (+ `/results` index).
 7. **Appointment information** — practical details a client needs before a specific visit, when those
    details are verified and useful.
-   → compatible `service.process[]` fields + visit information on `/experience`; this is not a required
+   → reviewed local service-page visit content + visit information on `/experience`; this is not a required
    storytelling sequence or a default brand structure.
 
 ### Aesthetics page targets (worked examples)

@@ -12,6 +12,7 @@ import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, faqPage, article } from '@/lib/structuredData';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
+import { getCostGuideServiceSlug, getPublicServiceBySlug } from '@/lib/serviceCatalog';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COST_GUIDE_SLUGS_QUERY);
@@ -23,7 +24,15 @@ const guideData = await sanityFetch<CostGuide>(COST_GUIDE_BY_SLUG_QUERY, { slug 
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!guideData) throw new Error(`[cost/[slug]] No cost guide found in Sanity for slug "${slug}"`);
-const guide = guideData;
+const treatmentSlug = guideData.treatmentSlug ?? getCostGuideServiceSlug(guideData.slug);
+const treatment = treatmentSlug
+  ? getPublicServiceBySlug(treatmentSlug)
+  : undefined;
+const guide: CostGuide = {
+  ...guideData,
+  treatment,
+  comparisons: treatment?.comparisons,
+};
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();

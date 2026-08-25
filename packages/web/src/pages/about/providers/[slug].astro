@@ -174,6 +174,7 @@ const personSchema = personProfile(
             loading="eager"
             decoding="async"
             fetchpriority="high"
+            {...(sanityBacked ? sbFieldPath('profileImage') : {})}
           />
         </div>
       ) : (

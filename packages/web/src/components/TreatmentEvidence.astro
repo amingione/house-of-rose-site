@@ -1,7 +1,5 @@
 ---
-import { urlFor } from '@/lib/sanity';
-import { getInModeEvidenceImage } from '@/lib/imageFallbacks';
-import type { EvidenceMedia, ResearchReference } from '@/lib/queries';
+import type { EvidenceMedia, ResearchReference } from '@/lib/serviceCatalog';
 
 interface Props {
   serviceTitle: string;
@@ -15,13 +13,11 @@ const research = Astro.props.research ?? [];
 const approvedMedia = media.filter(
   (item) =>
     item.usageApproved === true &&
-    item.image?.asset &&
+    item.image?.src &&
     (item.kind !== 'before-after' || item.consentConfirmed === true),
 );
 const deviceMedia = approvedMedia.filter((item) => item.kind === 'device');
 const resultMedia = approvedMedia.filter((item) => item.kind === 'before-after');
-const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
-  getInModeEvidenceImage(item._key) ?? urlFor(item.image).width(width).format('webp').quality(80).url();
 ---
 
 {approvedMedia.length > 0 && (
@@ -34,15 +30,14 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
       {deviceMedia.length > 0 && (
         <div class="max-w-[720px] mb-12">
           {deviceMedia.map((item) => {
-            const dimensions = item.image.asset.metadata.dimensions;
             return (
               <figure class="bg-charcoal-light border border-gold-metal/20 overflow-hidden">
                 <div class="min-h-[360px] p-8 sm:p-12 flex items-center justify-center bg-[#f3efe8]">
                   <img
-                    src={evidenceImageSrc(item, 1000)}
+                    src={item.image.src}
                     alt={item.image.alt ?? item.title}
-                    width={dimensions.width}
-                    height={dimensions.height}
+                    width={item.image.width}
+                    height={item.image.height}
                     loading="lazy"
                     decoding="async"
                     class="max-h-[480px] w-full object-contain"
@@ -71,14 +66,13 @@ const evidenceImageSrc = (item: EvidenceMedia, width: number): string =>
           </p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {resultMedia.map((item) => {
-              const dimensions = item.image.asset.metadata.dimensions;
               return (
                 <figure class="bg-charcoal-light border border-gold-metal/20 overflow-hidden">
                   <img
-                    src={evidenceImageSrc(item, 1600)}
+                    src={item.image.src}
                     alt={item.image.alt ?? item.title}
-                    width={dimensions.width}
-                    height={dimensions.height}
+                    width={item.image.width}
+                    height={item.image.height}
                     loading="lazy"
                     decoding="async"
                     class="w-full h-auto"

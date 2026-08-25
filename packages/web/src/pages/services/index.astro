@@ -3,23 +3,25 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import { sanityFetch } from '@/lib/sanity';
-import { ALL_COLLECTIONS_QUERY, ALL_SERVICES_QUERY, type ServiceCollection, type Service } from '@/lib/queries';
-import { sbObjectField } from '@/lib/visualEditing';
+import {
+  PUBLIC_DIRECTORY_SERVICES,
+  getPublicCollections,
+  type ServiceCollection,
+  type Service,
+} from '@/lib/serviceCatalog';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
-// Collections come from Sanity (`serviceCollection`); this page rolls them up
-// into a concise treatment index. The anchor ids are stable public links while
-// the collection slugs mirror the current Sanity collection taxonomy.
+// Local collections roll the canonical service catalog into a concise treatment
+// index. The anchor ids are stable public links.
 
 interface GroupSection {
   /** Anchor id — must match GROUP_ANCHORS in pages/index.astro */
   id: string;
   title: string;
   description: string;
-  /** serviceCollection slugs rolled into this umbrella, in display order */
+  /** Local collection slugs rolled into this umbrella, in display order */
   collectionSlugs: string[];
   contextualLink?: {
     context: string;
@@ -71,10 +73,8 @@ const SERVICE_GROUP_SECTIONS: GroupSection[] = [
   },
 ];
 
-const [collections, allServices] = await Promise.all([
-  sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
-  sanityFetch<Service[]>(ALL_SERVICES_QUERY),
-]);
+const collections = getPublicCollections();
+const allServices = [...PUBLIC_DIRECTORY_SERVICES];
 const bySlug = new Map<string, ServiceCollection>(collections.map((c) => [c.slug, c]));
 
 /**
@@ -237,7 +237,6 @@ const breadcrumb = breadcrumbList([
                   <a
                     href={`/services/collections/${collection.slug}/`}
                     class="hover:text-gold transition-colors"
-                    {...sbObjectField(collection._id, 'title')}
                   >
                     {collection.title}
                   </a>

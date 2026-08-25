@@ -16,7 +16,6 @@ import {
 import {
   PUBLIC_PROVIDER_BY_SLUG_QUERY,
   PUBLIC_PROVIDERS_QUERY,
-  SERVICE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
 function providerField(name: string) {
@@ -190,9 +189,4 @@ test('provider static image fallbacks are limited to generated public assets bef
     assert.ok(query.includes(pathInventory), 'Provider profile queries must use the shared static-image inventory.');
     assert.match(query, /select\(profileImagePath in .* => profileImagePath\)/s);
   }
-  assert.ok(SERVICE_BY_SLUG_QUERY.includes(pathInventory));
-  assert.match(
-    SERVICE_BY_SLUG_QUERY,
-    /"profileImagePath":\s*select\(\s*profileImagePath in .* => profileImagePath\s*\)/s,
-  );
 });

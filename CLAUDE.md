@@ -48,7 +48,7 @@ routine copy into a clinical-process manifesto. The real-practice visual standar
     **add-on only** for Amber's eligible advanced skin services, with no independently verified add-on
     price in the current GlossGenius ledger; Brandy provides the standalone face appointment and Series
     of 3. Both models are correct. Always ask "whose lane?" before assuming one model.
-  - **By platform:** GlossGenius (commerce truth) ≠ Sanity (display) ≠ local docs (staging) ≠ Notion (HQ).
+  - **By platform:** GlossGenius (commerce truth) ≠ Astro service catalog (website) ≠ Sanity (non-service content) ≠ Notion (HQ).
     They are *allowed* to differ; reconcile toward the right source-of-truth per the truth rule, don't
     flatten them to look identical.
   Before "fixing" an inconsistency, find out **why** it exists. If I can't explain the why, I don't change it.
@@ -185,9 +185,8 @@ in this file (including the "Two-Menu Content Architecture" section below) that 
 appropriate "decision support" for the website menu — pricing belongs on neither menu publicly.
 
 - **No public page, component, meta description, JSON-LD (`Offer`/`AggregateOffer`), AI feed, or
-  sitemap may render a dollar amount.** This includes `service.priceRange`/`service.price` from
-  Sanity — `PriceRangeBlock.astro` and `services/[slug].astro` are hardened to never read or format
-  that field into visible or structured output, regardless of what a future Sanity record contains.
+  sitemap may render a dollar amount.** Service records in `serviceCatalog.ts` must not define price
+  fields, and service renderers must not import or format internal pricing data.
 - **Every CTA where a price used to appear is replaced with a consultation/booking prompt** — the
   standard phrasing across the site is "Ask about current pricing when you book." Never substitute
   vague inflated language ("starting at," "investment," "free," "complimentary" — the last two also
@@ -203,8 +202,8 @@ appropriate "decision support" for the website menu — pricing belongs on neith
 - **Regression guard:** `scripts/public-integrity.test.mjs` ("no public page, AI feed, or sitemap
   renders a House of Rose service/treatment price") crawls the full `packages/web/dist/` build plus
   both `llms*.txt` feeds and fails the build if any `/\$\d/` pattern appears outside the shop/checkout
-  scope. `scripts/treatment-price-publication-contract.test.ts` separately asserts the Sanity
-  `priceRange` disclosure path is structurally unreachable. Run both before shipping any change to a
+  scope. `scripts/treatment-price-publication-contract.test.ts` separately asserts that treatment
+  pricing is structurally unreachable from public service output. Run both before shipping any change to a
   service page, cost guide, or the pricing-adjacent lib files listed above.
 
 ---
@@ -360,8 +359,8 @@ engines drop the historical URLs. The `permanentJewelryEducation.ts` module was 
 
 - This **supersedes** the earlier same-day decision to keep it live without a named provider. If you
   find that intermediate state described anywhere, it is stale.
-- ⚠️ The Sanity `service` document was **deleted** (the unpublish call removed it outright), not just
-  unpublished. The `serviceCollection` record was unpublished and survives as a draft.
+- The former Sanity service and collection records were deleted with the rest of the retired service
+  model on 2026-08-25. Do not recreate them.
 - The removal was scoped to the **website**. Whether it is still sold in person or listed on
   GlossGenius is Amber's call and is not recorded here.
 
@@ -419,8 +418,11 @@ Astro's default `build.format` is `directory` and `site` resolves to `https://ho
 ---
 
 ## Architecture Law (Never Break)
-- **Sanity owns the source records**: services, products, site settings, content, images. During the
-  voice reset, a renderer may temporarily withhold unreviewed prose without changing the Sanity record.
+- **Astro owns services and service collections**: `packages/web/src/lib/serviceCatalog.ts` is the
+  single website source for service routes, titles, relationships, booking actions, providers, and
+  service media. Do not recreate `service` or `serviceCollection` documents in Sanity.
+- **Sanity owns non-service content records**: products, site settings, providers, editorial/SEO
+  documents, and their images. Those records are fetched at build time through the queries layer.
 - **No Medusa** — this is a medical aesthetics practice, not a high-volume e-commerce store
 - **No Vendure** — unrelated to FAS Motorsports ecosystem
 - **Astro is static (`output: 'static'`)** — all data fetched at build time via GROQ
@@ -518,8 +520,6 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 | Schema | Description |
 |--------|-------------|
 | `siteSettings` | Singleton — site name, tagline, contact, social |
-| `serviceCollection` | Groups of related services (e.g. "Facials", "Body") |
-| `service` | Individual treatment — title, duration, price, image |
 | `product` | Retail product — skincare, candles, gift cards. Includes `purchaseUrl` (external checkout link), `ctaLabel` (free-text shop button copy), `badge` (ribbon tag), `isFeatured` (Top Sellers rail) |
 | `promotion` | Shop sale/promo banner — editorial headline/teaser/CTA, links internal (promo page, product, or `/shop#brand` anchor) or external (checkout). Active/date-window controlled |
 | `shopBrand` | Retail brand storefront copy (Procell, GlyMed+, Skin Script, Face Reality, House of Rose) — story, logo, hero image, CTA. Distinct from the archival, unpublished `brandProfile` compatibility record, which is not current voice authority. |
@@ -529,11 +529,11 @@ and Astro stays `output: 'static'`. Full runbook: `docs/VISUAL-EDITING.md`.
 ## Routes (packages/web/src/pages/)
 | Route | File | Data Source |
 |-------|------|-------------|
-| `/` | `index.astro` | All services + collections |
-| `/services` | `services/index.astro` | All services |
-| `/services/[slug]` | `services/[slug].astro` | Single service by slug |
-| `/services/collections` | `services/collections/index.astro` | All collections |
-| `/services/collections/[collection]` | `services/collections/[collection].astro` | Single collection |
+| `/` | `index.astro` | Reviewed local homepage data |
+| `/services` | `services/index.astro` | `src/lib/serviceCatalog.ts` |
+| `/services/[slug]` | `services/[slug].astro` | `src/lib/serviceCatalog.ts` by slug |
+| `/services/collections` | `services/collections/index.astro` | `src/lib/serviceCatalog.ts` |
+| `/services/collections/[collection]` | `services/collections/[collection].astro` | `src/lib/serviceCatalog.ts` by collection slug |
 | `/shop/jane-iredale` | `shop/jane-iredale.astro` | Jane Iredale product feature singleton (`janeIredalePage`) — makeup/skincare/supplements, benefits, post-treatment use, this-for-that swap guide, Get-the-Look. |
 | `/experience` | `experience.astro` | Static |
 | `/about` | `about/index.astro` | About index singleton (`aboutPage`) |
@@ -641,7 +641,7 @@ voice reset, neither menu may use the superseded Creative System voice or templa
 carry fuller decision-supporting detail; GlossGenius remains concise and booking-focused. Verified
 facts and compliance limits apply to both.
 
-**Sanity = the customer-facing WEBSITE menu (houseofrosefl.com).**
+**Astro = the customer-facing WEBSITE menu (houseofrosefl.com).**
 - Clear, substantive decision support that helps a client understand the service without a sales script
   or a repeated answer-first template.
 - Depth is proportional to the service: keep verified treatment facts, recovery, provider scope, and
@@ -651,8 +651,8 @@ facts and compliance limits apply to both.
 - SEO/AEO: keyword-optimized from real research (Semrush + Ahrefs, run with agents in parallel), local
   market comps (Punta Gorda / Charlotte County / SW FL), gap-filling vs local competitors, and internal
   interlinking across related services / concerns / cost / compare pages.
-- Sanity fields remain the source records, but a renderer may temporarily withhold unreviewed tagline,
-  description, whoItsFor, FAQ, process, or SEO prose during the voice reset.
+- `packages/web/src/lib/serviceCatalog.ts` is the only service-record source. Service copy and reviewed
+  supporting content live in the existing local website overlays; Sanity must not shadow these records.
 - **Never publish a price, reconciled or not** — see "Public website pricing is NEVER permitted" above.
   Reconciling a price against the current GlossGenius menu is still required for internal ops and
   GlossGenius paste-ready docs; it is never a reason to render that price on the website.

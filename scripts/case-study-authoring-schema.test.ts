@@ -4,7 +4,7 @@ import test from 'node:test';
 
 import { caseStudy } from '../packages/studio/schemas/caseStudy.ts';
 import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../packages/web/src/lib/publicConcernContent.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
+import { SERVICE_OPTIONS } from '../packages/web/src/lib/serviceCatalog.ts';
 import {
   ALL_CASE_STUDIES_QUERY,
   ALL_CASE_STUDY_SLUGS_QUERY,
@@ -52,26 +52,17 @@ test('consented results-image alt text uses the shared public-copy guard', () =>
 });
 
 test('case-study treatment links can resolve only to generated public service routes', () => {
-  const treatment = caseStudy.fields.find(({ name }) => name === 'treatment');
-  assert.equal(treatment?.type, 'reference');
-  const authoringFilter = String(treatment?.options?.filter);
-
-  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
-  assert.match(authoringFilter, /defined\(slug\.current\)/);
-  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
-  assert.deepEqual(
-    treatment?.options?.filterParams,
-    { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-  );
+  const treatment = caseStudy.fields.find(({ name }) => name === 'treatmentSlug');
+  assert.equal(treatment?.type, 'string');
+  assert.deepEqual(treatment?.options?.list, SERVICE_OPTIONS);
+  assert.match(String(treatment?.validation), /required/);
 
   for (const query of [
     ALL_CASE_STUDIES_QUERY,
     CASE_STUDY_BY_SLUG_QUERY,
-    ALL_CASE_STUDY_SLUGS_QUERY,
   ]) {
-    assert.match(query, /treatment->status in \["live", "actual-menu"\]/);
-    assert.match(query, /defined\(treatment->slug\.current\)/);
-    assert.match(query, /!\(treatment->slug\.current in \[/);
+    assert.match(query, /treatmentSlug/);
+    assert.doesNotMatch(query, /treatment->|_type == "service"/);
   }
 });
 

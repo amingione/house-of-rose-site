@@ -14,6 +14,7 @@ import {
   getPublicComparisonContent,
   isReviewedPublicComparisonSlug,
 } from '@/lib/publicComparisonContent';
+import { getComparisonServiceSlugs, getPublicServiceBySlug } from '@/lib/serviceCatalog';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COMPARISON_SLUGS_QUERY);
@@ -27,7 +28,22 @@ const cmpData = await sanityFetch<Comparison>(COMPARISON_BY_SLUG_QUERY, { slug }
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build). Slugs
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!cmpData) throw new Error(`[compare/[slug]] No comparison found in Sanity for slug "${slug}"`);
-const cmp = cmpData;
+const localOptionSlugs = getComparisonServiceSlugs(cmpData.slug);
+const cmp: Comparison = {
+  ...cmpData,
+  optionA: {
+    ...cmpData.optionA,
+    service: cmpData.optionA?.serviceSlug || localOptionSlugs[0]
+      ? getPublicServiceBySlug(cmpData.optionA?.serviceSlug ?? localOptionSlugs[0])
+      : undefined,
+  },
+  optionB: {
+    ...cmpData.optionB,
+    service: cmpData.optionB?.serviceSlug || localOptionSlugs[1]
+      ? getPublicServiceBySlug(cmpData.optionB?.serviceSlug ?? localOptionSlugs[1])
+      : undefined,
+  },
+};
 const publicContent = getPublicComparisonContent(cmp.slug);
 if (!publicContent) {
   throw new Error(`[compare/[slug]] Comparison "${cmp.slug}" has no reviewed public content`);

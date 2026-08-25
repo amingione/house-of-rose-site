@@ -2,8 +2,6 @@ import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
-  ALL_SERVICES_QUERY,
-  LLMS_FEATURED_TREATMENTS_QUERY,
   ALL_BLOG_POSTS_QUERY,
   ALL_CONCERNS_QUERY,
   ALL_COST_GUIDES_QUERY,
@@ -13,7 +11,6 @@ import {
   ALL_TREATMENT_PACKAGES_QUERY,
   PUBLIC_PROVIDERS_QUERY,
   SITE_SETTINGS_QUERY,
-  type Service,
   type BlogPost,
   type Concern,
   type CostGuide,
@@ -24,6 +21,10 @@ import {
   type PublicProviderProfile,
   type SiteSettings,
 } from '@/lib/queries';
+import {
+  PUBLIC_DIRECTORY_SERVICES,
+  getPublicServiceBySlug,
+} from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
@@ -31,18 +32,13 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
 import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
-
-const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [settings, services, featuredTreatments, posts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
+  const [settings, posts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
-    sanityFetch<Service[]>(ALL_SERVICES_QUERY),
-    sanityFetch<Service[]>(LLMS_FEATURED_TREATMENTS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
@@ -54,9 +50,11 @@ export const GET: APIRoute = async ({ site }) => {
   ]);
   const siteFacts = resolvePublicSiteFacts(settings);
   const providers = resolvePublicProviderProfiles(sanityProviders);
-  const publicServices = [...services, ...featuredTreatments]
-    .filter((service) => !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(service.slug))
-    .filter((service, index, allServices) => allServices.findIndex(({ slug }) => slug === service.slug) === index);
+  const featuredPrfTreatment = getPublicServiceBySlug('prf-under-eyes');
+  const publicServices = [
+    ...PUBLIC_DIRECTORY_SERVICES,
+    ...(featuredPrfTreatment ? [featuredPrfTreatment] : []),
+  ];
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
 

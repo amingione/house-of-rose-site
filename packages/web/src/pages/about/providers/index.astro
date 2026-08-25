@@ -93,6 +93,7 @@ const directorySchema = itemListPage(
                   loading="lazy"
                   decoding="async"
                   class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.025]"
+                  {...(sanityProviderSlugs.has(provider.slug) ? sbFieldPath('profileImage') : {})}
                 />
               </div>
             ) : (

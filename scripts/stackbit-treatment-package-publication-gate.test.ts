@@ -21,30 +21,22 @@ interface StackbitDocument {
 const treatmentPackageDocument = (
   slug?: string,
   status?: string,
-  serviceIds: readonly string[] = [],
+  serviceSlugs: readonly string[] = [],
 ): StackbitDocument => ({
   fields: {
     ...(slug ? { slug: { type: 'slug', value: slug } } : {}),
     ...(status ? { status: { type: 'string', value: status } } : {}),
-    ...(serviceIds.length > 0
+    ...(serviceSlugs.length > 0
       ? {
-          servicesIncluded: {
+          serviceSlugs: {
             type: 'list',
-            items: serviceIds.map((refId) => ({
-              type: 'reference',
-              refType: 'document',
-              refId,
+            items: serviceSlugs.map((value) => ({
+              type: 'string',
+              value,
             })),
           },
         }
       : {}),
-  },
-});
-
-const serviceDocument = (slug: string, status: string): StackbitDocument => ({
-  fields: {
-    slug: { type: 'slug', value: slug },
-    status: { type: 'string', value: status },
   },
 });
 
@@ -99,7 +91,7 @@ test('Stackbit exposes only live treatment packages with verified public pricing
       document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
-  const routeableService = ['service-routeable'] as const;
+  const routeableService = ['acne-bootcamp'] as const;
   const documents = new Map<string, StackbitDocument>([
     ['package-verified-live', treatmentPackageDocument(verifiedSlug, 'live', routeableService)],
     ['package-verified-parked', treatmentPackageDocument(verifiedSlug, 'parked', routeableService)],
@@ -111,15 +103,12 @@ test('Stackbit exposes only live treatment packages with verified public pricing
     ['package-missing-service', treatmentPackageDocument(verifiedSlug, 'live')],
     [
       'package-unavailable-service',
-      treatmentPackageDocument(verifiedSlug, 'live', ['service-unavailable']),
+      treatmentPackageDocument(verifiedSlug, 'live', ['wellness']),
     ],
     [
       'package-nonlive-service',
-      treatmentPackageDocument(verifiedSlug, 'live', ['service-nonlive']),
+      treatmentPackageDocument(verifiedSlug, 'live', ['future-service']),
     ],
-    ['service-routeable', serviceDocument('acne-bootcamp', 'live')],
-    ['service-unavailable', serviceDocument('wellness', 'live')],
-    ['service-nonlive', serviceDocument('future-service', 'proposed')],
   ]);
 
   const filtered = transformSitemap!({

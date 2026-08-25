@@ -3,10 +3,9 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { treatmentPackage } from '../packages/studio/schemas/treatmentPackage.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
+import { SERVICE_OPTIONS } from '../packages/web/src/lib/serviceCatalog.ts';
 import {
   ALL_TREATMENT_PACKAGES_QUERY,
-  ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
   TREATMENT_PACKAGE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
@@ -15,11 +14,10 @@ const cadenceField = treatmentPackage.fields.find(({ name }) => name === 'cadenc
 const rackPriceField = treatmentPackage.fields.find(({ name }) => name === 'rackPrice');
 const imageField = treatmentPackage.fields.find(({ name }) => name === 'image');
 const providerField = treatmentPackage.fields.find(({ name }) => name === 'provider');
-const servicesIncludedField = treatmentPackage.fields.find(({ name }) => name === 'servicesIncluded') as
+const servicesIncludedField = treatmentPackage.fields.find(({ name }) => name === 'serviceSlugs') as
   | {
-      of?: Array<{
-        options?: { filter?: string; filterParams?: Record<string, unknown> };
-      }>;
+      type?: string;
+      options?: { list?: readonly { title: string; value: string }[] };
       validation?: unknown;
     }
   | undefined;
@@ -81,9 +79,9 @@ test('stored package price cannot diverge from the reviewed public package facts
     'utf8',
   );
   for (const renderer of [card, detail]) {
-    assert.match(renderer, /FACE_REALITY_PROGRAM\.packagePriceUsd/);
     assert.doesNotMatch(renderer, /pkg\.rackPrice/);
     assert.doesNotMatch(renderer, /(?:fp|sbFieldPath)\('rackPrice'\)/);
+    assert.doesNotMatch(renderer, /packagePriceUsd|\$\{?\d/);
   }
 });
 
@@ -157,33 +155,12 @@ test('stored package review fields and service taglines stay out of the public p
 });
 
 test('package service authoring and projections require routeable public services', () => {
-  const authoringFilter = servicesIncludedField?.of?.[0]?.options?.filter ?? '';
-  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
-  assert.match(authoringFilter, /defined\(slug\.current\)/);
-  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
-  assert.deepEqual(servicesIncludedField?.of?.[0]?.options?.filterParams, {
-    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
-  });
+  assert.equal(servicesIncludedField?.type, 'array');
+  assert.deepEqual(servicesIncludedField?.options?.list, SERVICE_OPTIONS);
   assert.match(String(servicesIncludedField?.validation), /min\(1\)/);
 
-  for (const query of [
-    ALL_TREATMENT_PACKAGES_QUERY,
-    TREATMENT_PACKAGE_BY_SLUG_QUERY,
-    ALL_TREATMENT_PACKAGE_SLUGS_QUERY,
-  ]) {
-    assert.match(query, /count\(servicesIncluded\[/);
-    assert.match(query, /@->status in \["live", "actual-menu"\]/);
-    assert.match(query, /defined\(@->slug\.current\)/);
-    assert.match(query, /!\(@->slug\.current in \[/);
-    assert.match(query, /\]\) > 0/);
-  }
-
   for (const query of [ALL_TREATMENT_PACKAGES_QUERY, TREATMENT_PACKAGE_BY_SLUG_QUERY]) {
-    const servicesProjection = query.match(
-      /"servicesIncluded": servicesIncluded\[([\s\S]*?)\]->/,
-    );
-    assert.ok(servicesProjection?.[1], 'The package query must guard included-service routes.');
-    assert.match(servicesProjection[1], /@->status in \["live", "actual-menu"\]/);
-    assert.match(servicesProjection[1], /defined\(@->slug\.current\)/);
+    assert.match(query, /serviceSlugs/);
+    assert.doesNotMatch(query, /servicesIncluded|_type == "service"/);
   }
 });

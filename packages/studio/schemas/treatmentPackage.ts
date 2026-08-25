@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { SERVICE_OPTIONS } from '../../web/src/lib/serviceCatalog';
 import { validatePublicCopy } from './validation/publicCopy';
 
 /**
@@ -62,21 +62,12 @@ export const treatmentPackage = defineType({
       description: 'Operational Notion mirror only. Public package pages use reviewed provider attribution rather than this internal relationship.',
     }),
     defineField({
-      name: 'servicesIncluded',
+      name: 'serviceSlugs',
       title: 'Services Included',
       type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'service' }],
-          options: {
-            filter:
-              'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
-            filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-          },
-        },
-      ],
-      description: 'The public, routeable Service documents this package contains (mirrors Notion "Services Included").',
+      of: [{ type: 'string' }],
+      options: { list: SERVICE_OPTIONS },
+      description: 'The local Astro services this package contains.',
       validation: (R) => R.min(1),
     }),
     defineField({
@@ -85,7 +76,7 @@ export const treatmentPackage = defineType({
       type: 'text',
       rows: 3,
       readOnly: true,
-      description: 'Legacy source field. Public package contents come from the Services Included references and reviewed package overlay.',
+      description: 'Legacy source field. Public package contents come from local service slugs and the reviewed package overlay.',
     }),
     defineField({
       name: 'cadence',

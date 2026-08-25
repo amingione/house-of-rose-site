@@ -21,6 +21,7 @@ import {
   type PublicProviderProfile,
   type SiteSettings,
 } from '@/lib/queries';
+import { PUBLIC_SERVICES } from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getVerifiedServiceDuration } from '@/lib/serviceFacts';
@@ -33,43 +34,13 @@ import {
   filterReviewedPublicComparisons,
   getPublicComparisonContent,
 } from '@/lib/publicComparisonContent';
-import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from '@/lib/publicCollectionContent';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '@/lib/publicServiceContent';
 import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
-
-// During the voice reset, this feed exposes reviewed route inventories and
-// factual service education. Unreviewed long-form Sanity prose stays withheld.
-const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
-const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
-const SERVICES_FULL_QUERY = /* groq */ `
-  *[
-    _type == "service" &&
-    status in ["live", "actual-menu"] &&
-    defined(slug.current) &&
-    !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-  ] | order(orderRank asc, title asc) {
-    title,
-    "slug": slug.current,
-    "collection": select(
-      defined(collection->slug.current) &&
-      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
-        collection->{ title }
-    )
-  }
-`;
-
-interface ServiceFull {
-  title: string;
-  slug: string;
-  collection?: { title: string };
-}
 
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms-full.txt');
 
-  const [settings, services, posts, concerns, costGuides, comparisons, localAreas, packages, caseStudies, sanityProviders] = await Promise.all([
+  const [settings, posts, concerns, costGuides, comparisons, localAreas, packages, caseStudies, sanityProviders] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
-    sanityFetch<ServiceFull[]>(SERVICES_FULL_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
@@ -79,6 +50,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
     sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
+  const services = [...PUBLIC_SERVICES];
   const siteFacts = resolvePublicSiteFacts(settings);
   const providers = resolvePublicProviderProfiles(sanityProviders);
   const publicPosts = posts.filter((post) => isReviewedPublicBlogSlug(post.slug));

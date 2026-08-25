@@ -2,7 +2,6 @@ import type { APIRoute } from 'astro';
 import { sanityFetch } from '@/lib/sanity';
 import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
-  ALL_SITEMAP_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
   ALL_CONCERNS_QUERY,
   ALL_COST_GUIDES_QUERY,
@@ -11,7 +10,6 @@ import {
   ALL_CASE_STUDIES_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
   PUBLIC_PROVIDERS_QUERY,
-  type SitemapService,
   type BlogPost,
   type Concern,
   type CostGuide,
@@ -21,6 +19,7 @@ import {
   type TreatmentPackage,
   type PublicProviderProfile,
 } from '@/lib/queries';
+import { PUBLIC_SITEMAP_SERVICES } from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import { filterReviewedPublicComparisons } from '@/lib/publicComparisonContent';
@@ -36,8 +35,7 @@ interface SitemapPage {
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = resolveBaseUrl(site, 'sitemap.xml');
 
-  const [serviceSlugs, blogPosts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
-    sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
+  const [blogPosts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
     sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
@@ -47,6 +45,7 @@ export const GET: APIRoute = async ({ site }) => {
     sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
     sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
   ]);
+  const serviceSlugs = [...PUBLIC_SITEMAP_SERVICES];
   const providers = resolvePublicProviderProfiles(sanityProviders);
 
   const shopPages = SHOP_ENABLED

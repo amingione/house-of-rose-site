@@ -19,6 +19,7 @@ import {
 } from '@/lib/structuredData';
 import { DEFAULT_AREA_IMAGE } from '@/lib/imageFallbacks';
 import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
+import { getLocalAreaServiceSlugs, getPublicServiceRefs } from '@/lib/serviceCatalog';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_LOCAL_AREA_SLUGS_QUERY);
@@ -34,7 +35,12 @@ const [areaData, settings] = await Promise.all([
 // come from getStaticPaths, so a miss is a data bug — fail loudly.
 if (!areaData) throw new Error(`[areas/[slug]] No local area found in Sanity for slug "${slug}"`);
 
-const area: LocalArea = areaData;
+const area: LocalArea = {
+  ...areaData,
+  servedServices: getPublicServiceRefs(
+    areaData.servedServiceSlugs ?? getLocalAreaServiceSlugs(areaData.slug),
+  ),
+};
 const siteFacts = resolvePublicSiteFacts(settings);
 const phoneHref = `tel:${structuredTelephone(siteFacts)}`;
 
@@ -136,6 +142,7 @@ const pageDescription = localIntro;
       decoding="async"
       fetchpriority="high"
       class="absolute inset-0 h-full w-full object-cover"
+      {...sbFieldPath('image')}
     />
     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
     <div class="relative z-10 max-w-[960px] mx-auto w-full">

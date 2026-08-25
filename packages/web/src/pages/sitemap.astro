@@ -2,9 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { sanityFetch } from '@/lib/sanity';
 import {
-  ALL_SITEMAP_SERVICES_QUERY,
   ALL_BLOG_POSTS_QUERY,
-  ALL_COLLECTIONS_QUERY,
   ALL_CONCERNS_QUERY,
   ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
@@ -12,9 +10,7 @@ import {
   ALL_CASE_STUDIES_QUERY,
   ALL_TREATMENT_PACKAGES_QUERY,
   PUBLIC_PROVIDERS_QUERY,
-  type SitemapService,
   type BlogPost,
-  type ServiceCollection,
   type Concern,
   type CostGuide,
   type Comparison,
@@ -23,6 +19,8 @@ import {
   type TreatmentPackage,
   type PublicProviderProfile,
 } from '@/lib/queries';
+import { PUBLIC_SITEMAP_SERVICES, getPublicCollections } from '@/lib/serviceCatalog';
+import { getPublicServiceBySlug } from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
@@ -45,9 +43,7 @@ interface SitemapSection {
 }
 
 const [
-  services,
   blogPosts,
-  collections,
   concerns,
   costGuides,
   comparisons,
@@ -56,9 +52,7 @@ const [
   packages,
   sanityProviders,
 ] = await Promise.all([
-  sanityFetch<SitemapService[]>(ALL_SITEMAP_SERVICES_QUERY),
   sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
-  sanityFetch<ServiceCollection[]>(ALL_COLLECTIONS_QUERY),
   sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
   sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
   sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
@@ -67,6 +61,12 @@ const [
   sanityFetch<TreatmentPackage[]>(ALL_TREATMENT_PACKAGES_QUERY),
   sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
 ]);
+const services = [...PUBLIC_SITEMAP_SERVICES];
+const collections = getPublicCollections();
+const publicCaseStudies = caseStudies.map((study) => ({
+  ...study,
+  treatment: study.treatmentSlug ? getPublicServiceBySlug(study.treatmentSlug) : undefined,
+}));
 const providers = resolvePublicProviderProfiles(sanityProviders);
 const publicComparisons = filterReviewedPublicComparisons(comparisons);
 const publicBlogPosts = blogPosts.filter((post) => isReviewedPublicBlogSlug(post.slug));
@@ -100,7 +100,7 @@ const corePages: SitemapLink[] = [
   { title: 'FAQ', href: '/faq/' },
   { title: 'Support', href: '/support/' },
   { title: 'Areas We Serve', href: '/areas/' },
-  ...(caseStudies.length > 0 ? [{ title: 'Results', href: '/results/' }] : []),
+  ...(publicCaseStudies.length > 0 ? [{ title: 'Results', href: '/results/' }] : []),
   { title: 'Contact', href: '/contact/' },
   { title: 'Rent a Suite', href: '/rent-a-room/' },
 ];
@@ -170,7 +170,7 @@ const sectionData: SitemapSection[] = [
   },
   {
     title: 'Results',
-    links: caseStudies.map((study) => ({
+    links: publicCaseStudies.map((study) => ({
       title: study.title,
       href: `/results/${study.slug}/`,
       note: study.treatment?.title,

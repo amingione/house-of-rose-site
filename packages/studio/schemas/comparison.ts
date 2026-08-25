@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { SERVICE_OPTIONS } from '../../web/src/lib/serviceCatalog';
 
 /**
  * Comparison — AEO page type #4 ("A vs B").
@@ -18,15 +18,11 @@ const optionFields = (label: string) => [
     description: 'Legacy source field. The reviewed website overlay supplies the public distinction.',
   }),
   defineField({
-    name: 'service',
+    name: 'serviceSlug',
     title: `${label} — Service`,
-    type: 'reference',
-    to: [{ type: 'service' }],
-    options: {
-      filter:
-        'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
-      filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-    },
+    type: 'string',
+    options: { list: SERVICE_OPTIONS },
+    description: 'Local Astro service slug. The service itself is edited in packages/web/src/lib/serviceCatalog.ts.',
     validation: (R) => R.required(),
   }),
 ];

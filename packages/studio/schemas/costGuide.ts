@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { SERVICE_OPTIONS } from '../../web/src/lib/serviceCatalog';
 import { validatePublicCopy } from './validation/publicCopy';
 
 /**
@@ -27,16 +27,11 @@ export const costGuide = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
-      name: 'treatment',
+      name: 'treatmentSlug',
       title: 'Treatment',
-      type: 'reference',
-      to: [{ type: 'service' }],
-      options: {
-        filter:
-          'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
-        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-      },
-      description: 'The canonical public service this cost guide is about.',
+      type: 'string',
+      options: { list: SERVICE_OPTIONS },
+      description: 'The local Astro service this cost guide is about.',
       validation: (R) => R.required(),
     }),
     defineField({
@@ -83,18 +78,10 @@ export const costGuide = defineType({
     }),
     defineField({ name: 'whatsIncluded', title: "What's Included (not published)", type: 'text', rows: 4, readOnly: true, description: 'Legacy source field. The current public cost page does not publish this CMS section.' }),
     defineField({ name: 'faqs', title: 'FAQs (not published)', type: 'array', of: [{ type: 'faq' }], readOnly: true, description: 'Legacy source field. Public cost FAQs and FAQPage schema come from the same reviewed cost-facts overlay.' }),
-    defineField({
-      name: 'relatedServices',
-      title: 'Related Services (not published)',
-      type: 'array',
-      readOnly: true,
-      description: 'Legacy source field. The public page links the canonical treatment and reviewed comparisons instead.',
-      of: [{ type: 'reference', to: [{ type: 'service' }] }],
-    }),
     defineField({ name: 'orderRank', title: 'Order', type: 'number' }),
     defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
   ],
   preview: {
-    select: { title: 'title', subtitle: 'treatment.title' },
+    select: { title: 'title', subtitle: 'treatmentSlug' },
   },
 });

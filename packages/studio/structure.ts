@@ -39,19 +39,6 @@ export const structure = (S: StructureBuilder, _ctx: StructureResolverContext) =
 
       S.divider(),
 
-      // Services
-      S.listItem()
-        .title('Service Collections')
-        .schemaType('serviceCollection')
-        .child(S.documentTypeList('serviceCollection').title('Collections')),
-
-      S.listItem()
-        .title('Services')
-        .schemaType('service')
-        .child(S.documentTypeList('service').title('Services')),
-
-      S.divider(),
-
       // Products
       S.listItem()
         .title('Products (storefront disabled)')

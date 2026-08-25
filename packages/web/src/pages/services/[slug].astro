@@ -3,21 +3,22 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
 import BookingLink from '@/components/BookingLink.astro';
-import { sanityFetch, urlFor } from '@/lib/sanity';
 import {
   getCuratedServiceImage,
   getCuratedServiceImageAlt,
   getServiceFallbackImage,
+  getServiceCardImage,
+  getServiceCardImageAlt,
   getServiceResultImages,
+  serviceCardImageUsesContain,
   serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from '@/lib/publicCollectionContent';
 import {
-  ALL_SERVICE_SLUGS_QUERY,
-  SERVICE_BY_SLUG_QUERY,
+  PUBLIC_SERVICES,
+  getPublicServiceBySlug,
   type Service,
-} from '@/lib/queries';
+} from '@/lib/serviceCatalog';
 import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
 import ProviderScopeBlock from '@/components/treatment/ProviderScopeBlock.astro';
 import PriceRangeBlock from '@/components/treatment/PriceRangeBlock.astro';
@@ -36,19 +37,18 @@ import { getServiceEducation } from '@/lib/serviceEducation';
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
-  const slugs = await sanityFetch<{ slug: string }[]>(ALL_SERVICE_SLUGS_QUERY);
-  return slugs.map(({ slug }) => ({ params: { slug } }));
+  return PUBLIC_SERVICES.map(({ slug }) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
-const serviceData = await sanityFetch<Service>(SERVICE_BY_SLUG_QUERY, { slug });
+const serviceData = slug ? getPublicServiceBySlug(slug) : undefined;
 
-// Slugs come from getStaticPaths (Sanity), so a miss is a data-integrity bug, not a
+// Slugs come from the local catalog, so a miss is a data-integrity bug, not a
 // runtime 404. Fail the build loudly — never `return Astro.redirect()` from a prerendered
 // route: returning a Response in `output: 'static'` stops Astro emitting the sibling index
 // chunk and breaks the build (see shop/[slug].astro).
 if (!serviceData) {
-  throw new Error(`[services/[slug]] No service found in Sanity for slug "${slug}"`);
+  throw new Error(`[services/[slug]] No local service found for slug "${slug}"`);
 }
 
 const service: Service = serviceData;
@@ -117,26 +117,13 @@ const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
 const curatedImage = slug ? getCuratedServiceImage(slug) : undefined;
-const curatedImageAlt = slug ? getCuratedServiceImageAlt(slug) : service.image?.alt ?? service.title;
+const curatedImageAlt = slug ? getCuratedServiceImageAlt(slug) : service.title;
 const fallbackImageAlt = slug ? getCuratedServiceImageAlt(slug) : 'A treatment room inside House of Rose Aesthetics';
 const containHeroImage = slug ? serviceImageUsesContain(slug) : false;
-const socialImage = curatedImage
-  ? new URL(curatedImage, site).toString()
-  : service.image?.asset
-  ? urlFor(service.image).width(1200).height(630).fit('crop').format('webp').quality(82).url()
-  : fallbackImage
-    ? new URL(fallbackImage, site).toString()
-    : undefined;
-const heroImage = curatedImage ?? (service.image?.asset
-  ? urlFor(service.image).width(1600).height(1200).fit('crop').format('webp').quality(80).url()
-  : fallbackImage ?? '/images/optimized/actual-reception-1400-light.webp');
-const serviceImage = service.image;
-const heroImageSrcset = !curatedImage && serviceImage?.asset
-  ? [800, 1200, 1600]
-      .map((width) => `${urlFor(serviceImage).width(width).height(Math.round(width * 0.75)).fit('crop').format('webp').quality(80).url()} ${width}w`)
-      .join(', ')
-  : undefined;
-const galleryImages = service.gallery?.filter((image) => image?.asset) ?? [];
+const heroImage = curatedImage ?? fallbackImage ?? '/images/optimized/actual-reception-1400-light.webp';
+const socialImage = new URL(heroImage, site).toString();
+const heroImageSrcset = undefined;
+const galleryImages = service.gallery ?? [];
 
 // Approved brand or House of Rose result photography, populated only where documented.
 const resultImages = slug ? getServiceResultImages(slug) : [];
@@ -270,8 +257,7 @@ const pageDescription = factualServiceDescription;
       ...(priceNumber != null ? { value: priceNumber, currency: 'USD' } : {}),
     })});`}
   />
-  {/* Visual Editor: all editable copy below belongs to this service document */}
-  <div {...sbObjectId(service._id)}>
+  <div>
   <!-- Service hero: the image is semantic and immediately discoverable for LCP. -->
   <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
     <div class="mx-auto grid max-w-[1440px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)]">
@@ -280,7 +266,7 @@ const pageDescription = factualServiceDescription;
           <span aria-hidden="true">←</span> {service.parentService ? service.parentService.title : 'All services'}
         </a>
         <span class="kicker">Medical Aesthetics Practice</span>
-        <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink" {...sbFieldPath('title')}>
+        <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink">
           {service.title}
         </h1>
         {publicTagline && (
@@ -290,9 +276,9 @@ const pageDescription = factualServiceDescription;
         )}
         {(displayServicePrice || displayDuration) && (
           <p class="mt-5 text-[13px] font-medium tracking-[0.08em] text-muted">
-            {displayServicePrice && <span {...sbFieldPath('price')}>{displayServicePrice}</span>}{displayServicePrice && displayDuration && <span class="mx-2 text-gold">·</span>}{verifiedDuration
+            {displayServicePrice && <span>{displayServicePrice}</span>}{displayServicePrice && displayDuration && <span class="mx-2 text-gold">·</span>}{verifiedDuration
               ? <span>{verifiedDuration}</span>
-              : displayDuration && <span {...sbFieldPath('duration')}>{displayDuration}</span>}
+              : displayDuration && <span>{displayDuration}</span>}
           </p>
         )}
         <div class="mt-7 grid gap-3 sm:flex sm:flex-wrap">
@@ -310,7 +296,7 @@ const pageDescription = factualServiceDescription;
           src={heroImage}
           srcset={heroImageSrcset}
           sizes="(max-width: 1023px) 100vw, 55vw"
-          alt={curatedImage ? curatedImageAlt : service.image?.alt ?? fallbackImageAlt}
+          alt={curatedImage ? curatedImageAlt : fallbackImageAlt}
           width="1600"
           height="1200"
           fetchpriority="high"
@@ -348,9 +334,8 @@ const pageDescription = factualServiceDescription;
             <a
               href={`/concerns/${concern.slug}/`}
               class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter"
-              {...sbObjectId(concern._id)}
             >
-              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>
+              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">
                 {concern.title}
               </h3>
               <span class="learn-more group-hover:text-gold mt-4 inline-block">View concern</span>
@@ -395,10 +380,10 @@ const pageDescription = factualServiceDescription;
           {galleryImages.map((img) => (
             <figure class="bg-charcoal border border-gold-metal/10 overflow-hidden">
               <img
-                src={urlFor(img).width(900).height(1200).format('webp').quality(82).url()}
+                src={img.src}
                 alt={img.alt ?? service.title}
-                width="900"
-                height="1200"
+                width={img.width}
+                height={img.height}
                 loading="lazy"
                 decoding="async"
                 class="w-full h-auto object-cover"
@@ -460,16 +445,16 @@ const pageDescription = factualServiceDescription;
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
           {service.treatments.map((t) => (
-            <article class="bg-charcoal p-7" {...sbObjectId(t._id)}>
-              <h3 class="font-serif text-[22px] text-ink mb-2" {...sbFieldPath('title')}>
+            <article class="bg-charcoal p-7">
+              <h3 class="font-serif text-[22px] text-ink mb-2">
                 <a href={`/services/${t.slug}/`} class="hover:text-gold transition-colors">{t.title}</a>
               </h3>
               {getServiceCardSummary(t.slug) && (
                 <p class="text-muted text-[14px] leading-[1.65] mb-4">{getServiceCardSummary(t.slug)}</p>
               )}
-              {slug !== 'waxing' && (t.price || getChildTreatmentDuration(t.slug, t.duration)) && (
+              {slug !== 'waxing' && getChildTreatmentDuration(t.slug, t.duration) && (
                 <p class="text-ink/70 text-[12px] tracking-[0.08em]">
-                  {t.price}{t.price && getChildTreatmentDuration(t.slug, t.duration) && <span class="text-gold mx-2">·</span>}{getChildTreatmentDuration(t.slug, t.duration)}
+                  {getChildTreatmentDuration(t.slug, t.duration)}
                 </p>
               )}
               <div class="mt-5 flex flex-wrap gap-4 items-center">
@@ -498,7 +483,7 @@ const pageDescription = factualServiceDescription;
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/10 mt-8">
           {service.comparisons.map((comparison) => (
-            <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter" {...sbObjectId(comparison._id)}>
+            <a href={`/compare/${comparison.slug}/`} class="bg-charcoal-light p-7 group block transition-colors hover:bg-charcoal-lighter">
               <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">{getPublicComparisonContent(comparison.slug)!.title}</h3>
               <span class="learn-more group-hover:text-gold mt-4 inline-block">Read the comparison</span>
             </a>
@@ -545,22 +530,25 @@ const pageDescription = factualServiceDescription;
           </article>
         )}
         {visibleRelatedServices.map((related) => (
-          <article class="service-card group" {...sbObjectId(related._id)}>
+          <article class="service-card group">
             <a href={`/services/${related.slug}/`} class="block">
-              {related.image?.asset && (
+              {getServiceCardImage(related.slug) && (
                 <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
                   <img
-                    src={urlFor(related.image).width(400).height(400).fit('crop').format('webp').quality(80).url()}
-                    alt={related.image.alt ?? related.title}
+                    src={getServiceCardImage(related.slug)}
+                    alt={getServiceCardImageAlt(related.slug) || related.title}
                     width={400}
                     height={400}
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    class:list={[
+                      'w-full h-full group-hover:scale-105 transition-transform duration-500',
+                      serviceCardImageUsesContain(related.slug) ? 'object-contain p-4' : 'object-cover',
+                    ]}
                   />
                 </div>
               )}
-              <span class="service-name" {...sbFieldPath('title')}>{related.title}</span>
+              <span class="service-name">{related.title}</span>
               {getServiceCardSummary(related.slug) && (
                 <p class="service-desc mt-1">{getServiceCardSummary(related.slug)}</p>
               )}

@@ -35,12 +35,13 @@ test('Stackbit advertises shop page models only when the public storefront is en
   const disabledExtensions = await loadModelExtensions(false);
   const enabledExtensions = await loadModelExtensions(true);
 
-  for (const publicModel of ['service', 'provider']) {
+  for (const publicModel of ['provider']) {
     assert.ok(
       disabledExtensions.some(({ name }) => name === publicModel),
       `${publicModel} must remain available when the shop is disabled.`,
     );
   }
+  assert.equal(disabledExtensions.some(({ name }) => name === 'service'), false);
 
   for (const shopModel of ['product', 'janeIredalePage']) {
     assert.equal(

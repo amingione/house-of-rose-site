@@ -62,7 +62,7 @@ document, read:
   Preserve only verified platform facts, measurement definitions, and compliance controls.
 - `docs/SEO-AEO-PLAYBOOK.md` — the 7 page types, writing rules, the publish checklist. **Wins on this
   repo's page types and structured data.**
-- `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc type → route → JSON-LD → GROQ query.
+- `docs/CONTENT-MODEL-MAP.md` — page type → content source → route → JSON-LD → resolver/query.
 - `docs/GOVERNANCE/internal_only/compliance/COMPLIANCE-COPY-RULES.md` — the binding approved-vs-avoid copy rules (FL med-spa context;
   no reverse-aging / guarantees / stem-cell / cure-disease / Groupon / unsupported exosome-peptide claims).
 - `docs/GOVERNANCE/internal_only/compliance/` — the statutory layer. **Wins over all of the above where they touch.**
@@ -105,6 +105,8 @@ Hard rules (inherited by every task):
 - Schemas live in `packages/studio/schemas/`
 - Studio structure is in `packages/studio/structure.ts`
 - `siteSettings` is a singleton — document ID is `'siteSettings'`
+- Services and service collections do not belong in Sanity. Their sole website source is
+  `packages/web/src/lib/serviceCatalog.ts`; Sanity content relates to them with validated slug strings.
 - Never call Medusa or Vendure. Stripe and Shippo access stays in the existing server-side checkout
   functions documented in `docs/CHECKOUT.md`; never call either directly from Astro pages or browser code.
 
@@ -198,8 +200,8 @@ referral sentence. Bidding the keyword is fine; the word in copy is not.
 A request for *"PRF Microneedling in Punta Gorda"* or *"IV Hydration in Charlotte County"* is a
 **`localArea` doc at `/areas/[slug]`**. This is worked example #1 in `SEO-AEO-PLAYBOOK.md` §2.
 
-Do not put a geo modifier in a service page H1, title tag, or slug as a substitute. Do not invent a
-`localSeo` field on `service`. The page type exists; extend it or use it.
+Do not put a geo modifier in a service page H1, title tag, or slug as a substitute. Do not add a
+parallel geo field to a local service record. The `localArea` page type exists; extend it or use it.
 
 The general form of this error: **re-deriving an architectural decision the repo already documented, and
 landing somewhere different.** Check the page-type table first. If a request doesn't fit a type, extend
@@ -220,8 +222,8 @@ it.
 
 ## Standing product rules
 
-- **GlossGenius is commerce truth.** Prices flow GG → `ALL-SERVICES-PRICING.MD` → Sanity. Never invent a
-  price; never publish one that isn't in GG.
+- **GlossGenius is commerce truth.** Prices flow GG → `ALL-SERVICES-PRICING.MD` for internal
+  verification. Service prices do not belong in `serviceCatalog.ts` or public output. Never invent a price.
 - **Memberships are permanently dead.** Rose Circle, Rose Method, member rates, plans, tiers. Deleted
   2026-07-23. Never rebuild, never reference.
 - **No discount or "special" framing.** Bundles and programs only.

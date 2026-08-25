@@ -1,7 +1,7 @@
 # House of Rose — Content Model Map
 
 > The wiring table behind `docs/SEO-AEO-PLAYBOOK.md`. For each of the 7 AEO page types this maps:
-> **Sanity document type → Astro route → required JSON-LD → GROQ query → Studio location.**
+> **Content source → Astro route → required JSON-LD → query or local resolver → authoring location.**
 > When an agent is asked to "add a cost page", "add a comparison", "add a city page", or "add a
 > before/after", this file is the single source of truth for *where everything goes*. Follow it
 > exactly — do not inline GROQ in pages, do not hand-roll JSON-LD, do not invent routes.
@@ -14,6 +14,7 @@
 
 | Concern | Location |
 | --- | --- |
+| Service catalog + collections | `packages/web/src/lib/serviceCatalog.ts` |
 | Sanity schemas | `packages/studio/schemas/*.ts` (registered in `schemas/index.ts`) |
 | Shared schema objects | `packages/studio/schemas/objects/*.ts` (`seo`, `faq`) |
 | Studio sidebar | `packages/studio/structure.ts` |
@@ -28,16 +29,16 @@
 ## The 7 page types → full wiring
 
 ### 1. Service page — *what it is / verified decision support for the search intent*
-- **Doc type:** `service` (`kind`: `hub` | `treatment` | `standalone`)
+- **Content source:** local typed records in `packages/web/src/lib/serviceCatalog.ts` (`kind`: `hub` | `treatment` | `standalone`); there is no Sanity `service` or `serviceCollection` document
 - **Route:** `/services/[slug]` (+ `/services`, `/services/collections/[collection]`)
 - **JSON-LD:** `Service` + `BreadcrumbList` + `FAQPage` (when `faqs` present)
-- **GROQ:** `SERVICE_BY_SLUG_QUERY`, `ALL_SERVICES_QUERY`, `ALL_SERVICE_SLUGS_QUERY`
+- **Resolver:** `PUBLIC_SERVICES`, `getPublicServiceBySlug()`, `getPublicCollections()`
 - **Status:** ✅ existing
 
 ### 2. Pricing page
 - **Doc type:** `costGuide`
 - **Route:** `/cost/[slug]` (e.g. `prf-treatment-cost`)
-- **Public content:** `treatment` (ref → service) plus the reviewed cost-facts overlay in website code;
+- **Public relationship:** `treatmentSlug` (string → local Astro service) plus the reviewed cost-facts overlay in website code;
   publish the verified current amount or range and its menu context
 - **Legacy source fields:** `priceLow`/`priceHigh`/`priceUnit`, `costFactors[]`, `whatsIncluded`, and
   `faqs[]` remain stored but are read-only in Studio and are not public copy authority
@@ -54,7 +55,7 @@
 ### 4. Comparison page — *A vs B*
 - **Doc type:** `comparison`
 - **Route:** `/compare/[slug]` (e.g. `daxxify-vs-botox`)
-- **Active CMS inputs:** `slug`, `status`, `optionA.service`, `optionB.service`, and `orderRank` establish
+- **Active CMS inputs:** `slug`, `status`, `optionA.serviceSlug`, `optionB.serviceSlug`, and `orderRank` establish
   route eligibility, live service relationships, and ordering; public comparison prose comes from the
   reviewed website overlay
 - **Legacy source fields:** `intro`, option labels/summaries/distinctions, `rows[]`, `verdict`, `faqs[]`,
@@ -65,7 +66,7 @@
 ### 5. Local authority page — *treatment in {city}*
 - **Doc type:** `localArea`
 - **Route:** `/areas/[slug]` (+ `/areas` index) (e.g. `punta-gorda`, `port-charlotte`)
-- **Active CMS inputs:** `slug`, `city`, `region`, `servedServices[]`, `neighborhoods[]`, `image`, and
+- **Active CMS inputs:** `slug`, `city`, `region`, `servedServiceSlugs[]`, `neighborhoods[]`, `image`, and
   `orderRank`; the website constrains routes to its reviewed area inventory and generates public location
   copy, FAQs, and metadata from verified practice and area facts
 - **Legacy source fields:** `intro`, `whyLocal`, `faqs[]`, and `seo` remain stored but are read-only in
@@ -76,14 +77,14 @@
 ### 6. Before/after / proof page
 - **Doc type:** `caseStudy`
 - **Route:** `/results/[slug]` (+ `/results` index)
-- **Key fields:** `treatment` (ref → service), `concern` (ref), `beforeImage`, `afterImage`,
+- **Key fields:** `treatmentSlug` (string → local Astro service), `concern` (ref), `beforeImage`, `afterImage`,
   `clientProfile`, `protocol`, `timeframe`, `outcome`, `consentGiven` (bool, gate publishing)
 - **JSON-LD:** `ImageObject` (before + after) + `BreadcrumbList`
 - **GROQ:** `ALL_CASE_STUDIES_QUERY`, `CASE_STUDY_BY_SLUG_QUERY`, `ALL_CASE_STUDY_SLUGS_QUERY`
 - **Rule:** never publish a case study with `consentGiven != true`.
 
 ### 7. Appointment information
-- **Doc type:** `service.process[]` (per treatment) + `experienceContent.journeySteps`
+- **Content source:** reviewed local service-page content + `experienceContent.journeySteps`
 - **Route:** lives on `/services/[slug]` and `/experience`
 - **JSON-LD:** inherited from the Service page
 - **Status:** ✅ existing

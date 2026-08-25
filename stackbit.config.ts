@@ -6,22 +6,22 @@ import { SanityContentSource } from '@stackbit/cms-sanity';
 
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './packages/web/src/lib/publicComparisonContent';
 import { isReviewedPublicBlogSlug } from './packages/web/src/lib/publicBlogContent';
-import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './packages/web/src/lib/publicCollectionContent';
 import { RETIRED_PUBLIC_CONCERN_SLUGS } from './packages/web/src/lib/publicConcernContent';
 import {
   RETIRED_COST_GUIDE_SLUGS,
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
 } from './packages/web/src/lib/publicCostGuideContent';
 import { REVIEWED_PUBLIC_LOCAL_AREA_SLUGS } from './packages/web/src/lib/publicLocalAreaContent';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './packages/web/src/lib/publicServiceContent';
 import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './packages/web/src/lib/publicTreatmentPackageContent';
+import { PUBLIC_SERVICES } from './packages/web/src/lib/serviceCatalog';
 
 /**
  * House of Rose — Netlify Visual Editor configuration.
  *
  * WHY this exists
  * ----------------
- * Sanity remains the single source of truth (see CLAUDE.md "Architecture Law").
+ * Sanity remains the editing source for CMS-backed content. Services and service
+ * collections are intentionally local Astro data in serviceCatalog.ts.
  * Netlify Visual Editor (formerly Stackbit) sits *on top of* Sanity to provide
  * click-to-edit / side-by-side visual editing against the live Astro preview.
  * It adds NO second content source — `@stackbit/cms-sanity` simply teaches the
@@ -77,9 +77,6 @@ const PUBLIC_SHOP_ENABLED = process.env.PUBLIC_SHOP_ENABLED === 'true';
 const REVIEWED_PUBLIC_COMPARISON_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_COMPARISON_SLUGS,
 );
-const REVIEWED_PUBLIC_COLLECTION_SLUG_SET = new Set<string>(
-  REVIEWED_PUBLIC_COLLECTION_SLUGS,
-);
 const RETIRED_PUBLIC_CONCERN_SLUG_SET = new Set<string>(RETIRED_PUBLIC_CONCERN_SLUGS);
 const REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
@@ -88,13 +85,10 @@ const RETIRED_COST_GUIDE_SLUG_SET = new Set<string>(RETIRED_COST_GUIDE_SLUGS);
 const REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET = new Set<string>(
   REVIEWED_PUBLIC_LOCAL_AREA_SLUGS,
 );
-const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>(
-  UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
-);
 const VERIFIED_TREATMENT_PACKAGE_SLUG_SET = new Set<string>(
   VERIFIED_TREATMENT_PACKAGE_SLUGS,
 );
-const PUBLIC_SERVICE_STATUS_SET = new Set(['live', 'actual-menu']);
+const PUBLIC_SERVICE_SLUG_SET = new Set<string>(PUBLIC_SERVICES.map(({ slug }) => slug));
 
 function documentStringField(
   document: { fields: Record<string, unknown> } | undefined,
@@ -126,30 +120,23 @@ function documentHasNonEmptyList(
   return false;
 }
 
-function documentReferenceIds(
+function documentStringList(
   document: { fields: Record<string, unknown> } | undefined,
   fieldName: string,
 ): string[] {
   const field = document?.fields[fieldName];
-  if (!field || typeof field !== 'object' || !('items' in field) || !Array.isArray(field.items)) {
-    return [];
+  if (!field || typeof field !== 'object') return [];
+  if ('value' in field && Array.isArray(field.value)) {
+    return field.value.filter((value): value is string => typeof value === 'string');
   }
-  return field.items.flatMap((item) => {
-    if (
-      !item ||
-      typeof item !== 'object' ||
-      !('type' in item) ||
-      item.type !== 'reference' ||
-      !('refType' in item) ||
-      item.refType !== 'document' ||
-      !('refId' in item) ||
-      typeof item.refId !== 'string' ||
-      !item.refId
-    ) {
-      return [];
-    }
-    return [item.refId];
-  });
+  if ('items' in field && Array.isArray(field.items)) {
+    return field.items.flatMap((item) =>
+      item && typeof item === 'object' && 'value' in item && typeof item.value === 'string'
+        ? [item.value]
+        : [],
+    );
+  }
+  return [];
 }
 
 function documentHasAssetReference(
@@ -170,29 +157,10 @@ function documentHasAssetReference(
   );
 }
 
-function documentReferenceId(
-  document: { fields: Record<string, unknown> } | undefined,
-  fieldName: string,
-): string | undefined {
-  const field = document?.fields[fieldName];
-  if (
-    !field ||
-    typeof field !== 'object' ||
-    !('type' in field) ||
-    field.type !== 'reference' ||
-    !('refType' in field) ||
-    field.refType !== 'document' ||
-    !('refId' in field)
-  ) {
-    return undefined;
-  }
-  return typeof field.refId === 'string' && field.refId ? field.refId : undefined;
-}
-
-function documentNestedReferenceId(
+function documentNestedStringField(
   document: { fields: Record<string, unknown> } | undefined,
   objectFieldName: string,
-  referenceFieldName: string,
+  stringFieldName: string,
 ): string | undefined {
   const objectField = document?.fields[objectFieldName];
   if (
@@ -207,9 +175,9 @@ function documentNestedReferenceId(
   ) {
     return undefined;
   }
-  return documentReferenceId(
+  return documentStringField(
     { fields: objectField.fields as Record<string, unknown> },
-    referenceFieldName,
+    stringFieldName,
   );
 }
 
@@ -239,8 +207,6 @@ function requireEnv(names: string[]): string {
  * Keep in sync with CLAUDE.md "Routes" table.
  */
 const PAGE_ROUTES: Record<string, string> = {
-  service: '/services/{slug}',
-  serviceCollection: '/services/collections/{slug}',
   concern: '/concerns/{slug}',
   costGuide: '/cost/{slug}',
   comparison: '/compare/{slug}',
@@ -380,8 +346,6 @@ export default defineStackbitConfig({
         'caseStudy',
         'concern',
         'localArea',
-        'service',
-        'serviceCollection',
         'costGuide',
         'treatmentPackage',
         'provider',
@@ -408,25 +372,13 @@ export default defineStackbitConfig({
     }
 
     if (entry.document.modelName === 'caseStudy') {
-      const treatmentId = documentReferenceId(document, 'treatment');
-      const treatment = treatmentId
-        ? getDocumentById({
-            id: treatmentId,
-            srcType: entry.document.srcType,
-            srcProjectId: entry.document.srcProjectId,
-          })
-        : undefined;
-      const treatmentSlug = documentStringField(treatment, 'slug');
-      const treatmentStatus = documentStringField(treatment, 'status');
+      const treatmentSlug = documentStringField(document, 'treatmentSlug');
       return Boolean(
         slug &&
           documentBooleanField(document, 'consentGiven') === true &&
           documentHasAssetReference(document, 'beforeImage') &&
           documentHasAssetReference(document, 'afterImage') &&
-          treatmentSlug &&
-          treatmentStatus &&
-          PUBLIC_SERVICE_STATUS_SET.has(treatmentStatus) &&
-          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
+          treatmentSlug && PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
       );
     }
 
@@ -439,61 +391,20 @@ export default defineStackbitConfig({
       return Boolean(slug && REVIEWED_PUBLIC_LOCAL_AREA_SLUG_SET.has(slug));
     }
 
-    if (entry.document.modelName === 'service') {
-      const status = documentStringField(document, 'status');
-      return Boolean(
-        slug &&
-          status &&
-          PUBLIC_SERVICE_STATUS_SET.has(status) &&
-          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(slug),
-      );
-    }
-
-    if (entry.document.modelName === 'serviceCollection') {
-      return Boolean(slug && REVIEWED_PUBLIC_COLLECTION_SLUG_SET.has(slug));
-    }
-
     if (entry.document.modelName === 'costGuide') {
-      const treatmentId = documentReferenceId(document, 'treatment');
-      const treatment = treatmentId
-        ? getDocumentById({
-            id: treatmentId,
-            srcType: entry.document.srcType,
-            srcProjectId: entry.document.srcProjectId,
-          })
-        : undefined;
-      const treatmentSlug = documentStringField(treatment, 'slug');
-      const treatmentStatus = documentStringField(treatment, 'status');
+      const treatmentSlug = documentStringField(document, 'treatmentSlug');
       return Boolean(
         slug &&
           REVIEWED_PUBLIC_COST_GUIDE_SLUG_SET.has(slug) &&
           !RETIRED_COST_GUIDE_SLUG_SET.has(slug) &&
-          treatmentSlug &&
-          treatmentStatus &&
-          PUBLIC_SERVICE_STATUS_SET.has(treatmentStatus) &&
-          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
+          treatmentSlug && PUBLIC_SERVICE_SLUG_SET.has(treatmentSlug),
       );
     }
 
     if (entry.document.modelName === 'treatmentPackage') {
       const status = documentStringField(document, 'status');
-      const hasRouteableService = documentReferenceIds(document, 'servicesIncluded').some(
-        (serviceId) => {
-          const service = getDocumentById({
-            id: serviceId,
-            srcType: entry.document.srcType,
-            srcProjectId: entry.document.srcProjectId,
-          });
-          const serviceSlug = documentStringField(service, 'slug');
-          const serviceStatus = documentStringField(service, 'status');
-          return Boolean(
-            serviceSlug &&
-              serviceStatus &&
-              PUBLIC_SERVICE_STATUS_SET.has(serviceStatus) &&
-              !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(serviceSlug),
-          );
-        },
-      );
+      const hasRouteableService = documentStringList(document, 'serviceSlugs')
+        .some((serviceSlug) => PUBLIC_SERVICE_SLUG_SET.has(serviceSlug));
       return Boolean(
         slug &&
           status === 'live' &&
@@ -517,25 +428,12 @@ export default defineStackbitConfig({
     }
 
     const status = documentStringField(document, 'status');
-    const comparisonServiceIds = ['optionA', 'optionB'].map((optionName) =>
-      documentNestedReferenceId(document, optionName, 'service'),
+    const comparisonServiceSlugs = ['optionA', 'optionB'].map((optionName) =>
+      documentNestedStringField(document, optionName, 'serviceSlug'),
     );
-    const comparisonServicesRouteable = comparisonServiceIds.every((serviceId) => {
-      if (!serviceId) return false;
-      const service = getDocumentById({
-        id: serviceId,
-        srcType: entry.document.srcType,
-        srcProjectId: entry.document.srcProjectId,
-      });
-      const serviceSlug = documentStringField(service, 'slug');
-      const serviceStatus = documentStringField(service, 'status');
-      return Boolean(
-        serviceSlug &&
-          serviceStatus &&
-          PUBLIC_SERVICE_STATUS_SET.has(serviceStatus) &&
-          !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET.has(serviceSlug),
-      );
-    });
+    const comparisonServicesRouteable = comparisonServiceSlugs.every(
+      (serviceSlug) => Boolean(serviceSlug && PUBLIC_SERVICE_SLUG_SET.has(serviceSlug)),
+    );
     return Boolean(
       status === 'live' &&
         slug &&

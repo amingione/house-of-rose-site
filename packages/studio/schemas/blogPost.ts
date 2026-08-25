@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { SERVICE_OPTIONS } from '../../web/src/lib/serviceCatalog';
 import { validatePublicCopy } from './validation/publicCopy';
 
 export const validateBlogPortableText = (value: unknown): true | string => {
@@ -134,15 +134,10 @@ export const blogPost = defineType({
       ],
     }),
     defineField({
-      name: 'relatedService',
+      name: 'relatedServiceSlug',
       title: 'Related Service',
-      type: 'reference',
-      to: [{ type: 'service' }],
-      options: {
-        filter:
-          'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
-        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-      },
+      type: 'string',
+      options: { list: SERVICE_OPTIONS },
       description: 'Link to a service page for the CTA at the bottom of this post',
     }),
     defineField({

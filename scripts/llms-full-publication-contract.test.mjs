@@ -12,24 +12,9 @@ const compactSource = readFileSync(
 );
 
 test('the full AI feed emits links only for generated public service routes', () => {
-  const query = source.match(
-    /const SERVICES_FULL_QUERY = \/\* groq \*\/ `([\s\S]*?)`;/,
-  )?.[1];
-
-  assert.ok(query, 'The full AI feed service query must remain inspectable.');
-  assert.match(query, /status in \["live", "actual-menu"\]/);
-  assert.match(query, /defined\(slug\.current\)/);
-  assert.match(query, /!\(slug\.current in \$\{UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ\}\)/);
-  assert.match(
-    source,
-    /import \{ UNAVAILABLE_PUBLIC_SERVICE_SLUGS \} from '@\/lib\/publicServiceContent'/,
-  );
-  assert.match(
-    source,
-    /const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON\.stringify\(UNAVAILABLE_PUBLIC_SERVICE_SLUGS\)/,
-  );
-  assert.doesNotMatch(source, /const NON_PUBLIC_SERVICE_SLUGS\b/);
-  assert.doesNotMatch(source, /services\.filter\(\(service\) => !NON_PUBLIC_SERVICE_SLUGS\.has/);
+  assert.match(source, /import \{ PUBLIC_SERVICES \} from '@\/lib\/serviceCatalog'/);
+  assert.match(source, /const services = \[\.\.\.PUBLIC_SERVICES\]/);
+  assert.doesNotMatch(source, /SERVICES_FULL_QUERY|ALL_SERVICES_QUERY|_type == "service"/);
   assert.match(
     source,
     /URL: \$\{base\}\/services\/\$\{s\.slug\}\//,
@@ -38,55 +23,14 @@ test('the full AI feed emits links only for generated public service routes', ()
 });
 
 test('the full AI feed exposes only reviewed public service collections', () => {
-  const query = source.match(
-    /const SERVICES_FULL_QUERY = \/\* groq \*\/ `([\s\S]*?)`;/,
-  )?.[1];
-
-  assert.ok(query, 'The full AI feed service query must remain inspectable.');
-  assert.match(
-    source,
-    /import \{ REVIEWED_PUBLIC_COLLECTION_SLUGS \} from '@\/lib\/publicCollectionContent'/,
-  );
-  assert.match(
-    source,
-    /const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON\.stringify\(REVIEWED_PUBLIC_COLLECTION_SLUGS\)/,
-  );
-  assert.match(query, /defined\(collection->slug\.current\)/);
-  assert.match(
-    query,
-    /collection->slug\.current in \$\{REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ\}/,
-  );
-  assert.doesNotMatch(
-    query,
-    /"collection"\s*:\s*collection->\{\s*title\s*\}/,
-    'An unreviewed collection relationship must not become public AI-feed taxonomy.',
-  );
+  assert.match(source, /PUBLIC_SERVICES/);
+  assert.doesNotMatch(source, /collection->|serviceCollection/);
 });
 
 test('the compact AI feed shares the generated-route service authority', () => {
-  assert.match(
-    compactSource,
-    /import \{ UNAVAILABLE_PUBLIC_SERVICE_SLUGS \} from '@\/lib\/publicServiceContent'/,
-  );
-  assert.match(
-    compactSource,
-    /const UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET = new Set<string>\(UNAVAILABLE_PUBLIC_SERVICE_SLUGS\)/,
-  );
-  assert.match(
-    compactSource,
-    /sanityFetch<Service\[\]>\(ALL_SERVICES_QUERY\)/,
-    'The compact feed must retain the public service query predicate.',
-  );
-  assert.match(
-    compactSource,
-    /sanityFetch<Service\[\]>\(LLMS_FEATURED_TREATMENTS_QUERY\)/,
-    'The compact feed must retain the featured-treatment query predicate.',
-  );
-  assert.match(
-    compactSource,
-    /\.filter\(\(service\) => !UNAVAILABLE_PUBLIC_SERVICE_SLUG_SET\.has\(service\.slug\)\)/,
-  );
-  assert.doesNotMatch(compactSource, /const NON_PUBLIC_SERVICE_SLUGS\b/);
+  assert.match(compactSource, /PUBLIC_DIRECTORY_SERVICES/);
+  assert.match(compactSource, /getPublicServiceBySlug\('prf-under-eyes'\)/);
+  assert.doesNotMatch(compactSource, /ALL_SERVICES_QUERY|LLMS_FEATURED_TREATMENTS_QUERY|_type == "service"/);
 });
 
 test('both AI feeds expose operational and local-authority core routes', () => {

@@ -1,30 +1,4 @@
-/**
- * Treatment-page projection + types.
- *
- * Kept in its own module so `queries.ts` takes a two-line change:
- *
- *   import { TREATMENT_PAGE_FIELDS } from './treatmentQueries';
- *   // ...inside SERVICE_BY_SLUG_QUERY, before the closing brace:
- *   ${TREATMENT_PAGE_FIELDS}
- *
- * and `Service` extends `TreatmentPageFields`.
- */
-
-export const TREATMENT_PAGE_FIELDS = /* groq */ `
-  providerScope {
-    performedBy,
-    medicalDirection,
-    credentialPoints,
-    disclaimer
-  },
-  priceRange {
-    minPrice,
-    maxPrice,
-    unit,
-    note
-  },
-  whyQualified
-`;
+/** Shared treatment types and display helpers used by the local Astro service catalog. */
 
 export type DowntimeLevel = 'none' | 'minimal' | 'moderate' | 'significant';
 export type PerformedBy = 'rn' | 'esthetician' | 'either';
@@ -59,7 +33,7 @@ export interface TreatmentProviderScope {
   disclaimer: string;
 }
 
-/** Public provider identity projected from the referenced Sanity provider. */
+/** Public provider identity stored with a local service record. */
 export interface TreatmentProviderAttribution {
   _id: string;
   publicName?: string;
@@ -75,7 +49,7 @@ export interface TreatmentPriceRange {
   note?: string;
 }
 
-/** Mixed into the existing `Service` interface in queries.ts. */
+/** Optional local treatment-page fields. */
 export interface TreatmentPageFields {
   providerScope?: TreatmentProviderScope;
   priceRange?: TreatmentPriceRange;

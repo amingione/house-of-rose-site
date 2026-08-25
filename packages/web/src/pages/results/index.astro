@@ -5,8 +5,13 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_CASE_STUDIES_QUERY, type CaseStudy } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
+import { getPublicServiceBySlug } from '@/lib/serviceCatalog';
 
-const studies = await sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY);
+const studyData = await sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY);
+const studies: CaseStudy[] = studyData.map((study) => ({
+  ...study,
+  treatment: study.treatmentSlug ? getPublicServiceBySlug(study.treatmentSlug) : undefined,
+}));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const resultsDescription = studies.length > 0

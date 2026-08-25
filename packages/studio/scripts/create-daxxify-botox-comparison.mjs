@@ -7,7 +7,7 @@ const PROJECT_ID = '4e7axyi7';
 const DATASET = 'production';
 const API_VERSION = '2025-04-26';
 const COMPARISON_ID = 'comparison-daxxify-vs-botox';
-const INJECTABLES_SERVICE_ID = '7bd92dc1-9ced-42bd-a195-e9fa4628a848';
+const INJECTABLES_SERVICE_SLUG = 'injectables';
 
 const apply = process.argv.includes('--apply');
 const documentOnly = process.argv.includes('--document-only');
@@ -28,7 +28,7 @@ const client = cliAuth
     });
 
 const option = () => ({
-  service: { _type: 'reference', _ref: INJECTABLES_SERVICE_ID },
+  serviceSlug: INJECTABLES_SERVICE_SLUG,
 });
 
 const sourceDocument = {
@@ -44,19 +44,10 @@ const sourceDocument = {
 
 const current = await client.fetch(
   `{
-    "service": *[_id == $serviceId][0]{_id,title,"slug":slug.current,status,bookingVerifiedAt,"concerns":concerns[]->_id},
     "comparison": *[_id == $comparisonId][0]{_id,_rev,title,status}
   }`,
-  { serviceId: INJECTABLES_SERVICE_ID, comparisonId: COMPARISON_ID },
+  { comparisonId: COMPARISON_ID },
 );
-
-if (
-  !current.service ||
-  current.service.slug !== 'injectables' ||
-  !['live', 'actual-menu'].includes(current.service.status)
-) {
-  throw new Error('The canonical Neurotoxin Injections service is missing, unroutable, or not public.');
-}
 
 const document = current.comparison && current.comparison._id !== COMPARISON_ID
   ? { ...sourceDocument, _id: current.comparison._id }
@@ -80,8 +71,8 @@ const result = await client.create(document, { visibility: 'sync' });
 const verified = await client.fetch(
   `*[_id == $id][0]{
     _id,_rev,title,"slug":slug.current,status,intro,orderRank,
-    "optionA": optionA{label,"service":service->{_id,title,"slug":slug.current}},
-    "optionB": optionB{label,"service":service->{_id,title,"slug":slug.current}},
+    "optionA": optionA{label,serviceSlug},
+    "optionB": optionB{label,serviceSlug},
     rows[]{_key,attribute,valueA,valueB},seo
   }`,
   { id: result._id },

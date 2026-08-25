@@ -11,6 +11,7 @@ import {
 } from '@/lib/queries';
 import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
 import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
+import { getPackageServiceSlugs, getPublicServiceRefs } from '@/lib/serviceCatalog';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -25,7 +26,12 @@ const packageData = await sanityFetch<TreatmentPackage>(TREATMENT_PACKAGE_BY_SLU
 if (!packageData) {
   throw new Error(`[packages/[slug]] No treatment package found in Sanity for slug "${slug}"`);
 }
-const pkg = packageData;
+const pkg: TreatmentPackage = {
+  ...packageData,
+  servicesIncluded: getPublicServiceRefs(
+    packageData.serviceSlugs ?? getPackageServiceSlugs(packageData.slug),
+  ),
+};
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);

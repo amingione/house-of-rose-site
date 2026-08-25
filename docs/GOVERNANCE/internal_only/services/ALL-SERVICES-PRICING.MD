@@ -23,10 +23,9 @@ layer.
 
 This pricing group is not a provider map. Amber Mingione, Licensed Esthetician is verified for
 Glo2Facial, Procell Microneedling including topical PRF, dermaplaning, CO2 Lift Carboxy, the three
-BioRePeel specialty variants, Face Reality peels, and Acne Bootcamp. Brandy Case, Licensed
-Esthetician provides the standalone BioRePeel face appointment and Series of 3 and the Radiance &
-Renewal Facial. The current reviewed sources do not establish a provider for GlowTox Facial or the
-three shared facial appointments below.
+BioRePeel specialty variants, Face Reality peels, and Acne Bootcamp. Brandy, Licensed Esthetician
+provides the standalone BioRePeel face appointment and Series of 3. The current reviewed sources do
+not establish a provider for GlowTox Facial or the five shared facial appointments below.
 
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
@@ -42,6 +41,7 @@ three shared facial appointments below.
 | CO2 Lift Carboxy — Add-On | 30 min | $100 | Staff-added only (booking OFF by design) |
 | Signature Facial | 45 min | $120 | Online |
 | Skin Reset Facial | 50 min | $140 | Online |
+| Sculpt & Lift Facial | 1 hr | $180 | No |
 | Radiance & Renewal Facial | 1 hr 15 min | $200 | Online |
 | Mommy & Me Facial | 1 hr | $150 | Online |
 
@@ -151,10 +151,10 @@ Brandy, Licensed Esthetician is verified for facial waxing. The seven body-waxin
 current GlossGenius inventory, but the export and reviewed waxing source do not establish a
 body-waxing provider. Do not infer or publish one from this category grouping.
 
-The 2026-08-06 export did not include provider assignments for the facial lineup. A live
-GlossGenius account check on 2026-08-25 confirms Radiance & Renewal Facial is assigned to Brandy
-Case. Signature Facial, Skin Reset, and Mommy & Me remain shared/ambiguous and are listed once above;
-do not duplicate them.
+Same facial lineup shown under Amber above is shared/ambiguous in GlossGenius (no provider field in
+the export) — Signature Facial, Skin Reset, Sculpt & Lift, Radiance & Renewal, and Mommy & Me all
+plausibly belong to either lane depending on how GlossGenius is configured. Listed once above; don't
+duplicate.
 
 | Service | Duration | Price |
 |---|---|---|
@@ -177,42 +177,48 @@ do not duplicate them.
 **Aundrea provides makeup only (confirmed by Amber 2026-08-25).** She no longer provides permanent
 jewelry; that service moved to its own section below. Do not re-attribute it to her.
 
-| Service | Duration | Price | Booking option |
-|---|---|---|---|
-| Event Makeup | 45 min | $150 | No |
-| Bridal Makeup | 2 hr | $175 | No |
-| Everyday Makeup | 25 min | $85 | No |
-| Signature Makeup Services — Event Makeup | 2 hr 40 min | $85 ($50 deposit) | No |
 
-⚠️ Two different "Event Makeup" prices exist in GlossGenius right now ($150 under "Event Makeup" vs.
-$85 under "Signature Makeup Services") — this looks like an uncleaned duplicate inside GlossGenius
-itself, not a documentation error. Needs a decision on which one is correct and removal of the other.
-The duplicate's group name also breaks the naming law ("Signature"), so removing it fixes two problems.
+Event Makeup
+1 hr 30 mins · $85 ($40 deposit)
 
-These three are live on the website as of 2026-08-25 (`/services/bridal-makeup/`,
-`/services/event-makeup/`, `/services/everyday-makeup/`). No price is published — every CTA is
-"call the practice". They are **not** directly bookable in GlossGenius, so `bookingMode` is `phone`.
 
----
+Bridal Makeup
+2 hrs · $175 ($50 deposit)
 
-## Permanent Jewelry — REMOVED FROM THE WEBSITE (2026-08-25)
 
-🛑 **Retired from houseofrosefl.com entirely on Amber's instruction (2026-08-25).** This supersedes
-the 2026-08-25 "keep it live, drop the named provider" decision earlier the same day.
+Everyday Makeup
+1 hr · $35 ($30 deposit)
 
-What was done: the slug is in `UNAVAILABLE_PUBLIC_SERVICE_SLUGS`, `/services/permanent-jewelry/*` and
-`/services/collections/permanent-jewelry/*` are forced 404s in `packages/web/netlify.toml` (so search
-engines drop the URLs), the education module was deleted, and every mention was removed from the
-homepage, `/services/`, `/about/*`, the provider profiles, and both AI feeds.
 
-⚠️ **The Sanity service document was deleted, not unpublished** — the unpublish call removed it
-outright. The `serviceCollection` record was unpublished normally and still exists as a draft. If the
-service is ever revived it has to be re-authored from scratch; the last known content is in this
-file's git history and in commit `76c73e3f`-era exports.
+Flower Girl Makeup
+25 mins · $25 ($15 deposit)
 
-❓ **Open: does the practice still sell it off-website?** This removal was scoped to the website. If
-it is also off the GlossGenius menu, delete the listing there too; if it is still bookable in person,
-that is fine and simply is not advertised online.
+
+Mother of the Bride/Groom Makeup
+1 hr · $75 ($50 deposit)
+
+Bridal Makeup Trial Only
+50 mins · $50 ($40 deposit)
+
+
+The Complete Bridal Glow Package
+3 hrs 30 mins · $299 ($200 deposit)
+
+
+The Lash & Glam Bridal Package
+3 hrs · $225 ($200 deposit)
+
+
+The Glow & Glam Bridal Package
+3 hrs · $225 ($200 deposit)
+
+
+The Bridal Party Glam Package 4+
+4 hrs · $140
+
+
+Bride Tribe Glow Night
+6 hrs · $195
 
 ---
 
@@ -296,13 +302,12 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
    different things and EZ Gel quietly disappeared. Confirm with Diana.
 4. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
    different group names) — see the Aundrea section above.
-4b. ⬜ **Permanent Jewelry duration conflict (20 min vs 35 min) is now moot for the website** — the
-   page no longer exists, so nothing is rendered publicly. It still matters if the service is sold in
-   person; confirm the real duration before re-listing it anywhere.
-4c. ✅ **Permanent Jewelry — resolved by removal.** Aundrea went makeup-only, and Amber then chose to
-   remove the service from the website entirely (2026-08-25). Superseded items 4b and the earlier
-   "keep it unattributed" decision. The only remaining question is whether it also comes off
-   GlossGenius — see the Permanent Jewelry section above.
+4b. 🟡 **Permanent Jewelry duration: 20 min (this ledger + live website) vs 35 min (Sanity record,
+   claiming a later GlossGenius verification).** A publicly rendered factual claim is wrong in one of
+   the two places. Check the live GlossGenius listing and correct the loser. See the Permanent
+   Jewelry section above.
+4c. 🟡 **Permanent Jewelry has no assigned provider** since Aundrea went makeup-only (2026-08-25).
+   Amber chose to keep it live and unattributed. Assign someone (with licence type) or retire it.
 5. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
    $299, $325, $349) before settling at the current, confirmed-live **Pro $300 / MD $400** (Amber's
    2026-07-26 decision, matches the fresh export exactly). This one is resolved — flagging only so

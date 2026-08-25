@@ -2,8 +2,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
-import { ALL_SERVICES_QUERY } from '../packages/web/src/lib/queries.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
+import { isVerifiedGlossGeniusBookingUrl } from '../packages/web/src/lib/booking.ts';
+import {
+  ALL_LOCAL_SERVICE_RECORDS,
+  PUBLIC_DIRECTORY_SERVICES,
+  PUBLIC_SERVICES,
+  getPublicCollections,
+} from '../packages/web/src/lib/serviceCatalog.ts';
 import { itemListPage, siteEntityGraph } from '../packages/web/src/lib/structuredData.ts';
 
 const directorySource = readFileSync(
@@ -11,16 +16,11 @@ const directorySource = readFileSync(
   'utf8',
 );
 
-test('the service directory derives structured entries from the generated public inventory', () => {
-  assert.match(ALL_SERVICES_QUERY, /status in \["live", "actual-menu"\]/);
-  assert.match(ALL_SERVICES_QUERY, /defined\(slug\.current\)/);
-  assert.ok(
-    ALL_SERVICES_QUERY.includes(
-      `!(slug.current in ${JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS)})`,
-    ),
-    'The directory query must exclude the shared unavailable service inventory.',
-  );
-  assert.match(ALL_SERVICES_QUERY, /kind != "treatment" \|\| !defined\(kind\)/);
+test('the service directory derives structured entries from the local Astro catalog', () => {
+  assert.equal(PUBLIC_SERVICES.length, 24);
+  assert.equal(new Set(PUBLIC_SERVICES.map(({ slug }) => slug)).size, PUBLIC_SERVICES.length);
+  assert.ok(PUBLIC_DIRECTORY_SERVICES.every(({ kind }) => kind !== 'treatment'));
+  assert.equal(getPublicCollections().length, 5);
 
   assert.match(directorySource, /items: allServices\.map\(\(service\) => \(\{/);
   assert.match(directorySource, /new URL\(`\/services\/\$\{service\.slug\}\/`, site\)\.toString\(\)/);
@@ -29,6 +29,25 @@ test('the service directory derives structured entries from the generated public
     1,
     'The route must emit one canonical service ItemList.',
   );
+});
+
+test('the local catalog preserves booking and publication boundaries', () => {
+  const radianceRenewal = ALL_LOCAL_SERVICE_RECORDS.find(
+    ({ slug }) => slug === 'radiance-and-renewal-facial',
+  );
+  assert.equal(radianceRenewal?.title, 'Radiance & Renewal Facial');
+  assert.equal(radianceRenewal?.public, false);
+  assert.ok(!PUBLIC_SERVICES.some(({ slug }) => slug === 'radiance-and-renewal-facial'));
+
+  for (const service of PUBLIC_SERVICES) {
+    assert.ok(!('price' in service), `${service.slug} must not carry a public service price`);
+    if (service.bookingMode === 'direct' || service.bookingMode === 'consultation') {
+      assert.ok(
+        isVerifiedGlossGeniusBookingUrl(service.bookingUrl),
+        `${service.slug} needs a verified GlossGenius booking URL`,
+      );
+    }
+  }
 });
 
 test('the service directory connects one CollectionPage node to its ItemList', () => {

@@ -10,8 +10,6 @@ import { rentARoom } from './rentARoom';
 import { janeIredalePage } from './janeIredalePage';
 import { experienceContent } from './experienceContent';
 import { aboutPage } from './aboutPage';
-import { serviceCollection } from './serviceCollection';
-import { service } from './service';
 import { concern } from './concern';
 import { product } from './product';
 import { promotion } from './promotion';
@@ -54,8 +52,6 @@ export const schemaTypes = [
   experienceContent,
   aboutPage,
   // Content
-  serviceCollection,
-  service,
   concern,
   product,
   promotion,

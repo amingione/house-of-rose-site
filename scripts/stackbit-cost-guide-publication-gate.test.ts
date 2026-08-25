@@ -5,7 +5,6 @@ import {
   RETIRED_COST_GUIDE_SLUGS,
   REVIEWED_PUBLIC_COST_GUIDE_SLUGS,
 } from '../packages/web/src/lib/publicCostGuideContent.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
 
 interface StackbitConfigShape {
   transformSitemap?: (options: unknown) => Array<{ urlPath: string }>;
@@ -22,25 +21,12 @@ interface StackbitDocument {
   fields: Record<string, unknown>;
 }
 
-const costGuideDocument = (slug?: string, treatmentId?: string): StackbitDocument => ({
+const costGuideDocument = (slug?: string, treatmentSlug?: string): StackbitDocument => ({
   fields: {
     ...(slug ? { slug: { type: 'slug', value: slug } } : {}),
-    ...(treatmentId
-      ? {
-          treatment: {
-            type: 'reference',
-            refType: 'document',
-            refId: treatmentId,
-          },
-        }
+    ...(treatmentSlug
+      ? { treatmentSlug: { type: 'string', value: treatmentSlug } }
       : {}),
-  },
-});
-
-const serviceDocument = (slug: string, status: string): StackbitDocument => ({
-  fields: {
-    slug: { type: 'slug', value: slug },
-    status: { type: 'string', value: status },
   },
 });
 
@@ -99,32 +85,26 @@ test('Stackbit exposes only reviewed, routeable cost guides', async () => {
   const documents = new Map([
     ...REVIEWED_PUBLIC_COST_GUIDE_SLUGS.map((slug) => [
       `cost-${slug}`,
-      costGuideDocument(slug, 'service-routeable'),
+      costGuideDocument(slug, 'morpheus8'),
     ] as const),
     ...RETIRED_COST_GUIDE_SLUGS.map((slug) => [
       `cost-${slug}`,
-      costGuideDocument(slug, 'service-routeable'),
+      costGuideDocument(slug, 'morpheus8'),
     ] as const),
-    ['cost-unreviewed', costGuideDocument('unreviewed-treatment-cost', 'service-routeable')] as const,
-    ['cost-missing-slug', costGuideDocument(undefined, 'service-routeable')] as const,
+    ['cost-unreviewed', costGuideDocument('unreviewed-treatment-cost', 'morpheus8')] as const,
+    ['cost-missing-slug', costGuideDocument(undefined, 'morpheus8')] as const,
     [
       'cost-missing-treatment',
       costGuideDocument(REVIEWED_PUBLIC_COST_GUIDE_SLUGS[0]),
     ] as const,
     [
       'cost-unavailable-treatment',
-      costGuideDocument(REVIEWED_PUBLIC_COST_GUIDE_SLUGS[0], 'service-unavailable'),
+      costGuideDocument(REVIEWED_PUBLIC_COST_GUIDE_SLUGS[0], 'wellness'),
     ] as const,
     [
       'cost-nonlive-treatment',
-      costGuideDocument(REVIEWED_PUBLIC_COST_GUIDE_SLUGS[0], 'service-nonlive'),
+      costGuideDocument(REVIEWED_PUBLIC_COST_GUIDE_SLUGS[0], 'future-service'),
     ] as const,
-    ['service-routeable', serviceDocument('morpheus8', 'live')] as const,
-    [
-      'service-unavailable',
-      serviceDocument(UNAVAILABLE_PUBLIC_SERVICE_SLUGS[0], 'live'),
-    ] as const,
-    ['service-nonlive', serviceDocument('future-service', 'proposed')] as const,
   ]);
 
   const filtered = transformSitemap!({

@@ -1,11 +1,6 @@
 import type { BookingMode } from './booking';
-import {
-  TREATMENT_PAGE_FIELDS,
-  type TreatmentPageFields,
-  type TreatmentProviderAttribution,
-} from './treatmentQueries';
+import type { Service, ServiceComparison } from './serviceCatalog';
 import { REVIEWED_PUBLIC_COMPARISON_SLUGS } from './publicComparisonContent';
-import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
 import { RETIRED_PUBLIC_CONCERN_SLUGS } from './publicConcernContent';
 import {
   RETIRED_COST_GUIDE_SLUGS,
@@ -16,11 +11,16 @@ import {
   PUBLIC_PROVIDER_DIGITAL_CARD_PATHS,
   PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS,
 } from './publicProviderContent';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from './publicServiceContent';
 import { VERIFIED_TREATMENT_PACKAGE_SLUGS } from './publicTreatmentPackageContent';
 
 export { REVIEWED_PUBLIC_COLLECTION_SLUGS } from './publicCollectionContent';
 export { REVIEWED_PUBLIC_COST_GUIDE_SLUGS } from './publicCostGuideContent';
+export type {
+  Service,
+  ServiceCollection,
+  ServiceComparison,
+  SitemapService,
+} from './serviceCatalog';
 
 // ─── GROQ Fragments ──────────────────────────────────────────────────────────
 
@@ -50,15 +50,10 @@ const REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COM
 const RETIRED_COST_GUIDE_SLUGS_GROQ = JSON.stringify(RETIRED_COST_GUIDE_SLUGS);
 const REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COST_GUIDE_SLUGS);
 
-// Published Sanity records that are not verified as current GlossGenius offerings.
-// Keep them available for reconciliation without exposing them as public services.
-const UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ = JSON.stringify(UNAVAILABLE_PUBLIC_SERVICE_SLUGS);
-
 // Concern routes retired at the edge must not be emitted again from dereferenced
 // service records. The source reference remains in Sanity for reconciliation.
 const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify(RETIRED_PUBLIC_CONCERN_SLUGS);
 
-const REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COLLECTION_SLUGS);
 const PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ = JSON.stringify(PUBLIC_PROVIDER_DIGITAL_CARD_PATHS);
 const PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS_GROQ = JSON.stringify(
   PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS,
@@ -141,109 +136,12 @@ export const TERMS_OF_SERVICE_QUERY = /* groq */ `
   }
 `;
 
-export type ServiceKind = 'hub' | 'treatment' | 'standalone';
-
-export interface TreatmentArea {
-  _key: string;
-  area: string;
-  focus: string;
-}
-
-export type EvidenceMediaKind = 'device' | 'before-after';
-
-export interface EvidenceMedia {
-  _key: string;
-  kind: EvidenceMediaKind;
-  image: SanityImage;
-  title: string;
-  caption: string;
-  sourceCredit: string;
-  sourceUrl?: string;
-  usageApproved: boolean;
-  consentConfirmed?: boolean;
-}
-
-export interface ResearchReference {
-  _key: string;
-  title: string;
-  journal: string;
-  year: number;
-  studyType: string;
-  summary: string;
-  limitations: string;
-  url: string;
-}
-
-export interface ServiceConcern {
-  _id: string;
-  title: string;
-  slug: string;
-}
-
-export interface ServiceLocalArea {
-  _id: string;
-  city: string;
-  slug: string;
-}
-
-export interface Service extends TreatmentPageFields {
-  _id: string;
-  title: string;
-  slug: string;
-  kind?: ServiceKind;
-  provider?: TreatmentProviderAttribution;
-  parentService?: { title: string; slug: string };
-  treatments?: Service[];
-  duration?: string;
-  price?: number | string;
-  bookingMode?: BookingMode;
-  bookingUrl?: string;
-  bookingVerifiedAt?: string;
-  concerns?: ServiceConcern[];
-  treatmentAreas?: TreatmentArea[];
-  faqs?: FAQ[];
-  image?: SanityImage;
-  gallery?: SanityImage[];
-  evidenceMedia?: EvidenceMedia[];
-  researchReferences?: ResearchReference[];
-  collection?: { title: string; slug: string };
-  relatedServices?: Service[];
-  contextualServices?: Service[];
-  costGuides?: CostGuide[];
-  comparisons?: ServiceComparison[];
-  localAreas?: ServiceLocalArea[];
-  _updatedAt?: string;
-  seo?: { metaTitle?: string; metaDescription?: string };
-}
-
-/** A comparison that contextually references a service as either option. */
-export interface ServiceComparison {
-  _id: string;
-  slug: string;
-}
-
-export interface SitemapService {
-  _id: string;
-  title: string;
-  slug: string;
-  kind?: ServiceKind;
-  parentService?: { title: string; slug: string };
-  _updatedAt?: string;
-}
-
 export interface Concern {
   _id: string;
   title: string;
   slug: string;
   treatments?: Service[];
   comparisons?: ServiceComparison[];
-}
-
-export interface ServiceCollection {
-  _id: string;
-  title: string;
-  slug: string;
-  services: Service[];
 }
 
 export type ProductBrand = 'procell' | 'glymed' | 'skin-script' | 'face-reality' | 'house-of-rose';
@@ -349,6 +247,7 @@ export interface BlogPost {
   featuredImage?: SanityImage;
   body?: PortableTextBlock[];
   relatedService?: ServiceRef;
+  relatedServiceSlug?: string;
   seo?: { metaTitle?: string; metaDescription?: string };
   estimatedReadingTime?: number;
 }
@@ -368,15 +267,6 @@ export interface JourneyStep {
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
-const COMPARISON_ROUTEABLE_OPTIONS = /* groq */ `
-  optionA.service->status in ["live", "actual-menu"] &&
-  defined(optionA.service->slug.current) &&
-  !(optionA.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-  optionB.service->status in ["live", "actual-menu"] &&
-  defined(optionB.service->slug.current) &&
-  !(optionB.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-`;
-
 const PUBLIC_PROVIDER_PREDICATE = /* groq */ `
   showOnWebsite == true &&
   defined(slug.current) &&
@@ -395,298 +285,6 @@ export const SITE_SETTINGS_QUERY = /* groq */ `
     supportPhone,
     address,
     instagramHandle
-  }
-`;
-
-export const ALL_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && (kind != "treatment" || !defined(kind))] | order(orderRank asc, title asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    kind,
-    duration,
-    price,
-    bookingMode,
-    bookingUrl,
-    bookingVerifiedAt,
-    _updatedAt,
-    ${IMAGE_FIELDS},
-    "collection": select(
-      defined(collection->slug.current) &&
-      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
-        collection->{ title, "slug": slug.current }
-    ),
-    "seo": seo { metaTitle, metaDescription }
-  }
-`;
-
-/**
- * Child treatments that merit a direct entry in the compact public inventory.
- * Keep this explicit so the services directory can remain hub-led without
- * dropping a newly approved canonical treatment from llms.txt.
- */
-export const LLMS_FEATURED_TREATMENTS_QUERY = /* groq */ `
-  *[_type == "service" && status in ["live", "actual-menu"] && slug.current in ["prf-under-eyes"] && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    kind,
-    duration,
-    price,
-    bookingMode,
-    bookingUrl,
-    bookingVerifiedAt,
-    _updatedAt
-  }
-`;
-
-export const ALL_SITEMAP_SERVICES_QUERY = /* groq */ `
-  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})] | order(coalesce(parentService->title, title) asc, kind asc, orderRank asc, title asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    kind,
-    _updatedAt,
-    "parentService": select(
-      parentService->kind == "hub" &&
-      parentService->status in ["live", "actual-menu"] &&
-      defined(parentService->slug.current) &&
-      !(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-      => parentService->{ title, "slug": slug.current }
-    )
-  }
-`;
-
-export const SERVICE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "service" && status in ["live", "actual-menu"] && slug.current == $slug && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})][0] {
-    _id,
-    title,
-    "slug": slug.current,
-    kind,
-    "provider": provider->{
-      _id,
-      publicName,
-      "profileSlug": select(${PUBLIC_PROVIDER_PREDICATE} => slug.current),
-      "profileImagePath": select(
-        profileImagePath in ${PUBLIC_PROVIDER_STATIC_PROFILE_IMAGE_PATHS_GROQ} => profileImagePath
-      ),
-      "profileImageAlt": profileImage.alt
-    },
-    "parentService": select(
-      parentService->kind == "hub" &&
-      parentService->status in ["live", "actual-menu"] &&
-      defined(parentService->slug.current) &&
-      !(parentService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-      => parentService->{ title, "slug": slug.current }
-    ),
-    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && parentService._ref == ^._id] | order(orderRank asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current,
-      price,
-      duration,
-      bookingMode,
-      bookingUrl,
-      bookingVerifiedAt,
-      ${IMAGE_FIELDS}
-    },
-    price,
-    duration,
-    bookingMode,
-    bookingUrl,
-    bookingVerifiedAt,
-    "concerns": concerns[
-      @->status == "live" &&
-      defined(@->slug.current) &&
-      !(@->slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})
-    ]->{
-      _id,
-      title,
-      "slug": slug.current
-    },
-    _updatedAt,
-    ${IMAGE_FIELDS},
-    "gallery": gallery[] { asset->{ url, metadata { dimensions } }, alt },
-    "evidenceMedia": evidenceMedia[
-      kind in ["device", "before-after"] &&
-      defined(image.asset->url) &&
-      coalesce(image.alt, "") != "" &&
-      coalesce(title, "") != "" &&
-      coalesce(caption, "") != "" &&
-      coalesce(sourceCredit, "") != "" &&
-      usageApproved == true &&
-      (kind != "before-after" || consentConfirmed == true)
-    ] {
-      _key,
-      kind,
-      "image": image {
-        asset->{ url, metadata { dimensions } },
-        alt
-      },
-      title,
-      caption,
-      sourceCredit,
-      sourceUrl,
-      usageApproved,
-      consentConfirmed
-    },
-    researchReferences[] {
-      _key,
-      title,
-      journal,
-      year,
-      studyType,
-      summary,
-      limitations,
-      url
-    },
-    "collection": select(
-      defined(collection->slug.current) &&
-      collection->slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ} =>
-        collection->{ title, "slug": slug.current }
-    ),
-    "relatedServices": relatedServices[@->status in ["live", "actual-menu"] && defined(@->slug.current) && !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]->{
-      _id,
-      title,
-      "slug": slug.current,
-      bookingMode,
-      bookingUrl,
-      bookingVerifiedAt,
-      ${IMAGE_FIELDS}
-    },
-    "contextualServices": *[
-      _type == "service" &&
-      status in ["live", "actual-menu"] &&
-      defined(slug.current) &&
-      !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-      _id != ^._id &&
-      defined(^.collection._ref) &&
-      collection._ref == ^.collection._ref
-    ] | order(orderRank asc, title asc) [0...6] {
-      _id,
-      title,
-      "slug": slug.current,
-      bookingMode,
-      bookingUrl,
-      bookingVerifiedAt,
-      ${IMAGE_FIELDS}
-    },
-    "costGuides": *[
-      _type == "costGuide" &&
-      defined(slug.current) &&
-      !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ}) &&
-      treatment._ref == ^._id
-    ] | order(orderRank asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current
-    },
-    "comparisons": *[
-      _type == "comparison" &&
-      status == "live" &&
-      defined(slug.current) &&
-      slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
-      !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
-      ${COMPARISON_ROUTEABLE_OPTIONS} &&
-      (optionA.service._ref == ^._id || optionB.service._ref == ^._id)
-    ] | order(orderRank asc, title asc) {
-      _id,
-      "slug": slug.current
-    },
-    "localAreas": *[
-      _type == "localArea" &&
-      slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ} &&
-      ^._id in servedServices[]._ref
-    ] | order(orderRank asc, city asc) {
-      _id,
-      city,
-      "slug": slug.current
-    },
-    ${TREATMENT_PAGE_FIELDS}
-  }
-`;
-
-export const ALL_COLLECTIONS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}] | order(orderRank asc, title asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    "services": *[
-      _type == "service" &&
-      status in ["live", "actual-menu"] &&
-      defined(slug.current) &&
-      !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-      (kind != "treatment" || !defined(kind)) &&
-      references(^._id)
-    ] | order(orderRank asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current,
-      kind,
-      duration,
-      price,
-      bookingMode,
-      bookingUrl,
-      bookingVerifiedAt,
-      ${IMAGE_FIELDS}
-    }
-  }
-`;
-
-/**
- * Lightweight variant of ALL_COLLECTIONS_QUERY for the header mega-menu:
- * titles + slugs only (no images/descriptions) so the nav stays cheap to build.
- */
-export const NAV_COLLECTIONS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}] | order(orderRank asc, title asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    "services": *[
-      _type == "service" &&
-      status in ["live", "actual-menu"] &&
-      defined(slug.current) &&
-      !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-      (kind != "treatment" || !defined(kind)) &&
-      references(^._id)
-    ] | order(orderRank asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current
-    }
-  }
-`;
-
-export interface NavCollection {
-  _id: string;
-  title: string;
-  slug: string;
-  services: { _id: string; title: string; slug: string }[];
-}
-
-export const COLLECTION_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}][0] {
-    _id,
-    title,
-    "slug": slug.current,
-    "services": *[
-      _type == "service" &&
-      status in ["live", "actual-menu"] &&
-      defined(slug.current) &&
-      !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-      (kind != "treatment" || !defined(kind)) &&
-      references(^._id)
-    ] | order(orderRank asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current,
-      duration,
-      price,
-      bookingMode,
-      bookingUrl,
-      bookingVerifiedAt,
-      ${IMAGE_FIELDS}
-    }
   }
 `;
 
@@ -818,55 +416,12 @@ export const CONCERN_BY_SLUG_QUERY = /* groq */ `
   *[_type == "concern" && status == "live" && slug.current == $slug && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})][0] {
     _id,
     title,
-    "slug": slug.current,
-    "treatments": *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) && ^._id in concerns[]._ref] | order(orderRank asc, title asc) [0...4] {
-      _id,
-      title,
-      "slug": slug.current,
-      price,
-      duration,
-      bookingMode,
-      bookingUrl,
-      bookingVerifiedAt,
-      ${IMAGE_FIELDS}
-    },
-    "comparisons": *[
-      _type == "comparison" &&
-      status == "live" &&
-      defined(slug.current) &&
-      slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
-      !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
-      ${COMPARISON_ROUTEABLE_OPTIONS} &&
-      (
-        (
-          optionA.service->status in ["live", "actual-menu"] &&
-          !(optionA.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-          ^._id in optionA.service->concerns[]._ref
-        ) ||
-        (
-          optionB.service->status in ["live", "actual-menu"] &&
-          !(optionB.service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) &&
-          ^._id in optionB.service->concerns[]._ref
-        )
-      )
-    ] | order(orderRank asc, title asc) [0...3] {
-      _id,
-      "slug": slug.current
-    }
+    "slug": slug.current
   }
 `;
 
 export const ALL_CONCERN_SLUGS_QUERY = /* groq */ `
   *[_type == "concern" && status == "live" && defined(slug.current) && !(slug.current in ${RETIRED_PUBLIC_CONCERN_SLUGS_GROQ})]{ "slug": slug.current }
-`;
-
-// Slug arrays for Astro getStaticPaths()
-export const ALL_SERVICE_SLUGS_QUERY = /* groq */ `
-  *[_type == "service" && status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})]{ "slug": slug.current }
-`;
-
-export const ALL_COLLECTION_SLUGS_QUERY = /* groq */ `
-  *[_type == "serviceCollection" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COLLECTION_SLUGS_GROQ}]{ "slug": slug.current }
 `;
 
 export const ALL_PRODUCT_SLUGS_QUERY = /* groq */ `
@@ -902,12 +457,7 @@ export const BLOG_POST_BY_SLUG_QUERY = /* groq */ `
       alt
     },
     body,
-    "relatedService": select(
-      relatedService->status in ["live", "actual-menu"] &&
-      defined(relatedService->slug.current) &&
-      !(relatedService->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
-        relatedService->{ title, "slug": slug.current, bookingMode, bookingUrl, bookingVerifiedAt }
-    ),
+    relatedServiceSlug,
     "seo": seo { metaTitle, metaDescription },
     "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
   }
@@ -1019,6 +569,7 @@ export interface TreatmentPackage {
   type?: PackageType;
   status?: PackageStatus;
   servicesIncluded?: PackageServiceRef[];
+  serviceSlugs?: string[];
   cadence?: string;
   image?: SanityImage;
 }
@@ -1029,29 +580,16 @@ const PACKAGE_FIELDS = /* groq */ `
   "slug": slug.current,
   type,
   status,
-  "servicesIncluded": servicesIncluded[
-    @->status in ["live", "actual-menu"] &&
-    defined(@->slug.current) &&
-    !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-  ]->{ _id, title, "slug": slug.current },
+  serviceSlugs,
   cadence,
   ${IMAGE_FIELDS}
-`;
-
-const PACKAGE_HAS_ROUTEABLE_SERVICE = /* groq */ `
-  count(servicesIncluded[
-    @->status in ["live", "actual-menu"] &&
-    defined(@->slug.current) &&
-    !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-  ]) > 0
 `;
 
 export const ALL_TREATMENT_PACKAGES_QUERY = /* groq */ `
   *[
     _type == "treatmentPackage" &&
     status == "live" &&
-    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ} &&
-    ${PACKAGE_HAS_ROUTEABLE_SERVICE}
+    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ}
   ] | order(orderRank asc, _createdAt desc) {
     ${PACKAGE_FIELDS}
   }
@@ -1062,8 +600,7 @@ export const TREATMENT_PACKAGE_BY_SLUG_QUERY = /* groq */ `
     _type == "treatmentPackage" &&
     status == "live" &&
     slug.current == $slug &&
-    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ} &&
-    ${PACKAGE_HAS_ROUTEABLE_SERVICE}
+    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ}
   ][0] {
     ${PACKAGE_FIELDS}
   }
@@ -1074,8 +611,7 @@ export const ALL_TREATMENT_PACKAGE_SLUGS_QUERY = /* groq */ `
     _type == "treatmentPackage" &&
     status == "live" &&
     defined(slug.current) &&
-    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ} &&
-    ${PACKAGE_HAS_ROUTEABLE_SERVICE}
+    slug.current in ${VERIFIED_TREATMENT_PACKAGE_SLUGS_GROQ}
   ]{ "slug": slug.current }
 `;
 
@@ -1100,6 +636,7 @@ export interface CostGuide {
   title: string;
   slug: string;
   treatment?: ServiceRef;
+  treatmentSlug?: string;
   comparisons?: ServiceComparison[];
   _updatedAt?: string;
   seo?: SeoMeta;
@@ -1108,6 +645,7 @@ export interface CostGuide {
 // 4. Comparison — /compare/[slug]
 export interface ComparisonOption {
   service?: ServiceRef;
+  serviceSlug?: string;
 }
 
 export interface Comparison {
@@ -1125,6 +663,7 @@ export interface LocalArea {
   city: string;
   region?: string;
   servedServices?: ServiceRef[];
+  servedServiceSlugs?: string[];
   neighborhoods?: string[];
   image?: SanityImage;
   _updatedAt?: string;
@@ -1137,6 +676,7 @@ export interface CaseStudy {
   slug: string;
   consentGiven?: boolean;
   treatment?: ServiceRef;
+  treatmentSlug?: string;
   concern?: { title: string; slug: string };
   beforeImage?: SanityImage;
   afterImage?: SanityImage;
@@ -1148,67 +688,30 @@ export interface CaseStudy {
   seo?: SeoMeta;
 }
 
-const SERVICE_REF_FIELDS = /* groq */ `
-  _id, title, "slug": slug.current, bookingMode, bookingUrl
-`;
-
 // ── Cost guides ──────────────────────────────────────────────────────────────
-const COST_GUIDE_ROUTEABLE_TREATMENT = /* groq */ `
-  treatment->status in ["live", "actual-menu"] &&
-  defined(treatment->slug.current) &&
-  !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-`;
-
 export const ALL_COST_GUIDES_QUERY = /* groq */ `
-  *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ}) && ${COST_GUIDE_ROUTEABLE_TREATMENT}] | order(orderRank asc, title asc) {
+  *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})] | order(orderRank asc, title asc) {
     _id, title, "slug": slug.current, _updatedAt,
-    "treatment": select(
-      treatment->status in ["live", "actual-menu"] &&
-      defined(treatment->slug.current) &&
-      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-      => treatment->{ ${SERVICE_REF_FIELDS} }
-    ),
+    treatmentSlug,
     "seo": seo { metaTitle, metaDescription }
   }
 `;
 
 export const COST_GUIDE_BY_SLUG_QUERY = /* groq */ `
-  *[_type == "costGuide" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ}) && ${COST_GUIDE_ROUTEABLE_TREATMENT}][0] {
+  *[_type == "costGuide" && slug.current == $slug && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})][0] {
     _id, title, "slug": slug.current, _updatedAt,
-    "treatment": select(
-      treatment->status in ["live", "actual-menu"] &&
-      defined(treatment->slug.current) &&
-      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-      => treatment->{ ${SERVICE_REF_FIELDS} }
-    ),
-    "comparisons": *[
-      _type == "comparison" &&
-      status == "live" &&
-      defined(slug.current) &&
-      slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
-      !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
-      ${COMPARISON_ROUTEABLE_OPTIONS} &&
-      defined(^.treatment._ref) &&
-      (optionA.service._ref == ^.treatment._ref || optionB.service._ref == ^.treatment._ref)
-    ] | order(orderRank asc, title asc) [0...2] {
-      _id, "slug": slug.current
-    },
+    treatmentSlug,
     "seo": seo { metaTitle, metaDescription }
   }
 `;
 
 export const ALL_COST_GUIDE_SLUGS_QUERY = /* groq */ `
-  *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ}) && ${COST_GUIDE_ROUTEABLE_TREATMENT}]{ "slug": slug.current }
+  *[_type == "costGuide" && defined(slug.current) && slug.current in ${REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ} && !(slug.current in ${RETIRED_COST_GUIDE_SLUGS_GROQ})]{ "slug": slug.current }
 `;
 
 // ── Comparisons ──────────────────────────────────────────────────────────────
 const COMPARISON_OPTION_FIELDS = /* groq */ `
-  "service": select(
-    service->status in ["live", "actual-menu"] &&
-    defined(service->slug.current) &&
-    !(service->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-    => service->{ ${SERVICE_REF_FIELDS} }
-  )
+  serviceSlug
 `;
 
 export const ALL_COMPARISONS_QUERY = /* groq */ `
@@ -1216,8 +719,7 @@ export const ALL_COMPARISONS_QUERY = /* groq */ `
     _type == "comparison" &&
     status == "live" &&
     slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
-    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
-    ${COMPARISON_ROUTEABLE_OPTIONS}
+    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})
   ] | order(orderRank asc, title asc) {
     _id, "slug": slug.current, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
@@ -1231,8 +733,7 @@ export const COMPARISON_BY_SLUG_QUERY = /* groq */ `
     status == "live" &&
     slug.current == $slug &&
     slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
-    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
-    ${COMPARISON_ROUTEABLE_OPTIONS}
+    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})
   ][0] {
     _id, "slug": slug.current, _updatedAt,
     "optionA": optionA{ ${COMPARISON_OPTION_FIELDS} },
@@ -1246,8 +747,7 @@ export const ALL_COMPARISON_SLUGS_QUERY = /* groq */ `
     status == "live" &&
     defined(slug.current) &&
     slug.current in ${REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ} &&
-    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ}) &&
-    ${COMPARISON_ROUTEABLE_OPTIONS}
+    !(slug.current in ${RETIRED_COMPARISON_SLUGS_GROQ})
   ]{ "slug": slug.current }
 `;
 
@@ -1262,11 +762,7 @@ export const ALL_LOCAL_AREAS_QUERY = /* groq */ `
 export const LOCAL_AREA_BY_SLUG_QUERY = /* groq */ `
   *[_type == "localArea" && slug.current == $slug && slug.current in ${CANONICAL_LOCAL_AREA_SLUGS_GROQ}][0] {
     _id, "slug": slug.current, city, region, neighborhoods, _updatedAt,
-    "servedServices": servedServices[
-      @->status in ["live", "actual-menu"] &&
-      defined(@->slug.current) &&
-      !(@->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
-    ]->{ ${SERVICE_REF_FIELDS} },
+    servedServiceSlugs,
     ${IMAGE_FIELDS}
   }
 `;
@@ -1282,18 +778,10 @@ export const ALL_CASE_STUDIES_QUERY = /* groq */ `
     consentGiven == true &&
     defined(slug.current) &&
     defined(beforeImage.asset) &&
-    defined(afterImage.asset) &&
-    treatment->status in ["live", "actual-menu"] &&
-    defined(treatment->slug.current) &&
-    !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+    defined(afterImage.asset)
   ] | order(orderRank asc, _createdAt desc) {
     _id, title, "slug": slug.current, clientProfile, timeframe, _updatedAt,
-    "treatment": select(
-      treatment->status in ["live", "actual-menu"] &&
-      defined(treatment->slug.current) &&
-      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
-        treatment->{ ${SERVICE_REF_FIELDS} }
-    ),
+    treatmentSlug,
     "afterImage": afterImage { asset->{ url, metadata { dimensions } }, alt },
     "seo": seo { metaTitle, metaDescription }
   }
@@ -1305,18 +793,10 @@ export const CASE_STUDY_BY_SLUG_QUERY = /* groq */ `
     slug.current == $slug &&
     consentGiven == true &&
     defined(beforeImage.asset) &&
-    defined(afterImage.asset) &&
-    treatment->status in ["live", "actual-menu"] &&
-    defined(treatment->slug.current) &&
-    !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+    defined(afterImage.asset)
   ][0] {
     _id, title, "slug": slug.current, consentGiven, clientProfile, protocol, timeframe, outcome, _updatedAt,
-    "treatment": select(
-      treatment->status in ["live", "actual-menu"] &&
-      defined(treatment->slug.current) &&
-      !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ}) =>
-        treatment->{ ${SERVICE_REF_FIELDS} }
-    ),
+    treatmentSlug,
     "concern": select(
       concern->status == "live" &&
       defined(concern->slug.current) &&
@@ -1335,10 +815,7 @@ export const ALL_CASE_STUDY_SLUGS_QUERY = /* groq */ `
     consentGiven == true &&
     defined(slug.current) &&
     defined(beforeImage.asset) &&
-    defined(afterImage.asset) &&
-    treatment->status in ["live", "actual-menu"] &&
-    defined(treatment->slug.current) &&
-    !(treatment->slug.current in ${UNAVAILABLE_PUBLIC_SERVICE_SLUGS_GROQ})
+    defined(afterImage.asset)
   ]{ "slug": slug.current }
 `;
 

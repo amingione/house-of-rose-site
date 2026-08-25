@@ -28,7 +28,7 @@ test('the active comparison writer stores only routing and relationship truth', 
     /create-daxxify-botox-comparison\.mjs\s+--apply/,
   );
   assert.ok(sourceDocument, 'The Daxxify writer must define its source document.');
-  assert.ok(optionFactory, 'The Daxxify writer must define its service-reference option factory.');
+  assert.ok(optionFactory, 'The Daxxify writer must define its local-service option factory.');
 
   const retiredTopLevelFields = comparison.fields
     .filter((field) => field.readOnly === true)
@@ -48,36 +48,23 @@ test('the active comparison writer stores only routing and relationship truth', 
   assert.match(sourceDocument, /status:\s*'live'/);
   assert.match(sourceDocument, /optionA:\s*option\(\)/);
   assert.match(sourceDocument, /optionB:\s*option\(\)/);
-  assert.match(optionFactory, /service:\s*\{\s*_type:\s*'reference'/);
+  assert.match(optionFactory, /serviceSlug:\s*INJECTABLES_SERVICE_SLUG/);
 });
 
-test('the active comparison writer requires the canonical public service route before creation', () => {
-  assert.match(writerSource, /current\.service\.slug !== 'injectables'/);
-  assert.match(writerSource, /!\['live', 'actual-menu'\]\.includes\(current\.service\.status\)/);
-
-  const serviceGuard = writerSource.indexOf("current.service.slug !== 'injectables'");
-  const dryRunBoundary = writerSource.indexOf('if (!apply)');
-  const createCall = writerSource.indexOf('client.create(document');
-
-  assert.ok(serviceGuard >= 0);
-  assert.ok(serviceGuard < dryRunBoundary, 'Service route validation must run during dry validation.');
-  assert.ok(serviceGuard < createCall, 'Service route validation must run before document creation.');
+test('the active comparison writer uses the canonical local service slug', () => {
+  assert.match(writerSource, /const INJECTABLES_SERVICE_SLUG = 'injectables'/);
+  assert.doesNotMatch(writerSource, /_type:\s*'reference'|service->/);
 });
 
-test('comparison option authoring and projections require routeable public services', () => {
+test('comparison option authoring and projections use local service slugs', () => {
   const optionA = comparison.fields.find(({ name }) => name === 'optionA');
   assert.ok(optionA && 'fields' in optionA && Array.isArray(optionA.fields));
-  const serviceReference = optionA.fields.find(({ name }) => name === 'service') as
-    | { options?: { filter?: string } }
-    | undefined;
-  const authoringFilter = serviceReference?.options?.filter ?? '';
-  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
-  assert.match(authoringFilter, /defined\(slug\.current\)/);
+  const serviceSlug = optionA.fields.find(({ name }) => name === 'serviceSlug');
+  assert.equal(serviceSlug?.type, 'string');
+  assert.ok(Array.isArray(serviceSlug?.options?.list));
 
   for (const query of [ALL_COMPARISONS_QUERY, COMPARISON_BY_SLUG_QUERY]) {
-    const serviceProjection = query.match(/"service": select\(([\s\S]*?)=> service->/);
-    assert.ok(serviceProjection?.[1], 'The comparison query must guard option service routes.');
-    assert.match(serviceProjection[1], /service->status in \["live", "actual-menu"\]/);
-    assert.match(serviceProjection[1], /defined\(service->slug\.current\)/);
+    assert.match(query, /serviceSlug/);
+    assert.doesNotMatch(query, /service->/);
   }
 });

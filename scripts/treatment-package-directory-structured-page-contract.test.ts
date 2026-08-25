@@ -19,7 +19,8 @@ test('the treatment-package directory derives structured entries from its guarde
     ),
     'The package directory query must use the shared verified route inventory.',
   );
-  assert.match(ALL_TREATMENT_PACKAGES_QUERY, /count\(servicesIncluded\[/);
+  assert.match(ALL_TREATMENT_PACKAGES_QUERY, /serviceSlugs/);
+  assert.doesNotMatch(ALL_TREATMENT_PACKAGES_QUERY, /servicesIncluded|_type == "service"/);
   assert.match(directorySource, /items: packages\.map\(\(pkg\) => \(\{/);
   assert.match(directorySource, /name: pkg\.title/);
   assert.match(

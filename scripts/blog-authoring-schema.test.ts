@@ -7,7 +7,7 @@ import {
   PUBLIC_BLOG_CATEGORIES,
   validateBlogPortableText,
 } from '../packages/studio/schemas/blogPost.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
+import { SERVICE_OPTIONS } from '../packages/web/src/lib/serviceCatalog.ts';
 import {
   ALL_BLOG_POSTS_QUERY,
   ALL_BLOG_POST_SLUGS_QUERY,
@@ -106,19 +106,11 @@ test('blog image alt text uses the shared public-copy guard wherever it renders'
 });
 
 test('related-service CTAs can resolve only to generated public service routes', () => {
-  const relatedService = blogPost.fields.find(({ name }) => name === 'relatedService');
-  assert.equal(relatedService?.type, 'reference');
-  const authoringFilter = String(relatedService?.options?.filter);
-
-  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
-  assert.match(authoringFilter, /defined\(slug\.current\)/);
-  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
-  assert.deepEqual(relatedService?.options?.filterParams, {
-    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
-  });
-  assert.match(BLOG_POST_BY_SLUG_QUERY, /relatedService->status in \["live", "actual-menu"\]/);
-  assert.match(BLOG_POST_BY_SLUG_QUERY, /defined\(relatedService->slug\.current\)/);
-  assert.match(BLOG_POST_BY_SLUG_QUERY, /!\(relatedService->slug\.current in \[/);
+  const relatedService = blogPost.fields.find(({ name }) => name === 'relatedServiceSlug');
+  assert.equal(relatedService?.type, 'string');
+  assert.deepEqual(relatedService?.options?.list, SERVICE_OPTIONS);
+  assert.match(BLOG_POST_BY_SLUG_QUERY, /relatedServiceSlug/);
+  assert.doesNotMatch(BLOG_POST_BY_SLUG_QUERY, /relatedService->|_type == "service"/);
 });
 
 test('all public blog queries require published records with generated routes', () => {

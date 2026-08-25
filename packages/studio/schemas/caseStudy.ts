@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { RETIRED_PUBLIC_CONCERN_SLUGS } from '../../web/src/lib/publicConcernContent';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { SERVICE_OPTIONS } from '../../web/src/lib/serviceCatalog';
 import { validatePublicCopy } from './validation/publicCopy';
 
 /**
@@ -36,15 +36,10 @@ export const caseStudy = defineType({
       validation: (R) => R.required(),
     }),
     defineField({
-      name: 'treatment',
+      name: 'treatmentSlug',
       title: 'Treatment',
-      type: 'reference',
-      to: [{ type: 'service' }],
-      options: {
-        filter:
-          'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
-        filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-      },
+      type: 'string',
+      options: { list: SERVICE_OPTIONS },
       validation: (R) => R.required(),
     }),
     defineField({

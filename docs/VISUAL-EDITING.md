@@ -31,7 +31,7 @@ Registered Sanity schemas that are absent from both maps remain data models, not
 | Sanity type | Route |
 |-------------|-------|
 | `service` | `/services/{slug}` |
-| `serviceCollection` | `/services/collections/{slug}` |
+| Service collections | Local Astro catalog; not editable in Visual Editor |
 | `concern` | `/concerns/{slug}` |
 | `costGuide` | `/cost/{slug}` |
 | `comparison` | `/compare/{slug}` |

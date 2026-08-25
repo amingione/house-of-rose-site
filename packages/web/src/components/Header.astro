@@ -1,6 +1,7 @@
 ---
 import { sanityFetch } from '@/lib/sanity';
-import { NAV_COLLECTIONS_QUERY, PUBLIC_PROVIDERS_QUERY, type NavCollection, type PublicProviderProfile } from '@/lib/queries';
+import { PUBLIC_PROVIDERS_QUERY, type PublicProviderProfile } from '@/lib/queries';
+import { getNavCollections } from '@/lib/serviceCatalog';
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
@@ -13,10 +14,8 @@ interface Props {
 }
 
 const { currentPath = '/', siteFacts } = Astro.props;
-const [collections, sanityProviders] = await Promise.all([
-  sanityFetch<NavCollection[]>(NAV_COLLECTIONS_QUERY),
-  sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY),
-]);
+const collections = getNavCollections();
+const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
 const navCollections = collections.filter((collection) => collection?.slug);
 const aboutProviders = resolvePublicProviderProfiles(sanityProviders);
 const sanityProviderIds = new Set(sanityProviders.map((provider) => provider._id));
@@ -56,8 +55,8 @@ const linkClass = (path: string) =>
           </div>
           <div class="services-grid grid min-h-0 flex-1 gap-x-8 gap-y-7 overflow-y-auto overscroll-contain pr-2">
             {navCollections.map((collection) => (
-              <section {...sbObjectId(collection._id)}>
-                <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
+              <section>
+                <h2 class="text-[13px] font-semibold text-ink">
                   <a
                     href={`/services/collections/${collection.slug}/`}
                     aria-label={`Browse ${collection.title} services`}
@@ -69,11 +68,10 @@ const linkClass = (path: string) =>
                 {collection.services.length > 0 && (
                   <ul class="mt-3 space-y-2">
                     {collection.services.slice(0, 6).map((service) => (
-                      <li {...sbObjectId(service._id)}>
+                      <li>
                         <a
                           href={`/services/${service.slug}/`}
                           class="text-[13px] leading-snug text-muted hover:text-ink"
-                          {...sbFieldPath('title')}
                         >
                           {service.title}
                         </a>
@@ -193,8 +191,8 @@ const linkClass = (path: string) =>
         <a href="/services/" class="mb-2 ml-4 flex min-h-11 items-center text-[13px] font-semibold text-gold">View all services</a>
         <div class="grid gap-5 pb-5 pl-4 sm:grid-cols-2">
           {navCollections.map((collection) => (
-            <section {...sbObjectId(collection._id)}>
-              <h2 class="text-[13px] font-semibold text-ink" {...sbFieldPath('title')}>
+            <section>
+              <h2 class="text-[13px] font-semibold text-ink">
                 <a
                   href={`/services/collections/${collection.slug}/`}
                   aria-label={`Browse ${collection.title} services`}
@@ -204,8 +202,8 @@ const linkClass = (path: string) =>
               </h2>
               <ul class="mt-2 space-y-2">
                 {collection.services.slice(0, 6).map((service) => (
-                  <li {...sbObjectId(service._id)}>
-                    <a href={`/services/${service.slug}/`} class="text-[13px] text-muted" {...sbFieldPath('title')}>
+                  <li>
+                    <a href={`/services/${service.slug}/`} class="text-[13px] text-muted">
                       {service.title}
                     </a>
                   </li>

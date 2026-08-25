@@ -10,6 +10,7 @@ import {
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import BookingLink from '@/components/BookingLink.astro';
 import { breadcrumbList, imageObject } from '@/lib/structuredData';
+import { getPublicServiceBySlug } from '@/lib/serviceCatalog';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_CASE_STUDY_SLUGS_QUERY);
@@ -17,13 +18,19 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const cs = await sanityFetch<CaseStudy>(CASE_STUDY_BY_SLUG_QUERY, { slug });
+const caseStudyData = await sanityFetch<CaseStudy>(CASE_STUDY_BY_SLUG_QUERY, { slug });
 // Never `return Astro.redirect()` from a prerendered route (breaks the static build).
 // getStaticPaths only emits consented slugs (ALL_CASE_STUDY_SLUGS_QUERY gates consentGiven),
 // so reaching here without consent is a data-integrity bug — fail loudly.
-if (!cs || cs.consentGiven !== true) {
+if (!caseStudyData || caseStudyData.consentGiven !== true) {
   throw new Error(`[results/[slug]] Missing or non-consented case study for slug "${slug}"`);
 }
+const cs: CaseStudy = {
+  ...caseStudyData,
+  treatment: caseStudyData.treatmentSlug
+    ? getPublicServiceBySlug(caseStudyData.treatmentSlug)
+    : undefined,
+};
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -66,13 +73,13 @@ const pageDescription = cs.seo?.metaDescription ?? cs.outcome ?? `${cs.title} be
     <div class="max-w-[960px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-px bg-gold-metal/10">
       {beforeUrl && (
         <figure class="bg-charcoal">
-          <img src={beforeUrl} alt={cs.beforeImage?.alt ?? `${cs.title} before`} class="w-full h-auto object-cover" loading="lazy" />
+          <img src={beforeUrl} alt={cs.beforeImage?.alt ?? `${cs.title} before`} class="w-full h-auto object-cover" loading="lazy" {...sbFieldPath('beforeImage')} />
           <figcaption class="text-center text-muted text-[11px] tracking-[0.24em] uppercase py-3">Before</figcaption>
         </figure>
       )}
       {afterUrl && (
         <figure class="bg-charcoal">
-          <img src={afterUrl} alt={cs.afterImage?.alt ?? `${cs.title} after`} class="w-full h-auto object-cover" loading="lazy" />
+          <img src={afterUrl} alt={cs.afterImage?.alt ?? `${cs.title} after`} class="w-full h-auto object-cover" loading="lazy" {...sbFieldPath('afterImage')} />
           <figcaption class="text-center text-gold text-[11px] tracking-[0.24em] uppercase py-3">After</figcaption>
         </figure>
       )}

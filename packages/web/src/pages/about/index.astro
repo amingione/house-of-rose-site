@@ -5,7 +5,7 @@ import { sanityFetch } from '@/lib/sanity';
 import { ABOUT_PAGE_QUERY, PUBLIC_PROVIDERS_QUERY, type AboutPageContent, type PublicProviderProfile } from '@/lib/queries';
 import { ABOUT_PAGE_FALLBACK, resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { breadcrumbList } from '@/lib/structuredData';
-import { sbObjectId } from '@/lib/visualEditing';
+import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
@@ -57,6 +57,7 @@ const breadcrumb = breadcrumbList([
             height="875"
             class="h-full w-full object-cover"
             fetchpriority="high"
+            {...(content?._id ? sbFieldPath('indexImage') : {})}
           />
         </div>
       </div>

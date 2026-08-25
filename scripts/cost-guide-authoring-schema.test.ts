@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import { costGuide } from '../packages/studio/schemas/costGuide.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
+import { SERVICE_OPTIONS } from '../packages/web/src/lib/serviceCatalog.ts';
 import {
   ALL_COST_GUIDE_SLUGS_QUERY,
   ALL_COST_GUIDES_QUERY,
@@ -13,9 +13,10 @@ import {
 
 const titleField = costGuide.fields.find(({ name }) => name === 'title');
 const slugField = costGuide.fields.find(({ name }) => name === 'slug');
-const treatmentField = costGuide.fields.find(({ name }) => name === 'treatment') as
+const treatmentField = costGuide.fields.find(({ name }) => name === 'treatmentSlug') as
   | {
-      options?: { filter?: string; filterParams?: { unavailableSlugs?: readonly string[] } };
+      type?: string;
+      options?: { list?: readonly { title: string; value: string }[] };
       description?: string;
       validation?: (rule: { required: () => unknown }) => unknown;
     }
@@ -63,32 +64,15 @@ test('the public cost-guide title is required and uses the shared public-copy gu
 });
 
 test('cost-guide treatment authoring and projections require a routeable public service', () => {
-  const filter = treatmentField?.options?.filter ?? '';
-  assert.match(filter, /status in \["live", "actual-menu"\]/);
-  assert.match(filter, /defined\(slug\.current\)/);
-  assert.match(filter, /!\(slug\.current in \$unavailableSlugs\)/);
-  assert.deepEqual(treatmentField?.options?.filterParams, {
-    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
-  });
-  assert.match(treatmentField?.description ?? '', /canonical public service/i);
+  assert.equal(treatmentField?.type, 'string');
+  assert.deepEqual(treatmentField?.options?.list, SERVICE_OPTIONS);
+  assert.match(treatmentField?.description ?? '', /local Astro service/i);
   assert.equal(typeof treatmentField?.validation, 'function');
   assert.match(String(treatmentField.validation), /required/);
 
-  for (const query of [
-    ALL_COST_GUIDES_QUERY,
-    COST_GUIDE_BY_SLUG_QUERY,
-    ALL_COST_GUIDE_SLUGS_QUERY,
-  ]) {
-    assert.match(query, /treatment->status in \["live", "actual-menu"\]/);
-    assert.match(query, /defined\(treatment->slug\.current\)/);
-    assert.match(query, /!\(treatment->slug\.current in \[/);
-  }
-
   for (const query of [ALL_COST_GUIDES_QUERY, COST_GUIDE_BY_SLUG_QUERY]) {
-    const treatmentProjection = query.match(/"treatment": select\(([\s\S]*?)=> treatment->/);
-    assert.ok(treatmentProjection?.[1], 'The cost query must guard its treatment projection.');
-    assert.match(treatmentProjection[1], /treatment->status in \["live", "actual-menu"\]/);
-    assert.match(treatmentProjection[1], /defined\(treatment->slug\.current\)/);
+    assert.match(query, /treatmentSlug/);
+    assert.doesNotMatch(query, /treatment->|_type == "service"/);
   }
 });
 
@@ -151,7 +135,6 @@ test('legacy cost copy stays stored but cannot enter public queries or price sur
     'costFactors',
     'whatsIncluded',
     'faqs',
-    'relatedServices',
   ] as const;
 
   for (const fieldName of legacyFieldNames) {

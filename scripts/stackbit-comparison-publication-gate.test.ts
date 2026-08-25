@@ -19,39 +19,32 @@ interface StackbitDocument {
 const comparisonDocument = (
   slug: string,
   status: string,
-  optionAServiceId?: string,
-  optionBServiceId?: string,
+  optionAServiceSlug?: string,
+  optionBServiceSlug?: string,
 ): StackbitDocument => ({
   fields: {
     slug: { type: 'slug', value: slug },
     status: { type: 'string', value: status },
-    ...(optionAServiceId
+    ...(optionAServiceSlug
       ? {
           optionA: {
             type: 'object',
             fields: {
-              service: { type: 'reference', refType: 'document', refId: optionAServiceId },
+              serviceSlug: { type: 'string', value: optionAServiceSlug },
             },
           },
         }
       : {}),
-    ...(optionBServiceId
+    ...(optionBServiceSlug
       ? {
           optionB: {
             type: 'object',
             fields: {
-              service: { type: 'reference', refType: 'document', refId: optionBServiceId },
+              serviceSlug: { type: 'string', value: optionBServiceSlug },
             },
           },
         }
       : {}),
-  },
-});
-
-const serviceDocument = (slug: string, status: string): StackbitDocument => ({
-  fields: {
-    slug: { type: 'slug', value: slug },
-    status: { type: 'string', value: status },
   },
 });
 
@@ -101,7 +94,7 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
       document: documentRef('aboutPage', 'aboutPage'),
     },
   ];
-  const routeableServices = ['service-a', 'service-b'] as const;
+  const routeableServices = ['injectables', 'morpheus8'] as const;
   const documents = new Map<string, StackbitDocument>([
     ['reviewed-live', comparisonDocument('daxxify-vs-botox', 'live', ...routeableServices)],
     [
@@ -114,15 +107,15 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
     ],
     [
       'reviewed-missing-service',
-      comparisonDocument('morpheus8-vs-microneedling', 'live', 'service-a'),
+      comparisonDocument('morpheus8-vs-microneedling', 'live', 'injectables'),
     ],
     [
       'reviewed-unavailable-service',
       comparisonDocument(
         'morpheus8-vs-microneedling',
         'live',
-        'service-a',
-        'service-unavailable',
+        'injectables',
+        'wellness',
       ),
     ],
     [
@@ -130,14 +123,10 @@ test('Stackbit exposes only live comparisons with reviewed public overlays', asy
       comparisonDocument(
         'morpheus8-vs-microneedling',
         'live',
-        'service-a',
-        'service-nonlive',
+        'injectables',
+        'future-service',
       ),
     ],
-    ['service-a', serviceDocument('injectables', 'live')],
-    ['service-b', serviceDocument('morpheus8', 'actual-menu')],
-    ['service-unavailable', serviceDocument('wellness', 'live')],
-    ['service-nonlive', serviceDocument('future-service', 'proposed')],
   ]);
 
   const filtered = transformSitemap!({

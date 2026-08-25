@@ -16,7 +16,7 @@ test('service detail pages connect the webpage to their canonical Service node',
   );
   assert.match(detailSource, /<SchemaMarkup item=\{serviceSchema\} slot="head" \/>/);
   assert.equal(
-    detailSource.match(/serviceJsonLd\(/g)?.length,
+    detailSource.match(/const serviceSchema = serviceJsonLd\(/g)?.length,
     1,
     'Each service detail route must emit one canonical Service node.',
   );

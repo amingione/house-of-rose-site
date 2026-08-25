@@ -7,7 +7,7 @@ import {
   ALL_LOCAL_AREAS_QUERY,
   LOCAL_AREA_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../packages/web/src/lib/publicServiceContent.ts';
+import { SERVICE_OPTIONS } from '../packages/web/src/lib/serviceCatalog.ts';
 
 const contentModelMap = readFileSync(
   new URL('../docs/CONTENT-MODEL-MAP.md', import.meta.url),
@@ -61,21 +61,11 @@ test('local-area prompts preserve the single-location boundary', () => {
 });
 
 test('featured service links can resolve only to generated public service routes', () => {
-  const servedServices = areaField('servedServices');
-  assert.ok(servedServices && 'of' in servedServices && Array.isArray(servedServices.of));
-  const reference = servedServices.of[0];
-  assert.ok(reference && 'options' in reference);
-  const authoringFilter = String(reference.options?.filter);
-
-  assert.match(authoringFilter, /status in \["live", "actual-menu"\]/);
-  assert.match(authoringFilter, /defined\(slug\.current\)/);
-  assert.match(authoringFilter, /!\(slug\.current in \$unavailableSlugs\)/);
-  assert.deepEqual(reference.options?.filterParams, {
-    unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS,
-  });
-  assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServices\[[\s\S]*?@->status in \["live", "actual-menu"\]/);
-  assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServices\[[\s\S]*?defined\(@->slug\.current\)/);
-  assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServices\[[\s\S]*?!\(@->slug\.current in \[/);
+  const servedServices = areaField('servedServiceSlugs');
+  assert.equal(servedServices?.type, 'array');
+  assert.deepEqual(servedServices?.options?.list, SERVICE_OPTIONS);
+  assert.match(LOCAL_AREA_BY_SLUG_QUERY, /servedServiceSlugs/);
+  assert.doesNotMatch(LOCAL_AREA_BY_SLUG_QUERY, /servedServices|_type == "service"/);
 });
 
 test('the content model distinguishes active area facts from legacy CMS prose', () => {
@@ -89,7 +79,7 @@ test('the content model distinguishes active area facts from legacy CMS prose', 
     'slug',
     'city',
     'region',
-    'servedServices',
+    'servedServiceSlugs',
     'neighborhoods',
     'image',
     'orderRank',
@@ -115,7 +105,7 @@ test('public area payloads and indexes use active location facts only', () => {
   )?.[1];
 
   assert.ok(localAreaType);
-  for (const activeField of ['_id', 'slug', 'city', 'region', 'servedServices', 'neighborhoods', 'image', '_updatedAt']) {
+  for (const activeField of ['_id', 'slug', 'city', 'region', 'servedServiceSlugs', 'neighborhoods', 'image', '_updatedAt']) {
     assert.match(localAreaType, new RegExp(`\\b${activeField}\\??:`));
   }
   for (const nonPublicField of ['title', 'intro', 'whyLocal', 'faqs', 'seo']) {

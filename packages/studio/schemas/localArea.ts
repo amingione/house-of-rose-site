@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity';
-import { UNAVAILABLE_PUBLIC_SERVICE_SLUGS } from '../../web/src/lib/publicServiceContent';
+import { SERVICE_OPTIONS } from '../../web/src/lib/serviceCatalog';
 
 import { validatePublicCopy } from './validation/publicCopy';
 
@@ -59,21 +59,12 @@ export const localArea = defineType({
       description: 'Legacy source field. The current public area page does not publish this CMS section.',
     }),
     defineField({
-      name: 'servedServices',
+      name: 'servedServiceSlugs',
       title: 'Featured Services',
       type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'service' }],
-          options: {
-            filter:
-              'status in ["live", "actual-menu"] && defined(slug.current) && !(slug.current in $unavailableSlugs)',
-            filterParams: { unavailableSlugs: UNAVAILABLE_PUBLIC_SERVICE_SLUGS },
-          },
-        },
-      ],
-      description: 'Services to highlight for this area (each links to its canonical hub).',
+      of: [{ type: 'string' }],
+      options: { list: SERVICE_OPTIONS },
+      description: 'Local Astro services to highlight for this area.',
     }),
     defineField({
       name: 'neighborhoods',

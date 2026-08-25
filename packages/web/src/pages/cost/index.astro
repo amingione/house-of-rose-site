@@ -7,8 +7,15 @@ import { ALL_COST_GUIDES_QUERY, type CostGuide } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
 import { getVerifiedCostFact } from '@/lib/costFacts';
 import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
+import { getCostGuideServiceSlug, getPublicServiceBySlug } from '@/lib/serviceCatalog';
 
-const guides = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
+const guideData = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
+const guides: CostGuide[] = guideData.map((guide) => ({
+  ...guide,
+  treatment: getPublicServiceBySlug(
+    guide.treatmentSlug ?? getCostGuideServiceSlug(guide.slug) ?? '',
+  ),
+}));
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 

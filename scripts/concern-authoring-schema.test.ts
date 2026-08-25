@@ -7,7 +7,6 @@ import {
   ALL_CONCERNS_QUERY,
   ALL_CONCERN_SLUGS_QUERY,
   CONCERN_BY_SLUG_QUERY,
-  SERVICE_BY_SLUG_QUERY,
 } from '../packages/web/src/lib/queries.ts';
 
 const querySource = readFileSync(
@@ -85,12 +84,11 @@ test('only the schema public status can generate or enter public concern routes'
     assert.doesNotMatch(query, /status != "parked"/);
   }
 
-  const serviceConcernProjection = SERVICE_BY_SLUG_QUERY.match(
-    /"concerns": concerns\[([\s\S]*?)\]->/,
+  const serviceRoute = readFileSync(
+    new URL('../packages/web/src/pages/services/[slug].astro', import.meta.url),
+    'utf8',
   );
-  assert.ok(serviceConcernProjection?.[1], 'The service query must guard linked concerns.');
-  assert.match(serviceConcernProjection[1], /@->status == "live"/);
-  assert.doesNotMatch(serviceConcernProjection[1], /status != "parked"/);
+  assert.doesNotMatch(serviceRoute, /SERVICE_BY_SLUG_QUERY|sanityFetch<Service/);
 });
 
 test('concern inventories and linked treatments require generated route slugs', () => {
@@ -105,10 +103,7 @@ test('concern inventories and linked treatments require generated route slugs', 
     );
   }
 
-  const linkedTreatments = CONCERN_BY_SLUG_QUERY.match(
-    /"treatments": \*\[([\s\S]*?)\] \| order/,
-  );
-  assert.ok(linkedTreatments?.[1], 'The concern query must guard linked treatments.');
-  assert.match(linkedTreatments[1], /status in \["live", "actual-menu"\]/);
-  assert.match(linkedTreatments[1], /defined\(slug\.current\)/);
+  assert.doesNotMatch(CONCERN_BY_SLUG_QUERY, /_type == "service"|"treatments":/);
+  const detailRenderer = concernRenderers[1] ?? '';
+  assert.match(detailRenderer, /getPublicServicesForConcern/);
 });
