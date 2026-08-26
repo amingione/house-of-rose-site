@@ -13,7 +13,7 @@
     "build": "npm run build:web && npm run build:studio",
     "lint": "npm run lint -w packages/web",
     "guard:drift": "node scripts/drift-guard.mjs",
-    "verify:public-dist": "node --test scripts/public-integrity.test.mjs scripts/archived-authoring-command-gate.test.mjs && node --import tsx --test scripts/public-comparison-gate.test.ts",
+    "verify:public-dist": "node --test scripts/public-integrity.test.mjs scripts/archived-authoring-command-gate.test.mjs && TSX_TSCONFIG_PATH=packages/web/tsconfig.json node --import tsx --test scripts/public-comparison-gate.test.ts scripts/treatment-education-publication-contract.test.ts",
     "verify:redirect-deployment": "node scripts/verify-netlify-redirect-deployment.mjs",
     "verify:structured-data-deployment": "node scripts/verify-structured-data-deployment.mjs",
     "verify:visibility": "node scripts/verify-visibility-plan.mjs",

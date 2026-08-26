@@ -4,6 +4,11 @@ import { getSkinRenewalServiceEducation } from '@/lib/skinRenewalServiceEducatio
 import { DERMAPLANING_EDUCATION } from '@/lib/dermaplaningEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 import { MORPHEUS8_PRICING } from '@/lib/morpheus8Pricing';
+import {
+  getServiceEducationDetails,
+  type ServiceEducationPairing,
+  type ServiceEducationStep,
+} from '@/lib/serviceEducationDetails';
 
 export interface ServiceEducationItem {
   name: string;
@@ -41,12 +46,77 @@ export interface ServiceEducationContent {
     href: string;
     label: string;
   }[];
+  benefits?: readonly string[];
+  treatmentSteps?: readonly ServiceEducationStep[];
+  sessionGuidance?: string;
+  pairings?: readonly ServiceEducationPairing[];
 }
 
 const formatMinutes = (durationMinutes: number): string =>
   `${durationMinutes} minutes`;
 
 const getRawServiceEducation = (slug: string): ServiceEducationContent | undefined => {
+  if (slug === 'prf-under-eyes') {
+    return {
+      kicker: 'PRF Under Eyes',
+      heading: 'Injectable platelet-rich fibrin for the under-eye area.',
+      metaDescription: 'Learn how injectable PRF differs from dermal filler and topical PRF when hollowing or shadowing contributes to an under-eye concern.',
+      paragraphs: [
+        'PRF Under Eyes uses platelet-rich fibrin prepared from a small sample of the client’s own blood. Diana Morrison, RN injects the prepared PRF according to an individualized under-eye plan under written physician protocol and medical direction.',
+        'This is not hyaluronic-acid dermal filler, and it is not the topical PRF used during Microneedling. The material, route, and treatment planning are different.',
+      ],
+      distinctions: [
+        { label: 'Prepared from your blood', text: 'A small blood sample is centrifuged to separate the platelet-rich fibrin used for the service.' },
+        { label: 'Injected, not topical', text: 'For PRF Under Eyes, Diana Morrison, RN injects the PRF. Topical PRF Microneedling is a separate service.' },
+      ],
+      links: [
+        { href: '/services/prf/', label: 'Understand topical and injectable PRF' },
+        { href: '/services/dermal-fillers/', label: 'Compare with hyaluronic-acid filler' },
+      ],
+    };
+  }
+
+  if (slug === 'prf-injections') {
+    return {
+      kicker: 'PRF Injections',
+      heading: 'Injectable platelet-rich fibrin, prepared from your own blood.',
+      metaDescription: 'Learn what injectable platelet-rich fibrin is, how it is prepared, and how it differs from topical PRF Microneedling at House of Rose.',
+      paragraphs: [
+        'PRF Injections use platelet-rich fibrin prepared by centrifuging a small sample of the client’s own blood. Diana Morrison, RN injects the prepared PRF according to the area and individual plan under written physician protocol and medical direction.',
+        'Injectable PRF is a different route from topical PRF Microneedling, where PRF is applied to the skin surface during a Procell treatment.',
+      ],
+      distinctions: [
+        { label: 'Blood draw and processing', text: 'A small blood sample is collected and centrifuged to prepare the platelet-rich fibrin.' },
+        { label: 'The route matters', text: 'This service injects PRF. Topical PRF Microneedling applies PRF at the surface and belongs to a separate treatment path.' },
+      ],
+      links: [
+        { href: '/services/prf/', label: 'See the complete PRF overview' },
+        { href: '/services/microneedling/', label: 'Understand topical PRF Microneedling' },
+      ],
+    };
+  }
+
+  if (slug === 'injectables-bio-fillers') {
+    return {
+      kicker: 'Injectables & Bio-Fillers',
+      heading: 'Movement, volume, and PRF are different treatment questions.',
+      metaDescription: 'Understand neurotoxins, hyaluronic-acid dermal fillers, and injectable PRF at House of Rose Aesthetics in Punta Gorda.',
+      paragraphs: [
+        'Injectables and bio-fillers are not one interchangeable category. Botox and Daxxify address lines related to facial movement, hyaluronic-acid fillers address selected areas of lost volume, and platelet-rich fibrin begins with a small sample of the client’s own blood.',
+        'Diana Morrison, RN reviews the area, anatomy, health history, and goal before determining whether any injectable service is appropriate under written physician protocol and medical direction.',
+      ],
+      distinctions: [
+        { label: 'Movement-related lines', text: 'Botox and Daxxify are neurotoxins used for lines that appear or deepen with facial movement.' },
+        { label: 'Selected volume changes', text: 'Hyaluronic-acid fillers are planned for selected areas such as the lips, cheeks, or folds.' },
+        { label: 'Platelet-rich fibrin', text: 'Injectable PRF is prepared from a small sample of the client’s own blood and is distinct from topical PRF Microneedling.' },
+      ],
+      links: [
+        { href: '/services/injectables/', label: 'For movement-related lines' },
+        { href: '/services/dermal-fillers/', label: 'For selected facial volume' },
+        { href: '/services/prf-injections/', label: 'For platelet-rich fibrin' },
+      ],
+    };
+  }
   if (slug === 'face-reality-acne-program' || slug === 'acne-bootcamp') {
     const isProgramOverview = slug === 'face-reality-acne-program';
     return {
@@ -109,6 +179,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
       heading: 'Semaglutide and tirzepatide work through different receptors.',
       metaDescription: 'House of Rose offers a GLP-1 consultation with Diana Morrison, RN in Punta Gorda. Compare semaglutide and tirzepatide, and ask about current pricing.',
       paragraphs: [
+        'GLP-1 weight management is an ongoing medically supervised program that may use semaglutide or tirzepatide for eligible adults. The medications act on appetite-regulating pathways but do not use identical receptors.',
         WEIGHT_MANAGEMENT_EDUCATION.whatItIs,
         WEIGHT_MANAGEMENT_EDUCATION.provider,
       ],
@@ -208,11 +279,11 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
       ],
       distinctions: [
         {
-          label: 'What the name tells you',
+          label: 'How it is delivered',
           text: 'IV describes the route: fluid is administered intravenously rather than taken by mouth.',
         },
         {
-          label: 'What still needs to be confirmed',
+          label: 'The selected formula',
           text: 'Ask the practice about the current formulation and whether an ingredient is appropriate for the question you have.',
         },
       ],
@@ -920,5 +991,10 @@ const preparePublicServiceEducation = (
 
 export const getServiceEducation = (slug: string): ServiceEducationContent | undefined => {
   const content = getRawServiceEducation(slug);
-  return content ? preparePublicServiceEducation(content) : undefined;
+  if (!content) return undefined;
+
+  const publicContent = preparePublicServiceEducation(content);
+  const details = getServiceEducationDetails(slug);
+
+  return details ? { ...publicContent, ...details } : publicContent;
 };

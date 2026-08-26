@@ -20,6 +20,8 @@ import PrfUnderEyesOverview from '@/components/treatment/PrfUnderEyesOverview.as
 import { medicalProcedure } from '@/lib/structuredData.treatment';
 import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_META_DESCRIPTION } from '@/lib/prfUnderEyesFacts';
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
+import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
+import { getServiceEducation } from '@/lib/serviceEducation';
 
 export async function getStaticPaths() {
   return PUBLIC_SERVICES
@@ -39,6 +41,7 @@ if (!serviceData) {
 }
 
 const service: Service = serviceData;
+const education = getServiceEducation(service.slug);
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -59,7 +62,7 @@ const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'fa
 
 const factualServiceDescription = slug === 'prf-under-eyes'
   ? PRF_UNDER_EYES_META_DESCRIPTION
-  : `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
+  : education?.metaDescription ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {
@@ -153,6 +156,11 @@ const pageDescription = factualServiceDescription;
         <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink">
           {service.title}
         </h1>
+        {education && (
+          <p class="mt-6 max-w-[620px] text-[17px] leading-[1.7] text-muted-strong">
+            {education.paragraphs[0]}
+          </p>
+        )}
       </div>
       <figure class="relative min-h-[300px] overflow-hidden bg-limestone sm:min-h-[420px] lg:min-h-full">
         <img
@@ -172,6 +180,14 @@ const pageDescription = factualServiceDescription;
       </figure>
     </div>
   </section>
+
+  {education && (
+    <ServiceEducation
+      content={education}
+      serviceTitle={service.title}
+      concerns={service.concerns}
+    />
+  )}
 
   <TreatmentEvidence
     serviceTitle={service.title}
@@ -200,30 +216,6 @@ const pageDescription = factualServiceDescription;
   )}
 
   {slug === 'prf-under-eyes' && <PrfUnderEyesOverview />}
-
-  <!-- Concern-to-treatment paths -->
-  {service.concerns && service.concerns.length > 0 && (
-    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
-      <div class="max-w-[1280px] mx-auto">
-        <h2 class="font-serif text-[clamp(26px,4vw,38px)] text-ink mb-4">
-          Related concerns
-        </h2>
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gold-metal/10">
-          {service.concerns.map((concern) => (
-            <a
-              href={`/concerns/${concern.slug}/`}
-              class="bg-charcoal p-7 group block transition-colors hover:bg-charcoal-lighter"
-            >
-              <h3 class="font-serif text-[21px] text-ink mb-3 group-hover:text-gold transition-colors">
-                {concern.title}
-              </h3>
-              <span class="learn-more group-hover:text-gold mt-4 inline-block">View concern</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
   {galleryImages.length > 0 && (
