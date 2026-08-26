@@ -179,7 +179,7 @@ const ESTHETICIAN_SCOPE: TreatmentProviderScope = {
     'Skin assessed at each visit before the protocol is selected.',
   ],
   disclaimer:
-    'Individual results vary. Candidacy is determined at consultation. This page is general information and is not medical advice.',
+    'Individual results vary. Candidacy is determined at consultation. General information only; not medical advice.',
 };
 
 const RN_SCOPE: TreatmentProviderScope = {
@@ -191,14 +191,14 @@ const RN_SCOPE: TreatmentProviderScope = {
     'Consultation and health history reviewed before every first treatment.',
   ],
   disclaimer:
-    'Individual results vary. Candidacy is determined at consultation. This page is general information and is not medical advice.',
+    'Individual results vary. Candidacy is determined at consultation. General information only; not medical advice.',
 };
 
 const PRF_RN_SCOPE: TreatmentProviderScope = {
   performedBy: 'rn',
   medicalDirection: true,
   credentialPoints: ['Registered nurse (RN)'],
-  disclaimer: 'Individual outcomes vary. This page is general information and is not medical advice.',
+  disclaimer: 'Individual outcomes vary. General information only; not medical advice.',
 };
 
 const COLLECTION_RECORDS = [

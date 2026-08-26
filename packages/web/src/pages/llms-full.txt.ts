@@ -49,7 +49,7 @@ export const GET: APIRoute = async ({ site }) => {
   const publicComparisons = filterReviewedPublicComparisons(comparisons);
 
   const lines: string[] = [
-    `# ${siteFacts.siteName} — Medical Aesthetics Practice — Full Content Index`,
+    `# ${siteFacts.siteName} — Medical Aesthetics Practice`,
     ``,
     `> Medical aesthetics in Punta Gorda, Florida.`,
     ``,
@@ -70,14 +70,14 @@ export const GET: APIRoute = async ({ site }) => {
     ``,
     `---`,
     ``,
-    `## Site Pages`,
+    `## House of Rose Information`,
     ``,
     `- **Home** (${base}/): Overview of the practice, providers, services, and location`,
     `- **Services** (${base}/services/): Information about skin, injectable, body, IV hydration, weight-management, waxing, and makeup treatments`,
     `- **About** (${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
     `- **${siteFacts.siteName}** (${base}/about/hra/): About the practice and its Punta Gorda location`,
     `- **Providers** (${base}/about/providers/): Licence types, service focus, and individual team profiles`,
-    `- **Consultation** (${base}/consultation/): Request a conversation about a concern or treatment options; submitting the form does not reserve a time`,
+    `- **Consultation** (${base}/consultation/): Discuss a concern, treatment, provider, timing, recovery, or cost question`,
     `- **Skin Imaging & Analysis** (${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
     `- **Treatment Series & Packages** (${base}/packages/): The current Face Reality 12-week program and how its in-studio and home-care parts work together`,
     `- **Experience** (${base}/experience/): Actual storefront, treatment rooms, providers, and visit information`,
@@ -93,7 +93,7 @@ export const GET: APIRoute = async ({ site }) => {
     ...(caseStudies.length > 0
       ? [`- **Results** (${base}/results/): Consented before-and-after cases`]
       : []),
-    `- **Sitemap** (${base}/sitemap/): HTML index of public pages across services, concerns, packages, guides, locations, and resources`,
+    `- **Sitemap** (${base}/sitemap/): Find treatments, concerns, programs, locations, and practice resources`,
     ``,
     `---`,
     ``,
@@ -170,7 +170,7 @@ export const GET: APIRoute = async ({ site }) => {
     for (const p of publicPosts) {
       lines.push(`### ${getPublicBlogTitle(p)}`);
       lines.push(`URL: ${base}/blog/${p.slug}/`);
-      if (p.publishedAt) lines.push(`Published: ${p.publishedAt.split('T')[0]}`);
+      if (p.publishedAt) lines.push(`Date: ${p.publishedAt.split('T')[0]}`);
       if (p.category) lines.push(`Category: ${p.category}`);
       lines.push(``);
     }

@@ -86,7 +86,7 @@ const corePages: SitemapLink[] = [
   { title: 'Providers', href: '/about/providers/' },
   { title: 'Services', href: '/services/' },
   { title: 'Consultation', href: '/consultation/' },
-  { title: 'Service Collections', href: '/services/collections/' },
+  { title: 'Treatment Categories', href: '/services/collections/' },
   { title: 'Treatment Series & Packages', href: '/packages/' },
   { title: 'Advanced Skin Imaging & Analysis', href: '/skin-analysis/' },
   ...(SHOP_ENABLED
@@ -112,9 +112,9 @@ const servicePages = services.map((service) => ({
 }));
 
 const sectionData: SitemapSection[] = [
-  { title: 'Main Pages', links: corePages },
+  { title: 'House of Rose', links: corePages },
   {
-    title: 'Provider Profiles',
+    title: 'The Team',
     links: providers.map((provider) => ({
       title: provider.publicName,
       href: `/about/providers/${provider.slug}/`,
@@ -122,15 +122,15 @@ const sectionData: SitemapSection[] = [
     })),
   },
   {
-    title: 'Services',
+    title: 'Treatments',
     links: servicePages,
   },
   {
-    title: 'Service Collections',
+    title: 'Treatment Categories',
     links: collections.map((collection) => ({
       title: collection.title,
       href: `/services/collections/${collection.slug}/`,
-      note: 'Collection',
+      note: 'Category',
     })),
   },
   {
@@ -148,7 +148,7 @@ const sectionData: SitemapSection[] = [
     })),
   },
   {
-    title: 'Cost Guides',
+    title: 'Treatment Cost',
     links: costGuides.map((guide) => ({
       title: guide.title,
       href: `/cost/${guide.slug}/`,
@@ -162,7 +162,7 @@ const sectionData: SitemapSection[] = [
     })),
   },
   {
-    title: 'Areas',
+    title: 'Areas Served',
     links: localAreas.map((area) => ({
       title: area.city,
       href: `/areas/${area.slug}/`,
@@ -177,7 +177,7 @@ const sectionData: SitemapSection[] = [
     })),
   },
   {
-    title: 'Journal Articles',
+    title: 'Treatment Journal',
     links: publicBlogPosts.map((post) => ({
       title: post.slug === 'is-morpheus8-safe'
         ? 'Is Morpheus8 Safe? What to Ask Before Treatment'
@@ -186,10 +186,8 @@ const sectionData: SitemapSection[] = [
     })),
   },
   {
-    title: 'Site Utilities',
+    title: 'Policies & Help',
     links: [
-      { title: 'HTML Sitemap', href: '/sitemap/' },
-      { title: 'XML Sitemap', href: '/sitemap.xml' },
       { title: 'Privacy Policy', href: '/privacy-policy/' },
       { title: 'Terms of Service', href: '/terms-of-service/' },
       { title: 'Shipping Policy', href: '/shipping-policy/' },
@@ -201,7 +199,7 @@ const sectionData: SitemapSection[] = [
 
 <BaseLayout
   title="Sitemap | House of Rose Aesthetics"
-  description="Browse House of Rose services, packages, concerns, cost and comparison guides, local pages, results, and site resources in Punta Gorda."
+  description="Find House of Rose treatments, providers, programs, cost information, locations, policies, and contact details in Punta Gorda."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
 
@@ -212,7 +210,7 @@ const sectionData: SitemapSection[] = [
         Explore House of Rose
       </h1>
       <p class="text-ink/75 text-[16px] leading-relaxed max-w-[680px]">
-        An index of public House of Rose pages.
+        Find treatments, providers, programs, cost information, locations, policies, and contact details.
       </p>
     </div>
   </section>

@@ -65,7 +65,10 @@ const comparisonsListSchema = comparisons.length
         );
       })}
       {comparisons.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">No comparisons are currently published.</p>
+        <div class="bg-charcoal p-7">
+          <p class="text-muted text-[14px]">Contact House of Rose with the two treatments you want to compare.</p>
+          <a href="/contact/" class="learn-more mt-5 inline-flex">Ask about two options</a>
+        </div>
       )}
     </div>
   </section>
@@ -85,9 +88,7 @@ const comparisonsListSchema = comparisons.length
           measures. That is usually more useful than asking which treatment wins.
         </p>
         <p class="mt-5 text-[15px] leading-[1.8] text-muted">
-          Read the individual treatment page when the provider, technology, material, or recovery
-          matters. When the remaining question is specific to you, bring
-          that exact point to the practice.
+          Consider the provider, technology, material, treatment area, and recovery. When the remaining question is specific to you, bring that exact point to the practice.
         </p>
         <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
           <a href="/services/" class="learn-more hover:text-gold">Explore treatment details</a>

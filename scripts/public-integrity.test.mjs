@@ -2570,11 +2570,9 @@ test('results index keeps the empty state concise and reserves proof guidance fo
   if (isEmpty) {
     if (standard) failures.push('results index: empty state should not render proof-standard guidance');
     for (const [label, pattern] of [
-      ['no currently published client cases', /No House of Rose client cases[\s\S]{0,60}currently published/i],
-      ['no stock/context-free stand-ins', /(?:stock|borrowed)[\s\S]{0,100}context-free images/i],
-      ['written website-publication permission', /written permission[\s\S]{0,80}website publication/i],
-      ['treatment/timeframe photo context', /treatment[\s\S]{0,80}timeframe[\s\S]{0,100}photographs/i],
-      ['appointment still does not authorize publication', /service appointment[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}authoriz[\s\S]{0,80}publication/i],
+      ['no client cases available', /No client cases are available to view yet/i],
+      ['no stock photographs presented as results', /does not use stock photographs as client results/i],
+      ['written permission boundary', /photographs are shared only with written permission/i],
     ]) {
       if (!pattern.test(mainText)) {
         failures.push(`results index: empty state is missing ${label}`);
@@ -2587,8 +2585,8 @@ test('results index keeps the empty state concise and reserves proof guidance fo
       ['no result-changing edits', /(?:retouching|editing)[\s\S]{0,80}(?:must not|cannot|can't)[\s\S]{0,80}(?:change|alter)[\s\S]{0,60}(?:apparent )?result/i],
       ['concurrent-treatment context', /treatment[\s\S]{0,120}(?:anything else|other service|add-on)[\s\S]{0,120}(?:contributed|used)[\s\S]{0,60}result/i],
       ['timeframe and session context', /(?:elapsed )?timeframe[\s\S]{0,100}(?:number of )?sessions/i],
-      ['written publication permission', /written[\s\S]{0,60}(?:client )?permission[\s\S]{0,80}website publication/i],
-      ['appointment is not publication consent', /treatment appointment[\s\S]{0,100}(?:does not|doesn't)[\s\S]{0,80}authoriz[\s\S]{0,80}(?:website )?publication/i],
+      ['written sharing permission', /photographs are shared only with written permission/i],
+      ['treatment is not photo-sharing consent', /receiving a treatment[\s\S]{0,100}does not[\s\S]{0,80}permission[\s\S]{0,80}share/i],
       ['individual-variation boundary', /individual (?:results|outcomes) vary/i],
       ['documented example is not a forecast', /documented example[\s\S]{0,80}not a forecast/i],
       ['photographs cannot predict an outcome', /photographs? alone[\s\S]{0,100}(?:cannot|can't)[\s\S]{0,100}(?:outcome|result)/i],
@@ -2677,7 +2675,7 @@ test('comparison pages expose only reviewed factual row types', () => {
     /priced per Botox unit/i,
     /60 minutes/i,
     /30 minutes/i,
-    /Published onset evidence/i,
+    /Onset evidence/i,
     /Median 3 days to subject-rated improvement of at least 1 point/i,
     /chemical denervation typically begins 1[–-]2 days after injection/i,
     /Downtime evidence/i,
@@ -3105,6 +3103,53 @@ test('treatment discovery pages do not expose scheduling inventory or verificati
   }
 
   assert.equal(failures.length, 0, formatFailures('Public scheduling-inventory language regression', failures));
+});
+
+test('public surfaces speak to clients without narrating website or publishing machinery', () => {
+  const legalRoutes = new Set(['/privacy-policy/', '/terms-of-service/']);
+  const forbidden = [
+    /\b(?:this|the|each) treatment page\b/i,
+    /\btreatment pages\b/i,
+    /\bprovider (?:directory|profiles?)\b/i,
+    /\bservices menu\b/i,
+    /\bservice pricing is not published\b/i,
+    /\bno [^.]{0,80} (?:is|are) currently published\b/i,
+    /\bwebsite publication\b/i,
+    /\bpublication has been recorded\b/i,
+    /\bdoes not reserve (?:a )?time\b/i,
+    /\bfull content index\b/i,
+    /\bsite pages\b/i,
+    /\bwhy the (?:source is linked|gallery is empty)\b/i,
+    /\bsource notes visible\b/i,
+    /\bwithout turning this website into\b/i,
+    /\bno individual service pages are currently linked\b/i,
+    /\bthis page is general information\b/i,
+  ];
+  const failures = [];
+
+  for (const file of allHtmlFiles) {
+    const route = routeForHtmlFile(file);
+    if (legalRoutes.has(route) || isForcedNotFoundRoute(route)) continue;
+
+    const html = readFileSync(file, 'utf8');
+    const surfaces = [visibleText(html), decodeHtmlEntities(html)];
+    for (const pattern of forbidden) {
+      if (surfaces.some((surface) => pattern.test(surface))) {
+        failures.push(`${route}: contains ${pattern}`);
+      }
+    }
+  }
+
+  for (const relativePath of ['llms.txt', 'llms-full.txt', 'brandy.vcf']) {
+    const file = path.join(DIST_ROOT, relativePath);
+    if (!isFile(file)) continue;
+    const text = readFileSync(file, 'utf8');
+    for (const pattern of forbidden) {
+      if (pattern.test(text)) failures.push(`${relativePath}: contains ${pattern}`);
+    }
+  }
+
+  assert.equal(failures.length, 0, formatFailures('Public internal-talk regression', failures));
 });
 
 test('service pages explain treatments without service-specific booking controls', () => {

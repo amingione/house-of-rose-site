@@ -36,8 +36,8 @@ const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 
 const treatmentName = guide.treatment?.title ?? 'this treatment';
-const publishedDescription = `Learn about ${treatmentName} at House of Rose and how to ask the practice about current cost.`;
-const visiblePricingSummary = `Service pricing is not published on this website. Contact House of Rose with the treatment name for current cost information.`;
+const publishedDescription = `Contact House of Rose for current ${treatmentName} cost information.`;
+const visiblePricingSummary = `Call or message House of Rose with “${treatmentName}” for current cost information.`;
 const dateModified = guide._updatedAt;
 const publishedFaqs = [
   {

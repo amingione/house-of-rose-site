@@ -130,12 +130,12 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
         valueB: '30 minutes',
       },
       {
-        attribute: 'Published onset evidence',
+        attribute: 'Onset evidence',
         valueA: 'Median 3 days to subject-rated improvement of at least 1 point in each SAKURA phase 3 trial',
         valueB: 'Label: chemical denervation typically begins 1–2 days after injection and increases during the first week',
       },
       {
-        attribute: 'Published glabellar-line duration evidence',
+        attribute: 'Glabellar-line duration evidence',
         valueA: 'Median 24.0 and 23.9 weeks maintaining none-or-mild severity at maximum frown in two phase 3 trials',
         valueB: 'Median 120 days among day-30 responders at maximum contraction in a pooled analysis',
       },
@@ -171,10 +171,10 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
       {
         question: 'Does a matching per-unit rate mean the total price will be the same?',
         answer:
-          'No. A matching per-unit rate does not establish the same total. Daxxify and Botox units are product-specific and cannot be converted, and this page does not estimate an individual unit count.',
+          'No. A matching per-unit rate does not establish the same total. Daxxify and Botox units are product-specific and cannot be converted. An individual unit count is determined separately.',
       },
       {
-        question: 'What do the published duration figures actually compare?',
+        question: 'What do the duration figures actually compare?',
         answer:
           'They report product-specific glabellar-line study results: about 24 weeks to the measured Daxxify endpoint in SAKURA and 120 days among day-30 Botox responders in a pooled analysis. The studies used different endpoints and were not a head-to-head trial. Individual duration varies.',
       },

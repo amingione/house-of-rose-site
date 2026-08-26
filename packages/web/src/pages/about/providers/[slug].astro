@@ -82,7 +82,7 @@ interface ProviderClosing {
 const providerClosings: Readonly<Record<string, ProviderClosing>> = {
   diana: {
     heading: 'Medical treatments with Diana Morrison, RN.',
-    body: 'She provides neurotoxins, dermal fillers, injectable PRF, IV hydration, and GLP-1 weight management. Each treatment page explains its purpose and the concerns it may address.',
+    body: 'She provides neurotoxins, dermal fillers, injectable PRF, IV hydration, and GLP-1 weight management. Contact House of Rose with the treatment or concern you want to discuss.',
     links: [
       { href: '/services/injectables-bio-fillers/', label: 'Injectables & Bio-Fillers' },
       { href: '/services/iv-hydration-therapy/', label: 'IV Hydration' },
@@ -119,7 +119,7 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
 };
 const providerClosing = providerClosings[profile.slug] ?? {
   heading: `Explore treatments with ${profile.publicName}.`,
-  body: 'Read the treatment pages for the services this provider offers, or contact House of Rose with what you want to change.',
+  body: 'Contact House of Rose with the treatment or change you want to discuss.',
   links: [
     { href: '/services/', label: 'View current services' },
     { href: '/contact/', label: 'Ask House of Rose' },

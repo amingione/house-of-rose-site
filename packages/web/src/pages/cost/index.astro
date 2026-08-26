@@ -32,7 +32,7 @@ const guidesListSchema = guides.length
 
 <BaseLayout
   title="Treatment Cost Guides | House of Rose Aesthetics, Punta Gorda FL"
-  description="Contact House of Rose for current treatment pricing, or explore the treatment pages to understand the options before you call."
+  description="Contact House of Rose for current treatment pricing and answers about treatment options."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {guidesListSchema && <SchemaMarkup item={guidesListSchema} slot="head" />}
@@ -42,7 +42,7 @@ const guidesListSchema = guides.length
       <span class="kicker">Cost guides</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Questions about treatment cost?</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        Service pricing is not published on this website. Explore the treatment pages to understand the differences, then contact House of Rose with the treatment name for current cost information.
+        Call or message House of Rose with the treatment name for current cost information.
       </p>
     </div>
   </section>
@@ -66,7 +66,10 @@ const guidesListSchema = guides.length
           </article>
       ))}
       {guides.length === 0 && (
-        <p class="bg-charcoal p-7 text-muted text-[14px]">No cost guides are published.</p>
+        <div class="bg-charcoal p-7">
+          <p class="text-muted text-[14px]">Call House of Rose for current treatment pricing.</p>
+          <a href="tel:+19414000165" class="learn-more mt-5 inline-flex">(941) 400-0165</a>
+        </div>
       )}
     </div>
   </section>
@@ -90,7 +93,7 @@ const guidesListSchema = guides.length
         Ask House of Rose directly.
       </h2>
       <p class="mx-auto mt-5 max-w-[640px] text-muted text-[15px] leading-[1.8]">
-        Call or send a message with the treatment name. The practice can answer current pricing questions without turning this website into a duplicate of the scheduling system.
+        Call or send a message with the treatment name for current pricing and payment information.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href="tel:+19414000165" class="btn-outline-gold">Call (941) 400-0165</a>

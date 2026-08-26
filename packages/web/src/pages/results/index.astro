@@ -15,8 +15,8 @@ const studies: CaseStudy[] = studyData.map((study) => ({
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const resultsDescription = studies.length > 0
-  ? 'Consented before-and-after treatment cases from House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary.'
-  : 'House of Rose publishes before-and-after treatment cases only with written client consent. No client cases are currently published.';
+  ? 'Before-and-after treatment cases shared with written client permission by House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary.'
+  : 'Before-and-after results from House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary.';
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -35,7 +35,7 @@ const breadcrumb = breadcrumbList([
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Before &amp; After</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Results, with context.</h1>
-      <p class="text-ink/80 text-[16px] max-w-[640px] leading-relaxed">Only cases with written client consent are published. Individual outcomes vary.</p>
+      <p class="text-ink/80 text-[16px] max-w-[640px] leading-relaxed">Client photographs are shared only with written permission. Individual outcomes vary.</p>
     </div>
   </section>
 
@@ -68,22 +68,14 @@ const breadcrumb = breadcrumbList([
   ) : (
     <section class="bg-charcoal-light py-16 px-6">
       <div data-results-empty-state class="max-w-[760px] mx-auto text-center">
-        <span class="kicker">Why the gallery is empty</span>
+        <span class="kicker">Before &amp; After</span>
         <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
-          No client cases are published yet.
+          No client cases are available to view yet.
         </h2>
-        <div class="mx-auto mt-5 max-w-[680px] space-y-4 text-[15px] leading-[1.8] text-muted">
-          <p>
-            No House of Rose client cases are currently published. Stock photographs and context-free images are not presented as House of Rose results.
-          </p>
-          <p>
-            A case can appear here only when written permission for website publication has been recorded and the treatment and timeframe can be shown with the photographs. Until then, there is nothing presented as House of Rose work.
-          </p>
-        </div>
-        <p class="mt-6 text-[13px] leading-[1.7] text-muted-strong">
-          A service appointment does not, by itself, authorize publication.
+        <p class="mx-auto mt-5 max-w-[620px] text-[15px] leading-[1.8] text-muted">
+          House of Rose does not use stock photographs as client results. Client photographs are shared only with written permission.
         </p>
-        <a href="/services/" class="btn-outline-gold mt-8">Browse services</a>
+        <a href="/services/" class="btn-outline-gold mt-8">Explore treatments</a>
       </div>
     </section>
   )}
@@ -97,7 +89,7 @@ const breadcrumb = breadcrumbList([
           Two pictures can be persuasive before they are informative.
         </h2>
         <p class="mt-5 text-[16px] leading-[1.8] text-muted">
-          A useful before-and-after makes the comparison—and its limits—easy to understand. These are the details that belong with any result House of Rose publishes.
+          A useful before-and-after makes the comparison—and its limits—easy to understand. Treatment details and timing provide essential context.
         </p>
       </div>
 
@@ -123,7 +115,7 @@ const breadcrumb = breadcrumbList([
         <article class="bg-charcoal p-7 sm:p-8">
           <h3 class="font-serif text-[22px] text-ink">Permission and limits</h3>
           <p class="mt-3 text-[14px] leading-[1.75] text-muted">
-            Written client permission is required for website publication. One person’s outcome is not a promise or a statement of what is typical; individual results vary.
+            Client photographs are shared only with written permission. One person’s outcome is not a promise or a statement of what is typical; individual results vary.
           </p>
         </article>
       </div>
@@ -131,10 +123,10 @@ const breadcrumb = breadcrumbList([
       <aside data-results-publication-consent class="mt-10 border border-gold-metal/15 bg-charcoal px-7 py-8 sm:px-9">
         <span class="kicker">A direct answer</span>
         <h3 class="mt-3 font-serif text-[clamp(24px,3.5vw,34px)] leading-tight text-ink">
-          Will my photographs be published?
+          Will my photographs be shared?
         </h3>
         <p class="mt-4 max-w-[780px] text-[15px] leading-[1.8] text-muted">
-          Not simply because you receive a service. A treatment appointment does not, by itself, authorize website publication. House of Rose publishes a client case only when written permission for publication has been recorded. Without that permission, the case does not appear in this public gallery.
+          Only if you give separate written permission. Receiving a treatment does not give House of Rose permission to share your photographs.
         </p>
       </aside>
 
@@ -157,7 +149,7 @@ const breadcrumb = breadcrumbList([
         A photograph can start the conversation. It cannot finish it.
       </h2>
       <p class="mx-auto mt-5 max-w-[620px] text-muted text-[15px] leading-[1.8]">
-        A published case can help you point to the kind of change you mean. It cannot predict how your skin will respond, whether the same service is suitable for you, or what recovery would be like in your case. Bring the photograph if it helps you explain the question; the answer should still be about you, not a promise to recreate someone else’s result.
+        A before-and-after can help you point to the kind of change you mean. It cannot predict how your skin will respond, whether the same service is suitable for you, or what recovery would be like in your case. Bring the photograph if it helps you explain the question; the answer should still be about you, not a promise to recreate someone else’s result.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href="/services/" class="btn-gold">Browse services</a>
