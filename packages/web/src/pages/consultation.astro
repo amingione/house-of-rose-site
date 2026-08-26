@@ -22,19 +22,19 @@ const pageDescription =
 
 const faqs: FAQ[] = [
   {
-    question: 'Do I need to know which treatment to book?',
+    question: 'Do I need to know which treatment I want?',
     answer:
       'No. Share a treatment name if you have one. Otherwise, point to what catches your eye and say what you would—and would not—want to change. A shortlist is welcome; a decision is not required before the visit.',
   },
   {
     question: 'What happens during an aesthetics consultation?',
     answer:
-      'You can describe what you notice, recent procedures, and how much recovery fits your calendar. Ask who performs a service, what it costs, how long the appointment takes, what recovery may involve, and whether waiting is reasonable. The purpose is to understand the tradeoffs before you book.',
+      'You can describe what you notice, recent procedures, and how much recovery fits your calendar. Ask who performs a service, what recovery may involve, and how the relevant options differ. The purpose is to understand the tradeoffs before making a decision.',
   },
   {
-    question: 'Does submitting the form reserve an appointment?',
+    question: 'What happens after I submit the form?',
     answer:
-      'No. The form starts a consultation request; it does not choose or hold an appointment time. House of Rose will contact you to arrange the consultation. If you already know the service, you may not need this form: services available for online booking have a booking option on their page, while consultation-only and phone-first services show the appropriate next step.',
+      'House of Rose will contact you using the information you provide. Keep the form general; personal health details can wait for a private conversation with the practice.',
   },
   {
     question: 'When will I hear back after submitting the form?',
@@ -158,7 +158,7 @@ const faqSchema = faqPage(faqs);
 
     <nav aria-label="Other ways to begin" class="border-b border-gold-metal/30 bg-breath px-5 py-7 sm:px-8">
       <div class="mx-auto flex max-w-[1180px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-[13px] leading-relaxed text-muted-strong">Browse the service menu before requesting a consultation.</p>
+        <p class="text-[13px] leading-relaxed text-muted-strong">Explore treatment information before requesting a consultation.</p>
         <div class="flex flex-wrap gap-x-6 gap-y-3 text-[13px]">
           <a href="/services/" class="border-b border-gold text-ink hover:text-gold">Know the service? View services</a>
           <a href="/skin-analysis/" class="border-b border-gold text-ink hover:text-gold">Starting with a skin question? View skin analysis</a>
@@ -174,12 +174,12 @@ const faqSchema = faqPage(faqs);
               What the time is for
             </p>
             <h2 class="mt-4 font-display text-[clamp(38px,5vw,58px)] leading-[1.04]">
-              Ask the questions that do not fit on a service menu.
+              Ask the questions a treatment page cannot answer for you.
             </h2>
           </div>
           <div class="max-w-[680px] text-[16px] leading-[1.85] text-muted-strong">
             <p>
-              Use the consultation to compare two options, ask how noticeable a change may be, or talk through price, timing, and recovery. You can also bring one direct question without asking for a larger plan.
+              Use the consultation to compare two options, ask how noticeable a change may be, or talk through recovery and other practical considerations. You can also bring one direct question without asking for a larger plan.
             </p>
             <p class="mt-5">
               Bring a photograph, a short list, or a plain description of what catches your eye. Say what you want to leave alone, too.
@@ -197,7 +197,7 @@ const faqSchema = faqPage(faqs);
           <article class="bg-breath p-7 sm:p-8">
             <h3 class="font-serif text-[23px] leading-tight">Ask for the practical details.</h3>
             <p class="mt-4 text-[14px] leading-[1.75] text-muted-strong">
-              Ask who performs the service and their licence type, what the current price and appointment length are, what recovery can involve, and what other reasonable options exist.
+              Ask who performs the service and their licence type, what recovery can involve, and what other reasonable options exist.
             </p>
           </article>
           <article class="bg-breath p-7 sm:p-8">
@@ -317,7 +317,7 @@ const faqSchema = faqPage(faqs);
             Request my consultation
           </button>
           <div class="mt-5 grid gap-2 border-t border-gold-metal/35 pt-5 text-[12px] leading-[1.6] text-muted sm:grid-cols-2">
-            <p>Appointments are recommended to reserve your preferred time.</p>
+            <p>Keep personal health details for a private conversation with the practice.</p>
             <p class="sm:text-right">
               Your information is used only to respond to your request.
               <a href="/privacy-policy/" class="border-b border-gold text-ink hover:text-gold">

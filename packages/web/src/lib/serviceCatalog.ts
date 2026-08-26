@@ -231,9 +231,33 @@ const LOCAL_AREAS: readonly (ServiceLocalArea & { serviceSlugs: readonly string[
     serviceSlugs: ['dermal-fillers', 'injectables', 'iv-hydration-therapy', 'glp-1-weight-management', 'prf', 'microneedling', 'glo2facial', 'dermaplaning'],
   },
   {
+    _id: 'hor-area-punta-gorda-isles',
+    city: 'Punta Gorda Isles',
+    slug: 'punta-gorda-isles',
+    serviceSlugs: ['dermal-fillers', 'injectables', 'iv-hydration-therapy', 'glp-1-weight-management', 'prf', 'microneedling', 'glo2facial', 'dermaplaning'],
+  },
+  {
     _id: 'hor-area-port-charlotte',
     city: 'Port Charlotte',
     slug: 'port-charlotte',
+    serviceSlugs: ['microneedling', 'prf', 'glo2facial', 'dermaplaning'],
+  },
+  {
+    _id: 'hor-area-charlotte-harbor',
+    city: 'Charlotte Harbor',
+    slug: 'charlotte-harbor',
+    serviceSlugs: ['microneedling', 'prf', 'glo2facial', 'dermaplaning'],
+  },
+  {
+    _id: 'hor-area-burnt-store-marina',
+    city: 'Burnt Store Marina',
+    slug: 'burnt-store-marina',
+    serviceSlugs: ['microneedling', 'prf', 'glo2facial', 'dermaplaning'],
+  },
+  {
+    _id: 'hor-area-babcock-ranch',
+    city: 'Babcock Ranch',
+    slug: 'babcock-ranch',
     serviceSlugs: ['microneedling', 'prf', 'glo2facial', 'dermaplaning'],
   },
 ];
@@ -289,13 +313,13 @@ const SERVICE_RECORDS: readonly ServiceRecord[] = [
     _id: 'service-morpheus8', title: 'Morpheus8 RF Microneedling', slug: 'morpheus8', kind: 'standalone', public: true, order: 1, collectionSlug: 'inmode', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-6156b30d-84a3-4d71-8d9d-6ee81fea44de', bookingVerifiedAt: '2026-08-04', concernSlugs: ['texture', 'acne-scarring', 'stretch-marks'], relatedSlugs: ['lumecca-peak-ipl', 'forma-rf-facial', 'morpheus8-body'], evidenceMedia: [inModeEvidence('morpheus8-device', 'device', 'Morpheus8 Burst Technology', 'The Morpheus8 handpiece combines controlled microneedling with fractional bipolar radiofrequency. Treatment depth, energy, and area are selected for the individualized plan.', 'InMode manufacturer media', 'Morpheus8 Burst radiofrequency microneedling handpiece', '/images/inmode/morpheus8-burst-device.webp', 628, 1000)], _updatedAt: '2026-08-07T01:14:20Z',
   },
   {
-    _id: '7bd92dc1-9ced-42bd-a195-e9fa4628a848', title: 'Neurotoxin Injections', slug: 'injectables', kind: 'standalone', public: true, order: 1, collectionSlug: 'injectables-bio-fillers', parentSlug: 'injectables-bio-fillers', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: '30 minutes', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-b6105dd4-6519-4e8a-a986-f6313666f8ee', bookingVerifiedAt: '2026-08-04', concernSlugs: ['fine-lines-laxity', 'aging'], relatedSlugs: ['microneedling', 'iv-hydration-therapy'], gallery: [{ src: '/images/optimized/actual-facial-suite-1400.webp', alt: 'Injectables treatment room at House of Rose Aesthetics', width: 1400, height: 1750 }], _updatedAt: '2026-08-19T23:48:28Z',
+    _id: '7bd92dc1-9ced-42bd-a195-e9fa4628a848', title: 'Neurotoxin Injections', slug: 'injectables', kind: 'treatment', public: true, order: 1, collectionSlug: 'injectables-bio-fillers', parentSlug: 'injectables-bio-fillers', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: '30 minutes', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-b6105dd4-6519-4e8a-a986-f6313666f8ee', bookingVerifiedAt: '2026-08-04', concernSlugs: ['fine-lines-laxity', 'aging'], relatedSlugs: ['microneedling', 'iv-hydration-therapy'], gallery: [{ src: '/images/optimized/actual-facial-suite-1400.webp', alt: 'Injectables treatment room at House of Rose Aesthetics', width: 1400, height: 1750 }], _updatedAt: '2026-08-19T23:48:28Z',
   },
   {
-    _id: '46fb011c-6d0c-4667-83e4-81c7d87a3feb', title: 'Dermal Fillers', slug: 'dermal-fillers', kind: 'standalone', public: true, order: 2, collectionSlug: 'injectables-bio-fillers', parentSlug: 'injectables-bio-fillers', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: '45–60 minutes', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-4e97c315-226e-49bd-9e80-790109db8339', bookingVerifiedAt: '2026-08-04', concernSlugs: ['fine-lines-laxity', 'volume-loss', 'aging'], relatedSlugs: ['glp-1-weight-management', 'injectables'], _updatedAt: '2026-08-11T02:02:55Z',
+    _id: '46fb011c-6d0c-4667-83e4-81c7d87a3feb', title: 'Dermal Fillers', slug: 'dermal-fillers', kind: 'treatment', public: true, order: 2, collectionSlug: 'injectables-bio-fillers', parentSlug: 'injectables-bio-fillers', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: '45–60 minutes', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-4e97c315-226e-49bd-9e80-790109db8339', bookingVerifiedAt: '2026-08-04', concernSlugs: ['fine-lines-laxity', 'volume-loss', 'aging'], relatedSlugs: ['glp-1-weight-management', 'injectables'], _updatedAt: '2026-08-11T02:02:55Z',
   },
   {
-    _id: 'service-event-makeup', title: 'Event Makeup', slug: 'event-makeup', kind: 'standalone', public: true, order: 2, collectionSlug: 'makeup', providerId: 'provider-aundrea', duration: '45 minutes', bookingMode: 'phone', _updatedAt: '2026-08-25T04:41:37Z',
+    _id: 'service-event-makeup', title: 'Event Makeup', slug: 'event-makeup', kind: 'standalone', public: true, order: 2, collectionSlug: 'makeup', providerId: 'provider-aundrea', duration: '1 hour 30 minutes', bookingMode: 'phone', _updatedAt: '2026-08-25T11:13:22Z',
   },
   {
     _id: '6e204a23-77a2-48a9-8381-878974cb92e4', title: 'GLP-1 Weight Management', slug: 'glp-1-weight-management', kind: 'standalone', public: true, order: 2, collectionSlug: 'iv-hydration-therapy', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: 'Ongoing program', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-129199ce-d7c0-42f4-827f-7dcbdbd523dc', bookingVerifiedAt: '2026-08-04', _updatedAt: '2026-08-12T20:39:47Z',
@@ -357,7 +381,9 @@ const SERVICE_RECORDS: readonly ServiceRecord[] = [
 ];
 
 const recordBySlug = new Map(SERVICE_RECORDS.map((record) => [record.slug, record]));
-const collectionBySlug = new Map(COLLECTION_RECORDS.map((collection) => [collection.slug, collection]));
+const collectionBySlug = new Map<string, CollectionRecord>(
+  COLLECTION_RECORDS.map((collection) => [collection.slug, collection]),
+);
 
 const shallowService = (record: ServiceRecord): Service => ({
   _id: record._id,

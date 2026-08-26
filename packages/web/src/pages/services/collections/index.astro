@@ -8,7 +8,7 @@ import { getServiceCardSummary } from '@/lib/serviceCardContent';
 const collectionIntroductions: Readonly<Record<string, string>> = {
   inmode: 'Microneedling with radiofrequency, intense pulsed light, and radiofrequency without needling.',
   'injectables-bio-fillers': 'Neurotoxins for movement-related lines, fillers for selected lip, cheek, and fold volume, and injectable PRF.',
-  'iv-hydration-therapy': 'Six current IV hydration options and the GLP-1 Weight Management service.',
+  'iv-hydration-therapy': 'IV hydration and medical weight-management treatments.',
   facials: 'Facials, exfoliation, microneedling, topical PRF, and structured acne care.',
   waxing: 'Facial and body waxing organized by treatment area.',
 };
@@ -44,9 +44,9 @@ const collectionsListSchema = collections.length
   <section class="mx-auto max-w-6xl px-6 py-24">
     <header class="max-w-2xl">
       <p class="kicker mb-4">Services</p>
-      <h1 class="font-serif text-5xl text-ink">Services grouped by the kind of appointment.</h1>
+      <h1 class="font-serif text-5xl text-ink">Explore treatments by what they address.</h1>
       <p class="mt-5 leading-relaxed text-muted">
-        House of Rose keeps related appointments together in five groups. Some book directly; others begin with a consultation or phone call. Open an individual treatment for its appointment details and next step.
+        Five groups make it easier to compare treatments that work differently. Open a treatment to understand its purpose, the concerns it may address, and what separates it from nearby options.
       </p>
     </header>
 
@@ -65,7 +65,7 @@ const collectionsListSchema = collections.length
               </a>
             </h2>
             <p class="mt-4 text-[14px] leading-relaxed text-muted">
-              {collectionIntroductions[collection.slug] ?? `Related ${collection.title} appointments at House of Rose.`}
+              {collectionIntroductions[collection.slug] ?? `Related ${collection.title} treatments at House of Rose.`}
             </p>
 
             {collection.services.length > 0 && (

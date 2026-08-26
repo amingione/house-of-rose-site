@@ -28,7 +28,7 @@ export const ABOUT_PAGE_FALLBACK = {
   indexSeo: {
     metaTitle: 'About House of Rose Aesthetics | Punta Gorda, FL',
     metaDescription:
-      'Meet the named practitioners behind medical, skin, facial, waxing, and makeup appointments at House of Rose in Punta Gorda.',
+      'Meet the named practitioners behind medical, skin, facial, waxing, and makeup services at House of Rose in Punta Gorda.',
   },
   hraSeo: {
     metaTitle: 'House of Rose Aesthetics | About Our Punta Gorda Practice',
@@ -53,7 +53,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Diana Morrison, RN, provides the injectable, IV hydration, and medical weight-management services at House of Rose Aesthetics.',
     biography: [
-      'Her injectable work includes Botox and Daxxify for movement-related lines, hyaluronic-acid dermal fillers for selected areas of lost volume, and the current injectable PRF appointments.',
+      'Her injectable work includes Botox and Daxxify for movement-related lines, hyaluronic-acid dermal fillers for selected areas of lost volume, and injectable PRF.',
       'She also provides IV hydration and the GLP-1 weight-management program. These services are performed under written physician protocol and medical direction.',
     ],
     serviceFocus: ['Neuromodulators', 'Dermal fillers', 'Injectable PRF', 'PRF Bio-Filler', 'IV hydration', 'GLP-1 weight management'],
@@ -65,7 +65,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Diana Morrison, RN | House of Rose Aesthetics',
       metaDescription:
-        'Diana Morrison, RN provides neurotoxin, dermal filler, injectable PRF, IV hydration, and GLP-1 appointments at House of Rose in Punta Gorda.',
+        'Diana Morrison, RN provides neurotoxin, dermal filler, injectable PRF, IV hydration, and GLP-1 services at House of Rose in Punta Gorda.',
     },
   },
   {
@@ -76,8 +76,8 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Amber Mingione, Licensed Esthetician, focuses on skin-surface, texture, and selected device services.',
     biography: [
-      'She provides Microneedling with the Procell Therapies device, Glo2Facial, and dermaplaning. In her appointments, BioRePeel is used only as an add-on to an eligible advanced service.',
-      'When PRF is part of her work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides the injectable PRF appointments.',
+      'She provides Microneedling with the Procell Therapies device, Glo2Facial, and dermaplaning. In her work, BioRePeel is used only as an add-on to an eligible advanced service.',
+      'When PRF is part of her work, it is applied topically during eligible Microneedling. Diana Morrison, RN provides injectable PRF.',
     ],
     serviceFocus: ['Microneedling with the Procell Therapies device', 'Topical PRF', 'Glo2Facial', 'Dermaplaning', 'BioRePeel add-on'],
     imageUrl: '/images/providers/amber-profile-1122.webp',
@@ -97,12 +97,12 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     publicName: 'Brandy, Licensed Esthetician',
     publicRole: 'Licensed Esthetician',
     summary:
-      'Brandy is a Licensed Esthetician providing facials, standalone BioRePeel, and facial waxing at House of Rose Aesthetics.',
+      'Brandy is a Licensed Esthetician providing facials, BioRePeel, and facial waxing at House of Rose Aesthetics.',
     biography: [
-      'Her current work includes facials, standalone peels, and facial waxing. Standalone BioRePeel is booked with Brandy, Licensed Esthetician; Amber Mingione, Licensed Esthetician uses BioRePeel only as an add-on to an eligible advanced service.',
-      'Facial waxing is booked separately for brows, the upper lip, and the chin, including a distinct brow shape, trim, and wax appointment.',
+      'Her current work includes facials, BioRePeel, and facial waxing. Brandy, Licensed Esthetician provides BioRePeel as a face treatment; Amber Mingione, Licensed Esthetician uses BioRePeel only as an add-on to an eligible advanced service.',
+      'Her facial waxing work includes the brows, upper lip, and chin, including brow shaping, trimming, and waxing.',
     ],
-    serviceFocus: ['Facials', 'Standalone BioRePeel', 'Facial waxing'],
+    serviceFocus: ['Facials', 'BioRePeel', 'Facial waxing'],
     imageUrl: '/images/providers/brandy-profile-1122.webp',
     imageAlt: 'Brandy, Licensed Esthetician at House of Rose Aesthetics',
     digitalCardPath: getPublicProviderDigitalCardPath('brandy'),
@@ -110,7 +110,7 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     seo: {
       metaTitle: 'Brandy, Licensed Esthetician | House of Rose',
       metaDescription:
-        'Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing at House of Rose in Punta Gorda.',
+        'Brandy, Licensed Esthetician provides facials, BioRePeel, and facial waxing at House of Rose in Punta Gorda.',
     },
   },
   {
@@ -121,8 +121,8 @@ export const PROVIDER_PROFILE_FALLBACKS: PublicProviderProfile[] = [
     summary:
       'Aundrea Pedigo, Licensed Esthetician, provides professional makeup artistry at House of Rose Aesthetics.',
     biography: [
-      'Her makeup work covers bridal appointments, events and celebrations, photo shoots, and everyday wear, ranging from soft daytime makeup to full glam.',
-      'A bridal appointment runs longer than an event appointment because it is built around the schedule of the day. Makeup artistry is a non-medical service.',
+      'Her makeup work covers bridal events, celebrations, photo shoots, and everyday wear, ranging from soft daytime makeup to full glam.',
+      'Bridal makeup is built around the schedule and demands of the day. Makeup artistry is a non-medical service.',
     ],
     serviceFocus: ['Bridal makeup', 'Event makeup', 'Everyday makeup'],
     imageUrl: '/images/providers/aundrea-profile-1122.webp',

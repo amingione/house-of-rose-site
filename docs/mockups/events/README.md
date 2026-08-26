@@ -51,24 +51,22 @@ documents before implementation.
   `provider` schema.
 - Bridal Makeup: 2 hr, **$175** — `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` (single,
   unconflicted figure).
-- Everyday Makeup: 25 min, **$85** — same source.
+- Event Makeup: 1 hr 30 min, **$85** with a **$40 deposit** — owner-confirmed 2026-08-25.
+- Everyday Makeup: 1 hr, **$35** with a **$30 deposit** — same source.
 - Permanent Jewelry: **$65** flat line in GlossGenius — same source, but flagged (see below).
 - Palette and typography — the implemented site tokens and components plus Creative System Book 4's
   visual standards. The mockup's voice and CTA language are unapproved; current user direction and the
   binding voice-reset rules govern any future build.
 
 **Flagged — do not publish as-is:**
-1. 🟡 **"Event Makeup" has two conflicting GlossGenius prices ($150 vs. $85 under different group names)**
-   — the pricing doc calls this an uncleaned GlossGenius duplicate. The Birthday Events mockup shows
-   "Price on request" instead of guessing. Needs Amber's resolution before either page ships.
-2. 🟡 **Permanent Jewelry may have per-material/length tiers** (gold-filled / sterling / solid gold) per an
+1. 🟡 **Permanent Jewelry may have per-material/length tiers** (gold-filled / sterling / solid gold) per an
    older price-list PDF referenced in the same doc, but GlossGenius currently shows one flat $65 line. Both
    mockups show "Starting at $65" with a confirmation flag rather than asserting tiers that may not be live.
-3. 🟡 **On-location vs. in-suite-only is undocumented.** Bridal and Birthday mockups default to in-suite;
+2. 🟡 **On-location vs. in-suite-only is undocumented.** Bridal and Birthday mockups default to in-suite;
    flagged inline so this isn't silently decided by omission.
-4. 🟡 **Trial runs, lead time, and group minimums are undocumented.** Marked `Draft` in the Bridal FAQ and
+3. 🟡 **Trial runs, lead time, and group minimums are undocumented.** Marked `Draft` in the Bridal FAQ and
    Birthday jewelry-bar section rather than invented.
-5. 🟠 **Collaborate With Us is entirely new territory** — no referral, commission, or preferred-vendor
+4. 🟠 **Collaborate With Us is entirely new territory** — no referral, commission, or preferred-vendor
    program exists today. The page proposes four collaboration shapes (bookings, styled shoots, on-site
    jewelry activations, referral relationships) as a framework for Amber to approve, cut, or price — not as
    an existing offer.
@@ -98,7 +96,6 @@ services. Cart-style language would claim a checkout capability that doesn't exi
 
 ## Suggested next step
 
-Review the four mockups, resolve the flags above (especially the Event Makeup price conflict — that's a
-GlossGenius data-hygiene issue independent of this project), then map each approved idea to an existing
+Review the four mockups, resolve the remaining flags above, then map each approved idea to an existing
 canonical page type before implementation. If no current type fits, obtain owner approval and update the
 binding page-type and content-model documents before creating a schema or route.

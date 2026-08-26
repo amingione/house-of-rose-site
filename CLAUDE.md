@@ -147,11 +147,11 @@ copy and must not be used as evidence of Amber's taste.
    stack has **3** categories (`Medical spa` primary, `Facial spa`, `Skin care clinic`). Do not call
    absent categories "missing" or add them from an SEO task. `Waxing hair removal service` may be
    evaluated because waxing is current; `Massage spa` is unsupported because massage is not offered.
-3. **Published Sanity copy carries 68 retired-term instances across 23 service docs**, and seven service
-   **names break the naming law** (`Luxury Facial`, `Royal Rose Facial`, `Luxe Rose Facial`,
-   `Signature Rose Facial`, `Signature Facial`, `Lunch Time Glow`, `Glowtox Facial`). Three of those
-   **slugs are URLs** (`/services/luxury-facial/`, `/lunch-time-glow/`, `/glowtox-facial/`) — renaming
-   needs a 301 plan and costs existing ranking. Sized and itemized in `docs/DRIFT-CLEANUP-CHECKLIST.md` (P1).
+**Closed 2026-08-25 — Sanity service model retired, do not re-open:**
+- ~~Published Sanity copy carried 68 retired-term instances across 23 service docs~~ — those legacy
+  `service` and `serviceCollection` documents were deleted. Treatments/services are now owned only by
+  `packages/web/src/lib/serviceCatalog.ts` and reviewed local education files. Do not search for or
+  recreate treatment records in Sanity. The old audit remains historical evidence only.
 
 **Closed 2026-08-20 — verified against manufacturer and clinical sources, do not re-open:**
 - ~~The 9 `no downtime` instances need per-service clinical review~~ — **done, and the rule itself was

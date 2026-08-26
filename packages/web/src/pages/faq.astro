@@ -33,11 +33,11 @@ const faqs: readonly PublicFaq[] = [
   },
   {
     question: 'How do I choose a service?',
-    answer: 'If you already know the treatment name, open its service page for appointment details and the current booking path. If not, use the concern guides or send a consultation inquiry with the questions you want answered.',
+    answer: 'Start with the change you notice rather than a product name. The concern guides explain common distinctions, and each treatment page shows what that service is designed to address and how it differs from nearby options.',
   },
   {
-    question: 'Should I book a service or request a consultation?',
-    answer: 'Book directly when you know the appointment you want and online booking is available. Request a consultation when you are comparing options, want to discuss a concern first, or the appointment is consultation-only. Some services begin with a phone call instead. A consultation request starts a conversation; it does not reserve a treatment time.',
+    question: 'What if I am comparing more than one treatment?',
+    answer: 'Use the comparison pages when two treatments address similar-looking concerns in different ways. If the distinction is still unclear, contact House of Rose and describe what you notice, what you want to change, and how much recovery fits your schedule.',
   },
   {
     question: 'What is the difference between skin analysis and a consultation?',
@@ -49,24 +49,16 @@ const faqs: readonly PublicFaq[] = [
   },
   {
     question: 'How can I tell who provides a service?',
-    answer: 'Diana Morrison, RN provides Botox and Daxxify, dermal fillers, injectable PRF and PRF Bio-Filler, IV hydration, and GLP-1 weight-management appointments. Amber Mingione, Licensed Esthetician provides Procell Microneedling, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an add-on. Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup; makeup artistry is a non-medical service. Medical Director: Joshua Shaw, MD · FL Lic. ME136232. Dr. Shaw provides medical direction and does not perform treatment appointments at House of Rose.',
+    answer: 'Diana Morrison, RN provides Botox and Daxxify, dermal fillers, injectable PRF and PRF Bio-Filler, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Procell Microneedling, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an add-on. Brandy, Licensed Esthetician provides facials, BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup; makeup artistry is a non-medical service. Medical Director: Joshua Shaw, MD · FL Lic. ME136232. Dr. Shaw provides medical direction and does not perform treatments at House of Rose.',
   },
   {
     question: 'What is the medical director’s role?',
-    answer: 'Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with that appointment.',
+    answer: 'Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatments at House of Rose. The practitioner named for a treatment is the person who provides it.',
   },
   {
-    question: 'Where can I see current prices?',
-    answer: 'GlossGenius is the live House of Rose booking menu. The cost guides explain what each amount covers. If a guide and the booking menu differ, use the booking menu and call (941) 400-0165 before reserving.',
-    links: [
-      { href: '/cost/', label: 'See what the prices cover' },
-      {
-        href: 'https://houseofrose.glossgenius.com/services',
-        label: 'Check the live booking menu',
-        external: true,
-        globalBooking: true,
-      },
-    ],
+    question: 'How can I ask about current pricing?',
+    answer: 'Call House of Rose at (941) 400-0165 or send a message with the treatment name. Service pricing is not published on this website.',
+    links: [{ href: '/contact/', label: 'Contact House of Rose' }],
   },
   {
     question: 'What payment methods does House of Rose accept?',
@@ -84,8 +76,8 @@ const faqGroups = [
     questions: [faqs[0], faqs[1], faqs[6], faqs[7]],
   },
   {
-    kicker: 'Appointments',
-    heading: 'Choosing and booking',
+    kicker: 'Treatments',
+    heading: 'Choosing where to begin',
     questions: [faqs[2], faqs[3], faqs[4], faqs[5], faqs[8], faqs[9], faqs[10]],
   },
 ] as const;
@@ -112,7 +104,7 @@ const breadcrumb = breadcrumbList([
     <div class="max-w-[860px] mx-auto">
       <span class="kicker">Answers</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Frequently asked questions</h1>
-      <p class="text-ink/80 text-[16px] leading-relaxed">Direct answers about the practice, the people behind an appointment, current prices, and how appointments work.</p>
+      <p class="text-ink/80 text-[16px] leading-relaxed">Direct answers about the practice, treatment choices, providers, and visiting House of Rose.</p>
     </div>
   </section>
 
@@ -157,12 +149,12 @@ const breadcrumb = breadcrumbList([
       <span class="kicker">The question you still have</span>
       <h2 class="mt-2 font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight">Call, send a message, or request a consultation.</h2>
       <p class="mx-auto mt-5 max-w-[660px] text-[15px] leading-[1.8] text-muted">
-        Call for appointment help or an answer during practice hours. Send a message with a non-urgent general question. Use the consultation form to discuss a concern or compare treatments.
+        Call for an answer during practice hours, or send a message with a non-urgent question about a concern, treatment, or provider.
       </p>
       <div class="mt-8 flex gap-3 justify-center flex-wrap">
         <a href="tel:+19414000165" class="btn-outline-gold">Call House of Rose</a>
         <a href="/contact/" class="btn-outline-gold">Send a message</a>
-        <a href="/consultation/" class="btn-gold">Request a consultation</a>
+        <a href="/services/" class="btn-gold">Explore treatments</a>
       </div>
     </div>
   </section>

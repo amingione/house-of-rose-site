@@ -13,9 +13,10 @@ structured line items). See **§ Open items requiring Amber's decision** at the 
 these are not simple drift, they're unresolved business/compliance calls that this file cannot
 silently resolve.
 
-**Truth chain:** GlossGenius = commerce truth → this file = staging mirror → Sanity = display (no
-price shown on live service pages, by design since 2026-07-24) → Notion HQ = strategy/competitive
-layer.
+**Truth chain:** GlossGenius = commerce truth → this file = dated internal staging mirror → local
+Astro `serviceCatalog.ts` + reviewed education files = website service layer → Notion HQ =
+strategy/competitive context. Treatments/services are no longer in Sanity, and service prices do not
+publish on live public pages.
 
 ---
 
@@ -172,10 +173,7 @@ duplicate.
 
 ---
 
-## Aundrea — Makeup *(non-medical)*
-
-**Aundrea provides makeup only (confirmed by Amber 2026-08-25).** She no longer provides permanent
-jewelry; that service moved to its own section below. Do not re-attribute it to her.
+## Aundrea — Makeup
 
 
 Event Makeup
@@ -300,12 +298,12 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
    Bio-Filler → ADDED $650" on 2026-07-26. The 2026-08-06 export shows no "EZ Gel" line at all —
    only "PRF Bio-Filler — Consultation" $899. Either EZ Gel was renamed and repriced, or it's two
    different things and EZ Gel quietly disappeared. Confirm with Diana.
-4. 🟡 **Two different "Event Makeup" prices exist inside GlossGenius itself** ($150 vs. $85 under
-   different group names) — see the Aundrea section above.
-4b. 🟡 **Permanent Jewelry duration: 20 min (this ledger + live website) vs 35 min (Sanity record,
-   claiming a later GlossGenius verification).** A publicly rendered factual claim is wrong in one of
-   the two places. Check the live GlossGenius listing and correct the loser. See the Permanent
-   Jewelry section above.
+4. 🟢 **Event Makeup price resolved by owner confirmation on 2026-08-25:** 1 hr 30 mins, **$85**,
+   with a **$40 deposit**. The former $150 duplicate/conflict warning is superseded and must not be
+   propagated into current records.
+4b. 🟢 **Former Permanent Jewelry duration conflict is retired for the website.** Permanent Jewelry
+   was removed from the website on 2026-08-25, and the former Sanity service record was deleted with
+   the retired service model. Do not use that legacy record as treatment authority.
 4c. 🟡 **Permanent Jewelry has no assigned provider** since Aundrea went makeup-only (2026-08-25).
    Amber chose to keep it live and unattributed. Assign someone (with licence type) or retire it.
 5. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,

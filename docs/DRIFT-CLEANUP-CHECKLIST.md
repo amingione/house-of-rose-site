@@ -107,8 +107,14 @@ is disabled.
   proposed treatment combinations cannot be regenerated or mistaken for approved client material.
 - [x] `/skin-analysis/` remains clean in current rendered output.
 
-### 🟡 P1 · Retired vocabulary + illegal service names in PUBLISHED Sanity copy — NEEDS AMBER
-Audited 2026-08-01 across 61 published docs: **23 service documents carry 68 retired-term instances**
+### ✅ RESOLVED 2026-08-25 · Former Sanity service-copy drift
+
+The `service` and `serviceCollection` document models were retired and their documents deleted.
+Treatments/services now live in `packages/web/src/lib/serviceCatalog.ts` plus reviewed local education
+files. Do not use this historical audit as an action list and do not recreate treatment records in
+Sanity.
+
+Historical audit from 2026-08-01 across 61 published docs: **23 service documents carried 68 retired-term instances**
 (`glow`×36, `radiance/radiant`×8, `luxury`×4, `no downtime`×9, `indulge`×3, `premium`×2, `flawless`×1).
 This is the site's core sales copy — **not swept, because it needs judgment per service, not find-replace.**
 
@@ -145,8 +151,9 @@ Morpheus8, dermal fillers, and the Face Reality purging phase. The published cop
 - [x] **DONE (2026-07-17)** `docs/competitor_analysis/compass_artifact_…ee299b72….md` — deleted the
   botanical "recommended menu / packages / launch" sections entirely (kept only the plain-named
   competitor landscape §1–3).
-- [ ] Spot-check page `meta`/JSON-LD for any leftover botanical names. _(Sanity `service` /
-  `treatmentPackage` / `serviceCollection` content was verified clean.)_
+- [ ] Spot-check page `meta`/JSON-LD for any leftover botanical names in current local service output
+  and active non-service content. _(Former Sanity `service` / `serviceCollection` documents are gone;
+  `treatmentPackage` is a separate non-service package record that references local service slugs.)_
 
 > **This file is the single home for the banned-term blocklist below.** Elsewhere, delete dead terms
 > rather than re-listing them — the only place they should appear is the regression guard here.

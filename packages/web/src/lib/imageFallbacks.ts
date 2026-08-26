@@ -1,7 +1,7 @@
 // Fallbacks must be a verified House of Rose photograph, a real treatment result,
 // or an appropriate manufacturer/device asset. Never reintroduce generic models or
 // generated treatment scenes here: this module feeds cards, heroes, social images,
-// collections, packages, and empty Sanity image fields across the site.
+// local service collections, packages, and optional image fields across the site.
 const ACTUAL_RECEPTION_IMAGE = '/images/optimized/actual-reception-1400-light.webp';
 const ACTUAL_WELCOME_IMAGE = '/images/optimized/actual-welcome-1400.webp';
 const ACTUAL_IV_SUITE_IMAGE = '/images/optimized/actual-iv-suite-1400.webp';
@@ -30,7 +30,6 @@ const SERVICE_CARD_IMAGES: Record<string, string> = {
   injectables: '/images/generated/service-cards/neurotoxin-treatment-setup.webp',
   'dermal-fillers': '/images/generated/service-cards/dermal-filler-treatment-setup.webp',
   'iv-hydration-therapy': ACTUAL_IV_SUITE_IMAGE,
-  'glp-1-weight-management': '/images/generated/service-cards/glp1-consultation-setup.webp',
   glo2facial: '/images/generated/service-cards/glo2facial-treatment-setup.webp',
   dermaplaning: '/images/generated/service-cards/dermaplaning-treatment-setup.webp',
   'facial-waxing': '/images/generated/service-cards/facial-waxing-treatment-setup.webp',
@@ -195,9 +194,6 @@ export const getServiceCardImageAlt = (slug: string): string => {
   }
   if (slug === 'iv-hydration-therapy') {
     return 'IV hydration suite inside House of Rose Aesthetics';
-  }
-  if (slug === 'glp-1-weight-management') {
-    return 'Illustrative GLP-1 consultation setup with a scale, blood pressure cuff, measuring tape, and intake clipboard';
   }
   if (slug === 'glo2facial') {
     return 'Illustrative Glo2Facial appointment setup with a treatment handpiece and sealed single-use tip';

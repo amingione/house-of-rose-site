@@ -1,6 +1,8 @@
 const LONG_BRAND = 'House of Rose Aesthetics';
 const SHORT_BRAND = 'House of Rose';
-const TITLE_LIMIT = 60;
+/** SERP display budget. Exported so callers can shape a title that fits instead of being truncated. */
+export const SEO_TITLE_LIMIT = 60;
+const TITLE_LIMIT = SEO_TITLE_LIMIT;
 
 const cleanSeparators = (value: string): string =>
   value

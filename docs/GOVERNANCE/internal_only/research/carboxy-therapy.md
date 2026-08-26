@@ -42,8 +42,9 @@ not become House of Rose protocol, cadence, recovery, or outcome claims.
 
 No standalone Carboxy service record currently generates a public route. Do not hide Carboxy inside a
 different service, borrow another service's route, or create a guide, concern, comparison, or package as
-a substitute. A future public page requires a current routeable Sanity service record, reviewed local
-copy, correct structured data, and the existing internal-link and sitemap contracts.
+a substitute. A future public page requires an owner-approved local record in
+`packages/web/src/lib/serviceCatalog.ts`, reviewed local copy, correct structured data, and the
+existing internal-link and sitemap contracts. Do not recreate a Sanity treatment/service document.
 
 ## Claim and voice boundary
 

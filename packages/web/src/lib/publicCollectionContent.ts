@@ -1,8 +1,8 @@
 /**
  * Service collections with reviewed public routes and local presentation.
  *
- * Other Sanity collection records remain available for reconciliation without
- * becoming generated routes or Visual Editor page entries.
+ * The former Sanity service-collection model is retired. This local list is the
+ * reviewed public route set; archives or stale references cannot add routes.
  */
 export const REVIEWED_PUBLIC_COLLECTION_SLUGS = [
   'facials',

@@ -636,7 +636,7 @@ downstream work.
 | Priority | Source needed | What it should resolve | Location / owner | Status |
 |---:|---|---|---|---|
 | 1 | Creative System v1.0 | Verified facts, compliance history, and visual standards only | `docs/GOVERNANCE/House_of_Rose_Creative_System/` | Available; voice and strategy superseded |
-| 2 | Current service and pricing truth | Value, mechanism, terms, constraints | GlossGenius → `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` → Sanity | Available; verify per task |
+| 2 | Current service and pricing truth | Value, mechanism, terms, constraints | Website: local `serviceCatalog.ts` + reviewed education files; commerce: GlossGenius → `ALL-SERVICES-PRICING.MD`; never Sanity service docs | Available; verify per task |
 | 3 | Customer research, reviews, sales calls, or FAQs | Audience language, objections, triggers | `[UNKNOWN]` | Needed |
 | 4 | Approved high-performing content | Voice calibration and proven messages | `[UNKNOWN]` | Needed |
 | 5 | Campaign results | Performance patterns and test backlog | `[UNKNOWN]` | Needed |

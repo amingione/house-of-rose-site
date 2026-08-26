@@ -1,15 +1,9 @@
 import { getDeviceServiceEducation } from '@/lib/deviceServiceEducation';
 import { getInjectableServiceEducation } from '@/lib/injectableServiceEducation';
 import { getSkinRenewalServiceEducation } from '@/lib/skinRenewalServiceEducation';
-import { getWaxingServiceEducation } from '@/lib/waxingServiceEducation';
-import { IV_HYDRATION_EDUCATION } from '@/lib/ivHydrationFacts';
 import { DERMAPLANING_EDUCATION } from '@/lib/dermaplaningEducation';
 import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 import { MORPHEUS8_PRICING } from '@/lib/morpheus8Pricing';
-import {
-  FACE_REALITY_PROGRAM,
-  getFaceRealityServiceEducation,
-} from '@/lib/faceRealityEducation';
 
 export interface ServiceEducationItem {
   name: string;
@@ -52,38 +46,32 @@ export interface ServiceEducationContent {
 const formatMinutes = (durationMinutes: number): string =>
   `${durationMinutes} minutes`;
 
-export const getServiceEducation = (slug: string): ServiceEducationContent | undefined => {
-  const faceReality = getFaceRealityServiceEducation(slug);
-
-  if (faceReality) {
+const getRawServiceEducation = (slug: string): ServiceEducationContent | undefined => {
+  if (slug === 'face-reality-acne-program' || slug === 'acne-bootcamp') {
+    const isProgramOverview = slug === 'face-reality-acne-program';
     return {
-      kicker: faceReality.title,
-      heading: faceReality.heading,
-      metaDescription: faceReality.slug === 'acne-bootcamp'
-        ? 'Acne Bootcamp at House of Rose: a consultation or the complete Face Reality 12-week program. Ask about current pricing when you book.'
-        : 'Face Reality at House of Rose includes a consultation, the 12-week program, and four staff-arranged peels. Ask about current pricing when you book.',
+      kicker: isProgramOverview ? 'Face Reality Acne Program' : 'Acne Bootcamp',
+      heading: 'A twelve-week program connecting in-studio care with daily home care.',
+      metaDescription: 'Learn how the Face Reality Acne Program connects in-studio care every two weeks with daily home care across twelve weeks.',
       paragraphs: [
-        faceReality.whatItIs,
-        faceReality.whyTheStructureMatters,
-        FACE_REALITY_PROGRAM.provider,
+        'Acne Bootcamp is a twelve-week esthetics program for the appearance of recurring breakouts. In-studio care takes place every two weeks, with daily home care between visits.',
+        'Amber Mingione, Licensed Esthetician and Face Reality Certified Acne Specialist, provides the program at House of Rose.',
       ],
-      distinctions: faceReality.distinctions,
-      menu: {
-        heading: faceReality.menuHeading,
-        intro: faceReality.menuIntro,
-        verifiedAt: FACE_REALITY_PROGRAM.menuVerifiedAt,
-        items: faceReality.menuOrder.map((index) => {
-          const item = FACE_REALITY_PROGRAM.menu[index];
-          if (!item) throw new Error(`Invalid Face Reality menu index: ${index}`);
-          return {
-            name: item.name,
-            duration: item.duration,
-            note: item.note,
-          };
-        }),
-      },
-      faqs: faceReality.faqs,
-      links: faceReality.slug === 'face-reality-acne-program'
+      distinctions: [
+        {
+          label: 'In-studio care',
+          text: 'Professional exfoliation and extractions are selected for the skin at that point in the program.',
+        },
+        {
+          label: 'Between visits',
+          text: 'A daily home-care plan continues between visits and is reviewed as the skin responds.',
+        },
+        {
+          label: 'When medical evaluation comes first',
+          text: 'Deep, painful, widespread, or actively scarring breakouts need medical evaluation before an esthetics program is considered.',
+        },
+      ],
+      links: isProgramOverview
         ? [
             {
               href: '/packages/face-reality-12-week-program/',
@@ -101,7 +89,7 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
         : [
             {
               href: '/services/face-reality-acne-program/',
-              label: 'Consultation and program overview',
+              label: 'See the complete program overview',
             },
             {
               href: '/concerns/active-acne/',
@@ -212,24 +200,20 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
   if (slug === 'iv-hydration-therapy') {
     return {
       kicker: 'IV Hydration Therapy',
-      heading: IV_HYDRATION_EDUCATION.heading,
-      metaDescription: 'Compare six IV hydration options by appointment length at House of Rose in Punta Gorda, and meet the RN who provides them. Ask about current pricing.',
+      heading: 'IV means intravenous.',
+      metaDescription: 'Learn what IV hydration means and who provides it at House of Rose Aesthetics in Punta Gorda.',
       paragraphs: [
-        IV_HYDRATION_EDUCATION.introduction,
-        IV_HYDRATION_EDUCATION.provider,
+        'IV hydration delivers fluid through a vein. The treatment name alone does not identify a complete formulation, so ingredients and available add-ons should be confirmed directly with the practice.',
+        'Diana Morrison, RN provides IV hydration under written physician protocol and medical direction.',
       ],
       distinctions: [
         {
-          label: 'The 30-minute option',
-          text: IV_HYDRATION_EDUCATION.shorterOption,
+          label: 'What the name tells you',
+          text: 'IV describes the route: fluid is administered intravenously rather than taken by mouth.',
         },
         {
-          label: 'The five 45-minute options',
-          text: IV_HYDRATION_EDUCATION.longerOptions,
-        },
-        {
-          label: 'Formulations and add-ons',
-          text: IV_HYDRATION_EDUCATION.formulation,
+          label: 'What still needs to be confirmed',
+          text: 'Ask the practice about the current formulation and whether an ingredient is appropriate for the question you have.',
         },
       ],
       links: [
@@ -241,56 +225,60 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
     };
   }
 
-  const waxing = getWaxingServiceEducation(slug);
-
-  if (waxing) {
+  if (slug === 'waxing' || slug === 'facial-waxing' || slug === 'body-waxing') {
+    const isFacialWaxing = slug === 'facial-waxing';
+    const isBodyWaxing = slug === 'body-waxing';
     return {
-      kicker: waxing.title,
-      heading: waxing.slug === 'waxing'
-        ? 'Eleven area-specific waxing appointments, with two ways to book.'
-        : waxing.slug === 'facial-waxing'
-          ? 'Chin, upper lip, and two brow appointments.'
-          : 'Seven body areas, each with its own appointment.',
-      metaDescription: waxing.slug === 'waxing'
-        ? 'Compare 11 facial and body waxing appointments at House of Rose in Punta Gorda, including current areas and timing. Ask about current pricing.'
-        : waxing.slug === 'facial-waxing'
-          ? 'Facial waxing at House of Rose includes chin, upper lip, and two brow appointments. Ask about current pricing when you book.'
-          : 'Body waxing at House of Rose includes seven area-specific appointments. Ask about current pricing when you book.',
+      kicker: isFacialWaxing ? 'Facial Waxing' : isBodyWaxing ? 'Body Waxing' : 'Waxing',
+      heading: isFacialWaxing
+        ? 'Brows, upper lip, and chin.'
+        : isBodyWaxing
+          ? 'Waxing for selected body areas.'
+          : 'Facial and body waxing, organized by area.',
+      metaDescription: isFacialWaxing
+        ? 'Facial waxing for the brows, upper lip, and chin at House of Rose Aesthetics in Punta Gorda.'
+        : isBodyWaxing
+          ? 'Body waxing for selected areas at House of Rose Aesthetics in Punta Gorda.'
+          : 'Explore facial and body waxing areas available at House of Rose Aesthetics in Punta Gorda.',
       paragraphs: [
-        waxing.whatItIs,
-        waxing.whereItFits,
-        ...(waxing.provider
-          ? [`${waxing.provider.publicName} provides facial waxing at House of Rose.`]
-          : []),
+        isFacialWaxing
+          ? 'Facial waxing is available for the eyebrows, upper lip, and chin. Brow shaping and trimming are also available.'
+          : isBodyWaxing
+            ? 'Body waxing is available for the underarms, bikini line, chest, back, full or partial leg, and full arm.'
+            : 'House of Rose offers facial waxing for the brows, upper lip, and chin, plus body waxing for selected areas of the arms, legs, torso, underarms, and bikini line.',
+        ...(isBodyWaxing ? [] : ['Brandy, Licensed Esthetician provides facial waxing at House of Rose.']),
       ],
-      distinctions: waxing.distinctions,
-      menu: waxing.menu
-        ? {
-            heading: waxing.menu.heading,
-            intro: waxing.slug === 'waxing'
-              ? 'Each row includes the appointment length. Ask about current pricing by area when you book.'
-              : waxing.slug === 'facial-waxing'
-                ? 'Each appointment is booked by facial area or brow service.'
-                : 'Appointment lengths range from 10–40 minutes by area. Ask about current pricing when you book.',
-            verifiedAt: 'August 6, 2026',
-            items: waxing.menu.items.map((item) => ({
-              name: item.name,
-              duration: formatMinutes(item.durationMinutes),
-              note: waxing.slug === 'waxing' ? item.category : undefined,
-            })),
-          }
-        : undefined,
-      faqs: waxing.faqs,
-      faqHeading: waxing.slug === 'waxing'
-        ? 'Online booking for facial waxing; a phone call for body waxing.'
-        : waxing.faqs
-          ? 'Area names, leg appointments, and bikini line.'
-          : undefined,
       links: [
-        ...(waxing.links ?? []),
-        ...(waxing.provider
-          ? [{ href: waxing.provider.profilePath, label: `Meet ${waxing.provider.publicName}` }]
-          : []),
+        ...(!isFacialWaxing ? [{ href: '/services/facial-waxing/', label: 'Explore Facial Waxing' }] : []),
+        ...(!isBodyWaxing ? [{ href: '/services/body-waxing/', label: 'Explore Body Waxing' }] : []),
+        ...(!isBodyWaxing ? [{ href: '/about/providers/brandy/', label: 'Meet Brandy, Licensed Esthetician' }] : []),
+      ],
+    };
+  }
+
+  if (slug === 'bridal-makeup' || slug === 'event-makeup' || slug === 'everyday-makeup') {
+    const isBridal = slug === 'bridal-makeup';
+    const isEvent = slug === 'event-makeup';
+    const title = isBridal ? 'Bridal Makeup' : isEvent ? 'Event Makeup' : 'Everyday Makeup';
+    return {
+      kicker: title,
+      heading: isBridal
+        ? 'Makeup planned around the wedding day.'
+        : isEvent
+          ? 'Makeup for celebrations, events, and photographs.'
+          : 'A finished makeup look for everyday wear.',
+      metaDescription: `${title} with Aundrea Pedigo, Licensed Esthetician and Makeup Artist, at House of Rose in Punta Gorda.`,
+      paragraphs: [
+        isBridal
+          ? 'Bridal makeup is shaped around the date, the schedule of the day, and the finish you want in person and in photographs.'
+          : isEvent
+            ? 'Event makeup can be planned for a celebration, photo shoot, or another occasion where the setting and desired finish matter.'
+            : 'Everyday makeup can range from a soft daytime look to a more defined finish without being tied to a formal event.',
+        'Aundrea Pedigo, Licensed Esthetician and Makeup Artist, provides makeup artistry at House of Rose. Makeup artistry is a non-medical service.',
+      ],
+      links: [
+        { href: '/about/providers/aundrea/', label: 'Meet Aundrea Pedigo, Licensed Esthetician' },
+        { href: '/contact/', label: 'Ask about makeup' },
       ],
     };
   }
@@ -884,4 +872,53 @@ export const getServiceEducation = (slug: string): ServiceEducationContent | und
           },
         ],
   };
+};
+
+// GlossGenius remains the commerce source of truth, but its menu structure is
+// not client-facing website copy. Keep operational facts available to internal
+// tooling while preventing appointment inventory, booking modes, pricing
+// language, and staff shorthand from leaking into public service pages or feeds.
+const INTERNAL_MENU_LANGUAGE = /\b(?:appointment|appointments|book|booked|bookable|booking|consultation|duration|listing|menu|minute|minutes|price|priced|prices|pricing|standalone)\b/i;
+
+const includesInternalMenuLanguage = (...values: Array<string | undefined>): boolean =>
+  values.some((value) => Boolean(value && INTERNAL_MENU_LANGUAGE.test(value)));
+
+const preparePublicServiceEducation = (
+  content: ServiceEducationContent,
+): ServiceEducationContent => {
+  const paragraphs = content.paragraphs.filter(
+    (paragraph) => !includesInternalMenuLanguage(paragraph),
+  );
+  const distinctions = content.distinctions?.filter(
+    ({ label, text }) => !includesInternalMenuLanguage(label, text),
+  );
+  const faqs = content.faqs?.filter(
+    ({ question, answer }) => !includesInternalMenuLanguage(question, answer),
+  );
+  const links = content.links?.filter(
+    ({ label }) => !includesInternalMenuLanguage(label),
+  );
+
+  return {
+    ...content,
+    heading: includesInternalMenuLanguage(content.heading)
+      ? `${content.kicker}, explained.`
+      : content.heading,
+    metaDescription: includesInternalMenuLanguage(content.metaDescription)
+      ? `${content.kicker} at House of Rose Aesthetics in Punta Gorda. Learn how it works and the visible concerns it may address.`
+      : content.metaDescription,
+    paragraphs,
+    distinctions: distinctions?.length ? distinctions : undefined,
+    menu: undefined,
+    faqs: faqs?.length ? faqs : undefined,
+    links: links?.length ? links : undefined,
+    faqHeading: faqs?.length && !includesInternalMenuLanguage(content.faqHeading)
+      ? content.faqHeading
+      : undefined,
+  };
+};
+
+export const getServiceEducation = (slug: string): ServiceEducationContent | undefined => {
+  const content = getRawServiceEducation(slug);
+  return content ? preparePublicServiceEducation(content) : undefined;
 };

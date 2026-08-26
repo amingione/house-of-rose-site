@@ -7,9 +7,7 @@ import {
   PUBLIC_DIRECTORY_SERVICES,
   getPublicCollections,
   type ServiceCollection,
-  type Service,
 } from '@/lib/serviceCatalog';
-import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { breadcrumbList, itemListPage } from '@/lib/structuredData';
 
 // ─── Grouped services index ───────────────────────────────────────────────────
@@ -40,10 +38,10 @@ const SERVICE_GROUP_SECTIONS: GroupSection[] = [
   {
     id: 'injectables-structural-enhancements',
     title: 'Injectables',
-    description: 'The injectable menu includes neurotoxins for movement-related lines, hyaluronic-acid fillers for selected areas of lost volume, and injectable PRF services.',
+    description: 'Neurotoxins address movement-related lines. Hyaluronic-acid fillers address selected areas of lost volume. Injectable PRF uses material prepared from a small sample of your own blood.',
     collectionSlugs: ['injectables-bio-fillers'],
     contextualLink: {
-      context: 'Botox and Daxxify are each priced per product-specific unit, but their units cannot be compared or converted.',
+      context: 'Botox and Daxxify are different formulations, and their units are not interchangeable.',
       href: '/compare/daxxify-vs-botox/',
       label: 'Compare Daxxify and Botox',
     },
@@ -51,18 +49,13 @@ const SERVICE_GROUP_SECTIONS: GroupSection[] = [
   {
     id: 'skin-health-corrective-care',
     title: 'Facials & Skin Care',
-    description: 'Browse facials, peels, dermaplaning, microneedling, topical PRF, and the Face Reality Acne Program by the concern or appointment you want to understand.',
+    description: 'Surface exfoliation, chemical peels, dermaplaning, microneedling, topical PRF, and structured acne care work at different depths and address different visible concerns.',
     collectionSlugs: ['facials'],
-    contextualLink: {
-      context: 'Surface appointments, Procell Microneedling with its topical PRF option, and the 12-week Face Reality program follow different paths.',
-      href: '/services/collections/facials/',
-      label: 'Use the Facials & Skin Care guide',
-    },
   },
   {
     id: 'wellness-performance-support',
     title: 'IV Hydration & Weight Management',
-    description: 'IV Hydration offers six base options: one 30-minute appointment and five 45-minute appointments, each with its own price. Weight Management begins with a 40-minute consultation with Diana Morrison, RN; medication and ongoing program prices are confirmed with the practice.',
+    description: 'IV hydration delivers fluid intravenously. GLP-1 weight management uses semaglutide or tirzepatide under medical direction. These are distinct services with different purposes.',
     collectionSlugs: ['iv-hydration-therapy'],
   },
   {
@@ -77,43 +70,46 @@ const collections = getPublicCollections();
 const allServices = [...PUBLIC_DIRECTORY_SERVICES];
 const bySlug = new Map<string, ServiceCollection>(collections.map((c) => [c.slug, c]));
 
-/**
- * Keep canonical decision hubs beside directly bookable services. A hub may not
- * book as one appointment, but it still explains a current service family and
- * gives clients a useful place to compare its verified options.
- */
-const directoryServices = (services: Service[]): Service[] => services;
+interface CollectionDestination {
+  collection: ServiceCollection;
+  /** A collection with exactly one public service links straight to that page — no pointless extra click through an identical-looking collection page. */
+  href: string;
+}
 
 interface ResolvedSection extends GroupSection {
-  collections: { collection: ServiceCollection; services: Service[] }[];
+  destinations: CollectionDestination[];
 }
 
 const sections: ResolvedSection[] = SERVICE_GROUP_SECTIONS.map((section) => ({
   ...section,
-  collections: section.collectionSlugs
+  destinations: section.collectionSlugs
     .map((slug) => bySlug.get(slug))
     .filter((c): c is ServiceCollection => Boolean(c))
-    .map((collection) => ({ collection, services: directoryServices(collection.services) }))
-    .filter(({ services }) => services.length > 0),
-})).filter((section) => section.collections.length > 0);
+    .filter((collection) => collection.services.length > 0)
+    .map((collection) => ({
+      collection,
+      href: collection.services.length === 1
+        ? `/services/${collection.services[0].slug}/`
+        : `/services/collections/${collection.slug}/`,
+    })),
+})).filter((section) => section.destinations.length > 0);
 
 // Anything not mapped above still renders (future collections never silently vanish).
 const mappedSlugs = new Set(SERVICE_GROUP_SECTIONS.flatMap((s) => s.collectionSlugs));
 const collectionUnmappedServices = collections
   .filter((c) => !mappedSlugs.has(c.slug))
-  .flatMap((collection) => directoryServices(collection.services));
+  .flatMap((collection) => collection.services);
 // Non-medical services whose collections are not yet reviewed for a public
-// collection page (see REVIEWED_PUBLIC_COLLECTION_SLUGS). They are still live,
-// bookable appointments, so they are listed here directly rather than becoming
-// orphan pages reachable only from the sitemap.
-const STANDALONE_SERVICE_SLUGS = new Set([
+// collection page (see REVIEWED_PUBLIC_COLLECTION_SLUGS). Keep their treatment
+// pages reachable from the public directory.
+const FEATURED_SERVICE_SLUGS = new Set([
   'bridal-makeup',
   'event-makeup',
   'everyday-makeup',
 ]);
-const standaloneServices = allServices.filter((service) => STANDALONE_SERVICE_SLUGS.has(service.slug));
+const featuredServices = allServices.filter((service) => FEATURED_SERVICE_SLUGS.has(service.slug));
 const unmappedServices = Array.from(
-  new Map([...collectionUnmappedServices, ...standaloneServices].map((service) => [service.slug, service])).values(),
+  new Map([...collectionUnmappedServices, ...featuredServices].map((service) => [service.slug, service])).values(),
 );
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -185,15 +181,15 @@ const breadcrumb = breadcrumbList([
       <div class="max-w-[760px]">
         <p class="kicker mb-4">Movement, volume, color, texture</p>
         <h2 class="font-serif text-[clamp(28px,5vw,44px)] leading-tight text-ink">
-          A moving line, lost fullness, uneven color, and rough texture point to separate services.
+          A moving line, lost fullness, uneven color, and rough texture call for different treatments.
         </h2>
         <p class="mt-5 max-w-[700px] text-[15px] leading-7 text-muted">
-          A line that appears with expression differs from a cheek that looks less full or a patch of uneven color. Each service page explains the relevant appointment details and whether to book online, request a consultation, or call.
+          A line that appears with expression differs from a cheek that looks less full or a patch of uneven color. Start with what you're noticing below, and each path explains how it's actually addressed.
         </p>
       </div>
       <div class="border-l border-gold-metal/25 pl-6">
         <p class="text-[14px] leading-7 text-muted">
-          Prefer to choose by practitioner? The provider directory names each person, their licence type, and the appointments they currently provide.
+          Want to choose by the person who'll treat you instead? Every provider's licence type and current appointments are listed.
         </p>
         <a href="/about/providers/" class="learn-more mt-4 inline-flex">
           Meet the House of Rose team →
@@ -222,46 +218,21 @@ const breadcrumb = breadcrumbList([
               </p>
             )}
           </div>
-          <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-muted">
-            {section.collections.reduce((count, entry) => count + entry.services.length, 0)}
-            {' '}
-            {section.collections.reduce((count, entry) => count + entry.services.length, 0) === 1 ? 'service' : 'services'}
-          </p>
         </div>
 
-        {section.collections.map(({ collection, services }) => (
-          <div class="mb-10 last:mb-0">
-            {section.collections.length > 1 && (
-              <div class="mb-6 flex items-baseline gap-4 border-b border-gold-metal/15 pb-3">
-                <h3 class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink">
-                  <a
-                    href={`/services/collections/${collection.slug}/`}
-                    class="hover:text-gold transition-colors"
-                  >
-                    {collection.title}
-                  </a>
-                </h3>
-                <a
-                  href={`/services/collections/${collection.slug}/`}
-                  class="learn-more ml-auto whitespace-nowrap text-[11px]"
-                >
-                  View {collection.title} →
-                </a>
-              </div>
-            )}
-            {services.map((service) => (
-              <ServiceCard
-                title={service.title}
-                slug={service.slug}
-                image={service.image}
-                bookingMode={service.bookingMode}
-                bookingUrl={service.bookingUrl}
-                variant="row"
-                objectId={service._id}
-              />
-            ))}
-          </div>
-        ))}
+        <div class:list={['grid gap-4', section.destinations.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1']}>
+          {section.destinations.map(({ href }) => (
+            <a
+              href={href}
+              class="group flex items-center justify-between gap-4 border border-gold-metal/20 bg-charcoal-light px-7 py-6 transition-colors hover:border-gold/50 hover:bg-charcoal-lighter"
+            >
+              <span class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink group-hover:text-gold transition-colors">
+                Explore {section.title}
+              </span>
+              <span aria-hidden="true" class="text-gold text-[20px] transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   ))}
@@ -276,33 +247,29 @@ const breadcrumb = breadcrumbList([
           <ServiceCard
             title={service.title}
             slug={service.slug}
-            image={service.image}
-            bookingMode={service.bookingMode}
-            bookingUrl={service.bookingUrl}
             variant="row"
-            objectId={service._id}
           />
         ))}
       </div>
     </section>
   )}
 
-  <!-- Contact CTA -->
-  <section id="book" class="border-t border-gold-metal/10 bg-charcoal px-5 py-[clamp(48px,7vw,72px)] sm:px-6">
+  <!-- One clear next step after the client has explored the treatment information. -->
+  <section id="contact" class="border-t border-gold-metal/10 bg-charcoal px-5 py-[clamp(48px,7vw,72px)] sm:px-6">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">Questions</span>
+      <span class="kicker">Not sure where to start?</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Book online or speak with House of Rose.
+        Start with what you want to change.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        Book online when you know the appointment you want. Call when two services still sound similar or you would rather talk it through before booking.
+        Tell us what you are noticing—movement, volume, pigment, texture, breakouts, or unwanted hair—and we will help you narrow the direction.
       </p>
       <div class="grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
-        <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold" data-global-booking data-cta-location="services-index-final">
-          Book a service
+        <a href="/contact/" class="btn-gold">
+          Contact House of Rose
         </a>
-        <a href="tel:+19414000165" class="btn-outline-gold">
-          Call (941) 400-0165
+        <a href="/about/providers/" class="btn-outline-gold">
+          Meet the team
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

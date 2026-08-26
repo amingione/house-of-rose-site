@@ -1,5 +1,4 @@
 ---
-import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { SHOP_ENABLED } from '@/lib/features';
 import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
 import { structuredTelephone } from '@/lib/structuredData';
@@ -23,17 +22,8 @@ const addressLine2 = addressMatch ? `${addressMatch[2]}, ${addressMatch[3]}` : u
         <p class="font-serif text-[30px] leading-tight text-ivory">{siteFacts.siteName}</p>
         <p class="mt-3 text-[12px] font-semibold tracking-[0.1em] uppercase text-gold">Medical Aesthetics Practice</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a
-            href={GLOSSGENIUS_SERVICES_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-gold"
-            data-global-booking
-            data-cta-location="footer-global"
-          >
-            Book a service
-          </a>
-          <a href="/consultation/" class="btn-outline-white">Send an inquiry</a>
+          <a href="/services/" class="btn-gold">Explore treatments</a>
+          <a href="/contact/" class="btn-outline-white">Contact us</a>
         </div>
       </div>
 
@@ -47,7 +37,7 @@ const addressLine2 = addressMatch ? `${addressMatch[2]}, ${addressMatch[3]}` : u
           <li><a href="/results/">Results</a></li>
           <li><a href="/faq/">FAQ</a></li>
           <li><a href="/contact/">Contact</a></li>
-          <li><a href="/support/">Appointment help</a></li>
+          <li><a href="/support/">Client support</a></li>
           <li><a href="/rent-a-room/">Rent a suite</a></li>
         </ul>
       </nav>

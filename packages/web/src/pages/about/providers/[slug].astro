@@ -65,7 +65,7 @@ const serviceFocusLinks: Readonly<Record<string, string>> = {
   Dermaplaning: '/services/dermaplaning/',
   'BioRePeel add-on': '/services/biorepeel/',
   Facials: '/services/#skin-health-corrective-care',
-  'Standalone BioRePeel': '/services/biorepeel/',
+  BioRePeel: '/services/biorepeel/',
   'Facial waxing': '/services/facial-waxing/',
 };
 interface ProviderClosingLink {
@@ -81,8 +81,8 @@ interface ProviderClosing {
 
 const providerClosings: Readonly<Record<string, ProviderClosing>> = {
   diana: {
-    heading: 'Medical appointments with Diana Morrison, RN.',
-    body: 'She provides neurotoxin and dermal-filler appointments, injectable PRF consultations, six IV hydration options, and GLP-1 weight management. These are distinct medical appointments with their own pricing and booking paths.',
+    heading: 'Medical treatments with Diana Morrison, RN.',
+    body: 'She provides neurotoxins, dermal fillers, injectable PRF, IV hydration, and GLP-1 weight management. Each treatment page explains its purpose and the concerns it may address.',
     links: [
       { href: '/services/injectables-bio-fillers/', label: 'Injectables & Bio-Fillers' },
       { href: '/services/iv-hydration-therapy/', label: 'IV Hydration' },
@@ -99,8 +99,8 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
     ],
   },
   brandy: {
-    heading: 'Looking for a facial or waxing appointment with Brandy, Licensed Esthetician?',
-    body: 'She provides facials, standalone BioRePeel, and facial waxing. BioRePeel is a standalone face appointment; facial waxing is booked by area for the brows, upper lip, or chin. For another facial, contact House of Rose with the appointment you want to discuss.',
+    heading: 'Looking for facial care or waxing with Brandy, Licensed Esthetician?',
+    body: 'She provides facials, BioRePeel, and facial waxing for the brows, upper lip, and chin. Contact House of Rose if you want help deciding which facial fits what you are noticing.',
     links: [
       { href: '/services/biorepeel/', label: 'BioRePeel' },
       { href: '/services/facial-waxing/', label: 'Facial Waxing' },
@@ -109,7 +109,7 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
   },
   aundrea: {
     heading: 'Looking for bridal, event, or everyday makeup?',
-    body: 'Each makeup appointment begins with a call or a message that includes the date and the occasion. Bridal is booked as a longer appointment because it is timed to the schedule of the day.',
+    body: 'Aundrea provides makeup for weddings, events, photo shoots, and everyday wear. Include the date and occasion when you contact House of Rose.',
     links: [
       { href: '/services/bridal-makeup/', label: 'Bridal Makeup' },
       { href: '/services/event-makeup/', label: 'Event Makeup' },
@@ -118,8 +118,8 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
   },
 };
 const providerClosing = providerClosings[profile.slug] ?? {
-  heading: `Ask about an appointment with ${profile.publicName}.`,
-  body: 'Choose a listed service when online booking is available. For a consultation-only or phone-first appointment, contact House of Rose with the service name and provider.',
+  heading: `Explore treatments with ${profile.publicName}.`,
+  body: 'Read the treatment pages for the services this provider offers, or contact House of Rose with what you want to change.',
   links: [
     { href: '/services/', label: 'View current services' },
     { href: '/contact/', label: 'Ask House of Rose' },

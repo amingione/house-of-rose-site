@@ -138,6 +138,6 @@ copy polish, every time.
 - `docs/GOVERNANCE/internal_only/compliance/AD-COMPLIANCE-RUNBOOK.md` — pre-launch gate, platform lockdown, ad archive, review policy.
 - `docs/GOVERNANCE/internal_only/compliance/grasshopper-toll-free-guidelines.md` — pending toll-free SMS verification package.
 - `docs/SEO-AEO-PLAYBOOK.md` — content strategy, the 7 page types, the publish checklist.
-- `docs/CONTENT-MODEL-MAP.md` — page type → Sanity doc → route → JSON-LD → GROQ.
+- `docs/CONTENT-MODEL-MAP.md` — page type → active content owner → route → JSON-LD → data path. Treatments/services use the local Astro catalog, not Sanity documents.
 - Schemas that encode these guardrails: `treatmentPackage` (`candidacyNote`, `outcome`),
   `caseStudy` (`consentGiven`).

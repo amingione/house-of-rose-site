@@ -37,12 +37,11 @@ const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
 const services = pkg.servicesIncluded ?? [];
 // House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md).
-// This page names the package and its structure; current pricing is
-// confirmed by phone or at booking, never rendered here.
+// This page names the package and its structure without rendering commerce data.
 const isFaceRealityProgram = pkg.slug === FACE_REALITY_PROGRAM.packageSlug;
 const serviceNames = services.map((service) => service.title).join(', ');
 const summary = isFaceRealityProgram
-  ? `${FACE_REALITY_PROGRAM.summary} Ask about current pricing when you book.`
+  ? FACE_REALITY_PROGRAM.summary
   : serviceNames
   ? `${pkg.title} includes ${serviceNames}.`
   : `${pkg.title} at House of Rose Aesthetics in Punta Gorda, Florida.`;
@@ -77,7 +76,9 @@ const breadcrumbSchema = breadcrumbList([
 const pageTitle = isFaceRealityProgram
   ? 'Acne Bootcamp: 12-Week Face Reality Program'
   : `${pkg.title} | Treatment Package`;
-const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescription : summary;
+const pageDescription = isFaceRealityProgram
+  ? 'Learn how the Face Reality Acne Bootcamp connects in-studio care every two weeks with daily home care across twelve weeks.'
+  : summary;
 ---
 
 <BaseLayout
@@ -113,13 +114,13 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
         <div>
           <span class="kicker">The program</span>
           <h2 class="mt-3 font-serif text-[clamp(30px,5vw,46px)] leading-tight text-ink">
-            What the program price represents.
+            What the twelve-week program includes.
           </h2>
           <p class="mt-5 max-w-[540px] text-[16px] leading-[1.75] text-muted-strong">
-            {FACE_REALITY_PROGRAM.programOnly} The program price covers the complete 12-week program, not one visit. Ask about current pricing when you book.
+            {FACE_REALITY_PROGRAM.programOnly} The program connects in-studio care every two weeks with daily home care between visits.
           </p>
           <a href="/services/face-reality-acne-program/" class="learn-more mt-7 inline-block hover:text-gold">
-            Consultation and program details
+            See how the program works
           </a>
         </div>
         <div class="border-y border-gold-metal/15">
@@ -133,9 +134,9 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
 
       <div class="mx-auto mt-12 grid max-w-[1120px] gap-px overflow-hidden border border-gold-metal/10 bg-gold-metal/10 md:grid-cols-2">
         <div class="bg-charcoal p-7 md:p-9">
-          <h3 class="font-serif text-[24px] leading-tight text-ink">What the consultation covers.</h3>
+          <h3 class="font-serif text-[24px] leading-tight text-ink">How the program begins.</h3>
           <p class="mt-4 text-[15px] leading-[1.75] text-muted">
-            The 60-minute Acne Bootcamp Consultation can be booked directly. You and Amber Mingione, Licensed Esthetician, discuss what your skin is doing now, the home care purchased for the program, and whether you want to continue into the complete 12 weeks. Ask about current pricing when you book.
+            You and Amber Mingione, Licensed Esthetician, review what your skin is doing now, the home care used during the program, and whether the complete twelve-week structure fits your needs.
           </p>
         </div>
         <div class="bg-charcoal p-7 md:p-9">
@@ -192,29 +193,28 @@ const pageDescription = isFaceRealityProgram ? FACE_REALITY_PROGRAM.metaDescript
     </section>
   )}
 
-  <!-- Booking CTA -->
-  <section id="book" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
+  <section id="contact" class="bg-charcoal py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">{isFaceRealityProgram ? 'First appointment' : 'Questions'}</span>
+      <span class="kicker">{isFaceRealityProgram ? 'Face Reality Acne Bootcamp' : 'Questions'}</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        {isFaceRealityProgram ? 'Begin with the Acne Bootcamp Consultation.' : `Ask about ${pkg.title}.`}
+        {isFaceRealityProgram ? 'See whether the twelve-week structure fits your skin.' : `Ask about ${pkg.title}.`}
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-6 leading-relaxed">
         {isFaceRealityProgram
-          ? 'The directly bookable consultation lasts 60 minutes. If you continue, the complete 12-week program includes its in-studio visits; home-care products are purchased separately. Ask about current pricing when you book.'
-          : 'Call us or request a consultation.'}
+          ? 'The complete program combines in-studio care every two weeks with daily home care. Home-care products are purchased separately.'
+          : 'Call or contact House of Rose with your question.'}
       </p>
       <p class="text-muted text-[11px] leading-relaxed max-w-[560px] mx-auto mb-10">
         {isFaceRealityProgram
-          ? 'The program and its timing are confirmed after the consultation. Individual outcomes vary.'
+          ? 'Individual outcomes vary with skin condition, consistency, and adherence to the program.'
           : 'Package availability and timing are confirmed when you contact the practice. Individual outcomes vary.'}
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="tel:+19414000165" class="btn-outline-gold">
           (941) 400-0165
         </a>
-        <a href={isFaceRealityProgram ? '/services/face-reality-acne-program/' : '/consultation/'} class="btn-gold">
-          {isFaceRealityProgram ? 'See consultation booking' : 'Request a Consultation'}
+        <a href={isFaceRealityProgram ? '/services/face-reality-acne-program/' : '/contact/'} class="btn-gold">
+          {isFaceRealityProgram ? 'Understand the program' : 'Contact House of Rose'}
         </a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">

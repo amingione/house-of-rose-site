@@ -5,7 +5,6 @@
  */
 
 import { urlFor } from '@/lib/sanity';
-import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import type { SanityImage } from '@/lib/queries';
 import {
   getCuratedServiceImage,
@@ -16,26 +15,16 @@ import {
   serviceCardImageUsesContain,
   serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
-import type { BookingMode } from '@/lib/booking';
-import BookingLink from '@/components/BookingLink.astro';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 
 interface Props {
   title: string;
   slug: string;
   image?: SanityImage;
-  bookingMode?: BookingMode;
-  bookingUrl?: string;
   variant?: 'grid' | 'row';
-  /**
-   * Sanity _id of the service this card represents. When provided, the card is
-   * wired for Visual Editor click-to-edit (rescopes to this document). Omit for
-   * hardcoded/non-Sanity usage (e.g. the homepage) — annotations stay inert.
-   */
-  objectId?: string;
 }
 
-const { title, slug, image, bookingMode, bookingUrl, variant = 'grid', objectId } = Astro.props;
+const { title, slug, image, variant = 'grid' } = Astro.props;
 const curatedImage = getCuratedServiceImage(slug);
 const curatedImageAlt = getCuratedServiceImageAlt(slug);
 const containImage = serviceImageUsesContain(slug);
@@ -48,14 +37,10 @@ const imageSrc = curatedImage ?? (image
   : getServiceFallbackImage(slug));
 // Always lead with the technical/industry-standard name — matches what people search for.
 const headline = title;
-// Visual Editor annotations — only emitted when an objectId is supplied.
-const objAttrs = objectId ? sbObjectId(objectId) : {};
-const headlinePath = sbFieldPath('title');
-const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
 ---
 
 {variant === 'grid' ? (
-  <article class="service-card group" {...objAttrs}>
+  <article class="service-card group">
     <a href={`/services/${slug}/`} class="block">
     <div class:list={['aspect-square overflow-hidden bg-charcoal-lighter mb-4', containImage && 'p-8']}>
         <img
@@ -71,20 +56,13 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
           ]}
         />
       </div>
-    <span class="service-name" {...fp(headlinePath)}>{headline}</span>
+    <span class="service-name">{headline}</span>
     {cardSummary && <p class="service-desc mt-1">{cardSummary}</p>}
+    <span class="learn-more mt-4 inline-flex group-hover:text-gold">Learn about {title} →</span>
     </a>
-    <BookingLink
-      slug={slug}
-      bookingMode={bookingMode}
-      bookingUrl={bookingUrl}
-      location="service-card-grid"
-      class="service-booking-link"
-      accessibleContext={title}
-    />
   </article>
 ) : (
-  <article class="service-row group border-b border-ivory/10 py-5" {...objAttrs}>
+  <article class="service-row group border-b border-ivory/10 py-5">
     <div class:list={[
       'grid gap-y-2 sm:items-center',
       rowImage
@@ -112,7 +90,7 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
         </a>
       )}
       <div class="min-w-0">
-        <h3 class="mb-1 font-serif text-[clamp(20px,2.4vw,27px)] leading-tight text-ink" {...fp(headlinePath)}>
+        <h3 class="mb-1 font-serif text-[clamp(20px,2.4vw,27px)] leading-tight text-ink">
           <a href={`/services/${slug}/`} class="transition-colors hover:text-gold">{headline}</a>
         </h3>
         {cardSummary && <p class="max-w-[720px] text-[13px] leading-relaxed text-muted sm:text-sm">{cardSummary}</p>}
@@ -121,14 +99,12 @@ const fp = (attrs: Record<string, string>) => (objectId ? attrs : {});
         'flex flex-wrap items-center gap-x-5 gap-y-1 sm:row-start-1 sm:flex-col sm:items-end sm:gap-1',
         rowImage ? 'col-start-2 sm:col-start-3' : 'col-start-1 sm:col-start-2',
       ]}>
-        <BookingLink
-          slug={slug}
-          bookingMode={bookingMode}
-          bookingUrl={bookingUrl}
-          location="service-card-row"
+        <a
+          href={`/services/${slug}/`}
           class="inline-flex min-h-[44px] items-center text-[12px] font-semibold text-ivory underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-gold"
-          accessibleContext={title}
-        />
+        >
+          Learn more
+        </a>
       </div>
     </div>
   </article>

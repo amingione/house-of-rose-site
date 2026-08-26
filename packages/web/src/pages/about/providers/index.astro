@@ -18,7 +18,7 @@ const providers = resolvePublicProviderProfiles(sanityProviders);
 const sanityProviderSlugs = new Set(sanityProviders.map((provider) => provider.slug));
 const verifiedProvidersBySlug = new Map(PROVIDER_PROFILE_FALLBACKS.map((provider) => [provider.slug, provider]));
 const heading = 'The people behind House of Rose.';
-const intro = 'You should be able to see who provides what before you book. Diana Morrison, RN provides injectables, IV hydration, and medical weight-management appointments. Amber Mingione, Licensed Esthetician works with Microneedling, topical PRF, Glo2Facial, and dermaplaning. Brandy, Licensed Esthetician provides facials, standalone BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup.';
+const intro = 'You should be able to see who provides each treatment and understand the role behind the credential. Diana Morrison, RN provides injectables, IV hydration, and medical weight management. Amber Mingione, Licensed Esthetician works with Microneedling, topical PRF, Glo2Facial, and dermaplaning. Brandy, Licensed Esthetician provides facials, BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup.';
 const title = ABOUT_PAGE_FALLBACK.providersSeo?.metaTitle;
 const description = ABOUT_PAGE_FALLBACK.providersSeo?.metaDescription;
 
@@ -141,10 +141,10 @@ const directorySchema = itemListPage(
         </div>
         <div class="space-y-5 text-[15px] leading-[1.8] text-muted">
           <p>
-            When a service has an assigned practitioner, that person’s name and licence type appear with the service. That is the person associated with the appointment.
+            When a treatment has an assigned practitioner, that person’s name and licence type appear with it. That is the person who provides the treatment.
           </p>
           <p>
-            Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatment appointments at House of Rose. Makeup artistry is a non-medical service.
+            Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatments at House of Rose. Makeup artistry is a non-medical service.
           </p>
           <p class="border-t border-walnut/15 pt-5 text-[13px] font-semibold tracking-[0.03em] text-muted-strong">
             Medical Director: Joshua Shaw, MD · FL Lic. ME136232

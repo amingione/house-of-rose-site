@@ -35,8 +35,9 @@ language. Compliance rules are active; any voice examples inherited from the rej
 
 ## 3. Pricing → `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`
 
-GlossGenius is commerce truth. The canonical file above is its staging mirror; Sanity is display and
-Notion is strategy/competitive context. The old duplicate-pricing conflict is closed: no sibling
+GlossGenius is commerce truth. The canonical file above is its staging mirror; local Astro records
+and reviewed education files own the website treatment/service layer. Sanity owns non-service content
+only, and Notion is strategy/competitive context. The old duplicate-pricing conflict is closed: no sibling
 `pricing/ALL-SERVICES-PRICING.MD` exists. Do not recreate one or reopen the resolved conflict.
 
 ## 4. Treatment research → `docs/GOVERNANCE/internal_only/research/`

@@ -3,8 +3,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, service } from '@/lib/structuredData';
-import BookingLink from '@/components/BookingLink.astro';
-import { SKIN_ANALYSIS_BOOKING_URL } from '@/lib/booking';
 
 const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -50,12 +48,12 @@ const concernLinks: SkinAnalysisConcern[] = [
 
 const faqs: SkinAnalysisFaq[] = [
   {
-    q: 'How much is a skin analysis at House of Rose?',
-    a: `Ask about current pricing when you book the Skin Analysis & Consultation appointment.`,
+    q: 'How can I ask about skin analysis pricing?',
+    a: 'Call House of Rose or send a message with “Skin Analysis” as the topic. Service pricing is not published on this website.',
   },
   {
     q: 'Do I need a skin analysis before treatment?',
-    a: 'No. It is not required for every appointment. The analysis can be helpful when you are unsure where to begin or want a clearer baseline before choosing a skin treatment.',
+    a: 'No. It is not required before every treatment. The analysis can be helpful when you are unsure where to begin or want a clearer visual baseline.',
   },
   {
     q: 'How long does it take?',
@@ -91,10 +89,6 @@ const serviceSchema = service(
     url: canonicalURL.toString(),
     image: new URL('/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp', siteUrl).toString(),
     serviceType: 'Multi-spectrum skin imaging',
-    // House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
-    // "Public website pricing is NEVER permitted"). No minPrice is passed here,
-    // so the resulting Offer carries a booking URL only, never priceSpecification.
-    offerUrl: SKIN_ANALYSIS_BOOKING_URL,
   },
   siteUrl,
 );
@@ -118,7 +112,7 @@ const serviceSchema = service(
     description="Multi-spectrum photographs make pigmentation, texture, pores, fine lines, and visible sun exposure easier to examine before you choose a skin service."
     size="small"
     showCTA={true}
-    ctaPrimary={{ text: 'Book a Skin Analysis', href: SKIN_ANALYSIS_BOOKING_URL }}
+    ctaPrimary={{ text: 'Ask about Skin Analysis', href: '#consultation' }}
     ctaSecondary={{ text: 'View Services', href: '/services/' }}
     backgroundImage="/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp"
     backgroundSrcset="/images/editorial/skin-analysis/skin-texture-study-v1-800.webp 800w, /images/editorial/skin-analysis/skin-texture-study-v1-1536.webp 1536w"
@@ -129,12 +123,12 @@ const serviceSchema = service(
   <!-- ── WHAT IT IS ───────────────────────────────────────────────── -->
   <section data-skin-analysis-overview class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
     <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-      <span class="kicker">The appointment</span>
+      <span class="kicker">The analysis</span>
       <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
-        A short appointment with three views.
+        Three views of the skin.
       </h2>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        The Skin Analysis & Consultation appointment records standard, cross-polarized, and UV photographs. Taking the images takes a few minutes; the rest of the visit is used to review what appears in them. Ask about current pricing when you book.
+        Skin Analysis records standard, cross-polarized, and UV photographs. Taking the images takes a few minutes; the rest of the time is used to review what appears in them.
       </p>
       <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]">
         Skin imaging is optional—not required before another service. The photographs provide a consistent visual baseline, not a medical diagnosis.
@@ -204,7 +198,7 @@ const serviceSchema = service(
   <section data-skin-analysis-steps class="bg-charcoal-light py-[clamp(48px,7vw,96px)] px-6">
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[640px] mb-12">
-        <span class="kicker">During the appointment</span>
+        <span class="kicker">During the analysis</span>
         <h2 class="font-serif text-[clamp(24px,4vw,40px)] text-ink mt-2">
           What happens while we take and review the images.
         </h2>
@@ -229,7 +223,7 @@ const serviceSchema = service(
         Continue by concern.
       </h2>
       <p class="text-muted text-[15px] leading-[1.8] max-w-[620px] mx-auto mb-10">
-        Read about the concern you notice, or bring your photographs and questions to the appointment.
+        Read about the concern you notice, or use the photographs as a starting point for your questions.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         {concernLinks.map((c) => (
@@ -246,7 +240,7 @@ const serviceSchema = service(
     <div class="max-w-[760px] mx-auto">
       <span class="kicker">Questions</span>
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-10">
-        Before you book.
+        What to know.
       </h2>
       <div class="divide-y divide-white/8 border-t border-ink/8">
         {faqs.map((faq) => (
@@ -264,10 +258,10 @@ const serviceSchema = service(
     <div class="max-w-[640px] mx-auto text-center">
       <span class="kicker">Skin analysis</span>
       <h2 id="skin-analysis-form-heading" class="font-serif text-[clamp(26px,4.5vw,42px)] text-ink leading-tight mt-2 mb-5">
-        Request a skin imaging appointment.
+        Ask about skin imaging.
       </h2>
       <p class="text-muted text-[15px] max-w-[460px] mx-auto mb-9 leading-[1.8]">
-        Ask about current pricing when you book the Skin Analysis & Consultation appointment. The form sends a request and does not hold an appointment time. Use the online booking option when you want to reserve an available time immediately.
+        Send a brief request if you want to know whether Skin Analysis is a useful starting point for what you are noticing.
       </p>
       <p class="text-gold text-[11px] font-medium tracking-[0.2em] uppercase -mt-5 mb-8">
         In studio · Punta Gorda
@@ -299,16 +293,7 @@ const serviceSchema = service(
         <input type="hidden" name="service-interest" value="Advanced Skin Imaging & Analysis" />
         <button type="submit" class="btn-gold w-full">Send a Skin Analysis Request</button>
         <p class="text-muted text-[12px] text-center leading-[1.6]">
-          Prefer to reserve online?
-          <BookingLink
-            slug="skin-analysis"
-            bookingMode="direct"
-            bookingUrl={SKIN_ANALYSIS_BOOKING_URL}
-            location="skin_analysis_form"
-            class="text-gold underline underline-offset-2"
-            label="Book a skin analysis"
-          />.
-          We only use your details to arrange your analysis. Read our
+          We only use your details to respond to your request. Read our
           <a href="/privacy-policy/" class="text-gold underline underline-offset-2">privacy policy</a>.
         </p>
       </form>

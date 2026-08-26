@@ -1,40 +1,32 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
 import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
-import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
-import { SKIN_RENEWAL_SERVICE_EDUCATION } from '@/lib/skinRenewalServiceEducation';
-import { WAXING_SERVICE_EDUCATION } from '@/lib/waxingServiceEducation';
-import { WEIGHT_MANAGEMENT_EDUCATION } from '@/lib/weightManagementEducation';
 
 const phoneDisplay = '(941) 400-0165';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
 const localVisitText = 'Open Monday through Friday, 9 AM–5 PM.';
-const [topicalPrf, , bioFillerPrf] = SKIN_RENEWAL_SERVICE_EDUCATION.prf.menu.items;
-const hydrationIv = VERIFIED_IV_MENU[0];
-
 const broaderPracticeServices = [
   {
     label: 'IV hydration',
-    title: `${VERIFIED_IV_MENU.length} options, with the details visible`,
-    body: `${hydrationIv.name} is ${hydrationIv.durationMinutes} minutes. The other five appointments are 45 minutes, each priced separately. Diana Morrison, RN provides the IV appointments. Ask about current pricing when you book.`,
+    title: 'Hydration and nutrient formulations with an RN',
+    body: 'Diana Morrison, RN provides IV hydration. The treatment page explains the role of the IV and the questions worth asking before deciding whether it fits your needs.',
     href: '/services/iv-hydration-therapy/',
-    cta: 'See the IV menu',
+    cta: 'Learn about IV hydration',
   },
   {
     label: 'Weight management',
     title: 'A conversation before a program',
-    body: `The ${WEIGHT_MANAGEMENT_EDUCATION.consultation.durationMinutes}-minute GLP-1 consultation with Diana Morrison, RN has its own listing. Medication and ongoing program costs are confirmed directly with the practice.`,
+    body: 'Medical weight management is an ongoing program, not a one-time treatment. The page explains the role of semaglutide and tirzepatide and the questions that shape the conversation.',
     href: '/services/glp-1-weight-management/',
-    cta: 'Read about the consultation',
+    cta: 'Learn about weight management',
   },
   {
     label: 'Waxing',
-    title: 'Facial and body appointments by area',
-    body: `Waxing is booked by area across ${WAXING_SERVICE_EDUCATION.waxing.menu.items.length} appointments. Four cover the chin, upper lip, and brows; seven cover underarms, bikini line, chest, back, full leg, partial leg, and full arm.`,
+    title: 'Facial and body waxing by area',
+    body: 'Facial waxing covers the brows, upper lip, and chin. Body waxing is available for selected areas including the underarms, bikini line, chest, back, legs, and arms.',
     href: '/services/waxing/',
-    cta: 'See all 11 appointments',
+    cta: 'Explore waxing',
   },
 ] as const;
 
@@ -77,7 +69,7 @@ const treatmentCategories = [
       title={'A Punta Gorda practice with\nmore than one reason to visit.'}
       description={'House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice.'}
       location="Punta Gorda, Florida"
-      primaryCta="Book an appointment"
+      primaryCta="Start a conversation"
       secondaryCta="Explore services"
     />
 
@@ -124,9 +116,9 @@ const treatmentCategories = [
         </div>
         <div class="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-walnut/15 pt-7">
           <p class="max-w-[680px] text-[14px] leading-[1.7] text-muted">
-            The complete menu also includes body services, IV hydration, GLP-1 weight management, waxing, and makeup.
+            House of Rose also offers body services, IV hydration, GLP-1 weight management, waxing, and makeup.
           </p>
-          <a href="/services/" class="learn-more mt-0">Browse the complete menu <span aria-hidden="true">→</span></a>
+          <a href="/services/" class="learn-more mt-0">Explore all treatments <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -137,15 +129,15 @@ const treatmentCategories = [
           <div>
             <span class="kicker">Beyond skin and injectables</span>
             <h2 class="max-w-[610px] font-serif text-[clamp(38px,5.5vw,60px)] leading-[1.02] tracking-[-0.02em] text-ink">
-              One address. Several very different appointments.
+              One address. Several very different reasons to visit.
             </h2>
           </div>
           <div class="max-w-[690px] lg:pt-8">
             <p class="font-serif text-[clamp(23px,3vw,32px)] leading-[1.25] text-ink">
-              A skin appointment, an IV, a brow wax, and a fitted piece of jewelry are four very different reasons to walk through the same door.
+              Skin care, an IV, a brow wax, and a fitted piece of jewelry are four very different reasons to walk through the same door.
             </p>
             <p class="mt-6 text-[16px] leading-[1.8] text-muted">
-              Each service page names the provider, appointment length, current price, and whether to book online, call, or send an inquiry.
+              Each treatment page explains what the service is for, who provides it, and how it differs from the nearby alternatives.
             </p>
           </div>
         </div>
@@ -185,10 +177,10 @@ const treatmentCategories = [
           </div>
           <div class="max-w-[690px] lg:pt-8">
             <p class="font-serif text-[clamp(23px,3vw,32px)] leading-[1.25] text-ivory">
-              PRF is a platelet concentrate prepared from a small sample of your own blood. The way it is used changes what the appointment is for.
+              PRF is a platelet concentrate prepared from a small sample of your own blood. The way it is used changes its role in treatment.
             </p>
             <p class="mt-6 text-[16px] leading-[1.8] text-ivory/72">
-              At House of Rose, topical PRF is used with microneedling, while under-eye PRF and PRF Bio-Filler are injectable appointments provided by Diana Morrison, RN.
+              At House of Rose, topical PRF is used with microneedling, while under-eye PRF and PRF Bio-Filler are injected by Diana Morrison, RN.
             </p>
           </div>
         </div>
@@ -200,37 +192,28 @@ const treatmentCategories = [
             <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
               PRF is applied to the skin surface during an eligible microneedling service. It is not injected.
             </p>
-            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
-              {topicalPrf.durationMinutes} minutes · ask about current pricing
-            </p>
             <a href="/services/microneedling/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
               Microneedling with topical PRF
             </a>
           </article>
           <article class="py-9 lg:px-9">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Under-eye appointment</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Under-eye use</p>
             <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">Injectable PRF</h3>
             <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
-              Diana Morrison, RN provides the under-eye PRF appointment.
-            </p>
-            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
-              Call to confirm the appointment length and current pricing
+              Diana Morrison, RN provides injectable PRF for the under-eye area.
             </p>
             <a href="/services/prf-under-eyes/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
               Read about PRF under eyes
             </a>
           </article>
           <article class="py-9 lg:pl-9">
-            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Bio-Filler appointment</p>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Bio-Filler use</p>
             <h3 class="mt-5 font-serif text-[29px] leading-[1.1] text-ivory">PRF Bio-Filler</h3>
             <p class="mt-5 text-[15px] leading-[1.75] text-ivory/72">
-              Diana Morrison, RN provides PRF Bio-Filler as an injectable appointment.
-            </p>
-            <p class="mt-4 text-[13px] font-semibold leading-[1.65] text-ivory/90">
-              {bioFillerPrf.durationMinutes} minutes · ask about current pricing
+              Diana Morrison, RN provides PRF Bio-Filler as an injectable treatment.
             </p>
             <a href="/services/prf-injections/" class="mt-6 inline-flex text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold">
-              Injectable PRF appointments
+              Learn about injectable PRF
             </a>
           </article>
         </div>
@@ -239,7 +222,7 @@ const treatmentCategories = [
           <div class="max-w-[780px]">
             <h3 class="font-serif text-[25px] text-ivory">PRF and dermal filler use different materials.</h3>
             <p class="mt-3 text-[15px] leading-[1.75] text-ivory/72">
-              PRF is an autologous platelet concentrate. Hyaluronic-acid dermal filler is a manufactured injectable gel. The material, preparation, and purpose of the appointment all differ.
+              PRF is an autologous platelet concentrate. Hyaluronic-acid dermal filler is a manufactured injectable gel. Their material, preparation, and purpose all differ.
             </p>
           </div>
           <div class="flex flex-wrap gap-x-7 gap-y-3 text-[13px] font-semibold">
@@ -301,13 +284,13 @@ const treatmentCategories = [
             Who you trust with your face matters.
           </h2>
           <p class="mt-7 text-[17px] leading-[1.8] text-ivory/78">
-            Know who provides your appointment before you book it. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, and makeup artistry.
+            Know who provides each treatment. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, and makeup artistry.
           </p>
           <div class="mt-7 grid gap-3 border-t border-ivory/20 pt-6 text-[13px] leading-[1.6]">
             <a href="/about/providers/brandy/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">
               <span>
                 <strong class="font-semibold">Brandy, Licensed Esthetician</strong><br />
-                <span class="text-ivory/80 group-hover:text-gold">Facials · Standalone BioRePeel · Facial waxing</span>
+                <span class="text-ivory/80 group-hover:text-gold">Facials · BioRePeel · Facial waxing</span>
               </span>
               <span aria-hidden="true">→</span>
             </a>
@@ -320,7 +303,7 @@ const treatmentCategories = [
             </a>
           </div>
           <p class="mt-7 border-t border-ivory/20 pt-6 text-[14px] leading-[1.75] text-ivory/72">
-            Medical direction and the person providing your appointment are different roles. Joshua Shaw, MD provides medical direction and protocol supervision; he does not perform treatment appointments at House of Rose. The practitioner named for the service is the person associated with your appointment.
+            Medical direction and treatment delivery are different roles. Joshua Shaw, MD provides medical direction and protocol supervision; he does not perform treatments at House of Rose. The practitioner named on a treatment page is the person who provides it.
           </p>
           <p class="mt-7 border-t border-ivory/20 pt-6 text-[13px] font-semibold tracking-[0.02em] text-ivory">
             Medical Director: Joshua Shaw, MD · FL Lic. ME136232
@@ -431,18 +414,18 @@ const treatmentCategories = [
     <section class="on-dark bg-walnut px-6 py-[clamp(72px,9vw,112px)]">
       <div class="mx-auto grid max-w-[1240px] gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-20">
         <div>
-          <span class="kicker">Appointments &amp; inquiries</span>
+          <span class="kicker">A place to begin</span>
           <h2 class="max-w-[700px] font-serif text-[clamp(40px,6vw,64px)] leading-[1.02] tracking-[-0.02em] text-ivory">
-            Book the appointment—or start a conversation.
+            Start with the change you want to understand.
           </h2>
           <p class="mt-6 max-w-[650px] text-[17px] leading-[1.75] text-muted">
-            Reserve a listed service online. For a question or help comparing the current options, send an inquiry or call the practice.
+            Explore the treatment pages, compare nearby options, or contact the practice with the detail you keep noticing.
           </p>
           <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={GLOSSGENIUS_SERVICES_URL} target="_blank" rel="noopener noreferrer" class="btn-gold sm:min-w-[210px]" data-global-booking data-cta-location="homepage-final">
-              Book a service
+            <a href="/services/" class="btn-gold sm:min-w-[210px]" data-cta-location="homepage-final">
+              Explore treatments
             </a>
-            <a href="/consultation/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-final-inquiry">Send an inquiry</a>
+            <a href="/contact/" class="btn-outline-white sm:min-w-[190px]" data-cta-location="homepage-final-inquiry">Contact House of Rose</a>
           </div>
           <a href={phoneHref} class="mt-6 inline-flex items-center gap-3 text-[13px] font-semibold text-ivory underline decoration-ivory/35 underline-offset-4 hover:text-gold" data-cta-location="homepage-final-call">
             Call {phoneDisplay} <span aria-hidden="true">→</span>

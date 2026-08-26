@@ -1,5 +1,4 @@
 ---
-import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { LOCAL_BUSINESS } from '@/lib/structuredData';
 
 interface Props {
@@ -102,11 +101,8 @@ const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
 
           <div class="hero-ctas mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
-              href={GLOSSGENIUS_SERVICES_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contact/"
               class="btn-gold pointer-events-auto sm:min-w-[220px]"
-              data-global-booking
               data-cta-location="homepage-hero"
             >
               {primaryCta}

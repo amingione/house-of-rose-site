@@ -44,15 +44,16 @@ platform settings, not recurring marketing copy. The content strategy targets tw
 
 ## 2. The 7 page types (the canonical framework)
 
-Every new intent-led treatment/SEO page uses one of these seven types. Each maps to a Sanity document
-type, an Astro route, and a required JSON-LD contract — all defined in
-`docs/CONTENT-MODEL-MAP.md`. **Do not invent ad-hoc page shapes.** If a request doesn't fit a
-type, extend the type's schema, don't bypass it. Identity, legal, booking, and utility routes remain
-supporting page types documented in the map.
+Every new intent-led treatment/SEO page uses one of these seven types. Each maps to its active content
+owner, an Astro route, and a required JSON-LD contract — all defined in
+`docs/CONTENT-MODEL-MAP.md`. **Do not invent ad-hoc page shapes.** Treatments/services and service
+collections are no longer Sanity documents; extend the local typed service model when the service
+itself changes. Non-service SEO records may still be Sanity-owned as documented in the map. Identity,
+legal, booking, and utility routes remain supporting page types.
 
 1. **Service page** — what the treatment is and the verified details that answer its search intent;
    process, candidacy, and FAQs appear only when relevant.
-   → `service` doc, `/services/[slug]`. Hubs answer the question a client googles;
+   → local `serviceCatalog.ts` record, `/services/[slug]`. Hubs answer the question a client googles;
    treatments are the specific bookable appointments beneath them.
 2. **Pricing page** — the verified current amount or range and what that figure represents. Explain
    price variability only when reconciled menu facts support it; do not manufacture generic cost factors.
@@ -100,10 +101,10 @@ Face Reality 12-Week Program              → treatmentPackage → /packages/fac
 4. **Source-worthiness over volume.** One specific, verified, consent-backed page beats ten thin
    ones. Include a mechanism, candidacy, contraindication, or timeframe only when it answers the
    page intent and the fact is supported. Do not turn clinical process into the default voice.
-5. **Honest pricing.** Publish only prices reconciled to the current GlossGenius menu through
-   `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD`. Sanity display fields are not
-   commerce authority. If a price structure is unresolved, omit it or say the current price must be
-   confirmed with House of Rose; never infer that a consultation is required.
+5. **Honest pricing.** Treatment/service prices remain internal and do not publish on the website.
+   GlossGenius and `docs/GOVERNANCE/internal_only/services/ALL-SERVICES-PRICING.MD` supply private
+   commerce truth. Public cost guides may explain the type of pricing structure and direct the reader
+   to House of Rose for the current amount; Sanity is never treatment or commerce authority.
 6. **Headings should sound natural.** Use a question-shaped `<h2>`/`<h3>` when it reflects something a
    client actually asks and the section answers it directly. Otherwise use a specific editorial
    heading. Do not turn every section into an FAQ or repeat the same question-and-answer cadence across
@@ -153,7 +154,7 @@ AEO rewards a tight topical graph. When you publish a page, wire it in both dire
 
 Before considering any content page "done", confirm:
 
-- [ ] It is one of the 7 canonical page types (correct Sanity doc type + route).
+- [ ] It is one of the 7 canonical page types with the correct active content owner and route; treatments/services use the local Astro catalog, never a Sanity document.
 - [ ] The opening makes the page's purpose and main answer clear without relying on a formula.
 - [ ] Named entities (treatment, brand, body area, city) are explicit.
 - [ ] Locally grounded with real NAP where relevant — nothing invented.

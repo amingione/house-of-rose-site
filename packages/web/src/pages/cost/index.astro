@@ -5,8 +5,6 @@ import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_COST_GUIDES_QUERY, type CostGuide } from '@/lib/queries';
 import { breadcrumbList, itemList } from '@/lib/structuredData';
-import { getVerifiedCostFact } from '@/lib/costFacts';
-import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { getCostGuideServiceSlug, getPublicServiceBySlug } from '@/lib/serviceCatalog';
 
 const guideData = await sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY);
@@ -34,7 +32,7 @@ const guidesListSchema = guides.length
 
 <BaseLayout
   title="Treatment Cost Guides | House of Rose Aesthetics, Punta Gorda FL"
-  description="Compare current House of Rose prices for Botox, fillers, Forma, Lumecca, Microneedling, BioRePeel, and Morpheus8, with the facts behind each amount."
+  description="Contact House of Rose for current treatment pricing, or explore the treatment pages to understand the options before you call."
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
   {guidesListSchema && <SchemaMarkup item={guidesListSchema} slot="head" />}
@@ -42,29 +40,21 @@ const guidesListSchema = guides.length
   <section class="bg-charcoal pt-32 pb-12 px-6">
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Cost guides</span>
-      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">What does it cost?</h1>
+      <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">Questions about treatment cost?</h1>
       <p class="text-ink/80 text-[16px] max-w-[680px] leading-relaxed">
-        See the current price first, then what the number represents: per-unit pricing, a product or treatment-area range, a standalone appointment, a series, or a bundle. When a standalone price is not listed, the guide identifies what is available and links to the service.
+        Service pricing is not published on this website. Explore the treatment pages to understand the differences, then contact House of Rose with the treatment name for current cost information.
       </p>
     </div>
   </section>
 
   <section class="bg-charcoal-light py-14 px-6">
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-      {guides.map((g) => {
-        const fact = getVerifiedCostFact(g.slug);
-        return (
+      {guides.map((g) => (
           <article class="bg-charcoal transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
-            <a href={`/cost/${g.slug}/`} class="group block p-7 pb-5">
+            <div class="group block p-7 pb-5">
               <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
-              <p class="text-gold text-[12px] tracking-[0.16em] uppercase mb-3">
-                {fact?.display ?? 'Contact House of Rose for current pricing'}
-              </p>
-              {fact?.summary && (
-                <p class="mb-4 text-[14px] leading-[1.7] text-muted">{fact.summary}</p>
-              )}
-              <span class="learn-more group-hover:text-gold mt-4 inline-block">Understand this price</span>
-            </a>
+              <p class="mb-4 text-[14px] leading-[1.7] text-muted">Contact House of Rose for current pricing.</p>
+            </div>
             {g.treatment && (
               <div class="mx-7 border-t border-gold-metal/10 pb-6 pt-4 text-[14px] leading-relaxed text-muted" {...sbObjectId(g.treatment._id)}>
                 <span>About the service: </span>
@@ -74,8 +64,7 @@ const guidesListSchema = guides.length
               </div>
             )}
           </article>
-        );
-      })}
+      ))}
       {guides.length === 0 && (
         <p class="bg-charcoal p-7 text-muted text-[14px]">No cost guides are published.</p>
       )}
@@ -89,29 +78,23 @@ const guidesListSchema = guides.length
         <h2 class="mt-3 font-serif text-[clamp(26px,4vw,36px)] leading-tight text-ink">How can I pay?</h2>
       </div>
       <p class="text-[15px] leading-[1.8] text-muted">
-        House of Rose accepts American Express, Discover, Mastercard, Visa, debit cards, and checks. If you need to confirm whether anything is due before your visit, call <a href="tel:+19414000165" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">(941) 400-0165</a> before you reserve.
+        House of Rose accepts American Express, Discover, Mastercard, Visa, debit cards, and checks. Call <a href="tel:+19414000165" class="text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">(941) 400-0165</a> with payment questions.
       </p>
     </div>
   </section>
 
   <section class="bg-charcoal py-12 px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">If two prices do not match</span>
+      <span class="kicker">Current information</span>
       <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
-        Check the live booking menu before you reserve.
+        Ask House of Rose directly.
       </h2>
       <p class="mx-auto mt-5 max-w-[640px] text-muted text-[15px] leading-[1.8]">
-        GlossGenius is the live House of Rose booking menu. It shows the services and prices currently listed for booking, while these guides explain those amounts in context. If a guide and the booking menu ever differ, use the booking menu and call House of Rose before reserving so the appointment and price can be confirmed.
+        Call or send a message with the treatment name. The practice can answer current pricing questions without turning this website into a duplicate of the scheduling system.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a
-          href={GLOSSGENIUS_SERVICES_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-global-booking
-          class="btn-gold"
-        >Open the booking menu</a>
         <a href="tel:+19414000165" class="btn-outline-gold">Call (941) 400-0165</a>
+        <a href="/contact/" class="btn-gold">Contact House of Rose</a>
       </div>
     </div>
   </section>

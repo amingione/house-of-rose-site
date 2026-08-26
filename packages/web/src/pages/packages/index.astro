@@ -23,7 +23,7 @@ const heroImage = '/images/optimized/actual-welcome-1400.webp';
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const pageTitle = 'Treatment Packages in Punta Gorda, FL';
-const pageDescription = "House of Rose's Face Reality Acne Bootcamp begins with a consultation; the complete 12-week program includes visits every two weeks. Ask about pricing.";
+const pageDescription = "House of Rose's Face Reality Acne Bootcamp follows the skin across 12 weeks with in-studio care every two weeks and daily home care.";
 const packagesSchema = itemListPage(
   {
     name: 'Treatment Packages',
@@ -55,7 +55,7 @@ const breadcrumb = breadcrumbList([
   <Hero
     title="Treatment Packages"
     kicker="House of Rose Aesthetics"
-    description="See the Face Reality consultation, 12-week schedule, program price, and home-care purchase in one place."
+    description="Learn how the Face Reality 12-week program connects in-studio care, daily home care, and progress reviews."
     size="small"
     backgroundImage={heroImage}
     imageAlt="A treatment room at House of Rose Aesthetics"
@@ -70,13 +70,13 @@ const breadcrumb = breadcrumbList([
         </h2>
         <div class="space-y-4 text-muted text-[15px] leading-[1.75]">
           <p>
-            Acne can look different from one visit to the next. House of Rose's Face Reality Acne Bootcamp connects the consultation, in-studio appointments, and home-care review across 12 weeks.
+            Acne can look different from one visit to the next. House of Rose's Face Reality Acne Bootcamp connects in-studio care, daily home care, and progress reviews across 12 weeks.
           </p>
           <p>
-            The 60-minute Acne Bootcamp Consultation is the first appointment and can be booked directly. Visits take place every two weeks. The complete 12-week program includes its in-studio visits; home-care products are purchased separately. Ask about current pricing when you book.
+            The program begins with a review of what the skin is doing now. In-studio care takes place every two weeks, with daily home care between visits. Home-care products are purchased separately.
           </p>
           <a href="/services/face-reality-acne-program/" class="learn-more inline-flex items-center gap-1">
-            See the Face Reality consultation and program <span>→</span>
+            See how the Face Reality program works <span>→</span>
           </a>
         </div>
       </div>
@@ -110,15 +110,14 @@ const breadcrumb = breadcrumbList([
     </div>
   </section>
 
-  <!-- Booking CTA -->
-  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
+  <section id="contact" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[680px] mx-auto text-center">
-      <span class="kicker">First appointment</span>
+      <span class="kicker">Face Reality Acne Bootcamp</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        Begin with the Acne Bootcamp Consultation.
+        See what twelve weeks of consistent care involves.
       </h2>
       <p class="text-muted text-[15px] max-w-[450px] mx-auto mb-10 leading-relaxed">
-        This 60-minute appointment can be booked directly. Call House of Rose if you want to ask about the visit schedule, program price, or home-care purchase before beginning.
+        Read the complete program page for the schedule, provider, home-care role, and the medical concerns that should be evaluated elsewhere first.
       </p>
       <div class="flex gap-3 justify-center flex-wrap">
         <a href="/packages/face-reality-12-week-program/" class="btn-gold">

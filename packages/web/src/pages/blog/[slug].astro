@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
-import BookingLink from '@/components/BookingLink.astro';
 import { sanityFetch, urlFor } from '@/lib/sanity';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import {
@@ -229,14 +228,14 @@ const breadcrumbSchema = breadcrumbList([
   {post.relatedService && (
     <section class="bg-charcoal-light py-14 px-6 border-t border-ink/5">
       <div class="max-w-[680px] mx-auto text-center">
-        <span class="kicker">Before you schedule</span>
+        <span class="kicker">Related treatment</span>
         <h2 class="font-serif text-[clamp(24px,4vw,34px)] text-ink mt-2 mb-3">
           {post.relatedService.title}
         </h2>
         <p class="mx-auto max-w-[620px] text-[15px] leading-[1.8] text-muted">
           {isMorpheusSafetyArticle
-            ? 'Morpheus8 is consultation-only at House of Rose. Ask who would perform it, which area and device settings are under discussion, what recovery may involve, what alternatives exist, and how to reach the practice afterward—before deciding whether to schedule treatment.'
-            : `If ${post.relatedService.title} is the service you are considering, the practical questions are who provides it, what it costs, how long the appointment takes, and whether it is available for direct booking or begins with a consultation.`}
+            ? 'For Morpheus8, ask who would perform it, which area and device settings are under discussion, what recovery may involve, what alternatives exist, and how to reach the practice afterward.'
+            : `If ${post.relatedService.title} is the treatment you are considering, start with who provides it, what it is designed to address, and how it differs from the alternatives.`}
         </p>
         {relatedServiceSummary && (
           <p class="mt-4 text-[13px] font-medium tracking-[0.04em] text-muted-strong">{relatedServiceSummary}</p>
@@ -245,13 +244,7 @@ const breadcrumbSchema = breadcrumbList([
           <a href={`/services/${post.relatedService.slug}/`} class="btn-outline-gold">
             Read service details
           </a>
-          <BookingLink
-            slug={post.relatedService.slug}
-            bookingMode={post.relatedService.bookingMode}
-            bookingUrl={post.relatedService.bookingUrl}
-            location="journal_related_service"
-            class="btn-gold"
-          />
+          <a href="/contact/" class="btn-gold">Contact House of Rose</a>
         </div>
       </div>
     </section>

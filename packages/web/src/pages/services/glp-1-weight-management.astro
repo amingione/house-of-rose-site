@@ -1,0 +1,238 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import { breadcrumbList, faqPage, service as serviceJsonLd } from '@/lib/structuredData';
+
+const pageTitle = 'GLP-1 Weight Management | House of Rose Aesthetics';
+const pageDescription = 'Learn how semaglutide and tirzepatide may support weight reduction through medically supervised care at House of Rose in Punta Gorda.';
+const heroImage = '/images/providers/diana-profile-1122.webp';
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonicalURL = new URL(Astro.url.pathname, site);
+const socialImage = new URL(heroImage, site).toString();
+
+const faqs = [
+  {
+    question: 'What does GLP-1 mean?',
+    answer: 'GLP-1 stands for glucagon-like peptide-1, a hormone involved in appetite and calorie intake. Semaglutide acts at the GLP-1 receptor. Tirzepatide acts at both the GIP and GLP-1 receptors.',
+  },
+  {
+    question: 'What can GLP-1 weight management help with?',
+    answer: 'For eligible adults, semaglutide or tirzepatide may support weight reduction and long-term weight management by affecting appetite and calorie intake. Individual response varies, and medication works alongside nutrition and physical activity rather than replacing them.',
+  },
+  {
+    question: 'Are semaglutide and tirzepatide the same medication?',
+    answer: 'No. Semaglutide is a GLP-1 receptor agonist. Tirzepatide acts at both the GIP and GLP-1 receptors. A medical consultation determines whether either option may be appropriate for an individual client.',
+  },
+  {
+    question: 'Who provides GLP-1 weight management at House of Rose?',
+    answer: 'Diana Morrison, RN provides the service under written physician protocol and medical direction. Medical Director: Joshua Shaw, MD · FL Lic. ME136232.',
+  },
+  {
+    question: 'How do I know whether I may be a candidate?',
+    answer: 'GLP-1 medications are not appropriate for everyone. A medical consultation is needed to review whether this type of treatment fits your health history, current medications, and weight-management goals.',
+  },
+] as const;
+
+const serviceSchema = serviceJsonLd(
+  {
+    name: 'GLP-1 Weight Management',
+    description: pageDescription,
+    url: canonicalURL.toString(),
+    image: socialImage,
+    serviceType: 'Medical weight management',
+  },
+  site,
+);
+
+const breadcrumbSchema = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: new URL('/services/', site).toString() },
+  { name: 'GLP-1 Weight Management', item: canonicalURL.toString() },
+]);
+
+const faqSchema = faqPage(faqs);
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={socialImage}
+  imageAlt="Diana Morrison, RN at House of Rose Aesthetics"
+  imageWidth={1122}
+  imageHeight={1402}
+  preloadImage={heroImage}
+  preloadImageSizes="(max-width: 1023px) 100vw, 42vw"
+  structuredPageMainEntityId={`${canonicalURL.toString()}#service`}
+>
+  <SchemaMarkup item={serviceSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
+  {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
+
+  <section class="bg-bone pt-20 lg:pt-24">
+    <div class="mx-auto grid max-w-[1440px] lg:min-h-[720px] lg:grid-cols-[minmax(0,1.08fr)_minmax(460px,0.92fr)]">
+      <div class="flex flex-col justify-center px-5 py-12 sm:px-10 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
+        <a href="/services/" class="mb-8 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline">
+          <span aria-hidden="true">←</span> All treatments
+        </a>
+        <p class="kicker mb-5">Medical weight management</p>
+        <h1 class="max-w-[760px] font-serif text-[clamp(42px,8vw,76px)] leading-[0.98] text-ink">
+          GLP-1 Weight Management
+        </h1>
+        <p class="mt-7 max-w-[670px] text-[clamp(18px,2.2vw,22px)] leading-[1.65] text-muted-strong">
+          Semaglutide and tirzepatide work with appetite-regulating pathways. For eligible adults, treatment may support weight reduction and long-term weight management alongside nutrition and physical activity.
+        </p>
+        <p class="mt-5 max-w-[650px] text-[13px] leading-6 text-muted">
+          Individual results vary. A medical consultation is required to determine whether treatment may be appropriate for you.
+        </p>
+        <a href="/contact/" class="btn-gold mt-9 self-start">Ask about weight management</a>
+      </div>
+
+      <figure class="relative min-h-[460px] overflow-hidden bg-limestone lg:min-h-full">
+        <img
+          src={heroImage}
+          alt="Diana Morrison, RN at House of Rose Aesthetics"
+          width="1122"
+          height="1402"
+          fetchpriority="high"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(64px,9vw,112px)]">
+    <div class="mx-auto max-w-[1180px]">
+      <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-24">
+        <div>
+          <p class="kicker mb-4">What it does</p>
+          <h2 class="font-serif text-[clamp(34px,5vw,54px)] leading-[1.08] text-ink">
+            It works with the signals involved in appetite and food intake.
+          </h2>
+        </div>
+        <div class="space-y-6 text-[17px] leading-[1.8] text-muted-strong">
+          <p>
+            GLP-1 is a hormone involved in appetite and calorie intake. Semaglutide acts at the GLP-1 receptor. Tirzepatide acts at both the GIP and GLP-1 receptors.
+          </p>
+          <p>
+            By affecting appetite and calorie intake, these medications can support weight reduction when used as part of an ongoing plan. They do not replace nutrition, physical activity, or medical follow-through.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(64px,9vw,104px)]">
+    <div class="mx-auto max-w-[1180px]">
+      <p class="kicker mb-4">Potential benefits</p>
+      <h2 class="max-w-[780px] font-serif text-[clamp(34px,5vw,52px)] leading-[1.08] text-ink">
+        Support that reaches beyond a single number on the scale.
+      </h2>
+      <div class="mt-12 grid gap-px bg-gold-metal/15 md:grid-cols-3">
+        <article class="bg-charcoal p-7 sm:p-9">
+          <h3 class="font-serif text-[25px] leading-tight text-ink">Appetite support</h3>
+          <p class="mt-4 text-[15px] leading-7 text-muted">
+            Semaglutide and tirzepatide affect pathways involved in appetite and calorie intake.
+          </p>
+        </article>
+        <article class="bg-charcoal p-7 sm:p-9">
+          <h3 class="font-serif text-[25px] leading-tight text-ink">Weight reduction</h3>
+          <p class="mt-4 text-[15px] leading-7 text-muted">
+            For eligible adults, treatment may support meaningful weight reduction when paired with nutrition and physical activity.
+          </p>
+        </article>
+        <article class="bg-charcoal p-7 sm:p-9">
+          <h3 class="font-serif text-[25px] leading-tight text-ink">Long-term management</h3>
+          <p class="mt-4 text-[15px] leading-7 text-muted">
+            GLP-1 medication is used as ongoing medical care to support weight reduction and maintenance, not as a one-time treatment.
+          </p>
+        </article>
+      </div>
+      <p class="mt-6 max-w-[760px] text-[13px] leading-6 text-muted">
+        Benefits and side effects vary from person to person. No specific amount or pace of weight change can be promised.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(64px,9vw,104px)]">
+    <div class="mx-auto max-w-[1180px]">
+      <div class="grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <article class="border border-gold-metal/20 bg-charcoal-light p-7 sm:p-10">
+          <p class="kicker mb-4">Semaglutide</p>
+          <h2 class="font-serif text-[32px] leading-tight text-ink">Acts at the GLP-1 receptor.</h2>
+          <p class="mt-5 text-[15px] leading-7 text-muted">
+            Semaglutide is a GLP-1 receptor agonist. Its effects on appetite and calorie intake are part of how it supports weight management.
+          </p>
+        </article>
+        <article class="border border-gold-metal/20 bg-charcoal-light p-7 sm:p-10">
+          <p class="kicker mb-4">Tirzepatide</p>
+          <h2 class="font-serif text-[32px] leading-tight text-ink">Acts at both GIP and GLP-1 receptors.</h2>
+          <p class="mt-5 text-[15px] leading-7 text-muted">
+            Tirzepatide is a dual GIP and GLP-1 receptor agonist. The receptor difference does not determine which medication is right for a particular person.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(64px,9vw,104px)]">
+    <div class="mx-auto grid max-w-[1180px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+      <div>
+        <p class="kicker mb-4">Medical oversight</p>
+        <h2 class="font-serif text-[clamp(34px,5vw,50px)] leading-[1.08] text-ink">
+          The first step is deciding whether this belongs in your care.
+        </h2>
+        <p class="mt-6 text-[17px] leading-[1.8] text-muted-strong">
+          Diana Morrison, RN provides GLP-1 weight management under written physician protocol and medical direction. The consultation is where your goals and the appropriateness of treatment are considered before a medication decision is made.
+        </p>
+        <p class="mt-5 text-[13px] leading-6 text-muted">
+          Medical Director: Joshua Shaw, MD · FL Lic. ME136232
+        </p>
+      </div>
+      <aside class="border border-gold-metal/20 bg-charcoal p-7 sm:p-9">
+        <p class="kicker mb-4">Safety matters</p>
+        <p class="text-[15px] leading-7 text-muted-strong">
+          GLP-1 medications are not appropriate for everyone. They can cause side effects, most commonly nausea, diarrhea, vomiting, constipation, and abdominal discomfort, and they carry additional warnings and risks. A medical review is necessary before treatment.
+        </p>
+        <a href="/contact/" class="learn-more mt-7 inline-flex hover:text-gold">Start the conversation</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(64px,9vw,104px)]">
+    <div class="mx-auto max-w-[920px]">
+      <p class="kicker mb-4">Common questions</p>
+      <h2 class="font-serif text-[clamp(34px,5vw,50px)] leading-tight text-ink">GLP-1 weight management, explained plainly.</h2>
+      <div class="mt-10 divide-y divide-gold-metal/20 border-y border-gold-metal/20">
+        {faqs.map((faq) => (
+          <details class="group py-6">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-6 font-serif text-[22px] leading-snug text-ink">
+              {faq.question}
+              <span class="mt-1 text-gold transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-4 max-w-[780px] text-[15px] leading-7 text-muted">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-gold-metal/10 bg-charcoal-light px-6 py-[clamp(64px,8vw,88px)]">
+    <div class="mx-auto max-w-[860px] text-center">
+      <h2 class="font-serif text-[clamp(34px,5vw,50px)] leading-tight text-ink">
+        Ask whether GLP-1 weight management fits your goals.
+      </h2>
+      <p class="mx-auto mt-5 max-w-[650px] text-[16px] leading-7 text-muted-strong">
+        Contact House of Rose to begin a conversation about the program and your next step.
+      </p>
+      <a href="/contact/" class="btn-gold mt-8 inline-flex">Contact House of Rose</a>
+      <div class="mt-10 text-[12px] leading-6 text-muted">
+        <p>Clinical information reviewed against current U.S. Food and Drug Administration prescribing information.</p>
+        <div class="mt-2 flex flex-wrap justify-center gap-x-5 gap-y-2">
+          <a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/215256s024lbl.pdf" target="_blank" rel="noopener noreferrer" class="underline decoration-gold-metal/50 underline-offset-4 hover:text-ivory">Semaglutide prescribing information</a>
+          <a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/217806Orig1s020lbl.pdf" target="_blank" rel="noopener noreferrer" class="underline decoration-gold-metal/50 underline-offset-4 hover:text-ivory">Tirzepatide prescribing information</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

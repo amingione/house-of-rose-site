@@ -1,9 +1,8 @@
 /**
- * Published Sanity service records that are not verified as current
- * GlossGenius offerings.
- *
- * Keep the records available for reconciliation without generating public
- * service routes or Visual Editor page entries.
+ * Legacy service slugs retained as an explicit denylist after the Sanity
+ * service model was retired. No current treatment/service documents live in
+ * Sanity. Keep these slugs unavailable so backups, archives, stale links, or
+ * non-service references cannot regenerate public routes.
  */
 export const UNAVAILABLE_PUBLIC_SERVICE_SLUGS = [
   'microneedling-body',

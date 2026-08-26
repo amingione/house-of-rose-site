@@ -1,9 +1,7 @@
 ---
 import { sanityFetch } from '@/lib/sanity';
 import { PUBLIC_PROVIDERS_QUERY, type PublicProviderProfile } from '@/lib/queries';
-import { getNavCollections } from '@/lib/serviceCatalog';
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
-import { GLOSSGENIUS_SERVICES_URL } from '@/lib/booking';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { SHOP_ENABLED } from '@/lib/features';
 import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
@@ -14,9 +12,7 @@ interface Props {
 }
 
 const { currentPath = '/', siteFacts } = Astro.props;
-const collections = getNavCollections();
 const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
-const navCollections = collections.filter((collection) => collection?.slug);
 const aboutProviders = resolvePublicProviderProfiles(sanityProviders);
 const sanityProviderIds = new Set(sanityProviders.map((provider) => provider._id));
 const isActive = (path: string) =>
@@ -38,52 +34,7 @@ const linkClass = (path: string) =>
     </a>
 
     <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
-      <details class="services-menu desktop-menu">
-        <summary class:list={['nav-link cursor-pointer list-none', isActive('/services') && 'nav-link-active']}>
-          Services
-          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </summary>
-        <div class="services-panel absolute left-1/2 top-[calc(100%+1px)] flex max-h-[calc(100dvh-96px)] w-[min(1120px,calc(100vw-32px))] -translate-x-1/2 flex-col overflow-hidden border border-ivory/15 bg-bone p-5 shadow-[0_24px_70px_rgba(0,0,0,0.52)] xl:p-7">
-          <div class="mb-5 flex shrink-0 items-end justify-between gap-6 border-b border-ivory/10 pb-5 xl:mb-6">
-            <div>
-              <p class="kicker mb-2">Services</p>
-              <p class="font-serif text-[22px] text-ink xl:text-[26px]">Browse by category.</p>
-            </div>
-            <a href="/services/" class="learn-more mt-0 whitespace-nowrap">View all services</a>
-          </div>
-          <div class="services-grid grid min-h-0 flex-1 gap-x-8 gap-y-7 overflow-y-auto overscroll-contain pr-2">
-            {navCollections.map((collection) => (
-              <section>
-                <h2 class="text-[13px] font-semibold text-ink">
-                  <a
-                    href={`/services/collections/${collection.slug}/`}
-                    aria-label={`Browse ${collection.title} services`}
-                    class="hover:text-gold"
-                  >
-                    {collection.title}
-                  </a>
-                </h2>
-                {collection.services.length > 0 && (
-                  <ul class="mt-3 space-y-2">
-                    {collection.services.slice(0, 6).map((service) => (
-                      <li>
-                        <a
-                          href={`/services/${service.slug}/`}
-                          class="text-[13px] leading-snug text-muted hover:text-ink"
-                        >
-                          {service.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
-            ))}
-          </div>
-        </div>
-      </details>
+      <a href="/services/" class={linkClass('/services')} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
 
       <a href="/skin-analysis/" class={linkClass('/skin-analysis')} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
       {SHOP_ENABLED && <a href="/shop/" class={linkClass('/shop')} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
@@ -122,16 +73,7 @@ const linkClass = (path: string) =>
         </div>
       </details>
       <a href="/contact/" class={linkClass('/contact')} aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a>
-      <a
-        href={GLOSSGENIUS_SERVICES_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="nav-book"
-        data-global-booking
-        data-cta-location="header-global"
-      >
-        Book
-      </a>
+      <a href="/contact/" class="nav-book">Get in touch</a>
       {SHOP_ENABLED && (
         <button data-open-cart class="cart-button" aria-label="Open cart">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -145,16 +87,7 @@ const linkClass = (path: string) =>
     </nav>
 
     <div class="ml-auto flex items-center gap-1 lg:hidden">
-      <a
-        href={GLOSSGENIUS_SERVICES_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="nav-book px-4"
-        data-global-booking
-        data-cta-location="header-mobile-global"
-      >
-        Book
-      </a>
+      <a href="/contact/" class="nav-book px-4">Contact</a>
       {SHOP_ENABLED && (
         <button data-open-cart class="cart-button" aria-label="Open cart">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -181,38 +114,7 @@ const linkClass = (path: string) =>
   <div id="mobile-navigation" class="mobile-navigation hidden border-t border-ivory/10 bg-bone lg:hidden" aria-label="Site navigation" aria-hidden="true">
     <nav class="max-h-[calc(100dvh-80px)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
       <a href="/" class:list={['mobile-nav-link', isActive('/') && 'mobile-nav-link-active']} aria-current={isActive('/') ? 'page' : undefined}>Home</a>
-      <details class="mobile-services border-y border-ivory/10 py-1">
-        <summary class:list={['mobile-nav-link cursor-pointer list-none', isActive('/services') && 'mobile-nav-link-active']}>
-          Services
-          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </summary>
-        <a href="/services/" class="mb-2 ml-4 flex min-h-11 items-center text-[13px] font-semibold text-gold">View all services</a>
-        <div class="grid gap-5 pb-5 pl-4 sm:grid-cols-2">
-          {navCollections.map((collection) => (
-            <section>
-              <h2 class="text-[13px] font-semibold text-ink">
-                <a
-                  href={`/services/collections/${collection.slug}/`}
-                  aria-label={`Browse ${collection.title} services`}
-                >
-                  {collection.title}
-                </a>
-              </h2>
-              <ul class="mt-2 space-y-2">
-                {collection.services.slice(0, 6).map((service) => (
-                  <li>
-                    <a href={`/services/${service.slug}/`} class="text-[13px] text-muted">
-                      {service.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-        </div>
-      </details>
+      <a href="/services/" class:list={['mobile-nav-link border-y border-ivory/10', isActive('/services') && 'mobile-nav-link-active']} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
       <a href="/skin-analysis/" class:list={['mobile-nav-link', isActive('/skin-analysis') && 'mobile-nav-link-active']} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
       {SHOP_ENABLED && <a href="/shop/" class:list={['mobile-nav-link', isActive('/shop') && 'mobile-nav-link-active']} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
       <details class="mobile-about border-b border-ivory/10 py-1">
@@ -373,11 +275,9 @@ const linkClass = (path: string) =>
             (link) => link.getAttribute('href') === focusedHref && link.getClientRects().length > 0,
           )
           : null;
-        const matchingSummary = focusedMobileMenu?.classList.contains('mobile-services')
-          ? document.querySelector<HTMLElement>('.services-menu > summary')
-          : focusedMobileMenu?.classList.contains('mobile-about')
-            ? document.querySelector<HTMLElement>('.about-menu > summary')
-            : null;
+        const matchingSummary = focusedMobileMenu?.classList.contains('mobile-about')
+          ? document.querySelector<HTMLElement>('.about-menu > summary')
+          : null;
         (matchingLink ?? matchingSummary ?? document.querySelector<HTMLElement>('.brand-link'))?.focus();
       }
       return;
@@ -470,9 +370,6 @@ const linkClass = (path: string) =>
     font-weight: 600;
   }
   .mobile-nav-link-active { color: #e2d3b2; }
-  .services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
-  }
   :global(html.menu-is-open) { overflow: hidden; }
   @media (prefers-reduced-motion: reduce) {
     .menu-caret,

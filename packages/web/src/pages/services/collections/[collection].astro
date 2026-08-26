@@ -7,15 +7,15 @@ import { getServiceCardSummary } from '@/lib/serviceCardContent';
 
 const collectionIntroductions: Readonly<Record<string, string>> = {
   inmode:
-    'Morpheus8 delivers radiofrequency through microneedles, Lumecca Peak uses intense pulsed light, and Forma delivers radiofrequency through surface electrodes. They use different forms of energy delivery and have separate appointment paths.',
+    'Morpheus8 delivers radiofrequency through microneedles, Lumecca Peak uses intense pulsed light, and Forma delivers radiofrequency through surface electrodes. The difference is the technology and the visible concern being addressed.',
   'injectables-bio-fillers':
-    'Lines that appear with facial movement belong to the neurotoxin conversation. Lost volume in selected lips, cheeks, and folds belongs to the dermal-filler conversation. Injectable PRF uses a blood-derived material and has separate under-eye and bio-filler consultations.',
+    'Lines that appear with facial movement point toward neurotoxins. Lost volume in selected lips, cheeks, and folds points toward dermal filler. Injectable PRF uses material prepared from a small sample of your own blood.',
   'iv-hydration-therapy':
-    'This category includes six IV hydration appointments and the GLP-1 Weight Management program. IV hydration and GLP-1 weight management are distinct medical services with different appointment and pricing structures.',
+    'IV hydration delivers fluid intravenously. GLP-1 weight management uses semaglutide or tirzepatide under medical direction. They are different medical services with different purposes.',
   facials:
     'This group includes surface exfoliation, dermaplaning, Glo2Facial, Procell Microneedling, topical PRF, BioRePeel, and the 12-week Face Reality Acne Program.',
   waxing:
-    'House of Rose books facial and body waxing by area, from brows, upper lip, and chin to underarms, bikini line, arms, legs, back, and chest.',
+    'Facial and body waxing covers brows, upper lip, chin, underarms, bikini line, arms, legs, back, and chest.',
 };
 
 export async function getStaticPaths() {
@@ -49,14 +49,14 @@ const serviceListSchema = collection.services.length
     )
   : null;
 const pageTitle = `${collection.title} Services | House of Rose Aesthetics`;
-const pageDescription = `${collection.title} appointments at House of Rose, grouped with their individual treatment and booking details.`;
+const pageDescription = `${collection.title} treatments at House of Rose, with clear differences between the available approaches.`;
 const collectionIntroduction = collectionIntroductions[collection.slug]
-  ?? `Related ${collection.title} appointments at House of Rose keep their own treatment and booking details.`;
+  ?? `Explore related ${collection.title} treatments at House of Rose.`;
 const facialPathways = collection.slug === 'facials'
   ? [
       {
-        heading: 'Surface appointments',
-        body: 'Dermaplaning uses a specialized blade for fine vellus hair and surface buildup. Glo2Facial combines surface exfoliation, topical infusion, and oxygenation. BioRePeel is the standalone topical TCA-based peel.',
+        heading: 'Surface treatments',
+        body: 'Dermaplaning uses a specialized blade for fine vellus hair and surface buildup. Glo2Facial combines surface exfoliation, topical infusion, and oxygenation. BioRePeel is a topical TCA-based peel.',
         links: [
           { href: '/services/dermaplaning/', label: 'Dermaplaning' },
           { href: '/services/glo2facial/', label: 'Glo2Facial' },
@@ -65,7 +65,7 @@ const facialPathways = collection.slug === 'facials'
       },
       {
         heading: 'Microneedling and topical PRF',
-        body: 'House of Rose Microneedling uses the Procell Therapies device to create controlled microchannels. When PRF is part of an eligible Microneedling appointment, it is applied at the skin surface; the PRF overview also explains the separate injectable routes.',
+        body: 'House of Rose Microneedling uses the Procell Therapies device to create controlled microchannels. When PRF is paired with Microneedling, it is applied at the skin surface; injectable PRF follows a different route.',
         links: [
           { href: '/services/microneedling/', label: 'Microneedling' },
           { href: '/services/prf/', label: 'PRF overview' },
@@ -73,7 +73,7 @@ const facialPathways = collection.slug === 'facials'
       },
       {
         heading: 'A 12-week acne program',
-        body: 'Face Reality begins with a consultation, then combines in-studio visits every two weeks with daily home care across the complete 12-week program.',
+        body: 'Face Reality combines in-studio care every two weeks with daily home care across a complete 12-week program.',
         links: [
           { href: '/services/face-reality-acne-program/', label: 'Face Reality Acne Program' },
         ],
@@ -108,7 +108,7 @@ const facialPathways = collection.slug === 'facials'
             Surface services, Microneedling, and a 12-week program.
           </h2>
           <p class="mt-4 text-[15px] leading-7 text-muted">
-            These appointments are not interchangeable. Surface appointments stay at the skin surface, Procell Microneedling creates controlled microchannels, and Face Reality combines visits every two weeks with daily home care across a complete program.
+            These approaches are not interchangeable. Surface treatments work at the outer surface, Procell Microneedling creates controlled microchannels, and Face Reality combines in-studio care with daily home care across a complete program.
           </p>
         </div>
 

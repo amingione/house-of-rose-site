@@ -2,18 +2,13 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
-import BookingLink from '@/components/BookingLink.astro';
 import {
   getCuratedServiceImage,
   getCuratedServiceImageAlt,
   getServiceFallbackImage,
-  getServiceCardImage,
-  getServiceCardImageAlt,
   getServiceResultImages,
-  serviceCardImageUsesContain,
   serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
-import { REVIEWED_PUBLIC_COLLECTION_SLUGS } from '@/lib/publicCollectionContent';
 import {
   PUBLIC_SERVICES,
   getPublicServiceBySlug,
@@ -21,23 +16,15 @@ import {
 } from '@/lib/serviceCatalog';
 import { service as serviceJsonLd, breadcrumbList, faqPage } from '@/lib/structuredData';
 import ProviderScopeBlock from '@/components/treatment/ProviderScopeBlock.astro';
-import PriceRangeBlock from '@/components/treatment/PriceRangeBlock.astro';
-import InjectablesHubOverview from '@/components/treatment/InjectablesHubOverview.astro';
-import IvHydrationMenu from '@/components/treatment/IvHydrationMenu.astro';
 import PrfUnderEyesOverview from '@/components/treatment/PrfUnderEyesOverview.astro';
-import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
-import { medicalProcedure, treatmentOffer } from '@/lib/structuredData.treatment';
-import { isVerifiedGlossGeniusBookingUrl, resolveServiceBooking } from '@/lib/booking';
-import { getServiceCardSummary } from '@/lib/serviceCardContent';
-import { getServiceAppointmentGuidance, getVerifiedServiceDuration } from '@/lib/serviceFacts';
-import { getVerifiedCostFact } from '@/lib/costFacts';
+import { medicalProcedure } from '@/lib/structuredData.treatment';
 import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_META_DESCRIPTION } from '@/lib/prfUnderEyesFacts';
-import { IV_HYDRATION_FAQS } from '@/lib/ivHydrationFacts';
-import { getServiceEducation } from '@/lib/serviceEducation';
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 
 export async function getStaticPaths() {
-  return PUBLIC_SERVICES.map(({ slug }) => ({ params: { slug } }));
+  return PUBLIC_SERVICES
+    .filter(({ slug }) => slug !== 'glp-1-weight-management')
+    .map(({ slug }) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
@@ -52,65 +39,6 @@ if (!serviceData) {
 }
 
 const service: Service = serviceData;
-const publicTagline = slug ? getServiceCardSummary(slug) : undefined;
-const serviceEducation = slug ? getServiceEducation(slug) : undefined;
-const verifiedDuration = slug ? getVerifiedServiceDuration(slug) : undefined;
-// The product-specific neurotoxin durations are shown in the reviewed menu below.
-// Current sources disagree on PRF under-eye duration, and Morpheus8 has no verified
-// standalone appointment length. Do not collapse any of those into one hero figure.
-const suppressHeroDuration = new Set(['injectables', 'microneedling', 'morpheus8', 'prf', 'prf-injections', 'prf-under-eyes']).has(slug ?? '');
-const displayDuration = suppressHeroDuration ? undefined : verifiedDuration ?? service.duration;
-const getChildTreatmentDuration = (childSlug: string, fallback?: string): string | undefined =>
-  ['injectables', 'prf-under-eyes'].includes(childSlug)
-    ? undefined
-    : getVerifiedServiceDuration(childSlug) ?? fallback;
-// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
-// "Public website pricing is NEVER permitted"). This supersedes the prior
-// serviceEducation-only suppression: no service page may render `service.price`
-// or `service.priceRange`, regardless of whether reviewed education exists.
-const displayServicePrice = undefined;
-const splitInjectableSlugs = new Set(['injectables', 'dermal-fillers']);
-const splitInjectableSibling = slug === 'injectables'
-  ? { slug: 'dermal-fillers', title: 'Dermal Fillers' }
-  : slug === 'dermal-fillers'
-    ? { slug: 'injectables', title: 'Neurotoxin Injections' }
-    : undefined;
-const childTreatmentSlugs = new Set((service.treatments ?? []).map((treatment) => treatment.slug));
-const visibleRelatedServices = [
-  ...(service.relatedServices ?? []),
-  ...(service.contextualServices ?? []),
-]
-  .filter((related): related is Service => Boolean(related?.slug))
-  .filter((related) => related.slug !== service.slug)
-  .filter((related) => !childTreatmentSlugs.has(related.slug))
-  .filter((related) => !splitInjectableSibling || splitInjectableSlugs.has(related.slug))
-  .filter((related, index, services) => services.findIndex(({ slug: relatedSlug }) => relatedSlug === related.slug) === index)
-  .slice(0, 3);
-const renderSplitInjectableSibling = splitInjectableSibling
-  && !visibleRelatedServices.some((related) => related.slug === splitInjectableSibling.slug);
-const hasRelatedServices = visibleRelatedServices.length > 0 || Boolean(renderSplitInjectableSibling);
-const collectionSlug = service.collection?.slug;
-const collectionTitle = service.collection?.title;
-// A collection only earns a directory link when it actually renders a public
-// page, i.e. its slug is on REVIEWED_PUBLIC_COLLECTION_SLUGS. Otherwise the link
-// would 404 (this is what the retired permanent-jewelry special case guarded).
-const hasDistinctCollectionDirectory = collectionSlug
-  && REVIEWED_PUBLIC_COLLECTION_SLUGS.includes(collectionSlug as typeof REVIEWED_PUBLIC_COLLECTION_SLUGS[number])
-  && collectionSlug !== service.slug;
-const serviceDirectoryPath = hasDistinctCollectionDirectory
-  ? `/services/collections/${collectionSlug}/`
-  : '/services/';
-const serviceDirectoryLabel = hasDistinctCollectionDirectory && collectionTitle
-  ? `View ${collectionTitle}`
-  : 'View all services';
-const verifiedCostGuide = service.costGuides?.find((guide) => getVerifiedCostFact(guide.slug));
-// Recovery and aftercare are medical-support copy, not general marketing copy.
-// The current Sanity records do not carry source or clinical-review provenance,
-// so they remain stored for review but do not render or enter structured data.
-// House of Rose pricing is never public (binding 2026-08-20, see CLAUDE.md
-// "Public website pricing is NEVER permitted"). This supersedes the prior
-// serviceEducation-only suppression: `service.priceRange` is never read here.
-const reviewedPriceRange = undefined;
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -129,15 +57,9 @@ const galleryImages = service.gallery ?? [];
 const resultImages = slug ? getServiceResultImages(slug) : [];
 const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'face-reality-acne-treatment'].includes(slug ?? '');
 
-// displayServicePrice is always undefined (House of Rose pricing is never public,
-// binding 2026-08-20) — priceMatch/priceNumber therefore always resolve to null,
-// which keeps serviceJsonLd()'s priceSpecification out of the public JSON-LD.
-const priceMatch = displayServicePrice ? String(displayServicePrice).match(/\d[\d,]*(?:\.\d+)?/) : null;
-const priceNumber: number | null = priceMatch ? Number(priceMatch[0].replace(/,/g, '')) : null;
 const factualServiceDescription = slug === 'prf-under-eyes'
   ? PRF_UNDER_EYES_META_DESCRIPTION
-  : serviceEducation?.metaDescription
-    ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
+  : `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {
@@ -146,8 +68,6 @@ const serviceSchema = serviceJsonLd(
     url: canonicalURL.toString(),
     image: socialImage,
     serviceType: service.title,
-    minPrice: priceNumber,
-    offerUrl: isVerifiedGlossGeniusBookingUrl(service.bookingUrl) ? service.bookingUrl : undefined,
   },
   site,
 );
@@ -169,25 +89,6 @@ const breadcrumbSchema = breadcrumbList([
 // Treatment-specific structured data. Emitted alongside the generic Service node —
 // MedicalProcedure is what local health-intent surfaces actually read.
 
-const verifiedBookingUrl = isVerifiedGlossGeniusBookingUrl(service.bookingUrl)
-  ? service.bookingUrl
-  : undefined;
-const bookingAction = resolveServiceBooking(service, 'service-page-copy');
-const reviewedAppointmentGuidance = slug ? getServiceAppointmentGuidance(slug) : undefined;
-const secondaryAction = bookingAction.mode === 'consultation'
-  ? { href: '/contact/', label: 'Contact the practice' }
-  : { href: '/consultation/', label: 'Ask a question' };
-const finalHeading = bookingAction.mode === 'direct'
-  ? `Reserve ${service.title}.`
-  : bookingAction.mode === 'consultation'
-    ? `Talk with the practice about ${service.title}.`
-    : `Ask about ${service.title}.`;
-const finalCopy = reviewedAppointmentGuidance ?? (bookingAction.mode === 'direct'
-  ? 'Choose an available time in the current booking menu, or send a question before you reserve.'
-  : bookingAction.mode === 'consultation'
-    ? 'Request a consultation time, or contact the practice if you have a question before scheduling.'
-    : 'Call the practice for current appointment availability, or send a question through the consultation form.');
-
 const procedureSchema = service.providerScope
   ? medicalProcedure(
       {
@@ -202,21 +103,7 @@ const procedureSchema = service.providerScope
     )
   : null;
 
-const offerSchema = reviewedPriceRange
-  ? treatmentOffer({
-      url: canonicalURL.toString(),
-      name: service.title,
-      priceRange: reviewedPriceRange,
-      bookingUrl: verifiedBookingUrl,
-    })
-  : null;
-
-const reviewedServiceFaqs = serviceEducation?.faqs
-  ?? (slug === 'prf-under-eyes'
-    ? PRF_UNDER_EYES_FAQS
-    : slug === 'iv-hydration-therapy'
-      ? IV_HYDRATION_FAQS
-      : undefined);
+const reviewedServiceFaqs = slug === 'prf-under-eyes' ? PRF_UNDER_EYES_FAQS : undefined;
 const serviceFaqSchema = reviewedServiceFaqs
   ? faqPage(reviewedServiceFaqs.map(({ question, answer }) => ({ question, answer })))
   : null;
@@ -243,7 +130,6 @@ const pageDescription = factualServiceDescription;
   <SchemaMarkup item={serviceSchema} slot="head" />
   <SchemaMarkup item={breadcrumbSchema} slot="head" />
   {procedureSchema && <SchemaMarkup item={procedureSchema} slot="head" />}
-  {offerSchema && <SchemaMarkup item={offerSchema} slot="head" />}
   {serviceFaqSchema && <SchemaMarkup item={serviceFaqSchema} slot="head" />}
 
   <script
@@ -254,7 +140,6 @@ const pageDescription = factualServiceDescription;
       content_category: 'service',
       content_ids: [slug],
       content_type: 'product',
-      ...(priceNumber != null ? { value: priceNumber, currency: 'USD' } : {}),
     })});`}
   />
   <div>
@@ -265,31 +150,9 @@ const pageDescription = factualServiceDescription;
         <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-6 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline sm:mb-8">
           <span aria-hidden="true">←</span> {service.parentService ? service.parentService.title : 'All services'}
         </a>
-        <span class="kicker">Medical Aesthetics Practice</span>
         <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink">
           {service.title}
         </h1>
-        {publicTagline && (
-          <p class="mt-6 max-w-[620px] text-[clamp(17px,2vw,20px)] leading-[1.65] text-muted-strong">
-            {publicTagline}
-          </p>
-        )}
-        {(displayServicePrice || displayDuration) && (
-          <p class="mt-5 text-[13px] font-medium tracking-[0.08em] text-muted">
-            {displayServicePrice && <span>{displayServicePrice}</span>}{displayServicePrice && displayDuration && <span class="mx-2 text-gold">·</span>}{verifiedDuration
-              ? <span>{verifiedDuration}</span>
-              : displayDuration && <span>{displayDuration}</span>}
-          </p>
-        )}
-        <div class="mt-7 grid gap-3 sm:flex sm:flex-wrap">
-          <BookingLink
-            slug={service.slug}
-            bookingMode={service.bookingMode}
-            bookingUrl={service.bookingUrl}
-            location="service-hero"
-          />
-          <a href={secondaryAction.href} class="btn-outline-gold">{secondaryAction.label}</a>
-        </div>
       </div>
       <figure class="relative min-h-[300px] overflow-hidden bg-limestone sm:min-h-[420px] lg:min-h-full">
         <img
@@ -310,15 +173,31 @@ const pageDescription = factualServiceDescription;
     </div>
   </section>
 
-  {serviceEducation && <ServiceEducation content={serviceEducation} />}
-
-  {slug === 'injectables-bio-fillers' && <InjectablesHubOverview />}
-
   <TreatmentEvidence
     serviceTitle={service.title}
     media={service.evidenceMedia}
     research={service.researchReferences}
   />
+
+  {slug === 'morpheus8' && (
+    <section class="bg-charcoal px-6 py-12 border-t border-gold-metal/10">
+      <div class="mx-auto max-w-[1280px]">
+        <a href="/blog/is-morpheus8-safe/" class="learn-more hover:text-gold">
+          Read the Morpheus8 safety guide
+        </a>
+      </div>
+    </section>
+  )}
+
+  {slug === 'injectables-bio-fillers' && (
+    <section class="bg-charcoal px-6 py-12 border-t border-gold-metal/10">
+      <div class="mx-auto max-w-[1280px]">
+        <a href="/compare/daxxify-vs-botox/" class="learn-more hover:text-gold">
+          Compare Daxxify and Botox
+        </a>
+      </div>
+    </section>
+  )}
 
   {slug === 'prf-under-eyes' && <PrfUnderEyesOverview />}
 
@@ -346,22 +225,6 @@ const pageDescription = factualServiceDescription;
     </section>
   )}
 
-  <!-- House of Rose pricing is never public (binding 2026-08-20) — reviewedPriceRange
-       is always undefined above, so this block never renders. Left in place as a
-       structural no-op rather than deleted, since PriceRangeBlock itself is hardened
-       to never print a literal price if it is ever reintroduced. -->
-  {reviewedPriceRange && (
-    <section class="bg-charcoal py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
-      <div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20">
-        <PriceRangeBlock
-          priceRange={reviewedPriceRange}
-          slug={service.slug}
-          bookingMode={service.bookingMode}
-          bookingUrl={service.bookingUrl}
-        />
-      </div>
-    </section>
-  )}
   <!-- Gallery: real, service-specific photos (moved here now that the hero uses the shared banner) -->
   {galleryImages.length > 0 && (
     <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6 border-t border-gold-metal/10">
@@ -436,43 +299,6 @@ const pageDescription = factualServiceDescription;
     </section>
   )}
 
-  <!-- Treatments under this service (hub pages) -->
-  {service.treatments && service.treatments.length > 0 && (
-    <section class="bg-charcoal-light py-[clamp(48px,7vw,80px)] px-6">
-      <div class="max-w-[1280px] mx-auto">
-        <h2 class="font-serif text-[clamp(24px,4vw,36px)] text-ink mb-10">
-          Treatments
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-          {service.treatments.map((t) => (
-            <article class="bg-charcoal p-7">
-              <h3 class="font-serif text-[22px] text-ink mb-2">
-                <a href={`/services/${t.slug}/`} class="hover:text-gold transition-colors">{t.title}</a>
-              </h3>
-              {getServiceCardSummary(t.slug) && (
-                <p class="text-muted text-[14px] leading-[1.65] mb-4">{getServiceCardSummary(t.slug)}</p>
-              )}
-              {slug !== 'waxing' && getChildTreatmentDuration(t.slug, t.duration) && (
-                <p class="text-ink/70 text-[12px] tracking-[0.08em]">
-                  {getChildTreatmentDuration(t.slug, t.duration)}
-                </p>
-              )}
-              <div class="mt-5 flex flex-wrap gap-4 items-center">
-                <BookingLink
-                  slug={t.slug}
-                  bookingMode={t.bookingMode}
-                  bookingUrl={t.bookingUrl}
-                  location="service-treatment-card"
-                  class="service-booking-link"
-                />
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
   <!-- Decision-stage links only appear when this service is part of a comparison. -->
   {service.comparisons && service.comparisons.length > 0 && (
     <section class="bg-charcoal py-16 px-6">
@@ -506,103 +332,19 @@ const pageDescription = factualServiceDescription;
     </section>
   )}
 
-  {slug === 'iv-hydration-therapy' && <IvHydrationMenu />}
-
-  <!-- Related Services -->
-  <section class="bg-charcoal py-16 px-6">
-    <div class="max-w-[1280px] mx-auto">
-      {hasRelatedServices && (
-      <h2 class="mb-8 font-serif text-[clamp(24px,4vw,36px)] text-ink">
-        {splitInjectableSibling ? 'Related injectable service' : 'Related services'}
-      </h2>
-      )}
-      {hasRelatedServices && (
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
-        {renderSplitInjectableSibling && splitInjectableSibling && (
-          <article class="service-card group">
-            <a href={`/services/${splitInjectableSibling.slug}/`} class="block">
-              <span class="service-name">{splitInjectableSibling.title}</span>
-              {getServiceCardSummary(splitInjectableSibling.slug) && (
-                <p class="service-desc mt-1">{getServiceCardSummary(splitInjectableSibling.slug)}</p>
-              )}
-              <span class="learn-more group-hover:text-gold">View {splitInjectableSibling.title}</span>
-            </a>
-          </article>
-        )}
-        {visibleRelatedServices.map((related) => (
-          <article class="service-card group">
-            <a href={`/services/${related.slug}/`} class="block">
-              {getServiceCardImage(related.slug) && (
-                <div class="aspect-square overflow-hidden bg-charcoal-lighter mb-4">
-                  <img
-                    src={getServiceCardImage(related.slug)}
-                    alt={getServiceCardImageAlt(related.slug) || related.title}
-                    width={400}
-                    height={400}
-                    loading="lazy"
-                    decoding="async"
-                    class:list={[
-                      'w-full h-full group-hover:scale-105 transition-transform duration-500',
-                      serviceCardImageUsesContain(related.slug) ? 'object-contain p-4' : 'object-cover',
-                    ]}
-                  />
-                </div>
-              )}
-              <span class="service-name">{related.title}</span>
-              {getServiceCardSummary(related.slug) && (
-                <p class="service-desc mt-1">{getServiceCardSummary(related.slug)}</p>
-              )}
-              <span class="learn-more group-hover:text-gold">View {related.title}</span>
-            </a>
-            <BookingLink
-              slug={related.slug}
-              bookingMode={related.bookingMode}
-              bookingUrl={related.bookingUrl}
-              location="related-service-card"
-              class="service-booking-link"
-            />
-          </article>
-        ))}
-      </div>
-      )}
-      <div class="mt-8 flex flex-wrap gap-x-8 gap-y-4">
-        {verifiedCostGuide && (
-          <a href={`/cost/${verifiedCostGuide.slug}/`} class="learn-more hover:text-gold">
-            See pricing details
-          </a>
-        )}
-        {service.localAreas?.map((area) => (
-          <a href={`/areas/${area.slug}/`} class="learn-more hover:text-gold">
-            {area.city}
-          </a>
-        ))}
-        <a href={serviceDirectoryPath} class="learn-more hover:text-gold">
-          {serviceDirectoryLabel}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Consultation CTA -->
-  <section id="book" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
+  <!-- The website explains the treatment; GlossGenius owns appointment logistics. -->
+  <section id="contact" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Appointments</span>
+      <span class="kicker">Questions about {service.title}?</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        {finalHeading}
+        See whether it fits what you want to change.
       </h2>
-      <p data-service-appointment-guidance class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
-        {finalCopy}
+      <p class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
+        Tell us what you are noticing and what kind of change would feel worthwhile. We can help you understand whether {service.title} belongs in the conversation.
       </p>
       <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
-        <BookingLink
-          slug={service.slug}
-          bookingMode={service.bookingMode}
-          bookingUrl={service.bookingUrl}
-          location="service-final-cta"
-        />
-        <a href={secondaryAction.href} class="btn-outline-gold">
-          {secondaryAction.label}
-        </a>
+        <a href="/contact/" class="btn-gold">Contact House of Rose</a>
+        <a href="/services/" class="btn-outline-gold">Explore other treatments</a>
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950

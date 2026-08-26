@@ -145,8 +145,9 @@ Current public figures come only from the GlossGenius-backed canonical ledger.
 **Price boundary:** Pro, MD, and topical PRF are distinct verified appointments. Historical body,
 series, finish, and add-on figures are not current public inventory.
 
-**Sanity taxonomy rule:** the canonical record is `microneedling`. Former duplicate and body records
-do not authorize public appointments. Procell Pro and MD remain choices within the current Microneedling menu.
+**Local service-taxonomy rule:** the canonical `serviceCatalog.ts` record is `microneedling`.
+Former duplicate, body, or retired Sanity records do not authorize public appointments. Procell Pro
+and MD remain choices within the current Microneedling menu.
 
 **Retail boundary:** the six optional aftercare prices above come from published Sanity and are not
 treatment prices. The canonical ledger remains the authority for Microneedling appointment prices.

@@ -4,7 +4,6 @@ import { resolveBaseUrl } from '@/lib/siteUrl';
 import {
   ALL_BLOG_POSTS_QUERY,
   ALL_CONCERNS_QUERY,
-  ALL_COST_GUIDES_QUERY,
   ALL_COMPARISONS_QUERY,
   ALL_LOCAL_AREAS_QUERY,
   ALL_CASE_STUDIES_QUERY,
@@ -13,7 +12,6 @@ import {
   SITE_SETTINGS_QUERY,
   type BlogPost,
   type Concern,
-  type CostGuide,
   type Comparison,
   type LocalArea,
   type CaseStudy,
@@ -26,7 +24,6 @@ import {
   getPublicServiceBySlug,
 } from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
-import { getVerifiedCostFact } from '@/lib/costFacts';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import {
   filterReviewedPublicComparisons,
@@ -37,11 +34,10 @@ import { resolvePublicSiteFacts } from '@/lib/publicSiteFacts';
 export const GET: APIRoute = async ({ site }) => {
   const base = resolveBaseUrl(site, 'llms.txt');
 
-  const [settings, posts, concerns, costGuides, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
+  const [settings, posts, concerns, comparisons, localAreas, caseStudies, packages, sanityProviders] = await Promise.all([
     sanityFetch<SiteSettings | null>(SITE_SETTINGS_QUERY),
     sanityFetch<BlogPost[]>(ALL_BLOG_POSTS_QUERY),
     sanityFetch<Concern[]>(ALL_CONCERNS_QUERY),
-    sanityFetch<CostGuide[]>(ALL_COST_GUIDES_QUERY),
     sanityFetch<Comparison[]>(ALL_COMPARISONS_QUERY),
     sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY),
     sanityFetch<CaseStudy[]>(ALL_CASE_STUDIES_QUERY),
@@ -68,14 +64,14 @@ export const GET: APIRoute = async ({ site }) => {
     `## Core Pages`,
     ``,
     `- [Home](${base}/): ${siteFacts.siteName} — a medical aesthetics practice in Punta Gorda, FL`,
-    `- [Services](${base}/services/): Canonical directory for skin, injectable, body, IV hydration, weight-management, waxing, and makeup appointments`,
+    `- [Services](${base}/services/): Treatment information for skin, injectables, body services, IV hydration, weight management, waxing, and makeup`,
     `- [Concern Guides](${base}/concerns/): Observable skin, pigment, texture, movement, and volume questions connected to current services`,
     `- [About](${base}/about/): ${siteFacts.siteName} and the people behind the practice`,
     `- [${siteFacts.siteName}](${base}/about/hra/): About the Punta Gorda practice`,
     `- [Providers](${base}/about/providers/): Licence types, service focus, and individual team profiles`,
     `- [Consultation](${base}/consultation/): Request a conversation about a concern or treatment options; submitting the form does not reserve a time`,
     `- [Skin Imaging & Analysis](${base}/skin-analysis/): In-studio multi-spectrum images used for a closer look before choosing a skin service`,
-    `- [Treatment Series & Packages](${base}/packages/): The current Face Reality 12-week program and its separately booked consultation`,
+    `- [Treatment Series & Packages](${base}/packages/): The current Face Reality 12-week program and how its in-studio and home-care parts work together`,
     `- [Experience](${base}/experience/): Actual storefront, treatment rooms, providers, and visit information`,
     `- [Contact](${base}/contact/): Directions, phone, email, response timing, appointment questions, and the general inquiry form`,
     `- [Rent a Suite](${base}/rent-a-room/): Treatment room rental information for eligible licensed professionals`,
@@ -107,16 +103,6 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`## Services`, ``);
     for (const s of publicServices) {
       lines.push(`- [${s.title}](${base}/services/${s.slug}/).`);
-    }
-    lines.push(``);
-  }
-
-  if (costGuides.length > 0) {
-    lines.push(`## Pricing Guides`, ``);
-    for (const c of costGuides) {
-      const fact = getVerifiedCostFact(c.slug);
-      const price = fact ? ` ${fact.answer}` : '';
-      lines.push(`- [${c.title}](${base}/cost/${c.slug}/).${price}`);
     }
     lines.push(``);
   }
@@ -177,7 +163,6 @@ export const GET: APIRoute = async ({ site }) => {
     `- **Address:** ${siteFacts.address}`,
     `- **Phone:** ${siteFacts.phone}`,
     `- **Email:** ${siteFacts.email}`,
-    `- **Services menu:** https://houseofrose.glossgenius.com/services`,
     `- **Hours:** Monday–Friday 9:00 AM–5:00 PM`,
     `- **Opened:** June 15, 2026`,
     `- **Instagram:** @${siteFacts.instagramHandle}`,

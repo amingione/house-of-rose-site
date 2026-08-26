@@ -50,8 +50,8 @@ const REVIEWED_PUBLIC_COMPARISON_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COM
 const RETIRED_COST_GUIDE_SLUGS_GROQ = JSON.stringify(RETIRED_COST_GUIDE_SLUGS);
 const REVIEWED_PUBLIC_COST_GUIDE_SLUGS_GROQ = JSON.stringify(REVIEWED_PUBLIC_COST_GUIDE_SLUGS);
 
-// Concern routes retired at the edge must not be emitted again from dereferenced
-// service records. The source reference remains in Sanity for reconciliation.
+// Concern routes retired at the edge must not be emitted again from legacy
+// references. Treatments/services are local code records, not Sanity documents.
 const RETIRED_PUBLIC_CONCERN_SLUGS_GROQ = JSON.stringify(RETIRED_PUBLIC_CONCERN_SLUGS);
 
 const PUBLIC_PROVIDER_DIGITAL_CARD_PATHS_GROQ = JSON.stringify(PUBLIC_PROVIDER_DIGITAL_CARD_PATHS);

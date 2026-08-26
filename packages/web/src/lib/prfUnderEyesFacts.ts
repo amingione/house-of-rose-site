@@ -1,21 +1,16 @@
-export const PRF_UNDER_EYES_LISTING = {
-  name: 'PRF Under-Eye — Consultation',
-  verifiedAt: '2026-08-13',
-} as const;
-
 export const PRF_UNDER_EYES_META_DESCRIPTION =
-  'PRF Under Eyes at House of Rose is an injectable consultation with Diana Morrison, RN, for hollowing or shadowing in Punta Gorda. Ask about current pricing.';
+  'Learn how injectable PRF differs from dermal filler and topical PRF when hollowing or shadowing contributes to an under-eye concern.';
 
 export const PRF_UNDER_EYES_FAQS = [
   {
     question: 'What is PRF under eyes?',
     answer:
-      'PRF stands for platelet-rich fibrin. It is prepared from a small sample of your own blood. For this service, the PRF is injectable and the appointment is provided by Diana Morrison, RN under written physician protocol and medical direction.',
+      'PRF stands for platelet-rich fibrin. It is prepared from a small sample of your own blood. For this service, the PRF is injected by Diana Morrison, RN under written physician protocol and medical direction.',
   },
   {
     question: 'Is PRF under eyes the same as dermal filler?',
     answer:
-      'No. PRF is an autologous platelet concentrate prepared from your own blood. Hyaluronic-acid dermal filler is a manufactured injectable gel. Their materials and preparation are different, and House of Rose offers them as different consultations.',
+      'No. PRF is an autologous platelet concentrate prepared from your own blood. Hyaluronic-acid dermal filler is a manufactured injectable gel. Their materials and preparation are different.',
   },
   {
     question: 'Is injectable PRF the same as topical PRF with microneedling?',
@@ -26,11 +21,6 @@ export const PRF_UNDER_EYES_FAQS = [
     question: 'Why can under-eye darkness require different approaches?',
     answer:
       'Visible under-eye darkness can reflect pigment, thin or translucent skin, visible vessels, structural shadowing, or more than one factor. A photograph of dark circles does not point to one service. Individual outcomes vary.',
-  },
-  {
-    question: 'How much is the PRF under-eye consultation?',
-    answer:
-      'Call House of Rose to confirm how much time to allow for the appointment and to ask about current pricing.',
   },
 ] as const;
 

@@ -24,9 +24,11 @@ at the GLP-1 receptor. Tirzepatide acts at both the GIP and GLP-1 receptors. Thi
 explains why the medication names are not interchangeable; it is not a recommendation or a claim that
 one is better for an individual.
 
-Do not extend this explanation into dosing, administration, titration, expected weight change,
-results timing, side-effect management, diet, exercise, or medical advice. Those facts are not needed
-to answer the current page intent and are not established as House of Rose public program details.
+The public page may explain the supported mechanism and benefits at a high level: these medications
+affect appetite and calorie intake and, for eligible adults, may support weight reduction and
+long-term weight management alongside nutrition and physical activity. Do not publish a promised
+amount or pace of weight change, dosing, administration, titration, side-effect management, diet,
+exercise prescriptions, or other medical advice.
 
 ## What the consultation covers
 
@@ -93,8 +95,9 @@ Call House of Rose. Medication and ongoing program charges are separate from the
 - Do not publish dosing, titration, administration instructions, contraindication lists, side-effect
   rates, mitigation advice, BMI thresholds, laboratory requirements, nutrition prescriptions,
   exercise prescriptions, discontinuation guidance, or a follow-up cadence from this brief.
-- Do not promise weight change, appetite change, a results timeline, easier behavior change, or a
-  particular experience with either medication.
+- Do not promise a specific weight change, appetite response, results timeline, easier behavior
+  change, or a particular experience with either medication. Supported benefits must use conditional
+  language and carry a concise individual-variation statement.
 - Do not diagnose, describe disease treatment, present an active ingredient's regulatory status as
   approval of the House of Rose service, or imply whether the program uses a branded or compounded
   formulation.
@@ -113,6 +116,8 @@ Call House of Rose. Medication and ongoing program charges are separate from the
 - State only the $25, 40-minute GLP-1 Consultation as a verified public price.
 - Keep medication and ongoing program pricing unresolved and direct those questions to House of Rose.
 - Preserve the factual semaglutide-versus-tirzepatide receptor distinction without recommending one.
+- Explain the supported role of appetite and calorie intake and the potential for weight reduction
+  and long-term weight management without promising an individual result.
 - Name Diana Morrison, RN and use the exact medical-director attribution where clinical authority is
   described.
 - Link the canonical service and Diana's provider profile rather than proposing duplicate intent pages.
@@ -130,6 +135,12 @@ Primary current authority:
 - `packages/web/src/lib/weightManagementEducation.ts` — reviewed public GLP-1 facts, receptor
   distinction, provider statement, pricing boundary, and FAQs.
 - `packages/web/src/lib/serviceEducation.ts` — current service-page structure and canonical links.
+- FDA semaglutide prescribing information — mechanism, appetite and calorie-intake effects, weight
+  reduction, weight-maintenance indication, and current safety information:
+  https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/215256s024lbl.pdf
+- FDA tirzepatide prescribing information — dual GIP/GLP-1 mechanism, appetite and calorie-intake
+  effects, weight reduction, weight-maintenance indication, and current safety information:
+  https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/217806Orig1s020lbl.pdf
 
 Historical service documents, legacy Sanity price fields, manufacturer material, medication labels,
 research papers, and other providers' programs do not authorize House of Rose public pricing, dosing,
