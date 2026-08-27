@@ -1,0 +1,34 @@
+---
+import ServicePhoneLink from '@/components/service-landing/ServicePhoneLink.astro';
+---
+
+<section class="bg-[#F1EDE5] text-[#1C1E22]" aria-labelledby="personalized-iv-title">
+  <div class="mx-auto grid max-w-[1728px] lg:min-h-[830px] lg:grid-cols-[1.08fr_0.92fr]">
+    <figure class="relative min-h-[480px] overflow-hidden bg-[#CBC4BA] sm:min-h-[620px] lg:min-h-full">
+      <img
+        src="/images/optimized/actual-iv-suite-1400.webp"
+        alt="IV hydration suite at House of Rose Aesthetics in Punta Gorda, Florida"
+        width="1400"
+        height="1120"
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover object-center"
+      />
+    </figure>
+    <div class="flex flex-col justify-center px-5 py-16 sm:px-10 sm:py-20 lg:px-[clamp(56px,7vw,110px)] lg:py-24">
+      <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-[#6B6560]">Individual review</p>
+      <h2 id="personalized-iv-title" class="mt-7 max-w-[680px] font-serif text-[clamp(48px,6.4vw,88px)] leading-[0.91] tracking-[-0.035em]">
+        Not sure what to book? <em class="font-normal text-[#6B6560]">That’s the point.</em>
+      </h2>
+      <p class="mt-8 max-w-[590px] text-[17px] leading-[1.78] text-[#484A4F]">
+        You do not need to arrive knowing what belongs in the bag. An appointment name alone does not tell you the full formulation—or whether that option is appropriate for you. Bring the questions. Diana Morrison, RN will review the current choices and relevant health information with you.
+      </p>
+      <ServicePhoneLink
+        location="service_iv_personalized"
+        label="Book your IV visit"
+        accessibleContext="call House of Rose Aesthetics"
+        class="mt-9 w-fit border border-[#1C1E22] bg-[#1C1E22] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#F1EDE5] transition-colors hover:bg-[#3A3F47] focus-visible:bg-[#3A3F47]"
+      />
+    </div>
+  </div>
+</section>

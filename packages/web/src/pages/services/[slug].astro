@@ -22,6 +22,13 @@ import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_META_DESCRIPTION } from '@/lib/prfU
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
 import { getServiceEducation } from '@/lib/serviceEducation';
+import IvHydrationLanding from '@/components/treatment/IvHydrationLanding.astro';
+import {
+  IV_LANDING_FAQS,
+  IV_LANDING_HERO_IMAGE,
+  IV_LANDING_HERO_IMAGE_ALT,
+  IV_LANDING_META_DESCRIPTION,
+} from '@/lib/ivHydrationLanding';
 
 export async function getStaticPaths() {
   return PUBLIC_SERVICES
@@ -51,7 +58,9 @@ const curatedImage = slug ? getCuratedServiceImage(slug) : undefined;
 const curatedImageAlt = slug ? getCuratedServiceImageAlt(slug) : service.title;
 const fallbackImageAlt = slug ? getCuratedServiceImageAlt(slug) : 'A treatment room inside House of Rose Aesthetics';
 const containHeroImage = slug ? serviceImageUsesContain(slug) : false;
-const heroImage = curatedImage ?? fallbackImage ?? '/images/optimized/actual-reception-1400-light.webp';
+const heroImage = slug === 'iv-hydration-therapy'
+  ? IV_LANDING_HERO_IMAGE
+  : curatedImage ?? fallbackImage ?? '/images/optimized/actual-reception-1400-light.webp';
 const socialImage = new URL(heroImage, site).toString();
 const heroImageSrcset = undefined;
 const galleryImages = service.gallery ?? [];
@@ -62,7 +71,9 @@ const hasFaceRealityResults = ['acne-bootcamp', 'face-reality-acne-program', 'fa
 
 const factualServiceDescription = slug === 'prf-under-eyes'
   ? PRF_UNDER_EYES_META_DESCRIPTION
-  : education?.metaDescription ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
+  : slug === 'iv-hydration-therapy'
+    ? IV_LANDING_META_DESCRIPTION
+    : education?.metaDescription ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {
@@ -106,7 +117,11 @@ const procedureSchema = service.providerScope
     )
   : null;
 
-const reviewedServiceFaqs = slug === 'prf-under-eyes' ? PRF_UNDER_EYES_FAQS : undefined;
+const reviewedServiceFaqs = slug === 'prf-under-eyes'
+  ? PRF_UNDER_EYES_FAQS
+  : slug === 'iv-hydration-therapy'
+    ? IV_LANDING_FAQS
+    : undefined;
 const serviceFaqSchema = reviewedServiceFaqs
   ? faqPage(reviewedServiceFaqs.map(({ question, answer }) => ({ question, answer })))
   : null;
@@ -124,6 +139,9 @@ const pageDescription = factualServiceDescription;
   title={pageTitle}
   description={pageDescription}
   image={socialImage}
+  imageAlt={slug === 'iv-hydration-therapy' ? IV_LANDING_HERO_IMAGE_ALT : curatedImageAlt}
+  imageWidth={slug === 'iv-hydration-therapy' ? 1400 : undefined}
+  imageHeight={slug === 'iv-hydration-therapy' ? 875 : undefined}
   preloadImage={heroImage}
   preloadImageSrcset={heroImageSrcset}
   preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
@@ -145,6 +163,9 @@ const pageDescription = factualServiceDescription;
       content_type: 'product',
     })});`}
   />
+  {slug === 'iv-hydration-therapy' ? (
+    <IvHydrationLanding />
+  ) : (
   <div>
   <!-- Service hero: the image is semantic and immediately discoverable for LCP. -->
   <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
@@ -344,4 +365,5 @@ const pageDescription = factualServiceDescription;
     </div>
   </section>
   </div>
+  )}
 </BaseLayout>

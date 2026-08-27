@@ -1,0 +1,54 @@
+---
+import ServicePhoneLink from '@/components/service-landing/ServicePhoneLink.astro';
+
+interface Props {
+  readonly image: string;
+  readonly imageAlt: string;
+}
+
+const { image, imageAlt } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-[#1C1E22] pt-20 text-[#F1EDE5] lg:pt-24" aria-labelledby="iv-page-title">
+  <div class="mx-auto grid min-h-[min(820px,calc(100vh-80px))] max-w-[1728px] grid-cols-1 lg:grid-cols-[minmax(0,0.88fr)_minmax(560px,1.12fr)]">
+    <div class="relative z-10 flex flex-col justify-center px-5 py-12 sm:px-10 sm:py-16 lg:px-[clamp(56px,7vw,116px)] lg:py-24">
+      <p class="mb-7 text-[11px] font-medium uppercase tracking-[0.26em] text-[#C8BBA8] sm:mb-9">
+        IV Hydration · Punta Gorda, FL
+      </p>
+      <h1 id="iv-page-title" class="max-w-[760px] font-serif text-[clamp(48px,8.1vw,112px)] leading-[0.91] tracking-[-0.035em] text-[#F1EDE5]">
+        Hydration,<br />delivered <em class="font-normal text-[#C8BBA8]">differently.</em>
+      </h1>
+      <p class="mt-8 max-w-[590px] text-[17px] leading-[1.72] text-[#D8D3CB] sm:text-[18px]">
+        House of Rose offers medically directed IV hydration with individual review by Diana Morrison, RN. Six current appointments give the conversation a starting point—not a reason to choose blindly.
+      </p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+        <ServicePhoneLink
+          location="service_iv_hero"
+          label="Book IV Hydration"
+          accessibleContext="call House of Rose Aesthetics"
+          class="iv-button-primary"
+        />
+        <a href="#iv-options" class="iv-button-secondary">Explore IV options</a>
+      </div>
+      <p class="mt-8 max-w-[600px] border-l border-[#8C6F3F] pl-4 text-[12px] leading-[1.65] text-[#C8C3BB]">
+        Provided by Diana Morrison, RN under written physician protocol and medical direction.
+      </p>
+    </div>
+
+    <figure class="relative min-h-[390px] overflow-hidden bg-[#26292E] sm:min-h-[540px] lg:min-h-full">
+      <img
+        src={image}
+        alt={imageAlt}
+        width="1400"
+        height="875"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover object-[60%_center] lg:object-[57%_center]"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1C1E22]/45 via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#1C1E22]/35 lg:via-transparent lg:to-transparent" aria-hidden="true"></div>
+      <figcaption class="absolute bottom-5 right-5 text-[10px] uppercase tracking-[0.2em] text-white/70 sm:bottom-7 sm:right-7">
+        House of Rose Aesthetics
+      </figcaption>
+    </figure>
+  </div>
+</section>

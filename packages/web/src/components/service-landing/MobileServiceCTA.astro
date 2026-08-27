@@ -1,0 +1,35 @@
+---
+import ServicePhoneLink from '@/components/service-landing/ServicePhoneLink.astro';
+---
+
+<div data-mobile-service-cta class="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#15171A]/96 px-4 pb-[calc(12px+env(safe-area-inset-bottom))] pt-3 backdrop-blur transition-transform duration-300 lg:hidden">
+  <ServicePhoneLink
+    location="service_iv_mobile_sticky"
+    label="Book IV Hydration"
+    accessibleContext="call House of Rose Aesthetics"
+    class="block min-h-12 w-full bg-[#F1EDE5] px-5 py-[15px] text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1C1E22]"
+  />
+</div>
+
+<script>
+  const stickyCta = document.querySelector<HTMLElement>('[data-mobile-service-cta]');
+  const finalCta = document.querySelector<HTMLElement>('[data-final-service-cta]');
+  const footer = document.querySelector<HTMLElement>('footer');
+
+  if (stickyCta && finalCta && 'IntersectionObserver' in window) {
+    const visibleEndSections = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visibleEndSections.add(entry.target);
+        else visibleEndSections.delete(entry.target);
+      }
+
+      const shouldHide = visibleEndSections.size > 0;
+      stickyCta.classList.toggle('translate-y-full', shouldHide);
+      stickyCta.toggleAttribute('inert', shouldHide);
+    }, { threshold: 0.08 });
+
+    observer.observe(finalCta);
+    if (footer) observer.observe(footer);
+  }
+</script>

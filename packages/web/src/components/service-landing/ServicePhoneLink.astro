@@ -1,0 +1,26 @@
+---
+import { PRACTICE_PHONE_HREF } from '@/lib/booking';
+
+interface Props {
+  readonly class?: string;
+  readonly label: string;
+  readonly accessibleContext?: string;
+  readonly location: string;
+}
+
+const {
+  class: className,
+  label,
+  accessibleContext,
+  location,
+} = Astro.props;
+---
+
+<a
+  href={PRACTICE_PHONE_HREF}
+  class={className}
+  aria-label={accessibleContext ? `${label}: ${accessibleContext}` : undefined}
+  data-cta-location={location}
+>
+  {label}
+</a>

@@ -1,0 +1,21 @@
+---
+import ServicePhoneLink from '@/components/service-landing/ServicePhoneLink.astro';
+---
+
+<section id="book-iv" data-final-service-cta class="scroll-mt-32 bg-[#15171A] px-5 py-[clamp(92px,12vw,170px)] text-center text-[#F1EDE5] sm:px-10 lg:px-16" aria-labelledby="book-iv-title">
+  <div class="mx-auto max-w-[980px]">
+    <p class="iv-eyebrow">IV Hydration · House of Rose</p>
+    <h2 id="book-iv-title" class="mt-7 font-serif text-[clamp(58px,9vw,126px)] leading-[0.88] tracking-[-0.04em]">Ready when<br class="sm:hidden" /> you are.</h2>
+    <p class="mx-auto mt-8 max-w-[600px] text-[17px] leading-[1.75] text-[#C8C4BC]">Call House of Rose to discuss IV hydration and arrange a visit with Diana Morrison, RN in Punta Gorda.</p>
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <ServicePhoneLink
+        location="service_iv_final"
+        label="Book IV Hydration"
+        accessibleContext="call House of Rose Aesthetics"
+        class="iv-button-primary"
+      />
+      <a href="/contact/" class="iv-button-secondary">Contact House of Rose</a>
+    </div>
+    <p class="mt-10 text-[11px] uppercase leading-[1.8] tracking-[0.2em] text-[#95918A]">525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950</p>
+  </div>
+</section>

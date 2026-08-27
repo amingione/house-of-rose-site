@@ -1,0 +1,22 @@
+---
+import type { ServiceTestimonial } from '@/lib/ivHydrationLanding';
+
+interface Props {
+  readonly testimonials: readonly ServiceTestimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+{testimonials.length > 0 && (
+  <section class="bg-[#25282D] px-5 py-20 text-[#F1EDE5] sm:px-10 lg:px-16" aria-label="Client reviews">
+    <div class="mx-auto max-w-[1200px]">
+      {testimonials.map((testimonial) => (
+        <figure class="border-t border-white/15 pt-8">
+          <blockquote class="max-w-[920px] font-serif text-[clamp(28px,4vw,48px)] leading-[1.2]">“{testimonial.quote}”</blockquote>
+          <figcaption class="mt-7 text-[11px] uppercase tracking-[0.18em] text-[#B9B4AC]">{testimonial.attribution}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+)}

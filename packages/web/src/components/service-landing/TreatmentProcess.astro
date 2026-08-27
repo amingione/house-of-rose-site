@@ -1,0 +1,41 @@
+---
+import type { TreatmentStep } from '@/lib/ivHydrationLanding';
+
+interface Props {
+  readonly steps: readonly TreatmentStep[];
+}
+
+const { steps } = Astro.props;
+---
+
+<section id="experience" class="scroll-mt-32 bg-[#25282D] px-5 py-[clamp(80px,10vw,148px)] text-[#F1EDE5] sm:px-10 lg:px-16" aria-labelledby="iv-experience-title">
+  <div class="mx-auto max-w-[1320px]">
+    <div class="grid gap-8 lg:grid-cols-[0.65fr_1.35fr] lg:items-end">
+      <p class="iv-eyebrow">What the treatment consists of</p>
+      <h2 id="iv-experience-title" class="max-w-[900px] font-serif text-[clamp(42px,5.7vw,76px)] leading-[0.98] tracking-[-0.025em]">
+        A considered visit,<br class="hidden sm:block" /> from intake to finish.
+      </h2>
+    </div>
+    <ol class="mt-14 grid border-t border-white/15 md:grid-cols-2 xl:grid-cols-4 lg:mt-20">
+      {steps.map((step, index) => (
+        <li class:list={[
+          'min-h-[270px] border-b border-white/15 py-9 md:px-8 md:py-10 xl:border-b-0',
+          index % 2 === 1 ? 'md:border-l' : '',
+          index > 1 ? 'md:border-t xl:border-t-0' : '',
+          index > 0 ? 'xl:border-l xl:border-white/15' : '',
+        ]}>
+          <span class="font-serif text-[20px] text-[#C8BBA8]">0{index + 1}</span>
+          <h3 class="mt-12 font-serif text-[27px] leading-tight">{step.title}</h3>
+          <p class="mt-4 text-[14px] leading-[1.72] text-[#C7C3BC]">{step.text}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-12 flex flex-col gap-5 border-t border-white/15 pt-7 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-[12px] uppercase tracking-[0.18em] text-[#A9A49C]">Prepare for your visit</p>
+      <div class="flex flex-col gap-4 text-[11px] font-semibold uppercase tracking-[0.15em] sm:flex-row sm:gap-8">
+        <a href="/downloads/treatment-care/house-of-rose-pre-care-guide.pdf" download class="border-b border-[#8C6F3F] pb-1 text-[#E1D6C6] transition-colors hover:border-white hover:text-white">Download pre-care guide</a>
+        <a href="/downloads/treatment-care/house-of-rose-aftercare-guide.pdf" download class="border-b border-[#8C6F3F] pb-1 text-[#E1D6C6] transition-colors hover:border-white hover:text-white">Download aftercare guide</a>
+      </div>
+    </div>
+  </div>
+</section>
