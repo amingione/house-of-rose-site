@@ -88,7 +88,9 @@ const sections: ResolvedSection[] = SERVICE_GROUP_SECTIONS.map((section) => ({
     .filter((collection) => collection.services.length > 0)
     .map((collection) => ({
       collection,
-      href: collection.services.length === 1
+      href: collection.slug === 'inmode'
+        ? '/services/inmode/'
+        : collection.services.length === 1
         ? `/services/${collection.services[0].slug}/`
         : `/services/collections/${collection.slug}/`,
     })),

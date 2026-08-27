@@ -22,6 +22,8 @@ import { PRF_UNDER_EYES_FAQS, PRF_UNDER_EYES_META_DESCRIPTION } from '@/lib/prfU
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 import ServiceEducation from '@/components/treatment/ServiceEducation.astro';
 import { getServiceEducation } from '@/lib/serviceEducation';
+import InModeLandingPage from '@/components/inmode/InModeLandingPage.astro';
+import { getInModeLandingContent } from '@/lib/inmodeLandingContent';
 import IvHydrationLanding from '@/components/treatment/IvHydrationLanding.astro';
 import {
   IV_LANDING_FAQS,
@@ -49,6 +51,7 @@ if (!serviceData) {
 
 const service: Service = serviceData;
 const education = getServiceEducation(service.slug);
+const inModeContent = getInModeLandingContent(service.slug);
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -60,7 +63,10 @@ const fallbackImageAlt = slug ? getCuratedServiceImageAlt(slug) : 'A treatment r
 const containHeroImage = slug ? serviceImageUsesContain(slug) : false;
 const heroImage = slug === 'iv-hydration-therapy'
   ? IV_LANDING_HERO_IMAGE
-  : curatedImage ?? fallbackImage ?? '/images/optimized/actual-reception-1400-light.webp';
+  : inModeContent?.heroImage.src
+    ?? curatedImage
+    ?? fallbackImage
+    ?? '/images/optimized/actual-reception-1400-light.webp';
 const socialImage = new URL(heroImage, site).toString();
 const heroImageSrcset = undefined;
 const galleryImages = service.gallery ?? [];
@@ -73,7 +79,9 @@ const factualServiceDescription = slug === 'prf-under-eyes'
   ? PRF_UNDER_EYES_META_DESCRIPTION
   : slug === 'iv-hydration-therapy'
     ? IV_LANDING_META_DESCRIPTION
-    : education?.metaDescription ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
+    : inModeContent?.metaDescription
+      ?? education?.metaDescription
+      ?? `${service.title} at House of Rose Aesthetics, a medical aesthetics practice in Punta Gorda, Florida.`;
 
 const serviceSchema = serviceJsonLd(
   {
@@ -89,7 +97,14 @@ const serviceSchema = serviceJsonLd(
 const breadcrumbSchema = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Services', item: new URL('/services/', site).toString() },
-  ...(service.parentService
+  ...(inModeContent && inModeContent.slug !== 'inmode'
+    ? [
+        {
+          name: 'InMode treatments',
+          item: new URL('/services/inmode/', site).toString(),
+        },
+      ]
+    : service.parentService
     ? [
         {
           name: service.parentService.title,
@@ -111,17 +126,20 @@ const procedureSchema = service.providerScope
         url: canonicalURL.toString(),
         image: socialImage,
         procedureType: service.providerScope.medicalDirection
-          ? 'PercutaneousProcedure'
+          ? inModeContent && inModeContent.slug !== 'morpheus8'
+            ? 'NoninvasiveProcedure'
+            : 'PercutaneousProcedure'
           : 'NoninvasiveProcedure',
       },
     )
   : null;
 
-const reviewedServiceFaqs = slug === 'prf-under-eyes'
-  ? PRF_UNDER_EYES_FAQS
-  : slug === 'iv-hydration-therapy'
-    ? IV_LANDING_FAQS
-    : undefined;
+const reviewedServiceFaqs = inModeContent?.faqs
+  ?? (slug === 'prf-under-eyes'
+    ? PRF_UNDER_EYES_FAQS
+    : slug === 'iv-hydration-therapy'
+      ? IV_LANDING_FAQS
+      : undefined);
 const serviceFaqSchema = reviewedServiceFaqs
   ? faqPage(reviewedServiceFaqs.map(({ question, answer }) => ({ question, answer })))
   : null;
@@ -131,7 +149,7 @@ const serviceFaqSchema = reviewedServiceFaqs
 // or geo modifiers. Geo intent belongs to the localArea page type.
 const pageTitle = slug === 'acne-bootcamp'
   ? 'Face Reality Acne Bootcamp | House of Rose Aesthetics'
-  : `${service.title} | House of Rose Aesthetics`;
+  : inModeContent?.metaTitle ?? `${service.title} | House of Rose Aesthetics`;
 const pageDescription = factualServiceDescription;
 ---
 
@@ -139,9 +157,9 @@ const pageDescription = factualServiceDescription;
   title={pageTitle}
   description={pageDescription}
   image={socialImage}
-  imageAlt={slug === 'iv-hydration-therapy' ? IV_LANDING_HERO_IMAGE_ALT : curatedImageAlt}
-  imageWidth={slug === 'iv-hydration-therapy' ? 1400 : undefined}
-  imageHeight={slug === 'iv-hydration-therapy' ? 875 : undefined}
+  imageAlt={slug === 'iv-hydration-therapy' ? IV_LANDING_HERO_IMAGE_ALT : inModeContent?.heroImage.alt ?? curatedImageAlt}
+  imageWidth={slug === 'iv-hydration-therapy' ? 1400 : inModeContent?.heroImage.width}
+  imageHeight={slug === 'iv-hydration-therapy' ? 875 : inModeContent?.heroImage.height}
   preloadImage={heroImage}
   preloadImageSrcset={heroImageSrcset}
   preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
@@ -163,7 +181,9 @@ const pageDescription = factualServiceDescription;
       content_type: 'product',
     })});`}
   />
-  {slug === 'iv-hydration-therapy' ? (
+  {inModeContent ? (
+    <InModeLandingPage content={inModeContent} service={service} />
+  ) : slug === 'iv-hydration-therapy' ? (
     <IvHydrationLanding />
   ) : (
   <div>

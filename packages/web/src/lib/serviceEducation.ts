@@ -56,6 +56,28 @@ const formatMinutes = (durationMinutes: number): string =>
   `${durationMinutes} minutes`;
 
 const getRawServiceEducation = (slug: string): ServiceEducationContent | undefined => {
+  if (slug === 'inmode') {
+    return {
+      kicker: 'InMode OptimasMAX',
+      heading: 'Three treatment paths for different components of skin change.',
+      metaDescription: 'Compare Morpheus8, Lumecca Peak IPL, and Forma treatments at House of Rose Aesthetics in Punta Gorda, Florida.',
+      paragraphs: [
+        'House of Rose uses the InMode OptimasMAX platform for three face-focused treatment paths: Morpheus8 RF Microneedling, Lumecca Peak IPL, and Forma / Forma Plus radiofrequency.',
+        'Morpheus8 is the fractional remodeling path, Lumecca Peak addresses visible pigment and redness, and Forma is the non-invasive radiofrequency path for mild firmness concerns and maintenance.',
+      ],
+      distinctions: [
+        { label: 'Structure and texture', text: 'Morpheus8 combines microneedles with fractional bipolar radiofrequency at selected depths.' },
+        { label: 'Visible color', text: 'Lumecca Peak uses intense pulsed light for eligible brown pigment, sun-related discoloration, and redness.' },
+        { label: 'Firmness and maintenance', text: 'Forma delivers temperature-monitored bipolar radiofrequency through smooth surface electrodes without needles.' },
+      ],
+      links: [
+        { href: '/services/morpheus8/', label: 'Explore Morpheus8' },
+        { href: '/services/lumecca-peak-ipl/', label: 'Explore Lumecca Peak' },
+        { href: '/services/forma-rf-facial/', label: 'Explore Forma' },
+      ],
+    };
+  }
+
   if (slug === 'prf-under-eyes') {
     return {
       kicker: 'PRF Under Eyes',

@@ -31,6 +31,12 @@ if (!collection) {
   throw new Error(`[collections/[collection]] No local collection found for slug "${slug}"`);
 }
 
+// The InMode umbrella page is the public entry point. Keep this legacy noindex
+// category route limited to the three face-focused treatments in the new system.
+const collectionServices = collection.slug === 'inmode'
+  ? collection.services.filter(({ slug }) => ['morpheus8', 'lumecca-peak-ipl', 'forma-rf-facial'].includes(slug))
+  : collection.services;
+
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const breadcrumb = breadcrumbList([
@@ -39,9 +45,9 @@ const breadcrumb = breadcrumbList([
   { name: 'Categories', item: `${site}services/collections/` },
   { name: collection.title, item: canonical },
 ]);
-const serviceListSchema = collection.services.length
+const serviceListSchema = collectionServices.length
   ? itemList(
-      collection.services.map((service) => ({
+      collectionServices.map((service) => ({
         name: service.title,
         url: new URL(`/services/${service.slug}/`, site).toString(),
       })),
@@ -98,6 +104,9 @@ const facialPathways = collection.slug === 'facials'
       <p class="kicker mb-4">Service category</p>
       <h1 class="font-serif text-5xl text-ink">{collection.title}</h1>
       <p class="mt-6 text-[16px] leading-[1.8] text-muted">{collectionIntroduction}</p>
+      {collection.slug === 'inmode' && (
+        <a href="/services/inmode/" class="btn-gold mt-8 inline-flex">Compare the three InMode treatments</a>
+      )}
     </header>
 
     {facialPathways.length > 0 && (
@@ -128,14 +137,14 @@ const facialPathways = collection.slug === 'facials'
       </aside>
     )}
 
-    {collection.services.length === 0 ? (
+    {collectionServices.length === 0 ? (
       <div class="mt-14 border-t border-walnut/15 pt-8">
         <p class="text-muted">Contact House of Rose to discuss treatments in this category.</p>
         <a href="/contact/" class="learn-more mt-5 inline-flex">Ask House of Rose</a>
       </div>
     ) : (
       <ul class="mt-14 divide-y divide-walnut/15 border-y border-walnut/15" aria-label={`${collection.title} services`}>
-        {collection.services.map((service) => {
+        {collectionServices.map((service) => {
           const summary = getServiceCardSummary(service.slug);
           return (
             <li>

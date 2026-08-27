@@ -39,6 +39,16 @@ const waxingSteps: readonly ServiceEducationStep[] = [
 ];
 
 const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
+  inmode: {
+    benefits: ['Separates texture and remodeling concerns from visible pigment and redness.', 'Makes treatment intensity and recovery part of the decision before a modality is selected.'],
+    treatmentSteps: [
+      { title: 'Identify the dominant concern', text: 'Texture, eligible acne scars, visible color, redness, and mild firmness concerns point toward different treatment paths.' },
+      { title: 'Assess skin and timing', text: 'Skin condition, anatomy, sun history, recovery window, and candidacy are reviewed before a modality is selected.' },
+      { title: 'Sequence the plan', text: 'One treatment can stand alone, or separate modalities can be spaced when each has a distinct job.' },
+    ],
+    sessionGuidance: 'There is no single OptimasMAX session count. Morpheus8, Lumecca Peak, and Forma use different protocols, and the selected area, concern, response, and recovery window shape the plan.',
+    pairings: [{ title: 'Combination planning', text: 'Morpheus8, Lumecca Peak, and Forma can be sequenced when each modality addresses a separate concern. More modalities in one appointment are not automatically better.' }],
+  },
   'injectables-bio-fillers': {
     benefits: ['Understand the difference between movement-related lines, facial volume, and PRF options.', 'Start with the service category that matches the change you want to discuss.'],
     treatmentSteps: [

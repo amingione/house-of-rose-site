@@ -182,6 +182,18 @@ const ESTHETICIAN_SCOPE: TreatmentProviderScope = {
     'Individual results vary. Candidacy is determined at consultation. General information only; not medical advice.',
 };
 
+const ESTHETICS_MEDICAL_SCOPE: TreatmentProviderScope = {
+  performedBy: 'esthetician',
+  medicalDirection: true,
+  credentialPoints: [
+    'Performed by a Florida-licensed esthetician under written physician protocol.',
+    'Treatment area, skin response, and device settings are reviewed for the individual plan.',
+    'Medical direction and treatment delivery are separate roles.',
+  ],
+  disclaimer:
+    'Individual results vary. Candidacy is determined at consultation. General information only; not medical advice.',
+};
+
 const RN_SCOPE: TreatmentProviderScope = {
   performedBy: 'rn',
   medicalDirection: true,
@@ -228,19 +240,19 @@ const LOCAL_AREAS: readonly (ServiceLocalArea & { serviceSlugs: readonly string[
     _id: '650ac40d-be26-4c0d-a865-cca1acf2e491',
     city: 'Punta Gorda',
     slug: 'punta-gorda',
-    serviceSlugs: ['dermal-fillers', 'injectables', 'iv-hydration-therapy', 'glp-1-weight-management', 'prf', 'microneedling', 'glo2facial', 'dermaplaning'],
+    serviceSlugs: ['dermal-fillers', 'injectables', 'iv-hydration-therapy', 'glp-1-weight-management', 'prf', 'microneedling', 'glo2facial', 'dermaplaning', 'inmode', 'morpheus8', 'lumecca-peak-ipl', 'forma-rf-facial'],
   },
   {
     _id: 'hor-area-punta-gorda-isles',
     city: 'Punta Gorda Isles',
     slug: 'punta-gorda-isles',
-    serviceSlugs: ['dermal-fillers', 'injectables', 'iv-hydration-therapy', 'glp-1-weight-management', 'prf', 'microneedling', 'glo2facial', 'dermaplaning'],
+    serviceSlugs: ['dermal-fillers', 'injectables', 'iv-hydration-therapy', 'glp-1-weight-management', 'prf', 'microneedling', 'glo2facial', 'dermaplaning', 'inmode', 'morpheus8', 'lumecca-peak-ipl', 'forma-rf-facial'],
   },
   {
     _id: 'hor-area-port-charlotte',
     city: 'Port Charlotte',
     slug: 'port-charlotte',
-    serviceSlugs: ['microneedling', 'prf', 'glo2facial', 'dermaplaning'],
+    serviceSlugs: ['microneedling', 'prf', 'glo2facial', 'dermaplaning', 'inmode', 'morpheus8', 'lumecca-peak-ipl', 'forma-rf-facial'],
   },
   {
     _id: 'hor-area-charlotte-harbor',
@@ -301,6 +313,9 @@ const inModeEvidence = (
 
 const SERVICE_RECORDS: readonly ServiceRecord[] = [
   {
+    _id: 'service-inmode-optimasmax', title: 'InMode OptimasMAX Treatments', slug: 'inmode', kind: 'hub', public: true, order: 0, collectionSlug: 'inmode', bookingMode: 'consultation', bookingVerifiedAt: '2026-08-27', concernSlugs: ['aging', 'fine-lines-laxity', 'sun-damage', 'hyperpigmentation', 'texture', 'acne-scarring'], relatedSlugs: ['morpheus8', 'lumecca-peak-ipl', 'forma-rf-facial'], gallery: [{ src: '/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp', alt: 'Close facial view showing natural skin texture, fine lines, and visible pigmentation', width: 1536, height: 961 }], _updatedAt: '2026-08-27T00:00:00Z',
+  },
+  {
     _id: 'e82404a8-a778-4359-9a6d-71377ab903d3', title: 'Injectables & Bio-Fillers', slug: 'injectables-bio-fillers', kind: 'hub', public: true, order: 0, collectionSlug: 'injectables-bio-fillers', providerId: 'provider-diana', bookingMode: 'phone', bookingVerifiedAt: '2026-08-04', gallery: [{ src: '/images/optimized/actual-facial-suite-1400.webp', alt: 'Injectables treatment suite at House of Rose Aesthetics', width: 1400, height: 1750 }], _updatedAt: '2026-08-13T00:21:59Z',
   },
   {
@@ -310,7 +325,7 @@ const SERVICE_RECORDS: readonly ServiceRecord[] = [
     _id: '99566c9c-8033-4df6-b5a3-ac5de5d2d886', title: 'IV Hydration Therapy', slug: 'iv-hydration-therapy', kind: 'standalone', public: true, order: 1, collectionSlug: 'iv-hydration-therapy', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: '45–60 minutes', bookingMode: 'phone', bookingVerifiedAt: '2026-08-04', gallery: [{ src: '/images/optimized/actual-iv-suite-1400.webp', alt: 'IV hydration suite at House of Rose Aesthetics in Punta Gorda, Florida', width: 1400, height: 1750 }], _updatedAt: '2026-08-11T02:02:55Z',
   },
   {
-    _id: 'service-morpheus8', title: 'Morpheus8 RF Microneedling', slug: 'morpheus8', kind: 'standalone', public: true, order: 1, collectionSlug: 'inmode', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-6156b30d-84a3-4d71-8d9d-6ee81fea44de', bookingVerifiedAt: '2026-08-04', concernSlugs: ['texture', 'acne-scarring', 'stretch-marks'], relatedSlugs: ['lumecca-peak-ipl', 'forma-rf-facial', 'morpheus8-body'], evidenceMedia: [inModeEvidence('morpheus8-device', 'device', 'Morpheus8 Burst Technology', 'The Morpheus8 handpiece combines controlled microneedling with fractional bipolar radiofrequency. Treatment depth, energy, and area are selected for the individualized plan.', 'InMode manufacturer media', 'Morpheus8 Burst radiofrequency microneedling handpiece', '/images/inmode/morpheus8-burst-device.webp', 628, 1000)], _updatedAt: '2026-08-07T01:14:20Z',
+    _id: 'service-morpheus8', title: 'Morpheus8 RF Microneedling', slug: 'morpheus8', kind: 'standalone', public: true, order: 1, collectionSlug: 'inmode', providerScope: ESTHETICS_MEDICAL_SCOPE, bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-6156b30d-84a3-4d71-8d9d-6ee81fea44de', bookingVerifiedAt: '2026-08-04', concernSlugs: ['texture', 'acne-scarring', 'fine-lines-laxity', 'aging'], relatedSlugs: ['lumecca-peak-ipl', 'forma-rf-facial'], evidenceMedia: [inModeEvidence('morpheus8-device', 'device', 'Morpheus8 Burst Technology', 'The Morpheus8 handpiece combines controlled microneedling with fractional bipolar radiofrequency. Treatment depth, energy, and area are selected for the individualized plan.', 'InMode manufacturer media', 'Morpheus8 Burst radiofrequency microneedling handpiece', '/images/inmode/morpheus8-burst-device.webp', 628, 1000)], _updatedAt: '2026-08-27T00:00:00Z',
   },
   {
     _id: '7bd92dc1-9ced-42bd-a195-e9fa4628a848', title: 'Neurotoxin Injections', slug: 'injectables', kind: 'treatment', public: true, order: 1, collectionSlug: 'injectables-bio-fillers', parentSlug: 'injectables-bio-fillers', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: '30 minutes', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-b6105dd4-6519-4e8a-a986-f6313666f8ee', bookingVerifiedAt: '2026-08-04', concernSlugs: ['fine-lines-laxity', 'aging'], relatedSlugs: ['microneedling', 'iv-hydration-therapy'], gallery: [{ src: '/images/optimized/actual-facial-suite-1400.webp', alt: 'Injectables treatment room at House of Rose Aesthetics', width: 1400, height: 1750 }], _updatedAt: '2026-08-19T23:48:28Z',
@@ -325,10 +340,10 @@ const SERVICE_RECORDS: readonly ServiceRecord[] = [
     _id: '6e204a23-77a2-48a9-8381-878974cb92e4', title: 'GLP-1 Weight Management', slug: 'glp-1-weight-management', kind: 'standalone', public: true, order: 2, collectionSlug: 'iv-hydration-therapy', providerId: 'provider-diana', providerScope: RN_SCOPE, duration: 'Ongoing program', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-129199ce-d7c0-42f4-827f-7dcbdbd523dc', bookingVerifiedAt: '2026-08-04', _updatedAt: '2026-08-12T20:39:47Z',
   },
   {
-    _id: 'service-lumecca-peak-ipl', title: 'Lumecca Peak IPL Photofacial', slug: 'lumecca-peak-ipl', kind: 'standalone', public: true, order: 2, collectionSlug: 'inmode', bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-de667c29-dbef-47e6-9022-418389aefa71', bookingVerifiedAt: '2026-08-04', concernSlugs: ['sun-damage', 'hyperpigmentation', 'texture'], relatedSlugs: ['morpheus8', 'forma-rf-facial'], evidenceMedia: [
+    _id: 'service-lumecca-peak-ipl', title: 'Lumecca Peak IPL Photofacial', slug: 'lumecca-peak-ipl', kind: 'standalone', public: true, order: 2, collectionSlug: 'inmode', providerScope: ESTHETICS_MEDICAL_SCOPE, bookingMode: 'consultation', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-de667c29-dbef-47e6-9022-418389aefa71', bookingVerifiedAt: '2026-08-04', concernSlugs: ['sun-damage', 'hyperpigmentation'], relatedSlugs: ['morpheus8', 'forma-rf-facial'], evidenceMedia: [
       inModeEvidence('lumecca-device', 'device', 'Lumecca Peak IPL Technology', 'Lumecca Peak delivers customizable pulses of broad-spectrum light. The planned area, skin assessment, recent sun exposure, and candidacy guide treatment settings.', 'InMode manufacturer media', 'Lumecca Peak intense pulsed light handpiece', '/images/inmode/lumecca-peak-device.webp', 628, 1000),
       inModeEvidence('lumecca-face-example', 'before-after', 'Visible Tone and Discoloration Example', 'A manufacturer-provided example illustrating visible change in facial discoloration and overall tone after Lumecca IPL. This is not a House of Rose client.', 'Manufacturer-provided treatment example; attribution embedded in image', 'Manufacturer-provided Lumecca Peak IPL facial before and after example', '/images/inmode/lumecca-peak-before-after.webp', 670, 289, true),
-    ], researchReferences: [{ _key: 'lumecca-retrospective-2021', title: 'Retrospective Analysis of Outcomes with a Unique IPL System', journal: 'Journal of Cosmetics, Dermatological Sciences and Applications', year: 2021, studyType: 'Retrospective photographic analysis', summary: 'The paper reviewed photographs from several clinics and reported visible improvement across selected pigment and texture concerns after treatment with a Lumecca IPL system.', limitations: 'This was a retrospective review rather than a randomized controlled trial. It evaluated an earlier Lumecca system and should not be read as a direct trial of every current Lumecca Peak setting or as a promise of individual results.', url: 'https://doi.org/10.4236/jcdsa.2021.112012' }], _updatedAt: '2026-08-07T01:23:18Z',
+    ], researchReferences: [{ _key: 'lumecca-retrospective-2021', title: 'Retrospective Analysis of Outcomes with a Unique IPL System', journal: 'Journal of Cosmetics, Dermatological Sciences and Applications', year: 2021, studyType: 'Retrospective photographic analysis', summary: 'The paper reviewed photographs from several clinics and reported visible improvement across selected pigment and texture concerns after treatment with a Lumecca IPL system.', limitations: 'This was a retrospective review rather than a randomized controlled trial. It evaluated an earlier Lumecca system and should not be read as a direct trial of every current Lumecca Peak setting or as a promise of individual results.', url: 'https://doi.org/10.4236/jcdsa.2021.112012' }], _updatedAt: '2026-08-27T00:00:00Z',
   },
   {
     _id: '3cca74b8-9626-4ed7-aaab-3c31bcac8ad8', title: 'BioRePeel', slug: 'biorepeel', kind: 'hub', public: true, order: 3, collectionSlug: 'facials', providerId: 'provider-amber', duration: '45 minutes', bookingMode: 'direct', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-7694890a-1554-4ddb-8d7e-587064960791', bookingVerifiedAt: '2026-08-04', concernSlugs: ['sun-damage', 'hyperpigmentation', 'active-acne', 'aging'], _updatedAt: '2026-08-12T20:15:13Z',
@@ -337,7 +352,7 @@ const SERVICE_RECORDS: readonly ServiceRecord[] = [
     _id: 'service-everyday-makeup', title: 'Everyday Makeup', slug: 'everyday-makeup', kind: 'standalone', public: true, order: 3, collectionSlug: 'makeup', providerId: 'provider-aundrea', duration: '1 hour', bookingMode: 'phone', _updatedAt: '2026-08-26T06:55:00Z',
   },
   {
-    _id: 'service-forma-rf-facial', title: 'Forma RF Facial', slug: 'forma-rf-facial', kind: 'standalone', public: true, order: 3, collectionSlug: 'inmode', bookingMode: 'phone', bookingVerifiedAt: '2026-08-04', concernSlugs: ['texture'], relatedSlugs: ['morpheus8', 'lumecca-peak-ipl'], evidenceMedia: [inModeEvidence('forma-device', 'device', 'Forma Facial RF Technology', 'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose considers eligible areas of the face and neck after consultation.', 'InMode manufacturer media', 'Forma temperature-controlled radiofrequency facial handpiece', '/images/inmode/Forma-handpiece-space.png', 251, 400)], researchReferences: [{ _key: 'forma-split-face-2017', title: 'Split-face histological and biochemical evaluation of temperature- and impedance-controlled continuous non-invasive radiofrequency', journal: 'Journal of Cosmetic and Laser Therapy', year: 2017, studyType: 'Small split-face tissue study', summary: 'In this study, one side of the face received a series of Forma radiofrequency sessions. Tissue analysis found changes consistent with increased dermal collagen content and synthesis on the treated side.', limitations: 'Only four participants were included and the protocol used eight weekly sessions. The tissue findings are informative but cannot predict the amount of visible change an individual client may experience.', url: 'https://doi.org/10.1080/14764172.2016.1262957' }], _updatedAt: '2026-08-07T02:39:30Z',
+    _id: 'service-forma-rf-facial', title: 'Forma RF Facial', slug: 'forma-rf-facial', kind: 'standalone', public: true, order: 3, collectionSlug: 'inmode', providerScope: ESTHETICS_MEDICAL_SCOPE, bookingMode: 'phone', bookingVerifiedAt: '2026-08-04', concernSlugs: ['texture', 'fine-lines-laxity', 'aging'], relatedSlugs: ['morpheus8', 'lumecca-peak-ipl'], evidenceMedia: [inModeEvidence('forma-device', 'device', 'Forma Facial RF Technology', 'The Forma handpiece delivers non-invasive radiofrequency while monitoring skin temperature in real time. House of Rose considers eligible areas of the face and neck after consultation.', 'InMode manufacturer media', 'Forma temperature-controlled radiofrequency facial handpiece', '/images/inmode/Forma-handpiece-space.png', 251, 400)], researchReferences: [{ _key: 'forma-split-face-2017', title: 'Split-face histological and biochemical evaluation of temperature- and impedance-controlled continuous non-invasive radiofrequency', journal: 'Journal of Cosmetic and Laser Therapy', year: 2017, studyType: 'Small split-face tissue study', summary: 'In this study, one side of the face received a series of Forma radiofrequency sessions. Tissue analysis found changes consistent with increased dermal collagen content and synthesis on the treated side.', limitations: 'Only four participants were included and the protocol used eight weekly sessions. The tissue findings are informative but cannot predict the amount of visible change an individual client may experience.', url: 'https://doi.org/10.1080/14764172.2016.1262957' }], _updatedAt: '2026-08-27T00:00:00Z',
   },
   {
     _id: '0e5554bd-f58d-4dbe-be0a-972ad9a27a0e', title: 'Glo2Facial', slug: 'glo2facial', kind: 'standalone', public: true, order: 4, collectionSlug: 'facials', providerId: 'provider-amber', providerScope: ESTHETICIAN_SCOPE, duration: '60 minutes', bookingMode: 'direct', bookingUrl: 'https://houseofrose.glossgenius.com/book?service_token=1000f-9649fdf8-0e26-436e-aebf-c19b27addce4', bookingVerifiedAt: '2026-08-04', concernSlugs: ['fine-lines-laxity'], _updatedAt: '2026-08-19T23:48:28Z',

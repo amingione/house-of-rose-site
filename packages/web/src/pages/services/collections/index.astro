@@ -14,6 +14,12 @@ const collectionIntroductions: Readonly<Record<string, string>> = {
 };
 
 const collections = getPublicCollections();
+const collectionHref = (slug: string): string =>
+  slug === 'inmode' ? '/services/inmode/' : `/services/collections/${slug}/`;
+const visibleCollectionServices = (collection: (typeof collections)[number]) =>
+  collection.slug === 'inmode'
+    ? collection.services.filter(({ slug }) => ['morpheus8', 'lumecca-peak-ipl', 'forma-rf-facial'].includes(slug))
+    : collection.services;
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
@@ -26,7 +32,7 @@ const collectionsListSchema = collections.length
   ? itemList(
       collections.map((collection) => ({
         name: collection.title,
-        url: new URL(`/services/collections/${collection.slug}/`, site).toString(),
+        url: new URL(collectionHref(collection.slug), site).toString(),
       })),
       'Service Categories',
     )
@@ -58,7 +64,7 @@ const collectionsListSchema = collections.length
           <li class="bg-bone p-8 sm:p-10">
             <h2 class="font-serif text-3xl text-ink">
               <a
-                href={`/services/collections/${collection.slug}/`}
+                href={collectionHref(collection.slug)}
                 class="transition-colors hover:text-olive"
               >
                 {collection.title}
@@ -68,9 +74,9 @@ const collectionsListSchema = collections.length
               {collectionIntroductions[collection.slug] ?? `Related ${collection.title} treatments at House of Rose.`}
             </p>
 
-            {collection.services.length > 0 && (
+            {visibleCollectionServices(collection).length > 0 && (
               <ul class="mt-7 divide-y divide-walnut/10 border-t border-walnut/15" aria-label={`${collection.title} services`}>
-                {collection.services.map((service) => {
+                {visibleCollectionServices(collection).map((service) => {
                   const summary = getServiceCardSummary(service.slug);
                   return (
                     <li>
