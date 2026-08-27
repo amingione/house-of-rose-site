@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import { getHeroBanner } from '@/lib/heroBanners';
 import ServiceCard from '@/components/ServiceCard.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import {
@@ -134,14 +135,14 @@ const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
   { name: 'Services', item: canonical },
 ]);
+const heroBanner = getHeroBanner('/services/');
 
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  preloadImage="/images/optimized/actual-reception-800.webp"
-  preloadImageSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"
+  preloadImage={heroBanner.src}
   preloadImageSizes="100vw"
   structuredPageType="CollectionPage"
   structuredPageMainEntityId={`${canonical}#itemlist`}
@@ -155,17 +156,19 @@ const breadcrumb = breadcrumbList([
     kicker="Punta Gorda, Florida"
     description="Browse skin treatments, injectables, facials, IV hydration, weight management, waxing, and makeup."
     size="small"
-    backgroundImage="/images/optimized/actual-reception-1400-light.webp"
-    backgroundSrcset="/images/optimized/actual-reception-800.webp 800w, /images/optimized/actual-reception-1400-light.webp 1400w"
+    backgroundImage={heroBanner.src}
     backgroundSizes="100vw"
-    imageAlt="The reception and waiting area inside House of Rose Aesthetics in Punta Gorda"
+    backgroundWidth={922}
+    backgroundHeight={606}
+    backgroundPosition={heroBanner.position}
+    imageAlt={heroBanner.alt}
   />
 
   <!-- Compact treatment index -->
   <nav aria-label="Service groups" class="service-group-nav border-b border-gold-metal/10 bg-charcoal px-5 py-5 sm:px-6">
     <div class="mx-auto max-w-[1280px]">
       <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">Services by category</p>
-      <div class="service-group-nav-track flex gap-2 overflow-x-auto pb-1">
+      <div class="service-group-nav-track flex gap-2 overflow-x-auto pb-2" tabindex="0" aria-label="Scroll to see all service categories">
         {sections.map((section) => (
           <a
             href={`#${section.id}`}
@@ -175,6 +178,7 @@ const breadcrumb = breadcrumbList([
           </a>
         ))}
       </div>
+      <p class="service-group-nav-hint mt-2 text-[11px] text-muted sm:hidden" aria-hidden="true">Swipe to see every category <span>→</span></p>
     </div>
   </nav>
 
@@ -191,7 +195,7 @@ const breadcrumb = breadcrumbList([
       </div>
       <div class="border-l border-gold-metal/25 pl-6">
         <p class="text-[14px] leading-7 text-muted">
-          Want to choose by the person who'll treat you instead? Every provider's licence type and current appointments are listed.
+          Want to choose by the person who will treat you instead? Every provider's licence type and the services they provide are listed.
         </p>
         <a href="/about/providers/" class="learn-more mt-4 inline-flex">
           Meet the House of Rose team →

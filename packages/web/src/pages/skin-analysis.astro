@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, service } from '@/lib/structuredData';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const siteUrl = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -23,6 +24,7 @@ interface SkinAnalysisFaq {
 const pageTitle = 'Skin Imaging & Analysis in Punta Gorda | House of Rose';
 const pageDescription =
   'Multi-spectrum skin imaging in Punta Gorda offers a closer look at pigmentation, pores, texture, fine lines, and visible sun exposure.';
+const heroBanner = getHeroBanner('/skin-analysis/');
 
 const steps: SkinAnalysisStep[] = [
   {
@@ -87,7 +89,7 @@ const serviceSchema = service(
     name: 'Advanced Skin Imaging & Analysis',
     description: pageDescription,
     url: canonicalURL.toString(),
-    image: new URL('/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp', siteUrl).toString(),
+    image: new URL(heroBanner.src, siteUrl).toString(),
     serviceType: 'Multi-spectrum skin imaging',
   },
   siteUrl,
@@ -97,8 +99,7 @@ const serviceSchema = service(
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  preloadImage="/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp"
-  preloadImageSrcset="/images/editorial/skin-analysis/skin-texture-study-v1-800.webp 800w, /images/editorial/skin-analysis/skin-texture-study-v1-1536.webp 1536w"
+  preloadImage={heroBanner.src}
   preloadImageSizes="100vw"
 >
   <SchemaMarkup item={serviceSchema} slot="head" />
@@ -114,37 +115,31 @@ const serviceSchema = service(
     showCTA={true}
     ctaPrimary={{ text: 'Ask about Skin Analysis', href: '#consultation' }}
     ctaSecondary={{ text: 'View Services', href: '/services/' }}
-    backgroundImage="/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp"
-    backgroundSrcset="/images/editorial/skin-analysis/skin-texture-study-v1-800.webp 800w, /images/editorial/skin-analysis/skin-texture-study-v1-1536.webp 1536w"
+    backgroundImage={heroBanner.src}
     backgroundSizes="100vw"
-    imageAlt="Editorial close-up showing natural skin texture, fine lines, pores, and pigmentation"
+    backgroundWidth={924}
+    backgroundHeight={610}
+    backgroundPosition={heroBanner.position}
+    imageAlt={heroBanner.alt}
   />
 
   <!-- ── WHAT IT IS ───────────────────────────────────────────────── -->
-  <section data-skin-analysis-overview class="bg-charcoal grid grid-cols-1 md:grid-cols-2">
-    <div class="p-[clamp(38px,6vw,76px)] flex flex-col justify-center">
-      <span class="kicker">The analysis</span>
-      <h2 class="font-serif text-[clamp(24px,3.4vw,38px)] text-ink leading-tight mt-2 mb-6">
-        Three views of the skin.
-      </h2>
-      <p class="text-muted text-[15px] leading-[1.75] max-w-[560px] mb-4">
-        Skin Analysis captures standard, cross-polarized, and UV photographs. Taking the images takes a few minutes; the rest of the time is used to review what appears in them.
-      </p>
-      <p class="text-muted text-[15px] leading-[1.75] max-w-[560px]">
-        Skin imaging is optional—not required before another service. The photographs provide a consistent visual baseline, not a medical diagnosis.
-      </p>
-    </div>
-    <div class="relative min-h-[340px] bg-charcoal-lighter">
-      <img
-        src="/images/optimized/actual-facial-suite-1400.webp"
-        srcset="/images/optimized/actual-facial-suite-800.webp 800w, /images/optimized/actual-facial-suite-1400.webp 1400w"
-        sizes="(max-width: 767px) 100vw, 50vw"
-        alt="A treatment suite inside House of Rose Aesthetics in Punta Gorda"
-        loading="lazy"
-        class="w-full h-full object-cover"
-        width="1200"
-        height="900"
-      />
+  <section data-skin-analysis-overview class="bg-charcoal px-6 py-[clamp(52px,8vw,108px)]">
+    <div class="mx-auto grid max-w-[1120px] gap-8 md:grid-cols-[minmax(220px,.72fr)_minmax(0,1.28fr)] md:gap-[clamp(52px,8vw,112px)]">
+      <div>
+        <span class="kicker">The analysis</span>
+        <h2 class="mt-2 font-serif text-[clamp(28px,4vw,46px)] leading-tight text-ink">
+          Three views of the skin.
+        </h2>
+      </div>
+      <div class="border-t border-ivory/15 pt-6 md:pt-8">
+        <p class="mb-4 max-w-[660px] text-[15px] leading-[1.8] text-muted">
+          Skin Analysis captures standard, cross-polarized, and UV photographs. Taking the images takes a few minutes; the rest of the time is used to review what appears in them.
+        </p>
+        <p class="max-w-[660px] text-[15px] leading-[1.8] text-muted">
+          Skin imaging is optional—not required before another service. The photographs provide a consistent visual baseline, not a medical diagnosis.
+        </p>
+      </div>
     </div>
   </section>
 

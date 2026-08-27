@@ -63,6 +63,10 @@ const personLd = personProfile({
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="profile" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Diana Morrison, RN | House of Rose Aesthetics" />
+    <meta name="twitter:description" content="Contact details for Diana Morrison, RN, at House of Rose Aesthetics." />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/png" href="/logos/house-of-rose-monogram/hr-monogram-gold-192.png" />
     <SchemaMarkup item={personLd} />
 
@@ -108,7 +112,7 @@ const personLd = personProfile({
         position: absolute;
         right: -60px; bottom: -40px;
         width: 320px; height: 320px;
-        background: url('/images/banner/background/background-rose.webp') no-repeat center / contain;
+        background: url('/images/banner/background/HR-background.webp') no-repeat center / cover;
         opacity: 0.10;
         filter: grayscale(1) brightness(1.3);
         pointer-events: none;

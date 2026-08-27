@@ -16,9 +16,8 @@ test('navigation, consent controls, and keyboard focus remain operable', async (
   await expect(banner).toBeHidden();
 
   if (testInfo.project.name === 'desktop') {
-    await page.getByText('Services', { exact: true }).first().click();
     await expect(
-      page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'View all services' }),
+      page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Treatments' }),
     ).toBeVisible();
   } else {
     await page.getByRole('button', { name: 'Open navigation' }).click();
@@ -32,37 +31,24 @@ test('navigation, consent controls, and keyboard focus remain operable', async (
   await expect(keyboardTarget).toBeVisible();
 });
 
-test('service discovery presents separate education and exact booking actions', async ({ page }) => {
+test('service discovery separates treatment education from the contact pathway', async ({ page }) => {
   await page.goto('/services/');
   await page.getByRole('button', { name: 'Reject optional' }).click();
 
-  const directAction = page.locator('[data-booking-mode="direct"]').first();
-  await expect(directAction).toBeVisible();
-  await expect(directAction).toHaveAttribute(
-    'href',
-    /https:\/\/houseofrose\.glossgenius\.com\/(?:book|services)\?service_token=.+/,
-  );
-  await expect(directAction).not.toHaveAttribute(
-    'href',
-    'https://houseofrose.glossgenius.com/services',
-  );
-  await expect(page.getByRole('link', { name: /Learn about/i }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'A moving line, lost fullness, uneven color, and rough texture call for different treatments.' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Explore Skin & Device Treatments/i })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Contact House of Rose' })).toHaveAttribute('href', '/contact/');
+  await expect(page.locator('[data-booking-mode="direct"]')).toHaveCount(0);
 });
 
-test('service detail keeps exact booking visible without horizontal overflow', async ({ page }, testInfo) => {
+test('service detail keeps education and contact actions visible without horizontal overflow', async ({ page }) => {
   await page.goto('/services/biorepeel/');
   await page.getByRole('button', { name: 'Reject optional' }).click();
 
-  const actions = page.locator('[data-booking-service="biorepeel"]');
-  await expect(actions.first()).toHaveAttribute('data-booking-mode', 'direct');
-  await expect(actions.first()).toHaveAttribute(
-    'href',
-    /https:\/\/houseofrose\.glossgenius\.com\/(?:book|services)\?service_token=.+/,
-  );
-
-  if (testInfo.project.name !== 'desktop') {
-    await expect(page.locator('.service-mobile-booking')).toBeVisible();
-  }
+  await expect(page.getByRole('heading', { name: 'What happens during BioRePeel.' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Download pre-care guide' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Contact House of Rose' })).toHaveAttribute('href', '/contact/');
+  await expect(page.locator('[data-booking-service="biorepeel"]')).toHaveCount(0);
 
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

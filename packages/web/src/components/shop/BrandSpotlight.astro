@@ -21,7 +21,7 @@ const isRealDoc = !brand._id.startsWith('fallback-');
     <div class="max-w-[1280px] mx-auto">
       <div class="max-w-[700px] mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4" {...(isRealDoc ? sbObjectId(brand._id) : {})}>
         <div>
-          <span class="kicker" {...(isRealDoc ? sbFieldPath('title') : {})}>{brand.title}</span>
+          <h2 class="kicker" {...(isRealDoc ? sbFieldPath('title') : {})}>{brand.title}</h2>
           {brand.story && <p class="text-muted text-[15px] leading-[1.75] mt-3" {...(isRealDoc ? sbFieldPath('story') : {})}>{brand.story}</p>}
         </div>
         {ctaLabel && (

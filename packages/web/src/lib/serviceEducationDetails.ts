@@ -19,12 +19,10 @@ export interface ServiceEducationDetails {
 const individualized = (service: string): string =>
   `There is no single best number of ${service} treatments for everyone. Your starting point, response, and goal determine whether one visit or a longer plan makes sense.`;
 
-const noAutomaticPairing = (service: string): readonly ServiceEducationPairing[] => [
-  {
-    title: 'No automatic add-on',
-    text: `${service} does not require another treatment to be complete. Any combination should answer a separate concern and be planned for your skin, timing, and candidacy.`,
-  },
-];
+const noAutomaticPairing = (service: string): readonly ServiceEducationPairing[] => [{
+  title: 'Planning another service?',
+  text: `${service} can stand on its own. If another appointment is part of your plan, share it before scheduling so timing and preparation can be checked.`,
+}];
 
 const makeupSteps: readonly ServiceEducationStep[] = [
   { title: 'Plan the look', text: 'The setting, clothing, photography, timing, and preferred finish guide the makeup plan.' },
@@ -114,7 +112,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
       { title: 'Product and dose planning', text: 'Product choice, dose, and placement are determined individually under written physician protocol and medical direction.' },
       { title: 'Injection and follow-up', text: 'The selected product is injected in planned points, with a separate two-week check-in available after treatment.' },
     ],
-    sessionGuidance: 'One treatment is planned at a time. The current menu includes a separate two-week check-in, but it does not establish one universal maintenance schedule.',
+    sessionGuidance: 'One treatment is planned at a time. A two-week check-in is available, and maintenance timing is individualized.',
     pairings: noAutomaticPairing('Neurotoxin treatment'),
   },
   'dermal-fillers': {
@@ -157,7 +155,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
       { title: 'Apply the peel', text: 'BioRePeel is applied topically according to the selected face, body, or targeted service.' },
       { title: 'Remove and protect', text: 'The peel is removed according to protocol and post-peel product and sun-care instructions are reviewed.' },
     ],
-    sessionGuidance: 'House of Rose offers one face treatment or a current series of three. Body and targeted BioRePeel services are discussed separately because they are not the same treatment area or plan.',
+    sessionGuidance: 'Brandy, Licensed Esthetician provides BioRePeel as one face treatment or a series of three. Amber Mingione, Licensed Esthetician uses BioRePeel only as an add-on to an eligible advanced skin service. Body and targeted services are discussed separately.',
     pairings: [{ title: 'Eligible advanced skin services', text: 'BioRePeel may be used as an add-on to an eligible advanced skin service with Amber Mingione, Licensed Esthetician. Eligibility and timing are determined for the skin being treated.', href: '/services/microneedling/' }],
   },
   'forma-rf-facial': {
@@ -210,7 +208,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
     sessionGuidance: 'Acne Bootcamp is a twelve-week program with visits every two weeks, not an open-ended facial series.',
     pairings: [{ title: 'Face Reality home care', text: 'The home-care plan is a required part of the twelve-week program and continues between professional visits.' }],
   },
-  'waxing': { benefits: ['Removes unwanted facial or body hair from the root.', 'Lets you choose only the area that needs attention.'], treatmentSteps: waxingSteps, sessionGuidance: individualized('waxing'), pairings: noAutomaticPairing('Waxing') },
+  'waxing': { benefits: ['Removes unwanted facial or body hair from the root.', 'Lets you choose only the area that needs attention.'], treatmentSteps: waxingSteps, sessionGuidance: 'Waxing is booked by area. Repeat timing depends on hair regrowth and skin response.', pairings: noAutomaticPairing('Waxing') },
   'facial-waxing': { benefits: ['Removes hair from the brows, upper lip, or chin.', 'Supports brow cleanup or a defined shape-and-trim service.'], treatmentSteps: waxingSteps, sessionGuidance: 'Facial waxing is one visit per selected area. Repeat timing depends on regrowth and skin response.', pairings: noAutomaticPairing('Facial waxing') },
   'body-waxing': { benefits: ['Removes hair from the selected body area at the root.', 'Offers area-specific service rather than a one-size-fits-all full-body treatment.'], treatmentSteps: waxingSteps, sessionGuidance: 'Body waxing is one visit per selected area. Repeat timing depends on hair regrowth and skin response.', pairings: noAutomaticPairing('Body waxing') },
   'microneedling': {
@@ -220,7 +218,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
       { title: 'Create controlled microchannels', text: 'The Procell device moves across the planned area at settings selected for the skin and goal.' },
       { title: 'Apply the selected topical', text: 'The service uses the selected Procell Pro, Procell MD, or topical PRF pathway, followed by written aftercare.' },
     ],
-    sessionGuidance: 'The current House of Rose menu does not establish one Microneedling series or repeat schedule. The number of treatments is planned from the concern, depth, response, and selected Pro, MD, or topical PRF option.',
+    sessionGuidance: 'Treatment count depends on the concern, selected depth, skin response, and whether the Procell Pro, Procell MD, or topical PRF option is used.',
     pairings: [{ title: 'Topical PRF Microneedling', text: 'Topical PRF is a current Microneedling option. A small blood sample is processed, and the PRF is applied topically rather than injected.', href: '/services/prf/' }],
   },
   'prf': {
@@ -231,7 +229,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
       { title: 'Follow route-specific care', text: 'Topical Microneedling care and injectable PRF care are different and are reviewed for the service received.' },
     ],
     sessionGuidance: individualized('PRF'),
-    pairings: [{ title: 'Microneedling with topical PRF', text: 'This is the verified combination at House of Rose: PRF is applied topically during the Microneedling service and is not injected.', href: '/services/microneedling/' }],
+    pairings: [{ title: 'Microneedling with topical PRF', text: 'At House of Rose, PRF may be applied topically during an eligible Microneedling service. It is not injected in this treatment.', href: '/services/microneedling/' }],
   },
   'prf-under-eyes': {
     benefits: ['Uses injectable PRF prepared from the client’s own blood.', 'Focuses the consultation and treatment plan on the under-eye area.'],

@@ -1,0 +1,317 @@
+- generic [active] [ref=f125e1]:
+  - link "Skip to main content" [ref=f125e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f125e3]:
+    - generic [ref=f125e4]:
+      - link "House of Rose Aesthetics home" [ref=f125e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary navigation" [ref=f125e6]:
+        - link "Treatments" [ref=f125e7] [cursor=pointer]:
+          - /url: /services/
+        - link "Skin analysis" [ref=f125e8] [cursor=pointer]:
+          - /url: /skin-analysis/
+        - group [ref=f125e9]:
+          - generic "About" [ref=f125e10] [cursor=pointer]
+        - link "Contact" [ref=f125e13] [cursor=pointer]:
+          - /url: /contact/
+        - link "Get in touch" [ref=f125e14] [cursor=pointer]:
+          - /url: /contact/
+  - main [ref=f125e15]:
+    - generic [ref=f125e16]:
+      - generic [ref=f125e20]:
+        - generic [ref=f125e21]: Medical Aesthetics Practice · Punta Gorda
+        - heading "A Punta Gorda practice with more than one reason to visit." [level=1] [ref=f125e22]:
+          - generic [ref=f125e23]: A Punta Gorda practice with
+          - generic [ref=f125e24]: more than one reason to visit.
+        - paragraph [ref=f125e25]: House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice.
+        - generic [ref=f125e26]:
+          - link "Start a conversation" [ref=f125e27] [cursor=pointer]:
+            - /url: /contact/
+          - link "Explore services" [ref=f125e28] [cursor=pointer]:
+            - /url: /services/
+      - generic [ref=f125e30]:
+        - generic [ref=f125e31]:
+          - generic [ref=f125e32]: Skin, movement, and imaging
+          - heading "What do you keep noticing?" [level=2] [ref=f125e33]
+          - paragraph [ref=f125e34]: The useful detail may be roughness in certain light, a patch of uneven color, a line that appears when you smile, or a change in fullness. That detail helps narrow the services worth reading about.
+        - generic [ref=f125e35]:
+          - link [ref=f125e36] [cursor=pointer]:
+            - /url: /services/collections/facials/
+            - generic [ref=f125e37]:
+              - paragraph [ref=f125e38]: Skin
+              - heading "Is it roughness, visible pores, or uneven color?" [level=3] [ref=f125e39]
+              - paragraph [ref=f125e40]: Maybe makeup catches on roughness, pores seem more visible, or a patch of uneven color keeps drawing your eye. Facials, peels, microneedling, and light-based treatments each work differently.
+            - generic [ref=f125e41]:
+              - text: Explore skin treatments
+              - generic [ref=f125e42]: →
+          - link [ref=f125e43] [cursor=pointer]:
+            - /url: /services/injectables-bio-fillers/
+            - generic [ref=f125e44]:
+              - paragraph [ref=f125e45]: Injectables
+              - heading "Notice what changes when your face moves" [level=3] [ref=f125e46]
+              - paragraph [ref=f125e47]: A line that appears when you frown or squint is a different concern from lost fullness in the lips, cheeks, or folds. Botox and Daxxify address movement; hyaluronic-acid fillers add selected volume.
+            - generic [ref=f125e48]:
+              - text: Explore injectables
+              - generic [ref=f125e49]: →
+          - link [ref=f125e50] [cursor=pointer]:
+            - /url: /skin-analysis/
+            - generic [ref=f125e51]:
+              - paragraph [ref=f125e52]: Skin analysis
+              - heading "See more than ordinary light reveals" [level=3] [ref=f125e53]
+              - paragraph [ref=f125e54]: Multi-spectrum imaging adds another view of visible pigment, texture, pores, and sun exposure. The photographs are reviewed with you as a baseline; they do not make a diagnosis.
+            - generic [ref=f125e55]:
+              - text: See how skin analysis works
+              - generic [ref=f125e56]: →
+        - generic [ref=f125e57]:
+          - paragraph [ref=f125e58]: House of Rose also offers body services, IV hydration, GLP-1 weight management, waxing, and makeup.
+          - generic [ref=f125e59]:
+            - link "Compare InMode treatments" [ref=f125e60] [cursor=pointer]:
+              - /url: /services/inmode/
+              - text: Compare InMode treatments →
+            - link "Explore all treatments" [ref=f125e61] [cursor=pointer]:
+              - /url: /services/
+              - text: Explore all treatments →
+      - generic [ref=f125e63]:
+        - generic [ref=f125e64]:
+          - generic [ref=f125e65]:
+            - generic [ref=f125e66]: Beyond skin and injectables
+            - heading "One address. Several very different reasons to visit." [level=2] [ref=f125e67]
+          - generic [ref=f125e68]:
+            - paragraph [ref=f125e69]: Skin care, an IV, a brow wax, and event makeup are four very different reasons to walk through the same door.
+            - paragraph [ref=f125e70]: The right starting point depends on the concern, the treatment method, the practitioner, and how much recovery fits your schedule.
+        - generic [ref=f125e71]:
+          - article [ref=f125e72]:
+            - generic [ref=f125e73]:
+              - paragraph [ref=f125e74]: IV hydration
+              - heading "Hydration and nutrient formulations with an RN" [level=3] [ref=f125e75]
+              - paragraph [ref=f125e76]: Diana Morrison, RN provides IV hydration with formulations selected for the purpose of the visit and reviewed before administration.
+            - link "Learn about IV hydration" [ref=f125e77] [cursor=pointer]:
+              - /url: /services/iv-hydration-therapy/
+          - article [ref=f125e78]:
+            - generic [ref=f125e79]:
+              - paragraph [ref=f125e80]: Weight management
+              - heading "A conversation before a program" [level=3] [ref=f125e81]
+              - paragraph [ref=f125e82]: Medical weight management is an ongoing program involving medical evaluation, medication when appropriate, and continued follow-up. Semaglutide and tirzepatide are two medications that may be considered.
+            - link "Learn about weight management" [ref=f125e83] [cursor=pointer]:
+              - /url: /services/glp-1-weight-management/
+          - article [ref=f125e84]:
+            - generic [ref=f125e85]:
+              - paragraph [ref=f125e86]: Waxing
+              - heading "Facial and body waxing by area" [level=3] [ref=f125e87]
+              - paragraph [ref=f125e88]: Facial waxing covers the brows, upper lip, and chin. Body waxing is available for selected areas including the underarms, bikini line, chest, back, legs, and arms.
+            - link "Explore waxing" [ref=f125e89] [cursor=pointer]:
+              - /url: /services/waxing/
+      - generic [ref=f125e91]:
+        - generic [ref=f125e92]:
+          - generic [ref=f125e93]:
+            - generic [ref=f125e94]: Platelet-rich fibrin
+            - heading "PRF is used topically or by injection." [level=2] [ref=f125e95]
+          - generic [ref=f125e96]:
+            - paragraph [ref=f125e97]: PRF is a platelet concentrate prepared from a small sample of your own blood. The way it is used changes its role in treatment.
+            - paragraph [ref=f125e98]: At House of Rose, topical PRF is used with microneedling, while under-eye PRF and PRF Bio-Filler are injected by Diana Morrison, RN.
+        - generic [ref=f125e99]:
+          - article [ref=f125e100]:
+            - paragraph [ref=f125e101]: With microneedling
+            - heading "Topical PRF with microneedling" [level=3] [ref=f125e102]
+            - paragraph [ref=f125e103]: PRF is applied to the skin surface during an eligible microneedling service. It is not injected.
+            - link "Microneedling with topical PRF" [ref=f125e104] [cursor=pointer]:
+              - /url: /services/microneedling/
+          - article [ref=f125e105]:
+            - paragraph [ref=f125e106]: Under-eye use
+            - heading "Injectable PRF" [level=3] [ref=f125e107]
+            - paragraph [ref=f125e108]: Diana Morrison, RN provides injectable PRF for the under-eye area.
+            - link "Read about PRF under eyes" [ref=f125e109] [cursor=pointer]:
+              - /url: /services/prf-under-eyes/
+          - article [ref=f125e110]:
+            - paragraph [ref=f125e111]: Bio-Filler use
+            - heading "PRF Bio-Filler" [level=3] [ref=f125e112]
+            - paragraph [ref=f125e113]: Diana Morrison, RN provides PRF Bio-Filler as an injectable treatment.
+            - link "Learn about injectable PRF" [ref=f125e114] [cursor=pointer]:
+              - /url: /services/prf-injections/
+        - generic [ref=f125e115]:
+          - generic [ref=f125e116]:
+            - heading "PRF and dermal filler use different materials." [level=3] [ref=f125e117]
+            - paragraph [ref=f125e118]: PRF is an autologous platelet concentrate. Hyaluronic-acid dermal filler is a manufactured injectable gel. Their material, preparation, and purpose all differ.
+          - generic [ref=f125e119]:
+            - link "Explore PRF" [ref=f125e120] [cursor=pointer]:
+              - /url: /services/prf/
+            - link "Dermal Fillers" [ref=f125e121] [cursor=pointer]:
+              - /url: /services/dermal-fillers/
+      - generic [ref=f125e123]:
+        - figure [ref=f125e124]:
+          - img "The welcome hallway inside House of Rose Aesthetics" [ref=f125e125]
+        - generic [ref=f125e126]:
+          - generic [ref=f125e127]: The detail matters
+          - heading "Bring us the thing you keep seeing in the mirror." [level=2] [ref=f125e128]
+          - generic [ref=f125e129]:
+            - paragraph [ref=f125e130]: An under-eye shadow can come from pigment, thin skin, hollowing, or a combination. Facial lines may reflect movement, volume, texture, or all three. Two concerns that look similar in a photograph may point toward different services.
+            - paragraph [ref=f125e131]: Point to it in the mirror, bring the photograph where it shows up, or simply describe when you notice it most. Those details give the conversation somewhere useful to begin.
+          - generic [ref=f125e132]:
+            - link "Explore concerns" [ref=f125e133] [cursor=pointer]:
+              - /url: /concerns/
+            - link "Compare options" [ref=f125e134] [cursor=pointer]:
+              - /url: /compare/
+            - link "Skin Analysis" [ref=f125e135] [cursor=pointer]:
+              - /url: /skin-analysis/
+      - generic [ref=f125e137]:
+        - generic [ref=f125e138]:
+          - generic [ref=f125e139]: The people
+          - heading "Who you trust with your face matters." [level=2] [ref=f125e140]
+          - paragraph [ref=f125e141]: Know who provides each treatment. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, and makeup artistry.
+          - generic [ref=f125e142]:
+            - link [ref=f125e143] [cursor=pointer]:
+              - /url: /about/providers/brandy/
+              - generic [ref=f125e144]:
+                - strong [ref=f125e145]: Brandy, Licensed Esthetician
+                - text: Facials · BioRePeel · Facial waxing
+              - generic [ref=f125e146]: →
+            - link [ref=f125e147] [cursor=pointer]:
+              - /url: /about/providers/aundrea/
+              - generic [ref=f125e148]:
+                - strong [ref=f125e149]: Aundrea Pedigo, Licensed Esthetician
+                - text: Bridal · Event · Everyday makeup
+              - generic [ref=f125e150]: →
+          - paragraph [ref=f125e151]: Medical direction and treatment delivery are different roles. Joshua Shaw, MD provides medical direction and protocol supervision; he does not perform treatments at House of Rose. Diana Morrison, RN and the licensed estheticians named above provide the treatments within their roles.
+          - paragraph [ref=f125e152]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+          - link "Meet the House of Rose team" [ref=f125e153] [cursor=pointer]:
+            - /url: /about/providers/
+        - generic [ref=f125e154]:
+          - link [ref=f125e155] [cursor=pointer]:
+            - /url: /about/providers/diana/
+            - img "Diana Morrison, RN, at House of Rose Aesthetics" [ref=f125e157]
+            - generic [ref=f125e158]:
+              - heading "Diana Morrison, RN" [level=3] [ref=f125e159]
+              - paragraph [ref=f125e160]: Registered Nurse
+          - link [ref=f125e161] [cursor=pointer]:
+            - /url: /about/providers/amber/
+            - img "Amber Mingione, Licensed Esthetician, at House of Rose Aesthetics" [ref=f125e163]
+            - generic [ref=f125e164]:
+              - heading "Amber Mingione, Licensed Esthetician" [level=3] [ref=f125e165]
+              - paragraph [ref=f125e166]: Licensed Esthetician
+      - generic [ref=f125e168]:
+        - generic [ref=f125e169]:
+          - generic [ref=f125e170]:
+            - generic [ref=f125e171]: The practice
+            - heading "Inside House of Rose." [level=2] [ref=f125e172]
+          - paragraph [ref=f125e174]: These are the actual treatment rooms and storefront at 525 E Olympia Avenue in Punta Gorda.
+        - generic [ref=f125e175]:
+          - figure "525 E Olympia Avenue Unit 9" [ref=f125e176]:
+            - img "The House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda" [ref=f125e178]
+            - generic [ref=f125e179]:
+              - generic [ref=f125e180]: 525 E Olympia Avenue
+              - generic [ref=f125e181]: Unit 9
+          - figure "A treatment suite inside the practice See inside" [ref=f125e182]:
+            - img "The IV hydration suite inside House of Rose Aesthetics" [ref=f125e184]
+            - generic [ref=f125e185]:
+              - generic [ref=f125e186]: A treatment suite inside the practice
+              - link "See inside" [ref=f125e187] [cursor=pointer]:
+                - /url: /experience/
+      - generic [ref=f125e189]:
+        - generic [ref=f125e190]:
+          - generic [ref=f125e191]: A place to begin
+          - heading "Start with the change you want to understand." [level=2] [ref=f125e192]
+          - paragraph [ref=f125e193]: Start with the area or change you keep noticing, compare appropriate options, or contact House of Rose for help narrowing them.
+          - generic [ref=f125e194]:
+            - link "Explore treatments" [ref=f125e195] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact House of Rose" [ref=f125e196] [cursor=pointer]:
+              - /url: /contact/
+          - link "Call (941) 400-0165" [ref=f125e197] [cursor=pointer]:
+            - /url: tel:+19414000165
+            - text: Call (941) 400-0165
+            - generic [ref=f125e198]: →
+        - generic [ref=f125e199]:
+          - paragraph [ref=f125e200]: Visit
+          - heading "House of Rose Aesthetics in Punta Gorda." [level=3] [ref=f125e201]
+          - paragraph [ref=f125e202]: Open Monday through Friday, 9 AM–5 PM.
+          - generic [ref=f125e203]: 525 E Olympia Ave, Unit 9 Punta Gorda, FL 33950
+          - generic [ref=f125e204]:
+            - link "Get directions" [ref=f125e205] [cursor=pointer]:
+              - /url: https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950
+            - link "Contact the practice" [ref=f125e206] [cursor=pointer]:
+              - /url: /contact/
+  - contentinfo [ref=f125e207]:
+    - generic [ref=f125e208]:
+      - generic [ref=f125e209]:
+        - generic [ref=f125e210]:
+          - paragraph [ref=f125e211]: House of Rose Aesthetics
+          - paragraph [ref=f125e212]: Medical Aesthetics Practice
+          - generic [ref=f125e213]:
+            - link "Explore treatments" [ref=f125e214] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f125e215] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f125e216]:
+          - heading "Practice" [level=2] [ref=f125e217]
+          - list [ref=f125e218]:
+            - listitem [ref=f125e219]:
+              - link "About" [ref=f125e220] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f125e221]:
+              - link "Providers" [ref=f125e222] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f125e223]:
+              - link "Services" [ref=f125e224] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f125e225]:
+              - link "Experience" [ref=f125e226] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f125e227]:
+              - link "Results" [ref=f125e228] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f125e229]:
+              - link "FAQ" [ref=f125e230] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f125e231]:
+              - link "Contact" [ref=f125e232] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f125e233]:
+              - link "Client support" [ref=f125e234] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f125e235]:
+              - link "Rent a suite" [ref=f125e236] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f125e237]:
+          - heading "Explore" [level=2] [ref=f125e238]
+          - list [ref=f125e239]:
+            - listitem [ref=f125e240]:
+              - link "Skin analysis" [ref=f125e241] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f125e242]:
+              - link "Concerns" [ref=f125e243] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f125e244]:
+              - link "Compare treatments" [ref=f125e245] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f125e246]:
+              - link "Cost guides" [ref=f125e247] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f125e248]:
+              - link "Areas we serve" [ref=f125e249] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f125e250]:
+              - link "Journal" [ref=f125e251] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f125e252]:
+          - heading "Visit" [level=2] [ref=f125e253]
+          - generic [ref=f125e254]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f125e255] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f125e256] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f125e257]:
+        - paragraph [ref=f125e258]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f125e259]:
+          - link "Privacy" [ref=f125e260] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f125e261] [cursor=pointer]
+          - link "Terms" [ref=f125e262] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f125e263] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f125e266]:
+    - button [ref=f125e267]
+    - button [ref=f125e273]
+    - button [ref=f125e277]
+    - button [ref=f125e282]

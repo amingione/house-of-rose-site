@@ -133,7 +133,7 @@ export const DEVICE_SERVICE_EDUCATION = {
       'Geneo describes the oxygenation step as a reaction between its OxyPod and Primer Gel. The reaction creates a carbon-dioxide-rich bubbly environment on the skin’s surface that triggers the oxygenation step; oxygen is not blown onto the face from an external source.',
     recovery:
       // drift-guard-ok: procedure-specific recovery fact verified by the owner on 2026-08-06
-      'House of Rose confirms that Glo2Facial has no downtime. You can return to your usual day after the appointment, and your provider will review any recommended aftercare.',
+      'You can return to your usual day after a Glo2Facial appointment. Your provider will review any recommended aftercare based on your treatment and skin response.',
     comparisonToDermaplaning:
       'Both appointments include surface exfoliation, but they use different tools. Dermaplaning uses a specialized blade across the face to remove fine vellus hair and accumulated dead skin cells. Glo2Facial uses a single-use OxyPod with Primer Gel for its surface pass, then continues with topical infusion and facial massage.',
     provider: {

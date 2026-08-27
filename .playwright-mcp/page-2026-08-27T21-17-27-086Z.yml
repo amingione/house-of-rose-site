@@ -1,0 +1,433 @@
+- generic [active] [ref=f109e1]:
+  - link "Skip to main content" [ref=f109e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f109e3]:
+    - generic [ref=f109e4]:
+      - link "House of Rose Aesthetics home" [ref=f109e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary navigation" [ref=f109e6]:
+        - link "Treatments" [ref=f109e7] [cursor=pointer]:
+          - /url: /services/
+        - link "Skin analysis" [ref=f109e8] [cursor=pointer]:
+          - /url: /skin-analysis/
+        - group [ref=f109e9]:
+          - generic "About" [ref=f109e10] [cursor=pointer]
+        - link "Contact" [ref=f109e13] [cursor=pointer]:
+          - /url: /contact/
+        - link "Get in touch" [ref=f109e14] [cursor=pointer]:
+          - /url: /contact/
+  - main [ref=f109e15]:
+    - article [ref=f109e16]:
+      - generic [ref=f109e17]:
+        - img "The Morpheus8 treatment room inside House of Rose Aesthetics in Punta Gorda" [ref=f109e19]
+        - generic [ref=f109e21]:
+          - link "InMode treatments" [ref=f109e22] [cursor=pointer]:
+            - /url: /services/inmode/
+            - generic [ref=f109e23]: ←
+            - text: InMode treatments
+          - generic [ref=f109e24]:
+            - paragraph [ref=f109e25]: Morpheus8 RF Microneedling · Punta Gorda
+            - heading "Remodel texture. Rebuild the plan beneath it." [level=1] [ref=f109e26]
+            - paragraph [ref=f109e27]: Morpheus8 combines controlled microneedling with fractional bipolar radiofrequency at selected depths. It is the most intensive of the three House of Rose InMode skin treatments.
+            - generic [ref=f109e28]:
+              - link "Book a Morpheus8 consultation" [ref=f109e29] [cursor=pointer]:
+                - /url: /consultation/
+                - text: Book a Morpheus8 consultation
+                - generic [ref=f109e30]: ↗
+              - link "See results" [ref=f109e31] [cursor=pointer]:
+                - /url: "#results"
+                - text: See results
+                - generic [ref=f109e32]: ↓
+          - paragraph [ref=f109e33]: Consultation-led · Face, lower face, jawline, and neck focus
+      - region "Morpheus8 RF Microneedling at a glance" [ref=f109e34]:
+        - generic [ref=f109e35]:
+          - generic [ref=f109e36]:
+            - paragraph [ref=f109e37]: Technology
+            - strong [ref=f109e38]: Fractional bipolar RF + microneedles
+          - generic [ref=f109e39]:
+            - paragraph [ref=f109e40]: Best fit
+            - strong [ref=f109e41]: Texture + more intensive remodeling
+          - generic [ref=f109e42]:
+            - paragraph [ref=f109e43]: Recovery
+            - strong [ref=f109e44]: Plan for visible redness and swelling
+      - navigation "On this page" [ref=f109e45]:
+        - generic [ref=f109e46]:
+          - generic [ref=f109e47]: On this page
+          - link "How it works" [ref=f109e48] [cursor=pointer]:
+            - /url: "#technology"
+          - link "Compare" [ref=f109e49] [cursor=pointer]:
+            - /url: "#compare"
+          - link "Results" [ref=f109e50] [cursor=pointer]:
+            - /url: "#results"
+          - link "Timeline" [ref=f109e51] [cursor=pointer]:
+            - /url: "#timeline"
+          - link "Combinations" [ref=f109e52] [cursor=pointer]:
+            - /url: "#combinations"
+          - link "FAQ" [ref=f109e53] [cursor=pointer]:
+            - /url: "#faq"
+      - generic [ref=f109e55]:
+        - generic [ref=f109e56]:
+          - generic [ref=f109e57]:
+            - paragraph [ref=f109e58]: What the treatment consists of · What Morpheus8 actually does
+            - heading "Mechanical depth and controlled heat, delivered together." [level=2] [ref=f109e59]
+          - generic [ref=f109e60]:
+            - paragraph [ref=f109e61]: The Morpheus8 handpiece places an array of microneedles into the planned area. Bipolar radiofrequency is then delivered through those electrodes at selected depths, creating small zones of controlled thermal treatment below the surface.
+            - paragraph [ref=f109e62]: That combination matters. The microneedles establish where treatment occurs; radiofrequency adds a thermal remodeling component. Depth, energy, passes, and treatment area are not interchangeable settings, which is why anatomy and skin assessment shape the plan.
+            - paragraph [ref=f109e63]: The response is progressive. Early swelling can temporarily change how the skin looks, but remodeling develops over the weeks and months that follow rather than appearing as one immediate final result.
+          - generic [ref=f109e64]:
+            - generic [ref=f109e65]:
+              - term [ref=f109e66]: Fractional
+              - definition [ref=f109e67]: Treatment is delivered in controlled zones with untreated tissue between them.
+            - generic [ref=f109e68]:
+              - term [ref=f109e69]: Selectable depth
+              - definition [ref=f109e70]: The treatment plan can account for thinner, bony, and softer facial areas instead of using one depth everywhere.
+            - generic [ref=f109e71]:
+              - term [ref=f109e72]: Bipolar RF
+              - definition [ref=f109e73]: Radiofrequency energy produces a controlled thermal effect at the selected treatment depth.
+        - figure "InMode manufacturer media" [ref=f109e74]:
+          - img "Morpheus8 Burst fractional radiofrequency microneedling handpiece" [ref=f109e76]
+      - region [ref=f109e78]:
+        - generic [ref=f109e79]:
+          - generic [ref=f109e80]:
+            - paragraph [ref=f109e81]: Treatment focus
+            - heading "What House of Rose considers Morpheus8 RF Microneedling for." [level=2] [ref=f109e82]
+          - list [ref=f109e83]:
+            - listitem [ref=f109e84]:
+              - generic [ref=f109e85]: "01"
+              - text: Fine lines and wrinkles
+            - listitem [ref=f109e86]:
+              - generic [ref=f109e87]: "02"
+              - text: Rough or uneven texture
+            - listitem [ref=f109e88]:
+              - generic [ref=f109e89]: "03"
+              - text: Eligible acne scarring
+            - listitem [ref=f109e90]:
+              - generic [ref=f109e91]: "04"
+              - text: Enlarged-looking pores
+            - listitem [ref=f109e92]:
+              - generic [ref=f109e93]: "05"
+              - text: Crepey skin
+            - listitem [ref=f109e94]:
+              - generic [ref=f109e95]: "06"
+              - text: Lower-face laxity
+            - listitem [ref=f109e96]:
+              - generic [ref=f109e97]: "07"
+              - text: Jawline skin quality
+            - listitem [ref=f109e98]:
+              - generic [ref=f109e99]: "08"
+              - text: Neck aging
+            - listitem [ref=f109e100]:
+              - generic [ref=f109e101]: "09"
+              - text: Progressive collagen loss
+      - generic [ref=f109e103]:
+        - generic [ref=f109e104]:
+          - paragraph [ref=f109e105]: Morpheus8 vs. traditional microneedling
+          - heading "The needles are only half of the distinction." [level=2] [ref=f109e106]
+          - paragraph [ref=f109e107]: Both create controlled micro-injury. Morpheus8 adds depth-selectable radiofrequency, so it belongs in a different treatment conversation than a more superficial microneedling plan.
+        - generic [ref=f109e108]:
+          - article [ref=f109e109]:
+            - paragraph [ref=f109e110]: Mechanical micro-injury
+            - heading "Traditional microneedling" [level=3] [ref=f109e111]
+            - list [ref=f109e112]:
+              - listitem [ref=f109e113]: — Primarily mechanical collagen induction
+              - listitem [ref=f109e114]: — Typically a more superficial treatment strategy
+              - listitem [ref=f109e115]: — No radiofrequency energy delivered through the needles
+            - link "Explore Traditional microneedling" [ref=f109e116] [cursor=pointer]:
+              - /url: /services/microneedling/
+              - text: Explore Traditional microneedling
+              - generic [ref=f109e117]: →
+          - article [ref=f109e118]:
+            - paragraph [ref=f109e119]: Fractional RF microneedling
+            - heading "Morpheus8" [level=3] [ref=f109e120]
+            - list [ref=f109e121]:
+              - listitem [ref=f109e122]: — Microneedles plus bipolar radiofrequency
+              - listitem [ref=f109e123]: — Selectable treatment depths
+              - listitem [ref=f109e124]: — Thermal remodeling component
+              - listitem [ref=f109e125]: — Settings tailored to anatomy and concern
+      - generic [ref=f109e127]:
+        - generic [ref=f109e128]:
+          - paragraph [ref=f109e129]: Facial result example
+          - heading "Look closely at the lower face, not just the lighting." [level=2] [ref=f109e130]
+          - paragraph [ref=f109e131]: This manufacturer-provided four-treatment example is presented at a size that allows the lower-face texture and contour to be compared. It is not a prediction of an individual outcome.
+        - figure "Four-treatment manufacturer example. Not a House of Rose client. Morpheus8 example courtesy of esmé, the medspa; attribution embedded in image" [ref=f109e133]:
+          - img "Manufacturer-provided Morpheus8 facial before and after showing the lower face after four treatments" [ref=f109e134]
+          - generic [ref=f109e135]:
+            - strong [ref=f109e136]: Four-treatment manufacturer example. Not a House of Rose client.
+            - generic [ref=f109e137]: Morpheus8 example courtesy of esmé, the medspa; attribution embedded in image
+        - paragraph [ref=f109e138]: Individual results vary. Treatment count, settings, skin response, lighting, angle, and timing affect visible change.
+      - generic [ref=f109e140]:
+        - generic [ref=f109e141]:
+          - paragraph [ref=f109e142]: Results and recovery timeline
+          - heading "A treatment day, a recovery window, then gradual change." [level=2] [ref=f109e143]
+          - paragraph [ref=f109e144]: Published RF microneedling literature reports that pain, redness, bruising, and swelling commonly settle over roughly two to five days, but depth and energy change the experience. Your House of Rose instructions take priority for your treatment.
+        - list [ref=f109e145]:
+          - listitem [ref=f109e146]:
+            - generic [ref=f109e147]: "01"
+            - generic [ref=f109e148]:
+              - paragraph [ref=f109e149]: Treatment day
+              - heading "Controlled treatment + immediate response" [level=3] [ref=f109e150]
+              - paragraph [ref=f109e151]: Redness, warmth, pinpoint bleeding, tenderness, and swelling can occur. The treated area may look more affected before it looks improved.
+          - listitem [ref=f109e152]:
+            - generic [ref=f109e153]: "02"
+            - generic [ref=f109e154]:
+              - paragraph [ref=f109e155]: Days 1–5
+              - heading "Visible recovery" [level=3] [ref=f109e156]
+              - paragraph [ref=f109e157]: Redness and swelling typically recede during this period. Makeup and active skincare timing depend on closure of the microchannels and the instructions provided after treatment.
+          - listitem [ref=f109e158]:
+            - generic [ref=f109e159]: "03"
+            - generic [ref=f109e160]:
+              - paragraph [ref=f109e161]: Following weeks
+              - heading "Early texture changes" [level=3] [ref=f109e162]
+              - paragraph [ref=f109e163]: As the immediate response settles, early changes can become easier to assess. This is not the final remodeling point.
+          - listitem [ref=f109e164]:
+            - generic [ref=f109e165]: "04"
+            - generic [ref=f109e166]:
+              - paragraph [ref=f109e167]: Following months
+              - heading "Progressive remodeling" [level=3] [ref=f109e168]
+              - paragraph [ref=f109e169]: Collagen-related change develops gradually. Follow-up is used to compare the response with baseline and decide whether another session belongs in the plan.
+          - listitem [ref=f109e170]:
+            - generic [ref=f109e171]: "05"
+            - generic [ref=f109e172]:
+              - paragraph [ref=f109e173]: Maintenance
+              - heading "Only when the result and goal support it" [level=3] [ref=f109e174]
+              - paragraph [ref=f109e175]: Maintenance is not one universal calendar. Timing depends on the original concern, treatment response, and the pace of future change.
+      - generic [ref=f109e177]:
+        - generic [ref=f109e178]:
+          - paragraph [ref=f109e179]: The treatment experience
+          - heading "The questions worth answering before treatment day." [level=2] [ref=f109e180]
+          - paragraph [ref=f109e181]: Appointment length, anesthetic approach, and recovery instructions depend on the area and treatment settings. House of Rose confirms those details as part of the plan rather than posting one protocol for every face.
+        - generic [ref=f109e182]:
+          - article [ref=f109e183]:
+            - heading "How long does it take?" [level=3] [ref=f109e184]
+            - paragraph [ref=f109e185]: The treatment area, planned settings, and time allowed for comfort measures determine appointment length. Your consultation confirms the time reserved for your plan.
+          - article [ref=f109e186]:
+            - heading "What does it feel like?" [level=3] [ref=f109e187]
+            - paragraph [ref=f109e188]: RF microneedling can feel sharp, hot, and pressure-like. The sensation varies by anatomy, depth, energy, and individual tolerance.
+          - article [ref=f109e189]:
+            - heading "Is numbing used?" [level=3] [ref=f109e190]
+            - paragraph [ref=f109e191]: Topical anesthetic is commonly used in RF microneedling. The exact comfort plan is confirmed for the selected settings and your health history.
+          - article [ref=f109e192]:
+            - heading "What will I look like afterward?" [level=3] [ref=f109e193]
+            - paragraph [ref=f109e194]: Expect visible redness and some swelling. Pinpoint marks, dryness, roughness, or light crusting can occur as the microchannels close.
+          - article [ref=f109e195]:
+            - heading "When can I wear makeup or restart skincare?" [level=3] [ref=f109e196]
+            - paragraph [ref=f109e197]: Published guidance ties makeup and topical-product return to closure of the microchannels, often within one to three days. Follow the specific instructions House of Rose gives you; do not restart active products on your own timeline.
+          - article [ref=f109e198]:
+            - heading "How many sessions might I need?" [level=3] [ref=f109e199]
+            - paragraph [ref=f109e200]: House of Rose has single-session and series options, but the recommendation depends on the concern, area, settings, and response. A series is not automatic for every client.
+      - generic [ref=f109e202]:
+        - generic [ref=f109e203]:
+          - paragraph [ref=f109e204]: Why Morpheus8 at House of Rose
+          - heading "The device is standardized. The plan should not be." [level=2] [ref=f109e205]
+          - generic [ref=f109e206]:
+            - paragraph [ref=f109e207]: Morpheus8 is an operator-dependent medical procedure. The useful distinction is not simply owning the platform; it is assessing anatomy, choosing an appropriate depth and energy strategy, documenting baseline skin, and planning recovery before the first pulse.
+            - paragraph [ref=f109e208]: House of Rose uses consultation to decide whether Morpheus8 is appropriate, whether a less intensive option makes more sense, and whether pigment or redness calls for a different modality. The goal is measured, natural-looking improvement without treating every concern as a reason to increase intensity.
+        - generic [ref=f109e209]:
+          - paragraph [ref=f109e210]: What planning accounts for
+          - list [ref=f109e211]:
+            - listitem [ref=f109e212]: Anatomy-led treatment mapping
+            - listitem [ref=f109e213]: Skin and health-history review
+            - listitem [ref=f109e214]: Depth and settings selected for the area
+            - listitem [ref=f109e215]: Combination modalities only when they answer a separate concern
+          - paragraph [ref=f109e216]: "Treatments are provided under written physician protocol and medical direction.Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - generic [ref=f109e218]:
+        - generic [ref=f109e219]:
+          - paragraph [ref=f109e220]: Combination treatment planning
+          - heading "A second modality should have a separate job." [level=2] [ref=f109e221]
+          - paragraph [ref=f109e222]: Combination planning is about matching each concern to the right technology and sequencing treatment responsibly. It is not an instruction to perform every modality in the same appointment.
+        - generic [ref=f109e223]:
+          - article [ref=f109e224]:
+            - paragraph [ref=f109e225]: Structure + complexion
+            - heading "Morpheus8 + Lumecca Peak" [level=3] [ref=f109e226]
+            - generic [ref=f109e227]: Morpheus8 addresses fractional remodeling and texture. Lumecca Peak addresses visible pigment, photodamage, and vascular discoloration. The value is in assigning each concern to the technology built for it.
+            - generic [ref=f109e228]:
+              - link "Morpheus8" [ref=f109e229] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Morpheus8
+                - generic [ref=f109e230]: →
+              - link "Lumecca Peak" [ref=f109e231] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Lumecca Peak
+                - generic [ref=f109e232]: →
+          - article [ref=f109e233]:
+            - paragraph [ref=f109e234]: Remodel + maintain
+            - heading "Morpheus8 + Forma" [level=3] [ref=f109e235]
+            - generic [ref=f109e236]: A more intensive fractional RF plan can be followed, when appropriate, by non-invasive Forma sessions focused on ongoing skin quality and firmness.
+            - generic [ref=f109e237]:
+              - link "Morpheus8" [ref=f109e238] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Morpheus8
+                - generic [ref=f109e239]: →
+              - link "Forma" [ref=f109e240] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Forma
+                - generic [ref=f109e241]: →
+      - generic [ref=f109e243]:
+        - generic [ref=f109e244]:
+          - paragraph [ref=f109e245]: Frequently asked questions
+          - heading "Clear answers before the consultation." [level=2] [ref=f109e246]
+          - paragraph [ref=f109e247]: These answers are general education. Your health history, skin, anatomy, and treatment area determine what is appropriate.
+        - generic [ref=f109e248]:
+          - group [ref=f109e249]:
+            - generic "What is Morpheus8?" [ref=f109e250] [cursor=pointer]: +
+            - paragraph [ref=f109e253]: Morpheus8 is an InMode fractional radiofrequency device. An array of microneedles enters the planned area and delivers bipolar RF energy at selected depths.
+          - group [ref=f109e254]:
+            - generic "Is Morpheus8 RF microneedling?" [ref=f109e255] [cursor=pointer]: +
+          - group [ref=f109e258]:
+            - generic "What does Morpheus8 address?" [ref=f109e259] [cursor=pointer]: +
+          - group [ref=f109e262]:
+            - generic "Does Morpheus8 tighten skin?" [ref=f109e263] [cursor=pointer]: +
+          - group [ref=f109e266]:
+            - generic "Is Morpheus8 better than microneedling?" [ref=f109e267] [cursor=pointer]: +
+          - group [ref=f109e270]:
+            - generic "How painful is Morpheus8?" [ref=f109e271] [cursor=pointer]: +
+          - group [ref=f109e274]:
+            - generic "How much downtime does Morpheus8 have?" [ref=f109e275] [cursor=pointer]: +
+          - group [ref=f109e278]:
+            - generic "How many Morpheus8 treatments do I need?" [ref=f109e279] [cursor=pointer]: +
+          - group [ref=f109e282]:
+            - generic "When will I see Morpheus8 results?" [ref=f109e283] [cursor=pointer]: +
+          - group [ref=f109e286]:
+            - generic "Can Morpheus8 help acne scars?" [ref=f109e287] [cursor=pointer]: +
+          - group [ref=f109e290]:
+            - generic "Can Morpheus8 be combined with IPL?" [ref=f109e291] [cursor=pointer]: +
+          - group [ref=f109e294]:
+            - generic "Can Morpheus8 be combined with Forma?" [ref=f109e295] [cursor=pointer]: +
+          - group [ref=f109e298]:
+            - generic "Who should not receive Morpheus8?" [ref=f109e299] [cursor=pointer]: +
+      - region [ref=f109e302]:
+        - generic [ref=f109e303]:
+          - generic [ref=f109e304]:
+            - paragraph [ref=f109e305]: Prepare and recover
+            - heading "Keep the care instructions close." [level=2] [ref=f109e306]
+          - generic [ref=f109e307]:
+            - paragraph [ref=f109e308]: Use the treatment-specific section in each guide. Instructions provided for your individual treatment and settings always take priority.
+            - generic [ref=f109e309]:
+              - link "Download pre-care guide" [ref=f109e310] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-pre-care-guide.pdf
+                - text: Download pre-care guide
+                - generic [ref=f109e311]: ↓
+              - link "Download aftercare guide" [ref=f109e312] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-aftercare-guide.pdf
+                - text: Download aftercare guide
+                - generic [ref=f109e313]: ↓
+      - region [ref=f109e314]:
+        - generic [ref=f109e315]:
+          - heading "Sources" [level=2] [ref=f109e316]
+          - paragraph [ref=f109e317]: Manufacturer examples do not predict an individual result.
+          - list [ref=f109e318]:
+            - listitem [ref=f109e319]:
+              - link "InMode OptimasMAX and Morpheus8 Burst overview" [ref=f109e320] [cursor=pointer]:
+                - /url: https://www.inmodemd.com/workstation/optimas-max/
+                - text: InMode OptimasMAX and Morpheus8 Burst overview
+                - generic [ref=f109e321]: ↗
+            - listitem [ref=f109e322]:
+              - link "FDA RF microneedling safety communication" [ref=f109e323] [cursor=pointer]:
+                - /url: https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication
+                - text: FDA RF microneedling safety communication
+                - generic [ref=f109e324]: ↗
+            - listitem [ref=f109e325]:
+              - link "House of Rose Morpheus8 safety guide" [ref=f109e326] [cursor=pointer]:
+                - /url: /blog/is-morpheus8-safe/
+                - text: House of Rose Morpheus8 safety guide
+                - generic [ref=f109e327]: ↗
+      - generic [ref=f109e331]:
+        - paragraph [ref=f109e332]: House of Rose Aesthetics · Punta Gorda
+        - heading "Bring the concern. We’ll help identify the right treatment path." [level=2] [ref=f109e333]
+        - paragraph [ref=f109e334]: Start with a consultation for Morpheus8, Lumecca Peak, Forma, or a combination plan. House of Rose can explain current pricing during that conversation.
+        - generic [ref=f109e335]:
+          - link "Book a consultation" [ref=f109e336] [cursor=pointer]:
+            - /url: /consultation/
+            - text: Book a consultation
+            - generic [ref=f109e337]: ↗
+          - link "Contact House of Rose" [ref=f109e338] [cursor=pointer]:
+            - /url: /contact/
+            - text: Contact House of Rose
+            - generic [ref=f109e339]: →
+        - paragraph [ref=f109e340]: 525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950 · (941) 400-0165
+        - paragraph [ref=f109e341]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+  - contentinfo [ref=f109e342]:
+    - generic [ref=f109e343]:
+      - generic [ref=f109e344]:
+        - generic [ref=f109e345]:
+          - paragraph [ref=f109e346]: House of Rose Aesthetics
+          - paragraph [ref=f109e347]: Medical Aesthetics Practice
+          - generic [ref=f109e348]:
+            - link "Explore treatments" [ref=f109e349] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f109e350] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f109e351]:
+          - heading "Practice" [level=2] [ref=f109e352]
+          - list [ref=f109e353]:
+            - listitem [ref=f109e354]:
+              - link "About" [ref=f109e355] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f109e356]:
+              - link "Providers" [ref=f109e357] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f109e358]:
+              - link "Services" [ref=f109e359] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f109e360]:
+              - link "Experience" [ref=f109e361] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f109e362]:
+              - link "Results" [ref=f109e363] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f109e364]:
+              - link "FAQ" [ref=f109e365] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f109e366]:
+              - link "Contact" [ref=f109e367] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f109e368]:
+              - link "Client support" [ref=f109e369] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f109e370]:
+              - link "Rent a suite" [ref=f109e371] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f109e372]:
+          - heading "Explore" [level=2] [ref=f109e373]
+          - list [ref=f109e374]:
+            - listitem [ref=f109e375]:
+              - link "Skin analysis" [ref=f109e376] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f109e377]:
+              - link "Concerns" [ref=f109e378] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f109e379]:
+              - link "Compare treatments" [ref=f109e380] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f109e381]:
+              - link "Cost guides" [ref=f109e382] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f109e383]:
+              - link "Areas we serve" [ref=f109e384] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f109e385]:
+              - link "Journal" [ref=f109e386] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f109e387]:
+          - heading "Visit" [level=2] [ref=f109e388]
+          - generic [ref=f109e389]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f109e390] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f109e391] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f109e392]:
+        - paragraph [ref=f109e393]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f109e394]:
+          - link "Privacy" [ref=f109e395] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f109e396] [cursor=pointer]
+          - link "Terms" [ref=f109e397] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f109e398] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f109e401]:
+    - button [ref=f109e402]
+    - button [ref=f109e408]
+    - button [ref=f109e412]
+    - button [ref=f109e417]

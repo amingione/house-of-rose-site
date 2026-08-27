@@ -8,12 +8,12 @@ import {
   faqPage,
   service as serviceJsonLd,
 } from '@/lib/structuredData';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const heroImage = '/images/optimized/actual-welcome-800.webp';
-const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
-const socialImage = new URL(heroImage, site).toString();
+const heroBanner = getHeroBanner('/consultation/');
+const socialImage = new URL(heroBanner.src, site).toString();
 const phoneDisplay = '(941) 400-0165';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
 const addressLine = `${LOCAL_BUSINESS.streetAddress}, ${LOCAL_BUSINESS.addressLocality}, ${LOCAL_BUSINESS.addressRegion} ${LOCAL_BUSINESS.postalCode}`;
@@ -67,9 +67,8 @@ const faqSchema = faqPage(faqs);
   title="Aesthetics Consultation | Punta Gorda, FL"
   description={pageDescription}
   image={socialImage}
-  imageAlt="House of Rose Aesthetics welcome area in Punta Gorda, Florida"
-  preloadImage={heroImage}
-  preloadImageSrcset={heroImageSrcset}
+  imageAlt={heroBanner.alt}
+  preloadImage={heroBanner.src}
   preloadImageSizes="(max-width: 1023px) 100vw, 53vw"
   chrome="landing"
 >
@@ -133,25 +132,16 @@ const faqSchema = faqPage(faqs);
 
         <div class="hero-media relative order-1 min-h-[38svh] overflow-hidden bg-walnut sm:min-h-[46svh] lg:order-2 lg:min-h-full">
           <img
-            src={heroImage}
-            srcset={heroImageSrcset}
+            src={heroBanner.src}
             sizes="(max-width: 1023px) 100vw, 53vw"
-            alt="House of Rose Aesthetics studio lounge in Punta Gorda"
-            width="1400"
-            height="1050"
+            alt={heroBanner.alt}
+            width={heroBanner.width}
+            height={heroBanner.height}
             loading="eager"
             decoding="async"
             fetchpriority="high"
             class="absolute inset-0 h-full w-full object-cover object-center"
           />
-          <div class="absolute bottom-5 left-5 right-5 border border-ivory/35 bg-walnut/80 px-5 py-4 text-ivory backdrop-blur-sm sm:bottom-8 sm:left-8 sm:right-auto sm:max-w-[360px] sm:px-6">
-            <p class="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
-              House of Rose Aesthetics
-            </p>
-            <p class="mt-2 font-serif text-[20px] leading-snug">
-              525 E Olympia Ave, Unit 9 · Punta Gorda
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -277,7 +267,7 @@ const faqSchema = faqPage(faqs);
                 required
                 autocomplete="email"
                 inputmode="email"
-                placeholder="you@example.com"
+                placeholder="Email address"
                 class="landing-input"
               />
             </div>
@@ -292,7 +282,7 @@ const faqSchema = faqPage(faqs);
                 required
                 autocomplete="tel"
                 inputmode="tel"
-                placeholder="(555) 555-5555"
+                placeholder="Phone number"
                 class="landing-input"
               />
             </div>

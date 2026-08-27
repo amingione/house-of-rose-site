@@ -6,6 +6,7 @@ import TopSellers from '@/components/shop/TopSellers.astro';
 import CategoryNav from '@/components/shop/CategoryNav.astro';
 import BrandSpotlight from '@/components/shop/BrandSpotlight.astro';
 import { sanityFetch } from '@/lib/sanity';
+import { getHeroBanner } from '@/lib/heroBanners';
 import {
   ALL_PRODUCTS_QUERY,
   ALL_PROMOTIONS_QUERY,
@@ -77,8 +78,7 @@ const orderingOptions = [
   },
 ];
 
-const heroImage = '/images/optimized/actual-welcome-800.webp';
-const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
+const heroBanner = getHeroBanner('/shop/');
 const measurementItems = products.map((product, index) => {
   const canonical = toCanonicalProduct(product);
   return {
@@ -97,9 +97,8 @@ const measurementItems = products.map((product, index) => {
 <BaseLayout
   title="Shop | House of Rose Punta Gorda, FL"
   description="Shop professional skincare selected by House of Rose, including procell aftercare, GlyMed+, Skin Script, Face Reality, and gift cards."
-  image={heroImage}
-  preloadImage={heroImage}
-  preloadImageSrcset={heroImageSrcset}
+  image={heroBanner.src}
+  preloadImage={heroBanner.src}
   preloadImageSizes="100vw"
   noindex={!SHOP_ENABLED}
   nofollow={!SHOP_ENABLED}
@@ -110,12 +109,12 @@ const measurementItems = products.map((product, index) => {
     description="We carry products that support the treatments we perform, help with aftercare, or make sense in a daily routine. If you're unsure what fits, ask us before you buy."
     size="small"
     showCTA={false}
-    backgroundImage={heroImage}
-    backgroundSrcset={heroImageSrcset}
+    backgroundImage={heroBanner.src}
     backgroundSizes="100vw"
-    backgroundWidth={1400}
-    backgroundHeight={1050}
-    imageAlt="Professional skincare products selected by House of Rose Aesthetics"
+    backgroundWidth={912}
+    backgroundHeight={610}
+    backgroundPosition={heroBanner.position}
+    imageAlt={heroBanner.alt}
   />
 
   <PromoBanner promotions={promotions} />

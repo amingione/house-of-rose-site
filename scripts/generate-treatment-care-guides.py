@@ -242,7 +242,7 @@ def build_pdf(filename: str, title: str, sections: dict[str, list[str]]):
     story.extend([
         PageBreak(),
         Paragraph("Sources and scope", s["h1"]),
-        Paragraph("The service index reflects the current local House of Rose service catalog and current House of Rose operational records. Treatment-specific instructions were kept conservative where no current House of Rose protocol authorizes a more detailed public instruction.", s["body"]),
+        Paragraph("These guides provide general preparation and aftercare information for services offered at House of Rose. Instructions given to you for your specific treatment take priority.", s["body"]),
         Paragraph("Reviewed references include current House of Rose provider and treatment briefs; Procell Therapies aftercare and consent materials retained in the House of Rose repository; Face Reality professional home-care and peel guidance; Geneo treatment considerations and protocol resources; InMode clinical and manufacturer materials; and current product labeling for medically directed services where applicable.", s["body"]),
         Paragraph("Do not use this guide to decide candidacy, stop a prescribed medicine, select a medication or injectable product, or replace urgent medical care.", s["body"]),
         Spacer(1, 0.2 * inch),

@@ -30,9 +30,9 @@ export interface ServiceTestimonial {
   readonly attribution: string;
 }
 
-export const IV_LANDING_HERO_IMAGE = '/images/editorial/home/wellness-iv-hydration.webp';
+export const IV_LANDING_HERO_IMAGE = '/images/optimized/actual-iv-suite-1400.webp';
 export const IV_LANDING_HERO_IMAGE_ALT =
-  'Client receiving IV hydration while seated at House of Rose Aesthetics';
+  'The IV hydration suite inside House of Rose Aesthetics';
 
 export const IV_LANDING_META_DESCRIPTION =
   'House of Rose Aesthetics offers six IV hydration options in Punta Gorda, Florida, with individual review by Diana Morrison, RN.';
@@ -62,7 +62,7 @@ export const IV_LANDING_POINTS = [
     text: 'Diana Morrison, RN reviews relevant health information, the current option, and candidacy before treatment.',
   },
   {
-    title: 'One current set',
+    title: 'Six IV options',
     text: 'House of Rose currently offers six base IV visits. Call the practice for current pricing.',
   },
 ] as const satisfies readonly EditorialPoint[];
@@ -110,22 +110,22 @@ export const IV_LANDING_FAQS = [
   {
     question: 'What is in an IV hydration treatment?',
     answer:
-      'The current appointment names do not identify a complete formulation. Contact House of Rose to confirm current ingredients or available add-ons before booking when those details affect your decision.',
+      'The option names do not identify a complete formulation. Contact House of Rose to confirm current ingredients or available add-ons before booking when those details affect your decision.',
   },
   {
     question: 'How do I know which IV is right for me?',
     answer:
-      'You do not need to decide from the appointment name alone. Diana Morrison, RN can review the current options, relevant health information, and candidacy with you.',
+      'You do not need to select an option on your own. Diana Morrison, RN can review the available options, relevant health information, and candidacy with you.',
   },
   {
     question: 'How often can you receive IV hydration?',
     answer:
-      'House of Rose does not publish a universal schedule for IV hydration. Frequency is an individual clinical question to discuss with Diana Morrison, RN.',
+      'Frequency is individualized. Diana Morrison, RN reviews the selected formulation, relevant health information, and the reason for the visit before discussing timing.',
   },
   {
     question: 'Who may not be a candidate for IV therapy?',
     answer:
-      'Not every client is a candidate. House of Rose does not use a website checklist to determine eligibility; Diana Morrison, RN reviews relevant health information under written physician protocol.',
+      'Not every client is a candidate. Diana Morrison, RN reviews relevant health information and candidacy under written physician protocol.',
   },
   {
     question: 'Is there anything I should do before my appointment?',
@@ -135,7 +135,7 @@ export const IV_LANDING_FAQS = [
   {
     question: 'Can I receive IV hydration if I take medications?',
     answer:
-      'Contact House of Rose before the visit so your medication question can be reviewed in context. Do not stop or change a medication based on general website information.',
+      'Contact House of Rose before the visit so your medication question can be reviewed in context. Do not stop or change a medication without guidance from the clinician who manages it.',
   },
   {
     question: 'Where can I get IV hydration in Punta Gorda?',

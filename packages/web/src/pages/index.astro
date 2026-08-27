@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
-import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
+import Hero from '@/components/Hero.astro';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const phoneDisplay = '(941) 400-0165';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
@@ -55,22 +56,29 @@ const treatmentCategories = [
     cta: 'See how skin analysis works',
   },
 ] as const;
+const heroBanner = getHeroBanner('/');
 
 ---
 
 <BaseLayout
   title="House of Rose | Medical Aesthetics in Punta Gorda"
   description="Explore skin treatments, injectables, facials, body services, IV hydration, and GLP-1 weight management at House of Rose in Punta Gorda."
-  preloadImage="/images/hero/treatment-scan-poster.webp"
+  preloadImage={heroBanner.src}
   preloadImageSizes="100vw"
 >
   <div>
-    <SkinAnalysisHero
+    <Hero
       title={'A Punta Gorda practice with\nmore than one reason to visit.'}
-      description={'House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice.'}
-      location="Punta Gorda, Florida"
-      primaryCta="Start a conversation"
-      secondaryCta="Explore services"
+      kicker="Medical Aesthetics Practice · Punta Gorda"
+      description="House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice."
+      backgroundImage={heroBanner.src}
+      backgroundWidth={898}
+      backgroundHeight={576}
+      backgroundPosition={heroBanner.position}
+      imageAlt={heroBanner.alt}
+      showCTA={true}
+      ctaPrimary={{ text: 'Start a conversation', href: '/contact/' }}
+      ctaSecondary={{ text: 'Explore services', href: '/services/' }}
     />
 
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">
@@ -137,7 +145,7 @@ const treatmentCategories = [
           </div>
           <div class="max-w-[690px] lg:pt-8">
             <p class="font-serif text-[clamp(23px,3vw,32px)] leading-[1.25] text-ink">
-              Skin care, an IV, a brow wax, and a fitted piece of jewelry are four very different reasons to walk through the same door.
+              Skin care, an IV, a brow wax, and event makeup are four very different reasons to walk through the same door.
             </p>
             <p class="mt-6 text-[16px] leading-[1.8] text-muted">
               The right starting point depends on the concern, the treatment method, the practitioner, and how much recovery fits your schedule.
@@ -284,10 +292,10 @@ const treatmentCategories = [
         <div class="max-w-[560px]">
           <span class="kicker">The people</span>
           <h2 class="font-serif text-[clamp(40px,5.5vw,62px)] leading-[1.02] tracking-[-0.02em] text-ivory">
-            Who you trust with your face matters.
+            Meet the people providing your treatment.
           </h2>
           <p class="mt-7 text-[17px] leading-[1.8] text-ivory/78">
-            Know who provides each treatment. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician, and Aundrea Pedigo, Licensed Esthetician, round out the team with facials, waxing, and makeup artistry.
+            Different services are provided by different members of the House of Rose team. Diana Morrison, RN provides injectables, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Microneedling with the Procell Therapies device, Glo2Facial, dermaplaning, and BioRePeel add-ons. Brandy, Licensed Esthetician provides facials, BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup.
           </p>
           <div class="mt-7 grid gap-3 border-t border-ivory/20 pt-6 text-[13px] leading-[1.6]">
             <a href="/about/providers/brandy/" class="group flex items-baseline justify-between gap-5 text-ivory hover:text-gold">

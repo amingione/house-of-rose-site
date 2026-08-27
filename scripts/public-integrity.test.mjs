@@ -2570,7 +2570,7 @@ test('results index keeps the empty state concise and reserves proof guidance fo
   if (isEmpty) {
     if (standard) failures.push('results index: empty state should not render proof-standard guidance');
     for (const [label, pattern] of [
-      ['no client cases available', /No client cases are available to view yet/i],
+      ['no client cases available', /No client cases are currently available to view/i],
       ['no stock photographs presented as results', /does not use stock photographs as client results/i],
       ['written permission boundary', /photographs are shared only with written permission/i],
     ]) {
@@ -2670,11 +2670,10 @@ test('comparison pages expose only reviewed factual row types', () => {
   const daxxifyText = visibleText(mainHtml(daxxifyHtml));
   for (const requiredFact of [
     /Daxxify vs\. Botox/i,
-    /product-specific unit/i,
-    /priced per Daxxify unit/i,
-    /priced per Botox unit/i,
-    /60 minutes/i,
-    /30 minutes/i,
+    /each product defines potency in its own units/i,
+    /cannot be converted/i,
+    /RTP004/i,
+    /human albumin/i,
     /Onset evidence/i,
     /Median 3 days to subject-rated improvement of at least 1 point/i,
     /chemical denervation typically begins 1[–-]2 days after injection/i,
@@ -2696,6 +2695,9 @@ test('comparison pages expose only reviewed factual row types', () => {
   }
   if (/\bno downtime\b/i.test(daxxifyText)) {
     failures.push('daxxify-vs-botox: contains an unsupported no-downtime claim');
+  }
+  if (/priced per|per-unit rate|60 minutes|30 minutes/i.test(daxxifyText)) {
+    failures.push('daxxify-vs-botox: exposes pricing structure or appointment inventory');
   }
   // House of Rose pricing is never public (binding 2026-08-20). No dollar
   // amount may appear on the Daxxify vs. Botox comparison.

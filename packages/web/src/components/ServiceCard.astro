@@ -7,13 +7,9 @@
 import { urlFor } from '@/lib/sanity';
 import type { SanityImage } from '@/lib/queries';
 import {
-  getCuratedServiceImage,
-  getCuratedServiceImageAlt,
   getServiceCardImage,
   getServiceCardImageAlt,
-  getServiceFallbackImage,
   serviceCardImageUsesContain,
-  serviceImageUsesContain,
 } from '@/lib/imageFallbacks';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 
@@ -25,16 +21,13 @@ interface Props {
 }
 
 const { title, slug, image, variant = 'grid' } = Astro.props;
-const curatedImage = getCuratedServiceImage(slug);
-const curatedImageAlt = getCuratedServiceImageAlt(slug);
-const containImage = serviceImageUsesContain(slug);
 const rowImage = getServiceCardImage(slug);
 const rowImageAlt = getServiceCardImageAlt(slug);
 const containRowImage = serviceCardImageUsesContain(slug);
 const cardSummary = getServiceCardSummary(slug);
-const imageSrc = curatedImage ?? (image
+const imageSrc = image
   ? urlFor(image).width(640).height(480).fit('crop').format('webp').quality(80).url()
-  : getServiceFallbackImage(slug));
+  : undefined;
 // Always lead with the technical/industry-standard name — matches what people search for.
 const headline = title;
 ---
@@ -42,20 +35,17 @@ const headline = title;
 {variant === 'grid' ? (
   <article class="service-card group">
     <a href={`/services/${slug}/`} class="block">
-    <div class:list={['aspect-square overflow-hidden bg-charcoal-lighter mb-4', containImage && 'p-8']}>
+    {imageSrc && <div class="mb-4 aspect-square overflow-hidden bg-charcoal-lighter">
         <img
           src={imageSrc}
-          alt={curatedImage ? curatedImageAlt : image?.alt ?? title}
+          alt={image?.alt ?? title}
           width={400}
           height={400}
           loading="lazy"
           decoding="async"
-          class:list={[
-            'w-full h-full group-hover:scale-105 transition-transform duration-500',
-            containImage ? 'object-contain' : 'object-cover',
-          ]}
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-      </div>
+      </div>}
     <span class="service-name">{headline}</span>
     {cardSummary && <p class="service-desc mt-1">{cardSummary}</p>}
     <span class="learn-more mt-4 inline-flex group-hover:text-gold">Learn about {title} →</span>

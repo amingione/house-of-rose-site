@@ -1,0 +1,366 @@
+- generic [active] [ref=f129e1]:
+  - link "Skip to main content" [ref=f129e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f129e3]:
+    - generic [ref=f129e4]:
+      - link "House of Rose Aesthetics home" [ref=f129e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f129e6]:
+        - link "Contact" [ref=f129e7] [cursor=pointer]:
+          - /url: /contact/
+        - button "Open navigation" [ref=f129e8] [cursor=pointer]
+  - main [ref=f129e12]:
+    - generic [ref=f129e13]:
+      - region [ref=f129e14]:
+        - generic [ref=f129e15]:
+          - generic [ref=f129e16]:
+            - paragraph [ref=f129e17]: IV Hydration · Punta Gorda, FL
+            - heading [level=1] [ref=f129e18]:
+              - text: Hydration,delivered
+              - emphasis [ref=f129e19]: differently.
+            - paragraph [ref=f129e20]: House of Rose offers medically directed IV hydration with individual review by Diana Morrison, RN. Six current appointments give the conversation a starting point—not a reason to choose blindly.
+            - generic [ref=f129e21]:
+              - 'link "Book IV Hydration: call House of Rose Aesthetics" [ref=f129e22] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book IV Hydration
+              - link "Explore IV options" [ref=f129e23] [cursor=pointer]:
+                - /url: "#iv-options"
+            - paragraph [ref=f129e24]: Provided by Diana Morrison, RN under written physician protocol and medical direction.
+          - figure "House of Rose Aesthetics" [ref=f129e25]:
+            - img "The IV hydration suite inside House of Rose Aesthetics" [ref=f129e26]
+      - region "IV hydration appointment facts" [ref=f129e29]:
+        - generic [ref=f129e30]:
+          - generic [ref=f129e31]:
+            - term [ref=f129e32]: Treatment
+            - definition [ref=f129e33]: IV Hydration
+          - generic [ref=f129e34]:
+            - term [ref=f129e35]: Location
+            - definition [ref=f129e36]: Punta Gorda, Florida
+          - generic [ref=f129e37]:
+            - term [ref=f129e38]: Provider
+            - definition [ref=f129e39]: Diana Morrison, RN
+          - generic [ref=f129e40]:
+            - term [ref=f129e41]: Visit length
+            - definition [ref=f129e42]: 30 or 45 minutes
+      - generic [ref=f129e44]:
+        - generic [ref=f129e45]:
+          - paragraph [ref=f129e46]: IV therapy at House of Rose
+          - heading "More than a bag of fluids." [level=2] [ref=f129e47]
+        - generic [ref=f129e48]:
+          - paragraph [ref=f129e49]: An IV is a route of administration, not a promise. Fluid is delivered through a vein. What matters next is the current formulation, the person receiving it, and whether the appointment is appropriate.
+          - paragraph [ref=f129e50]: House of Rose offers six named IV appointments. You do not need to interpret those names as a diagnosis or choose ingredients on your own. Diana Morrison, RN reviews relevant health information and the current option before an infusion proceeds.
+          - paragraph [ref=f129e51]: It is one part of a broader practice conversation about aesthetics and wellness—not a substitute for medical care and not a universal answer.
+      - region [ref=f129e52]:
+        - generic [ref=f129e53]:
+          - generic [ref=f129e54]:
+            - paragraph [ref=f129e55]: Why IV hydration
+            - heading "A practical treatment deserves a clear explanation." [level=2] [ref=f129e56]
+          - generic [ref=f129e57]:
+            - article [ref=f129e58]:
+              - paragraph [ref=f129e59]: "01"
+              - heading "A direct route" [level=3] [ref=f129e60]
+              - paragraph [ref=f129e61]: "IV means intravenous: fluid is administered through a vein rather than taken by mouth."
+            - article [ref=f129e62]:
+              - paragraph [ref=f129e63]: "02"
+              - heading "A defined appointment" [level=3] [ref=f129e64]
+              - paragraph [ref=f129e65]: Hydration IV is the 30-minute option. The other five current appointments are 45 minutes.
+            - article [ref=f129e66]:
+              - paragraph [ref=f129e67]: "03"
+              - heading "Selection with context" [level=3] [ref=f129e68]
+              - paragraph [ref=f129e69]: An appointment name does not establish its full formulation or whether it is appropriate for one person.
+            - article [ref=f129e70]:
+              - paragraph [ref=f129e71]: "04"
+              - heading "RN-led review" [level=3] [ref=f129e72]
+              - paragraph [ref=f129e73]: Diana Morrison, RN reviews relevant health information, the current option, and candidacy before treatment.
+            - article [ref=f129e74]:
+              - paragraph [ref=f129e75]: "05"
+              - heading "One current set" [level=3] [ref=f129e76]
+              - paragraph [ref=f129e77]: House of Rose currently offers six base IV visits. Call the practice for current pricing.
+      - region [ref=f129e78]:
+        - generic [ref=f129e79]:
+          - generic [ref=f129e80]:
+            - generic [ref=f129e81]:
+              - paragraph [ref=f129e82]: Current IV options
+              - heading "Six ways to begin the conversation." [level=2] [ref=f129e83]
+            - paragraph [ref=f129e84]: The names below are the current House of Rose appointment options. They do not identify a complete formulation or establish an outcome. Diana Morrison, RN can review current details and candidacy with you.
+          - list [ref=f129e85]:
+            - listitem [ref=f129e86]:
+              - generic [ref=f129e87]: "01"
+              - heading "Hydration IV" [level=3] [ref=f129e88]
+              - paragraph [ref=f129e89]: 30 minutes
+              - 'link "Book this IV: Hydration IV" [ref=f129e90] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book this IV
+            - listitem [ref=f129e91]:
+              - generic [ref=f129e92]: "02"
+              - heading "Immunity IV" [level=3] [ref=f129e93]
+              - paragraph [ref=f129e94]: 45 minutes
+              - 'link "Book this IV: Immunity IV" [ref=f129e95] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book this IV
+            - listitem [ref=f129e96]:
+              - generic [ref=f129e97]: "03"
+              - heading "Recovery IV" [level=3] [ref=f129e98]
+              - paragraph [ref=f129e99]: 45 minutes
+              - 'link "Book this IV: Recovery IV" [ref=f129e100] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book this IV
+            - listitem [ref=f129e101]:
+              - generic [ref=f129e102]: "04"
+              - heading "Beauty Glow IV" [level=3] [ref=f129e103]
+              - paragraph [ref=f129e104]: 45 minutes
+              - 'link "Book this IV: Beauty Glow IV" [ref=f129e105] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book this IV
+            - listitem [ref=f129e106]:
+              - generic [ref=f129e107]: "05"
+              - heading "Reboot (Hangover Recovery) IV" [level=3] [ref=f129e108]
+              - paragraph [ref=f129e109]: 45 minutes
+              - 'link "Book this IV: Reboot (Hangover Recovery) IV" [ref=f129e110] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book this IV
+            - listitem [ref=f129e111]:
+              - generic [ref=f129e112]: "06"
+              - heading "Myers' Cocktail IV" [level=3] [ref=f129e113]
+              - paragraph [ref=f129e114]: 45 minutes
+              - 'link "Book this IV: Myers'' Cocktail IV" [ref=f129e115] [cursor=pointer]':
+                - /url: tel:+19414000165
+                - text: Book this IV
+          - paragraph [ref=f129e116]: Current pricing and formulation details are confirmed directly with House of Rose by phone.
+      - region [ref=f129e117]:
+        - generic [ref=f129e118]:
+          - figure [ref=f129e119]:
+            - img "IV hydration suite at House of Rose Aesthetics in Punta Gorda, Florida" [ref=f129e120]
+          - generic [ref=f129e121]:
+            - paragraph [ref=f129e122]: Individual review
+            - heading [level=2] [ref=f129e123]:
+              - text: Not sure what to book?
+              - emphasis [ref=f129e124]: That’s the point.
+            - paragraph [ref=f129e125]: You do not need to arrive knowing what belongs in the bag. An appointment name alone does not tell you the full formulation—or whether that option is appropriate for you. Bring the questions. Diana Morrison, RN will review the current choices and relevant health information with you.
+            - 'link "Book your IV visit: call House of Rose Aesthetics" [ref=f129e126] [cursor=pointer]':
+              - /url: tel:+19414000165
+              - text: Book your IV visit
+      - region [ref=f129e127]:
+        - generic [ref=f129e128]:
+          - generic [ref=f129e129]:
+            - paragraph [ref=f129e130]: What the treatment consists of
+            - heading "A considered visit, from intake to finish." [level=2] [ref=f129e131]
+          - list [ref=f129e132]:
+            - listitem [ref=f129e133]:
+              - text: "01"
+              - heading "Start with context" [level=3] [ref=f129e134]
+              - paragraph [ref=f129e135]: Share what you want to discuss and the relevant health information Diana Morrison, RN needs to review.
+            - listitem [ref=f129e136]:
+              - text: "02"
+              - heading "Review the current option" [level=3] [ref=f129e137]
+              - paragraph [ref=f129e138]: Diana reviews the current formulation and candidacy under written physician protocol and medical direction.
+            - listitem [ref=f129e139]:
+              - text: "03"
+              - heading "Placement and infusion" [level=3] [ref=f129e140]
+              - paragraph [ref=f129e141]: A small catheter is placed into a vein, and the infusion is monitored during the appointment.
+            - listitem [ref=f129e142]:
+              - text: "04"
+              - heading "Complete the visit" [level=3] [ref=f129e143]
+              - paragraph [ref=f129e144]: The catheter is removed and the site is dressed before you leave House of Rose.
+          - generic [ref=f129e145]:
+            - paragraph [ref=f129e146]: Prepare for your visit
+            - generic [ref=f129e147]:
+              - link "Download pre-care guide" [ref=f129e148] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-pre-care-guide.pdf
+              - link "Download aftercare guide" [ref=f129e149] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-aftercare-guide.pdf
+      - region [ref=f129e150]:
+        - generic [ref=f129e151]:
+          - paragraph [ref=f129e152]: The House of Rose view
+          - heading "Skin doesn’t exist separately from the rest of you." [level=2] [ref=f129e153]
+          - generic [ref=f129e154]:
+            - paragraph [ref=f129e155]: Inside and outside belong in the same conversation.
+            - generic [ref=f129e156]:
+              - paragraph [ref=f129e157]: House of Rose brings aesthetics and medically directed wellness services into one practice, but not into one universal prescription.
+              - paragraph [ref=f129e158]: "IV hydration is not a substitute for medical care, and an appointment name is not evidence of a skin result. The connection is a more complete conversation: what you are noticing, what you are asking for, and which service—if any—belongs in the plan."
+              - link "Explore House of Rose" [ref=f129e159] [cursor=pointer]:
+                - /url: /about/
+      - figure "House of Rose Aesthetics Punta Gorda, Florida" [ref=f129e160]:
+        - img "Reception and consultation area inside House of Rose Aesthetics in Punta Gorda" [ref=f129e161]
+        - generic [ref=f129e163]:
+          - generic [ref=f129e164]: House of Rose Aesthetics
+          - generic [ref=f129e165]: Punta Gorda, Florida
+      - region [ref=f129e166]:
+        - generic [ref=f129e167]:
+          - generic [ref=f129e168]:
+            - paragraph [ref=f129e169]: Who IV hydration may be for
+            - heading "A reason to ask—not a reason to assume." [level=2] [ref=f129e170]
+          - generic [ref=f129e171]:
+            - paragraph [ref=f129e172]: IV hydration may be worth discussing if you are seeking additional hydration support, are reviewing options around travel or a physically demanding period, or want to understand whether IV therapy belongs in a broader wellness routine.
+            - paragraph [ref=f129e173]: Interest is not the same as eligibility. Diana Morrison, RN reviews relevant health information and candidacy under written physician protocol.
+      - region [ref=f129e174]:
+        - generic [ref=f129e175]:
+          - figure [ref=f129e176]:
+            - img "Diana Morrison, RN at House of Rose Aesthetics" [ref=f129e177]
+          - generic [ref=f129e178]:
+            - paragraph [ref=f129e179]: Clinical responsibility
+            - heading "Wellness still deserves clinical standards." [level=2] [ref=f129e180]
+            - paragraph [ref=f129e181]: IV hydration at House of Rose is provided by Diana Morrison, RN. Before treatment, she reviews relevant health information, the current option, and candidacy under written physician protocol and medical direction.
+            - generic [ref=f129e182]:
+              - paragraph [ref=f129e183]: Diana Morrison, RN
+              - paragraph [ref=f129e184]: Registered Nurse · IV Hydration Provider
+              - paragraph [ref=f129e185]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - region [ref=f129e186]:
+        - generic [ref=f129e187]:
+          - generic [ref=f129e188]:
+            - paragraph [ref=f129e189]: Questions, answered
+            - heading "IV hydration, plainly put." [level=2] [ref=f129e190]: IV hydration,plainly put.
+            - paragraph [ref=f129e191]: For questions specific to your health or medications, speak with Diana Morrison, RN.
+          - generic [ref=f129e192]:
+            - group [ref=f129e193]:
+              - generic "01 What is IV hydration therapy?" [ref=f129e194] [cursor=pointer]:
+                - generic [ref=f129e195]: "01"
+                - generic [ref=f129e196]: What is IV hydration therapy?
+            - group [ref=f129e200]:
+              - generic "02 How does IV hydration work?" [ref=f129e201] [cursor=pointer]:
+                - generic [ref=f129e202]: "02"
+                - generic [ref=f129e203]: How does IV hydration work?
+            - group [ref=f129e207]:
+              - generic "03 How long does an IV hydration appointment take?" [ref=f129e208] [cursor=pointer]:
+                - generic [ref=f129e209]: "03"
+                - generic [ref=f129e210]: How long does an IV hydration appointment take?
+            - group [ref=f129e214]:
+              - generic "04 What is in an IV hydration treatment?" [ref=f129e215] [cursor=pointer]:
+                - generic [ref=f129e216]: "04"
+                - generic [ref=f129e217]: What is in an IV hydration treatment?
+            - group [ref=f129e221]:
+              - generic "05 How do I know which IV is right for me?" [ref=f129e222] [cursor=pointer]:
+                - generic [ref=f129e223]: "05"
+                - generic [ref=f129e224]: How do I know which IV is right for me?
+            - group [ref=f129e228]:
+              - generic "06 How often can you receive IV hydration?" [ref=f129e229] [cursor=pointer]:
+                - generic [ref=f129e230]: "06"
+                - generic [ref=f129e231]: How often can you receive IV hydration?
+            - group [ref=f129e235]:
+              - generic "07 Who may not be a candidate for IV therapy?" [ref=f129e236] [cursor=pointer]:
+                - generic [ref=f129e237]: "07"
+                - generic [ref=f129e238]: Who may not be a candidate for IV therapy?
+            - group [ref=f129e242]:
+              - generic "08 Is there anything I should do before my appointment?" [ref=f129e243] [cursor=pointer]:
+                - generic [ref=f129e244]: "08"
+                - generic [ref=f129e245]: Is there anything I should do before my appointment?
+            - group [ref=f129e249]:
+              - generic "09 Can I receive IV hydration if I take medications?" [ref=f129e250] [cursor=pointer]:
+                - generic [ref=f129e251]: "09"
+                - generic [ref=f129e252]: Can I receive IV hydration if I take medications?
+            - group [ref=f129e256]:
+              - generic "10 Where can I get IV hydration in Punta Gorda?" [ref=f129e257] [cursor=pointer]:
+                - generic [ref=f129e258]: "10"
+                - generic [ref=f129e259]: Where can I get IV hydration in Punta Gorda?
+      - region [ref=f129e263]:
+        - generic [ref=f129e264]:
+          - generic [ref=f129e265]:
+            - paragraph [ref=f129e266]: In Southwest Florida
+            - heading "IV Hydration in Punta Gorda, Florida" [level=2] [ref=f129e267]
+          - generic [ref=f129e268]:
+            - paragraph [ref=f129e269]: House of Rose Aesthetics is a Medical Aesthetics Practice offering IV Hydration Therapy at 525 E Olympia Ave, Unit 9 in Punta Gorda.
+            - paragraph [ref=f129e270]:
+              - text: The practice serves Punta Gorda, Charlotte County, and surrounding Southwest Florida communities. Call
+              - link "(941) 400-0165" [ref=f129e271] [cursor=pointer]:
+                - /url: tel:+19414000165
+              - text: to discuss a current IV appointment.
+      - region [ref=f129e272]:
+        - generic [ref=f129e273]:
+          - paragraph [ref=f129e274]: IV Hydration · House of Rose
+          - heading "Ready when you are." [level=2] [ref=f129e275]
+          - paragraph [ref=f129e276]: Call House of Rose to discuss IV hydration and arrange a visit with Diana Morrison, RN in Punta Gorda.
+          - generic [ref=f129e277]:
+            - 'link "Book IV Hydration: call House of Rose Aesthetics" [ref=f129e278] [cursor=pointer]':
+              - /url: tel:+19414000165
+              - text: Book IV Hydration
+            - link "Contact House of Rose" [ref=f129e279] [cursor=pointer]:
+              - /url: /contact/
+          - paragraph [ref=f129e280]: 525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950
+      - 'link "Book IV Hydration: call House of Rose Aesthetics" [ref=f129e282] [cursor=pointer]':
+        - /url: tel:+19414000165
+        - text: Book IV Hydration
+  - contentinfo [ref=f129e283]:
+    - generic [ref=f129e284]:
+      - generic [ref=f129e285]:
+        - generic [ref=f129e286]:
+          - paragraph [ref=f129e287]: House of Rose Aesthetics
+          - paragraph [ref=f129e288]: Medical Aesthetics Practice
+          - generic [ref=f129e289]:
+            - link "Explore treatments" [ref=f129e290] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f129e291] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f129e292]:
+          - heading "Practice" [level=2] [ref=f129e293]
+          - list [ref=f129e294]:
+            - listitem [ref=f129e295]:
+              - link "About" [ref=f129e296] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f129e297]:
+              - link "Providers" [ref=f129e298] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f129e299]:
+              - link "Services" [ref=f129e300] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f129e301]:
+              - link "Experience" [ref=f129e302] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f129e303]:
+              - link "Results" [ref=f129e304] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f129e305]:
+              - link "FAQ" [ref=f129e306] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f129e307]:
+              - link "Contact" [ref=f129e308] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f129e309]:
+              - link "Client support" [ref=f129e310] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f129e311]:
+              - link "Rent a suite" [ref=f129e312] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f129e313]:
+          - heading "Explore" [level=2] [ref=f129e314]
+          - list [ref=f129e315]:
+            - listitem [ref=f129e316]:
+              - link "Skin analysis" [ref=f129e317] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f129e318]:
+              - link "Concerns" [ref=f129e319] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f129e320]:
+              - link "Compare treatments" [ref=f129e321] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f129e322]:
+              - link "Cost guides" [ref=f129e323] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f129e324]:
+              - link "Areas we serve" [ref=f129e325] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f129e326]:
+              - link "Journal" [ref=f129e327] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f129e328]:
+          - heading "Visit" [level=2] [ref=f129e329]
+          - generic [ref=f129e330]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f129e331] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f129e332] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f129e333]:
+        - paragraph [ref=f129e334]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f129e335]:
+          - link "Privacy" [ref=f129e336] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f129e337] [cursor=pointer]
+          - link "Terms" [ref=f129e338] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f129e339] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f129e342]:
+    - button [ref=f129e343]
+    - button [ref=f129e349]
+    - button [ref=f129e353]
+    - button [ref=f129e358]

@@ -1,0 +1,341 @@
+- generic [active] [ref=f130e1]:
+  - link "Skip to main content" [ref=f130e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f130e3]:
+    - generic [ref=f130e4]:
+      - link "House of Rose Aesthetics home" [ref=f130e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f130e6]:
+        - link "Contact" [ref=f130e7] [cursor=pointer]:
+          - /url: /contact/
+        - button "Open navigation" [ref=f130e8] [cursor=pointer]
+  - main [ref=f130e12]:
+    - article [ref=f130e13]:
+      - generic [ref=f130e14]:
+        - img "The skin treatment studio inside House of Rose Aesthetics" [ref=f130e16]
+        - generic [ref=f130e18]:
+          - link "All treatments" [ref=f130e19] [cursor=pointer]:
+            - /url: /services/
+            - generic [ref=f130e20]: ←
+            - text: All treatments
+          - generic [ref=f130e21]:
+            - paragraph [ref=f130e22]: Advanced InMode treatments · Punta Gorda
+            - heading "One platform. Three different jobs for your skin." [level=1] [ref=f130e23]
+            - paragraph [ref=f130e24]: "House of Rose uses the InMode OptimasMAX platform for three distinct facial treatment paths: Morpheus8 for fractional remodeling, Lumecca Peak IPL for visible color, and Forma for non-invasive radiofrequency."
+            - generic [ref=f130e25]:
+              - link "Book a consultation" [ref=f130e26] [cursor=pointer]:
+                - /url: /consultation/
+                - text: Book a consultation
+                - generic [ref=f130e27]: ↗
+              - link "Compare the three" [ref=f130e28] [cursor=pointer]:
+                - /url: "#compare"
+                - text: Compare the three
+                - generic [ref=f130e29]: ↓
+          - paragraph [ref=f130e30]: Face, lower face, jawline, and neck are the focus of this treatment collection.
+      - region "InMode OptimasMAX Treatments at a glance" [ref=f130e31]:
+        - generic [ref=f130e32]:
+          - generic [ref=f130e33]:
+            - paragraph [ref=f130e34]: Morpheus8
+            - strong [ref=f130e35]: Fractional RF microneedling
+          - generic [ref=f130e36]:
+            - paragraph [ref=f130e37]: Lumecca Peak
+            - strong [ref=f130e38]: Intense pulsed light
+          - generic [ref=f130e39]:
+            - paragraph [ref=f130e40]: Forma
+            - strong [ref=f130e41]: Non-invasive bipolar RF
+      - navigation "On this page" [ref=f130e42]:
+        - generic [ref=f130e43]:
+          - generic [ref=f130e44]: On this page
+          - link "Treatments" [ref=f130e45] [cursor=pointer]:
+            - /url: "#treatments"
+          - link "Choose a path" [ref=f130e46] [cursor=pointer]:
+            - /url: "#compare"
+          - link "Combinations" [ref=f130e47] [cursor=pointer]:
+            - /url: "#combinations"
+          - link "FAQ" [ref=f130e48] [cursor=pointer]:
+            - /url: "#faq"
+      - generic [ref=f130e50]:
+        - generic [ref=f130e51]:
+          - paragraph [ref=f130e52]: What the treatment consists of · Structure · color · maintenance
+          - heading "Start with the job your skin needs done." [level=2] [ref=f130e53]
+          - paragraph [ref=f130e54]: Morpheus8, Lumecca Peak, and Forma share a platform, not a purpose. The clearest treatment plan begins by separating texture and laxity from pigment and redness, then deciding whether maintenance belongs afterward.
+        - generic [ref=f130e55]:
+          - article [ref=f130e56]:
+            - img "Manufacturer-provided Morpheus8 facial before and after showing the lower face after four treatments" [ref=f130e58]
+            - generic [ref=f130e59]:
+              - paragraph [ref=f130e60]: Structure + texture
+              - heading "Morpheus8" [level=3] [ref=f130e61]
+              - paragraph [ref=f130e62]: Fractional RF microneedling for a more intensive remodeling plan when texture, eligible acne scarring, crepey skin, or lower-face laxity is the priority.
+              - list [ref=f130e63]:
+                - listitem [ref=f130e64]: Fine lines
+                - listitem [ref=f130e65]: Texture
+                - listitem [ref=f130e66]: Eligible acne scars
+                - listitem [ref=f130e67]: Lower face + neck
+              - link "Explore Morpheus8" [ref=f130e68] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Explore Morpheus8
+                - generic [ref=f130e69]: →
+          - article [ref=f130e70]:
+            - img "Manufacturer-provided Lumecca Peak facial before and after showing visible brown pigmentation" [ref=f130e72]
+            - generic [ref=f130e73]:
+              - paragraph [ref=f130e74]: Complexion
+              - heading "Lumecca Peak IPL" [level=3] [ref=f130e75]
+              - paragraph [ref=f130e76]: Intense pulsed light for visible brown spots, sun-related discoloration, redness, and superficial vascular concerns.
+              - list [ref=f130e77]:
+                - listitem [ref=f130e78]: Brown spots
+                - listitem [ref=f130e79]: Sun damage
+                - listitem [ref=f130e80]: Redness
+                - listitem [ref=f130e81]: Uneven tone
+              - link "Explore Lumecca Peak" [ref=f130e82] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Explore Lumecca Peak
+                - generic [ref=f130e83]: →
+          - article [ref=f130e84]:
+            - img "Manufacturer-provided Forma facial before and after shown from the side" [ref=f130e86]
+            - generic [ref=f130e87]:
+              - paragraph [ref=f130e88]: Firmness + maintenance
+              - heading "Forma / Forma Plus" [level=3] [ref=f130e89]
+              - paragraph [ref=f130e90]: Non-invasive, temperature-controlled bipolar radiofrequency for smoother-looking skin, mild laxity, and an ongoing facial maintenance plan.
+              - list [ref=f130e91]:
+                - listitem [ref=f130e92]: Mild laxity
+                - listitem [ref=f130e93]: Firmness
+                - listitem [ref=f130e94]: Smoothness
+                - listitem [ref=f130e95]: No downtime
+              - link "Explore Forma" [ref=f130e96] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Explore Forma
+                - generic [ref=f130e97]: →
+      - generic [ref=f130e99]:
+        - generic [ref=f130e100]:
+          - paragraph [ref=f130e101]: Which treatment do I need?
+          - heading "Match the visible concern to the modality." [level=2] [ref=f130e102]
+          - paragraph [ref=f130e103]: This is a starting map, not a diagnosis. Consultation confirms whether the concern is appropriate for the treatment and whether skin type, sun history, timing, or health factors change the direction.
+        - generic [ref=f130e104]:
+          - link "Brown spots, sun damage, or visible redness Lumecca Peak IPL A light-based complexion path." [ref=f130e105] [cursor=pointer]:
+            - /url: /services/lumecca-peak-ipl/
+            - generic [ref=f130e106]: Brown spots, sun damage, or visible redness
+            - generic [ref=f130e107]: →
+            - generic [ref=f130e108]:
+              - strong [ref=f130e109]: Lumecca Peak IPL
+              - generic [ref=f130e110]: A light-based complexion path.
+          - link "Fine lines, rough texture, or eligible acne scars Morpheus8 A fractional RF microneedling path." [ref=f130e111] [cursor=pointer]:
+            - /url: /services/morpheus8/
+            - generic [ref=f130e112]: Fine lines, rough texture, or eligible acne scars
+            - generic [ref=f130e113]: →
+            - generic [ref=f130e114]:
+              - strong [ref=f130e115]: Morpheus8
+              - generic [ref=f130e116]: A fractional RF microneedling path.
+          - link "Mild laxity, maintenance, or no recovery window Forma A non-invasive RF path." [ref=f130e117] [cursor=pointer]:
+            - /url: /services/forma-rf-facial/
+            - generic [ref=f130e118]: Mild laxity, maintenance, or no recovery window
+            - generic [ref=f130e119]: →
+            - generic [ref=f130e120]:
+              - strong [ref=f130e121]: Forma
+              - generic [ref=f130e122]: A non-invasive RF path.
+          - link "Several concerns at once Combination plan Sequence the right modalities after consultation." [ref=f130e123] [cursor=pointer]:
+            - /url: "#combinations"
+            - generic [ref=f130e124]: Several concerns at once
+            - generic [ref=f130e125]: →
+            - generic [ref=f130e126]:
+              - strong [ref=f130e127]: Combination plan
+              - generic [ref=f130e128]: Sequence the right modalities after consultation.
+      - generic [ref=f130e130]:
+        - generic [ref=f130e131]:
+          - paragraph [ref=f130e132]: Combination treatment planning
+          - heading "Different layers can belong in one plan." [level=2] [ref=f130e133]
+          - paragraph [ref=f130e134]: Combination planning is about matching each concern to the right technology and sequencing treatment responsibly. It is not an instruction to perform every modality in the same appointment.
+        - generic [ref=f130e135]:
+          - article [ref=f130e136]:
+            - paragraph [ref=f130e137]: Structure + complexion
+            - heading "Morpheus8 + Lumecca Peak" [level=3] [ref=f130e138]
+            - generic [ref=f130e139]: Morpheus8 addresses fractional remodeling and texture. Lumecca Peak addresses visible pigment, photodamage, and vascular discoloration. The value is in assigning each concern to the technology built for it.
+            - generic [ref=f130e140]:
+              - link "Morpheus8" [ref=f130e141] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Morpheus8
+                - generic [ref=f130e142]: →
+              - link "Lumecca Peak" [ref=f130e143] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Lumecca Peak
+                - generic [ref=f130e144]: →
+          - article [ref=f130e145]:
+            - paragraph [ref=f130e146]: Remodel + maintain
+            - heading "Morpheus8 + Forma" [level=3] [ref=f130e147]
+            - generic [ref=f130e148]: A more intensive fractional RF plan can be followed, when appropriate, by non-invasive Forma sessions focused on ongoing skin quality and firmness.
+            - generic [ref=f130e149]:
+              - link "Morpheus8" [ref=f130e150] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Morpheus8
+                - generic [ref=f130e151]: →
+              - link "Forma" [ref=f130e152] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Forma
+                - generic [ref=f130e153]: →
+          - article [ref=f130e154]:
+            - paragraph [ref=f130e155]: Tone + firmness
+            - heading "Lumecca Peak + Forma" [level=3] [ref=f130e156]
+            - generic [ref=f130e157]: "This pairing separates visible discoloration from early firmness concerns: IPL handles light-responsive color while Forma supplies surface-delivered RF without needles."
+            - generic [ref=f130e158]:
+              - link "Lumecca Peak" [ref=f130e159] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Lumecca Peak
+                - generic [ref=f130e160]: →
+              - link "Forma" [ref=f130e161] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Forma
+                - generic [ref=f130e162]: →
+          - article [ref=f130e163]:
+            - paragraph [ref=f130e164]: Sequence, do not stack indiscriminately
+            - heading "Full InMode skin plan" [level=3] [ref=f130e165]
+            - generic [ref=f130e166]: When texture, pigment, redness, collagen loss, and laxity overlap, consultation is used to prioritize and sequence treatment. More technology in one appointment is not automatically a better plan.
+            - link "Book a consultation" [ref=f130e168] [cursor=pointer]:
+              - /url: /consultation/
+              - text: Book a consultation
+              - generic [ref=f130e169]: →
+      - generic [ref=f130e171]:
+        - generic [ref=f130e172]:
+          - paragraph [ref=f130e173]: Frequently asked questions
+          - heading "Clear answers before the consultation." [level=2] [ref=f130e174]
+          - paragraph [ref=f130e175]: These answers are general education. Your health history, skin, anatomy, and treatment area determine what is appropriate.
+        - generic [ref=f130e176]:
+          - group [ref=f130e177]:
+            - generic "What InMode treatments does House of Rose offer?" [ref=f130e178] [cursor=pointer]: +
+            - paragraph [ref=f130e181]: House of Rose offers Morpheus8 RF Microneedling, Lumecca Peak IPL, and Forma / Forma Plus through the InMode OptimasMAX platform.
+          - group [ref=f130e182]:
+            - generic "Which InMode treatment is best for brown spots or redness?" [ref=f130e183] [cursor=pointer]: +
+          - group [ref=f130e186]:
+            - generic "Which InMode treatment is best for texture or acne scarring?" [ref=f130e187] [cursor=pointer]: +
+          - group [ref=f130e190]:
+            - generic "Which InMode treatment has no downtime?" [ref=f130e191] [cursor=pointer]: +
+          - group [ref=f130e194]:
+            - generic "Can Morpheus8, Lumecca Peak, and Forma be combined?" [ref=f130e195] [cursor=pointer]: +
+      - region [ref=f130e198]:
+        - generic [ref=f130e199]:
+          - generic [ref=f130e200]:
+            - paragraph [ref=f130e201]: Prepare and recover
+            - heading "Keep the care instructions close." [level=2] [ref=f130e202]
+          - generic [ref=f130e203]:
+            - paragraph [ref=f130e204]: Use the treatment-specific section in each guide. Instructions provided for your individual treatment and settings always take priority.
+            - generic [ref=f130e205]:
+              - link "Download pre-care guide" [ref=f130e206] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-pre-care-guide.pdf
+                - text: Download pre-care guide
+                - generic [ref=f130e207]: ↓
+              - link "Download aftercare guide" [ref=f130e208] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-aftercare-guide.pdf
+                - text: Download aftercare guide
+                - generic [ref=f130e209]: ↓
+      - region [ref=f130e210]:
+        - generic [ref=f130e211]:
+          - heading "Sources" [level=2] [ref=f130e212]
+          - paragraph [ref=f130e213]: Manufacturer examples do not predict an individual result.
+          - list [ref=f130e214]:
+            - listitem [ref=f130e215]:
+              - link "InMode OptimasMAX technology overview" [ref=f130e216] [cursor=pointer]:
+                - /url: https://www.inmodemd.com/workstation/optimas-max/
+                - text: InMode OptimasMAX technology overview
+                - generic [ref=f130e217]: ↗
+      - generic [ref=f130e221]:
+        - paragraph [ref=f130e222]: House of Rose Aesthetics · Punta Gorda
+        - heading "Bring the concern. We’ll help identify the right treatment path." [level=2] [ref=f130e223]
+        - paragraph [ref=f130e224]: Start with a consultation for Morpheus8, Lumecca Peak, Forma, or a combination plan. House of Rose can explain current pricing during that conversation.
+        - generic [ref=f130e225]:
+          - link "Book a consultation" [ref=f130e226] [cursor=pointer]:
+            - /url: /consultation/
+            - text: Book a consultation
+            - generic [ref=f130e227]: ↗
+          - link "Contact House of Rose" [ref=f130e228] [cursor=pointer]:
+            - /url: /contact/
+            - text: Contact House of Rose
+            - generic [ref=f130e229]: →
+        - paragraph [ref=f130e230]: 525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950 · (941) 400-0165
+        - paragraph [ref=f130e231]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - region "Consultation booking" [ref=f130e232]:
+        - generic [ref=f130e233]: Compare the three treatments
+        - link "Book a consultation" [ref=f130e234] [cursor=pointer]:
+          - /url: /consultation/
+  - contentinfo [ref=f130e235]:
+    - generic [ref=f130e236]:
+      - generic [ref=f130e237]:
+        - generic [ref=f130e238]:
+          - paragraph [ref=f130e239]: House of Rose Aesthetics
+          - paragraph [ref=f130e240]: Medical Aesthetics Practice
+          - generic [ref=f130e241]:
+            - link "Explore treatments" [ref=f130e242] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f130e243] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f130e244]:
+          - heading "Practice" [level=2] [ref=f130e245]
+          - list [ref=f130e246]:
+            - listitem [ref=f130e247]:
+              - link "About" [ref=f130e248] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f130e249]:
+              - link "Providers" [ref=f130e250] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f130e251]:
+              - link "Services" [ref=f130e252] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f130e253]:
+              - link "Experience" [ref=f130e254] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f130e255]:
+              - link "Results" [ref=f130e256] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f130e257]:
+              - link "FAQ" [ref=f130e258] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f130e259]:
+              - link "Contact" [ref=f130e260] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f130e261]:
+              - link "Client support" [ref=f130e262] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f130e263]:
+              - link "Rent a suite" [ref=f130e264] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f130e265]:
+          - heading "Explore" [level=2] [ref=f130e266]
+          - list [ref=f130e267]:
+            - listitem [ref=f130e268]:
+              - link "Skin analysis" [ref=f130e269] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f130e270]:
+              - link "Concerns" [ref=f130e271] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f130e272]:
+              - link "Compare treatments" [ref=f130e273] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f130e274]:
+              - link "Cost guides" [ref=f130e275] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f130e276]:
+              - link "Areas we serve" [ref=f130e277] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f130e278]:
+              - link "Journal" [ref=f130e279] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f130e280]:
+          - heading "Visit" [level=2] [ref=f130e281]
+          - generic [ref=f130e282]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f130e283] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f130e284] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f130e285]:
+        - paragraph [ref=f130e286]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f130e287]:
+          - link "Privacy" [ref=f130e288] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f130e289] [cursor=pointer]
+          - link "Terms" [ref=f130e290] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f130e291] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f130e294]:
+    - button [ref=f130e295]
+    - button [ref=f130e301]
+    - button [ref=f130e305]
+    - button [ref=f130e310]

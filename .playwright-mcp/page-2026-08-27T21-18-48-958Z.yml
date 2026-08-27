@@ -1,0 +1,424 @@
+- generic [active] [ref=f112e1]:
+  - link "Skip to main content" [ref=f112e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f112e3]:
+    - generic [ref=f112e4]:
+      - link "House of Rose Aesthetics home" [ref=f112e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f112e6]:
+        - link "Contact" [ref=f112e7] [cursor=pointer]:
+          - /url: /contact/
+        - button "Open navigation" [ref=f112e8] [cursor=pointer]
+  - main [ref=f112e12]:
+    - article [ref=f112e13]:
+      - generic [ref=f112e14]:
+        - img "Manufacturer-provided Forma facial before and after shown from the side" [ref=f112e16]
+        - generic [ref=f112e18]:
+          - link "InMode treatments" [ref=f112e19] [cursor=pointer]:
+            - /url: /services/inmode/
+            - generic [ref=f112e20]: ←
+            - text: InMode treatments
+          - generic [ref=f112e21]:
+            - paragraph [ref=f112e22]: Forma / Forma Plus RF · Punta Gorda
+            - heading "Radiofrequency skin maintenance without a recovery window." [level=1] [ref=f112e23]
+            - paragraph [ref=f112e24]: Forma moves across the skin’s surface while bipolar radiofrequency warms selected dermal and subdermal zones. There are no needles, and built-in temperature monitoring guides energy delivery throughout treatment.
+            - generic [ref=f112e25]:
+              - link "Book a Forma consultation" [ref=f112e26] [cursor=pointer]:
+                - /url: /consultation/
+                - text: Book a Forma consultation
+                - generic [ref=f112e27]: ↗
+              - link "Compare Forma and Morpheus8" [ref=f112e28] [cursor=pointer]:
+                - /url: "#compare"
+                - text: Compare Forma and Morpheus8
+                - generic [ref=f112e29]: ↓
+          - paragraph [ref=f112e30]: Non-invasive · Temperature monitored · No downtime
+      - region "Forma RF Facial at a glance" [ref=f112e31]:
+        - generic [ref=f112e32]:
+          - generic [ref=f112e33]:
+            - paragraph [ref=f112e34]: Technology
+            - strong [ref=f112e35]: Temperature-controlled bipolar RF
+          - generic [ref=f112e36]:
+            - paragraph [ref=f112e37]: Best fit
+            - strong [ref=f112e38]: Mild laxity + ongoing maintenance
+          - generic [ref=f112e39]:
+            - paragraph [ref=f112e40]: Recovery
+            - strong [ref=f112e41]: No downtime
+      - navigation "On this page" [ref=f112e42]:
+        - generic [ref=f112e43]:
+          - generic [ref=f112e44]: On this page
+          - link "How it works" [ref=f112e45] [cursor=pointer]:
+            - /url: "#technology"
+          - link "Compare" [ref=f112e46] [cursor=pointer]:
+            - /url: "#compare"
+          - link "Results" [ref=f112e47] [cursor=pointer]:
+            - /url: "#results"
+          - link "Timeline" [ref=f112e48] [cursor=pointer]:
+            - /url: "#timeline"
+          - link "Combinations" [ref=f112e49] [cursor=pointer]:
+            - /url: "#combinations"
+          - link "FAQ" [ref=f112e50] [cursor=pointer]:
+            - /url: "#faq"
+      - generic [ref=f112e52]:
+        - generic [ref=f112e53]:
+          - generic [ref=f112e54]:
+            - paragraph [ref=f112e55]: What the treatment consists of · How Forma works
+            - heading "The handpiece keeps moving. The temperature does not go unchecked." [level=2] [ref=f112e56]
+          - generic [ref=f112e57]:
+            - paragraph [ref=f112e58]: Forma’s smooth electrodes deliver bipolar radiofrequency through the skin surface as the handpiece moves across the planned area. The treatment is non-invasive and does not create microneedle channels.
+            - paragraph [ref=f112e59]: Temperature is the point of control. Built-in thermistors continuously read the skin and automatically adjust RF delivery as the selected endpoint is approached. That feedback loop supports sustained, controlled heating instead of relying on a fixed burst without surface monitoring.
+            - paragraph [ref=f112e60]: The result is a treatment designed for skin quality, smoothness, and mild firmness concerns without a visible recovery period. It is a distinct strategy, not a weaker version of Morpheus8.
+          - generic [ref=f112e61]:
+            - generic [ref=f112e62]:
+              - term [ref=f112e63]: No needles
+              - definition [ref=f112e64]: RF travels between electrodes at the skin surface.
+            - generic [ref=f112e65]:
+              - term [ref=f112e66]: Continuous feedback
+              - definition [ref=f112e67]: Built-in temperature monitoring guides energy delivery while the handpiece moves.
+            - generic [ref=f112e68]:
+              - term [ref=f112e69]: Repeatable maintenance
+              - definition [ref=f112e70]: The no-downtime format can fit an ongoing skin-quality plan when appropriate.
+        - figure "InMode manufacturer media" [ref=f112e71]:
+          - img "Forma and Forma Plus bipolar radiofrequency handpieces"
+      - region [ref=f112e74]:
+        - generic [ref=f112e75]:
+          - generic [ref=f112e76]:
+            - paragraph [ref=f112e77]: Treatment focus
+            - heading "What House of Rose considers Forma RF Facial for." [level=2] [ref=f112e78]
+          - list [ref=f112e79]:
+            - listitem [ref=f112e80]:
+              - generic [ref=f112e81]: "01"
+              - text: Mild facial laxity
+            - listitem [ref=f112e82]:
+              - generic [ref=f112e83]: "02"
+              - text: Loss of firmness
+            - listitem [ref=f112e84]:
+              - generic [ref=f112e85]: "03"
+              - text: Early visible aging
+            - listitem [ref=f112e86]:
+              - generic [ref=f112e87]: "04"
+              - text: Smoother-looking skin
+            - listitem [ref=f112e88]:
+              - generic [ref=f112e89]: "05"
+              - text: Facial contour appearance
+            - listitem [ref=f112e90]:
+              - generic [ref=f112e91]: "06"
+              - text: Collagen support
+            - listitem [ref=f112e92]:
+              - generic [ref=f112e93]: "07"
+              - text: Ongoing skin maintenance
+            - listitem [ref=f112e94]:
+              - generic [ref=f112e95]: "08"
+              - text: A no-downtime treatment preference
+      - generic [ref=f112e97]:
+        - generic [ref=f112e98]:
+          - paragraph [ref=f112e99]: Forma vs. Morpheus8
+          - heading "Same energy family. Different intensity and delivery." [level=2] [ref=f112e100]
+          - paragraph [ref=f112e101]: Both use radiofrequency, but the resemblance ends there. Forma stays on the surface with smooth electrodes; Morpheus8 delivers fractional RF through microneedles at selected depths.
+        - generic [ref=f112e102]:
+          - article [ref=f112e103]:
+            - paragraph [ref=f112e104]: Non-invasive RF
+            - heading "Forma" [level=3] [ref=f112e105]
+            - list [ref=f112e106]:
+              - listitem [ref=f112e107]: — No needles
+              - listitem [ref=f112e108]: — Continuous surface-temperature monitoring
+              - listitem [ref=f112e109]: — No downtime
+              - listitem [ref=f112e110]: — Maintenance and mild-to-moderate concern strategy
+          - article [ref=f112e111]:
+            - paragraph [ref=f112e112]: Fractional RF microneedling
+            - heading "Morpheus8" [level=3] [ref=f112e113]
+            - list [ref=f112e114]:
+              - listitem [ref=f112e115]: — Microneedles at selected depths
+              - listitem [ref=f112e116]: — More intensive thermal remodeling
+              - listitem [ref=f112e117]: — Planned recovery window
+              - listitem [ref=f112e118]: — More significant texture or remodeling concerns
+            - link "Explore Morpheus8" [ref=f112e119] [cursor=pointer]:
+              - /url: /services/morpheus8/
+              - text: Explore Morpheus8
+              - generic [ref=f112e120]: →
+      - generic [ref=f112e122]:
+        - generic [ref=f112e123]:
+          - paragraph [ref=f112e124]: Facial result examples
+          - heading "Subtle change deserves a full-size comparison." [level=2] [ref=f112e125]
+          - paragraph [ref=f112e126]: Forma is often selected for gradual skin-quality and firmness goals. These manufacturer examples are shown large enough to compare the lower face and neck without presenting them as House of Rose outcomes.
+        - figure "Manufacturer example. Not a House of Rose client. Forma example courtesy of Dr. H. Ohanian; attribution embedded in image" [ref=f112e128]:
+          - img "Manufacturer-provided Forma facial before and after shown from the front" [ref=f112e129]
+          - generic [ref=f112e130]:
+            - strong [ref=f112e131]: Manufacturer example. Not a House of Rose client.
+            - generic [ref=f112e132]: Forma example courtesy of Dr. H. Ohanian; attribution embedded in image
+        - paragraph [ref=f112e133]: Individual results vary. Treatment plan, skin response, lighting, angle, and timing affect visible change.
+      - generic [ref=f112e135]:
+        - generic [ref=f112e136]:
+          - paragraph [ref=f112e137]: How Forma fits over time
+          - heading "Immediate warmth. Progressive skin-quality work." [level=2] [ref=f112e138]
+          - paragraph [ref=f112e139]: Forma does not require downtime, but a no-downtime treatment can still be gradual. The number and spacing of sessions should come from the plan, not from a universal package formula.
+        - list [ref=f112e140]:
+          - listitem [ref=f112e141]:
+            - generic [ref=f112e142]: "01"
+            - generic [ref=f112e143]:
+              - paragraph [ref=f112e144]: During treatment
+              - heading "Controlled, monitored warmth" [level=3] [ref=f112e145]
+              - paragraph [ref=f112e146]: The handpiece moves continuously while the system monitors surface temperature and adjusts RF delivery.
+          - listitem [ref=f112e147]:
+            - generic [ref=f112e148]: "02"
+            - generic [ref=f112e149]:
+              - paragraph [ref=f112e150]: Immediately after
+              - heading "Return to the day" [level=3] [ref=f112e151]
+              - paragraph [ref=f112e152]: Temporary warmth or mild pinkness may occur, but Forma does not require a recovery period.
+          - listitem [ref=f112e153]:
+            - generic [ref=f112e154]: "03"
+            - generic [ref=f112e155]:
+              - paragraph [ref=f112e156]: Over a planned series
+              - heading "Assess smoothness and firmness" [level=3] [ref=f112e157]
+              - paragraph [ref=f112e158]: Progress is evaluated across consistent photography and the concern that led to treatment.
+          - listitem [ref=f112e159]:
+            - generic [ref=f112e160]: "04"
+            - generic [ref=f112e161]:
+              - paragraph [ref=f112e162]: Maintenance
+              - heading "Continue only when it still serves the goal" [level=3] [ref=f112e163]
+              - paragraph [ref=f112e164]: Ongoing timing depends on response, preferences, and whether a more intensive modality would be more appropriate.
+      - generic [ref=f112e166]:
+        - generic [ref=f112e167]:
+          - paragraph [ref=f112e168]: The treatment experience
+          - heading "A warm facial treatment, without needles." [level=2] [ref=f112e169]
+          - paragraph [ref=f112e170]: Forma’s appeal is not just convenience. It offers a controlled RF option for someone whose concern and tolerance do not call for fractional microneedling.
+        - generic [ref=f112e171]:
+          - article [ref=f112e172]:
+            - heading "What does Forma feel like?" [level=3] [ref=f112e173]
+            - paragraph [ref=f112e174]: Forma feels progressively warm as the handpiece moves across the skin. Temperature feedback helps keep the treatment within the selected range.
+          - article [ref=f112e175]:
+            - heading "Does Forma hurt?" [level=3] [ref=f112e176]
+            - paragraph [ref=f112e177]: Forma is non-invasive and does not use needles. Heat tolerance varies, so tell the practitioner if an area feels too hot or uncomfortable.
+          - article [ref=f112e178]:
+            - heading "Is there downtime?" [level=3] [ref=f112e179]
+            - paragraph [ref=f112e180]: No. Temporary warmth or mild pinkness can occur, but there is no recovery period required.
+          - article [ref=f112e181]:
+            - heading "How long does Forma take?" [level=3] [ref=f112e182]
+            - paragraph [ref=f112e183]: Treatment time depends on the area selected and the plan. House of Rose confirms the appointment length when the facial or neck areas are chosen.
+          - article [ref=f112e184]:
+            - heading "How many sessions will I need?" [level=3] [ref=f112e185]
+            - paragraph [ref=f112e186]: There is no one number for everyone. The starting concern, degree of laxity, response, and maintenance goal shape the recommendation.
+          - article [ref=f112e187]:
+            - heading "When will I see results?" [level=3] [ref=f112e188]
+            - paragraph [ref=f112e189]: Some people notice a temporary smoother or firmer look after treatment, while collagen-related change is gradual. Individual response and timing vary.
+      - generic [ref=f112e191]:
+        - generic [ref=f112e192]:
+          - paragraph [ref=f112e193]: Why Forma at House of Rose
+          - heading "Convenience is useful only when the treatment matches the concern." [level=2] [ref=f112e194]
+          - generic [ref=f112e195]:
+            - paragraph [ref=f112e196]: A no-downtime option should not be sold as the answer to every degree of laxity. House of Rose begins with the amount and location of change you are noticing, then distinguishes a Forma maintenance plan from the more intensive fractional work Morpheus8 can provide.
+            - paragraph [ref=f112e197]: The same consultation can identify when visible pigment or redness belongs with Lumecca Peak instead. The three technologies are complementary because they do different jobs—not because every client needs all three.
+        - generic [ref=f112e198]:
+          - paragraph [ref=f112e199]: What planning accounts for
+          - list [ref=f112e200]:
+            - listitem [ref=f112e201]: Concern matched to treatment intensity
+            - listitem [ref=f112e202]: Face and neck areas planned deliberately
+            - listitem [ref=f112e203]: Temperature-controlled delivery
+            - listitem [ref=f112e204]: Clear escalation path to Morpheus8 when appropriate
+          - paragraph [ref=f112e205]: "Treatments are provided under written physician protocol and medical direction.Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - generic [ref=f112e207]:
+        - heading "Forma and Forma Plus, without the confusion." [level=2] [ref=f112e208]
+        - generic [ref=f112e209]:
+          - article [ref=f112e210]:
+            - paragraph [ref=f112e211]: Forma
+            - heading "Smaller treatment areas" [level=3] [ref=f112e212]
+            - text: Forma is the smaller applicator used for facial and other compact treatment areas. Here, the treatment areas are the face, jawline, and neck.
+          - article [ref=f112e213]:
+            - paragraph [ref=f112e214]: Forma Plus
+            - heading "Larger treatment surface" [level=3] [ref=f112e215]
+            - text: Forma Plus is the larger applicator available on the OptimasMAX platform. Its size changes the surface area it can cover; the treatment information here covers the face, jawline, and neck.
+      - generic [ref=f112e217]:
+        - generic [ref=f112e218]:
+          - paragraph [ref=f112e219]: Combination treatment planning
+          - heading "A second modality should have a separate job." [level=2] [ref=f112e220]
+          - paragraph [ref=f112e221]: Combination planning is about matching each concern to the right technology and sequencing treatment responsibly. It is not an instruction to perform every modality in the same appointment.
+        - generic [ref=f112e222]:
+          - article [ref=f112e223]:
+            - paragraph [ref=f112e224]: Remodel + maintain
+            - heading "Morpheus8 + Forma" [level=3] [ref=f112e225]
+            - generic [ref=f112e226]: A more intensive fractional RF plan can be followed, when appropriate, by non-invasive Forma sessions focused on ongoing skin quality and firmness.
+            - generic [ref=f112e227]:
+              - link "Morpheus8" [ref=f112e228] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Morpheus8
+                - generic [ref=f112e229]: →
+              - link "Forma" [ref=f112e230] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Forma
+                - generic [ref=f112e231]: →
+          - article [ref=f112e232]:
+            - paragraph [ref=f112e233]: Tone + firmness
+            - heading "Lumecca Peak + Forma" [level=3] [ref=f112e234]
+            - generic [ref=f112e235]: "This pairing separates visible discoloration from early firmness concerns: IPL handles light-responsive color while Forma supplies surface-delivered RF without needles."
+            - generic [ref=f112e236]:
+              - link "Lumecca Peak" [ref=f112e237] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Lumecca Peak
+                - generic [ref=f112e238]: →
+              - link "Forma" [ref=f112e239] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Forma
+                - generic [ref=f112e240]: →
+      - generic [ref=f112e242]:
+        - generic [ref=f112e243]:
+          - paragraph [ref=f112e244]: Frequently asked questions
+          - heading "Clear answers before the consultation." [level=2] [ref=f112e245]
+          - paragraph [ref=f112e246]: These answers are general education. Your health history, skin, anatomy, and treatment area determine what is appropriate.
+        - generic [ref=f112e247]:
+          - group [ref=f112e248]:
+            - generic "What is Forma?" [ref=f112e249] [cursor=pointer]: +
+            - paragraph [ref=f112e252]: Forma is an InMode non-invasive bipolar radiofrequency treatment. Smooth electrodes move across the skin while built-in controls monitor temperature and guide RF delivery.
+          - group [ref=f112e253]:
+            - generic "Does Forma use needles?" [ref=f112e254] [cursor=pointer]: +
+          - group [ref=f112e257]:
+            - generic "What does Forma address?" [ref=f112e258] [cursor=pointer]: +
+          - group [ref=f112e261]:
+            - generic "Does Forma tighten skin?" [ref=f112e262] [cursor=pointer]: +
+          - group [ref=f112e265]:
+            - generic "How does Forma temperature control work?" [ref=f112e266] [cursor=pointer]: +
+          - group [ref=f112e269]:
+            - generic "Does Forma have downtime?" [ref=f112e270] [cursor=pointer]: +
+          - group [ref=f112e273]:
+            - generic "What is the difference between Forma and Forma Plus?" [ref=f112e274] [cursor=pointer]: +
+          - group [ref=f112e277]:
+            - generic "Is Forma the same as Morpheus8?" [ref=f112e278] [cursor=pointer]: +
+          - group [ref=f112e281]:
+            - generic "Is Forma weaker than Morpheus8?" [ref=f112e282] [cursor=pointer]: +
+          - group [ref=f112e285]:
+            - generic "Can Forma be combined with Lumecca Peak?" [ref=f112e286] [cursor=pointer]: +
+          - group [ref=f112e289]:
+            - generic "Who should not receive Forma?" [ref=f112e290] [cursor=pointer]: +
+      - region [ref=f112e293]:
+        - generic [ref=f112e294]:
+          - generic [ref=f112e295]:
+            - paragraph [ref=f112e296]: Prepare and recover
+            - heading "Keep the care instructions close." [level=2] [ref=f112e297]
+          - generic [ref=f112e298]:
+            - paragraph [ref=f112e299]: Use the treatment-specific section in each guide. Instructions provided for your individual treatment and settings always take priority.
+            - generic [ref=f112e300]:
+              - link "Download pre-care guide" [ref=f112e301] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-pre-care-guide.pdf
+                - text: Download pre-care guide
+                - generic [ref=f112e302]: ↓
+              - link "Download aftercare guide" [ref=f112e303] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-aftercare-guide.pdf
+                - text: Download aftercare guide
+                - generic [ref=f112e304]: ↓
+      - region [ref=f112e305]:
+        - generic [ref=f112e306]:
+          - heading "Sources" [level=2] [ref=f112e307]
+          - paragraph [ref=f112e308]: Manufacturer examples do not predict an individual result.
+          - list [ref=f112e309]:
+            - listitem [ref=f112e310]:
+              - link "InMode OptimasMAX Forma / Plus overview" [ref=f112e311] [cursor=pointer]:
+                - /url: https://www.inmodemd.com/workstation/optimas-max/
+                - text: InMode OptimasMAX Forma / Plus overview
+                - generic [ref=f112e312]: ↗
+            - listitem [ref=f112e313]:
+              - link "Forma temperature-controlled RF study" [ref=f112e314] [cursor=pointer]:
+                - /url: https://doi.org/10.1080/14764172.2016.1262957
+                - text: Forma temperature-controlled RF study
+                - generic [ref=f112e315]: ↗
+      - generic [ref=f112e319]:
+        - paragraph [ref=f112e320]: House of Rose Aesthetics · Punta Gorda
+        - heading "Bring the concern. We’ll help identify the right treatment path." [level=2] [ref=f112e321]
+        - paragraph [ref=f112e322]: Start with a consultation for Morpheus8, Lumecca Peak, Forma, or a combination plan. House of Rose can explain current pricing during that conversation.
+        - generic [ref=f112e323]:
+          - link "Book a consultation" [ref=f112e324] [cursor=pointer]:
+            - /url: /consultation/
+            - text: Book a consultation
+            - generic [ref=f112e325]: ↗
+          - link "Contact House of Rose" [ref=f112e326] [cursor=pointer]:
+            - /url: /contact/
+            - text: Contact House of Rose
+            - generic [ref=f112e327]: →
+        - paragraph [ref=f112e328]: 525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950 · (941) 400-0165
+        - paragraph [ref=f112e329]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - region "Consultation booking" [ref=f112e330]:
+        - generic [ref=f112e331]: Forma RF Facial
+        - link "Book a consultation" [ref=f112e332] [cursor=pointer]:
+          - /url: /consultation/
+  - contentinfo [ref=f112e333]:
+    - generic [ref=f112e334]:
+      - generic [ref=f112e335]:
+        - generic [ref=f112e336]:
+          - paragraph [ref=f112e337]: House of Rose Aesthetics
+          - paragraph [ref=f112e338]: Medical Aesthetics Practice
+          - generic [ref=f112e339]:
+            - link "Explore treatments" [ref=f112e340] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f112e341] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f112e342]:
+          - heading "Practice" [level=2] [ref=f112e343]
+          - list [ref=f112e344]:
+            - listitem [ref=f112e345]:
+              - link "About" [ref=f112e346] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f112e347]:
+              - link "Providers" [ref=f112e348] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f112e349]:
+              - link "Services" [ref=f112e350] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f112e351]:
+              - link "Experience" [ref=f112e352] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f112e353]:
+              - link "Results" [ref=f112e354] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f112e355]:
+              - link "FAQ" [ref=f112e356] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f112e357]:
+              - link "Contact" [ref=f112e358] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f112e359]:
+              - link "Client support" [ref=f112e360] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f112e361]:
+              - link "Rent a suite" [ref=f112e362] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f112e363]:
+          - heading "Explore" [level=2] [ref=f112e364]
+          - list [ref=f112e365]:
+            - listitem [ref=f112e366]:
+              - link "Skin analysis" [ref=f112e367] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f112e368]:
+              - link "Concerns" [ref=f112e369] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f112e370]:
+              - link "Compare treatments" [ref=f112e371] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f112e372]:
+              - link "Cost guides" [ref=f112e373] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f112e374]:
+              - link "Areas we serve" [ref=f112e375] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f112e376]:
+              - link "Journal" [ref=f112e377] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f112e378]:
+          - heading "Visit" [level=2] [ref=f112e379]
+          - generic [ref=f112e380]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f112e381] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f112e382] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f112e383]:
+        - paragraph [ref=f112e384]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f112e385]:
+          - link "Privacy" [ref=f112e386] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f112e387] [cursor=pointer]
+          - link "Terms" [ref=f112e388] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f112e389] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f112e392]:
+    - button [ref=f112e393]
+    - button [ref=f112e399]
+    - button [ref=f112e403]
+    - button [ref=f112e408]

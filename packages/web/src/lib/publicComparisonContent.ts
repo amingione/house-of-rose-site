@@ -93,16 +93,16 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
   'daxxify-vs-botox': {
     title: 'Daxxify vs. Botox',
     metaDescription:
-      'Compare Daxxify and Botox at House of Rose: both are priced per product-specific unit, with 60- and 30-minute appointments and non-interchangeable units.',
+      'Compare Daxxify and Botox at House of Rose, including formulation, onset evidence, duration evidence, and non-interchangeable product units.',
     lead:
-      'House of Rose offers Daxxify and Botox for movement-related lines. Both are priced per product-specific unit; the Daxxify appointment is listed at 60 minutes and the Botox appointment at 30 minutes. A unit of one product is not equivalent to a unit of the other, so a matching per-unit rate does not predict the same dose or total price.',
+      'House of Rose offers Daxxify and Botox for movement-related lines. Each product defines potency in its own units, so the unit count for one cannot be converted into the other. Formulation, labeled evidence, anatomy, and the treatment plan all belong in the comparison.',
     optionALabel: 'Daxxify',
     optionBLabel: 'Botox',
     optionAOverview:
-      'Daxxify is daxibotulinumtoxinA-lanm. House of Rose lists a 60-minute appointment, priced per Daxxify unit.',
+      'Daxxify is daxibotulinumtoxinA-lanm and uses the peptide excipient RTP004 in its formulation.',
     optionBOverview:
-      'Botox is onabotulinumtoxinA. House of Rose lists a 30-minute appointment, priced per Botox unit.',
-    distinctionHeading: 'The matching unit price does not make the products equivalent.',
+      'Botox is onabotulinumtoxinA and includes human albumin and sodium chloride in its formulation.',
+    distinctionHeading: 'The products use different, non-interchangeable units.',
     distinction:
       'Botox contains onabotulinumtoxinA in a formulation with human albumin. Daxxify contains daxibotulinumtoxinA-lanm with the 35-amino-acid peptide excipient RTP004. Each label defines potency in units specific to that product, so a unit count cannot be converted from one to the other.',
     sharedHeading: 'Duration numbers only make sense with their study endpoints.',
@@ -118,16 +118,6 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
         attribute: 'Formulation distinction',
         valueA: 'Includes the 35-amino-acid RTP004 peptide excipient',
         valueB: 'Includes human albumin and sodium chloride',
-      },
-      {
-        attribute: 'Current House of Rose pricing structure',
-        valueA: 'Priced per Daxxify unit; units are not convertible to Botox units',
-        valueB: 'Priced per Botox unit',
-      },
-      {
-        attribute: 'Current appointment length',
-        valueA: '60 minutes',
-        valueB: '30 minutes',
       },
       {
         attribute: 'Onset evidence',
@@ -169,9 +159,9 @@ const PUBLIC_COMPARISON_CONTENT: Readonly<
     ],
     faqs: [
       {
-        question: 'Does a matching per-unit rate mean the total price will be the same?',
+        question: 'Can Daxxify and Botox units be converted?',
         answer:
-          'No. A matching per-unit rate does not establish the same total. Daxxify and Botox units are product-specific and cannot be converted. An individual unit count is determined separately.',
+          'No. Daxxify and Botox units are product-specific and cannot be converted. Product selection, dose, and placement are determined for the individual treatment plan.',
       },
       {
         question: 'What do the duration figures actually compare?',

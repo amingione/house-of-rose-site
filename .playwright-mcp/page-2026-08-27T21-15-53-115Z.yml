@@ -1,0 +1,210 @@
+- generic [active] [ref=f10e1]:
+  - link "Skip to main content" [ref=f10e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f10e3]:
+    - generic [ref=f10e4]:
+      - link "House of Rose Aesthetics home" [ref=f10e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary navigation" [ref=f10e6]:
+        - link "Treatments" [ref=f10e7] [cursor=pointer]:
+          - /url: /services/
+        - link "Skin analysis" [ref=f10e8] [cursor=pointer]:
+          - /url: /skin-analysis/
+        - group [ref=f10e9]:
+          - generic "About" [ref=f10e10] [cursor=pointer]
+        - link "Contact" [ref=f10e13] [cursor=pointer]:
+          - /url: /contact/
+        - link "Get in touch" [ref=f10e14] [cursor=pointer]:
+          - /url: /contact/
+  - main [ref=f10e15]:
+    - generic [ref=f10e16]:
+      - img "Warm neutral House of Rose banner with a restrained botanical detail" [ref=f10e18]
+      - generic [ref=f10e20]:
+        - generic [ref=f10e21]: Punta Gorda, Florida
+        - heading "Services at House of Rose." [level=1] [ref=f10e22]
+        - paragraph [ref=f10e24]: Browse skin treatments, injectables, facials, IV hydration, weight management, waxing, and makeup.
+    - navigation "Service groups" [ref=f10e25]:
+      - generic [ref=f10e26]:
+        - paragraph [ref=f10e27]: Services by category
+        - generic "Scroll to see all service categories" [ref=f10e28]:
+          - link "Skin & Device Treatments" [ref=f10e29] [cursor=pointer]:
+            - /url: "#advanced-skin-treatments"
+          - link "Injectables" [ref=f10e30] [cursor=pointer]:
+            - /url: "#injectables-structural-enhancements"
+          - link "Facials & Skin Care" [ref=f10e31] [cursor=pointer]:
+            - /url: "#skin-health-corrective-care"
+          - link "IV Hydration & Weight Management" [ref=f10e32] [cursor=pointer]:
+            - /url: "#wellness-performance-support"
+          - link "Waxing" [ref=f10e33] [cursor=pointer]:
+            - /url: "#beauty-grooming"
+    - generic [ref=f10e35]:
+      - generic [ref=f10e36]:
+        - paragraph [ref=f10e37]: Movement, volume, color, texture
+        - heading "A moving line, lost fullness, uneven color, and rough texture call for different treatments." [level=2] [ref=f10e38]
+        - paragraph [ref=f10e39]: A line that appears with expression differs from a cheek that looks less full or a patch of uneven color. Start with what you're noticing below, and each path explains how it's actually addressed.
+      - generic [ref=f10e40]:
+        - paragraph [ref=f10e41]: Want to choose by the person who'll treat you instead? Every provider's licence type and current appointments are listed.
+        - link "Meet the House of Rose team →" [ref=f10e42] [cursor=pointer]:
+          - /url: /about/providers/
+    - generic [ref=f10e44]:
+      - generic [ref=f10e46]:
+        - heading "Skin & Device Treatments" [level=2] [ref=f10e47]
+        - paragraph [ref=f10e48]: Morpheus8, Lumecca, and Forma use different technologies. Compare microneedling with radiofrequency, intense pulsed light, and radiofrequency treatment without needling.
+      - link "Explore Skin & Device Treatments" [ref=f10e50] [cursor=pointer]:
+        - /url: /services/inmode/
+        - generic [ref=f10e52]: →
+    - generic [ref=f10e54]:
+      - generic [ref=f10e56]:
+        - heading "Injectables" [level=2] [ref=f10e57]
+        - paragraph [ref=f10e58]: Neurotoxins address movement-related lines. Hyaluronic-acid fillers address selected areas of lost volume. Injectable PRF uses material prepared from a small sample of your own blood.
+        - paragraph [ref=f10e59]:
+          - text: Botox and Daxxify are different formulations, and their units are not interchangeable.
+          - link "Compare Daxxify and Botox" [ref=f10e60] [cursor=pointer]:
+            - /url: /compare/daxxify-vs-botox/
+      - link "Explore Injectables" [ref=f10e62] [cursor=pointer]:
+        - /url: /services/injectables-bio-fillers/
+        - generic [ref=f10e64]: →
+    - generic [ref=f10e66]:
+      - generic [ref=f10e68]:
+        - heading "Facials & Skin Care" [level=2] [ref=f10e69]
+        - paragraph [ref=f10e70]: Surface exfoliation, chemical peels, dermaplaning, microneedling, topical PRF, and structured acne care work at different depths and address different visible concerns.
+      - link "Explore Facials & Skin Care" [ref=f10e72] [cursor=pointer]:
+        - /url: /services/collections/facials/
+        - generic [ref=f10e74]: →
+    - generic [ref=f10e76]:
+      - generic [ref=f10e78]:
+        - heading "IV Hydration & Weight Management" [level=2] [ref=f10e79]
+        - paragraph [ref=f10e80]: IV hydration delivers fluid intravenously. GLP-1 weight management uses semaglutide or tirzepatide under medical direction. These are distinct services with different purposes.
+      - link "Explore IV Hydration & Weight Management" [ref=f10e82] [cursor=pointer]:
+        - /url: /services/collections/iv-hydration-therapy/
+        - generic [ref=f10e84]: →
+    - generic [ref=f10e86]:
+      - generic [ref=f10e88]:
+        - heading "Waxing" [level=2] [ref=f10e89]
+        - paragraph [ref=f10e90]: Facial waxing covers brows, upper lip, and chin. Body waxing includes underarms, bikini line, arms, legs, back, and chest.
+      - link "Explore Waxing" [ref=f10e92] [cursor=pointer]:
+        - /url: /services/waxing/
+        - generic [ref=f10e94]: →
+    - generic [ref=f10e96]:
+      - heading "Additional Services" [level=2] [ref=f10e98]
+      - article [ref=f10e99]:
+        - generic [ref=f10e100]:
+          - heading [level=3] [ref=f10e102]:
+            - link "Bridal Makeup" [ref=f10e103] [cursor=pointer]:
+              - /url: /services/bridal-makeup/
+          - link "Learn more" [ref=f10e105] [cursor=pointer]:
+            - /url: /services/bridal-makeup/
+      - article [ref=f10e106]:
+        - generic [ref=f10e107]:
+          - heading [level=3] [ref=f10e109]:
+            - link "Event Makeup" [ref=f10e110] [cursor=pointer]:
+              - /url: /services/event-makeup/
+          - link "Learn more" [ref=f10e112] [cursor=pointer]:
+            - /url: /services/event-makeup/
+      - article [ref=f10e113]:
+        - generic [ref=f10e114]:
+          - heading [level=3] [ref=f10e116]:
+            - link "Everyday Makeup" [ref=f10e117] [cursor=pointer]:
+              - /url: /services/everyday-makeup/
+          - link "Learn more" [ref=f10e119] [cursor=pointer]:
+            - /url: /services/everyday-makeup/
+    - generic [ref=f10e121]:
+      - generic [ref=f10e122]: Not sure where to start?
+      - heading "Start with what you want to change." [level=2] [ref=f10e123]
+      - paragraph [ref=f10e124]: Tell us what you are noticing—movement, volume, pigment, texture, breakouts, or unwanted hair—and we will help you narrow the direction.
+      - generic [ref=f10e125]:
+        - link "Contact House of Rose" [ref=f10e126] [cursor=pointer]:
+          - /url: /contact/
+        - link "Meet the team" [ref=f10e127] [cursor=pointer]:
+          - /url: /about/providers/
+      - paragraph [ref=f10e128]: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+  - contentinfo [ref=f10e129]:
+    - generic [ref=f10e130]:
+      - generic [ref=f10e131]:
+        - generic [ref=f10e132]:
+          - paragraph [ref=f10e133]: House of Rose Aesthetics
+          - paragraph [ref=f10e134]: Medical Aesthetics Practice
+          - generic [ref=f10e135]:
+            - link "Explore treatments" [ref=f10e136] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f10e137] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f10e138]:
+          - heading "Practice" [level=2] [ref=f10e139]
+          - list [ref=f10e140]:
+            - listitem [ref=f10e141]:
+              - link "About" [ref=f10e142] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f10e143]:
+              - link "Providers" [ref=f10e144] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f10e145]:
+              - link "Services" [ref=f10e146] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f10e147]:
+              - link "Experience" [ref=f10e148] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f10e149]:
+              - link "Results" [ref=f10e150] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f10e151]:
+              - link "FAQ" [ref=f10e152] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f10e153]:
+              - link "Contact" [ref=f10e154] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f10e155]:
+              - link "Client support" [ref=f10e156] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f10e157]:
+              - link "Rent a suite" [ref=f10e158] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f10e159]:
+          - heading "Explore" [level=2] [ref=f10e160]
+          - list [ref=f10e161]:
+            - listitem [ref=f10e162]:
+              - link "Skin analysis" [ref=f10e163] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f10e164]:
+              - link "Concerns" [ref=f10e165] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f10e166]:
+              - link "Compare treatments" [ref=f10e167] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f10e168]:
+              - link "Cost guides" [ref=f10e169] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f10e170]:
+              - link "Areas we serve" [ref=f10e171] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f10e172]:
+              - link "Journal" [ref=f10e173] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f10e174]:
+          - heading "Visit" [level=2] [ref=f10e175]
+          - generic [ref=f10e176]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f10e177] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f10e178] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f10e179]:
+        - paragraph [ref=f10e180]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f10e181]:
+          - link "Privacy" [ref=f10e182] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f10e183] [cursor=pointer]
+          - link "Terms" [ref=f10e184] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f10e185] [cursor=pointer]:
+            - /url: /sitemap/
+  - region "Privacy choices" [ref=f10e186]:
+    - generic [ref=f10e187]:
+      - paragraph [ref=f10e188]:
+        - text: We use cookies to measure site performance and advertising. You can accept, reject, or choose which types to allow.
+        - link "Privacy policy" [ref=f10e189] [cursor=pointer]:
+          - /url: /privacy-policy/
+      - generic [ref=f10e190]:
+        - button "Reject optional analytics and advertising measurement" [ref=f10e191] [cursor=pointer]: Reject
+        - button "Preferences" [ref=f10e192] [cursor=pointer]
+        - button "Accept optional analytics and advertising measurement" [ref=f10e193] [cursor=pointer]: Accept

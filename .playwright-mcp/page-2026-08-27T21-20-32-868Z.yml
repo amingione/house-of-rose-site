@@ -1,0 +1,236 @@
+- generic [active] [ref=f117e1]:
+  - link "Skip to main content" [ref=f117e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f117e3]:
+    - generic [ref=f117e4]:
+      - link "House of Rose Aesthetics home" [ref=f117e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary navigation" [ref=f117e6]:
+        - link "Treatments" [ref=f117e7] [cursor=pointer]:
+          - /url: /services/
+        - link "Skin analysis" [ref=f117e8] [cursor=pointer]:
+          - /url: /skin-analysis/
+        - group [ref=f117e9]:
+          - generic "About" [ref=f117e10] [cursor=pointer]
+        - link "Contact" [ref=f117e13] [cursor=pointer]:
+          - /url: /contact/
+        - link "Get in touch" [ref=f117e14] [cursor=pointer]:
+          - /url: /contact/
+  - main [ref=f117e15]:
+    - generic [ref=f117e16]:
+      - generic [ref=f117e18]:
+        - generic [ref=f117e19]:
+          - link "All services" [ref=f117e20] [cursor=pointer]:
+            - /url: /services/
+            - generic [ref=f117e21]: ←
+            - text: All services
+          - heading "Microneedling" [level=1] [ref=f117e22]
+          - paragraph [ref=f117e23]: House of Rose performs Microneedling with the Procell Therapies device to create controlled microchannels.
+        - figure [ref=f117e24]:
+          - img "The microneedling treatment room inside House of Rose Aesthetics" [ref=f117e25]
+      - generic [ref=f117e27]:
+        - generic [ref=f117e28]:
+          - generic [ref=f117e29]:
+            - generic [ref=f117e30]: What it is
+            - heading "One Procell device, with Pro, MD, and topical PRF options." [level=2] [ref=f117e31]
+          - generic [ref=f117e32]:
+            - paragraph [ref=f117e33]: Procell Microchanneling is the device-specific name used for this Microneedling service.
+            - generic [ref=f117e34]:
+              - link "Topical and injectable PRF" [ref=f117e35] [cursor=pointer]:
+                - /url: /services/prf/
+              - link "Meet Amber Mingione, Licensed Esthetician" [ref=f117e36] [cursor=pointer]:
+                - /url: /about/providers/amber/
+        - generic [ref=f117e37]:
+          - generic [ref=f117e38]:
+            - generic [ref=f117e39]: Benefits
+            - heading "Why people consider Microneedling." [level=3] [ref=f117e40]
+            - list [ref=f117e41]:
+              - listitem [ref=f117e42]: Addresses the appearance of uneven texture, eligible scars, fine lines, and selected tone concerns.
+              - listitem [ref=f117e44]: Uses controlled microchannels with a Procell device and a treatment-specific topical option.
+          - generic [ref=f117e46]:
+            - heading "What it may help with." [level=3] [ref=f117e47]
+            - generic [ref=f117e48]:
+              - link "Aging" [ref=f117e49] [cursor=pointer]:
+                - /url: /concerns/aging/
+                - text: Aging
+                - generic [ref=f117e50]: →
+              - link "Acne Scarring" [ref=f117e51] [cursor=pointer]:
+                - /url: /concerns/acne-scarring/
+                - text: Acne Scarring
+                - generic [ref=f117e52]: →
+              - link "Fine Lines & Laxity" [ref=f117e53] [cursor=pointer]:
+                - /url: /concerns/fine-lines-laxity/
+                - text: Fine Lines & Laxity
+                - generic [ref=f117e54]: →
+              - link "Sun Damage" [ref=f117e55] [cursor=pointer]:
+                - /url: /concerns/sun-damage/
+                - text: Sun Damage
+                - generic [ref=f117e56]: →
+              - link "Texture" [ref=f117e57] [cursor=pointer]:
+                - /url: /concerns/texture/
+                - text: Texture
+                - generic [ref=f117e58]: →
+              - link "Stretch Marks" [ref=f117e59] [cursor=pointer]:
+                - /url: /concerns/stretch-marks/
+                - text: Stretch Marks
+                - generic [ref=f117e60]: →
+              - link "Hyperpigmentation & Dark Spots" [ref=f117e61] [cursor=pointer]:
+                - /url: /concerns/hyperpigmentation/
+                - text: Hyperpigmentation & Dark Spots
+                - generic [ref=f117e62]: →
+        - generic [ref=f117e63]:
+          - generic [ref=f117e64]: What the treatment consists of
+          - heading "What happens during Microneedling." [level=3] [ref=f117e65]
+          - generic [ref=f117e66]:
+            - article [ref=f117e67]:
+              - text: "01"
+              - heading "Prepare the skin" [level=4] [ref=f117e68]
+              - paragraph [ref=f117e69]: The treatment area is cleansed, assessed, and prepared before channeling begins.
+            - article [ref=f117e70]:
+              - text: "02"
+              - heading "Create controlled microchannels" [level=4] [ref=f117e71]
+              - paragraph [ref=f117e72]: The Procell device moves across the planned area at settings selected for the skin and goal.
+            - article [ref=f117e73]:
+              - text: "03"
+              - heading "Apply the selected topical" [level=4] [ref=f117e74]
+              - paragraph [ref=f117e75]: The service uses the selected Procell Pro, Procell MD, or topical PRF pathway, followed by written aftercare.
+        - generic [ref=f117e76]:
+          - generic [ref=f117e77]: Treatment details
+          - generic [ref=f117e78]:
+            - article [ref=f117e79]:
+              - heading "Procell Pro" [level=3] [ref=f117e80]
+              - paragraph [ref=f117e81]: Procell Pro and Procell MD use the same Procell Therapies device. Pro refers to the Pro Microchannel Serum used with the service.
+            - article [ref=f117e82]:
+              - heading "Procell MD" [level=3] [ref=f117e83]
+              - paragraph [ref=f117e84]: The MD Microchannel Serum shares the Pro serum’s core formulation and contains twice the concentration of growth factors. The difference is the topical serum, not a different needling device.
+        - generic [ref=f117e85]:
+          - generic [ref=f117e86]:
+            - generic [ref=f117e87]: How many treatments?
+            - heading "Treatment frequency." [level=3] [ref=f117e88]
+          - paragraph [ref=f117e89]: Treatment count depends on the concern, selected depth, skin response, and whether the Procell Pro, Procell MD, or topical PRF option is used.
+        - generic [ref=f117e90]:
+          - generic [ref=f117e91]: Related treatments
+          - heading "When another approach addresses a different concern." [level=3] [ref=f117e92]
+          - article [ref=f117e94]:
+            - heading "Topical PRF Microneedling" [level=4] [ref=f117e95]
+            - paragraph [ref=f117e96]: Topical PRF is a current Microneedling option. A small blood sample is processed, and the PRF is applied topically rather than injected.
+            - link "Read about Topical PRF Microneedling" [ref=f117e97] [cursor=pointer]:
+              - /url: /services/prf/
+        - generic [ref=f117e98]:
+          - generic [ref=f117e99]: Prepare and recover
+          - heading "Download the care guides." [level=3] [ref=f117e100]
+          - paragraph [ref=f117e101]: Use the treatment-specific section in each guide, then follow the instructions provided for your appointment.
+          - generic [ref=f117e102]:
+            - link "Download pre-care guide" [ref=f117e103] [cursor=pointer]:
+              - /url: /downloads/treatment-care/house-of-rose-pre-care-guide.pdf
+            - link "Download aftercare guide" [ref=f117e104] [cursor=pointer]:
+              - /url: /downloads/treatment-care/house-of-rose-aftercare-guide.pdf
+        - generic [ref=f117e105]:
+          - generic [ref=f117e106]: Questions
+          - heading "Procell Pro, Procell MD, and topical PRF." [level=3] [ref=f117e107]
+          - group [ref=f117e109]:
+            - generic "What does Procell Microchanneling mean at House of Rose?" [ref=f117e110] [cursor=pointer]:
+              - text: What does Procell Microchanneling mean at House of Rose?
+              - generic [ref=f117e111]: +
+      - generic [ref=f117e113]:
+        - generic [ref=f117e114]: Compare
+        - heading "Put the differences side by side." [level=2] [ref=f117e115]
+        - link "Morpheus8 vs. Microneedling Read the comparison" [ref=f117e117] [cursor=pointer]:
+          - /url: /compare/morpheus8-vs-microneedling/
+          - heading "Morpheus8 vs. Microneedling" [level=3] [ref=f117e118]
+          - generic [ref=f117e119]: Read the comparison
+      - generic [ref=f117e121]:
+        - generic [ref=f117e122]: Questions about Microneedling?
+        - heading "See whether it fits what you want to change." [level=2] [ref=f117e123]
+        - paragraph [ref=f117e124]: Tell us what you are noticing and what kind of change would feel worthwhile. We can help you understand whether Microneedling belongs in the conversation.
+        - generic [ref=f117e125]:
+          - link "Contact House of Rose" [ref=f117e126] [cursor=pointer]:
+            - /url: /contact/
+          - link "Explore other treatments" [ref=f117e127] [cursor=pointer]:
+            - /url: /services/
+        - paragraph [ref=f117e128]: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+  - contentinfo [ref=f117e129]:
+    - generic [ref=f117e130]:
+      - generic [ref=f117e131]:
+        - generic [ref=f117e132]:
+          - paragraph [ref=f117e133]: House of Rose Aesthetics
+          - paragraph [ref=f117e134]: Medical Aesthetics Practice
+          - generic [ref=f117e135]:
+            - link "Explore treatments" [ref=f117e136] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f117e137] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f117e138]:
+          - heading "Practice" [level=2] [ref=f117e139]
+          - list [ref=f117e140]:
+            - listitem [ref=f117e141]:
+              - link "About" [ref=f117e142] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f117e143]:
+              - link "Providers" [ref=f117e144] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f117e145]:
+              - link "Services" [ref=f117e146] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f117e147]:
+              - link "Experience" [ref=f117e148] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f117e149]:
+              - link "Results" [ref=f117e150] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f117e151]:
+              - link "FAQ" [ref=f117e152] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f117e153]:
+              - link "Contact" [ref=f117e154] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f117e155]:
+              - link "Client support" [ref=f117e156] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f117e157]:
+              - link "Rent a suite" [ref=f117e158] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f117e159]:
+          - heading "Explore" [level=2] [ref=f117e160]
+          - list [ref=f117e161]:
+            - listitem [ref=f117e162]:
+              - link "Skin analysis" [ref=f117e163] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f117e164]:
+              - link "Concerns" [ref=f117e165] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f117e166]:
+              - link "Compare treatments" [ref=f117e167] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f117e168]:
+              - link "Cost guides" [ref=f117e169] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f117e170]:
+              - link "Areas we serve" [ref=f117e171] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f117e172]:
+              - link "Journal" [ref=f117e173] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f117e174]:
+          - heading "Visit" [level=2] [ref=f117e175]
+          - generic [ref=f117e176]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f117e177] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f117e178] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f117e179]:
+        - paragraph [ref=f117e180]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f117e181]:
+          - link "Privacy" [ref=f117e182] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f117e183] [cursor=pointer]
+          - link "Terms" [ref=f117e184] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f117e185] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f117e188]:
+    - button [ref=f117e189]
+    - button [ref=f117e195]
+    - button [ref=f117e199]
+    - button [ref=f117e204]

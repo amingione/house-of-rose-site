@@ -16,7 +16,7 @@ const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const resultsDescription = studies.length > 0
   ? 'Before-and-after treatment cases shared with written client permission by House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary.'
-  : 'Before-and-after results from House of Rose Aesthetics in Punta Gorda, Florida. Individual outcomes vary.';
+  : 'Learn how House of Rose Aesthetics documents treatment results and client-image consent in Punta Gorda, Florida.';
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -70,10 +70,10 @@ const breadcrumb = breadcrumbList([
       <div data-results-empty-state class="max-w-[760px] mx-auto text-center">
         <span class="kicker">Before &amp; After</span>
         <h2 class="mt-3 font-serif text-[clamp(27px,4vw,40px)] leading-tight text-ink">
-          No client cases are available to view yet.
+          No client cases are currently available to view.
         </h2>
         <p class="mx-auto mt-5 max-w-[620px] text-[15px] leading-[1.8] text-muted">
-          House of Rose does not use stock photographs as client results. Client photographs are shared only with written permission.
+          House of Rose does not use stock photographs as client results. Individual outcomes vary.
         </p>
         <a href="/services/" class="btn-outline-gold mt-8">Explore treatments</a>
       </div>

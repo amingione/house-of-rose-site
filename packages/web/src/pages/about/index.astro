@@ -6,6 +6,7 @@ import { ABOUT_PAGE_QUERY, PUBLIC_PROVIDERS_QUERY, type AboutPageContent, type P
 import { ABOUT_PAGE_FALLBACK, resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { breadcrumbList } from '@/lib/structuredData';
 import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
@@ -17,6 +18,7 @@ const heading = 'House of Rose Aesthetics.';
 const intro = 'A medical aesthetics practice in Punta Gorda, with medical and esthetic services offered by people whose names, credentials, and work are easy to find.';
 const imageUrl = content?.indexImageUrl ?? ABOUT_PAGE_FALLBACK.indexImageUrl;
 const imageAlt = content?.indexImageAlt ?? ABOUT_PAGE_FALLBACK.indexImageAlt;
+const heroBanner = getHeroBanner('/about/');
 const title = ABOUT_PAGE_FALLBACK.indexSeo?.metaTitle;
 const description = ABOUT_PAGE_FALLBACK.indexSeo?.metaDescription;
 
@@ -31,9 +33,9 @@ const breadcrumb = breadcrumbList([
 <BaseLayout
   title={title}
   description={description}
-  image={imageUrl}
-  imageAlt={imageAlt}
-  preloadImage={imageUrl}
+  image={heroBanner.src}
+  imageAlt={heroBanner.alt}
+  preloadImage={heroBanner.src}
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
 
@@ -51,17 +53,29 @@ const breadcrumb = breadcrumbList([
         </div>
         <div class="aspect-[16/10] overflow-hidden bg-limestone">
           <img
-            src={imageUrl}
-            alt={imageAlt}
-            width="1400"
-            height="875"
+            src={heroBanner.src}
+            alt={heroBanner.alt}
+            width={heroBanner.width}
+            height={heroBanner.height}
             class="h-full w-full object-cover"
             fetchpriority="high"
-            {...(content?._id ? sbFieldPath('indexImage') : {})}
           />
         </div>
       </div>
     </section>
+
+    <figure class="mx-auto mb-[clamp(56px,8vw,96px)] max-w-[1120px] overflow-hidden bg-limestone">
+      <img
+        src={imageUrl}
+        alt={imageAlt}
+        width="1400"
+        height="875"
+        loading="lazy"
+        decoding="async"
+        class="aspect-[16/9] h-auto w-full object-cover"
+        {...(content?._id ? sbFieldPath('indexImage') : {})}
+      />
+    </figure>
 
     <section class="px-6 pb-[clamp(56px,8vw,96px)]">
       <div class="mx-auto grid max-w-[1080px] gap-8 border-t border-walnut/15 pt-[clamp(40px,6vw,68px)] md:grid-cols-[0.75fr_1.25fr] md:gap-16">

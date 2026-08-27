@@ -27,6 +27,9 @@ const cartImage = product.image
 const imageSrc = product.image
   ? urlFor(product.image).width(400).height(400).fit('crop').url()
   : DEFAULT_PRODUCT_IMAGE;
+const displaySize = product.size && !['default title', 'retail'].includes(product.size.trim().toLowerCase())
+  ? product.size
+  : undefined;
 ---
 
 <div
@@ -58,7 +61,7 @@ const imageSrc = product.image
 
   <p class="text-ink/80 text-[13px] tracking-[0.12em] uppercase mb-4">
     <span {...sbFieldPath('price')}>{formatPrice(product.price)}</span>
-    {product.size && <span class="text-muted normal-case tracking-normal" {...sbFieldPath('size')}> · {product.size}</span>}
+    {displaySize && <span class="text-muted normal-case tracking-normal" {...sbFieldPath('size')}> · {displaySize}</span>}
   </p>
 
   <div class="mt-auto flex items-center justify-between gap-3">

@@ -1,16 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
+import { getHeroBanner } from '@/lib/heroBanners';
 
-const heroImage = '/images/optimized/actual-welcome-800.webp';
-const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images/optimized/actual-welcome-1400.webp 1400w';
+const heroBanner = getHeroBanner('/experience/');
 ---
 
 <BaseLayout
   title="Inside the Practice"
   description="See the actual House of Rose storefront and rooms in Punta Gorda, meet the providers, and find booking and Unit 9 arrival information."
-  preloadImage={heroImage}
-  preloadImageSrcset={heroImageSrcset}
+  preloadImage={heroBanner.src}
   preloadImageSizes="100vw"
 >
   <!-- Hero -->
@@ -19,12 +18,12 @@ const heroImageSrcset = '/images/optimized/actual-welcome-800.webp 800w, /images
     kicker="The practice"
     description="See the actual storefront, reception, and treatment rooms, meet the providers, and find practical details for booking and arrival."
     size="small"
-    backgroundImage={heroImage}
-    backgroundSrcset={heroImageSrcset}
+    backgroundImage={heroBanner.src}
     backgroundSizes="100vw"
-    backgroundWidth={1400}
-    backgroundHeight={1050}
-    imageAlt="The House of Rose Aesthetics reception and waiting area"
+    backgroundWidth={920}
+    backgroundHeight={612}
+    backgroundPosition={heroBanner.position}
+    imageAlt={heroBanner.alt}
   />
 
   <!-- Actual practice photography -->

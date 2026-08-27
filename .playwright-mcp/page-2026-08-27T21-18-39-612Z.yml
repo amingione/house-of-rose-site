@@ -1,0 +1,385 @@
+- generic [active] [ref=f111e1]:
+  - link "Skip to main content" [ref=f111e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f111e3]:
+    - generic [ref=f111e4]:
+      - link "House of Rose Aesthetics home" [ref=f111e5] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f111e6]:
+        - link "Contact" [ref=f111e7] [cursor=pointer]:
+          - /url: /contact/
+        - button "Open navigation" [ref=f111e8] [cursor=pointer]
+  - main [ref=f111e12]:
+    - article [ref=f111e13]:
+      - generic [ref=f111e14]:
+        - img "House of Rose skin treatment studio in Punta Gorda, Florida" [ref=f111e16]
+        - generic [ref=f111e18]:
+          - link "InMode treatments" [ref=f111e19] [cursor=pointer]:
+            - /url: /services/inmode/
+            - generic [ref=f111e20]: ←
+            - text: InMode treatments
+          - generic [ref=f111e21]:
+            - paragraph [ref=f111e22]: Lumecca Peak IPL · Punta Gorda
+            - heading "Treat the color that changes the whole complexion." [level=1] [ref=f111e23]
+            - paragraph [ref=f111e24]: Lumecca Peak uses intense pulsed light to address visible brown pigment, photodamage, redness, and superficial vascular discoloration. No needles, and a completely different job from Morpheus8 or Forma.
+            - generic [ref=f111e25]:
+              - link "Book an IPL consultation" [ref=f111e26] [cursor=pointer]:
+                - /url: /consultation/
+                - text: Book an IPL consultation
+                - generic [ref=f111e27]: ↗
+              - link "See complexion results" [ref=f111e28] [cursor=pointer]:
+                - /url: "#results"
+                - text: See complexion results
+                - generic [ref=f111e29]: ↓
+          - paragraph [ref=f111e30]: Complexion-focused · Face and neck treatment planning
+      - region "Lumecca Peak IPL Photofacial at a glance" [ref=f111e31]:
+        - generic [ref=f111e32]:
+          - generic [ref=f111e33]:
+            - paragraph [ref=f111e34]: Technology
+            - strong [ref=f111e35]: Intense pulsed light
+          - generic [ref=f111e36]:
+            - paragraph [ref=f111e37]: Best fit
+            - strong [ref=f111e38]: Pigment + visible redness
+          - generic [ref=f111e39]:
+            - paragraph [ref=f111e40]: Plan around
+            - strong [ref=f111e41]: Sun exposure + skin assessment
+      - navigation "On this page" [ref=f111e42]:
+        - generic [ref=f111e43]:
+          - generic [ref=f111e44]: On this page
+          - link "How it works" [ref=f111e45] [cursor=pointer]:
+            - /url: "#technology"
+          - link "Results" [ref=f111e46] [cursor=pointer]:
+            - /url: "#results"
+          - link "Timeline" [ref=f111e47] [cursor=pointer]:
+            - /url: "#timeline"
+          - link "Combinations" [ref=f111e48] [cursor=pointer]:
+            - /url: "#combinations"
+          - link "FAQ" [ref=f111e49] [cursor=pointer]:
+            - /url: "#faq"
+      - generic [ref=f111e51]:
+        - generic [ref=f111e52]:
+          - generic [ref=f111e53]:
+            - paragraph [ref=f111e54]: What the treatment consists of · What IPL is doing
+            - heading "Light is absorbed by visible pigment and vascular targets." [level=2] [ref=f111e55]
+          - generic [ref=f111e56]:
+            - paragraph [ref=f111e57]: IPL is not a laser. It sends filtered, broad-spectrum pulses of light into the skin. Selected wavelengths are absorbed by visible pigment and blood-vessel targets, converting light to heat within those targets.
+            - paragraph [ref=f111e58]: Lumecca Peak is InMode’s higher-output IPL handpiece on OptimasMAX, with a custom xenon flash lamp and sapphire cooling tip. Its value is not simply “more power”; it is the ability to select settings after reviewing skin tone, the type of discoloration, the treatment area, and recent sun exposure.
+            - paragraph [ref=f111e59]: Brown pigment can temporarily darken after treatment before it flakes or fades. Vascular redness can blanch or change color before settling. Those visible transitions are part of why timing, sun protection, and aftercare matter.
+          - generic [ref=f111e60]:
+            - generic [ref=f111e61]:
+              - term [ref=f111e62]: Brown pigment
+              - definition [ref=f111e63]: Sun-related spots and uneven pigmentation absorb selected light energy.
+            - generic [ref=f111e64]:
+              - term [ref=f111e65]: Visible redness
+              - definition [ref=f111e66]: Superficial vascular targets respond through a different light-absorption pathway.
+            - generic [ref=f111e67]:
+              - term [ref=f111e68]: Cooling + control
+              - definition [ref=f111e69]: The sapphire tip and selected pulse settings support a controlled light treatment.
+        - figure "InMode manufacturer media" [ref=f111e70]:
+          - img "Lumecca Peak intense pulsed light handpiece with sapphire cooling tip"
+      - region [ref=f111e73]:
+        - generic [ref=f111e74]:
+          - generic [ref=f111e75]:
+            - paragraph [ref=f111e76]: Treatment focus
+            - heading "What House of Rose considers Lumecca Peak IPL Photofacial for." [level=2] [ref=f111e77]
+          - list [ref=f111e78]:
+            - listitem [ref=f111e79]:
+              - generic [ref=f111e80]: "01"
+              - text: Sun-related brown spots
+            - listitem [ref=f111e81]:
+              - generic [ref=f111e82]: "02"
+              - text: Visible photodamage
+            - listitem [ref=f111e83]:
+              - generic [ref=f111e84]: "03"
+              - text: Uneven pigmentation
+            - listitem [ref=f111e85]:
+              - generic [ref=f111e86]: "04"
+              - text: Blotchy tone
+            - listitem [ref=f111e87]:
+              - generic [ref=f111e88]: "05"
+              - text: Facial redness
+            - listitem [ref=f111e89]:
+              - generic [ref=f111e90]: "06"
+              - text: Superficial vascular discoloration
+            - listitem [ref=f111e91]:
+              - generic [ref=f111e92]: "07"
+              - text: Freckles when appropriate
+            - listitem [ref=f111e93]:
+              - generic [ref=f111e94]: "08"
+              - text: Overall complexion clarity
+      - generic [ref=f111e96]:
+        - generic [ref=f111e97]:
+          - paragraph [ref=f111e98]: Complexion result example
+          - heading "Pigment is easier to evaluate at full scale." [level=2] [ref=f111e99]
+          - paragraph [ref=f111e100]: This manufacturer example shows visible facial discoloration before and after Lumecca. It is not a House of Rose client or a guarantee of the response your skin will have.
+        - figure "Manufacturer example. Not a House of Rose client. Lumecca example courtesy of K. Spector, LME; attribution embedded in image" [ref=f111e102]:
+          - img "Manufacturer-provided Lumecca Peak facial before and after showing visible brown pigmentation" [ref=f111e103]
+          - generic [ref=f111e104]:
+            - strong [ref=f111e105]: Manufacturer example. Not a House of Rose client.
+            - generic [ref=f111e106]: Lumecca example courtesy of K. Spector, LME; attribution embedded in image
+        - paragraph [ref=f111e107]: Individual results vary. Pigment type, vascular pattern, skin tone, sun history, settings, and treatment count affect visible change.
+      - generic [ref=f111e109]:
+        - generic [ref=f111e110]:
+          - paragraph [ref=f111e111]: What happens after IPL
+          - heading "Pigment may look darker before it looks clearer." [level=2] [ref=f111e112]
+          - paragraph [ref=f111e113]: The sequence below reflects InMode patient guidance for Lumecca IPL. Your response can differ, and the instructions given after your House of Rose visit take priority.
+        - list [ref=f111e114]:
+          - listitem [ref=f111e115]:
+            - generic [ref=f111e116]: "01"
+            - generic [ref=f111e117]:
+              - paragraph [ref=f111e118]: Immediately
+              - heading "Warmth and temporary redness" [level=3] [ref=f111e119]
+              - paragraph [ref=f111e120]: A warm feeling and redness can occur after the light pulses. The sapphire tip is part of the treatment’s cooling system.
+          - listitem [ref=f111e121]:
+            - generic [ref=f111e122]: "02"
+            - generic [ref=f111e123]:
+              - paragraph [ref=f111e124]: 24–48 hours
+              - heading "Brown spots may darken" [level=3] [ref=f111e125]
+              - paragraph [ref=f111e126]: Targeted pigment can become more visible before it begins to shed. Do not scrub or pick at it.
+          - listitem [ref=f111e127]:
+            - generic [ref=f111e128]: "03"
+            - generic [ref=f111e129]:
+              - paragraph [ref=f111e130]: Following week
+              - heading "Pigment begins to flake or fade" [level=3] [ref=f111e131]
+              - paragraph [ref=f111e132]: Darkened spots can move toward the surface and shed as the complexion starts to look more even.
+          - listitem [ref=f111e133]:
+            - generic [ref=f111e134]: "04"
+            - generic [ref=f111e135]:
+              - paragraph [ref=f111e136]: Around 1–2 weeks
+              - heading "The visible result is easier to assess" [level=3] [ref=f111e137]
+              - paragraph [ref=f111e138]: Manufacturer guidance describes the most visible complexion change in this window after a session, while treatment response and the need for another visit vary.
+      - generic [ref=f111e140]:
+        - generic [ref=f111e141]:
+          - paragraph [ref=f111e142]: The treatment experience
+          - heading "Fast pulses, bright flashes, and a sun-aware plan." [level=2] [ref=f111e143]
+          - paragraph [ref=f111e144]: IPL planning begins before treatment day. Recent tanning or heavy sun exposure can change candidacy and raise the risk of an unwanted pigment response.
+        - generic [ref=f111e145]:
+          - article [ref=f111e146]:
+            - heading "What does Lumecca Peak feel like?" [level=3] [ref=f111e147]
+            - paragraph [ref=f111e148]: Each pulse creates a bright flash and a brief snapping or warm sensation. Sensation varies by area and settings.
+          - article [ref=f111e149]:
+            - heading "What will I look like afterward?" [level=3] [ref=f111e150]
+            - paragraph [ref=f111e151]: Temporary redness and warmth can occur. Brown spots may darken over the next one to two days before they begin to flake or fade.
+          - article [ref=f111e152]:
+            - heading "Is there downtime?" [level=3] [ref=f111e153]
+            - paragraph [ref=f111e154]: Many people return to ordinary activities, but visible redness or darkened pigment may be noticeable. Recovery appearance depends on the targets treated and your response.
+          - article [ref=f111e155]:
+            - heading "Why does sun exposure matter?" [level=3] [ref=f111e156]
+            - paragraph [ref=f111e157]: IPL energy is absorbed by pigment. Recent tanning or excessive sun exposure changes the amount and distribution of pigment in the skin, which can change treatment safety and settings.
+          - article [ref=f111e158]:
+            - heading "How many sessions are needed?" [level=3] [ref=f111e159]
+            - paragraph [ref=f111e160]: House of Rose has single-session and series options. Pigment type, vascular pattern, skin response, and the area determine whether more than one treatment makes sense.
+          - article [ref=f111e161]:
+            - heading "Can I wear makeup afterward?" [level=3] [ref=f111e162]
+            - paragraph [ref=f111e163]: Makeup timing depends on the skin response and instructions provided after treatment. Apply nothing over irritated or disrupted skin unless House of Rose has cleared it.
+      - generic [ref=f111e165]:
+        - generic [ref=f111e166]:
+          - paragraph [ref=f111e167]: Why consultation matters
+          - heading "Not every brown spot is the same target." [level=2] [ref=f111e168]
+          - generic [ref=f111e169]:
+            - paragraph [ref=f111e170]: Visible pigment can come from different sources, depths, and histories. Redness can also have more than one cause. IPL should begin with a skin and sun-exposure review, not a promise that every mark will respond the same way.
+            - paragraph [ref=f111e171]: House of Rose uses the consultation to decide whether the concern is appropriate for Lumecca Peak, how to plan around sun exposure, and whether a texture or firmness concern belongs with Morpheus8 or Forma instead.
+        - generic [ref=f111e172]:
+          - paragraph [ref=f111e173]: What planning accounts for
+          - list [ref=f111e174]:
+            - listitem [ref=f111e175]: Pigment and vascular pattern reviewed separately
+            - listitem [ref=f111e176]: Recent sun and tanning history considered
+            - listitem [ref=f111e177]: Settings selected for skin and target
+            - listitem [ref=f111e178]: Combination modalities sequenced when appropriate
+          - paragraph [ref=f111e179]: "Treatments are provided under written physician protocol and medical direction.Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - generic [ref=f111e181]:
+        - generic [ref=f111e182]:
+          - paragraph [ref=f111e183]: Combination treatment planning
+          - heading "A second modality should have a separate job." [level=2] [ref=f111e184]
+          - paragraph [ref=f111e185]: Combination planning is about matching each concern to the right technology and sequencing treatment responsibly. It is not an instruction to perform every modality in the same appointment.
+        - generic [ref=f111e186]:
+          - article [ref=f111e187]:
+            - paragraph [ref=f111e188]: Structure + complexion
+            - heading "Morpheus8 + Lumecca Peak" [level=3] [ref=f111e189]
+            - generic [ref=f111e190]: Morpheus8 addresses fractional remodeling and texture. Lumecca Peak addresses visible pigment, photodamage, and vascular discoloration. The value is in assigning each concern to the technology built for it.
+            - generic [ref=f111e191]:
+              - link "Morpheus8" [ref=f111e192] [cursor=pointer]:
+                - /url: /services/morpheus8/
+                - text: Morpheus8
+                - generic [ref=f111e193]: →
+              - link "Lumecca Peak" [ref=f111e194] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Lumecca Peak
+                - generic [ref=f111e195]: →
+          - article [ref=f111e196]:
+            - paragraph [ref=f111e197]: Tone + firmness
+            - heading "Lumecca Peak + Forma" [level=3] [ref=f111e198]
+            - generic [ref=f111e199]: "This pairing separates visible discoloration from early firmness concerns: IPL handles light-responsive color while Forma supplies surface-delivered RF without needles."
+            - generic [ref=f111e200]:
+              - link "Lumecca Peak" [ref=f111e201] [cursor=pointer]:
+                - /url: /services/lumecca-peak-ipl/
+                - text: Lumecca Peak
+                - generic [ref=f111e202]: →
+              - link "Forma" [ref=f111e203] [cursor=pointer]:
+                - /url: /services/forma-rf-facial/
+                - text: Forma
+                - generic [ref=f111e204]: →
+      - generic [ref=f111e206]:
+        - generic [ref=f111e207]:
+          - paragraph [ref=f111e208]: Frequently asked questions
+          - heading "Clear answers before the consultation." [level=2] [ref=f111e209]
+          - paragraph [ref=f111e210]: These answers are general education. Your health history, skin, anatomy, and treatment area determine what is appropriate.
+        - generic [ref=f111e211]:
+          - group [ref=f111e212]:
+            - generic "What is Lumecca Peak IPL?" [ref=f111e213] [cursor=pointer]: +
+            - paragraph [ref=f111e216]: Lumecca Peak is an InMode intense pulsed light handpiece on the OptimasMAX platform. It delivers filtered broad-spectrum light for selected visible pigment, photodamage, redness, and superficial vascular concerns.
+          - group [ref=f111e217]:
+            - generic "Is Lumecca Peak a laser?" [ref=f111e218] [cursor=pointer]: +
+          - group [ref=f111e221]:
+            - generic "How is Lumecca Peak different from basic IPL?" [ref=f111e222] [cursor=pointer]: +
+          - group [ref=f111e225]:
+            - generic "What does Lumecca Peak address?" [ref=f111e226] [cursor=pointer]: +
+          - group [ref=f111e229]:
+            - generic "What happens to brown spots after IPL?" [ref=f111e230] [cursor=pointer]: +
+          - group [ref=f111e233]:
+            - generic "How much downtime does Lumecca Peak have?" [ref=f111e234] [cursor=pointer]: +
+          - group [ref=f111e237]:
+            - generic "When will I see results from Lumecca Peak?" [ref=f111e238] [cursor=pointer]: +
+          - group [ref=f111e241]:
+            - generic "Can Lumecca Peak be used after a tan?" [ref=f111e242] [cursor=pointer]: +
+          - group [ref=f111e245]:
+            - generic "Can Lumecca Peak be combined with Morpheus8?" [ref=f111e246] [cursor=pointer]: +
+          - group [ref=f111e249]:
+            - generic "Can Lumecca Peak be combined with Forma?" [ref=f111e250] [cursor=pointer]: +
+          - group [ref=f111e253]:
+            - generic "Who is not a candidate for IPL?" [ref=f111e254] [cursor=pointer]: +
+      - region [ref=f111e257]:
+        - generic [ref=f111e258]:
+          - generic [ref=f111e259]:
+            - paragraph [ref=f111e260]: Prepare and recover
+            - heading "Keep the care instructions close." [level=2] [ref=f111e261]
+          - generic [ref=f111e262]:
+            - paragraph [ref=f111e263]: Use the treatment-specific section in each guide. Instructions provided for your individual treatment and settings always take priority.
+            - generic [ref=f111e264]:
+              - link "Download pre-care guide" [ref=f111e265] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-pre-care-guide.pdf
+                - text: Download pre-care guide
+                - generic [ref=f111e266]: ↓
+              - link "Download aftercare guide" [ref=f111e267] [cursor=pointer]:
+                - /url: /downloads/treatment-care/house-of-rose-aftercare-guide.pdf
+                - text: Download aftercare guide
+                - generic [ref=f111e268]: ↓
+      - region [ref=f111e269]:
+        - generic [ref=f111e270]:
+          - heading "Sources" [level=2] [ref=f111e271]
+          - paragraph [ref=f111e272]: Manufacturer examples do not predict an individual result.
+          - list [ref=f111e273]:
+            - listitem [ref=f111e274]:
+              - link "InMode OptimasMAX and Lumecca Peak overview" [ref=f111e275] [cursor=pointer]:
+                - /url: https://www.inmodemd.com/workstation/optimas-max/
+                - text: InMode OptimasMAX and Lumecca Peak overview
+                - generic [ref=f111e276]: ↗
+            - listitem [ref=f111e277]:
+              - link "InMode Lumecca patient guidance" [ref=f111e278] [cursor=pointer]:
+                - /url: https://www.inmodemd.com/archive/lumecca-brochure.pdf
+                - text: InMode Lumecca patient guidance
+                - generic [ref=f111e279]: ↗
+      - generic [ref=f111e283]:
+        - paragraph [ref=f111e284]: House of Rose Aesthetics · Punta Gorda
+        - heading "Bring the concern. We’ll help identify the right treatment path." [level=2] [ref=f111e285]
+        - paragraph [ref=f111e286]: Start with a consultation for Morpheus8, Lumecca Peak, Forma, or a combination plan. House of Rose can explain current pricing during that conversation.
+        - generic [ref=f111e287]:
+          - link "Book a consultation" [ref=f111e288] [cursor=pointer]:
+            - /url: /consultation/
+            - text: Book a consultation
+            - generic [ref=f111e289]: ↗
+          - link "Contact House of Rose" [ref=f111e290] [cursor=pointer]:
+            - /url: /contact/
+            - text: Contact House of Rose
+            - generic [ref=f111e291]: →
+        - paragraph [ref=f111e292]: 525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950 · (941) 400-0165
+        - paragraph [ref=f111e293]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+      - region "Consultation booking" [ref=f111e294]:
+        - generic [ref=f111e295]: Lumecca Peak IPL Photofacial
+        - link "Book a consultation" [ref=f111e296] [cursor=pointer]:
+          - /url: /consultation/
+  - contentinfo [ref=f111e297]:
+    - generic [ref=f111e298]:
+      - generic [ref=f111e299]:
+        - generic [ref=f111e300]:
+          - paragraph [ref=f111e301]: House of Rose Aesthetics
+          - paragraph [ref=f111e302]: Medical Aesthetics Practice
+          - generic [ref=f111e303]:
+            - link "Explore treatments" [ref=f111e304] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f111e305] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f111e306]:
+          - heading "Practice" [level=2] [ref=f111e307]
+          - list [ref=f111e308]:
+            - listitem [ref=f111e309]:
+              - link "About" [ref=f111e310] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f111e311]:
+              - link "Providers" [ref=f111e312] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f111e313]:
+              - link "Services" [ref=f111e314] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f111e315]:
+              - link "Experience" [ref=f111e316] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f111e317]:
+              - link "Results" [ref=f111e318] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f111e319]:
+              - link "FAQ" [ref=f111e320] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f111e321]:
+              - link "Contact" [ref=f111e322] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f111e323]:
+              - link "Client support" [ref=f111e324] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f111e325]:
+              - link "Rent a suite" [ref=f111e326] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f111e327]:
+          - heading "Explore" [level=2] [ref=f111e328]
+          - list [ref=f111e329]:
+            - listitem [ref=f111e330]:
+              - link "Skin analysis" [ref=f111e331] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f111e332]:
+              - link "Concerns" [ref=f111e333] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f111e334]:
+              - link "Compare treatments" [ref=f111e335] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f111e336]:
+              - link "Cost guides" [ref=f111e337] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f111e338]:
+              - link "Areas we serve" [ref=f111e339] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f111e340]:
+              - link "Journal" [ref=f111e341] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f111e342]:
+          - heading "Visit" [level=2] [ref=f111e343]
+          - generic [ref=f111e344]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f111e345] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f111e346] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f111e347]:
+        - paragraph [ref=f111e348]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f111e349]:
+          - link "Privacy" [ref=f111e350] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f111e351] [cursor=pointer]
+          - link "Terms" [ref=f111e352] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f111e353] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f111e356]:
+    - button [ref=f111e357]
+    - button [ref=f111e363]
+    - button [ref=f111e367]
+    - button [ref=f111e372]

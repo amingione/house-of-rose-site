@@ -971,7 +971,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
 // not client-facing website copy. Keep operational facts available to internal
 // tooling while preventing appointment inventory, booking modes, pricing
 // language, and staff shorthand from leaking into public service pages or feeds.
-const INTERNAL_MENU_LANGUAGE = /\b(?:appointment|appointments|book|booked|bookable|booking|consultation|duration|listing|menu|minute|minutes|price|priced|prices|pricing|standalone)\b/i;
+const INTERNAL_MENU_LANGUAGE = /\b(?:book|booked|bookable|booking|listing|menu|price|priced|prices|pricing|standalone)\b/i;
 
 const includesInternalMenuLanguage = (...values: Array<string | undefined>): boolean =>
   values.some((value) => Boolean(value && INTERNAL_MENU_LANGUAGE.test(value)));

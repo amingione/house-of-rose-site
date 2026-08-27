@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/Hero.astro';
 import { sanityFetch } from '@/lib/sanity';
 import { sbObjectId, sbFieldPathParts } from '@/lib/visualEditing';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const bookingEmail = import.meta.env.PUBLIC_BOOKING_EMAIL;
 
@@ -73,6 +74,7 @@ const FALLBACK_CANDIDATES: RentARoomCandidate[] = [
 
 const roomSpecs = data.roomSpecs?.length ? data.roomSpecs : FALLBACK_SPECS;
 const candidates = FALLBACK_CANDIDATES;
+const heroBanner = getHeroBanner('/rent-a-room/');
 ---
 
 <BaseLayout
@@ -86,8 +88,11 @@ const candidates = FALLBACK_CANDIDATES;
     kicker="Suite Rental"
     description="For licensed independent professionals working from House of Rose in Punta Gorda."
     size="small"
-    backgroundImage="/images/optimized/actual-iv-suite-1400.webp"
-    imageAlt="A treatment suite inside House of Rose Aesthetics"
+    backgroundImage={heroBanner.src}
+    backgroundWidth={918}
+    backgroundHeight={606}
+    backgroundPosition={heroBanner.position}
+    imageAlt={heroBanner.alt}
     showCTA={true}
     ctaPrimary={{ text: 'Apply for a suite', href: '#apply' }}
     ctaSecondary={{ text: 'Review the details', href: '#details' }}
@@ -239,7 +244,7 @@ const candidates = FALLBACK_CANDIDATES;
               required
               autocomplete="tel"
               class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
-              placeholder="(555) 123-4567"
+              placeholder="Phone number"
             />
           </div>
         </div>
@@ -256,7 +261,7 @@ const candidates = FALLBACK_CANDIDATES;
             required
             autocomplete="email"
             class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
-            placeholder="you@example.com"
+            placeholder="Email address"
           />
         </div>
 
@@ -288,7 +293,7 @@ const candidates = FALLBACK_CANDIDATES;
               id="applicant-license"
               name="license-number"
               class="w-full bg-charcoal border border-ink/10 text-ink px-5 py-3.5 text-[15px] focus:outline-none focus:border-gold transition-colors"
-              placeholder="FL-XXXXXXX"
+              placeholder="License number"
             />
           </div>
         </div>

@@ -1,0 +1,2 @@
+[      19ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4325/logos/hr-monogram-2026/favicon.ico:0
+[     110ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4325/logos/hr-monogram-2026/favicon.ico:0

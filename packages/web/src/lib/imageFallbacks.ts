@@ -24,17 +24,11 @@ const INMODE_DEVICE_IMAGES: Record<string, string> = {
 // must identify the actual device or setting at a glance; an empty treatment
 // room is omitted instead of being repeated beside unrelated services.
 const SERVICE_CARD_IMAGES: Record<string, string> = {
-  inmode: '/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp',
+  inmode: '/images/optimized/hor-skin-studio-1400.webp',
   morpheus8: '/images/inmode/morpheus8-burst-device.webp',
   'lumecca-peak-ipl': '/images/inmode/lumecca-peak-device.webp',
   'forma-rf-facial': '/images/inmode/Forma-handpiece-space.png',
-  injectables: '/images/generated/service-cards/neurotoxin-treatment-setup.webp',
-  'dermal-fillers': '/images/generated/service-cards/dermal-filler-treatment-setup.webp',
   'iv-hydration-therapy': ACTUAL_IV_SUITE_IMAGE,
-  glo2facial: '/images/generated/service-cards/glo2facial-treatment-setup.webp',
-  dermaplaning: '/images/generated/service-cards/dermaplaning-treatment-setup.webp',
-  'facial-waxing': '/images/generated/service-cards/facial-waxing-treatment-setup.webp',
-  'body-waxing': '/images/generated/service-cards/body-waxing-treatment-setup.webp',
 };
 
 const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
@@ -58,7 +52,7 @@ export const DEFAULT_JOURNAL_IMAGE = ACTUAL_WELCOME_IMAGE;
 export const DEFAULT_AREA_IMAGE = ACTUAL_STOREFRONT_IMAGE;
 
 const SERVICE_IMAGES: Record<string, string> = {
-  inmode: '/images/editorial/skin-analysis/skin-texture-study-v1-1536.webp',
+  inmode: '/images/optimized/hor-skin-studio-1400.webp',
   injectables: ACTUAL_FACIAL_SUITE_IMAGE,
   'dermal-fillers': ACTUAL_FACIAL_SUITE_IMAGE,
   'ez-gel-bio-filler': ACTUAL_FACIAL_SUITE_IMAGE,
@@ -122,7 +116,7 @@ export const getCuratedServiceImage = (slug: string): string | undefined => {
  */
 export const getCuratedServiceImageAlt = (slug: string): string => {
   if (slug === 'inmode') {
-    return 'Close facial view showing natural skin texture, fine lines, and visible pigmentation';
+    return 'The skin treatment studio inside House of Rose Aesthetics';
   }
   if (slug === 'glo2facial' || slug === 'glo2facial-prf') {
     return 'Glo2Facial company treatment overview showing the handpiece and treatment steps';
@@ -188,30 +182,12 @@ export const getServiceCardImage = (slug: string): string | undefined =>
   SERVICE_CARD_IMAGES[slug];
 
 export const getServiceCardImageAlt = (slug: string): string => {
-  if (slug === 'inmode') return 'Close facial view showing natural skin texture and visible pigmentation';
+  if (slug === 'inmode') return 'The skin treatment studio inside House of Rose Aesthetics';
   if (slug === 'morpheus8') return 'Morpheus8 Burst RF microneedling handpiece';
   if (slug === 'lumecca-peak-ipl') return 'Lumecca Peak IPL handpiece';
   if (slug === 'forma-rf-facial') return 'Forma radiofrequency handpiece';
-  if (slug === 'injectables') {
-    return 'Illustrative neurotoxin appointment setup with sealed syringes, gauze, gloves, and a mapping pencil';
-  }
-  if (slug === 'dermal-fillers') {
-    return 'Illustrative dermal filler appointment setup with sealed instruments, gauze, gloves, and a handheld mirror';
-  }
   if (slug === 'iv-hydration-therapy') {
     return 'IV hydration suite inside House of Rose Aesthetics';
-  }
-  if (slug === 'glo2facial') {
-    return 'Illustrative Glo2Facial appointment setup with a treatment handpiece and sealed single-use tip';
-  }
-  if (slug === 'dermaplaning') {
-    return 'Illustrative dermaplaning appointment setup with sealed single-use tools, gauze, cleanser, and headband';
-  }
-  if (slug === 'facial-waxing') {
-    return 'Illustrative facial waxing setup with hard wax, narrow applicators, brow tools, and gloves';
-  }
-  if (slug === 'body-waxing') {
-    return 'Illustrative body waxing setup with hard wax, wide applicators, clean linens, and gloves';
   }
   return '';
 };

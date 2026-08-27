@@ -17,6 +17,7 @@ interface Props {
 	backgroundSizes?: string;
 	backgroundWidth?: number;
 	backgroundHeight?: number;
+	backgroundPosition?: string;
 	imageAlt?: string;
 	size?: "full" | "small";
 	centerContent?: boolean;
@@ -45,6 +46,7 @@ const {
 	backgroundSizes,
 	backgroundWidth = 1920,
 	backgroundHeight = 1280,
+	backgroundPosition = "center",
 	imageAlt = "",
 	size = "full",
 	centerContent = false,
@@ -77,6 +79,7 @@ const titleLines = title.split("\n");
 					srcset={backgroundSrcset}
 					sizes={backgroundSizes}
 					class="w-full h-full object-cover"
+					style={`object-position: ${backgroundPosition};`}
 					loading="eager"
 					fetchpriority="high"
 					decoding="sync"
@@ -86,9 +89,11 @@ const titleLines = title.split("\n");
 			</div>
 		)
 	}
-	<!-- Walnut scrim keeps copy readable while the real environment stays visible. -->
+	<!-- Neutral slate scrim keeps copy readable without turning pale banner art brown. -->
 	<div
-		class="overlay absolute inset-0 bg-gradient-to-t from-[rgba(43,33,28,0.9)] via-[rgba(43,33,28,0.58)] to-[rgba(43,33,28,0.5)]"
+		class="overlay absolute inset-0"
+		style="background: linear-gradient(90deg, rgba(28,30,34,.92) 0%, rgba(28,30,34,.66) 50%, rgba(28,30,34,.26) 100%), linear-gradient(0deg, rgba(28,30,34,.5) 0%, rgba(28,30,34,0) 58%);"
+		aria-hidden="true"
 	>
 	</div>
 

@@ -2,13 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import TreatmentEvidence from '@/components/TreatmentEvidence.astro';
-import {
-  getCuratedServiceImage,
-  getCuratedServiceImageAlt,
-  getServiceFallbackImage,
-  getServiceResultImages,
-  serviceImageUsesContain,
-} from '@/lib/imageFallbacks';
+import { getServiceResultImages } from '@/lib/imageFallbacks';
+import { getServiceHeroBanner } from '@/lib/heroBanners';
 import {
   PUBLIC_SERVICES,
   getPublicServiceBySlug,
@@ -56,17 +51,20 @@ const inModeContent = getInModeLandingContent(service.slug);
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const fallbackImage = slug ? getServiceFallbackImage(slug) : undefined;
-const curatedImage = slug ? getCuratedServiceImage(slug) : undefined;
-const curatedImageAlt = slug ? getCuratedServiceImageAlt(slug) : service.title;
-const fallbackImageAlt = slug ? getCuratedServiceImageAlt(slug) : 'A treatment room inside House of Rose Aesthetics';
-const containHeroImage = slug ? serviceImageUsesContain(slug) : false;
+const serviceHeroBanner = getServiceHeroBanner(slug);
 const heroImage = slug === 'iv-hydration-therapy'
   ? IV_LANDING_HERO_IMAGE
   : inModeContent?.heroImage.src
-    ?? curatedImage
-    ?? fallbackImage
-    ?? '/images/optimized/actual-reception-1400-light.webp';
+    ?? serviceHeroBanner.src;
+const heroImageAlt = slug === 'iv-hydration-therapy'
+  ? IV_LANDING_HERO_IMAGE_ALT
+  : inModeContent?.heroImage.alt ?? serviceHeroBanner.alt;
+const heroImageWidth = slug === 'iv-hydration-therapy'
+  ? 1400
+  : inModeContent?.heroImage.width ?? serviceHeroBanner.width;
+const heroImageHeight = slug === 'iv-hydration-therapy'
+  ? 875
+  : inModeContent?.heroImage.height ?? serviceHeroBanner.height;
 const socialImage = new URL(heroImage, site).toString();
 const heroImageSrcset = undefined;
 const galleryImages = service.gallery ?? [];
@@ -139,7 +137,7 @@ const reviewedServiceFaqs = inModeContent?.faqs
     ? PRF_UNDER_EYES_FAQS
     : slug === 'iv-hydration-therapy'
       ? IV_LANDING_FAQS
-      : undefined);
+      : education?.faqs);
 const serviceFaqSchema = reviewedServiceFaqs
   ? faqPage(reviewedServiceFaqs.map(({ question, answer }) => ({ question, answer })))
   : null;
@@ -157,9 +155,9 @@ const pageDescription = factualServiceDescription;
   title={pageTitle}
   description={pageDescription}
   image={socialImage}
-  imageAlt={slug === 'iv-hydration-therapy' ? IV_LANDING_HERO_IMAGE_ALT : inModeContent?.heroImage.alt ?? curatedImageAlt}
-  imageWidth={slug === 'iv-hydration-therapy' ? 1400 : inModeContent?.heroImage.width}
-  imageHeight={slug === 'iv-hydration-therapy' ? 875 : inModeContent?.heroImage.height}
+  imageAlt={heroImageAlt}
+  imageWidth={heroImageWidth}
+  imageHeight={heroImageHeight}
   preloadImage={heroImage}
   preloadImageSrcset={heroImageSrcset}
   preloadImageSizes="(max-width: 1023px) 100vw, 55vw"
@@ -208,15 +206,12 @@ const pageDescription = factualServiceDescription;
           src={heroImage}
           srcset={heroImageSrcset}
           sizes="(max-width: 1023px) 100vw, 55vw"
-          alt={curatedImage ? curatedImageAlt : fallbackImageAlt}
-          width="1600"
-          height="1200"
+          alt={heroImageAlt}
+          width={heroImageWidth}
+          height={heroImageHeight}
           fetchpriority="high"
           decoding="async"
-          class:list={[
-            'absolute inset-0 h-full w-full',
-            containHeroImage ? 'object-contain p-8 sm:p-12' : 'object-cover',
-          ]}
+          class="absolute inset-0 h-full w-full object-cover"
         />
       </figure>
     </div>

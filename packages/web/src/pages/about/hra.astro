@@ -5,14 +5,14 @@ import { sanityFetch } from '@/lib/sanity';
 import { ABOUT_PAGE_QUERY, type AboutPageContent } from '@/lib/queries';
 import { ABOUT_PAGE_FALLBACK } from '@/lib/aboutFallbacks';
 import { breadcrumbList } from '@/lib/structuredData';
-import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
+import { sbObjectId } from '@/lib/visualEditing';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const content = await sanityFetch<AboutPageContent | null>(ABOUT_PAGE_QUERY);
 // Working voice reset: copy stays local until Amber approves it for Sanity.
 const heading = ABOUT_PAGE_FALLBACK.hraHeading;
 const intro = 'A Punta Gorda medical aesthetics practice where medical services, esthetic skin care, and a small group of related services share one address and a clearly named team.';
-const imageUrl = content?.hraImageUrl ?? ABOUT_PAGE_FALLBACK.hraImageUrl;
-const imageAlt = content?.hraImageAlt ?? ABOUT_PAGE_FALLBACK.hraImageAlt;
+const heroBanner = getHeroBanner('/about/hra/');
 const title = ABOUT_PAGE_FALLBACK.hraSeo?.metaTitle;
 const description = ABOUT_PAGE_FALLBACK.hraSeo?.metaDescription;
 
@@ -28,9 +28,9 @@ const breadcrumb = breadcrumbList([
 <BaseLayout
   title={title}
   description={description}
-  image={imageUrl}
-  imageAlt={imageAlt}
-  preloadImage={imageUrl}
+  image={heroBanner.src}
+  imageAlt={heroBanner.alt}
+  preloadImage={heroBanner.src}
 >
   <SchemaMarkup item={breadcrumb} slot="head" />
 
@@ -49,13 +49,12 @@ const breadcrumb = breadcrumbList([
       </div>
       <div class="min-h-[440px] bg-limestone lg:min-h-full">
         <img
-          src={imageUrl}
-          alt={imageAlt}
-          width="1400"
-          height="1000"
+          src={heroBanner.src}
+          alt={heroBanner.alt}
+          width={heroBanner.width}
+          height={heroBanner.height}
           class="h-full w-full object-cover"
           fetchpriority="high"
-          {...(content?._id ? sbFieldPath('hraImage') : {})}
         />
       </div>
     </section>

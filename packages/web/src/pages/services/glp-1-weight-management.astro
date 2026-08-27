@@ -2,13 +2,14 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList, faqPage, service as serviceJsonLd } from '@/lib/structuredData';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const pageTitle = 'GLP-1 Weight Management | House of Rose Aesthetics';
 const pageDescription = 'Learn how semaglutide and tirzepatide may support weight reduction through medically supervised care at House of Rose in Punta Gorda.';
-const heroImage = '/images/providers/diana-profile-1122.webp';
+const heroBanner = getHeroBanner('/services/glp-1-weight-management/');
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonicalURL = new URL(Astro.url.pathname, site);
-const socialImage = new URL(heroImage, site).toString();
+const socialImage = new URL(heroBanner.src, site).toString();
 
 const faqs = [
   {
@@ -57,10 +58,10 @@ const faqSchema = faqPage(faqs);
   title={pageTitle}
   description={pageDescription}
   image={socialImage}
-  imageAlt="Diana Morrison, RN at House of Rose Aesthetics"
-  imageWidth={1122}
-  imageHeight={1402}
-  preloadImage={heroImage}
+  imageAlt={heroBanner.alt}
+  imageWidth={heroBanner.width}
+  imageHeight={heroBanner.height}
+  preloadImage={heroBanner.src}
   preloadImageSizes="(max-width: 1023px) 100vw, 42vw"
   structuredPageMainEntityId={`${canonicalURL.toString()}#service`}
 >
@@ -89,13 +90,13 @@ const faqSchema = faqPage(faqs);
 
       <figure class="relative min-h-[460px] overflow-hidden bg-limestone lg:min-h-full">
         <img
-          src={heroImage}
-          alt="Diana Morrison, RN at House of Rose Aesthetics"
-          width="1122"
-          height="1402"
+          src={heroBanner.src}
+          alt={heroBanner.alt}
+          width={heroBanner.width}
+          height={heroBanner.height}
           fetchpriority="high"
           decoding="async"
-          class="absolute inset-0 h-full w-full object-cover object-top"
+          class="absolute inset-0 h-full w-full object-cover object-center"
         />
       </figure>
     </div>

@@ -15,6 +15,7 @@ import {
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { brand, breadcrumbList, faqPage } from '@/lib/structuredData';
 import { SHOP_ENABLED } from '@/lib/features';
+import { getHeroBanner } from '@/lib/heroBanners';
 
 const PHONE_DISPLAY = '(844) 941-7673';
 const PHONE_TEL = 'tel:+18449417673';
@@ -150,6 +151,7 @@ const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImg = data.image?.asset?.url;
 const fallbackHeroImage = '/images/before-after/makeup/makeupbyxamber-jane-iredale-stephanie.png';
 const pageImage = heroImg ?? fallbackHeroImage;
+const heroBanner = getHeroBanner('/shop/jane-iredale/');
 
 const pageTitle = data.seoTitle ?? 'Jane Iredale Mineral Makeup | House of Rose Aesthetics, Punta Gorda FL';
 const pageDescription =
@@ -176,7 +178,7 @@ const faqLd = faqPage(faqs);
   title={pageTitle}
   description={pageDescription}
   image={pageImage}
-  preloadImage={pageImage}
+  preloadImage={heroBanner.src}
   noindex={!SHOP_ENABLED}
   nofollow={!SHOP_ENABLED}
 >
@@ -189,11 +191,14 @@ const faqLd = faqPage(faqs);
       title={data.heroTitle ?? 'Jane Iredale'}
       kicker={data.heroKicker ?? 'The Skincare Makeup'}
       description={data.heroDescription ??
-        'The professional mineral makeup we reach for — good for your skin, beautiful on camera, and the reason our looks feel like you at your best.'}
+        'Professional mineral makeup selected for buildable coverage, color matching, and use alongside House of Rose skin care.'}
       size="small"
       showCTA={false}
-      backgroundImage={pageImage}
-      imageAlt="Jane Iredale mineral makeup available through House of Rose Aesthetics"
+      backgroundImage={heroBanner.src}
+      backgroundWidth={heroBanner.width}
+      backgroundHeight={heroBanner.height}
+      backgroundPosition={heroBanner.position}
+      imageAlt={heroBanner.alt}
       titleField="heroTitle"
       kickerField="heroKicker"
       descriptionField="heroDescription"
@@ -204,7 +209,7 @@ const faqLd = faqPage(faqs);
       <div class="max-w-[860px] mx-auto text-center">
         <span class="kicker" {...sbFieldPath('introKicker')}>{data.introKicker ?? 'Who They Are'}</span>
         <h2 class="font-serif text-[clamp(24px,3.6vw,40px)] text-ink leading-tight mt-2 mb-6" {...sbFieldPath('introHeading')}>
-          {data.introHeading ?? 'Makeup that is good for your skin.'}
+          {data.introHeading ?? 'Mineral makeup selected with skin care in mind.'}
         </h2>
         <p class="text-muted text-[16px] leading-[1.85] max-w-[720px] mx-auto whitespace-pre-line" {...sbFieldPath('introBody')}>
           {data.introBody ??
@@ -339,7 +344,7 @@ const faqLd = faqPage(faqs);
           ))}
         </div>
         <p class="text-muted text-[12px] leading-relaxed pt-6 max-w-[720px]">
-          Example looks for illustration. Client before-and-after photos are shared only with written consent; individual results vary.
+          These product maps show how each finish can be assembled. They are not client results.
         </p>
       </div>
     </section>

@@ -1,0 +1,239 @@
+- generic [active] [ref=f116e1]:
+  - link "Skip to main content" [ref=f116e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f116e3]:
+    - generic [ref=f116e4]:
+      - link "House of Rose Aesthetics home" [ref=f116e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary navigation" [ref=f116e6]:
+        - link "Treatments" [ref=f116e7] [cursor=pointer]:
+          - /url: /services/
+        - link "Skin analysis" [ref=f116e8] [cursor=pointer]:
+          - /url: /skin-analysis/
+        - group [ref=f116e9]:
+          - generic "About" [ref=f116e10] [cursor=pointer]
+        - link "Contact" [ref=f116e13] [cursor=pointer]:
+          - /url: /contact/
+        - link "Get in touch" [ref=f116e14] [cursor=pointer]:
+          - /url: /contact/
+  - main [ref=f116e15]:
+    - generic [ref=f116e16]:
+      - img "Warm neutral House of Rose banner with open space and a ceramic vase" [ref=f116e18]
+      - generic [ref=f116e20]:
+        - generic [ref=f116e21]: Punta Gorda
+        - heading "Contact House of Rose." [level=1] [ref=f116e22]
+        - paragraph [ref=f116e24]: Call, send a message, or explore treatments.
+    - generic [ref=f116e26]:
+      - generic [ref=f116e27]:
+        - generic [ref=f116e28]: Call
+        - link "(941) 400-0165" [ref=f116e29] [cursor=pointer]:
+          - /url: tel:+19414000165
+        - paragraph [ref=f116e30]: Monday–Friday, 9 AM–5 PM ET
+      - generic [ref=f116e31]:
+        - generic [ref=f116e32]: Email
+        - link "info@houseofrosefl.com" [ref=f116e33] [cursor=pointer]:
+          - /url: mailto:info@houseofrosefl.com
+        - paragraph [ref=f116e34]: General questions and appointment help
+      - generic [ref=f116e35]:
+        - generic [ref=f116e36]: Services
+        - link "Explore treatments" [ref=f116e37] [cursor=pointer]:
+          - /url: /services/
+        - paragraph [ref=f116e38]: Find the treatment or concern you want to discuss
+      - generic [ref=f116e39]:
+        - generic [ref=f116e40]: Visit
+        - link "525 E Olympia Ave, Unit 9 Punta Gorda, FL 33950" [ref=f116e42] [cursor=pointer]:
+          - /url: https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950
+    - generic [ref=f116e44]:
+      - generic [ref=f116e45]:
+        - generic [ref=f116e46]: Send a message
+        - heading "What would you like to ask?" [level=2] [ref=f116e47]
+        - paragraph [ref=f116e48]: Include the service you are considering, or simply tell us what prompted the question.
+      - generic [ref=f116e49]:
+        - generic [ref=f116e50]:
+          - heading "When to expect a reply" [level=3] [ref=f116e51]
+          - paragraph [ref=f116e52]: Messages received Monday through Friday are typically answered within one business day.
+        - generic [ref=f116e53]:
+          - heading "When to call instead" [level=3] [ref=f116e54]
+          - paragraph [ref=f116e55]:
+            - text: For a same-day appointment change or faster help during practice hours, call
+            - link "(844) 941-7673" [ref=f116e56] [cursor=pointer]:
+              - /url: tel:+18449417673
+            - text: .
+        - generic [ref=f116e57]:
+          - heading "Does a phone number mean text consent?" [level=3] [ref=f116e58]
+          - paragraph [ref=f116e59]: No. Entering a phone number does not, by itself, give permission to send text messages. Choose “No” in the text-message section if you do not want texts; you can still send the form.
+      - complementary [ref=f116e60]:
+        - generic [ref=f116e61]: After an appointment
+        - heading "If something has changed, call instead of waiting on the form." [level=3] [ref=f116e62]
+        - paragraph [ref=f116e63]:
+          - text: If you are unsure about aftercare or notice an unexpected change after a House of Rose appointment, call
+          - link "(844) 941-7673" [ref=f116e64] [cursor=pointer]:
+            - /url: tel:+18449417673
+          - text: during practice hours. A non-urgent question can still be sent below. If you believe you are having a medical emergency, call 911 or seek emergency care instead of waiting for a routine reply.
+        - link "Review support options" [ref=f116e65] [cursor=pointer]:
+          - /url: /support/
+      - form "What would you like to ask?" [ref=f116e66]:
+        - generic [ref=f116e67]:
+          - generic [ref=f116e68]: Name *
+          - textbox "Name *" [ref=f116e69]:
+            - /placeholder: Your full name
+        - generic [ref=f116e70]:
+          - generic [ref=f116e71]: Email *
+          - textbox "Email *" [ref=f116e72]:
+            - /placeholder: your.email@example.com
+        - generic [ref=f116e73]:
+          - generic [ref=f116e74]: Phone Number *
+          - textbox "Phone Number *" [ref=f116e75]:
+            - /placeholder: Phone number
+        - generic [ref=f116e76]:
+          - generic [ref=f116e77]: What can we help with?
+          - combobox "What can we help with?" [ref=f116e78]:
+            - option "General question" [selected]
+            - option "Advanced Skin Imaging & Analysis"
+            - option "Microneedling"
+            - option "PRF Microneedling (topical PRF)"
+            - option "Injectable PRF"
+            - option "Glo2Facial"
+            - option "Dermaplaning"
+            - option "Injectables"
+            - option "IV Hydration"
+            - option "GLP-1 Weight Management"
+            - option "Waxing"
+          - paragraph [ref=f116e79]: Amber Mingione, Licensed Esthetician provides topical PRF with Microneedling. Diana Morrison, RN provides injectable PRF consultations. Choose “General question” if you are unsure which one you mean.
+        - generic [ref=f116e80]:
+          - generic [ref=f116e81]: Message
+          - textbox "Message" [ref=f116e82]:
+            - /placeholder: Tell us how we can help...
+        - group "Text Message Consent *" [ref=f116e83]:
+          - generic [ref=f116e85]:
+            - paragraph [ref=f116e86]:
+              - strong [ref=f116e87]: Texting is optional.
+              - text: You can choose “No” below and still submit this form.
+            - paragraph [ref=f116e88]: House of Rose Aesthetics LLC would like your consent to send informational and/or marketing text message communications from +18449417673 to your mobile number listed above. Informational messages may include responses to messages you send us, as well as information relevant to your relationship with us. Marketing messages may include announcements, event information, or texts promoting our products/services.
+            - paragraph [ref=f116e89]: Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply 'STOP' to unsubscribe at any time. Reply 'HELP' for assistance or more information.
+            - paragraph [ref=f116e90]:
+              - text: We do not share your mobile opt-in information with anyone. Our privacy policy and messaging terms and conditions are available at
+              - link "https://houseofrosefl.com/privacy-policy/" [ref=f116e91] [cursor=pointer]:
+                - /url: /privacy-policy/
+              - text: for more information.
+          - generic [ref=f116e92]:
+            - generic [ref=f116e93]:
+              - checkbox "Yes, I consent to receive informational messages from House of Rose Aesthetics LLC." [ref=f116e94]
+              - generic [ref=f116e95]: Yes, I consent to receive informational messages from House of Rose Aesthetics LLC.
+            - generic [ref=f116e96]:
+              - checkbox "Yes, I consent to receive marketing text messages from House of Rose Aesthetics LLC." [ref=f116e97]
+              - generic [ref=f116e98]: Yes, I consent to receive marketing text messages from House of Rose Aesthetics LLC.
+            - generic [ref=f116e99]:
+              - checkbox "No, I do not want to receive any text messages from House of Rose Aesthetics LLC." [ref=f116e100]
+              - generic [ref=f116e101]: No, I do not want to receive any text messages from House of Rose Aesthetics LLC.
+          - paragraph
+        - button "Send Message" [ref=f116e103] [cursor=pointer]
+        - paragraph [ref=f116e104]:
+          - text: "* Required fields. By submitting this form, you agree to our"
+          - link "privacy policy" [ref=f116e105] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - text: .
+    - generic [ref=f116e107]:
+      - generic [ref=f116e108]:
+        - generic [ref=f116e109]: The practice
+        - heading "525 E Olympia Avenue, Unit 9" [level=2] [ref=f116e110]
+        - paragraph [ref=f116e111]: “Use my location” asks your browser for location access so the map can calculate a route. You can enter a starting address instead, or open Google Maps or Apple Maps without providing a starting point.
+      - generic [ref=f116e112]:
+        - generic [ref=f116e113]:
+          - generic [ref=f116e114]:
+            - generic [ref=f116e115]: Starting address
+            - paragraph [ref=f116e117]: Choose an address to see driving time and distance to House of Rose.
+          - button "Use my location" [ref=f116e118] [cursor=pointer]
+        - status [ref=f116e123]:
+          - generic [ref=f116e124]: 525 E Olympia Ave, Unit 9 · Punta Gorda, FL 33950
+        - region "Interactive map showing House of Rose Aesthetics in Punta Gorda" [ref=f116e126]
+        - generic [ref=f116e127]:
+          - link "Get directions" [ref=f116e128] [cursor=pointer]:
+            - /url: https://www.google.com/maps/dir/?api=1&destination=525%20E%20Olympia%20Ave%20Unit%209%2C%20Punta%20Gorda%2C%20FL%2033950&travelmode=driving
+          - link "Open in Apple Maps" [ref=f116e129] [cursor=pointer]:
+            - /url: https://maps.apple.com/?daddr=525%20E%20Olympia%20Ave%20Unit%209%2C%20Punta%20Gorda%2C%20FL%2033950&dirflg=d
+  - contentinfo [ref=f116e130]:
+    - generic [ref=f116e131]:
+      - generic [ref=f116e132]:
+        - generic [ref=f116e133]:
+          - paragraph [ref=f116e134]: House of Rose Aesthetics
+          - paragraph [ref=f116e135]: Medical Aesthetics Practice
+          - generic [ref=f116e136]:
+            - link "Explore treatments" [ref=f116e137] [cursor=pointer]:
+              - /url: /services/
+            - link "Contact us" [ref=f116e138] [cursor=pointer]:
+              - /url: /contact/
+        - navigation "Practice" [ref=f116e139]:
+          - heading "Practice" [level=2] [ref=f116e140]
+          - list [ref=f116e141]:
+            - listitem [ref=f116e142]:
+              - link "About" [ref=f116e143] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=f116e144]:
+              - link "Providers" [ref=f116e145] [cursor=pointer]:
+                - /url: /about/providers/
+            - listitem [ref=f116e146]:
+              - link "Services" [ref=f116e147] [cursor=pointer]:
+                - /url: /services/
+            - listitem [ref=f116e148]:
+              - link "Experience" [ref=f116e149] [cursor=pointer]:
+                - /url: /experience/
+            - listitem [ref=f116e150]:
+              - link "Results" [ref=f116e151] [cursor=pointer]:
+                - /url: /results/
+            - listitem [ref=f116e152]:
+              - link "FAQ" [ref=f116e153] [cursor=pointer]:
+                - /url: /faq/
+            - listitem [ref=f116e154]:
+              - link "Contact" [ref=f116e155] [cursor=pointer]:
+                - /url: /contact/
+            - listitem [ref=f116e156]:
+              - link "Client support" [ref=f116e157] [cursor=pointer]:
+                - /url: /support/
+            - listitem [ref=f116e158]:
+              - link "Rent a suite" [ref=f116e159] [cursor=pointer]:
+                - /url: /rent-a-room/
+        - navigation "Explore" [ref=f116e160]:
+          - heading "Explore" [level=2] [ref=f116e161]
+          - list [ref=f116e162]:
+            - listitem [ref=f116e163]:
+              - link "Skin analysis" [ref=f116e164] [cursor=pointer]:
+                - /url: /skin-analysis/
+            - listitem [ref=f116e165]:
+              - link "Concerns" [ref=f116e166] [cursor=pointer]:
+                - /url: /concerns/
+            - listitem [ref=f116e167]:
+              - link "Compare treatments" [ref=f116e168] [cursor=pointer]:
+                - /url: /compare/
+            - listitem [ref=f116e169]:
+              - link "Cost guides" [ref=f116e170] [cursor=pointer]:
+                - /url: /cost/
+            - listitem [ref=f116e171]:
+              - link "Areas we serve" [ref=f116e172] [cursor=pointer]:
+                - /url: /areas/
+            - listitem [ref=f116e173]:
+              - link "Journal" [ref=f116e174] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=f116e175]:
+          - heading "Visit" [level=2] [ref=f116e176]
+          - generic [ref=f116e177]:
+            - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+            - link "(941) 400-0165" [ref=f116e178] [cursor=pointer]:
+              - /url: tel:+19414000165
+          - link "Directions and contact" [ref=f116e179] [cursor=pointer]:
+            - /url: /contact/
+      - generic [ref=f116e180]:
+        - paragraph [ref=f116e181]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+        - navigation "Legal" [ref=f116e182]:
+          - link "Privacy" [ref=f116e183] [cursor=pointer]:
+            - /url: /privacy-policy/
+          - button "Privacy choices" [ref=f116e184] [cursor=pointer]
+          - link "Terms" [ref=f116e185] [cursor=pointer]:
+            - /url: /terms-of-service/
+          - link "Sitemap" [ref=f116e186] [cursor=pointer]:
+            - /url: /sitemap/
+  - generic [ref=f116e189]:
+    - button [ref=f116e190]
+    - button [ref=f116e196]
+    - button [ref=f116e200]
+    - button [ref=f116e205]
