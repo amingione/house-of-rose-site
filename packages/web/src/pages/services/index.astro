@@ -5,6 +5,11 @@ import { getHeroBanner } from '@/lib/heroBanners';
 import ServiceCard from '@/components/ServiceCard.astro';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import {
+  getServiceCardImage,
+  getServiceCardImageAlt,
+  serviceCardImageUsesContain,
+} from '@/lib/imageFallbacks';
+import {
   PUBLIC_DIRECTORY_SERVICES,
   getPublicCollections,
   type ServiceCollection,
@@ -75,6 +80,14 @@ interface CollectionDestination {
   collection: ServiceCollection;
   /** A collection with exactly one public service links straight to that page — no pointless extra click through an identical-looking collection page. */
   href: string;
+  /**
+   * Curated image for the umbrella card. Resolved from the collection slug, then
+   * from the single service the card links to when the collection itself has no
+   * curated asset. Undefined renders a text-only card rather than a generic room.
+   */
+  image?: string;
+  imageAlt: string;
+  imageContain: boolean;
 }
 
 interface ResolvedSection extends GroupSection {
@@ -87,14 +100,26 @@ const sections: ResolvedSection[] = SERVICE_GROUP_SECTIONS.map((section) => ({
     .map((slug) => bySlug.get(slug))
     .filter((c): c is ServiceCollection => Boolean(c))
     .filter((collection) => collection.services.length > 0)
-    .map((collection) => ({
-      collection,
-      href: collection.slug === 'inmode'
-        ? '/services/inmode/'
+    .map((collection) => {
+      // The card can be keyed to the collection (e.g. `inmode`) or, when the
+      // umbrella wraps a single service, to that service's own curated asset.
+      const imageKey = getServiceCardImage(collection.slug)
+        ? collection.slug
         : collection.services.length === 1
-        ? `/services/${collection.services[0].slug}/`
-        : `/services/collections/${collection.slug}/`,
-    })),
+        ? collection.services[0].slug
+        : collection.slug;
+      return {
+        collection,
+        href: collection.slug === 'inmode'
+          ? '/services/inmode/'
+          : collection.services.length === 1
+          ? `/services/${collection.services[0].slug}/`
+          : `/services/collections/${collection.slug}/`,
+        image: getServiceCardImage(imageKey),
+        imageAlt: getServiceCardImageAlt(imageKey),
+        imageContain: serviceCardImageUsesContain(imageKey),
+      };
+    }),
 })).filter((section) => section.destinations.length > 0);
 
 // Anything not mapped above still renders (future collections never silently vanish).
@@ -227,15 +252,33 @@ const heroBanner = getHeroBanner('/services/');
         </div>
 
         <div class:list={['grid gap-4', section.destinations.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1']}>
-          {section.destinations.map(({ href }) => (
+          {section.destinations.map(({ href, image, imageAlt, imageContain }) => (
             <a
               href={href}
-              class="group flex items-center justify-between gap-4 border border-gold-metal/20 bg-charcoal-light px-7 py-6 transition-colors hover:border-gold/50 hover:bg-charcoal-lighter"
+              class="group flex flex-col overflow-hidden border border-gold-metal/20 bg-charcoal-light transition-colors hover:border-gold/50 hover:bg-charcoal-lighter"
             >
-              <span class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink group-hover:text-gold transition-colors">
-                Explore {section.title}
+              {image && (
+                <div class="aspect-[16/9] overflow-hidden bg-charcoal-lighter">
+                  <img
+                    src={image}
+                    alt={imageAlt}
+                    width="1400"
+                    height="788"
+                    loading="lazy"
+                    decoding="async"
+                    class:list={[
+                      'h-full w-full transition-transform duration-500 group-hover:scale-[1.03]',
+                      imageContain ? 'object-contain p-4' : 'object-cover',
+                    ]}
+                  />
+                </div>
+              )}
+              <span class="flex items-center justify-between gap-4 px-7 py-6">
+                <span class="font-serif text-[clamp(19px,2.4vw,24px)] text-ink group-hover:text-gold transition-colors">
+                  Explore {section.title}
+                </span>
+                <span aria-hidden="true" class="text-gold text-[20px] transition-transform group-hover:translate-x-1">→</span>
               </span>
-              <span aria-hidden="true" class="text-gold text-[20px] transition-transform group-hover:translate-x-1">→</span>
             </a>
           ))}
         </div>
