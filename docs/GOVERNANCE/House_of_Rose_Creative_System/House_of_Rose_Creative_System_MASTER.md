@@ -872,7 +872,8 @@ Use this checklist when editing copy:
 ### Contact
 
 **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950  
-**Phone:** (844) 941-7673  
+**Office/main phone:** (941) 400-0165
+**Toll-free support phone:** (844) 941-7673
 **Website:** https://houseofrosefl.com/  
 **Services / booking:** https://houseofrose.glossgenius.com/services  
 **Instagram:** https://www.instagram.com/house.of.rose.aesthetics/  

@@ -197,6 +197,36 @@ const mainHtml = (html) => html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?
 
 const occurrenceCount = (text, value) => text.split(value).length - 1;
 
+test('office and toll-free support phone roles remain distinct', () => {
+  const officePhone = '(941) 400-0165';
+  const supportPhone = '(844) 941-7673';
+  const officeMain = mainHtml(readFileSync(path.join(DIST_ROOT, 'index.html'), 'utf8'));
+  const contactMain = mainHtml(readFileSync(path.join(DIST_ROOT, 'contact/index.html'), 'utf8'));
+
+  assert.ok(officeMain.includes(officePhone), 'Homepage is missing the office/main phone.');
+  assert.ok(!officeMain.includes(supportPhone), 'Homepage promotes the support phone as a general office CTA.');
+  assert.ok(contactMain.includes(officePhone), 'Contact page is missing the office/main phone.');
+
+  for (const route of ['support', 'order-confirmed']) {
+    const file = path.join(DIST_ROOT, route, 'index.html');
+    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+    const main = mainHtml(readFileSync(file, 'utf8'));
+    assert.ok(main.includes(supportPhone), `${route} is missing the toll-free support phone.`);
+  }
+
+  const checkoutSource = readFileSync(
+    path.join(REPO_ROOT, 'packages/web/src/pages/checkout.astro'),
+    'utf8',
+  );
+  assert.ok(checkoutSource.includes(`Call ${supportPhone} to place this order.`), 'Checkout fallback is not routed to the toll-free support phone.');
+
+  const emailSource = readFileSync(
+    path.join(REPO_ROOT, 'packages/web/netlify/functions/_lib/email.ts'),
+    'utf8',
+  );
+  assert.ok(emailSource.includes(`const SUPPORT_PHONE = '${supportPhone}';`), 'Transactional email is not routed to the toll-free support phone.');
+});
+
 test('all generated JSON-LD is valid JSON without HTML entities', () => {
   const failures = [];
   let blockCount = 0;

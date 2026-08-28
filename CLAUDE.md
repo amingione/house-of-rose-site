@@ -319,8 +319,8 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 ## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
-- **Primary public phone / canonical NAP:** (941) 400-0165; E.164 `+19414000165`.
-- **Toll-free advertising + online-support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. Keep this number on advertising, carrier-required SMS disclosures, and online/order support surfaces. Do not use it as the primary public NAP.
+- **Office/main phone and canonical public NAP:** (941) 400-0165; E.164 `+19414000165`. This belongs in `siteSettings.phone`.
+- **Toll-free support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. This belongs in `siteSettings.supportPhone`. Keep it on support, advertising, carrier-required SMS disclosures, and online/order support surfaces. Do not use it as the office/main phone or primary public NAP.
 - **Email:** info@houseofrosefl.com (primary) · book@houseofrosefl.com (**live alias** → routes to primary; confirmed with Amber 2026-08-01) — _use `info@` in public NAP, GBP, schema, and footer; `book@` is valid only as the booking/`mailto:` destination (`PUBLIC_BOOKING_EMAIL`). Supersedes the earlier "`book@` was never a real address" rule — that is now **false**, do not act on it or re-remove `book@` from env files or booking links._
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed. **Pickup hours are the same** (Mon–Fri 9–5); Sat/Sun pickup not set.
 - **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · **opened June 15, 2026** _(confirmed 2026-08-01 against the live Google Business Profile — this settles the June 15 vs July 9 question; **June 15 is correct**, July 9 is dead.)_
