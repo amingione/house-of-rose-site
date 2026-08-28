@@ -1,0 +1,18 @@
+---
+import type { ContextualTextSegment } from '@/lib/contextualLinks';
+
+interface Props {
+  segments: readonly ContextualTextSegment[];
+}
+
+const { segments } = Astro.props;
+---
+
+{segments.map((segment) => segment.href ? (
+  <a
+    href={segment.href}
+    class="font-medium text-current underline decoration-gold/60 decoration-1 underline-offset-[0.2em] transition-colors hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+  >
+    {segment.text}
+  </a>
+) : segment.text)}

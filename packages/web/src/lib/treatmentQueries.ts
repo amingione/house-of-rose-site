@@ -98,7 +98,7 @@ const REVIEWED_PROVIDER_IDENTITIES: Readonly<
     performedBy: 'esthetician',
   },
   'provider-brandy': {
-    publicName: 'Brandy, Licensed Esthetician',
+    publicName: 'Brandy Case, Licensed Esthetician',
     profileSlug: 'brandy',
     performedBy: 'esthetician',
   },

@@ -1,0 +1,286 @@
+---
+// Extracted verbatim from SkinAnalysisHero so the homepage hero can carry the
+// scan-to-comparison media on its own. The controller binds per
+// `[data-scan-stage]` and guards with `scanBound`, so it stays safe if a page
+// ever renders more than one.
+---
+
+<div
+  class="scan-stage hero-media relative h-full min-h-[70vh] overflow-hidden lg:min-h-0"
+  data-scan-stage
+  style="--comparison-position: 50%;"
+  role="img"
+  aria-label="Skin imaging visualization showing two analysis views"
+>
+        <video
+          class="scan-video absolute inset-0 h-full w-full object-cover"
+          data-scan-video
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          poster="/images/hero/treatment-scan-poster.webp"
+          aria-hidden="true"
+        >
+          <source src="/images/hero/treatment-scan-intro-optimized.mp4" type="video/mp4" />
+        </video>
+
+        <div class="comparison-images absolute inset-0" data-comparison-images aria-hidden="true">
+          <img
+            src="/images/hero/treatment-comparison-after.webp"
+            alt=""
+            width="941"
+            height="1672"
+            decoding="async"
+            aria-hidden="true"
+            class="comparison-image absolute inset-0 h-full w-full object-cover"
+          />
+          <div class="comparison-before absolute inset-0" aria-hidden="true">
+            <img
+              src="/images/hero/treatment-comparison-before.webp"
+              alt=""
+              width="941"
+              height="1672"
+              decoding="async"
+              aria-hidden="true"
+              class="comparison-image absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      <div
+        class="comparison-interaction pointer-events-none absolute inset-0 z-[5] opacity-0"
+        data-comparison-interaction
+        aria-hidden="true"
+      >
+        <div class="comparison-divider pointer-events-none absolute bottom-0 top-0" aria-hidden="true">
+          <span class="comparison-grip absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2"></span>
+        </div>
+        <input
+          class="comparison-range absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
+          data-comparison-range
+          type="range"
+          min="3"
+          max="97"
+          value="50"
+          step="1"
+          aria-label="Drag to compare the two skin visualization states"
+          aria-valuetext="Comparison divider at 50 percent"
+          disabled
+        />
+      </div>
+      <div class="pointer-events-none absolute inset-0 z-[4] bg-gradient-to-t from-ink/20 via-transparent to-transparent" aria-hidden="true"></div>
+      <p class="absolute bottom-5 right-5 z-[6] text-[10px] font-medium uppercase tracking-label text-ivory/80 sm:bottom-7 sm:right-7">
+        House of Rose Aesthetics
+      </p>
+    </div>
+
+<script>
+  const scanStages = document.querySelectorAll<HTMLElement>('[data-scan-stage]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (const stage of scanStages) {
+    if (stage.dataset.scanBound === 'true') continue;
+    stage.dataset.scanBound = 'true';
+
+    const video = stage.querySelector<HTMLVideoElement>('[data-scan-video]');
+    const images = stage.querySelector<HTMLElement>('[data-comparison-images]');
+    const interaction = stage.querySelector<HTMLElement>('[data-comparison-interaction]');
+    const range = stage.querySelector<HTMLInputElement>('[data-comparison-range]');
+    if (!video || !images || !interaction || !range) continue;
+
+    const updateComparison = (value: number): void => {
+      const boundedValue = Math.min(97, Math.max(3, value));
+      stage.style.setProperty('--comparison-position', `${boundedValue}%`);
+      range.setAttribute('aria-valuetext', `Comparison divider at ${boundedValue} percent`);
+    };
+
+    let isDragging = false;
+
+    const updateFromPointer = (clientX: number): void => {
+      const bounds = interaction.getBoundingClientRect();
+      if (bounds.width <= 0) return;
+
+      const percentage = ((clientX - bounds.left) / bounds.width) * 100;
+      const nextValue = Math.round(Math.min(97, Math.max(3, percentage)));
+      range.value = String(nextValue);
+      updateComparison(nextValue);
+    };
+
+    const stopDragging = (event: PointerEvent): void => {
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (interaction.hasPointerCapture(event.pointerId)) {
+        interaction.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    const revealComparison = (): void => {
+      if (stage.classList.contains('is-comparison-ready')) return;
+      stage.classList.add('is-comparison-ready');
+      images.setAttribute('aria-hidden', 'false');
+      interaction.setAttribute('aria-hidden', 'false');
+      range.disabled = false;
+      updateComparison(Number(range.value));
+    };
+
+    range.addEventListener('input', () => updateComparison(Number(range.value)));
+    range.addEventListener('keydown', (event) => {
+      const currentValue = Number(range.value);
+      const nextValue = event.key === 'ArrowLeft' || event.key === 'ArrowDown'
+        ? currentValue - 1
+        : event.key === 'ArrowRight' || event.key === 'ArrowUp'
+          ? currentValue + 1
+          : event.key === 'Home'
+            ? 3
+            : event.key === 'End'
+              ? 97
+              : null;
+
+      if (nextValue === null) return;
+
+      event.preventDefault();
+      range.value = String(Math.min(97, Math.max(3, nextValue)));
+      updateComparison(Number(range.value));
+    });
+    interaction.addEventListener('pointerdown', (event) => {
+      if (range.disabled || !event.isPrimary || event.button !== 0) return;
+
+      isDragging = true;
+      interaction.setPointerCapture(event.pointerId);
+      range.focus({ preventScroll: true });
+      updateFromPointer(event.clientX);
+      event.preventDefault();
+    });
+    interaction.addEventListener('pointermove', (event) => {
+      if (!isDragging || !event.isPrimary) return;
+
+      updateFromPointer(event.clientX);
+      event.preventDefault();
+    });
+    interaction.addEventListener('pointerup', stopDragging);
+    interaction.addEventListener('pointercancel', stopDragging);
+    video.addEventListener('ended', revealComparison, { once: true });
+    video.addEventListener('error', revealComparison, { once: true });
+
+    updateComparison(Number(range.value));
+
+    if (prefersReducedMotion) {
+      video.pause();
+      revealComparison();
+      continue;
+    }
+
+    video.currentTime = 0;
+    const playback = video.play();
+    if (playback) playback.catch(revealComparison);
+  }
+</script>
+
+
+<style>
+  .hero-media {
+    background: #d4cbc0;
+  }
+
+  .scan-video,
+  .comparison-image {
+    object-position: center 38%;
+  }
+
+  .scan-video {
+    opacity: 1;
+    transition: opacity 700ms ease;
+  }
+
+  .comparison-images {
+    opacity: 0;
+    transition: opacity 700ms ease;
+  }
+
+  .comparison-before {
+    clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+  }
+
+  .comparison-interaction {
+    cursor: ew-resize;
+    touch-action: pan-y;
+    transition: opacity 500ms 260ms ease;
+    user-select: none;
+  }
+
+  .comparison-divider {
+    left: var(--comparison-position);
+    width: 2px;
+    transform: translateX(-1px);
+    background: #faf7f2;
+    box-shadow: 0 0 0 1px rgb(22 20 18 / 0.25), 0 0 18px rgb(22 20 18 / 0.32);
+  }
+
+  .comparison-grip {
+    width: 34px;
+    height: 48px;
+    border: 1px solid rgb(250 247 242 / 0.92);
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 42% 50%, #faf7f2 0 1.5px, transparent 2px),
+      radial-gradient(circle at 58% 50%, #faf7f2 0 1.5px, transparent 2px),
+      rgb(22 20 18 / 0.76);
+    box-shadow: 0 6px 22px rgb(0 0 0 / 0.28);
+    backdrop-filter: blur(8px);
+  }
+
+  .comparison-range {
+    appearance: none;
+    pointer-events: none;
+  }
+
+  .comparison-range:focus-visible {
+    opacity: 0;
+    outline: none;
+  }
+
+  .comparison-interaction:has(.comparison-range:focus-visible) .comparison-grip {
+    outline: 2px solid #8b5a54;
+    outline-offset: 3px;
+  }
+
+  .scan-stage.is-comparison-ready .scan-video {
+    opacity: 0;
+  }
+
+  .scan-stage.is-comparison-ready .comparison-images,
+  .scan-stage.is-comparison-ready .comparison-interaction {
+    opacity: 1;
+  }
+
+  .scan-stage.is-comparison-ready .comparison-interaction {
+    pointer-events: auto;
+  }
+
+  @media (max-width: 1023px) {
+    .scan-video,
+    .comparison-image {
+      object-position: center 12%;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .scan-stage:has(.comparison-range:focus-visible) {
+      overflow: visible;
+    }
+
+    .scan-video,
+    .comparison-image {
+      object-position: center 18%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scan-video,
+    .comparison-images,
+    .comparison-interaction {
+      transition: none;
+    }
+  }
+</style>

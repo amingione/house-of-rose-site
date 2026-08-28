@@ -15,6 +15,8 @@ import { alignPublicContent } from '@/lib/publicCopy';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import { getBlogServiceSlug, getPublicServiceBySlug } from '@/lib/serviceCatalog';
+import ContextualText from '@/components/ContextualText.astro';
+import { contextualizeText, serviceContextualLink } from '@/lib/contextualLinks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_BLOG_POST_SLUGS_QUERY);
@@ -54,6 +56,17 @@ const heroImage = post.featuredImage
 const relatedServiceSummary = post.relatedService
   ? getServiceCardSummary(post.relatedService.slug)
   : undefined;
+const relatedServicePrompt = post.relatedService
+  ? isMorpheusSafetyArticle
+    ? 'For Morpheus8, ask who would perform it, which area and device settings are under discussion, what recovery may involve, what alternatives exist, and how to reach the practice afterward.'
+    : `If ${post.relatedService.title} is the treatment you are considering, start with who provides it, what it is designed to address, and how it differs from the alternatives.`
+  : '';
+const relatedServicePromptSegments = post.relatedService
+  ? contextualizeText(relatedServicePrompt, [serviceContextualLink(post.relatedService)], {
+      currentPath: Astro.url.pathname,
+      maxLinks: 1,
+    })
+  : [];
 
 const publishedDate = new Date(post.publishedAt).toLocaleDateString('en-US', {
   month: 'long',
@@ -233,9 +246,7 @@ const breadcrumbSchema = breadcrumbList([
           {post.relatedService.title}
         </h2>
         <p class="mx-auto max-w-[620px] text-[15px] leading-[1.8] text-muted">
-          {isMorpheusSafetyArticle
-            ? 'For Morpheus8, ask who would perform it, which area and device settings are under discussion, what recovery may involve, what alternatives exist, and how to reach the practice afterward.'
-            : `If ${post.relatedService.title} is the treatment you are considering, start with who provides it, what it is designed to address, and how it differs from the alternatives.`}
+          <ContextualText segments={relatedServicePromptSegments} />
         </p>
         {relatedServiceSummary && (
           <p class="mt-4 text-[13px] font-medium tracking-[0.04em] text-muted-strong">{relatedServiceSummary}</p>

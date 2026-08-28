@@ -53,7 +53,7 @@ export default {
         bronze: '#8B5A54', // = rose
         'soft-black': '#161412', // near-black, reserved for the cookie banner only
         ink: '#161412', // Main Text Color — near-black (was warm brown)
-        ivory: '#FAF7F2', // light text/border for the rare remaining dark surface
+        ivory: '#F4EFE8', // primary warm ivory
         breath: '#E8DFD3', // = cream — light card surface, one step deeper than bone
         greige: '#D4CBC0',
         green: { DEFAULT: '#464021', deep: '#302B13', sage: '#302B13', soft: '#DCD6C8' },
@@ -66,35 +66,48 @@ export default {
         'line-strong': '#C4B9AC',
         // `cream.*` — light text/border tints, used on `.on-dark` surfaces.
         cream: {
-          DEFAULT: '#F1EDE5',
-          100: '#F1EDE5',
+          DEFAULT: '#E8DFD3',
+          100: '#F4EFE8',
           200: 'rgba(241,237,229,0.72)',
           300: 'rgba(241,237,229,0.30)',
         },
       },
       fontFamily: {
-        // Amber: Cochin + Arial only, everywhere — headings and body.
-        // Cochin is a macOS system serif with no web-safe match, so
-        // non-Mac visitors fall back straight to Arial.
-        display: ['Cochin', 'Arial', 'sans-serif'],
-        serif: ['Cochin', 'Arial', 'sans-serif'],
-        sans: ['Cochin', 'Arial', 'sans-serif'],
+        display: ['"Times New Roman"', 'Times', 'serif'],
+        serif: ['"Times New Roman"', 'Times', 'serif'],
+        sans: ['"Outfit Variable"', 'Outfit', '"Segoe UI"', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        display: ['clamp(3.25rem, 9vw, 7.25rem)', { lineHeight: '1.05', letterSpacing: '0.08em' }],
+        'display-sm': ['clamp(2.25rem, 5.5vw, 4.25rem)', { lineHeight: '1.05', letterSpacing: '0.08em' }],
+        kicker: ['0.6875rem', { lineHeight: '1.4', letterSpacing: '0.28em' }],
+        body: ['1.0625rem', { lineHeight: '1.65' }],
+        lede: ['clamp(1.25rem, 2vw, 1.5rem)', { lineHeight: '1.5' }],
+      },
+      letterSpacing: {
+        display: '0.08em',
+        label: '0.28em',
+        wide: '0.18em',
+      },
+      lineHeight: {
+        display: '1.05',
+        body: '1.65',
       },
       borderRadius: {
         none: '0',
         sm: '2px',
       },
       boxShadow: {
-        border: '0 0 0 1px rgb(22 20 18 / 0.08), 0 1px 2px -1px rgb(22 20 18 / 0.06)',
-        'border-hover': '0 0 0 1px rgb(22 20 18 / 0.14), 0 8px 24px -12px rgb(22 20 18 / 0.18)',
+        border: 'var(--shadow-border)',
+        'border-hover': 'var(--shadow-border-hover)',
       },
       transitionTimingFunction: {
-        'out-soft': 'cubic-bezier(0.22, 1, 0.36, 1)',
+        'out-soft': 'var(--ease-out-soft)',
       },
       transitionDuration: {
-        quick: '150ms',
-        fast: '250ms',
-        slow: '400ms',
+        quick: 'var(--duration-quick)',
+        fast: 'var(--duration-fast)',
+        slow: 'var(--duration-slow)',
       },
     },
   },

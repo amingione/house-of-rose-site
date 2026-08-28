@@ -617,8 +617,15 @@ Production: set in Netlify dashboard
 
 ---
 
-## Git Push Protocol
-Use Desktop Commander (`mcp__Desktop_Commander__start_process`) to run `git push` — it executes as `ambermin` with Keychain access.
+## CLI Protocol — Desktop Commander for everything, not just push
+Every shell command in this repo — `npm run build`, `npm run dev:web`, tests, `git push`, all of it —
+runs via Desktop Commander (`mcp__Desktop_Commander__start_process` / `interact_with_process`), never a
+generic sandboxed bash tool. It executes as `ambermin` on the real machine with real filesystem
+permissions and Keychain access (`git push` needs the latter). A sandboxed shell instead runs against a
+synced/mounted copy of this repo with restricted permissions — e.g. it cannot `unlink` files under
+`node_modules/.vite`, which breaks `astro build` with a misleading `EPERM` that has nothing to do with
+the code change. Don't chase that error as a real bug — it means the wrong tool ran the command. See
+`AGENTS.md` → "Tooling — CLI, builds, and git ALWAYS go through Desktop Commander" for the full rule.
 
 ```zsh
 cd ~/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site && git push origin main

@@ -12,27 +12,72 @@
      wrapped in `.on-dark` so text/border utilities flip correctly.
      Values are space-separated RGB triplets (Tailwind alpha support).  */
   :root {
+    --color-ivory: #f4efe8;
+    --color-paper: #faf7f2;
+    --color-cream: #e8dfd3;
+    --color-stone: #d4cbc0;
+    --color-ink: #161412;
+    --color-muted: #6f6760;
+    --color-subtle: #8a827a;
+    --color-rose: #8b5a54;
+    --color-line: #d9d0c6;
+    --color-line-strong: #c4b9ac;
+
+    --font-display: "Times New Roman", Times, serif;
+    --font-sans: "Outfit Variable", "Outfit", "Segoe UI", system-ui, sans-serif;
+
+    --text-display: clamp(3.25rem, 9vw, 7.25rem);
+    --text-display-sm: clamp(2.25rem, 5.5vw, 4.25rem);
+    --text-kicker: 0.6875rem;
+    --text-body: 1.0625rem;
+    --text-lede: clamp(1.25rem, 2vw, 1.5rem);
+
+    --tracking-display: 0.08em;
+    --tracking-label: 0.28em;
+    --tracking-wide: 0.18em;
+
+    --leading-display: 1.05;
+    --leading-body: 1.65;
+
+    --radius-none: 0;
+    --radius-sm: 2px;
+
+    --shadow-border: 0 0 0 1px rgb(22 20 18 / 0.08), 0 1px 2px -1px rgb(22 20 18 / 0.06);
+    --shadow-border-hover: 0 0 0 1px rgb(22 20 18 / 0.14), 0 8px 24px -12px rgb(22 20 18 / 0.18);
+
+    --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-quick: 150ms;
+    --duration-fast: 250ms;
+    --duration-slow: 400ms;
+
     --hr-gold: 139 90 84; /* #8B5A54 — Amber's exact rose accent */
     --hr-muted: 111 103 96; /* #6F6760 — Amber's exact muted */
     --hr-muted-strong: 22 20 18; /* #161412 — Amber's exact ink */
 
-    --color-bg: theme('colors.bone');
-    --color-text: theme('colors.ink');
-    --color-accent: rgb(var(--hr-gold));
+    --color-bg: var(--color-ivory);
+    --color-text: var(--color-ink);
+    --color-accent: var(--color-rose);
   }
 
-  /* Explicit dark wrappers — rare now (cookie banner only; on-dark content
-     sections were removed). Light-on-dark channels for what remains. */
+  /* Explicit dark wrappers are reserved for the footer, consent UI, and
+     photographic fields. Light-on-dark channels keep those surfaces legible. */
   .on-dark {
     --hr-gold: 199 154 145; /* #C79A91 — lighter rose tint for dark surfaces */
     --hr-muted: 190 158 142; /* #BE9E8E — already a dusty rose tone, unchanged */
     --hr-muted-strong: 250 247 242; /* #FAF7F2 (paper) */
   }
 
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+  }
+
   body {
     @apply bg-bone text-ink font-sans antialiased;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
   }
 
   /* Keep keyboard focus clear of the fixed header and viewport edges when
@@ -54,6 +99,7 @@
     image-rendering: auto;
     image-rendering: smooth;
     -ms-interpolation-mode: bicubic;
+    outline: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -66,8 +112,8 @@
   }
 
   ::selection {
-    background: #161412;
-    color: #faf7f2;
+    background: var(--color-ink);
+    color: var(--color-ivory);
   }
 
   button:not(:disabled),
@@ -77,10 +123,15 @@
 }
 
 @layer components {
-  /* Button: primary — Amber's exact rose accent (#8B5A54) fill, ivory
-     text; deepens on hover. */
+  /* Primary action: neutral ink on light surfaces. The legacy class name is
+     retained because it is already used across forms and tracked CTAs; it no
+     longer assigns a rose/gold color. */
   .btn-gold {
-    @apply inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-gold-500 text-ivory font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] shadow-border transition-colors duration-fast ease-out-soft hover:bg-gold-600;
+    @apply inline-flex min-h-[48px] items-center justify-center rounded-sm border border-ink bg-ink px-7 py-3.5 font-sans text-[13px] font-semibold tracking-[0.02em] text-ivory shadow-border transition-opacity duration-fast ease-out-soft hover:opacity-80;
+  }
+
+  .on-dark .btn-gold {
+    @apply border-ivory bg-ivory text-ink;
   }
 
   /* Button: Outline on a DARK surface (photo hero). Hover fills with metallic
@@ -95,9 +146,14 @@
     @apply inline-flex items-center justify-center px-7 py-3.5 rounded-sm bg-transparent border border-ink text-ink font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-fast ease-out-soft hover:bg-ink hover:text-ivory;
   }
 
-  /* Button: Outline gold — border + label track the context-aware channel. */
+  /* Legacy outline action: neutral ink on the light canvas, ivory on an
+     explicit dark surface. */
   .btn-outline-gold {
-    @apply inline-flex items-center justify-center px-5 py-3 rounded-sm bg-transparent border border-ivory/50 text-ivory font-sans text-[13px] font-semibold tracking-[0.02em] min-h-[48px] transition-colors duration-fast ease-out-soft hover:bg-ivory hover:border-ivory hover:text-walnut;
+    @apply inline-flex min-h-[48px] items-center justify-center rounded-sm border border-ink bg-transparent px-5 py-3 font-sans text-[13px] font-semibold tracking-[0.02em] text-ink transition-colors duration-fast ease-out-soft hover:bg-ink hover:text-ivory;
+  }
+
+  .on-dark .btn-outline-gold {
+    @apply border-ivory/70 text-ivory hover:border-ivory hover:bg-ivory hover:text-ink;
   }
 
   /* Label/Kicker — was 10px @ 0.4em tracking in 2:1 gold: the single worst
@@ -132,7 +188,11 @@
   }
 
   .service-booking-link {
-    @apply inline-flex min-h-[44px] items-center justify-center rounded-sm border border-gold-500 bg-gold-500 px-4 py-2.5 text-[12px] font-semibold tracking-[0.02em] text-ivory transition-colors duration-fast ease-out-soft hover:border-gold-600 hover:bg-gold-600;
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-sm border border-ink bg-ink px-4 py-2.5 text-[12px] font-semibold tracking-[0.02em] text-ivory transition-opacity duration-fast ease-out-soft hover:opacity-80;
+  }
+
+  .on-dark .service-booking-link {
+    @apply border-ivory bg-ivory text-ink;
   }
 
   /* Focus-visible states for accessibility (WCAG 2.1 AA) */
@@ -142,7 +202,16 @@
   .btn-outline-ink:focus-visible,
   button:focus-visible,
   summary:focus-visible {
-    @apply outline-2 outline-offset-2 outline-gold ring-2 ring-gold/30;
+    @apply outline-2 outline-offset-2 outline-ink ring-2 ring-ink/20;
+  }
+
+  .on-dark .btn-gold:focus-visible,
+  .on-dark .btn-outline-gold:focus-visible,
+  .on-dark .btn-outline-white:focus-visible,
+  .on-dark .btn-outline-ink:focus-visible,
+  .on-dark button:focus-visible,
+  .on-dark summary:focus-visible {
+    @apply outline-ivory ring-ivory/30;
   }
 
   .service-card:focus-visible {
@@ -200,7 +269,7 @@
   }
 }
 .rise {
-  animation: rise 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise var(--duration-slow) var(--ease-out-soft) both;
 }
 .rise-2 {
   animation-delay: 90ms;
@@ -210,4 +279,10 @@
 }
 .rise-4 {
   animation-delay: 270ms;
+}
+
+.font-display {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
 }

@@ -108,7 +108,7 @@ const directorySchema = itemListPage(
               <div>
                 <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold" {...(verifiedProvidersBySlug.has(provider.slug) ? {} : sbFieldPath('publicRole'))}>{provider.publicRole}</p>
                 <h2 class="mt-4 font-serif text-[clamp(28px,4vw,38px)] leading-tight text-ink group-hover:text-olive" {...(verifiedProvidersBySlug.has(provider.slug) ? {} : sbFieldPath('publicName'))}>
-                  {provider.publicName}
+                  {provider.displayName ?? provider.publicName}
                 </h2>
                 <p class="mt-5 text-[14px] leading-[1.8] text-muted">
                   {getProviderProfileVoiceOverlay(provider.slug)?.summary ?? provider.summary}

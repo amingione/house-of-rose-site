@@ -51,9 +51,11 @@ const guidesListSchema = guides.length
     <div class="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-gold-metal/10">
       {guides.map((g) => (
           <article class="bg-charcoal transition-colors hover:bg-charcoal-lighter" {...sbObjectId(g._id)}>
-            <div class="group block p-7 pb-5">
-              <h2 class="font-serif text-[22px] text-ink mb-2 group-hover:text-gold transition-colors" {...sbFieldPath('title')}>{g.title}</h2>
-              <p class="mb-4 text-[14px] leading-[1.7] text-muted">Contact House of Rose for current pricing.</p>
+            <div class="p-7 pb-5">
+              <h2 class="font-serif text-[22px] text-ink mb-2" {...sbFieldPath('title')}>{g.title}</h2>
+              <p class="mb-4 text-[14px] leading-[1.7] text-muted">
+                Read the <a href={`/cost/${g.slug}/`} class="font-medium text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">cost guide for {g.treatment?.title ?? g.title}</a>, then contact House of Rose for current pricing.
+              </p>
             </div>
             {g.treatment && (
               <div class="mx-7 border-t border-gold-metal/10 pb-6 pt-4 text-[14px] leading-relaxed text-muted" {...sbObjectId(g.treatment._id)}>

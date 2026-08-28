@@ -1,11 +1,33 @@
 ---
 import type { ConcernEducation as ConcernEducationContent } from '@/lib/concernEducation';
+import ContextualText from '@/components/ContextualText.astro';
+import {
+  contextualizeText,
+  type ContextualLinkCandidate,
+} from '@/lib/contextualLinks';
 
 interface Props {
   content: ConcernEducationContent;
+  links?: readonly ContextualLinkCandidate[];
 }
 
-const { content } = Astro.props;
+const { content, links = [] } = Astro.props;
+const usedHrefs = new Set<string>();
+const leadSegments = contextualizeText(content.lead, links, {
+  currentPath: Astro.url.pathname,
+  maxLinks: 1,
+  usedHrefs,
+});
+const detailSegments = contextualizeText(content.detail, links, {
+  currentPath: Astro.url.pathname,
+  maxLinks: 2,
+  usedHrefs,
+});
+const distinctionSegments = contextualizeText(content.distinction, links, {
+  currentPath: Astro.url.pathname,
+  maxLinks: Math.max(0, 3 - usedHrefs.size),
+  usedHrefs,
+});
 ---
 
 <section data-concern-education class="border-t border-gold-metal/10 bg-charcoal px-6 py-[clamp(52px,7vw,82px)]">
@@ -18,13 +40,13 @@ const { content } = Astro.props;
     </div>
     <div>
       <p class="font-serif text-[clamp(22px,2.8vw,29px)] leading-[1.32] text-ink">
-        {content.lead}
+        <ContextualText segments={leadSegments} />
       </p>
       <p class="mt-6 text-[16px] leading-[1.8] text-muted">
-        {content.detail}
+        <ContextualText segments={detailSegments} />
       </p>
       <p class="mt-7 border-t border-gold-metal/15 pt-6 text-[14px] leading-[1.7] text-ink/80">
-        {content.distinction}
+        <ContextualText segments={distinctionSegments} />
       </p>
     </div>
   </div>

@@ -1,0 +1,168 @@
+- generic [active] [ref=f2e1]:
+  - link "Skip to main content" [ref=f2e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - button "Open navigation" [ref=f2e6] [cursor=pointer]
+      - link "House of Rose Aesthetics home" [ref=f2e9] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f2e10]: House of Rose
+        - generic [ref=f2e11]: Aesthetics
+      - link "Contact" [ref=f2e13] [cursor=pointer]:
+        - /url: /contact/
+  - main [ref=f2e14]:
+    - generic [ref=f2e16]:
+      - generic [ref=f2e17]: Answers
+      - heading "Frequently asked questions" [level=1] [ref=f2e18]
+      - paragraph [ref=f2e19]: Direct answers about the practice, treatment choices, providers, and visiting House of Rose.
+    - generic [ref=f2e21]:
+      - generic [ref=f2e22]:
+        - generic [ref=f2e23]:
+          - generic [ref=f2e24]: The practice
+          - heading "Location and people" [level=2] [ref=f2e25]
+        - generic [ref=f2e26]:
+          - generic [ref=f2e27]:
+            - heading "What is House of Rose Aesthetics?" [level=3] [ref=f2e28]
+            - paragraph [ref=f2e29]: House of Rose Aesthetics is a medical aesthetics practice in Punta Gorda, Florida.
+          - generic [ref=f2e30]:
+            - heading "Where is House of Rose located?" [level=3] [ref=f2e31]
+            - paragraph [ref=f2e32]: "House of Rose has one practice location: 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950. Free parking is available outside the Unit 9 storefront."
+          - generic [ref=f2e33]:
+            - heading "How can I tell who provides a service?" [level=3] [ref=f2e34]
+            - paragraph [ref=f2e35]: "Diana Morrison, RN provides Botox and Daxxify, dermal fillers, injectable PRF and PRF Bio-Filler, IV hydration, and GLP-1 weight management. Amber Mingione, Licensed Esthetician provides Procell Microneedling, topical PRF, Glo2Facial, dermaplaning, and BioRePeel as an add-on. Brandy, Licensed Esthetician provides facials, BioRePeel, and facial waxing. Aundrea Pedigo, Licensed Esthetician provides bridal, event, and everyday makeup; makeup artistry is a non-medical service. Medical Director: Joshua Shaw, MD · FL Lic. ME136232. Dr. Shaw provides medical direction and does not perform treatments at House of Rose."
+          - generic [ref=f2e36]:
+            - heading "What is the medical director’s role?" [level=3] [ref=f2e37]
+            - paragraph [ref=f2e38]: Joshua Shaw, MD provides medical direction and protocol supervision. He does not perform treatments at House of Rose. The practitioner named for a treatment is the person who provides it.
+      - generic [ref=f2e39]:
+        - generic [ref=f2e40]:
+          - generic [ref=f2e41]: Treatments
+          - heading "Choosing where to begin" [level=2] [ref=f2e42]
+        - generic [ref=f2e43]:
+          - generic [ref=f2e44]:
+            - heading "What services are offered?" [level=3] [ref=f2e45]
+            - paragraph [ref=f2e46]: Services include skin treatments, injectables, body treatments, IV hydration, GLP-1 weight management, facial waxing, and professional home care.
+          - generic [ref=f2e47]:
+            - heading "How do I choose a service?" [level=3] [ref=f2e48]
+            - paragraph [ref=f2e49]: Start with the change you notice rather than a product name. Describe the area, what looks or feels different, and how much recovery fits your schedule. House of Rose can help narrow the appropriate options.
+          - generic [ref=f2e50]:
+            - heading "What if I am comparing more than one treatment?" [level=3] [ref=f2e51]
+            - paragraph [ref=f2e52]: Compare the material or device used, the concern each option addresses, who provides it, and the expected recovery. If the distinction is still unclear, contact House of Rose with the two treatment names and what you want to change.
+          - generic [ref=f2e53]:
+            - heading "What is the difference between skin analysis and a consultation?" [level=3] [ref=f2e54]
+            - paragraph [ref=f2e55]: Skin analysis uses multi-spectrum photographs to make visible patterns easier to examine and create a visual baseline; it is not a medical diagnosis. A consultation is a conversation about a treatment, a concern, or a short list of options, including questions about the provider, price, timing, and recovery. Choose skin analysis when the photographs would help you see the skin more clearly. Choose a consultation when the main need is to talk through options.
+            - generic [ref=f2e56]:
+              - link "See skin analysis" [ref=f2e57] [cursor=pointer]:
+                - /url: /skin-analysis/
+              - link "See consultation" [ref=f2e58] [cursor=pointer]:
+                - /url: /consultation/
+          - generic [ref=f2e59]:
+            - heading "How can I ask about current pricing?" [level=3] [ref=f2e60]
+            - paragraph [ref=f2e61]: Call House of Rose at (941) 400-0165 or send a message with the treatment name for current pricing.
+            - link "Contact House of Rose" [ref=f2e63] [cursor=pointer]:
+              - /url: /contact/
+          - generic [ref=f2e64]:
+            - heading "What payment methods does House of Rose accept?" [level=3] [ref=f2e65]
+            - paragraph [ref=f2e66]: House of Rose accepts American Express, Discover, Mastercard, Visa, debit cards, and checks.
+          - generic [ref=f2e67]:
+            - heading "Do you accept walk-ins?" [level=3] [ref=f2e68]
+            - paragraph [ref=f2e69]: Yes. Walk-ins are always accepted for waxing and facials. For other services, walk-ins are accepted when the schedule allows. Appointments reserve a specific time; call (941) 400-0165 to check current availability.
+    - generic [ref=f2e71]:
+      - generic [ref=f2e72]: The question you still have
+      - heading "Call, send a message, or request a consultation." [level=2] [ref=f2e73]
+      - paragraph [ref=f2e74]: Call for an answer during practice hours, or send a message with a non-urgent question about a concern, treatment, or provider.
+      - generic [ref=f2e75]:
+        - link "Call House of Rose" [ref=f2e76] [cursor=pointer]:
+          - /url: tel:+19414000165
+        - link "Send a message" [ref=f2e77] [cursor=pointer]:
+          - /url: /contact/
+        - link "Explore treatments" [ref=f2e78] [cursor=pointer]:
+          - /url: /services/
+  - contentinfo [ref=f2e79]:
+    - generic [ref=f2e80]:
+      - generic [ref=f2e81]:
+        - paragraph [ref=f2e82]: House of Rose
+        - paragraph [ref=f2e83]: Medical Aesthetics Practice
+        - generic [ref=f2e84]:
+          - link "Explore treatments" [ref=f2e85] [cursor=pointer]:
+            - /url: /services/
+          - link "Contact us" [ref=f2e86] [cursor=pointer]:
+            - /url: /contact/
+      - navigation "Practice" [ref=f2e87]:
+        - heading "Practice" [level=2] [ref=f2e88]
+        - list [ref=f2e89]:
+          - listitem [ref=f2e90]:
+            - link "About" [ref=f2e91] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=f2e92]:
+            - link "Providers" [ref=f2e93] [cursor=pointer]:
+              - /url: /about/providers/
+          - listitem [ref=f2e94]:
+            - link "Services" [ref=f2e95] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=f2e96]:
+            - link "Experience" [ref=f2e97] [cursor=pointer]:
+              - /url: /experience/
+          - listitem [ref=f2e98]:
+            - link "Results" [ref=f2e99] [cursor=pointer]:
+              - /url: /results/
+          - listitem [ref=f2e100]:
+            - link "FAQ" [ref=f2e101] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=f2e102]:
+            - link "Contact" [ref=f2e103] [cursor=pointer]:
+              - /url: /contact/
+          - listitem [ref=f2e104]:
+            - link "Client support" [ref=f2e105] [cursor=pointer]:
+              - /url: /support/
+          - listitem [ref=f2e106]:
+            - link "Rent a suite" [ref=f2e107] [cursor=pointer]:
+              - /url: /rent-a-room/
+      - navigation "Explore" [ref=f2e108]:
+        - heading "Explore" [level=2] [ref=f2e109]
+        - list [ref=f2e110]:
+          - listitem [ref=f2e111]:
+            - link "Skin analysis" [ref=f2e112] [cursor=pointer]:
+              - /url: /skin-analysis/
+          - listitem [ref=f2e113]:
+            - link "Concerns" [ref=f2e114] [cursor=pointer]:
+              - /url: /concerns/
+          - listitem [ref=f2e115]:
+            - link "Compare treatments" [ref=f2e116] [cursor=pointer]:
+              - /url: /compare/
+          - listitem [ref=f2e117]:
+            - link "Cost guides" [ref=f2e118] [cursor=pointer]:
+              - /url: /cost/
+          - listitem [ref=f2e119]:
+            - link "Areas we serve" [ref=f2e120] [cursor=pointer]:
+              - /url: /areas/
+          - listitem [ref=f2e121]:
+            - link "Journal" [ref=f2e122] [cursor=pointer]:
+              - /url: /blog/
+      - generic [ref=f2e123]:
+        - heading "Visit" [level=2] [ref=f2e124]
+        - generic [ref=f2e125]:
+          - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+          - link "(941) 400-0165" [ref=f2e126] [cursor=pointer]:
+            - /url: tel:+19414000165
+        - link "Directions and contact" [ref=f2e127] [cursor=pointer]:
+          - /url: /contact/
+    - generic [ref=f2e129]:
+      - paragraph [ref=f2e130]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+      - navigation "Legal" [ref=f2e131]:
+        - link "Privacy" [ref=f2e132] [cursor=pointer]:
+          - /url: /privacy-policy/
+        - button "Privacy choices" [ref=f2e133] [cursor=pointer]
+        - link "Terms" [ref=f2e134] [cursor=pointer]:
+          - /url: /terms-of-service/
+        - link "Sitemap" [ref=f2e135] [cursor=pointer]:
+          - /url: /sitemap/
+  - region "Privacy choices" [ref=f2e136]:
+    - generic [ref=f2e137]:
+      - paragraph [ref=f2e138]:
+        - text: We use cookies to measure site performance and advertising. You can accept, reject, or choose which types to allow.
+        - link "Privacy policy" [ref=f2e139] [cursor=pointer]:
+          - /url: /privacy-policy/
+      - generic [ref=f2e140]:
+        - button "Reject optional analytics and advertising measurement" [ref=f2e141] [cursor=pointer]: Reject
+        - button "Preferences" [ref=f2e142] [cursor=pointer]
+        - button "Accept optional analytics and advertising measurement" [ref=f2e143] [cursor=pointer]: Accept

@@ -18,18 +18,18 @@ const BIOREPEEL_PRODUCT_IMAGE = '/images/optimized/biorepeel-products-800.webp';
 // public/images. Each folder name is the service it documents, so these are
 // the accurate card and hero images for services that previously fell back to
 // the generic facial suite.
-const DERMAPLANING_IMAGE = '/images/dermaplaning/dermaplaning-hero.png';
+const DERMAPLANING_IMAGE = '/images/optimized/dermaplaning-hero-1400.webp';
 const DERMAL_FILLERS_IMAGE = '/images/optimized/dermal-fillers-800.webp';
 const BOTOX_IMAGE = '/images/fillers-botox/botox-house-of-rose-aesthetics.webp';
 const INJECTABLES_CONSULT_IMAGE = '/images/editorial/home/injectables-consultation.webp';
-const PRF_RESULT_IMAGE = '/images/before-after/PRF/prf-undereyes-ezgel.png';
+const PRF_RESULT_IMAGE = '/images/optimized/prf-undereyes-ezgel-1400.webp';
 const ADVANCED_FACIAL_CONSULT_IMAGE =
   '/images/editorial/advanced-facials/advanced-facials-consultation.webp';
 const GLO2_TREATMENT_IMAGE = '/images/editorial/advanced-facials/glo2facial-treatment.webp';
 const BIOREPEEL_TREATMENT_IMAGE = '/images/editorial/advanced-facials/biorepeel-treatment.webp';
 const MAKEUP_RESULT_IMAGE =
-  '/images/before-after/makeup/makeupbyxamber-jane-iredale-stephanie.png';
-const MORPHEUS8_BODY_IMAGE = '/images/inmode/Morpheus8-Burst-Deep-body.png';
+  '/images/optimized/makeup-jane-iredale-stephanie-1400.webp';
+const MORPHEUS8_BODY_IMAGE = '/images/optimized/morpheus8-burst-deep-body-1400.webp';
 const IV_HYDRATION_EDITORIAL_IMAGE = '/images/editorial/home/wellness-iv-hydration.webp';
 
 // Face Reality brand assets (from docs/Face Reality — Branded Assets 2026).

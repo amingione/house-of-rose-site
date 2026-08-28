@@ -5,10 +5,10 @@
 > for the task, verify operational facts against their current owner documents, and treat all prior
 > positioning, personality, message, and prose systems as archival unless Amber explicitly reapproves them.
 
-**Memory version:** 2.4.0
-**Last updated:** 2026-08-17 (v2.4.0, pricing-confidentiality decision recorded as DEC-012)
+**Memory version:** 2.5.0
+**Last updated:** 2026-08-28 (v2.5.0, voice formula decided as DEC-013)
 **Maintainer:** Workspace agents, under the rules in `AGENTS.md`  
-**Current state:** Voice reset in progress. Verified business, clinical, compliance, and operational facts remain usable; the Claude-developed voice and positioning language are rejected. A concrete, education-led homepage body is now in local testing and is not approved for Sanity publication; the homepage practice/interior section is approved and may be synced to Sanity.
+**Current state:** Voice reset in progress, but the governing formula is now decided: **editorial restraint + clinical clarity + human language + visible proof + local authority** (DEC-013, 2026-08-28 — see §10). Verified business, clinical, compliance, and operational facts remain usable; the Claude-developed voice and positioning language are rejected, and so is the "luxury-calm sensory storytelling" formula from Florida med-spa competitor research. A concrete, education-led homepage body is now in local testing and is not approved for Sanity publication; the homepage practice/interior section is approved and may be synced to Sanity. Specific applied copy under the new formula stays `[TESTING]` until Amber approves it page by page — the formula itself is decided, individual sentences are not yet published.
 
 ---
 
@@ -121,7 +121,7 @@ minute. Populate it only with verified or explicitly decided information.
 | Primary proof | The real House of Rose environment, staff, equipment, and consented result documentation when available. | `[DECIDED]` — factual/visual direction retained during reset |
 | Current primary offer | `[UNKNOWN]` | Awaiting brand intake |
 | Primary call to action | `[UNKNOWN]` | Awaiting brand intake |
-| Brand personality | `[RESET IN PROGRESS]` — the prior Claude-developed personality was rejected by Amber on 2026-08-13. | `[SUPERSEDED]` — do not use prior voice traits as a tonal model |
+| Brand personality | **Editorial restraint + clinical clarity + human language + visible proof + local authority** — a 70% editorial/concrete base (direct, concise, clinically grounded, no spa clichés, no AI-poetic language) + 20% Trust & Authority layer (credentials, provider experience, named technology, medical direction, real shown proof) + 10% experience language used only where it adds real information (private, comfortable, considered, personal, unrushed). Full framework and hard-blocked patterns in §10. | `[DECIDED]` — Amber, 2026-08-28 (DEC-013); rendered copy on any given page stays `[TESTING]` until she approves that page |
 | Non-negotiable constraint | Morpheus8, Lumecca, and Forma must not be positioned for tightening, lifting, sculpting, contouring, firmness, laxity, or jowls. Their approved concern lanes are recorded in DEC-002 and DEC-003. | `[DECIDED]` — user direction, 2026-08-06 |
 
 ### One-line strategic spine
@@ -382,72 +382,105 @@ The claim ledger is the boundary between persuasive copy and invented copy.
 
 ---
 
-## 10. Voice calibration log — no approved operating system yet
+## 10. Voice calibration log — formula decided (DEC-013), rendered copy still testing
 
-This section records current tests and rejection evidence. Only entries marked `[DECIDED]` by Amber
-are binding. `[TESTING]` entries apply only to their named surface, and blank framework fields carry
-no authority. Do not convert this section into a sitewide formula before Amber approves a replacement
-voice.
+Amber decided the governing formula on 2026-08-28, in direct response to Florida med-spa competitor
+research (see the decision reasoning in DEC-013, §15). That decision is `[DECIDED]` and binding on all
+future copy work. It does **not** reopen or reinstate DEC-005 (discernment/restraint/judgment — still
+`[SUPERSEDED]`) and it does **not** lift the retired-language list in `CLAUDE.md`. Any *specific rendered
+sentence* built from this formula is still `[TESTING]` until Amber approves that page for Sanity
+publish — the framework is settled, individual copy is not.
+
+### The formula — `[DECIDED]`, Amber, 2026-08-28
+
+> **Editorial restraint + clinical clarity + human language + visible proof + local authority.**
+
+Amber's own framing, verbatim in intent: this is more differentiated than "calm luxury + clinical
+confidence" (the formula top Florida competitors actually use), while still taking their strongest
+conversion behavior — proof density, not adjective density.
+
+| Layer | Target weight | What it is | What it is not |
+|---|---:|---|---|
+| Editorial base | ~70% | Direct, concise, clinically grounded, editorial. Concrete distinctions (pigment vs texture, topical vs injected). This is the direction already `[TESTING]` from DEC-008/DEC-011 — this decision confirms it, it does not replace it. | Spa clichés. AI-poetic sensory language. |
+| Trust & Authority (new layer — the "meaningful upgrade") | ~20% | Provider experience, credentials and license type, named technology/device, medical direction, training/relevant expertise, real reviews, real results — **shown**, not asserted. This is the single biggest gap Amber identified vs. stronger Florida competitors (Naples Aesthetics leading with a board-certified surgeon and credentials; Sarasota Facial Aesthetics leading with Allergan/Galderma account status; Vita Aesthetics leading with awards and practitioner reputation). | A claimed reputation ("trusted by hundreds of clients," "authentic results from real clients"). Proof must be linked/shown (before-after gallery, an actual Google review, a named credential) — never just declared in prose. |
+| Experience language | ~10%, capped | Private, comfortable, considered, personal, unrushed — used only where it adds real information about what the visit is actually like. | A default opener, a repeated crutch, or a stand-in for the other two layers. |
 
 ### Voice essence
 
-- **In three to five traits:** `[RESET IN PROGRESS]`
-- **Reader should feel:** Better informed because the practice explains meaningful differences between concerns, treatment categories, and treatment forms. `[TESTING]` — local homepage body draft, 2026-08-13.
-- **Reader should never feel:** Like they are reading a policy manual, clinical intake document, AI manifesto, or an argument defending the practice. `[DECIDED]` — Amber rejected the current voice, 2026-08-13.
-- **Relationship to the reader:** A knowledgeable guide who names the distinction, explains why it matters, and lets the reader choose the next level of detail. `[TESTING]` — local homepage body draft, 2026-08-13.
+- **In three to five traits:** Editorial restraint, clinical clarity, human directness, visible proof, local authority. `[DECIDED]` — Amber, 2026-08-28.
+- **Reader should feel:** Like they're reading a specific, credentialed local practice that says exactly what it does and backs it with checkable facts — not persuaded by adjectives, persuaded by evidence. `[DECIDED]` — Amber, 2026-08-28; consistent with the existing `[TESTING]` homepage direction from 2026-08-13.
+- **Reader should never feel:** Like they are reading a policy manual, clinical intake document, AI manifesto, or an argument defending the practice (`[DECIDED]` — Amber, 2026-08-13) — **and, as of 2026-08-28, also never like they are reading generic med-spa marketing** (a "serene luxurious setting," a "warm welcoming environment," "beauty in balance"). Both failure modes are banned; they are not opposites to balance, they are two different ways of sounding like every other AI-generated site.
+- **Relationship to the reader:** A knowledgeable, credentialed local practice that names the distinction, shows the proof, and lets the reader choose the next level of detail. `[DECIDED]` — Amber, 2026-08-28.
 
 ### Voice sliders
 
-Set each from 1 to 5 and explain the implication.
+`[INFERRED]` from Amber's 2026-08-28 formula — numeric placement is this agent's translation for her to correct, the underlying direction is `[DECIDED]`.
 
 | Dimension | Setting | Copy implication |
 |---|---:|---|
-| Playful ↔ serious | `[UNKNOWN]` |  |
-| Casual ↔ formal | `[UNKNOWN]` |  |
-| Warm ↔ clinical | `[UNKNOWN]` |  |
-| Bold ↔ restrained | `[UNKNOWN]` |  |
-| Luxurious ↔ accessible | `[UNKNOWN]` |  |
-| Provocative ↔ reassuring | `[UNKNOWN]` |  |
-| Minimal ↔ expressive | `[UNKNOWN]` |  |
+| Playful ↔ serious | 4/5 serious | Informative and direct, not stiff or bureaucratic. |
+| Casual ↔ formal | 3/5 | Plain and concrete, not corporate-formal, not breezy-casual. |
+| Warm ↔ clinical | 3/5 | Clinically grounded per the editorial base, warmed only by the capped 10% experience layer — never by adjectives standing in for facts. |
+| Bold ↔ restrained | 4/5 restrained | "Editorial restraint" is explicit in Amber's own formula name. |
+| Luxurious ↔ accessible | 4/5 accessible | Luxury is never a self-description (retired list, `CLAUDE.md`); premium impression is earned by credentials and technology, not claimed by adjective. |
+| Provocative ↔ reassuring | 4/5 reassuring | Reassurance comes from shown proof (Trust & Authority layer), not from asserted claims of trust. |
+| Minimal ↔ expressive | Proportional, not minimal | Per DEC-011, don't shorten for restraint's sake — be as substantive as the real information requires; restraint governs *word choice*, not *information density*. |
 
 ### Voice rules
 
 | Do | Because | Do not | Why not |
 |---|---|---|---|
-| Build sections around concrete distinctions: pigment vs texture, movement vs volume, topical vs injected. `[TESTING]` | Expertise is more persuasive when the reader can learn something specific from the copy. | Build every section around abstract judgment, standards, candidacy, sequencing, or restraint. | That repeated posture produced the powerless, uniform Claude voice Amber rejected. |
+| Build sections around concrete distinctions: pigment vs texture, movement vs volume, topical vs injected. `[TESTING]` | Expertise is more persuasive when the reader can learn something specific from the copy. | Build every section around abstract judgment, standards, candidacy, sequencing, or restraint. | That repeated posture produced the powerless, uniform Claude voice Amber rejected (DEC-005). |
 | Use declarative headlines that tell the reader what the section proves. `[TESTING]` | It creates momentum and makes dense information easier to scan. | Use rhetorical questions, mirrored fragments, or aphorisms as the default headline pattern. | Repetition makes every section sound composed by the same formula. |
 | Give each paragraph one clear job and vary sentence length. `[TESTING]` | The homepage needs authority without reading like policy or a research abstract. | Pad simple facts with process language or stack qualifiers into every sentence. | It weakens the point and produces an inhuman cadence. |
+| Name credentials, license type, medical direction, protocol source, or actual device/technology whenever accurate and compliant. `[DECIDED]` — 2026-08-28 | This *is* the Trust & Authority layer — the specific upgrade Amber approved. | Assert trust, authenticity, or results in the abstract ("authentic results from real clients," "hundreds of five-star reviews"). | Claimed trust isn't trust. Link or show the actual before/after, the actual review, the actual credential — per Amber's direction, let evidence do the talking. |
+| Open with the concrete subject, provider, place, or process detail. `[DECIDED]` — 2026-08-28 | Specificity is what makes copy unswappable with a competitor's site — the actual fix for "sounds like generic AI." | Open with mood-setting or sensory scene language ("A calm, modern space designed for renewal."). | This is the Florida-competitor spa formula Amber explicitly rejected on 2026-08-28; still true even where no individually banned word appears. |
+
+### Hard-blocked patterns — apply regardless of topic or page
+
+These are structural/rhetorical tells, not just a word list. A sentence can avoid every banned word below
+and still fail this rule if it does one of these:
+
+- Opens with mood/scene-setting instead of a concrete subject (see the "sounds like" table below).
+- Asserts trust, authenticity, or results instead of linking/showing the proof (before/after gallery, a real review, a named credential).
+- Uses a rule-of-three or "not just X, but Y" construction as a structural crutch.
+- Uses a rhetorical question as a headline device.
+- Opens with throat-clearing ("At House of Rose, we believe...", "In today's...", "Whether you're... or...").
+- Uses a vague superlative in place of a real reason ("best," "elevated," "unparalleled," "unlike anything").
+- Rebuilds abstract-noun pillars instead of naming a concrete distinction — this is the exact DEC-005 failure (discernment, restraint, judgment, candidacy, sequencing, indication, accountability).
 
 ### Language system
 
-- **Approved phrases / signature language:** `[UNKNOWN]`
-- **Preferred vocabulary:** `[UNKNOWN]`
-- **Banned or overused words:** `[UNKNOWN]`
-- **Terms requiring explanation:** `[UNKNOWN]`
-- **Pronoun point of view:** `[UNKNOWN]`
-- **Sentence rhythm and length:** `[UNKNOWN]`
-- **Punctuation / capitalization conventions:** `[UNKNOWN]`
-- **Emoji policy:** `[UNKNOWN]`
-- **Humor policy:** `[UNKNOWN]`
-- **Profanity policy:** `[UNKNOWN]`
+- **Approved phrases / signature language:** None fixed as a slogan — the formula governs proportionally per service; `[DECIDED]` intentionally not to manufacture a tagline as part of this update.
+- **Preferred vocabulary:** Concrete nouns — provider name + license type, actual device/technology names, correctly used protocol terms, real local place names (Punta Gorda, Charlotte Harbor, Punta Gorda Isles, Burnt Store Marina, Babcock Ranch). Action verbs (assess, review, confirm, treat) over abstract nouns.
+- **Banned or overused words:** The `CLAUDE.md` retired list stays fully in force (luxury/luxe/premium as self-description, boutique, glow/glowing, radiance/radiant, pamper, indulge, timeless beauty, flawless, ageless, treat yourself, reveal your beauty, best version of yourself, guaranteed results, etc.) — 2026-08-28 does not touch it. Added 2026-08-28, from Amber's own audit of stronger Florida competitors' remaining clichés: "serene luxurious setting," "warm welcoming environment," "beauty in balance," "relaxing ambiance," "restore confidence" as a stock phrase, and "authentic results from real clients" as an asserted claim (show the proof instead — see Hard-blocked patterns).
+- **Terms requiring explanation:** Clinical/device terms get explained on first use per page — unchanged, consistent with the existing topical-vs-injectable PRF pattern.
+- **Pronoun point of view:** `[UNKNOWN]` — not addressed 2026-08-28.
+- **Sentence rhythm and length:** Varied; avoid rule-of-three cadence (see Hard-blocked patterns).
+- **Punctuation / capitalization conventions:** `[UNKNOWN]` — not addressed 2026-08-28.
+- **Emoji policy:** `[UNKNOWN]` — not addressed 2026-08-28.
+- **Humor policy:** `[UNKNOWN]` — not addressed 2026-08-28.
+- **Profanity policy:** `[UNKNOWN]` — not addressed 2026-08-28.
 
 ### “Sounds like / does not sound like” calibration
 
+Rows marked "Amber, 2026-08-28" are her own corrections, not this agent's inference.
+
 | Intent | On-brand example | Off-brand example | Why |
 |---|---|---|---|
-| Hook | `[UNKNOWN]` | `[UNKNOWN]` |  |
-| Benefit | `[UNKNOWN]` | `[UNKNOWN]` |  |
-| Proof | `[UNKNOWN]` | `[UNKNOWN]` |  |
-| CTA | `[UNKNOWN]` | `[UNKNOWN]` |  |
-| Objection response | `[UNKNOWN]` | `[UNKNOWN]` |  |
+| Hook (the practice) | "A private Punta Gorda practice designed for consultations, treatment, and follow-through." | "A calm, modern space designed for renewal." | Concrete and local vs. generic mood-setting — Amber, 2026-08-28. |
+| Benefit (treatment planning) | "Treatment plans are based on your concerns, goals, provider assessment, and appropriate treatment options." | "Treatments designed around your lifestyle and long-term skin health." | States the actual process instead of a lifestyle-marketing abstraction — Amber, 2026-08-28. |
+| Proof | Link the before/after gallery, a specific Google review, or the provider's actual license and credentials. | "Authentic results from real clients." | Let evidence do the talking instead of asserting authenticity — Amber, 2026-08-28. |
+| Objection response (credibility) | Name the medical director, license type, and the actual device/technology used for the treatment. | "Trusted by hundreds of happy clients." | Trust & Authority = specific, checkable facts, not a claimed reputation. |
+| CTA | Governed by the existing binding pricing/CTA rule — see "Public website pricing is NEVER permitted" in `CLAUDE.md` (e.g. "Ask about current pricing when you book"). | `[UNKNOWN]` — not revisited 2026-08-28 | Not part of this decision; do not invent new CTA language against the existing rule. |
 
 ### Tone by moment
 
 | Moment | Audience emotion | Tone adjustment | Keep constant | Avoid |
 |---|---|---|---|---|
 | Discovery | Curious / distracted | Clear, intriguing, low-friction | Core voice | Premature hard sell |
-| Consideration | Interested / skeptical | Specific, useful, evidence-led | Core voice | Empty superlatives |
-| Conversion | Ready / cautious | Direct, reassuring, decisive | Core voice | Hidden terms or pressure |
+| Consideration | Interested / skeptical | Specific, useful, evidence-led — lead with the Trust & Authority layer here | Core voice | Empty superlatives |
+| Conversion | Ready / cautious | Direct, reassuring, decisive — proof (credentials, real reviews) over reassurance-by-adjective | Core voice | Hidden terms or pressure |
 | Support / recovery | Frustrated / vulnerable | Calm, accountable, human | Respect and clarity | Cleverness at their expense |
 
 ---
@@ -603,6 +636,7 @@ settled questions or repeating rejected approaches.
 | DEC-010 | 2026-08-13 | Use `H_OF_A_EXTERIOR_WINDOW_DECALS.webp` as the homepage exterior image and preserve its 3:4 portrait composition. | Amber explicitly preferred this storefront view to the previous exterior photograph. | Homepage uses responsive 700 px and 1000 px derivatives without changing the source image. | Direct user approval / Amber | `[DECIDED]` |
 | DEC-011 | 2026-08-14 | Preserve a substantive homepage that explains what House of Rose offers and what the practice feels like; do not shorten it merely for SEO or visual restraint. | Amber rejected the short-homepage interpretation because atmosphere cannot replace useful treatment information. | Use real people, the actual space, concrete service distinctions, and natural explanation together. Remove only unsupported, stale, or genuinely repetitive material. | Direct user instruction / Amber | `[DECIDED]` |
 | DEC-012 | 2026-08-11 | Prices are never displayed on the public website. GlossGenius is the pricing source of truth and stays internal; pricing is quoted at booking or consultation. Reaffirms the 2026-07-24 pricing-confidentiality decision in `CLAUDE.md` that the treatment-page priceRange block had silently contradicted. | Amber's explicit instruction, 2026-08-11, correcting the service-page rewrite program. | Live treatment pages stripped of priceRange/price/dollar figures and republished; `verify-treatment-pages.mjs` BLOCKS any live service carrying a price field or a dollar figure in client-facing copy; `treatmentPageFields.priceRange` is hidden and marked DO NOT SET; GlossGenius figures live only in the internal, never-rendered `pricingNotes` field. Cost-guide pages (`/cost/*`) carry price ranges by page-type design — scope question still open for Amber. Verified 2026-08-17: 24 of 25 live/actual-menu services carry no price field; `glo2facial` still does — see CON-003. Recorded as DEC-012, not DEC-004, because DEC-004 was independently assigned to the 2026-08-13 voice reset. | User direction / Amber | `[DECIDED]` |
+| DEC-013 | 2026-08-28 | Adopt **editorial restraint + clinical clarity + human language + visible proof + local authority** as the House of Rose voice formula: keep the existing ~70% editorial/concrete-distinction base (the DEC-008/DEC-011 homepage direction), add a new ~20% Trust & Authority layer (credentials, license type, provider experience, named technology, medical direction, real reviews/results shown rather than asserted), and cap experience/mood language (private, comfortable, considered, personal, unrushed) at ~10%, used only where it adds real information. | Amber reviewed pasted Florida med-spa competitor voice research and explicitly rejected its "luxury-calm sensory storytelling" formula and vocabulary (serene, warm/welcoming, beauty in balance, relaxing ambiance, glow, radiant, pamper, indulge, luxury as self-description) — the `CLAUDE.md` retired-language list stays fully in force. She identified that stronger Florida competitors (Naples Aesthetics, Sarasota Facial Aesthetics, Vita Aesthetics) actually win on credential/technology/proof density, not on spa adjectives, and that House of Rose's existing editorial base underweights that proof layer. | §10 (Voice calibration log) now carries this as the governing framework, filled with a hard-blocked generic-AI-pattern list, vocabulary rules, and Amber's own before/after calibration examples. Does not reopen DEC-005 (discernment/restraint/judgment stays `[SUPERSEDED]`) — this is a distinct, more concrete formula. The formula itself is `[DECIDED]`; any specific rendered sentence built from it stays `[TESTING]` until Amber approves that page for Sanity publish, per the binding no-sitewide-publish rule from the 2026-08-13 voice reset. | Direct user instruction / Amber, 2026-08-28 | `[DECIDED]` for the formula; `[TESTING]` for applied copy |
 
 ---
 
@@ -722,6 +756,7 @@ the reasoning trail merely to make the file look tidy.
 
 | Date | Version | Sections changed | Summary | Source |
 |---|---|---|---|---|
+| 2026-08-28 | 2.5.0 | Current state, executive snapshot (brand personality), voice calibration log, decision ledger, change log | Replaced the `[UNKNOWN]`/`[RESET IN PROGRESS]` voice-calibration scaffold with a decided formula: **editorial restraint + clinical clarity + human language + visible proof + local authority** (70% existing editorial base / 20% new Trust & Authority layer / 10% capped experience language). Rejected the Florida-med-spa "luxury-calm sensory storytelling" formula and its vocabulary while adopting its underlying insight — that stronger competitors win on credential/technology/proof density, not spa adjectives. Added a hard-blocked generic-AI-pattern list and filled in Amber's own before/after calibration examples. Recorded as **DEC-013**. Does not touch the `CLAUDE.md` retired-language list and does not reopen DEC-005. | Direct user instruction / Amber, 2026-08-28, responding to pasted Florida med-spa competitive/voice research |
 | 2026-08-17 | 2.4.0 | Decision ledger, contradictions, change log | Landed the 2026-08-11 pricing-confidentiality branch into the post-voice-reset memory. Recorded the decision as **DEC-012**, because its original `DEC-004` ID had independently been assigned to the voice reset on 2026-08-13. Corrected CON-001 wording to match the no-public-price rule, and logged **CON-003**: `glo2facial` is the one live service still carrying a published `priceRange`, at a stale $195 against the ledger's $225. Dropped the branch's `REQUIRED_BLOCKS` verifier check as superseded by the 2026-08-14 rule that the verifier must not pressure editors to fill gaps. | Merge of `claude/house-of-rose-service-rewrite-pehf5e`; live Sanity verification 2026-08-17 |
 | 2026-08-14 | 2.3.4 | Voice hypothesis, executive snapshot, decision ledger | Marked the discernment, restraint, and judgment hypothesis as superseded so it cannot regenerate repetitive voice during the reset. | Current voice-reset implementation review |
 | 2026-08-14 | 2.3.3 | Voice calibration, decision ledger | Removed the stale page-wide minimalism rule and recorded Amber's later decision to preserve substantive homepage information. | Direct user instruction / Amber |

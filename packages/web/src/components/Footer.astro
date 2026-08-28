@@ -15,66 +15,69 @@ const addressLine1 = addressMatch?.[1] ?? siteFacts.address;
 const addressLine2 = addressMatch ? `${addressMatch[2]}, ${addressMatch[3]}` : undefined;
 ---
 
-<footer class="border-t border-gold-metal/25 bg-breath px-6 pb-8 pt-[clamp(56px,8vw,88px)]">
-  <div class="mx-auto max-w-[1280px]">
-    <div class="grid gap-12 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1fr] lg:gap-10">
-      <div>
-        <p class="font-serif text-[30px] leading-tight text-ink">{siteFacts.siteName}</p>
-        <p class="mt-3 text-[12px] font-semibold tracking-[0.1em] uppercase text-gold">Medical Aesthetics Practice</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/services/" class="btn-gold">Explore treatments</a>
-          <a href="/contact/" class="btn-outline-ink">Contact us</a>
-        </div>
-      </div>
-
-      <nav aria-label="Practice">
-        <h2 class="footer-heading">Practice</h2>
-        <ul class="footer-list">
-          <li><a href="/about/">About</a></li>
-          <li><a href="/about/providers/">Providers</a></li>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/experience/">Experience</a></li>
-          <li><a href="/results/">Results</a></li>
-          <li><a href="/faq/">FAQ</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/support/">Client support</a></li>
-          <li><a href="/rent-a-room/">Rent a suite</a></li>
-        </ul>
-      </nav>
-
-      <nav aria-label="Explore">
-        <h2 class="footer-heading">Explore</h2>
-        <ul class="footer-list">
-          <li><a href="/skin-analysis/">Skin analysis</a></li>
-          <li><a href="/concerns/">Concerns</a></li>
-          <li><a href="/compare/">Compare treatments</a></li>
-          <li><a href="/cost/">Cost guides</a></li>
-          <li><a href="/areas/">Areas we serve</a></li>
-          <li><a href="/blog/">Journal</a></li>
-          {SHOP_ENABLED && <li><a href="/shop/">Shop</a></li>}
-          {SHOP_ENABLED && <li><a href="/shop/jane-iredale/">Jane Iredale</a></li>}
-        </ul>
-      </nav>
-
-      <div>
-        <h2 class="footer-heading">Visit</h2>
-        <address class="text-[14px] not-italic leading-[1.8] text-muted">
-          {addressLine1}{addressLine2 && <><br />{addressLine2}</>}<br />
-          <a href={phoneHref} class="text-ink hover:text-gold">{siteFacts.phone}</a>
-        </address>
-        <a href="/contact/" class="footer-visit-link">Directions and contact</a>
+<!-- Dark ink footer. `.on-dark` flips the accent/muted channels declared in
+     global.css, so `text-gold` and `text-muted` stay legible here without
+     hard-coding a second palette. -->
+<footer class="on-dark bg-ink text-ivory">
+  <div class="mx-auto grid max-w-[1280px] gap-12 px-5 py-[clamp(64px,9vw,96px)] sm:px-8 lg:grid-cols-12 lg:gap-8">
+    <div class="lg:col-span-5">
+      <p class="font-display text-4xl leading-display text-ivory sm:text-5xl">{siteFacts.shortName}</p>
+      <p class="mt-4 text-kicker font-medium uppercase tracking-label text-gold">Medical Aesthetics Practice</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="/services/" class="btn-gold">Explore treatments</a>
+        <a href="/contact/" class="btn-outline-white">Contact us</a>
       </div>
     </div>
 
-    <div class="mt-14 flex flex-col gap-5 border-t border-gold-metal/20 pt-7 text-[12px] text-muted lg:flex-row lg:items-center lg:justify-between">
+    <nav aria-label="Practice" class="lg:col-span-2">
+      <h2 class="footer-heading">Practice</h2>
+      <ul class="footer-list">
+        <li><a href="/about/">About</a></li>
+        <li><a href="/about/providers/">Providers</a></li>
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/experience/">Experience</a></li>
+        <li><a href="/results/">Results</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/support/">Client support</a></li>
+        <li><a href="/rent-a-room/">Rent a suite</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Explore" class="lg:col-span-2">
+      <h2 class="footer-heading">Explore</h2>
+      <ul class="footer-list">
+        <li><a href="/skin-analysis/">Skin analysis</a></li>
+        <li><a href="/concerns/">Concerns</a></li>
+        <li><a href="/compare/">Compare treatments</a></li>
+        <li><a href="/cost/">Cost guides</a></li>
+        <li><a href="/areas/">Areas we serve</a></li>
+        <li><a href="/blog/">Journal</a></li>
+        {SHOP_ENABLED && <li><a href="/shop/">Shop</a></li>}
+        {SHOP_ENABLED && <li><a href="/shop/jane-iredale/">Jane Iredale</a></li>}
+      </ul>
+    </nav>
+
+    <div class="lg:col-span-3">
+      <h2 class="footer-heading">Visit</h2>
+      <address class="text-[14px] not-italic leading-body text-ivory/70">
+        {addressLine1}{addressLine2 && <><br />{addressLine2}</>}<br />
+        <a href={phoneHref} class="footer-link">{siteFacts.phone}</a>
+      </address>
+      <a href="/contact/" class="footer-visit-link">Directions and contact</a>
+    </div>
+  </div>
+
+  <div class="border-t border-ivory/10">
+    <div class="mx-auto flex max-w-[1280px] flex-col gap-4 px-5 py-6 text-[11px] uppercase tracking-wide text-ivory/60 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
       <p>© {currentYear} House of Rose Aesthetics LLC. All rights reserved.</p>
       <nav aria-label="Legal" class="flex flex-wrap gap-x-5 gap-y-3">
-        <a href="/privacy-policy/" class="hover:text-ink">Privacy</a>
-        <button id="privacy-choices" type="button" class="hover:text-ink">Privacy choices</button>
-        <a href="/terms-of-service/" class="hover:text-ink">Terms</a>
-        {SHOP_ENABLED && <a href="/shipping-policy/" class="hover:text-ink">Shipping</a>}
-        {SHOP_ENABLED && <a href="/return-policy/" class="hover:text-ink">Returns</a>}
-        <a href="/sitemap/" class="hover:text-ink">Sitemap</a>
+        <a href="/privacy-policy/" class="hover:text-ivory">Privacy</a>
+        <button id="privacy-choices" type="button" class="uppercase tracking-wide hover:text-ivory">Privacy choices</button>
+        <a href="/terms-of-service/" class="hover:text-ivory">Terms</a>
+        {SHOP_ENABLED && <a href="/shipping-policy/" class="hover:text-ivory">Shipping</a>}
+        {SHOP_ENABLED && <a href="/return-policy/" class="hover:text-ivory">Returns</a>}
+        <a href="/sitemap/" class="hover:text-ivory">Sitemap</a>
       </nav>
     </div>
   </div>
@@ -87,37 +90,43 @@ const addressLine2 = addressMatch ? `${addressMatch[2]}, ${addressMatch[3]}` : u
 </script>
 
 <style>
+  /* Column labels use the 0.28em label standard, at 60% ivory rather than the
+     45% hra-grok uses — 45% over ink lands at 3.8:1 and fails AA at 11px. */
   .footer-heading {
     margin-bottom: 18px;
-    color: #161412;
-    font-family: Cochin, system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    color: rgb(244 239 232 / 0.6);
+    font-family: var(--font-sans);
+    font-size: var(--text-kicker);
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
     text-transform: uppercase;
   }
-  .footer-list { display: grid; gap: 11px; }
-  .footer-list a {
-    color: rgb(var(--hr-muted));
+  .footer-list { display: grid; gap: 12px; }
+  .footer-list a,
+  .footer-link {
+    color: rgb(244 239 232 / 0.85);
     font-size: 14px;
     line-height: 1.5;
   }
-  .footer-list a:hover { color: #8b5a54; }
+  .footer-list a:hover,
+  .footer-link:hover { opacity: 0.6; }
   .footer-visit-link {
     display: inline-flex;
     margin-top: 18px;
     min-height: 44px;
     align-items: center;
-    color: #161412;
+    color: rgb(244 239 232 / 0.85);
     font-size: 13px;
     text-decoration: underline;
-    text-decoration-color: rgb(139 90 84 / 0.75);
+    text-decoration-color: rgb(199 154 145 / 0.8);
     text-underline-offset: 5px;
   }
+  .footer-visit-link:hover { text-decoration-color: rgb(199 154 145); }
   .footer-list a,
+  .footer-link,
   .footer-visit-link,
   footer nav[aria-label="Legal"] a,
   #privacy-choices {
-    transition: color 160ms ease, text-decoration-color 160ms ease;
+    transition: color 160ms ease, opacity 160ms ease, text-decoration-color 160ms ease;
   }
 </style>

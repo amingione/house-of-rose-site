@@ -382,6 +382,39 @@ test('internal anchors on public generated pages resolve', () => {
   assert.equal(failures.length, 0, formatFailures('Broken internal HTML anchors', failures));
 });
 
+test('indexable content pages receive contextual links from other page bodies', () => {
+  const contentRoute = /^\/(?:services|concerns|compare|cost|packages|blog|areas|about\/providers)(?:\/|$)/;
+  const pageByRoute = new Map(
+    publicHtmlFiles.map((file) => [routeForHtmlFile(file), readFileSync(file, 'utf8')]),
+  );
+  const indexableContentRoutes = [...pageByRoute.entries()]
+    .filter(([route, html]) => contentRoute.test(route) && !metaContent(html, 'robots').toLowerCase().includes('noindex'))
+    .map(([route]) => route);
+  const inboundSources = new Map(indexableContentRoutes.map((route) => [route, new Set()]));
+
+  for (const [sourceRoute, html] of pageByRoute) {
+    for (const href of extractHrefAttributes(mainHtml(html), true)) {
+      const targetRoute = internalPath(href, sourceRoute);
+      if (targetRoute === null || targetRoute === undefined || targetRoute === sourceRoute) continue;
+      inboundSources.get(targetRoute)?.add(sourceRoute);
+    }
+  }
+
+  const failures = [...inboundSources.entries()]
+    .filter(([, sources]) => sources.size === 0)
+    .map(([route]) => `${route} has no inbound link from another page's <main> content`);
+
+  assert.ok(indexableContentRoutes.length >= 60, `Expected at least 60 indexable content routes; found ${indexableContentRoutes.length}.`);
+  assert.equal(failures.length, 0, formatFailures('Contextual content orphans', failures));
+
+  for (const hub of ['/services/', '/concerns/', '/compare/', '/cost/', '/packages/', '/blog/', '/areas/']) {
+    assert.ok(
+      (inboundSources.get(hub)?.size ?? 0) >= 2,
+      `${hub} must receive contextual links from at least two other page bodies.`,
+    );
+  }
+});
+
 test('public HTML, AI feeds, and sitemap do not link to edge-retired routes', () => {
   const references = [];
 
