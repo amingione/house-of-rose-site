@@ -91,6 +91,7 @@ const INMODE_EVIDENCE_IMAGES: Record<string, string> = {
   'lumecca-face-example':
     '/images/inmode/lumecca-peak-before-after.webp',
   'forma-device': '/images/inmode/Forma-handpiece-space.png',
+  'forma-face-example': '/images/optimized/forma-before-after.webp',
 };
 
 export const DEFAULT_SERVICE_IMAGE = ACTUAL_RECEPTION_IMAGE;

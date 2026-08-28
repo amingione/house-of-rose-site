@@ -4,7 +4,7 @@ The original August 2026 draft mixed a small, stale GSC sample with assumed meta
 
 ## What the historical data can still tell us
 
-The earlier export recorded impressions for the House of Rose name, Procell Microchanneling, and Permanent Jewelry. That establishes search interest during the sampled period. It does not prove that a specific title, H1, phrase, or route caused the observed position or click-through rate, and it does not establish current performance because GSC stopped syncing on 2026-06-25.
+The earlier export recorded impressions for the House of Rose name and Procell Microchanneling. That establishes search interest during the sampled period. It does not prove that a specific title, H1, phrase, or route caused the observed position or click-through rate, and it does not establish current performance because GSC stopped syncing on 2026-06-25.
 
 Use a fresh production URL, current Search Console data, and the generated metadata before diagnosing a click-through problem. Never label an assumed title or description as the current value.
 
@@ -21,12 +21,6 @@ Do not force a keyword list into the title or description, and do not require ev
 The canonical route is `/services/microneedling/`. It identifies Procell Microneedling, distinguishes the Pro and MD topical-serum options from topical PRF, publishes the verified appointment choices, names Amber Mingione, Licensed Esthetician, and links her provider profile.
 
 The service H1 remains entity-first. Geographic intent belongs to the `localArea` page type, not a geo-loaded service H1 or a duplicate city service page. Search-query wording can inform factual supporting copy only when it accurately describes the current service.
-
-### Permanent Jewelry
-
-The canonical route is `/services/permanent-jewelry/`, not a collection URL. It publishes the verified $65, 20-minute fitting and the current provider attribution. The canonical route is already generated, linked from the Services directory and provider path, and included in the current sitemap.
-
-Do not invent bracelet, anklet, necklace, charm, material, welding, inventory, or walk-in availability claims. Those details must come from current operational evidence.
 
 ## Unsupported query handling
 

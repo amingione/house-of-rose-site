@@ -269,6 +269,7 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
 ## Permanently dead — never re-add (Amber, final)
 
 - **Memberships of any kind** — The Rose Circle, The Rose Method, member rates, plans, affiliations.
+- **Permanent jewelry** — no longer offered as of 2026-08-28.
 - Discount/"special" framing.
 - **RHA 4 and Restylane** *(added 2026-08-06)* — confirmed never offered; drift from research docs.
 
@@ -301,11 +302,6 @@ file — it existed in GlossGenius but was never documented here before 2026-08-
 4. 🟢 **Event Makeup price resolved by owner confirmation on 2026-08-25:** 1 hr 30 mins, **$85**,
    with a **$40 deposit**. The former $150 duplicate/conflict warning is superseded and must not be
    propagated into current records.
-4b. 🟢 **Former Permanent Jewelry duration conflict is retired for the website.** Permanent Jewelry
-   was removed from the website on 2026-08-25, and the former Sanity service record was deleted with
-   the retired service model. Do not use that legacy record as treatment authority.
-4c. 🟡 **Permanent Jewelry has no assigned provider** since Aundrea went makeup-only (2026-08-25).
-   Amber chose to keep it live and unattributed. Assign someone (with licence type) or retire it.
 5. 🟢 **Procell face pricing has five different historical values across old docs** ($250, $295,
    $299, $325, $349) before settling at the current, confirmed-live **Pro $300 / MD $400** (Amber's
    2026-07-26 decision, matches the fresh export exactly). This one is resolved — flagging only so

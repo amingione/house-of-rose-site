@@ -79,6 +79,4 @@ Aundrea doesn’t believe every client should leave looking the same. She loves 
 
 Her personality is just as memorable as her artistry. She’s energetic, unapologetically herself, and the kind of person who can have an entire room laughing without even trying. She brings confidence, creativity, and a little bit of chaos in the best possible way, making every appointment feel less like a service and more like spending time with someone you’ve known for years.
 
-Alongside professional makeup artistry for weddings, special events, photoshoots, and celebrations, Aundrea also offers permanent jewelry. Whether she’s helping someone get ready for one of the biggest days of their life or welding a bracelet that marks a meaningful moment, she believes beauty should be personal, expressive, and never one-size-fits-all.
-
 For Aundrea, makeup has never been about hiding who you are. It’s about turning up the volume on the confidence that’s already there.

@@ -19,8 +19,8 @@ the written brand guide.
 ## Why this page tree
 
 `Events` is new — it doesn't exist anywhere in the site, Sanity schemas, or `docs/`. It's the natural home
-for Aundrea Pedigo's **non-medical** line (makeup artistry + permanent jewelry), which today only surfaces
-on her provider bio (`/about/providers/aundrea/`) and in the internal GlossGenius pricing sheet. Framing it
+for Aundrea Pedigo's **non-medical** makeup artistry, which today surfaces on her provider bio
+(`/about/providers/aundrea/`) and in the internal GlossGenius pricing sheet. Framing it
 as "Events" — Bridal / Birthday / Collaborate — turns a provider footnote into its own acquisition channel,
 without touching the medical-aesthetics nav, voice, or claim rules that govern the rest of the site.
 
@@ -53,22 +53,18 @@ documents before implementation.
   unconflicted figure).
 - Event Makeup: 1 hr 30 min, **$85** with a **$40 deposit** — owner-confirmed 2026-08-25.
 - Everyday Makeup: 1 hr, **$35** with a **$30 deposit** — same source.
-- Permanent Jewelry: **$65** flat line in GlossGenius — same source, but flagged (see below).
 - Palette and typography — the implemented site tokens and components plus Creative System Book 4's
   visual standards. The mockup's voice and CTA language are unapproved; current user direction and the
   binding voice-reset rules govern any future build.
 
 **Flagged — do not publish as-is:**
-1. 🟡 **Permanent Jewelry may have per-material/length tiers** (gold-filled / sterling / solid gold) per an
-   older price-list PDF referenced in the same doc, but GlossGenius currently shows one flat $65 line. Both
-   mockups show "Starting at $65" with a confirmation flag rather than asserting tiers that may not be live.
-2. 🟡 **On-location vs. in-suite-only is undocumented.** Bridal and Birthday mockups default to in-suite;
+1. 🟡 **On-location vs. in-suite-only is undocumented.** Bridal and Birthday mockups default to in-suite;
    flagged inline so this isn't silently decided by omission.
-3. 🟡 **Trial runs, lead time, and group minimums are undocumented.** Marked `Draft` in the Bridal FAQ and
-   Birthday jewelry-bar section rather than invented.
-4. 🟠 **Collaborate With Us is entirely new territory** — no referral, commission, or preferred-vendor
-   program exists today. The page proposes four collaboration shapes (bookings, styled shoots, on-site
-   jewelry activations, referral relationships) as a framework for Amber to approve, cut, or price — not as
+2. 🟡 **Trial runs, lead time, and group minimums are undocumented.** Marked `Draft` in the Bridal FAQ
+   rather than invented.
+3. 🟠 **Collaborate With Us is entirely new territory** — no referral, commission, or preferred-vendor
+   program exists today. The page proposes three collaboration shapes (bookings, styled shoots, and
+   referral relationships) as a framework for Amber to approve, cut, or price — not as
    an existing offer.
 
 ## Birthday Events — merchandising pattern (v3)
@@ -84,14 +80,14 @@ things were deliberately **not** carried over from the reference:
    closer, structurally, to the dark SEO-package-card pattern than to the pink reference.
 2. **Content.** Little Princess Spa sells children's party entertainment: character appearances, slime/patch
    crafts, candy buffets, cake, balloon walls, photo booths. House of Rose has none of that — Aundrea's real
-   catalog is three line items (Everyday Makeup, Event Makeup, Permanent Jewelry). Inventing a kids'-party
-   catalog to match the reference's density would violate Rule #0. Instead, the three real services were
-   restructured into three packages (**Just the Glam** / **Birthday Celebration**, featured / **Jewelry Bar
-   Only**) plus a thin, honest add-ons grid (extra guest makeup, upgrade to Event Makeup, extra jewelry
-   piece) — same merchandising energy, real inventory only.
+   catalog is three line items (Everyday Makeup, Event Makeup, and Bridal Makeup). Inventing a kids'-party
+   catalog to match the reference's density would violate Rule #0. Instead, the birthday page uses the two
+   relevant services as two packages (**Just the Glam** / **Birthday Celebration**, featured) plus a thin,
+   honest add-ons grid (extra guest makeup and an upgrade to Event Makeup) — same merchandising energy,
+   real inventory only.
 
 CTAs read "Request this package" / "Add to request," not "Add to cart" — GlossGenius currently shows
-**Booking option: No** for all four Aundrea line items, and the real Stripe/Shippo checkout is unrelated to
+**Booking option: No** for the reviewed Aundrea line items, and the real Stripe/Shippo checkout is unrelated to
 services. Cart-style language would claim a checkout capability that doesn't exist yet.
 
 ## Suggested next step

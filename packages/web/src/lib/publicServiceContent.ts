@@ -13,7 +13,7 @@ export const UNAVAILABLE_PUBLIC_SERVICE_SLUGS = [
   'glo2facial-procell-pro',
   'prf-fibrin-veil',
   'wellness',
-  // Retired from the website entirely 2026-08-25 (Amber). The URL is also a
-  // forced 404 in netlify.toml so search engines drop it.
+  // Retired business-wide 2026-08-28 (Amber). The URL is also a forced 404 in
+  // netlify.toml so search engines drop it.
   'permanent-jewelry',
 ] as const;

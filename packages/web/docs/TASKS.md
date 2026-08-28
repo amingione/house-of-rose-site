@@ -5,7 +5,7 @@
 - [ ] **[Service SEO] Enhance Wellness — GLP-1 + IV Hydration** - long-form SEO + FAQs + local; medical-compliant. - google gets no brand names that are mmedical like BOTOX
 - [ ] **[SEO] Quarterly meta + content refresh** - re-tune against Google Search Console performance.
 - [ ] **[Content] Seasonal campaign content** - SW Florida "summer-safe / no-downtime peel" angle; event-season injectables.
-- [ ] **[Service SEO] Enhance remaining body / variant / hub pages** - microchanneling-body, microneedling-body, topical PRF, PRF body, PRF fibrin veil, EZ Gel, neck & décolleté, dermaplaning, Glo2Facial base, Acne Bootcamp, AI Skin Analysis, permanent jewelry.
+- [ ] **[Service SEO] Enhance remaining body / variant / hub pages** - microchanneling-body, microneedling-body, topical PRF, PRF body, PRF fibrin veil, EZ Gel, neck & décolleté, dermaplaning, Glo2Facial base, Acne Bootcamp, AI Skin Analysis.
 - [ ] **[Voice] Provider-name audit across ALL service descriptions** - sweep every service for "Amber / Diana / Brandy / Aundrea" in customer copy and neutralize to role-only.
 - [ ] **[Interlinking] Wire `relatedServices` refs + cross-links everywhere** - connect services ↔ compare ↔ concerns ↔ areas ↔ cost so nothing is orphaned.
 - [ ] **[Research] Keyword + local-comp research for the next clusters** - parallel Ahrefs agents for facials / wellness / lashes / makeup / waxing (add Semrush once units are restored).

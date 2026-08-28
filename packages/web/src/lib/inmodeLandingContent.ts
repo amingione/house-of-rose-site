@@ -170,6 +170,15 @@ const formaFrontResult: InModeImage = {
   context: 'Manufacturer example. Not a House of Rose client.',
 };
 
+const formaCombinationResult: InModeImage = {
+  src: '/images/optimized/forma-before-after.webp',
+  alt: 'Manufacturer-provided before and after of the lower face after Forma used together with Morpheus8',
+  width: 670,
+  height: 289,
+  credit: 'Example courtesy of Diana Seo, ITEC; attribution embedded in image',
+  context: 'This example reflects Forma used together with Morpheus8, not Forma on its own. Not a House of Rose client.',
+};
+
 const platformPathways: readonly InModePathway[] = [
   {
     title: 'Morpheus8',
@@ -546,7 +555,7 @@ export const INMODE_LANDING_CONTENT = {
       eyebrow: 'Facial result examples',
       title: 'Subtle change deserves a full-size comparison.',
       intro: 'These manufacturer examples show the lower face and neck. They are not House of Rose client results, and individual results vary.',
-      images: [formaFrontResult],
+      images: [formaFrontResult, formaCombinationResult],
       disclaimer: 'Individual results vary. Treatment plan, skin response, lighting, angle, and timing affect visible change.',
     },
     timeline: {

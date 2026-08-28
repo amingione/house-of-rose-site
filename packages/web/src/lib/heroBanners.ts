@@ -37,7 +37,7 @@ export const HERO_BANNERS = {
   '/services/lumecca-peak-ipl/': banner('hr-br-2.webp', 918, 606),
   '/services/glp-1-weight-management/': banner('hr-br-6.webp', 912, 610),
   '/consultation/': banner('HR-background.webp', 918, 606),
-  '/contact/': banner('hr-br-2.webp', 918, 606),
+  '/contact/': banner('H_OF_A_EXTERIOR_WINDOW_DECALS.webp', 918, 606),
   '/experience/': banner('hr-br-3.webp', 920, 612),
   '/blog/': banner('hr-br-4.webp', 924, 610),
   '/packages/': banner('hr-br-5.webp', 908, 596),

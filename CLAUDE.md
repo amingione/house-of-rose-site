@@ -350,9 +350,9 @@ customer-facing surface (including a seed script that could regenerate it), remo
 page and leave the source it came from. Swept clean 2026-08-13: `aboutFallbacks.ts`, `amber.astro`, `diana.astro`,
 homepage, and `about/index.astro`; the obsolete provider seed was removed.
 
-## Permanent Jewelry — REMOVED FROM THE WEBSITE (binding — 2026-08-25)
-Amber removed permanent jewelry from houseofrosefl.com **entirely**. Do not re-add the service page,
-the collection, homepage rails, provider attribution, schema, AI-feed lines, or menu prose. The slug
+## Permanent Jewelry — NOT OFFERED (binding — 2026-08-28)
+House of Rose no longer offers permanent jewelry. Do not re-add it to the website, GlossGenius
+materials, GBP copy, event concepts, provider attribution, schema, AI feeds, or menu prose. The slug
 sits in `UNAVAILABLE_PUBLIC_SERVICE_SLUGS`, and `/services/permanent-jewelry/*` plus
 `/services/collections/permanent-jewelry/*` are forced `404`s in `packages/web/netlify.toml` so search
 engines drop the historical URLs. The `permanentJewelryEducation.ts` module was deleted.
@@ -361,8 +361,8 @@ engines drop the historical URLs. The `permanentJewelryEducation.ts` module was 
   find that intermediate state described anywhere, it is stale.
 - The former Sanity service and collection records were deleted with the rest of the retired service
   model on 2026-08-25. Do not recreate them.
-- The removal was scoped to the **website**. Whether it is still sold in person or listed on
-  GlossGenius is Amber's call and is not recorded here.
+- Amber confirmed the business-wide retirement on 2026-08-28. Earlier notes that limited the
+  retirement to the website or described the service as live and unattributed are stale.
 
 ---
 

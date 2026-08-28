@@ -21,7 +21,7 @@ const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const FROM = process.env.ORDER_EMAIL_FROM ?? 'House of Rose <orders@updates.houseofrosefl.com>';
 const REPLY_TO = process.env.ORDER_EMAIL_REPLY_TO ?? 'info@houseofrosefl.com';
 const SITE = 'https://houseofrosefl.com';
-const PHONE = '(844) 941-7673';
+const PHONE = '(941) 400-0165';
 
 export interface EmailOrderItem {
   title: string;

@@ -52,9 +52,12 @@ const treatmentRail = [
     title: 'IV + Wellness',
     lede: 'IV hydration and medically guided weight-management services with evaluation and follow-up built into the process.',
     href: '/services/iv-hydration-therapy/',
-    image: '/images/hofr-med-spa5webp.webp', // i just added - dont keep reverting it
-    imageSrcset: '/images/hofr-med-spa5webp.webp 800w, /images/optimized/iv-hydration-lounge-1400.webp 1400w',
-    imageAlt: 'The IV hydration lounge at House of Rose Aesthetics in Punta Gorda',
+    // Amber's pick — keep this photo. Only the source file changed: the 1.5 MB
+    // original blew the 200 KB public-image budget, so these are optimized
+    // renditions of the same shot. Do not swap the photo.
+    image: '/images/optimized/hofr-med-spa5-1400.webp',
+    imageSrcset: '/images/optimized/hofr-med-spa5-800.webp 800w, /images/optimized/hofr-med-spa5-1400.webp 1400w',
+    imageAlt: 'The IV Hydration Therapy suite at House of Rose Aesthetics in Punta Gorda',
     ctaLocation: 'homepage-category-wellness',
   },
 ] as const;

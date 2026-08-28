@@ -449,6 +449,74 @@ test('public HTML, AI feeds, and sitemap do not link to edge-retired routes', ()
   assert.equal(failures.length, 0, formatFailures('Links to Netlify redirect/forced-404 sources', failures));
 });
 
+test('permanently retired services do not appear in public output', () => {
+  const retiredService = /permanent(?:[\s-]|&nbsp;){1,4}jew(?:elry|ellery|lery)/i;
+  const files = [
+    ...publicHtmlFiles,
+    path.join(DIST_ROOT, 'llms.txt'),
+    path.join(DIST_ROOT, 'llms-full.txt'),
+    path.join(DIST_ROOT, 'sitemap.xml'),
+  ];
+
+  for (const file of files) {
+    const content = readFileSync(file, 'utf8');
+    assert.doesNotMatch(
+      content,
+      retiredService,
+      relativeToRepo(file) + ' contains a permanently retired service',
+    );
+  }
+
+  assert.ok(
+    !existsSync(path.join(DIST_ROOT, 'services', 'permanent-jewelry', 'index.html')),
+    'The retired service route must not be generated.',
+  );
+  assert.ok(
+    !existsSync(path.join(DIST_ROOT, 'services', 'collections', 'permanent-jewelry', 'index.html')),
+    'The retired service collection must not be generated.',
+  );
+});
+
+test('permanently retired services stay out of active authoring sources', () => {
+  const retiredService = /permanent(?:[\s-]|&nbsp;){1,4}jew(?:elry|ellery|lery)/i;
+  const authoringFiles = [
+    ...walkFiles(
+      path.join(REPO_ROOT, 'docs', 'mockups', 'events'),
+      (file) => file.endsWith('.html') || file.endsWith('.md'),
+    ),
+    ...walkFiles(
+      path.join(REPO_ROOT, 'packages', 'web', 'docs', 'PROVIDERS'),
+      (file) => file.endsWith('.md'),
+    ),
+    path.join(REPO_ROOT, 'docs', 'GOOGLE-BUSINESS-PROFILE.md'),
+    path.join(
+      REPO_ROOT,
+      'docs',
+      'GOVERNANCE',
+      'internal_only',
+      'services',
+      'weddings',
+      'Weddings_GlossGenius_Import.csv',
+    ),
+    path.join(
+      REPO_ROOT,
+      'docs',
+      'HRAaudits',
+      'letaido-findings',
+      'HouseOfRose_SEO_Edits.md',
+    ),
+    path.join(REPO_ROOT, 'packages', 'web', 'docs', 'TASKS.md'),
+  ];
+
+  for (const file of authoringFiles) {
+    assert.doesNotMatch(
+      readFileSync(file, 'utf8'),
+      retiredService,
+      relativeToRepo(file) + ' can reintroduce a permanently retired service',
+    );
+  }
+});
+
 test.skip('retired PRF cluster routes resolve one hop to reviewed canonical services', () => {
   const expectedRedirects = new Map([
     ['/compare/prf-injections-vs-ez-gel/', '/services/prf-injections/'],
