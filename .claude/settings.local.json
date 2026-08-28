@@ -41,7 +41,11 @@
       "Bash(node -e ' *)",
       "Bash(sed -n '1,50p' ~/mcp-servers/notion-mcp/notion_mcp.py | sed -E 's/\\(ntn_\\)[A-Za-z0-9]*/\\\\1<redacted>/g' | cat -n | sed -n '1,50p')",
       "Read(//Users/ambermingione/mcp-servers/notion-mcp/**)",
-      "Bash(sed 's/\\\\$$//')"
+      "Bash(sed 's/\\\\$$//')",
+      "Bash(npm run *)",
+      "Bash(echo \"EXIT CODE: $?\")",
+      "Read(//tmp/**)",
+      "Bash(rm -f /home/user/house-of-rose-site/packages/web/.env.local)"
     ]
   },
   "enabledMcpjsonServers": [
