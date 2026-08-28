@@ -91,6 +91,9 @@ const entityGraph = siteEntityGraph(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Cochin (headings + body) is a macOS system serif with no web-safe
+         or Google Fonts equivalent — it degrades to Georgia/system-ui
+         elsewhere by design. No webfont to load. -->
     {gscVerify && <meta name="google-site-verification" content={gscVerify} />}
     {preloadImage && (
       <link
@@ -152,7 +155,7 @@ const entityGraph = siteEntityGraph(
     <slot name="head" />
   </head>
   <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-soft-black focus:text-sm focus:font-medium focus:rounded">
       Skip to main content
     </a>
     {chrome === 'site' && <Header currentPath={Astro.url.pathname} siteFacts={siteFacts} />}
