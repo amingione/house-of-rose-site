@@ -93,7 +93,7 @@ export const INJECTABLE_SERVICE_EDUCATION = {
       },
       {
         question: 'What is useful to describe when I ask about a line?',
-        answer: 'Say whether the line appears or becomes deeper with expression. If what you notice is a change in volume at the lips, cheeks, or folds, the Dermal Fillers consultation addresses that different concern.',
+        answer: 'Say whether the line appears or becomes deeper with expression. If the change involves volume at the lips, cheeks, or folds, the Dermal Fillers consultation addresses that different concern.',
       },
     ],
     links: [

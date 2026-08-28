@@ -231,8 +231,8 @@ const platformCombinations: readonly InModeCombination[] = [
   },
   {
     title: 'Full InMode skin plan',
-    shorthand: 'Sequence, do not stack indiscriminately',
-    text: 'When texture, pigment, redness, collagen loss, and laxity overlap, consultation is used to prioritize and sequence treatment. More technology in one appointment is not automatically a better plan.',
+    shorthand: 'Prioritize and sequence',
+    text: 'When texture, pigment, redness, collagen loss, and laxity overlap, consultation is used to prioritize and sequence treatment rather than combining every modality in one visit.',
     links: [consultation],
   },
 ];
@@ -244,7 +244,7 @@ export const INMODE_LANDING_CONTENT = {
     metaTitle: 'InMode OptimasMAX Treatments | House of Rose Aesthetics',
     metaDescription: 'Compare Morpheus8, Lumecca Peak IPL, and Forma treatments at House of Rose Aesthetics in Punta Gorda, Florida.',
     eyebrow: 'Advanced InMode treatments · Punta Gorda',
-    title: 'One platform. Three different jobs for your skin.',
+    title: 'One InMode platform, three treatments for the face and neck.',
     dek: 'House of Rose uses the InMode OptimasMAX platform for three distinct facial treatment paths: Morpheus8 for fractional remodeling, Lumecca Peak IPL for visible color, and Forma for non-invasive radiofrequency.',
     heroImage: getHeroBanner('/services/inmode/'),
     heroNote: 'Face, lower face, jawline, and neck are the focus of this treatment collection.',
@@ -320,7 +320,7 @@ export const INMODE_LANDING_CONTENT = {
     concerns: ['Fine lines and wrinkles', 'Rough or uneven texture', 'Eligible acne scarring', 'Enlarged-looking pores', 'Crepey skin', 'Lower-face laxity', 'Jawline skin quality', 'Neck aging', 'Progressive collagen loss'],
     comparison: {
       eyebrow: 'Morpheus8 vs. traditional microneedling',
-      title: 'The needles are only half of the distinction.',
+      title: 'Microneedling alone vs. microneedling with radiofrequency.',
       intro: 'Both create controlled micro-injury. Morpheus8 adds depth-selectable radiofrequency, so it belongs in a different treatment conversation than a more superficial microneedling plan.',
       columns: [
         { title: 'Traditional microneedling', subtitle: 'Mechanical micro-injury', points: ['Primarily mechanical collagen induction', 'Typically a more superficial treatment strategy', 'No radiofrequency energy delivered through the needles'], href: '/services/microneedling/' },
@@ -361,7 +361,7 @@ export const INMODE_LANDING_CONTENT = {
     },
     approach: {
       eyebrow: 'Why Morpheus8 at House of Rose',
-      title: 'The device is standardized. The plan should not be.',
+      title: 'Settings are chosen per client, not applied the same way for everyone.',
       paragraphs: [
         'Morpheus8 is an operator-dependent medical procedure. The useful distinction is not simply owning the platform; it is assessing anatomy, choosing an appropriate depth and energy strategy, documenting baseline skin, and planning recovery before the first pulse.',
         'House of Rose uses consultation to decide whether Morpheus8 is appropriate, whether a less intensive option makes more sense, and whether pigment or redness calls for a different modality. The goal is measured, natural-looking improvement without treating every concern as a reason to increase intensity.',
@@ -399,7 +399,7 @@ export const INMODE_LANDING_CONTENT = {
     metaTitle: 'Lumecca Peak IPL Photofacial | House of Rose Aesthetics',
     metaDescription: 'Lumecca Peak IPL in Punta Gorda for visible sun damage, brown spots, redness, superficial vessels, and uneven facial tone.',
     eyebrow: 'Lumecca Peak IPL · Punta Gorda',
-    title: 'Treat the color that changes the whole complexion.',
+    title: 'Intense pulsed light for visible pigment and redness.',
     dek: 'Lumecca Peak uses intense pulsed light to address visible brown pigment, photodamage, redness, and superficial vascular discoloration. No needles, and a completely different job from Morpheus8 or Forma.',
     heroImage: getHeroBanner('/services/lumecca-peak-ipl/'),
     heroNote: 'Complexion-focused · Face and neck treatment planning',
@@ -452,7 +452,7 @@ export const INMODE_LANDING_CONTENT = {
     },
     experience: {
       eyebrow: 'The treatment experience',
-      title: 'Fast pulses, bright flashes, and a sun-aware plan.',
+      title: 'What to expect during and after treatment.',
       intro: 'IPL planning begins before treatment day. Recent tanning or heavy sun exposure can change candidacy and raise the risk of an unwanted pigment response.',
       items: [
         { question: 'What does Lumecca Peak feel like?', answer: 'Each pulse creates a bright flash and a brief snapping or warm sensation. Sensation varies by area and settings.' },
@@ -465,7 +465,7 @@ export const INMODE_LANDING_CONTENT = {
     },
     approach: {
       eyebrow: 'Why consultation matters',
-      title: 'Not every brown spot is the same target.',
+      title: 'Brown spots and redness can come from different causes.',
       paragraphs: [
         'Visible pigment can come from different sources, depths, and histories. Redness can also have more than one cause. IPL should begin with a skin and sun-exposure review, not a promise that every mark will respond the same way.',
         'House of Rose uses the consultation to decide whether the concern is appropriate for Lumecca Peak, how to plan around sun exposure, and whether a texture or firmness concern belongs with Morpheus8 or Forma instead.',
@@ -513,7 +513,7 @@ export const INMODE_LANDING_CONTENT = {
     ],
     opening: {
       eyebrow: 'How Forma works',
-      title: 'The handpiece keeps moving. The temperature does not go unchecked.',
+      title: 'Continuous movement, continuously monitored temperature.',
       paragraphs: [
         'Forma’s smooth electrodes deliver bipolar radiofrequency through the skin surface as the handpiece moves across the planned area. The treatment is non-invasive and does not create microneedle channels.',
         'Temperature is the point of control. Built-in thermistors continuously read the skin and automatically adjust RF delivery as the selected endpoint is approached. That feedback loop supports sustained, controlled heating instead of relying on a fixed burst without surface monitoring.',
@@ -535,7 +535,7 @@ export const INMODE_LANDING_CONTENT = {
     concerns: ['Mild facial laxity', 'Loss of firmness', 'Early visible aging', 'Smoother-looking skin', 'Facial contour appearance', 'Collagen support', 'Ongoing skin maintenance', 'A non-invasive treatment preference'],
     comparison: {
       eyebrow: 'Forma vs. Morpheus8',
-      title: 'Same energy family. Different intensity and delivery.',
+      title: 'Both use radiofrequency. The intensity and delivery method differ.',
       intro: 'Both use radiofrequency, but the resemblance ends there. Forma stays on the surface with smooth electrodes; Morpheus8 delivers fractional RF through microneedles at selected depths.',
       columns: [
         { title: 'Forma', subtitle: 'Non-invasive RF', points: ['No needles', 'Continuous surface-temperature monitoring', 'Surface-delivered RF', 'Maintenance and mild-to-moderate concern strategy'] },
@@ -544,14 +544,14 @@ export const INMODE_LANDING_CONTENT = {
     },
     results: {
       eyebrow: 'Facial result examples',
-      title: 'Subtle change deserves a full-size comparison.',
+      title: 'View the full-size before-and-after.',
       intro: 'These manufacturer examples show the lower face and neck. They are not House of Rose client results, and individual results vary.',
       images: [formaFrontResult],
       disclaimer: 'Individual results vary. Treatment plan, skin response, lighting, angle, and timing affect visible change.',
     },
     timeline: {
       eyebrow: 'How Forma fits over time',
-      title: 'Immediate warmth. Progressive skin-quality work.',
+      title: 'Warmth during treatment, gradual results afterward.',
       intro: 'Forma is non-invasive, but visible change can still be gradual. The number and spacing of sessions should come from the plan, not from a universal package formula.',
       steps: [
         { label: 'During treatment', title: 'Controlled, monitored warmth', text: 'The handpiece moves continuously while the system monitors surface temperature and adjusts RF delivery.' },
@@ -575,10 +575,10 @@ export const INMODE_LANDING_CONTENT = {
     },
     approach: {
       eyebrow: 'Why Forma at House of Rose',
-      title: 'Convenience is useful only when the treatment matches the concern.',
+      title: 'Forma suits mild laxity and maintenance.',
       paragraphs: [
-        'A non-invasive option is not the answer to every degree of laxity. House of Rose begins with the amount and location of change you are noticing, then distinguishes a Forma maintenance plan from the more intensive fractional work Morpheus8 can provide.',
-        'The same consultation can identify when visible pigment or redness belongs with Lumecca Peak instead. The three technologies are complementary because they do different jobs—not because every client needs all three.',
+        'A non-invasive option is not the answer to every degree of laxity. House of Rose begins with the amount and location of change, then distinguishes a Forma maintenance plan from the more intensive fractional work Morpheus8 can provide.',
+        'The same consultation can identify when visible pigment or redness belongs with Lumecca Peak instead, or when more significant concerns call for Morpheus8. The three technologies address different concerns, and not every client needs all three.',
       ],
       points: ['Concern matched to treatment intensity', 'Face and neck areas planned deliberately', 'Temperature-controlled delivery', 'Clear escalation path to Morpheus8 when appropriate'],
     },
