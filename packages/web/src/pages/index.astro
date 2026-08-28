@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { BUSINESS_URLS, LOCAL_BUSINESS } from '@/lib/structuredData';
-import Hero from '@/components/Hero.astro';
-import { getHeroBanner } from '@/lib/heroBanners';
+import SkinAnalysisHero from '@/components/home/SkinAnalysisHero.astro';
 
 const phoneDisplay = '(941) 400-0165';
 const phoneHref = `tel:${LOCAL_BUSINESS.telephone}`;
@@ -56,29 +55,21 @@ const treatmentCategories = [
     cta: 'See how skin analysis works',
   },
 ] as const;
-const heroBanner = getHeroBanner('/');
-
 ---
 
 <BaseLayout
   title="House of Rose | Medical Aesthetics in Punta Gorda"
   description="Explore skin treatments, injectables, facials, body services, IV hydration, and GLP-1 weight management at House of Rose in Punta Gorda."
-  preloadImage={heroBanner.src}
+  preloadImage="/images/hero/treatment-scan-poster.webp"
   preloadImageSizes="100vw"
 >
   <div>
-    <Hero
+    <SkinAnalysisHero
       title={'A medical aesthetics practice serving\nPunta Gorda and Southwest Florida.'}
-      kicker="Medical Aesthetics Practice · Punta Gorda"
-      description="House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice."
-      backgroundImage={heroBanner.src}
-      backgroundWidth={898}
-      backgroundHeight={576}
-      backgroundPosition={heroBanner.position}
-      imageAlt={heroBanner.alt}
-      showCTA={true}
-      ctaPrimary={{ text: 'Start a conversation', href: '/contact/' }}
-      ctaSecondary={{ text: 'Explore services', href: '/services/' }}
+      description={'House of Rose offers skin care, injectables, IV hydration, weight management, waxing, and makeup in one Punta Gorda practice.'}
+      location="Punta Gorda, Florida"
+      primaryCta="Start a conversation"
+      secondaryCta="Explore services"
     />
 
     <section class="bg-breath px-6 py-[clamp(72px,9vw,120px)]">

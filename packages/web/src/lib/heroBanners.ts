@@ -29,7 +29,6 @@ const banner = (
  * accurate photography where the image itself is useful evidence.
  */
 export const HERO_BANNERS = {
-  '/': banner('hr-br-7.webp', 898, 576),
   '/about/': banner('hr-br-6.webp', 912, 610),
   '/about/hra/': banner('hr-br-4.webp', 924, 610),
   '/areas/': banner('hr-br-6.webp', 912, 610),
