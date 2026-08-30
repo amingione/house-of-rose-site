@@ -31,18 +31,19 @@ not establish a provider for GlowTox Facial or the five shared facial appointmen
 | Service | Duration | Price | Booking option |
 |---|---|---|---|
 | Glo2Facial \| Oxygen Infusion | 1 hr | **$225** | Online |
-| Procell Therapies — Consultation | 1 hr | $50 | Online |
+| Procell Therapies — Consultation | 1 hr | $0 | Online |
 | Procell Therapies — MD | 55 min | **$400** | Online |
 | Procell Therapies — Pro | 55 min | **$300** | Online |
 | GlowTox Facial | 1 hr | **$475** | Online |
+| PRF Microneedling — Consultation | 1 hr | **$0** | Online _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. Canonical website route: `/services/prf/`. ⚠️ 2026-08-11: prices are NEVER displayed on the website — pricing-confidentiality decision, reaffirmed by Amber; the page directs to consultation and this figure stays internal.)_ |
 | PRF Microneedling — Consultation | 1 hr | **$595** | Online _(✅ Amber confirmed 2026-08-09: this is the topical PRF + microneedling service — Amber's lane, not Diana's injectable. Canonical website route: `/services/prf/`. ⚠️ 2026-08-11: prices are NEVER displayed on the website — pricing-confidentiality decision, reaffirmed by Amber; the page directs to consultation and this figure stays internal.)_ |
-| Dermaplaning — Facial (standalone) | 50 min | $135 | Online |
+| Dermaplaning — Facial | 50 min | $135 | Online |
 | Dermaplaning — Add-On | 25 min | $45 | Online |
 | CO2 Lift Carboxy — Facial (standalone) | 1 hr | $175 | Online |
 | CO2 Lift Carboxy — Add-On | 30 min | $100 | Staff-added only (booking OFF by design) |
 | Signature Facial | 45 min | $120 | Online |
 | Skin Reset Facial | 50 min | $140 | Online |
-| Sculpt & Lift Facial | 1 hr | $180 | No |
+
 | Radiance & Renewal Facial | 1 hr 15 min | $200 | Online |
 | Mommy & Me Facial | 1 hr | $150 | Online |
 

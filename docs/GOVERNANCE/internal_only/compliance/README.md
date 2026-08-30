@@ -11,15 +11,11 @@ July 27, 2026 (commit `3d18582`). Do not cite them, claim to have reviewed them,
 legal conclusions from memory. Obtain current approved disclosure language and Florida healthcare
 counsel review before publishing a free, discounted, or credited healthcare-service offer.
 
-| File | Read it when |
-|---|---|
-| [`GOOGLE-ADS-COMPLIANCE.md`](GOOGLE-ADS-COMPLIANCE.md) | Google Ads healthcare copy, targeting, attribution, and platform settings. |
-| [`AD-COMPLIANCE-RUNBOOK.md`](AD-COMPLIANCE-RUNBOOK.md) | Before launching, while running, or when auditing anything paid. Pre-launch gate, platform lockdown, retention, reviews. |
-| [`grasshopper-toll-free-guidelines.md`](grasshopper-toll-free-guidelines.md) | Toll-free SMS carrier registration. SMS is not enabled while Grasshopper verification is pending. |
+ [`grasshopper-toll-free-guidelines.md`](grasshopper-toll-free-guidelines.md) | Toll-free SMS carrier registration. SMS is not enabled while Grasshopper verification is pending. |
 
 ## The four things most likely to be got wrong
 
-1. **Do not publish a free, discounted, or credited healthcare-service offer without current approved
+1. **Do not publish a free, discounted, or credited service offer without current approved
    disclosure language and counsel review.** Never improvise or reconstruct statutory wording.
 2. **"Aesthetic Injector" is a job title, not a credential.** § 456.072(1)(t) requires the license type —
    MD, DO, APRN, RN — wherever a practitioner is named in a health care advertisement.
