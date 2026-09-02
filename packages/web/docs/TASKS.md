@@ -11,6 +11,7 @@
 - [ ] **[Research] Keyword + local-comp research for the next clusters** - parallel Ahrefs agents for facials / wellness / lashes / makeup / waxing (add Semrush once units are restored).
 - [ ] **[Schema] Structured-data verification pass** - validate Service, FAQPage, LocalBusiness, BreadcrumbList, Article JSON-LD on every new page type.
 - [ ] **[QA] Crawl all new URLs for health** - 200 status, trailing-slash + canonical, meta present, no orphans, no leftover prices or provider-lane language.
+  - [x] trailing-slash + canonical verified (2026-08-30) — full `packages/web/src/` audit found zero internal links missing a trailing slash (nav, footer, CTAs, JSON-LD/breadcrumb builders, sitemap/llms feeds, `netlify.toml`); cross-checked against live GSC data — every non-slash duplicate URL sampled (dark-circles, glo2facial, prf, back-treatment, biorepeel-body, wellness) correctly 301s to its trailing-slash canonical, confirmed live via `curl`. Remaining sub-checks (200 status sweep, meta present, no orphans, no leftover prices/provider-lane language) still open.
 - [ ] **[Ops] Submit updated sitemap + request indexing in Google Search Console** - for all new /compare, /areas, /cost, /concerns pages.
   - [ ] add these services to sanity
 
