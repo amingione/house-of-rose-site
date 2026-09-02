@@ -20,6 +20,7 @@ import {
   type SiteSettings,
 } from '@/lib/queries';
 import { PUBLIC_SERVICES } from '@/lib/serviceCatalog';
+import { IV_DRIPS, ivDripPath } from '@/lib/ivDripContent';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { getServiceCardSummary } from '@/lib/serviceCardContent';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
@@ -119,6 +120,12 @@ export const GET: APIRoute = async ({ site }) => {
       lines.push(`URL: ${base}/services/${s.slug}/`);
       if (s.collection) lines.push(`Collection: ${s.collection.title}`);
       if (cardSummary) lines.push(`Summary: ${cardSummary}`);
+      if (s.slug === 'iv-hydration-therapy') {
+        lines.push(`IV bags (one page each):`);
+        for (const drip of IV_DRIPS) {
+          lines.push(`- ${drip.name} (${drip.durationMinutes} min) — ${base}${ivDripPath(drip.slug)} — ${drip.tagline} Ingredients: ${drip.ingredients.map((i) => i.name).join(', ')}.`);
+        }
+      }
 
       lines.push(``);
     }

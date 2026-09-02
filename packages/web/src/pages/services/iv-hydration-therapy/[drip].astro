@@ -1,0 +1,82 @@
+---
+/**
+ * /services/iv-hydration-therapy/<drip>/ — one page per House of Rose IV bag.
+ * The hub at /services/iv-hydration-therapy/ is still rendered by services/[slug].astro.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SchemaMarkup from '@/components/SchemaMarkup.astro';
+import IvDripPage from '@/components/treatment/IvDripPage.astro';
+import { breadcrumbList, faqPage, service as serviceJsonLd } from '@/lib/structuredData';
+import { medicalProcedure } from '@/lib/structuredData.treatment';
+import { IV_LANDING_HERO_IMAGE } from '@/lib/ivHydrationLanding';
+import { IV_DRIPS, IV_DRIP_BASE_PATH, getIvDrip } from '@/lib/ivDripContent';
+
+export function getStaticPaths() {
+  return IV_DRIPS.map(({ slug }) => ({ params: { drip: slug } }));
+}
+
+const { drip: dripSlug } = Astro.params;
+const drip = dripSlug ? getIvDrip(dripSlug) : undefined;
+if (!drip) {
+  throw new Error(`[services/iv-hydration-therapy/[drip]] unknown IV drip "${dripSlug}"`);
+}
+
+const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
+const canonicalURL = new URL(Astro.url.pathname, site);
+const hubURL = new URL(`${IV_DRIP_BASE_PATH}/`, site).toString();
+const socialImage = new URL(IV_LANDING_HERO_IMAGE, site).toString();
+const heroAlt = `The IV hydration suite at House of Rose Aesthetics where the ${drip.name} is provided`;
+
+const serviceSchema = serviceJsonLd(
+  {
+    name: drip.name,
+    description: drip.metaDescription,
+    url: canonicalURL.toString(),
+    image: socialImage,
+    serviceType: 'IV Hydration Therapy',
+  },
+  site,
+);
+const breadcrumbSchema = breadcrumbList([
+  { name: 'Home', item: site },
+  { name: 'Services', item: new URL('/services/', site).toString() },
+  { name: 'IV Hydration Therapy', item: hubURL },
+  { name: drip.name, item: canonicalURL.toString() },
+]);
+const procedureSchema = medicalProcedure({
+  name: drip.name,
+  description: drip.metaDescription,
+  url: canonicalURL.toString(),
+  image: socialImage,
+  procedureType: 'PercutaneousProcedure',
+});
+const faqSchema = faqPage(drip.faqs);
+---
+
+<BaseLayout
+  title={drip.metaTitle}
+  description={drip.metaDescription}
+  image={socialImage}
+  imageAlt={heroAlt}
+  imageWidth={1400}
+  imageHeight={875}
+  preloadImage={IV_LANDING_HERO_IMAGE}
+  preloadImageSizes="(max-width: 1023px) 100vw, 47vw"
+  structuredPageMainEntityId={`${canonicalURL.toString()}#service`}
+>
+  <SchemaMarkup item={serviceSchema} slot="head" />
+  <SchemaMarkup item={breadcrumbSchema} slot="head" />
+  <SchemaMarkup item={procedureSchema} slot="head" />
+  {faqSchema && <SchemaMarkup item={faqSchema} slot="head" />}
+  <script
+    slot="head"
+    is:inline
+    set:html={`window.fbq && fbq('track', 'ViewContent', ${JSON.stringify({
+      content_name: drip.name,
+      content_category: 'service',
+      content_ids: [`iv-hydration-therapy/${drip.slug}`],
+      content_type: 'product',
+    })});`}
+  />
+  <IvDripPage drip={drip} />
+</BaseLayout>

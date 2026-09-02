@@ -1,0 +1,85 @@
+---
+// Shared noir palette + button/eyebrow primitives for every `.iv-page` surface
+// (the IV hub and each per-drip page). Keep in one place so the two never drift.
+---
+
+<style is:global>
+  html:has(.iv-page) {
+    scroll-behavior: smooth;
+  }
+
+  .iv-page {
+    --iv-noir: #1c1e22;
+    --iv-slate: #3a3f47;
+    --iv-linen: #c8bba8;
+    --iv-brass: #8c6f3f;
+  }
+
+  .iv-page .iv-eyebrow {
+    color: var(--iv-linen);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .iv-page .iv-button-primary,
+  .iv-page .iv-button-secondary {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    min-height: 50px;
+    padding: 14px 22px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+
+  .iv-page .iv-button-primary {
+    border: 1px solid #f1ede5;
+    background: #f1ede5;
+    color: var(--iv-noir);
+  }
+
+  .iv-page .iv-button-primary:hover,
+  .iv-page .iv-button-primary:focus-visible {
+    border-color: #c8bba8;
+    background: #c8bba8;
+  }
+
+  .iv-page .iv-button-secondary {
+    border: 1px solid rgba(241, 237, 229, 0.34);
+    color: #f1ede5;
+  }
+
+  .iv-page .iv-button-secondary:hover,
+  .iv-page .iv-button-secondary:focus-visible {
+    border-color: #f1ede5;
+    background: rgba(241, 237, 229, 0.06);
+  }
+
+  .iv-page a:focus-visible,
+  .iv-page summary:focus-visible {
+    outline: 2px solid #e7d6a8;
+    outline-offset: 4px;
+  }
+
+  .iv-page details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .iv-page *,
+    .iv-page *::before,
+    .iv-page *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+</style>

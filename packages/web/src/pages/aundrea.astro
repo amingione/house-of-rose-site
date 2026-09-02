@@ -13,6 +13,7 @@
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import KlaviyoOnsite from '@/components/KlaviyoOnsite.astro';
 import { personProfile } from '@/lib/structuredData';
+import { EVENTS_SITE } from '@/lib/publicSiteFacts';
 
 const siteURL = Astro.site ?? new URL('https://houseofrosefl.com/');
 const canonicalURL = new URL('/aundrea/', siteURL).toString();
@@ -288,6 +289,7 @@ const personLd = personProfile({
 
       <div class="actions">
         <a class="save" id="saveBtn" href="/aundrea.vcf">Save Contact</a>
+        <a class="book" href={EVENTS_SITE.url} target="_blank" rel="noopener">Explore House of Rose Events</a>
         <a class="book" href="/about/providers/aundrea/">View Full Profile</a>
         <a class="book" href={`tel:${PHONE_E164}`}>Call House of Rose</a>
       </div>

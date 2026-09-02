@@ -20,6 +20,7 @@ import {
   type PublicProviderProfile,
 } from '@/lib/queries';
 import { PUBLIC_SITEMAP_SERVICES } from '@/lib/serviceCatalog';
+import { IV_DRIPS, ivDripPath } from '@/lib/ivDripContent';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import { filterReviewedPublicComparisons } from '@/lib/publicComparisonContent';
@@ -127,12 +128,20 @@ export const GET: APIRoute = async ({ site }) => {
     changefreq: 'monthly',
   }));
 
+  // One page per House of Rose IV bag, nested under the IV hub.
+  const ivDripPages = IV_DRIPS.map((drip) => ({
+    loc: `${baseUrl}${ivDripPath(drip.slug)}`,
+    priority: '0.7',
+    changefreq: 'monthly',
+  }));
+
   // Keep the XML sitemap focused on high-value hubs and editorial pages.
   // Product detail pages are intentionally omitted so the catalog does not
   // crowd out the service architecture when the shop is enabled.
   const allPages: SitemapPage[] = [
     ...staticPages,
     ...servicePages,
+    ...ivDripPages,
     ...concernPages,
     ...packagePages,
     ...blogPages,

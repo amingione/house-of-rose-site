@@ -8,7 +8,7 @@ import {
 } from './_lib/measurement-receipt';
 
 const THANK_YOU_PATH = '/thank-you/';
-const SMS_DISCLOSURE_VERSION = 'grasshopper-toll-free-2026-07-26';
+const SMS_DISCLOSURE_VERSION = 'local-line-2026-09-02';
 const SMS_TERMS_URL = 'https://houseofrosefl.com/privacy-policy/';
 
 type SubmissionType = 'contact' | 'consultation' | 'suiteRental' | 'skinAnalysis';

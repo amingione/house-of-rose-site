@@ -56,7 +56,7 @@ const RULES = [
   { label: 'Dead botanical name', re: /Gilded Lily|Porcelain Petal|Camellia Peel|Lumi[eè]re|Clarity Session/i },
   { label: 'Banned positioning "day spa"', re: /day spa/i },
   { label: 'Incorrect visit policy', re: /appointment[- ]only|walk-ins? (?:are )?not (?:offered|accepted)|no walk-ins?/i },
-  { label: 'Unavailable SMS CTA (SMS verification is pending)', re: /call\s*(?:or|\/)\s*text|sms:\+?18449417673/i },
+  { label: 'Text CTA not yet approved for public copy (texting works from the office line; Amber decides when to promote it)', re: /call\s*(?:or|\/)\s*text|sms:\+?18449417673/i },
   { label: 'Retired GlossGenius host (use houseofrose.glossgenius.com)', re: /houseofrosefl\.glossgenius\.com/i },
   { label: 'Old Instagram profile', re: /instagram\.com\/houseofrosefl\/?|@houseofrosefl(?!\.com)\b/i },
   { label: 'Old Facebook profile', re: /facebook\.com\/(?:people\/)?House-Of-Rose-Aesthetics/i },

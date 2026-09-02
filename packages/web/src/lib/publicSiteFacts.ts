@@ -1,5 +1,12 @@
 import type { SiteSettings } from './queries';
 
+export const EVENTS_SITE = {
+  name: 'House of Rose Events',
+  url: 'https://events.houseofrosefl.com/',
+  bridalUrl: 'https://events.houseofrosefl.com/bridal/',
+  privateEventsUrl: 'https://events.houseofrosefl.com/private-events/',
+} as const;
+
 const FALLBACK_SITE_FACTS = {
   siteName: 'House of Rose Aesthetics',
   phone: '(941) 400-0165',

@@ -5,6 +5,7 @@ import ServiceSectionNav from '@/components/service-landing/ServiceSectionNav.as
 import ServiceIntro from '@/components/service-landing/ServiceIntro.astro';
 import BenefitsGrid from '@/components/service-landing/BenefitsGrid.astro';
 import TreatmentOptions from '@/components/service-landing/TreatmentOptions.astro';
+import IvDecisionGuide from '@/components/service-landing/IvDecisionGuide.astro';
 import PersonalizedIV from '@/components/service-landing/PersonalizedIV.astro';
 import TreatmentProcess from '@/components/service-landing/TreatmentProcess.astro';
 import PhilosophySection from '@/components/service-landing/PhilosophySection.astro';
@@ -15,6 +16,7 @@ import ServiceTestimonials from '@/components/service-landing/ServiceTestimonial
 import LocalSEOSection from '@/components/service-landing/LocalSEOSection.astro';
 import ServiceCTA from '@/components/service-landing/ServiceCTA.astro';
 import MobileServiceCTA from '@/components/service-landing/MobileServiceCTA.astro';
+import IvPageStyles from '@/components/service-landing/IvPageStyles.astro';
 import {
   IV_LANDING_FAQS,
   IV_LANDING_HERO_IMAGE,
@@ -38,12 +40,13 @@ import {
     heading="More than a bag of fluids."
     paragraphs={[
       'An IV is a route of administration, not a promise. Fluid is delivered through a vein. What matters next is the current formulation, the person receiving it, and whether the appointment is appropriate.',
-      'House of Rose offers six named IV appointments. You do not need to interpret those names as a diagnosis or choose ingredients on your own. Diana Morrison, RN reviews relevant health information and the current option before an infusion proceeds.',
+      'House of Rose offers six IV bags, each built for a different reason to walk in, and each with its own page explaining what is in it and who it suits. You do not need to arrive knowing which one to book. Diana Morrison, RN reviews your health history and the option you are considering before an infusion proceeds.',
       'It is one part of a broader practice conversation about aesthetics and wellness—not a substitute for medical care and not a universal answer.',
     ]}
   />
   <BenefitsGrid items={IV_LANDING_POINTS} />
   <TreatmentOptions options={IV_LANDING_OPTIONS} />
+  <IvDecisionGuide />
   <PersonalizedIV />
   <TreatmentProcess steps={IV_LANDING_STEPS} />
   <PhilosophySection />
@@ -67,84 +70,4 @@ import {
   <ServiceCTA />
   <MobileServiceCTA />
 </div>
-
-<style is:global>
-  html:has(.iv-page) {
-    scroll-behavior: smooth;
-  }
-
-  .iv-page {
-    --iv-noir: #1c1e22;
-    --iv-slate: #3a3f47;
-    --iv-linen: #c8bba8;
-    --iv-brass: #8c6f3f;
-  }
-
-  .iv-page .iv-eyebrow {
-    color: var(--iv-linen);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    line-height: 1.5;
-    text-transform: uppercase;
-  }
-
-  .iv-page .iv-button-primary,
-  .iv-page .iv-button-secondary {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    min-height: 50px;
-    padding: 14px 22px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    line-height: 1.2;
-    text-transform: uppercase;
-    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
-  }
-
-  .iv-page .iv-button-primary {
-    border: 1px solid #f1ede5;
-    background: #f1ede5;
-    color: var(--iv-noir);
-  }
-
-  .iv-page .iv-button-primary:hover,
-  .iv-page .iv-button-primary:focus-visible {
-    border-color: #c8bba8;
-    background: #c8bba8;
-  }
-
-  .iv-page .iv-button-secondary {
-    border: 1px solid rgba(241, 237, 229, 0.34);
-    color: #f1ede5;
-  }
-
-  .iv-page .iv-button-secondary:hover,
-  .iv-page .iv-button-secondary:focus-visible {
-    border-color: #f1ede5;
-    background: rgba(241, 237, 229, 0.06);
-  }
-
-  .iv-page a:focus-visible,
-  .iv-page summary:focus-visible {
-    outline: 2px solid #e7d6a8;
-    outline-offset: 4px;
-  }
-
-  .iv-page details > summary::-webkit-details-marker {
-    display: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .iv-page *,
-    .iv-page *::before,
-    .iv-page *::after {
-      scroll-behavior: auto !important;
-      transition-duration: 0.01ms !important;
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-    }
-  }
-</style>
+<IvPageStyles />

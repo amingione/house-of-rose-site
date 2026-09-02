@@ -10,6 +10,7 @@ import {
 } from '@/lib/aboutFallbacks';
 import { breadcrumbList, personProfile } from '@/lib/structuredData';
 import { sbFieldPath, sbFieldPathParts, sbObjectId } from '@/lib/visualEditing';
+import { EVENTS_SITE } from '@/lib/publicSiteFacts';
 
 export async function getStaticPaths() {
   const sanityProviders = await sanityFetch<PublicProviderProfile[]>(PUBLIC_PROVIDERS_QUERY);
@@ -109,11 +110,11 @@ const providerClosings: Readonly<Record<string, ProviderClosing>> = {
   },
   aundrea: {
     heading: 'Looking for bridal, event, or everyday makeup?',
-    body: 'Aundrea provides makeup for weddings, events, photo shoots, and everyday wear. Include the date and occasion when you contact House of Rose.',
+    body: 'Aundrea provides makeup for weddings, events, photo shoots, and everyday wear. For bridal, bachelorette, and private celebrations, begin with the House of Rose Events site and include the date and occasion when you ask about makeup.',
     links: [
+      { href: EVENTS_SITE.url, label: EVENTS_SITE.name },
       { href: '/services/bridal-makeup/', label: 'Bridal Makeup' },
       { href: '/services/event-makeup/', label: 'Event Makeup' },
-      { href: '/contact/', label: 'Ask about makeup' },
     ],
   },
 };

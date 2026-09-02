@@ -1,4 +1,4 @@
-import { VERIFIED_IV_MENU } from '@/lib/ivHydrationFacts';
+import { IV_DRIPS, ivDripPath } from '@/lib/ivDripContent';
 
 export interface ServiceQuickFact {
   readonly label: string;
@@ -13,6 +13,10 @@ export interface EditorialPoint {
 export interface TreatmentOption {
   readonly name: string;
   readonly duration: string;
+  /** One line: what is in the bag. */
+  readonly summary: string;
+  /** Per-drip page. */
+  readonly href: string;
 }
 
 export interface TreatmentStep {
@@ -54,8 +58,8 @@ export const IV_LANDING_POINTS = [
     text: 'Hydration IV is the 30-minute option. The other five current appointments are 45 minutes.',
   },
   {
-    title: 'Selection with context',
-    text: 'An appointment name does not establish its full formulation or whether it is appropriate for one person.',
+    title: 'Every bag, explained',
+    text: 'Each of the six IVs has its own page: what is in it, what it helps with, what the visit is like, and who should talk with the nurse first.',
   },
   {
     title: 'RN-led review',
@@ -67,9 +71,11 @@ export const IV_LANDING_POINTS = [
   },
 ] as const satisfies readonly EditorialPoint[];
 
-export const IV_LANDING_OPTIONS = VERIFIED_IV_MENU.map((item) => ({
-  name: item.name,
-  duration: `${item.durationMinutes} minutes`,
+export const IV_LANDING_OPTIONS = IV_DRIPS.map((drip) => ({
+  name: drip.name,
+  duration: `${drip.durationMinutes} minutes`,
+  summary: drip.tagline,
+  href: ivDripPath(drip.slug),
 })) satisfies readonly TreatmentOption[];
 
 export const IV_LANDING_STEPS = [
@@ -110,12 +116,12 @@ export const IV_LANDING_FAQS = [
   {
     question: 'What is in an IV hydration treatment?',
     answer:
-      'The option names do not identify a complete formulation. Contact House of Rose to confirm current ingredients or available add-ons before booking when those details affect your decision.',
+      'It depends on the bag. Hydration IV is fluid and electrolytes; Myers’ Cocktail adds vitamin C, B-complex, B12, magnesium, and calcium; Immunity adds vitamin C, zinc, B-complex, and magnesium; Recovery adds amino acids, magnesium, B-complex, and vitamin C; Beauty Glow adds glutathione, vitamin C, and biotin; Reboot pairs fluid and B vitamins with prescription anti-nausea and anti-inflammatory medication under physician protocol. Each drip page lists its ingredients in full, and add-ons can be discussed when you call.',
   },
   {
     question: 'How do I know which IV is right for me?',
     answer:
-      'You do not need to select an option on your own. Diana Morrison, RN can review the available options, relevant health information, and candidacy with you.',
+      'Start with the reason for your visit. Fluid fast: Hydration IV. Generally run-down: Myers’ Cocktail. Seasonal support: Immunity IV. Training or heat: Recovery IV. Skin, hair, and nails: Beauty Glow IV. Hangover: Reboot IV. If you are unsure, Diana Morrison, RN will walk through it with you before anything is booked.',
   },
   {
     question: 'How often can you receive IV hydration?',

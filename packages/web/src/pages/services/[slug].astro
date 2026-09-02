@@ -26,6 +26,7 @@ import {
   IV_LANDING_HERO_IMAGE_ALT,
   IV_LANDING_META_DESCRIPTION,
 } from '@/lib/ivHydrationLanding';
+import { EVENTS_SITE } from '@/lib/publicSiteFacts';
 
 export async function getStaticPaths() {
   return PUBLIC_SERVICES
@@ -45,6 +46,13 @@ if (!serviceData) {
 }
 
 const service: Service = serviceData;
+const eventsDestination = service.slug === 'bridal-makeup'
+  ? EVENTS_SITE.bridalUrl
+  : service.slug === 'event-makeup'
+    ? EVENTS_SITE.privateEventsUrl
+    : service.slug === 'everyday-makeup'
+      ? EVENTS_SITE.url
+      : undefined;
 const education = getServiceEducation(service.slug);
 const inModeContent = getInModeLandingContent(service.slug);
 const contextualServices = Array.from(
@@ -374,16 +382,27 @@ const pageDescription = factualServiceDescription;
   <!-- The website explains the treatment; GlossGenius owns appointment logistics. -->
   <section id="contact" class="bg-charcoal-light py-[clamp(56px,8vw,88px)] px-6 border-t border-gold-metal/10">
     <div class="max-w-[840px] mx-auto text-center">
-      <span class="kicker">Questions about {service.title}?</span>
+      <span class="kicker">{eventsDestination ? 'Planning makeup for an occasion?' : `Questions about ${service.title}?`}</span>
       <h2 class="font-serif text-[clamp(28px,5vw,44px)] text-ink leading-tight mb-4">
-        See whether it fits what you want to change.
+        {eventsDestination ? 'Plan the event and the makeup together.' : 'See whether it fits what you want to change.'}
       </h2>
       <p class="mx-auto max-w-[620px] text-[15px] leading-[1.75] text-muted-strong">
-        Tell us what you are noticing and what kind of change would feel worthwhile. We can help you understand whether {service.title} belongs in the conversation.
+        {eventsDestination
+          ? `Use the House of Rose Events site to explore bridal, bachelorette, and private-event planning in Punta Gorda, then contact House of Rose about Aundrea's ${service.title} availability.`
+          : `Tell us what you are noticing and what kind of change would feel worthwhile. We can help you understand whether ${service.title} belongs in the conversation.`}
       </p>
       <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:justify-center">
-        <a href="/contact/" class="btn-gold">Contact House of Rose</a>
-        <a href="/services/" class="btn-outline-gold">Explore other treatments</a>
+        {eventsDestination ? (
+          <>
+            <a href={eventsDestination} class="btn-gold">Explore House of Rose Events</a>
+            <a href="/contact/" class="btn-outline-gold">Ask about {service.title}</a>
+          </>
+        ) : (
+          <>
+            <a href="/contact/" class="btn-gold">Contact House of Rose</a>
+            <a href="/services/" class="btn-outline-gold">Explore other treatments</a>
+          </>
+        )}
       </div>
       <p class="text-muted text-[11px] tracking-[0.26em] uppercase mt-8 leading-relaxed">
         525 E Olympia Ave, Unit 9<br />Punta Gorda, FL 33950

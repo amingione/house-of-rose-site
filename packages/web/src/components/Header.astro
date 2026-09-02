@@ -4,7 +4,7 @@ import { PUBLIC_PROVIDERS_QUERY, type PublicProviderProfile } from '@/lib/querie
 import { sbFieldPath, sbObjectId } from '@/lib/visualEditing';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import { SHOP_ENABLED } from '@/lib/features';
-import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
+import { EVENTS_SITE, type PublicSiteFacts } from '@/lib/publicSiteFacts';
 
 interface Props {
   currentPath?: string;
@@ -85,6 +85,7 @@ const linkClass = (path: string) =>
     </a>
 
     <div class="absolute right-5 flex items-center gap-2 sm:right-8">
+      <a href={EVENTS_SITE.url} class="nav-events" aria-label={EVENTS_SITE.name}>Events</a>
       {SHOP_ENABLED && (
         <button data-open-cart class="cart-button" aria-label="Open cart">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -106,6 +107,7 @@ const linkClass = (path: string) =>
       <a href="/services/" class:list={['mobile-nav-link border-y border-line', isActive('/services') && 'mobile-nav-link-active']} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
       <a href="/skin-analysis/" class:list={['mobile-nav-link', isActive('/skin-analysis') && 'mobile-nav-link-active']} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
       {SHOP_ENABLED && <a href="/shop/" class:list={['mobile-nav-link', isActive('/shop') && 'mobile-nav-link-active']} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
+      <a href={EVENTS_SITE.url} class="mobile-nav-link border-t border-line">Events</a>
       <details class="mobile-about border-y border-line">
         <summary class:list={['mobile-nav-link cursor-pointer list-none', isActive('/about') && 'mobile-nav-link-active']}>
           About
@@ -328,6 +330,19 @@ const linkClass = (path: string) =>
   }
   .nav-book:hover { opacity: 0.8; }
 
+  .nav-events {
+    display: none;
+    min-height: 44px;
+    align-items: center;
+    color: var(--color-ink);
+    font-size: var(--text-kicker);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    transition: opacity var(--duration-quick) var(--ease-out-soft);
+  }
+  .nav-events:hover { opacity: 0.55; }
+
   .nav-mobile-contact {
     min-height: 44px;
     align-items: center;
@@ -413,6 +428,9 @@ const linkClass = (path: string) =>
     line-height: 1.3;
   }
   :global(html.menu-is-open) { overflow: hidden; }
+  @media (min-width: 1024px) {
+    .nav-events { display: inline-flex; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .menu-caret,
     .menu-button span { transition: none; }

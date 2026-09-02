@@ -516,15 +516,18 @@ test('permanently retired services do not appear in public output', () => {
 test('permanently retired services stay out of active authoring sources', () => {
   const retiredService = /permanent(?:[\s-]|&nbsp;){1,4}jew(?:elry|ellery|lery)/i;
   const authoringFiles = [
-    ...walkFiles(
-      path.join(REPO_ROOT, 'docs', 'mockups', 'events'),
-      (file) => file.endsWith('.html') || file.endsWith('.md'),
-    ),
+    // docs/mockups/events was removed in 8940c371; keep the walk tolerant of its absence.
+    ...(existsSync(path.join(REPO_ROOT, 'docs', 'mockups', 'events'))
+      ? walkFiles(
+          path.join(REPO_ROOT, 'docs', 'mockups', 'events'),
+          (file) => file.endsWith('.html') || file.endsWith('.md'),
+        )
+      : []),
     ...walkFiles(
       path.join(REPO_ROOT, 'packages', 'web', 'docs', 'PROVIDERS'),
       (file) => file.endsWith('.md'),
     ),
-    path.join(REPO_ROOT, 'docs', 'GOOGLE-BUSINESS-PROFILE.md'),
+    path.join(REPO_ROOT, 'docs', 'GOVERNANCE', 'GOOGLE-BUSINESS-PROFILE.md'),
     path.join(
       REPO_ROOT,
       'docs',
@@ -537,6 +540,8 @@ test('permanently retired services stay out of active authoring sources', () => 
     path.join(
       REPO_ROOT,
       'docs',
+      'GOVERNANCE',
+      'internal_only',
       'HRAaudits',
       'letaido-findings',
       'HouseOfRose_SEO_Edits.md',
@@ -1665,8 +1670,8 @@ test.skip('priority service pages retain reviewed facts instead of falling back 
     ],
     'iv-hydration-therapy': [
       'Diana Morrison, RN',
-      'each priced separately',
-      'one 30-minute base IV and 5 45-minute base IVs',
+      'Ask about current pricing when you call.',
+      'Which IV is right for you?',
     ],
     dermaplaning: [
       'fine vellus hair and accumulated dead skin cells',
@@ -1753,22 +1758,6 @@ test.skip('priority service pages retain reviewed facts instead of falling back 
     /\bMicroneedling\b/i,
     'BioRePeel must identify its Microneedling relationship.',
   );
-
-  const ivEducationHtml = readFileSync(
-    path.join(DIST_ROOT, 'services/iv-hydration-therapy/index.html'),
-    'utf8',
-  );
-  const ivEducationText = visibleText(
-    ivEducationHtml.match(
-      /<section\b[^>]*data-service-education[^>]*>([\s\S]*?)<\/section>/i,
-    )?.[1] ?? '',
-  );
-  for (const [label, pattern] of [
-    ['ingredient and add-on decision boundary', /ingredients?[\s\S]{0,140}add-ons?/i],
-    ['call-before-booking guidance', /call House of Rose[\s\S]{0,160}before booking/i],
-  ]) {
-    if (!pattern.test(ivEducationText)) failures.push(`iv-hydration-therapy: missing ${label}`);
-  }
 
   const microneedlingHtml = readFileSync(
     path.join(DIST_ROOT, 'services/microneedling/index.html'),
@@ -1960,72 +1949,6 @@ test.skip('priority service pages retain reviewed facts instead of falling back 
     failures.push('injectables-bio-fillers: publishes an unreconciled PRF Under-Eye duration');
   }
 
-  const ivHtml = readFileSync(path.join(DIST_ROOT, 'services/iv-hydration-therapy/index.html'), 'utf8');
-  const ivText = visibleText(mainHtml(ivHtml));
-  const ivCategoryOverview = ivHtml.match(
-    /<div\b[^>]*data-iv-category-overview[^>]*>([\s\S]*?)<\/div>/i,
-  )?.[1] ?? '';
-  for (const required of [
-    'Hydration IV',
-    'Immunity IV',
-    'Recovery IV',
-    'Beauty Glow IV',
-    'Reboot (Hangover Recovery) IV',
-    "Myers' Cocktail IV",
-    'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
-    'Which IV hydration options does House of Rose offer?',
-    'What does IV mean in IV hydration?',
-    'The six appointment names alone do not identify a complete formulation.',
-  ]) {
-    if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing ${JSON.stringify(required)}`);
-  }
-  for (const required of [
-    'IV means intravenous.',
-    'Intravenous means that fluid is administered through a vein.',
-    'IV drip appointments are offered as IV Hydration Therapy',
-    '6 named base options',
-    'Hydration IV is the 30-minute option.',
-    'The other 5 base options are 45-minute appointments, each priced separately.',
-  ]) {
-    if (!visibleText(ivCategoryOverview).includes(required)) {
-      failures.push(`iv-hydration-therapy category overview: missing ${JSON.stringify(required)}`);
-    }
-  }
-  // House of Rose pricing is never public (binding 2026-08-20). No dollar
-  // amount may appear anywhere in the IV category overview.
-  if (/\$\d/.test(visibleText(ivCategoryOverview))) {
-    failures.push('iv-hydration-therapy category overview: renders a dollar-amount price.');
-  }
-  for (const required of [
-    'Which IV option is 30 minutes?',
-    'How do I confirm the ingredients or available add-ons?',
-  ]) {
-    if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing practical guidance ${JSON.stringify(required)}`);
-  }
-  const ivProviderLink = mainHtml(ivHtml).match(
-    /<a\b[^>]*href="\/about\/providers\/diana\/"[^>]*>([\s\S]*?)<\/a>/i,
-  );
-  if (!ivProviderLink) {
-    failures.push('iv-hydration-therapy: missing Diana Morrison provider profile link');
-  } else {
-    const ivProviderLabel = visibleText(ivProviderLink[1]);
-    for (const term of [/\bDiana Morrison\b/i, /\bRN\b/i]) {
-      if (!term.test(ivProviderLabel)) {
-        failures.push('iv-hydration-therapy: provider link omits Diana Morrison, RN identity');
-      }
-    }
-  }
-  const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
-  if (!sitemap.includes(`<loc>${SITE_ORIGIN}/services/iv-hydration-therapy/</loc>`)) {
-    failures.push('iv-hydration-therapy: canonical route is missing from sitemap.xml');
-  }
-  if (sitemap.includes(`${SITE_ORIGIN}/services/iv-drip/`)) {
-    failures.push('iv-hydration-therapy: duplicate /services/iv-drip/ route appears in sitemap.xml');
-  }
-  for (const unsupported of ['no downtime', 'near-full-dose', 'bioavailability']) {
-    if (ivText.toLowerCase().includes(unsupported)) failures.push(`iv-hydration-therapy: contains unsupported ${JSON.stringify(unsupported)}`);
-  }
-
   const faceRealityHtml = mainHtml(readFileSync(path.join(DIST_ROOT, 'services/face-reality-acne-program/index.html'), 'utf8'));
   const faceRealityText = visibleText(faceRealityHtml);
   for (const required of [
@@ -2057,6 +1980,100 @@ test.skip('priority service pages retain reviewed facts instead of falling back 
   }
 
   assert.equal(failures.length, 0, formatFailures('Priority service education regression', failures));
+});
+
+test('IV hydration hub links every bag and each drip page stays factual, attributed, and price-free', () => {
+  const failures = [];
+  const ivHtml = readFileSync(path.join(DIST_ROOT, 'services/iv-hydration-therapy/index.html'), 'utf8');
+  const ivText = visibleText(mainHtml(ivHtml));
+  const IV_DRIPS = [
+    ['hydration-iv', 'Hydration IV', ['Sterile IV fluid', 'Electrolytes']],
+    ['immunity-iv', 'Immunity IV', ['Vitamin C (ascorbic acid)', 'Zinc', 'B-complex vitamins', 'Magnesium']],
+    ['recovery-iv', 'Recovery IV', ['Amino acid blend', 'Magnesium', 'B-complex vitamins', 'Vitamin C (ascorbic acid)']],
+    ['beauty-glow-iv', 'Beauty Glow IV', ['Glutathione', 'Vitamin C (ascorbic acid)', 'Biotin (vitamin B7)']],
+    ['reboot-iv', 'Reboot (Hangover Recovery) IV', ['B-complex vitamins', 'Ondansetron', 'Ketorolac']],
+    ['myers-cocktail-iv', "Myers' Cocktail IV", ['Vitamin C (ascorbic acid)', 'B-complex vitamins', 'Vitamin B12', 'Magnesium', 'Calcium']],
+  ];
+  for (const required of [
+    'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
+    'What is IV hydration therapy?',
+    'How do I know which IV is right for me?',
+    'Which IV is right for you?',
+    'Ask about current pricing when you call.',
+  ]) {
+    if (!ivText.includes(required)) failures.push(`iv-hydration-therapy: missing ${JSON.stringify(required)}`);
+  }
+  // The hub must name every bag and link to its page (from the option list and the decision guide).
+  for (const [dripSlug, dripName] of IV_DRIPS) {
+    if (!ivText.includes(dripName)) failures.push(`iv-hydration-therapy: missing ${JSON.stringify(dripName)}`);
+    const hrefCount = (ivHtml.match(new RegExp(`href="/services/iv-hydration-therapy/${dripSlug}/"`, 'g')) ?? []).length;
+    if (hrefCount < 2) failures.push(`iv-hydration-therapy: expected ≥2 links to /services/iv-hydration-therapy/${dripSlug}/ (found ${hrefCount})`);
+  }
+  const ivProviderLink = mainHtml(ivHtml).match(
+    /<a\b[^>]*href="\/about\/providers\/diana\/"[^>]*>([\s\S]*?)<\/a>/i,
+  );
+  if (!ivProviderLink) {
+    failures.push('iv-hydration-therapy: missing Diana Morrison provider profile link');
+  } else {
+    const ivProviderLabel = visibleText(ivProviderLink[1]);
+    for (const term of [/\bDiana Morrison\b/i, /\bRN\b/i]) {
+      if (!term.test(ivProviderLabel)) {
+        failures.push('iv-hydration-therapy: provider link omits Diana Morrison, RN identity');
+      }
+    }
+  }
+  const sitemap = readFileSync(path.join(DIST_ROOT, 'sitemap.xml'), 'utf8');
+  if (!sitemap.includes(`<loc>${SITE_ORIGIN}/services/iv-hydration-therapy/</loc>`)) {
+    failures.push('iv-hydration-therapy: canonical route is missing from sitemap.xml');
+  }
+  if (sitemap.includes(`${SITE_ORIGIN}/services/iv-drip/`)) {
+    failures.push('iv-hydration-therapy: duplicate /services/iv-drip/ route appears in sitemap.xml');
+  }
+  for (const unsupported of ['near-full-dose', 'bioavailability']) {
+    if (ivText.toLowerCase().includes(unsupported)) failures.push(`iv-hydration-therapy: contains unsupported ${JSON.stringify(unsupported)}`);
+  }
+
+  // Per-drip pages: one per bag, ingredients named, attribution present, no price.
+  // Tone and claim wording are Amber's call, not the test's.
+  const DRIP_BANNED = [/\$\d/];
+  for (const [dripSlug, dripName, ingredients] of IV_DRIPS) {
+    const dripFile = path.join(DIST_ROOT, `services/iv-hydration-therapy/${dripSlug}/index.html`);
+    if (!existsSync(dripFile)) {
+      failures.push(`iv-hydration-therapy/${dripSlug}: page was not built`);
+      continue;
+    }
+    const dripHtml = readFileSync(dripFile, 'utf8');
+    const dripMain = mainHtml(dripHtml);
+    const dripText = visibleText(dripMain);
+    for (const required of [
+      dripName,
+      'Medical Director: Joshua Shaw, MD · FL Lic. ME136232',
+      'Ask about current pricing when you call.',
+      'Compounded products are not reviewed by the FDA',
+      'not a substitute for medical care',
+      ...ingredients,
+    ]) {
+      if (!dripText.includes(required)) failures.push(`iv-hydration-therapy/${dripSlug}: missing ${JSON.stringify(required)}`);
+    }
+    for (const pattern of DRIP_BANNED) {
+      const hit = dripText.match(pattern);
+      if (hit) failures.push(`iv-hydration-therapy/${dripSlug}: contains banned ${JSON.stringify(hit[0])}`);
+    }
+    if (!dripMain.includes('href="/about/providers/diana/"')) {
+      failures.push(`iv-hydration-therapy/${dripSlug}: missing Diana Morrison provider profile link`);
+    }
+    if (!dripMain.includes('href="/services/iv-hydration-therapy/"')) {
+      failures.push(`iv-hydration-therapy/${dripSlug}: missing link back to the IV hub`);
+    }
+    if (!sitemap.includes(`<loc>${SITE_ORIGIN}/services/iv-hydration-therapy/${dripSlug}/</loc>`)) {
+      failures.push(`iv-hydration-therapy/${dripSlug}: missing from sitemap.xml`);
+    }
+    if (!dripHtml.includes('"@type":"BreadcrumbList"') || !dripHtml.includes('"@type":"FAQPage"')) {
+      failures.push(`iv-hydration-therapy/${dripSlug}: missing BreadcrumbList or FAQPage JSON-LD`);
+    }
+  }
+
+  assert.deepEqual(failures, []);
 });
 
 test.skip('service FAQs remain optional and match FAQPage schema whenever they are published', () => {

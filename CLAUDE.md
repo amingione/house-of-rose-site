@@ -165,13 +165,23 @@ copy and must not be used as evidence of Amber's taste.
   "Private" was removed alongside it because it was inaccurate.
 
 **Closed 2026-08-01 — verified against the live Google Business Profile, do not re-open:**
-- ~~GBP description conflict~~ — **false alarm.** `docs/GOOGLE-BUSINESS-PROFILE.md` §3, Creative System
+- ~~GBP description conflict~~ — **false alarm.** `docs/GOVERNANCE/GOOGLE-BUSINESS-PROFILE.md` §3, Creative System
   Book 3 §3, and the live Google description are **byte-identical (731 chars)**. An earlier note claimed
   they disagreed; the two had never actually been compared.
 - ~~Opening date June 15 vs July 9~~ — **settled: June 15, 2026**, which is what Google shows live.
   Any "July 9, 2026" reference is dead drift (already grep-banned in the drift checklist).
 - ~~Google chat not configured~~ — **not a config gap.** Google discontinued Business Profile chat
-  entirely on 2024-07-31; there is nothing to connect. See `docs/GOOGLE-BUSINESS-PROFILE.md` §2.
+  entirely on 2024-07-31; there is nothing to connect. See `docs/GOVERNANCE/GOOGLE-BUSINESS-PROFILE.md` §2.
+
+---
+
+## IV hydration: one page per bag (2026-09-02)
+Each of the six IV bags has its own public page under `/services/iv-hydration-therapy/<drip>/`,
+linked from the IV hub's option list and the "Which IV is right for you?" decision guide. Ingredient
+copy lives in `packages/web/src/lib/ivDripContent.ts` and is sourced from the practice's bag reference
+in `docs/GOVERNANCE/internal_only/services/Diana/Diana_services/ivHydration.md`. "Beauty Glow IV" is the
+real GlossGenius name and is used as-is — the retired-language list governs AI-originated copy, not
+service names Amber sets. Full map + guardrails: `packages/web/docs/IV-HYDRATION-PAGES.md`.
 
 ---
 
@@ -320,16 +330,16 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
 - **Office/main phone and canonical public NAP:** (941) 400-0165; E.164 `+19414000165`. This belongs in `siteSettings.phone`.
-- **Toll-free support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. This belongs in `siteSettings.supportPhone`. Keep it on support, advertising, carrier-required SMS disclosures, and online/order support surfaces. Do not use it as the office/main phone or primary public NAP.
+- **Toll-free support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. This belongs in `siteSettings.supportPhone`. **On the website it appears on `/support` only** (binding 2026-09-02, Amber). It is the billboard/advertising number and the support line — it is NOT for contact, appointment, aftercare, shop, checkout, policy pages, or the SMS consent disclosure; all of those use the office line. `scripts/drift-guard.mjs` and `public-integrity.test.mjs` fail the build if it leaks onto any other page. Transactional order email (`netlify/functions/_lib/email.ts`) and the ship-from label keep the support line.
 - **Email:** info@houseofrosefl.com (primary) · book@houseofrosefl.com (**live alias** → routes to primary; confirmed with Amber 2026-08-01) — _use `info@` in public NAP, GBP, schema, and footer; `book@` is valid only as the booking/`mailto:` destination (`PUBLIC_BOOKING_EMAIL`). Supersedes the earlier "`book@` was never a real address" rule — that is now **false**, do not act on it or re-remove `book@` from env files or booking links._
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed. **Pickup hours are the same** (Mon–Fri 9–5); Sat/Sun pickup not set.
 - **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · **opened June 15, 2026** _(confirmed 2026-08-01 against the live Google Business Profile — this settles the June 15 vs July 9 question; **June 15 is correct**, July 9 is dead.)_
-- **Ownership attributes (live on GBP):** Women-owned · Latino-owned. Full attribute inventory (accessibility, amenities, crowd, parking, payments) lives in `docs/GOOGLE-BUSINESS-PROFILE.md` §5 — verified accurate 2026-08-01.
+- **Ownership attributes (live on GBP):** Women-owned · Latino-owned. Full attribute inventory (accessibility, amenities, crowd, parking, payments) lives in `docs/GOVERNANCE/GOOGLE-BUSINESS-PROFILE.md` §5 — verified accurate 2026-08-01.
 - **Service area:** Punta Gorda · Port Charlotte · Charlotte Harbor · Babcock Ranch · Burnt Store Marina · Punta Gorda Isles
-- **GBP categories — 3 live, verified 2026-08-01:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`. Other categories are proposals until a new profile check and owner decision; see `docs/GOOGLE-BUSINESS-PROFILE.md`. Do not cite a five-category stack.
+- **GBP categories — 3 live, verified 2026-08-01:** Primary `Medical spa`; secondary `Facial spa`, `Skin care clinic`. Other categories are proposals until a new profile check and owner decision; see `docs/GOVERNANCE/GOOGLE-BUSINESS-PROFILE.md`. Do not cite a five-category stack.
 - **GBP services link:** https://houseofrose.glossgenius.com/services
 - **GBP primary category:** `Medical spa`. **Med-spa positioning is ON — "allow, don't lead":** "med spa / medical spa" is permitted in meta, GBP, SEO, and supporting copy where it aids discovery, and we **never deny being a med spa**. Still avoid "day spa" (undersells). **The lead prose descriptor is `Medical Aesthetics Practice`** under the current voice-reset rules — _not_ "advanced aesthetics & wellness studio", which is supporting/SEO language only.
-- **Phone SMS:** not enabled on the toll-free line while Grasshopper verification is pending. Do not invite customers to text until activation is confirmed.
+- **Phone SMS:** texts are sent from the office line `+19414000165` (Verizon; texting already works — no Twilio, no Grasshopper). The contact-form SMS consent disclosure names this number; `SMS_DISCLOSURE_VERSION` in `lead-submit.ts` is `local-line-2026-09-02` and must be bumped whenever the disclosure text changes. Copy still does not invite "call or text" until Amber decides to promote texting publicly.
 - **GBP CTA:** call; no appointment requirement. The GlossGenius URL is the GBP menu/services link, not the primary booking-button CTA.
 
 ## Providers & Team (memory — never re-ask)

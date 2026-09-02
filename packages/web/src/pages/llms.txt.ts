@@ -24,6 +24,7 @@ import {
   getPublicServiceBySlug,
 } from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
+import { IV_DRIPS, ivDripPath } from '@/lib/ivDripContent';
 import { getPublicBlogTitle, isReviewedPublicBlogSlug } from '@/lib/publicBlogContent';
 import {
   filterReviewedPublicComparisons,
@@ -103,6 +104,11 @@ export const GET: APIRoute = async ({ site }) => {
     lines.push(`## Services`, ``);
     for (const s of publicServices) {
       lines.push(`- [${s.title}](${base}/services/${s.slug}/).`);
+      if (s.slug === 'iv-hydration-therapy') {
+        for (const drip of IV_DRIPS) {
+          lines.push(`  - [${drip.name}](${base}${ivDripPath(drip.slug)}): ${drip.tagline}`);
+        }
+      }
     }
     lines.push(``);
   }

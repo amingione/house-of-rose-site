@@ -20,6 +20,7 @@ import {
   type PublicProviderProfile,
 } from '@/lib/queries';
 import { PUBLIC_SITEMAP_SERVICES, getPublicCollections } from '@/lib/serviceCatalog';
+import { IV_DRIPS, ivDripPath } from '@/lib/ivDripContent';
 import { getPublicServiceBySlug } from '@/lib/serviceCatalog';
 import { resolvePublicProviderProfiles } from '@/lib/aboutFallbacks';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
@@ -105,11 +106,16 @@ const corePages: SitemapLink[] = [
   { title: 'Rent a Suite', href: '/rent-a-room/' },
 ];
 
-const servicePages = services.map((service) => ({
-  title: service.title,
-  href: `/services/${service.slug}/`,
-  note: service.parentService?.title,
-}));
+const servicePages = services.flatMap((service) => [
+  {
+    title: service.title,
+    href: `/services/${service.slug}/`,
+    note: service.parentService?.title,
+  },
+  ...(service.slug === 'iv-hydration-therapy'
+    ? IV_DRIPS.map((drip) => ({ title: drip.name, href: ivDripPath(drip.slug), note: 'IV Hydration Therapy' }))
+    : []),
+]);
 
 const sectionData: SitemapSection[] = [
   { title: 'House of Rose', links: corePages },

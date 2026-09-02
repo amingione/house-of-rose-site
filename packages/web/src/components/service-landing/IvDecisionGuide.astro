@@ -1,0 +1,40 @@
+---
+/**
+ * "Which IV is right for me?" — goal-first routing into the six drip pages.
+ * Rendered on the IV hub. Content lives in `IV_DECISION_GUIDE`.
+ */
+import { IV_DECISION_GUIDE, getIvDripOrThrow, ivDripPath } from '@/lib/ivDripContent';
+
+const entries = IV_DECISION_GUIDE.map((entry) => ({ ...entry, drip: getIvDripOrThrow(entry.slug) }));
+---
+
+<section id="which-iv" class="scroll-mt-32 bg-[#F1EDE5] px-5 py-[clamp(84px,10vw,150px)] text-[#1C1E22] sm:px-10 lg:px-16" aria-labelledby="which-iv-title">
+  <div class="mx-auto max-w-[1320px]">
+    <div class="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+      <div>
+        <p class="text-[11px] font-medium uppercase tracking-[0.24em] text-[#6B6560]">Which IV is right for you?</p>
+        <h2 id="which-iv-title" class="mt-6 max-w-[640px] font-serif text-[clamp(44px,6.2vw,84px)] leading-[0.93] tracking-[-0.03em]">
+          Start with why you walked in.
+        </h2>
+      </div>
+      <p class="max-w-[560px] text-[16px] leading-[1.75] text-[#4B4D52] lg:justify-self-end">
+        Pick the line that sounds most like today. Each one opens the full page for that bag. If two sound right, or none do, Diana Morrison, RN sorts it out with you in about two minutes.
+      </p>
+    </div>
+
+    <ol class="mt-14 grid gap-px border border-[#1C1E22]/15 bg-[#1C1E22]/15 md:grid-cols-2 lg:mt-20 lg:grid-cols-3">
+      {entries.map((entry, index) => (
+        <li class="bg-[#F1EDE5]">
+          <a href={ivDripPath(entry.slug)} class="group flex h-full flex-col p-7 transition-colors hover:bg-[#E9E3D8] focus-visible:bg-[#E9E3D8] sm:p-9">
+            <span class="font-serif text-[15px] text-[#8C6F3F]">0{index + 1}</span>
+            <p class="mt-4 font-serif text-[clamp(24px,2.3vw,31px)] leading-[1.12] tracking-[-0.01em]">“{entry.goal}”</p>
+            <p class="mt-4 text-[15px] leading-[1.7] text-[#4B4D52]">{entry.detail}</p>
+            <p class="mt-auto pt-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1C1E22] group-hover:text-[#8C6F3F]">
+              {entry.drip.name} · {entry.drip.durationMinutes} min <span aria-hidden="true">→</span>
+            </p>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

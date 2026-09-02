@@ -11,7 +11,6 @@ July 27, 2026 (commit `3d18582`). Do not cite them, claim to have reviewed them,
 legal conclusions from memory. Obtain current approved disclosure language and Florida healthcare
 counsel review before publishing a free, discounted, or credited healthcare-service offer.
 
- [`grasshopper-toll-free-guidelines.md`](grasshopper-toll-free-guidelines.md) | Toll-free SMS carrier registration. SMS is not enabled while Grasshopper verification is pending. |
 
 ## The four things most likely to be got wrong
 

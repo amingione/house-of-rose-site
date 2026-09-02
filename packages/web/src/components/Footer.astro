@@ -1,6 +1,6 @@
 ---
 import { SHOP_ENABLED } from '@/lib/features';
-import type { PublicSiteFacts } from '@/lib/publicSiteFacts';
+import { EVENTS_SITE, type PublicSiteFacts } from '@/lib/publicSiteFacts';
 import { structuredTelephone } from '@/lib/structuredData';
 
 interface Props {
@@ -47,6 +47,7 @@ const addressLine2 = addressMatch ? `${addressMatch[2]}, ${addressMatch[3]}` : u
     <nav aria-label="Explore" class="lg:col-span-2">
       <h2 class="footer-heading">Explore</h2>
       <ul class="footer-list">
+        <li><a href={EVENTS_SITE.url}>{EVENTS_SITE.name}</a></li>
         <li><a href="/skin-analysis/">Skin analysis</a></li>
         <li><a href="/concerns/">Concerns</a></li>
         <li><a href="/compare/">Compare treatments</a></li>

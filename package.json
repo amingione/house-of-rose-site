@@ -17,7 +17,7 @@
     "verify:redirect-deployment": "node scripts/verify-netlify-redirect-deployment.mjs",
     "verify:structured-data-deployment": "node scripts/verify-structured-data-deployment.mjs",
     "verify:visibility": "node scripts/verify-visibility-plan.mjs",
-    "verify:grasshopper": "node scripts/verify-grasshopper-compliance.mjs",
+    "verify:sms": "node scripts/verify-sms-compliance.mjs",
     "indexnow": "node scripts/run-with-env.mjs node scripts/indexnow.mjs",
     "indexnow:dry": "node scripts/run-with-env.mjs node scripts/indexnow.mjs --dry",
     "content:daxxify-comparison": "node scripts/run-with-env.mjs node packages/studio/scripts/create-daxxify-botox-comparison.mjs",
