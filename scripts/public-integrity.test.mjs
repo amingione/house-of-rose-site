@@ -28,6 +28,7 @@ if (!existsSync(DIST_ROOT)) {
 
 const walkFiles = (directory, predicate) => {
   const files = [];
+  if (!existsSync(directory)) return files;
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     const absolutePath = path.join(directory, entry.name);
     if (entry.isDirectory()) files.push(...walkFiles(absolutePath, predicate));
