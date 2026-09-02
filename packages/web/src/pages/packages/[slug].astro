@@ -12,6 +12,8 @@ import {
 import { service as serviceJsonLd, breadcrumbList } from '@/lib/structuredData';
 import { FACE_REALITY_PROGRAM } from '@/lib/faceRealityEducation';
 import { getPackageServiceSlugs, getPublicServiceRefs } from '@/lib/serviceCatalog';
+import ContextualText from '@/components/ContextualText.astro';
+import { contextualizeText, serviceContextualLink } from '@/lib/contextualLinks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_TREATMENT_PACKAGE_SLUGS_QUERY);
@@ -45,6 +47,11 @@ const summary = isFaceRealityProgram
   : serviceNames
   ? `${pkg.title} includes ${serviceNames}.`
   : `${pkg.title} at House of Rose Aesthetics in Punta Gorda, Florida.`;
+const summarySegments = contextualizeText(
+  summary,
+  services.map(serviceContextualLink),
+  { currentPath: Astro.url.pathname, maxLinks: 3 },
+);
 // Temporary voice-reset overlay: keep the factual duration without rendering
 // the superseded marketing language stored on this live package.
 const timing = pkg.slug === 'glo2facial-series-of-6'
@@ -166,6 +173,9 @@ const pageDescription = isFaceRealityProgram
   {services.length > 0 && (
     <section class="bg-charcoal py-16 px-6 md:px-12 max-w-[1280px] mx-auto">
       <span class="block text-gold text-[11px] tracking-[0.3em] uppercase mb-8">Included services</span>
+      <p class="mb-8 max-w-[760px] text-[15px] leading-[1.8] text-muted">
+        <ContextualText segments={summarySegments} />
+      </p>
       <div class="space-y-px bg-gold-metal/10">
         {services.map((service, index) => (
           <div class="bg-charcoal p-7 flex gap-6" {...(service._id ? sbObjectId(service._id) : {})}>

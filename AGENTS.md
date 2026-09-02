@@ -96,6 +96,22 @@ Hard rules (inherited by every task):
 - `output: 'static'` — `getStaticPaths()` is required for dynamic routes
 - **URLs use trailing slashes** — Astro `directory` build format; inner pages live at `/path/` (e.g. `/services/`, `/services/prf/`, `/experience/`). Never write or link an inner-page URL without the trailing slash — it relies on a redirect and breaks (same issue as FAS Motorsports). Root domain is slash-optional. Canonical NAP + this rule live in `CLAUDE.md`.
 
+## Tooling — CLI, builds, and git ALWAYS go through Desktop Commander
+
+**Binding, not a preference.** Every shell command in this repo — `npm run build`, `npm run dev:web`,
+tests, `git push`, anything — runs via Desktop Commander (`start_process` / `interact_with_process`),
+never a generic sandboxed bash tool. This is Amber's standing global rule ("Always use desktop
+commander for CLI tasks"), and it is load-bearing here specifically:
+
+- Desktop Commander executes as Amber's real local user (`ambermin`) on her actual machine, with real
+  filesystem permissions and Keychain access (needed for `git push`, per the Git Push Protocol below).
+- A generic sandboxed bash tool instead operates on a *synced/mounted copy* of this repo with restricted
+  permissions. Concretely: it cannot `unlink` files under `node_modules/.vite`, which breaks
+  `astro build` with a misleading `EPERM` error that has nothing to do with the code. Don't chase that
+  error as a real bug — it means the wrong tool ran the command.
+- If a build/test/verification step is needed to confirm a change, run it through Desktop Commander, not
+  a sandbox shell — a sandbox "it built" or "it failed" is not trustworthy evidence for this repo.
+
 ## TypeScript Rules
 - Strict mode — no `any`
 - All Sanity response types are defined in `src/lib/queries.ts` alongside their queries

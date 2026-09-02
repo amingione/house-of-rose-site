@@ -1,0 +1,111 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - button "Open navigation" [ref=e6] [cursor=pointer]
+      - link "House of Rose Aesthetics home" [ref=e9] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e10]: House of Rose
+        - generic [ref=e11]: Aesthetics
+      - link "Contact" [ref=e13] [cursor=pointer]:
+        - /url: /contact/
+  - main [ref=e14]:
+    - generic [ref=e16]:
+      - paragraph [ref=e17]: "404"
+      - heading "We couldn’t find that address." [level=1] [ref=e18]
+      - paragraph [ref=e19]: It may have changed or no longer be available.
+      - generic [ref=e20]:
+        - link "View services" [ref=e21] [cursor=pointer]:
+          - /url: /services/
+        - link "Return home" [ref=e22] [cursor=pointer]:
+          - /url: /
+  - contentinfo [ref=e23]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: House of Rose
+        - paragraph [ref=e27]: Medical Aesthetics Practice
+        - generic [ref=e28]:
+          - link "Explore treatments" [ref=e29] [cursor=pointer]:
+            - /url: /services/
+          - link "Contact us" [ref=e30] [cursor=pointer]:
+            - /url: /contact/
+      - navigation "Practice" [ref=e31]:
+        - heading "Practice" [level=2] [ref=e32]
+        - list [ref=e33]:
+          - listitem [ref=e34]:
+            - link "About" [ref=e35] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=e36]:
+            - link "Providers" [ref=e37] [cursor=pointer]:
+              - /url: /about/providers/
+          - listitem [ref=e38]:
+            - link "Services" [ref=e39] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=e40]:
+            - link "Experience" [ref=e41] [cursor=pointer]:
+              - /url: /experience/
+          - listitem [ref=e42]:
+            - link "Results" [ref=e43] [cursor=pointer]:
+              - /url: /results/
+          - listitem [ref=e44]:
+            - link "FAQ" [ref=e45] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=e46]:
+            - link "Contact" [ref=e47] [cursor=pointer]:
+              - /url: /contact/
+          - listitem [ref=e48]:
+            - link "Client support" [ref=e49] [cursor=pointer]:
+              - /url: /support/
+          - listitem [ref=e50]:
+            - link "Rent a suite" [ref=e51] [cursor=pointer]:
+              - /url: /rent-a-room/
+      - navigation "Explore" [ref=e52]:
+        - heading "Explore" [level=2] [ref=e53]
+        - list [ref=e54]:
+          - listitem [ref=e55]:
+            - link "Skin analysis" [ref=e56] [cursor=pointer]:
+              - /url: /skin-analysis/
+          - listitem [ref=e57]:
+            - link "Concerns" [ref=e58] [cursor=pointer]:
+              - /url: /concerns/
+          - listitem [ref=e59]:
+            - link "Compare treatments" [ref=e60] [cursor=pointer]:
+              - /url: /compare/
+          - listitem [ref=e61]:
+            - link "Cost guides" [ref=e62] [cursor=pointer]:
+              - /url: /cost/
+          - listitem [ref=e63]:
+            - link "Areas we serve" [ref=e64] [cursor=pointer]:
+              - /url: /areas/
+          - listitem [ref=e65]:
+            - link "Journal" [ref=e66] [cursor=pointer]:
+              - /url: /blog/
+      - generic [ref=e67]:
+        - heading "Visit" [level=2] [ref=e68]
+        - generic [ref=e69]:
+          - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+          - link "(941) 400-0165" [ref=e70] [cursor=pointer]:
+            - /url: tel:+19414000165
+        - link "Directions and contact" [ref=e71] [cursor=pointer]:
+          - /url: /contact/
+    - generic [ref=e73]:
+      - paragraph [ref=e74]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+      - navigation "Legal" [ref=e75]:
+        - link "Privacy" [ref=e76] [cursor=pointer]:
+          - /url: /privacy-policy/
+        - button "Privacy choices" [ref=e77] [cursor=pointer]
+        - link "Terms" [ref=e78] [cursor=pointer]:
+          - /url: /terms-of-service/
+        - link "Sitemap" [ref=e79] [cursor=pointer]:
+          - /url: /sitemap/
+  - region "Privacy choices" [ref=e80]:
+    - generic [ref=e81]:
+      - paragraph [ref=e82]:
+        - text: We use cookies to measure site performance and advertising. You can accept, reject, or choose which types to allow.
+        - link "Privacy policy" [ref=e83] [cursor=pointer]:
+          - /url: /privacy-policy/
+      - generic [ref=e84]:
+        - button "Reject optional analytics and advertising measurement" [ref=e85] [cursor=pointer]: Reject
+        - button "Preferences" [ref=e86] [cursor=pointer]
+        - button "Accept optional analytics and advertising measurement" [ref=e87] [cursor=pointer]: Accept

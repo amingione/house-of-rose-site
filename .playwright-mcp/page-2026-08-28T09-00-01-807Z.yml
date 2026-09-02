@@ -1,0 +1,254 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to main content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - navigation "Primary navigation" [ref=f4e6]:
+        - link "Treatments" [ref=f4e7] [cursor=pointer]:
+          - /url: /services/
+        - link "Skin analysis" [ref=f4e8] [cursor=pointer]:
+          - /url: /skin-analysis/
+        - group [ref=f4e9]:
+          - generic "About" [ref=f4e10] [cursor=pointer]
+      - link "House of Rose Aesthetics home" [ref=f4e13] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f4e14]: House of Rose
+        - generic [ref=f4e15]: Aesthetics
+      - link "Get in touch" [ref=f4e17] [cursor=pointer]:
+        - /url: /contact/
+  - main [ref=f4e18]:
+    - generic [ref=f4e19]:
+      - generic [ref=f4e20]:
+        - paragraph [ref=f4e21]: Punta Gorda, Florida
+        - heading "House of Rose" [level=1] [ref=f4e22]: Houseof Rose
+        - paragraph [ref=f4e23]: Aesthetics
+        - paragraph [ref=f4e24]: A medical aesthetics practice offering advanced skin treatments, injectables, regenerative aesthetics, technology-based treatments, IV hydration, and medically guided weight management.
+        - generic [ref=f4e25]:
+          - link "Request a visit" [ref=f4e26] [cursor=pointer]:
+            - /url: https://houseofrose.glossgenius.com/services
+          - link "Read the treatments" [ref=f4e27] [cursor=pointer]:
+            - /url: /services/
+      - img "Skin imaging visualization showing two analysis views" [ref=f4e28]:
+        - generic:
+          - slider [disabled]: "50"
+        - paragraph [ref=f4e34]: House of Rose Aesthetics
+    - generic [ref=f4e36]:
+      - paragraph [ref=f4e37]: The practice
+      - generic [ref=f4e38]:
+        - heading "A more considered way to approach aesthetics." [level=2] [ref=f4e39]
+        - generic [ref=f4e40]:
+          - paragraph [ref=f4e41]:
+            - text: House of Rose brings
+            - link "skin care" [ref=f4e42] [cursor=pointer]:
+              - /url: /services/collections/facials/
+            - text: ","
+            - link "injectables" [ref=f4e43] [cursor=pointer]:
+              - /url: /services/injectables-bio-fillers/
+            - text: ", regenerative treatments,"
+            - link "advanced technology" [ref=f4e44] [cursor=pointer]:
+              - /url: /services/inmode/
+            - text: ", and"
+            - link "wellness services" [ref=f4e45] [cursor=pointer]:
+              - /url: /services/iv-hydration-therapy/
+            - text: together in one Punta Gorda practice — designed around consultation, treatment, and follow-through rather than a high-volume spa experience.
+          - paragraph [ref=f4e46]:
+            - text: Start with the
+            - link "service" [ref=f4e47] [cursor=pointer]:
+              - /url: /services/
+            - text: you already know you want, or explore the category that best matches your goals. If you would rather talk it through first, that is what a
+            - link "consultation" [ref=f4e48] [cursor=pointer]:
+              - /url: /consultation/
+            - text: is for.
+    - generic [ref=f4e49]:
+      - generic [ref=f4e51]:
+        - generic [ref=f4e52]:
+          - paragraph [ref=f4e53]: Treatments
+          - heading "Treatments that define the practice." [level=2] [ref=f4e54]
+        - link "All treatments" [ref=f4e55] [cursor=pointer]:
+          - /url: /services/
+      - list [ref=f4e56]:
+        - listitem [ref=f4e57]:
+          - link [ref=f4e58] [cursor=pointer]:
+            - /url: /services/collections/facials/
+            - img "Dermaplaning at House of Rose Aesthetics in Punta Gorda" [ref=f4e60]
+            - generic [ref=f4e61]:
+              - paragraph [ref=f4e62]: Skin
+              - heading "Skin Rejuvenation" [level=3] [ref=f4e63]
+              - paragraph [ref=f4e64]: Facials, peels, dermaplaning, microchanneling, microneedling, and advanced skin treatments selected around your skin and goals.
+              - generic [ref=f4e65]:
+                - text: Read more
+                - generic [ref=f4e66]: →
+        - listitem [ref=f4e67]:
+          - link [ref=f4e68] [cursor=pointer]:
+            - /url: /services/injectables-bio-fillers/
+            - img "An injectable consultation, mapping the treatment areas on a client’s face" [ref=f4e70]
+            - generic [ref=f4e71]:
+              - paragraph [ref=f4e72]: Injectables + PRF
+              - heading "Injectables + Regenerative Aesthetics" [level=3] [ref=f4e73]
+              - paragraph [ref=f4e74]: Neuromodulators, dermal fillers, and PRF treatments with individualized planning and appropriate provider oversight.
+              - generic [ref=f4e75]:
+                - text: Read more
+                - generic [ref=f4e76]: →
+        - listitem [ref=f4e77]:
+          - link [ref=f4e78] [cursor=pointer]:
+            - /url: /services/inmode/
+            - img "The Morpheus8 Burst radiofrequency microneedling handpiece" [ref=f4e80]
+            - generic [ref=f4e81]:
+              - paragraph [ref=f4e82]: Technology
+              - heading "Advanced Technology" [level=3] [ref=f4e83]
+              - paragraph [ref=f4e84]: Morpheus8, Lumecca Peak IPL, Forma, and other technology-based treatments for a range of face and body concerns.
+              - generic [ref=f4e85]:
+                - text: Read more
+                - generic [ref=f4e86]: →
+        - listitem [ref=f4e87]:
+          - link [ref=f4e88] [cursor=pointer]:
+            - /url: /services/iv-hydration-therapy/
+            - img "The IV hydration lounge at House of Rose Aesthetics in Punta Gorda" [ref=f4e90]
+            - generic [ref=f4e91]:
+              - paragraph [ref=f4e92]: Wellness
+              - heading "IV + Wellness" [level=3] [ref=f4e93]
+              - paragraph [ref=f4e94]: IV hydration and medically guided weight-management services with evaluation and follow-up built into the process.
+              - generic [ref=f4e95]:
+                - text: Read more
+                - generic [ref=f4e96]: →
+    - generic [ref=f4e99]:
+      - paragraph [ref=f4e100]: Advanced skin analysis
+      - heading "Better treatment planning starts with better information." [level=2] [ref=f4e101]
+      - paragraph [ref=f4e102]: Multi-spectrum skin imaging gives us an additional view of visible texture, pores, pigmentation, fine lines, and sun exposure. The images are reviewed with you as a baseline and used alongside your concerns and goals when discussing treatment options.
+      - link "Explore skin analysis" [ref=f4e103] [cursor=pointer]:
+        - /url: /skin-analysis/
+    - generic [ref=f4e105]:
+      - generic [ref=f4e106]:
+        - paragraph [ref=f4e107]: The team
+        - heading "Experience matters." [level=2] [ref=f4e108]
+        - paragraph [ref=f4e109]: House of Rose brings together medical and esthetic providers with clearly defined roles across injectables, skin treatments, IV hydration, weight management, facials, waxing, and makeup.
+        - paragraph [ref=f4e110]: "Medical Director: Joshua Shaw, MD · FL Lic. ME136232"
+        - link "Meet the House of Rose team" [ref=f4e111] [cursor=pointer]:
+          - /url: /about/providers/
+      - list [ref=f4e112]:
+        - listitem [ref=f4e113]:
+          - generic [ref=f4e114]:
+            - link "Diana Morrison, RN" [ref=f4e115] [cursor=pointer]:
+              - /url: /about/providers/diana/
+            - paragraph [ref=f4e116]: Registered Nurse · Aesthetic Injector
+          - paragraph [ref=f4e117]: Diana Morrison, RN, provides the injectable, IV hydration, and medical weight-management services at House of Rose Aesthetics.
+        - listitem [ref=f4e118]:
+          - generic [ref=f4e119]:
+            - link "Amber Mingione" [ref=f4e120] [cursor=pointer]:
+              - /url: /about/providers/amber/
+            - paragraph [ref=f4e121]: Licensed Esthetician · Medical Assistant · Certified Phlebotomist
+          - paragraph [ref=f4e122]: Amber Mingione, Licensed Esthetician, focuses on skin-surface, texture, and selected device services.
+        - listitem [ref=f4e123]:
+          - generic [ref=f4e124]:
+            - link "Brandy Case" [ref=f4e125] [cursor=pointer]:
+              - /url: /about/providers/brandy/
+            - paragraph [ref=f4e126]: Licensed Esthetician
+          - paragraph [ref=f4e127]: Brandy Case, Licensed Esthetician, provides facials, BioRePeel, and facial waxing at House of Rose Aesthetics.
+        - listitem [ref=f4e128]:
+          - generic [ref=f4e129]:
+            - link "Aundrea Pedigo" [ref=f4e130] [cursor=pointer]:
+              - /url: /about/providers/aundrea/
+            - paragraph [ref=f4e131]: Licensed Esthetician · Makeup Artist
+          - paragraph [ref=f4e132]: Aundrea Pedigo, Licensed Esthetician, provides professional makeup artistry at House of Rose Aesthetics.
+    - generic [ref=f4e133]:
+      - img "House of Rose Aesthetics storefront at 525 E Olympia Avenue in Punta Gorda" [ref=f4e135]
+      - generic [ref=f4e136]:
+        - paragraph [ref=f4e137]: Visit
+        - heading "525 E Olympia Avenue, Unit 9." [level=2] [ref=f4e138]
+        - paragraph [ref=f4e139]: Open Monday through Friday, 9 AM–5 PM. Call (941) 400-0165, or send us what you have been noticing and we will find a time.
+        - generic [ref=f4e140]:
+          - link "Request a visit" [ref=f4e141] [cursor=pointer]:
+            - /url: /contact/
+          - link "(941) 400-0165" [ref=f4e142] [cursor=pointer]:
+            - /url: tel:+19414000165
+        - link "Get directions" [ref=f4e143] [cursor=pointer]:
+          - /url: https://maps.google.com/?q=525+E+Olympia+Ave+Unit+9+Punta+Gorda+FL+33950
+  - contentinfo [ref=f4e144]:
+    - generic [ref=f4e145]:
+      - generic [ref=f4e146]:
+        - paragraph [ref=f4e147]: House of Rose
+        - paragraph [ref=f4e148]: Medical Aesthetics Practice
+        - generic [ref=f4e149]:
+          - link "Explore treatments" [ref=f4e150] [cursor=pointer]:
+            - /url: /services/
+          - link "Contact us" [ref=f4e151] [cursor=pointer]:
+            - /url: /contact/
+      - navigation "Practice" [ref=f4e152]:
+        - heading "Practice" [level=2] [ref=f4e153]
+        - list [ref=f4e154]:
+          - listitem [ref=f4e155]:
+            - link "About" [ref=f4e156] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=f4e157]:
+            - link "Providers" [ref=f4e158] [cursor=pointer]:
+              - /url: /about/providers/
+          - listitem [ref=f4e159]:
+            - link "Services" [ref=f4e160] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=f4e161]:
+            - link "Experience" [ref=f4e162] [cursor=pointer]:
+              - /url: /experience/
+          - listitem [ref=f4e163]:
+            - link "Results" [ref=f4e164] [cursor=pointer]:
+              - /url: /results/
+          - listitem [ref=f4e165]:
+            - link "FAQ" [ref=f4e166] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=f4e167]:
+            - link "Contact" [ref=f4e168] [cursor=pointer]:
+              - /url: /contact/
+          - listitem [ref=f4e169]:
+            - link "Client support" [ref=f4e170] [cursor=pointer]:
+              - /url: /support/
+          - listitem [ref=f4e171]:
+            - link "Rent a suite" [ref=f4e172] [cursor=pointer]:
+              - /url: /rent-a-room/
+      - navigation "Explore" [ref=f4e173]:
+        - heading "Explore" [level=2] [ref=f4e174]
+        - list [ref=f4e175]:
+          - listitem [ref=f4e176]:
+            - link "Skin analysis" [ref=f4e177] [cursor=pointer]:
+              - /url: /skin-analysis/
+          - listitem [ref=f4e178]:
+            - link "Concerns" [ref=f4e179] [cursor=pointer]:
+              - /url: /concerns/
+          - listitem [ref=f4e180]:
+            - link "Compare treatments" [ref=f4e181] [cursor=pointer]:
+              - /url: /compare/
+          - listitem [ref=f4e182]:
+            - link "Cost guides" [ref=f4e183] [cursor=pointer]:
+              - /url: /cost/
+          - listitem [ref=f4e184]:
+            - link "Areas we serve" [ref=f4e185] [cursor=pointer]:
+              - /url: /areas/
+          - listitem [ref=f4e186]:
+            - link "Journal" [ref=f4e187] [cursor=pointer]:
+              - /url: /blog/
+      - generic [ref=f4e188]:
+        - heading "Visit" [level=2] [ref=f4e189]
+        - generic [ref=f4e190]:
+          - text: 525 E Olympia Ave, Unit 9Punta Gorda, FL 33950
+          - link "(941) 400-0165" [ref=f4e191] [cursor=pointer]:
+            - /url: tel:+19414000165
+        - link "Directions and contact" [ref=f4e192] [cursor=pointer]:
+          - /url: /contact/
+    - generic [ref=f4e194]:
+      - paragraph [ref=f4e195]: © 2026 House of Rose Aesthetics LLC. All rights reserved.
+      - navigation "Legal" [ref=f4e196]:
+        - link "Privacy" [ref=f4e197] [cursor=pointer]:
+          - /url: /privacy-policy/
+        - button "Privacy choices" [ref=f4e198] [cursor=pointer]
+        - link "Terms" [ref=f4e199] [cursor=pointer]:
+          - /url: /terms-of-service/
+        - link "Sitemap" [ref=f4e200] [cursor=pointer]:
+          - /url: /sitemap/
+  - region "Privacy choices" [ref=f4e201]:
+    - generic [ref=f4e202]:
+      - paragraph [ref=f4e203]:
+        - text: We use cookies to measure site performance and advertising. You can accept, reject, or choose which types to allow.
+        - link "Privacy policy" [ref=f4e204] [cursor=pointer]:
+          - /url: /privacy-policy/
+      - generic [ref=f4e205]:
+        - button "Reject optional analytics and advertising measurement" [ref=f4e206] [cursor=pointer]: Reject
+        - button "Preferences" [ref=f4e207] [cursor=pointer]
+        - button "Accept optional analytics and advertising measurement" [ref=f4e208] [cursor=pointer]: Accept

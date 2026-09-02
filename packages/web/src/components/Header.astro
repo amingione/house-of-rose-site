@@ -21,103 +21,92 @@ const linkClass = (path: string) =>
   `nav-link ${isActive(path) ? 'nav-link-active' : ''}`;
 ---
 
-<header id="header" class="fixed inset-x-0 top-0 z-50 border-b border-ivory/10 bg-soft-black/95 backdrop-blur-md">
-  <div class="mx-auto flex h-20 max-w-[1440px] items-center gap-5 px-5 sm:px-8">
-    <a href="/" class="brand-link shrink-0" aria-label={`${siteFacts.siteName} home`}>
-      <img
-        src="/logos/house-of-rose-monogram/hr-logo-gold.webp"
-        alt=""
-        width="512"
-        height="520"
-        class="h-12 w-auto"
-      />
-    </a>
-
-    <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
-      <a href="/services/" class={linkClass('/services')} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
-
-      <a href="/skin-analysis/" class={linkClass('/skin-analysis')} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
-      {SHOP_ENABLED && <a href="/shop/" class={linkClass('/shop')} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
-      <details class="about-menu desktop-menu relative">
-        <summary class:list={['nav-link cursor-pointer list-none', isActive('/about') && 'nav-link-active']}>
-          About
-          <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-            <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </summary>
-        <div class="about-panel absolute right-0 top-[calc(100%+14px)] w-[420px] border border-ivory/15 bg-bone p-7 shadow-[0_24px_70px_rgba(0,0,0,0.52)]">
-          <a href="/about/" class="group block border-b border-ivory/10 pb-5">
-            <p class="text-[12px] font-semibold uppercase tracking-[0.12em] text-gold">About</p>
-            <p class="mt-2 font-serif text-[25px] text-ink group-hover:text-gold">{siteFacts.shortName}</p>
-          </a>
-          <div class="grid grid-cols-[0.78fr_1.22fr] gap-7 pt-5">
-            <a href="/about/hra/" class="group block">
-              <p class="text-[12px] font-semibold text-ink group-hover:text-gold">The practice</p>
-              <p class="mt-2 text-[12px] leading-relaxed text-muted">{siteFacts.shortName} in Punta Gorda.</p>
-            </a>
-            <section aria-label="Providers">
-              <p class="text-[12px] font-semibold text-ink">
-                <a href="/about/providers/" class="hover:text-gold">Providers</a>
-              </p>
-              <ul class="mt-3 space-y-2.5">
-                {aboutProviders.map((provider) => (
-                  <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>
-                    <a href={`/about/providers/${provider.slug}/`} class="text-[12px] leading-snug text-muted hover:text-ink" {...sbFieldPath('publicName')}>
-                      {provider.publicName}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-        </div>
-      </details>
-      <a href="/contact/" class={linkClass('/contact')} aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a>
-      <a href="/contact/" class="nav-book">Get in touch</a>
-      {SHOP_ENABLED && (
-        <button data-open-cart class="cart-button" aria-label="Open cart">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="8" cy="17" r="1.2" fill="currentColor" />
-            <circle cx="14" cy="17" r="1.2" fill="currentColor" />
-          </svg>
-          <span data-cart-count class="cart-count hidden">0</span>
-        </button>
-      )}
-    </nav>
-
-    <div class="ml-auto flex items-center gap-1 lg:hidden">
-      <a href="/contact/" class="nav-book px-4">Contact</a>
-      {SHOP_ENABLED && (
-        <button data-open-cart class="cart-button" aria-label="Open cart">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="8" cy="17" r="1.2" fill="currentColor" />
-            <circle cx="14" cy="17" r="1.2" fill="currentColor" />
-          </svg>
-          <span data-cart-count class="cart-count hidden">0</span>
-        </button>
-      )}
+<!-- Editorial chrome: hairline rule, centered serif wordmark, and uppercase
+     letter-spaced navigation. Desktop remains 80px for existing sticky offsets;
+     mobile uses the reference's tighter 64px shell. -->
+<header id="header" class="fixed inset-x-0 top-0 z-50 bg-bone/95 shadow-[0_1px_0_0_var(--color-line)] backdrop-blur-md">
+  <div class="relative mx-auto flex h-16 max-w-[1440px] items-center justify-center px-5 sm:h-20 sm:px-8">
+    <div class="absolute left-5 flex items-center gap-4 sm:left-8 lg:gap-7">
       <button
         id="mobile-menu-button"
         type="button"
-        class="menu-button"
+        class="menu-button inline-flex lg:hidden"
         aria-label="Open navigation"
         aria-expanded="false"
         aria-controls="mobile-navigation"
       >
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
+
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary navigation">
+        <a href="/services/" class={linkClass('/services')} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
+        <a href="/skin-analysis/" class={linkClass('/skin-analysis')} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
+        {SHOP_ENABLED && <a href="/shop/" class={linkClass('/shop')} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
+        <details class="about-menu desktop-menu relative">
+          <summary class:list={['nav-link cursor-pointer list-none', isActive('/about') && 'nav-link-active']}>
+            About
+            <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </summary>
+          <div class="about-panel absolute left-0 top-[calc(100%+18px)] w-[420px] border border-line bg-paper p-7 shadow-[0_24px_70px_rgba(22,20,18,0.16)]">
+            <a href="/about/" class="group block border-b border-line pb-5">
+              <p class="text-kicker font-medium uppercase tracking-label text-gold">About</p>
+              <p class="mt-2.5 font-display text-[22px] leading-none text-ink group-hover:text-gold">{siteFacts.shortName}</p>
+            </a>
+            <div class="grid grid-cols-[0.78fr_1.22fr] gap-7 pt-5">
+              <a href="/about/hra/" class="group block">
+                <p class="text-[12px] font-semibold text-ink group-hover:text-gold">The practice</p>
+                <p class="mt-2 text-[12px] leading-relaxed text-muted">{siteFacts.shortName} in Punta Gorda.</p>
+              </a>
+              <section aria-label="Providers">
+                <p class="text-[12px] font-semibold text-ink">
+                  <a href="/about/providers/" class="hover:text-gold">Providers</a>
+                </p>
+                <ul class="mt-3 space-y-2.5">
+                  {aboutProviders.map((provider) => (
+                    <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>
+                      <a href={`/about/providers/${provider.slug}/`} class="text-[12px] leading-snug text-muted hover:text-ink" {...sbFieldPath('publicName')}>
+                        {provider.publicName}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+          </div>
+        </details>
+      </nav>
+    </div>
+
+    <a href="/" class="brand-link flex flex-col items-center text-center" aria-label={`${siteFacts.siteName} home`}>
+      <span class="font-display text-lg leading-none text-ink sm:text-2xl">{siteFacts.shortName}</span>
+      <span class="mt-1.5 text-kicker font-medium uppercase tracking-label text-muted">Aesthetics</span>
+    </a>
+
+    <div class="absolute right-5 flex items-center gap-2 sm:right-8">
+      {SHOP_ENABLED && (
+        <button data-open-cart class="cart-button" aria-label="Open cart">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 5h2l1.5 9h8L16 7H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="8" cy="17" r="1.2" fill="currentColor" />
+            <circle cx="14" cy="17" r="1.2" fill="currentColor" />
+          </svg>
+          <span data-cart-count class="cart-count hidden">0</span>
+        </button>
+      )}
+      <a href="/contact/" class="nav-book hidden sm:inline-flex">Get in touch</a>
+      <a href="/contact/" class="nav-mobile-contact hidden min-[360px]:inline-flex sm:hidden">Contact</a>
     </div>
   </div>
 
-  <div id="mobile-navigation" class="mobile-navigation hidden border-t border-ivory/10 bg-bone lg:hidden" aria-label="Site navigation" aria-hidden="true">
-    <nav class="max-h-[calc(100dvh-80px)] overflow-y-auto px-5 py-5" aria-label="Mobile navigation">
-      <a href="/" class:list={['mobile-nav-link', isActive('/') && 'mobile-nav-link-active']} aria-current={isActive('/') ? 'page' : undefined}>Home</a>
-      <a href="/services/" class:list={['mobile-nav-link border-y border-ivory/10', isActive('/services') && 'mobile-nav-link-active']} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
+  <div id="mobile-navigation" class="mobile-navigation absolute inset-x-0 top-full hidden h-[calc(100dvh-64px)] border-t border-line bg-bone sm:h-[calc(100dvh-80px)] lg:hidden" aria-label="Site navigation" aria-hidden="true">
+    <nav class="flex h-full flex-col overflow-y-auto px-6 pb-8 pt-9 sm:px-8" aria-label="Mobile navigation">
+      <a href="/" class:list={['mobile-nav-link border-t border-line', isActive('/') && 'mobile-nav-link-active']} aria-current={isActive('/') ? 'page' : undefined}>Home</a>
+      <a href="/services/" class:list={['mobile-nav-link border-y border-line', isActive('/services') && 'mobile-nav-link-active']} aria-current={isActive('/services') ? 'page' : undefined}>Treatments</a>
       <a href="/skin-analysis/" class:list={['mobile-nav-link', isActive('/skin-analysis') && 'mobile-nav-link-active']} aria-current={isActive('/skin-analysis') ? 'page' : undefined}>Skin analysis</a>
       {SHOP_ENABLED && <a href="/shop/" class:list={['mobile-nav-link', isActive('/shop') && 'mobile-nav-link-active']} aria-current={isActive('/shop') ? 'page' : undefined}>Shop</a>}
-      <details class="mobile-about border-b border-ivory/10 py-1">
+      <details class="mobile-about border-y border-line">
         <summary class:list={['mobile-nav-link cursor-pointer list-none', isActive('/about') && 'mobile-nav-link-active']}>
           About
           <svg class="menu-caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -128,7 +117,7 @@ const linkClass = (path: string) =>
           <a href="/about/" class="flex min-h-11 items-center text-[13px] font-semibold text-gold">About House of Rose</a>
           <a href="/about/hra/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">The practice</a>
           <a href="/about/providers/" class="flex min-h-11 items-center text-[13px] font-semibold text-ink">Providers</a>
-          <ul class="ml-4 border-l border-ivory/15 pl-4">
+          <ul class="ml-4 border-l border-line pl-4">
             {aboutProviders.map((provider) => (
               <li {...(sanityProviderIds.has(provider._id) ? sbObjectId(provider._id) : {})}>
                 <a href={`/about/providers/${provider.slug}/`} class="flex min-h-10 items-center text-[13px] leading-snug text-muted" {...sbFieldPath('publicName')}>
@@ -139,8 +128,11 @@ const linkClass = (path: string) =>
           </ul>
         </div>
       </details>
-      <a href="/contact/" class:list={['mobile-nav-link', isActive('/contact') && 'mobile-nav-link-active']} aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a>
-      <a href="/consultation/" class:list={['mobile-nav-link', isActive('/consultation') && 'mobile-nav-link-active']} aria-current={isActive('/consultation') ? 'page' : undefined}>Consultation</a>
+      <a href="/consultation/" class:list={['mobile-nav-link border-y border-line', isActive('/consultation') && 'mobile-nav-link-active']} aria-current={isActive('/consultation') ? 'page' : undefined}>Consultation</a>
+      <div class="mt-auto pt-10 text-[13px] leading-[1.7] text-muted">
+        <p>{siteFacts.address}</p>
+        <a href={`tel:${siteFacts.phone.replace(/[^\d+]/g, '')}`} class="mt-2 inline-flex text-ink underline decoration-line-strong underline-offset-4">{siteFacts.phone}</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -292,49 +284,73 @@ const linkClass = (path: string) =>
 </script>
 
 <style>
+  /* Nav sits in the left cluster beside the monogram, so tracking is dialled
+     back from the 0.28em label standard to 0.18em — at 0.28em the five items
+     collide with the centred wordmark once Shop is enabled. */
   .nav-link {
     display: inline-flex;
     min-height: 44px;
     align-items: center;
     gap: 6px;
-    padding: 0 10px;
-    color: #f1ede5;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    color: var(--color-ink);
+    font-size: var(--text-kicker);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    transition: color var(--duration-quick) var(--ease-out-soft),
+      opacity var(--duration-quick) var(--ease-out-soft);
   }
-  .nav-link:hover,
+  .nav-link:hover { opacity: 0.55; }
   .nav-link-active {
-    color: #e2d3b2;
-    box-shadow: inset 0 -1px #8a6a43;
+    color: var(--color-rose);
+    box-shadow: inset 0 -1px var(--color-rose);
   }
+  .nav-link-active:hover { opacity: 1; }
   summary::-webkit-details-marker { display: none; }
   details[open] > summary .menu-caret { transform: rotate(180deg); }
   .menu-caret { transition: transform 160ms ease; }
+
+  /* The header action mirrors the reference's quiet ink block. Rose remains
+     the state/accent color rather than competing with the centered wordmark. */
   .nav-book {
-    display: inline-flex;
     min-height: 44px;
     align-items: center;
     justify-content: center;
-    border: 1px solid #5f624d;
-    background: #5f624d;
-    color: #f1ede5;
-    padding-inline: 18px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
+    border: 1px solid var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-ivory);
+    padding-inline: 20px;
+    font-size: var(--text-kicker);
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    transition: opacity var(--duration-quick) var(--ease-out-soft);
   }
-  .nav-book:hover { background: #4f5241; }
+  .nav-book:hover { opacity: 0.8; }
+
+  .nav-mobile-contact {
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 4px;
+    color: var(--color-ink);
+    font-size: var(--text-kicker);
+    font-weight: 500;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .cart-button { display: inline-flex; }
   .cart-button,
   .menu-button {
     position: relative;
-    display: inline-flex;
     min-width: 44px;
     min-height: 44px;
     align-items: center;
     justify-content: center;
-    color: #f1ede5;
+    color: var(--color-ink);
   }
+  .menu-button { justify-content: flex-start; }
   .cart-count {
     position: absolute;
     right: 0;
@@ -344,32 +360,58 @@ const linkClass = (path: string) =>
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: #8a6a43;
-    color: #f1ede5;
+    background: var(--color-ink);
+    color: var(--color-ivory);
     padding-inline: 4px;
     font-size: 10px;
     font-weight: 700;
   }
-  .menu-button { flex-direction: column; gap: 4px; }
+  .menu-button { flex-direction: column; gap: 6px; }
   .menu-button span {
-    width: 20px;
-    height: 1.5px;
+    width: 24px;
+    height: 1px;
     background: currentColor;
     transition: opacity 160ms ease, transform 160ms ease;
   }
-  .menu-button[aria-expanded="true"] span:first-child { transform: translateY(5.5px) rotate(45deg); }
-  .menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-  .menu-button[aria-expanded="true"] span:last-child { transform: translateY(-5.5px) rotate(-45deg); }
+  /* Uneven rules at rest — the hra-grok mark — snapping to an even X on open. */
+  .menu-button span:last-child { width: 16px; }
+  .menu-button[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+  .menu-button[aria-expanded="true"] span:last-child {
+    width: 24px;
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
   .mobile-nav-link {
     display: flex;
-    min-height: 50px;
+    min-height: 64px;
     align-items: center;
     justify-content: space-between;
-    color: #f1ede5;
-    font-size: 15px;
-    font-weight: 600;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 9vw, 3rem);
+    letter-spacing: var(--tracking-display);
+    line-height: 1;
+    text-transform: uppercase;
   }
-  .mobile-nav-link-active { color: #e2d3b2; }
+  .mobile-nav-link-active { color: var(--color-rose); }
+  .mobile-sub-link {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    color: var(--color-ink);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .mobile-provider-link {
+    display: flex;
+    min-height: 40px;
+    align-items: center;
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.3;
+  }
   :global(html.menu-is-open) { overflow: hidden; }
   @media (prefers-reduced-motion: reduce) {
     .menu-caret,

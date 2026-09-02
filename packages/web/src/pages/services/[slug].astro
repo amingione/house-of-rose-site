@@ -47,6 +47,16 @@ if (!serviceData) {
 const service: Service = serviceData;
 const education = getServiceEducation(service.slug);
 const inModeContent = getInModeLandingContent(service.slug);
+const contextualServices = Array.from(
+  new Map(
+    [
+      ...(service.parentService ? [service.parentService] : []),
+      ...(service.treatments ?? []),
+      ...(service.relatedServices ?? []),
+      ...(service.contextualServices ?? []),
+    ].map((relatedService) => [relatedService.slug, relatedService]),
+  ).values(),
+);
 
 // Build structured data for SEO
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
@@ -186,22 +196,22 @@ const pageDescription = factualServiceDescription;
   ) : (
   <div>
   <!-- Service hero: the image is semantic and immediately discoverable for LCP. -->
-  <section class="service-detail-hero bg-bone pt-20 lg:pt-24">
-    <div class="mx-auto grid max-w-[1440px] grid-cols-1 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)]">
-      <div class="flex flex-col justify-center px-5 py-9 sm:px-10 sm:py-12 lg:px-[clamp(48px,7vw,104px)] lg:py-20">
-        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-6 inline-flex items-center gap-2 text-[12px] font-medium text-gold underline-offset-4 hover:underline sm:mb-8">
+  <section class="service-detail-hero bg-bone pt-16 sm:pt-20">
+    <div class="mx-auto grid max-w-[1280px] grid-cols-1 lg:min-h-[calc(100svh-80px)] lg:grid-cols-2">
+      <div class="min-w-0 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-16 lg:px-[clamp(48px,6vw,96px)] lg:py-20">
+        <a href={service.parentService ? `/services/${service.parentService.slug}/` : '/services/'} class="mb-7 inline-flex items-center gap-2 text-kicker font-medium uppercase tracking-wide text-gold underline-offset-4 hover:underline">
           <span aria-hidden="true">←</span> {service.parentService ? service.parentService.title : 'All services'}
         </a>
-        <h1 class="max-w-[720px] font-serif text-[clamp(36px,10vw,68px)] leading-[1.04] text-ink">
+        <h1 class="max-w-[720px] break-words font-display text-[clamp(2.75rem,6vw,4.5rem)] leading-display text-ink">
           {service.title}
         </h1>
         {education && (
-          <p class="mt-6 max-w-[620px] text-[17px] leading-[1.7] text-muted-strong">
+          <p class="mt-8 max-w-[620px] text-lede leading-body text-ink">
             {education.paragraphs[0]}
           </p>
         )}
       </div>
-      <figure class="relative min-h-[300px] overflow-hidden bg-limestone sm:min-h-[420px] lg:min-h-full">
+      <figure class="relative min-h-[60vh] overflow-hidden bg-limestone lg:min-h-full">
         <img
           src={heroImage}
           srcset={heroImageSrcset}
@@ -222,6 +232,7 @@ const pageDescription = factualServiceDescription;
       content={education}
       serviceTitle={service.title}
       concerns={service.concerns}
+      relatedServices={contextualServices}
     />
   )}
 
@@ -380,5 +391,38 @@ const pageDescription = factualServiceDescription;
     </div>
   </section>
   </div>
+  )}
+
+  {(service.costGuides?.length || service.comparisons?.length || service.localAreas?.length) && (
+    <section data-contextual-paths class="border-t border-line bg-paper px-6 py-[clamp(44px,6vw,68px)]">
+      <div class="mx-auto max-w-[820px] text-[15px] leading-[1.8] text-muted">
+        <p>
+          {service.costGuides && service.costGuides.length > 0 && (
+            <>
+              For questions about what can affect pricing, begin with the{' '}
+              <a href="/cost/" class="font-medium text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">cost guides</a>
+              {' '}and read the{' '}
+              <a href={`/cost/${service.costGuides[0].slug}/`} class="font-medium text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">guide for {service.title}</a>.
+            </>
+          )}
+          {service.costGuides?.length && service.comparisons?.length ? ' ' : ''}
+          {service.comparisons && service.comparisons.length > 0 && (
+            <>
+              If you are deciding between named options, browse the{' '}
+              <a href="/compare/" class="font-medium text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">treatment comparisons</a>,
+              {' '}including{' '}
+              <a href={`/compare/${service.comparisons[0].slug}/`} class="font-medium text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">{getPublicComparisonContent(service.comparisons[0].slug)!.title}</a>.
+            </>
+          )}
+        </p>
+        {service.localAreas && service.localAreas.length > 0 && (
+          <p class="mt-4">
+            House of Rose has one practice in Punta Gorda. Review the{' '}
+            <a href="/areas/" class="font-medium text-ink underline decoration-gold/60 underline-offset-4 hover:text-gold">areas served</a>
+            {' '}when planning the drive from a nearby community.
+          </p>
+        )}
+      </div>
+    </section>
   )}
 </BaseLayout>

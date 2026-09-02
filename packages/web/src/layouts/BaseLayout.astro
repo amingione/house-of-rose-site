@@ -1,4 +1,5 @@
 ---
+import '@fontsource-variable/outfit';
 import '@/styles/global.css';
 import { sanityFetch } from '@/lib/sanity';
 import { SITE_SETTINGS_QUERY, type SiteSettings } from '@/lib/queries';
@@ -91,6 +92,7 @@ const entityGraph = siteEntityGraph(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Outfit is bundled locally; Times New Roman uses the visitor's system font. -->
     {gscVerify && <meta name="google-site-verification" content={gscVerify} />}
     {preloadImage && (
       <link
@@ -152,7 +154,7 @@ const entityGraph = siteEntityGraph(
     <slot name="head" />
   </head>
   <body>
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-metal focus:text-charcoal focus:text-sm focus:font-medium focus:rounded">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-ink focus:text-ivory focus:text-sm focus:font-medium focus:rounded-sm">
       Skip to main content
     </a>
     {chrome === 'site' && <Header currentPath={Astro.url.pathname} siteFacts={siteFacts} />}

@@ -192,7 +192,7 @@ const personSchema = personProfile(
             {profile.publicRole}
           </p>
           <h1 class="mt-5 font-serif text-[clamp(42px,6vw,70px)] leading-[1.02] text-ink" {...(verifiedFallback ? {} : sbFieldPath('publicName'))}>
-            {profile.publicName}
+            {profile.displayName ?? profile.publicName}
           </h1>
           <p class="mt-7 text-[17px] leading-[1.8] text-muted-strong" {...summaryAttrs}>
             {summary}
@@ -209,7 +209,7 @@ const personSchema = personProfile(
       <div class="mx-auto grid max-w-[1120px] gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-20">
         <article>
           <p class="kicker">Profile</p>
-          <h2 class="font-serif text-[clamp(30px,4vw,44px)] text-ink">Meet {profile.publicName}</h2>
+          <h2 class="font-serif text-[clamp(30px,4vw,44px)] text-ink">Meet {profile.displayName ?? profile.publicName}</h2>
           <div class="mt-7 space-y-6 text-[16px] leading-[1.85] text-muted">
             {biography.map((paragraph, index) => (
               <p {...biographyAttrs(index)}>{paragraph}</p>

@@ -246,7 +246,7 @@ def build_pdf(filename: str, title: str, sections: dict[str, list[str]]):
         Paragraph("Reviewed references include current House of Rose provider and treatment briefs; Procell Therapies aftercare and consent materials retained in the House of Rose repository; Face Reality professional home-care and peel guidance; Geneo treatment considerations and protocol resources; InMode clinical and manufacturer materials; and current product labeling for medically directed services where applicable.", s["body"]),
         Paragraph("Do not use this guide to decide candidacy, stop a prescribed medicine, select a medication or injectable product, or replace urgent medical care.", s["body"]),
         Spacer(1, 0.2 * inch),
-        Paragraph("Questions: info@houseofrosefl.com | (941) 400-0165", s["body"]),
+        Paragraph("Questions: info@houseofrosefl.com | (844) 941-7673", s["body"]),
     ])
     doc.build(story, onFirstPage=footer, onLaterPages=footer)
 

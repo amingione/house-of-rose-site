@@ -21,7 +21,7 @@ const RESEND_ENDPOINT = 'https://api.resend.com/emails';
 const FROM = process.env.ORDER_EMAIL_FROM ?? 'House of Rose <orders@updates.houseofrosefl.com>';
 const REPLY_TO = process.env.ORDER_EMAIL_REPLY_TO ?? 'info@houseofrosefl.com';
 const SITE = 'https://houseofrosefl.com';
-const PHONE = '(844) 941-7673';
+const SUPPORT_PHONE = '(844) 941-7673';
 
 export interface EmailOrderItem {
   title: string;
@@ -93,7 +93,7 @@ function shell(heading: string, bodyHtml: string): string {
         </td></tr>
         <tr><td style="padding:24px 32px 32px;border-top:1px solid rgba(201,162,75,.35);">
           <p style="margin:16px 0 0;font:400 12px/1.7 Arial,sans-serif;color:#5E5548;">
-            Questions? Reply to this email or call us at ${PHONE}.<br />
+            Questions? Reply to this email or call us at ${SUPPORT_PHONE}.<br />
             House of Rose Aesthetics · 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950
           </p>
         </td></tr>
@@ -209,7 +209,7 @@ export async function sendOrderConfirmation(order: EmailOrder): Promise<boolean>
     ``,
     `We'll email you again with tracking as soon as your order ships.`,
     ``,
-    `Questions? Reply to this email or call ${PHONE}.`,
+    `Questions? Reply to this email or call ${SUPPORT_PHONE}.`,
     SITE,
   ].join('\n');
 
@@ -253,7 +253,7 @@ export async function sendOrderShipped(order: EmailOrder): Promise<boolean> {
     ``,
     ...order.items.map((i) => `  ${i.quantity} × ${i.title}`),
     ``,
-    `Questions? Reply to this email or call ${PHONE}.`,
+    `Questions? Reply to this email or call ${SUPPORT_PHONE}.`,
   ]
     .filter(Boolean)
     .join('\n');
@@ -289,7 +289,7 @@ export async function sendLeadAcknowledgement(lead: LeadEmail): Promise<boolean>
     </p>
     ${lead.serviceInterest ? `<p style="margin:0 0 20px;font:400 14px/1.7 Arial,sans-serif;color:#5E5548;"><span style="color:#14110F;font-weight:700;">Interest</span><br />${esc(lead.serviceInterest)}</p>` : ''}
     <p style="margin:0;font:400 14px/1.7 Arial,sans-serif;color:#5E5548;">
-      If your plans change, reply to this email or call ${PHONE}.
+      If your plans change, reply to this email or call ${SUPPORT_PHONE}.
     </p>`,
   );
 
@@ -297,7 +297,7 @@ export async function sendLeadAcknowledgement(lead: LeadEmail): Promise<boolean>
     `${firstName(lead.name)}, we received your ${label}.`,
     responseWindow,
     lead.serviceInterest ? `Interest: ${lead.serviceInterest}` : '',
-    `Questions or changes? Reply to this email or call ${PHONE}.`,
+    `Questions or changes? Reply to this email or call ${SUPPORT_PHONE}.`,
     SITE,
   ].filter(Boolean).join('\n\n');
 

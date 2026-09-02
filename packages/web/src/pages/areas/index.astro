@@ -5,10 +5,21 @@ import { sbObjectId, sbFieldPath } from '@/lib/visualEditing';
 import { ALL_LOCAL_AREAS_QUERY, type LocalArea } from '@/lib/queries';
 import SchemaMarkup from '@/components/SchemaMarkup.astro';
 import { breadcrumbList } from '@/lib/structuredData';
+import ContextualText from '@/components/ContextualText.astro';
+import { contextualizeText, type ContextualLinkCandidate } from '@/lib/contextualLinks';
 
 const areas = await sanityFetch<LocalArea[]>(ALL_LOCAL_AREAS_QUERY);
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
+const areaSentence = 'House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles from 525 E Olympia Ave, Unit 9.';
+const areaLinks: ContextualLinkCandidate[] = areas.map((area) => ({
+  href: `/areas/${area.slug}/`,
+  phrases: [area.city],
+}));
+const areaSentenceSegments = contextualizeText(areaSentence, areaLinks, {
+  currentPath: Astro.url.pathname,
+  maxLinks: areaLinks.length,
+});
 
 const breadcrumb = breadcrumbList([
   { name: 'Home', item: site },
@@ -26,7 +37,7 @@ const breadcrumb = breadcrumbList([
     <div class="max-w-[1280px] mx-auto">
       <span class="kicker">Areas We Serve</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-5">One practice in Punta Gorda.</h1>
-      <p class="text-ink/80 text-[16px] max-w-[720px] leading-relaxed">House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles from 525 E Olympia Ave, Unit 9.</p>
+      <p class="text-ink/80 text-[16px] max-w-[720px] leading-relaxed"><ContextualText segments={areaSentenceSegments} /></p>
     </div>
   </section>
 
@@ -52,7 +63,7 @@ const breadcrumb = breadcrumbList([
           </h2>
           <div class="mt-6 space-y-4 text-[15px] leading-[1.8] text-muted">
             <p>
-              House of Rose Aesthetics serves Punta Gorda, Port Charlotte, Charlotte Harbor, Babcock Ranch, Burnt Store Marina, and Punta Gorda Isles from 525 E Olympia Ave, Unit 9. The photograph shows the actual storefront.
+              <ContextualText segments={areaSentenceSegments} /> The photograph shows the actual storefront.
             </p>
             <p>
               There are no separate House of Rose locations in those communities. When it is time for your appointment, look for Unit 9; free parking is available.

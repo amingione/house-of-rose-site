@@ -25,9 +25,16 @@ const rowImage = getServiceCardImage(slug);
 const rowImageAlt = getServiceCardImageAlt(slug);
 const containRowImage = serviceCardImageUsesContain(slug);
 const cardSummary = getServiceCardSummary(slug);
-const imageSrc = image
+// Services are owned by serviceCatalog.ts, so the Sanity `image` prop is only
+// still populated by legacy callers. Fall back to the curated local asset for
+// this slug so the grid variant shows the same photography as the row variant
+// instead of rendering an image-less card.
+const sanityImageSrc = image
   ? urlFor(image).width(640).height(480).fit('crop').format('webp').quality(80).url()
   : undefined;
+const imageSrc = sanityImageSrc ?? rowImage;
+const imageAlt = (image?.alt ?? (sanityImageSrc ? title : rowImageAlt)) || title;
+const containImage = !sanityImageSrc && containRowImage;
 // Always lead with the technical/industry-standard name — matches what people search for.
 const headline = title;
 ---
@@ -38,12 +45,15 @@ const headline = title;
     {imageSrc && <div class="mb-4 aspect-square overflow-hidden bg-charcoal-lighter">
         <img
           src={imageSrc}
-          alt={image?.alt ?? title}
+          alt={imageAlt}
           width={400}
           height={400}
           loading="lazy"
           decoding="async"
-          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          class:list={[
+            'h-full w-full transition-transform duration-500 group-hover:scale-105',
+            containImage ? 'object-contain p-3' : 'object-cover',
+          ]}
         />
       </div>}
     <span class="service-name">{headline}</span>
@@ -91,7 +101,7 @@ const headline = title;
       ]}>
         <a
           href={`/services/${slug}/`}
-          class="inline-flex min-h-[44px] items-center text-[12px] font-semibold text-ivory underline decoration-ivory/30 underline-offset-4 transition-colors hover:text-gold"
+          class="inline-flex min-h-[44px] items-center text-[12px] font-semibold text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:text-ink"
         >
           Learn more
         </a>

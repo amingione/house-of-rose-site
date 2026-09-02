@@ -319,8 +319,8 @@ with the pricing-confidentiality decision. Confirm the current requirement with 
 ## Canonical Business Facts (NAP — never drift; source of truth = Sanity `siteSettings`)
 - **Name:** House of Rose Aesthetics
 - **Address:** 525 E Olympia Ave, Unit 9, Punta Gorda, FL 33950 — _"Unit 9" (never Ste/Suite); ZIP 33950 (never 33982)_
-- **Primary public phone / canonical NAP:** (941) 400-0165; E.164 `+19414000165`.
-- **Toll-free advertising + online-support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. Keep this number on advertising, carrier-required SMS disclosures, and online/order support surfaces. Do not use it as the primary public NAP.
+- **Office/main phone and canonical public NAP:** (941) 400-0165; E.164 `+19414000165`. This belongs in `siteSettings.phone`.
+- **Toll-free support line:** (844) 941-7673; E.164 `+18449417673` — spells **ROSE**; **never `7376`**. This belongs in `siteSettings.supportPhone`. Keep it on support, advertising, carrier-required SMS disclosures, and online/order support surfaces. Do not use it as the office/main phone or primary public NAP.
 - **Email:** info@houseofrosefl.com (primary) · book@houseofrosefl.com (**live alias** → routes to primary; confirmed with Amber 2026-08-01) — _use `info@` in public NAP, GBP, schema, and footer; `book@` is valid only as the booking/`mailto:` destination (`PUBLIC_BOOKING_EMAIL`). Supersedes the earlier "`book@` was never a real address" rule — that is now **false**, do not act on it or re-remove `book@` from env files or booking links._
 - **Hours:** Mon–Fri 9:00 AM–5:00 PM · Sat–Sun closed. **Pickup hours are the same** (Mon–Fri 9–5); Sat/Sun pickup not set.
 - **Web/social:** https://houseofrosefl.com/ · IG `house.of.rose.aesthetics` · FB `https://www.facebook.com/hofraesthetics` · **opened June 15, 2026** _(confirmed 2026-08-01 against the live Google Business Profile — this settles the June 15 vs July 9 question; **June 15 is correct**, July 9 is dead.)_
@@ -350,9 +350,9 @@ customer-facing surface (including a seed script that could regenerate it), remo
 page and leave the source it came from. Swept clean 2026-08-13: `aboutFallbacks.ts`, `amber.astro`, `diana.astro`,
 homepage, and `about/index.astro`; the obsolete provider seed was removed.
 
-## Permanent Jewelry — REMOVED FROM THE WEBSITE (binding — 2026-08-25)
-Amber removed permanent jewelry from houseofrosefl.com **entirely**. Do not re-add the service page,
-the collection, homepage rails, provider attribution, schema, AI-feed lines, or menu prose. The slug
+## Permanent Jewelry — NOT OFFERED (binding — 2026-08-28)
+House of Rose no longer offers permanent jewelry. Do not re-add it to the website, GlossGenius
+materials, GBP copy, event concepts, provider attribution, schema, AI feeds, or menu prose. The slug
 sits in `UNAVAILABLE_PUBLIC_SERVICE_SLUGS`, and `/services/permanent-jewelry/*` plus
 `/services/collections/permanent-jewelry/*` are forced `404`s in `packages/web/netlify.toml` so search
 engines drop the historical URLs. The `permanentJewelryEducation.ts` module was deleted.
@@ -361,8 +361,8 @@ engines drop the historical URLs. The `permanentJewelryEducation.ts` module was 
   find that intermediate state described anywhere, it is stale.
 - The former Sanity service and collection records were deleted with the rest of the retired service
   model on 2026-08-25. Do not recreate them.
-- The removal was scoped to the **website**. Whether it is still sold in person or listed on
-  GlossGenius is Amber's call and is not recorded here.
+- Amber confirmed the business-wide retirement on 2026-08-28. Earlier notes that limited the
+  retirement to the website or described the service as live and unattributed are stale.
 
 ---
 
@@ -617,8 +617,15 @@ Production: set in Netlify dashboard
 
 ---
 
-## Git Push Protocol
-Use Desktop Commander (`mcp__Desktop_Commander__start_process`) to run `git push` — it executes as `ambermin` with Keychain access.
+## CLI Protocol — Desktop Commander for everything, not just push
+Every shell command in this repo — `npm run build`, `npm run dev:web`, tests, `git push`, all of it —
+runs via Desktop Commander (`mcp__Desktop_Commander__start_process` / `interact_with_process`), never a
+generic sandboxed bash tool. It executes as `ambermin` on the real machine with real filesystem
+permissions and Keychain access (`git push` needs the latter). A sandboxed shell instead runs against a
+synced/mounted copy of this repo with restricted permissions — e.g. it cannot `unlink` files under
+`node_modules/.vite`, which breaks `astro build` with a misleading `EPERM` that has nothing to do with
+the code change. Don't chase that error as a real bug — it means the wrong tool ran the command. See
+`AGENTS.md` → "Tooling — CLI, builds, and git ALWAYS go through Desktop Commander" for the full rule.
 
 ```zsh
 cd ~/LocalStorm/Workspace/DevProjects/GitHub/house-of-rose-site && git push origin main

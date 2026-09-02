@@ -120,7 +120,7 @@
   status = 404
   force  = true
 
-# Permanent jewelry retired from the website entirely 2026-08-25 (Amber).
+# Service retired business-wide 2026-08-28 (Amber).
 # Hard 404 rather than a redirect so search engines drop the historical URLs.
 [[redirects]]
   from   = "/services/permanent-jewelry/*"
@@ -489,11 +489,6 @@ status = 301
 [[redirects]]
 from   = "/services/wellness/"
 to     = "/services/collections/iv-hydration-therapy/"
-status = 301
-
-[[redirects]]
-from   = "/services/collections/permanent-jewelry/"
-to     = "/services/permanent-jewelry/"
 status = 301
 
 # TEMPORARY — public shop disabled. The source, Sanity schemas, and checkout

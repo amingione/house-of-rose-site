@@ -55,6 +55,7 @@ test('SEO strategy sources cannot reintroduce permanently retired programs', () 
     strategySources,
     /\b(?:wax pass|waxing membership|laser hair removal membership)\b|\/memberships\//i,
   );
+  assert.doesNotMatch(strategySources, /permanent jewelry|permanent-jewelry/i);
 });
 
 test('service architecture cannot create unsupported routes or branded equivalence', () => {
@@ -112,10 +113,8 @@ test('keyword research cannot authorize duplicate or unsupported service work', 
 test('historical SEO observations cannot become assumed copy or unsupported inventory', () => {
   assert.match(seoEdits, /never label an assumed title or description as the current value/i);
   assert.match(seoEdits, /\/services\/microneedling\//i);
-  assert.match(seoEdits, /\/services\/permanent-jewelry\//i);
   assert.match(seoEdits, /Geographic intent belongs to the `localArea` page type/i);
-  assert.match(seoEdits, /Do not invent bracelet, anklet, necklace, charm, material, welding, inventory, or walk-in availability claims/i);
-  assert.doesNotMatch(seoEdits, /\/services\/collections\/permanent-jewelry\//i);
+  assert.doesNotMatch(seoEdits, /permanent jewelry|permanent-jewelry/i);
   assert.doesNotMatch(seoEdits, /Add ["`“]?Dysport|no clasp, no worries|Book or walk in today/i);
   assert.doesNotMatch(seoEdits, /Ensure every other page on the site links back to the homepage/i);
 });

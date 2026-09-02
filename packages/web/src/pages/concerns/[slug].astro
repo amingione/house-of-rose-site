@@ -14,6 +14,7 @@ import {
 import { getConcernEducation } from '@/lib/concernEducation';
 import { getPublicComparisonContent } from '@/lib/publicComparisonContent';
 import { getPublicServicesForConcern } from '@/lib/serviceCatalog';
+import { serviceContextualLink } from '@/lib/contextualLinks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_CONCERN_SLUGS_QUERY);
@@ -38,6 +39,7 @@ const comparisons = Array.from(
 ).slice(0, 3);
 const concern: Concern = { ...concernData, treatments, comparisons };
 const concernEducation = slug ? getConcernEducation(slug) : undefined;
+const concernServiceLinks = treatments.map(serviceContextualLink);
 
 const pageTitle = `${concern.title} | House of Rose Aesthetics`;
 const pageDescription = concernEducation
@@ -79,7 +81,7 @@ const treatmentList = concern.treatments?.length
     </div>
   </section>
 
-  {concernEducation && <ConcernEducation content={concernEducation} />}
+  {concernEducation && <ConcernEducation content={concernEducation} links={concernServiceLinks} />}
 
   <!-- Matching treatments -->
   {concern.treatments && concern.treatments.length > 0 && (

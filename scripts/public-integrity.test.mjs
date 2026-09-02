@@ -197,6 +197,36 @@ const mainHtml = (html) => html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?
 
 const occurrenceCount = (text, value) => text.split(value).length - 1;
 
+test('office and toll-free support phone roles remain distinct', () => {
+  const officePhone = '(941) 400-0165';
+  const supportPhone = '(844) 941-7673';
+  const officeMain = mainHtml(readFileSync(path.join(DIST_ROOT, 'index.html'), 'utf8'));
+  const contactMain = mainHtml(readFileSync(path.join(DIST_ROOT, 'contact/index.html'), 'utf8'));
+
+  assert.ok(officeMain.includes(officePhone), 'Homepage is missing the office/main phone.');
+  assert.ok(!officeMain.includes(supportPhone), 'Homepage promotes the support phone as a general office CTA.');
+  assert.ok(contactMain.includes(officePhone), 'Contact page is missing the office/main phone.');
+
+  for (const route of ['support', 'order-confirmed']) {
+    const file = path.join(DIST_ROOT, route, 'index.html');
+    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
+    const main = mainHtml(readFileSync(file, 'utf8'));
+    assert.ok(main.includes(supportPhone), `${route} is missing the toll-free support phone.`);
+  }
+
+  const checkoutSource = readFileSync(
+    path.join(REPO_ROOT, 'packages/web/src/pages/checkout.astro'),
+    'utf8',
+  );
+  assert.ok(checkoutSource.includes(`Call ${supportPhone} to place this order.`), 'Checkout fallback is not routed to the toll-free support phone.');
+
+  const emailSource = readFileSync(
+    path.join(REPO_ROOT, 'packages/web/netlify/functions/_lib/email.ts'),
+    'utf8',
+  );
+  assert.ok(emailSource.includes(`const SUPPORT_PHONE = '${supportPhone}';`), 'Transactional email is not routed to the toll-free support phone.');
+});
+
 test('all generated JSON-LD is valid JSON without HTML entities', () => {
   const failures = [];
   let blockCount = 0;
@@ -382,6 +412,39 @@ test('internal anchors on public generated pages resolve', () => {
   assert.equal(failures.length, 0, formatFailures('Broken internal HTML anchors', failures));
 });
 
+test('indexable content pages receive contextual links from other page bodies', () => {
+  const contentRoute = /^\/(?:services|concerns|compare|cost|packages|blog|areas|about\/providers)(?:\/|$)/;
+  const pageByRoute = new Map(
+    publicHtmlFiles.map((file) => [routeForHtmlFile(file), readFileSync(file, 'utf8')]),
+  );
+  const indexableContentRoutes = [...pageByRoute.entries()]
+    .filter(([route, html]) => contentRoute.test(route) && !metaContent(html, 'robots').toLowerCase().includes('noindex'))
+    .map(([route]) => route);
+  const inboundSources = new Map(indexableContentRoutes.map((route) => [route, new Set()]));
+
+  for (const [sourceRoute, html] of pageByRoute) {
+    for (const href of extractHrefAttributes(mainHtml(html), true)) {
+      const targetRoute = internalPath(href, sourceRoute);
+      if (targetRoute === null || targetRoute === undefined || targetRoute === sourceRoute) continue;
+      inboundSources.get(targetRoute)?.add(sourceRoute);
+    }
+  }
+
+  const failures = [...inboundSources.entries()]
+    .filter(([, sources]) => sources.size === 0)
+    .map(([route]) => `${route} has no inbound link from another page's <main> content`);
+
+  assert.ok(indexableContentRoutes.length >= 60, `Expected at least 60 indexable content routes; found ${indexableContentRoutes.length}.`);
+  assert.equal(failures.length, 0, formatFailures('Contextual content orphans', failures));
+
+  for (const hub of ['/services/', '/concerns/', '/compare/', '/cost/', '/packages/', '/blog/', '/areas/']) {
+    assert.ok(
+      (inboundSources.get(hub)?.size ?? 0) >= 2,
+      `${hub} must receive contextual links from at least two other page bodies.`,
+    );
+  }
+});
+
 test('public HTML, AI feeds, and sitemap do not link to edge-retired routes', () => {
   const references = [];
 
@@ -414,6 +477,74 @@ test('public HTML, AI feeds, and sitemap do not link to edge-retired routes', ()
   }
 
   assert.equal(failures.length, 0, formatFailures('Links to Netlify redirect/forced-404 sources', failures));
+});
+
+test('permanently retired services do not appear in public output', () => {
+  const retiredService = /permanent(?:[\s-]|&nbsp;){1,4}jew(?:elry|ellery|lery)/i;
+  const files = [
+    ...publicHtmlFiles,
+    path.join(DIST_ROOT, 'llms.txt'),
+    path.join(DIST_ROOT, 'llms-full.txt'),
+    path.join(DIST_ROOT, 'sitemap.xml'),
+  ];
+
+  for (const file of files) {
+    const content = readFileSync(file, 'utf8');
+    assert.doesNotMatch(
+      content,
+      retiredService,
+      relativeToRepo(file) + ' contains a permanently retired service',
+    );
+  }
+
+  assert.ok(
+    !existsSync(path.join(DIST_ROOT, 'services', 'permanent-jewelry', 'index.html')),
+    'The retired service route must not be generated.',
+  );
+  assert.ok(
+    !existsSync(path.join(DIST_ROOT, 'services', 'collections', 'permanent-jewelry', 'index.html')),
+    'The retired service collection must not be generated.',
+  );
+});
+
+test('permanently retired services stay out of active authoring sources', () => {
+  const retiredService = /permanent(?:[\s-]|&nbsp;){1,4}jew(?:elry|ellery|lery)/i;
+  const authoringFiles = [
+    ...walkFiles(
+      path.join(REPO_ROOT, 'docs', 'mockups', 'events'),
+      (file) => file.endsWith('.html') || file.endsWith('.md'),
+    ),
+    ...walkFiles(
+      path.join(REPO_ROOT, 'packages', 'web', 'docs', 'PROVIDERS'),
+      (file) => file.endsWith('.md'),
+    ),
+    path.join(REPO_ROOT, 'docs', 'GOOGLE-BUSINESS-PROFILE.md'),
+    path.join(
+      REPO_ROOT,
+      'docs',
+      'GOVERNANCE',
+      'internal_only',
+      'services',
+      'weddings',
+      'Weddings_GlossGenius_Import.csv',
+    ),
+    path.join(
+      REPO_ROOT,
+      'docs',
+      'HRAaudits',
+      'letaido-findings',
+      'HouseOfRose_SEO_Edits.md',
+    ),
+    path.join(REPO_ROOT, 'packages', 'web', 'docs', 'TASKS.md'),
+  ];
+
+  for (const file of authoringFiles) {
+    assert.doesNotMatch(
+      readFileSync(file, 'utf8'),
+      retiredService,
+      relativeToRepo(file) + ' can reintroduce a permanently retired service',
+    );
+  }
 });
 
 test.skip('retired PRF cluster routes resolve one hop to reviewed canonical services', () => {

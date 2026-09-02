@@ -14,6 +14,8 @@ import {
   isReviewedPublicComparisonSlug,
 } from '@/lib/publicComparisonContent';
 import { getComparisonServiceSlugs, getPublicServiceBySlug } from '@/lib/serviceCatalog';
+import ContextualText from '@/components/ContextualText.astro';
+import { contextualizeText, serviceContextualLink } from '@/lib/contextualLinks';
 
 export async function getStaticPaths() {
   const slugs = await sanityFetch<{ slug: string }[]>(ALL_COMPARISON_SLUGS_QUERY);
@@ -59,6 +61,22 @@ const breadcrumb = breadcrumbList([
 ]);
 const a = cmp.optionA;
 const b = cmp.optionB;
+const comparisonServiceLinks = [a?.service, b?.service]
+  .filter((service) => Boolean(service))
+  .map((service) => serviceContextualLink(service!));
+const usedServiceHrefs = new Set<string>();
+const comparisonText = (text: string) => contextualizeText(text, comparisonServiceLinks, {
+  currentPath: Astro.url.pathname,
+  maxLinks: Math.max(0, 4 - usedServiceHrefs.size),
+  usedHrefs: usedServiceHrefs,
+});
+const leadSegments = comparisonText(publicContent.lead);
+const distinctionSegments = comparisonText(publicContent.distinction);
+const sharedSegments = comparisonText(publicContent.shared);
+const optionOverviewSegments = {
+  optionA: publicContent.optionAOverview ? comparisonText(publicContent.optionAOverview) : [],
+  optionB: publicContent.optionBOverview ? comparisonText(publicContent.optionBOverview) : [],
+};
 const sharedOptionService = a?.service && b?.service && a.service._id === b.service._id
   ? a.service
   : null;
@@ -86,7 +104,8 @@ const pageDescription = articleDescription;
       <span class="kicker">Comparison</span>
       <h1 class="font-serif text-[clamp(30px,5vw,52px)] text-ink leading-tight mt-3 mb-6">{publicTitle}</h1>
       <p class="text-ink/85 text-[17px] leading-relaxed max-w-[760px]">
-        {publicContent.lead}
+        <ContextualText segments={leadSegments} />
+        {' '}See <a href="/compare/" class="font-medium text-ink underline decoration-gold-metal/50 underline-offset-4 hover:text-gold">all treatment comparisons</a> for the other reviewed pairs.
       </p>
     </div>
   </section>
@@ -96,12 +115,12 @@ const pageDescription = articleDescription;
         <article class="bg-charcoal p-8 sm:p-10">
           <span class="kicker">The main difference</span>
           <h2 class="mt-3 font-serif text-[clamp(24px,3vw,34px)] leading-tight text-ink">{publicContent.distinctionHeading}</h2>
-          <p class="mt-5 text-[15px] leading-7 text-muted">{publicContent.distinction}</p>
+          <p class="mt-5 text-[15px] leading-7 text-muted"><ContextualText segments={distinctionSegments} /></p>
         </article>
         <article class="bg-charcoal p-8 sm:p-10">
           <span class="kicker">What still matters</span>
           <h2 class="mt-3 font-serif text-[clamp(24px,3vw,34px)] leading-tight text-ink">{publicContent.sharedHeading}</h2>
-          <p class="mt-5 text-[15px] leading-7 text-muted">{publicContent.shared}</p>
+          <p class="mt-5 text-[15px] leading-7 text-muted"><ContextualText segments={sharedSegments} /></p>
         </article>
       </div>
   </section>
@@ -112,10 +131,10 @@ const pageDescription = articleDescription;
         {([
           ['optionA', a, publicContent.optionALabel, publicContent.optionAOverview],
           ['optionB', b, publicContent.optionBLabel, publicContent.optionBOverview],
-        ] as const).filter(([, opt]) => opt).map(([, opt, label, overview]) => (
+        ] as const).filter(([, opt]) => opt).map(([key, opt, label, overview]) => (
           <div class="bg-charcoal p-8">
             <h2 class="font-serif text-[24px] text-gold mb-3">{label}</h2>
-            {overview && <p class="text-[14px] leading-6 text-muted">{overview}</p>}
+            {overview && <p class="text-[14px] leading-6 text-muted"><ContextualText segments={optionOverviewSegments[key]} /></p>}
             {opt!.service && !sharedOptionService && (
               <a href={`/services/${opt!.service.slug}/`} class="learn-more mt-3 inline-flex">Learn about {opt!.service.title}</a>
             )}
@@ -211,7 +230,7 @@ const pageDescription = articleDescription;
       <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink leading-tight mb-6">Ask a question about either service.</h2>
       <p class="text-muted text-[15px] max-w-[520px] mx-auto mb-8">Call or send the two treatment names to House of Rose.</p>
       <div class="flex gap-3 justify-center flex-wrap">
-        <a href="tel:+19414000165" class="btn-outline-gold">(941) 400-0165</a>
+        <a href="tel:+19414000165" class="btn-outline-ink">(941) 400-0165</a>
         <a href="/contact/" class="btn-gold">Contact House of Rose</a>
       </div>
     </div>

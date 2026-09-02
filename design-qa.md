@@ -64,3 +64,47 @@
 - None assigned before browser-rendered evidence is available.
 
 final result: blocked
+
+---
+
+# Primary Button Hover — Design QA (2026-08-28)
+
+## Comparison target
+
+- Source visual truth path: inline user-supplied hra-grok screenshots in the 2026-08-28 request; the focused crop is 505 × 290 px and the full reference is 2520 × 1536 px.
+- Supporting source implementation: `/Users/ambermingione/LocalStorm/Workspace/DevProjects/hra-grok/src/routes/index.tsx` and `/Users/ambermingione/LocalStorm/Workspace/DevProjects/hra-grok/src/components/site-header.tsx`.
+- Implementation screenshot paths: `.playwright-mcp/button-hover-header-implementation.png` and `.playwright-mcp/button-hover-dark-implementation.png`.
+- Viewport: 1260 × 768 CSS px, normalized from the 2520 × 1536 source at 2× density; implementation captures are 1260 × 768 px at 1× density.
+- State: pointer hover on the header action, dark-section `Request a visit` action, and the shared filled button class.
+
+## Findings
+
+- No actionable P0, P1, or P2 mismatch remains. The prior transparent-outline hover was a P1 interaction-state mismatch and is fixed.
+
+## Full-view and focused comparison evidence
+
+- The header capture preserves the cream navigation field and a filled charcoal action; at hover the filled action remains solid and resolves to `opacity: 0.8`, matching hra-grok.
+- The dark-section capture preserves the near-black field and filled ivory action; at hover the same `opacity: 0.8` blend produces the warm gray visible in the source crop.
+- Focused comparison was required because the requested change is an interaction state too small to judge reliably from the full-page composition alone.
+
+## Required fidelity surfaces
+
+- Fonts and typography: button family, size, weight, uppercase treatment, and letter spacing are unchanged.
+- Spacing and layout rhythm: button dimensions, padding, borders, placement, and surrounding section layout are unchanged.
+- Colors and visual tokens: ink and ivory remain the base tokens; hover changes only opacity, so no rose accent or transparent outline is introduced.
+- Image quality and asset fidelity: all live-site imagery and crops remain unchanged.
+- Copy and content: labels, verified homepage copy, booking destinations, SEO structure, and accessibility controls remain unchanged.
+
+## Primary interactions tested
+
+- Header action hover: filled ink background retained, opacity `0.8`, no outline inversion.
+- Dark-section action hover: filled ivory background retained, opacity `0.8`, producing the reference warm-gray appearance.
+- Shared `.btn-gold` hover: filled ivory background retained on the dark cookie surface, opacity `0.8`.
+- Runtime console: no errors on the checked homepage state.
+
+## Comparison history
+
+- Iteration 1: primary shared actions used `hover:bg-transparent`, producing an incorrect outline state.
+- Iteration 2: changed the shared primary interaction to `transition-opacity` with `hover:opacity-80`; browser evidence matches the hra-grok interaction.
+
+final result: passed

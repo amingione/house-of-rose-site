@@ -149,7 +149,7 @@ const supplementDisclaimer =
 const site = Astro.site?.toString() ?? 'https://houseofrosefl.com/';
 const canonical = new URL(Astro.url.pathname, site).toString();
 const heroImg = data.image?.asset?.url;
-const fallbackHeroImage = '/images/before-after/makeup/makeupbyxamber-jane-iredale-stephanie.png';
+const fallbackHeroImage = '/images/optimized/makeup-jane-iredale-stephanie-1400.webp';
 const pageImage = heroImg ?? fallbackHeroImage;
 const heroBanner = getHeroBanner('/shop/jane-iredale/');
 
@@ -258,13 +258,13 @@ const faqLd = faqPage(faqs);
     </section>
 
     <!-- Why we use it -->
-    <section class="on-dark bg-walnut py-[clamp(48px,7vw,88px)] px-6 border-t border-gold-metal/10">
+    <section class="bg-breath py-[clamp(48px,7vw,88px)] px-6 border-t border-gold-metal/10">
       <div class="max-w-[860px] mx-auto text-center">
         <span class="kicker" {...sbFieldPath('whyUsKicker')}>{data.whyUsKicker ?? 'Why We Use It'}</span>
-        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ivory mt-2 mb-6" {...sbFieldPath('whyUsHeading')}>
+        <h2 class="font-serif text-[clamp(24px,4vw,38px)] text-ink mt-2 mb-6" {...sbFieldPath('whyUsHeading')}>
           {data.whyUsHeading ?? 'Considered for post-treatment wear.'}
         </h2>
-        <p class="text-ivory/75 text-[15px] leading-[1.85] max-w-[680px] mx-auto whitespace-pre-line" {...sbFieldPath('whyUsBody')}>
+        <p class="text-muted text-[15px] leading-[1.85] max-w-[680px] mx-auto whitespace-pre-line" {...sbFieldPath('whyUsBody')}>
           {data.whyUsBody ??
             'Jane Iredale mineral makeup may be considered after a facial or skin treatment when your provider confirms that your skin is ready. The line offers buildable coverage, mineral SPF options, and products for everyday routines. Product selection and post-treatment timing depend on your skin, the treatment performed, and your provider’s aftercare guidance.'}
         </p>

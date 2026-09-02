@@ -507,6 +507,10 @@ export interface PublicProviderProfile {
   _id: string;
   slug: string;
   publicName: string;
+  /** Heading name. publicRole carries the licence directly beneath it, so this
+   *  drops the credential suffix that publicName must keep for § 456.072(1)(t)
+   *  attribution and schema. Falls back to publicName when unset. */
+  displayName?: string;
   publicRole: string;
   summary: string;
   biography: string[];
