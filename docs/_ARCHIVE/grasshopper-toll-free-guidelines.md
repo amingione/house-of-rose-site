@@ -1,5 +1,10 @@
 # H of R - Grasshopper Toll Free Registration
----
+
+Date: SEPTEMBER 1, 2026
+Category: Grasshopper
+> GRASSHOPPER IS NO LONGER BEING USED - THE TOLL FREE NUMBER IS PORTED INTO OUR VERIZON BUSINESS ACCOUNT
+## Regis
+
 Date: Aug 1, 2026
 Category: Grasshopper
 ---

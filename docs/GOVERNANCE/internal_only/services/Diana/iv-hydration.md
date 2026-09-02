@@ -1,5 +1,7 @@
 # IV Hydration Therapy — Current Research Brief
 
+> UPDATE: 9/2/26: WE DO HAVE THE B12 AND VITAmin c shots like in the old priving look at gloss genius
+
 **Status:** active factual authority for website drafting
 
 **Verified menu:** August 6, 2026 GlossGenius mirror

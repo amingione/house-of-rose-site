@@ -122,6 +122,15 @@ const REVIEWED_EXCEPTION = /drift-guard-ok:\s*\S+/;
  * test, which catches any price that reaches the actual built HTML/AI feeds
  * regardless of which source file it came from.
  */
+/**
+ * The toll-free line (844) 941-7673 is the billboard/marketing + support line. On the website it
+ * belongs on /support only (binding 2026-09-02). Every other public page, the SMS consent
+ * disclosure included, uses the local office line (941) 400-0165. Transactional order email and the
+ * ship-from label (packages/web/netlify) are support touchpoints and stay on the toll-free line.
+ */
+const TOLL_FREE_RE = /844\)\s?941-7673|1?8449417673/;
+const TOLL_FREE_ALLOWED_PATH_RE = /pages[\\/]support\.astro$|lib[\\/]publicSiteFacts\.ts$|^packages[\\/]web[\\/]netlify[\\/]/;
+
 const PRICE_RE = /\$\d/;
 // Exempt: (1) retail shop/checkout/cart source — a real product price is required
 // for Stripe Elements to function, see CLAUDE.md "Checkout"; (2) Sanity Studio
@@ -178,6 +187,14 @@ function scanFile(file) {
       }
     }
     const reviewed = REVIEWED_EXCEPTION.test(text) || REVIEWED_EXCEPTION.test(lines[i - 1] ?? '');
+    if (TOLL_FREE_RE.test(text) && !TOLL_FREE_ALLOWED_PATH_RE.test(rel)) {
+      hits.push({
+        file: rel,
+        line: i + 1,
+        label: 'Toll-free (844) 941-7673 outside /support (use the local office line (941) 400-0165)',
+        text: text.trim().slice(0, 120),
+      });
+    }
     if (PRICE_RE.test(text) && !PRICE_EXEMPT_PATH_RE.test(rel) && !reviewed) {
       hits.push({
         file: rel,

@@ -207,18 +207,24 @@ test('office and toll-free support phone roles remain distinct', () => {
   assert.ok(!officeMain.includes(supportPhone), 'Homepage promotes the support phone as a general office CTA.');
   assert.ok(contactMain.includes(officePhone), 'Contact page is missing the office/main phone.');
 
-  for (const route of ['support', 'order-confirmed']) {
-    const file = path.join(DIST_ROOT, route, 'index.html');
-    assert.ok(existsSync(file), `Missing generated ${relativeToRepo(file)}`);
-    const main = mainHtml(readFileSync(file, 'utf8'));
-    assert.ok(main.includes(supportPhone), `${route} is missing the toll-free support phone.`);
-  }
+  assert.ok(!contactMain.includes(supportPhone), 'Contact page shows the toll-free line (it belongs on /support only).');
+
+  const supportFile = path.join(DIST_ROOT, 'support', 'index.html');
+  assert.ok(existsSync(supportFile), `Missing generated ${relativeToRepo(supportFile)}`);
+  assert.ok(mainHtml(readFileSync(supportFile, 'utf8')).includes(supportPhone), 'support is missing the toll-free support phone.');
+
+  // Toll-free is billboard/support only: no other public page may show it (binding 2026-09-02).
+  const tollFreeLeaks = allHtmlFiles
+    .filter((file) => !/[\\/]support[\\/]index\.html$/.test(file))
+    .filter((file) => /844\)\s?941-7673|18449417673/.test(mainHtml(readFileSync(file, 'utf8'))))
+    .map(relativeToRepo);
+  assert.deepEqual(tollFreeLeaks, [], `Toll-free line leaked outside /support: ${tollFreeLeaks.join(', ')}`);
 
   const checkoutSource = readFileSync(
     path.join(REPO_ROOT, 'packages/web/src/pages/checkout.astro'),
     'utf8',
   );
-  assert.ok(checkoutSource.includes(`Call ${supportPhone} to place this order.`), 'Checkout fallback is not routed to the toll-free support phone.');
+  assert.ok(checkoutSource.includes(`Call ${officePhone} to place this order.`), 'Checkout fallback is not routed to the local office phone.');
 
   const emailSource = readFileSync(
     path.join(REPO_ROOT, 'packages/web/netlify/functions/_lib/email.ts'),
@@ -1295,7 +1301,6 @@ test('contact form explains reply timing and preserves the messaging-consent con
     'name="consent-marketing"',
     'name="consent-none"',
     'href="tel:+19414000165"',
-    'href="tel:+18449417673"',
     'href="/privacy-policy/"',
   ]) {
     if (!main.includes(requiredMarkup)) failures.push(`contact: missing ${requiredMarkup}`);
@@ -1354,14 +1359,14 @@ test('shared form confirmation routes time-sensitive and emergency needs safely'
   for (const [label, pattern] of [
     ['same-day appointment change', /same-day appointment change/i],
     ['unexpected post-appointment change', /unexpected change[\s\S]{0,100}House of Rose appointment/i],
-    ['practice-hours phone handoff', /\(844\) 941-7673[\s\S]{0,120}Monday through Friday[\s\S]{0,80}9 AM[–-]5 PM ET/i],
+    ['practice-hours phone handoff', /\(941\) 400-0165[\s\S]{0,120}Monday through Friday[\s\S]{0,80}9 AM[–-]5 PM ET/i],
     ['routine-reply exception', /instead of waiting[\s\S]{0,80}routine reply/i],
     ['emergency boundary', /medical emergency[\s\S]{0,80}(?:call 911|emergency care)/i],
   ]) {
     assert.match(text, pattern, `Thank-you page is missing ${label}.`);
   }
   assert.match(html, /<meta\s+name="robots"\s+content="[^"]*noindex[^"]*nofollow/i);
-  assert.ok(html.includes('href="tel:+18449417673"'), 'Thank-you page is missing the verified phone link.');
+  assert.ok(html.includes('href="tel:+19414000165"'), 'Thank-you page is missing the verified phone link.');
 });
 
 test('suite-rental application explains the next step without changing the form contract', () => {
