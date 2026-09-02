@@ -1,7 +1,9 @@
 allowBuilds:
-  '@netlify/content-engine': set this to true or false
-  contentful: set this to true or false
-  es5-ext: set this to true or false
-  esbuild: set this to true or false
-  lmdb: set this to true or false
-  msgpackr-extract: set this to true or false
+  '@netlify/content-engine': false
+  contentful: false
+  es5-ext: false
+  'esbuild@0.25.12 || 0.28.2': true
+  'fsevents@2.3.3': true
+  lmdb: false
+  msgpackr-extract: false
+  'sharp@0.34.5': true
