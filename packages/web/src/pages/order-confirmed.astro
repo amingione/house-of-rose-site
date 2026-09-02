@@ -40,8 +40,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         <p id="order-ref" class="hidden text-gold text-[13px] font-medium tracking-[0.16em] uppercase mb-6"></p>
 
         <p class="text-muted text-[16px] leading-[1.9] mb-4">
-          Your payment went through and your order is in. A confirmation email is on its way
-          to you now with everything you bought and what it came to.
+          Your payment was successful and your order has been placed. A confirmation email
+          with your order details and total is on its way.
         </p>
         <p class="text-muted text-[16px] leading-[1.9] mb-10">
           We'll email you again with tracking as soon as your order ships.
@@ -62,7 +62,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
       <div id="state-processing" class="hidden">
         <span class="kicker">Payment Processing</span>
         <h2 class="font-serif text-[clamp(28px,4.5vw,40px)] text-ink mt-2 mb-6">
-          We've got your order.
+          Your order is confirmed. Payment is processing.
         </h2>
         <p class="text-muted text-[16px] leading-[1.9] mb-10">
           Your payment is still being confirmed by your bank — this can take a moment. We'll
@@ -78,8 +78,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
           Your payment didn't go through.
         </h2>
         <p class="text-muted text-[16px] leading-[1.9] mb-10">
-          Nothing was charged, and your cart is exactly as you left it. You can try again, or
-          call us and we'll take the order over the phone.
+          Nothing was charged, and your cart has been saved. You can try again, or call to
+          place the order by phone.
         </p>
         <div class="flex gap-4 flex-wrap justify-center">
           <a href="/checkout/" class="btn-gold">Try Again</a>

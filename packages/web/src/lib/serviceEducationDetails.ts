@@ -50,7 +50,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
   'injectables-bio-fillers': {
     benefits: ['Understand the difference between movement-related lines, facial volume, and PRF options.', 'Start with the service category that matches the change you want to discuss.'],
     treatmentSteps: [
-      { title: 'Describe the change', text: 'Begin with what you notice in movement, volume, or the under-eye area rather than trying to choose a product yourself.' },
+      { title: 'Describe the change', text: 'Begin with the specific change in movement, volume, or the under-eye area rather than trying to choose a product yourself.' },
       { title: 'Review the options', text: 'Diana Morrison, RN reviews anatomy, goals, history, and candidacy under written physician protocol and medical direction.' },
       { title: 'Create an individual plan', text: 'Product, amount, placement, and follow-up are determined for the person being treated.' },
     ],
@@ -171,7 +171,7 @@ const DETAILS: Readonly<Record<string, ServiceEducationDetails>> = {
   'glo2facial': {
     benefits: ['Combines surface exfoliation, topical infusion, oxygenation at the skin surface, and facial massage.', 'Provides a complete device-based facial without presenting oxygen as being blown onto the face.'],
     treatmentSteps: [
-      { title: 'Oxfoliation', text: 'A single-use OxyPod and Primer Gel work together at the skin surface for exfoliation and the oxygenation step.' },
+      { title: 'Surface exfoliation and oxygenation', text: 'A single-use OxyPod and Primer Gel work together at the skin surface for exfoliation and the oxygenation step.' },
       { title: 'Topical infusion', text: 'The selected serum is worked across the skin as the second part of the facial.' },
       { title: 'Facial massage', text: 'The service finishes with facial massage and final skin care.' },
     ],

@@ -40,7 +40,7 @@ const SERVICE_APPOINTMENT_GUIDANCE: Readonly<Record<string, string>> = {
   prf:
     'For PRF applied at the skin surface, ask about Microneedling with Amber Mingione, Licensed Esthetician. For injectable PRF with Diana Morrison, RN, ask about PRF Under-Eye or PRF Bio-Filler.',
   'injectables-bio-fillers':
-    'Describe whether what you notice changes with expression, looks like lost volume at the lips, cheeks, or folds, or involves under-eye color, vessels, or shadow. A product name is not required.',
+    'Describe whether the change is related to expression, looks like lost volume at the lips, cheeks, or folds, or involves under-eye color, vessels, or shadow. A product name is not required.',
   dermaplaning:
     'Book the 50-minute standalone facial or the 25-minute add-on. Dermaplaning addresses fine vellus hair and surface buildup across the face; Facial Waxing is booked by area for the brows, upper lip, or chin.',
   microneedling:

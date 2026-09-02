@@ -66,7 +66,7 @@ const FALLBACK_SWAPS: JaneIredaleSwap[] = [
   { category: 'Setting spray', conventional: 'Setting / finishing spray', swap: 'POMMISST Hydration Spray', note: 'Antioxidant mist that sets makeup.' },
   { category: 'Bronzer / contour', conventional: 'Powder bronzer', swap: 'PureBronze Matte Bronzer', note: 'Warmth and soft contour.' },
   { category: 'Blush', conventional: 'Powder / cream blush', swap: 'ColorLuxe Liquid Blush', note: 'Brings life back to the complexion.' },
-  { category: 'Highlighter', conventional: 'Cream / stick highlighter', swap: 'Glow Time Highlighter Stick', note: 'Buildable radiant finish.' },
+  { category: 'Highlighter', conventional: 'Cream / stick highlighter', swap: 'Glow Time Highlighter Stick', note: 'Buildable, natural-looking finish.' },
   { category: 'Brows', conventional: 'Brow pencil + gel', swap: 'PureBrow Precision Pencil + PureBrow Brow Gel', note: 'Define and set naturally.' },
   { category: 'Eyeshadow', conventional: 'Pressed eyeshadow palette', swap: 'PurePressed Eye Shadow', note: 'Mineral mattes and shimmers.' },
   { category: 'Mascara', conventional: 'Volumizing mascara', swap: 'Longest Lash or Lash Fixation Tubing Mascara', note: 'Length and definition.' },
@@ -79,7 +79,7 @@ const FALLBACK_LOOKS: SignatureLook[] = [
   {
     name: 'A Soft Everyday Look',
     summary:
-      'Skin that looks like skin: light-to-medium radiant coverage, warm bronzer instead of flat contour, a peachy blush, soft brown eyes, and a rosy nude lip. Enhancement, not alteration.',
+      'Skin that looks like skin: light-to-medium buildable coverage, warm bronzer instead of flat contour, a peachy blush, soft brown eyes, and a rosy nude lip.',
     steps: [
       { step: 'Prime', product: 'Smooth Affair Brightening Face Primer', shade: 'Brightening' },
       { step: 'Foundation', product: 'PurePressed Base Mineral Foundation', shade: 'Matched to undertone' },
@@ -93,7 +93,7 @@ const FALLBACK_LOOKS: SignatureLook[] = [
   {
     name: 'A Natural Event & Photography Look',
     summary:
-      'Believable, camera-ready coverage that holds up through a long day. Light-to-medium radiant foundation, warm bronzer, satin finish, and slightly overlined nude lips for balance.',
+      'Believable, camera-ready coverage that holds up through a long day. Light-to-medium foundation with a satin finish, warm bronzer, and slightly overlined nude lips for balance.',
     steps: [
       { step: 'Prime', product: 'Smooth Affair Brightening Face Primer', shade: 'Brightening' },
       { step: 'Foundation', product: 'Skintuition SPF 30 Liquid Foundation', shade: 'Neutral match' },
@@ -320,7 +320,7 @@ const faqLd = faqPage(faqs);
           </h2>
           <p class="text-muted text-[15px] leading-[1.8]" {...sbFieldPath('looksIntro')}>
             {data.looksIntro ??
-              'Here is exactly how we build two of our most-requested finishes — the products and shades that create a healthy, believable result.'}
+              'Here is how we build two finishes we are asked about often, including the products and shades that create a healthy, believable result.'}
           </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-gold-metal/15">

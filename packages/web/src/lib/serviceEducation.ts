@@ -121,10 +121,10 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
   if (slug === 'injectables-bio-fillers') {
     return {
       kicker: 'Injectables & Bio-Fillers',
-      heading: 'Movement, volume, and PRF are different treatment questions.',
+      heading: 'Movement, volume, and PRF address different concerns.',
       metaDescription: 'Understand neurotoxins, hyaluronic-acid dermal fillers, and injectable PRF at House of Rose Aesthetics in Punta Gorda.',
       paragraphs: [
-        'Injectables and bio-fillers are not one interchangeable category. Botox and Daxxify address lines related to facial movement, hyaluronic-acid fillers address selected areas of lost volume, and platelet-rich fibrin begins with a small sample of the client’s own blood.',
+        'Injectables and bio-fillers cover three distinct categories: Botox and Daxxify address lines related to facial movement, hyaluronic-acid fillers address selected areas of lost volume, and platelet-rich fibrin begins with a small sample of the client’s own blood.',
         'Diana Morrison, RN reviews the area, anatomy, health history, and goal before determining whether any injectable service is appropriate under written physician protocol and medical direction.',
       ],
       distinctions: [
@@ -262,7 +262,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
           text: 'The specialized blade lifts accumulated dead skin cells and fine vellus hair from the facial surface in the same appointment.',
         },
         {
-          label: 'Dermaplaning or facial waxing?',
+          label: 'Dermaplaning compared with facial waxing',
           text: 'Dermaplaning works across the facial surface for fine vellus hair and surface buildup. House of Rose books facial waxing by area for the brows, upper lip, and chin.',
         },
       ],
@@ -306,7 +306,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
         },
         {
           label: 'The selected formula',
-          text: 'Ask the practice about the current formulation and whether an ingredient is appropriate for the question you have.',
+          text: 'Ask the practice about the current formulation and whether a specific ingredient is appropriate for you.',
         },
       ],
       links: [
@@ -408,7 +408,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
                 ]
               : []),
             {
-              label: 'Expression is the clue',
+              label: 'How to recognize a movement-related line',
               text: 'A movement-related line becomes visible or deepens when you frown, raise your brows, or squint.',
             },
             {
@@ -770,7 +770,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
           text: 'Morpheus8 combines microneedling with fractional radiofrequency in one InMode device.',
         },
         {
-          label: 'When visible pigment is the question',
+          label: 'When visible pigment is the concern',
           text: 'Lumecca Peak is the InMode IPL handpiece House of Rose lists for visible pigment, uneven tone, and selected texture concerns.',
         },
         ...(bundle
@@ -876,7 +876,7 @@ const getRawServiceEducation = (slug: string): ServiceEducationContent | undefin
     kicker: device.title,
     heading: isBodyMorpheus
       ? 'RF microneedling for selected body areas.'
-      : 'Microneedling and fractional radiofrequency, together.',
+      : 'Microneedling combined with fractional radiofrequency.',
     metaDescription: isBodyMorpheus
       ? 'Morpheus8 Body at House of Rose combines microneedling with fractional radiofrequency for selected body areas. Ask about current pricing.'
       : 'Morpheus8 at House of Rose combines microneedling with fractional radiofrequency. Compare Burst, Resurfacing, and Prime options. Ask about pricing.',
